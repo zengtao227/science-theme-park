@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
 import { useAppStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
 export default function EntryProtocol() {
     const { acceptProtocol, currentLanguage, setLanguage } = useAppStore();
@@ -13,12 +11,9 @@ export default function EntryProtocol() {
 
     const [textIndex, setTextIndex] = useState(0);
     const [showButton, setShowButton] = useState(false);
-    const [holding, setHolding] = useState(false);
-    const controls = useAnimation();
 
     const fullText = t.warning_text;
 
-    // Reset animation when language changes to re-type the new language text
     useEffect(() => {
         setTextIndex(0);
         setShowButton(false);
@@ -28,30 +23,12 @@ export default function EntryProtocol() {
         if (textIndex < fullText.length) {
             const timeout = setTimeout(() => {
                 setTextIndex(prev => prev + 1);
-            }, 30); // Typing speed
+            }, 30);
             return () => clearTimeout(timeout);
         } else {
             setTimeout(() => setShowButton(true), 500);
         }
     }, [textIndex, fullText]);
-
-    const handleHoldStart = () => {
-        setHolding(true);
-        controls.start({
-            width: "100%",
-            transition: { duration: 3, ease: "linear" }
-        });
-    };
-
-    const handleHoldEnd = () => {
-        setHolding(false);
-        controls.stop();
-        controls.set({ width: "0%" });
-    };
-
-    const handleComplete = () => {
-        acceptProtocol();
-    };
 
     return (
         <div className="fixed inset-0 bg-black flex flex-col items-center justify-center font-mono text-green-500 p-8 z-50 select-none">
@@ -79,29 +56,13 @@ export default function EntryProtocol() {
 
                 {showButton && (
                     <div className="mt-12 flex flex-col items-center gap-4">
-                        <div className="text-xs text-gray-600 uppercase tracking-widest">
-                            {t.hold_instruction}
-                        </div>
-
                         <button
-                            onMouseDown={handleHoldStart}
-                            onMouseUp={handleHoldEnd}
-                            onMouseLeave={handleHoldEnd}
-                            onTouchStart={handleHoldStart}
-                            onTouchEnd={handleHoldEnd}
-                            className="relative group overflow-hidden border border-green-900 bg-black hover:bg-green-900/10 px-8 py-4 transition-colors"
+                            onClick={acceptProtocol}
+                            className="relative group overflow-hidden border border-green-500 bg-black hover:bg-green-500/10 px-8 py-4 transition-colors"
                         >
                             <span className="relative z-10 font-bold tracking-widest text-green-500 group-hover:text-green-400">
                                 {t.hold_button}
                             </span>
-
-                            {/* Progress Bar Background */}
-                            <motion.div
-                                className="absolute top-0 left-0 h-full bg-green-900/30 z-0"
-                                initial={{ width: "0%" }}
-                                animate={controls}
-                                onAnimationComplete={handleComplete}
-                            />
                         </button>
                     </div>
                 )}
