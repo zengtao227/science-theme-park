@@ -87,13 +87,17 @@ function DraggableWeight({ position, mass, color = "#ffa500", label, onDrop, isX
                 onPointerOut={() => setHover(false)}
                 onPointerDown={(e) => {
                     // Start Drag
-                    e.target.setPointerCapture(e.pointerId);
+                    if (e.target && 'setPointerCapture' in e.target) {
+                        (e.target as any).setPointerCapture(e.pointerId);
+                    }
                     isDragging.current = true;
                     if (rigidBodyRef.current) rigidBodyRef.current.setBodyType(2); // Kinematic
                 }}
                 onPointerUp={(e) => {
                     // End Drag
-                    e.target.releasePointerCapture(e.pointerId);
+                    if (e.target && 'releasePointerCapture' in e.target) {
+                        (e.target as any).releasePointerCapture(e.pointerId);
+                    }
                     isDragging.current = false;
                     if (rigidBodyRef.current) {
                         rigidBodyRef.current.setBodyType(0); // Dynamic
@@ -429,7 +433,7 @@ function LabEnvironment() {
             <ambientLight intensity={0.2} />
             <pointLight position={[10, 10, 10]} intensity={1.5} color="#00ff9d" distance={50} />
             <pointLight position={[-10, 5, -10]} intensity={1} color="#00d2ff" distance={50} />
-            <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow shadowBias={-0.0001} />
+            <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow shadow-bias={-0.0001} />
 
             {/* Floor */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -5, 0]} receiveShadow>
