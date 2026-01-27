@@ -62,3 +62,21 @@
 4.  **Test**: 在 Roblox Studio 中验证手感（这就是所谓的"Fun Factor"）。
 
 ---
+
+## 四、视觉无障碍与可读性协议 (Absolute Visibility Protocol)
+**原则**：严禁在核心 UI（导航、知识点、操作指令）中使用灰色或低对比度文字。
+
+1.  **文字对比度**：
+    - 所有的章节标题（EXPLORE, ARCHITECT 等）必须使用 **100% 纯白色 (text-white)**。
+    - 禁止使用 `text-white/50`, `text-neutral-500` 等低透明度或灰色样式处理关键文字。
+    - 交互元素在选中状态下必须有明显的视觉增强（如：`border-b-8`, `shadow-2xl`）。
+
+2.  **字体大小与重量**：
+    - 导航按钮（如 "Back to Nexus"）必须足够巨大（建议 `text-2xl` 或以上）。
+    - 任务目标和公式必须是页面中最显眼的元素（建议 `text-7xl` 到 `text-9xl`）。
+
+3.  **小屏幕适配建议**：
+    - 避免在重要指令上使用过细的字体。使用 `font-black` 或 `font-bold`。
+    - 输入框的 Placeholder 必须保持最低 50% 的可见度 (`placeholder:text-white/50`)。
+
+*违反此协议即视为交付失败。*

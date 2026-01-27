@@ -35,6 +35,19 @@ export const translations = {
                 ab: "ab",
                 target_plus: "(a+b)²",
                 target_minus: "(a-b)²",
+            },
+            scenarios: {
+                architect_title: "Scenario A: The Architect",
+                architect_desc: "Calculate material for room extensions. Don't forget the corners!",
+                scrapper_title: "Scenario B: The Scrapper",
+                scrapper_desc: "Reconstruct debris into perfect squares for spaceport docking.",
+                speedster_title: "Scenario C: The Speedster",
+                speedster_desc: "Master the art of rapid mental estimation using expansions.",
+                architect_mission: "Task: Expand the blueprints to buy the correct amount of carpet.",
+                scrapper_mission: "Task: Factor the debris cluster into a stable docking square.",
+                speedster_mission: "Task: Calculate the target value instantly using (a+b)² shortcuts.",
+                elite_mission: "Task: Deconstruct complex clusters into secondary polynomial forms.",
+                voyager_mission: "Task: Master the Difference of Two Squares: (a+b)(a-b)."
             }
         }
     },
@@ -74,6 +87,19 @@ export const translations = {
                 ab: "ab",
                 target_plus: "(a+b)²",
                 target_minus: "(a-b)²",
+            },
+            scenarios: {
+                architect_title: "场景 A: 资深建筑师",
+                architect_desc: "计算房屋扩建材料。别忘了地毯的边角料！",
+                scrapper_title: "场景 B: 遗迹回收员",
+                scrapper_desc: "将零散的碎片重组成完美的正方形，以适配空港接口。",
+                speedster_title: "场景 C: 速算突击手",
+                speedster_desc: "利用公式展开实现超人类的快速口算估值。",
+                architect_mission: "任务：展开蓝图以购买准确面积的地毯。",
+                scrapper_mission: "任务：对废料集群进行因式分解，重组为稳定的对接方块。",
+                speedster_mission: "任务：利用 (a+b)² 快捷键瞬间计算目标值。",
+                elite_mission: "任务：对复杂的代数集群进行解构与重组，实现二次多项式变形。",
+                voyager_mission: "任务：攻克平方差公式：(a+b)(a-b)。"
             }
         }
     },
@@ -113,6 +139,19 @@ export const translations = {
                 ab: "ab",
                 target_plus: "(a+b)²",
                 target_minus: "(a-b)²",
+            },
+            scenarios: {
+                architect_title: "Szenario A: Der Architekt",
+                architect_desc: "Berechne Material für Raumerweiterungen. Vergiss die Ecken nicht!",
+                scrapper_title: "Szenario B: Der Scrapper",
+                scrapper_desc: "Rekonstruiere Schrott in perfekte Quadrate für das Weltraum-Docking.",
+                speedster_title: "Szenario C: Der Speedster",
+                speedster_desc: "Meistere die Kunst der schnellen Schätzung durch Formelausdrücke.",
+                architect_mission: "Mission: Erweitere die Pläne, um die richtige Menge Teppich zu kaufen.",
+                scrapper_mission: "Mission: Faktorisiere den Schrotthaufen in ein stabiles Docking-Quadrat.",
+                speedster_mission: "Mission: Berechne den Zielwert sofort mit (a+b)² Abkürzungen.",
+                elite_mission: "Mission: Dekonstruieren Sie komplexe Cluster in sekundäre Polynomformen.",
+                voyager_mission: "Mission: Berechnen Sie die Differenz zweier Quadrate: (a+b)(a-b)."
             }
         }
     }

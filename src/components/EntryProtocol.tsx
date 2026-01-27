@@ -39,7 +39,7 @@ export default function EntryProtocol() {
                         onClick={() => setLanguage(lang)}
                         className={clsx(
                             "border px-2 py-1 transition-colors",
-                            currentLanguage === lang ? "border-green-500 bg-green-900/30 text-green-500" : "border-gray-800 text-gray-600 hover:text-gray-400"
+                            currentLanguage === lang ? "border-green-500 bg-green-900/30 text-green-500" : "border-neutral-800 text-neutral-400 hover:text-neutral-200"
                         )}
                     >
                         {lang}
@@ -48,8 +48,8 @@ export default function EntryProtocol() {
             </div>
 
             <div className="max-w-2xl w-full">
-                <div className="mb-4 text-sm text-gray-500">{t.system_name}</div>
-                <div className="text-xl md:text-3xl leading-relaxed min-h-[120px]">
+                <div className="mb-4 text-sm text-neutral-300 font-bold tracking-widest uppercase">{t.system_name}</div>
+                <div className="text-xl md:text-3xl leading-relaxed min-h-[120px] text-green-400">
                     {fullText.slice(0, textIndex)}
                     <span className="animate-pulse">_</span>
                 </div>
@@ -68,7 +68,7 @@ export default function EntryProtocol() {
                 )}
             </div>
 
-            <div className="fixed bottom-4 right-4 text-xs text-gray-800">
+            <div className="fixed bottom-4 right-4 text-[10px] text-neutral-400 tracking-[0.3em] uppercase">
                 {t.secure_connection}
             </div>
         </div>

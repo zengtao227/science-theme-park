@@ -29,7 +29,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t.home.title}</h1>
-            <p className="text-[10px] text-neutral-500 font-mono tracking-widest leading-none mt-1 uppercase">
+            <p className="text-[10px] text-neutral-300 font-mono tracking-widest leading-none mt-1 uppercase">
               Physical Law Simulation Engine // v2.1
             </p>
           </div>
@@ -44,7 +44,7 @@ export default function Home() {
                 "text-xs font-bold transition-all px-2 py-1 rounded",
                 currentLanguage === lang
                   ? "text-neon-green bg-neon-green/10"
-                  : "text-neutral-500 hover:text-white"
+                  : "text-neutral-300 hover:text-white"
               )}
             >
               {lang}
@@ -78,7 +78,7 @@ export default function Home() {
                   <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
                     <Square className="w-6 h-6 text-white group-hover:text-neon-green" />
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-500">M-G04</span>
+                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G04</span>
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors">
                   {t.home.binomial_factory_title}
@@ -95,12 +95,11 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* Locked Slots */}
           {[1, 2].map((id) => (
             <div key={id} className="hud-panel p-8 opacity-40 grayscale border-dashed border-white/10 flex flex-col justify-center items-center text-center group cursor-not-allowed overflow-hidden relative">
               <div className="flex flex-col items-center gap-4 relative z-10">
-                <Database className="w-8 h-8 text-neutral-600" />
-                <p className="hud-text text-neutral-600">LOCKED // LEVEL {id + 1} REQUIRED</p>
+                <Database className="w-8 h-8 text-neutral-400" />
+                <p className="hud-text text-neutral-300">LOCKED // LEVEL {id + 1} REQUIRED</p>
               </div>
               {/* Fake loading bar */}
               <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5">
@@ -116,14 +115,14 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <Atom className="w-5 h-5 text-neon-cyan" />
             <div>
-              <p className="text-[10px] text-neutral-500 font-mono uppercase">Engine Status</p>
+              <p className="text-[10px] text-neutral-300 font-mono uppercase">Engine Status</p>
               <p className="text-xs font-bold text-neon-cyan antialiased">R3F PHYSICS ENGINE ACTIVE</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <Globe className="w-5 h-5 text-neon-purple" />
             <div>
-              <p className="text-[10px] text-neutral-500 font-mono uppercase">Nodes</p>
+              <p className="text-[10px] text-neutral-300 font-mono uppercase">Nodes</p>
               <p className="text-xs font-bold text-neon-purple antialiased">GENEVA // ZURICH // SHANGHAI</p>
             </div>
           </div>
