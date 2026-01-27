@@ -1,21 +1,98 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-neon-green: #00ff9d;
+  --color-neon-cyan: #00d2ff;
+  --color-neon-purple: #bd00ff;
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+}
 
 :root {
-  --background: #000000;
-  --foreground: #ededed;
+  --background: #050505;
+  --foreground: #ffffff;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden; /* Prevent scrolling on the main app generally */
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Animations */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 157, 0.1), transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Components */
+@layer components {
+  .hud-panel {
+    @apply bg-neutral-900/50 backdrop-blur-md border border-white/10 rounded-sm shadow-lg;
+  }
+
+  .hud-text {
+    @apply font-mono text-xs uppercase tracking-widest text-neutral-400;
+  }
+
+  .neon-text-green {
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+    @apply text-neon-green;
+  }
+
+  .neon-border-green {
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    @apply border-neon-green;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-neutral-900 border border-neutral-700 hover:border-neon-green px-6 py-3 transition-all duration-300;
+  }
+
+  .btn-primary-text {
+    @apply font-bold tracking-widest text-neutral-300 group-hover:text-neon-green transition-colors relative z-10;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-neon-green opacity-0 group-hover:opacity-10 transition-opacity duration-300;
   }
 }
