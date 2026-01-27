@@ -1,10 +1,10 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Physics, RigidBody, CuboidCollider, RigidBodyProps } from "@react-three/rapier";
-import { OrbitControls, Environment, Text, useTexture, Box } from "@react-three/drei";
-import { useState, useRef, useEffect, useMemo } from "react";
-import { motion } from "framer-motion";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Physics, RigidBody, CuboidCollider, RigidBodyProps, useRapier } from "@react-three/rapier";
+import { OrbitControls, Environment, Text, useTexture, Box, useCursor } from "@react-three/drei";
+import { useState, useRef, useEffect, useMemo, Suspense } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import * as THREE from 'three';
 import { useAppStore } from '@/lib/store';
@@ -15,44 +15,122 @@ import { RefreshCcw, ArrowLeft, Check, AlertTriangle } from 'lucide-react';
 // --- PHYSICS COMPONENTS ---
 
 // Draggable Weight Component
-// Uses useGesture instead of pure onClick to allow "picking up" logic
-// For this MVP, we simplify: Click to Pick Up (Float), Click again to Drop (Fall)
-function DraggableWeight({ position, mass, color = "#ffa500", label, onPickup, onDrop }: { position: [number, number, number], mass: number, color?: string, label?: string, onPickup?: () => void, onDrop?: () => void }) {
-    const api = useRef<any>(null); // Rapier API
+// Uses useGesture + Plane raycasting to follow mouse
+function DraggableWeight({ position, mass, color = "#ffa500", label, onDrop, isX = false }: {
+    position: [number, number, number],
+    mass: number,
+    color?: string,
+    label?: string,
+    onDrop?: (droppedPos: THREE.Vector3) => void,
+    isX?: boolean
+}) {
+    const rigidBodyRef = useRef<any>(null);
+    const meshRef = useRef<THREE.Mesh>(null);
     const [hovered, setHover] = useState(false);
     const [active, setActive] = useState(false);
 
-    // When active (picked up), we disable gravity and follow mouse? 
-    // For this v1 step, let's keep it simple: Clicking toggles a "levitation" state 
-    // or simply informs the parent to remove it from the scale logic simulation.
+    useCursor(hovered, 'grab', 'auto');
 
-    // Actually, let's stick to the "Click to Remove" mechanic for now but visualy upgrade it
-    // Implementing true 3D drag-and-drop in Rapier+React in one shot is complex.
-    // We will improve visuals first.
+    // Create an invisible plane at the object's height for raycasting during drag
+    // Or simply map mouse movement to 3D world coordinates on a plane facing camera
+
+    const bind = useGesture({
+        onDragStart: () => {
+            setActive(true);
+            // Wake up body and set to kinematic to follow mouse
+            if (rigidBodyRef.current) {
+                rigidBodyRef.current.setBodyType(2); // KinematicPosition based
+                rigidBodyRef.current.wakeUp();
+            }
+        },
+        onDrag: ({ offset: [x, y], event }) => {
+            // This is 2D drag. We need 3D projection.
+            // Let's rely on standard r3f raycaster logic via event.point in onPointerMove?
+            // Actually, combining useGesture with R3F events is tricky for beginners.
+            // Better approach: use Three.js DragControls or a simple Plane intersection logic.
+            // Let's try the simple R3F event way:
+        },
+        onDragEnd: () => {
+            setActive(false);
+            if (rigidBodyRef.current) {
+                rigidBodyRef.current.setBodyType(0); // Dynamic again
+                rigidBodyRef.current.wakeUp();
+                // Check drop position logic handled by physics or specific callback?
+                // For now, let physics handle the fall!
+            }
+        }
+    });
+
+    // Simplified Drag Logic using R3F events
+    // We use a ref to track if we are dragging
+    const isDragging = useRef(false);
+
+    // We need a plane to drag along. Let's assume a plane at z=0 for simplicity in this view?
+    // But the camera is at z=12. 
 
     return (
         <RigidBody
-            ref={api}
+            ref={rigidBodyRef}
             position={position}
             colliders="hull"
             restitution={0.2}
             friction={1}
             canSleep={false}
+            // Physics properties
+            linearDamping={0.5}
+            angularDamping={0.5}
         >
             <mesh
+                ref={meshRef}
                 castShadow
                 onPointerOver={() => setHover(true)}
                 onPointerOut={() => setHover(false)}
-            // onClick logic is handled by parent for now to ensure state sync, 
-            // but we add visual feedback here
+                onPointerDown={(e) => {
+                    // Start Drag
+                    e.target.setPointerCapture(e.pointerId);
+                    isDragging.current = true;
+                    if (rigidBodyRef.current) rigidBodyRef.current.setBodyType(2); // Kinematic
+                }}
+                onPointerUp={(e) => {
+                    // End Drag
+                    e.target.releasePointerCapture(e.pointerId);
+                    isDragging.current = false;
+                    if (rigidBodyRef.current) {
+                        rigidBodyRef.current.setBodyType(0); // Dynamic
+                        rigidBodyRef.current.setLinvel({ x: 0, y: -1, z: 0 }, true); // Slight drop impulse
+                    }
+
+                    // Check if dropped out of bounds (simple y check?)
+                    if (onDrop) onDrop(new THREE.Vector3(e.point.x, e.point.y, e.point.z));
+                }}
+                onPointerMove={(e) => {
+                    if (isDragging.current && rigidBodyRef.current) {
+                        // Determine new position: Intersection with a plane at z=0
+                        // We just use the point of intersection with the "invisible drag plane" 
+                        // But e.point is on the object surface if not captured carefully.
+
+                        // Better: Direct manipulation
+                        // Since camera is static, we can map mouse roughly
+
+                        // Let's use the provided point but lock z? 
+                        // Or better, just follow the event point but add an offset?
+
+                        // Simplified "Magic Magnet" movement
+                        const newPos = e.point;
+                        // We lift it up slightly towards camera to avoid clipping
+                        rigidBodyRef.current.setNextKinematicTranslation({ x: newPos.x, y: newPos.y, z: 0 });
+                    }
+                }}
             >
-                <cylinderGeometry args={[0.4, 0.4, 0.4, 32]} />
+                {isX ? <boxGeometry args={[1, 1, 1]} /> : <cylinderGeometry args={[0.4, 0.4, 0.4, 32]} />}
                 <meshStandardMaterial
-                    color={hovered ? "#ffecb3" : color}
-                    emissive={hovered ? color : "#000"}
-                    emissiveIntensity={hovered ? 0.5 : 0}
+                    color={isDragging.current ? "#fff" : (hovered ? "#ffecb3" : color)}
+                    emissive={isDragging.current || hovered ? color : "#000"}
+                    emissiveIntensity={isDragging.current ? 1 : (hovered ? 0.5 : 0)}
                     roughness={0.2}
                     metalness={0.9}
+                    transparent={active}
+                    opacity={active ? 0.8 : 1}
                 />
             </mesh>
             {label && (
@@ -64,11 +142,237 @@ function DraggableWeight({ position, mass, color = "#ffa500", label, onPickup, o
     );
 }
 
-// The Scale Beam Component
-function ScaleBeam({ leftCount, rightCount, tilt }: { leftCount: number, rightCount: number, tilt: number }) {
-    // Visual only - responding to the React State
-    // We use springs for smooth animation
+// Draggable Helper wrapper:
+// We need a plane to catch mouse events for smooth dragging when cursor leaves the object
+function DragPlane() {
+    return (
+        <mesh visible={false} position={[0, 0, 0]}>
+            <planeGeometry args={[100, 100]} />
+            <meshBasicMaterial transparent opacity={0} />
+        </mesh>
+    )
+}
 
+// The Scale Beam Component with Physics Joints??
+// For the "Click to remove" version, we faked it.
+// For "True Drag & Drop", we need REAl PHYSICS or a very clever fake.
+// Writing a stable physics scale in Rapier in 5 mins is risky (instability).
+// STRATEGY: 
+// We keep the "Cinematic" Scale that reacts to strict logic states (count of weights).
+// BUT we make the weights "Physical" when dropped.
+// 
+// When a weight is "In the Pan" (by logic), it is Kinematically attached or simply rendered there.
+// When "Dragged", it becomes dynamic.
+// 
+// Actually, let's try a Hybrid:
+// The Pans are Sensor Zones.
+// If a weight is dropped inside Zone Left, we increment Left Count and snap it to a grid.
+// If dragged out, we decrement.
+// This is robust and satisfying.
+
+function SnapZone({ position, onEnter, onLeave }: { position: [number, number, number], onEnter: () => void, onLeave: () => void }) {
+    return (
+        <CuboidCollider
+            position={position}
+            args={[1.5, 2, 0.5]}
+            sensor
+            onIntersectionEnter={(payload) => {
+                // If weight enters?
+                // We identify weights by userData or name?
+                // For MVP, assume anything entering is a weight
+                // console.log("Enter", payload);
+                onEnter();
+            }}
+            onIntersectionExit={(payload) => {
+                //   console.log("Exit", payload);
+                onLeave();
+            }}
+        />
+    )
+}
+
+// --- MAIN PAGE REFACTOR ---
+
+export default function EquilibriumScalePage() {
+    const { currentLanguage } = useAppStore();
+    const t = translations[currentLanguage].scale;
+
+    // State
+    const [leftWeights, setLeftWeights] = useState(3);
+    const [rightWeights, setRightWeights] = useState(8);
+    const [status, setStatus] = useState<'BALANCED' | 'UNBALANCED' | 'SUCCESS'>('BALANCED');
+
+    // We need to track WHICH specific items are where?
+    // Let's assume we have a pool of weights.
+    // 3 on left, 8 on right.
+    // We render them.
+    // When one is dragged OUT of the zone, count decreases. 
+    // If dropped IN, count increases.
+
+    // Actually, for this specific puzzle (Equation), we only need "Remove". 
+    // Adding weights back isn't the primary mechanic to solve X + 3 = 8.
+    // But for a sandbox feel, we should allow it.
+
+    // Let's implement the VISUAL only first with the "click to remove" logic, 
+    // but now add the "Drag to Remove" logic:
+    // User drags weight -> raycaster detects it -> weight follows mouse -> 
+    // If mouse released outside pan -> remove weight from count -> weight falls into abyss -> respawn in "trash" or just disappear.
+
+    // Simpler: 
+    // Weights are just visuals generated by the state counts.
+    // But we want to drag them.
+    // So we map: Array of IDs.
+
+    const [leftItems, setLeftItems] = useState<number[]>([1, 1, 1]); // 3 weights
+    const [rightItems, setRightItems] = useState<number[]>([1, 1, 1, 1, 1, 1, 1, 1]); // 8 weights
+
+    // Calculate Balance
+    useEffect(() => {
+        const leftMass = 5 + leftItems.length; // X=5
+        const rightMass = rightItems.length;
+
+        if (leftMass === rightMass) {
+            if (leftItems.length === 0 && rightItems.length === 5) {
+                setStatus('SUCCESS');
+            } else {
+                setStatus('BALANCED');
+            }
+        } else {
+            setStatus('UNBALANCED');
+        }
+    }, [leftItems, rightItems]);
+
+    const handleDropLeft = (index: number) => {
+        // Remove from array
+        const newItems = [...leftItems];
+        newItems.splice(index, 1);
+        setLeftItems(newItems);
+    };
+
+    const handleDropRight = (index: number) => {
+        // Remove from array
+        const newItems = [...rightItems];
+        newItems.splice(index, 1);
+        setRightItems(newItems);
+    };
+
+    const reset = () => {
+        setLeftItems([1, 1, 1]);
+        setRightItems([1, 1, 1, 1, 1, 1, 1, 1]);
+    };
+
+    // Purely visual tilt
+    const tilt = useMemo(() => {
+        const diff = rightItems.length - (leftItems.length + 5);
+        return Math.max(-0.4, Math.min(0.4, diff * 0.05));
+    }, [leftItems, rightItems]);
+
+    return (
+        <div className="w-full h-screen bg-black text-white overflow-hidden relative font-sans">
+
+            {/* 3D Viewport */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-900 to-black">
+                <Canvas shadows camera={{ position: [0, 2, 12], fov: 45 }}>
+                    <Suspense fallback={null}>
+                        <LabEnvironment />
+                        <Physics gravity={[0, -9.81, 0]}>
+
+                            {/* The Scale Rig */}
+                            <ScaleBeam leftCount={leftItems.length} rightCount={rightItems.length} tilt={tilt} />
+
+                            {/* The X Box (Left Pan) */}
+                            <RigidBody position={[-3.5, (tilt * -3.5) - 2, 0]} type="kinematicPosition">
+                                <mesh>
+                                    <boxGeometry args={[1, 1, 1]} />
+                                    <meshStandardMaterial color="cyan" emissive="cyan" emissiveIntensity={0.8} />
+                                </mesh>
+                                <Text position={[0, 1.2, 0]} fontSize={0.5} color="cyan">X</Text>
+                            </RigidBody>
+
+                            {/* Left Weights */}
+                            {leftItems.map((_, i) => (
+                                <DraggableWeight
+                                    key={`l-${i}`}
+                                    position={[-3.5 + (i * 0.2), (tilt * -3.5) - 1.5 + (i * 0.4), 0]}
+                                    mass={1}
+                                    onDrop={() => handleDropLeft(i)}
+                                />
+                            ))}
+
+                            {/* Right Weights */}
+                            {rightItems.map((_, i) => (
+                                <DraggableWeight
+                                    key={`r-${i}`}
+                                    position={[3.5 - (i * 0.2), (tilt * 3.5) - 1.5 + (i * 0.4), 0]}
+                                    mass={1}
+                                    color="#ffa500"
+                                    onDrop={() => handleDropRight(i)}
+                                />
+                            ))}
+
+                            {/* Floor to catch falling weights */}
+                            <RigidBody type="fixed" position={[0, -10, 0]}>
+                                <mesh visible={false}><boxGeometry args={[100, 1, 100]} /></mesh>
+                            </RigidBody>
+
+                        </Physics>
+                        <OrbitControls makeDefault minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 2} maxDistance={20} minDistance={5} />
+                    </Suspense>
+                </Canvas>
+            </div>
+
+            {/* --- HUD OVERLAY --- */}
+            <div className="absolute inset-0 z-10 pointer-events-none p-6 flex flex-col justify-between">
+
+                {/* Top Bar */}
+                <div className="flex justify-between items-start pointer-events-auto">
+                    <Link href="/" className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-green-500 transition-colors uppercase tracking-widest group">
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        {t.back}
+                    </Link>
+                    <button onClick={reset} className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-cyan-500 transition-colors uppercase tracking-widest group">
+                        <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform" />
+                        RESET SIMULATION
+                    </button>
+                </div>
+
+                {/* Center Messages */}
+                <div className="absolute top-[20%] left-1/2 -translate-x-1/2 text-center pointer-events-none flex flex-col items-center gap-4">
+                    <h1 className="text-3xl font-bold tracking-tighter text-white neon-text-green bg-black/50 px-4 py-1 rounded backdrop-blur-sm">{t.title}</h1>
+
+                    {status === 'UNBALANCED' && (
+                        <div className="flex items-center gap-2 px-4 py-2 bg-red-900/40 border border-red-500 text-red-400 rounded animate-pulse">
+                            <AlertTriangle className="w-4 h-4" />
+                            <span className="text-xs font-mono tracking-widest uppercase">{t.status_unbalanced}</span>
+                        </div>
+                    )}
+
+                    {status === 'SUCCESS' && (
+                        <div className="flex flex-col items-center gap-4 animate-in fade-in zoom-in duration-500">
+                            <div className="px-8 py-6 bg-green-900/40 border border-green-500 rounded-lg backdrop-blur-xl shadow-[0_0_100px_rgba(0,255,157,0.3)]">
+                                <h2 className="text-6xl font-black text-white tracking-tighter mb-2">X = 5</h2>
+                                <div className="h-px w-full bg-green-500/50 mb-2" />
+                                <p className="font-mono text-green-400 text-sm">EQUILIBRIUM RESTORED</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Bottom Tip */}
+                <div className="w-full text-center pb-8 opacity-50">
+                    <p className="text-[10px] uppercase tracking-widest font-mono text-gray-400">
+                        DRAG WEIGHTS OFF THE PAN TO REMOVE THEM
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    );
+}
+
+
+// --- Helper Components copied from previous file (Need to ensure they exist) ---
+function ScaleBeam({ leftCount, rightCount, tilt }: { leftCount: number, rightCount: number, tilt: number }) {
     return (
         <group position={[0, 1, 0]} rotation={[0, 0, tilt]}>
             {/* Main Beam */}
@@ -118,7 +422,6 @@ function ScaleBeam({ leftCount, rightCount, tilt }: { leftCount: number, rightCo
     );
 }
 
-// Scene Environment
 function LabEnvironment() {
     return (
         <>
@@ -126,7 +429,7 @@ function LabEnvironment() {
             <ambientLight intensity={0.2} />
             <pointLight position={[10, 10, 10]} intensity={1.5} color="#00ff9d" distance={50} />
             <pointLight position={[-10, 5, -10]} intensity={1} color="#00d2ff" distance={50} />
-            <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow shadow-bias={-0.0001} />
+            <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow shadowBias={-0.0001} />
 
             {/* Floor */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -5, 0]} receiveShadow>
@@ -134,209 +437,7 @@ function LabEnvironment() {
                 <meshStandardMaterial color="#050505" roughness={0.1} metalness={0.8} />
             </mesh>
 
-            {/* Grid Helper */}
             <gridHelper args={[100, 50, 0x333333, 0x111111]} position={[0, -4.99, 0]} />
         </>
     );
-}
-
-// --- MAIN PAGE ---
-
-export default function EquilibriumScalePage() {
-    const { currentLanguage } = useAppStore();
-    const t = translations[currentLanguage].scale;
-
-    const [leftWeights, setLeftWeights] = useState(3);
-    const [rightWeights, setRightWeights] = useState(8);
-    const [status, setStatus] = useState<'BALANCED' | 'UNBALANCED' | 'SUCCESS'>('BALANCED');
-
-    // Animation Refs
-    const currentTilt = useRef(0);
-
-    // Simulation Logic
-    // X = 5.
-    // Left Mass = 5 + leftWeights
-    // Right Mass = rightWeights
-    // Balanced if (5 + leftWeights) === rightWeights
-
-    const targetTilt = useMemo(() => {
-        const leftTotal = 5 + leftWeights;
-        const rightTotal = rightWeights;
-        const diff = rightTotal - leftTotal;
-        // specific visual clamping
-        return Math.max(-0.4, Math.min(0.4, diff * 0.05));
-    }, [leftWeights, rightWeights]);
-
-    // Game Loop updates tilt smoothly
-    useEffect(() => {
-        let animId: number;
-        const animate = () => {
-            // Simple lerp
-            currentTilt.current += (targetTilt - currentTilt.current) * 0.1;
-            animId = requestAnimationFrame(animate);
-        };
-        animate();
-        return () => cancelAnimationFrame(animId);
-    }, [targetTilt]);
-
-    // Status check
-    useEffect(() => {
-        const leftTotal = 5 + leftWeights;
-        const rightTotal = rightWeights;
-        if (leftTotal === rightTotal) {
-            if (leftWeights === 0 && rightWeights === 5) {
-                setStatus('SUCCESS');
-            } else {
-                setStatus('BALANCED');
-            }
-        } else {
-            setStatus('UNBALANCED');
-        }
-    }, [leftWeights, rightWeights]);
-
-    // Handlers
-    const handleRemoveLeft = () => { if (leftWeights > 0) setLeftWeights(p => p - 1); };
-    const handleRemoveRight = () => { if (rightWeights > 0) setRightWeights(p => p - 1); };
-    const handleMasterOp = () => {
-        if (leftWeights > 0 && rightWeights > 0) {
-            setLeftWeights(p => p - 1);
-            setRightWeights(p => p - 1);
-        }
-    };
-
-    return (
-        <div className="w-full h-screen bg-black text-white overflow-hidden relative font-sans">
-
-            {/* 3D Viewport */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-900 to-black">
-                <Canvas shadows camera={{ position: [0, 2, 12], fov: 45 }}>
-                    <LabEnvironment />
-                    <Physics gravity={[0, -9.81, 0]}>
-                        {/* Pass animated tilt down to the component via a standard prop for now (forcing re-render is okay for this prototype FPS) */}
-                        <ScaleBeam leftCount={leftWeights} rightCount={rightWeights} tilt={targetTilt} />
-
-                        {/* "X" Box */}
-                        <RigidBody position={[-3.5, (targetTilt * -3.5) - 2, 0]} type="kinematicPosition">
-                            <mesh>
-                                <boxGeometry args={[1, 1, 1]} />
-                                <meshStandardMaterial color="cyan" emissive="cyan" emissiveIntensity={0.8} />
-                            </mesh>
-                            <Text position={[0, 1.2, 0]} fontSize={0.5} color="cyan">X</Text>
-                        </RigidBody>
-
-                        {/* Render weights relative to pans - simplified for prototype visual */}
-                        {/* Left Side */}
-                        {Array.from({ length: leftWeights }).map((_, i) => (
-                            <group key={`l-${i}`} position={[-3.5 + (i * 0.2), (targetTilt * -3.5) - 1.5 + (i * 0.4), 0]}>
-                                <mesh castShadow>
-                                    <cylinderGeometry args={[0.4, 0.4, 0.2, 32]} />
-                                    <meshStandardMaterial color="#555" metalness={0.8} roughness={0.2} />
-                                </mesh>
-                            </group>
-                        ))}
-
-                        {/* Right Side */}
-                        {Array.from({ length: rightWeights }).map((_, i) => (
-                            <group key={`r-${i}`} position={[3.5 - (i * 0.2), (targetTilt * 3.5) - 1.5 + (i * 0.4), 0]}>
-                                <mesh castShadow>
-                                    <cylinderGeometry args={[0.4, 0.4, 0.2, 32]} />
-                                    <meshStandardMaterial color="#ffa500" metalness={0.8} roughness={0.2} />
-                                </mesh>
-                            </group>
-                        ))}
-                    </Physics>
-                    <OrbitControls minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 2} maxDistance={20} minDistance={5} />
-                </Canvas>
-            </div>
-
-            {/* --- HUD OVERLAY --- */}
-            <div className="absolute inset-0 z-10 pointer-events-none p-6 flex flex-col justify-between">
-
-                {/* Top Bar */}
-                <div className="flex justify-between items-start pointer-events-auto">
-                    <Link href="/" className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-green-500 transition-colors uppercase tracking-widest group">
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        {t.back}
-                    </Link>
-                    <div className="flex flex-col items-end">
-                        <h1 className="text-3xl font-bold tracking-tighter text-white neon-text-green">{t.title}</h1>
-                        <div className={translateStatusColor(status)}>
-                            {status === 'UNBALANCED' && <AlertTriangle className="w-3 h-3" />}
-                            {status === 'SUCCESS' && <Check className="w-3 h-3" />}
-                            <span className="text-[10px] uppercase tracking-widest font-mono">
-                                {status === 'BALANCED' && t.status_balanced}
-                                {status === 'UNBALANCED' && t.status_unbalanced}
-                                {status === 'SUCCESS' && t.status_success}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Status Messages */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg text-center pointer-events-none">
-                    {status === 'UNBALANCED' && (
-                        <div className="backdrop-blur-md bg-red-900/20 border border-red-500/50 p-8 rounded-lg animate-pulse">
-                            <h2 className="text-4xl font-black text-red-500 tracking-tighter mb-2">{t.critical_failure}</h2>
-                            <p className="font-mono text-sm text-red-300">{t.failure_desc}</p>
-                        </div>
-                    )}
-                    {status === 'SUCCESS' && (
-                        <div className="backdrop-blur-xl bg-green-900/20 border border-green-500 p-8 rounded-lg shadow-[0_0_50px_rgba(0,255,157,0.2)]">
-                            <h2 className="text-5xl font-black text-white mb-4 tracking-tighter">X = 5</h2>
-                            <p className="font-mono text-sm text-green-400">{t.solved_desc}</p>
-                            <button className="pointer-events-auto mt-6 px-6 py-2 bg-green-500 text-black font-bold uppercase tracking-widest hover:bg-white transition-colors">
-                                Proceed to Next Chamber
-                            </button>
-                        </div>
-                    )}
-                </div>
-
-                {/* Bottom Control Deck */}
-                <div className="pointer-events-auto flex items-end justify-center gap-4 md:gap-12 pb-8">
-
-                    {/* Left Controls */}
-                    <div className="hud-panel p-4 flex flex-col items-center gap-4 w-48 transition-opacity duration-300 hover:border-green-500/30">
-                        <div className="hud-text text-center border-b border-white/10 w-full pb-2">{t.left_pan}</div>
-                        <div className="text-4xl font-bold text-white font-mono">x + {leftWeights}</div>
-                        <button onClick={handleRemoveLeft} className="w-full py-2 bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-bold hover:bg-red-500 hover:text-white transition-all uppercase">
-                            {t.remove_one}
-                        </button>
-                    </div>
-
-                    {/* Master Control */}
-                    <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-cyan-500 rounded-lg blur opacity-20 group-hover:opacity-50 transition duration-1000"></div>
-                        <button
-                            onClick={handleMasterOp}
-                            className="relative w-64 h-24 bg-black border border-green-500/50 flex flex-col items-center justify-center gap-1 overflow-hidden"
-                        >
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50"></div>
-                            <span className="text-lg font-bold text-white tracking-[0.2em] group-hover:text-green-400 transition-colors z-10">{t.master_op}</span>
-                            <span className="text-[9px] text-gray-500 font-mono uppercase z-10">{t.master_desc}</span>
-
-                            {/* Hover Effect */}
-                            <div className="absolute inset-0 bg-green-500/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-                        </button>
-                    </div>
-
-                    {/* Right Controls */}
-                    <div className="hud-panel p-4 flex flex-col items-center gap-4 w-48 transition-opacity duration-300 hover:border-orange-500/30">
-                        <div className="hud-text text-center border-b border-white/10 w-full pb-2">{t.right_pan}</div>
-                        <div className="text-4xl font-bold text-white font-mono">{rightWeights}</div>
-                        <button onClick={handleRemoveRight} className="w-full py-2 bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-bold hover:bg-red-500 hover:text-white transition-all uppercase">
-                            {t.remove_one}
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function translateStatusColor(status: string) {
-    if (status === 'BALANCED') return 'flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full';
-    if (status === 'UNBALANCED') return 'flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 text-red-400 rounded-full animate-pulse';
-    if (status === 'SUCCESS') return 'flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/30 text-green-400 rounded-full';
-    return '';
 }
