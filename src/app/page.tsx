@@ -4,13 +4,13 @@ import { useAppStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import { clsx } from 'clsx';
-import { motion } from 'framer-motion';
-import { Gamepad2, Database, Atom, Globe, Laptop2, Terminal, Square, Scissors } from 'lucide-react';
+import { Gamepad2, Database, Atom, Globe, Square } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage } = useAppStore();
   const t = translations[currentLanguage];
+  const languages = ['DE', 'EN', 'CN'] as const;
 
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
@@ -30,16 +30,16 @@ export default function Home() {
           <div>
             <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t.home.title}</h1>
             <p className="text-[10px] text-neutral-300 font-mono tracking-widest leading-none mt-1 uppercase">
-              Physical Law Simulation Engine // v2.1
+              {t.home.engine_line}
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm schoolchildren">
-          {['CN', 'DE', 'EN'].map((lang) => (
+          {languages.map((lang) => (
             <button
               key={lang}
-              onClick={() => setLanguage(lang as any)}
+              onClick={() => setLanguage(lang)}
               className={clsx(
                 "text-xs font-bold transition-all px-2 py-1 rounded",
                 currentLanguage === lang
@@ -89,7 +89,7 @@ export default function Home() {
               </div>
 
               <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>Initiate Simulation</span>
+                <span>{t.home.initiate_simulation}</span>
                 <span className="animate-bounce">→</span>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function Home() {
             <div key={id} className="hud-panel p-8 opacity-40 grayscale border-dashed border-white/10 flex flex-col justify-center items-center text-center group cursor-not-allowed overflow-hidden relative">
               <div className="flex flex-col items-center gap-4 relative z-10">
                 <Database className="w-8 h-8 text-neutral-400" />
-                <p className="hud-text text-neutral-300">LOCKED // LEVEL {id + 1} REQUIRED</p>
+                <p className="hud-text text-neutral-300">{t.home.locked_level_required.replace('{level}', String(id + 1))}</p>
               </div>
               {/* Fake loading bar */}
               <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5">
@@ -115,15 +115,15 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <Atom className="w-5 h-5 text-neon-cyan" />
             <div>
-              <p className="text-[10px] text-neutral-300 font-mono uppercase">Engine Status</p>
-              <p className="text-xs font-bold text-neon-cyan antialiased">R3F PHYSICS ENGINE ACTIVE</p>
+              <p className="text-[10px] text-neutral-300 font-mono uppercase">{t.home.engine_status_label}</p>
+              <p className="text-xs font-bold text-neon-cyan antialiased">{t.home.engine_status_value}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <Globe className="w-5 h-5 text-neon-purple" />
             <div>
-              <p className="text-[10px] text-neutral-300 font-mono uppercase">Nodes</p>
-              <p className="text-xs font-bold text-neon-purple antialiased">GENEVA // ZURICH // SHANGHAI</p>
+              <p className="text-[10px] text-neutral-300 font-mono uppercase">{t.home.nodes_label}</p>
+              <p className="text-xs font-bold text-neon-purple antialiased">{t.home.nodes_value}</p>
             </div>
           </div>
         </section>

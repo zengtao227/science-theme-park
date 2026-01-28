@@ -15,8 +15,11 @@ export default function EntryProtocol() {
     const fullText = t.warning_text;
 
     useEffect(() => {
-        setTextIndex(0);
-        setShowButton(false);
+        const raf = requestAnimationFrame(() => {
+            setTextIndex(0);
+            setShowButton(false);
+        });
+        return () => cancelAnimationFrame(raf);
     }, [currentLanguage]);
 
     useEffect(() => {
@@ -26,14 +29,15 @@ export default function EntryProtocol() {
             }, 30);
             return () => clearTimeout(timeout);
         } else {
-            setTimeout(() => setShowButton(true), 500);
+            const timeout = setTimeout(() => setShowButton(true), 500);
+            return () => clearTimeout(timeout);
         }
     }, [textIndex, fullText]);
 
     return (
         <div className="fixed inset-0 bg-black flex flex-col items-center justify-center font-mono text-green-500 p-8 z-50 select-none">
             <div className="absolute top-8 right-8 flex gap-4 text-xs">
-                {(['EN', 'CN', 'DE'] as const).map((lang) => (
+                {(['DE', 'EN', 'CN'] as const).map((lang) => (
                     <button
                         key={lang}
                         onClick={() => setLanguage(lang)}
