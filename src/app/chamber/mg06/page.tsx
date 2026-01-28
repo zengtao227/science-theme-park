@@ -334,10 +334,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
         correctLatex: `\\frac{x-3}{x}`,
         hintLatex: [
-          t.hints.identities.diff_squares_latex,
-          `x^2-A^2=(x-A)(x+A)`,
-          t.hints.rules.factor_common_latex,
-          `x^2+Bx=x(x+B)`,
+          t.hints.rules.cancel_common_latex,
+          `x^2-9=(x-3)(x+3)`,
+          `x^2+3x=x(x+3)`,
         ],
       },
       {
@@ -352,6 +351,11 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
           { id: "q", labelLatex: `q`, placeholder: "q", expected: 3 },
         ],
         correctLatex: `\\frac{2x}{3y}`,
+        hintLatex: [
+          t.hints.rules.cancel_common_latex,
+          `\\frac{6}{9}=\\frac{2}{3}`,
+          `\\frac{x^2}{x}=x,\\; \\frac{y}{y^2}=\\frac{1}{y}`,
+        ],
       },
       {
         id: "R3",
@@ -365,6 +369,10 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
           { id: "q", labelLatex: `q`, placeholder: "q", expected: 3 },
         ],
         correctLatex: `\\frac{2x}{3}`,
+        hintLatex: [
+          `\\frac{8}{12}=\\frac{2}{3}`,
+          `\\frac{8x}{12}=\\frac{2x}{3}`,
+        ],
       },
       {
         id: "R4",
@@ -378,6 +386,11 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
           { id: "q", labelLatex: `q`, placeholder: "q", expected: 2 },
         ],
         correctLatex: `\\frac{5a}{2}`,
+        hintLatex: [
+          `\\frac{15}{6}=\\frac{5}{2}`,
+          `\\frac{a^2}{a}=a,\\; \\frac{b}{b}=1`,
+          `\\frac{15a^2b}{6ab}=\\frac{5a}{2}`,
+        ],
       },
       {
         id: "R5",
@@ -396,10 +409,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
         correctLatex: `\\frac{x-4}{x}`,
         hintLatex: [
-          t.hints.identities.diff_squares_latex,
-          `x^2-A^2=(x-A)(x+A)`,
-          t.hints.rules.factor_common_latex,
-          `x^2+Bx=x(x+B)`,
+          t.hints.rules.cancel_common_latex,
+          `x^2-16=(x-4)(x+4)`,
+          `x^2+4x=x(x+4)`,
         ],
       },
     ];
@@ -424,8 +436,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
       correctLatex: `x=-4,\\; 6`,
       hintLatex: [
-        `(x+4)(x-6)=0`,
+        t.hints.rules.zero_product_latex,
         `x+4=0\\;\\text{or}\\; x-6=0`,
+        `x=-4,\\; 6`,
       ],
     },
     {
@@ -445,6 +458,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       hintLatex: [
         t.hints.identities.trinomial_expand_latex,
         `A+B=-7,\\; AB=10`,
+        t.hints.rules.zero_product_latex,
       ],
     },
     {
@@ -462,8 +476,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
       correctLatex: `-x-6=-1\\;\\Rightarrow\\; x=-5`,
       hintLatex: [
+        t.hints.rules.simplify_both_sides_latex,
         `(x-3)(x+2)=x^2-x-6`,
-        `x^2-x-6=x^2-1\\;\\Rightarrow\\; -x-6=-1`,
+        `-x-6=-1\\;\\Rightarrow\\; x=-5`,
       ],
     },
     {
@@ -478,6 +493,11 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         { id: "x2", labelLatex: `x_2`, placeholder: "x₂", expected: 2 },
       ],
       correctLatex: `2x-1=\\pm 3\\;\\Rightarrow\\; x=-1,2`,
+      hintLatex: [
+        t.hints.rules.square_root_pm_latex,
+        `2x-1=\\pm 3`,
+        `x=-1,\\; 2`,
+      ],
     },
     {
       id: "E5",
@@ -492,8 +512,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
       correctLatex: `x=\\frac{2}{5}`,
       hintLatex: [
+        t.hints.rules.simplify_both_sides_latex,
         `-3(x-2)=-3x+6`,
-        `-3x+6=2x+4\\;\\Rightarrow\\; -5x=-2\\;\\Rightarrow\\; x=\\frac{2}{5}`,
+        `-5x=-2\\;\\Rightarrow\\; x=\\frac{2}{5}`,
       ],
     },
     {
@@ -505,7 +526,11 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       targetLatex: `x`,
       slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 11 }],
       correctLatex: `x=11`,
-      hintLatex: [`2x-6=x+5`, `x=11`],
+      hintLatex: [
+        t.hints.rules.simplify_both_sides_latex,
+        `2x-6=x+5`,
+        `x=11`,
+      ],
     },
   ];
 
@@ -764,11 +789,15 @@ export default function MG06Page() {
                 <div className="text-white/70 font-mono text-sm break-words">
                   <InlineMath math={currentQuest.promptLatex} />
                 </div>
-                {currentQuest.hintLatex && (
+                {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
                   <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
-                    {currentQuest.hintLatex.map((h, idx) => (
-                      <div key={`${currentQuest.id}|h|${idx}`}>
-                        <InlineMath math={h} />
+                    <div className="text-white/40">{t.labels.hints}</div>
+                    {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
+                      <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
+                        <div className="text-white/30 w-6">{String(idx + 1).padStart(2, "0")}</div>
+                        <div className="flex-1">
+                          <InlineMath math={h} />
+                        </div>
                       </div>
                     ))}
                   </div>

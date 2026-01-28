@@ -108,6 +108,7 @@ export const translations = {
                 input: "INPUT",
                 numerator: "NUMERATOR",
                 denominator: "DENOMINATOR",
+                hints: "HINTS",
                 roots: "Solutions x₁, x₂",
                 vertex: "Vertex (h,k)",
                 factor: "Factoring",
@@ -123,6 +124,9 @@ export const translations = {
                 },
                 rules: {
                     factor_common_latex: "\\text{Factor out the common factor.}",
+                    cancel_common_latex: "\\text{Factor numerator/denominator, then cancel the common factor.}",
+                    simplify_both_sides_latex: "\\text{Simplify both sides step by step.}",
+                    square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
                     zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
                 }
             }
@@ -321,6 +325,7 @@ export const translations = {
                 input: "输入",
                 numerator: "分子",
                 denominator: "分母",
+                hints: "提示",
                 roots: "解 x₁, x₂",
                 vertex: "顶点 (h,k)",
                 factor: "因式分解",
@@ -336,6 +341,9 @@ export const translations = {
                 },
                 rules: {
                     factor_common_latex: "\\text{先提取公因式。}",
+                    cancel_common_latex: "\\text{先分解分子分母，再约去公因式。}",
+                    simplify_both_sides_latex: "\\text{两边逐步化简。}",
+                    square_root_pm_latex: "\\text{开方时要考虑 }\\pm\\text{。}",
                     zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
                 }
             }
@@ -534,6 +542,7 @@ export const translations = {
                 input: "EINGABE",
                 numerator: "ZÄHLER",
                 denominator: "NENNER",
+                hints: "HINWEISE",
                 roots: "Lösungen x₁, x₂",
                 vertex: "Scheitelpunkt (h,k)",
                 factor: "Faktorisieren",
@@ -549,6 +558,9 @@ export const translations = {
                 },
                 rules: {
                     factor_common_latex: "\\text{Gemeinsamen Faktor ausklammern.}",
+                    cancel_common_latex: "\\text{Zähler/Nenner faktorisieren und gemeinsame Faktoren kürzen.}",
+                    simplify_both_sides_latex: "\\text{Beide Seiten schrittweise vereinfachen.}",
+                    square_root_pm_latex: "\\text{Wurzel ziehen mit }\\pm\\text{.}",
                     zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
                 }
             }
