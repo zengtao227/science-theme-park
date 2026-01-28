@@ -95,6 +95,56 @@ export default function Home() {
             </div>
           </Link>
 
+          {/* M-G05: Pythagoras & Roots */}
+          <Link href="/chamber/mg05" className="group">
+            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-start mb-10">
+                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
+                    <Square className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                  </div>
+                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G05</span>
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors">
+                  {t.home.mg05_title}
+                </h3>
+                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                  {t.home.mg05_desc}
+                </p>
+              </div>
+
+              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                <span>{t.home.initiate_simulation}</span>
+                <span className="animate-bounce">→</span>
+              </div>
+            </div>
+          </Link>
+
+          {/* M-G06: Quadratic Equations */}
+          <Link href="/chamber/mg06" className="group">
+            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-start mb-10">
+                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
+                    <Square className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                  </div>
+                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G06</span>
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors">
+                  {t.home.mg06_title}
+                </h3>
+                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                  {t.home.mg06_desc}
+                </p>
+              </div>
+
+              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                <span>{t.home.initiate_simulation}</span>
+                <span className="animate-bounce">→</span>
+              </div>
+            </div>
+          </Link>
+
           {[1, 2].map((id) => (
             <div key={id} className="hud-panel p-8 opacity-40 grayscale border-dashed border-white/10 flex flex-col justify-center items-center text-center group cursor-not-allowed overflow-hidden relative">
               <div className="flex flex-col items-center gap-4 relative z-10">

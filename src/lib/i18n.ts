@@ -14,6 +14,10 @@ export const translations = {
             archive: "Archives",
             binomial_factory_title: "M-G04 // BINOMIAL FACTORY",
             binomial_factory_desc: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
+            mg05_title: "M-G05 // PYTHAGORAS & ROOTS",
+            mg05_desc: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            mg06_title: "M-G06 // QUADRATIC EQUATIONS",
+            mg06_desc: "Solve quadratic equations by factoring, formula, and completing the square.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -22,6 +26,83 @@ export const translations = {
             engine_status_value: "R3F PHYSICS ENGINE ACTIVE",
             nodes_label: "Nodes",
             nodes_value: "GENEVA // ZURICH // SHANGHAI",
+        },
+        mg05: {
+            back: "Back to Nexus",
+            title: "M-G05 // PYTHAGORAS & ROOTS",
+            tabs: {
+                pythagoras: "PYTHAGORAS",
+                sqrt: "SQUARE ROOT"
+            },
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            yes: "YES",
+            no: "NO",
+            monitor_title: "MG05_VISUAL_MONITOR",
+            footer_left: "MG05_SQRT_PYTHAGORAS // NODE: ZURICH",
+            input_radical: "Answer as k√m",
+            input_k: "k",
+            input_m: "m",
+            input_number: "Answer",
+            pythagoras: {
+                solve_hyp: "Find hypotenuse",
+                solve_leg: "Find leg",
+                check_right: "Check right triangle",
+                distance: "Distance on grid",
+                elite_space: "Space diagonal"
+            },
+            sqrt: {
+                perfect: "Perfect squares",
+                simplify: "Simplify radicals",
+                estimate: "Estimate"
+            }
+        },
+        mg06: {
+            back: "Back to Nexus",
+            title: "M-G06 // QUADRATIC EQUATIONS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target Equation",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG06_MONITOR",
+            footer_left: "MG06_QUADRATIC // NODE: ZURICH",
+            modes: {
+                factor: "FACTOR",
+                formula: "FORMULA",
+                complete_square: "COMPLETE SQUARE",
+                factor_prompt: "Factorize first: find A,B so that (x+A)(x+B)=0.",
+                formula_prompt: "Solve with the quadratic formula.",
+                complete_square_prompt: "Convert to vertex form and identify (h,k)."
+            },
+            labels: {
+                roots: "Solutions x₁, x₂",
+                vertex: "Vertex (h,k)",
+                factor: "Factoring",
+                factor_slots: "Build factors (A,B)",
+                formula: "Quadratic Formula",
+                complete_square: "Completing the Square",
+                elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            }
         },
         binomial: {
             back: "← Back to Nexus",
@@ -123,6 +204,10 @@ export const translations = {
             archive: "实验档案",
             binomial_factory_title: "M-G04 // 二项式工厂",
             binomial_factory_desc: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
+            mg05_title: "M-G05 // 勾股定律与开平方",
+            mg05_desc: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
+            mg06_title: "M-G06 // 一元二次方程",
+            mg06_desc: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -131,6 +216,83 @@ export const translations = {
             engine_status_value: "R3F 物理引擎运行中",
             nodes_label: "节点",
             nodes_value: "日内瓦 // 苏黎世 // 上海",
+        },
+        mg05: {
+            back: "返回枢纽",
+            title: "M-G05 // 勾股定律与开平方",
+            tabs: {
+                pythagoras: "勾股定律",
+                sqrt: "开平方"
+            },
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            yes: "是",
+            no: "否",
+            monitor_title: "MG05_视觉监控",
+            footer_left: "MG05_勾股与开方 // 节点：苏黎世",
+            input_radical: "用 k√m 形式作答",
+            input_k: "k",
+            input_m: "m",
+            input_number: "答案",
+            pythagoras: {
+                solve_hyp: "求斜边",
+                solve_leg: "求直角边",
+                check_right: "判定直角三角形",
+                distance: "坐标距离",
+                elite_space: "空间对角线"
+            },
+            sqrt: {
+                perfect: "完全平方数",
+                simplify: "根式化简",
+                estimate: "估算"
+            }
+        },
+        mg06: {
+            back: "返回枢纽",
+            title: "M-G06 // 一元二次方程",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标方程",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG06_监控",
+            footer_left: "MG06_一元二次方程 // 节点：苏黎世",
+            modes: {
+                factor: "因式分解",
+                formula: "求根公式",
+                complete_square: "配方法",
+                factor_prompt: "先把式子因式分解：找 A、B 使得 (x+A)(x+B)=0。",
+                formula_prompt: "使用一元二次方程求根公式求解。",
+                complete_square_prompt: "化为顶点式并写出 (h,k)。"
+            },
+            labels: {
+                roots: "解 x₁, x₂",
+                vertex: "顶点 (h,k)",
+                factor: "因式分解",
+                factor_slots: "构造乘积形式 (A,B)",
+                formula: "求根公式",
+                complete_square: "配方法",
+                elite_hint_latex: "提示：\\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            }
         },
         binomial: {
             back: "← 返回枢纽",
@@ -232,6 +394,10 @@ export const translations = {
             archive: "Archiv",
             binomial_factory_title: "M-G04 // BINOMISCHE FORMELN",
             binomial_factory_desc: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
+            mg05_title: "M-G05 // PYTHAGORAS & WURZELN",
+            mg05_desc: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
+            mg06_title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            mg06_desc: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -240,6 +406,83 @@ export const translations = {
             engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
             nodes_label: "Knoten",
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
+        },
+        mg05: {
+            back: "Zurück zum Nexus",
+            title: "M-G05 // PYTHAGORAS & WURZELN",
+            tabs: {
+                pythagoras: "PYTHAGORAS",
+                sqrt: "QUADRATWURZEL"
+            },
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Ziel",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            yes: "JA",
+            no: "NEIN",
+            monitor_title: "MG05_VISUELLER_MONITOR",
+            footer_left: "MG05_PYTHAGORAS_WURZELN // KNOTEN: ZÜRICH",
+            input_radical: "Antwort als k√m",
+            input_k: "k",
+            input_m: "m",
+            input_number: "Antwort",
+            pythagoras: {
+                solve_hyp: "Hypotenuse berechnen",
+                solve_leg: "Kathete berechnen",
+                check_right: "Rechtwinklig prüfen",
+                distance: "Abstand im Koordinatensystem",
+                elite_space: "Raumdiagonale"
+            },
+            sqrt: {
+                perfect: "Quadratzahlen",
+                simplify: "Wurzeln vereinfachen",
+                estimate: "Schätzen"
+            }
+        },
+        mg06: {
+            back: "Zurück zum Nexus",
+            title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Zielgleichung",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG06_MONITOR",
+            footer_left: "MG06_QUADRATISCH // KNOTEN: ZÜRICH",
+            modes: {
+                factor: "FAKTORISIEREN",
+                formula: "FORMEL",
+                complete_square: "QUADRATISCHE ERGÄNZUNG",
+                factor_prompt: "Faktorisieren: Finde A,B so dass (x+A)(x+B)=0.",
+                formula_prompt: "Löse mit der Mitternachtsformel.",
+                complete_square_prompt: "In Scheitelpunktform umformen und (h,k) bestimmen."
+            },
+            labels: {
+                roots: "Lösungen x₁, x₂",
+                vertex: "Scheitelpunkt (h,k)",
+                factor: "Faktorisieren",
+                factor_slots: "Faktoren konstruieren (A,B)",
+                formula: "Mitternachtsformel",
+                complete_square: "Quadratische Ergänzung",
+                elite_hint_latex: "Hinweis: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            }
         },
         binomial: {
             back: "← Zurück zum Nexus",
