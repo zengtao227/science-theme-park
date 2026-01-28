@@ -58,7 +58,7 @@ function DraggableBlock({ id, width, height, color, label, locked, initialPos, t
         if (e.target && 'releasePointerCapture' in e.target) (e.target as any).releasePointerCapture(e.pointerId);
 
         const dist = new THREE.Vector2(pos[0], pos[1]).distanceTo(new THREE.Vector2(targetPos[0], targetPos[1]));
-        if (dist < 1.5) { // Increased from 0.8 for much easier snapping
+        if (dist < 2.5) { // Increased from 1.5 for much better magnetic snapping
             setPos(targetPos);
             onSnap(id, true);
         } else {
@@ -96,7 +96,7 @@ function DraggableBlock({ id, width, height, color, label, locked, initialPos, t
             </Text>
             <lineSegments>
                 <edgesGeometry args={[new THREE.PlaneGeometry(width, height)]} />
-                <lineBasicMaterial color="white" transparent opacity={0.3} />
+                <lineBasicMaterial color="white" transparent opacity={0.6} linewidth={2} />
             </lineSegments>
         </mesh>
     );
@@ -272,7 +272,7 @@ export default function BinomialFactoryPage() {
         <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
             {/* HUD Top */}
             <header className="p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl">
-                <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-neutral-500 transition-all group">
+                <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group">
                     <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
                     <span className="text-[10px] font-black tracking-[0.2em] uppercase">Back to Nexus</span>
                 </Link>
@@ -289,14 +289,17 @@ export default function BinomialFactoryPage() {
                             key={btn.id}
                             onClick={() => (btn.id === 'EXPLORE' ? setQuestMode('EXPLORE') : generateQuest(btn.id as any))}
                             className={clsx(
-                                "flex flex-col items-center gap-2 px-6 py-3 border-2 transition-all font-black min-w-[120px]",
+                                "flex flex-col items-center gap-2 px-6 py-3 border-2 transition-all font-black min-w-[120px] relative overflow-hidden",
                                 questMode === btn.id
-                                    ? `border-neon-cyan text-neon-cyan`
-                                    : "border-transparent text-neutral-600 hover:text-neutral-400"
+                                    ? `border-white text-white bg-white/20 shadow-[0_0_25px_rgba(255,255,255,0.2)] animate-pulse`
+                                    : "border-white/10 text-white/90 hover:text-white hover:border-white/40"
                             )}
                         >
                             <btn.icon className="w-4 h-4" />
                             <span className="text-[10px] tracking-[0.3em] uppercase">{btn.id}</span>
+                            {questMode === btn.id && (
+                                <motion.div layoutId="nav-glow" className="absolute inset-0 bg-white/10 pointer-events-none" />
+                            )}
                         </button>
                     ))}
                 </div>
@@ -307,9 +310,9 @@ export default function BinomialFactoryPage() {
                 {/* Main Logic Workstation */}
                 <main
                     onKeyDown={handleSidebarKeyDown}
-                    className="flex-1 border-r-2 border-white/10 p-10 flex flex-col gap-8 bg-black z-10 overflow-y-auto items-center"
+                    className="flex-1 border-r-2 border-white/10 p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center"
                 >
-                    <div className="w-full max-w-5xl space-y-24">
+                    <div className="w-full max-w-5xl space-y-12">
                         {questMode === 'EXPLORE' ? (
                             <div className="space-y-10">
                                 <h3 className="text-xl text-white uppercase tracking-[0.4em] font-black flex items-center gap-4 border-l-4 border-white pl-6">00 // Parameters Configuration</h3>
@@ -323,15 +326,15 @@ export default function BinomialFactoryPage() {
                                         <input type="range" min="1" max="5" step="0.5" value={b} onChange={e => !locked && setB(parseFloat(e.target.value))} className="w-full accent-white h-2 bg-white/5 rounded-full appearance-none hover:bg-white/10 transition-all" />
                                     </div>
                                 </div>
-                                <button onClick={() => setLocked(!locked)} className={clsx("w-full py-6 border-2 text-sm font-black tracking-[0.5em] transition-all uppercase shadow-2xl", locked ? "border-white text-white bg-white/5" : "border-white text-white bg-white/5")}>
+                                <button onClick={() => setLocked(!locked)} className={clsx("w-64 mx-auto py-6 border-2 text-sm font-black tracking-[0.5em] transition-all uppercase shadow-2xl block", locked ? "border-white text-white bg-white/5" : "border-white text-white bg-white/5")}>
                                     {locked ? <Unlock className="inline w-5 h-5 mr-3 mb-1" /> : <Lock className="inline w-5 h-5 mr-3 mb-1" />} {locked ? t.unlock : t.lock}
                                 </button>
                             </div>
                         ) : (
-                            <div className="space-y-16 animate-in slide-in-from-bottom duration-700">
-                                <div className="space-y-12">
+                            <div className="space-y-8 animate-in slide-in-from-bottom duration-700">
+                                <div className="space-y-6">
                                     <div className="text-center">
-                                        <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black mb-10">Active Mission Objective</h3>
+                                        <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">Active Mission Objective</h3>
                                         <p className="text-4xl text-white font-black max-w-2xl mx-auto leading-tight italic">
                                             {questMode === 'ARCHITECT' && "Factor the algebraic blueprint into a perfect structural assembly."}
                                             {questMode === 'SCRAPPER' && "Factor the debris cluster into a stable docking square."}
@@ -340,18 +343,18 @@ export default function BinomialFactoryPage() {
                                         </p>
                                     </div>
 
-                                    <div className="p-16 bg-white/[0.03] border border-white/5 rounded-2xl text-center relative max-w-4xl mx-auto shadow-2xl">
-                                        <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/20" />
-                                        <span className="text-[10px] text-neutral-600 uppercase tracking-[0.8em] font-black block mb-12">Target Identity Expression</span>
-                                        <span className="text-9xl font-black italic tracking-tighter text-white block py-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                                    <div className="p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+                                        <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
+                                        <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">Target Identity Expression</span>
+                                        <span className="text-8xl font-black italic tracking-tighter text-white block py-2 leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] whitespace-nowrap">
                                             {questMode === 'ARCHITECT' && questData?.formula}
                                             {questMode === 'SCRAPPER' && questData?.expr}
                                             {questMode === 'ELITE' && questData?.expr}
                                             {questMode === 'VOYAGER' && questData?.expr}
                                             {questMode === 'SPEEDSTER' && (
-                                                <div className="text-8xl flex flex-col items-center gap-8">
+                                                <div className="text-7xl flex flex-col items-center gap-8">
                                                     <div className="text-white">{questData?.base + questData?.add}²</div>
-                                                    <div className="flex items-center gap-4 text-2xl tracking-widest">
+                                                    <div className="flex items-center gap-4 text-2xl tracking-widest whitespace-nowrap">
                                                         <span>( [?] x + [?] y )²</span>
                                                     </div>
                                                 </div>
@@ -363,23 +366,25 @@ export default function BinomialFactoryPage() {
                                         ( <input className="w-12 bg-transparent border-b border-white text-center" placeholder="?" /> x + <input className="w-12 bg-transparent border-b border-white text-center" placeholder="?" /> y )²
                                     </div>
 
-                                    <button onClick={() => generateQuest(questMode as any)} className="w-full max-w-2xl mx-auto block py-6 border border-white text-sm tracking-[0.6em] text-white font-black hover:bg-white hover:text-black transition-all">EXECUTE NEXT SEQUENCE</button>
+                                    <div className="flex justify-center w-full mt-4">
+                                        <button onClick={() => generateQuest(questMode as any)} className="w-64 py-6 border border-white text-sm tracking-[0.6em] text-white font-black hover:bg-white hover:text-black transition-all">EXECUTE NEXT SEQUENCE</button>
+                                    </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 gap-8">
+                                <div className="grid grid-cols-3 gap-8 justify-center max-w-xl mx-auto">
                                     {questMode === 'ARCHITECT' && (
                                         <>
                                             <div className="flex flex-col gap-4 text-center">
                                                 <span className="text-xs text-white uppercase font-black tracking-widest">Part 1 (a²)</span>
-                                                <input value={userAnswers.a2} onChange={e => setUserAnswers(v => ({ ...v, a2: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
+                                                <input value={userAnswers.a2} onChange={e => setUserAnswers(v => ({ ...v, a2: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
                                             </div>
                                             <div className="flex flex-col gap-4 text-center">
                                                 <span className="text-xs text-white uppercase font-black tracking-widest">Part 2 (2ab)</span>
-                                                <input value={userAnswers.ab} onChange={e => setUserAnswers(v => ({ ...v, ab: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
+                                                <input value={userAnswers.ab} onChange={e => setUserAnswers(v => ({ ...v, ab: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
                                             </div>
                                             <div className="flex flex-col gap-4 text-center">
                                                 <span className="text-xs text-white uppercase font-black tracking-widest">Part 3 (b²)</span>
-                                                <input value={userAnswers.b2} onChange={e => setUserAnswers(v => ({ ...v, b2: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
+                                                <input value={userAnswers.b2} onChange={e => setUserAnswers(v => ({ ...v, b2: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white" placeholder="?" />
                                             </div>
                                         </>
                                     )}
@@ -387,12 +392,12 @@ export default function BinomialFactoryPage() {
                                         <>
                                             <div className="flex flex-col gap-4 text-center col-span-1">
                                                 <span className="text-xs text-white uppercase font-black tracking-widest">Identify Root a</span>
-                                                <input value={userAnswers.a} onChange={e => setUserAnswers(v => ({ ...v, a: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white" placeholder="?" />
+                                                <input value={userAnswers.a} onChange={e => setUserAnswers(v => ({ ...v, a: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white" placeholder="?" />
                                             </div>
                                             <div className="flex items-end pb-4 justify-center text-4xl text-white font-black">+</div>
                                             <div className="flex flex-col gap-4 text-center col-span-1">
                                                 <span className="text-xs text-white uppercase font-black tracking-widest">Identify Root b</span>
-                                                <input value={userAnswers.b} onChange={e => setUserAnswers(v => ({ ...v, b: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white" placeholder="?" />
+                                                <input value={userAnswers.b} onChange={e => setUserAnswers(v => ({ ...v, b: e.target.value }))} className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white" placeholder="?" />
                                             </div>
                                         </>
                                     )}
@@ -445,7 +450,9 @@ export default function BinomialFactoryPage() {
                                             )}
                                         </div>
                                     )}
-                                    <button onClick={() => generateQuest(questMode)} className="w-full py-4 border-2 border-white text-sm text-white hover:bg-white hover:text-black tracking-[0.4em] uppercase font-black transition-all hover:scale-[1.01] active:scale-95 shadow-lg">Execute Next Sequence</button>
+                                </div>
+                                <div className="flex justify-center w-full mt-8">
+                                    <button onClick={() => generateQuest(questMode)} className="w-64 py-4 border-2 border-white text-sm text-white hover:bg-white hover:text-black tracking-[0.4em] uppercase font-black transition-all hover:scale-[1.01] active:scale-95 shadow-lg block">Execute Next Sequence</button>
                                 </div>
                             </div>
                         )}
@@ -500,18 +507,18 @@ export default function BinomialFactoryPage() {
                 </main>
 
                 {/* Visual Monitor Area */}
-                <aside className="w-[450px] relative bg-black flex flex-col border-l border-white/10">
-                    <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-neutral-600 font-black flex justify-between items-center">
+                <aside className="w-[600px] relative bg-black flex flex-col border-l border-white/10">
+                    <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
                         <span>Visual_Reference_Position [FIX_REF.01]</span>
-                        <div className="flex gap-2"><div className="w-1 h-1 bg-neon-green" /><div className="w-1 h-1 bg-neon-cyan" /></div>
+                        <div className="flex gap-2"><div className="w-1 h-1 bg-white" /><div className="w-1 h-1 bg-white/40" /></div>
                     </div>
                     <div className="flex-1 relative">
                         <Canvas>
-                            <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={12} />
+                            <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={32} />
                             <Suspense fallback={null}>
                                 <ambientLight intensity={0.4} />
                                 <pointLight position={[10, 10, 10]} />
-                                <Grid infiniteGrid fadeDistance={40} cellColor="#1a1a1a" sectionColor="#333" position={[0, 0, -0.1]} rotation={[Math.PI / 2, 0, 0]} />
+                                <Grid infiniteGrid fadeDistance={40} cellColor="#111" sectionColor="#222" position={[0, 0, -0.1]} rotation={[Math.PI / 2, 0, 0]} />
 
                                 {/* The Ghost Blueprint */}
                                 <mesh position={[0, 0, -0.05]} raycast={() => null}>
@@ -519,11 +526,11 @@ export default function BinomialFactoryPage() {
                                     <meshBasicMaterial color="white" transparent opacity={0.03} />
                                     <lineSegments>
                                         <edgesGeometry args={[new THREE.PlaneGeometry(targetSize, targetSize)]} />
-                                        <lineBasicMaterial color="white" transparent opacity={0.15} />
+                                        <lineBasicMaterial color="white" transparent opacity={0.6} />
                                     </lineSegments>
                                 </mesh>
 
-                                <Text position={[0, targetSize / 2 + 0.5, 0]} fontSize={0.35} color="white" fillOpacity={0.4}>
+                                <Text position={[0, targetSize / 2 + 0.5, 0]} fontSize={0.35} color="white" fillOpacity={0.8}>
                                     {questMode === 'ARCHITECT' ? questData?.formula :
                                         questMode === 'SCRAPPER' ? questData?.expr :
                                             questMode === 'ELITE' ? questData?.expr :
