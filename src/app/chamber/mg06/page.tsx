@@ -662,12 +662,14 @@ export default function MG06Page() {
                 </p>
               </div>
 
-              <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+              <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
                 <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
                 <div className="space-y-4">
-                  <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
-                    <InlineMath math={expressionLatex} />
+                  <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] max-w-full overflow-x-auto py-1">
+                    <span className="inline-block">
+                      <InlineMath math={expressionLatex} />
+                    </span>
                   </div>
                   <div className="text-white/60 font-black">
                     <InlineMath math={currentQuest.targetLatex} />
@@ -783,8 +785,10 @@ export default function MG06Page() {
             <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] h-full flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-                <div className="text-white font-black text-xl">
-                  <InlineMath math={expressionLatex} />
+                <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1">
+                  <span className="inline-block">
+                    <InlineMath math={expressionLatex} />
+                  </span>
                 </div>
                 <div className="text-white/70 font-mono text-sm break-words">
                   <InlineMath math={currentQuest.promptLatex} />
