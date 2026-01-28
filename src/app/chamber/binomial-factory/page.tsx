@@ -500,12 +500,14 @@ export default function BinomialFactoryPage() {
                                         </p>
                                     </div>
 
-                                    <div className="p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+                                    <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
                                         <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
                                         <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_expression}</span>
                                         <div className={clsx(
-                                            "font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] whitespace-normal",
-                                            "text-[clamp(2.25rem,7vw,6rem)] leading-[0.95]"
+                                            "font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]",
+                                            questMode === 'VOYAGER' && voyagerQuest?.subType !== 'FACTOR'
+                                                ? "whitespace-nowrap text-[clamp(1.6rem,5.2vw,5.5rem)] leading-[0.95]"
+                                                : "whitespace-normal text-[clamp(2.25rem,7vw,6rem)] leading-[0.95]"
                                         )}>
                                             {questMode === 'ARCHITECT' && <span className="break-words">{architectQuest?.formula}</span>}
                                             {questMode === 'SCRAPPER' && (
@@ -521,9 +523,8 @@ export default function BinomialFactoryPage() {
                                                 voyagerQuest?.subType === 'FACTOR'
                                                     ? <span className="break-words">{voyagerQuest ? `${voyagerQuest.ca ** 2}x² - ${voyagerQuest.vb ** 2}` : ''}</span>
                                                     : (
-                                                        <span className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 break-words">
-                                                            <span>{voyagerQuest ? `(${voyagerQuest.ca}x + ${voyagerQuest.vb})` : ''}</span>
-                                                            <span>{voyagerQuest ? `(${voyagerQuest.ca}x - ${voyagerQuest.vb})` : ''}</span>
+                                                        <span className="inline-block whitespace-nowrap">
+                                                            {voyagerQuest ? `(${voyagerQuest.ca}x + ${voyagerQuest.vb})(${voyagerQuest.ca}x - ${voyagerQuest.vb})` : ''}
                                                         </span>
                                                     )
                                             )}
