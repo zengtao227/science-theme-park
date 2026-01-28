@@ -86,6 +86,16 @@ export const translations = {
             ready: "Ready",
             monitor_title: "MG06_MONITOR",
             footer_left: "MG06_QUADRATIC // NODE: ZURICH",
+            stages: {
+                terms: "TERMS",
+                factorize: "FACTORIZE",
+                fractions: "FRACTIONS",
+                equations: "EQUATIONS",
+                terms_prompt_latex: "\\text{Simplify the expression (combine like terms).}",
+                factor_prompt_latex: "\\text{Factorize the expression (show a product form).}",
+                fractions_prompt_latex: "\\text{Simplify the fraction.}",
+                equations_prompt_latex: "\\text{Solve the equation step by step.}"
+            },
             modes: {
                 factor: "FACTOR",
                 formula: "FORMULA",
@@ -95,6 +105,9 @@ export const translations = {
                 complete_square_prompt: "Convert to vertex form and identify (h,k)."
             },
             labels: {
+                input: "INPUT",
+                numerator: "NUMERATOR",
+                denominator: "DENOMINATOR",
                 roots: "Solutions x₁, x₂",
                 vertex: "Vertex (h,k)",
                 factor: "Factoring",
@@ -102,6 +115,16 @@ export const translations = {
                 formula: "Quadratic Formula",
                 complete_square: "Completing the Square",
                 elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{Factor out the common factor.}",
+                    zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
+                }
             }
         },
         binomial: {
@@ -276,6 +299,16 @@ export const translations = {
             ready: "就绪",
             monitor_title: "MG06_监控",
             footer_left: "MG06_一元二次方程 // 节点：苏黎世",
+            stages: {
+                terms: "合并同类项",
+                factorize: "因式分解",
+                fractions: "分式化简",
+                equations: "解方程",
+                terms_prompt_latex: "\\text{化简表达式（合并同类项）。}",
+                factor_prompt_latex: "\\text{把式子因式分解成乘积形式。}",
+                fractions_prompt_latex: "\\text{约分 / 化简分式。}",
+                equations_prompt_latex: "\\text{分步骤解方程。}"
+            },
             modes: {
                 factor: "因式分解",
                 formula: "求根公式",
@@ -285,6 +318,9 @@ export const translations = {
                 complete_square_prompt: "化为顶点式并写出 (h,k)。"
             },
             labels: {
+                input: "输入",
+                numerator: "分子",
+                denominator: "分母",
                 roots: "解 x₁, x₂",
                 vertex: "顶点 (h,k)",
                 factor: "因式分解",
@@ -292,6 +328,16 @@ export const translations = {
                 formula: "求根公式",
                 complete_square: "配方法",
                 elite_hint_latex: "提示：\\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{先提取公因式。}",
+                    zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
+                }
             }
         },
         binomial: {
@@ -466,6 +512,16 @@ export const translations = {
             ready: "Bereit",
             monitor_title: "MG06_MONITOR",
             footer_left: "MG06_QUADRATISCH // KNOTEN: ZÜRICH",
+            stages: {
+                terms: "TERME",
+                factorize: "FAKTORISIEREN",
+                fractions: "BRUCHTERME",
+                equations: "GLEICHUNGEN",
+                terms_prompt_latex: "\\text{Vereinfache den Term (gleichartige Terme zusammenfassen).}",
+                factor_prompt_latex: "\\text{Faktorisiere den Term (als Produkt schreiben).}",
+                fractions_prompt_latex: "\\text{Kürzen / Bruchterm vereinfachen.}",
+                equations_prompt_latex: "\\text{Löse die Gleichung Schritt für Schritt.}"
+            },
             modes: {
                 factor: "FAKTORISIEREN",
                 formula: "FORMEL",
@@ -475,6 +531,9 @@ export const translations = {
                 complete_square_prompt: "In Scheitelpunktform umformen und (h,k) bestimmen."
             },
             labels: {
+                input: "EINGABE",
+                numerator: "ZÄHLER",
+                denominator: "NENNER",
                 roots: "Lösungen x₁, x₂",
                 vertex: "Scheitelpunkt (h,k)",
                 factor: "Faktorisieren",
@@ -482,6 +541,16 @@ export const translations = {
                 formula: "Mitternachtsformel",
                 complete_square: "Quadratische Ergänzung",
                 elite_hint_latex: "Hinweis: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{Gemeinsamen Faktor ausklammern.}",
+                    zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
+                }
             }
         },
         binomial: {
