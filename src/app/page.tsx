@@ -81,10 +81,10 @@ export default function Home() {
                   <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G04</span>
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors">
-                  {t.home.binomial_factory_title}
+                  {t.home.mg04_title}
                 </h3>
                 <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.binomial_factory_desc}
+                  {t.home.mg04_subtitle}
                 </p>
               </div>
 
@@ -109,7 +109,7 @@ export default function Home() {
                   {t.home.mg05_title}
                 </h3>
                 <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg05_desc}
+                  {t.home.mg05_subtitle}
                 </p>
               </div>
 
@@ -134,7 +134,7 @@ export default function Home() {
                   {t.home.mg06_title}
                 </h3>
                 <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg06_desc}
+                  {t.home.mg06_subtitle}
                 </p>
               </div>
 
