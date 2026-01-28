@@ -18,6 +18,10 @@ export const translations = {
             mg05_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
             mg06_title: "M-G06 // QUADRATIC EQUATIONS",
             mg06_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
+            mg07_title: "M-G07 // LINES & FUNCTIONS",
+            mg07_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
+            mg08_title: "M-G08 // SIMILARITY & SCALING",
+            mg08_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -131,6 +135,82 @@ export const translations = {
                 }
             }
         },
+        mg07: {
+            back: "Back to Nexus",
+            title: "M-G07 // LINES & FUNCTIONS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG07_MONITOR",
+            footer_left: "MG07_LINES_FUNCTIONS // NODE: BASEL",
+            stages: {
+                lines: "LINES",
+                linear_function: "LINEAR",
+                graph_match: "GRAPH",
+                intersection: "INTERSECT",
+                lines_prompt_latex: "\\text{Find the line equation from the given information.}",
+                linear_prompt_latex: "\\text{Work with }y=mx+b\\text{ (evaluate/solve).}",
+                graph_prompt_latex: "\\text{Read }m\\text{ and }b\\text{ from the graph.}",
+                intersection_prompt_latex: "\\text{Find the intersection point of the two lines.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{Rearrange to isolate }x\\text{.}",
+                    solve_system_latex: "\\text{Set the two expressions for }y\\text{ equal and solve.}"
+                }
+            }
+        },
+        mg08: {
+            back: "Back to Nexus",
+            title: "M-G08 // SIMILARITY & SCALING",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG08_MONITOR",
+            footer_left: "MG08_SIMILARITY_SCALING // NODE: BASEL",
+            stages: {
+                scale_factor: "SCALE",
+                similar_triangles: "SIMILAR",
+                application: "APPLY",
+                stages_prompt_latex: "\\text{Use proportionality to find the missing value.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
+                    cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
+                }
+            }
+        },
         binomial: {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
@@ -235,6 +315,10 @@ export const translations = {
             mg05_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
             mg06_title: "M-G06 // 一元二次方程",
             mg06_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
+            mg07_title: "M-G07 // 直线与函数",
+            mg07_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
+            mg08_title: "M-G08 // 相似与伸缩",
+            mg08_subtitle: "训练相似比、缩放因子与比例应用题。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -348,6 +432,82 @@ export const translations = {
                 }
             }
         },
+        mg07: {
+            back: "返回枢纽",
+            title: "M-G07 // 直线与函数",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG07_监控",
+            footer_left: "MG07_直线与函数 // 节点：巴塞尔",
+            stages: {
+                lines: "直线",
+                linear_function: "一次函数",
+                graph_match: "读图",
+                intersection: "交点",
+                lines_prompt_latex: "\\text{根据已知信息写出直线方程。}",
+                linear_prompt_latex: "\\text{处理 }y=mx+b\\text{（代入/求解）。}",
+                graph_prompt_latex: "\\text{从图像中读出 }m\\text{ 与 }b\\text{。}",
+                intersection_prompt_latex: "\\text{求两条直线的交点坐标。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{移项化简，解出 }x\\text{。}",
+                    solve_system_latex: "\\text{令两式的 }y\\text{ 相等并求解。}"
+                }
+            }
+        },
+        mg08: {
+            back: "返回枢纽",
+            title: "M-G08 // 相似与伸缩",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG08_监控",
+            footer_left: "MG08_相似与伸缩 // 节点：巴塞尔",
+            stages: {
+                scale_factor: "缩放",
+                similar_triangles: "相似",
+                application: "应用",
+                stages_prompt_latex: "\\text{使用比例关系求出未知量。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{缩放因子 }k=\\frac{\\text{新}}{\\text{旧}}",
+                    cross_multiply_latex: "\\text{交叉相乘求未知数。}"
+                }
+            }
+        },
         binomial: {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
@@ -452,6 +612,10 @@ export const translations = {
             mg05_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
             mg06_title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
             mg06_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
+            mg07_title: "M-G07 // GERADEN & FUNKTIONEN",
+            mg07_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
+            mg08_title: "M-G08 // ÄHNLICHKEIT & STRECKUNG",
+            mg08_subtitle: "Übe Ähnlichkeit, Streckfaktor und proportionale Anwendungen.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -562,6 +726,82 @@ export const translations = {
                     simplify_both_sides_latex: "\\text{Beide Seiten schrittweise vereinfachen.}",
                     square_root_pm_latex: "\\text{Wurzel ziehen mit }\\pm\\text{.}",
                     zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
+                }
+            }
+        },
+        mg07: {
+            back: "Zurück zum Nexus",
+            title: "M-G07 // GERADEN & FUNKTIONEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Ziel",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG07_MONITOR",
+            footer_left: "MG07_GERADEN_FUNKTIONEN // KNOTEN: BASEL",
+            stages: {
+                lines: "GERADEN",
+                linear_function: "LINEAR",
+                graph_match: "GRAPH",
+                intersection: "SCHNITT",
+                lines_prompt_latex: "\\text{Bestimme die Geradengleichung aus den Angaben.}",
+                linear_prompt_latex: "\\text{Arbeite mit }y=mx+b\\text{ (einsetzen/lösen).}",
+                graph_prompt_latex: "\\text{Lies }m\\text{ und }b\\text{ aus dem Graphen ab.}",
+                intersection_prompt_latex: "\\text{Bestimme den Schnittpunkt der beiden Geraden.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{Umformen und }x\\text{ isolieren.}",
+                    solve_system_latex: "\\text{Setze die beiden }y\\text{-Ausdrücke gleich und löse.}"
+                }
+            }
+        },
+        mg08: {
+            back: "Zurück zum Nexus",
+            title: "M-G08 // ÄHNLICHKEIT & STRECKUNG",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Ziel",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG08_MONITOR",
+            footer_left: "MG08_AEHNLICHKEIT_STRECKUNG // KNOTEN: BASEL",
+            stages: {
+                scale_factor: "STRECKUNG",
+                similar_triangles: "ÄHNLICH",
+                application: "ANWENDUNG",
+                stages_prompt_latex: "\\text{Nutze Proportionen, um den fehlenden Wert zu bestimmen.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{Streckfaktor }k=\\frac{\\text{neu}}{\\text{alt}}",
+                    cross_multiply_latex: "\\text{Kreuzweise multiplizieren und lösen.}"
                 }
             }
         },
