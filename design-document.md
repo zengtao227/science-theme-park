@@ -235,7 +235,24 @@
     - 鼠标悬停节点显示全息预览 (GIF/Video)。
     - 镜头无缝推入进入实验。
 
-### 6.3 每日仪式 (Daily Ritual)
+### 6.3 模块化开发技术规范 (Modular Technical Standard)
+
+针对后续新增模块（M-G07, M-G08...），必须遵循以下硬性技术要求以确保生产环境构建成功：
+
+1.  **i18n 同步要求 (Mandatory i18n Sync)**：
+    *   **三语对齐**：每个新模块必须在 `src/lib/i18n.ts` 中同时补齐 `EN` / `DE` / `CN` 的词库。
+    *   **首页注册**：必须在 `translations.[LANG].home` 对象中添加模块标题 (`mgXX_title`) 和副标题 (`mgXX_subtitle`)。
+    *   **对齐键名**：主页引用的键名必须与 i18n 文件中的键名严格匹配。
+
+2.  **类型安全验证 (Type Safety)**：
+    *   **禁止基于猜测的修改**：修改 i18n 或主页后，**必须**在本地运行 `npm run build`。Vercel 部署失败通常是因为 TS 类型检查未通过。
+    *   **接口定义**：在模块内部，推荐使用 `type MgXXT = typeof translations.EN.mgXX` 来确保翻译引用的严谨性。
+
+3.  **导航路由规范 (Navigation & Routing)**：
+    *   **路径对齐**：`src/app/page.tsx` 中的 `<Link href="/chamber/mgXX">` 必须与文件系统路径物理对应。
+    *   **Card 视觉一致性**：新模块 Card 必须包含 `mgXX_title` 和 `mgXX_subtitle`。
+
+### 6.4 每日仪式 (Daily Ritual)
 > 开发者注：每次启动项目前，必须回顾此文档的架构规划，确保所有新功能不偏离“扁平化导航”与“硬核美学”的初衷。
 
 ---
