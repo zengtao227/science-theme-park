@@ -1,10 +1,5 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Project Docs
-
-- Basel 8th-grade curriculum references: [Basel_Curriculum_References.md](./Resources/Basel_Curriculum_References.md)
-- Executable design spec (MG05/MG06): [03_MG05_MG06_Basel_Sek2_Executable_Design.md](./Design%20Documents/Mathematics/03_MG05_MG06_Basel_Sek2_Executable_Design.md)
-
 ## Getting Started
 
 First, run the development server:

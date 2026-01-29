@@ -1,0 +1,62 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/zengtao/Lighter-Binance-Python",
+        "/Users/zengtao/Lighter-Binance-Python/src",
+        "/Users/zengtao/Lighter-Binance-Python/logs"
+      ]
+    },
+    "git": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-git"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "filebrowser": {
+      "command": "node",
+      "args": [
+        "/Users/zengtao/Lighter-Binance-Python/tools/log-analyzer/index.js"
+      ],
+      "env": {
+        "FILEBROWSER_URL": "https://filebrowser.tradingfun.uk",
+        "FILEBROWSER_USERNAME": "admin",
+        "FILEBROWSER_PASSWORD": "r57YwhrLwi0Rn8CX"
+      }
+    },
+    "nvidia-glm": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-nvidia",
+        "--model",
+        "z-aiglm4.7"
+      ],
+      "env": {
+        "NVIDIA_API_KEY": "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"
+      }
+    },
+    "nvidia-minimax": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-nvidia",
+        "--model",
+        "minimaxai/minimax-m2"
+      ],
+      "env": {
+        "NVIDIA_API_KEY": "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"
+      }
+    }
+  }
+}
