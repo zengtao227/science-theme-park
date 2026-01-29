@@ -32,6 +32,13 @@ def finalize_mcp_config():
         "description": "NVIDIA NIM - MiniMax ABAB 6.5"
     }
 
+    config["mcpServers"]["stitch"] = {
+        "url": "https://stitch.googleapis.com/mcp",
+        "headers": {
+            "X-Goog-Api-Key": "AQ.Ab8RN6LAuMmIaNT56XMSntK6ca0TMDV0vIQ-m5prQn5-UqfGGA"
+        }
+    }
+
     with open(target_path, 'w') as f:
         json.dump(config, f, indent=2)
     

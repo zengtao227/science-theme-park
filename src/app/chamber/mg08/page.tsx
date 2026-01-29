@@ -168,7 +168,7 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
   return [];
 }
 
-function Visual({ v }: { v: Quest["visual"] }) {
+function Visual({ v, t }: { v: Quest["visual"]; t: Mg08T }) {
   if (!v) return null;
 
   if (v.kind === "rect-scale") {
@@ -233,8 +233,8 @@ function Visual({ v }: { v: Quest["visual"] }) {
             <path d="M-40,-160 L-20,-190 L0,-160 Z" fill="none" stroke="white" strokeWidth="2" />
             <circle cx="-20" cy="-145" r="5" fill="none" stroke="white" strokeWidth="1" />
 
-            <text x="-40" y="-200" fill="white" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">CLOCK TOWER</text>
-            <text x="100" y="20" fill="rgba(255,255,255,0.6)" fontSize="9" fontFamily="monospace" textAnchor="middle">SHADOW: 12m</text>
+            <text x="-40" y="-200" fill="white" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">{t.mission?.labels.tower || "TOWER"}</text>
+            <text x="100" y="20" fill="rgba(255,255,255,0.6)" fontSize="9" fontFamily="monospace" textAnchor="middle">{t.mission?.labels.tower_shadow || "SHADOW"}: 12m</text>
           </g>
 
           {/* Stick */}
@@ -242,8 +242,8 @@ function Visual({ v }: { v: Quest["visual"] }) {
             {/* Stick Shadow */}
             <rect x="0" y="0" width="40" height="4" fill="rgba(251,191,36,0.3)" />
             <line x1="0" y1="0" x2="0" y2="-25" stroke="#fbbf24" strokeWidth="4" />
-            <text x="0" y="-40" fill="#fbbf24" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">STICK: 1.5m</text>
-            <text x="20" y="20" fill="rgba(251,191,36,0.8)" fontSize="9" fontFamily="monospace" textAnchor="middle">SHADOW: 2.4m</text>
+            <text x="0" y="-40" fill="#fbbf24" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">{t.mission?.labels.stick || "STICK"}: 1.5m</text>
+            <text x="20" y="20" fill="rgba(251,191,36,0.8)" fontSize="9" fontFamily="monospace" textAnchor="middle">{t.mission?.labels.stick_shadow || "SHADOW"}: 2.4m</text>
           </g>
 
           {/* Similar Triangle Visualization */}
@@ -387,7 +387,7 @@ export default function MG08Page() {
                     "px-4 py-2 border-2 text-[10px] font-black tracking-[0.35em] uppercase transition-all relative overflow-hidden",
                     stage === s.id
                       ? (s.id === 'MISSION' ? "border-amber-400 text-amber-400 bg-amber-400/10 shadow-[0_0_20px_rgba(251,191,36,0.2)]" : "border-white bg-white text-black")
-                      : "border-white/30 text-white hover:border-white/50"
+                      : (s.id === 'MISSION' ? "border-amber-600/40 text-amber-500/70 hover:border-amber-500 hover:text-amber-500" : "border-white/30 text-white hover:border-white/50")
                   )}
                 >
                   {s.label}
@@ -419,7 +419,7 @@ export default function MG08Page() {
 
             {currentQuest.visual && (
               <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
-                <Visual v={currentQuest.visual} />
+                <Visual v={currentQuest.visual} t={t} />
               </div>
             )}
 

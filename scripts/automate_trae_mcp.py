@@ -41,6 +41,13 @@ def automate_trae_config():
             "type": "stdio"
         }
 
+        data["mcpServers"]["stitch"] = {
+            "url": "https://stitch.googleapis.com/mcp",
+            "headers": {
+                "X-Goog-Api-Key": "AQ.Ab8RN6LAuMmIaNT56XMSntK6ca0TMDV0vIQ-m5prQn5-UqfGGA"
+            }
+        }
+
         with open(config_path, 'w') as f:
             json.dump(data, f, indent=2)
             
