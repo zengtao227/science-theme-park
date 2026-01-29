@@ -12,12 +12,18 @@ export const translations = {
             subtitle: "Hardcore Science & Logic Simulations",
             nexus: "The Nexus",
             archive: "Archives",
-            binomial_factory_title: "M-G04 // BINOMIAL FACTORY",
-            binomial_factory_desc: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
+            mg04_title: "M-G04 // BINOMIAL FACTORY",
+            mg04_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
             mg05_title: "M-G05 // PYTHAGORAS & ROOTS",
-            mg05_desc: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            mg05_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            mg06_title: "M-G06 // QUADRATIC EQUATIONS",
+            mg06_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
+            mg07_title: "M-G07 // LINES & FUNCTIONS",
+            mg07_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
+            mg08_title: "M-G08 // SIMILARITY & SCALING",
+            mg08_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
             mg09_title: "M-G09 // CALCULUS INTRO",
-            mg09_desc: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+            mg09_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -46,6 +52,11 @@ export const translations = {
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
+            ready: "Ready",
+            yes: "YES",
+            no: "NO",
+            monitor_title: "MG05_VISUAL_MONITOR",
+            footer_left: "MG05_SQRT_PYTHAGORAS // NODE: ZURICH",
             input_radical: "Answer as k√m",
             input_k: "k",
             input_m: "m",
@@ -61,6 +72,145 @@ export const translations = {
                 perfect: "Perfect squares",
                 simplify: "Simplify radicals",
                 estimate: "Estimate"
+            }
+        },
+        mg06: {
+            back: "Back to Nexus",
+            title: "M-G06 // QUADRATIC EQUATIONS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target Equation",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG06_MONITOR",
+            footer_left: "MG06_QUADRATIC // NODE: ZURICH",
+            stages: {
+                terms: "TERMS",
+                factorize: "FACTORIZE",
+                fractions: "FRACTIONS",
+                equations: "EQUATIONS",
+                terms_prompt_latex: "\\text{Simplify the expression (combine like terms).}",
+                factor_prompt_latex: "\\text{Factorize the expression (show a product form).}",
+                fractions_prompt_latex: "\\text{Simplify the fraction.}",
+                equations_prompt_latex: "\\text{Solve the equation step by step.}"
+            },
+            modes: {
+                factor: "FACTOR",
+                formula: "FORMULA",
+                complete_square: "COMPLETE SQUARE",
+                factor_prompt: "Factorize first: find A,B so that (x+A)(x+B)=0.",
+                formula_prompt: "Solve with the quadratic formula.",
+                complete_square_prompt: "Convert to vertex form and identify (h,k)."
+            },
+            labels: {
+                input: "INPUT",
+                numerator: "NUMERATOR",
+                denominator: "DENOMINATOR",
+                hints: "HINTS",
+                roots: "Solutions x₁, x₂",
+                vertex: "Vertex (h,k)",
+                factor: "Factoring",
+                factor_slots: "Build factors (A,B)",
+                formula: "Quadratic Formula",
+                complete_square: "Completing the Square",
+                elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{Factor out the common factor.}",
+                    cancel_common_latex: "\\text{Factor numerator/denominator, then cancel the common factor.}",
+                    simplify_both_sides_latex: "\\text{Simplify both sides step by step.}",
+                    square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
+                    zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
+                }
+            }
+        },
+        mg07: {
+            back: "Back to Nexus",
+            title: "M-G07 // LINES & FUNCTIONS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG07_MONITOR",
+            footer_left: "MG07_LINES_FUNCTIONS // NODE: BASEL",
+            stages: {
+                lines: "LINES",
+                linear_function: "LINEAR",
+                graph_match: "GRAPH",
+                intersection: "INTERSECT",
+                lines_prompt_latex: "\\text{Find the line equation from the given information.}",
+                linear_prompt_latex: "\\text{Work with }y=mx+b\\text{ (evaluate/solve).}",
+                graph_prompt_latex: "\\text{Read }m\\text{ and }b\\text{ from the graph.}",
+                intersection_prompt_latex: "\\text{Find the intersection point of the two lines.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{Rearrange to isolate }x\\text{.}",
+                    solve_system_latex: "\\text{Set the two expressions for }y\\text{ equal and solve.}"
+                }
+            }
+        },
+        mg08: {
+            back: "Back to Nexus",
+            title: "M-G08 // SIMILARITY & SCALING",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "MG08_MONITOR",
+            footer_left: "MG08_SIMILARITY_SCALING // NODE: BASEL",
+            stages: {
+                scale_factor: "SCALE",
+                similar_triangles: "SIMILAR",
+                application: "APPLY",
+                stages_prompt_latex: "\\text{Use proportionality to find the missing value.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
+                    cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
+                }
             }
         },
         binomial: {
@@ -202,12 +352,18 @@ export const translations = {
             subtitle: "硬核理科仿真与逻辑实验",
             nexus: "核心枢纽",
             archive: "实验档案",
-            binomial_factory_title: "M-G04 // 二项式工厂",
-            binomial_factory_desc: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
+            mg04_title: "M-G04 // 二项式工厂",
+            mg04_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
             mg05_title: "M-G05 // 勾股定律与开平方",
-            mg05_desc: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
+            mg05_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
+            mg06_title: "M-G06 // 一元二次方程",
+            mg06_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
+            mg07_title: "M-G07 // 直线与函数",
+            mg07_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
+            mg08_title: "M-G08 // 相似与比例",
+            mg08_subtitle: "训练相似比、缩放因子及比例推理应用。",
             mg09_title: "M-G09 // 微积分初步",
-            mg09_desc: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+            mg09_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -236,6 +392,11 @@ export const translations = {
             check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
+            ready: "就绪",
+            yes: "是",
+            no: "否",
+            monitor_title: "MG05_视觉监控",
+            footer_left: "MG05_勾股与开方 // 节点：苏黎世",
             input_radical: "用 k√m 形式作答",
             input_k: "k",
             input_m: "m",
@@ -251,6 +412,145 @@ export const translations = {
                 perfect: "完全平方数",
                 simplify: "根式化简",
                 estimate: "估算"
+            }
+        },
+        mg06: {
+            back: "返回枢纽",
+            title: "M-G06 // 一元二次方程",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标方程",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG06_监控",
+            footer_left: "MG06_一元二次方程 // 节点：苏黎世",
+            stages: {
+                terms: "合并同类项",
+                factorize: "因式分解",
+                fractions: "分式化简",
+                equations: "解方程",
+                terms_prompt_latex: "\\text{化简表达式（合并同类项）。}",
+                factor_prompt_latex: "\\text{把式子因式分解成乘积形式。}",
+                fractions_prompt_latex: "\\text{约分 / 化简分式。}",
+                equations_prompt_latex: "\\text{分步骤解方程。}"
+            },
+            modes: {
+                factor: "因式分解",
+                formula: "求根公式",
+                complete_square: "配方法",
+                factor_prompt: "先把式子因式分解：找 A、B 使得 (x+A)(x+B)=0。",
+                formula_prompt: "使用一元二次方程求根公式求解。",
+                complete_square_prompt: "化为顶点式并写出 (h,k)。"
+            },
+            labels: {
+                input: "输入",
+                numerator: "分子",
+                denominator: "分母",
+                hints: "提示",
+                roots: "解 x₁, x₂",
+                vertex: "顶点 (h,k)",
+                factor: "因式分解",
+                factor_slots: "构造乘积形式 (A,B)",
+                formula: "求根公式",
+                complete_square: "配方法",
+                elite_hint_latex: "提示：\\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{先提取公因式。}",
+                    cancel_common_latex: "\\text{先分解分子分母，再约去公因式。}",
+                    simplify_both_sides_latex: "\\text{两边逐步化简。}",
+                    square_root_pm_latex: "\\text{开方时要考虑 }\\pm\\text{。}",
+                    zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
+                }
+            }
+        },
+        mg07: {
+            back: "返回枢纽",
+            title: "M-G07 // 直线与函数",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG07_监控",
+            footer_left: "MG07_直线与函数 // 节点：巴塞尔",
+            stages: {
+                lines: "直线",
+                linear_function: "一次函数",
+                graph_match: "读图",
+                intersection: "交点",
+                lines_prompt_latex: "\\text{根据已知信息写出直线方程。}",
+                linear_prompt_latex: "\\text{处理 }y=mx+b\\text{（代入/求解）。}",
+                graph_prompt_latex: "\\text{从图像中读出 }m\\text{ 与 }b\\text{。}",
+                intersection_prompt_latex: "\\text{求两条直线的交点坐标。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{移项化简，解出 }x\\text{。}",
+                    solve_system_latex: "\\text{令两式的 }y\\text{ 相等并求解。}"
+                }
+            }
+        },
+        mg08: {
+            back: "返回枢纽",
+            title: "M-G08 // 相似与伸缩",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "MG08_监控",
+            footer_left: "MG08_相似与伸缩 // 节点：巴塞尔",
+            stages: {
+                scale_factor: "缩放",
+                similar_triangles: "相似",
+                application: "应用",
+                stages_prompt_latex: "\\text{使用比例关系求出未知量。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{缩放因子 }k=\\frac{\\text{新}}{\\text{旧}}",
+                    cross_multiply_latex: "\\text{交叉相乘求未知数。}"
+                }
             }
         },
         binomial: {
@@ -392,16 +692,22 @@ export const translations = {
             subtitle: "Hardcore Science & Logik-Simulationen",
             nexus: "Nexus",
             archive: "Archiv",
-            binomial_factory_title: "M-G04 // BINOMISCHE FORMELN",
-            binomial_factory_desc: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
+            mg04_title: "M-G04 // BINOMISCHE FORMELN",
+            mg04_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
             mg05_title: "M-G05 // PYTHAGORAS & WURZELN",
-            mg05_desc: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
+            mg05_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
+            mg06_title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            mg06_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
+            mg07_title: "M-G07 // GERADEN & FUNKTIONEN",
+            mg07_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
+            mg08_title: "M-G08 // ÄHNLICHKEIT & SKALIERUNG",
+            mg08_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
             mg09_title: "M-G09 // INFINITESIMALRECHNUNG",
-            mg09_desc: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+            mg09_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
-            locked_level_required: "GESPERRT // STUFE {level} ERFORDERLICH",
+            locked_level_required: "GESPERRT // STUFE {level}",
             engine_status_label: "Systemstatus",
             engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
             nodes_label: "Knoten",
@@ -426,6 +732,11 @@ export const translations = {
             check: "Prüfen",
             correct: "Verifiziert",
             incorrect: "Abweichung",
+            ready: "Bereit",
+            yes: "JA",
+            no: "NEIN",
+            monitor_title: "MG05_VISUELLER_MONITOR",
+            footer_left: "MG05_PYTHAGORAS_WURZELN // KNOTEN: ZÜRICH",
             input_radical: "Antwort als k√m",
             input_k: "k",
             input_m: "m",
@@ -441,6 +752,145 @@ export const translations = {
                 perfect: "Quadratzahlen",
                 simplify: "Wurzeln vereinfachen",
                 estimate: "Schätzen"
+            }
+        },
+        mg06: {
+            back: "Zurück zum Nexus",
+            title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Zielgleichung",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG06_MONITOR",
+            footer_left: "MG06_QUADRATISCH // KNOTEN: ZÜRICH",
+            stages: {
+                terms: "TERME",
+                factorize: "FAKTORISIEREN",
+                fractions: "BRUCHTERME",
+                equations: "GLEICHUNGEN",
+                terms_prompt_latex: "\\text{Vereinfache den Term (gleichartige Terme zusammenfassen).}",
+                factor_prompt_latex: "\\text{Faktorisiere den Term (als Produkt schreiben).}",
+                fractions_prompt_latex: "\\text{Kürzen / Bruchterm vereinfachen.}",
+                equations_prompt_latex: "\\text{Löse die Gleichung Schritt für Schritt.}"
+            },
+            modes: {
+                factor: "FAKTORISIEREN",
+                formula: "FORMEL",
+                complete_square: "QUADRATISCHE ERGÄNZUNG",
+                factor_prompt: "Faktorisieren: Finde A,B so dass (x+A)(x+B)=0.",
+                formula_prompt: "Löse mit der Mitternachtsformel.",
+                complete_square_prompt: "In Scheitelpunktform umformen und (h,k) bestimmen."
+            },
+            labels: {
+                input: "EINGABE",
+                numerator: "ZÄHLER",
+                denominator: "NENNER",
+                hints: "HINWEISE",
+                roots: "Lösungen x₁, x₂",
+                vertex: "Scheitelpunkt (h,k)",
+                factor: "Faktorisieren",
+                factor_slots: "Faktoren konstruieren (A,B)",
+                formula: "Mitternachtsformel",
+                complete_square: "Quadratische Ergänzung",
+                elite_hint_latex: "Hinweis: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            },
+            hints: {
+                identities: {
+                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                },
+                rules: {
+                    factor_common_latex: "\\text{Gemeinsamen Faktor ausklammern.}",
+                    cancel_common_latex: "\\text{Zähler/Nenner faktorisieren und gemeinsame Faktoren kürzen.}",
+                    simplify_both_sides_latex: "\\text{Beide Seiten schrittweise vereinfachen.}",
+                    square_root_pm_latex: "\\text{Wurzel ziehen mit }\\pm\\text{.}",
+                    zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
+                }
+            }
+        },
+        mg07: {
+            back: "Zurück zum Nexus",
+            title: "M-G07 // GERADEN & FUNKTIONEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Ziel",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG07_MONITOR",
+            footer_left: "MG07_GERADEN_FUNKTIONEN // KNOTEN: BASEL",
+            stages: {
+                lines: "GERADEN",
+                linear_function: "LINEAR",
+                graph_match: "GRAPH",
+                intersection: "SCHNITT",
+                lines_prompt_latex: "\\text{Bestimme die Geradengleichung aus den Angaben.}",
+                linear_prompt_latex: "\\text{Arbeite mit }y=mx+b\\text{ (einsetzen/lösen).}",
+                graph_prompt_latex: "\\text{Lies }m\\text{ und }b\\text{ aus dem Graphen ab.}",
+                intersection_prompt_latex: "\\text{Bestimme den Schnittpunkt der beiden Geraden.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            hints: {
+                rules: {
+                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
+                    solve_linear_latex: "\\text{Umformen und }x\\text{ isolieren.}",
+                    solve_system_latex: "\\text{Setze die beiden }y\\text{-Ausdrücke gleich und löse.}"
+                }
+            }
+        },
+        mg08: {
+            back: "Zurück zum Nexus",
+            title: "M-G08 // ÄHNLICHKEIT & STRECKUNG",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Ziel",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "MG08_MONITOR",
+            footer_left: "MG08_AEHNLICHKEIT_STRECKUNG // KNOTEN: BASEL",
+            stages: {
+                scale_factor: "STRECKUNG",
+                similar_triangles: "ÄHNLICH",
+                application: "ANWENDUNG",
+                stages_prompt_latex: "\\text{Nutze Proportionen, um den fehlenden Wert zu bestimmen.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            hints: {
+                rules: {
+                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                    scale_factor_latex: "\\text{Streckfaktor }k=\\frac{\\text{neu}}{\\text{alt}}",
+                    cross_multiply_latex: "\\text{Kreuzweise multiplizieren und lösen.}"
+                }
             }
         },
         binomial: {
@@ -570,3 +1020,4 @@ export const translations = {
         }
     }
 };
+

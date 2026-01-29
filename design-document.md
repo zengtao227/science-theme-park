@@ -252,6 +252,11 @@
     *   **路径对齐**：`src/app/page.tsx` 中的 `<Link href="/chamber/mgXX">` 必须与文件系统路径物理对应。
     *   **Card 视觉一致性**：新模块 Card 必须包含 `mgXX_title` 和 `mgXX_subtitle`。
 
+4.  **历史资产保护协议 (Historical Asset Protection)**：
+    *   **禁止重复造轮子**：当发现既有功能（如 MG05-08）丢失时，严禁手动重写或凭记忆修复。
+    *   **Git 恢复优先**：必须通过 `git log` 追溯最近一次包含完整功能的提交（Golden Commit），并使用 `git checkout <commit_hash> -- <file_path>` 进行无损恢复。
+    *   **增量式开发**：新功能（如 M-G09）必须作为“增量补丁”合并到恢复后的历史版本中，而非覆盖历史版本。
+
 ### 6.5 国际化与开发策略 (I18n & Development Strategy v2026)
 
 为了平衡开发效率、节省 Token 资源并确保最高教学质量，项目采用以下阶段性语言策略：
