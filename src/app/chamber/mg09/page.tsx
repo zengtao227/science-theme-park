@@ -170,7 +170,7 @@ function ExploreScene({ pointX, onPointChange }: ExploreSceneProps) {
 
 // --- MAIN PAGE ---
 export default function CalculusIntroPage() {
-    const { currentLanguage } = useAppStore();
+    const { currentLanguage, setLanguage } = useAppStore();
     const t = translations[currentLanguage]?.mg09 ?? translations['EN'].mg09;
 
     const [questMode, setQuestMode] = useState<QuestMode>('EXPLORE');
@@ -332,41 +332,65 @@ export default function CalculusIntroPage() {
     return (
         <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
             {/* HUD Top */}
-            <header className="p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl">
-                <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group">
-                    <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
-                    <span className="text-[10px] font-black tracking-[0.2em] uppercase">{t.back}</span>
+            <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
+                <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10">
+                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                    <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
                 </Link>
-                <div className="flex gap-4">
-                    {([
-                        { id: 'EXPLORE', icon: Eye, color: 'emerald' },
-                        { id: 'SLOPE', icon: TrendingUp, color: 'cyan' },
-                        { id: 'TANGENT', icon: Target, color: 'purple' },
-                        { id: 'RATE', icon: Gauge, color: 'orange' },
-                        { id: 'ELITE', icon: Database, color: 'red' }
-                    ] as const).map((btn) => (
+
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+                    <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
+                        {t.title}
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-2 z-10">
+                    {(['EN', 'CN', 'DE'] as const).map((lang) => (
                         <button
-                            key={btn.id}
-                            onClick={() => (btn.id === 'EXPLORE' ? setQuestMode('EXPLORE') : generateQuest(btn.id))}
+                            key={lang}
+                            onClick={() => setLanguage(lang)}
                             className={clsx(
-                                "flex flex-col items-center gap-2 px-6 py-3 border-2 transition-all font-black min-w-[120px] relative overflow-hidden",
-                                questMode === btn.id
-                                    ? `border-white text-white bg-white/20 shadow-[0_0_25px_rgba(255,255,255,0.2)] animate-pulse`
-                                    : "border-white/10 text-white/90 hover:text-white hover:border-white/40"
+                                "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all",
+                                currentLanguage === lang
+                                    ? "bg-white text-black"
+                                    : "text-white/40 hover:text-white bg-white/5"
                             )}
                         >
-                            <btn.icon className="w-4 h-4" />
-                            <span className="text-[10px] tracking-[0.3em] uppercase">
-                                {t.tabs?.[btn.id.toLowerCase() as keyof typeof t.tabs] ?? btn.id}
-                            </span>
-                            {questMode === btn.id && (
-                                <motion.div layoutId="nav-glow-mg09" className="absolute inset-0 bg-white/10 pointer-events-none" />
-                            )}
+                            {lang}
                         </button>
                     ))}
                 </div>
-                <div className="w-10 h-10 border border-white/10 flex items-center justify-center text-[10px] opacity-20">0</div>
             </header>
+
+            {/* Mode Tabs (Sub-Header) */}
+            <div className="p-4 border-b border-white/10 bg-white/5 flex justify-center gap-2 overflow-x-auto relative z-20">
+                {([
+                    { id: 'EXPLORE', icon: Eye, color: 'emerald' },
+                    { id: 'SLOPE', icon: TrendingUp, color: 'cyan' },
+                    { id: 'TANGENT', icon: Target, color: 'purple' },
+                    { id: 'RATE', icon: Gauge, color: 'orange' },
+                    { id: 'ELITE', icon: Database, color: 'red' }
+                ] as const).map((btn) => (
+                    <button
+                        key={btn.id}
+                        onClick={() => (btn.id === 'EXPLORE' ? setQuestMode('EXPLORE') : generateQuest(btn.id))}
+                        className={clsx(
+                            "flex flex-col items-center gap-1 px-4 py-2 border transition-all font-black min-w-[80px] relative overflow-hidden rounded",
+                            questMode === btn.id
+                                ? `border-white text-white bg-white/20 shadow-[0_0_25px_rgba(255,255,255,0.2)] animate-pulse`
+                                : "border-white/10 text-white/90 hover:text-white hover:border-white/40"
+                        )}
+                    >
+                        <btn.icon className="w-4 h-4" />
+                        <span className="text-[10px] tracking-[0.3em] uppercase">
+                            {t.tabs?.[btn.id.toLowerCase() as keyof typeof t.tabs] ?? btn.id}
+                        </span>
+                        {questMode === btn.id && (
+                            <motion.div layoutId="nav-glow-mg09" className="absolute inset-0 bg-white/10 pointer-events-none" />
+                        )}
+                    </button>
+                ))}
+            </div>
 
             <div className="flex-1 flex overflow-hidden">
                 {/* Main Logic Workstation */}

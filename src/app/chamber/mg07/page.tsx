@@ -302,7 +302,7 @@ function LinePlot({ m, b, domain }: { m: number; b: number; domain: { minX: numb
 }
 
 export default function MG07Page() {
-  const { currentLanguage } = useAppStore();
+  const { currentLanguage, setLanguage } = useAppStore();
   const t = translations[currentLanguage].mg07;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
@@ -346,35 +346,63 @@ export default function MG07Page() {
 
   return (
     <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
-      <header className="p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl">
-        <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group">
-          <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
-          <span className="text-[10px] font-black tracking-[0.2em] uppercase">{t.back}</span>
+      <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
+        <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10">
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
         </Link>
-        <div className="text-[10px] font-black tracking-[0.35em] uppercase text-white/80">{t.title}</div>
-        <div className="flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-white/40" />
-          {([
-            { id: "BASIC", label: t.difficulty.basic },
-            { id: "CORE", label: t.difficulty.core },
-            { id: "ADVANCED", label: t.difficulty.advanced },
-            { id: "ELITE", label: t.difficulty.elite },
-          ] as const).map((d) => (
-            <button
-              key={d.id}
-              onClick={() => {
-                setDifficulty(d.id);
-                setNonce(0);
-                clearInputs();
-              }}
-              className={clsx(
-                "px-3 py-1.5 border-2 text-[9px] font-black tracking-[0.3em] uppercase transition-all",
-                difficulty === d.id ? "border-white text-white bg-white/10" : "border-white/30 text-white/50 hover:border-white hover:text-white"
-              )}
-            >
-              {d.label}
-            </button>
-          ))}
+
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+          <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
+            {t.title}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-6 z-10">
+          <div className="hidden md:flex items-center gap-1">
+            {([
+              { id: "BASIC", label: t.difficulty.basic },
+              { id: "CORE", label: t.difficulty.core },
+              { id: "ADVANCED", label: t.difficulty.advanced },
+              { id: "ELITE", label: t.difficulty.elite },
+            ] as const).map((d) => (
+              <button
+                key={d.id}
+                onClick={() => {
+                  setDifficulty(d.id);
+                  setNonce(0);
+                  clearInputs();
+                }}
+                className={clsx(
+                  "px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
+                  difficulty === d.id
+                    ? "border-white bg-white text-black"
+                    : "border-transparent text-white/40 hover:text-white hover:border-white/30"
+                )}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="w-px h-4 bg-white/20 hidden md:block" />
+
+          <div className="flex items-center gap-2">
+            {(['EN', 'CN', 'DE'] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={clsx(
+                  "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all",
+                  currentLanguage === lang
+                    ? "bg-white text-black"
+                    : "text-white/40 hover:text-white bg-white/5"
+                )}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
