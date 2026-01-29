@@ -439,15 +439,15 @@ export default function BinomialFactoryPage() {
                 </div>
 
                 <div className="flex items-center gap-2 z-10">
-                    {(['EN', 'CN', 'DE'] as const).map((lang) => (
+                    {(['DE', 'EN', 'CN'] as const).map((lang) => (
                         <button
                             key={lang}
                             onClick={() => setLanguage(lang)}
                             className={clsx(
-                                "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all",
+                                "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all border",
                                 currentLanguage === lang
-                                    ? "bg-white text-black"
-                                    : "text-white/40 hover:text-white bg-white/5"
+                                    ? "bg-white text-black border-white"
+                                    : "text-white border-white/30 hover:border-white/50"
                             )}
                         >
                             {lang}
@@ -473,7 +473,7 @@ export default function BinomialFactoryPage() {
                             "flex flex-col items-center gap-1 px-4 py-2 border transition-all font-black min-w-[80px] relative overflow-hidden rounded",
                             questMode === btn.id
                                 ? `border-white text-white bg-white/20 shadow-[0_0_25px_rgba(255,255,255,0.2)] animate-pulse`
-                                : "border-white/10 text-white/90 hover:text-white hover:border-white/40"
+                                : "border-white/30 text-white hover:border-white/50"
                         )}
                     >
                         <btn.icon className="w-4 h-4" />

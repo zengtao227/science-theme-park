@@ -682,15 +682,15 @@ export default function MG05Page() {
         </div>
 
         <div className="flex items-center gap-2 z-10">
-          {(['EN', 'CN', 'DE'] as const).map((lang) => (
+          {(['DE', 'EN', 'CN'] as const).map((lang) => (
             <button
               key={lang}
               onClick={() => setLanguage(lang)}
               className={clsx(
-                "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all",
+                "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all border",
                 currentLanguage === lang
-                  ? "bg-white text-black"
-                  : "text-white/40 hover:text-white bg-white/5"
+                  ? "bg-white text-black border-white"
+                  : "text-white border-white/30 hover:border-white/50"
               )}
             >
               {lang}
@@ -712,7 +712,7 @@ export default function MG05Page() {
             }}
             className={clsx(
               "flex items-center gap-2 px-4 py-2 border-2 transition-all font-black",
-              tab === "PYTHAGORAS" ? "border-white bg-white/10" : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+              tab === "PYTHAGORAS" ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
             )}
           >
             <TriangleRight className="w-4 h-4" />
@@ -729,7 +729,7 @@ export default function MG05Page() {
             }}
             className={clsx(
               "flex items-center gap-2 px-4 py-2 border-2 transition-all font-black",
-              tab === "SQRT" ? "border-white bg-white/10" : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+              tab === "SQRT" ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
             )}
           >
             <Sigma className="w-4 h-4" />
@@ -751,7 +751,7 @@ export default function MG05Page() {
               }}
               className={clsx(
                 "px-3 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                difficulty === d.id ? "border-white bg-white/10" : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+                difficulty === d.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
               )}
             >
               {d.label}

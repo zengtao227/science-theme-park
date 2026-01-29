@@ -626,7 +626,7 @@ export default function MG06Page() {
                   "px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
                   difficulty === d.id
                     ? "border-white bg-white text-black"
-                    : "border-transparent text-white/40 hover:text-white hover:border-white/30"
+                    : "border-white/30 text-white hover:border-white/50"
                 )}
               >
                 {d.label}
@@ -637,15 +637,15 @@ export default function MG06Page() {
           <div className="w-px h-4 bg-white/20 hidden md:block" />
 
           <div className="flex items-center gap-2">
-            {(['EN', 'CN', 'DE'] as const).map((lang) => (
+            {(['DE', 'EN', 'CN'] as const).map((lang) => (
               <button
                 key={lang}
                 onClick={() => setLanguage(lang)}
                 className={clsx(
-                  "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all",
+                  "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all border",
                   currentLanguage === lang
-                    ? "bg-white text-black"
-                    : "text-white/40 hover:text-white bg-white/5"
+                    ? "bg-white text-black border-white"
+                    : "text-white border-white/30 hover:border-white/50"
                 )}
               >
                 {lang}
@@ -674,7 +674,7 @@ export default function MG06Page() {
                   }}
                   className={clsx(
                     "px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                    stage === m.id ? "border-white bg-white/10" : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+                    stage === m.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
                   )}
                 >
                   {m.label}
