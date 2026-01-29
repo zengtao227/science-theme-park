@@ -211,6 +211,17 @@ export const translations = {
                     scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
                     cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
                 }
+            },
+            mission: {
+                title: "MISSION: SHADOW MEASURE",
+                description: "In Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
+                labels: {
+                    tower: "Clock Tower",
+                    tower_shadow: "Tower Shadow",
+                    stick: "Stick (1.5m)",
+                    stick_shadow: "Stick Shadow",
+                    calculate_height: "Calculate Tower Height"
+                }
             }
         },
         binomial: {
@@ -549,7 +560,18 @@ export const translations = {
                 rules: {
                     proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
                     scale_factor_latex: "\\text{缩放因子 }k=\\frac{\\text{新}}{\\text{旧}}",
-                    cross_multiply_latex: "\\text{交叉相乘求未知数。}"
+                    cross_multiply_latex: "\\text{交叉相乘求解未知数。}"
+                }
+            },
+            mission: {
+                title: "任务: 阴影测量法",
+                description: "在苏黎世，一位建筑师需要利用阴影测量一座历史钟楼的高度。相似三角形是解题的关键。",
+                labels: {
+                    tower: "钟楼",
+                    tower_shadow: "钟楼阴影",
+                    stick: "木棍 (1.5m)",
+                    stick_shadow: "木棍阴影",
+                    calculate_height: "计算钟楼高度"
                 }
             }
         },
@@ -889,7 +911,18 @@ export const translations = {
                 rules: {
                     proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
                     scale_factor_latex: "\\text{Streckfaktor }k=\\frac{\\text{neu}}{\\text{alt}}",
-                    cross_multiply_latex: "\\text{Kreuzweise multiplizieren und lösen.}"
+                    cross_multiply_latex: "\\text{Über Kreuz multiplizieren, um die Unbekannte zu lösen.}"
+                }
+            },
+            mission: {
+                title: "MISSION: SCHATTENMESSUNG",
+                description: "In Zürich muss ein Architekt die Höhe eines historischen Kirchenturms mithilfe seines Schattens bestimmen. Ähnliche Dreiecke sind der Schlüssel.",
+                labels: {
+                    tower: "Kirchturm",
+                    tower_shadow: "Turmschatten",
+                    stick: "Stab (1.5m)",
+                    stick_shadow: "Stabschatten",
+                    calculate_height: "Turmhöhe berechnen"
                 }
             }
         },

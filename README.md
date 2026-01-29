@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Science Theme Park // 科学逻辑乐园
 
-## Getting Started
+## 🚀 项目愿景 (Vision)
+一个面向瑞士初高中生 (Sek I/II) 的硬核科学逻辑模拟器。我们不只是在做题，而是在构建一个遵循物理规律和数学逻辑的虚拟游乐园。在这里，每一个数学公式都是游乐设施的“操作规程”。
 
-First, run the development server:
+---
 
+## 🏗️ 开发架构 (Applied Architecture)
+
+### 1. 知识点分层 (Learning Layers)
+每个模块必须严格遵循从“抽象”到“具象”的闭环：
+- **[BASIC/CORE]**：武器库演练。掌握公式的基础变换。
+- **[ADVANCED/ELITE]**：压力测试。处理复杂参数和多步逻辑。
+- **[MISSION: APPLIED]** 🌟 (**核心新增**)：
+    - **生活化场景**：基于瑞士生活、职业工作（如建筑、物流、金融）的真实建模。
+    - **情境化 UI**：在 SVG/Canvas 画布上呈现具象背景（如房屋、影子、火车）。
+    - **建模挑战**：学生必须从业务语言中提取数学参数。
+
+### 2. 多语言策略 (i18n Strategy)
+- **德语优先 (DE)**：瑞士第一教学语言，所有题目首发德语。
+- **英语辅助 (EN)**：作为编程语言和国际化的桥梁。
+- **中文延后 (CN)**：作为架构支持，但在开发阶段优先保证 DE/EN 质量。
+- **顺序**：UI 顶部始终显示 `DE -> EN -> CN`。
+
+---
+
+## 🗺️ 模块路线图 (Module Roadmap)
+
+根据瑞士 **Lehrplan 21** 大纲，当前已实现的模块逻辑：
+
+| 模块 ID | 主题 | 核心知识点 |  geplant 生活化应用场景 (Mission) |
+| :--- | :--- | :--- | :--- |
+| **M-G04** | 二项式工厂 | $(a+b)^2, (a-b)^2$ | 庭院扩建规划 (Garden Layout) |
+| **M-G05** | 勾股定理 | $a^2+b^2=c^2$, 空间距离 | 太阳能板安装角度/空间测距 |
+| **M-G06** | 二次方程 | 求根公式、因式分解 | 足球/滑雪起跳点与射程预测 |
+| **M-G07** | 线性函数 | $y=ax+b$, 斜率拦截 | 苏黎世不同计费模式的成本博弈 |
+| **M-G08** | 相似与缩放 | 比例缩放、相似三角形 | **阴影测量法 (钟楼高度计算)** |
+| **M-G09** | 微积分初探 | 导数、瞬时变化率 | SBB 火车进站时的瞬时速度计算 |
+
+---
+
+## 🛠️ 协作说明 (AI Routing)
+本项目采用多模型路由开发：
+- **Gemini 3**：项目构建与文件管理中心。
+- **NVIDIA GLM-4.7**：后端数学逻辑与 R3F 物理精算。
+- **NVIDIA MiniMax-2.1**：德意地文案与 UI 文本对齐。
+
+---
+
+## 📥 运行指南
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+访问：`http://localhost:3000`

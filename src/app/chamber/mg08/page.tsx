@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Calculator, Sigma } from "lucide-react";
+import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -13,7 +13,7 @@ import { translations } from "@/lib/i18n";
 type Mg08T = typeof translations.EN.mg08;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
-type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "APPLICATION";
+type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
 
 type Slot = {
   id: string;
@@ -46,7 +46,7 @@ function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
 function stageLabel(t: Mg08T, stage: Stage) {
   if (stage === "SCALE_FACTOR") return t.stages.scale_factor;
   if (stage === "SIMILAR_TRIANGLES") return t.stages.similar_triangles;
-  return t.stages.application;
+  return t.mission?.title || t.stages.application;
 }
 
 function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[] {
@@ -143,43 +143,29 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
     return all;
   }
 
-  const all: Quest[] = [
-    {
-      id: "A1",
-      difficulty,
-      stage,
-      promptLatex: t.stages.stages_prompt_latex,
-      expressionLatex: `\\text{Person }1.8\\text{ m has shadow }1.2\\text{ m. Tree shadow }4\\text{ m.}`,
-      targetLatex: `\\text{Tree height}`,
-      slots: [{ id: "h", labelLatex: `\\text{m}`, placeholder: "m", expected: 6 }],
-      correctLatex: `\\frac{1.8}{1.2}=\\frac{h}{4}\\Rightarrow h=6`,
-      hintLatex: [
-        t.hints.rules.proportional_latex,
-        t.hints.rules.cross_multiply_latex,
-        `h=6`,
-      ],
-      visual: { kind: "shadow", a: 18, b: 12, k: 3.3333333333 },
-    },
-    {
-      id: "A2",
-      difficulty,
-      stage,
-      promptLatex: t.stages.stages_prompt_latex,
-      expressionLatex: `\\text{Scale }1:25000,\\;\\text{map distance }3.2\\text{ cm}`,
-      targetLatex: `\\text{km}`,
-      slots: [{ id: "d", labelLatex: `\\text{km}`, placeholder: "km", expected: 0.8 }],
-      correctLatex: `3.2\\cdot 25000=80000\\text{ cm}=800\\text{ m}=0.8\\text{ km}`,
-      hintLatex: [
-        `\\text{Real} = \\text{map}\\cdot 25000`,
-        `800\\text{ m}`,
-        `0.8\\text{ km}`,
-      ],
-    },
-  ];
+  if (stage === "MISSION") {
+    const all: Quest[] = [
+      {
+        id: "M1",
+        difficulty,
+        stage,
+        promptLatex: `\\text{${t.mission?.description}}`,
+        expressionLatex: `\\text{Tower Shadow}=12\\text{ m},\\; \\text{Stick}(1.5\\text{ m})\\text{ Shadow}=2.4\\text{ m}`,
+        targetLatex: `\\text{Tower Height}(H)`,
+        slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 7.5 }],
+        correctLatex: `\\frac{H}{12}=\\frac{1.5}{2.4}\\Rightarrow H=7.5`,
+        hintLatex: [
+          t.hints.rules.proportional_latex,
+          `\\frac{H}{12}=0.625`,
+          `H=7.5`,
+        ],
+        visual: { kind: "shadow", a: 7.5, b: 12, k: 0.625 },
+      },
+    ];
+    return all;
+  }
 
-  if (difficulty === "BASIC") return all.slice(0, 1);
-  if (difficulty === "CORE") return all.slice(0, 1);
-  return all;
+  return [];
 }
 
 function Visual({ v }: { v: Quest["visual"] }) {
@@ -223,23 +209,52 @@ function Visual({ v }: { v: Quest["visual"] }) {
     );
   }
 
-  return (
-    <div className="w-full flex justify-center">
-      <svg width={420} height={200} className="border border-white/10 bg-black rounded-xl">
-        <rect x={0} y={150} width={420} height={50} fill="rgba(255,255,255,0.04)" />
-        <line x1={70} y1={150} x2={70} y2={60} stroke="rgba(255,255,255,0.25)" strokeWidth={6} />
-        <line x1={70} y1={150} x2={170} y2={150} stroke="rgba(255,255,255,0.25)" strokeWidth={6} />
-        <line x1={260} y1={150} x2={260} y2={25} stroke="rgba(120,255,220,0.7)" strokeWidth={6} />
-        <line x1={260} y1={150} x2={400} y2={150} stroke="rgba(120,255,220,0.7)" strokeWidth={6} />
-        <text x="120" y="45" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="10" fontFamily="monospace">
-          person
-        </text>
-        <text x="330" y="20" textAnchor="middle" fill="rgba(120,255,220,0.8)" fontSize="10" fontFamily="monospace">
-          tree
-        </text>
-      </svg>
-    </div>
-  );
+  if (v.kind === "shadow") {
+    return (
+      <div className="w-full flex justify-center p-4">
+        <svg viewBox="0 0 600 240" className="w-full max-w-[600px] border border-white/10 bg-black rounded-xl overflow-visible shadow-2xl">
+          {/* Sky */}
+          <rect x="0" y="0" width="600" height="200" fill="rgba(255,255,255,0.02)" />
+          {/* Ground */}
+          <rect x="0" y="200" width="600" height="40" fill="rgba(255,255,255,0.08)" />
+
+          {/* Sun */}
+          <circle cx="550" cy="40" r="15" fill="#fbbf24" className="animate-pulse" />
+          <line x1="550" y1="40" x2="350" y2="200" stroke="#fbbf24" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
+          <line x1="550" y1="40" x2="150" y2="200" stroke="#fbbf24" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
+
+          {/* Clock Tower (Zurich Style Spire) */}
+          <g transform="translate(100, 200)">
+            {/* Tower Shadow */}
+            <rect x="0" y="0" width="200" height="4" fill="rgba(255,255,255,0.2)" />
+            {/* Tower Body */}
+            <rect x="-40" y="-140" width="40" height="140" fill="rgba(255,255,255,0.05)" stroke="white" strokeWidth="2" />
+            <rect x="-40" y="-160" width="40" height="20" fill="rgba(255,255,255,0.1)" stroke="white" strokeWidth="2" />
+            <path d="M-40,-160 L-20,-190 L0,-160 Z" fill="none" stroke="white" strokeWidth="2" />
+            <circle cx="-20" cy="-145" r="5" fill="none" stroke="white" strokeWidth="1" />
+
+            <text x="-40" y="-200" fill="white" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">CLOCK TOWER</text>
+            <text x="100" y="20" fill="rgba(255,255,255,0.6)" fontSize="9" fontFamily="monospace" textAnchor="middle">SHADOW: 12m</text>
+          </g>
+
+          {/* Stick */}
+          <g transform="translate(450, 200)">
+            {/* Stick Shadow */}
+            <rect x="0" y="0" width="40" height="4" fill="rgba(251,191,36,0.3)" />
+            <line x1="0" y1="0" x2="0" y2="-25" stroke="#fbbf24" strokeWidth="4" />
+            <text x="0" y="-40" fill="#fbbf24" fontSize="10" fontFamily="monospace" fontWeight="black" textAnchor="middle">STICK: 1.5m</text>
+            <text x="20" y="20" fill="rgba(251,191,36,0.8)" fontSize="9" fontFamily="monospace" textAnchor="middle">SHADOW: 2.4m</text>
+          </g>
+
+          {/* Similar Triangle Visualization */}
+          <path d="M60,200 L100,200 L60,60 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeDasharray="2 2" />
+          <path d="M450,200 L490,200 L450,175 Z" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.3)" strokeDasharray="2 2" />
+        </svg>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 export default function MG08Page() {
@@ -359,7 +374,7 @@ export default function MG08Page() {
               {([
                 { id: "SCALE_FACTOR", label: stageLabel(t, "SCALE_FACTOR") },
                 { id: "SIMILAR_TRIANGLES", label: stageLabel(t, "SIMILAR_TRIANGLES") },
-                { id: "APPLICATION", label: stageLabel(t, "APPLICATION") },
+                { id: "MISSION", label: stageLabel(t, "MISSION") },
               ] as const).map((s) => (
                 <button
                   key={s.id}
@@ -369,8 +384,10 @@ export default function MG08Page() {
                     clearInputs();
                   }}
                   className={clsx(
-                    "px-4 py-2 border-2 text-[10px] font-black tracking-[0.35em] uppercase transition-all",
-                    stage === s.id ? "border-white bg-white/10" : "border-white/20 text-white/60 hover:border-white hover:text-white"
+                    "px-4 py-2 border-2 text-[10px] font-black tracking-[0.35em] uppercase transition-all relative overflow-hidden",
+                    stage === s.id
+                      ? (s.id === 'MISSION' ? "border-amber-400 text-amber-400 bg-amber-400/10 shadow-[0_0_20px_rgba(251,191,36,0.2)]" : "border-white bg-white text-black")
+                      : "border-white/30 text-white hover:border-white/50"
                   )}
                 >
                   {s.label}
