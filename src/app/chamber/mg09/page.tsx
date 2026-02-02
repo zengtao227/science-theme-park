@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Text, OrthographicCamera, Line, Grid } from "@react-three/drei";
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';

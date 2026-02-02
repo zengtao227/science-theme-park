@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Calculator, Sigma } from "lucide-react";
+import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -13,7 +13,7 @@ import { translations } from "@/lib/i18n";
 type Mg07T = typeof translations.EN.mg07;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
-type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION";
+type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION" | "MISSION";
 
 type Slot = {
   id: string;
@@ -47,6 +47,7 @@ function stageLabel(t: Mg07T, stage: Stage) {
   if (stage === "LINES") return t.stages.lines;
   if (stage === "LINEAR_FUNCTION") return t.stages.linear_function;
   if (stage === "GRAPH_MATCH") return t.stages.graph_match;
+  if (stage === "MISSION") return t.mission?.title ?? "MISSION";
   return t.stages.intersection;
 }
 
@@ -210,6 +211,30 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
     ];
 
     if (difficulty === "BASIC") return all.slice(0, 1);
+    return all;
+  }
+
+  if (stage === "MISSION") {
+    const all: Quest[] = [
+      {
+        id: "M1",
+        difficulty,
+        stage,
+        promptLatex: `\\text{${t.mission?.description}}`,
+        expressionLatex: `\\begin{cases}y=\\frac{1}{2}x+2\\\\y=-x+8\\end{cases}`,
+        targetLatex: `(x,y)`,
+        slots: [
+          { id: "x", labelLatex: `x`, placeholder: "x", expected: 4 },
+          { id: "y", labelLatex: `y`, placeholder: "y", expected: 4 },
+        ],
+        correctLatex: `(4,4)`,
+        hintLatex: [
+          t.hints.rules.solve_system_latex,
+          `\\frac{1}{2}x+2=-x+8`,
+          `x=4,\\; y=4`,
+        ],
+      },
+    ];
     return all;
   }
 
@@ -415,6 +440,7 @@ export default function MG07Page() {
                 { id: "LINEAR_FUNCTION", label: stageLabel(t, "LINEAR_FUNCTION") },
                 { id: "GRAPH_MATCH", label: stageLabel(t, "GRAPH_MATCH") },
                 { id: "INTERSECTION", label: stageLabel(t, "INTERSECTION") },
+            { id: "MISSION", label: stageLabel(t, "MISSION") },
               ] as const).map((s) => (
                 <button
                   key={s.id}
@@ -563,4 +589,3 @@ export default function MG07Page() {
     </div>
   );
 }
-

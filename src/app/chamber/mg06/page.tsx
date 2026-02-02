@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Calculator, Sigma } from "lucide-react";
+import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -587,8 +587,6 @@ export default function MG06Page() {
     }
     setLastCheck({ ok: true, correct: currentQuest.correctLatex });
   };
-
-  const title = t.title;
 
   const stageName = stageLabel(t, stage);
   const expressionLatex = currentQuest.expressionLatex;

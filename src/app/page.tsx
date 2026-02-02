@@ -4,7 +4,7 @@ import { useAppStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import { clsx } from 'clsx';
-import { Gamepad2, Database, Atom, Globe, Square, Sigma } from 'lucide-react';
+import { Gamepad2, Database, Atom, Globe, Square, Sigma, Zap, Box, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -72,155 +72,300 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* Experiment Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Experiment Sections */}
+        <div className="space-y-24">
 
-          {/* M-G04: Binomial Factory */}
-          <Link href="/chamber/binomial-factory" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
-                    <Square className="w-6 h-6 text-white group-hover:text-neon-green" />
-                  </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G04</span>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors">
-                  {t.home.mg04_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg04_subtitle}
-                </p>
-              </div>
-
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
+          {/* SEK 1 Section */}
+          <section>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <h3 className="text-sm font-black tracking-[0.5em] text-white/40 uppercase whitespace-nowrap">
+                {t.home.sek1_title}
+              </h3>
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/20 to-transparent" />
             </div>
-          </Link>
 
-          {/* M-G05: Pythagoras & Roots */}
-          <Link href="/chamber/mg05" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                    <Square className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* S1.01: Areas & Volumes */}
+              <Link href="/chamber/mg12" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
+                        <Box className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S1.01</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
+                      {t.home.mg12_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg12_subtitle}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G05</span>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors">
-                  {t.home.mg05_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg05_subtitle}
-                </p>
-              </div>
-
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* M-G06: Quadratic Equations */}
-          <Link href="/chamber/mg06" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
-                    <Square className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G06</span>
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors">
-                  {t.home.mg06_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg06_subtitle}
-                </p>
-              </div>
+              </Link>
 
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* M-G07: Lines & Functions */}
-          <Link href="/chamber/mg07" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
-                    <Globe className="w-6 h-6 text-white group-hover:text-neon-green" />
+              {/* S1.02: Data & Chance */}
+              <Link href="/chamber/mg13" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
+                        <BarChart3 className="w-6 h-6 text-white group-hover:text-neon-green" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S1.02</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-green transition-colors uppercase">
+                      {t.home.mg13_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg13_subtitle}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G07</span>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors">
-                  {t.home.mg07_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg07_subtitle}
-                </p>
-              </div>
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* M-G08: Similarity & Scaling */}
-          <Link href="/chamber/mg08" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                    <Database className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G08</span>
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors">
-                  {t.home.mg08_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg08_subtitle}
-                </p>
-              </div>
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
+              </Link>
             </div>
-          </Link>
+          </section>
 
-          {/* M-G09: Calculus Intro */}
-          <Link href="/chamber/mg09" className="group">
-            <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
-                    <Sigma className="w-6 h-6 text-white group-hover:text-neon-purple" />
-                  </div>
-                  <span className="text-[10px] font-mono text-neutral-300 font-bold">M-G09</span>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors">
-                  {t.home.mg09_title}
-                </h3>
-                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                  {t.home.mg09_subtitle}
-                </p>
-              </div>
-              <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                <span>{t.home.initiate_simulation}</span>
-                <span className="animate-bounce">→</span>
-              </div>
+          {/* SEK 2 Section */}
+          <section>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <h3 className="text-sm font-black tracking-[0.5em] text-white/40 uppercase whitespace-nowrap">
+                {t.home.sek2_title}
+              </h3>
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/20 to-transparent" />
             </div>
-          </Link>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* S2.01: Binomial Factory */}
+              <Link href="/chamber/binomial-factory" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
+                        <Square className="w-6 h-6 text-white group-hover:text-neon-green" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.01</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors uppercase">
+                      {t.home.mg04_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg04_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* S2.02: Pythagoras & Roots */}
+              <Link href="/chamber/mg05" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
+                        <Square className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.02</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
+                      {t.home.mg05_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg05_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* S2.03: Lines & Functions */}
+              <Link href="/chamber/mg07" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
+                        <Globe className="w-6 h-6 text-white group-hover:text-neon-green" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.03</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors uppercase">
+                      {t.home.mg07_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg07_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* S2.04: Similarity & Scaling */}
+              <Link href="/chamber/mg08" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
+                        <Database className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.04</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
+                      {t.home.mg08_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg08_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* S2.05: Powers & Roots */}
+              <Link href="/chamber/mg11" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
+                        <Zap className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.05</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
+                      {t.home.mg11_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg11_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* S2.06: Linear Systems */}
+              <Link href="/chamber/mg10" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
+                        <Sigma className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.06</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
+                      {t.home.mg10_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg10_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </section>
+
+          {/* SEK 3 Section */}
+          <section>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <h3 className="text-sm font-black tracking-[0.5em] text-white/40 uppercase whitespace-nowrap">
+                {t.home.sek3_title}
+              </h3>
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/20 to-transparent" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* S3.01: Quadratic Equations */}
+              <Link href="/chamber/mg06" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
+                        <Square className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S3.01</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
+                      {t.home.mg06_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg06_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </section>
+
+          {/* GYMNASIUM Section */}
+          <section>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <h3 className="text-sm font-black tracking-[0.5em] text-white/40 uppercase whitespace-nowrap">
+                {t.home.gym_title}
+              </h3>
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/20 to-transparent" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* G1.01: Calculus Intro */}
+              <Link href="/chamber/mg09" className="group">
+                <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start mb-10">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
+                        <Sigma className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                      </div>
+                      <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">G1.01</span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
+                      {t.home.mg09_title}
+                    </h3>
+                    <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                      {t.home.mg09_subtitle}
+                    </p>
+                  </div>
+                  <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                    <span>{t.home.initiate_simulation}</span>
+                    <span className="animate-bounce">→</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </section>
 
         </div>
 

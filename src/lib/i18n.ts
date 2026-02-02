@@ -10,20 +10,32 @@ export const translations = {
         home: {
             title: "SCIENCE THEME PARK",
             subtitle: "Hardcore Science & Logic Simulations",
+            sek1_title: "SEKUNDARSCHULE // YEAR 1 (7th GRADE)",
+            sek2_title: "SEKUNDARSCHULE // YEAR 2 (8th GRADE)",
+            sek3_title: "SEKUNDARSCHULE // YEAR 3 (9th GRADE)",
+            gym_title: "GYMNASIUM // UPPER SECONDARY",
             nexus: "The Nexus",
             archive: "Archives",
-            mg04_title: "M-G04 // BINOMIAL FACTORY",
+            mg04_title: "S2.01 // BINOMIAL FACTORY",
             mg04_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
-            mg05_title: "M-G05 // PYTHAGORAS & ROOTS",
+            mg05_title: "S2.02 // PYTHAGORAS & ROOTS",
             mg05_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
-            mg06_title: "M-G06 // QUADRATIC EQUATIONS",
+            mg06_title: "S3.01 // QUADRATIC EQUATIONS",
             mg06_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
-            mg07_title: "M-G07 // LINES & FUNCTIONS",
+            mg07_title: "S2.03 // LINES & FUNCTIONS",
             mg07_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
-            mg08_title: "M-G08 // SIMILARITY & SCALING",
+            mg08_title: "S2.04 // SIMILARITY & SCALING",
             mg08_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
-            mg09_title: "M-G09 // CALCULUS INTRO",
+            mg09_title: "G1.01 // CALCULUS INTRO",
             mg09_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+            mg10_title: "S2.06 // LINEAR SYSTEMS",
+            mg10_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
+            mg11_title: "S2.05 // POWERS & ROOTS",
+            mg11_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
+            mg12_title: "S1.01 // AREAS & VOLUMES",
+            mg12_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
+            mg13_title: "S1.02 // DATA & CHANCE",
+            mg13_subtitle: "Analyze data sets with statistics and explore probability theory basics.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -35,7 +47,7 @@ export const translations = {
         },
         mg05: {
             back: "Back to Nexus",
-            title: "M-G05 // PYTHAGORAS & ROOTS",
+            title: "S2.02 // PYTHAGORAS & ROOTS",
             tabs: {
                 pythagoras: "PYTHAGORAS",
                 sqrt: "SQUARE ROOT"
@@ -55,8 +67,8 @@ export const translations = {
             ready: "Ready",
             yes: "YES",
             no: "NO",
-            monitor_title: "MG05_VISUAL_MONITOR",
-            footer_left: "MG05_SQRT_PYTHAGORAS // NODE: ZURICH",
+            monitor_title: "S2.02_VISUAL_MONITOR",
+            footer_left: "S2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
             input_radical: "Answer as k√m",
             input_k: "k",
             input_m: "m",
@@ -76,7 +88,7 @@ export const translations = {
         },
         mg06: {
             back: "Back to Nexus",
-            title: "M-G06 // QUADRATIC EQUATIONS",
+            title: "S3.01 // QUADRATIC EQUATIONS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -90,8 +102,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "MG06_MONITOR",
-            footer_left: "MG06_QUADRATIC // NODE: ZURICH",
+            monitor_title: "S3.01_MONITOR",
+            footer_left: "S3.01_QUADRATICS // NODE: ZURICH",
             stages: {
                 terms: "TERMS",
                 factorize: "FACTORIZE",
@@ -139,7 +151,7 @@ export const translations = {
         },
         mg07: {
             back: "Back to Nexus",
-            title: "M-G07 // LINES & FUNCTIONS",
+            title: "S2.03 // LINES & FUNCTIONS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -153,8 +165,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "MG07_MONITOR",
-            footer_left: "MG07_LINES_FUNCTIONS // NODE: BASEL",
+            monitor_title: "S2.03_MONITOR",
+            footer_left: "S2.03_FUNCTIONS // NODE: BASEL",
             stages: {
                 lines: "LINES",
                 linear_function: "LINEAR",
@@ -175,11 +187,15 @@ export const translations = {
                     solve_linear_latex: "\\text{Rearrange to isolate }x\\text{.}",
                     solve_system_latex: "\\text{Set the two expressions for }y\\text{ equal and solve.}"
                 }
+            },
+            mission: {
+                title: "MISSION: BASEL TRAM HUB",
+                description: "In Basel, two tram lines intersect at the central hub. Calculate the intersection point."
             }
         },
         mg08: {
             back: "Back to Nexus",
-            title: "M-G08 // SIMILARITY & SCALING",
+            title: "S2.04 // SIMILARITY & SCALING",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -193,8 +209,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "MG08_MONITOR",
-            footer_left: "MG08_SIMILARITY_SCALING // NODE: BASEL",
+            monitor_title: "S2.04_MONITOR",
+            footer_left: "S2.04_SIMILARITY // NODE: BASEL",
             stages: {
                 scale_factor: "SCALE",
                 similar_triangles: "SIMILAR",
@@ -227,7 +243,7 @@ export const translations = {
         binomial: {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
-            title: "M-G04 // BINOMIAL FACTORY",
+            title: "S2.01 // BINOMIAL FACTORY",
             mode_1: "1st Formula: (a+b)²",
             mode_2: "2nd Formula: (a-b)²",
             param_a: "Parameter a",
@@ -303,14 +319,14 @@ export const translations = {
                 status_operational: "STATUS: OPERATIONAL",
                 fps: "FPS",
                 latency: "LATENCY",
-                footer_left: "Algebraic_Sync_V2.5 // Node: Zurich_Industrial_Sector",
+                footer_left: "S2.01_ALGEBRA_SYNC // NODE: ZURICH",
                 verified: "Verified",
                 simulating: "Simulating",
             }
         },
         mg09: {
             back: "Back to Nexus",
-            title: "M-G09 // CALCULUS INTRO",
+            title: "G1.01 // CALCULUS INTRO",
             tabs: {
                 explore: "EXPLORE",
                 slope: "SLOPE",
@@ -329,9 +345,9 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             hints_title: "Formula Reference",
-            monitor_title: "MG09_VISUAL_MONITOR",
+            monitor_title: "G1.01_VISUAL_MONITOR",
             status: "STATUS: OPERATIONAL",
-            footer_left: "MG09_CALCULUS_INTRO // NODE: ZURICH",
+            footer_left: "G1.01_CALCULUS // NODE: ZURICH",
             footer_right: "FLUX_CITY_SECTOR_7",
             stages: {
                 slope_prompt: "Calculate the secant slope m between points A and B.",
@@ -348,6 +364,146 @@ export const translations = {
             integral_preview_title: "COMING SOON: INTEGRALRECHNUNG",
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
+        },
+        mg10: {
+            back: "Back to Nexus",
+            title: "S2.06 // LINEAR SYSTEMS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "System of Equations",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S2.06_MONITOR",
+            footer_left: "S2.06_LINEAR_SYSTEMS // NODE: BASEL",
+            stages: {
+                substitution: "SUBSTITUTION",
+                elimination: "ELIMINATION",
+                mission: "MISSION",
+                substitution_prompt_latex: "\\text{Solve by substitution method.}",
+                elimination_prompt_latex: "\\text{Solve by elimination (addition/subtraction).}",
+                mission_prompt_latex: "\\text{Translate and solve the word problem.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            hints: {
+                rules: {
+                    substitution_latex: "\\text{Substitute one equation into the other.}",
+                    elimination_add_latex: "\\text{Add equations to eliminate a variable.}",
+                    elimination_sub_latex: "\\text{Subtract equations to eliminate a variable.}",
+                    elimination_multiply_latex: "\\text{Multiply one equation to match coefficients, then eliminate.}"
+                }
+            },
+            mission: {
+                apples: "Apples",
+                oranges: "Oranges",
+                adult: "Adults",
+                child: "Children"
+            }
+        },
+        mg11: {
+            back: "Back to Nexus",
+            title: "S2.05 // POWERS & ROOTS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Operation",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S2.05_MONITOR",
+            footer_left: "S2.05_POWERS_ROOTS // NODE: BASEL",
+            stages: {
+                rules: "LAWS",
+                negative: "NEGATIVE",
+                scientific: "SCI-NOTATION",
+                rules_prompt_latex: "\\text{Apply power laws to simplify.}",
+                negative_prompt_latex: "\\text{Simplify terms with negative exponents.}",
+                scientific_prompt_latex: "\\text{Convert to or calculate in scientific notation.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            }
+        },
+        mg12: {
+            back: "Back to Nexus",
+            title: "S1.01 // AREAS & VOLUMES",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Geometry Task",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S1.01_MONITOR",
+            footer_left: "S1.01_GEOMETRY // NODE: BASEL",
+            stages: {
+                areas: "AREAS",
+                volumes: "VOLUMES",
+                complex: "COMPLEX",
+                areas_prompt_latex: "\\text{Calculate the area of the given figure.}",
+                volumes_prompt_latex: "\\text{Calculate the volume or surface area.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            mission: {
+                title: "MISSION: RHINE FLOOD GATE",
+                description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid."
+            }
+        },
+        mg13: {
+            back: "Back to Nexus",
+            title: "S1.02 // DATA & CHANCE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Data Analytics",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S1.02_MONITOR",
+            footer_left: "S1.02_STATISTICS // NODE: BASEL",
+            stages: {
+                statistics: "STATISTICS",
+                probability: "PROBABILITY",
+                combinatorics: "COMBINATORICS",
+                statistics_prompt_latex: "\\text{Analyze the data. Find mean and median.}",
+                probability_prompt_latex: "\\text{Calculate the probability P(X).}"
+            },
+            mission: {
+                title: "MISSION: BERN STATION PUNCTUALITY",
+                description: "In Bern, analyze SBB arrival delays (minutes) to report average and median."
+            }
         }
     },
     CN: {
@@ -361,20 +517,32 @@ export const translations = {
         home: {
             title: "理科主题乐园",
             subtitle: "硬核理科仿真与逻辑实验",
+            sek1_title: "初级中学 // 一年级 (7年级)",
+            sek2_title: "初级中学 // 二年级 (8年级)",
+            sek3_title: "初级中学 // 三年级 (9年级)",
+            gym_title: "高级中学 // 预科阶段",
             nexus: "核心枢纽",
             archive: "实验档案",
-            mg04_title: "M-G04 // 二项式工厂",
+            mg04_title: "S2.01 // 二项式工厂",
             mg04_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
-            mg05_title: "M-G05 // 勾股定律与开平方",
+            mg05_title: "S2.02 // 勾股定律与开平方",
             mg05_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
-            mg06_title: "M-G06 // 一元二次方程",
+            mg06_title: "S3.01 // 一元二次方程",
             mg06_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
-            mg07_title: "M-G07 // 直线与函数",
+            mg07_title: "S2.03 // 直线与函数",
             mg07_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
-            mg08_title: "M-G08 // 相似与比例",
+            mg08_title: "S2.04 // 相似与比例",
             mg08_subtitle: "训练相似比、缩放因子及比例推理应用。",
-            mg09_title: "M-G09 // 微积分初步",
+            mg09_title: "G1.01 // 微积分初步",
             mg09_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+            mg10_title: "S2.06 // 二元一次方程组",
+            mg10_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
+            mg11_title: "S2.05 // 幂运算与根号",
+            mg11_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
+            mg12_title: "S1.01 // 面积与体积",
+            mg12_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
+            mg13_title: "S1.02 // 数据与概率",
+            mg13_subtitle: "利用统计学分析数据集，并探索概率论基础知识。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -386,7 +554,7 @@ export const translations = {
         },
         mg05: {
             back: "返回枢纽",
-            title: "M-G05 // 勾股定律与开平方",
+            title: "S2.02 // 勾股定律与开平方",
             tabs: {
                 pythagoras: "勾股定律",
                 sqrt: "开平方"
@@ -406,8 +574,8 @@ export const translations = {
             ready: "就绪",
             yes: "是",
             no: "否",
-            monitor_title: "MG05_视觉监控",
-            footer_left: "MG05_勾股与开方 // 节点：苏黎世",
+            monitor_title: "S2.02_视觉监控",
+            footer_left: "S2.02_勾股与开方 // 节点：苏黎世",
             input_radical: "用 k√m 形式作答",
             input_k: "k",
             input_m: "m",
@@ -427,7 +595,7 @@ export const translations = {
         },
         mg06: {
             back: "返回枢纽",
-            title: "M-G06 // 一元二次方程",
+            title: "S3.01 // 一元二次方程",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -441,8 +609,8 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "MG06_监控",
-            footer_left: "MG06_一元二次方程 // 节点：苏黎世",
+            monitor_title: "S3.01_监控",
+            footer_left: "S3.01_一元二次方程 // 节点：苏黎世",
             stages: {
                 terms: "合并同类项",
                 factorize: "因式分解",
@@ -490,7 +658,7 @@ export const translations = {
         },
         mg07: {
             back: "返回枢纽",
-            title: "M-G07 // 直线与函数",
+            title: "S2.03 // 直线与函数",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -504,8 +672,8 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "MG07_监控",
-            footer_left: "MG07_直线与函数 // 节点：巴塞尔",
+            monitor_title: "S2.03_监控",
+            footer_left: "S2.03_直线与函数 // 节点：巴塞尔",
             stages: {
                 lines: "直线",
                 linear_function: "一次函数",
@@ -526,11 +694,15 @@ export const translations = {
                     solve_linear_latex: "\\text{移项化简，解出 }x\\text{。}",
                     solve_system_latex: "\\text{令两式的 }y\\text{ 相等并求解。}"
                 }
+            },
+            mission: {
+                title: "任务：巴塞尔电车枢纽",
+                description: "在巴塞尔，两条电车线路在枢纽相交。请计算交点坐标。"
             }
         },
         mg08: {
             back: "返回枢纽",
-            title: "M-G08 // 相似与伸缩",
+            title: "S2.04 // 相似与比例",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -544,8 +716,8 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "MG08_监控",
-            footer_left: "MG08_相似与伸缩 // 节点：巴塞尔",
+            monitor_title: "S2.04_监控",
+            footer_left: "S2.04_相似形 // 节点：巴塞尔",
             stages: {
                 scale_factor: "缩放",
                 similar_triangles: "相似",
@@ -578,7 +750,7 @@ export const translations = {
         binomial: {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
-            title: "M-G04 // 二项式工厂",
+            title: "S2.01 // 二项式工厂",
             mode_1: "第一公式: (a+b)²",
             mode_2: "第二公式: (a-b)²",
             param_a: "参数 a",
@@ -654,14 +826,14 @@ export const translations = {
                 status_operational: "状态：运行中",
                 fps: "帧率",
                 latency: "延迟",
-                footer_left: "代数同步_V2.5 // 节点：苏黎世工业区",
+                footer_left: "S2.01_代数同步 // 节点：苏黎世工业区",
                 verified: "已验证",
                 simulating: "模拟中",
             }
         },
         mg09: {
             back: "返回枢纽",
-            title: "M-G09 // 微积分初步",
+            title: "G1.01 // 微积分初步",
             tabs: {
                 explore: "探索",
                 slope: "斜率",
@@ -680,9 +852,9 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             hints_title: "公式参考",
-            monitor_title: "MG09_视觉监控",
+            monitor_title: "G1.01_视觉监控",
             status: "状态：运行中",
-            footer_left: "MG09_微积分初步 // 节点：苏黎世",
+            footer_left: "G1.01_微积分初步 // 节点：苏黎世",
             footer_right: "流变之城_第七区",
             stages: {
                 slope_prompt: "计算点 A 和点 B 之间的割线斜率 m。",
@@ -699,6 +871,146 @@ export const translations = {
             integral_preview_title: "即将解锁：积分学",
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
             integral_preview_hint: "掌握导数后解锁 →"
+        },
+        mg10: {
+            back: "返回枢纽",
+            title: "S2.06 // 二元一次方程组",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "方程组",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S2.06_监控",
+            footer_left: "S2.06_二元一次方程组 // 节点：巴塞尔",
+            stages: {
+                substitution: "代入法",
+                elimination: "加减法",
+                mission: "任务",
+                substitution_prompt_latex: "\\text{用代入消元法求解。}",
+                elimination_prompt_latex: "\\text{用加减消元法求解。}",
+                mission_prompt_latex: "\\text{阅读题目并建立方程组求解。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            hints: {
+                rules: {
+                    substitution_latex: "\\text{将一个方程代入另一个方程。}",
+                    elimination_add_latex: "\\text{两方程相加消去一个变量。}",
+                    elimination_sub_latex: "\\text{两方程相减消去一个变量。}",
+                    elimination_multiply_latex: "\\text{先乘以系数使其相等，再消元。}"
+                }
+            },
+            mission: {
+                apples: "苹果",
+                oranges: "橙子",
+                adult: "成人",
+                child: "儿童"
+            }
+        },
+        mg11: {
+            back: "返回枢纽",
+            title: "S2.05 // 幂运算与根号",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "运算任务",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S2.05_监控",
+            footer_left: "S2.05_幂与根号 // 节点：巴塞尔",
+            stages: {
+                rules: "法则",
+                negative: "负指数",
+                scientific: "科学计数",
+                rules_prompt_latex: "\\text{应用幂运算法则化简。}",
+                negative_prompt_latex: "\\text{化简含负指数的项。}",
+                scientific_prompt_latex: "\\text{转换或应用科学计数法计算。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            }
+        },
+        mg12: {
+            back: "返回枢纽",
+            title: "S1.01 // 面积与体积",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "几何任务",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S1.01_监控",
+            footer_left: "S1.01_几何测量 // 节点：巴塞尔",
+            stages: {
+                areas: "面积",
+                volumes: "体积",
+                complex: "综合",
+                areas_prompt_latex: "\\text{计算给定图形的面积。}",
+                volumes_prompt_latex: "\\text{计算几何体的体积或表面积。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            mission: {
+                title: "任务：莱茵河防洪闸门",
+                description: "在巴塞尔，工程师把莱茵河防洪闸门的截面近似为梯形。"
+            }
+        },
+        mg13: {
+            back: "返回枢纽",
+            title: "S1.02 // 数据与概率",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "数据分析",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S1.02_监控",
+            footer_left: "S1.02_统计与概率 // 节点：巴塞尔",
+            stages: {
+                statistics: "统计学",
+                probability: "概率",
+                combinatorics: "组合学",
+                statistics_prompt_latex: "\\text{分析数据。找出平均数和中位数。}",
+                probability_prompt_latex: "\\text{计算概率 P(X)。}"
+            },
+            mission: {
+                title: "任务：伯尔尼车站准点性",
+                description: "在伯尔尼，分析 SBB 到站延误（分钟）的平均数和中位数。"
+            }
         }
     },
     DE: {
@@ -712,20 +1024,32 @@ export const translations = {
         home: {
             title: "WISSENSCHAFTSPARK",
             subtitle: "Hardcore Science & Logik-Simulationen",
+            sek1_title: "SEKUNDARSCHULE // 1. KLASSE (7. SCHULJAHR)",
+            sek2_title: "SEKUNDARSCHULE // 2. KLASSE (8. SCHULJAHR)",
+            sek3_title: "SEKUNDARSCHULE // 3. KLASSE (9. SCHULJAHR)",
+            gym_title: "GYMNASIUM // MATURITÄTSSTUFE",
             nexus: "Nexus",
             archive: "Archiv",
-            mg04_title: "M-G04 // BINOMISCHE FORMELN",
+            mg04_title: "S2.01 // BINOMISCHE FORMELN",
             mg04_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
-            mg05_title: "M-G05 // PYTHAGORAS & WURZELN",
+            mg05_title: "S2.02 // PYTHAGORAS & WURZELN",
             mg05_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
-            mg06_title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            mg06_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
             mg06_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
-            mg07_title: "M-G07 // GERADEN & FUNKTIONEN",
+            mg07_title: "S2.03 // GERADEN & FUNKTIONEN",
             mg07_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
-            mg08_title: "M-G08 // ÄHNLICHKEIT & SKALIERUNG",
+            mg08_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
             mg08_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
-            mg09_title: "M-G09 // INFINITESIMALRECHNUNG",
+            mg09_title: "G1.01 // INFINITESIMALRECHNUNG",
             mg09_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+            mg10_title: "S2.06 // GLEICHUNGSSYSTEME",
+            mg10_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
+            mg11_title: "S2.05 // POTENZEN & WURZELN",
+            mg11_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
+            mg12_title: "S1.01 // FLÄCHEN & VOLUMEN",
+            mg12_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
+            mg13_title: "S1.02 // DATEN & ZUFALL",
+            mg13_subtitle: "Analysiere Datensätze mit Statistik und erkunde Grundlagen der Wahrscheinlichkeit.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -737,7 +1061,7 @@ export const translations = {
         },
         mg05: {
             back: "Zurück zum Nexus",
-            title: "M-G05 // PYTHAGORAS & WURZELN",
+            title: "S2.02 // PYTHAGORAS & WURZELN",
             tabs: {
                 pythagoras: "PYTHAGORAS",
                 sqrt: "QUADRATWURZEL"
@@ -757,8 +1081,8 @@ export const translations = {
             ready: "Bereit",
             yes: "JA",
             no: "NEIN",
-            monitor_title: "MG05_VISUELLER_MONITOR",
-            footer_left: "MG05_PYTHAGORAS_WURZELN // KNOTEN: ZÜRICH",
+            monitor_title: "S2.02_VISUELLE_UEBERWACHUNG",
+            footer_left: "S2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
             input_radical: "Antwort als k√m",
             input_k: "k",
             input_m: "m",
@@ -778,7 +1102,7 @@ export const translations = {
         },
         mg06: {
             back: "Zurück zum Nexus",
-            title: "M-G06 // QUADRATISCHE GLEICHUNGEN",
+            title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -792,8 +1116,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "MG06_MONITOR",
-            footer_left: "MG06_QUADRATISCH // KNOTEN: ZÜRICH",
+            monitor_title: "S3.01_MONITOR",
+            footer_left: "S3.01_QUADRATISCH // KNOTEN: ZÜRICH",
             stages: {
                 terms: "TERME",
                 factorize: "FAKTORISIEREN",
@@ -841,7 +1165,7 @@ export const translations = {
         },
         mg07: {
             back: "Zurück zum Nexus",
-            title: "M-G07 // GERADEN & FUNKTIONEN",
+            title: "S2.03 // GERADEN & FUNKTIONEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -855,8 +1179,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "MG07_MONITOR",
-            footer_left: "MG07_GERADEN_FUNKTIONEN // KNOTEN: BASEL",
+            monitor_title: "S2.03_MONITOR",
+            footer_left: "S2.03_FUNKTIONEN // KNOTEN: BASEL",
             stages: {
                 lines: "GERADEN",
                 linear_function: "LINEAR",
@@ -877,11 +1201,15 @@ export const translations = {
                     solve_linear_latex: "\\text{Umformen und }x\\text{ isolieren.}",
                     solve_system_latex: "\\text{Setze die beiden }y\\text{-Ausdrücke gleich und löse.}"
                 }
+            },
+            mission: {
+                title: "MISSION: TRAMKNOTEN BASEL",
+                description: "In Basel schneiden sich zwei Tramlinien am Zentralknoten. Bestimme den Schnittpunkt."
             }
         },
         mg08: {
             back: "Zurück zum Nexus",
-            title: "M-G08 // ÄHNLICHKEIT & STRECKUNG",
+            title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -895,8 +1223,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "MG08_MONITOR",
-            footer_left: "MG08_AEHNLICHKEIT_STRECKUNG // KNOTEN: BASEL",
+            monitor_title: "S2.04_MONITOR",
+            footer_left: "S2.04_AEHNLICHKEIT // KNOTEN: BASEL",
             stages: {
                 scale_factor: "STRECKUNG",
                 similar_triangles: "ÄHNLICH",
@@ -929,7 +1257,7 @@ export const translations = {
         binomial: {
             back: "← Zurück zum Nexus",
             back_short: "Zurück zum Nexus",
-            title: "M-G04 // BINOMISCHE FORMELN",
+            title: "S2.01 // BINOMISCHE FORMELN",
             mode_1: "1. Formel: (a+b)²",
             mode_2: "2. Formel: (a-b)²",
             param_a: "Parameter a",
@@ -1005,14 +1333,14 @@ export const translations = {
                 status_operational: "STATUS: BETRIEBSBEREIT",
                 fps: "FPS",
                 latency: "LATENZ",
-                footer_left: "Algebraic_Sync_V2.5 // Knoten: Zürich_Industriesektor",
+                footer_left: "S2.01_ALGEBRA_SYNC // KNOTEN: ZÜRICH",
                 verified: "Verifiziert",
                 simulating: "Simuliert",
             }
         },
         mg09: {
             back: "Zurück zum Nexus",
-            title: "M-G09 // INFINITESIMALRECHNUNG",
+            title: "G1.01 // INFINITESIMALRECHNUNG",
             tabs: {
                 explore: "ENTDECKEN",
                 slope: "STEIGUNG",
@@ -1031,9 +1359,9 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             hints_title: "Formelreferenz",
-            monitor_title: "MG09_MONITOR",
+            monitor_title: "G1.01_MONITOR",
             status: "STATUS: BETRIEBSBEREIT",
-            footer_left: "MG09_INFINITESIMALRECHNUNG // KNOTEN: ZÜRICH",
+            footer_left: "G1.01_INFINITESIMAL // KNOTEN: ZÜRICH",
             footer_right: "FLUX_CITY_SEKTOR_7",
             stages: {
                 slope_prompt: "Berechne die Sekantensteigung m zwischen Punkt A und B.",
@@ -1050,7 +1378,146 @@ export const translations = {
             integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
             integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
+        },
+        mg10: {
+            back: "Zurück zum Nexus",
+            title: "S2.06 // GLEICHUNGSSYSTEME",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Gleichungssystem",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S2.06_MONITOR",
+            footer_left: "S2.06_GLEICHUNGSSYSTEME // KNOTEN: BASEL",
+            stages: {
+                substitution: "EINSETZUNGSVERFAHREN",
+                elimination: "ADDITIONSVERFAHREN",
+                mission: "MISSION",
+                substitution_prompt_latex: "\\text{Löse mit dem Einsetzungsverfahren.}",
+                elimination_prompt_latex: "\\text{Löse mit dem Additionsverfahren.}",
+                mission_prompt_latex: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            hints: {
+                rules: {
+                    substitution_latex: "\\text{Setze eine Gleichung in die andere ein.}",
+                    elimination_add_latex: "\\text{Addiere Gleichungen, um eine Variable zu eliminieren.}",
+                    elimination_sub_latex: "\\text{Subtrahiere Gleichungen, um eine Variable zu eliminieren.}",
+                    elimination_multiply_latex: "\\text{Multipliziere, um passende Koeffizienten zu erhalten, dann eliminiere.}"
+                }
+            },
+            mission: {
+                apples: "Äpfel",
+                oranges: "Orangen",
+                adult: "Erwachsene",
+                child: "Kinder"
+            }
+        },
+        mg11: {
+            back: "Zurück zum Nexus",
+            title: "S2.05 // POTENZEN & WURZELN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Operation",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S2.05_MONITOR",
+            footer_left: "S2.05_POTENZEN // KNOTEN: BASEL",
+            stages: {
+                rules: "GESETZE",
+                negative: "NEGATIV",
+                scientific: "NOTATION",
+                rules_prompt_latex: "\\text{Potenzgesetze zur Vereinfachung anwenden.}",
+                negative_prompt_latex: "\\text{Terme mit negativen Exponenten vereinfachen.}",
+                scientific_prompt_latex: "\\text{In wissenschaftliche Schreibweise umwandeln oder damit rechnen.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            }
+        },
+        mg12: {
+            back: "Zurück zum Nexus",
+            title: "S1.01 // FLÄCHEN & VOLUMEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Geometrie-Aufgabe",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S1.01_MONITOR",
+            footer_left: "S1.01_GEOMETRIE // KNOTEN: BASEL",
+            stages: {
+                areas: "FLÄCHEN",
+                volumes: "VOLUMEN",
+                complex: "KOMPLEX",
+                areas_prompt_latex: "\\text{Berechne die Fläche der gegebenen Figur.}",
+                volumes_prompt_latex: "\\text{Berechne das Volumen oder die Oberfläche.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            mission: {
+                title: "MISSION: RHEIN-FLUTTOR",
+                description: "In Basel modellieren Ingenieure den Querschnitt eines Rhein-Fluttors als Trapez."
+            }
+        },
+        mg13: {
+            back: "Zurück zum Nexus",
+            title: "S1.02 // DATEN & ZUFALL",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Datenanalyse",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S1.02_MONITOR",
+            footer_left: "S1.02_STATISTIK // KNOTEN: BASEL",
+            stages: {
+                statistics: "STATISTIK",
+                probability: "WAHRSCHEINLICHKEIT",
+                combinatorics: "KOMBINATORIK",
+                statistics_prompt_latex: "\\text{Analysiere die Daten. Bestimme Mittelwert und Median.}",
+                probability_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit P(X).}"
+            },
+            mission: {
+                title: "MISSION: BAHNHOF BERN PÜNKTLICHKEIT",
+                description: "In Bern analysiere SBB-Verspätungen (Minuten) und bestimme Mittelwert und Median."
+            }
         }
     }
 };
-
