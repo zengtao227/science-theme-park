@@ -22,7 +22,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-neon-green/30">
+    <main className="h-screen overflow-y-auto bg-black text-white selection:bg-neon-green/30">
       {/* Scanline Effect */}
       <div className="fixed inset-0 pointer-events-none z-50 scanline opacity-20" />
 
