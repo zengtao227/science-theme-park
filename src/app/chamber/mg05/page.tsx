@@ -13,7 +13,7 @@ import { translations } from "@/lib/i18n";
 type ModuleTab = "PYTHAGORAS" | "SQRT";
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 
-type PythagorasMode = "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT" | "DISTANCE" | "ELITE_SPACE";
+type PythagorasMode = "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT" | "DISTANCE" | "ELITE_SPACE" | "MISSION";
 type SqrtMode = "PERFECT" | "SIMPLIFY" | "ESTIMATE";
 type Mode = PythagorasMode | SqrtMode;
 
@@ -54,6 +54,16 @@ type Mg05T = typeof translations.EN.mg05 & {
   tabs: { pythagoras: string; sqrt: string };
   pythagoras: { solve_hyp: string; solve_leg: string; check_right: string; distance: string; elite_space: string };
   sqrt: { perfect: string; simplify: string; estimate: string };
+  mission: {
+    title: string;
+    protocol: string;
+    cern_title: string;
+    cern_desc: string;
+    roof_title: string;
+    roof_desc: string;
+    ladder_title: string;
+    ladder_desc: string;
+  };
 };
 
 function simplifyRadical(n: number): Radical {
@@ -154,6 +164,11 @@ function buildCandidates(tab: ModuleTab, difficulty: Difficulty, mode: Mode) {
         }
       }
       return list;
+    }
+
+    if (mode === "MISSION") {
+      const scale = difficulty === "BASIC" ? 2 : difficulty === "CORE" ? 3 : difficulty === "ADVANCED" ? 4 : 5;
+      return [`CERN|${scale}`, `GRIND|6|6`, `LUCERNE|5|12`];
     }
 
     if (mode === "DISTANCE") {
@@ -318,6 +333,67 @@ function buildSpaceQuest(t: Mg05T, difficulty: Difficulty, signature: string): Q
   };
 }
 
+function buildMissionQuest(t: Mg05T, difficulty: Difficulty, signature: string): Quest {
+  const [kind, aRaw, bRaw] = signature.split("|");
+  if (kind === "CERN") {
+    const scale = Number(aRaw);
+    const w = 16 * scale;
+    const h = 9 * scale;
+    const d2 = w * w + h * h;
+    const exact: Radical = { k: scale, m: 337 };
+    return {
+      id: `PYT|MISSION|${difficulty}|CERN|${scale}`,
+      tab: "PYTHAGORAS",
+      mode: "MISSION",
+      difficulty,
+      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.cern_title}}\\\\\\text{${t.mission.cern_desc}}`,
+      targetLatex: `d`,
+      steps: [
+        { id: "d2", labelLatex: `d^2=w^2+h^2`, input: "number", answer: d2 },
+        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", answer: exact },
+      ],
+      visual: { kind: "triangle", a: w, b: h, c: Math.sqrt(d2) },
+    };
+  }
+
+  if (kind === "GRIND") {
+    const a = Number(aRaw);
+    const b = Number(bRaw);
+    const d2 = a * a + b * b;
+    const exact = simplifyRadical(d2);
+    return {
+      id: `PYT|MISSION|${difficulty}|GRIND|${a}|${b}`,
+      tab: "PYTHAGORAS",
+      mode: "MISSION",
+      difficulty,
+      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.roof_title}}\\\\\\text{${t.mission.roof_desc}}`,
+      targetLatex: `r`,
+      steps: [
+        { id: "r2", labelLatex: `r^2=a^2+b^2`, input: "number", answer: d2 },
+        { id: "r", labelLatex: `r=\\sqrt{r^2}`, input: "radical", answer: exact },
+      ],
+      visual: { kind: "triangle", a, b, c: Math.sqrt(d2) },
+    };
+  }
+
+  const base = Number(aRaw);
+  const height = Number(bRaw);
+  const d2 = base * base + height * height;
+  return {
+    id: `PYT|MISSION|${difficulty}|LUCERNE|${base}|${height}`,
+    tab: "PYTHAGORAS",
+    mode: "MISSION",
+    difficulty,
+    promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.ladder_title}}\\\\\\text{${t.mission.ladder_desc}}`,
+    targetLatex: `c`,
+    steps: [
+      { id: "c2", labelLatex: `c^2=a^2+b^2`, input: "number", answer: d2 },
+      { id: "c", labelLatex: `c=\\sqrt{c^2}`, input: "number", answer: Math.sqrt(d2) },
+    ],
+    visual: { kind: "triangle", a: base, b: height, c: Math.sqrt(d2) },
+  };
+}
+
 function buildSqrtQuest(t: Mg05T, difficulty: Difficulty, mode: SqrtMode, signature: string): Quest {
   if (mode === "PERFECT") {
     const n = Number(signature);
@@ -368,6 +444,7 @@ function makeQuest(t: Mg05T, tab: ModuleTab, difficulty: Difficulty, mode: Mode,
       return buildTriangleQuest(t, difficulty, mode as PythagorasMode, signature);
     }
     if (mode === "DISTANCE") return buildDistanceQuest(t, difficulty, signature);
+    if (mode === "MISSION") return buildMissionQuest(t, difficulty, signature);
     return buildSpaceQuest(t, difficulty, signature);
   }
   return buildSqrtQuest(t, difficulty, mode as SqrtMode, signature);
@@ -517,40 +594,42 @@ function DistanceCanvas({ p1, p2 }: { p1: { x: number; y: number }; p2: { x: num
 function RadicalSlotInput({
   value,
   onChange,
+  labelK,
+  labelM,
 }: {
   value: Radical;
   onChange: (v: Radical) => void;
+  labelK: string;
+  labelM: string;
 }) {
   return (
-    <div className="flex items-center justify-center gap-3">
-      <div className="flex items-center gap-2">
-        <span className="text-white/50 font-black text-xl">[</span>
+    <div className="flex flex-wrap items-center justify-center gap-4">
+      <div className="flex items-center gap-2 rounded-xl border border-neon-cyan/40 bg-white/5 px-3 py-2 shadow-[0_0_18px_rgba(0,255,200,0.2)]">
+        <div className="text-[10px] font-black tracking-[0.4em] text-neon-cyan">{labelK}</div>
         <input
           value={value.k === 0 ? "" : String(value.k)}
           onChange={(e) => {
             const kk = Number(e.target.value.trim());
             onChange({ k: Number.isFinite(kk) ? kk : 0, m: value.m });
           }}
-          className="w-20 bg-black border-2 border-white/20 p-3 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-xl text-white"
+          className="w-20 bg-black border-2 border-neon-cyan/40 p-3 text-center outline-none focus:border-neon-cyan placeholder:text-white/30 font-black text-2xl text-white"
           inputMode="numeric"
           placeholder="?"
         />
-        <span className="text-white/50 font-black text-xl">]</span>
       </div>
-      <span className="text-3xl font-black text-white">√</span>
-      <div className="flex items-center gap-2">
-        <span className="text-white/50 font-black text-xl">[</span>
+      <div className="text-4xl font-black text-white/80">√</div>
+      <div className="flex items-center gap-2 rounded-xl border border-neon-green/40 bg-white/5 px-3 py-2 shadow-[0_0_18px_rgba(57,255,20,0.2)]">
+        <div className="text-[10px] font-black tracking-[0.4em] text-neon-green">{labelM}</div>
         <input
           value={value.m === 0 ? "" : String(value.m)}
           onChange={(e) => {
             const mm = Number(e.target.value.trim());
             onChange({ k: value.k, m: Number.isFinite(mm) ? mm : 0 });
           }}
-          className="w-20 bg-black border-2 border-white/20 p-3 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-xl text-white"
+          className="w-20 bg-black border-2 border-neon-green/40 p-3 text-center outline-none focus:border-neon-green placeholder:text-white/30 font-black text-2xl text-white"
           inputMode="numeric"
           placeholder="?"
         />
-        <span className="text-white/50 font-black text-xl">]</span>
       </div>
     </div>
   );
@@ -585,10 +664,11 @@ export default function MG05Page() {
       { id: "SOLVE_HYP", label: t.pythagoras.solve_hyp, visible: true },
       { id: "SOLVE_LEG", label: t.pythagoras.solve_leg, visible: true },
       { id: "CHECK_RIGHT", label: t.pythagoras.check_right, visible: true },
+      { id: "MISSION", label: t.mission.title, visible: true },
       { id: "DISTANCE", label: t.pythagoras.distance, visible: difficulty === "ADVANCED" || difficulty === "ELITE" },
       { id: "ELITE_SPACE", label: t.pythagoras.elite_space, visible: difficulty === "ELITE" },
     ] as const),
-    [difficulty, t.pythagoras.check_right, t.pythagoras.distance, t.pythagoras.elite_space, t.pythagoras.solve_hyp, t.pythagoras.solve_leg]
+    [difficulty, t.mission.title, t.pythagoras.check_right, t.pythagoras.distance, t.pythagoras.elite_space, t.pythagoras.solve_hyp, t.pythagoras.solve_leg]
   );
 
   const sModes = useMemo(
@@ -823,6 +903,8 @@ export default function MG05Page() {
                     <RadicalSlotInput
                       value={radicalAnswers[step.id] ?? { k: 0, m: 0 }}
                       onChange={(nextVal) => setRadicalAnswers((v) => ({ ...v, [step.id]: nextVal }))}
+                      labelK={t.input_k}
+                      labelM={t.input_m}
                     />
                   )}
 

@@ -84,6 +84,16 @@ export const translations = {
                 perfect: "Perfect squares",
                 simplify: "Simplify radicals",
                 estimate: "Estimate"
+            },
+            mission: {
+                title: "MISSION",
+                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+                cern_title: "CERN CALIBRATION ARRAY",
+                cern_desc: "Calibrate a 16:9 observation array. Height=9s, Width=16s. Find the diagonal.",
+                roof_title: "GRINDELWALD SNOW ROOF",
+                roof_desc: "Design the snow roof brace with half-span 6m and height 6m.",
+                ladder_title: "LUCERNE LADDER DOCK",
+                ladder_desc: "A ladder is 5m from the wall and reaches 12m high. Find the ladder length."
             }
         },
         mg06: {
@@ -230,7 +240,11 @@ export const translations = {
             },
             mission: {
                 title: "MISSION: SHADOW MEASURE",
+                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+                tower_title: "ZURICH CLOCK TOWER",
                 description: "In Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
+                ring_title: "LUCERNE OBSERVATION RING",
+                ring_desc: "In Lucerne, a concentric sensor ring is cut by a chord touching the inner circle. Find the ring width.",
                 labels: {
                     tower: "Clock Tower",
                     tower_shadow: "Tower Shadow",
@@ -472,7 +486,10 @@ export const translations = {
             },
             mission: {
                 title: "MISSION: RHINE FLOOD GATE",
-                description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid."
+                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+                description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid.",
+                cube_title: "CERN CUBE VAULT",
+                cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
             }
         },
         mg13: {
@@ -591,6 +608,16 @@ export const translations = {
                 perfect: "完全平方数",
                 simplify: "根式化简",
                 estimate: "估算"
+            },
+            mission: {
+                title: "任务",
+                protocol: "NEXUS PROTOCOL // 瑞士节点在线",
+                cern_title: "CERN 校准阵列",
+                cern_desc: "校准 16:9 观测阵列。高=9s，宽=16s，求对角线。",
+                roof_title: "格林德瓦防雪屋顶",
+                roof_desc: "半跨度 6m，高 6m，计算屋顶支撑梁长度。",
+                ladder_title: "卢塞恩登梯码头",
+                ladder_desc: "梯子距墙 5m，可达高度 12m，求梯子长度。"
             }
         },
         mg06: {
@@ -737,7 +764,11 @@ export const translations = {
             },
             mission: {
                 title: "任务: 阴影测量法",
+                protocol: "NEXUS PROTOCOL // 瑞士节点在线",
+                tower_title: "苏黎世钟楼",
                 description: "在苏黎世，一位建筑师需要利用阴影测量一座历史钟楼的高度。相似三角形是解题的关键。",
+                ring_title: "卢塞恩观测环",
+                ring_desc: "在卢塞恩，同心传感环被一条与内圆相切的弦切割，求圆环宽度。",
                 labels: {
                     tower: "钟楼",
                     tower_shadow: "钟楼阴影",
@@ -979,7 +1010,10 @@ export const translations = {
             },
             mission: {
                 title: "任务：莱茵河防洪闸门",
-                description: "在巴塞尔，工程师把莱茵河防洪闸门的截面近似为梯形。"
+                protocol: "NEXUS PROTOCOL // 瑞士节点在线",
+                description: "在巴塞尔，工程师把莱茵河防洪闸门的截面近似为梯形。",
+                cube_title: "CERN 立方体穹仓",
+                cube_desc: "在 CERN，标出立方体的空间对角线并计算其长度。"
             }
         },
         mg13: {
@@ -1098,6 +1132,16 @@ export const translations = {
                 perfect: "Quadratzahlen",
                 simplify: "Wurzeln vereinfachen",
                 estimate: "Schätzen"
+            },
+            mission: {
+                title: "MISSION",
+                protocol: "NEXUS PROTOCOL // SCHWEIZ-KNOTEN LIVE",
+                cern_title: "CERN KALIBRIERARRAY",
+                cern_desc: "Kalibriere ein 16:9-Array. Höhe=9s, Breite=16s. Bestimme die Diagonale.",
+                roof_title: "GRINDELWALD SCHNEEDACH",
+                roof_desc: "Halbe Spannweite 6m, Höhe 6m. Berechne die Dachstrebe.",
+                ladder_title: "LUCERNE LEITER-DOCK",
+                ladder_desc: "Eine Leiter ist 5m von der Wand entfernt und erreicht 12m Höhe. Bestimme die Leiterlänge."
             }
         },
         mg06: {
@@ -1244,7 +1288,11 @@ export const translations = {
             },
             mission: {
                 title: "MISSION: SCHATTENMESSUNG",
+                protocol: "NEXUS PROTOCOL // SCHWEIZ-KNOTEN LIVE",
+                tower_title: "ZÜRICHER KIRCHTURM",
                 description: "In Zürich muss ein Architekt die Höhe eines historischen Kirchenturms mithilfe seines Schattens bestimmen. Ähnliche Dreiecke sind der Schlüssel.",
+                ring_title: "LUCERNE BEOBACHTUNGSRING",
+                ring_desc: "In Luzern schneidet eine Sehne den Außenkreis und berührt den Innenkreis. Bestimme die Ringbreite.",
                 labels: {
                     tower: "Kirchturm",
                     tower_shadow: "Turmschatten",
@@ -1486,7 +1534,10 @@ export const translations = {
             },
             mission: {
                 title: "MISSION: RHEIN-FLUTTOR",
-                description: "In Basel modellieren Ingenieure den Querschnitt eines Rhein-Fluttors als Trapez."
+                protocol: "NEXUS PROTOCOL // SCHWEIZ-KNOTEN LIVE",
+                description: "In Basel modellieren Ingenieure den Querschnitt eines Rhein-Fluttors als Trapez.",
+                cube_title: "CERN WUERFEL-TRESOR",
+                cube_desc: "In CERN markiere die Raumdiagonale des Wuerfels und berechne ihre Laenge."
             }
         },
         mg13: {

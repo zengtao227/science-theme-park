@@ -32,7 +32,7 @@ type Quest = {
   slots: Slot[];
   correctLatex: string;
   hintLatex?: string[];
-  visual?: { kind: "rect-scale" | "tri-sim" | "shadow"; a: number; b: number; k?: number };
+  visual?: { kind: "rect-scale" | "tri-sim" | "shadow" | "ring"; a: number; b: number; k?: number; r?: number; l?: number };
 };
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
@@ -144,12 +144,16 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
   }
 
   if (stage === "MISSION") {
+    const ringR = difficulty === "BASIC" ? 6 : difficulty === "CORE" ? 8 : difficulty === "ADVANCED" ? 10 : 12;
+    const ringL = Number((ringR * 1.6).toFixed(1));
+    const ringD = Math.sqrt(ringR * ringR - (ringL / 2) * (ringL / 2));
+    const ringW = Number((ringR - ringD).toFixed(2));
     const all: Quest[] = [
       {
         id: "M1",
         difficulty,
         stage,
-        promptLatex: `\\text{${t.mission?.description}}`,
+        promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.tower_title}}\\\\\\text{${t.mission?.description}}`,
         expressionLatex: `\\text{Tower Shadow}=12\\text{ m},\\; \\text{Stick}(1.5\\text{ m})\\text{ Shadow}=2.4\\text{ m}`,
         targetLatex: `\\text{Tower Height}(H)`,
         slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 7.5 }],
@@ -160,6 +164,21 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
           `H=7.5`,
         ],
         visual: { kind: "shadow", a: 7.5, b: 12, k: 0.625 },
+      },
+      {
+        id: "M2",
+        difficulty,
+        stage,
+        promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.ring_title}}\\\\\\text{${t.mission?.ring_desc}}`,
+        expressionLatex: `R=${ringR}\\text{ cm},\\; L=${ringL}\\text{ cm}`,
+        targetLatex: `w`,
+        slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: ringW }],
+        correctLatex: `w=${ringW}\\text{ cm}`,
+        hintLatex: [
+          `d=\\sqrt{R^2-(\\frac{L}{2})^2}`,
+          `w=R-d`,
+        ],
+        visual: { kind: "ring", a: ringW, b: ringR, r: ringR, l: ringL },
       },
     ];
     return all;
@@ -249,6 +268,24 @@ function Visual({ v, t }: { v: Quest["visual"]; t: Mg08T }) {
           {/* Similar Triangle Visualization */}
           <path d="M60,200 L100,200 L60,60 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeDasharray="2 2" />
           <path d="M450,200 L490,200 L450,175 Z" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.3)" strokeDasharray="2 2" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (v.kind === "ring") {
+    const outer = 90;
+    const inner = outer * 0.6;
+    const chordY = 120;
+    return (
+      <div className="w-full flex justify-center p-4">
+        <svg viewBox="0 0 600 260" className="w-full max-w-[600px] border border-white/10 bg-black rounded-xl overflow-visible shadow-2xl">
+          <circle cx="200" cy="130" r={outer} fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" />
+          <circle cx="200" cy="130" r={inner} fill="rgba(0,0,0,0.6)" stroke="rgba(120,255,220,0.7)" />
+          <line x1="120" y1={chordY} x2="280" y2={chordY} stroke="rgba(57,255,20,0.9)" strokeWidth="3" />
+          <text x="200" y="230" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="12" fontFamily="monospace" fontWeight="bold">
+            L
+          </text>
         </svg>
       </div>
     );

@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Box } from "lucide-react";
+import { Canvas } from "@react-three/fiber";
+import { Line, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -20,6 +23,7 @@ type Slot = {
     labelLatex: string;
     placeholder: string;
     expected: number;
+    tolerance?: number;
 };
 
 type Quest = {
@@ -31,7 +35,8 @@ type Quest = {
     slots: Slot[];
     correctLatex: string;
     hintLatex?: string[];
-    visualType: "TRAPEZ" | "PRISMA" | "CYLINDER";
+    visualType: "TRAPEZ" | "PRISMA" | "CYLINDER" | "CUBE";
+    cube?: { size: number; diagonalVertices: [number, number] };
 };
 
 function parseValue(s: string, locale: "DE" | "EN" | "CN") {
@@ -115,18 +120,132 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
                 id: "M1",
                 difficulty,
                 stage,
-                promptLatex: `\\text{${t.mission?.description}}`,
+                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
                 descriptionLatex: `\\text{Rhein-Floodgate: } a=8m,\\; c=14m,\\; h=4m`,
                 slots: [{ id: "A", labelLatex: `A`, placeholder: "Area", expected: 44 }],
                 correctLatex: `44m^2`,
                 hintLatex: [`A=\\frac{a+c}{2}\\cdot h`],
                 visualType: "TRAPEZ",
             },
+            {
+                id: "M2",
+                difficulty,
+                stage,
+                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.cube_title}}\\\\\\text{${t.mission?.cube_desc}}`,
+                descriptionLatex: `\\text{Cube: } s=6cm`,
+                slots: [{ id: "d", labelLatex: `d`, placeholder: "Diagonal", expected: 6 * Math.sqrt(3), tolerance: 0.02 }],
+                correctLatex: `d=6\\sqrt{3}cm`,
+                hintLatex: [`d=\\sqrt{s^2+s^2+s^2}`],
+                visualType: "CUBE",
+                cube: { size: 6, diagonalVertices: [0, 6] },
+            },
         ];
         return all;
     }
 
     return [];
+}
+
+function CubeVisual({
+    size,
+    selectedVertices,
+    onSelect,
+    diagonalVertices,
+}: {
+    size: number;
+    selectedVertices: number[];
+    onSelect: (next: number[] | ((prev: number[]) => number[])) => void;
+    diagonalVertices?: [number, number];
+}) {
+    const vertices = useMemo(() => {
+        const s = size / 2;
+        return [
+            new THREE.Vector3(-s, -s, -s),
+            new THREE.Vector3(s, -s, -s),
+            new THREE.Vector3(s, s, -s),
+            new THREE.Vector3(-s, s, -s),
+            new THREE.Vector3(-s, -s, s),
+            new THREE.Vector3(s, -s, s),
+            new THREE.Vector3(s, s, s),
+            new THREE.Vector3(-s, s, s),
+        ];
+    }, [size]);
+
+    const edges = [
+        [0, 1],
+        [1, 2],
+        [2, 3],
+        [3, 0],
+        [4, 5],
+        [5, 6],
+        [6, 7],
+        [7, 4],
+        [0, 4],
+        [1, 5],
+        [2, 6],
+        [3, 7],
+    ];
+
+    const [hoveredVertex, setHoveredVertex] = useState<number | null>(null);
+    const [hoveredEdge, setHoveredEdge] = useState<number | null>(null);
+    const selectedLine = selectedVertices.length === 2 ? selectedVertices : null;
+    const isCorrectDiagonal =
+        diagonalVertices &&
+        selectedLine &&
+        selectedLine.includes(diagonalVertices[0]) &&
+        selectedLine.includes(diagonalVertices[1]);
+
+    return (
+        <div className="w-full h-[320px] border border-white/10 rounded-2xl overflow-hidden bg-black/60">
+            <Canvas camera={{ position: [5, 5, 6], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[6, 6, 6]} intensity={1.2} />
+                <OrbitControls enablePan={false} />
+                {edges.map(([a, b], idx) => (
+                    <Line
+                        key={`${a}-${b}`}
+                        points={[vertices[a], vertices[b]]}
+                        color={hoveredEdge === idx ? "#39ff14" : "rgba(255,255,255,0.35)"}
+                        lineWidth={hoveredEdge === idx ? 2.2 : 1.2}
+                        onPointerOver={() => setHoveredEdge(idx)}
+                        onPointerOut={() => setHoveredEdge(null)}
+                    />
+                ))}
+                {selectedLine && (
+                    <Line
+                        points={[vertices[selectedLine[0]], vertices[selectedLine[1]]]}
+                        color={isCorrectDiagonal ? "#39ff14" : "#00d2ff"}
+                        lineWidth={3}
+                    />
+                )}
+                {vertices.map((v, idx) => (
+                    <mesh
+                        key={`v-${idx}`}
+                        position={v}
+                        onPointerOver={() => setHoveredVertex(idx)}
+                        onPointerOut={() => setHoveredVertex(null)}
+                        onClick={() =>
+                            onSelect((prev) => {
+                                if (prev.length === 0) return [idx];
+                                if (prev.length === 1) {
+                                    if (prev[0] === idx) return [];
+                                    return [prev[0], idx];
+                                }
+                                return [idx];
+                            })
+                        }
+                    >
+                        <sphereGeometry args={[0.12, 24, 24]} />
+                        <meshStandardMaterial
+                            color={selectedVertices.includes(idx) ? "#39ff14" : "#ffffff"}
+                            emissive={hoveredVertex === idx ? "#39ff14" : "#0aa"}
+                            emissiveIntensity={hoveredVertex === idx ? 1.2 : 0.3}
+                        />
+                    </mesh>
+                ))}
+            </Canvas>
+        </div>
+    );
 }
 
 export default function MG12Page() {
@@ -139,6 +258,7 @@ export default function MG12Page() {
 
     const [inputs, setInputs] = useState<Record<string, string>>({});
     const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
+    const [selectedVertices, setSelectedVertices] = useState<number[]>([]);
 
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
 
@@ -151,6 +271,7 @@ export default function MG12Page() {
     const clearInputs = () => {
         setInputs({});
         setLastCheck(null);
+        setSelectedVertices([]);
     };
 
     const next = () => {
@@ -159,10 +280,19 @@ export default function MG12Page() {
     };
 
     const verify = () => {
+        if (currentQuest.visualType === "CUBE" && currentQuest.cube?.diagonalVertices) {
+            const [a, b] = currentQuest.cube.diagonalVertices;
+            const diagonalOk = selectedVertices.length === 2 && selectedVertices.includes(a) && selectedVertices.includes(b);
+            if (!diagonalOk) {
+                setLastCheck({ ok: false, correct: currentQuest.correctLatex });
+                return;
+            }
+        }
         for (const slot of currentQuest.slots) {
             const raw = inputs[slot.id] ?? "";
             const v = parseValue(raw, locale);
-            if (v === null || Math.abs(v - slot.expected) > 1e-6) {
+            const tolerance = slot.tolerance ?? 1e-6;
+            if (v === null || Math.abs(v - slot.expected) > tolerance) {
                 setLastCheck({ ok: false, correct: currentQuest.correctLatex });
                 return;
             }
@@ -269,13 +399,22 @@ export default function MG12Page() {
                                     <InlineMath math={currentQuest.descriptionLatex} />
                                 </div>
 
-                                <div className="aspect-square w-48 mx-auto flex items-center justify-center border border-white/10 rounded-lg">
-                                    {currentQuest.visualType === "PRISMA" ? (
-                                        <Box className="w-24 h-24 text-white/20 animate-pulse" />
-                                    ) : (
-                                        <div className="w-24 h-16 border-2 border-white/20 bg-white/5 skew-x-12" />
-                                    )}
-                                </div>
+                                {currentQuest.visualType === "CUBE" && currentQuest.cube ? (
+                                    <CubeVisual
+                                        size={currentQuest.cube.size}
+                                        selectedVertices={selectedVertices}
+                                        onSelect={setSelectedVertices}
+                                        diagonalVertices={currentQuest.cube.diagonalVertices}
+                                    />
+                                ) : (
+                                    <div className="aspect-square w-48 mx-auto flex items-center justify-center border border-white/10 rounded-lg">
+                                        {currentQuest.visualType === "PRISMA" ? (
+                                            <Box className="w-24 h-24 text-white/20 animate-pulse" />
+                                        ) : (
+                                            <div className="w-24 h-16 border-2 border-white/20 bg-white/5 skew-x-12" />
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         </div>
 
