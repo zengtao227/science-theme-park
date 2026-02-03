@@ -138,16 +138,40 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
         visual: { kind: "tri-sim", a: 7, b: 21, k: 3 },
       },
     ];
+    const seed = difficulty === "BASIC" ? 2 : difficulty === "CORE" ? 3 : difficulty === "ADVANCED" ? 4 : 5;
+    const a = 3 * seed;
+    const b = 2 * seed;
+    all.push({
+      id: `T3-${seed}`,
+      difficulty,
+      stage,
+      promptLatex: t.stages.stages_prompt_latex,
+      expressionLatex: `\\frac{${a}}{${b}}=\\frac{x}{${4 * seed}}`,
+      targetLatex: `x`,
+      slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 6 * seed }],
+      correctLatex: `x=${6 * seed}`,
+      hintLatex: [t.hints.rules.proportional_latex, t.hints.rules.cross_multiply_latex],
+      visual: { kind: "tri-sim", a: 4 * seed, b: 6 * seed, k: 3 / 2 },
+    });
+    all.push({
+      id: `T4-${seed}`,
+      difficulty,
+      stage,
+      promptLatex: t.stages.stages_prompt_latex,
+      expressionLatex: `\\frac{${5 * seed}}{${4 * seed}}=\\frac{y}{${8 * seed}}`,
+      targetLatex: `y`,
+      slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 10 * seed }],
+      correctLatex: `y=${10 * seed}`,
+      hintLatex: [t.hints.rules.proportional_latex],
+      visual: { kind: "tri-sim", a: 8 * seed, b: 10 * seed, k: 5 / 4 },
+    });
 
     if (difficulty === "BASIC") return all.slice(0, 1);
+    if (difficulty === "CORE") return all.slice(0, 3);
     return all;
   }
 
   if (stage === "MISSION") {
-    const ringR = difficulty === "BASIC" ? 6 : difficulty === "CORE" ? 8 : difficulty === "ADVANCED" ? 10 : 12;
-    const ringL = Number((ringR * 1.6).toFixed(1));
-    const ringD = Math.sqrt(ringR * ringR - (ringL / 2) * (ringL / 2));
-    const ringW = Number((ringR - ringD).toFixed(2));
     const all: Quest[] = [
       {
         id: "M1",
@@ -165,22 +189,28 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
         visual: { kind: "shadow", a: 7.5, b: 12, k: 0.625 },
       },
-      {
-        id: "M2",
+    ];
+    const ringSet = difficulty === "BASIC" ? [6, 7] : difficulty === "CORE" ? [8, 9] : difficulty === "ADVANCED" ? [10, 12] : [12, 14];
+    ringSet.forEach((ringR, idx) => {
+      const ringL = Number((ringR * 1.6).toFixed(1));
+      const ringD = Math.sqrt(ringR * ringR - (ringL / 2) * (ringL / 2));
+      const ringW = Number((ringR - ringD).toFixed(2));
+      all.push({
+        id: `M2-${idx}`,
         difficulty,
         stage,
         promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.ring_title}}\\\\\\text{${t.mission?.ring_desc}}`,
         expressionLatex: `R=${ringR}\\text{ cm},\\; L=${ringL}\\text{ cm}`,
         targetLatex: `w`,
-        slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: ringW }],
+        slots: [{ id: `w-${idx}`, labelLatex: `w`, placeholder: "width", expected: ringW }],
         correctLatex: `w=${ringW}\\text{ cm}`,
         hintLatex: [
           `d=\\sqrt{R^2-(\\frac{L}{2})^2}`,
           `w=R-d`,
         ],
         visual: { kind: "ring", a: ringW, b: ringR, r: ringR, l: ringL },
-      },
-    ];
+      });
+    });
     return all;
   }
 

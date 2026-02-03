@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 scripts/*.py
 .env
+
+# temporary and large files
+.mcp/
+.tmp_office_lens*.png
+*.pdf

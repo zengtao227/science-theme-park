@@ -63,6 +63,10 @@ type Mg05T = typeof translations.EN.mg05 & {
     roof_desc: string;
     ladder_title: string;
     ladder_desc: string;
+    grid_title: string;
+    grid_desc: string;
+    chain_title: string;
+    chain_desc: string;
   };
 };
 
@@ -168,7 +172,25 @@ function buildCandidates(tab: ModuleTab, difficulty: Difficulty, mode: Mode) {
 
     if (mode === "MISSION") {
       const scale = difficulty === "BASIC" ? 2 : difficulty === "CORE" ? 3 : difficulty === "ADVANCED" ? 4 : 5;
-      return [`CERN|${scale}`, `GRIND|6|6`, `LUCERNE|5|12`];
+      const list: string[] = [];
+      const seed = hashStringToUint32(`MISSION|${difficulty}`);
+      const rnd = mulberry32(seed);
+      list.push(`CERN|${scale}`);
+      list.push(`GRIND|${6 + scale}|${6}`);
+      list.push(`LUCERNE|5|12`);
+      for (let i = 0; i < 3; i++) {
+        let x1 = Math.floor(rnd() * 11) - 5;
+        let y1 = Math.floor(rnd() * 11) - 5;
+        let x2 = Math.floor(rnd() * 11) - 5;
+        let y2 = Math.floor(rnd() * 11) - 5;
+        if (x1 === x2 && y1 === y2) x2 += 2;
+        list.push(`GRID|${x1}|${y1}|${x2}|${y2}`);
+      }
+      const chainScale = difficulty === "BASIC" ? 1 : difficulty === "CORE" ? 2 : difficulty === "ADVANCED" ? 2 : 3;
+      const baseTriples = triangleTriples();
+      const [a, b, c] = baseTriples[(seed + 3) % baseTriples.length];
+      list.push(`CHAIN|${a * chainScale}|${b * chainScale}|${c}`);
+      return list;
     }
 
     if (mode === "DISTANCE") {
@@ -373,6 +395,52 @@ function buildMissionQuest(t: Mg05T, difficulty: Difficulty, signature: string):
         { id: "r", labelLatex: `r=\\sqrt{r^2}`, input: "radical", answer: exact },
       ],
       visual: { kind: "triangle", a, b, c: Math.sqrt(d2) },
+    };
+  }
+
+  if (kind === "GRID") {
+    const [x1, y1, x2, y2] = [Number(aRaw), Number(bRaw), Number(signature.split("|")[3]), Number(signature.split("|")[4])];
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const d2 = dx * dx + dy * dy;
+    const exact = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+    return {
+      id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
+      tab: "PYTHAGORAS",
+      mode: "MISSION",
+      difficulty,
+      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.grid_title}}\\\\\\text{${t.mission.grid_desc}}`,
+      targetLatex: `d`,
+      steps: [
+        { id: "d2", labelLatex: `d^2=(\\Delta x)^2+(\\Delta y)^2`, input: "number", answer: d2 },
+        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", answer: exact },
+      ],
+      visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
+    };
+  }
+
+  if (kind === "CHAIN") {
+    const c = Number(signature.split("|")[3]);
+    const a = Number(aRaw);
+    const b = Number(bRaw);
+    const s2 = a * a + b * b;
+    const sExact = isPerfectSquare(s2) ? { k: Math.sqrt(s2), m: 1 } : simplifyRadical(s2);
+    const d2 = s2 + c * c;
+    const dExact = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+    return {
+      id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
+      tab: "PYTHAGORAS",
+      mode: "MISSION",
+      difficulty,
+      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.chain_title}}\\\\\\text{${t.mission.chain_desc}}`,
+      targetLatex: `d`,
+      steps: [
+        { id: "s2", labelLatex: `s^2=a^2+b^2`, input: "number", answer: s2 },
+        { id: "s", labelLatex: `s=\\sqrt{s^2}`, input: "radical", answer: sExact },
+        { id: "d2", labelLatex: `d^2=s^2+c^2`, input: "number", answer: d2 },
+        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", answer: dExact },
+      ],
+      visual: { kind: "space", a, b, c },
     };
   }
 

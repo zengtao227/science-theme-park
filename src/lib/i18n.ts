@@ -93,7 +93,11 @@ export const translations = {
                 roof_title: "GRINDELWALD SNOW ROOF",
                 roof_desc: "Design the snow roof brace with half-span 6m and height 6m.",
                 ladder_title: "LUCERNE LADDER DOCK",
-                ladder_desc: "A ladder is 5m from the wall and reaches 12m high. Find the ladder length."
+                ladder_desc: "A ladder is 5m from the wall and reaches 12m high. Find the ladder length.",
+                grid_title: "BASEL GRID DISTANCE",
+                grid_desc: "Compute the distance between two navigation nodes on the Basel grid.",
+                chain_title: "CERN TRANSFER TUNNEL",
+                chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
             }
         },
         mg06: {
@@ -617,7 +621,11 @@ export const translations = {
                 roof_title: "格林德瓦防雪屋顶",
                 roof_desc: "半跨度 6m，高 6m，计算屋顶支撑梁长度。",
                 ladder_title: "卢塞恩登梯码头",
-                ladder_desc: "梯子距墙 5m，可达高度 12m，求梯子长度。"
+                ladder_desc: "梯子距墙 5m，可达高度 12m，求梯子长度。",
+                grid_title: "巴塞尔网格距离",
+                grid_desc: "计算巴塞尔城市网格中两个导航节点的距离。",
+                chain_title: "CERN 转运通道",
+                chain_desc: "转运通道跨越矩形平台并上升至高位，求完整对角线。"
             }
         },
         mg06: {
@@ -1141,7 +1149,11 @@ export const translations = {
                 roof_title: "GRINDELWALD SCHNEEDACH",
                 roof_desc: "Halbe Spannweite 6m, Höhe 6m. Berechne die Dachstrebe.",
                 ladder_title: "LUCERNE LEITER-DOCK",
-                ladder_desc: "Eine Leiter ist 5m von der Wand entfernt und erreicht 12m Höhe. Bestimme die Leiterlänge."
+                ladder_desc: "Eine Leiter ist 5m von der Wand entfernt und erreicht 12m Höhe. Bestimme die Leiterlänge.",
+                grid_title: "BASEL GITTERDISTANZ",
+                grid_desc: "Berechne die Distanz zwischen zwei Navigationsknoten im Basler Raster.",
+                chain_title: "CERN TRANSFERTUNNEL",
+                chain_desc: "Ein Tunnel überspannt eine rechteckige Plattform und steigt zu einer höheren Ebene auf. Bestimme die Gesamtdiagonale."
             }
         },
         mg06: {

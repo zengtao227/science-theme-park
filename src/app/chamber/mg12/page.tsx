@@ -35,8 +35,9 @@ type Quest = {
     slots: Slot[];
     correctLatex: string;
     hintLatex?: string[];
-    visualType: "TRAPEZ" | "PRISMA" | "CYLINDER" | "CUBE";
+    visualType: "TRAPEZ" | "PRISMA" | "CYLINDER" | "CUBE" | "ROOF";
     cube?: { size: number; diagonalVertices: [number, number] };
+    roof?: { span: number; height: number; depth: number };
 };
 
 function parseValue(s: string, locale: "DE" | "EN" | "CN") {
@@ -138,6 +139,18 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
                 hintLatex: [`d=\\sqrt{s^2+s^2+s^2}`],
                 visualType: "CUBE",
                 cube: { size: 6, diagonalVertices: [0, 6] },
+            },
+            {
+                id: "M3",
+                difficulty,
+                stage,
+                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.cube_title}}`,
+                descriptionLatex: `\\text{Grindelwald Roof Brace: } \\text{half-span }=6m, \\text{ height }=6m`,
+                slots: [{ id: "r", labelLatex: `r`, placeholder: "Brace", expected: Math.sqrt(6 * 6 + 6 * 6), tolerance: 0.02 }],
+                correctLatex: `r=6\\sqrt{2}\\text{ m}`,
+                hintLatex: [`r=\\sqrt{(\\text{span})^2+(\\text{height})^2}`],
+                visualType: "ROOF",
+                roof: { span: 6, height: 6, depth: 0.1 },
             },
         ];
         return all;
@@ -243,6 +256,45 @@ function CubeVisual({
                         />
                     </mesh>
                 ))}
+            </Canvas>
+        </div>
+    );
+}
+
+function RoofVisual({ span, height, depth }: { span: number; height: number; depth: number }) {
+    const shape = useMemo(() => {
+        const s = span;
+        const h = height;
+        const sh = new THREE.Shape();
+        sh.moveTo(0, 0);
+        sh.lineTo(s, 0);
+        sh.lineTo(s / 2, h);
+        sh.lineTo(0, 0);
+        return sh;
+    }, [height, span]);
+
+    const extrude = useMemo(() => ({ depth, bevelEnabled: false }), [depth]);
+
+    return (
+        <div className="w-full h-[320px] border border-white/10 rounded-2xl overflow-hidden bg-black/60">
+            <Canvas camera={{ position: [6, 4, 6], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[8, 8, 6]} intensity={1.1} />
+                <OrbitControls enablePan={false} />
+                <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-span / 2, -depth / 2, 0]}>
+                    <extrudeGeometry args={[shape, extrude]} />
+                    <meshStandardMaterial color="#0aa" emissive="#39ff14" emissiveIntensity={0.25} />
+                </mesh>
+                <Line
+                    points={[new THREE.Vector3(-span / 2, 0, 0), new THREE.Vector3(0, 0, height)]}
+                    color="#39ff14"
+                    lineWidth={3}
+                />
+                <Line
+                    points={[new THREE.Vector3(0, 0, height), new THREE.Vector3(span / 2, 0, 0)]}
+                    color="rgba(255,255,255,0.6)"
+                    lineWidth={2}
+                />
             </Canvas>
         </div>
     );
@@ -406,6 +458,8 @@ export default function MG12Page() {
                                         onSelect={setSelectedVertices}
                                         diagonalVertices={currentQuest.cube.diagonalVertices}
                                     />
+                                ) : currentQuest.visualType === "ROOF" && currentQuest.roof ? (
+                                    <RoofVisual span={currentQuest.roof.span} height={currentQuest.roof.height} depth={currentQuest.roof.depth} />
                                 ) : (
                                     <div className="aspect-square w-48 mx-auto flex items-center justify-center border border-white/10 rounded-lg">
                                         {currentQuest.visualType === "PRISMA" ? (
