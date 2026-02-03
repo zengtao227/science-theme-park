@@ -46,3 +46,6 @@ scripts/*.py
 .mcp/
 .tmp_office_lens*.png
 *.pdf
+
+# database files
+*.db
