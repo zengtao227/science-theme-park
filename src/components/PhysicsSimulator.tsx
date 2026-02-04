@@ -53,8 +53,8 @@ export function PhysicsSimulator({
   showVectors = true
 }: PhysicsSimulatorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const engineRef = useRef<Matter.Engine>();
-  const renderRef = useRef<Matter.Render>();
+  const engineRef = useRef<Matter.Engine | null>(null);
+  const renderRef = useRef<Matter.Render | null>(null);
   const bodyMapRef = useRef<Map<string, Matter.Body>>(new Map());
   const [isPaused, setIsPaused] = useState(false);
 
@@ -182,7 +182,7 @@ export function PhysicsSimulator({
 
   useEffect(() => {
     if (!engineRef.current) return;
-    
+
     forces.forEach(force => {
       const body = bodyMapRef.current.get(force.bodyId);
       if (body) {
@@ -197,7 +197,7 @@ export function PhysicsSimulator({
 
   const handleReset = () => {
     if (!engineRef.current) return;
-    
+
     bodies.forEach(bodyDef => {
       const body = bodyMapRef.current.get(bodyDef.id);
       if (body && !bodyDef.isStatic) {
@@ -218,11 +218,11 @@ export function PhysicsSimulator({
 
   return (
     <div className="relative">
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="border border-white/10 rounded-lg"
       />
-      
+
       <div className="absolute top-2 left-2 flex gap-2">
         <button
           onClick={togglePause}

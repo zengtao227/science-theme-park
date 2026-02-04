@@ -472,13 +472,14 @@ test('MG07 - User can solve line equation', async ({ page }) => {
 - [x] S2.03 (MG07) 已有函数图像可视化 (FunctionCanvas)
 - [x] 启动 Matter.js 物理引擎原型 (PhysicsSimulator组件)
 - [x] 创建物理演示页面 (physics-demo) 展示牛顿定律
+- [x] **架构升级 (V2)**: 创建 `ChamberLayout` 通用布局组件
+- [x] **架构升级 (V2)**: 提取 `useQuestManager` 通用逻辑 Hook
+- [x] **试点上线**: 完成 `S1.01` 模块的完整重构（代码从 780 行缩减至 320 行）
 
 ### 下周 (Week 2)
-- [ ] 创建 ChamberLayout 通用组件
-- [ ] 提取 useQuestManager Hook
-- [ ] 重构 MG07 使用新架构
-- [ ] 重构 MG12 使用新架构
+- [ ] 按照 V2 标准重构所有数学模块 (S1.02, S2.01, S2.02, S2.04, S3.01, G1.01)
 - [ ] 完成物理可视化库（力箭头、轨迹）
+- [ ] 开发 P1.02 牛顿定律物理模拟组件 (PhysicsSimulator v2)
 
 ### 第三周 (Week 3)
 - [ ] 重构所有数学模块使用新架构

@@ -248,6 +248,30 @@
 ### 6.3 每日仪式 (Daily Ritual)
 > 开发者注：每次启动项目前，必须回顾此文档的架构规划，确保所有新功能不偏离“扁平化导航”与“硬核美学”的初衷。
 
+### 6.4 模块化重构标准 (Standardized Chamber Architecture v2.0)
+为了解决早期开发中出现的代码冗余（每个模块 800+ 行重复代码）问题，项目已全面转向 **Chamber V2** 架构。
+
+#### 6.4.1 核心组件分层
+1. **逻辑驱动层 (`useQuestManager`)**:
+   - 职责：管理题目生成 (nonce)、用户输入 (inputs)、校验逻辑 (verify)、难度与阶段状态。
+   - 位置：`src/hooks/useQuestManager.ts`
+   - 目标：将所有“玩法”逻辑从 UI 中剥离，实现全站逻辑的一致性。
+
+2. **视图框架层 (`ChamberLayout`)**:
+   - 职责：统一渲染 Header (模块标题、ConceptIcon、难度切换、i18n)、Aside (监控面板、侧边栏)、Footer。
+   - 位置：`src/components/layout/ChamberLayout.tsx`
+   - 目标：确保全站视觉风格（黑金渐变、HUD 特效、霓虹发光）的一处修改，处处生效。
+
+3. **内容定义层 (`page.tsx`)**:
+   - 职责：仅定义模块特定的题目池 (`buildStagePool`) 和核心渲染逻辑 (`VisualCanvas`)。
+   - 目标：将文件大小从 800 行压缩至 100-200 行，让开发者专注于“教学内容”而非“界面排版”。
+
+#### 6.4.2 实验模拟器标准 (Experimental Canvas)
+- 每个模块必须拥有至少一个动态 Canvas 组件（如 `S101_GeometryCanvas`）。
+- **实时性**：用户输入参数时，图形必须实时缩放/变形。
+- **反馈性**：图形颜色应根据 `lastCheck` 结果动态变化（绿/红）。
+- **组件位置**：模块专用的 Canvas 应存放在 `src/components/chamber/` 下。
+
 ---
 
 ## 附录：瑞士初高中理科大纲映射 (Curriculum Roadmap)

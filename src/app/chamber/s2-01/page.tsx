@@ -10,6 +10,7 @@ import Link from 'next/link';
 import * as THREE from 'three';
 import { useAppStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
+import ConceptIcon from "@/components/ConceptIcon";
 import { ArrowLeft, Lock, Unlock, Settings2, Info, Construction, Rocket, Zap, Database, Compass } from 'lucide-react';
 import { clsx } from "clsx";
 
@@ -432,7 +433,8 @@ export default function BinomialFactoryPage() {
                     <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
                 </Link>
 
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
+                    <ConceptIcon code="S2.01" className="w-8 h-8 text-white/50 mb-1" />
                     <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
                         {t.title}
                     </div>

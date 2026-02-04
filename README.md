@@ -25,6 +25,21 @@
 
 ---
 
+## 🏗️ 技术标准 (Technical Standards - Chamber V2)
+
+项目已全面转向模块化架构，所有新模块及重构必须遵循：
+
+1.  **架构解耦**：
+    - **逻辑层**：统一使用 `src/hooks/useQuestManager.ts` 钩子处理状态，禁止在页面内手写 nonce/validate 逻辑。
+    - **UI 层**：页面必须由 `src/components/layout/ChamberLayout.tsx` 包裹，确保全站视觉一致性。
+2.  **视觉体验**：
+    - 每个模块必须配备动态渲染组件（SVG/Canvas），位于 `src/components/chamber/`。
+    - 严守“黑金/霓虹”实验室美学，使用 `ConceptIcon` 作为视觉索引。
+3.  **i18n**：
+    - 所有文案必须由 `src/lib/i18n.ts` 驱动，页面内禁止硬编码文本。
+
+---
+
 ## 🗺️ 模块路线图 (Module Roadmap)
 
 根据瑞士 **Lehrplan 21** 大纲，当前已实现的模块逻辑：

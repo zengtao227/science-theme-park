@@ -631,6 +631,91 @@ function TriangleCanvas({ a, b, c, highlightRightAngle }: { a: number; b: number
   return <canvas ref={ref} width={480} height={480} className="w-full h-auto block" />;
 }
 
+function SpaceCanvas({ a, b, c }: { a: number; b: number; c: number }) {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // Iso projection: x right-down, y left-down, z up
+    // But we map input a->x, b->y, c->z
+    const scale = (Math.min(w, h) * 0.5) / Math.max(a, b, c);
+    const cx = w / 2;
+    const cy = h * 0.7; // Lower center to allow height
+
+    const iso = (lx: number, ly: number, lz: number) => {
+      const ang = Math.PI / 6; // 30 deg
+      const u = (lx - ly) * Math.cos(ang);
+      const v = (lx + ly) * Math.sin(ang) - lz;
+      return { x: cx + u * scale, y: cy + v * scale };
+    };
+
+    const O = iso(0, 0, 0);
+    const A = iso(a, 0, 0);
+    const B = iso(a, b, 0);
+    const C = iso(a, b, c); // The top of the diagonal
+    const D = iso(0, b, 0);
+
+    // Draw Floor Grid (dashed)
+    ctx.strokeStyle = "rgba(255,255,255,0.15)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(O.x, O.y); ctx.lineTo(D.x, D.y); ctx.lineTo(B.x, B.y);
+    ctx.stroke();
+
+    // Draw Floor Path (solid)
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "#00ff9d"; // Neon Green
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(O.x, O.y); ctx.lineTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+    ctx.stroke();
+
+    // Draw Height (solid)
+    ctx.strokeStyle = "#00d2ff"; // Neon Cyan
+    ctx.beginPath();
+    ctx.moveTo(B.x, B.y); ctx.lineTo(C.x, C.y);
+    ctx.stroke();
+
+    // Draw Diagonal (solid highlighted)
+    ctx.strokeStyle = "#ff0055"; // Neon Red
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(O.x, O.y); ctx.lineTo(C.x, C.y);
+    ctx.stroke();
+
+    // Draw Box Outline (faint)
+    ctx.strokeStyle = "rgba(255,255,255,0.1)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    const Az = iso(a, 0, c);
+    const Oz = iso(0, 0, c);
+    const Dz = iso(0, b, c);
+    ctx.moveTo(A.x, A.y); ctx.lineTo(Az.x, Az.y); ctx.lineTo(C.x, C.y);
+    ctx.moveTo(Az.x, Az.y); ctx.lineTo(Oz.x, Oz.y); ctx.lineTo(Dz.x, Dz.y); ctx.lineTo(C.x, C.y);
+    ctx.moveTo(Oz.x, Oz.y); ctx.lineTo(O.x, O.y); // back corner vertical
+    ctx.moveTo(Dz.x, Dz.y); ctx.lineTo(D.x, D.y);
+    ctx.stroke();
+
+    // Labels
+    ctx.fillStyle = "white";
+    ctx.font = "bold 14px monospace";
+    ctx.fillText(`a=${a}`, (O.x + A.x) / 2, (O.y + A.y) / 2 + 20);
+    ctx.fillText(`b=${b}`, (A.x + B.x) / 2 + 10, (A.y + B.y) / 2 + 10);
+    ctx.fillText(`c=${c}`, B.x + 10, (B.y + C.y) / 2);
+  }, [a, b, c]);
+
+  return <canvas ref={ref} width={480} height={480} className="w-full h-auto block" />;
+}
+
 function DistanceCanvas({ p1, p2 }: { p1: { x: number; y: number }; p2: { x: number; y: number } }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
 
@@ -1123,10 +1208,8 @@ function MG05PageContent() {
               )}
               {quest.visual.kind === "space" && (
                 <div className="space-y-4">
-                  <div className="text-white font-black text-xl">
-                    <InlineMath math={`a=${quest.visual.a},\\; b=${quest.visual.b},\\; c=${quest.visual.c}`} />
-                  </div>
-                  <div className="text-white/60 text-sm font-mono">
+                  <SpaceCanvas a={quest.visual.a} b={quest.visual.b} c={quest.visual.c} />
+                  <div className="text-white/60 text-sm font-mono text-center">
                     <InlineMath math={`d^2=a^2+b^2+c^2`} />
                   </div>
                 </div>

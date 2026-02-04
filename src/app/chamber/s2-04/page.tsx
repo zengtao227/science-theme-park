@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
+import ConceptIcon from "@/components/ConceptIcon";
 import "katex/dist/katex.min.css";
 
 import { useAppStore } from "@/lib/store";
@@ -377,7 +378,8 @@ export default function MG08Page() {
         </Link>
 
         {/* Center: Title */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
+          <ConceptIcon code="S2.04" className="w-8 h-8 text-white/50 mb-1" />
           <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
             {t.title}
           </div>

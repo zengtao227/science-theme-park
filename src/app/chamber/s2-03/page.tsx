@@ -455,14 +455,10 @@ export default function MG07Page() {
           <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
         </Link>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-          <div className="flex items-center gap-3 opacity-90">
-            <div className="w-8 h-8 flex items-center justify-center border border-neon-green/30 bg-neon-green/5 rounded text-neon-green">
-              <ConceptIcon code="S2.03" className="w-5 h-5" />
-            </div>
-            <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
-              {t.title}
-            </div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
+          <ConceptIcon code="S2.03" className="w-8 h-8 text-white/50 mb-1" />
+          <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
+            {t.title}
           </div>
         </div>
 
