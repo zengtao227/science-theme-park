@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg13T = typeof translations.EN.mg13;
+type Mg13T = typeof translations.EN.s1_02;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "STATISTICS" | "PROBABILITY" | "COMBINATORICS";
@@ -187,7 +187,7 @@ function buildStagePool(t: Mg13T, difficulty: Difficulty, stage: Stage): Quest[]
 
 export default function MG13Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg13;
+  const t = translations[currentLanguage].s1_02;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
   const [stage, setStage] = useState<Stage>("STATISTICS");

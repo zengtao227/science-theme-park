@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg06T = typeof translations.EN.mg06;
+type Mg06T = typeof translations.EN.s3_01;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
@@ -596,7 +596,7 @@ function stageLabel(t: Mg06T, stage: Stage) {
 
 export default function MG06Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg06;
+  const t = translations[currentLanguage].s3_01;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
   const [stage, setStage] = useState<Stage>("TERMS");

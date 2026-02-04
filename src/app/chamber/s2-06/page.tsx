@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg10T = typeof translations.EN.mg10;
+type Mg10T = typeof translations.EN.s2_06;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "SUBSTITUTION" | "ELIMINATION" | "MISSION";
@@ -222,7 +222,7 @@ function buildStagePool(t: Mg10T, difficulty: Difficulty, stage: Stage): Quest[]
 
 export default function MG10Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg10;
+  const t = translations[currentLanguage].s2_06;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
   const [stage, setStage] = useState<Stage>("SUBSTITUTION");

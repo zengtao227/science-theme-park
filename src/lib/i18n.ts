@@ -16,26 +16,26 @@ export const translations = {
             gym_title: "GYMNASIUM // UPPER SECONDARY",
             nexus: "The Nexus",
             archive: "Archives",
-            mg04_title: "S2.01 // BINOMIAL FACTORY",
-            mg04_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
-            mg05_title: "S2.02 // PYTHAGORAS & ROOTS",
-            mg05_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
-            mg06_title: "S3.01 // QUADRATIC EQUATIONS",
-            mg06_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
-            mg07_title: "S2.03 // LINES & FUNCTIONS",
-            mg07_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
-            mg08_title: "S2.04 // SIMILARITY & SCALING",
-            mg08_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
-            mg09_title: "G1.01 // CALCULUS INTRO",
-            mg09_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
-            mg10_title: "S2.06 // LINEAR SYSTEMS",
-            mg10_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
-            mg11_title: "S2.05 // POWERS & ROOTS",
-            mg11_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
-            mg12_title: "S1.01 // AREAS & VOLUMES",
-            mg12_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
-            mg13_title: "S1.02 // DATA & CHANCE",
-            mg13_subtitle: "Analyze data sets with statistics and explore probability theory basics.",
+            s2_01_title: "S2.01 // BINOMIAL FACTORY",
+            s2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
+            s2_02_title: "S2.02 // PYTHAGORAS & ROOTS",
+            s2_02_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            s3_01_title: "S3.01 // QUADRATIC EQUATIONS",
+            s3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
+            s2_03_title: "S2.03 // LINES & FUNCTIONS",
+            s2_03_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
+            s2_04_title: "S2.04 // SIMILARITY & SCALING",
+            s2_04_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
+            g1_01_title: "G1.01 // CALCULUS INTRO",
+            g1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+            s2_06_title: "S2.06 // LINEAR SYSTEMS",
+            s2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
+            s2_05_title: "S2.05 // POWERS & ROOTS",
+            s2_05_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
+            s1_01_title: "S1.01 // AREAS & VOLUMES",
+            s1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
+            s1_02_title: "S1.02 // DATA & CHANCE",
+            s1_02_subtitle: "Analyze data sets with statistics and explore probability theory basics.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -45,7 +45,7 @@ export const translations = {
             nodes_label: "Nodes",
             nodes_value: "GENEVA // ZURICH // SHANGHAI",
         },
-        mg05: {
+        s2_02: {
             back: "Back to Nexus",
             title: "S2.02 // PYTHAGORAS & ROOTS",
             tabs: {
@@ -100,7 +100,7 @@ export const translations = {
                 chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
             }
         },
-        mg06: {
+        s3_01: {
             back: "Back to Nexus",
             title: "S3.01 // QUADRATIC EQUATIONS",
             difficulty: {
@@ -163,7 +163,7 @@ export const translations = {
                 }
             }
         },
-        mg07: {
+        s2_03: {
             back: "Back to Nexus",
             title: "S2.03 // LINES & FUNCTIONS",
             difficulty: {
@@ -207,7 +207,7 @@ export const translations = {
                 description: "In Basel, two tram lines intersect at the central hub. Calculate the intersection point."
             }
         },
-        mg08: {
+        s2_04: {
             back: "Back to Nexus",
             title: "S2.04 // SIMILARITY & SCALING",
             difficulty: {
@@ -258,7 +258,7 @@ export const translations = {
                 }
             }
         },
-        binomial: {
+        s2_01: {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
             title: "S2.01 // BINOMIAL FACTORY",
@@ -342,7 +342,7 @@ export const translations = {
                 simulating: "Simulating",
             }
         },
-        mg09: {
+        g1_01: {
             back: "Back to Nexus",
             title: "G1.01 // CALCULUS INTRO",
             tabs: {
@@ -383,7 +383,7 @@ export const translations = {
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
         },
-        mg10: {
+        s2_06: {
             back: "Back to Nexus",
             title: "S2.06 // LINEAR SYSTEMS",
             difficulty: {
@@ -428,7 +428,7 @@ export const translations = {
                 child: "Children"
             }
         },
-        mg11: {
+        s2_05: {
             back: "Back to Nexus",
             title: "S2.05 // POWERS & ROOTS",
             difficulty: {
@@ -459,7 +459,7 @@ export const translations = {
                 hints: "HINTS"
             }
         },
-        mg12: {
+        s1_01: {
             back: "Back to Nexus",
             title: "S1.01 // AREAS & VOLUMES",
             difficulty: {
@@ -496,7 +496,7 @@ export const translations = {
                 cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
             }
         },
-        mg13: {
+        s1_02: {
             back: "Back to Nexus",
             title: "S1.02 // DATA & CHANCE",
             difficulty: {
@@ -548,26 +548,26 @@ export const translations = {
             gym_title: "高级中学 // 预科阶段",
             nexus: "核心枢纽",
             archive: "实验档案",
-            mg04_title: "S2.01 // 二项式工厂",
-            mg04_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
-            mg05_title: "S2.02 // 勾股定律与开平方",
-            mg05_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
-            mg06_title: "S3.01 // 一元二次方程",
-            mg06_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
-            mg07_title: "S2.03 // 直线与函数",
-            mg07_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
-            mg08_title: "S2.04 // 相似与比例",
-            mg08_subtitle: "训练相似比、缩放因子及比例推理应用。",
-            mg09_title: "G1.01 // 微积分初步",
-            mg09_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
-            mg10_title: "S2.06 // 二元一次方程组",
-            mg10_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
-            mg11_title: "S2.05 // 幂运算与根号",
-            mg11_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
-            mg12_title: "S1.01 // 面积与体积",
-            mg12_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
-            mg13_title: "S1.02 // 数据与概率",
-            mg13_subtitle: "利用统计学分析数据集，并探索概率论基础知识。",
+            s2_01_title: "S2.01 // 二项式工厂",
+            s2_01_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
+            s2_02_title: "S2.02 // 勾股定律与开平方",
+            s2_02_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
+            s3_01_title: "S3.01 // 一元二次方程",
+            s3_01_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
+            s2_03_title: "S2.03 // 直线与函数",
+            s2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
+            s2_04_title: "S2.04 // 相似与比例",
+            s2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
+            g1_01_title: "G1.01 // 微积分初步",
+            g1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+            s2_06_title: "S2.06 // 二元一次方程组",
+            s2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
+            s2_05_title: "S2.05 // 幂运算与根号",
+            s2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
+            s1_01_title: "S1.01 // 面积与体积",
+            s1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
+            s1_02_title: "S1.02 // 数据与概率",
+            s1_02_subtitle: "利用统计学分析数据集，并探索概率论基础知识。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -577,7 +577,7 @@ export const translations = {
             nodes_label: "节点",
             nodes_value: "日内瓦 // 苏黎世 // 上海",
         },
-        mg05: {
+        s2_02: {
             back: "返回枢纽",
             title: "S2.02 // 勾股定律与开平方",
             tabs: {
@@ -632,7 +632,7 @@ export const translations = {
                 chain_desc: "转运通道跨越矩形平台并上升至高位，求完整对角线。"
             }
         },
-        mg06: {
+        s3_01: {
             back: "返回枢纽",
             title: "S3.01 // 一元二次方程",
             difficulty: {
@@ -695,7 +695,7 @@ export const translations = {
                 }
             }
         },
-        mg07: {
+        s2_03: {
             back: "返回枢纽",
             title: "S2.03 // 直线与函数",
             difficulty: {
@@ -739,7 +739,7 @@ export const translations = {
                 description: "在巴塞尔，两条电车线路在枢纽相交。请计算交点坐标。"
             }
         },
-        mg08: {
+        s2_04: {
             back: "返回枢纽",
             title: "S2.04 // 相似与比例",
             difficulty: {
@@ -790,7 +790,7 @@ export const translations = {
                 }
             }
         },
-        binomial: {
+        s2_01: {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
             title: "S2.01 // 二项式工厂",
@@ -874,7 +874,7 @@ export const translations = {
                 simulating: "模拟中",
             }
         },
-        mg09: {
+        g1_01: {
             back: "返回枢纽",
             title: "G1.01 // 微积分初步",
             tabs: {
@@ -915,7 +915,7 @@ export const translations = {
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
             integral_preview_hint: "掌握导数后解锁 →"
         },
-        mg10: {
+        s2_06: {
             back: "返回枢纽",
             title: "S2.06 // 二元一次方程组",
             difficulty: {
@@ -960,7 +960,7 @@ export const translations = {
                 child: "儿童"
             }
         },
-        mg11: {
+        s2_05: {
             back: "返回枢纽",
             title: "S2.05 // 幂运算与根号",
             difficulty: {
@@ -991,7 +991,7 @@ export const translations = {
                 hints: "提示"
             }
         },
-        mg12: {
+        s1_01: {
             back: "返回枢纽",
             title: "S1.01 // 面积与体积",
             difficulty: {
@@ -1028,7 +1028,7 @@ export const translations = {
                 cube_desc: "在 CERN，标出立方体的空间对角线并计算其长度。"
             }
         },
-        mg13: {
+        s1_02: {
             back: "返回枢纽",
             title: "S1.02 // 数据与概率",
             difficulty: {
@@ -1080,26 +1080,26 @@ export const translations = {
             gym_title: "GYMNASIUM // MATURITÄTSSTUFE",
             nexus: "Nexus",
             archive: "Archiv",
-            mg04_title: "S2.01 // BINOMISCHE FORMELN",
-            mg04_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
-            mg05_title: "S2.02 // PYTHAGORAS & WURZELN",
-            mg05_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
-            mg06_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
-            mg06_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
-            mg07_title: "S2.03 // GERADEN & FUNKTIONEN",
-            mg07_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
-            mg08_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
-            mg08_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
-            mg09_title: "G1.01 // INFINITESIMALRECHNUNG",
-            mg09_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
-            mg10_title: "S2.06 // GLEICHUNGSSYSTEME",
-            mg10_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
-            mg11_title: "S2.05 // POTENZEN & WURZELN",
-            mg11_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
-            mg12_title: "S1.01 // FLÄCHEN & VOLUMEN",
-            mg12_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-            mg13_title: "S1.02 // DATEN & ZUFALL",
-            mg13_subtitle: "Analysiere Datensätze mit Statistik und erkunde Grundlagen der Wahrscheinlichkeit.",
+            s2_01_title: "S2.01 // BINOMISCHE FORMELN",
+            s2_01_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
+            s2_02_title: "S2.02 // PYTHAGORAS & WURZELN",
+            s2_02_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
+            s3_01_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
+            s3_01_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
+            s2_03_title: "S2.03 // GERADEN & FUNKTIONEN",
+            s2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
+            s2_04_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
+            s2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
+            g1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
+            g1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+            s2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
+            s2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
+            s2_05_title: "S2.05 // POTENZEN & WURZELN",
+            s2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
+            s1_01_title: "S1.01 // FLÄCHEN & VOLUMEN",
+            s1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
+            s1_02_title: "S1.02 // DATEN & ZUFALL",
+            s1_02_subtitle: "Analysiere Datensätze mit Statistik und erkunde Grundlagen der Wahrscheinlichkeit.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -1109,7 +1109,7 @@ export const translations = {
             nodes_label: "Knoten",
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
         },
-        mg05: {
+        s2_02: {
             back: "Zurück zum Nexus",
             title: "S2.02 // PYTHAGORAS & WURZELN",
             tabs: {
@@ -1164,7 +1164,7 @@ export const translations = {
                 chain_desc: "Ein Tunnel überspannt eine rechteckige Plattform und steigt zu einer höheren Ebene auf. Bestimme die Gesamtdiagonale."
             }
         },
-        mg06: {
+        s3_01: {
             back: "Zurück zum Nexus",
             title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
             difficulty: {
@@ -1227,7 +1227,7 @@ export const translations = {
                 }
             }
         },
-        mg07: {
+        s2_03: {
             back: "Zurück zum Nexus",
             title: "S2.03 // GERADEN & FUNKTIONEN",
             difficulty: {
@@ -1271,7 +1271,7 @@ export const translations = {
                 description: "In Basel schneiden sich zwei Tramlinien am Zentralknoten. Bestimme den Schnittpunkt."
             }
         },
-        mg08: {
+        s2_04: {
             back: "Zurück zum Nexus",
             title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
             difficulty: {
@@ -1322,7 +1322,7 @@ export const translations = {
                 }
             }
         },
-        binomial: {
+        s2_01: {
             back: "← Zurück zum Nexus",
             back_short: "Zurück zum Nexus",
             title: "S2.01 // BINOMISCHE FORMELN",
@@ -1406,7 +1406,7 @@ export const translations = {
                 simulating: "Simuliert",
             }
         },
-        mg09: {
+        g1_01: {
             back: "Zurück zum Nexus",
             title: "G1.01 // INFINITESIMALRECHNUNG",
             tabs: {
@@ -1447,7 +1447,7 @@ export const translations = {
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
             integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
         },
-        mg10: {
+        s2_06: {
             back: "Zurück zum Nexus",
             title: "S2.06 // GLEICHUNGSSYSTEME",
             difficulty: {
@@ -1492,7 +1492,7 @@ export const translations = {
                 child: "Kinder"
             }
         },
-        mg11: {
+        s2_05: {
             back: "Zurück zum Nexus",
             title: "S2.05 // POTENZEN & WURZELN",
             difficulty: {
@@ -1523,7 +1523,7 @@ export const translations = {
                 hints: "HINWEISE"
             }
         },
-        mg12: {
+        s1_01: {
             back: "Zurück zum Nexus",
             title: "S1.01 // FLÄCHEN & VOLUMEN",
             difficulty: {
@@ -1560,7 +1560,7 @@ export const translations = {
                 cube_desc: "In CERN markiere die Raumdiagonale des Wuerfels und berechne ihre Laenge."
             }
         },
-        mg13: {
+        s1_02: {
             back: "Zurück zum Nexus",
             title: "S1.02 // DATEN & ZUFALL",
             difficulty: {

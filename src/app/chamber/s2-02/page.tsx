@@ -40,7 +40,7 @@ type Quest = {
   visual: Visual;
 };
 
-type Mg05T = typeof translations.EN.mg05 & {
+type Mg05T = typeof translations.EN.s2_02 & {
   yes: string;
   no: string;
   ready: string;
@@ -705,7 +705,7 @@ function RadicalSlotInput({
 
 export default function MG05Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg05 as Mg05T;
+  const t = translations[currentLanguage].s2_02 as Mg05T;
 
   const [tab, setTab] = useState<ModuleTab>("PYTHAGORAS");
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");

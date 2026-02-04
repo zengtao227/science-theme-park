@@ -171,7 +171,7 @@ function ExploreScene({ pointX, onPointChange }: ExploreSceneProps) {
 // --- MAIN PAGE ---
 export default function CalculusIntroPage() {
     const { currentLanguage, setLanguage } = useAppStore();
-    const t = translations[currentLanguage]?.mg09 ?? translations['EN'].mg09;
+    const t = translations[currentLanguage]?.g1_01 ?? translations['EN'].g1_01;
 
     const [questMode, setQuestMode] = useState<QuestMode>('EXPLORE');
     const [questData, setQuestData] = useState<QuestData | null>(null);
@@ -386,7 +386,7 @@ export default function CalculusIntroPage() {
                             {t.tabs?.[btn.id.toLowerCase() as keyof typeof t.tabs] ?? btn.id}
                         </span>
                         {questMode === btn.id && (
-                            <motion.div layoutId="nav-glow-mg09" className="absolute inset-0 bg-white/10 pointer-events-none" />
+                            <motion.div layoutId="nav-glow-g1_01" className="absolute inset-0 bg-white/10 pointer-events-none" />
                         )}
                     </button>
                 ))}

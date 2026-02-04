@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg08T = typeof translations.EN.mg08;
+type Mg08T = typeof translations.EN.s2_04;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
@@ -326,7 +326,7 @@ function Visual({ v, t }: { v: Quest["visual"]; t: Mg08T }) {
 
 export default function MG08Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg08;
+  const t = translations[currentLanguage].s2_04;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
   const [stage, setStage] = useState<Stage>("SCALE_FACTOR");

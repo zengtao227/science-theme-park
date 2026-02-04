@@ -10,7 +10,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg07T = typeof translations.EN.mg07;
+type Mg07T = typeof translations.EN.s2_03;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION";
@@ -251,7 +251,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
 
 export default function MG07Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg07;
+  const t = translations[currentLanguage].s2_03;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
   const [stage, setStage] = useState<Stage>("LINES");

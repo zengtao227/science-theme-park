@@ -10,10 +10,10 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 
-type Mg11T = typeof translations.EN.mg11;
+type Mg12T = typeof translations.EN.s1_01;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
-type Stage = "RULES" | "NEGATIVE" | "SCIENTIFIC";
+type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
 
 type Slot = {
   id: string;
@@ -42,58 +42,58 @@ function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
   return Number.isFinite(v) ? v : null;
 }
 
-function stageLabel(t: Mg11T, stage: Stage) {
-  if (stage === "RULES") return t.stages.rules;
-  if (stage === "NEGATIVE") return t.stages.negative;
-  return t.stages.scientific;
+function stageLabel(t: Mg12T, stage: Stage) {
+  if (stage === "AREAS") return t.stages.areas;
+  if (stage === "VOLUMES") return t.stages.volumes;
+  return t.stages.complex;
 }
 
-function buildStagePool(t: Mg11T, difficulty: Difficulty, stage: Stage): Quest[] {
-  if (stage === "RULES") {
+function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[] {
+  if (stage === "AREAS") {
     const all: Quest[] = [
       {
-        id: "R1",
+        id: "A1",
         difficulty,
         stage,
-        promptLatex: t.stages.rules_prompt_latex,
-        expressionLatex: `2^3\\cdot 2^4`,
-        targetLatex: `2^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 7 }],
-        correctLatex: `2^7`,
-        hintLatex: [`a^m\\cdot a^n=a^{m+n}`, `2^{3+4}=2^7`],
+        promptLatex: t.stages.areas_prompt_latex,
+        expressionLatex: `\\text{Rectangle: }a=5,\\; b=8`,
+        targetLatex: `A`,
+        slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 40 }],
+        correctLatex: `A=5\\cdot 8=40`,
+        hintLatex: [`A=a\\cdot b`, `A=40`],
       },
       {
-        id: "R2",
+        id: "A2",
         difficulty,
         stage,
-        promptLatex: t.stages.rules_prompt_latex,
-        expressionLatex: `3^5\\div 3^2`,
-        targetLatex: `3^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 3 }],
-        correctLatex: `3^3`,
-        hintLatex: [`a^m\\div a^n=a^{m-n}`, `3^{5-2}=3^3`],
+        promptLatex: t.stages.areas_prompt_latex,
+        expressionLatex: `\\text{Triangle: }b=6,\\; h=4`,
+        targetLatex: `A`,
+        slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 12 }],
+        correctLatex: `A=\\frac{1}{2}\\cdot 6\\cdot 4=12`,
+        hintLatex: [`A=\\frac{1}{2}bh`, `A=12`],
       },
       {
-        id: "R3",
+        id: "A3",
         difficulty,
         stage,
-        promptLatex: t.stages.rules_prompt_latex,
-        expressionLatex: `(2^3)^2`,
-        targetLatex: `2^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 6 }],
-        correctLatex: `2^6`,
-        hintLatex: [`(a^m)^n=a^{mn}`, `2^{3\\cdot 2}=2^6`],
+        promptLatex: t.stages.areas_prompt_latex,
+        expressionLatex: `\\text{Trapezoid: }a=4,\\; b=6,\\; h=5`,
+        targetLatex: `A`,
+        slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 25 }],
+        correctLatex: `A=\\frac{1}{2}(4+6)\\cdot 5=25`,
+        hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=25`],
       },
       {
-        id: "R4",
+        id: "A4",
         difficulty,
         stage,
-        promptLatex: t.stages.rules_prompt_latex,
-        expressionLatex: `5^2\\cdot 5^3\\div 5^4`,
-        targetLatex: `5^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 1 }],
-        correctLatex: `5^1`,
-        hintLatex: [`5^{2+3-4}=5^1`],
+        promptLatex: t.stages.areas_prompt_latex,
+        expressionLatex: `\\text{Circle: }r=3`,
+        targetLatex: `A`,
+        slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 28.27 }],
+        correctLatex: `A=\\pi r^2\\approx 28.27`,
+        hintLatex: [`A=\\pi r^2`, `A\\approx 28.27`],
       },
     ];
 
@@ -102,40 +102,40 @@ function buildStagePool(t: Mg11T, difficulty: Difficulty, stage: Stage): Quest[]
     return all;
   }
 
-  if (stage === "NEGATIVE") {
+  if (stage === "VOLUMES") {
     const all: Quest[] = [
       {
-        id: "N1",
+        id: "V1",
         difficulty,
         stage,
-        promptLatex: t.stages.negative_prompt_latex,
-        expressionLatex: `2^{-3}`,
-        targetLatex: `\\frac{1}{2^n}`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 3 }],
-        correctLatex: `\\frac{1}{2^3}`,
-        hintLatex: [`a^{-n}=\\frac{1}{a^n}`, `2^{-3}=\\frac{1}{2^3}`],
+        promptLatex: t.stages.volumes_prompt_latex,
+        expressionLatex: `\\text{Cube: }a=4`,
+        targetLatex: `V`,
+        slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 64 }],
+        correctLatex: `V=4^3=64`,
+        hintLatex: [`V=a^3`, `V=64`],
       },
       {
-        id: "N2",
+        id: "V2",
         difficulty,
         stage,
-        promptLatex: t.stages.negative_prompt_latex,
-        expressionLatex: `\\frac{1}{5^2}`,
-        targetLatex: `5^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: -2 }],
-        correctLatex: `5^{-2}`,
-        hintLatex: [`\\frac{1}{a^n}=a^{-n}`, `\\frac{1}{5^2}=5^{-2}`],
+        promptLatex: t.stages.volumes_prompt_latex,
+        expressionLatex: `\\text{Rectangular Prism: }a=3,\\; b=4,\\; c=5`,
+        targetLatex: `V`,
+        slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 60 }],
+        correctLatex: `V=3\\cdot 4\\cdot 5=60`,
+        hintLatex: [`V=abc`, `V=60`],
       },
       {
-        id: "N3",
+        id: "V3",
         difficulty,
         stage,
-        promptLatex: t.stages.negative_prompt_latex,
-        expressionLatex: `3^{-2}\\cdot 3^5`,
-        targetLatex: `3^n`,
-        slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 3 }],
-        correctLatex: `3^3`,
-        hintLatex: [`3^{-2+5}=3^3`],
+        promptLatex: t.stages.volumes_prompt_latex,
+        expressionLatex: `\\text{Cylinder: }r=2,\\; h=5`,
+        targetLatex: `V`,
+        slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 62.83 }],
+        correctLatex: `V=\\pi r^2h\\approx 62.83`,
+        hintLatex: [`V=\\pi r^2h`, `V\\approx 62.83`],
       },
     ];
 
@@ -143,65 +143,45 @@ function buildStagePool(t: Mg11T, difficulty: Difficulty, stage: Stage): Quest[]
     return all;
   }
 
-  if (stage === "SCIENTIFIC") {
+  if (stage === "COMPLEX") {
     const all: Quest[] = [
       {
-        id: "S1",
+        id: "C1",
         difficulty,
         stage,
-        promptLatex: t.stages.scientific_prompt_latex,
-        expressionLatex: `3000`,
-        targetLatex: `a\\times 10^n`,
-        slots: [
-          { id: "a", labelLatex: `a`, placeholder: "a", expected: 3 },
-          { id: "n", labelLatex: `n`, placeholder: "n", expected: 3 },
-        ],
-        correctLatex: `3\\times 10^3`,
-        hintLatex: [`3000=3\\times 1000=3\\times 10^3`],
+        promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
+        expressionLatex: `\\text{Trapezoid: }a=8,\\; b=12,\\; h=5`,
+        targetLatex: `A`,
+        slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 50 }],
+        correctLatex: `A=\\frac{1}{2}(8+12)\\cdot 5=50`,
+        hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=50`],
       },
       {
-        id: "S2",
+        id: "C2",
         difficulty,
         stage,
-        promptLatex: t.stages.scientific_prompt_latex,
-        expressionLatex: `0.005`,
-        targetLatex: `a\\times 10^n`,
-        slots: [
-          { id: "a", labelLatex: `a`, placeholder: "a", expected: 5 },
-          { id: "n", labelLatex: `n`, placeholder: "n", expected: -3 },
-        ],
-        correctLatex: `5\\times 10^{-3}`,
-        hintLatex: [`0.005=5\\times 0.001=5\\times 10^{-3}`],
-      },
-      {
-        id: "S3",
-        difficulty,
-        stage,
-        promptLatex: t.stages.scientific_prompt_latex,
-        expressionLatex: `(2\\times 10^3)\\cdot(3\\times 10^4)`,
-        targetLatex: `a\\times 10^n`,
-        slots: [
-          { id: "a", labelLatex: `a`, placeholder: "a", expected: 6 },
-          { id: "n", labelLatex: `n`, placeholder: "n", expected: 7 },
-        ],
-        correctLatex: `6\\times 10^7`,
-        hintLatex: [`(2\\cdot 3)\\times(10^3\\cdot 10^4)=6\\times 10^7`],
+        promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.cube_title}}\\\\\\text{${t.mission?.cube_desc}}`,
+        expressionLatex: `\\text{Cube: }a=6`,
+        targetLatex: `d`,
+        slots: [{ id: "d", labelLatex: `d`, placeholder: "diagonal", expected: 10.39 }],
+        correctLatex: `d=a\\sqrt{3}\\approx 10.39`,
+        hintLatex: [`d=a\\sqrt{3}`, `d\\approx 10.39`],
       },
     ];
 
-    if (difficulty === "BASIC") return all.slice(0, 2);
+    if (difficulty === "BASIC") return all.slice(0, 1);
     return all;
   }
 
   return [];
 }
 
-export default function MG11Page() {
+export default function MG12Page() {
   const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].mg11;
+  const t = translations[currentLanguage].s1_01;
 
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
-  const [stage, setStage] = useState<Stage>("RULES");
+  const [stage, setStage] = useState<Stage>("AREAS");
   const [nonce, setNonce] = useState(0);
 
   const [inputs, setInputs] = useState<Record<string, string>>({});
@@ -229,7 +209,7 @@ export default function MG11Page() {
     for (const slot of currentQuest.slots) {
       const raw = inputs[slot.id] ?? "";
       const v = parseNumberLike(raw, locale);
-      if (v === null || v !== slot.expected) {
+      if (v === null || Math.abs(v - slot.expected) > 0.1) {
         setLastCheck({ ok: false, correct: currentQuest.correctLatex });
         return;
       }
@@ -306,9 +286,9 @@ export default function MG11Page() {
           <div className="w-full max-w-5xl space-y-10">
             <div className="flex flex-wrap gap-3 justify-center">
               {([
-                { id: "RULES", label: stageLabel(t, "RULES") },
-                { id: "NEGATIVE", label: stageLabel(t, "NEGATIVE") },
-                { id: "SCIENTIFIC", label: stageLabel(t, "SCIENTIFIC") },
+                { id: "AREAS", label: stageLabel(t, "AREAS") },
+                { id: "VOLUMES", label: stageLabel(t, "VOLUMES") },
+                { id: "COMPLEX", label: stageLabel(t, "COMPLEX") },
               ] as const).map((m) => (
                 <button
                   key={m.id}
@@ -340,7 +320,7 @@ export default function MG11Page() {
                   <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
                   <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
                   <div className="space-y-4">
-                    <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
+                    <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[0.95] whitespace-nowrap">
                       <InlineMath math={currentQuest.expressionLatex} />
                     </div>
                     <div className="text-white/60 font-black">
@@ -436,7 +416,7 @@ export default function MG11Page() {
               </div>
               <div className="space-y-2">
                 <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
-                  {difficulty}{" // "}MG11{" // "}{stageName}
+                  {difficulty}{" // "}MG12{" // "}{stageName}
                 </div>
               </div>
             </div>

@@ -173,7 +173,7 @@ type QuestData = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | 
 
 export default function BinomialFactoryPage() {
     const { currentLanguage, setLanguage } = useAppStore();
-    const t = translations[currentLanguage].binomial;
+    const t = translations[currentLanguage].s2_01;
 
     const [questMode, setQuestMode] = useState<QuestMode>('EXPLORE');
     const [a, setA] = useState(3);

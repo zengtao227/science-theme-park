@@ -87,7 +87,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* S1.01: Areas & Volumes */}
-              <Link href="/chamber/mg12" className="group">
+              <Link href="/chamber/s1-01" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -97,10 +97,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S1.01</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
-                      {t.home.mg12_title}
+                      {t.home.s1_01_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg12_subtitle}
+                      {t.home.s1_01_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -111,7 +111,7 @@ export default function Home() {
               </Link>
 
               {/* S1.02: Data & Chance */}
-              <Link href="/chamber/mg13" className="group">
+              <Link href="/chamber/s1-02" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -121,10 +121,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S1.02</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-green transition-colors uppercase">
-                      {t.home.mg13_title}
+                      {t.home.s1_02_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg13_subtitle}
+                      {t.home.s1_02_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -148,7 +148,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* S2.01: Binomial Factory */}
-              <Link href="/chamber/binomial-factory" className="group">
+              <Link href="/chamber/s2-01" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -158,10 +158,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.01</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors uppercase">
-                      {t.home.mg04_title}
+                      {t.home.s2_01_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg04_subtitle}
+                      {t.home.s2_01_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -172,7 +172,7 @@ export default function Home() {
               </Link>
 
               {/* S2.02: Pythagoras & Roots */}
-              <Link href="/chamber/mg05" className="group">
+              <Link href="/chamber/s2-02" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -182,10 +182,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.02</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
-                      {t.home.mg05_title}
+                      {t.home.s2_02_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg05_subtitle}
+                      {t.home.s2_02_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -196,7 +196,7 @@ export default function Home() {
               </Link>
 
               {/* S2.03: Lines & Functions */}
-              <Link href="/chamber/mg07" className="group">
+              <Link href="/chamber/s2-03" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-green/50 group-hover:bg-neon-green/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -206,10 +206,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.03</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:neon-text-green transition-colors uppercase">
-                      {t.home.mg07_title}
+                      {t.home.s2_03_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg07_subtitle}
+                      {t.home.s2_03_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-green opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -220,7 +220,7 @@ export default function Home() {
               </Link>
 
               {/* S2.04: Similarity & Scaling */}
-              <Link href="/chamber/mg08" className="group">
+              <Link href="/chamber/s2-04" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -230,10 +230,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.04</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
-                      {t.home.mg08_title}
+                      {t.home.s2_04_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg08_subtitle}
+                      {t.home.s2_04_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -244,7 +244,7 @@ export default function Home() {
               </Link>
 
               {/* S2.05: Powers & Roots */}
-              <Link href="/chamber/mg11" className="group">
+              <Link href="/chamber/s2-05" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -254,10 +254,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.05</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
-                      {t.home.mg11_title}
+                      {t.home.s2_05_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg11_subtitle}
+                      {t.home.s2_05_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -268,7 +268,7 @@ export default function Home() {
               </Link>
 
               {/* S2.06: Linear Systems */}
-              <Link href="/chamber/mg10" className="group">
+              <Link href="/chamber/s2-06" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -278,10 +278,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.06</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-cyan transition-colors uppercase">
-                      {t.home.mg10_title}
+                      {t.home.s2_06_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg10_subtitle}
+                      {t.home.s2_06_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -305,7 +305,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* S3.01: Quadratic Equations */}
-              <Link href="/chamber/mg06" className="group">
+              <Link href="/chamber/s3-01" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -315,10 +315,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S3.01</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
-                      {t.home.mg06_title}
+                      {t.home.s3_01_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg06_subtitle}
+                      {t.home.s3_01_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
@@ -342,7 +342,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* G1.01: Calculus Intro */}
-              <Link href="/chamber/mg09" className="group">
+              <Link href="/chamber/g1-01" className="group">
                 <div className="hud-panel p-8 h-full transition-all duration-500 border-white/5 group-hover:border-neon-purple/50 group-hover:bg-neon-purple/5 group-hover:-translate-y-2 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start mb-10">
@@ -352,10 +352,10 @@ export default function Home() {
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">G1.01</span>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-neon-purple transition-colors uppercase">
-                      {t.home.mg09_title}
+                      {t.home.g1_01_title}
                     </h3>
                     <p className="text-sm text-neutral-400 font-mono leading-relaxed">
-                      {t.home.mg09_subtitle}
+                      {t.home.g1_01_subtitle}
                     </p>
                   </div>
                   <div className="mt-10 flex items-center gap-2 text-xs font-bold text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
