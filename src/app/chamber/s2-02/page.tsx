@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Atom, Sigma, TriangleRight } from "lucide-react";
 import { clsx } from "clsx";
+import ConceptIcon from "@/components/ConceptIcon";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
@@ -567,7 +569,7 @@ function makeQuest(t: Mg05T, tab: ModuleTab, difficulty: Difficulty, mode: Mode,
         steps: [
           { id: "ans", labelLatex: isHyp ? `c` : `leg`, input: "number", answer: isHyp ? Number(c) : (Number(a) < Number(c) ? Number(b) : Number(a)) }
         ],
-        visual: { kind: "triangle", a: Number(a), b: Number(b), c: Number(c) }
+        visual: { kind: "triangle", a: Number(a), b: Number(b), c: Number(c) } as any
       };
     }
     if (mode === "CHAIN") return buildMissionQuest(t, difficulty, `CHAIN|${signature}`);
@@ -761,19 +763,19 @@ function RadicalSlotInput({
   );
 }
 
-export default function MG05Page() {
+function MG05PageContent() {
   const store = useAppStore();
   const currentLanguage = store?.currentLanguage || 'EN';
-  const setLanguage = store?.setLanguage || (() => {});
-  
+  const setLanguage = store?.setLanguage || (() => { });
+
   const rawT = translations[currentLanguage]?.s2_02;
-  
+
   if (!rawT) {
     return <div className="w-full h-screen bg-black text-white flex items-center justify-center">
       <div className="text-xl">Translation not found for {currentLanguage}</div>
     </div>;
   }
-  
+
   const t = rawT as any as Mg05T;
 
   const [tab, setTab] = useState<ModuleTab>("PYTHAGORAS");
@@ -895,7 +897,8 @@ export default function MG05Page() {
           <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
         </Link>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
+          <ConceptIcon code="S2.02" className="w-8 h-8 text-white/50 mb-1" />
           <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
             {t.title}
           </div>
@@ -1150,3 +1153,16 @@ export default function MG05Page() {
     </div>
   );
 }
+
+
+// Disable SSR for this component to avoid store initialization issues
+const MG05PageWithoutSSR = dynamic(() => Promise.resolve(MG05PageContent), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-screen bg-black text-white flex items-center justify-center">
+      <div className="text-xl">Loading...</div>
+    </div>
+  )
+});
+
+export default MG05PageWithoutSSR;

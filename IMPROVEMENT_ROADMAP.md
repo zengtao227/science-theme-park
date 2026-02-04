@@ -467,10 +467,11 @@ test('MG07 - User can solve line equation', async ({ page }) => {
 
 ### 本周 (Week 1)
 - [x] 创建改进路线图文档
-- [ ] 安装可视化库 (recharts, matter-js)
-- [ ] 实现 MG07 函数图像可视化
-- [ ] 实现 MG12 几何图形可视化
-- [ ] 启动 Matter.js 物理引擎原型
+- [x] 安装可视化库 (recharts, matter-js)
+- [x] 实现 S1.01 (MG12) 几何图形可视化 - 动态SVG渲染
+- [x] S2.03 (MG07) 已有函数图像可视化 (FunctionCanvas)
+- [x] 启动 Matter.js 物理引擎原型 (PhysicsSimulator组件)
+- [x] 创建物理演示页面 (physics-demo) 展示牛顿定律
 
 ### 下周 (Week 2)
 - [ ] 创建 ChamberLayout 通用组件
