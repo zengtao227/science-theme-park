@@ -21,16 +21,95 @@ interface G101Quest extends Quest {
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): G101Quest[] {
   if (stage === "SLOPE") {
-    return [{
-      id: "Q1", difficulty, stage, type: 'SLOPE',
-      promptLatex: t.stages.slope_prompt,
-      expressionLatex: `A(1,1), B(3,9)`,
-      targetLatex: `m`,
-      slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 4 }],
-      correctLatex: `m = 4`,
-      x1: 1, y1: 1, x2: 3, y2: 9, correctSlope: 4
-    }];
+    const all: G101Quest[] = [
+      {
+        id: "Q1", difficulty, stage, type: 'SLOPE',
+        promptLatex: `\\text{Calculate secant slope between } A(1,1) \\text{ and } B(3,9) \\text{ on } y=x^2.`,
+        expressionLatex: `A(1,1), B(3,9)`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 4 }],
+        correctLatex: `m = \\frac{9-1}{3-1} = 4`,
+        x1: 1, y1: 1, x2: 3, y2: 9, correctSlope: 4
+      },
+      {
+        id: "Q2", difficulty, stage, type: 'SLOPE',
+        promptLatex: `\\text{Calculate secant slope between } A(0,0) \\text{ and } B(2,4) \\text{ on } y=x^2.`,
+        expressionLatex: `A(0,0), B(2,4)`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 2 }],
+        correctLatex: `m = \\frac{4-0}{2-0} = 2`,
+        x1: 0, y1: 0, x2: 2, y2: 4, correctSlope: 2
+      },
+      {
+        id: "Q3", difficulty, stage, type: 'SLOPE',
+        promptLatex: `\\text{Calculate secant slope between } A(-1,1) \\text{ and } B(2,4) \\text{ on } y=x^2.`,
+        expressionLatex: `A(-1,1), B(2,4)`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 1 }],
+        correctLatex: `m = \\frac{4-1}{2-(-1)} = 1`,
+        x1: -1, y1: 1, x2: 2, y2: 4, correctSlope: 1
+      }
+    ];
+    return all;
   }
+
+  if (stage === "TANGENT") {
+    const all: G101Quest[] = [
+      {
+        id: "T1", difficulty, stage, type: 'TANGENT',
+        promptLatex: `\\text{Find tangent slope of } y=x^2 \\text{ at } x=1.`,
+        expressionLatex: `f'(x) = 2x, \\; x=1`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 2 }],
+        correctLatex: `m = f'(1) = 2(1) = 2`,
+        x0: 1, y0: 1, func: 'x2', correctSlope: 2
+      },
+      {
+        id: "T2", difficulty, stage, type: 'TANGENT',
+        promptLatex: `\\text{Find tangent slope of } y=x^2 \\text{ at } x=2.`,
+        expressionLatex: `f'(x) = 2x, \\; x=2`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 4 }],
+        correctLatex: `m = f'(2) = 2(2) = 4`,
+        x0: 2, y0: 4, func: 'x2', correctSlope: 4
+      },
+      {
+        id: "T3", difficulty, stage, type: 'TANGENT',
+        promptLatex: `\\text{Find tangent slope of } y=2x^2 \\text{ at } x=1.5.`,
+        expressionLatex: `f'(x) = 4x, \\; x=1.5`,
+        targetLatex: `m`,
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: 6 }],
+        correctLatex: `m = f'(1.5) = 4(1.5) = 6`,
+        x0: 1.5, y0: 4.5, func: '2x2', correctSlope: 6
+      }
+    ];
+    return all;
+  }
+
+  if (stage === "ELITE") {
+    const all: G101Quest[] = [
+      {
+        id: "E1", difficulty, stage, type: 'TANGENT',
+        promptLatex: `\\text{Find } x \\text{ where tangent of } y=x^2 \\text{ has slope } m=6.`,
+        expressionLatex: `2x = 6`,
+        targetLatex: `x`,
+        slots: [{ id: "x", labelLatex: "x", placeholder: "x-value", expected: 3 }],
+        correctLatex: `2x = 6 \\implies x = 3`,
+        x0: 3, y0: 9, func: 'x2', correctSlope: 6
+      },
+      {
+        id: "E2", difficulty, stage, type: 'TANGENT',
+        promptLatex: `\\text{Find } x \\text{ where tangent of } y=x^2 \\text{ has slope } m=-2.`,
+        expressionLatex: `2x = -2`,
+        targetLatex: `x`,
+        slots: [{ id: "x", labelLatex: "x", placeholder: "x-value", expected: -1 }],
+        correctLatex: `2x = -2 \\implies x = -1`,
+        x0: -1, y0: 1, func: 'x2', correctSlope: -2
+      }
+    ];
+    return all;
+  }
+
   return [];
 }
 

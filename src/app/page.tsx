@@ -9,7 +9,7 @@ import { Gamepad2, Atom, Globe, FlaskConical } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
-  const { hasAcceptedProtocol, currentLanguage, setLanguage, progress } = useAppStore();
+  const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress } = useAppStore();
   const t = (translations as any)[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
@@ -24,13 +24,13 @@ export default function Home() {
 
   // Helper to check progress
   const getProgress = (moduleId: string) => {
-    const mod = progress[moduleId];
-    if (!mod) return { percent: 0, completed: false };
-    const stages = Object.keys(mod.stages).length;
-    // Simplified: assuming 3 stages per module usually. 
-    // In a real app we'd know total stages. For now, just show "Active".
-    return { percent: stages > 0 ? 100 : 0, completed: stages >= 3 };
+    const p = getModuleProgress(moduleId);
+    return { percent: p, completed: p === 100 };
   };
+
+  const mathProgress = getSectorProgress('math');
+  const physicsProgress = getSectorProgress('physics');
+  const chemistryProgress = getSectorProgress('chemistry');
 
   return (
     <main className="h-screen overflow-y-auto bg-black text-white selection:bg-neon-green/30 pb-20">
@@ -89,7 +89,8 @@ export default function Home() {
           <Sector
             title="MATHEMATICS SECTOR"
             color="neon-cyan"
-            icon={<ConceptIcon code="S1.01" className="w-5 h-5" />}
+            progress={mathProgress}
+            icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
           >
             <ModuleCard code="S1.01" title={t.home.s1_01_title} desc={t.home.s1_01_subtitle} color="neon-purple" progress={getProgress('S1.01')} href="/chamber/s1-01" />
             <ModuleCard code="S1.02" title={t.home.s1_02_title} desc={t.home.s1_02_subtitle} color="neon-green" progress={getProgress('S1.02')} href="/chamber/s1-02" />
@@ -109,7 +110,8 @@ export default function Home() {
           <Sector
             title="PHYSICS SECTOR"
             color="neon-green"
-            icon={<Atom className="w-5 h-5" />}
+            progress={physicsProgress}
+            icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
           >
             <ModuleCard
               code="P1.02"
@@ -141,7 +143,8 @@ export default function Home() {
           <Sector
             title="CHEMISTRY SECTOR"
             color="neon-purple"
-            icon={<FlaskConical className="w-5 h-5" />}
+            progress={chemistryProgress}
+            icon={<FlaskConical className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
           >
             <ModuleCard
               code="C1.01"
@@ -159,17 +162,25 @@ export default function Home() {
   );
 }
 
-function Sector({ title, color, icon, children }: { title: string, color: string, icon: React.ReactNode, children: React.ReactNode }) {
+function Sector({ title, color, icon, progress, children }: { title: string, color: string, icon: React.ReactNode, progress: number, children: React.ReactNode }) {
   return (
     <section>
       <div className="flex items-center gap-4 mb-8">
-        <div className={`w-8 h-8 rounded border border-${color} flex items-center justify-center text-${color}`}>
+        <div className={clsx(`w-10 h-10 rounded-lg border border-${color}/30 flex items-center justify-center text-${color} bg-${color}/5 shadow-[0_0_15px_rgba(0,0,0,0.5)]`)}>
           {icon}
         </div>
-        <h3 className="text-sm font-black tracking-[0.3em] text-white/60 uppercase whitespace-nowrap">
-          {title}
-        </h3>
-        <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
+        <div className="flex flex-col gap-1">
+          <h3 className="text-sm font-black tracking-[0.3em] text-white uppercase whitespace-nowrap">
+            {title}
+          </h3>
+          <div className="flex items-center gap-3">
+            <div className="w-24 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div className={clsx("h-full transition-all duration-1000", `bg-${color}`)} style={{ width: `${progress}%` }} />
+            </div>
+            <span className={clsx("text-[9px] font-mono font-black opacity-60", `text-${color}`)}>{progress}%</span>
+          </div>
+        </div>
+        <div className="h-px flex-1 bg-gradient-to-r from-white/20 via-white/10 to-transparent self-center mt-2" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {children}
@@ -191,28 +202,28 @@ function ModuleCard({ code, title, desc, color, progress, href }: { code: string
           <div className="absolute top-0 left-0 h-1 bg-neon-green/50 transition-all" style={{ width: `${progress.percent}%` }} />
         )}
         {progress.completed && (
-          <div className="absolute top-2 right-2 text-neon-green text-xs font-bold">✓ COMPLETED</div>
+          <div className="absolute top-2 right-2 text-neon-green text-[9px] font-black tracking-widest">✓ COMPLETED</div>
         )}
 
         <div>
-          <div className="flex justify-between items-start mb-6">
-            <div className="flex items-center gap-3">
-              <div className={clsx(`w-10 h-10 border border-${color}/30 rounded-md flex items-center justify-center text-${color} group-hover:bg-${color}/10 transition-colors`)}>
-                <ConceptIcon code={code} className="w-6 h-6" />
-              </div>
-              <span className={clsx("text-xs font-mono font-bold tracking-widest opacity-70", `text-${color}`)}>{code}</span>
-            </div>
-            <div className={clsx("w-2 h-2 rounded-full", progress.percent > 0 ? "bg-neon-green" : "bg-white/10")} />
+          <div className="flex justify-between items-center mb-6">
+            <span className={clsx("text-[10px] font-mono font-black tracking-[0.2em] opacity-50", `text-${color}`)}>{code}</span>
+            <div className={clsx("w-1.5 h-1.5 rounded-full", progress.percent > 0 ? "bg-neon-green shadow-[0_0_8px_#39ff14]" : "bg-white/10")} />
           </div>
-          <h3 className={clsx("text-xl font-bold tracking-tight mb-2 uppercase transition-colors", `group-hover:text-${color}`)}>
-            {title}
+
+          <h3 className={clsx("text-lg font-black tracking-tight mb-3 uppercase transition-colors flex items-center gap-3", `group-hover:text-${color}`)}>
+            <div className={clsx(`w-8 h-8 flex-shrink-0 border border-${color}/20 rounded flex items-center justify-center text-${color} group-hover:bg-${color}/10 transition-all`)}>
+              <ConceptIcon code={code} className="w-5 h-5" />
+            </div>
+            <span>{title}</span>
           </h3>
-          <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+
+          <p className="text-xs text-neutral-500 font-mono leading-relaxed group-hover:text-neutral-300 transition-colors">
             {desc}
           </p>
         </div>
 
-        <div className={clsx("mt-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity", `text-${color}`)}>
+        <div className={clsx("mt-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-all translate-x-1 group-hover:translate-x-0", `text-${color}`)}>
           <span>Initiate</span>
           <span>→</span>
         </div>

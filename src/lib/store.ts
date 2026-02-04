@@ -55,12 +55,13 @@ export const useAppStore = create<AppState>()(
 
       getModuleProgress: (moduleId) => {
         const state = get();
-        const moduleData = state.progress[moduleId];
+        const normalizedId = moduleId.toLowerCase().replace('.', '-');
+        const moduleData = state.progress[normalizedId];
         if (!moduleData) return 0;
         const stages = Object.values(moduleData.stages);
         if (stages.length === 0) return 0;
         const completed = stages.filter(Boolean).length;
-        return Math.round((completed / stages.length) * 100);
+        return Math.round((completed / Math.max(3, stages.length)) * 100);
       },
 
       getSectorProgress: (sector) => {
@@ -74,20 +75,18 @@ export const useAppStore = create<AppState>()(
         const sectorModules = modules[sector] || [];
         if (sectorModules.length === 0) return 0;
 
-        let totalStages = 0;
         let completedStages = 0;
+        let totalPossibleStages = 0;
 
-        sectorModules.forEach(moduleId => {
-          const moduleData = state.progress[moduleId];
+        sectorModules.forEach(id => {
+          totalPossibleStages += 3;
+          const moduleData = state.progress[id];
           if (moduleData) {
-            const stages = Object.values(moduleData.stages);
-            totalStages += stages.length;
-            completedStages += stages.filter(Boolean).length;
+            completedStages += Object.values(moduleData.stages).filter(Boolean).length;
           }
         });
 
-        if (totalStages === 0) return 0;
-        return Math.round((completedStages / totalStages) * 100);
+        return Math.min(100, Math.round((completedStages / totalPossibleStages) * 100));
       },
     }),
     {
