@@ -1,40 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { useMemo, useState } from "react";
-import { ArrowLeft, Sigma } from "lucide-react";
-import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
-import ConceptIcon from "@/components/ConceptIcon";
 import "katex/dist/katex.min.css";
+import { clsx } from "clsx";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
+import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import ChamberLayout from "@/components/layout/ChamberLayout";
 
 type Mg06T = typeof translations.EN.s3_01;
 
-type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
 
-type Slot = {
-  id: string;
-  labelLatex: string;
-  placeholder: string;
-  expected: number;
-};
-
-type Quest = {
-  id: string;
-  difficulty: Difficulty;
+interface S301Quest extends Quest {
   stage: Stage;
-  promptLatex: string;
-  expressionLatex: string;
-  targetLatex: string;
-  slots: Slot[];
   slotGroups?: Array<{ titleLatex: string; slotIds: string[] }>;
-  correctLatex: string;
-  hintLatex?: string[];
-};
+}
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
   const raw = s.trim();
@@ -44,13 +26,11 @@ function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
   return Number.isFinite(v) ? v : null;
 }
 
-function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[] {
+function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): S301Quest[] {
   if (stage === "TERMS") {
-    const all: Quest[] = [
+    const all: S301Quest[] = [
       {
-        id: "T1",
-        difficulty,
-        stage,
+        id: "T1", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `3x+2y-4x+7y`,
         targetLatex: `ax+by`,
@@ -61,9 +41,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `-x+9y`,
       },
       {
-        id: "T2",
-        difficulty,
-        stage,
+        id: "T2", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `5a-(2a-3b)+4b`,
         targetLatex: `pa+qb`,
@@ -74,9 +52,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `3a+7b`,
       },
       {
-        id: "T3",
-        difficulty,
-        stage,
+        id: "T3", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `6m+3n-(2m+5n)+m`,
         targetLatex: `rm+sn`,
@@ -87,9 +63,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `5m-2n`,
       },
       {
-        id: "T4",
-        difficulty,
-        stage,
+        id: "T4", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `4x(2y-x)+3x^2-5xy`,
         targetLatex: `ux^2+vxy`,
@@ -100,9 +74,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `-x^2+3xy`,
       },
       {
-        id: "T5",
-        difficulty,
-        stage,
+        id: "T5", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `7p-2(p-3q)+4q`,
         targetLatex: `up+vq`,
@@ -113,9 +85,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `5p+10q`,
       },
       {
-        id: "T6",
-        difficulty,
-        stage,
+        id: "T6", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `2x-3(x-4)+5`,
         targetLatex: `ax+b`,
@@ -126,9 +96,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `-x+17`,
       },
       {
-        id: "T7",
-        difficulty,
-        stage,
+        id: "T7", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `3(2x-1)-2(x+4)`,
         targetLatex: `ax+b`,
@@ -139,9 +107,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `4x-11`,
       },
       {
-        id: "T8",
-        difficulty,
-        stage,
+        id: "T8", difficulty, stage,
         promptLatex: t.stages.terms_prompt_latex,
         expressionLatex: `2a(3b-a)+a^2-4ab`,
         targetLatex: `ua^2+vab`,
@@ -160,11 +126,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
   }
 
   if (stage === "FACTORIZE") {
-    const all: Quest[] = [
+    const all: S301Quest[] = [
       {
-        id: "F1",
-        difficulty,
-        stage,
+        id: "F1", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `x^2+5x+6`,
         targetLatex: `(x+A)(x+B)`,
@@ -180,9 +144,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F2",
-        difficulty,
-        stage,
+        id: "F2", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `x^2-4x-12`,
         targetLatex: `(x+A)(x+B)`,
@@ -198,9 +160,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F3",
-        difficulty,
-        stage,
+        id: "F3", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `9a^2-16`,
         targetLatex: `(3a-4)(3a+4)`,
@@ -216,9 +176,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F4",
-        difficulty,
-        stage,
+        id: "F4", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `4x^2+12x+9`,
         targetLatex: `(2x+3)^2`,
@@ -234,9 +192,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F5",
-        difficulty,
-        stage,
+        id: "F5", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `6ab-9a`,
         targetLatex: `ka(mb+n)`,
@@ -252,9 +208,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F6",
-        difficulty,
-        stage,
+        id: "F6", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `2x^2+8x+8`,
         targetLatex: `2(x+2)^2`,
@@ -269,9 +223,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F7",
-        difficulty,
-        stage,
+        id: "F7", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `5m^2n-10mn`,
         targetLatex: `kmn(m+c)`,
@@ -282,9 +234,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         correctLatex: `5mn(m-2)`,
       },
       {
-        id: "F8",
-        difficulty,
-        stage,
+        id: "F8", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `a^2-7a+10`,
         targetLatex: `(a+A)(a+B)`,
@@ -299,9 +249,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F9",
-        difficulty,
-        stage,
+        id: "F9", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `12x^3y-6x^2y`,
         targetLatex: `kx^2y(mx+n)`,
@@ -318,9 +266,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F10",
-        difficulty,
-        stage,
+        id: "F10", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `x^2+6x+9`,
         targetLatex: `(x+A)^2`,
@@ -335,9 +281,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "F11",
-        difficulty,
-        stage,
+        id: "F11", difficulty, stage,
         promptLatex: t.stages.factor_prompt_latex,
         expressionLatex: `25x^2-49`,
         targetLatex: `(px-q)(px+q)`,
@@ -361,11 +305,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
   }
 
   if (stage === "FRACTIONS") {
-    const all: Quest[] = [
+    const all: S301Quest[] = [
       {
-        id: "R1",
-        difficulty,
-        stage,
+        id: "R1", difficulty, stage,
         promptLatex: t.stages.fractions_prompt_latex,
         expressionLatex: `\\frac{x^2-9}{x^2+3x}`,
         targetLatex: `\\frac{x-3}{x}`,
@@ -385,9 +327,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "R2",
-        difficulty,
-        stage,
+        id: "R2", difficulty, stage,
         promptLatex: t.stages.fractions_prompt_latex,
         expressionLatex: `\\frac{6x^2y}{9xy^2}`,
         targetLatex: `\\frac{2x}{3y}`,
@@ -403,9 +343,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "R3",
-        difficulty,
-        stage,
+        id: "R3", difficulty, stage,
         promptLatex: t.stages.fractions_prompt_latex,
         expressionLatex: `\\frac{8x}{12}`,
         targetLatex: `\\frac{2x}{3}`,
@@ -420,9 +358,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "R4",
-        difficulty,
-        stage,
+        id: "R4", difficulty, stage,
         promptLatex: t.stages.fractions_prompt_latex,
         expressionLatex: `\\frac{15a^2b}{6ab}`,
         targetLatex: `\\frac{5a}{2}`,
@@ -438,9 +374,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         ],
       },
       {
-        id: "R5",
-        difficulty,
-        stage,
+        id: "R5", difficulty, stage,
         promptLatex: t.stages.fractions_prompt_latex,
         expressionLatex: `\\frac{x^2-16}{x^2+4x}`,
         targetLatex: `\\frac{x-4}{x}`,
@@ -467,11 +401,9 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
     return all;
   }
 
-  const all: Quest[] = [
+  const all: S301Quest[] = [
     {
-      id: "E1",
-      difficulty,
-      stage,
+      id: "E1", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `(x+4)(x-6)=0`,
       targetLatex: `x_1,\\; x_2`,
@@ -487,9 +419,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
     },
     {
-      id: "E2",
-      difficulty,
-      stage,
+      id: "E2", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `x^2-7x+10=0`,
       targetLatex: `A,B\\;\\text{then}\\; x_1,x_2`,
@@ -508,9 +438,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
     },
     {
-      id: "E3",
-      difficulty,
-      stage,
+      id: "E3", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `(x-3)(x+2)=x^2-1`,
       targetLatex: `x`,
@@ -529,9 +457,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
     },
     {
-      id: "E4",
-      difficulty,
-      stage,
+      id: "E4", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `(2x-1)^2=9`,
       targetLatex: `x_1,\\; x_2`,
@@ -547,9 +473,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
     },
     {
-      id: "E5",
-      difficulty,
-      stage,
+      id: "E5", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `-3(x-2)=2x+4`,
       targetLatex: `\\frac{p}{q}`,
@@ -566,9 +490,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       ],
     },
     {
-      id: "E6",
-      difficulty,
-      stage,
+      id: "E6", difficulty, stage,
       promptLatex: t.stages.equations_prompt_latex,
       expressionLatex: `2(x-3)=x+5`,
       targetLatex: `x`,
@@ -588,317 +510,182 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
   return all;
 }
 
-function stageLabel(t: Mg06T, stage: Stage) {
-  if (stage === "TERMS") return t.stages.terms;
-  if (stage === "FACTORIZE") return t.stages.factorize;
-  if (stage === "FRACTIONS") return t.stages.fractions;
-  return t.stages.equations;
-}
-
-export default function MG06Page() {
-  const { currentLanguage, setLanguage } = useAppStore();
+export default function S301Page() {
+  const { currentLanguage } = useAppStore();
   const t = translations[currentLanguage].s3_01;
 
-  const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
-  const [stage, setStage] = useState<Stage>("TERMS");
-  const [nonce, setNonce] = useState(0);
+  const {
+    difficulty,
+    stage,
+    inputs,
+    lastCheck,
+    currentQuest,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+    locale,
+  } = useQuestManager<S301Quest, Stage>({
+    buildPool: (d, s) => buildStagePool(t, d, s),
+    initialStage: "TERMS",
+  });
 
-  const [inputs, setInputs] = useState<Record<string, string>>({});
-  const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
-
-  const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
-
-  const pool = useMemo(() => buildStagePool(t, difficulty, stage), [difficulty, stage, t]);
-  const currentQuest = useMemo(() => {
-    const sorted = [...pool].sort((a, b) => a.id.localeCompare(b.id));
-    return sorted[nonce % Math.max(1, sorted.length)];
-  }, [nonce, pool]);
-
-  const clearInputs = () => {
-    setInputs({});
-    setLastCheck(null);
-  };
-
-  const next = () => {
-    clearInputs();
-    setNonce((v) => v + 1);
-  };
-
-  const verify = () => {
-    for (const slot of currentQuest.slots) {
-      const raw = inputs[slot.id] ?? "";
-      const v = parseNumberLike(raw, locale);
-      if (v === null || v !== slot.expected) {
-        setLastCheck({ ok: false, correct: currentQuest.correctLatex });
-        return;
-      }
-    }
-    setLastCheck({ ok: true, correct: currentQuest.correctLatex });
-  };
-
-  const stageName = stageLabel(t, stage);
-  const expressionLatex = currentQuest.expressionLatex;
+  const stages = [
+    { id: "TERMS", label: t.stages.terms },
+    { id: "FACTORIZE", label: t.stages.factorize },
+    { id: "FRACTIONS", label: t.stages.fractions },
+    { id: "EQUATIONS", label: t.stages.equations },
+  ];
 
   return (
-    <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
-      <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
-        <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10">
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          <span className="text-xs font-black tracking-[0.2em] uppercase">{t.back}</span>
-        </Link>
-
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
-          <ConceptIcon code="S3.01" className="w-8 h-8 text-white/50 mb-1" />
-          <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
-            {t.title}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6 z-10">
-          <div className="hidden md:flex items-center gap-1">
-            {([
-              { id: "BASIC", label: t.difficulty.basic },
-              { id: "CORE", label: t.difficulty.core },
-              { id: "ADVANCED", label: t.difficulty.advanced },
-              { id: "ELITE", label: t.difficulty.elite },
-            ] as const).map((d) => (
-              <button
-                key={d.id}
-                onClick={() => {
-                  setDifficulty(d.id);
-                  setNonce(0);
-                  clearInputs();
-                }}
-                className={clsx(
-                  "px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
-                  difficulty === d.id
-                    ? "border-white bg-white text-black"
-                    : "border-white/30 text-white hover:border-white/50"
-                )}
-              >
-                {d.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="w-px h-4 bg-white/20 hidden md:block" />
-
-          <div className="flex items-center gap-2">
-            {(['DE', 'EN', 'CN'] as const).map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setLanguage(lang)}
-                className={clsx(
-                  "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all border",
-                  currentLanguage === lang
-                    ? "bg-white text-black border-white"
-                    : "text-white border-white/30 hover:border-white/50"
-                )}
-              >
-                {lang}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      <div className="flex-1 flex overflow-hidden">
-        <main className="flex-1 border-r-2 border-white/10 p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
-          <div className="w-full max-w-5xl space-y-10">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {([
-                { id: "TERMS", label: t.stages.terms },
-                { id: "FACTORIZE", label: t.stages.factorize },
-                { id: "FRACTIONS", label: t.stages.fractions },
-                { id: "EQUATIONS", label: t.stages.equations },
-              ] as const).map((m) => (
-                <button
-                  key={m.id}
-                  onClick={() => {
-                    setStage(m.id);
-                    setNonce(0);
-                    clearInputs();
-                  }}
-                  className={clsx(
-                    "px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                    stage === m.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
-                  )}
-                >
-                  {m.label}
-                </button>
-              ))}
+    <ChamberLayout
+      title={t.title}
+      moduleCode="S3.01"
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stages}
+      currentStage={stage}
+      onStageChange={(s) => handleStageChange(s as Stage)}
+      footerLeft={t.footer_left}
+      checkStatus={lastCheck}
+      translations={{
+        back: t.back,
+        check: t.check,
+        next: t.next,
+        correct: t.correct,
+        incorrect: t.incorrect,
+        ready: t.ready,
+        monitor_title: t.monitor_title,
+        difficulty: {
+          basic: t.difficulty.basic,
+          core: t.difficulty.core,
+          advanced: t.difficulty.advanced,
+          elite: t.difficulty.elite,
+        },
+      }}
+      monitorContent={
+        <>
+          <div className="space-y-4">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
+            <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
+              <span className="inline-block">
+                <InlineMath math={currentQuest.expressionLatex} />
+              </span>
             </div>
-
-            <div className="space-y-6">
-              <div className="text-center">
-                <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-                <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                  <InlineMath math={currentQuest.promptLatex} />
-                </p>
-              </div>
-
-              <div className="flex justify-center overflow-x-auto w-full">
-                <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
-                  <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
-                  <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
-                  <div className="space-y-4">
-                    <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
-                      <InlineMath math={expressionLatex} />
-                    </div>
-                    <div className="text-white/60 font-black">
-                      <InlineMath math={currentQuest.targetLatex} />
+            <div className="text-white/70 font-mono text-sm break-words">
+              <InlineMath math={currentQuest.promptLatex} />
+            </div>
+            {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
+              <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
+                <div className="text-white/40">{t.labels.hints}</div>
+                {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
+                  <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
+                    <div className="text-white/30 w-6">{String(idx + 1).padStart(2, "0")}</div>
+                    <div className="flex-1">
+                      <InlineMath math={h} />
                     </div>
                   </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </>
+      }
+    >
+      <div className="w-full max-w-5xl space-y-10">
+        <div className="space-y-6">
+          <div className="text-center">
+            <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+            <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
+              <InlineMath math={currentQuest.promptLatex} />
+            </p>
+          </div>
+
+          <div className="flex justify-center overflow-x-auto w-full">
+            <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
+              <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
+              <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
+              <div className="space-y-4">
+                <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
+                  <InlineMath math={currentQuest.expressionLatex} />
+                </div>
+                <div className="text-white/60 font-black">
+                  <InlineMath math={currentQuest.targetLatex} />
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
+        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
+          <div className="space-y-4">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.labels.input}</div>
+            {currentQuest.slotGroups ? (
               <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.labels.input}</div>
-                {currentQuest.slotGroups ? (
-                  <div className="space-y-4">
-                    {currentQuest.slotGroups.map((group) => (
-                      <div key={group.titleLatex} className="space-y-3">
-                        <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                          <InlineMath math={group.titleLatex} />
-                        </div>
-                        <div className={clsx("grid gap-4", group.slotIds.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                          {group.slotIds.map((slotId) => {
-                            const slot = currentQuest.slots.find((s) => s.id === slotId);
-                            if (!slot) return null;
-                            return (
-                              <div key={slot.id} className="space-y-2">
-                                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                                  <InlineMath math={slot.labelLatex} />
-                                </div>
-                                <input
-                                  value={inputs[slot.id] ?? ""}
-                                  onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                                  className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
-                                  placeholder={slot.placeholder}
-                                  inputMode="numeric"
-                                />
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
+                {currentQuest.slotGroups.map((group) => (
+                  <div key={group.titleLatex} className="space-y-3">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                      <InlineMath math={group.titleLatex} />
+                    </div>
+                    <div className={clsx("grid gap-4", group.slotIds.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                      {group.slotIds.map((slotId) => {
+                        const slot = currentQuest.slots.find((s) => s.id === slotId);
+                        if (!slot) return null;
+                        return (
+                          <div key={slot.id} className="space-y-2">
+                            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                              <InlineMath math={slot.labelLatex} />
+                            </div>
+                            <input
+                              value={inputs[slot.id] ?? ""}
+                              onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
+                              className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                              placeholder={slot.placeholder}
+                              inputMode="numeric"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                ) : (
-                  <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                    {currentQuest.slots.map((slot) => (
-                      <div key={slot.id} className="space-y-2">
-                        <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                          <InlineMath math={slot.labelLatex} />
-                        </div>
-                        <input
-                          value={inputs[slot.id] ?? ""}
-                          onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                          className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
-                          placeholder={slot.placeholder}
-                          inputMode="numeric"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
-                    <InlineMath
-                      math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "", locale) !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "", locale) !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
+                ))}
+              </div>
+            ) : (
+              <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                {currentQuest.slots.map((slot) => (
+                  <div key={slot.id} className="space-y-2">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                      <InlineMath math={slot.labelLatex} />
+                    </div>
+                    <input
+                      value={inputs[slot.id] ?? ""}
+                      onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
+                      className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                      placeholder={slot.placeholder}
+                      inputMode="numeric"
                     />
                   </div>
-                )}
-
-                {stage === "EQUATIONS" && currentQuest.id === "E5" && (
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
-                    <InlineMath math={`\\text{Preview: }x=\\frac{${(inputs.p ?? "").trim() || "p"}}{${(inputs.q ?? "").trim() || "q"}}`} />
-                  </div>
-                )}
+                ))}
               </div>
+            )}
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <button
-                  onClick={verify}
-                  className="px-6 py-3 border-2 border-white text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black"
-                >
-                  {t.check}
-                </button>
-                <button
-                  onClick={next}
-                  className="px-6 py-3 border-2 border-white/30 text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:border-white hover:text-white"
-                >
-                  {t.next}
-                </button>
+            {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
+                <InlineMath
+                  math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "", locale as "DE" | "EN" | "CN") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "", locale as "DE" | "EN" | "CN") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
+                />
               </div>
+            )}
 
-              {lastCheck && (
-                <div className="mt-6 text-center">
-                  <div className={clsx("text-[10px] font-black tracking-[0.4em] uppercase", lastCheck.ok ? "text-neon-green" : "text-orange-400")}>
-                    {lastCheck.ok ? t.correct : t.incorrect}
-                  </div>
-                  {!lastCheck.ok && (
-                    <div className="mt-2 text-white/70 font-black break-words">
-                      {lastCheck.correct}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            {stage === "EQUATIONS" && currentQuest.id === "E5" && (
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
+                <InlineMath math={`\\text{Preview: }x=\\frac{${(inputs.p ?? "").trim() || "p"}}{${(inputs.q ?? "").trim() || "q"}}`} />
+              </div>
+            )}
           </div>
-        </main>
-
-        <aside className="w-[520px] relative bg-black flex flex-col border-l border-white/10">
-          <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
-            <span>{t.monitor_title}</span>
-            <div className="flex gap-2"><div className="w-1 h-1 bg-white" /><div className="w-1 h-1 bg-white/40" /></div>
-          </div>
-          <div className="flex-1 p-6">
-            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] h-full flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-                <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
-                  <span className="inline-block">
-                    <InlineMath math={expressionLatex} />
-                  </span>
-                </div>
-                <div className="text-white/70 font-mono text-sm break-words">
-                  <InlineMath math={currentQuest.promptLatex} />
-                </div>
-                {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
-                  <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
-                    <div className="text-white/40">{t.labels.hints}</div>
-                    {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
-                      <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
-                        <div className="text-white/30 w-6">{String(idx + 1).padStart(2, "0")}</div>
-                        <div className="flex-1">
-                          <InlineMath math={h} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="space-y-2">
-                <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
-                  {difficulty}{" // "}MG06{" // "}{stageName}
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
+        </div>
       </div>
-
-      <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
-        <span>{t.footer_left}</span>
-        <span className="flex items-center gap-2">
-          <Sigma className="w-3 h-3 text-white/50" />
-          {lastCheck ? (lastCheck.ok ? t.correct : t.incorrect) : t.ready}
-        </span>
-      </footer>
-    </div>
+    </ChamberLayout>
   );
 }

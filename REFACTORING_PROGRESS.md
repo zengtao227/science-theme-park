@@ -57,15 +57,75 @@ Refactor all chamber modules from "single-file redundant architecture" to "modul
 - Type-safe stage management
 - Cleaner code structure
 
+### S2.05 - Powers & Roots
+**Status**: ✅ Complete  
+**Before**: 458 lines  
+**After**: ~300 lines  
+**Reduction**: 34% (158 lines removed)
+
+**Changes**:
+- ✅ Integrated `useQuestManager` for state management
+- ✅ Wrapped with `ChamberLayout` for UI
+- ✅ Removed redundant Header/Footer/Aside code
+- ✅ Build passes successfully
+
+### S2.06 - Linear Systems
+**Status**: ✅ Complete  
+**Before**: 482 lines  
+**After**: 344 lines  
+**Reduction**: 29% (138 lines removed)
+
+**Changes**:
+- ✅ Integrated `useQuestManager` for state management
+- ✅ Wrapped with `ChamberLayout` for UI
+- ✅ Removed redundant Header/Footer/Aside code
+- ✅ Build passes successfully
+
+**Key Improvements**:
+- Consistent UI with other modules
+- Type-safe stage management (SUBSTITUTION, ELIMINATION, MISSION)
+- Clean separation of concerns
+
+### G1.01 - Calculus Introduction
+**Status**: ✅ Complete  
+**Before**: 613 lines  
+**After**: 577 lines  
+**Reduction**: 6% (36 lines removed)
+
+**Changes**:
+- ✅ Integrated `useQuestManager` for state management
+- ✅ Wrapped with `ChamberLayout` for UI
+- ✅ Removed redundant Header/Footer code
+- ✅ Build passes successfully
+- ⚠️ 3D visualization components kept in page (React Three Fiber tight coupling)
+
+**Key Improvements**:
+- Consistent UI with other modules
+- Type-safe stage management (EXPLORE, SLOPE, TANGENT, RATE, ELITE)
+- Interactive 3D parabola visualization maintained
+
+### S2.01 - Binomial Factory
+**Status**: ✅ Complete  
+**Before**: 837 lines  
+**After**: 931 lines (page) + 253 lines (canvas) = 1,184 total  
+**Note**: Total increased due to canvas extraction, but page is now properly structured
+
+**Changes**:
+- ✅ Extracted `S201_BinomialCanvas` component (3D draggable blocks)
+- ✅ Integrated `useQuestManager` for state management
+- ✅ Wrapped with `ChamberLayout` for UI
+- ✅ Removed redundant Header/Footer code
+- ✅ Build passes successfully
+
+**Key Improvements**:
+- Complex 3D visualization properly isolated
+- Consistent UI with other modules
+- Type-safe stage management (6 modes: EXPLORE, ARCHITECT, SCRAPPER, SPEEDSTER, VOYAGER, ELITE)
+- Maintainable structure despite complexity
+
 ---
 
 ## 🚧 Pending Refactoring
-
-### S2.01 - Binomial Factory
-**Status**: ⏳ Pending  
-**Estimated Lines**: ~800  
-**Target Lines**: ~200  
-**Notes**: May need custom canvas component for binomial visualization
 
 ### S2.02 - Pythagoras & Roots
 **Status**: ⏳ Pending  
@@ -251,10 +311,57 @@ Refactor all chamber modules from "single-file redundant architecture" to "modul
 
 ---
 
+### S3.01 - Quadratic Equations
+**Status**: ✅ Complete  
+**Before**: 905 lines  
+**After**: 691 lines  
+**Reduction**: 24% (214 lines removed)
+
+**Changes**:
+- ✅ Integrated `useQuestManager` for state management
+- ✅ Wrapped with `ChamberLayout` for UI
+- ✅ Removed redundant Header/Footer/Aside code
+- ✅ Build passes successfully
+- ✅ Preserved massive buildStagePool (~500 lines of quest data)
+
+**Key Improvements**:
+- Consistent UI with other modules
+- Type-safe stage management (TERMS, FACTORIZE, FRACTIONS, EQUATIONS)
+- Clean separation of data and presentation
+- Preview formulas for factorization and fractions
+
+### S2.02 - Pythagoras & Roots (THE FINAL BOSS)
+**Status**: 🔧 Components Extracted, Blueprint Complete  
+**Before**: 1,252 lines  
+**Components Extracted**:
+- ✅ `S202_PythagorasCanvas.tsx` (253 lines) - Triangle, Space, Distance visualizations
+- ✅ `S202_RadicalInput.tsx` (48 lines) - k√m format input component
+- ✅ Strategy document created: `FINAL_BOSS_STRATEGY.md`
+
+**Remaining Work**:
+- ⏳ Refactor main page with dual tab system (PYTHAGORAS/SQRT)
+- ⏳ Integrate useQuestManager with sub-stage support
+- ⏳ Wire up ChamberLayout
+- ⏳ Implement radical input validation
+
+**Expected After Refactoring**:
+- Page: ~350 lines
+- Total: ~651 lines across 3 files
+- Reduction: 48% (601 lines removed)
+
+---
+
 ## 📊 Progress Summary
 
-**Completed**: 4 modules (S1.01, S1.02, S2.03, S2.04)  
-**Total Lines Removed**: 1,310 lines  
-**Average Reduction**: 45%
+**Completed**: 9 modules (S1.01, S1.02, S2.01, S2.03, S2.04, S2.05, S2.06, S3.01, G1.01)  
+**Components Extracted for S2.02**: 2 (Canvas + Input)  
+**Total Progress**: 90% (9/10 modules fully complete)
 
-**Remaining**: 5 modules (S2.01, S2.02, S2.05, S2.06, S3.01, G1.01)
+**Overall Metrics**:
+- Original codebase: ~7,500 lines
+- Refactored codebase: ~5,800 lines
+- Total reduction: ~23% (1,700 lines removed)
+- Average page reduction: 30%
+- Components extracted: 8 (S101, S203, S204, S201, S202 Canvas, S202 Input)
+
+**Remaining**: 1 module (S2.02 - main page refactoring)
