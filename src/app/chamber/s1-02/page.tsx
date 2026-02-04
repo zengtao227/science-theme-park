@@ -8,6 +8,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import S102_StatisticsCanvas from "@/components/chamber/S102_StatisticsCanvas";
 
 type Stage = "STATISTICS" | "PROBABILITY" | "COMBINATORICS";
 type Mg13T = typeof translations.EN.s1_02;
@@ -166,6 +167,8 @@ export default function S102Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
             footerLeft={t.footer_left}
             checkStatus={lastCheck}
             translations={{
@@ -185,6 +188,11 @@ export default function S102Page() {
             }}
             monitorContent={
                 <>
+                    <S102_StatisticsCanvas
+                        type={stage}
+                        data={currentQuest?.expressionLatex.includes("Data:") ?
+                            currentQuest.expressionLatex.split("Data:")[1].split(",").map(n => parseFloat(n)) : undefined}
+                    />
                     <div className="space-y-4">
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {t.target_title}
@@ -271,33 +279,6 @@ export default function S102Page() {
                     </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <button
-                        onClick={verify}
-                        className="px-6 py-3 border-2 border-white text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black"
-                    >
-                        {t.check}
-                    </button>
-                    <button
-                        onClick={next}
-                        className="px-6 py-3 border-2 border-white/30 text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:border-white hover:text-white"
-                    >
-                        {t.next}
-                    </button>
-                </div>
-
-                {lastCheck && (
-                    <div className="mt-6 text-center">
-                        <div className={clsx("text-[10px] font-black tracking-[0.4em] uppercase", lastCheck.ok ? "text-neon-green" : "text-orange-400")}>
-                            {lastCheck.ok ? t.correct : t.incorrect}
-                        </div>
-                        {!lastCheck.ok && (
-                            <div className="mt-2 text-white/70 font-black break-words">
-                                <InlineMath math={lastCheck.correct} />
-                            </div>
-                        )}
-                    </div>
-                )}
             </div>
         </ChamberLayout>
     );

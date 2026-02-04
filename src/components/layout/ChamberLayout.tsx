@@ -21,6 +21,8 @@ interface ChamberLayoutProps {
     monitorContent?: React.ReactNode;
     footerLeft?: string;
     checkStatus?: { ok: boolean; correct: string } | null;
+    onVerify?: () => void;
+    onNext?: () => void;
     translations: {
         back: string;
         check: string;
@@ -45,6 +47,8 @@ export default function ChamberLayout({
     monitorContent,
     footerLeft,
     checkStatus,
+    onVerify,
+    onNext,
     translations
 }: ChamberLayoutProps) {
     const { currentLanguage, setLanguage } = useAppStore();
@@ -125,6 +129,46 @@ export default function ChamberLayout({
                         </div>
 
                         {children}
+
+                        {/* Built-in Action Controls */}
+                        {(onVerify || onNext) && (
+                            <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+                                <div className="flex flex-wrap items-center justify-center gap-4">
+                                    {onVerify && (
+                                        <button
+                                            onClick={onVerify}
+                                            className="px-6 py-3 border-2 border-white text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black shadow-[0_0_15px_rgba(255,255,255,0.1)] active:scale-95"
+                                        >
+                                            {translations.check}
+                                        </button>
+                                    )}
+                                    {onNext && (
+                                        <button
+                                            onClick={onNext}
+                                            className="px-6 py-3 border-2 border-white/30 text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:border-white hover:text-white active:scale-95"
+                                        >
+                                            {translations.next}
+                                        </button>
+                                    )}
+                                </div>
+
+                                {checkStatus && (
+                                    <div className="text-center animate-in fade-in slide-in-from-bottom-2">
+                                        <div className={clsx(
+                                            "text-[10px] font-black tracking-[0.4em] uppercase mb-2",
+                                            checkStatus.ok ? "text-neon-green" : "text-orange-400"
+                                        )}>
+                                            {checkStatus.ok ? translations.correct : translations.incorrect}
+                                        </div>
+                                        {!checkStatus.ok && (
+                                            <div className="text-white/70 font-black break-words max-w-lg mx-auto p-3 bg-white/[0.03] rounded border border-white/5">
+                                                <InlineMath math={checkStatus.correct} />
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </main>
 
