@@ -521,6 +521,10 @@ export const translations = {
                 statistics_prompt_latex: "\\text{Analyze the data. Find mean and median.}",
                 probability_prompt_latex: "\\text{Calculate the probability P(X).}"
             },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
             mission: {
                 title: "MISSION: BERN STATION PUNCTUALITY",
                 description: "In Bern, analyze SBB arrival delays (minutes) to report average and median."
@@ -1049,6 +1053,10 @@ export const translations = {
                 statistics_prompt_latex: "\\text{分析数据。找出平均数和中位数。}",
                 probability_prompt_latex: "\\text{计算概率 P(X)。}"
             },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
             mission: {
                 title: "任务：伯尔尼车站准点性",
                 description: "在伯尔尼，分析 SBB 到站延误（分钟）的平均数和中位数。"
@@ -1576,6 +1584,10 @@ export const translations = {
                 combinatorics: "KOMBINATORIK",
                 statistics_prompt_latex: "\\text{Analysiere die Daten. Bestimme Mittelwert und Median.}",
                 probability_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit P(X).}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
             },
             mission: {
                 title: "MISSION: BAHNHOF BERN PÜNKTLICHKEIT",
