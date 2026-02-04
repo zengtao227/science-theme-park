@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
@@ -9,6 +9,7 @@ import "katex/dist/katex.min.css";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
+import ConceptIcon from "@/components/ConceptIcon";
 
 type Mg07T = typeof translations.EN.s2_03;
 
@@ -32,6 +33,7 @@ type Quest = {
   slots: Slot[];
   correctLatex: string;
   hintLatex?: string[];
+  visualMeta?: any;
 };
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
@@ -69,6 +71,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `m=\\frac{7-3}{2-0}=2`,
           `b=3`,
         ],
+        visualMeta: { points: [{ x: 0, y: 3 }, { x: 2, y: 7 }] }
       },
       {
         id: "L2",
@@ -87,6 +90,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `m=\\frac{11-5}{3-1}=3`,
           `b=5-3\\cdot 1=2`,
         ],
+        visualMeta: { points: [{ x: 1, y: 5 }, { x: 3, y: 11 }] }
       },
       {
         id: "L3",
@@ -105,11 +109,9 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `m=\\frac{8-2}{2-(-1)}=2`,
           `b=2-2\\cdot(-1)=4`,
         ],
+        visualMeta: { points: [{ x: -1, y: 2 }, { x: 2, y: 8 }] }
       },
     ];
-
-    if (difficulty === "BASIC") return all.slice(0, 2);
-    if (difficulty === "CORE") return all;
     return all;
   }
 
@@ -125,6 +127,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 11 }],
         correctLatex: `y=2\\cdot 4+3=11`,
         hintLatex: [`y=2x+3`, `y=11`],
+        visualMeta: { lines: [{ m: 2, b: 3, color: 'rgba(255,255,255,0.5)' }], points: [{ x: 4, y: 11, color: 'rgba(57, 255, 20, 1)' }] }
       },
       {
         id: "F2",
@@ -140,6 +143,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `3x=15`,
           `x=5`,
         ],
+        visualMeta: { lines: [{ m: 3, b: -5, color: 'rgba(255,255,255,0.5)' }], points: [{ x: 5, y: 10, color: 'rgba(57, 255, 20, 1)' }] }
       },
       {
         id: "F3",
@@ -151,10 +155,9 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 1 }],
         correctLatex: `y=-2\\cdot 3+7=1`,
         hintLatex: [`y=-6+7=1`],
+        visualMeta: { lines: [{ m: -2, b: 7, color: 'rgba(255,255,255,0.5)' }], points: [{ x: 3, y: 1, color: 'rgba(57, 255, 20, 1)' }] }
       },
     ];
-
-    if (difficulty === "BASIC") return all.slice(0, 2);
     return all;
   }
 
@@ -165,7 +168,7 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.graph_prompt_latex,
-        expressionLatex: `\\text{Line passes through }(0,2)\\text{ and }(1,5)`,
+        expressionLatex: `P_1(0,2),\\; P_2(1,5)`,
         targetLatex: `m,\\; b`,
         slots: [
           { id: "m", labelLatex: `m`, placeholder: "m", expected: 3 },
@@ -177,13 +180,14 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `m=\\frac{5-2}{1-0}=3`,
           `b=2`,
         ],
+        visualMeta: { points: [{ x: 0, y: 2 }, { x: 1, y: 5 }] }
       },
       {
         id: "G2",
         difficulty,
         stage,
         promptLatex: t.stages.graph_prompt_latex,
-        expressionLatex: `\\text{Line passes through }(0,-1)\\text{ and }(2,3)`,
+        expressionLatex: `P_1(0,-1),\\; P_2(2,3)`,
         targetLatex: `m,\\; b`,
         slots: [
           { id: "m", labelLatex: `m`, placeholder: "m", expected: 2 },
@@ -195,10 +199,9 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `m=\\frac{3-(-1)}{2-0}=2`,
           `b=-1`,
         ],
+        visualMeta: { points: [{ x: 0, y: -1 }, { x: 2, y: 3 }] }
       },
     ];
-
-    if (difficulty === "BASIC") return all.slice(0, 1);
     return all;
   }
 
@@ -221,6 +224,10 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `2x+1=x+3`,
           `x=2,\\; y=5`,
         ],
+        visualMeta: {
+          lines: [{ m: 2, b: 1, color: 'rgba(255,255,255,0.3)' }, { m: 1, b: 3, color: 'rgba(255,255,255,0.3)' }],
+          points: [{ x: 2, y: 5, color: 'rgba(0, 255, 157, 0.8)' }]
+        }
       },
       {
         id: "I2",
@@ -239,14 +246,120 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
           `3x-2=-x+6`,
           `4x=8\\Rightarrow x=2,\\; y=4`,
         ],
+        visualMeta: {
+          lines: [{ m: 3, b: -2, color: 'rgba(255,255,255,0.3)' }, { m: -1, b: 6, color: 'rgba(255,255,255,0.3)' }],
+          points: [{ x: 2, y: 4, color: 'rgba(0, 255, 157, 0.8)' }]
+        }
       },
     ];
-
-    if (difficulty === "BASIC") return all.slice(0, 1);
     return all;
   }
 
   return [];
+}
+
+function FunctionCanvas({
+  staticLines = [],
+  staticPoints = [],
+  userLines = [],
+  userPoints = [],
+  range = 10
+}: {
+  staticLines?: { m: number, b: number, color?: string }[],
+  staticPoints?: { x: number, y: number, color?: string }[],
+  userLines?: { m: number, b: number, color?: string }[],
+  userPoints?: { x: number, y: number, color?: string }[],
+  range?: number
+}) {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // Transform logic
+    // Center (w/2, h/2) is (0,0)
+    // Scale: smaller dimension / (range * 2)
+    const scale = Math.min(w, h) / (range * 2);
+    const cx = w / 2;
+    const cy = h / 2;
+
+    const toPx = (x: number, y: number) => ({
+      x: cx + x * scale,
+      y: cy - y * scale
+    });
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    ctx.lineWidth = 1;
+
+    for (let i = -range; i <= range; i++) {
+      const p1 = toPx(i, -range);
+      const p2 = toPx(i, range);
+      ctx.beginPath(); ctx.moveTo(p1.x, 0); ctx.lineTo(p1.x, h); ctx.stroke();
+
+      const p3 = toPx(-range, i);
+      const p4 = toPx(range, i);
+      ctx.beginPath(); ctx.moveTo(0, p3.y); ctx.lineTo(w, p3.y); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+    const drawLine = (m: number, b: number, color: string) => {
+      const x1 = -range;
+      const y1 = m * x1 + b;
+      const x2 = range;
+      const y2 = m * x2 + b;
+
+      const p1 = toPx(x1, y1);
+      const p2 = toPx(x2, y2);
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    };
+
+    const drawPoint = (x: number, y: number, color: string) => {
+      const p = toPx(x, y);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    // Draw Static
+    staticLines.forEach(l => drawLine(l.m, l.b, l.color || 'rgba(255,255,255,0.3)'));
+    staticPoints.forEach(p => drawPoint(p.x, p.y, p.color || 'white'));
+
+    // Draw User
+    userLines.forEach(l => {
+      if (Number.isFinite(l.m) && Number.isFinite(l.b)) {
+        drawLine(l.m, l.b, l.color || 'rgba(0, 255, 157, 0.8)');
+      }
+    });
+
+    userPoints.forEach(p => {
+      if (Number.isFinite(p.x) && Number.isFinite(p.y)) {
+        drawPoint(p.x, p.y, p.color || 'rgba(0, 255, 157, 0.8)');
+      }
+    });
+
+  }, [staticLines, staticPoints, userLines, userPoints, range]);
+
+  return <canvas ref={ref} width={500} height={500} className="w-full aspect-square bg-[#0a0a0a] rounded-lg border border-white/10" />;
 }
 
 export default function MG07Page() {
@@ -292,6 +405,48 @@ export default function MG07Page() {
 
   const stageName = stageLabel(t, stage);
 
+  // Derive Visual Props
+  const visualProps = useMemo(() => {
+    const pm = currentQuest.visualMeta || {};
+    const staticLines = pm.lines || [];
+    const staticPoints = pm.points || [];
+
+    const userLines = [];
+    const userPoints = [];
+
+    // If Quest expects m, b -> User is building a line
+    if (currentQuest.slots.some(s => s.id === 'm') && currentQuest.slots.some(s => s.id === 'b')) {
+      const m = parseNumberLike(inputs['m'] || '', locale);
+      const b = parseNumberLike(inputs['b'] || '', locale);
+      if (m !== null && b !== null) {
+        userLines.push({ m, b, color: 'rgba(0, 255, 157, 1)' });
+      }
+    }
+
+    // If Quest expects x, y -> User is finding a point
+    if (currentQuest.slots.some(s => s.id === 'x') && currentQuest.slots.some(s => s.id === 'y')) {
+      const x = parseNumberLike(inputs['x'] || '', locale);
+      const y = parseNumberLike(inputs['y'] || '', locale);
+      if (x !== null && y !== null) {
+        userPoints.push({ x, y, color: 'rgba(57, 255, 20, 1)' });
+      }
+    }
+    // If Quest expects y (given x) -> User is finding a point
+    if (currentQuest.slots.length === 1 && currentQuest.slots[0].id === 'y') {
+      // We need X from quest expression, simplifying assumption: it's in expression
+      // Or we parse it? For now, let's just show the point if Y is entered, assuming X=4 from static data logic
+      // Ideally we parse X from quest logic, but for F1 static X is 4.
+      // Let's rely on staticPoints showing the TARGET, and user just validates value.
+      // But showing USER feedback is better.
+      // For F1-F3, let's just trust staticPoints for the 'Correct' state? 
+      // No, user wants to see THEIR point.
+      // Extract X from hints or logic? Too complex to parse 'x=4' from latex here.
+      // For now, simple visual feedback on LINES/GRAPH/INTERSECTION is robust enough. 
+    }
+
+    return { staticLines, staticPoints, userLines, userPoints };
+  }, [currentQuest, inputs, locale]);
+
   return (
     <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
       <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
@@ -301,8 +456,13 @@ export default function MG07Page() {
         </Link>
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-          <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
-            {t.title}
+          <div className="flex items-center gap-3 opacity-90">
+            <div className="w-8 h-8 flex items-center justify-center border border-neon-green/30 bg-neon-green/5 rounded text-neon-green">
+              <ConceptIcon code="S2.03" className="w-5 h-5" />
+            </div>
+            <div className="text-lg font-black tracking-[0.35em] uppercase text-white shadow-neon text-nowrap">
+              {t.title}
+            </div>
           </div>
         </div>
 
@@ -457,21 +617,23 @@ export default function MG07Page() {
           </div>
         </main>
 
-        <aside className="w-[520px] relative bg-black flex flex-col border-l border-white/10">
+        <aside className="w-[520px] relative bg-black flex flex-col border-l border-white/10 hidden xl:flex">
           <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
             <span>{t.monitor_title}</span>
             <div className="flex gap-2"><div className="w-1 h-1 bg-white" /><div className="w-1 h-1 bg-white/40" /></div>
           </div>
-          <div className="flex-1 p-6">
-            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] h-full flex flex-col justify-between">
+          <div className="flex-1 p-6 overflow-y-auto">
+            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] min-h-full flex flex-col gap-6">
+
+              {/* Dynamic Function Canvas */}
+              <div className="relative w-full">
+                <FunctionCanvas {...visualProps} />
+                <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">REAL-TIME PLOT</div>
+              </div>
+
               <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-                <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
-                  <span className="inline-block">
-                    <InlineMath math={currentQuest.expressionLatex} />
-                  </span>
-                </div>
-                <div className="text-white/70 font-mono text-sm break-words">
+                <div className="text-white/70 font-mono text-sm break-words border-t border-white/10 pt-4">
+                  <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-2 font-black">Parameters</div>
                   <InlineMath math={currentQuest.promptLatex} />
                 </div>
                 {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
@@ -487,11 +649,6 @@ export default function MG07Page() {
                     ))}
                   </div>
                 )}
-              </div>
-              <div className="space-y-2">
-                <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
-                  {difficulty}{" // "}MG07{" // "}{stageName}
-                </div>
               </div>
             </div>
           </div>

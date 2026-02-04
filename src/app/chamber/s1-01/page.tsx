@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { ArrowLeft, Sigma } from "lucide-react";
 import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
@@ -22,6 +22,11 @@ type Slot = {
   expected: number;
 };
 
+type GeometryMeta = {
+  type: 'rectangle' | 'triangle' | 'trapezoid' | 'circle' | 'cube' | 'prism' | 'cylinder';
+  params: Record<string, number>;
+};
+
 type Quest = {
   id: string;
   difficulty: Difficulty;
@@ -32,6 +37,7 @@ type Quest = {
   slots: Slot[];
   correctLatex: string;
   hintLatex?: string[];
+  visualMeta?: GeometryMeta;
 };
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
@@ -48,6 +54,8 @@ function stageLabel(t: Mg12T, stage: Stage) {
   return t.stages.complex;
 }
 
+
+
 function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[] {
   if (stage === "AREAS") {
     const all: Quest[] = [
@@ -61,6 +69,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 40 }],
         correctLatex: `A=5\\cdot 8=40`,
         hintLatex: [`A=a\\cdot b`, `A=40`],
+        visualMeta: { type: 'rectangle', params: { a: 5, b: 8 } } as GeometryMeta,
       },
       {
         id: "A2",
@@ -72,6 +81,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 12 }],
         correctLatex: `A=\\frac{1}{2}\\cdot 6\\cdot 4=12`,
         hintLatex: [`A=\\frac{1}{2}bh`, `A=12`],
+        visualMeta: { type: 'triangle', params: { b: 6, h: 4 } } as GeometryMeta,
       },
       {
         id: "A3",
@@ -83,6 +93,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 25 }],
         correctLatex: `A=\\frac{1}{2}(4+6)\\cdot 5=25`,
         hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=25`],
+        visualMeta: { type: 'trapezoid', params: { a: 4, b: 6, h: 5 } } as GeometryMeta,
       },
       {
         id: "A4",
@@ -94,6 +105,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 28.27 }],
         correctLatex: `A=\\pi r^2\\approx 28.27`,
         hintLatex: [`A=\\pi r^2`, `A\\approx 28.27`],
+        visualMeta: { type: 'circle', params: { r: 3 } } as GeometryMeta,
       },
     ];
 
@@ -114,6 +126,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 64 }],
         correctLatex: `V=4^3=64`,
         hintLatex: [`V=a^3`, `V=64`],
+        visualMeta: { type: 'cube', params: { a: 4 } } as GeometryMeta,
       },
       {
         id: "V2",
@@ -125,6 +138,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 60 }],
         correctLatex: `V=3\\cdot 4\\cdot 5=60`,
         hintLatex: [`V=abc`, `V=60`],
+        visualMeta: { type: 'prism', params: { a: 3, b: 4, c: 5 } } as GeometryMeta,
       },
       {
         id: "V3",
@@ -136,6 +150,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 62.83 }],
         correctLatex: `V=\\pi r^2h\\approx 62.83`,
         hintLatex: [`V=\\pi r^2h`, `V\\approx 62.83`],
+        visualMeta: { type: 'cylinder', params: { r: 2, h: 5 } } as GeometryMeta,
       },
     ];
 
@@ -155,6 +170,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 50 }],
         correctLatex: `A=\\frac{1}{2}(8+12)\\cdot 5=50`,
         hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=50`],
+        visualMeta: { type: 'trapezoid', params: { a: 8, b: 12, h: 5 } } as GeometryMeta,
       },
       {
         id: "C2",
@@ -166,6 +182,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
         slots: [{ id: "d", labelLatex: `d`, placeholder: "diagonal", expected: 10.39 }],
         correctLatex: `d=a\\sqrt{3}\\approx 10.39`,
         hintLatex: [`d=a\\sqrt{3}`, `d\\approx 10.39`],
+        visualMeta: { type: 'cube', params: { a: 6 } } as GeometryMeta,
       },
     ];
 
@@ -174,6 +191,306 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): Quest[]
   }
 
   return [];
+}
+
+function GeometryCanvas({
+  geometry,
+  userAnswer,
+  isVolumeMode = false
+}: {
+  geometry?: GeometryMeta;
+  userAnswer?: number;
+  isVolumeMode?: boolean;
+}) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [animatedArea, setAnimatedArea] = useState(0);
+
+  useEffect(() => {
+    if (!geometry) return;
+
+    // Animate area calculation
+    const targetArea = calculateArea(geometry);
+    const duration = 800;
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setAnimatedArea(targetArea * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+  }, [geometry]);
+
+  if (!geometry) {
+    return (
+      <div className="w-full aspect-square bg-[#0a0a0a] rounded-lg border border-white/10 flex items-center justify-center">
+        <div className="text-white/30 text-xs uppercase tracking-wider">No Geometry Data</div>
+      </div>
+    );
+  }
+
+  const { type, params } = geometry;
+  const scale = 30; // pixels per unit
+  const centerX = 250;
+  const centerY = 250;
+
+  const isCorrect = userAnswer !== undefined && Math.abs(userAnswer - calculateArea(geometry)) < 0.1;
+  const fillColor = userAnswer === undefined
+    ? 'rgba(255, 255, 255, 0.1)'
+    : isCorrect
+      ? 'rgba(57, 255, 20, 0.2)'
+      : 'rgba(255, 100, 100, 0.2)';
+  const strokeColor = userAnswer === undefined
+    ? 'rgba(255, 255, 255, 0.5)'
+    : isCorrect
+      ? 'rgba(57, 255, 20, 1)'
+      : 'rgba(255, 100, 100, 1)';
+
+  return (
+    <svg
+      ref={svgRef}
+      width="500"
+      height="500"
+      className="w-full aspect-square bg-[#0a0a0a] rounded-lg border border-white/10"
+    >
+      {/* Grid */}
+      <defs>
+        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="500" height="500" fill="url(#grid)" />
+
+      {/* Axes */}
+      <line x1="0" y1={centerY} x2="500" y2={centerY} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+      <line x1={centerX} y1="0" x2={centerX} y2="500" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+
+      {/* Render Geometry */}
+      {type === 'rectangle' && (
+        <>
+          <rect
+            x={centerX - (params.a * scale) / 2}
+            y={centerY - (params.b * scale) / 2}
+            width={params.a * scale}
+            height={params.b * scale}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          {/* Dimension labels */}
+          <text x={centerX} y={centerY - (params.b * scale) / 2 - 10} fill="white" fontSize="12" textAnchor="middle">
+            a = {params.a}
+          </text>
+          <text x={centerX + (params.a * scale) / 2 + 20} y={centerY} fill="white" fontSize="12" textAnchor="start">
+            b = {params.b}
+          </text>
+        </>
+      )}
+
+      {type === 'triangle' && (
+        <>
+          <polygon
+            points={`${centerX - (params.b * scale) / 2},${centerY + (params.h * scale) / 2} ${centerX + (params.b * scale) / 2},${centerY + (params.h * scale) / 2} ${centerX},${centerY - (params.h * scale) / 2}`}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          <text x={centerX} y={centerY + (params.h * scale) / 2 + 20} fill="white" fontSize="12" textAnchor="middle">
+            b = {params.b}
+          </text>
+          <text x={centerX - (params.b * scale) / 2 - 30} y={centerY} fill="white" fontSize="12" textAnchor="end">
+            h = {params.h}
+          </text>
+        </>
+      )}
+
+      {type === 'trapezoid' && (
+        <>
+          <polygon
+            points={`${centerX - (params.b * scale) / 2},${centerY + (params.h * scale) / 2} ${centerX + (params.b * scale) / 2},${centerY + (params.h * scale) / 2} ${centerX + (params.a * scale) / 2},${centerY - (params.h * scale) / 2} ${centerX - (params.a * scale) / 2},${centerY - (params.h * scale) / 2}`}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          <text x={centerX} y={centerY - (params.h * scale) / 2 - 10} fill="white" fontSize="12" textAnchor="middle">
+            a = {params.a}
+          </text>
+          <text x={centerX} y={centerY + (params.h * scale) / 2 + 20} fill="white" fontSize="12" textAnchor="middle">
+            b = {params.b}
+          </text>
+          <text x={centerX - (params.b * scale) / 2 - 30} y={centerY} fill="white" fontSize="12" textAnchor="end">
+            h = {params.h}
+          </text>
+        </>
+      )}
+
+      {type === 'circle' && (
+        <>
+          <circle
+            cx={centerX}
+            cy={centerY}
+            r={params.r * scale}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          <line
+            x1={centerX}
+            y1={centerY}
+            x2={centerX + params.r * scale}
+            y2={centerY}
+            stroke="rgba(255,255,255,0.5)"
+            strokeWidth="2"
+            strokeDasharray="5,5"
+          />
+          <text x={centerX + (params.r * scale) / 2} y={centerY - 10} fill="white" fontSize="12" textAnchor="middle">
+            r = {params.r}
+          </text>
+        </>
+      )}
+
+      {type === 'cube' && (
+        <>
+          {/* Front face */}
+          <rect
+            x={centerX - (params.a * scale) / 2}
+            y={centerY - (params.a * scale) / 2}
+            width={params.a * scale}
+            height={params.a * scale}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          {/* Back face (offset for 3D effect) */}
+          <rect
+            x={centerX - (params.a * scale) / 2 + 30}
+            y={centerY - (params.a * scale) / 2 - 30}
+            width={params.a * scale}
+            height={params.a * scale}
+            fill="rgba(255,255,255,0.05)"
+            stroke="rgba(255,255,255,0.3)"
+            strokeWidth="2"
+          />
+          {/* Connecting lines */}
+          <line x1={centerX - (params.a * scale) / 2} y1={centerY - (params.a * scale) / 2} x2={centerX - (params.a * scale) / 2 + 30} y2={centerY - (params.a * scale) / 2 - 30} stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+          <line x1={centerX + (params.a * scale) / 2} y1={centerY - (params.a * scale) / 2} x2={centerX + (params.a * scale) / 2 + 30} y2={centerY - (params.a * scale) / 2 - 30} stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+          <line x1={centerX + (params.a * scale) / 2} y1={centerY + (params.a * scale) / 2} x2={centerX + (params.a * scale) / 2 + 30} y2={centerY + (params.a * scale) / 2 - 30} stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+          <text x={centerX} y={centerY + (params.a * scale) / 2 + 20} fill="white" fontSize="12" textAnchor="middle">
+            a = {params.a}
+          </text>
+        </>
+      )}
+
+      {type === 'prism' && (
+        <>
+          {/* Front face */}
+          <rect
+            x={centerX - (params.a * scale) / 2}
+            y={centerY - (params.b * scale) / 2}
+            width={params.a * scale}
+            height={params.b * scale}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          {/* Back face */}
+          <rect
+            x={centerX - (params.a * scale) / 2 + params.c * 5}
+            y={centerY - (params.b * scale) / 2 - params.c * 5}
+            width={params.a * scale}
+            height={params.b * scale}
+            fill="rgba(255,255,255,0.05)"
+            stroke="rgba(255,255,255,0.3)"
+            strokeWidth="2"
+          />
+          {/* Connecting lines */}
+          <line x1={centerX - (params.a * scale) / 2} y1={centerY - (params.b * scale) / 2} x2={centerX - (params.a * scale) / 2 + params.c * 5} y2={centerY - (params.b * scale) / 2 - params.c * 5} stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+          <line x1={centerX + (params.a * scale) / 2} y1={centerY - (params.b * scale) / 2} x2={centerX + (params.a * scale) / 2 + params.c * 5} y2={centerY - (params.b * scale) / 2 - params.c * 5} stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+          <text x={centerX} y={centerY + (params.b * scale) / 2 + 20} fill="white" fontSize="10" textAnchor="middle">
+            a={params.a}, b={params.b}, c={params.c}
+          </text>
+        </>
+      )}
+
+      {type === 'cylinder' && (
+        <>
+          {/* Top ellipse */}
+          <ellipse
+            cx={centerX}
+            cy={centerY - (params.h * scale) / 2}
+            rx={params.r * scale}
+            ry={params.r * scale * 0.3}
+            fill="rgba(255,255,255,0.05)"
+            stroke="rgba(255,255,255,0.3)"
+            strokeWidth="2"
+          />
+          {/* Body */}
+          <rect
+            x={centerX - params.r * scale}
+            y={centerY - (params.h * scale) / 2}
+            width={params.r * scale * 2}
+            height={params.h * scale}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          {/* Bottom ellipse */}
+          <ellipse
+            cx={centerX}
+            cy={centerY + (params.h * scale) / 2}
+            rx={params.r * scale}
+            ry={params.r * scale * 0.3}
+            fill={fillColor}
+            stroke={strokeColor}
+            strokeWidth="3"
+          />
+          <text x={centerX + params.r * scale + 20} y={centerY} fill="white" fontSize="12" textAnchor="start">
+            r={params.r}, h={params.h}
+          </text>
+        </>
+      )}
+
+      {/* Area/Volume Display */}
+      <text x="20" y="30" fill="white" fontSize="14" fontWeight="bold">
+        {isVolumeMode ? 'Volume' : 'Area'}: {animatedArea.toFixed(2)}
+      </text>
+
+      {userAnswer !== undefined && (
+        <text x="20" y="50" fill={isCorrect ? 'rgba(57, 255, 20, 1)' : 'rgba(255, 100, 100, 1)'} fontSize="12">
+          Your answer: {userAnswer.toFixed(2)}
+        </text>
+      )}
+    </svg>
+  );
+}
+
+function calculateArea(geometry: GeometryMeta): number {
+  const { type, params } = geometry;
+
+  switch (type) {
+    case 'rectangle':
+      return params.a * params.b;
+    case 'triangle':
+      return 0.5 * params.b * params.h;
+    case 'trapezoid':
+      return 0.5 * (params.a + params.b) * params.h;
+    case 'circle':
+      return Math.PI * params.r * params.r;
+    case 'cube':
+      return params.a ** 3;
+    case 'prism':
+      return params.a * params.b * params.c;
+    case 'cylinder':
+      return Math.PI * params.r * params.r * params.h;
+    default:
+      return 0;
+  }
 }
 
 export default function MG12Page() {
@@ -388,8 +705,19 @@ export default function MG12Page() {
             <span>{t.monitor_title}</span>
             <div className="flex gap-2"><div className="w-1 h-1 bg-white" /><div className="w-1 h-1 bg-white/40" /></div>
           </div>
-          <div className="flex-1 p-6">
-            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] h-full flex flex-col justify-between">
+          <div className="flex-1 p-6 overflow-y-auto">
+            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] min-h-full flex flex-col gap-6">
+
+              {/* Dynamic Geometry Canvas */}
+              <div className="relative w-full">
+                <GeometryCanvas
+                  geometry={currentQuest.visualMeta as GeometryMeta}
+                  userAnswer={inputs['A'] || inputs['V'] || inputs['d'] ? parseNumberLike(inputs['A'] || inputs['V'] || inputs['d'] || '', locale) || undefined : undefined}
+                  isVolumeMode={stage === 'VOLUMES'}
+                />
+                <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">REAL-TIME GEOMETRY</div>
+              </div>
+
               <div className="space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
                 <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
@@ -414,9 +742,10 @@ export default function MG12Page() {
                   </div>
                 )}
               </div>
+
               <div className="space-y-2">
                 <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
-                  {difficulty}{" // "}MG12{" // "}{stageName}
+                  {difficulty}{" // "}S1.01{" // "}{stageName}
                 </div>
               </div>
             </div>

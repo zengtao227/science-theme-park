@@ -13,7 +13,7 @@ import { translations } from "@/lib/i18n";
 type ModuleTab = "PYTHAGORAS" | "SQRT";
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 
-type PythagorasMode = "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT" | "DISTANCE" | "ELITE_SPACE" | "MISSION";
+type PythagorasMode = "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT" | "DISTANCE" | "ELITE_SPACE" | "MISSION" | "MENTAL" | "CHAIN";
 type SqrtMode = "PERFECT" | "SIMPLIFY" | "ESTIMATE";
 type Mode = PythagorasMode | SqrtMode;
 
@@ -67,6 +67,11 @@ type Mg05T = typeof translations.EN.s2_02 & {
     grid_desc: string;
     chain_title: string;
     chain_desc: string;
+    mental: {
+      title: string;
+      triples: string;
+      chain: string;
+    };
   };
 };
 
@@ -205,6 +210,42 @@ function buildCandidates(tab: ModuleTab, difficulty: Difficulty, mode: Mode) {
         const y2 = Math.floor(rnd() * (range * 2 + 1)) - range;
         if (x1 === x2 && y1 === y2) continue;
         list.push(`${x1}|${y1}|${x2}|${y2}`);
+      }
+      return list;
+    }
+
+    if (mode === "MENTAL") {
+      const triples = triangleTriples();
+      const list: string[] = [];
+      // Mental mode: always simplified triples or small multiples
+      const seed = hashStringToUint32(`MENTAL|${difficulty}`);
+      const rnd = mulberry32(seed);
+      for (let i = 0; i < 20; i++) {
+        const t = triples[Math.floor(rnd() * 5)]; // Use first 5 simplest triples
+        const scale = difficulty === "BASIC" ? 1 : Math.floor(rnd() * 3) + 1;
+        const isHyp = rnd() > 0.5;
+        list.push(`${t[0] * scale}|${t[1] * scale}|${t[2] * scale}|${isHyp ? 'H' : 'L'}`);
+      }
+      return list;
+    }
+
+    if (mode === "CHAIN") {
+      // Dedicated Chain Mode
+      const baseTriples = triangleTriples();
+      const list: string[] = [];
+      const seed = hashStringToUint32(`CHAIN|${difficulty}`);
+      const rnd = mulberry32(seed);
+      for (let i = 0; i < 10; i++) {
+        const t1 = baseTriples[Math.floor(rnd() * baseTriples.length)];
+        const scale = difficulty === "BASIC" ? 1 : 2;
+        // Chain: c of T1 is a of T2.
+        // We need T2 such that a is an integer. 
+        // Simplified Chain: Just random valid chains?
+        // The buildMissionQuest logic for CHAIN uses arbitrary C for the second leg.
+        // Let's reuse that logic: T1 (a,b -> s), T2 (s, c -> d).
+        // We generate a, b, c.
+        const c = Math.floor(rnd() * 10) + 1;
+        list.push(`${t1[0] * scale}|${t1[1] * scale}|${c}`);
       }
       return list;
     }
@@ -513,6 +554,23 @@ function makeQuest(t: Mg05T, tab: ModuleTab, difficulty: Difficulty, mode: Mode,
     }
     if (mode === "DISTANCE") return buildDistanceQuest(t, difficulty, signature);
     if (mode === "MISSION") return buildMissionQuest(t, difficulty, signature);
+    if (mode === "MENTAL") {
+      const [a, b, c, type] = signature.split("|");
+      const isHyp = type === 'H';
+      return {
+        id: `PYT|MENTAL|${difficulty}|${signature}`,
+        tab: "PYTHAGORAS",
+        mode: "MENTAL",
+        difficulty,
+        promptLatex: isHyp ? `a=${a},\\; b=${b}` : `c=${c},\\; ${Number(a) < Number(c) ? 'a' : 'b'}=${Number(a) < Number(c) ? a : b}`, // approximate logic for label
+        targetLatex: isHyp ? `c` : (Number(a) < Number(c) ? `b` : `a`),
+        steps: [
+          { id: "ans", labelLatex: isHyp ? `c` : `leg`, input: "number", answer: isHyp ? Number(c) : (Number(a) < Number(c) ? Number(b) : Number(a)) }
+        ],
+        visual: { kind: "triangle", a: Number(a), b: Number(b), c: Number(c) }
+      };
+    }
+    if (mode === "CHAIN") return buildMissionQuest(t, difficulty, `CHAIN|${signature}`);
     return buildSpaceQuest(t, difficulty, signature);
   }
   return buildSqrtQuest(t, difficulty, mode as SqrtMode, signature);
@@ -704,8 +762,19 @@ function RadicalSlotInput({
 }
 
 export default function MG05Page() {
-  const { currentLanguage, setLanguage } = useAppStore();
-  const t = translations[currentLanguage].s2_02 as Mg05T;
+  const store = useAppStore();
+  const currentLanguage = store?.currentLanguage || 'EN';
+  const setLanguage = store?.setLanguage || (() => {});
+  
+  const rawT = translations[currentLanguage]?.s2_02;
+  
+  if (!rawT) {
+    return <div className="w-full h-screen bg-black text-white flex items-center justify-center">
+      <div className="text-xl">Translation not found for {currentLanguage}</div>
+    </div>;
+  }
+  
+  const t = rawT as any as Mg05T;
 
   const [tab, setTab] = useState<ModuleTab>("PYTHAGORAS");
   const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
@@ -733,10 +802,12 @@ export default function MG05Page() {
       { id: "SOLVE_LEG", label: t.pythagoras.solve_leg, visible: true },
       { id: "CHECK_RIGHT", label: t.pythagoras.check_right, visible: true },
       { id: "MISSION", label: t.mission.title, visible: true },
+      { id: "MENTAL", label: t.mission.mental.title, visible: true },
+      { id: "CHAIN", label: t.mission.mental.chain, visible: difficulty === "ADVANCED" || difficulty === "ELITE" },
       { id: "DISTANCE", label: t.pythagoras.distance, visible: difficulty === "ADVANCED" || difficulty === "ELITE" },
       { id: "ELITE_SPACE", label: t.pythagoras.elite_space, visible: difficulty === "ELITE" },
     ] as const),
-    [difficulty, t.mission.title, t.pythagoras.check_right, t.pythagoras.distance, t.pythagoras.elite_space, t.pythagoras.solve_hyp, t.pythagoras.solve_leg]
+    [difficulty, t.mission.title, t.mission.mental.title, t.mission.mental.chain, t.pythagoras.check_right, t.pythagoras.distance, t.pythagoras.elite_space, t.pythagoras.solve_hyp, t.pythagoras.solve_leg]
   );
 
   const sModes = useMemo(
@@ -796,8 +867,9 @@ export default function MG05Page() {
         if (!ok) correctLatex = `${step.labelLatex}:\\; ${step.answer}`;
       } else if (step.input === "radical") {
         const v = radicalAnswers[step.id] ?? { k: 0, m: 0 };
-        if (v.k !== step.answer.k || v.m !== step.answer.m) ok = false;
-        if (!ok) correctLatex = `${step.labelLatex}:\\; ${formatRadicalLatex(step.answer)}`;
+        const ans = step.answer as Radical;
+        if (v.k !== ans.k || v.m !== ans.m) ok = false;
+        if (!ok) correctLatex = `${step.labelLatex}:\\; ${formatRadicalLatex(ans)}`;
       } else if (step.input === "boolean") {
         if (boolAnswer === null || boolAnswer !== step.answer) ok = false;
         if (!ok) correctLatex = `${step.labelLatex}:\\; ${step.answer ? t.yes : t.no}`;
@@ -1044,7 +1116,7 @@ export default function MG05Page() {
                 <TriangleCanvas a={quest.visual.a} b={quest.visual.b} c={quest.visual.c} highlightRightAngle={!isBooleanQuest || mode === "CHECK_RIGHT"} />
               )}
               {quest.visual.kind === "distance" && (
-                <DistanceCanvas p1={quest.visual.p1} p2={quest.visual.p2} />
+                <DistanceCanvas p1={(quest.visual as any).p1} p2={(quest.visual as any).p2} />
               )}
               {quest.visual.kind === "space" && (
                 <div className="space-y-4">

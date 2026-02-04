@@ -32,6 +32,7 @@ type Quest = {
   slots: Slot[];
   correctLatex: string;
   hintLatex?: string[];
+  excessionLater?: string;
 };
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {

@@ -82,6 +82,65 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'S2.05': // Powers & Roots
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="20" y="70" fontSize="40" fill="currentColor" fontWeight="bold">x</text>
+                    <text x="50" y="40" fontSize="25" fill="currentColor" fontWeight="bold">n</text>
+                    <motion.path
+                        d="M10 80 Q 50 20 90 10"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        opacity="0.5"
+                        strokeDasharray="4 4"
+                    />
+                </svg>
+            );
+        case 'S2.06': // Linear Systems
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" strokeWidth="3" />
+                    <line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" strokeWidth="3" />
+                    <circle cx="50" cy="50" r="6" fill="currentColor" />
+                </svg>
+            );
+        case 'S3.01': // Quadratics
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 10 V90 H90" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+                    <motion.path
+                        d="M20 20 Q 50 90 80 20"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.5 }}
+                    />
+                </svg>
+            );
+        case 'S1.01': // Areas & Volumes
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 80 L80 80 L70 40 L30 40 Z" stroke="currentColor" strokeWidth="4" />
+                    <path d="M30 40 L40 20 L80 20 L70 40" stroke="currentColor" strokeWidth="2" opacity="0.5" strokeDasharray="4 2" />
+                    <path d="M80 80 L90 60 L80 20" stroke="currentColor" strokeWidth="2" opacity="0.5" strokeDasharray="4 2" />
+                </svg>
+            );
+        case 'S1.02': // Data
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="60" width="15" height="30" fill="currentColor" opacity="0.4" />
+                    <rect x="42" y="30" width="15" height="60" fill="currentColor" opacity="0.7" />
+                    <rect x="64" y="50" width="15" height="40" fill="currentColor" opacity="0.9" />
+                    <motion.line
+                        x1="10" y1="70" x2="90" y2="20"
+                        stroke="#00ff9d"
+                        strokeWidth="3"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                    />
+                </svg>
+            );
         default:
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">

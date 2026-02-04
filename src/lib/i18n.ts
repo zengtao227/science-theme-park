@@ -98,6 +98,11 @@ export const translations = {
                 grid_desc: "Compute the distance between two navigation nodes on the Basel grid.",
                 chain_title: "CERN TRANSFER TUNNEL",
                 chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
+            },
+            mental: {
+                title: "MENTAL",
+                triples: "Pythagorean Triples",
+                chain: "Segment Chain"
             }
         },
         s3_01: {
@@ -630,6 +635,11 @@ export const translations = {
                 grid_desc: "计算巴塞尔城市网格中两个导航节点的距离。",
                 chain_title: "CERN 转运通道",
                 chain_desc: "转运通道跨越矩形平台并上升至高位，求完整对角线。"
+            },
+            mental: {
+                title: "心算",
+                triples: "勾股数",
+                chain: "链式路径"
             }
         },
         s3_01: {
@@ -1162,6 +1172,11 @@ export const translations = {
                 grid_desc: "Berechne die Distanz zwischen zwei Navigationsknoten im Basler Raster.",
                 chain_title: "CERN TRANSFERTUNNEL",
                 chain_desc: "Ein Tunnel überspannt eine rechteckige Plattform und steigt zu einer höheren Ebene auf. Bestimme die Gesamtdiagonale."
+            },
+            mental: {
+                title: "KOPFRECHNEN",
+                triples: "Pythagoreische Tripel",
+                chain: "Streckenkette"
             }
         },
         s3_01: {

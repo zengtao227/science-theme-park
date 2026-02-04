@@ -3,8 +3,9 @@
 import { useAppStore } from '@/lib/store';
 import { translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
+import ConceptIcon from '@/components/ConceptIcon';
 import { clsx } from 'clsx';
-import { Gamepad2, Database, Atom, Globe, Square, Sigma, Zap, Box, BarChart3 } from 'lucide-react';
+import { Gamepad2, Atom, Globe } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -92,7 +93,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
-                        <Box className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                        <ConceptIcon code="S1.01" className="w-6 h-6 text-white group-hover:text-neon-purple" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S1.01</span>
                     </div>
@@ -116,7 +117,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
-                        <BarChart3 className="w-6 h-6 text-white group-hover:text-neon-green" />
+                        <ConceptIcon code="S1.02" className="w-6 h-6 text-white group-hover:text-neon-green" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S1.02</span>
                     </div>
@@ -153,7 +154,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
-                        <Square className="w-6 h-6 text-white group-hover:text-neon-green" />
+                        <ConceptIcon code="S2.01" className="w-6 h-6 text-white group-hover:text-neon-green" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.01</span>
                     </div>
@@ -177,7 +178,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                        <Square className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                        <ConceptIcon code="S2.02" className="w-6 h-6 text-white group-hover:text-neon-cyan" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.02</span>
                     </div>
@@ -201,7 +202,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-green transition-colors">
-                        <Globe className="w-6 h-6 text-white group-hover:text-neon-green" />
+                        <ConceptIcon code="S2.03" className="w-6 h-6 text-white group-hover:text-neon-green" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-green">S2.03</span>
                     </div>
@@ -225,7 +226,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                        <Database className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                        <ConceptIcon code="S2.04" className="w-6 h-6 text-white group-hover:text-neon-cyan" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.04</span>
                     </div>
@@ -249,7 +250,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                        <Zap className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                        <ConceptIcon code="S2.05" className="w-6 h-6 text-white group-hover:text-neon-cyan" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.05</span>
                     </div>
@@ -273,7 +274,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-cyan transition-colors">
-                        <Sigma className="w-6 h-6 text-white group-hover:text-neon-cyan" />
+                        <ConceptIcon code="S2.06" className="w-6 h-6 text-white group-hover:text-neon-cyan" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-cyan">S2.06</span>
                     </div>
@@ -310,7 +311,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
-                        <Square className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                        <ConceptIcon code="S3.01" className="w-6 h-6 text-white group-hover:text-neon-purple" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">S3.01</span>
                     </div>
@@ -347,7 +348,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between items-start mb-10">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-neon-purple transition-colors">
-                        <Sigma className="w-6 h-6 text-white group-hover:text-neon-purple" />
+                        <ConceptIcon code="G1.01" className="w-6 h-6 text-white group-hover:text-neon-purple" />
                       </div>
                       <span className="text-[10px] font-mono text-neutral-300 font-bold tracking-widest text-neon-purple">G1.01</span>
                     </div>
