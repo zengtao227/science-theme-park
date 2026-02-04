@@ -13,7 +13,7 @@ import { translations } from "@/lib/i18n";
 type Mg07T = typeof translations.EN.mg07;
 
 type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
-type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION" | "MISSION";
+type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION";
 
 type Slot = {
   id: string;
@@ -32,7 +32,6 @@ type Quest = {
   slots: Slot[];
   correctLatex: string;
   hintLatex?: string[];
-  plot?: { m: number; b: number; domain: { minX: number; maxX: number; minY: number; maxY: number } };
 };
 
 function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
@@ -47,7 +46,6 @@ function stageLabel(t: Mg07T, stage: Stage) {
   if (stage === "LINES") return t.stages.lines;
   if (stage === "LINEAR_FUNCTION") return t.stages.linear_function;
   if (stage === "GRAPH_MATCH") return t.stages.graph_match;
-  if (stage === "MISSION") return t.mission?.title ?? "MISSION";
   return t.stages.intersection;
 }
 
@@ -59,17 +57,17 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.lines_prompt_latex,
-        expressionLatex: `A(0,2),\\;B(4,6)`,
+        expressionLatex: `(0,3),\\; (2,7)`,
         targetLatex: `y=mx+b`,
         slots: [
-          { id: "m", labelLatex: `m`, placeholder: "m", expected: 1 },
-          { id: "b", labelLatex: `b`, placeholder: "b", expected: 2 },
+          { id: "m", labelLatex: `m`, placeholder: "m", expected: 2 },
+          { id: "b", labelLatex: `b`, placeholder: "b", expected: 3 },
         ],
-        correctLatex: `y=x+2`,
+        correctLatex: `y=2x+3`,
         hintLatex: [
           t.hints.rules.slope_two_points_latex,
-          `m=\\frac{6-2}{4-0}=1`,
-          `b=2`,
+          `m=\\frac{7-3}{2-0}=2`,
+          `b=3`,
         ],
       },
       {
@@ -77,17 +75,17 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.lines_prompt_latex,
-        expressionLatex: `A(-2,3),\\;B(2,1)`,
+        expressionLatex: `(1,5),\\; (3,11)`,
         targetLatex: `y=mx+b`,
         slots: [
-          { id: "m", labelLatex: `m`, placeholder: "m", expected: -0.5 },
+          { id: "m", labelLatex: `m`, placeholder: "m", expected: 3 },
           { id: "b", labelLatex: `b`, placeholder: "b", expected: 2 },
         ],
-        correctLatex: `y=-\\frac{1}{2}x+2`,
+        correctLatex: `y=3x+2`,
         hintLatex: [
           t.hints.rules.slope_two_points_latex,
-          `m=\\frac{1-3}{2-(-2)}=-\\frac{2}{4}=-\\frac{1}{2}`,
-          `b=2`,
+          `m=\\frac{11-5}{3-1}=3`,
+          `b=5-3\\cdot 1=2`,
         ],
       },
       {
@@ -95,30 +93,23 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.lines_prompt_latex,
-        expressionLatex: `m=3,\\;P(1,-2)`,
+        expressionLatex: `(-1,2),\\; (2,8)`,
         targetLatex: `y=mx+b`,
-        slots: [{ id: "b", labelLatex: `b`, placeholder: "b", expected: -5 }],
-        correctLatex: `y=3x-5`,
-        hintLatex: [
-          `-2=3\\cdot 1+b`,
-          `b=-5`,
+        slots: [
+          { id: "m", labelLatex: `m`, placeholder: "m", expected: 2 },
+          { id: "b", labelLatex: `b`, placeholder: "b", expected: 4 },
         ],
-      },
-      {
-        id: "L4",
-        difficulty,
-        stage,
-        promptLatex: t.stages.lines_prompt_latex,
-        expressionLatex: `m=0,\\;P(-3,4)`,
-        targetLatex: `y=b`,
-        slots: [{ id: "b", labelLatex: `b`, placeholder: "b", expected: 4 }],
-        correctLatex: `y=4`,
-        hintLatex: [`\\text{Horizontal line: }m=0`, `y=4`],
+        correctLatex: `y=2x+4`,
+        hintLatex: [
+          t.hints.rules.slope_two_points_latex,
+          `m=\\frac{8-2}{2-(-1)}=2`,
+          `b=2-2\\cdot(-1)=4`,
+        ],
       },
     ];
 
     if (difficulty === "BASIC") return all.slice(0, 2);
-    if (difficulty === "CORE") return all.slice(0, 3);
+    if (difficulty === "CORE") return all;
     return all;
   }
 
@@ -129,25 +120,25 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.linear_prompt_latex,
-        expressionLatex: `f(x)=2x-3,\\; x=4`,
-        targetLatex: `f(4)`,
-        slots: [{ id: "y", labelLatex: `f(4)`, placeholder: "value", expected: 5 }],
-        correctLatex: `f(4)=2\\cdot 4-3=5`,
-        hintLatex: [`f(4)=2\\cdot 4-3`, `f(4)=5`],
+        expressionLatex: `y=2x+3,\\; x=4`,
+        targetLatex: `y`,
+        slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 11 }],
+        correctLatex: `y=2\\cdot 4+3=11`,
+        hintLatex: [`y=2x+3`, `y=11`],
       },
       {
         id: "F2",
         difficulty,
         stage,
         promptLatex: t.stages.linear_prompt_latex,
-        expressionLatex: `y=-\\frac{1}{2}x+2,\\; y=0`,
+        expressionLatex: `y=3x-5,\\; y=10`,
         targetLatex: `x`,
-        slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 4 }],
-        correctLatex: `0=-\\frac{1}{2}x+2\\Rightarrow x=4`,
+        slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 5 }],
+        correctLatex: `10=3x-5\\Rightarrow x=5`,
         hintLatex: [
           t.hints.rules.solve_linear_latex,
-          `0=-\\frac{1}{2}x+2`,
-          `x=4`,
+          `3x=15`,
+          `x=5`,
         ],
       },
       {
@@ -155,16 +146,15 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.linear_prompt_latex,
-        expressionLatex: `y=3x+b,\\; (x,y)=(2,1)`,
-        targetLatex: `b`,
-        slots: [{ id: "b", labelLatex: `b`, placeholder: "b", expected: -5 }],
-        correctLatex: `1=3\\cdot 2+b\\Rightarrow b=-5`,
-        hintLatex: [`1=6+b`, `b=-5`],
+        expressionLatex: `y=-2x+7,\\; x=3`,
+        targetLatex: `y`,
+        slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 1 }],
+        correctLatex: `y=-2\\cdot 3+7=1`,
+        hintLatex: [`y=-6+7=1`],
       },
     ];
 
-    if (difficulty === "BASIC") return all.slice(0, 1);
-    if (difficulty === "CORE") return all.slice(0, 2);
+    if (difficulty === "BASIC") return all.slice(0, 2);
     return all;
   }
 
@@ -175,38 +165,36 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
         difficulty,
         stage,
         promptLatex: t.stages.graph_prompt_latex,
-        expressionLatex: `\\text{Graph }y=mx+b`,
+        expressionLatex: `\\text{Line passes through }(0,2)\\text{ and }(1,5)`,
         targetLatex: `m,\\; b`,
         slots: [
-          { id: "m", labelLatex: `m`, placeholder: "m", expected: 1 },
-          { id: "b", labelLatex: `b`, placeholder: "b", expected: -1 },
+          { id: "m", labelLatex: `m`, placeholder: "m", expected: 3 },
+          { id: "b", labelLatex: `b`, placeholder: "b", expected: 2 },
         ],
-        correctLatex: `y=x-1`,
+        correctLatex: `m=3,\\; b=2`,
         hintLatex: [
-          `\\text{Look at }b: \\text{ where the line crosses the y-axis.}`,
-          `\\text{Use rise/run for }m.`,
-          `m=1,\\; b=-1`,
+          t.hints.rules.slope_two_points_latex,
+          `m=\\frac{5-2}{1-0}=3`,
+          `b=2`,
         ],
-        plot: { m: 1, b: -1, domain: { minX: -5, maxX: 5, minY: -5, maxY: 5 } },
       },
       {
         id: "G2",
         difficulty,
         stage,
         promptLatex: t.stages.graph_prompt_latex,
-        expressionLatex: `\\text{Graph }y=mx+b`,
+        expressionLatex: `\\text{Line passes through }(0,-1)\\text{ and }(2,3)`,
         targetLatex: `m,\\; b`,
         slots: [
-          { id: "m", labelLatex: `m`, placeholder: "m", expected: -2 },
-          { id: "b", labelLatex: `b`, placeholder: "b", expected: 3 },
+          { id: "m", labelLatex: `m`, placeholder: "m", expected: 2 },
+          { id: "b", labelLatex: `b`, placeholder: "b", expected: -1 },
         ],
-        correctLatex: `y=-2x+3`,
+        correctLatex: `m=2,\\; b=-1`,
         hintLatex: [
-          `b=3`,
-          `\\text{Down }2\\text{ when right }1`,
-          `m=-2`,
+          t.hints.rules.slope_two_points_latex,
+          `m=\\frac{3-(-1)}{2-0}=2`,
+          `b=-1`,
         ],
-        plot: { m: -2, b: 3, domain: { minX: -4, maxX: 4, minY: -5, maxY: 5 } },
       },
     ];
 
@@ -214,116 +202,51 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): Quest[]
     return all;
   }
 
-  if (stage === "MISSION") {
+  if (stage === "INTERSECTION") {
     const all: Quest[] = [
       {
-        id: "M1",
+        id: "I1",
         difficulty,
         stage,
-        promptLatex: `\\text{${t.mission?.description}}`,
-        expressionLatex: `\\begin{cases}y=\\frac{1}{2}x+2\\\\y=-x+8\\end{cases}`,
+        promptLatex: t.stages.intersection_prompt_latex,
+        expressionLatex: `y=2x+1,\\; y=x+3`,
         targetLatex: `(x,y)`,
         slots: [
-          { id: "x", labelLatex: `x`, placeholder: "x", expected: 4 },
-          { id: "y", labelLatex: `y`, placeholder: "y", expected: 4 },
+          { id: "x", labelLatex: `x`, placeholder: "x", expected: 2 },
+          { id: "y", labelLatex: `y`, placeholder: "y", expected: 5 },
         ],
-        correctLatex: `(4,4)`,
+        correctLatex: `(2,5)`,
         hintLatex: [
           t.hints.rules.solve_system_latex,
-          `\\frac{1}{2}x+2=-x+8`,
-          `x=4,\\; y=4`,
+          `2x+1=x+3`,
+          `x=2,\\; y=5`,
+        ],
+      },
+      {
+        id: "I2",
+        difficulty,
+        stage,
+        promptLatex: t.stages.intersection_prompt_latex,
+        expressionLatex: `y=3x-2,\\; y=-x+6`,
+        targetLatex: `(x,y)`,
+        slots: [
+          { id: "x", labelLatex: `x`, placeholder: "x", expected: 2 },
+          { id: "y", labelLatex: `y`, placeholder: "y", expected: 4 },
+        ],
+        correctLatex: `(2,4)`,
+        hintLatex: [
+          t.hints.rules.solve_system_latex,
+          `3x-2=-x+6`,
+          `4x=8\\Rightarrow x=2,\\; y=4`,
         ],
       },
     ];
+
+    if (difficulty === "BASIC") return all.slice(0, 1);
     return all;
   }
 
-  const all: Quest[] = [
-    {
-      id: "I1",
-      difficulty,
-      stage,
-      promptLatex: t.stages.intersection_prompt_latex,
-      expressionLatex: `\\begin{cases}y=x+1\\\\y=-x+5\\end{cases}`,
-      targetLatex: `(x,y)`,
-      slots: [
-        { id: "x", labelLatex: `x`, placeholder: "x", expected: 2 },
-        { id: "y", labelLatex: `y`, placeholder: "y", expected: 3 },
-      ],
-      correctLatex: `(2,3)`,
-      hintLatex: [
-        t.hints.rules.solve_system_latex,
-        `x+1=-x+5`,
-        `x=2,\\; y=3`,
-      ],
-    },
-    {
-      id: "I2",
-      difficulty,
-      stage,
-      promptLatex: t.stages.intersection_prompt_latex,
-      expressionLatex: `\\begin{cases}y=2x-1\\\\y=\\frac{1}{2}x+2\\end{cases}`,
-      targetLatex: `(x,y)`,
-      slots: [
-        { id: "x", labelLatex: `x`, placeholder: "x", expected: 2 },
-        { id: "y", labelLatex: `y`, placeholder: "y", expected: 3 },
-      ],
-      correctLatex: `(2,3)`,
-      hintLatex: [
-        t.hints.rules.solve_system_latex,
-        `2x-1=\\frac{1}{2}x+2`,
-        `x=2,\\; y=3`,
-      ],
-    },
-  ];
-
-  if (difficulty === "BASIC") return all.slice(0, 1);
-  if (difficulty === "CORE") return all.slice(0, 1);
-  return all;
-}
-
-function LinePlot({ m, b, domain }: { m: number; b: number; domain: { minX: number; maxX: number; minY: number; maxY: number } }) {
-  const width = 420;
-  const height = 260;
-
-  const toSvg = (x: number, y: number) => {
-    const sx = ((x - domain.minX) / (domain.maxX - domain.minX)) * width;
-    const sy = height - ((y - domain.minY) / (domain.maxY - domain.minY)) * height;
-    return { sx, sy };
-  };
-
-  const x1 = domain.minX;
-  const x2 = domain.maxX;
-  const y1 = m * x1 + b;
-  const y2 = m * x2 + b;
-  const p1 = toSvg(x1, y1);
-  const p2 = toSvg(x2, y2);
-
-  const axisX = toSvg(0, domain.minY).sx;
-  const axisY = toSvg(domain.minX, 0).sy;
-
-  const ticksX = [];
-  for (let x = Math.ceil(domain.minX); x <= Math.floor(domain.maxX); x++) ticksX.push(x);
-  const ticksY = [];
-  for (let y = Math.ceil(domain.minY); y <= Math.floor(domain.maxY); y++) ticksY.push(y);
-
-  return (
-    <div className="w-full flex justify-center">
-      <svg width={width} height={height} className="border border-white/10 bg-black rounded-xl">
-        {ticksX.map((x) => {
-          const { sx } = toSvg(x, 0);
-          return <line key={`gx-${x}`} x1={sx} y1={0} x2={sx} y2={height} stroke="rgba(255,255,255,0.06)" />;
-        })}
-        {ticksY.map((y) => {
-          const { sy } = toSvg(0, y);
-          return <line key={`gy-${y}`} x1={0} y1={sy} x2={width} y2={sy} stroke="rgba(255,255,255,0.06)" />;
-        })}
-        <line x1={axisX} y1={0} x2={axisX} y2={height} stroke="rgba(255,255,255,0.18)" />
-        <line x1={0} y1={axisY} x2={width} y2={axisY} stroke="rgba(255,255,255,0.18)" />
-        <line x1={p1.sx} y1={p1.sy} x2={p2.sx} y2={p2.sy} stroke="rgba(180,120,255,0.95)" strokeWidth={3} />
-      </svg>
-    </div>
-  );
+  return [];
 }
 
 export default function MG07Page() {
@@ -432,60 +355,55 @@ export default function MG07Page() {
       </header>
 
       <div className="flex-1 flex overflow-hidden">
-        <main className="flex-1 overflow-y-auto p-6">
-          <div className="max-w-6xl mx-auto space-y-6">
-            <div className="flex flex-wrap gap-2 justify-center">
+        <main className="flex-1 border-r-2 border-white/10 p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
+          <div className="w-full max-w-5xl space-y-10">
+            <div className="flex flex-wrap gap-3 justify-center">
               {([
                 { id: "LINES", label: stageLabel(t, "LINES") },
                 { id: "LINEAR_FUNCTION", label: stageLabel(t, "LINEAR_FUNCTION") },
                 { id: "GRAPH_MATCH", label: stageLabel(t, "GRAPH_MATCH") },
                 { id: "INTERSECTION", label: stageLabel(t, "INTERSECTION") },
-            { id: "MISSION", label: stageLabel(t, "MISSION") },
-              ] as const).map((s) => (
+              ] as const).map((m) => (
                 <button
-                  key={s.id}
+                  key={m.id}
                   onClick={() => {
-                    setStage(s.id);
+                    setStage(m.id);
                     setNonce(0);
                     clearInputs();
                   }}
                   className={clsx(
-                    "px-4 py-2 border-2 text-[10px] font-black tracking-[0.35em] uppercase transition-all",
-                    stage === s.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
+                    "px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
+                    stage === m.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
                   )}
                 >
-                  {s.label}
+                  {m.label}
                 </button>
               ))}
             </div>
 
-            <div className="text-center">
-              <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-              <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                <InlineMath math={currentQuest.promptLatex} />
-              </p>
-            </div>
+            <div className="space-y-6">
+              <div className="text-center">
+                <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+                <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
+                  <InlineMath math={currentQuest.promptLatex} />
+                </p>
+              </div>
 
-            <div className="flex justify-center overflow-x-auto w-full">
-              <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
-                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
-                <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
-                <div className="space-y-4">
-                  <div className="text-white font-black text-[clamp(1.4rem,4.4vw,4.2rem)] leading-[0.95] whitespace-nowrap">
-                    <InlineMath math={currentQuest.expressionLatex} />
-                  </div>
-                  <div className="text-white/60 font-black">
-                    <InlineMath math={currentQuest.targetLatex} />
+              <div className="flex justify-center overflow-x-auto w-full">
+                <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
+                  <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
+                  <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
+                  <div className="space-y-4">
+                    <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
+                      <InlineMath math={currentQuest.expressionLatex} />
+                    </div>
+                    <div className="text-white/60 font-black">
+                      <InlineMath math={currentQuest.targetLatex} />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            {currentQuest.plot && (
-              <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
-                <LinePlot m={currentQuest.plot.m} b={currentQuest.plot.b} domain={currentQuest.plot.domain} />
-              </div>
-            )}
 
             <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
               <div className="space-y-4">
@@ -528,7 +446,11 @@ export default function MG07Page() {
                   <div className={clsx("text-[10px] font-black tracking-[0.4em] uppercase", lastCheck.ok ? "text-neon-green" : "text-orange-400")}>
                     {lastCheck.ok ? t.correct : t.incorrect}
                   </div>
-                  {!lastCheck.ok && <div className="mt-2 text-white/70 font-black break-words">{lastCheck.correct}</div>}
+                  {!lastCheck.ok && (
+                    <div className="mt-2 text-white/70 font-black break-words">
+                      <InlineMath math={lastCheck.correct} />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -538,10 +460,7 @@ export default function MG07Page() {
         <aside className="w-[520px] relative bg-black flex flex-col border-l border-white/10">
           <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
             <span>{t.monitor_title}</span>
-            <div className="flex gap-2">
-              <div className="w-1 h-1 bg-white" />
-              <div className="w-1 h-1 bg-white/40" />
-            </div>
+            <div className="flex gap-2"><div className="w-1 h-1 bg-white" /><div className="w-1 h-1 bg-white/40" /></div>
           </div>
           <div className="flex-1 p-6">
             <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] h-full flex flex-col justify-between">
