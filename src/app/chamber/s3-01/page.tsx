@@ -8,6 +8,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import S301QuadraticCanvas from "@/components/chamber/S301_QuadraticCanvas";
 
 type Mg06T = typeof translations.EN.s3_01;
 
@@ -565,32 +566,10 @@ export default function S301Page() {
         },
       }}
       monitorContent={
-        <>
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-            <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
-              <span className="inline-block">
-                <InlineMath math={currentQuest.expressionLatex} />
-              </span>
-            </div>
-            <div className="text-white/70 font-mono text-sm break-words">
-              <InlineMath math={currentQuest.promptLatex} />
-            </div>
-            {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
-              <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
-                <div className="text-white/40">{t.labels.hints}</div>
-                {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
-                  <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
-                    <div className="text-white/30 w-6">{String(idx + 1).padStart(2, "0")}</div>
-                    <div className="flex-1">
-                      <InlineMath math={h} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </>
+        <S301QuadraticCanvas
+          quest={currentQuest}
+          labels={{ target: t.target_title, hints: t.labels.hints }}
+        />
       }
     >
       <div className="w-full max-w-5xl space-y-10">
