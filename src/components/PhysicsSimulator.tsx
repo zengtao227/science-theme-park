@@ -16,6 +16,7 @@ export type PhysicsBody = {
   restitution?: number;
   isStatic?: boolean;
   color?: string;
+  initialVelocity?: { x: number; y: number };
 };
 
 export type Force = {
@@ -138,6 +139,11 @@ export function PhysicsSimulator({
 
       bodyMapRef.current.set(bodyDef.id, body);
       Matter.World.add(engine.world, body);
+      
+      // Set initial velocity if provided
+      if (bodyDef.initialVelocity) {
+        Matter.Body.setVelocity(body, bodyDef.initialVelocity);
+      }
     });
 
     forces.forEach(force => {

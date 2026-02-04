@@ -546,3 +546,22 @@ test('MG07 - User can solve line equation', async ({ page }) => {
 **创建日期**: 2026-02-04
 **负责人**: Development Team
 **审核状态**: ✅ 已批准，准备实施
+
+### 阶段 X：商业化与生态系统 (Phase X: Commercialization) 💎 **FUTURE**
+
+#### X.1 用户账户系统
+- **身份验证**：集成 Supabase Auth 或 Clerk，支持 GitHub/Google 登录。
+- **云端同步**：将 `localStorage` 的进度同步到云端数据库。
+- **多设备支持**：在手机上开始，在电脑上完成。
+
+#### X.2 订阅模型 (Science Pass)
+- **Free Tier**：访问核心模块 (S1, P1)。
+- **Pro Tier**：
+    - 解锁高级模块 (S3, P3, C3)。
+    - 访问 "Sandbox Mode" (自由搭建物理/化学实验)。
+    - 获取详细的学习报告和错题分析。
+
+#### X.3 教师仪表盘 (Classroom)
+- 教师可以布置作业 (Quests)。
+- 实时查看学生进度。
+- 导出成绩单。

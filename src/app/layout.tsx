@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Rajdhani, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
 
 const rajdhani = Rajdhani({
@@ -27,6 +29,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${rajdhani.variable} ${mono.variable} font-sans antialiased text-white bg-black`}>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -29,8 +29,8 @@ interface ChamberLayoutProps {
         next: string;
         correct: string;
         incorrect: string;
-        ready: string;
-        monitor_title: string;
+        ready?: string;
+        monitor_title?: string;
         difficulty: Record<string, string>;
     };
 }
@@ -175,7 +175,7 @@ export default function ChamberLayout({
                 {/* Aside Monitor Panel */}
                 <aside className="w-[520px] relative bg-black flex flex-col border-l border-white/10 hidden xl:flex">
                     <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
-                        <span>{translations.monitor_title}</span>
+                        <span>{translations.monitor_title || "SYSTEM MONITOR"}</span>
                         <div className="flex gap-2">
                             <div className="w-1 h-1 bg-white" />
                             <div className="w-1 h-1 bg-white/40" />
@@ -194,7 +194,7 @@ export default function ChamberLayout({
                 <span>{footerLeft}</span>
                 <span className="flex items-center gap-2">
                     <Sigma className="w-3 h-3 text-white/50" />
-                    {checkStatus ? (checkStatus.ok ? translations.correct : translations.incorrect) : translations.ready}
+                    {checkStatus ? (checkStatus.ok ? translations.correct : translations.incorrect) : (translations.ready || "SYSTEM READY")}
                 </span>
             </footer>
         </div>
