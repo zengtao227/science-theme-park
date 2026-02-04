@@ -105,10 +105,20 @@
 ## 附录：瑞士初高中理科大纲映射 (Curriculum Roadmap)
 
 *(此处保留原有 v1.1 版本的详细表格，作为开发索引)*
-### 📚 数学篇 (Mathematics)
-*(内容同前，略)*
+### 📚 数学模块映射 (Mathematics Modules)
+
+详见 [CURRICULUM_ROADMAP.md](CURRICULUM_ROADMAP.md) 获取完整的模块编号与开发状态。
+
+当前已实现模块：
+- **S1.02**: 数据与概率 (Data & Probability)
+- **S2.01**: 二项式工厂 (Binomial Factory)
+- **S2.02**: 勾股与平方根 (Pythagoras & Roots)
+- **S2.04**: 相似与缩放 (Similarity & Scaling)
+- **S3.01**: 二次方程 (Quadratic Equations) - 开发中
+- **G1.01**: 微积分初探 (Calculus Intro)
+
 ### ⚛️ 物理篇 (Physics)
-*(内容同前，略)*
+*(待规划物理模块编号)*
 
 
 > **核心信条**：世界不按玩家的意愿运转，除非玩家真正理解规则。

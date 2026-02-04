@@ -175,6 +175,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         hintLatex: [
           t.hints.identities.trinomial_expand_latex,
           `A+B=5,\\; AB=6`,
+          `\\text{Match: }A=2,\\; B=3\\text{ because }2+3=5\\text{ and }2\\times 3=6`,
         ],
       },
       {
@@ -192,6 +193,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         hintLatex: [
           t.hints.identities.trinomial_expand_latex,
           `A+B=-4,\\; AB=-12`,
+          `\\text{Match: }A=-6,\\; B=2\\text{ because }(-6)+2=-4\\text{ and }(-6)\\times 2=-12`,
         ],
       },
       {
@@ -209,6 +211,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         hintLatex: [
           t.hints.identities.diff_squares_latex,
           `u=3a,\\; v=4`,
+          `\\text{Therefore: }(3a)^2-4^2=(3a-4)(3a+4)`,
         ],
       },
       {
@@ -226,6 +229,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
         hintLatex: [
           `(px+q)^2=p^2x^2+2pqx+q^2`,
           `p^2=4,\\; 2pq=12,\\; q^2=9`,
+          `\\text{Match: }p=2,\\; q=3\\text{ gives }(2x+3)^2`,
         ],
       },
       {
@@ -306,6 +310,46 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
           { id: "n", labelLatex: `n`, placeholder: "n", expected: -1 },
         ],
         correctLatex: `6x^2y(2x-1)`,
+        hintLatex: [
+          t.hints.rules.factor_common_latex,
+          `\\text{GCD of }12x^3y\\text{ and }6x^2y\\text{ is }6x^2y`,
+          `12x^3y-6x^2y=6x^2y(2x-1)`,
+        ],
+      },
+      {
+        id: "F10",
+        difficulty,
+        stage,
+        promptLatex: t.stages.factor_prompt_latex,
+        expressionLatex: `x^2+6x+9`,
+        targetLatex: `(x+A)^2`,
+        slots: [
+          { id: "A", labelLatex: `A`, placeholder: "A", expected: 3 },
+        ],
+        correctLatex: `(x+3)^2`,
+        hintLatex: [
+          `(x+A)^2=x^2+2Ax+A^2`,
+          `\\text{Match: }2A=6\\text{ and }A^2=9`,
+          `\\text{Therefore: }A=3`,
+        ],
+      },
+      {
+        id: "F11",
+        difficulty,
+        stage,
+        promptLatex: t.stages.factor_prompt_latex,
+        expressionLatex: `25x^2-49`,
+        targetLatex: `(px-q)(px+q)`,
+        slots: [
+          { id: "p", labelLatex: `p`, placeholder: "p", expected: 5 },
+          { id: "q", labelLatex: `q`, placeholder: "q", expected: 7 },
+        ],
+        correctLatex: `(5x-7)(5x+7)`,
+        hintLatex: [
+          t.hints.identities.diff_squares_latex,
+          `25x^2=(5x)^2,\\; 49=7^2`,
+          `\\text{Therefore: }(5x)^2-7^2=(5x-7)(5x+7)`,
+        ],
       },
     ];
 
@@ -458,6 +502,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       hintLatex: [
         t.hints.identities.trinomial_expand_latex,
         `A+B=-7,\\; AB=10`,
+        `\\text{Match: }A=-5,\\; B=-2`,
         t.hints.rules.zero_product_latex,
       ],
     },
@@ -478,6 +523,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       hintLatex: [
         t.hints.rules.simplify_both_sides_latex,
         `(x-3)(x+2)=x^2-x-6`,
+        `x^2-x-6=x^2-1`,
         `-x-6=-1\\;\\Rightarrow\\; x=-5`,
       ],
     },
@@ -514,6 +560,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): Quest[]
       hintLatex: [
         t.hints.rules.simplify_both_sides_latex,
         `-3(x-2)=-3x+6`,
+        `-3x+6=2x+4`,
         `-5x=-2\\;\\Rightarrow\\; x=\\frac{2}{5}`,
       ],
     },

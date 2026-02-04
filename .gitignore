@@ -49,3 +49,6 @@ scripts/*.py
 
 # database files
 *.db
+
+# IDE settings
+.vscode/
