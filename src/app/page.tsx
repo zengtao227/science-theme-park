@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, progress } = useAppStore();
-  const t = translations[currentLanguage];
+  const t = (translations as any)[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
     DE: '🇩🇪 DE',
@@ -196,7 +196,12 @@ function ModuleCard({ code, title, desc, color, progress, href }: { code: string
 
         <div>
           <div className="flex justify-between items-start mb-6">
-            <span className={clsx("text-xs font-mono font-bold tracking-widest opacity-70", `text-${color}`)}>{code}</span>
+            <div className="flex items-center gap-3">
+              <div className={clsx(`w-10 h-10 border border-${color}/30 rounded-md flex items-center justify-center text-${color} group-hover:bg-${color}/10 transition-colors`)}>
+                <ConceptIcon code={code} className="w-6 h-6" />
+              </div>
+              <span className={clsx("text-xs font-mono font-bold tracking-widest opacity-70", `text-${color}`)}>{code}</span>
+            </div>
             <div className={clsx("w-2 h-2 rounded-full", progress.percent > 0 ? "bg-neon-green" : "bg-white/10")} />
           </div>
           <h3 className={clsx("text-xl font-bold tracking-tight mb-2 uppercase transition-colors", `group-hover:text-${color}`)}>

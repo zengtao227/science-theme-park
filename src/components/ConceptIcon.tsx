@@ -141,6 +141,70 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'P1.02': // Newton
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="30" y="40" width="40" height="40" stroke="currentColor" strokeWidth="3" />
+                    <motion.line
+                        x1="10" y1="60" x2="30" y2="60"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        markerEnd="url(#arrow)"
+                    />
+                    <motion.path
+                        d="M75 60 L95 60 M90 55 L95 60 L90 65"
+                        stroke="#00ff9d"
+                        strokeWidth="3"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                    />
+                </svg>
+            );
+        case 'P2.02': // Circuits
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="20" width="60" height="60" rx="4" stroke="currentColor" strokeWidth="2" />
+                    <path d="M40 20 L60 20" stroke="black" strokeWidth="4" />
+                    <path d="M45 15 L45 25 M55 15 L55 25" stroke="currentColor" strokeWidth="2" />
+                    <path d="M20 50 L15 50 M80 50 L85 50" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="20" cy="50" r="3" fill="#00ff9d">
+                        <animateMotion
+                            path="M0 0 V-30 H60 V60 H-60 V-30"
+                            dur="3s"
+                            repeatCount="indefinite"
+                        />
+                    </circle>
+                </svg>
+            );
+        case 'P3.01': // Optics
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="50" rx="5" ry="30" stroke="currentColor" strokeWidth="2" />
+                    <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+                    <motion.path
+                        d="M10 30 L50 50 L90 70"
+                        stroke="#b026ff"
+                        strokeWidth="2"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                    />
+                </svg>
+            );
+        case 'C1.01': // Chemistry
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 20 L50 40 L30 80 H70 L50 40" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" />
+                    <circle cx="50" cy="70" r="3" fill="currentColor" opacity="0.5">
+                        <animate attributeName="cy" values="70;50" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="45" cy="75" r="2" fill="currentColor" opacity="0.5">
+                        <animate attributeName="cy" values="75;55" dur="1.5s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            );
         default:
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">

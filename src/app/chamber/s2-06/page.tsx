@@ -34,7 +34,7 @@ function buildStagePool(t: Mg10T, difficulty: Difficulty, stage: Stage): S206Que
 
 export default function S206Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].s2_06;
+  const t = (translations as any)[currentLanguage].s2_06;
 
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,

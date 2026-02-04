@@ -36,7 +36,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): G101Quest
 
 export default function G101Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].g1_01;
+  const t = (translations as any)[currentLanguage].g1_01;
 
   const [exploreX, setExploreX] = useState(1);
 

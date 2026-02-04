@@ -1,185 +1,257 @@
 "use client";
 
+import { useState } from "react";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import C101LabCanvas from "@/components/chamber/C101_LabCanvas";
-import clsx from "clsx";
+import C101LabCanvas, { Substance, Tool } from "@/components/chamber/C101_LabCanvas";
 
-type Stage = "SODA" | "STARCH" | "FULL";
-
+type Stage = "IDENTIFY" | "PROPERTIES" | "REACTIONS";
+// type Substance = "soda" | "salt" | "starch"; // Removed locally defined type
 
 interface C101Quest extends Quest {
-    stage: Stage;
-    unknowns: { id: string, type: "soda" | "salt" | "starch", label: string }[];
-    targetId: string; // The ID of the substance to identify
-}
-
-function shuffleArray<T>(array: T[]): T[] {
-    const newArr = [...array];
-    for (let i = newArr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-    }
-    return newArr;
+  stage: Stage;
+  substances: Substance[];
+  correctIdentifications: Record<string, Substance>; // "A" -> "soda"
 }
 
 function buildStagePool(difficulty: Difficulty, stage: Stage): C101Quest[] {
-    const quests: C101Quest[] = [];
+  const quests: C101Quest[] = [];
 
-    // Base substances
-    const baseSubstances = [
-        { type: "soda" as const, name: "Baking Soda" },
-        { type: "salt" as const, name: "Table Salt" },
-        { type: "starch" as const, name: "Corn Starch" }
+  // Stage 1: IDENTIFY - Identify the three powders
+  if (stage === "IDENTIFY") {
+    const arrangements = [
+      { A: "soda", B: "salt", C: "starch" },
+      { A: "salt", B: "starch", C: "soda" },
+      { A: "starch", B: "soda", C: "salt" },
+      { A: "soda", B: "starch", C: "salt" },
+      { A: "salt", B: "soda", C: "starch" },
+      { A: "starch", B: "salt", C: "soda" },
     ];
 
-    // Logic to generate variations
-    for (let i = 0; i < 5; i++) {
-        const shuffled = shuffleArray(baseSubstances).map((s, idx) => ({
-            id: `sample-${idx}`,
-            type: s.type,
-            label: String.fromCharCode(65 + idx) // A, B, C
-        }));
+    const count = difficulty === "BASIC" ? 2 : difficulty === "CORE" ? 4 : 6;
 
-        let targetType = "soda";
-        let prompt = "Find the Baking Soda.";
-        let hint = "It reacts with acid (Vinegar) to create bubbles.";
+    for (let i = 0; i < count; i++) {
+      const arrangement = arrangements[i];
 
-        if (stage === "STARCH") {
-            targetType = "starch";
-            prompt = "Find the Starch.";
-            hint = "It turns blue-black when mixed with Iodine.";
-        } else if (stage === "FULL") {
-            // For FULL, maybe ask to identify a random one, or all?
-            // Let's stick to identifying one specific logic for now to fit the slot system
-            targetType = baseSubstances[i % 3].type;
-            prompt = `Find the ${baseSubstances[i % 3].name}.`;
-            hint = "Use your tools to observe reactions.";
-        }
-
-        const targetSubstance = shuffled.find(s => s.type === targetType)!;
-
-        quests.push({
-            id: `C101-${stage}-${i}`,
-            difficulty,
-            stage,
-            unknowns: shuffled,
-            targetId: targetSubstance.id,
-            promptLatex: `\\text{${prompt}}`,
-            expressionLatex: `\\text{${hint}}`,
-            targetLatex: "\\text{Sample}",
-            correctLatex: `\\text{Found: } ${targetSubstance.label}`,
-            slots: [
-                {
-                    id: "result",
-                    labelLatex: "\\text{Answer (A/B/C)}",
-                    placeholder: "?",
-                    expected: targetSubstance.label
-                }
-            ]
-        });
+      quests.push({
+        id: `IDENTIFY|${difficulty}|${i}`,
+        difficulty,
+        stage,
+        substances: ["soda", "salt", "starch"],
+        correctIdentifications: arrangement as Record<string, Substance>,
+        promptLatex: `\\text{Identify the three white powders}`,
+        expressionLatex: `\\text{Use: Water, Vinegar, Fire, Iodine}`,
+        targetLatex: `\\text{A, B, C}`,
+        correctLatex: `\\text{A=${arrangement.A}, B=${arrangement.B}, C=${arrangement.C}}`,
+        slots: [
+          { id: "A", labelLatex: "\\text{Powder A is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "B", labelLatex: "\\text{Powder B is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "C", labelLatex: "\\text{Powder C is}", placeholder: "soda/salt/starch", expected: 0 },
+        ],
+      });
     }
-
     return quests;
+  }
+
+  // Stage 2: PROPERTIES - Identify based on specific property
+  if (stage === "PROPERTIES") {
+    const properties = [
+      { question: "Which powder fizzes with vinegar?", answer: "soda" },
+      { question: "Which powder turns blue-black with iodine?", answer: "starch" },
+      { question: "Which powder dissolves completely in water?", answer: "salt" },
+      { question: "Which powder produces CO₂ gas?", answer: "soda" },
+    ];
+
+    const count = difficulty === "BASIC" ? 2 : difficulty === "CORE" ? 3 : 4;
+
+    for (let i = 0; i < count; i++) {
+      const prop = properties[i];
+
+      quests.push({
+        id: `PROPERTIES|${difficulty}|${i}`,
+        difficulty,
+        stage,
+        substances: ["soda", "salt", "starch"],
+        correctIdentifications: {},
+        promptLatex: `\\text{${prop.question}}`,
+        expressionLatex: `\\text{Test and observe}`,
+        targetLatex: `\\text{Answer}`,
+        correctLatex: `\\text{${prop.answer}}`,
+        slots: [
+          { id: "answer", labelLatex: "\\text{Answer}", placeholder: "soda/salt/starch", expected: 0 },
+        ],
+      });
+    }
+    return quests;
+  }
+
+  // Stage 3: REACTIONS - Chemical equations
+  if (stage === "REACTIONS") {
+    const reactions = [
+      {
+        question: "Baking soda + Vinegar reaction",
+        equation: "NaHCO_3 + CH_3COOH \\rightarrow CO_2 + H_2O + CH_3COONa",
+        product: "CO₂"
+      },
+      {
+        question: "Starch + Iodine test",
+        equation: "\\text{Starch} + I_2 \\rightarrow \\text{Blue-black complex}",
+        product: "Blue-black"
+      },
+    ];
+
+    const count = difficulty === "BASIC" ? 1 : 2;
+
+    for (let i = 0; i < count; i++) {
+      const rxn = reactions[i];
+
+      quests.push({
+        id: `REACTIONS|${difficulty}|${i}`,
+        difficulty,
+        stage,
+        substances: ["soda", "salt", "starch"],
+        correctIdentifications: {},
+        promptLatex: `\\text{${rxn.question}}`,
+        expressionLatex: rxn.equation,
+        targetLatex: `\\text{Product}`,
+        correctLatex: `\\text{${rxn.product}}`,
+        slots: [
+          { id: "product", labelLatex: "\\text{Main product}", placeholder: "Product", expected: 0 },
+        ],
+      });
+    }
+    return quests;
+  }
+
+  return [];
 }
 
 export default function C101Page() {
-    const { currentLanguage } = useAppStore();
+  const { currentLanguage } = useAppStore();
+  const [testedReactions, setTestedReactions] = useState<Array<{ substance: Substance; tool: Tool }>>([]);
 
-    // Placeholder translations
-    const t = {
-        title: "C1.01 // MYSTERY LAB",
-        objective: "Substance Analysis",
-        target: "Target",
-        stages: {
-            SODA: "Test for Carbonates",
-            STARCH: "Test for Starch",
-            FULL: "Full Analysis"
-        }
-    };
+  const {
+    difficulty,
+    stage,
+    inputs,
+    lastCheck,
+    currentQuest,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+  } = useQuestManager<C101Quest, Stage>({
+    buildPool: (d, s) => buildStagePool(d, s),
+    initialStage: "IDENTIFY",
+  });
 
-    const {
-        difficulty,
-        stage,
-        inputs,
-        lastCheck,
-        currentQuest,
-        setInputs,
-        verify,
-        next,
-        handleDifficultyChange,
-        handleStageChange,
-    } = useQuestManager<C101Quest, Stage>({
-        buildPool: (d, s) => buildStagePool(d, s),
-        initialStage: "SODA",
-    });
+  if (!currentQuest) return null;
 
-    if (!currentQuest) return null;
+  const stages = [
+    { id: "IDENTIFY", label: "Identify" },
+    { id: "PROPERTIES", label: "Properties" },
+    { id: "REACTIONS", label: "Reactions" },
+  ];
 
-    return (
-        <ChamberLayout
-            title={t.title}
-            moduleCode="C1.01"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "SODA", label: t.stages.SODA },
-                { id: "STARCH", label: t.stages.STARCH },
-                { id: "FULL", label: t.stages.FULL },
-            ]}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            checkStatus={lastCheck}
-            onVerify={verify}
-            onNext={next}
-            // Simple translations object for layout
-            translations={{
-                back: "Back",
-                check: "Analyze",
-                next: "Next Case",
-                correct: "Identified",
-                incorrect: "Analysis Failed",
-                ready: "Lab Ready",
-                monitor_title: "Chemical Analysis",
-                difficulty: { basic: "Basic", core: "Core", advanced: "Adv", elite: "Elite" }
-            }}
-            monitorContent={
-                <C101LabCanvas
-                    unknowns={currentQuest.unknowns}
-                    onIdentify={() => { }} // Visual feedback handled in canvas
-                    identified={{}} // State tracking if needed
-                />
-            }
-        >
-            <div className="space-y-6">
-                <div className="text-center space-y-2">
-                    <h3 className="text-[10px] text-white/60 uppercase tracking-widest font-black">Mission</h3>
-                    <p className="text-2xl font-black italic">{currentQuest.promptLatex.replace(/\\text{|}/g, "")}</p>
-                    <p className="text-sm text-white/50">{currentQuest.expressionLatex.replace(/\\text{|}/g, "")}</p>
-                </div>
+  const handleTest = (substance: Substance, tool: Tool) => {
+    setTestedReactions(prev => [...prev, { substance, tool }]);
+  };
 
-                <div className="p-8 bg-white/5 rounded-xl border border-white/10 text-center">
-                    <div className="text-xs uppercase tracking-widest text-white/40 mb-4">Enter Selection</div>
-                    <div className="flex gap-4 justify-center">
-                        {['A', 'B', 'C'].map(choice => (
-                            <button
-                                key={choice}
-                                onClick={() => setInputs({ result: choice })}
-                                className={clsx(
-                                    "w-16 h-16 rounded-xl border-2 font-black text-2xl transition-all",
-                                    inputs.result === choice
-                                        ? "border-neon-green bg-neon-green/20 text-white scale-110"
-                                        : "border-white/20 hover:border-white/50 text-white/50"
-                                )}
-                            >
-                                {choice}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+  const handleNextQuest = () => {
+    setTestedReactions([]);
+    next();
+  };
+
+  return (
+    <ChamberLayout
+      title="C1.01 // MYSTERY LAB"
+      moduleCode="C1.01"
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stages}
+      currentStage={stage}
+      onStageChange={(s) => handleStageChange(s as Stage)}
+      checkStatus={lastCheck}
+      onVerify={verify}
+      onNext={handleNextQuest}
+      translations={{
+        back: "Back",
+        check: "Verify",
+        next: "Next",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        difficulty: {
+          basic: "Basic",
+          core: "Core",
+          advanced: "Advanced",
+          elite: "Elite",
+        },
+      }}
+      monitorContent={
+        <C101LabCanvas
+          onTest={handleTest}
+          testedReactions={testedReactions}
+          showAnswer={lastCheck?.ok === true}
+        />
+      }
+    >
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
+            Objective
+          </h3>
+          <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
+            <InlineMath math={currentQuest.promptLatex} />
+          </p>
+        </div>
+
+        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+          <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
+          <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
+            Target
+          </span>
+          <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95]">
+            <InlineMath math={currentQuest.targetLatex} />
+          </div>
+        </div>
+
+        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+          {currentQuest.slots.map((slot) => (
+            <div key={slot.id} className="space-y-3">
+              <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+                <InlineMath math={slot.labelLatex} />
+              </div>
+              <input
+                value={inputs[slot.id] || ""}
+                onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value.toLowerCase() })}
+                className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                placeholder={slot.placeholder}
+              />
             </div>
-        </ChamberLayout>
-    );
+          ))}
+
+          <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
+            <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Method</div>
+            <div className="text-sm text-white/60 font-mono">
+              <InlineMath math={currentQuest.expressionLatex} />
+            </div>
+          </div>
+
+          <div className="p-4 bg-neon-cyan/5 border border-neon-cyan/20 rounded-xl">
+            <div className="text-[9px] uppercase tracking-[0.3em] text-neon-cyan/60 font-black mb-2">Hint</div>
+            <div className="text-xs text-neon-cyan/80 font-mono space-y-1">
+              <div>• Baking Soda: Fizzes with vinegar (CO₂)</div>
+              <div>• Starch: Turns blue-black with iodine</div>
+              <div>• Salt: Dissolves completely in water</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ChamberLayout>
+  );
 }

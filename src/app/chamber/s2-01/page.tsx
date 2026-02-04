@@ -215,13 +215,13 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         slots:
           subType === "FACTOR"
             ? [
-                { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
-                { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
-              ]
+              { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
+              { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
+            ]
             : [
-                { id: "part1", labelLatex: "a^2", placeholder: "a²", expected: ca ** 2 },
-                { id: "part2", labelLatex: "b^2", placeholder: "b²", expected: vb ** 2 },
-              ],
+              { id: "part1", labelLatex: "a^2", placeholder: "a²", expected: ca ** 2 },
+              { id: "part2", labelLatex: "b^2", placeholder: "b²", expected: vb ** 2 },
+            ],
         correctLatex: subType === "EXPAND" ? `${ca ** 2}x^2 - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
       },
     ];
@@ -232,7 +232,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 
 export default function S201Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].s2_01;
+  const t = (translations as any)[currentLanguage].s2_01;
 
   const [questMode, setQuestMode] = useState<QuestMode>("EXPLORE");
   const [a, setA] = useState(3);
@@ -579,12 +579,10 @@ export default function S201Page() {
                   {questMode === "SCRAPPER" && (
                     <div className="text-[clamp(1.75rem,5vw,3.5rem)] break-words">
                       {scrapperQuest?.variant === "XY"
-                        ? `${scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2}x² + ${
-                            2 * scrapperQuest.ca * scrapperQuest.vb
-                          }xy + ${scrapperQuest.vb ** 2}y²`
-                        : `${scrapperQuest?.ca ? (scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2) : ""}x² + ${
-                            scrapperQuest ? 2 * scrapperQuest.ca * scrapperQuest.vb : ""
-                          }x + ${scrapperQuest ? scrapperQuest.vb ** 2 : ""}`}
+                        ? `${scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2}x² + ${2 * scrapperQuest.ca * scrapperQuest.vb
+                        }xy + ${scrapperQuest.vb ** 2}y²`
+                        : `${scrapperQuest?.ca ? (scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2) : ""}x² + ${scrapperQuest ? 2 * scrapperQuest.ca * scrapperQuest.vb : ""
+                        }x + ${scrapperQuest ? scrapperQuest.vb ** 2 : ""}`}
                     </div>
                   )}
                   {questMode === "ELITE" && (
@@ -727,9 +725,8 @@ export default function S201Page() {
                             <InlineMath
                               math={
                                 eliteQuest
-                                  ? `\\sqrt{${eliteQuest.C ** 2}} = ${eliteQuest.C}, \\quad \\sqrt{${eliteQuest.V ** 2}} = ${
-                                      eliteQuest.V
-                                    }`
+                                  ? `\\sqrt{${eliteQuest.C ** 2}} = ${eliteQuest.C}, \\quad \\sqrt{${eliteQuest.V ** 2}} = ${eliteQuest.V
+                                  }`
                                   : ""
                               }
                             />
@@ -865,9 +862,8 @@ export default function S201Page() {
                   </div>
                   <div className="text-white font-black">
                     {architectQuest
-                      ? `(${architectQuest.ca * architectQuest.ca}x²) + (${architectQuest.ca * architectQuest.vb}x) + (${
-                          architectQuest.vb * architectQuest.ca
-                        }x) + (${architectQuest.vb * architectQuest.vb})`
+                      ? `(${architectQuest.ca * architectQuest.ca}x²) + (${architectQuest.ca * architectQuest.vb}x) + (${architectQuest.vb * architectQuest.ca
+                      }x) + (${architectQuest.vb * architectQuest.vb})`
                       : ""}
                   </div>
                 </>

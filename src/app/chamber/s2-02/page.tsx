@@ -571,7 +571,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 // Main component
 export default function S202Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].s2_02 as any as Mg05T;
+  const t = (translations as any)[currentLanguage].s2_02 as unknown as Mg05T;
 
   const {
     difficulty,

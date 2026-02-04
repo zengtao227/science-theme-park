@@ -7,7 +7,7 @@ import { clsx } from 'clsx';
 
 export default function EntryProtocol() {
     const { acceptProtocol, currentLanguage, setLanguage } = useAppStore();
-    const t = translations[currentLanguage].protocol;
+    const t = (translations as any)[currentLanguage].protocol;
 
     const [textIndex, setTextIndex] = useState(0);
     const [showButton, setShowButton] = useState(false);

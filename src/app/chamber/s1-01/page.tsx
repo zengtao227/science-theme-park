@@ -136,7 +136,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
 
 export default function S101Page() {
     const { currentLanguage } = useAppStore();
-    const t = translations[currentLanguage].s1_01;
+    const t = (translations as any)[currentLanguage].s1_01;
 
     const {
         difficulty,

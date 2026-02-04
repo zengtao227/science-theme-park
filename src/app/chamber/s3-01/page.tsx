@@ -513,7 +513,7 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): S301Que
 
 export default function S301Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].s3_01;
+  const t = (translations as any)[currentLanguage].s3_01;
 
   const {
     difficulty,

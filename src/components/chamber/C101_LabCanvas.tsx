@@ -1,184 +1,213 @@
-"use client";
+import { useState } from "react";
+import { clsx } from "clsx";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Droplets, Flame, FlaskConical, TestTube } from "lucide-react";
-import clsx from "clsx";
+export type Substance = "soda" | "salt" | "starch";
+export type Tool = "water" | "vinegar" | "fire" | "iodine";
 
-type SubstanceType = "soda" | "salt" | "starch";
-type ToolType = "vinegar" | "iodine" | "flame" | "water";
+export interface Reaction {
+  substance: Substance;
+  tool: Tool;
+  result: string;
+  visual: "bubbles" | "dissolve" | "melt" | "color" | "none";
+}
+
+const reactions: Reaction[] = [
+  // Baking Soda reactions
+  { substance: "soda", tool: "water", result: "Dissolves slightly", visual: "dissolve" },
+  { substance: "soda", tool: "vinegar", result: "Fizzes! CO₂ bubbles!", visual: "bubbles" },
+  { substance: "soda", tool: "fire", result: "No visible change", visual: "none" },
+  { substance: "soda", tool: "iodine", result: "No color change", visual: "none" },
+
+  // Salt reactions
+  { substance: "salt", tool: "water", result: "Dissolves completely", visual: "dissolve" },
+  { substance: "salt", tool: "vinegar", result: "Dissolves, no fizz", visual: "dissolve" },
+  { substance: "salt", tool: "fire", result: "Melts at high temp", visual: "melt" },
+  { substance: "salt", tool: "iodine", result: "No color change", visual: "none" },
+
+  // Starch reactions
+  { substance: "starch", tool: "water", result: "Forms cloudy mixture", visual: "dissolve" },
+  { substance: "starch", tool: "vinegar", result: "No reaction", visual: "none" },
+  { substance: "starch", tool: "fire", result: "Burns/chars", visual: "melt" },
+  { substance: "starch", tool: "iodine", result: "Turns BLUE-BLACK!", visual: "color" },
+];
 
 interface C101LabCanvasProps {
-    unknowns: { id: string; type: SubstanceType; label: string }[];
-    onIdentify: (id: string, guess: SubstanceType) => void;
-    identified: Record<string, boolean>; // true if correctly identified
+  onTest: (substance: Substance, tool: Tool) => void;
+  testedReactions: Array<{ substance: Substance; tool: Tool }>;
+  showAnswer: boolean;
 }
 
-export default function C101LabCanvas({ unknowns, onIdentify, identified }: C101LabCanvasProps) {
-    const [activeReaction, setActiveReaction] = useState<{ id: string; effect: string } | null>(null);
-    const [draggedTool, setDraggedTool] = useState<ToolType | null>(null);
+export default function C101LabCanvas({
+  onTest,
+  testedReactions,
+  showAnswer,
+}: C101LabCanvasProps) {
+  const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+  const [animating, setAnimating] = useState<{ substance: Substance; visual: string } | null>(null);
 
-    const handleDrop = (tool: ToolType, targetId: string, substanceType: SubstanceType) => {
-        let effect = "";
+  const handleSubstanceClick = (substance: Substance) => {
+    if (!selectedTool) return;
 
-        // Chemistry Logic
-        if (tool === "vinegar" && substanceType === "soda") {
-            effect = "bubbles";
-        } else if (tool === "iodine" && substanceType === "starch") {
-            effect = "blue";
-        } else if (tool === "flame" && substanceType === "starch") {
-            effect = "burn"; // Starch burns/browns
-        } else if (tool === "water") {
-            effect = "dissolve"; // All dissolve mostly, starch maybe cloudy
-        } else {
-            effect = "nothing";
-        }
+    onTest(substance, selectedTool);
 
-        setActiveReaction({ id: targetId, effect });
+    // Find reaction
+    const reaction = reactions.find(r => r.substance === substance && r.tool === selectedTool);
+    if (reaction && reaction.visual !== "none") {
+      setAnimating({ substance, visual: reaction.visual });
+      setTimeout(() => setAnimating(null), 2000);
+    }
 
-        // Clear animation after a while
-        setTimeout(() => setActiveReaction(null), 2000);
-    };
+    setSelectedTool(null);
+  };
 
-    return (
-        <div className="w-full h-[400px] relative bg-neutral-900/50 rounded-xl overflow-hidden border border-white/10 select-none">
-            {/* Table Surface */}
-            <div className="absolute inset-0 bg-[url('/table-texture.png')] opacity-10 bg-repeat" />
-            <div className="absolute bottom-0 w-full h-1/2 bg-white/5 skew-x-12 opacity-20 pointer-events-none" />
+  const getReactionResult = (substance: Substance, tool: Tool) => {
+    const tested = testedReactions.find(t => t.substance === substance && t.tool === tool);
+    if (!tested) return null;
 
-            {/* Tools Rack (Top) */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 p-2 bg-black/60 backdrop-blur border border-white/20 rounded-full flex gap-4 z-20">
-                <DraggableTool type="vinegar" icon={<FlaskConical className="text-yellow-400" />} label="Vinegar (Acid)" onDragStart={() => setDraggedTool("vinegar")} />
-                <DraggableTool type="iodine" icon={<TestTube className="text-purple-500" />} label="Iodine" onDragStart={() => setDraggedTool("iodine")} />
-                <DraggableTool type="flame" icon={<Flame className="text-orange-500" />} label="Heat" onDragStart={() => setDraggedTool("flame")} />
-            </div>
+    const reaction = reactions.find(r => r.substance === substance && r.tool === tool);
+    return reaction?.result || "No reaction";
+  };
 
-            {/* Petri Dishes (Center) */}
-            <div className="absolute bottom-12 left-0 w-full flex justify-center gap-16 px-8 items-end">
-                {unknowns.map((u) => (
-                    <DropZone
-                        key={u.id}
-                        id={u.id}
-                        label={u.label}
-                        isSolved={identified[u.id]}
-                        reaction={activeReaction?.id === u.id ? activeReaction.effect : null}
-                        onDrop={(tool) => handleDrop(tool, u.id, u.type)}
-                    />
-                ))}
-            </div>
+  const tools: Array<{ id: Tool; label: string; icon: string; color: string }> = [
+    { id: "water", label: "Water", icon: "💧", color: "neon-cyan" },
+    { id: "vinegar", label: "Vinegar", icon: "🧪", color: "neon-green" },
+    { id: "fire", label: "Fire", icon: "🔥", color: "orange-500" },
+    { id: "iodine", label: "Iodine", icon: "🟤", color: "yellow-600" },
+  ];
 
-            {/* Instructions Overlay */}
-            <div className="absolute top-4 right-4 text-[10px] font-mono text-white/40 max-w-[150px] text-right pointer-events-none">
-                DRAG TOOLS TO POWDERS TO TEST PROPERTIES
-            </div>
+  const substances: Array<{ id: Substance; label: string; realName: string }> = [
+    { id: "soda", label: "Powder A", realName: "Baking Soda (NaHCO₃)" },
+    { id: "salt", label: "Powder B", realName: "Salt (NaCl)" },
+    { id: "starch", label: "Powder C", realName: "Starch (C₆H₁₀O₅)ₙ" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Lab Bench */}
+      <div className="relative p-8 bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 rounded-2xl">
+        <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 uppercase tracking-wider">
+          Mystery Lab
         </div>
-    );
-}
 
-function DraggableTool({ type, icon, label, onDragStart }: { type: ToolType; icon: React.ReactNode; label: string; onDragStart: () => void }) {
-    return (
-        <div className="relative group cursor-grab active:cursor-grabbing">
-            <motion.div
-                drag
-                dragSnapToOrigin
-                whileDrag={{ scale: 1.2, zIndex: 100 }}
-                dragMomentum={false}
-                onDragStart={onDragStart}
-                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center border border-white/30 hover:border-white shadow-lg"
-            >
-                {icon}
-            </motion.div>
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[9px] uppercase font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-white/70">
-                {label}
-            </div>
-        </div>
-    );
-}
+        {/* Substances */}
+        <div className="grid grid-cols-3 gap-6 mb-8">
+          {substances.map((sub) => {
+            const isAnimating = animating?.substance === sub.id;
+            const hasTests = testedReactions.some(t => t.substance === sub.id);
 
-function DropZone({
-    id,
-    label,
-    isSolved,
-    reaction,
-    onDrop,
-}: {
-    id: string;
-    label: string;
-    isSolved: boolean;
-    reaction: string | null;
-    onDrop: (tool: ToolType) => void;
-}) {
-    return (
-        <div className="relative flex flex-col items-center">
-            {/* Detection Zone for Drag */}
-            <motion.div
+            return (
+              <button
+                key={sub.id}
+                onClick={() => handleSubstanceClick(sub.id)}
+                disabled={!selectedTool}
                 className={clsx(
-                    "w-32 h-32 rounded-full border-2 flex items-center justify-center relative transition-colors bg-white/5 backdrop-blur-sm",
-                    isSolved ? "border-neon-green bg-neon-green/10" : "border-white/20"
+                  "relative p-6 border-2 rounded-xl transition-all",
+                  selectedTool
+                    ? "border-neon-green hover:bg-neon-green/10 cursor-pointer"
+                    : "border-white/20 cursor-not-allowed",
+                  isAnimating && "animate-pulse"
                 )}
-                onMouseUp={() => {
-                    // Ideally we use onDragEnd from the tool to detect drop, 
-                    // or use a proper Dnd library. For simple framer motion, 
-                    // we can check overlap or just rely on mouse capture if we architect it carefully.
-                    // Simplified here: We will assume the Tool's onDragEnd calculates position.
-                    // BUT, to keep it simple without complex coordinate math:
-                    // We can just rely on the user dropping it *visually*.
-                    // Actually, framer-motion drag doesn't easily support "drop targets" without custom logic.
-                    // Let's use a simpler "Click Tool -> Click Target" or "Drag" with position checking.
-                    // Re-architecting Draggable slightly for robustness in next iteration if needed.
-                    // For now, let's just make the target droppable by checking pointer events in parent?
-                    // No, let's keep it visually draggable and use a unified handler if possible.
-                    // Hack: we will make the tools draggable and check collision in the parent?
-                    // Too complex for one file.
-                    // Alternative: Click to select tool, Click to apply.
-                }}
-            >
+              >
                 {/* Powder pile */}
-                <div className={clsx("w-20 h-20 rounded-full blur-md transition-all duration-500",
-                    reaction === 'blue' ? "bg-blue-900" :
-                        reaction === 'burn' ? "bg-amber-900" :
-                            "bg-white/80"
-                )} />
+                <div className="w-24 h-24 mx-auto mb-4 relative">
+                  <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-30" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 bg-white rounded-full" />
+                  </div>
 
-                {/* Reaction Effects */}
-                <AnimatePresence>
-                    {reaction === 'bubbles' && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1.1 }}
-                            exit={{ opacity: 0 }}
-                            className="absolute inset-0 flex items-center justify-center"
-                        >
-                            <div className="text-4xl">🫧</div>
-                        </motion.div>
-                    )}
-                    {reaction === 'nothing' && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0 }}
-                            className="absolute -top-10 text-xs text-white/50 font-mono bg-black/80 px-2 py-1 rounded"
-                        >
-                            No Reaction
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                  {/* Animation effects */}
+                  {isAnimating && animating.visual === "bubbles" && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-2 h-2 bg-neon-green rounded-full animate-ping"
+                          style={{
+                            left: `${50 + Math.cos(i * Math.PI / 4) * 30}%`,
+                            top: `${50 + Math.sin(i * Math.PI / 4) * 30}%`,
+                            animationDelay: `${i * 0.1}s`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
 
-                {isSolved && <div className="absolute inset-0 flex items-center justify-center text-neon-green text-3xl">✓</div>}
-            </motion.div>
+                  {isAnimating && animating.visual === "color" && (
+                    <div className="absolute inset-0 bg-blue-900 rounded-full animate-pulse" />
+                  )}
+                </div>
 
-            <div className="mt-4 text-xs font-mono font-bold text-white/60 tracking-widest uppercase">{label}</div>
-
-            {/* Invisible Overlay to catch drops (simplified interaction model) */}
-            {/* In a real app we'd use useDraggable/useDroppable from dnd-kit. 
-          Here we will implement a "Click Tool then Click Target" fallback if drag is hard to implement in one shot.
-          OR, we use framer-motion's onDragEnd on the tool and check raw coordinates.
-      */}
+                <div className="text-center">
+                  <div className="text-sm font-black text-white mb-1">{sub.label}</div>
+                  {showAnswer && (
+                    <div className="text-xs text-neon-green font-mono">{sub.realName}</div>
+                  )}
+                  {hasTests && (
+                    <div className="mt-2 text-[10px] text-white/40">
+                      {testedReactions.filter(t => t.substance === sub.id).length} tests
+                    </div>
+                  )}
+                </div>
+              </button>
+            );
+          })}
         </div>
-    );
-}
 
-// To fix the drag-drop interaction for this demo:
-// We will stick to "Drag" visually, but implement "Click to activate tool, Click dish to apply" as a robust backup?
-// Or just make drag work by passing the tool's final position to a checker.
-// Let's rely on `onDragEnd` in DraggableTool passing the event info up.
+        {/* Tool Selection */}
+        <div className="border-t border-white/10 pt-6">
+          <div className="text-xs text-white/60 uppercase tracking-wider mb-4 text-center">
+            Select Tool
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            {tools.map((tool) => (
+              <button
+                key={tool.id}
+                onClick={() => setSelectedTool(tool.id)}
+                className={clsx(
+                  "p-4 border-2 rounded-xl transition-all",
+                  selectedTool === tool.id
+                    ? `border-${tool.color} bg-${tool.color}/10`
+                    : "border-white/20 hover:border-white/40"
+                )}
+              >
+                <div className="text-4xl mb-2">{tool.icon}</div>
+                <div className="text-xs font-black text-white">{tool.label}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Test Results Log */}
+      <div className="p-6 bg-black/50 border border-white/10 rounded-xl">
+        <div className="text-xs text-white/60 uppercase tracking-wider mb-4">Lab Notes</div>
+        <div className="space-y-2 max-h-40 overflow-y-auto">
+          {testedReactions.length === 0 ? (
+            <div className="text-sm text-white/40 italic">No tests performed yet...</div>
+          ) : (
+            testedReactions.map((test, i) => {
+              const sub = substances.find(s => s.id === test.substance);
+              const tool = tools.find(t => t.id === test.tool);
+              const result = getReactionResult(test.substance, test.tool);
+
+              return (
+                <div key={i} className="text-sm font-mono text-white/80 flex items-start gap-2">
+                  <span className="text-neon-green">{i + 1}.</span>
+                  <span>{sub?.label} + {tool?.label}: {result}</span>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      {/* Instructions */}
+      <div className="p-4 bg-neon-cyan/5 border border-neon-cyan/20 rounded-xl">
+        <div className="text-xs text-neon-cyan/80 font-mono">
+          <strong>Detective Protocol:</strong> Select a tool, then click on a powder to test.
+          Use the reactions to identify which is Baking Soda, Salt, or Starch!
+        </div>
+      </div>
+    </div>
+  );
+}
