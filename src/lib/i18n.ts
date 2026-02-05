@@ -28,6 +28,8 @@ export const translations = {
             s2_04_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
             g1_01_title: "G1.01 // CALCULUS INTRO",
             g1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+            g2_01_title: "G2.01 // VECTOR PILOT 3D",
+            g2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
             s2_06_title: "S2.06 // LINEAR SYSTEMS",
             s2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
             s2_05_title: "S2.05 // POWERS & ROOTS",
@@ -36,6 +38,20 @@ export const translations = {
             s1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
             s1_02_title: "S1.02 // DATA & CHANCE",
             s1_02_subtitle: "Analyze data sets with statistics and explore probability theory basics.",
+            p1_02_title: "P1.02 // NEWTON'S LAWS",
+            p1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
+            p2_02_title: "P2.02 // CIRCUIT SANDBOX",
+            p2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
+            p3_01_title: "P3.01 // GEOMETRICAL OPTICS",
+            p3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
+            p1_03_title: "P1.03 // ENERGY & POWER",
+            p1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
+            p1_04_title: "P1.04 // THE RHINE FERRY",
+            p1_04_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
+            p5_01_title: "P5.01 // THE ATOMIC CORE",
+            p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
+            c1_02_title: "C1.02 // MOLE MASTER",
+            c1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -152,7 +168,8 @@ export const translations = {
                 factor_slots: "Build factors (A,B)",
                 formula: "Quadratic Formula",
                 complete_square: "Completing the Square",
-                elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+                elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}",
+                fraction_hint: "Tip: Enter result as an integer or fraction (e.g. 4/3)."
             },
             hints: {
                 identities: {
@@ -362,11 +379,30 @@ export const translations = {
             explore_hint: "Drag point P in the visual monitor →",
             current_point: "Current Point",
             slope_label: "Tangent Slope",
+            mission: {
+                title: "Mission: The Flux Sentinel",
+                description: "The city of Basel, birth-place of Calculus legends, is shifting. Calibrate the Flux Sentinel to match the curve's instantaneous velocity. Precision is the only law."
+            },
+            spotlight: {
+                title: "Scientist Spotlight",
+                euler_name: "Leonhard Euler",
+                euler_bio: "Basel-born master of analysis. Euler gave calculus its modern symbols and showed how motion, curves, and series can be governed by elegant laws.",
+                bernoulli_name: "Johann Bernoulli",
+                bernoulli_bio: "The Bernoulli dynasty forged calculus through challenge and rivalry. Johann advanced differential methods that map acceleration to form."
+            },
             objective_title: "Active Mission Objective",
             target_title: "Target",
             next: "Execute Next Sequence",
+            check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
+            ready: "Ready",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
             hints_title: "Formula Reference",
             monitor_title: "G1.01_VISUAL_MONITOR",
             status: "STATUS: OPERATIONAL",
@@ -387,6 +423,40 @@ export const translations = {
             integral_preview_title: "COMING SOON: INTEGRALRECHNUNG",
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
+        },
+        g2_01: {
+            back: "Back to Nexus",
+            title: "G2.01 // VECTOR PILOT 3D",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Vector HUD",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "G2.01_VECTOR_HUD",
+            footer_left: "G2.01_VECTOR_PILOT // NODE: BASEL",
+            stages: {
+                navigation: "NAVIGATION",
+                dot: "DOT PRODUCT",
+                mission: "MISSION",
+                navigation_prompt_latex: "\\text{Compute }\\vec v\\text{ from A to B and its magnitude.}",
+                dot_prompt_latex: "\\text{Compute }\\vec v\\text{ and }\\vec v\\cdot\\vec w.",
+                mission_prompt_latex: "\\text{Mission: compute }\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|."
+            },
+            labels: {
+                input: "INPUT"
+            },
+            mission: {
+                title: "MISSION: RHINE AIRSPACE",
+                description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
+            }
         },
         s2_06: {
             back: "Back to Nexus",
@@ -534,6 +604,187 @@ export const translations = {
                 title: "MISSION: BERN STATION PUNCTUALITY",
                 description: "In Bern, analyze SBB arrival delays (minutes) to report average and median."
             }
+        },
+        c1_02: {
+            back: "Back to Nexus",
+            title: "C1.02 // MOLE MASTER",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Stoichiometry Console",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "C1.02_SCALE",
+            footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
+            stages: {
+                molar_mass: "MOLAR MASS",
+                stoichiometry: "REACTION RATIO",
+                yield: "YIELD",
+                molar_mass_prompt_latex: "\\text{Calculate the molar mass of the compound.}",
+                stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
+                yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
+            },
+            labels: {
+                input: "INPUT",
+                scale: "SCALE READOUT"
+            },
+            mission: {
+                title: "MISSION: NOVARTIS SYNTHESIS BAY",
+                description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
+            }
+        },
+        c2_01: {
+            back: "Back to Nexus",
+            title: "C2.01 // RHINE pH SENTINEL",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "pH Curve",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "C2.01_TITRATION_CORE",
+            footer_left: "C2.01_RHINE_PH // NODE: BASEL",
+            stages: {
+                monitor: "MONITOR",
+                buffer: "BUFFER",
+                alert: "ALERT",
+                monitor_prompt_latex: "\\text{Estimate the river pH after }V_{base}\\text{ is added.}",
+                buffer_prompt_latex: "\\text{Compute the buffered pH at }V_{base}.",
+                alert_prompt_latex: "\\text{Critical shift detected. Determine pH at }V_{base}."
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                volume: "Titrant Volume",
+                ph: "pH"
+            },
+            mission: {
+                title: "MISSION: RHINE WATER WATCH",
+                description: "Basel’s sentinel barge tracks river alkalinity. Calibrate the titration curve to keep the Rhine within safe pH bounds."
+            },
+            hints: "Track the curve shape and read the green target marker for the expected trend."
+        },
+        p1_03: {
+            back: "Back to Nexus",
+            title: "P1.03 // ENERGY & POWER",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Turbine Output",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P1.03_TURBINE_MONITOR",
+            footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
+            stages: {
+                potential: "POTENTIAL",
+                kinetic: "KINETIC",
+                power: "POWER",
+                potential_prompt_latex: "\\text{Compute gravitational potential energy }E_p=mgh.",
+                kinetic_prompt_latex: "\\text{Compute kinetic energy }E_k=\\frac{1}{2}mv^2.",
+                power_prompt_latex: "\\text{Compute power }P=\\frac{W}{t}\\text{ (apply efficiency if given).}"
+            },
+            labels: {
+                input: "INPUT",
+                formula: "FORMULA"
+            },
+            formulas: {
+                potential: "E_p=mgh",
+                kinetic: "E_k=\\frac{1}{2}mv^2",
+                power: "P=\\frac{W}{t}"
+            },
+            mission: {
+                title: "MISSION: RHINE HYDRO PLANT",
+                description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
+            }
+        },
+        p1_04: {
+            back: "Back to Nexus",
+            title: "P1.04 // THE RHINE FERRY",
+            stage_label: "RHINE CROSSING",
+            crossing: "CROSSING...",
+            start: "START ENGINES",
+            reset: "RESET POSITION",
+            arrived: "ARRIVED SAFELY",
+            drifting: "DRIFTING...",
+            ready: "STATIONARY",
+            header: "Local Physics Protocol",
+            description: "Master the Gierseilfähri. Use the Rhine’s current to cross from Grossbasel to Kleinbasel.",
+            rudder_angle: "Rudder Angle",
+            port: "PORT",
+            center: "CENTER",
+            starboard: "STARBOARD",
+            environment: "Environmental Data",
+            river_velocity: "River Velocity",
+            cable_tension: "Cable Tension",
+            optimal: "OPTIMAL",
+            mechanism_title: "Mechanism Logic",
+            mechanism_desc: "Unlike motorboats, the Basel ferries use a long upstream cable. The rudder angle redirects river pressure into lateral thrust.",
+            active_ship: "Active Ship",
+            ship_name: "Vogel Gryff // Fähri-Basel"
+        },
+        p5_01: {
+            back: "Back to Nexus",
+            title: "P5.01 // THE ATOMIC CORE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Isotope / Decay",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P5.01_NUCLEAR_MONITOR",
+            footer_left: "P5.01_MODERN_PHYSICS // NODE: BASEL",
+            labels: {
+                input: "INPUT PARAMETERS",
+                hints: "HINTS",
+                balancing: "NUCLEAR EQUATION",
+                mass: "Mass Number (A)",
+                atomic: "Atomic Number (Z)"
+            },
+            mission: {
+                title: "STABILIZE THE CORE",
+                description: "Novartis Innovation District needs a stable isotope. Balance the nuclear equation by identifying the correct decay particles."
+            },
+            stages: {
+                alpha: "ALPHA DECAY",
+                beta: "BETA DECAY",
+                gamma: "GAMMA EMISSION",
+                fission: "NUCLEAR FISSION",
+                alpha_decay: "ALPHA DECAY",
+                beta_decay: "BETA DECAY",
+                gamma_decay: "GAMMA EMISSION",
+                alpha_decay_prompt_latex: "\\text{Balance the Alpha decay (\\alpha) equation.}",
+                beta_decay_prompt_latex: "\\text{Balance the Beta decay (\\beta^-) equation.}",
+                gamma_decay_prompt_latex: "\\text{Identify the Gamma emission (\\gamma) state.}",
+                fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
+            }
         }
     },
     CN: {
@@ -565,6 +816,8 @@ export const translations = {
             s2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
             g1_01_title: "G1.01 // 微积分初步",
             g1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+            g2_01_title: "G2.01 // 矢量飞行员 3D",
+            g2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
             s2_06_title: "S2.06 // 二元一次方程组",
             s2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
             s2_05_title: "S2.05 // 幂运算与根号",
@@ -573,6 +826,20 @@ export const translations = {
             s1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
             s1_02_title: "S1.02 // 数据与概率",
             s1_02_subtitle: "利用统计学分析数据集，并探索概率论基础知识。",
+            p1_02_title: "P1.02 // 牛顿定律",
+            p1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
+            p2_02_title: "P2.02 // 电路沙盒",
+            p2_02_subtitle: "构建电力网络。掌握欧姆定律以及串并联电路的逻辑。",
+            p3_01_title: "P3.01 // 几何光学",
+            p3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
+            p1_03_title: "P1.03 // 能量与功率",
+            p1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
+            p1_04_title: "P1.04 // 莱茵河渡轮",
+            p1_04_subtitle: "通过调整舵角与缆索张力，利用水流力量在巴塞尔跨越莱茵河。",
+            p5_01_title: "P5.01 // 原子核核心",
+            p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
+            c1_02_title: "C1.02 // 摩尔大师",
+            c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -689,7 +956,8 @@ export const translations = {
                 factor_slots: "构造乘积形式 (A,B)",
                 formula: "求根公式",
                 complete_square: "配方法",
-                elite_hint_latex: "提示：\\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+                elite_hint_latex: "提示：\\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}",
+                fraction_hint: "提示：输入整数或分数 (如 4/3)。"
             },
             hints: {
                 identities: {
@@ -899,16 +1167,35 @@ export const translations = {
             explore_hint: "在右侧视觉监视器中拖动点 P →",
             current_point: "当前点",
             slope_label: "切线斜率",
+            mission: {
+                title: "任务：流变哨兵",
+                description: "巴塞尔，微积分传奇的诞生之地，正在发生偏移。校准流变哨兵以匹配曲线的瞬时变化率。在这座城市，数学精确性就是唯一的法律。"
+            },
+            spotlight: {
+                title: "科学家聚光灯",
+                euler_name: "莱昂哈德·欧拉",
+                euler_bio: "巴塞尔出身的分析大师。欧拉用符号重塑了微积分，让曲线、运动与级数遵循清晰而优雅的法则。",
+                bernoulli_name: "约翰·伯努利",
+                bernoulli_bio: "伯努利家族以挑战与竞争锻造微积分。约翰完善微分方法，将加速度与曲线形态连接。"
+            },
             objective_title: "当前任务目标",
             target_title: "目标",
             next: "执行下一序列",
+            check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
+            ready: "就绪",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "高级",
+                elite: "精英"
+            },
             hints_title: "公式参考",
             monitor_title: "G1.01_视觉监控",
-            status: "状态：运行中",
-            footer_left: "G1.01_微积分初步 // 节点：苏黎世",
-            footer_right: "流变之城_第七区",
+            status: "状态: 运行中",
+            footer_left: "G1.01_微积分 // 节点: 苏黎世",
+            footer_right: "流量之城_第七区",
             stages: {
                 slope_prompt: "计算点 A 和点 B 之间的割线斜率 m。",
                 tangent_prompt: "确定点 P 处的切线斜率。",
@@ -924,6 +1211,40 @@ export const translations = {
             integral_preview_title: "即将解锁：积分学",
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
             integral_preview_hint: "掌握导数后解锁 →"
+        },
+        g2_01: {
+            back: "返回枢纽",
+            title: "G2.01 // 矢量飞行员 3D",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "向量 HUD",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "G2.01_向量监控",
+            footer_left: "G2.01_矢量飞行 // 节点：巴塞尔",
+            stages: {
+                navigation: "导航",
+                dot: "点积",
+                mission: "任务",
+                navigation_prompt_latex: "\\text{计算 A 到 B 的位移向量 }\\vec v\\text{ 及其模长。}",
+                dot_prompt_latex: "\\text{计算 }\\vec v\\text{ 并求 }\\vec v\\cdot\\vec w.",
+                mission_prompt_latex: "\\text{任务：计算 }\\vec v\\text{、}\\vec v\\cdot\\vec s\\text{ 和 }|\\vec v|."
+            },
+            labels: {
+                input: "输入"
+            },
+            mission: {
+                title: "任务：莱茵河空域",
+                description: "在莱茵河上空校准无人机航线。输入 3D 向量并用点积验证安全走廊。"
+            }
         },
         s2_06: {
             back: "返回枢纽",
@@ -1071,6 +1392,187 @@ export const translations = {
                 title: "任务：伯尔尼车站准点性",
                 description: "在伯尔尼，分析 SBB 到站延误（分钟）的平均数和中位数。"
             }
+        },
+        c1_02: {
+            back: "返回枢纽",
+            title: "C1.02 // 摩尔大师",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "化学计量控制台",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "C1.02_称重监控",
+            footer_left: "C1.02_摩尔大师 // 节点：巴塞尔",
+            stages: {
+                molar_mass: "摩尔质量",
+                stoichiometry: "反应比例",
+                yield: "理论产量",
+                molar_mass_prompt_latex: "\\text{计算该化合物的摩尔质量。}",
+                stoichiometry_prompt_latex: "\\text{利用化学计量关系求产物物质的量。}",
+                yield_prompt_latex: "\\text{根据给定质量计算理论产量。}"
+            },
+            labels: {
+                input: "输入",
+                scale: "称重读数"
+            },
+            mission: {
+                title: "任务：诺华合成舱",
+                description: "校准制药级反应流程。平衡摩尔比例并核对理论产量。"
+            }
+        },
+        c2_01: {
+            back: "返回枢纽",
+            title: "C2.01 // 莱茵河 pH 哨兵",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "pH 曲线",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "C2.01_滴定核心",
+            footer_left: "C2.01_莱茵河监测 // 节点：巴塞尔",
+            stages: {
+                monitor: "监测",
+                buffer: "缓冲",
+                alert: "警戒",
+                monitor_prompt_latex: "\\text{当加入 }V_{base}\\text{ 时，估算河水 pH。}",
+                buffer_prompt_latex: "\\text{缓冲区稳定时，计算 }V_{base}\\text{ 的 pH。}",
+                alert_prompt_latex: "\\text{临界位移。求 }V_{base}\\text{ 时的 pH。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示",
+                volume: "滴定体积",
+                ph: "pH"
+            },
+            mission: {
+                title: "任务：莱茵河水质警戒",
+                description: "哨兵船正在监测莱茵河碱度。校准滴定曲线，确保 pH 始终处于安全区间。"
+            },
+            hints: "观察曲线形态，绿色标记点提示目标趋势。"
+        },
+        p1_03: {
+            back: "返回枢纽",
+            title: "P1.03 // 能量与功率",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "涡轮输出",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "P1.03_涡轮监控",
+            footer_left: "P1.03_莱茵水电 // 节点：巴塞尔",
+            stages: {
+                potential: "势能",
+                kinetic: "动能",
+                power: "功率",
+                potential_prompt_latex: "\\text{计算重力势能 }E_p=mgh。",
+                kinetic_prompt_latex: "\\text{计算动能 }E_k=\\frac{1}{2}mv^2。",
+                power_prompt_latex: "\\text{计算功率 }P=\\frac{W}{t}\\text{（若给出效率需考虑）。}"
+            },
+            labels: {
+                input: "输入",
+                formula: "公式"
+            },
+            formulas: {
+                potential: "E_p=mgh",
+                kinetic: "E_k=\\frac{1}{2}mv^2",
+                power: "P=\\frac{W}{t}"
+            },
+            mission: {
+                title: "任务：莱茵河水电站",
+                description: "将莱茵河水能转化为清洁电力。追踪能量转化与涡轮功率。"
+            }
+        },
+        p1_04: {
+            back: "返回枢纽",
+            title: "P1.04 // 莱茵河渡轮",
+            stage_label: "莱茵河横渡",
+            crossing: "正在横渡...",
+            start: "启动引擎",
+            reset: "重置位置",
+            arrived: "安全抵达",
+            drifting: "偏航中...",
+            ready: "待命",
+            header: "本地物理协议",
+            description: "掌握 Gierseilfähri 渡轮机制。利用莱茵河水流从大巴塞尔横渡到小巴塞尔。",
+            rudder_angle: "舵角",
+            port: "左舷",
+            center: "中线",
+            starboard: "右舷",
+            environment: "环境数据",
+            river_velocity: "河流速度",
+            cable_tension: "缆索张力",
+            optimal: "最佳",
+            mechanism_title: "机制逻辑",
+            mechanism_desc: "巴塞尔渡轮使用上游缆索固定船体，舵角将水流压力转化为横向推力。",
+            active_ship: "当前船只",
+            ship_name: "Vogel Gryff // Fähri-Basel"
+        },
+        p5_01: {
+            back: "返回枢纽",
+            title: "P5.01 // 原子核核心",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "同位素 / 衰变",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "P5.01_核物理监视器",
+            footer_left: "P5.01_现代物理 // 节点：巴塞尔",
+            labels: {
+                input: "输入参数",
+                hints: "提示",
+                balancing: "核反应方程式",
+                mass: "质量数 (A)",
+                atomic: "原子序数 (Z)"
+            },
+            mission: {
+                title: "稳定核心",
+                description: "诺华创新区需要一种稳定的同位素。通过识别正确的衰变粒子来平衡核反应方程式。"
+            },
+            stages: {
+                alpha: "α 衰变",
+                beta: "β 衰变",
+                gamma: "γ 放射",
+                fission: "核裂变",
+                alpha_decay: "α 衰变",
+                beta_decay: "β 衰变",
+                gamma_decay: "γ 放射",
+                alpha_decay_prompt_latex: "\\text{平衡 α 衰变方程式。}",
+                beta_decay_prompt_latex: "\\text{平衡 β 衰变方程式。}",
+                gamma_decay_prompt_latex: "\\text{识别 γ 放射状态。}",
+                fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
+            }
         }
     },
     DE: {
@@ -1102,6 +1604,8 @@ export const translations = {
             s2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
             g1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
             g1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+            g2_01_title: "G2.01 // VEKTOR-PILOT 3D",
+            g2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
             s2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
             s2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
             s2_05_title: "S2.05 // POTENZEN & WURZELN",
@@ -1110,6 +1614,20 @@ export const translations = {
             s1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
             s1_02_title: "S1.02 // DATEN & ZUFALL",
             s1_02_subtitle: "Analysiere Datensätze mit Statistik und erkunde Grundlagen der Wahrscheinlichkeit.",
+            p1_02_title: "P1.02 // NEWTONS GESETZE",
+            p1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
+            p2_02_title: "P2.02 // STROMKREIS-SANDBOX",
+            p2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
+            p3_01_title: "P3.01 // GEOMETRISCHE OPTIK",
+            p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
+            p1_03_title: "P1.03 // ENERGIE & LEISTUNG",
+            p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
+            p1_04_title: "P1.04 // DIE RHEINFÄHRE",
+            p1_04_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
+            p5_01_title: "P5.01 // DER ATOMKERN",
+            p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
+            c1_02_title: "C1.02 // MOL-MEISTER",
+            c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -1226,7 +1744,8 @@ export const translations = {
                 factor_slots: "Faktoren konstruieren (A,B)",
                 formula: "Mitternachtsformel",
                 complete_square: "Quadratische Ergänzung",
-                elite_hint_latex: "Hinweis: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+                elite_hint_latex: "Hinweis: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}",
+                fraction_hint: "Tipp: Gib das Resultat als Ganzzahl oder Bruch (z.B. 4/3) an."
             },
             hints: {
                 identities: {
@@ -1436,11 +1955,30 @@ export const translations = {
             explore_hint: "Ziehe Punkt P im visuellen Monitor →",
             current_point: "Aktueller Punkt",
             slope_label: "Tangentensteigung",
+            mission: {
+                title: "Mission: Der Flux-Wächter",
+                description: "Basel, die Geburtsstadt der Analysis-Legenden, gerät aus dem Gleichgewicht. Kalibrieren Sie den Flux-Wächter, um die Momentangeschwindigkeit der Kurve zu finden. Präzision ist das einzige Gesetz."
+            },
+            spotlight: {
+                title: "Scientist Spotlight",
+                euler_name: "Leonhard Euler",
+                euler_bio: "In Basel geboren, prägte Euler die moderne Analysis. Seine Notation und Methoden verbinden Kurven, Bewegung und Reihen zu präzisen Gesetzen.",
+                bernoulli_name: "Johann Bernoulli",
+                bernoulli_bio: "Der Bernoulli‑Clan schärfte die Analysis durch Wettbewerb. Johann entwickelte Differentialmethoden weiter und machte Änderungsraten rechnerisch beherrschbar."
+            },
             objective_title: "Aktuelles Missionsziel",
             target_title: "Ziel",
             next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
             correct: "Verifiziert",
             incorrect: "Abweichung",
+            ready: "Bereit",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
             hints_title: "Formelreferenz",
             monitor_title: "G1.01_MONITOR",
             status: "STATUS: BETRIEBSBEREIT",
@@ -1461,6 +1999,40 @@ export const translations = {
             integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
             integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
+        },
+        g2_01: {
+            back: "Zurück zum Nexus",
+            title: "G2.01 // VEKTOR-PILOT 3D",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Vektor-HUD",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "G2.01_VEKTOR_MONITOR",
+            footer_left: "G2.01_VEKTOR_PILOT // KNOTEN: BASEL",
+            stages: {
+                navigation: "NAVIGATION",
+                dot: "SKALARPRODUKT",
+                mission: "MISSION",
+                navigation_prompt_latex: "\\text{Bestimme }\\vec v\\text{ von A nach B und seinen Betrag.}",
+                dot_prompt_latex: "\\text{Bestimme }\\vec v\\text{ und }\\vec v\\cdot\\vec w.",
+                mission_prompt_latex: "\\text{Mission: berechne }\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|."
+            },
+            labels: {
+                input: "EINGABE"
+            },
+            mission: {
+                title: "MISSION: RHEIN-LUFTKORRIDOR",
+                description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
+            }
         },
         s2_06: {
             back: "Zurück zum Nexus",
@@ -1608,6 +2180,193 @@ export const translations = {
                 title: "MISSION: BAHNHOF BERN PÜNKTLICHKEIT",
                 description: "In Bern analysiere SBB-Verspätungen (Minuten) und bestimme Mittelwert und Median."
             }
+        },
+        c1_02: {
+            back: "Zurück zum Nexus",
+            title: "C1.02 // MOL-MEISTER",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Stöchiometrie-Konsole",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "C1.02_WAAGE",
+            footer_left: "C1.02_MOL_MEISTER // KNOTEN: BASEL",
+            stages: {
+                molar_mass: "MOLMASSE",
+                stoichiometry: "REAKTIONSVERHÄLTNIS",
+                yield: "AUSBEUTE",
+                molar_mass_prompt_latex: "\\text{Berechne die Molmasse der Verbindung.}",
+                stoichiometry_prompt_latex: "\\text{Nutze stöchiometrische Verhältnisse für die Produktmenge.}",
+                yield_prompt_latex: "\\text{Berechne die theoretische Ausbeute aus den gegebenen Massen.}"
+            },
+            labels: {
+                input: "EINGABE",
+                scale: "WAAGENANZEIGE"
+            },
+            mission: {
+                title: "MISSION: NOVARTIS-SYNTHESEBAY",
+                description: "Kalibriere eine pharmazeutische Reaktion. Balanciere Mol-Verhältnisse und prüfe Ausbeuten."
+            }
+        },
+        c2_01: {
+            back: "Zurück zum Nexus",
+            title: "C2.01 // RHEIN pH-SENTINEL",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "pH-Kurve",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "C2.01_TITRATIONSKERN",
+            footer_left: "C2.01_RHEIN_PH // KNOTEN: BASEL",
+            stages: {
+                monitor: "MONITOR",
+                buffer: "PUFFER",
+                alert: "ALARM",
+                monitor_prompt_latex: "\\text{Bestimme den pH nach }V_{base}.",
+                buffer_prompt_latex: "\\text{Berechne den gepufferten pH bei }V_{base}.",
+                alert_prompt_latex: "\\text{Kritische Verschiebung. Bestimme pH bei }V_{base}."
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                volume: "Titrationsvolumen",
+                ph: "pH"
+            },
+            mission: {
+                title: "MISSION: RHEIN WASSERWACHE",
+                description: "Das Sentinel-Schiff überwacht die Alkalität des Rheins. Kalibriere die Titrationskurve, um sichere pH‑Grenzen zu halten."
+            },
+            hints: "Folge der Kurvenform; der grüne Marker zeigt den Zieltrend."
+        },
+        p1_03: {
+            back: "Zurück zum Nexus",
+            title: "P1.03 // ENERGIE & LEISTUNG",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Turbinenleistung",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "P1.03_TURBINENMONITOR",
+            footer_left: "P1.03_RHEIN_WASSERKRAFT // KNOTEN: BASEL",
+            stages: {
+                potential: "LAGEENERGIE",
+                kinetic: "BEWEGUNGSENERGIE",
+                power: "LEISTUNG",
+                potential_prompt_latex: "\\text{Berechne die Lageenergie }E_p=mgh.",
+                kinetic_prompt_latex: "\\text{Berechne die Bewegungsenergie }E_k=\\frac{1}{2}mv^2.",
+                power_prompt_latex: "\\text{Berechne die Leistung }P=\\frac{W}{t}\\text{ (Wirkungsgrad berücksichtigen).}"
+            },
+            labels: {
+                input: "EINGABE",
+                formula: "FORMEL"
+            },
+            formulas: {
+                potential: "E_p=mgh",
+                kinetic: "E_k=\\frac{1}{2}mv^2",
+                power: "P=\\frac{W}{t}"
+            },
+            mission: {
+                title: "MISSION: RHEIN-WASSERKRAFT",
+                description: "Wandle die Energie des Rheins in saubere Elektrizität um. Verfolge Energieumwandlung und Turbinenleistung."
+            }
+        },
+        p1_04: {
+            back: "Zurück zum Nexus",
+            title: "P1.04 // DIE RHEINFÄHRE",
+            stage_label: "RHEIN-ÜBERFAHRT",
+            crossing: "ÜBERFAHRT...",
+            start: "ANTRIEB STARTEN",
+            reset: "POSITION RESET",
+            arrived: "SICHER ANGEKOMMEN",
+            drifting: "ABTRIFTEN...",
+            ready: "BEREIT",
+            header: "Lokales Physikprotokoll",
+            description: "Meistere die Gierseilfähri. Nutze die Strömung des Rheins, um von Grossbasel nach Kleinbasel zu gelangen.",
+            rudder_angle: "Ruderwinkel",
+            port: "BACKBORD",
+            center: "MITTE",
+            starboard: "STEUERBORD",
+            environment: "Umweltdaten",
+            river_velocity: "Strömungsgeschwindigkeit",
+            cable_tension: "Seilspannung",
+            optimal: "OPTIMAL",
+            mechanism_title: "Mechanik-Logik",
+            mechanism_desc: "Basler Fähren nutzen ein stromaufwärts befestigtes Seil. Der Ruderwinkel wandelt Strömungsdruck in Quertrieb um.",
+            active_ship: "Aktives Schiff",
+            ship_name: "Vogel Gryff // Fähri-Basel"
+        },
+        p5_01: {
+            back: "Zurück zum Nexus",
+            title: "P5.01 // DER ATOMKERN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Isotop / Zerfall",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "P5.01_KERNPHYSIK_MONITOR",
+            footer_left: "P5.01_MODERNE_PHYSIK // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABEPARAMETER",
+                hints: "HINWEISE",
+                balancing: "KERNREAKTIONSGLEICHUNG",
+                mass: "Massenzahl (A)",
+                atomic: "Ordnungszahl (Z)"
+            },
+            mission: {
+                title: "KERN STABILISIEREN",
+                description: "Der Novartis Innovation District benötigt ein stabiles Isotop. Gleichen Sie die Kernreaktionsgleichung aus, indem Sie die richtigen Zerfallsteilchen identifizieren."
+            },
+            stages: {
+                alpha: "ALPHA-ZERFALL",
+                beta: "BETA-ZERFALL",
+                gamma: "GAMMA-STRAHLUNG",
+                fission: "KERNSPALTUNG",
+                alpha_decay: "ALPHA-ZERFALL",
+                beta_decay: "BETA-ZERFALL",
+                gamma_decay: "GAMMA-ZERFALL",
+                alpha_decay_prompt_latex: "\\text{Gleichen Sie die Gleichung für den Alpha-Zerfall (\\alpha) aus.}",
+                beta_decay_prompt_latex: "\\text{Gleichen Sie die Gleichung für den Beta-Zerfall (\\beta^-) aus.}",
+                gamma_decay_prompt_latex: "\\text{Identifizieren Sie den Zustand der Gamma-Strahlung (\\gamma).}",
+                fission_prompt_latex: "\\text{Bestimmen Sie das fehlende Produkt in dieser Spaltungsreaktion.}"
+            }
         }
     }
 };
+
+export interface Translations {
+    EN: typeof translations.EN;
+    DE: typeof translations.DE;
+    CN: typeof translations.CN;
+}
