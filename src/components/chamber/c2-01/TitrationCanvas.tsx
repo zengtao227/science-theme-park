@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Cylinder, Float, Points, PointMaterial, Text } from "@react-three/drei";
+import { Cylinder, Float, Text, MeshTransmissionMaterial, Environment, ContactShadows, OrthographicCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 export type TitrationPoint = { v: number; ph: number };
@@ -17,49 +17,122 @@ interface C201TitrationCanvasProps {
 }
 
 function phToColor(ph: number) {
+  // Enhanced PH color gradient: Red (Acid) -> Green (Neutral) -> Purple (Base)
   const clamped = Math.max(0, Math.min(14, ph));
-  const hue = clamped <= 7 ? 120 * (clamped / 7) : 120 + 120 * ((clamped - 7) / 7);
-  return new THREE.Color(`hsl(${hue}, 80%, 55%)`);
+  if (clamped < 7) {
+    // Red to Yellow/Green
+    const t = clamped / 7;
+    return new THREE.Color().lerpColors(new THREE.Color("#ff0055"), new THREE.Color("#00ff9d"), t);
+  } else {
+    // Green to Purple
+    const t = (clamped - 7) / 7;
+    return new THREE.Color().lerpColors(new THREE.Color("#00ff9d"), new THREE.Color("#a855f7"), t);
+  }
 }
 
-function Bubbles({ count = 120 }) {
-  const points = useMemo(() => {
-    const p = new Float32Array(count * 3);
-    const pseudo = (n: number) => {
-      const x = Math.sin(n * 12.9898) * 43758.5453;
-      return x - Math.floor(x);
-    };
-    for (let i = 0; i < count; i++) {
-      const r = pseudo(i + 1) * 0.6;
-      const theta = pseudo(i + 11) * Math.PI * 2;
-      p[i * 3] = Math.cos(theta) * r;
-      p[i * 3 + 1] = -1 + pseudo(i + 101) * 2;
-      p[i * 3 + 2] = Math.sin(theta) * r;
-    }
-    return p;
-  }, [count]);
+function Liquid({ height, color }: { height: number; color: THREE.Color }) {
+  const mesh = useRef<THREE.Mesh>(null);
 
-  return (
-    <Points positions={points} stride={3}>
-      <PointMaterial transparent color="#7ad7ff" size={0.04} sizeAttenuation depthWrite={false} />
-    </Points>
-  );
-}
-
-function Droplet({ active }: { active: boolean }) {
-  const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
-    if (ref.current) {
-      const t = clock.getElapsedTime();
-      ref.current.position.y = 1.7 + Math.sin(t * 2) * 0.12;
-      ref.current.scale.setScalar(active ? 1 + Math.sin(t * 3) * 0.05 : 0.9);
+    if (mesh.current) {
+      mesh.current.position.y = -1.2 + height / 2;
+      // Subtle liquid wobble
+      mesh.current.scale.x = 1 + Math.sin(clock.elapsedTime * 2) * 0.01;
+      mesh.current.scale.z = 1 + Math.cos(clock.elapsedTime * 1.5) * 0.01;
     }
   });
 
   return (
-    <mesh ref={ref} position={[0.2, 1.7, 0]}>
-      <sphereGeometry args={[0.12, 18, 18]} />
-      <meshStandardMaterial color="#7ad7ff" transparent opacity={0.8} emissive="#1b9bd7" />
+    <mesh ref={mesh}>
+      <cylinderGeometry args={[0.95, 0.85, height, 32]} />
+      <meshPhysicalMaterial
+        color={color}
+        transmission={0.4}
+        thickness={1}
+        roughness={0.1}
+        ior={1.33}
+        emissive={color}
+        emissiveIntensity={0.6}
+      />
+    </mesh>
+  );
+}
+
+function Beaker() {
+  return (
+    <group>
+      {/* Glass Container */}
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[1.0, 0.9, 2.6, 32]} />
+        <MeshTransmissionMaterial
+          backside
+          samples={4}
+          thickness={0.2}
+          chromaticAberration={0.05}
+          anisotropy={0.1}
+          distortion={0.1}
+          distortionScale={0.1}
+          temporalDistortion={0.0}
+          iridescence={0.5}
+          iridescenceIOR={1}
+          iridescenceThicknessRange={[0, 1400]}
+          color="#ffffff"
+          roughness={0.05}
+        />
+      </mesh>
+      {/* Rim */}
+      <mesh position={[0, 1.3, 0]}>
+        <torusGeometry args={[1.0, 0.05, 16, 32]} />
+        <meshStandardMaterial color="#fff" roughness={0.1} metalness={0.8} />
+      </mesh>
+      {/* Measurement Marks */}
+      {[0.5, 0, -0.5, -1.0].map((y, i) => (
+        <mesh key={i} position={[0.96, y, 0]} rotation={[0, 0, 0]}>
+          <boxGeometry args={[0.1, 0.02, 0.05]} />
+          <meshStandardMaterial color="white" emissive="white" emissiveIntensity={0.5} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function DropletSystem({ active, color }: { active: boolean, color: THREE.Color }) {
+  const drops = useMemo(() => Array.from({ length: 5 }), []);
+
+  return (
+    <group position={[0, 2, 0]}>
+      {drops.map((_, i) => (
+        <SingleDroplet key={i} index={i} color={color} active={active} />
+      ))}
+    </group>
+  );
+}
+
+function SingleDroplet({ index, color, active }: { index: number, color: THREE.Color, active: boolean }) {
+  const ref = useRef<THREE.Mesh>(null);
+  const speed = 0.5 + Math.random() * 0.5;
+  const initialY = 0.5 + Math.random() * 1;
+
+  useFrame(({ clock }) => {
+    if (ref.current && active) {
+      const time = clock.elapsedTime * speed + index;
+      const y = initialY - (time % 2.5) * 2; // Fall down
+
+      if (y < -1) {
+        ref.current.scale.setScalar(0); // Disappear when hitting liquid
+      } else {
+        ref.current.position.y = y;
+        ref.current.scale.setScalar(0.08);
+      }
+    } else if (ref.current) {
+      ref.current.scale.setScalar(0);
+    }
+  });
+
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[1, 16, 16]} />
+      <meshBasicMaterial color={color} />
     </mesh>
   );
 }
@@ -72,43 +145,64 @@ export default function C201_TitrationCanvas({
   phValue,
   status,
 }: C201TitrationCanvasProps) {
-  const fillRatio = Math.max(0.1, Math.min(1, probeVolume / maxVolume));
-  const liquidHeight = 0.6 + fillRatio * 1.4;
-  const liquidY = -1.2 + liquidHeight / 2;
+  const fillRatio = Math.max(0.1, Math.min(0.9, probeVolume / maxVolume));
+  const liquidHeight = fillRatio * 2.4;
   const liquidColor = phToColor(phValue);
-  const targetGlow = Math.abs(probeVolume - targetVolume) < maxVolume * 0.05;
+  const isTargetMet = Math.abs(probeVolume - targetVolume) < 1;
 
   return (
-    <div className="w-full h-full bg-black/80 rounded-2xl overflow-hidden border border-white/10 relative">
-      <Canvas camera={{ position: [0, 0.5, 4.2], fov: 45 }}>
-        <color attach="background" args={["#03070f"]} />
+    <div className="w-full h-full bg-[#050505] rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl">
+      <Canvas dpr={[1, 2]}>
+        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={60} />
+        <Environment preset="city" />
+
+        <color attach="background" args={["#050505"]} />
+
         <ambientLight intensity={0.5} />
-        <pointLight position={[4, 4, 4]} intensity={1.2} />
-        <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.15}>
-          <group>
-            <Cylinder args={[1.05, 1.1, 2.8, 32]} position={[0, 0, 0]}>
-              <meshStandardMaterial color="#0b1220" transparent opacity={0.15} wireframe />
-            </Cylinder>
-            <Cylinder args={[0.92, 1, liquidHeight, 32]} position={[0, liquidY, 0]}>
-              <meshStandardMaterial color={liquidColor} transparent opacity={0.7} emissive={liquidColor} emissiveIntensity={0.2} />
-            </Cylinder>
-            <Bubbles count={140} />
-            <Droplet active={status?.ok ?? false} />
-            <mesh position={[0, -1.45, -0.6]}>
-              <circleGeometry args={[1.3, 32]} />
-              <meshBasicMaterial color={liquidColor} transparent opacity={targetGlow ? 0.25 : 0.12} />
-            </mesh>
+        <spotLight position={[10, 10, 10]} intensity={1.5} angle={0.2} penumbra={1} castShadow />
+
+        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.2}>
+          <group rotation={[0.1, 0, 0]}>
+            <Beaker />
+            <Liquid height={liquidHeight} color={liquidColor} />
+            <DropletSystem active={true} color={liquidColor} />
           </group>
-          <Text position={[0, 1.6, 0]} fontSize={0.18} color="#c8f4ff" font="/fonts/Inter-Bold.woff">
-            pH {phValue.toFixed(2)}
-          </Text>
         </Float>
+
+        <ContactShadows opacity={0.4} scale={10} blur={2.5} far={4} color={liquidColor} />
+
+        <Text
+          position={[0, 2, 0]}
+          fontSize={0.3}
+          color="white"
+          font="/fonts/Inter-Bold.woff"
+          anchorY="bottom"
+        >
+          {`pH ${phValue.toFixed(2)}`}
+        </Text>
+
+        {isTargetMet && (
+          <Text
+            position={[0, -2, 0]}
+            fontSize={0.2}
+            color="#39ff14"
+            font="/fonts/Inter-Bold.woff"
+          >
+            EQUILIBRIUM
+          </Text>
+        )}
       </Canvas>
 
-      <div className="absolute bottom-4 left-4 right-4 flex justify-between text-[10px] uppercase tracking-[0.3em] font-black text-white/50">
-        <span>RHINE PH SENTINEL</span>
-        <span>{curve.length} SAMPLES</span>
+      <div className="absolute top-4 left-4 flex gap-2 items-center">
+        <div className={`w-2 h-2 rounded-full ${isTargetMet ? 'bg-neon-green animate-pulse' : 'bg-neon-cyan'}`} />
+        <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">Rhine_Sentinel // Buffer_Mon</div>
+      </div>
+
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right uppercase">
+        Vol: {probeVolume.toFixed(1)}mL<br />
+        Target: {targetVolume}mL
       </div>
     </div>
   );
 }
+

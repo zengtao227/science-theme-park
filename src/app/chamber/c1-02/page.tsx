@@ -2,11 +2,12 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import MoleCanvas from "@/components/chamber/c1-02/MoleCanvas";
 
 type Stage = "MOLAR_MASS" | "STOICHIOMETRY" | "YIELD";
 type C102T = typeof translations.EN.c1_02;
@@ -23,95 +24,281 @@ interface C102Quest extends Quest {
   scaleReading: string;
 }
 
-const molarMassData = [
-  { id: "M1", formula: "H_2O", atoms: "H=1,\\; O=16", molarMass: 18 },
-  { id: "M2", formula: "CO_2", atoms: "C=12,\\; O=16", molarMass: 44 },
-  { id: "M3", formula: "NaCl", atoms: "Na=23,\\; Cl=35.5", molarMass: 58.5 },
-  { id: "M4", formula: "CaCO_3", atoms: "Ca=40,\\; C=12,\\; O=16", molarMass: 100 },
-  { id: "M5", formula: "NH_3", atoms: "N=14,\\; H=1", molarMass: 17 },
-  { id: "M6", formula: "H_2SO_4", atoms: "H=1,\\; S=32,\\; O=16", molarMass: 98 },
-  { id: "M7", formula: "C_6H_{12}O_6", atoms: "C=12,\\; H=1,\\; O=16", molarMass: 180 },
+const atomicWeights: Record<string, number> = {
+  H: 1.008,
+  C: 12.01,
+  O: 16.0,
+  Na: 22.99,
+  Cl: 35.45,
+  Ca: 40.08,
+  N: 14.01,
+  S: 32.06,
+  Al: 26.98,
+  Fe: 55.85,
+  K: 39.1,
+};
+
+const molarMassFormulas = ["H2O", "CO2", "NaCl", "CaCO3", "NH3", "H2SO4", "C6H12O6"];
+
+type ReactionSide = { formula: string; coefficient: number };
+type Reaction = { reactants: ReactionSide[]; products: ReactionSide[] };
+
+const stoichiometryReactions = [
+  {
+    id: "S1",
+    reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
+    given: { formula: "H2", moles: 3 },
+    target: "H2O",
+  },
+  {
+    id: "S2",
+    reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
+    given: { formula: "H2", moles: 4.5 },
+    target: "NH3",
+  },
+  {
+    id: "S3",
+    reaction: { reactants: [{ formula: "Na", coefficient: 2 }, { formula: "Cl2", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 2 }] },
+    given: { formula: "Na", moles: 5 },
+    target: "NaCl",
+  },
+  {
+    id: "S4",
+    reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
+    given: { formula: "CaCO3", moles: 2.5 },
+    target: "CO2",
+  },
+  {
+    id: "S5",
+    reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
+    given: { formula: "Cl2", moles: 6 },
+    target: "AlCl3",
+  },
+  {
+    id: "S6",
+    reaction: { reactants: [{ formula: "H2O2", coefficient: 2 }], products: [{ formula: "H2O", coefficient: 2 }, { formula: "O2", coefficient: 1 }] },
+    given: { formula: "H2O2", moles: 1.2 },
+    target: "O2",
+  },
+  {
+    id: "S7",
+    reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
+    given: { formula: "Fe", moles: 6 },
+    target: "Fe2O3",
+  },
 ];
 
-const stoichiometryData = [
-  { id: "S1", reaction: "2H_2+O_2\\rightarrow 2H_2O", given: "n(H_2)=3\\;mol", target: "n(H_2O)", answer: 3 },
-  { id: "S2", reaction: "N_2+3H_2\\rightarrow 2NH_3", given: "n(H_2)=4.5\\;mol", target: "n(NH_3)", answer: 3 },
-  { id: "S3", reaction: "2Na+Cl_2\\rightarrow 2NaCl", given: "n(Na)=5\\;mol", target: "n(NaCl)", answer: 5 },
-  { id: "S4", reaction: "CaCO_3\\rightarrow CaO+CO_2", given: "n(CaCO_3)=2.5\\;mol", target: "n(CO_2)", answer: 2.5 },
-  { id: "S5", reaction: "2Al+3Cl_2\\rightarrow 2AlCl_3", given: "n(Cl_2)=6\\;mol", target: "n(AlCl_3)", answer: 4 },
-  { id: "S6", reaction: "2H_2O_2\\rightarrow 2H_2O+O_2", given: "n(H_2O_2)=1.2\\;mol", target: "n(O_2)", answer: 0.6 },
-  { id: "S7", reaction: "4Fe+3O_2\\rightarrow 2Fe_2O_3", given: "n(Fe)=6\\;mol", target: "n(Fe_2O_3)", answer: 3 },
+const yieldReactions = [
+  {
+    id: "Y1",
+    reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
+    reactants: [{ formula: "H2", mass: 8 }, { formula: "O2", mass: 32 }],
+    target: "H2O",
+  },
+  {
+    id: "Y2",
+    reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
+    reactants: [{ formula: "N2", mass: 28 }, { formula: "H2", mass: 6 }],
+    target: "NH3",
+  },
+  {
+    id: "Y3",
+    reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
+    reactants: [{ formula: "CaCO3", mass: 50 }],
+    target: "CO2",
+  },
+  {
+    id: "Y4",
+    reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
+    reactants: [{ formula: "Al", mass: 5.4 }, { formula: "Cl2", mass: 21.3 }],
+    target: "AlCl3",
+  },
+  {
+    id: "Y5",
+    reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
+    reactants: [{ formula: "Fe", mass: 11.2 }, { formula: "O2", mass: 9.6 }],
+    target: "Fe2O3",
+  },
+  {
+    id: "Y6",
+    reaction: { reactants: [{ formula: "C3H8", coefficient: 1 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "CO2", coefficient: 3 }, { formula: "H2O", coefficient: 4 }] },
+    reactants: [{ formula: "C3H8", mass: 22 }, { formula: "O2", mass: 80 }],
+    target: "CO2",
+  },
+  {
+    id: "Y7",
+    reaction: { reactants: [{ formula: "KClO3", coefficient: 2 }], products: [{ formula: "KCl", coefficient: 2 }, { formula: "O2", coefficient: 3 }] },
+    reactants: [{ formula: "KClO3", mass: 24.5 }],
+    target: "O2",
+  },
 ];
 
-const yieldData = [
-  { id: "Y1", reaction: "2H_2+O_2\\rightarrow 2H_2O", given: "m(H_2)=8g,\\; m(O_2)=32g", target: "m(H_2O)", answer: 36 },
-  { id: "Y2", reaction: "N_2+3H_2\\rightarrow 2NH_3", given: "m(N_2)=28g,\\; m(H_2)=6g", target: "m(NH_3)", answer: 34 },
-  { id: "Y3", reaction: "CaCO_3\\rightarrow CaO+CO_2", given: "m(CaCO_3)=50g", target: "m(CO_2)", answer: 22 },
-  { id: "Y4", reaction: "2Al+3Cl_2\\rightarrow 2AlCl_3", given: "m(Al)=5.4g,\\; m(Cl_2)=21.3g", target: "m(AlCl_3)", answer: 26.7 },
-  { id: "Y5", reaction: "4Fe+3O_2\\rightarrow 2Fe_2O_3", given: "m(Fe)=11.2g,\\; m(O_2)=9.6g", target: "m(Fe_2O_3)", answer: 16 },
-  { id: "Y6", reaction: "C_3H_8+5O_2\\rightarrow 3CO_2+4H_2O", given: "m(C_3H_8)=22g,\\; m(O_2)=80g", target: "m(CO_2)", answer: 66 },
-  { id: "Y7", reaction: "2KClO_3\\rightarrow 2KCl+3O_2", given: "m(KClO_3)=24.5g", target: "m(O_2)", answer: 9.6 },
-];
+function normalizeFormula(formula: string) {
+  return formula.replace(/[_{}]/g, "");
+}
+
+function parseFormula(formula: string) {
+  const normalized = normalizeFormula(formula);
+  const regex = /([A-Z][a-z]?)(\d*)/g;
+  const parts: Array<{ symbol: string; count: number }> = [];
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(normalized))) {
+    const symbol = match[1];
+    const count = match[2] ? parseInt(match[2], 10) : 1;
+    const existing = parts.find((p) => p.symbol === symbol);
+    if (existing) {
+      existing.count += count;
+    } else {
+      parts.push({ symbol, count });
+    }
+  }
+  return parts;
+}
+
+function toLatexFormula(formula: string) {
+  return normalizeFormula(formula).replace(/(\d+)/g, "_{$1}");
+}
+
+function formatAtomicWeight(value: number) {
+  const decimals = value < 10 ? 3 : 2;
+  return value.toFixed(decimals);
+}
+
+function roundValue(value: number, decimals: number) {
+  const factor = Math.pow(10, decimals);
+  return Math.round(value * factor) / factor;
+}
+
+function formatValue(value: number, decimals: number) {
+  return roundValue(value, decimals).toFixed(decimals).replace(/\.?0+$/, "");
+}
+
+function computeMolarMass(formula: string) {
+  return parseFormula(formula).reduce((sum, part) => {
+    const weight = atomicWeights[part.symbol] ?? 0;
+    return sum + weight * part.count;
+  }, 0);
+}
+
+function buildMolarBreakdown(formula: string) {
+  const parts = parseFormula(formula);
+  const atoms = parts.map((part) => `${part.symbol}=${formatAtomicWeight(atomicWeights[part.symbol] ?? 0)}`).join(",\\; ");
+  const breakdown = parts.map((part) => {
+    const weight = formatAtomicWeight(atomicWeights[part.symbol] ?? 0);
+    return part.count > 1 ? `${part.count}\\times ${weight}` : weight;
+  }).join("+");
+  return { atoms, breakdown };
+}
+
+function buildReactionLatex(reaction: Reaction) {
+  const formatSide = (side: ReactionSide[]) => side.map((s) => `${s.coefficient === 1 ? "" : s.coefficient}${toLatexFormula(s.formula)}`).join("+");
+  return `${formatSide(reaction.reactants)}\\rightarrow ${formatSide(reaction.products)}`;
+}
+
+function findCoefficient(reaction: Reaction, formula: string) {
+  const entry = [...reaction.reactants, ...reaction.products].find((s) => s.formula === formula);
+  return entry?.coefficient ?? 1;
+}
+
+function computeStoichiometryAnswer(reaction: Reaction, givenFormula: string, targetFormula: string, givenMoles: number) {
+  const givenCoeff = findCoefficient(reaction, givenFormula);
+  const targetCoeff = findCoefficient(reaction, targetFormula);
+  return (givenMoles / givenCoeff) * targetCoeff;
+}
+
+function computeTheoreticalYield(reaction: Reaction, reactants: Array<{ formula: string; mass: number }>, targetFormula: string) {
+  const targetCoeff = findCoefficient(reaction, targetFormula);
+  const limitingMoles = reactants.map((r) => {
+    const coeff = findCoefficient(reaction, r.formula);
+    const molarMass = computeMolarMass(r.formula);
+    return (r.mass / molarMass) / coeff;
+  });
+  const maxProductMoles = Math.min(...limitingMoles) * targetCoeff;
+  return maxProductMoles * computeMolarMass(targetFormula);
+}
 
 function buildStagePool(t: C102T, difficulty: Difficulty, stage: Stage): C102Quest[] {
   if (stage === "MOLAR_MASS") {
-    const all = molarMassData.map((item) => ({
-      id: item.id,
-      difficulty,
-      stage,
-      reactionLatex: item.formula,
-      promptLatex: t.stages.molar_mass_prompt_latex,
-      expressionLatex: `\\text{${item.formula}},\\; ${item.atoms}`,
-      targetLatex: "M",
-      slots: [{ id: "M", labelLatex: "M", placeholder: "molar mass", expected: item.molarMass, unit: "g/mol" }],
-      correctLatex: `M=${item.molarMass}\\;\\text{g/mol}`,
-      reagents: [
-        { label: "FORMULA", value: item.formula },
-        { label: "ATOMS", value: item.atoms },
-      ],
-      scaleReading: `${item.molarMass}\\;g/mol`,
-    }));
+    const all = molarMassFormulas.map((formula, index) => {
+      const formulaLatex = toLatexFormula(formula);
+      const { atoms, breakdown } = buildMolarBreakdown(formula);
+      const molarMass = computeMolarMass(formula);
+      const rounded = roundValue(molarMass, 2);
+      const display = formatValue(molarMass, 2);
+      return {
+        id: `M${index + 1}`,
+        difficulty,
+        stage,
+        reactionLatex: formulaLatex,
+        promptLatex: t.stages.molar_mass_prompt_latex,
+        expressionLatex: `${formulaLatex},\\; ${breakdown}`,
+        targetLatex: "M",
+        slots: [{ id: "M", labelLatex: "M", placeholder: "molar mass", expected: rounded, unit: "g/mol" }],
+        correctLatex: `M=${display}\\;\\text{g/mol}`,
+        reagents: [
+          { label: "FORMULA", value: formulaLatex },
+          { label: "ATOMS", value: atoms },
+        ],
+        scaleReading: `${display}\\;\\text{g/mol}`,
+      };
+    });
     if (difficulty === "BASIC") return all.slice(0, 4);
     return all;
   }
 
   if (stage === "STOICHIOMETRY") {
-    const all = stoichiometryData.map((item) => ({
-      id: item.id,
-      difficulty,
-      stage,
-      reactionLatex: item.reaction,
-      promptLatex: t.stages.stoichiometry_prompt_latex,
-      expressionLatex: `${item.reaction},\\; ${item.given}`,
-      targetLatex: item.target,
-      slots: [{ id: "n", labelLatex: item.target, placeholder: "amount", expected: item.answer, unit: "mol" }],
-      correctLatex: `${item.target}=${item.answer}\\;mol`,
-      reagents: [
-        { label: "REACTION", value: item.reaction },
-        { label: "GIVEN", value: item.given },
-      ],
-      scaleReading: `${item.answer}\\;mol`,
-    }));
+    const all = stoichiometryReactions.map((item) => {
+      const reactionLatex = buildReactionLatex(item.reaction);
+      const targetLatex = `n(${toLatexFormula(item.target)})`;
+      const givenLatex = `n(${toLatexFormula(item.given.formula)})=${formatValue(item.given.moles, 2)}\\;\\text{mol}`;
+      const answer = computeStoichiometryAnswer(item.reaction, item.given.formula, item.target, item.given.moles);
+      const rounded = roundValue(answer, 2);
+      const display = formatValue(answer, 2);
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        reactionLatex,
+        promptLatex: t.stages.stoichiometry_prompt_latex,
+        expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
+        targetLatex,
+        slots: [{ id: "n", labelLatex: targetLatex, placeholder: "amount", expected: rounded, unit: "mol" }],
+        correctLatex: `${targetLatex}=${display}\\;\\text{mol}`,
+        reagents: [
+          { label: "REACTION", value: reactionLatex },
+          { label: "GIVEN", value: givenLatex },
+        ],
+        scaleReading: `${display}\\;\\text{mol}`,
+      };
+    });
     if (difficulty === "BASIC") return all.slice(0, 4);
     return all;
   }
 
-  const all = yieldData.map((item) => ({
-    id: item.id,
-    difficulty,
-    stage,
-    reactionLatex: item.reaction,
-    promptLatex: t.stages.yield_prompt_latex,
-    expressionLatex: `${item.reaction},\\; ${item.given}`,
-    targetLatex: item.target,
-    slots: [{ id: "m", labelLatex: item.target, placeholder: "mass", expected: item.answer, unit: "g" }],
-    correctLatex: `${item.target}=${item.answer}\\;g`,
-    reagents: [
-      { label: "REACTION", value: item.reaction },
-      { label: "GIVEN", value: item.given },
-    ],
-    scaleReading: `${item.answer}\\;g`,
-  }));
+  const all = yieldReactions.map((item) => {
+    const reactionLatex = buildReactionLatex(item.reaction);
+    const givenLatex = item.reactants.map((r) => `m(${toLatexFormula(r.formula)})=${formatValue(r.mass, 2)}\\;\\text{g}`).join(",\\; ");
+    const targetLatex = `m(${toLatexFormula(item.target)})`;
+    const answer = computeTheoreticalYield(item.reaction, item.reactants, item.target);
+    const rounded = roundValue(answer, 2);
+    const display = formatValue(answer, 2);
+    return {
+      id: item.id,
+      difficulty,
+      stage,
+      reactionLatex,
+      promptLatex: t.stages.yield_prompt_latex,
+      expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
+      targetLatex,
+      slots: [{ id: "m", labelLatex: targetLatex, placeholder: "mass", expected: rounded, unit: "g" }],
+      correctLatex: `${targetLatex}=${display}\\;\\text{g}`,
+      reagents: [
+        { label: "REACTION", value: reactionLatex },
+        { label: "GIVEN", value: givenLatex },
+      ],
+      scaleReading: `${display}\\;\\text{g}`,
+    };
+  });
   if (difficulty === "BASIC") return all.slice(0, 4);
   return all;
 }
@@ -131,6 +318,7 @@ export default function C102Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    parseNumberLike,
   } = useQuestManager<C102Quest, Stage>({
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "MOLAR_MASS",
@@ -141,6 +329,19 @@ export default function C102Page() {
       completeStage("c1-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
+
+  const activeSlot = currentQuest?.slots?.[0];
+  const inputValue = useMemo(() => {
+    if (!activeSlot) return null;
+    return parseNumberLike(inputs[activeSlot.id] ?? "");
+  }, [activeSlot, inputs, parseNumberLike]);
+  const targetValue = typeof activeSlot?.expected === "number" ? activeSlot.expected : null;
+  const stageLabel = useMemo(() => {
+    if (stage === "MOLAR_MASS") return t.stages.molar_mass;
+    if (stage === "STOICHIOMETRY") return t.stages.stoichiometry;
+    return t.stages.yield;
+  }, [stage, t.stages.molar_mass, t.stages.stoichiometry, t.stages.yield]);
+  const status = lastCheck?.ok ? "correct" : lastCheck ? "incorrect" : "idle";
 
   return (
     <ChamberLayout
@@ -176,6 +377,13 @@ export default function C102Page() {
       }}
       monitorContent={
         <div className="space-y-4">
+          <MoleCanvas
+            stageLabel={stageLabel}
+            unit={activeSlot?.unit ?? ""}
+            inputValue={typeof inputValue === "number" ? inputValue : null}
+            targetValue={targetValue}
+            status={status}
+          />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[11px] font-black tracking-[0.3em] text-white/60">{t.labels.scale}</div>
