@@ -10,7 +10,6 @@ import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/s1-01/GeometryCanvas";
-import S102_StatisticsCanvas from "@/components/chamber/s1-02/StatisticsCanvas";
 
 type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
 type Mg12T = typeof translations.EN.s1_01;

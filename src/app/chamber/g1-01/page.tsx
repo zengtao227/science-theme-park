@@ -147,7 +147,6 @@ export default function G101Page() {
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
-    parseNumberLike,
   } = useQuestManager<G101Quest, Stage>({
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "EXPLORE",
@@ -191,7 +190,7 @@ export default function G101Page() {
         <G101_DerivativeCanvas
           mode={stage}
           exploreX={exploreX}
-          onExploreXChange={setExploreX}
+          _onExploreXChange={setExploreX}
           questData={currentQuest}
         />
       }

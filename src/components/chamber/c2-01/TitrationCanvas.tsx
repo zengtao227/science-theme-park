@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Cylinder, Float, Text, MeshTransmissionMaterial, Environment, ContactShadows, OrthographicCamera } from "@react-three/drei";
+import { Float, Text, MeshTransmissionMaterial, Environment, ContactShadows, OrthographicCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 export type TitrationPoint = { v: number; ph: number };
@@ -108,10 +108,15 @@ function DropletSystem({ active, color }: { active: boolean, color: THREE.Color 
   );
 }
 
+const pseudo = (seed: number) => {
+  const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+};
+
 function SingleDroplet({ index, color, active }: { index: number, color: THREE.Color, active: boolean }) {
   const ref = useRef<THREE.Mesh>(null);
-  const speed = 0.5 + Math.random() * 0.5;
-  const initialY = 0.5 + Math.random() * 1;
+  const speed = useMemo(() => 0.5 + pseudo(index * 2) * 0.5, [index]);
+  const initialY = useMemo(() => 0.5 + pseudo(index * 2 + 1) * 1, [index]);
 
   useFrame(({ clock }) => {
     if (ref.current && active) {
@@ -138,12 +143,10 @@ function SingleDroplet({ index, color, active }: { index: number, color: THREE.C
 }
 
 export default function C201_TitrationCanvas({
-  curve,
   probeVolume,
   maxVolume,
   targetVolume,
   phValue,
-  status,
 }: C201TitrationCanvasProps) {
   const fillRatio = Math.max(0.1, Math.min(0.9, probeVolume / maxVolume));
   const liquidHeight = fillRatio * 2.4;

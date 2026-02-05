@@ -7,6 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import HydroCanvas from "@/components/chamber/p1-03/HydroCanvas";
 
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
 type P103T = typeof translations.EN.p1_03;
@@ -183,6 +184,17 @@ export default function P103Page() {
       }}
       monitorContent={
         <div className="space-y-4">
+          <HydroCanvas
+            stage={stage}
+            mass={currentQuest?.mass}
+            height={currentQuest?.height}
+            velocity={currentQuest?.velocity}
+            time={currentQuest?.time}
+            efficiency={currentQuest?.efficiency}
+            readoutLabel={currentQuest?.targetLatex}
+            readoutValue={currentQuest?.slots?.[0]?.expected as number | undefined}
+            readoutUnit={currentQuest?.slots?.[0]?.unit}
+          />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{t.labels.formula}</div>

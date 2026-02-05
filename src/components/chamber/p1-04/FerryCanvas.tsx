@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Line, Text, Stars, Center } from "@react-three/drei";
+import { Float, Line, Text, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
 interface FerryCanvasProps {
@@ -61,7 +61,7 @@ function Cable({ positionX }: { positionX: number }) {
     return <Line points={points} color="#888" lineWidth={1} />;
 }
 
-export default function P104_FerryCanvas({ angle, velocity, positionX }: FerryCanvasProps) {
+export default function P104_FerryCanvas({ angle, positionX }: FerryCanvasProps) {
     return (
         <div className="w-full h-full bg-[#050505] rounded-lg overflow-hidden relative">
             <Canvas camera={{ position: [0, 8, 8], fov: 45 }}>

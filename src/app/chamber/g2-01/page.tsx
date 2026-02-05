@@ -3,13 +3,11 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useCallback, useEffect, useMemo } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Grid, Line, OrthographicCamera } from "@react-three/drei";
-import * as THREE from "three";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import VectorPilotHud from "@/components/chamber/g2-01/VectorPilotHud";
 
 type Stage = "NAVIGATION" | "DOT_PRODUCT" | "MISSION";
 type G201T = typeof translations.EN.g2_01;
@@ -196,23 +194,6 @@ export default function G201Page() {
   const displayVector = inputVector || baseVector;
   const assistVector = currentQuest?.wind || currentQuest?.corridor;
 
-  const vectorPoints = useMemo(() => {
-    const scale = 0.4;
-    return [
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(displayVector[0] * scale, displayVector[1] * scale, displayVector[2] * scale),
-    ];
-  }, [displayVector]);
-
-  const assistPoints = useMemo(() => {
-    if (!assistVector) return null;
-    const scale = 0.4;
-    return [
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(assistVector[0] * scale, assistVector[1] * scale, assistVector[2] * scale),
-    ];
-  }, [assistVector]);
-
   return (
     <ChamberLayout
       title={t.title}
@@ -248,18 +229,13 @@ export default function G201Page() {
       monitorContent={
         <div className="space-y-4">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-          <div className="w-full aspect-square md:aspect-video bg-[#050505] rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-            <Canvas>
-              <OrthographicCamera makeDefault position={[4, 4, 6]} zoom={60} />
-              <ambientLight intensity={0.6} />
-              <Grid infiniteGrid fadeDistance={20} cellColor="#111" sectionColor="#222" position={[0, 0, -0.1]} />
-              <Line points={[new THREE.Vector3(-4, 0, 0), new THREE.Vector3(4, 0, 0)]} color="#444" lineWidth={2} />
-              <Line points={[new THREE.Vector3(0, -4, 0), new THREE.Vector3(0, 4, 0)]} color="#444" lineWidth={2} />
-              <Line points={[new THREE.Vector3(0, 0, -4), new THREE.Vector3(0, 0, 4)]} color="#444" lineWidth={2} />
-              <Line points={vectorPoints} color="#39ff14" lineWidth={4} />
-              {assistPoints && <Line points={assistPoints} color="#00d2ff" lineWidth={3} />}
-            </Canvas>
-          </div>
+          <VectorPilotHud
+            stage={stage}
+            from={currentQuest?.from ?? [0, 0, 0]}
+            to={currentQuest?.to ?? [0, 0, 0]}
+            vector={displayVector}
+            assistVector={assistVector}
+          />
           <div className="text-white/60 text-xs font-mono">
             <InlineMath math={currentQuest?.expressionLatex || ""} />
           </div>

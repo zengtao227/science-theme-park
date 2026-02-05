@@ -1,5 +1,18 @@
 "use client";
 
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import {
+    PerspectiveCamera,
+    Environment,
+    Float,
+    Line,
+    Text,
+    ContactShadows,
+    Edges
+} from "@react-three/drei";
+import * as THREE from "three";
+
 export interface SimilarityVisual {
     kind: "rect-scale" | "tri-sim" | "shadow" | "ring";
     a: number;
@@ -19,137 +32,198 @@ interface S204_SimilarityCanvasProps {
     };
 }
 
+function NeonShape({
+    scale = 1,
+    position = [0, 0, 0],
+    color = "#00e5ff",
+    label = ""
+}: {
+    scale?: number | [number, number, number],
+    position?: [number, number, number],
+    color?: string,
+    label?: string
+}) {
+    return (
+        <group position={position}>
+            <mesh scale={scale}>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial
+                    color={color}
+                    transparent
+                    opacity={0.1}
+                    emissive={color}
+                    emissiveIntensity={0.2}
+                />
+                <Edges color={color} threshold={15} />
+            </mesh>
+            {label && (
+                <Text
+                    position={[0, -1, 0]}
+                    fontSize={0.25}
+                    color={color}
+                    font="/fonts/Inter-Bold.woff"
+                >
+                    {label}
+                </Text>
+            )}
+        </group>
+    );
+}
+
+function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"] }) {
+    const sunPos: [number, number, number] = [10, 8, 5];
+
+    return (
+        <group position={[0, -1, 0]}>
+            <ambientLight intensity={0.4} />
+            <directionalLight
+                position={sunPos}
+                intensity={1.5}
+                castShadow
+                shadow-mapSize={[1024, 1024]}
+            />
+
+            {/* Ground */}
+            <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow position={[0, -0.01, 0]}>
+                <planeGeometry args={[20, 20]} />
+                <meshStandardMaterial color="#050505" transparent opacity={0.8} />
+            </mesh>
+            <GridHelper />
+
+            {/* Tower */}
+            <mesh position={[-2, 1.5, 0]} castShadow>
+                <boxGeometry args={[0.8, 3, 0.8]} />
+                <meshStandardMaterial color="#1d2633" />
+                <Edges color="#fff" />
+                <Text position={[0, 2, 0]} fontSize={0.3} color="#fff">{labels?.tower || "TOWER"}</Text>
+            </mesh>
+
+            {/* Stick */}
+            <mesh position={[2, 0.5, 0]} castShadow>
+                <cylinderGeometry args={[0.05, 0.05, 1]} />
+                <meshStandardMaterial color="#fbbf24" />
+                <Edges color="#fbbf24" />
+                <Text position={[0, 0.8, 0]} fontSize={0.2} color="#fbbf24">{labels?.stick || "STICK"}</Text>
+            </mesh>
+
+            {/* Sunlight Rays */}
+            <Line
+                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(-2, 3, 0)]}
+                color="#fbbf24"
+                opacity={0.1}
+                transparent
+                lineWidth={0.5}
+            />
+        </group>
+    );
+}
+
+function GridHelper() {
+    return (
+        <gridHelper args={[20, 20, "#1a1a1a", "#0a0a0a"]} rotation={[0, 0, 0]} position={[0, 0.01, 0]} />
+    );
+}
+
 export default function S204_SimilarityCanvas({ visual, labels }: S204_SimilarityCanvasProps) {
     if (!visual) return null;
 
-    const Container = ({ children }: { children: React.ReactNode }) => (
-        <div className="relative w-full aspect-[2/1] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center p-6">
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03] bg-center" />
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5 opacity-30" />
-            {children}
-            <div className="absolute top-3 left-4 flex gap-2">
-                <div className="w-1 h-1 rounded-full bg-neon-cyan animate-pulse" />
-                <span className="text-[7px] font-mono text-white/30 tracking-[0.3em] uppercase">Sim-Scanner v2.4</span>
+    return (
+        <div className="relative w-full aspect-[2/1] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
+            <Canvas shadows className="w-full h-full">
+                <PerspectiveCamera makeDefault position={[0, 2, 8]} fov={35} />
+                <color attach="background" args={["#050505"]} />
+
+                <Suspense fallback={null}>
+                    <Environment preset="city" />
+
+                    {visual.kind === "rect-scale" && (
+                        <group position={[0, 0, 0]}>
+                            <NeonShape
+                                position={[-2.5, 0, 0]}
+                                scale={[1.2, 0.6, 1]}
+                                color="rgba(255,255,255,0.4)"
+                                label="ORIGINAL"
+                            />
+
+                            {/* Connecting Path */}
+                            <Line
+                                points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                color="#fff"
+                                opacity={0.1}
+                                transparent
+                                dashed
+                            />
+
+                            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+                                <NeonShape
+                                    position={[2, 0, 0]}
+                                    scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
+                                    color="#00e5ff"
+                                    label={`k = ${visual.k ?? 1.5}`}
+                                />
+                            </Float>
+                        </group>
+                    )}
+
+                    {visual.kind === "tri-sim" && (
+                        <group position={[0, 0, 0]}>
+                            {/* Visualizing similarity as shapes in 3D */}
+                            <mesh position={[-2, 0, 0]} rotation={[0, 0, 0.2]}>
+                                <coneGeometry args={[0.8, 1.2, 3]} />
+                                <meshStandardMaterial color="#fbbf24" transparent opacity={0.1} />
+                                <Edges color="#fbbf24" />
+                            </mesh>
+
+                            <mesh position={[2, 0, 0]} rotation={[0, 0, 0.2]} scale={1.5}>
+                                <coneGeometry args={[0.8, 1.2, 3]} />
+                                <meshStandardMaterial color="#a855f7" transparent opacity={0.2} emissive="#a855f7" emissiveIntensity={0.5} />
+                                <Edges color="#a855f7" />
+                            </mesh>
+                        </group>
+                    )}
+
+                    {visual.kind === "shadow" && (
+                        <ShadowScene labels={labels} />
+                    )}
+
+                    {visual.kind === "ring" && (
+                        <group rotation={[Math.PI / 3, 0, 0]}>
+                            <mesh>
+                                <ringGeometry args={[1.5, 1.55, 64]} />
+                                <meshBasicMaterial color="#333" />
+                            </mesh>
+                            <mesh>
+                                <ringGeometry args={[0.9, 1, 64]} />
+                                <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={1} />
+                            </mesh>
+                            <Line
+                                points={[new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                color="#39ff14"
+                                lineWidth={2}
+                            />
+                        </group>
+                    )}
+
+                    <ContactShadows
+                        opacity={0.4}
+                        scale={15}
+                        blur={2.5}
+                        far={4}
+                        resolution={256}
+                        color="#000000"
+                    />
+                </Suspense>
+            </Canvas>
+
+            {/* HUD Overlay */}
+            <div className="absolute top-3 left-4 flex gap-2 items-center pointer-events-none">
+                <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
+                <span className="text-[8px] font-mono text-white/30 tracking-[0.3em] uppercase">Sim-Scanner v3.0 // 3D_MATRIX</span>
+            </div>
+
+            <div className="absolute bottom-3 left-4 text-[7px] font-mono text-white/10 uppercase tracking-widest">
+                Geometric_Similarity_Algorithm: ACTIVE
             </div>
         </div>
     );
-
-    if (visual.kind === "rect-scale") {
-        const w1 = 120;
-        const h1 = 60;
-        const k = visual.k ?? 1.5;
-        const w2 = w1 * k;
-        const h2 = h1 * k;
-        return (
-            <Container>
-                <svg viewBox="0 0 600 240" className="w-full h-full overflow-visible">
-                    <defs>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                            <feMerge>
-                                <feMergeNode in="coloredBlur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    {/* Old Rect */}
-                    <rect x={100} y={120 - h1 / 2} width={w1} height={h1} rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.2)" strokeWidth="2" />
-                    <text x={100 + w1 / 2} y={120 + h1 / 2 + 20} textAnchor="middle" fill="white" fontSize="10" className="font-mono opacity-40">ORIGINAL [1:1]</text>
-
-                    {/* Scaling Lines */}
-                    <line x1={100 + w1} y1={120} x2={300} y2={120} stroke="white" strokeWidth="1" strokeDasharray="4 4" opacity="0.1" />
-
-                    {/* New Rect */}
-                    <g filter="url(#glow)">
-                        <rect x={300} y={120 - h2 / 2} width={w2} height={h2} rx="4" fill="rgba(0, 229, 255, 0.05)" stroke="#00e5ff" strokeWidth="3" />
-                        <text x={300 + w2 / 2} y={120} textAnchor="middle" dominantBaseline="middle" fill="#00e5ff" fontSize="14" className="font-black">k={k}</text>
-                    </g>
-                    <text x={300 + w2 / 2} y={120 + h2 / 2 + 25} textAnchor="middle" fill="#00e5ff" fontSize="10" className="font-mono font-bold uppercase tracking-wider">Scaled Result</text>
-                </svg>
-            </Container>
-        );
-    }
-
-    if (visual.kind === "tri-sim") {
-        return (
-            <Container>
-                <svg viewBox="0 0 500 250" className="w-full h-full overflow-visible">
-                    {/* Small Triangle */}
-                    <g transform="translate(80, 50)">
-                        <polygon points="0,150 120,150 0,60" fill="rgba(251, 191, 36, 0.05)" stroke="#fbbf24" strokeWidth="2" />
-                        <text x="60" y="170" textAnchor="middle" fill="#fbbf24" fontSize="10" className="font-mono">Reference</text>
-                    </g>
-
-                    {/* Comparison Arrows */}
-                    <path d="M220,125 Q250,125 280,125" fill="none" stroke="white" strokeWidth="1" strokeDasharray="2 2" opacity="0.3" />
-
-                    {/* Large Triangle */}
-                    <g transform="translate(300, 30)">
-                        <polygon points="0,170 180,170 0,40" fill="rgba(168, 85, 247, 0.05)" stroke="#a855f7" strokeWidth="3" />
-                        <text x="90" y="190" textAnchor="middle" fill="#a855f7" fontSize="10" className="font-mono font-bold">Similar & Target</text>
-                    </g>
-                </svg>
-            </Container>
-        );
-    }
-
-    if (visual.kind === "shadow") {
-        return (
-            <Container>
-                <svg viewBox="0 0 600 260" className="w-full h-full overflow-visible">
-                    <defs>
-                        <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
-                        </linearGradient>
-                    </defs>
-
-                    {/* Ground */}
-                    <line x1="0" y1="220" x2="600" y2="220" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-
-                    {/* Sun Rays */}
-                    <path d="M550,40 L150,220 M550,40 L450,220" stroke="url(#sunGradient)" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
-                    <circle cx="550" cy="40" r="10" fill="#fbbf24">
-                        <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinity" />
-                    </circle>
-
-                    {/* Tower */}
-                    <g transform="translate(150, 220)">
-                        {/* Shadow */}
-                        <path d="M0,0 L120,0 L0,0" stroke="white" strokeWidth="4" opacity="0.2" strokeLinecap="round" />
-                        <rect x="-30" y="-140" width="30" height="140" fill="rgba(255,255,255,0.03)" stroke="white" strokeWidth="2" />
-                        <path d="M-30,-140 L-15,-170 L0,-140" fill="none" stroke="white" strokeWidth="2" />
-                        <text x="-15" y="-185" textAnchor="middle" fill="white" fontSize="10" className="font-black uppercase tracking-tighter">{labels?.tower || "Tower"}</text>
-                        <text x="60" y="15" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" className="font-mono">Shadow: 12.0m</text>
-                    </g>
-
-                    {/* Pointer / Stick */}
-                    <g transform="translate(450, 220)">
-                        <path d="M0,0 L20,0 L0,0" stroke="#fbbf24" strokeWidth="4" opacity="0.4" strokeLinecap="round" />
-                        <line x1="0" y1="0" x2="0" y2="-25" stroke="#fbbf24" strokeWidth="3" />
-                        <text x="0" y="-35" textAnchor="middle" fill="#fbbf24" fontSize="9" className="font-bold uppercase">{labels?.stick || "Stick"}</text>
-                        <text x="10" y="15" textAnchor="middle" fill="rgba(251, 191, 36, 0.5)" fontSize="8" className="font-mono">Shadow: 2.0m</text>
-                    </g>
-                </svg>
-            </Container>
-        );
-    }
-
-    if (visual.kind === "ring") {
-        return (
-            <Container>
-                <svg viewBox="0 0 400 240" className="w-full h-full overflow-visible">
-                    <circle cx="200" cy="120" r="80" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 2" />
-                    <circle cx="200" cy="120" r="50" fill="rgba(0, 229, 255, 0.03)" stroke="#00e5ff" strokeWidth="2" />
-                    {/* Measuring line */}
-                    <line x1="140" y1="120" x2="260" y2="120" stroke="#39ff14" strokeWidth="2" />
-                    <circle cx="140" cy="120" r="3" fill="#39ff14" />
-                    <circle cx="260" cy="120" r="3" fill="#39ff14" />
-                    <text x="200" y="110" textAnchor="middle" fill="#39ff14" fontSize="12" className="font-black">L</text>
-                </svg>
-            </Container>
-        );
-    }
-
-    return null;
 }

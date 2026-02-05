@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export interface GeometryMeta {
     type: 'rectangle' | 'triangle' | 'trapezoid' | 'circle' | 'cube' | 'prism' | 'cylinder';
@@ -60,7 +60,8 @@ export default function S101_GeometryCanvas({
 
     // Theme Colors
     const neonCyan = "#00e5ff";
-    const neonPurple = "#a855f7";
+
+
     const neonGreen = "#39ff14";
     const neonRed = "#ff3131";
 
