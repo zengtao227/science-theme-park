@@ -428,7 +428,7 @@ function QuadraticScene({ quest }: { quest: CanvasQuest }) {
   );
 }
 
-export default function S301QuadraticCanvas({ quest, _labels }: { quest: CanvasQuest; _labels: CanvasLabels }) {
+export default function S301QuadraticCanvas({ quest, labels }: { quest: CanvasQuest; labels: CanvasLabels }) {
   if (!quest) {
     return (
       <div className="w-full h-full relative flex items-center justify-center bg-[#020208] rounded-xl border border-white/10">

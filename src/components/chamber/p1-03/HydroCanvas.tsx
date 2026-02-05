@@ -60,47 +60,82 @@ function PressureArrow({
   );
 }
 
-function Sediment({ bounds }: { bounds: { x: number; y: number; z: number } }) {
-  const count = 120;
+function ParticleField({
+  bounds,
+  waterSurfaceY
+}: {
+  bounds: { x: number; y: number; z: number };
+  waterSurfaceY: number;
+}) {
+  const count = 180;
   const ref = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  const offsets = useMemo(() => Array.from({ length: count }, (_, i) => pseudo(i + 3)), [count]);
-  const seeds = useMemo(() => Array.from({ length: count }, (_, i) => pseudo(i + 31)), [count]);
+  const positions = useRef(
+    Array.from({ length: count }, (_, i) => {
+      const x = (pseudo(i + 3) - 0.5) * bounds.x * 1.4;
+      const y = -bounds.y * 0.5 + pseudo(i + 17) * bounds.y;
+      const z = (pseudo(i + 47) - 0.5) * bounds.z * 1.2;
+      return new THREE.Vector3(x, y, z);
+    })
+  );
+  const velocities = useRef(
+    Array.from({ length: count }, (_, i) => {
+      const vx = (pseudo(i + 71) - 0.5) * 0.06;
+      const vy = (pseudo(i + 91) - 0.5) * 0.04;
+      const vz = (pseudo(i + 121) - 0.5) * 0.06;
+      return new THREE.Vector3(vx, vy, vz);
+    })
+  );
 
-  useFrame(({ clock }) => {
-    const t = clock.elapsedTime;
+  useFrame((_state, delta) => {
+    const mesh = ref.current;
+    if (!mesh) return;
     for (let i = 0; i < count; i += 1) {
-      const x = (offsets[i] - 0.5) * bounds.x * 1.6;
-      const y = -bounds.y * 0.5 + (seeds[i] * bounds.y);
-      const z = (pseudo(i + 80) - 0.5) * bounds.z * 1.4;
-      const drift = Math.sin(t * 0.6 + i) * 0.08;
-      dummy.position.set(x + drift, y + Math.sin(t * 0.4 + i) * 0.05, z);
+      const pos = positions.current[i];
+      const vel = velocities.current[i];
+      const depth = clamp(waterSurfaceY - pos.y, 0, bounds.y);
+      const buoyancy = depth > 0 ? 0.6 : -0.2;
+      vel.y += buoyancy * delta * 0.2;
+      vel.multiplyScalar(0.99);
+      pos.add(vel);
+      if (pos.x < -bounds.x * 0.48 || pos.x > bounds.x * 0.48) vel.x *= -1;
+      if (pos.z < -bounds.z * 0.48 || pos.z > bounds.z * 0.48) vel.z *= -1;
+      if (pos.y < -bounds.y * 0.55) {
+        pos.y = -bounds.y * 0.55;
+        vel.y = Math.abs(vel.y) * 0.6;
+      }
+      if (pos.y > waterSurfaceY + 0.25) {
+        pos.y = waterSurfaceY + 0.25;
+        vel.y = -Math.abs(vel.y) * 0.6;
+      }
+      dummy.position.copy(pos);
       dummy.updateMatrix();
-      ref.current?.setMatrixAt(i, dummy.matrix);
+      mesh.setMatrixAt(i, dummy.matrix);
     }
-    if (ref.current) ref.current.instanceMatrix.needsUpdate = true;
+    mesh.instanceMatrix.needsUpdate = true;
   });
 
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[0.03, 8, 8]} />
-      <meshStandardMaterial color="#9fb3c8" emissive="#567089" emissiveIntensity={0.2} transparent opacity={0.5} />
+      <sphereGeometry args={[0.035, 8, 8]} />
+      <meshStandardMaterial color="#9fb3c8" emissive="#567089" emissiveIntensity={0.25} transparent opacity={0.55} />
     </instancedMesh>
   );
 }
 
-export default function HydroCanvas({ stage }: HydroCanvasProps) {
+function PressureTank() {
   const tank = { x: 4.6, y: 3.2, z: 2.4 };
   const waterSurfaceY = 0.6;
   const rho = 1000;
   const g = 9.81;
-  const [probePos, setProbePos] = useState(new THREE.Vector3(0.4, 0.2, 0));
+  const [probeY, setProbeY] = useState(0.2);
   const dragRef = useRef(false);
+  const probePos = useMemo(() => new THREE.Vector3(0.2, probeY, 0), [probeY]);
 
   const pressure = useMemo(() => {
-    const depth = Math.max(0, waterSurfaceY - probePos.y);
+    const depth = Math.max(0, waterSurfaceY - probeY);
     return rho * g * depth;
-  }, [probePos.y, rho, g, waterSurfaceY]);
+  }, [probeY, rho, g, waterSurfaceY]);
 
   const arrows = useMemo(() => {
     const size = 0.22;
@@ -115,59 +150,119 @@ export default function HydroCanvas({ stage }: HydroCanvasProps) {
   }, [probePos]);
 
   return (
+    <Float speed={0.6} rotationIntensity={0.1} floatIntensity={0.15}>
+      <mesh position={[0, -0.8, 0]}>
+        <boxGeometry args={[tank.x + 0.4, tank.y + 0.2, tank.z + 0.4]} />
+        <meshStandardMaterial color={palette.steel} metalness={0.7} roughness={0.3} />
+      </mesh>
+      <mesh position={[0, -0.7, 0]}>
+        <boxGeometry args={[tank.x, tank.y, tank.z]} />
+        <meshPhysicalMaterial color={palette.water} transmission={0.8} roughness={0.1} thickness={0.7} />
+      </mesh>
+      <mesh position={[0, -0.7, tank.z * 0.52]}>
+        <planeGeometry args={[tank.x, tank.y]} />
+        <meshPhysicalMaterial color={palette.water} transmission={0.9} roughness={0.05} thickness={0.4} />
+      </mesh>
+      <mesh position={[0, -0.7, 0]}>
+        <boxGeometry args={[tank.x * 0.98, tank.y * 0.95, tank.z * 0.98]} />
+        <meshStandardMaterial color={palette.water} transparent opacity={0.2} emissive={palette.water} emissiveIntensity={0.2} />
+      </mesh>
+      <ParticleField bounds={tank} waterSurfaceY={waterSurfaceY} />
+      <mesh
+        position={probePos}
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          dragRef.current = true;
+        }}
+        onPointerUp={() => {
+          dragRef.current = false;
+        }}
+        onPointerLeave={() => {
+          dragRef.current = false;
+        }}
+        onPointerMove={(e) => {
+          if (!dragRef.current) return;
+          const y = clamp(e.point.y, -tank.y * 0.55, waterSurfaceY + 0.4);
+          setProbeY(y);
+        }}
+      >
+        <boxGeometry args={[0.4, 0.4, 0.4]} />
+        <meshStandardMaterial color={palette.purple} emissive={palette.purple} emissiveIntensity={0.5} metalness={0.6} roughness={0.2} />
+      </mesh>
+      {arrows.map((arrow, i) => (
+        <PressureArrow key={i} origin={arrow.origin} direction={arrow.dir} magnitude={pressure} color={palette.glow} />
+      ))}
+      <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.6, 0))} fontSize={0.22} color={palette.text} font="/fonts/Inter-Bold.woff">
+        {`P = ${(pressure / 1000).toFixed(2)} kPa`}
+      </Text>
+      <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.4, 0))} fontSize={0.16} color={palette.text} font="/fonts/Inter-Bold.woff">
+        {`ρgh, h=${Math.max(0, waterSurfaceY - probeY).toFixed(2)} m`}
+      </Text>
+      <Text position={[-2.1, 1.4, 0]} fontSize={0.18} color={palette.text} font="/fonts/Inter-Bold.woff">
+        PRESSURE LAB
+      </Text>
+    </Float>
+  );
+}
+
+function HydraulicPress() {
+  const smallRadius = 0.35;
+  const largeRadius = 0.8;
+  const areaRatio = (largeRadius * largeRadius) / (smallRadius * smallRadius);
+  const smallRef = useRef<THREE.Mesh>(null);
+  const largeRef = useRef<THREE.Mesh>(null);
+  const massRef = useRef<THREE.Mesh>(null);
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    const smallOffset = Math.sin(t * 1.2) * 0.2;
+    const largeOffset = -smallOffset / areaRatio;
+    if (smallRef.current) smallRef.current.position.y = smallOffset;
+    if (largeRef.current) largeRef.current.position.y = largeOffset;
+    if (massRef.current) massRef.current.position.y = largeOffset + 0.5;
+  });
+
+  return (
+    <Float speed={0.4} rotationIntensity={0.06} floatIntensity={0.1}>
+      <mesh position={[0, -0.8, 0]}>
+        <boxGeometry args={[5.4, 2.2, 2]} />
+        <meshStandardMaterial color={palette.steel} metalness={0.7} roughness={0.3} />
+      </mesh>
+      <mesh position={[0, -0.7, 0]}>
+        <boxGeometry args={[5, 1.9, 1.6]} />
+        <meshStandardMaterial color={palette.water} transparent opacity={0.25} emissive={palette.water} emissiveIntensity={0.2} />
+      </mesh>
+      <mesh ref={smallRef} position={[-1.6, -0.1, 0]}>
+        <cylinderGeometry args={[smallRadius, smallRadius, 0.3, 32]} />
+        <meshStandardMaterial color={palette.purple} emissive={palette.purple} emissiveIntensity={0.6} metalness={0.6} roughness={0.2} />
+      </mesh>
+      <mesh ref={largeRef} position={[1.6, -0.2, 0]}>
+        <cylinderGeometry args={[largeRadius, largeRadius, 0.3, 32]} />
+        <meshStandardMaterial color={palette.glow} emissive={palette.glow} emissiveIntensity={0.5} metalness={0.6} roughness={0.2} />
+      </mesh>
+      <mesh ref={massRef} position={[1.6, 0.3, 0]}>
+        <boxGeometry args={[1.1, 0.6, 1.1]} />
+        <meshStandardMaterial color="#111820" metalness={0.7} roughness={0.2} emissive={palette.glow} emissiveIntensity={0.2} />
+      </mesh>
+      <Text position={[-2.3, 1.2, 0]} fontSize={0.18} color={palette.text} font="/fonts/Inter-Bold.woff">
+        PASCAL PRESS
+      </Text>
+      <Text position={[-2.3, 0.9, 0]} fontSize={0.14} color={palette.text} font="/fonts/Inter-Bold.woff">
+        {`Area Ratio ≈ ${areaRatio.toFixed(1)}`}
+      </Text>
+    </Float>
+  );
+}
+
+export default function HydroCanvas({ stage }: HydroCanvasProps) {
+  return (
     <div className="w-full h-[360px] rounded-xl border border-white/10 bg-black/70 overflow-hidden">
       <Canvas camera={{ position: [0, 1.8, 6.4], fov: 45 }}>
         <color attach="background" args={["#05070c"]} />
         <ambientLight intensity={0.35} />
         <pointLight position={[4, 4, 4]} intensity={1.2} />
         <pointLight position={[-4, -2, 2]} intensity={0.6} color={palette.water} />
-        <Float speed={0.6} rotationIntensity={0.1} floatIntensity={0.15}>
-          <mesh position={[0, -0.8, 0]}>
-            <boxGeometry args={[tank.x + 0.4, tank.y + 0.2, tank.z + 0.4]} />
-            <meshStandardMaterial color={palette.steel} metalness={0.7} roughness={0.3} />
-          </mesh>
-          <mesh position={[0, -0.7, 0]}>
-            <boxGeometry args={[tank.x, tank.y, tank.z]} />
-            <meshPhysicalMaterial color={palette.water} transmission={0.7} roughness={0.1} thickness={0.6} />
-          </mesh>
-          <mesh position={[0, -0.7, 0]}>
-            <boxGeometry args={[tank.x * 0.98, tank.y * 0.95, tank.z * 0.98]} />
-            <meshStandardMaterial color={palette.water} transparent opacity={0.22} emissive={palette.water} emissiveIntensity={0.2} />
-          </mesh>
-          <Sediment bounds={tank} />
-          <mesh
-            position={probePos}
-            onPointerDown={(e) => {
-              e.stopPropagation();
-              dragRef.current = true;
-            }}
-            onPointerUp={() => {
-              dragRef.current = false;
-            }}
-            onPointerMove={(e) => {
-              if (!dragRef.current) return;
-              const x = clamp(e.point.x, -tank.x * 0.4, tank.x * 0.4);
-              const y = clamp(e.point.y, -tank.y * 0.55, waterSurfaceY + 0.4);
-              const z = clamp(e.point.z, -tank.z * 0.4, tank.z * 0.4);
-              setProbePos(new THREE.Vector3(x, y, z));
-            }}
-          >
-            <boxGeometry args={[0.4, 0.4, 0.4]} />
-            <meshStandardMaterial color={palette.purple} emissive={palette.purple} emissiveIntensity={0.5} metalness={0.6} roughness={0.2} />
-          </mesh>
-          {arrows.map((arrow, i) => (
-            <PressureArrow key={i} origin={arrow.origin} direction={arrow.dir} magnitude={pressure} color={palette.glow} />
-          ))}
-          <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.6, 0))} fontSize={0.22} color={palette.text} font="/fonts/Inter-Bold.woff">
-            {`P = ${(pressure / 1000).toFixed(2)} kPa`}
-          </Text>
-          <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.4, 0))} fontSize={0.16} color={palette.text} font="/fonts/Inter-Bold.woff">
-            {`ρgh, h=${Math.max(0, waterSurfaceY - probePos.y).toFixed(2)} m`}
-          </Text>
-          <Text position={[-2.1, 1.4, 0]} fontSize={0.18} color={palette.text} font="/fonts/Inter-Bold.woff">
-            {stage}
-          </Text>
-        </Float>
+        {stage === "POWER" ? <HydraulicPress /> : <PressureTank />}
       </Canvas>
     </div>
   );
