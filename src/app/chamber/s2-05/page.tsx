@@ -109,6 +109,7 @@ export default function S205Page() {
 
     const {
         difficulty, stage, inputs, lastCheck, currentQuest,
+        successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
     } = useQuestManager<S205Quest, Stage>({
         buildPool: (d, s) => buildStagePool(t, d, s),
@@ -136,6 +137,7 @@ export default function S205Page() {
             onStageChange={(s) => handleStageChange(s as Stage)}
             onVerify={verify}
             onNext={next}
+            successRate={successRate}
             checkStatus={lastCheck}
             translations={{
                 back: t.back, check: t.check, next: t.next, correct: t.correct, incorrect: t.incorrect,
@@ -199,4 +201,3 @@ export default function S205Page() {
         </ChamberLayout>
     );
 }
-

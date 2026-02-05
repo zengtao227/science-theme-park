@@ -516,6 +516,7 @@ export default function S301Page() {
     inputs,
     lastCheck,
     currentQuest,
+    successRate,
     setInputs,
     verify,
     next,
@@ -551,6 +552,7 @@ export default function S301Page() {
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
+      successRate={successRate}
       footerLeft={t.footer_left}
       checkStatus={lastCheck}
       translations={{
@@ -571,7 +573,6 @@ export default function S301Page() {
       monitorContent={
         <S301QuadraticCanvas
           quest={currentQuest}
-          labels={{ target: t.target_title, hints: t.labels.hints }}
         />
       }
     >

@@ -2,10 +2,10 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty, Quest, Slot } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RelativityCanvas from "@/components/chamber/p1-04/RelativityCanvas";
 
@@ -18,8 +18,6 @@ interface P104Quest extends Quest {
     l0?: number; // proper length
     t0?: number; // proper time
 }
-
-const c = 1;
 
 function getGamma(v: number) {
     return 1 / Math.sqrt(1 - v * v);
@@ -45,7 +43,7 @@ function buildStagePool(t: P104T, difficulty: Difficulty, stage: Stage): P104Que
         let prompt = "";
         let target = "";
         let correct = "";
-        let slots: any[] = [];
+        let slots: Slot[] = [];
 
         if (stage === "CONTRACTION") {
             expected = Number((l0 / gamma).toFixed(2));
@@ -96,12 +94,12 @@ export default function P104Page() {
         inputs,
         lastCheck,
         currentQuest,
+        successRate,
         setInputs,
         verify,
         next,
         handleDifficultyChange,
         handleStageChange,
-        parseNumberLike,
     } = useQuestManager<P104Quest, Stage>({
         buildPool: (d, s) => buildStagePool(t, d, s),
         initialStage: "CONTRACTION",
@@ -114,12 +112,13 @@ export default function P104Page() {
     }, [lastCheck, completeStage, stage]);
 
     const [simVelocity, setSimVelocity] = useState(0.8);
+    const [prevQuestId, setPrevQuestId] = useState<string | null>(null);
 
-    useEffect(() => {
-        if (currentQuest) {
-            setSimVelocity(currentQuest.v);
-        }
-    }, [currentQuest]);
+    // Sync velocity when quest changes
+    if (currentQuest && currentQuest.id !== prevQuestId) {
+        setPrevQuestId(currentQuest.id);
+        setSimVelocity(currentQuest.v);
+    }
 
     return (
         <ChamberLayout
@@ -136,6 +135,7 @@ export default function P104Page() {
             onStageChange={(s) => handleStageChange(s as Stage)}
             onVerify={verify}
             onNext={next}
+            successRate={successRate}
             checkStatus={lastCheck}
             footerLeft={t.footer_left}
             translations={{

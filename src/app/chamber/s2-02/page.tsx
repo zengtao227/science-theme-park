@@ -570,6 +570,7 @@ export default function S202Page() {
     inputs,
     lastCheck,
     currentQuest,
+    successRate,
     setInputs,
     verify,
     next,
@@ -631,6 +632,7 @@ export default function S202Page() {
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}
+      successRate={successRate}
       translations={{
         back: t.back,
         check: t.check,

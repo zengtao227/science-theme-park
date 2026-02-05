@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import P104_FerryCanvas from "@/components/chamber/p1-04/FerryCanvas";
+import FerryCanvas from "@/components/chamber/p1-05/FerryCanvas";
 import { RotateCw, Wind } from "lucide-react";
 
 export default function P105Page() {
@@ -79,10 +79,14 @@ export default function P105Page() {
                 difficulty: { core: "CORE" }
             }}
             monitorContent={
-                <P104_FerryCanvas
+                <FerryCanvas
                     angle={angle}
-                    velocity={riverSpeed}
-                    positionX={positionX}
+                    onCrossing={(success) => {
+                        if (success) {
+                            setStatus("ARRIVED");
+                            completeStage("p1-05", "BASEL_CROSSING");
+                        }
+                    }}
                 />
             }
         >

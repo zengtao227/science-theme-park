@@ -175,6 +175,7 @@ export default function P202Page() {
     inputs,
     lastCheck,
     currentQuest,
+    successRate,
     setInputs,
     verify,
     next,
@@ -212,6 +213,7 @@ export default function P202Page() {
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}
+      successRate={successRate}
       translations={{
         back: "Back",
         check: "Verify",

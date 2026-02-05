@@ -76,6 +76,7 @@ export default function S206Page() {
 
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,
+    successRate,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
   } = useQuestManager<S206Quest, Stage>({
     buildPool: (d) => buildStagePool(t, d),
@@ -103,6 +104,7 @@ export default function S206Page() {
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
+      successRate={successRate}
       checkStatus={lastCheck}
       translations={{
         back: t.back, check: t.check, next: t.next, correct: t.correct, incorrect: t.incorrect,

@@ -324,7 +324,6 @@ function AnimationController({ onExplodedChange }: { onExplodedChange: (exploded
 export default function S201BinomialCanvas({
   a,
   b,
-  locked: _locked,
 }: S201BinomialCanvasProps) {
   const [exploded, setExploded] = useState(false);
 

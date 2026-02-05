@@ -14,8 +14,6 @@ interface VectorFieldCanvasProps {
 // Temporary objects for calculations to avoid GC pressure
 const _v1 = new THREE.Vector3();
 const _v2 = new THREE.Vector3();
-const _v3 = new THREE.Vector3();
-const _q1 = new THREE.Quaternion();
 const _yAxis = new THREE.Vector3(0, 1, 0);
 
 const palette = {

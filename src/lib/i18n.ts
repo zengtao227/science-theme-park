@@ -7,6 +7,51 @@ export const translations = {
             hold_button: "[ ACCESS NEXUS ]",
             secure_connection: "SECURE CONNECTION ESTABLISHED",
         },
+        common: {
+            history_title: "Experiment History",
+            history_toggle: "History",
+            history_empty: "No verified runs yet.",
+            history_accuracy: "Accuracy",
+            history_stage: "Stage",
+            history_difficulty: "Difficulty",
+            history_time: "Timestamp",
+            history_speed: "Speed",
+            history_rigor: "Rigor",
+            history_best: "Best",
+            mastery_title: "STEM Mastery",
+            mastery_conceptual: "Conceptual",
+            mastery_speed: "Speed",
+            mastery_rigor: "Rigor",
+            mastery_decay: "Decay",
+            achievements_title: "Achievements",
+            achievement_unlocked: "Achievement Unlocked",
+            achievements: {
+                first_light: {
+                    title: "First Light",
+                    description: "Complete your first optics experiment."
+                },
+                first_launch: {
+                    title: "First Launch",
+                    description: "Complete any experiment."
+                },
+                mole_master: {
+                    title: "Mole Master",
+                    description: "Reach 100% accuracy in C1.02."
+                },
+                molecular_architect: {
+                    title: "Molecular Architect",
+                    description: "Complete C3.01."
+                },
+                time_traveler: {
+                    title: "Time Traveler",
+                    description: "Complete the P1.04 time dilation mission."
+                },
+                calculus_god: {
+                    title: "Calculus God",
+                    description: "Reach 100% accuracy in G1.01."
+                }
+            }
+        },
         home: {
             title: "SCIENCE THEME PARK",
             subtitle: "Hardcore Science & Logic Simulations",
@@ -22,6 +67,8 @@ export const translations = {
             s2_02_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
             s3_01_title: "S3.01 // QUADRATIC EQUATIONS",
             s3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
+            s3_03_title: "S3.03 // EXPONENTIAL GROWTH",
+            s3_03_subtitle: "Model exponential and logarithmic growth with cell division simulations.",
             s2_03_title: "S2.03 // LINES & FUNCTIONS",
             s2_03_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
             s2_04_title: "S2.04 // SIMILARITY & SCALING",
@@ -30,6 +77,8 @@ export const translations = {
             g1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
             g2_01_title: "G2.01 // VECTOR PILOT 3D",
             g2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
+            g3_01_title: "G3.01 // PROBABILITY VAULT",
+            g3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
             s2_06_title: "S2.06 // LINEAR SYSTEMS",
             s2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
             s2_05_title: "S2.05 // POWERS & ROOTS",
@@ -40,6 +89,8 @@ export const translations = {
             s1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
             p1_02_title: "P1.02 // NEWTON'S LAWS",
             p1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
+            p2_01_title: "P2.01 // THERMODYNAMICS",
+            p2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
             p2_02_title: "P2.02 // CIRCUIT SANDBOX",
             p2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
             p3_01_title: "P3.01 // GEOMETRICAL OPTICS",
@@ -48,14 +99,28 @@ export const translations = {
             p1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
             p1_04_title: "P1.04 // TIME DILATION",
             p1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
+            p3_02_title: "P3.02 // WAVE OPTICS",
+            p3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
             p1_05_title: "P1.05 // THE RHINE FERRY",
             p1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
             p5_01_title: "P5.01 // THE ATOMIC CORE",
             p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
             s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
             s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
+            s2_07_title: "S2.07 // COORDINATE GEOMETRY",
+            s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
+            s3_04_title: "S3.04 // LOGARITHMIC SCALES",
+            s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
             c1_02_title: "C1.02 // MOLE MASTER",
             c1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
+            c2_01_title: "C2.01 // REACTION KINETICS",
+            c2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
+            c3_01_title: "C3.01 // MOLECULAR ARCHITECT",
+            c3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
+            p5_02_title: "P5.02 // RELATIVITY LAB",
+            p5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
+            p5_03_title: "P5.03 // LHC CALIBRATION",
+            p5_03_subtitle: "Calibrate particle trajectories using Lorentz force and magnetic fields.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -64,6 +129,9 @@ export const translations = {
             engine_status_value: "R3F PHYSICS ENGINE ACTIVE",
             nodes_label: "Nodes",
             nodes_value: "GENEVA // ZURICH // SHANGHAI",
+            search_label: "Filter Modules",
+            search_placeholder: "Search by code or name",
+            completed_badge: "COMPLETED",
         },
         s2_02: {
             back: "Back to Nexus",
@@ -231,9 +299,9 @@ export const translations = {
                 description: "Calibrate the Zurich observation tower's angle sensors using trigonometric calculations."
             }
         },
-        s2_03: {
+        s3_03: {
             back: "Back to Nexus",
-            title: "S2.03 // LINES & FUNCTIONS",
+            title: "S3.03 // GROWTH & LOGS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -241,38 +309,71 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "Target",
+            target_title: "Exponential Growth",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.03_MONITOR",
-            footer_left: "S2.03_FUNCTIONS // NODE: BASEL",
-            stages: {
-                lines: "LINES",
-                linear_function: "LINEAR",
-                graph_match: "GRAPH",
-                intersection: "INTERSECT",
-                lines_prompt_latex: "\\text{Find the line equation from the given information.}",
-                linear_prompt_latex: "\\text{Work with }y=mx+b\\text{ (evaluate/solve).}",
-                graph_prompt_latex: "\\text{Read }m\\text{ and }b\\text{ from the graph.}",
-                intersection_prompt_latex: "\\text{Find the intersection point of the two lines.}"
-            },
+            monitor_title: "S3.03_GROWTH_MONITOR",
+            footer_left: "S3.03_EXPONENTIAL // NODE: BASEL",
             labels: {
                 input: "INPUT",
-                hints: "HINTS"
-            },
-            hints: {
-                rules: {
-                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
-                    solve_linear_latex: "\\text{Rearrange to isolate }x\\text{.}",
-                    solve_system_latex: "\\text{Set the two expressions for }y\\text{ equal and solve.}"
-                }
+                hints: "HINTS",
+                population: "Population (N)",
+                time: "Time (t)",
+                doubling_time: "Doubling Time (d)",
+                initial: "Initial Count (N₀)"
             },
             mission: {
-                title: "MISSION: BASEL TRAM HUB",
-                description: "In Basel, two tram lines intersect at the central hub. Calculate the intersection point."
+                title: "BACTERIAL GROWTH LAB",
+                description: "Novartis biolab requires exponential growth modeling. Calculate bacterial populations and logarithmic scales."
+            },
+            stages: {
+                exponential: "EXPONENTIAL",
+                logarithm: "LOGARITHM",
+                applications: "APPLICATIONS",
+                exponential_prompt_latex: "\\text{Calculate population using }N(t)=N_0\\cdot 2^{t/d}.",
+                logarithm_prompt_latex: "\\text{Solve for time using logarithms.}",
+                applications_prompt_latex: "\\text{Apply exponential models to real scenarios.}"
+            },
+            formulas: {
+                exponential: "N(t) = N_0 \\cdot 2^{t/d}",
+                logarithm: "t = d \\cdot \\log_2(N/N_0)",
+                applications: "N(t) = N_0 \\cdot e^{kt}"
+            }
+        },
+        s2_03: {
+            back: "Back to Nexus",
+            title: "S2.03 // LINE NAVIGATOR",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Target Intercept",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S2.03_LASER_MONITOR",
+            footer_left: "S2.03_LINE_NAVIGATOR // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                emitter: "Emitter",
+                target: "Target",
+                slope: "Slope (m)",
+                intercept: "Intercept (c)"
+            },
+            mission: {
+                title: "LASER REFLECTION LAB",
+                description: "Use linear equations to reflect lasers off walls and hit targets. Master y = mx + c."
+            },
+            stages: {
+                level1: "LEVEL 1",
+                level2: "LEVEL 2",
+                level3: "LEVEL 3"
             }
         },
         s2_04: {
@@ -455,16 +556,30 @@ export const translations = {
             footer_left: "G1.01_CALCULUS // NODE: ZURICH",
             footer_right: "FLUX_CITY_SECTOR_7",
             stages: {
-                slope_prompt: "Calculate the secant slope m between points A and B.",
-                tangent_prompt: "Determine the tangent slope at point P.",
-                rate_prompt: "Calculate the instantaneous velocity v(t₀).",
-                elite_prompt: "Find the x-coordinate where the tangent has slope m."
+                intro: "INTRO",
+                differentiation: "DERIVATIVES",
+                application: "APPLICATIONS",
+                power_rule: "POWER RULE",
+                product_rule: "PRODUCT RULE",
+                chain_rule: "CHAIN RULE",
+                intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
+                differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
+                application_prompt_latex: "\\text{Apply calculus to solve problems.}",
+                power_rule_prompt_latex: "\\text{Apply the power rule: }\\frac{d}{dx}x^n = nx^{n-1}.",
+                product_rule_prompt_latex: "\\text{Apply the product rule: }(uv)' = u'v + uv'.",
+                chain_rule_prompt_latex: "\\text{Apply the chain rule: }\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}."
             },
             labels: {
                 secant_slope: "Secant Slope m",
                 tangent_slope: "Tangent Slope m",
                 velocity: "Velocity v",
-                x_coordinate: "x-coordinate"
+                x_coordinate: "x-coordinate",
+                hints: "HINTS"
+            },
+            formulas: {
+                power_rule: "f'(x) = nx^{n-1}",
+                product_rule: "(uv)' = u'v + uv'",
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
             },
             integral_preview_title: "COMING SOON: INTEGRALRECHNUNG",
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
@@ -502,6 +617,41 @@ export const translations = {
             mission: {
                 title: "MISSION: RHINE AIRSPACE",
                 description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
+            }
+        },
+        g3_01: {
+            back: "Back to Nexus",
+            title: "G3.01 // PROBABILITY VAULT",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Probability Matrix",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "G3.01_PROBABILITY_BOARD",
+            footer_left: "G3.01_PROBABILITY // NODE: BASEL",
+            stages: {
+                bernoulli: "BERNOULLI",
+                conditional: "CONDITIONAL",
+                distribution: "DISTRIBUTION",
+                uniform: "UNIFORM",
+                biased: "BIASED",
+                extreme: "EXTREME",
+                bernoulli_prompt_latex: "\\text{Calculate the probability P(k; n, p) for Bernoulli trials.}",
+                conditional_prompt_latex: "\\text{Determine the conditional probability P(A|B).}",
+                distribution_prompt_latex: "\\text{Predict the mean \\mu and variance \\sigma^2.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS"
+            },
+            mission: {
+                title: "QUANTUM PROBABILITY VAULT",
+                description: "The high-security vault of the Bank of Basel uses quantum probability gates. Map the Bernoulli trials and predict the distribution."
             }
         },
         s2_06: {
@@ -689,29 +839,26 @@ export const translations = {
         },
         c2_01: {
             back: "Back to Nexus",
-            title: "C2.01 // RHINE pH SENTINEL",
+            title: "C2.01 // CHEMICAL KINETICS",
             difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "pH Curve",
+            target_title: "Kinetics Data",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "C2.01_TITRATION_CORE",
-            footer_left: "C2.01_RHINE_PH // NODE: BASEL",
+            monitor_title: "C2.01_KINETICS_MONITOR",
+            footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
             stages: {
-                monitor: "MONITOR",
-                buffer: "BUFFER",
-                alert: "ALERT",
-                monitor_prompt_latex: "\\text{Estimate the river pH after }V_{base}\\text{ is added.}",
-                buffer_prompt_latex: "\\text{Compute the buffered pH at }V_{base}.",
-                alert_prompt_latex: "\\text{Critical shift detected. Determine pH at }V_{base}."
+                arrhenius: "ARRHENIUS",
+                concentration: "CONCENTRATION",
+                collision: "COLLISION",
+                arrhenius_prompt_latex: "\\text{Calculate the rate constant }k\\text{ using the Arrhenius equation.}",
+                concentration_prompt_latex: "\\text{Calculate the reaction rate based on concentration changes.}",
+                collision_prompt_latex: "\\text{Determine the fraction of effective collisions.}"
             },
             labels: {
                 input: "INPUT",
@@ -720,10 +867,14 @@ export const translations = {
                 ph: "pH"
             },
             mission: {
-                title: "MISSION: RHINE WATER WATCH",
-                description: "Basel’s sentinel barge tracks river alkalinity. Calibrate the titration curve to keep the Rhine within safe pH bounds."
+                title: "MISSION: CHEMICAL KINETICS LAB",
+                description: "Study reaction rates in the Basel lab. Master the Arrhenius equation and collision theory."
             },
-            hints: "Track the curve shape and read the green target marker for the expected trend."
+            formulas: {
+                arrhenius: "k = Ae^{-E_a/RT}",
+                concentration: "\\text{rate} = -\\frac{\\Delta[A]}{\\Delta t}",
+                collision: "f = e^{-E_a/RT}"
+            }
         },
         p1_03: {
             back: "Back to Nexus",
@@ -827,6 +978,133 @@ export const translations = {
             active_ship: "Active Ship",
             ship_name: "Vogel Gryff // Fähri-Basel"
         },
+        p2_01: {
+            back: "Back to Nexus",
+            title: "P2.01 // THERMAL DYNAMICS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Heat Transfer",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P2.01_THERMAL_MONITOR",
+            footer_left: "P2.01_THERMODYNAMICS // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                heat: "Heat Energy (Q)",
+                temperature: "Temperature Change (ΔT)",
+                mass: "Mass (m)",
+                specific_heat: "Specific Heat (c)"
+            },
+            mission: {
+                title: "THERMAL REACTOR CONTROL",
+                description: "Novartis thermal reactor requires precise heat calculations. Master heat capacity and phase transitions."
+            },
+            stages: {
+                heat_capacity: "HEAT CAPACITY",
+                phase_change: "PHASE CHANGE",
+                mixed: "MIXED PROBLEMS",
+                heat_capacity_prompt_latex: "\\text{Calculate heat transfer using }Q=mc\\Delta T.",
+                phase_change_prompt_latex: "\\text{Calculate latent heat using }Q=mL.",
+                mixed_prompt_latex: "\\text{Combine heat capacity and phase change calculations.}"
+            },
+            formulas: {
+                heat_capacity: "Q = mc\\Delta T",
+                phase_change: "Q = mL",
+                mixed: "Q_{\\text{total}} = Q_1 + Q_2"
+            }
+        },
+        p3_02: {
+            back: "Back to Nexus",
+            title: "P3.02 // WAVE OPTICS",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Wave Properties",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P3.02_OPTICAL_MONITOR",
+            footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                wavelength: "Wavelength (λ)",
+                slit_separation: "Slit Separation (d)",
+                slit_width: "Slit Width (a)",
+                angle: "Angle (θ)",
+                intensity: "Intensity (I)",
+                order: "Order (m)"
+            },
+            mission: {
+                title: "OPTICAL RESONANCE LAB",
+                description: "Novartis optical lab involves wave properties. Master interference, diffraction and polarization."
+            },
+            stages: {
+                interference: "INTERFERENCE",
+                diffraction: "DIFFRACTION",
+                polarization: "POLARIZATION",
+                interference_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the double-slit equation.}",
+                diffraction_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the single-slit equation.}",
+                polarization_prompt_latex: "\\text{Calculate the intensity }I\\text{ using Malus' law.}"
+            },
+            formulas: {
+                interference: "d \\sin \\theta = m \\lambda",
+                diffraction: "a \\sin \\theta = m \\lambda",
+                polarization: "I = I_0 \\cos^2 \\theta"
+            }
+        },
+        s2_07: {
+            back: "Back to Nexus",
+            title: "S2.07 // COORDINATE GEOMETRY",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Precision Mapping",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S2.07_COORDINATE_MONITOR",
+            footer_left: "S2.07_COORD_GEOM // NODE: ZURICH",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                distance: "Distance (d)",
+                midpoint: "Midpoint (M)",
+                slope: "Slope (m)"
+            },
+            mission: {
+                title: "ZURICH NODE MAPPING",
+                description: "Zurich coordinate mapping requires precision geometry. Calculate distance, midpoint and slope between city nodes."
+            },
+            stages: {
+                distance: "DISTANCE",
+                midpoint: "MIDPOINT",
+                slope: "SLOPE",
+                distance_prompt_latex: "\\text{Calculate the distance }d\\text{ between points A and B.}",
+                midpoint_prompt_latex: "\\text{Calculate the midpoint coordinates }M(x,y).",
+                slope_prompt_latex: "\\text{Calculate the slope }m\\text{ of the line passing through A and B.}"
+            },
+            formulas: {
+                distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+                midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+                slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+            }
+        },
         p5_01: {
             back: "Back to Nexus",
             title: "P5.01 // THE ATOMIC CORE",
@@ -908,6 +1186,118 @@ export const translations = {
                 contraction_prompt_latex: "\\text{Calculate the contracted length }L=L_0/\\gamma.",
                 dilation_prompt_latex: "\\text{Calculate the dilated time }T=T_0\\times\\gamma."
             }
+        },
+        s3_04: {
+            back: "Back to Nexus",
+            title: "S3.04 // LOGARITHMIC SCALES",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Logarithmic Measurement",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S3.04_LOG_MONITOR",
+            footer_left: "S3.04_LOGARITHMS // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                ph: "pH Value",
+                decibel: "Decibels (dB)",
+                richter: "Richter Scale"
+            },
+            mission: {
+                title: "LOGARITHMIC MEASUREMENT LAB",
+                description: "Novartis lab requires logarithmic scaling. Master pH scale, decibels, and Richter scale."
+            },
+            stages: {
+                ph: "pH SCALE",
+                decibel: "DECIBELS",
+                richter: "RICHTER",
+                ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log[H^+].",
+                decibel_prompt_latex: "\\text{Calculate decibels using }dB=10\\log(I/I_0).",
+                richter_prompt_latex: "\\text{Calculate Richter scale using }M=\\log(A/A_0)."
+            },
+            formulas: {
+                ph_scale: "pH = -\\log[H^+]",
+                decibel_scale: "dB = 10\\log(I/I_0)",
+                richter_scale: "M = \\log(A/A_0)"
+            }
+        },
+        p5_03: {
+            back: "Back to Nexus",
+            title: "P5.03 // LHC CALIBRATION",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Lorentz Force",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P5.03_LHC_MONITOR",
+            footer_left: "P5.03_LORENTZ_FORCE // NODE: CERN",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                magnetic_field: "Magnetic Field (B)",
+                radius: "Radius (r)",
+                mass: "Mass (m)"
+            },
+            mission: {
+                title: "LHC PARTICLE ACCELERATOR",
+                description: "CERN accelerator requires precise Lorentz force calculations. Calibrate magnetic field and particle trajectory."
+            },
+            stages: {
+                constant_b: "CONSTANT B",
+                varying_v: "VARYING v",
+                mass_spec: "MASS SPECTROMETRY",
+                constant_b_prompt_latex: "\\text{Calculate the magnetic field }B=\\frac{mv}{qR}.",
+                varying_v_prompt_latex: "\\text{Calculate the radius }r=\\frac{mv}{qB}.",
+                mass_spec_prompt_latex: "\\text{Calculate the mass }m=\\frac{rqB}{v}."
+            },
+            formulas: {
+                constant_b: "B = \\frac{mv}{qR}",
+                varying_v: "r = \\frac{mv}{qB}",
+                mass_spec: "m = \\frac{rqB}{v}"
+            }
+        },
+        c3_01: {
+            back: "Back to Nexus",
+            title: "C3.01 // MOLECULAR ARCHITECT",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Molecular Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "C3.01_MOLECULE_MONITOR",
+            footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                atom: "Atom",
+                bond: "Bond",
+                snap: "Snap",
+                grid: "Grid"
+            },
+            mission: {
+                title: "MOLECULAR ASSEMBLY LAB",
+                description: "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."
+            },
+            stages: {
+                aspirin: "ASPIRIN",
+                caffeine: "CAFFEINE"
+            }
         }
     },
     CN: {
@@ -917,6 +1307,51 @@ export const translations = {
             hold_instruction: "进入授权通道",
             hold_button: "[ 访问核心枢纽 ]",
             secure_connection: "安全连接已建立",
+        },
+        common: {
+            history_title: "实验历史",
+            history_toggle: "历史记录",
+            history_empty: "暂无验证记录。",
+            history_accuracy: "正确率",
+            history_stage: "阶段",
+            history_difficulty: "难度",
+            history_time: "时间",
+            history_speed: "速度",
+            history_rigor: "严谨",
+            history_best: "最佳",
+            mastery_title: "STEM 精通度",
+            mastery_conceptual: "理论",
+            mastery_speed: "速度",
+            mastery_rigor: "严谨",
+            mastery_decay: "衰减",
+            achievements_title: "成就",
+            achievement_unlocked: "成就解锁",
+            achievements: {
+                first_light: {
+                    title: "初见之光",
+                    description: "完成第一个光学实验。"
+                },
+                first_launch: {
+                    title: "首次启动",
+                    description: "完成任意一个实验。"
+                },
+                mole_master: {
+                    title: "摩尔大师",
+                    description: "在 C1.02 达到 100% 正确率。"
+                },
+                molecular_architect: {
+                    title: "分子架构师",
+                    description: "完成 C3.01。"
+                },
+                time_traveler: {
+                    title: "时间旅者",
+                    description: "完成 P1.04 时间膨胀任务。"
+                },
+                calculus_god: {
+                    title: "微积分之神",
+                    description: "在 G1.01 达到 100% 正确率。"
+                }
+            }
         },
         home: {
             title: "理科主题乐园",
@@ -933,6 +1368,8 @@ export const translations = {
             s2_02_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
             s3_01_title: "S3.01 // 一元二次方程",
             s3_01_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
+            s3_03_title: "S3.03 // 指数与对数",
+            s3_03_subtitle: "通过细胞分裂模拟理解指数增长与对数刻度。",
             s2_03_title: "S2.03 // 直线与函数",
             s2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
             s2_04_title: "S2.04 // 相似与比例",
@@ -941,6 +1378,8 @@ export const translations = {
             g1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
             g2_01_title: "G2.01 // 矢量飞行员 3D",
             g2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
+            g3_01_title: "G3.01 // 概率金库",
+            g3_01_subtitle: "通过高尔顿钉板可视化二项分布。观察概率收敛到正态分布。",
             s2_06_title: "S2.06 // 二元一次方程组",
             s2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
             s2_05_title: "S2.05 // 幂运算与根号",
@@ -951,6 +1390,8 @@ export const translations = {
             s1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
             p1_02_title: "P1.02 // 牛顿定律",
             p1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
+            p2_01_title: "P2.01 // 热力学",
+            p2_01_subtitle: "通过 Q=mcΔT 与 Q=mL 追踪热量与相变过程。",
             p2_02_title: "P2.02 // 电路沙盒",
             p2_02_subtitle: "构建电力网络。掌握欧姆定律以及串并联电路的逻辑。",
             p3_01_title: "P3.01 // 几何光学",
@@ -959,14 +1400,28 @@ export const translations = {
             p1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
             p1_04_title: "P1.04 // 时间膨胀模拟",
             p1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
+            p3_02_title: "P3.02 // 波动光学",
+            p3_02_subtitle: "探索干涉、衍射和偏振现象。",
             p1_05_title: "P1.05 // 莱茵河渡轮",
             p1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
             p5_01_title: "P5.01 // 原子核核心",
             p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
             s3_02_title: "S3.02 // 三角函数之塔",
             s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
+            s2_07_title: "S2.07 // 坐标几何",
+            s2_07_subtitle: "掌握距离、中点和斜率计算。",
+            s3_04_title: "S3.04 // 对数刻度",
+            s3_04_subtitle: "掌握 pH 值、分贝和里氏震级的对数计算。",
             c1_02_title: "C1.02 // 摩尔大师",
             c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
+            c2_01_title: "C2.01 // 反应动力学",
+            c2_01_subtitle: "掌握阿伦尼乌斯方程、碰撞理论和反应速率。",
+            c3_01_title: "C3.01 // 分子建筑师",
+            c3_01_subtitle: "使用 3D 球棍模型组装药物分子。",
+            p5_02_title: "P5.02 // 相对论实验室",
+            p5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
+            p5_03_title: "P5.03 // LHC 校准",
+            p5_03_subtitle: "使用洛伦兹力和磁场校准粒子轨迹。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -975,6 +1430,9 @@ export const translations = {
             engine_status_value: "R3F 物理引擎运行中",
             nodes_label: "节点",
             nodes_value: "日内瓦 // 苏黎世 // 上海",
+            search_label: "筛选模块",
+            search_placeholder: "按编号或名称搜索",
+            completed_badge: "已完成",
         },
         s2_02: {
             back: "返回枢纽",
@@ -1142,9 +1600,9 @@ export const translations = {
                 description: "使用三角函数计算校准苏黎世观测塔的角度传感器。"
             }
         },
-        s2_03: {
+        s3_03: {
             back: "返回枢纽",
-            title: "S2.03 // 直线与函数",
+            title: "S3.03 // 增长与对数",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -1152,38 +1610,71 @@ export const translations = {
                 elite: "精英"
             },
             objective_title: "当前任务目标",
-            target_title: "目标",
+            target_title: "指数增长",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S2.03_监控",
-            footer_left: "S2.03_直线与函数 // 节点：巴塞尔",
-            stages: {
-                lines: "直线",
-                linear_function: "一次函数",
-                graph_match: "读图",
-                intersection: "交点",
-                lines_prompt_latex: "\\text{根据已知信息写出直线方程。}",
-                linear_prompt_latex: "\\text{处理 }y=mx+b\\text{（代入/求解）。}",
-                graph_prompt_latex: "\\text{从图像中读出 }m\\text{ 与 }b\\text{。}",
-                intersection_prompt_latex: "\\text{求两条直线的交点坐标。}"
-            },
+            monitor_title: "S3.03_增长监控",
+            footer_left: "S3.03_指数函数 // 节点：巴塞尔",
             labels: {
                 input: "输入",
-                hints: "提示"
-            },
-            hints: {
-                rules: {
-                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
-                    solve_linear_latex: "\\text{移项化简，解出 }x\\text{。}",
-                    solve_system_latex: "\\text{令两式的 }y\\text{ 相等并求解。}"
-                }
+                hints: "提示",
+                population: "种群数量 (N)",
+                time: "时间 (t)",
+                doubling_time: "倍增时间 (d)",
+                initial: "初始数量 (N₀)"
             },
             mission: {
-                title: "任务：巴塞尔电车枢纽",
-                description: "在巴塞尔，两条电车线路在枢纽相交。请计算交点坐标。"
+                title: "细菌增长实验室",
+                description: "诺华生物实验室需要指数增长建模。计算细菌种群和对数尺度。"
+            },
+            stages: {
+                exponential: "指数增长",
+                logarithm: "对数",
+                applications: "应用",
+                exponential_prompt_latex: "\\text{使用 }N(t)=N_0\\cdot 2^{t/d}\\text{ 计算种群数量。}",
+                logarithm_prompt_latex: "\\text{使用对数求解时间。}",
+                applications_prompt_latex: "\\text{将指数模型应用于实际场景。}"
+            },
+            formulas: {
+                exponential: "N(t) = N_0 \\cdot 2^{t/d}",
+                logarithm: "t = d \\cdot \\log_2(N/N_0)",
+                applications: "N(t) = N_0 \\cdot e^{kt}"
+            }
+        },
+        s2_03: {
+            back: "返回枢纽",
+            title: "S2.03 // 直线导航器",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "目标拦截",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "S2.03_激光监视器",
+            footer_left: "S2.03_直线导航器 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                emitter: "发射器",
+                target: "目标",
+                slope: "斜率 (m)",
+                intercept: "截距 (c)"
+            },
+            mission: {
+                title: "激光反射实验室",
+                description: "使用线性方程控制激光反射并击中目标。掌握 y = mx + c。"
+            },
+            stages: {
+                level1: "等级 1",
+                level2: "等级 2",
+                level3: "等级 3"
             }
         },
         s2_04: {
@@ -1366,16 +1857,30 @@ export const translations = {
             footer_left: "G1.01_微积分 // 节点: 苏黎世",
             footer_right: "流量之城_第七区",
             stages: {
-                slope_prompt: "计算点 A 和点 B 之间的割线斜率 m。",
-                tangent_prompt: "确定点 P 处的切线斜率。",
-                rate_prompt: "计算瞬时速度 v(t₀)。",
-                elite_prompt: "求切线斜率为 m 时的 x 坐标。"
+                intro: "微积分基础",
+                differentiation: "微分规则",
+                application: "应用题",
+                power_rule: "幂规则",
+                product_rule: "乘积规则",
+                chain_rule: "链式法则",
+                intro_prompt_latex: "\\text{计算 }x^n\\text{ 的导数。}",
+                differentiation_prompt_latex: "\\text{应用微分规则计算。}",
+                application_prompt_latex: "\\text{应用微积分解决问题。}",
+                power_rule_prompt_latex: "\\text{应用幂规则：}\\frac{d}{dx}x^n = nx^{n-1}。",
+                product_rule_prompt_latex: "\\text{应用乘积规则：}(uv)' = u'v + uv'。",
+                chain_rule_prompt_latex: "\\text{应用链式法则：}\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}。"
             },
             labels: {
                 secant_slope: "割线斜率 m",
                 tangent_slope: "切线斜率 m",
                 velocity: "速度 v",
-                x_coordinate: "x 坐标"
+                x_coordinate: "x 坐标",
+                hints: "提示"
+            },
+            formulas: {
+                power_rule: "f'(x) = nx^{n-1}",
+                product_rule: "(uv)' = u'v + uv'",
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
             },
             integral_preview_title: "即将解锁：积分学",
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
@@ -1413,6 +1918,41 @@ export const translations = {
             mission: {
                 title: "任务：莱茵河空域",
                 description: "在莱茵河上空校准无人机航线。输入 3D 向量并用点积验证安全走廊。"
+            }
+        },
+        g3_01: {
+            back: "返回枢纽",
+            title: "G3.01 // 概率金库",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "概率矩阵",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "验证通过",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "G3.01_概率可视化",
+            footer_left: "G3.01_概率理论 // 节点: 巴塞尔",
+            stages: {
+                bernoulli: "伯努利试验",
+                conditional: "条件概率",
+                distribution: "概率分布",
+                uniform: "均匀分布",
+                biased: "偏移分布",
+                extreme: "极端分布",
+                bernoulli_prompt_latex: "\\text{计算伯努利试验的概率 P(k; n, p)。}",
+                conditional_prompt_latex: "\\text{确定条件概率 P(A|B)。}",
+                distribution_prompt_latex: "\\text{预测期望 \\mu 和方差 \\sigma^2。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示"
+            },
+            mission: {
+                title: "量子概率金库",
+                description: "巴塞尔银行的高安全金库采用量子概率门。绘制伯努利试验图并预测分布。"
             }
         },
         s2_06: {
@@ -1600,41 +2140,42 @@ export const translations = {
         },
         c2_01: {
             back: "返回枢纽",
-            title: "C2.01 // 莱茵河 pH 哨兵",
+            title: "C2.01 // 化学动力学",
             difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
             objective_title: "当前任务目标",
-            target_title: "pH 曲线",
+            target_title: "动力学数据",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
-            incorrect: "不匹配",
+            incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "C2.01_滴定核心",
-            footer_left: "C2.01_莱茵河监测 // 节点：巴塞尔",
+            monitor_title: "C2.01_动力学监视器",
+            footer_left: "C2.01_化学动力学 // 节点：巴塞尔",
             stages: {
-                monitor: "监测",
-                buffer: "缓冲",
-                alert: "警戒",
-                monitor_prompt_latex: "\\text{当加入 }V_{base}\\text{ 时，估算河水 pH。}",
-                buffer_prompt_latex: "\\text{缓冲区稳定时，计算 }V_{base}\\text{ 的 pH。}",
-                alert_prompt_latex: "\\text{临界位移。求 }V_{base}\\text{ 时的 pH。}"
+                arrhenius: "阿伦尼乌斯",
+                concentration: "浓度",
+                collision: "碰撞",
+                arrhenius_prompt_latex: "\\text{使用阿伦尼乌斯方程计算速率常数 }k\\text{。}",
+                concentration_prompt_latex: "\\text{根据浓度变化计算反应速率。}",
+                collision_prompt_latex: "\\text{确定有效碰撞的比例。}"
             },
             labels: {
                 input: "输入",
                 hints: "提示",
-                volume: "滴定体积",
-                ph: "pH"
+                ph: "pH",
+                volume: "体积"
             },
             mission: {
-                title: "任务：莱茵河水质警戒",
-                description: "哨兵船正在监测莱茵河碱度。校准滴定曲线，确保 pH 始终处于安全区间。"
+                title: "任务：化学动力学实验室",
+                description: "在巴塞尔实验室研究反应速率处理。掌握阿伦尼乌斯方程和有效碰撞理论。"
             },
-            hints: "观察曲线形态，绿色标记点提示目标趋势。"
+            formulas: {
+                arrhenius: "k = Ae^{-E_a/RT}",
+                concentration: "\\text{速率} = -\\frac{\\Delta[A]}{\\Delta t}",
+                collision: "f = e^{-E_a/RT}"
+            }
         },
         p1_03: {
             back: "返回枢纽",
@@ -1738,6 +2279,133 @@ export const translations = {
             active_ship: "当前船只",
             ship_name: "Vogel Gryff // Fähri-Basel"
         },
+        p2_01: {
+            back: "返回枢纽",
+            title: "P2.01 // 热力学",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "热量传递",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "P2.01_热力学监视器",
+            footer_left: "P2.01_热力学 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                heat: "热能 (Q)",
+                temperature: "温度变化 (ΔT)",
+                mass: "质量 (m)",
+                specific_heat: "比热容 (c)"
+            },
+            mission: {
+                title: "热反应堆控制",
+                description: "诺华热反应堆需要精确的热量计算。掌握热容量和相变。"
+            },
+            stages: {
+                heat_capacity: "热容量",
+                phase_change: "相变",
+                mixed: "混合问题",
+                heat_capacity_prompt_latex: "\\text{使用 }Q=mc\\Delta T\\text{ 计算热量传递。}",
+                phase_change_prompt_latex: "\\text{使用 }Q=mL\\text{ 计算潜热。}",
+                mixed_prompt_latex: "\\text{结合热容量和相变计算。}"
+            },
+            formulas: {
+                heat_capacity: "Q = mc\\Delta T",
+                phase_change: "Q = mL",
+                mixed: "Q_{\\text{总}} = Q_1 + Q_2"
+            }
+        },
+        p3_02: {
+            back: "返回枢纽",
+            title: "P3.02 // 波动光学",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "波动特性",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "P3.02_光学监视器",
+            footer_left: "P3.02_波动光学 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                wavelength: "波长 (λ)",
+                slit_separation: "缝间距 (d)",
+                slit_width: "缝宽 (a)",
+                angle: "角度 (θ)",
+                intensity: "光强 (I)",
+                order: "阶数 (m)"
+            },
+            mission: {
+                title: "光学共振实验室",
+                description: "诺华光学实验室涉及波动特性。掌握干涉、衍射和偏振。"
+            },
+            stages: {
+                interference: "干涉",
+                diffraction: "衍射",
+                polarization: "偏振",
+                interference_prompt_latex: "\\text{使用双缝公式计算角度 }\\theta\\text{。}",
+                diffraction_prompt_latex: "\\text{使用单缝公式计算角度 }\\theta\\text{。}",
+                polarization_prompt_latex: "\\text{使用马吕斯定律计算光强 }I\\text{。}"
+            },
+            formulas: {
+                interference: "d \\sin \\theta = m \\lambda",
+                diffraction: "a \\sin \\theta = m \\lambda",
+                polarization: "I = I_0 \\cos^2 \\theta"
+            }
+        },
+        s2_07: {
+            back: "返回枢纽",
+            title: "S2.07 // 坐标几何",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "精密测绘",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S2.07_坐标监视器",
+            footer_left: "S2.07_坐标几何 // 节点：苏黎世",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                distance: "距离 (d)",
+                midpoint: "中点 (M)",
+                slope: "斜率 (m)"
+            },
+            mission: {
+                title: "苏黎世节点测绘",
+                description: "苏黎世坐标测绘需要精密几何计算。计算城市节点间的距离、中点和斜率。"
+            },
+            stages: {
+                distance: "距离",
+                midpoint: "中点",
+                slope: "斜率",
+                distance_prompt_latex: "\\text{计算点 A 和 B 之间的距离 }d\\text{。}",
+                midpoint_prompt_latex: "\\text{计算中点坐标 }M(x,y)\\text{。}",
+                slope_prompt_latex: "\\text{计算通过 A 和 B 的直线的斜率 }m\\text{。}"
+            },
+            formulas: {
+                distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+                midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+                slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+            }
+        },
         p5_01: {
             back: "返回枢纽",
             title: "P5.01 // 原子核核心",
@@ -1819,6 +2487,118 @@ export const translations = {
                 contraction_prompt_latex: "\\text{计算收缩长度 }L=L_0/\\gamma\\text{。}",
                 dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
             }
+        },
+        s3_04: {
+            back: "返回枢纽",
+            title: "S3.04 // 对数刻度",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "对数测量",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "S3.04_对数监视器",
+            footer_left: "S3.04_对数 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                ph: "pH 值",
+                decibel: "分贝 (dB)",
+                richter: "里氏震级"
+            },
+            mission: {
+                title: "对数测量实验室",
+                description: "诺华实验室需要对数刻度。掌握 pH 值、分贝和里氏震级。"
+            },
+            stages: {
+                ph: "pH 刻度",
+                decibel: "分贝",
+                richter: "里氏震级",
+                ph_prompt_latex: "\\text{使用 }pH=-\\log[H^+]\\text{ 计算 pH 值。}",
+                decibel_prompt_latex: "\\text{使用 }dB=10\\log(I/I_0)\\text{ 计算分贝。}",
+                richter_prompt_latex: "\\text{使用 }M=\\log(A/A_0)\\text{ 计算里氏震级。}"
+            },
+            formulas: {
+                ph_scale: "pH = -\\log[H^+]",
+                decibel_scale: "dB = 10\\log(I/I_0)",
+                richter_scale: "M = \\log(A/A_0)"
+            }
+        },
+        p5_03: {
+            back: "返回枢纽",
+            title: "P5.03 // LHC 校准",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "洛伦兹力",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "P5.03_LHC_监视器",
+            footer_left: "P5.03_洛伦兹力 // 节点：CERN",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                magnetic_field: "磁场 (B)",
+                radius: "半径 (r)",
+                mass: "质量 (m)"
+            },
+            mission: {
+                title: "LHC 粒子加速器",
+                description: "CERN 加速器需要精确的洛伦兹力计算。校准磁场和粒子轨迹。"
+            },
+            stages: {
+                constant_b: "恒定 B",
+                varying_v: "可变 v",
+                mass_spec: "质谱仪",
+                constant_b_prompt_latex: "\\text{计算磁场 }B=\\frac{mv}{qR}\\text{。}",
+                varying_v_prompt_latex: "\\text{计算半径 }r=\\frac{mv}{qB}\\text{。}",
+                mass_spec_prompt_latex: "\\text{计算质量 }m=\\frac{rqB}{v}\\text{。}"
+            },
+            formulas: {
+                constant_b: "B = \\frac{mv}{qR}",
+                varying_v: "r = \\frac{mv}{qB}",
+                mass_spec: "m = \\frac{rqB}{v}"
+            }
+        },
+        c3_01: {
+            back: "返回枢纽",
+            title: "C3.01 // 分子建筑师",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "分子结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "C3.01_分子监视器",
+            footer_left: "C3.01_分子建筑师 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                atom: "原子",
+                bond: "化学键",
+                snap: "吸附",
+                grid: "网格"
+            },
+            mission: {
+                title: "分子组装实验室",
+                description: "使用球棍模型组装药物分子。旋转并观察 3D 结构。"
+            },
+            stages: {
+                aspirin: "阿司匹林",
+                caffeine: "咖啡因"
+            }
         }
     },
     DE: {
@@ -1828,6 +2608,51 @@ export const translations = {
             hold_instruction: "Autorisierung erforderlich",
             hold_button: "[ NEXUS BETRETEN ]",
             secure_connection: "SICHERE VERBINDUNG HERGESTELLT",
+        },
+        common: {
+            history_title: "Experimentverlauf",
+            history_toggle: "Verlauf",
+            history_empty: "Noch keine verifizierten Läufe.",
+            history_accuracy: "Genauigkeit",
+            history_stage: "Stufe",
+            history_difficulty: "Schwierigkeit",
+            history_time: "Zeitpunkt",
+            history_speed: "Tempo",
+            history_rigor: "Strenge",
+            history_best: "Bestwert",
+            mastery_title: "STEM-Meisterschaft",
+            mastery_conceptual: "Theorie",
+            mastery_speed: "Tempo",
+            mastery_rigor: "Strenge",
+            mastery_decay: "Abbau",
+            achievements_title: "Errungenschaften",
+            achievement_unlocked: "Errungenschaft freigeschaltet",
+            achievements: {
+                first_light: {
+                    title: "Erstes Licht",
+                    description: "Schließe dein erstes Optik-Experiment ab."
+                },
+                first_launch: {
+                    title: "Erster Start",
+                    description: "Schließe ein beliebiges Experiment ab."
+                },
+                mole_master: {
+                    title: "Mole-Meister",
+                    description: "Erreiche 100% Genauigkeit in C1.02."
+                },
+                molecular_architect: {
+                    title: "Molekular-Architekt",
+                    description: "Schließe C3.01 ab."
+                },
+                time_traveler: {
+                    title: "Zeitreisender",
+                    description: "Schließe die P1.04-Zeitdilatation ab."
+                },
+                calculus_god: {
+                    title: "Analysis-Gott",
+                    description: "Erreiche 100% Genauigkeit in G1.01."
+                }
+            }
         },
         home: {
             title: "WISSENSCHAFTSPARK",
@@ -1852,6 +2677,8 @@ export const translations = {
             g1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
             g2_01_title: "G2.01 // VEKTOR-PILOT 3D",
             g2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
+            g3_01_title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
+            g3_01_subtitle: "Visualisiere Binomialverteilung mit Galton-Brett. Beobachte Konvergenz zur Normalverteilung.",
             s2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
             s2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
             s2_05_title: "S2.05 // POTENZEN & WURZELN",
@@ -1868,16 +2695,34 @@ export const translations = {
             p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
             p1_03_title: "P1.03 // ENERGIE & LEISTUNG",
             p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
+            p2_01_title: "P2.01 // THERMODYNAMIK",
+            p2_01_subtitle: "Meistere Wärmekapazität und Phasenübergänge mit Partikelsimulationen.",
             p1_04_title: "P1.04 // ZEITDILATATION",
             p1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
+            p3_02_title: "P3.02 // WELLENOPTIK",
+            p3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
             p1_05_title: "P1.05 // DIE RHEINFÄHRE",
             p1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
             p5_01_title: "P5.01 // DER ATOMKERN",
             p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
             s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
             s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
+            s2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
+            s2_07_subtitle: "Meistern Sie Entfernungs-, Mittelpunkt- und Steigungsberechnungen.",
+            s3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
+            s3_03_subtitle: "Modelliere exponentielles Wachstum und logarithmische Skalen mit Bakteriensimulationen.",
+            s3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
+            s3_04_subtitle: "Meistern Sie pH-Wert, Dezibel und Richterskala mit logarithmischen Berechnungen.",
             c1_02_title: "C1.02 // MOL-MEISTER",
             c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
+            c2_01_title: "C2.01 // REAKTIONSKINETIK",
+            c2_01_subtitle: "Meistern Sie Arrhenius-Gleichung, Kollisionstheorie und Reaktionsgeschwindigkeiten.",
+            c3_01_title: "C3.01 // MOLEKULARER ARCHITEKT",
+            c3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
+            p5_02_title: "P5.02 // RELATIVITÄTSLABOR",
+            p5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
+            p5_03_title: "P5.03 // LHC KALIBRIERUNG",
+            p5_03_subtitle: "Kalibrieren Sie Teilchenbahnen mit Lorentzkraft und Magnetfeldern.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -1886,6 +2731,9 @@ export const translations = {
             engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
             nodes_label: "Knoten",
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
+            search_label: "Module filtern",
+            search_placeholder: "Nach Code oder Name suchen",
+            completed_badge: "ABGESCHLOSSEN",
         },
         s2_02: {
             back: "Zurück zum Nexus",
@@ -2053,9 +2901,9 @@ export const translations = {
                 description: "Kalibriere die Winkelsensoren des Zürcher Aussichtsturms mit trigonometrischen Berechnungen."
             }
         },
-        s2_03: {
+        s3_03: {
             back: "Zurück zum Nexus",
-            title: "S2.03 // GERADEN & FUNKTIONEN",
+            title: "S3.03 // WACHSTUM & LOGARITHMEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -2063,38 +2911,71 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Aktuelles Missionsziel",
-            target_title: "Ziel",
+            target_title: "Exponentielles Wachstum",
             next: "Nächste Sequenz ausführen",
             check: "Prüfen",
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S2.03_MONITOR",
-            footer_left: "S2.03_FUNKTIONEN // KNOTEN: BASEL",
-            stages: {
-                lines: "GERADEN",
-                linear_function: "LINEAR",
-                graph_match: "GRAPH",
-                intersection: "SCHNITT",
-                lines_prompt_latex: "\\text{Bestimme die Geradengleichung aus den Angaben.}",
-                linear_prompt_latex: "\\text{Arbeite mit }y=mx+b\\text{ (einsetzen/lösen).}",
-                graph_prompt_latex: "\\text{Lies }m\\text{ und }b\\text{ aus dem Graphen ab.}",
-                intersection_prompt_latex: "\\text{Bestimme den Schnittpunkt der beiden Geraden.}"
-            },
+            monitor_title: "S3.03_WACHSTUM_MONITOR",
+            footer_left: "S3.03_EXPONENTIAL // KNOTEN: BASEL",
             labels: {
                 input: "EINGABE",
-                hints: "HINWEISE"
-            },
-            hints: {
-                rules: {
-                    slope_two_points_latex: "m=\\frac{y_2-y_1}{x_2-x_1}",
-                    solve_linear_latex: "\\text{Umformen und }x\\text{ isolieren.}",
-                    solve_system_latex: "\\text{Setze die beiden }y\\text{-Ausdrücke gleich und löse.}"
-                }
+                hints: "HINWEISE",
+                population: "Population (N)",
+                time: "Zeit (t)",
+                doubling_time: "Verdopplungszeit (d)",
+                initial: "Anfangszahl (N₀)"
             },
             mission: {
-                title: "MISSION: TRAMKNOTEN BASEL",
-                description: "In Basel schneiden sich zwei Tramlinien am Zentralknoten. Bestimme den Schnittpunkt."
+                title: "BAKTERIENWACHSTUM-LABOR",
+                description: "Das Novartis-Biolabor benötigt exponentielle Wachstumsmodellierung. Berechne Bakterienpopulationen und logarithmische Skalen."
+            },
+            stages: {
+                exponential: "EXPONENTIELL",
+                logarithm: "LOGARITHMUS",
+                applications: "ANWENDUNGEN",
+                exponential_prompt_latex: "\\text{Berechne Population mit }N(t)=N_0\\cdot 2^{t/d}.",
+                logarithm_prompt_latex: "\\text{Löse nach Zeit mit Logarithmen.}",
+                applications_prompt_latex: "\\text{Wende exponentielle Modelle auf reale Szenarien an.}"
+            },
+            formulas: {
+                exponential: "N(t) = N_0 \\cdot 2^{t/d}",
+                logarithm: "t = d \\cdot \\log_2(N/N_0)",
+                applications: "N(t) = N_0 \\cdot e^{kt}"
+            }
+        },
+        s2_03: {
+            back: "Zurück zum Nexus",
+            title: "S2.03 // LINIEN-NAVIGATOR",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Zielabfang",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S2.03_LASER_MONITOR",
+            footer_left: "S2.03_LINIEN_NAVIGATOR // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                emitter: "Emitter",
+                target: "Ziel",
+                slope: "Steigung (m)",
+                intercept: "Achsenabschnitt (c)"
+            },
+            mission: {
+                title: "LASER-REFLEXIONS-LABOR",
+                description: "Nutzen Sie lineare Gleichungen, um Laser an Wänden zu reflektieren und Ziele zu treffen. Meistern Sie y = mx + c."
+            },
+            stages: {
+                level1: "LEVEL 1",
+                level2: "LEVEL 2",
+                level3: "LEVEL 3"
             }
         },
         s2_04: {
@@ -2277,16 +3158,30 @@ export const translations = {
             footer_left: "G1.01_INFINITESIMAL // KNOTEN: ZÜRICH",
             footer_right: "FLUX_CITY_SEKTOR_7",
             stages: {
-                slope_prompt: "Berechne die Sekantensteigung m zwischen Punkt A und B.",
-                tangent_prompt: "Bestimme die Tangentensteigung am Punkt P.",
-                rate_prompt: "Berechne die Momentangeschwindigkeit v(t₀).",
-                elite_prompt: "Finde die x-Koordinate, bei der die Tangente Steigung m hat."
+                intro: "INTRO",
+                differentiation: "ABLEITUNGEN",
+                application: "ANWENDUNGEN",
+                power_rule: "POTENZREGEL",
+                product_rule: "PRODUKTREGEL",
+                chain_rule: "KETTENREGEL",
+                intro_prompt_latex: "\\text{Berechne die Ableitung von }x^n.",
+                differentiation_prompt_latex: "\\text{Wende die Ableitungsregeln an.}",
+                application_prompt_latex: "\\text{Wende Differentialrechnung an, um Probleme zu lösen.}",
+                power_rule_prompt_latex: "\\text{Wende die Potenzregel an: }\\frac{d}{dx}x^n = nx^{n-1}.",
+                product_rule_prompt_latex: "\\text{Wende die Produktregel an: }(uv)' = u'v + uv'.",
+                chain_rule_prompt_latex: "\\text{Wende die Kettenregel an: }\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}."
             },
             labels: {
                 secant_slope: "Sekantensteigung m",
                 tangent_slope: "Tangentensteigung m",
                 velocity: "Geschwindigkeit v",
-                x_coordinate: "x-Koordinate"
+                x_coordinate: "x-Koordinate",
+                hints: "HINWEISE"
+            },
+            formulas: {
+                power_rule: "f'(x) = nx^{n-1}",
+                product_rule: "(uv)' = u'v + uv'",
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
             },
             integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
@@ -2324,6 +3219,41 @@ export const translations = {
             mission: {
                 title: "MISSION: RHEIN-LUFTKORRIDOR",
                 description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
+            }
+        },
+        g3_01: {
+            back: "Zurück zum Nexus",
+            title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Wahrscheinlichkeitsmatrix",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlermeldung",
+            ready: "Bereit",
+            monitor_title: "G3.01_WAHRSCHEINLICHKEIT_BOARD",
+            footer_left: "G3.01_WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
+            stages: {
+                bernoulli: "BERNOULLI",
+                conditional: "BEDINGT",
+                distribution: "VERTEILUNG",
+                uniform: "GLEICHMÄSSIG",
+                biased: "EINSEITIG",
+                extreme: "EXTREM",
+                bernoulli_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit P(k; n, p) für Bernoulli-Versuche.}",
+                conditional_prompt_latex: "\\text{Bestimme die bedingte Wahrscheinlichkeit P(A|B).}",
+                distribution_prompt_latex: "\\text{Berechne den Mittelwert \\mu und die Varianz \\sigma^2.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE"
+            },
+            mission: {
+                title: "QUANTEN-WAHRSCHEINLICHKEITS-TRESOR",
+                description: "Der Hochsicherheitstresor der Basler Bank nutzt Quantenwahrscheinlichkeitstore. Erstellen Sie Bernoulli-Versuche und sagen Sie die Verteilung voraus."
             }
         },
         s2_06: {
@@ -2511,41 +3441,42 @@ export const translations = {
         },
         c2_01: {
             back: "Zurück zum Nexus",
-            title: "C2.01 // RHEIN pH-SENTINEL",
+            title: "C2.01 // CHEMISCHE KINETIK",
             difficulty: {
-                basic: "BASIS",
-                core: "KERN",
-                advanced: "FORTGESCHRITTEN",
-                elite: "ELITE"
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
             },
             objective_title: "Aktuelles Missionsziel",
-            target_title: "pH-Kurve",
+            target_title: "Kinetik-Daten",
             next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
+            check: "Verifizieren",
             correct: "Verifiziert",
-            incorrect: "Abweichung",
+            incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "C2.01_TITRATIONSKERN",
-            footer_left: "C2.01_RHEIN_PH // KNOTEN: BASEL",
+            monitor_title: "C2.01_KINETIK_MONITOR",
+            footer_left: "C2.01_CHEMISCHE_KINETIK // KNOTEN: BASEL",
             stages: {
-                monitor: "MONITOR",
-                buffer: "PUFFER",
-                alert: "ALARM",
-                monitor_prompt_latex: "\\text{Bestimme den pH nach }V_{base}.",
-                buffer_prompt_latex: "\\text{Berechne den gepufferten pH bei }V_{base}.",
-                alert_prompt_latex: "\\text{Kritische Verschiebung. Bestimme pH bei }V_{base}."
+                arrhenius: "ARRHENIUS",
+                concentration: "KONZENTRATION",
+                collision: "KOLLISION",
+                arrhenius_prompt_latex: "\\text{Berechnen Sie die Geschwindigkeitskonstante }k\\text{ mit der Arrhenius-Gleichung.}",
+                concentration_prompt_latex: "\\text{Berechnen Sie die Reaktionsgeschwindigkeit basierend auf Konzentrationsänderungen.}",
+                collision_prompt_latex: "\\text{Bestimmen Sie den Anteil effektiver Kollisionen.}"
             },
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
-                volume: "Titrationsvolumen",
-                ph: "pH"
+                ph: "pH",
+                volume: "Volumen"
             },
             mission: {
-                title: "MISSION: RHEIN WASSERWACHE",
-                description: "Das Sentinel-Schiff überwacht die Alkalität des Rheins. Kalibriere die Titrationskurve, um sichere pH‑Grenzen zu halten."
+                title: "MISSION: CHEMISCHES KINETIK-LABOR",
+                description: "Untersuchen Sie Reaktionsgeschwindigkeiten im Basler Labor. Meistern Sie die Arrhenius-Gleichung und die Kollisionstheorie."
             },
-            hints: "Folge der Kurvenform; der grüne Marker zeigt den Zieltrend."
+            formulas: {
+                arrhenius: "k = Ae^{-E_a/RT}",
+                concentration: "\\text{Rate} = -\\frac{\\Delta[A]}{\\Delta t}",
+                collision: "f = e^{-E_a/RT}"
+            }
         },
         p1_03: {
             back: "Zurück zum Nexus",
@@ -2583,8 +3514,8 @@ export const translations = {
                 power: "P=\\frac{W}{t}"
             },
             mission: {
-                title: "MISSION: RHEIN-WASSERKRAFT",
-                description: "Wandle die Energie des Rheins in saubere Elektrizität um. Verfolge Energieumwandlung und Turbinenleistung."
+                title: "MISSION: RHEIN-WASSERKRAFTWERK",
+                description: "Wandeln Sie die Energie des Rheins in sauberen Strom um. Verfolgen Sie die Energieübertragung und Turbinenleistung."
             }
         },
         p1_04: {
@@ -2648,6 +3579,133 @@ export const translations = {
             mechanism_desc: "Basler Fähren nutzen ein stromaufwärts befestigtes Seil. Der Ruderwinkel wandelt Strömungsdruck in Quertrieb um.",
             active_ship: "Aktives Schiff",
             ship_name: "Vogel Gryff // Fähri-Basel"
+        },
+        p2_01: {
+            back: "Zurück zum Nexus",
+            title: "P2.01 // THERMODYNAMIK",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Wärmeübertragung",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "P2.01_THERMIK_MONITOR",
+            footer_left: "P2.01_THERMODYNAMIK // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                heat: "Wärmeenergie (Q)",
+                temperature: "Temperaturänderung (ΔT)",
+                mass: "Masse (m)",
+                specific_heat: "Spezifische Wärme (c)"
+            },
+            mission: {
+                title: "THERMISCHER REAKTORKONTROLLE",
+                description: "Der Novartis-Thermoreaktor erfordert präzise Wärmeberechnungen. Meistern Sie Wärmekapazität und Phasenübergänge."
+            },
+            stages: {
+                heat_capacity: "WÄRMEKAPAZITÄT",
+                phase_change: "PHASENÜBERGANG",
+                mixed: "GEMISCHTE PROBLEME",
+                heat_capacity_prompt_latex: "\\text{Berechne Wärmeübertragung mit }Q=mc\\Delta T.",
+                phase_change_prompt_latex: "\\text{Berechne latente Wärme mit }Q=mL.",
+                mixed_prompt_latex: "\\text{Kombiniere Wärmekapazität und Phasenübergang.}"
+            },
+            formulas: {
+                heat_capacity: "Q = mc\\Delta T",
+                phase_change: "Q = mL",
+                mixed: "Q_{\\text{gesamt}} = Q_1 + Q_2"
+            }
+        },
+        p3_02: {
+            back: "Zurück zum Nexus",
+            title: "P3.02 // WELLENOPTIK",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Welleneigenschaften",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "P3.02_OPTIK_MONITOR",
+            footer_left: "P3.02_WELLENOPTIK // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                wavelength: "Wellenlänge (λ)",
+                slit_separation: "Spaltabstand (d)",
+                slit_width: "Spaltbreite (a)",
+                angle: "Winkel (θ)",
+                intensity: "Intensität (I)",
+                order: "Ordnung (m)"
+            },
+            mission: {
+                title: "OPTISCHES RESONANZLABOR",
+                description: "Das Novartis-Optiklabor befasst sich mit Welleneigenschaften. Meistern Sie Interferenz, Beugung und Polarisation."
+            },
+            stages: {
+                interference: "INTERFERENZ",
+                diffraction: "BEUGUNG",
+                polarization: "POLARISATION",
+                interference_prompt_latex: "\\text{Berechnen Sie den Winkel }\\theta\\text{ mit der Doppelspaltgleichung.}",
+                diffraction_prompt_latex: "\\text{Berechnen Sie den Winkel }\\theta\\text{ mit der Einzelspaltgleichung.}",
+                polarization_prompt_latex: "\\text{Berechnen Sie die Intensität }I\\text{ mit dem Gesetz von Malus.}"
+            },
+            formulas: {
+                interference: "d \\sin \\theta = m \\lambda",
+                diffraction: "a \\sin \\theta = m \\lambda",
+                polarization: "I = I_0 \\cos^2 \\theta"
+            }
+        },
+        s2_07: {
+            back: "Zurück zum Nexus",
+            title: "S2.07 // KOORDINATENGEOMETRIE",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Präzisionskartierung",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "S2.07_KOORDINATEN_MONITOR",
+            footer_left: "S2.07_KOORD_GEOM // KNOTEN: ZÜRICH",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                distance: "Abstand (d)",
+                midpoint: "Mittelpunkt (M)",
+                slope: "Steigung (m)"
+            },
+            mission: {
+                title: "ZÜRCHER KNOTEN-KARTIERUNG",
+                description: "Die Zürcher Koordinatenkartierung erfordert Präzisionsgeometrie. Berechnen Sie Abstand, Mittelpunkt und Steigung zwischen Stadtknoten."
+            },
+            stages: {
+                distance: "ABSTAND",
+                midpoint: "MITTELPUNKT",
+                slope: "STEIGUNG",
+                distance_prompt_latex: "\\text{Berechnen Sie den Abstand }d\\text{ zwischen den Punkten A und B.}",
+                midpoint_prompt_latex: "\\text{Berechnen Sie die Mittelpunktkoordinaten }M(x,y).",
+                slope_prompt_latex: "\\text{Berechnen Sie die Steigung }m\\text{ der Geraden durch A und B.}"
+            },
+            formulas: {
+                distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+                midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+                slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+            }
         },
         p5_01: {
             back: "Zurück zum Nexus",
@@ -2729,6 +3787,118 @@ export const translations = {
                 lorentz_prompt_latex: "\\text{Berechne den Lorentz-Faktor }\\gamma\\text{ bei Geschwindigkeit }v.",
                 contraction_prompt_latex: "\\text{Berechne die kontrahierte Länge }L=L_0/\\gamma.",
                 dilation_prompt_latex: "\\text{Berechne die dilatierte Zeit }T=T_0\\times\\gamma."
+            }
+        },
+        s3_04: {
+            back: "Zurück zum Nexus",
+            title: "S3.04 // LOGARITHMISCHE SKALEN",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Logarithmische Messung",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "S3.04_LOG_MONITOR",
+            footer_left: "S3.04_LOGARITHMEN // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                ph: "pH-Wert",
+                decibel: "Dezibel (dB)",
+                richter: "Richterskala"
+            },
+            mission: {
+                title: "LOGARITHMISCHES MESSLABOR",
+                description: "Novartis-Labor erfordert logarithmische Skalierung. Meistern Sie pH-Wert, Dezibel und Richterskala."
+            },
+            stages: {
+                ph: "pH-SKALA",
+                decibel: "DEZIBEL",
+                richter: "RICHTER-SKALA",
+                ph_prompt_latex: "\\text{Berechnen Sie den pH-Wert mit }pH=-\\log[H^+].",
+                decibel_prompt_latex: "\\text{Berechnen Sie Dezibel mit }dB=10\\log(I/I_0).",
+                richter_prompt_latex: "\\text{Berechnen Sie die Richter-Skala mit }M=\\log(A/A_0)."
+            },
+            formulas: {
+                ph_scale: "pH = -\\log[H^+]",
+                decibel_scale: "dB = 10\\log(I/I_0)",
+                richter_scale: "M = \\log(A/A_0)"
+            }
+        },
+        p5_03: {
+            back: "Zurück zum Nexus",
+            title: "P5.03 // LHC KALIBRIERUNG",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Lorentzkraft",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "P5.03_LHC_MONITOR",
+            footer_left: "P5.03_LORENTZKRAFT // KNOTEN: CERN",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                magnetic_field: "Magnetfeld (B)",
+                radius: "Radius (r)",
+                mass: "Masse (m)"
+            },
+            mission: {
+                title: "LHC TEILCHENBESCHLEUNIGER",
+                description: "CERN-Beschleuniger erfordert präzise Lorentzkraft-Berechnungen. Kalibrieren Sie Magnetfeld und Teilchenbahn."
+            },
+            stages: {
+                constant_b: "KONSTANTES B",
+                varying_v: "VARIABLE v",
+                mass_spec: "MASSENSPEKTROMETRIE",
+                constant_b_prompt_latex: "\\text{Berechnen Sie das Magnetfeld }B=\\frac{mv}{qR}.",
+                varying_v_prompt_latex: "\\text{Berechnen Sie den Radius }r=\\frac{mv}{qB}.",
+                mass_spec_prompt_latex: "\\text{Berechnen Sie die Masse }m=\\frac{rqB}{v}."
+            },
+            formulas: {
+                constant_b: "B = \\frac{mv}{qR}",
+                varying_v: "r = \\frac{mv}{qB}",
+                mass_spec: "m = \\frac{rqB}{v}"
+            }
+        },
+        c3_01: {
+            back: "Zurück zum Nexus",
+            title: "C3.01 // MOLEKULARER ARCHITEKT",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Molekülstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "C3.01_MOLEKÜL_MONITOR",
+            footer_left: "C3.01_MOLEKULARER_ARCHITEKT // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                atom: "Atom",
+                bond: "Bindung",
+                snap: "Einrasten",
+                grid: "Gitter"
+            },
+            mission: {
+                title: "MOLEKÜL-MONTAGE-LABOR",
+                description: "Bauen Sie pharmazeutische Moleküle mit Kugel-Stab-Modellen zusammen. Drehen und beobachten Sie die 3D-Struktur."
+            },
+            stages: {
+                aspirin: "ASPIRIN",
+                caffeine: "KOFFEIN"
             }
         }
     }

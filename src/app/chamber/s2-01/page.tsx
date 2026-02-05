@@ -244,6 +244,7 @@ export default function S201Page() {
     inputs,
     lastCheck,
     currentQuest,
+    successRate,
     setInputs,
     next,
     handleDifficultyChange,
@@ -429,6 +430,7 @@ export default function S201Page() {
       onStageChange={handleModeChange}
       footerLeft={t.ui?.footer_left ?? "S2.01_BINOMIAL_FACTORY"}
       checkStatus={lastCheck}
+      successRate={successRate}
       translations={{
         back: t.back,
         check: "VERIFY",

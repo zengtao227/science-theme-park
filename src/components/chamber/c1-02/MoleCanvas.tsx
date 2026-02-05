@@ -50,13 +50,13 @@ function Atom({
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const color = atomColors[symbol] || palette.cyan;
-  
+
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const pulse = 1 + Math.sin(clock.elapsedTime * 2 + position[0] * 10) * 0.05;
     meshRef.current.scale.setScalar(scale * pulse);
   });
-  
+
   return (
     <group position={position}>
       <mesh ref={meshRef}>
@@ -93,11 +93,12 @@ function MolecularCluster({
   position: [number, number, number];
 }) {
   const positions = useMemo(() => {
-    // Arrange atoms in a cluster
+    // Determine positions deterministically to avoid hydration mismatch
     return atoms.map((_, i) => {
       const angle = (i / atoms.length) * Math.PI * 2;
-      const radius = 0.4 + Math.random() * 0.2;
-      const height = (Math.random() - 0.5) * 0.3;
+      // Use index-based seed for pseudo-randomness
+      const radius = 0.4 + (Math.sin(i * 123.45) * 0.5 + 0.5) * 0.2;
+      const height = (Math.cos(i * 678.9) * 0.5) * 0.3;
       return [
         Math.cos(angle) * radius,
         height,
@@ -105,7 +106,7 @@ function MolecularCluster({
       ] as [number, number, number];
     });
   }, [atoms]);
-  
+
   return (
     <group position={position}>
       {atoms.map((symbol, i) => (
@@ -133,29 +134,29 @@ function BalanceScale({
   const leftPanRef = useRef<THREE.Group>(null);
   const rightPanRef = useRef<THREE.Group>(null);
   const beamRef = useRef<THREE.Mesh>(null);
-  
+
   useFrame(() => {
     if (!leftPanRef.current || !rightPanRef.current || !beamRef.current) return;
-    
+
     // Calculate tilt based on weight difference
     const diff = rightWeight - leftWeight;
     const maxTilt = 0.3;
     const targetTilt = Math.max(-maxTilt, Math.min(maxTilt, diff * 0.01));
-    
+
     // Smooth rotation
     const currentTilt = beamRef.current.rotation.z;
     const newTilt = currentTilt + (targetTilt - currentTilt) * 0.05;
     beamRef.current.rotation.z = newTilt;
-    
+
     // Update pan positions
     const panOffset = Math.sin(newTilt) * 2;
     leftPanRef.current.position.y = -panOffset;
     rightPanRef.current.position.y = panOffset;
   });
-  
+
   // Status color
   const statusColor = status === "correct" ? palette.green : status === "incorrect" ? palette.pink : palette.cyan;
-  
+
   return (
     <group>
       {/* Base */}
@@ -167,7 +168,7 @@ function BalanceScale({
           roughness={0.1}
         />
       </mesh>
-      
+
       {/* Central pillar */}
       <mesh position={[0, -0.5, 0]}>
         <cylinderGeometry args={[0.15, 0.15, 3, 16]} />
@@ -177,7 +178,7 @@ function BalanceScale({
           roughness={0.2}
         />
       </mesh>
-      
+
       {/* Beam */}
       <mesh ref={beamRef} position={[0, 1, 0]}>
         <boxGeometry args={[5, 0.15, 0.15]} />
@@ -189,7 +190,7 @@ function BalanceScale({
           roughness={0.1}
         />
       </mesh>
-      
+
       {/* Left chain */}
       <mesh position={[-2, 0.5, 0]}>
         <cylinderGeometry args={[0.03, 0.03, 1, 8]} />
@@ -199,7 +200,7 @@ function BalanceScale({
           roughness={0.2}
         />
       </mesh>
-      
+
       {/* Right chain */}
       <mesh position={[2, 0.5, 0]}>
         <cylinderGeometry args={[0.03, 0.03, 1, 8]} />
@@ -209,7 +210,7 @@ function BalanceScale({
           roughness={0.2}
         />
       </mesh>
-      
+
       {/* Left pan */}
       <group ref={leftPanRef} position={[-2, 0, 0]}>
         <mesh>
@@ -233,7 +234,7 @@ function BalanceScale({
           INPUT
         </Text>
       </group>
-      
+
       {/* Right pan */}
       <group ref={rightPanRef} position={[2, 0, 0]}>
         <mesh>
@@ -270,7 +271,7 @@ function FloatingAtoms() {
     [-2.5, -1, -2],
     [2.8, -0.5, -1.5],
   ];
-  
+
   return (
     <group>
       {atoms.map((symbol, i) => (
@@ -300,7 +301,7 @@ function ValueDisplay({
   label: string;
 }) {
   const displayValue = value !== null ? value.toFixed(2) : "---";
-  
+
   return (
     <group position={position}>
       <Float speed={1} rotationIntensity={0} floatIntensity={0.1}>
@@ -342,24 +343,24 @@ export default function MoleCanvas({
     const count = Math.min(Math.floor(inputValue / 10), 5);
     return Array.from({ length: count }, () => ["H", "O", "H"]);
   }, [inputValue]);
-  
+
   const rightMolecules = useMemo(() => {
     if (targetValue === null) return [];
     const count = Math.min(Math.floor(targetValue / 10), 5);
     return Array.from({ length: count }, () => ["C", "O", "O"]);
   }, [targetValue]);
-  
+
   return (
     <div className="relative w-full h-[500px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [0, 2, 8], fov: 50 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.4} />
         <pointLight position={[5, 5, 5]} intensity={1.2} />
         <pointLight position={[-5, 3, 3]} intensity={0.8} color={palette.purple} />
         <pointLight position={[0, -2, 5]} intensity={0.6} color={palette.cyan} />
-        
+
         {/* Controls */}
         <OrbitControls
           enablePan={false}
@@ -368,14 +369,14 @@ export default function MoleCanvas({
           maxPolarAngle={Math.PI / 2}
           autoRotate={false}
         />
-        
+
         {/* Balance scale */}
         <BalanceScale
           leftWeight={inputValue || 0}
           rightWeight={targetValue || 0}
           status={status}
         />
-        
+
         {/* Molecular clusters on pans */}
         {leftMolecules.map((atoms, i) => (
           <MolecularCluster
@@ -384,7 +385,7 @@ export default function MoleCanvas({
             position={[-2, 0.3 + i * 0.4, 0]}
           />
         ))}
-        
+
         {rightMolecules.map((atoms, i) => (
           <MolecularCluster
             key={`right-${i}`}
@@ -392,7 +393,7 @@ export default function MoleCanvas({
             position={[2, 0.3 + i * 0.4, 0]}
           />
         ))}
-        
+
         {/* Value displays */}
         <ValueDisplay
           position={[-2, 2.5, 0]}
@@ -400,17 +401,17 @@ export default function MoleCanvas({
           unit={unit}
           label="INPUT"
         />
-        
+
         <ValueDisplay
           position={[2, 2.5, 0]}
           value={targetValue}
           unit={unit}
           label="TARGET"
         />
-        
+
         {/* Floating decoration atoms */}
         <FloatingAtoms />
-        
+
         {/* Title */}
         <Float speed={1} rotationIntensity={0} floatIntensity={0.1}>
           <Text
@@ -422,7 +423,7 @@ export default function MoleCanvas({
             MOLECULAR BALANCE
           </Text>
         </Float>
-        
+
         {/* Stage label */}
         <Text
           position={[0, 3.5, 0]}
@@ -433,30 +434,28 @@ export default function MoleCanvas({
           {stageLabel}
         </Text>
       </Canvas>
-      
+
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
-        <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${
-          status === "correct" ? "bg-green-400" : status === "incorrect" ? "bg-pink-400" : "bg-cyan-400"
-        }`} />
+        <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${status === "correct" ? "bg-green-400" : status === "incorrect" ? "bg-pink-400" : "bg-cyan-400"
+          }`} />
         <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
           Mole_Master v2.0
         </span>
       </div>
-      
+
       {/* Status indicator */}
       {status !== "idle" && (
-        <div className={`absolute top-4 right-4 px-4 py-2 rounded-lg border ${
-          status === "correct"
+        <div className={`absolute top-4 right-4 px-4 py-2 rounded-lg border ${status === "correct"
             ? "bg-green-500/20 border-green-400/50 text-green-400"
             : "bg-pink-500/20 border-pink-400/50 text-pink-400"
-        }`}>
+          }`}>
           <div className="text-[10px] font-mono uppercase tracking-wider">
             {status === "correct" ? "✓ BALANCED" : "✗ UNBALANCED"}
           </div>
         </div>
       )}
-      
+
       {/* Instructions */}
       <div className="absolute bottom-4 left-4 right-4 bg-black/70 border border-white/20 rounded-lg px-4 py-3">
         <div className="text-[10px] text-white/50 uppercase tracking-wider mb-2">
@@ -468,7 +467,7 @@ export default function MoleCanvas({
           <div>• Atoms appear as molecular clusters on pans</div>
         </div>
       </div>
-      
+
       {/* Module info */}
       <div className="absolute top-4 right-4 text-[8px] font-mono text-white/20 text-right">
         CHAMBER // C1.02<br />

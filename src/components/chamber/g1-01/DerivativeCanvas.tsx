@@ -401,57 +401,6 @@ function LaserTangent({ x, y, slope, color }: { x: number, y: number, slope: num
     );
 }
 
-function DraggableProbe({
-    x,
-    y,
-    onDrag,
-    onDragState,
-    xRange = [-4, 4]
-}: {
-    x: number;
-    y: number;
-    onDrag: (x: number) => void;
-    onDragState?: (dragging: boolean) => void;
-    xRange?: [number, number];
-}) {
-    const [dragging, setDragging] = useState(false);
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <group position={[x, y, 0.35]}>
-            <mesh
-                onPointerOver={() => setHovered(true)}
-                onPointerOut={() => setHovered(false)}
-                onPointerDown={(e) => {
-                    e.stopPropagation();
-                    setDragging(true);
-                    onDragState?.(true);
-                    const target = e.target as unknown as { setPointerCapture?: (id: number) => void };
-                    target.setPointerCapture?.(e.pointerId);
-                }}
-                onPointerUp={() => {
-                    setDragging(false);
-                    onDragState?.(false);
-                }}
-                onPointerMove={(e) => {
-                    if (dragging) {
-                        onDrag(Math.max(xRange[0], Math.min(xRange[1], e.point.x)));
-                    }
-                }}
-                onPointerLeave={() => {
-                    setDragging(false);
-                    onDragState?.(false);
-                }}
-            >
-                <sphereGeometry args={[0.18, 20, 20]} />
-                <meshStandardMaterial color={palette.cyan} emissive={palette.cyan} emissiveIntensity={hovered || dragging ? 2 : 0.6} />
-            </mesh>
-        </group>
-    );
-}
-
-
-
 // 3D Grid Floor with Pulse
 function ScanGrid() {
     return (
@@ -472,7 +421,6 @@ function ScanGrid() {
 export default function G101_DerivativeCanvas({
     mode,
     exploreX,
-    _onExploreXChange,
     questData
 }: DerivativeCanvasProps) {
     const [hValue, setHValue] = useState(1.0);
@@ -486,7 +434,7 @@ export default function G101_DerivativeCanvas({
         if (hValue < 0.5) return 2;
         return 1;
     }, [hValue]);
-    const [userSlope, _setUserSlope] = useState<number | null>(null);
+    const userSlope = null; // Placeholder for future logic if needed
 
     const currentFunc = useMemo(() => {
         if (questData?.func === 'x2') return (x: number) => x * x;

@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -26,7 +26,7 @@ function buildStagePool(t: S302T, difficulty: Difficulty, stage: Stage): S302Que
       const sin = Math.round(Math.sin(rad) * 1000) / 1000;
       const cos = Math.round(Math.cos(rad) * 1000) / 1000;
       const tan = Math.abs(Math.cos(rad)) > 0.01 ? Math.round(Math.tan(rad) * 1000) / 1000 : null;
-      
+
       return {
         id: `U${i + 1}`,
         difficulty,
@@ -41,7 +41,7 @@ function buildStagePool(t: S302T, difficulty: Difficulty, stage: Stage): S302Que
           { id: "cos", labelLatex: "\\cos\\theta", placeholder: "cos", expected: cos },
           ...(tan !== null ? [{ id: "tan", labelLatex: "\\tan\\theta", placeholder: "tan", expected: tan }] : []),
         ],
-        correctLatex: tan !== null 
+        correctLatex: tan !== null
           ? `\\sin=${sin},\\cos=${cos},\\tan=${tan}`
           : `\\sin=${sin},\\cos=${cos},\\tan=\\text{undefined}`,
       };
@@ -57,7 +57,7 @@ function buildStagePool(t: S302T, difficulty: Difficulty, stage: Stage): S302Que
       const rad = (angle * Math.PI) / 180;
       const sin = Math.round(Math.sin(rad) * 1000) / 1000;
       const cos = Math.round(Math.cos(rad) * 1000) / 1000;
-      
+
       return {
         id: `W${i + 1}`,
         difficulty,
@@ -93,7 +93,7 @@ function buildStagePool(t: S302T, difficulty: Difficulty, stage: Stage): S302Que
     const rad = (item.angle * Math.PI) / 180;
     const opp = Math.round(Math.sin(rad) * item.hyp * 100) / 100;
     const adj = Math.round(Math.cos(rad) * item.hyp * 100) / 100;
-    
+
     return {
       id: `T${i + 1}`,
       difficulty,
@@ -125,6 +125,7 @@ export default function S302Page() {
     inputs,
     lastCheck,
     currentQuest,
+    successRate,
     setInputs,
     verify,
     next,
@@ -156,6 +157,7 @@ export default function S302Page() {
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
+      successRate={successRate}
       checkStatus={lastCheck}
       footerLeft={t.footer_left}
       translations={{
@@ -175,8 +177,8 @@ export default function S302Page() {
       }}
       monitorContent={
         <div className="space-y-4">
-          <TrigonometryCanvas 
-            angle={currentQuest?.angle || 45} 
+          <TrigonometryCanvas
+            angle={currentQuest?.angle || 45}
             mode={currentQuest?.mode || "circle"}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>

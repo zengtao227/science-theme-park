@@ -20,41 +20,33 @@ const palette = {
 
 // 4D rotation matrix
 function rotate4D(point: number[], angleXY: number, angleZW: number, angleXZ: number, angleYW: number) {
-  let [x, y, z, w] = point;
-  
+  const [x0, y0, z0, w0] = point;
+
   // XY rotation
-  let cosXY = Math.cos(angleXY);
-  let sinXY = Math.sin(angleXY);
-  let newX = x * cosXY - y * sinXY;
-  let newY = x * sinXY + y * cosXY;
-  x = newX;
-  y = newY;
-  
+  const cosXY = Math.cos(angleXY);
+  const sinXY = Math.sin(angleXY);
+  const x1 = x0 * cosXY - y0 * sinXY;
+  const y1 = x0 * sinXY + y0 * cosXY;
+
   // ZW rotation
-  let cosZW = Math.cos(angleZW);
-  let sinZW = Math.sin(angleZW);
-  let newZ = z * cosZW - w * sinZW;
-  let newW = z * sinZW + w * cosZW;
-  z = newZ;
-  w = newW;
-  
+  const cosZW = Math.cos(angleZW);
+  const sinZW = Math.sin(angleZW);
+  const z1 = z0 * cosZW - w0 * sinZW;
+  const w1 = z0 * sinZW + w0 * cosZW;
+
   // XZ rotation
-  let cosXZ = Math.cos(angleXZ);
-  let sinXZ = Math.sin(angleXZ);
-  newX = x * cosXZ - z * sinXZ;
-  newZ = x * sinXZ + z * cosXZ;
-  x = newX;
-  z = newZ;
-  
+  const cosXZ = Math.cos(angleXZ);
+  const sinXZ = Math.sin(angleXZ);
+  const x2 = x1 * cosXZ - z1 * sinXZ;
+  const z2 = x1 * sinXZ + z1 * cosXZ;
+
   // YW rotation
-  let cosYW = Math.cos(angleYW);
-  let sinYW = Math.sin(angleYW);
-  newY = y * cosYW - w * sinYW;
-  newW = y * sinYW + w * cosYW;
-  y = newY;
-  w = newW;
-  
-  return [x, y, z, w];
+  const cosYW = Math.cos(angleYW);
+  const sinYW = Math.sin(angleYW);
+  const y2 = y1 * cosYW - w1 * sinYW;
+  const w2 = y1 * sinYW + w1 * cosYW;
+
+  return [x2, y2, z2, w2];
 }
 
 // Project 4D point to 3D
@@ -105,28 +97,27 @@ function RotatingTesseract({
   const edgeMeshRef = useRef<THREE.InstancedMesh>(null);
   const vertexDummy = useRef(new THREE.Object3D());
   const edgeDummy = useRef(new THREE.Object3D());
-  
+
   const vertices4D = useMemo(() => generateTesseractVertices(), []);
   const edges = useMemo(() => generateTesseractEdges(), []);
-  
+
   useFrame(({ clock }) => {
     if (!vertexMeshRef.current || !edgeMeshRef.current) return;
-    
+
     const time = clock.getElapsedTime() * rotationSpeed;
-    
+
     // 4D rotation angles
     const angleXY = time * 0.3;
     const angleZW = time * 0.2;
     const angleXZ = time * 0.15;
     const angleYW = time * 0.25;
-    
+
     // Rotate and project vertices
     const projectedVertices = vertices4D.map((v, i) => {
       // Apply unfold transformation
-      let vertex = [...v];
+      const vertex = [...v];
       if (unfoldProgress > 0) {
         // Unfold logic: spread out the 8 cubes
-        const cubeIndex = (i & 8) >> 3; // Which of the 2 inner/outer cubes
         const offsetX = ((i & 1) ? 1 : -1) * unfoldProgress * 2;
         const offsetY = ((i & 2) ? 1 : -1) * unfoldProgress * 2;
         const offsetZ = ((i & 4) ? 1 : -1) * unfoldProgress * 2;
@@ -134,11 +125,11 @@ function RotatingTesseract({
         vertex[1] += offsetY;
         vertex[2] += offsetZ;
       }
-      
+
       const rotated = rotate4D(vertex, angleXY, angleZW, angleXZ, angleYW);
       return project4Dto3D(rotated);
     });
-    
+
     // Update vertex instances
     const vDummy = vertexDummy.current;
     projectedVertices.forEach((pos, i) => {
@@ -149,24 +140,24 @@ function RotatingTesseract({
       vertexMeshRef.current!.setMatrixAt(i, vDummy.matrix);
     });
     vertexMeshRef.current.instanceMatrix.needsUpdate = true;
-    
+
     // Update edge instances using cylinder geometry
     const eDummy = edgeDummy.current;
     edges.forEach(([v1Idx, v2Idx], i) => {
       const start = projectedVertices[v1Idx];
       const end = projectedVertices[v2Idx];
-      
+
       // Calculate midpoint
       const midpoint = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
-      
+
       // Calculate distance
       const distance = start.distanceTo(end);
-      
+
       // Calculate rotation to align cylinder with edge
       const direction = new THREE.Vector3().subVectors(end, start).normalize();
       const quaternion = new THREE.Quaternion();
       quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
-      
+
       // Apply transformation
       eDummy.position.copy(midpoint);
       eDummy.quaternion.copy(quaternion);
@@ -176,7 +167,7 @@ function RotatingTesseract({
     });
     edgeMeshRef.current.instanceMatrix.needsUpdate = true;
   });
-  
+
   return (
     <group>
       {/* Vertices using InstancedMesh */}
@@ -190,7 +181,7 @@ function RotatingTesseract({
           roughness={0.1}
         />
       </instancedMesh>
-      
+
       {/* Edges using InstancedMesh with cylinder geometry */}
       <instancedMesh ref={edgeMeshRef} args={[undefined, undefined, 32]}>
         <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
@@ -256,18 +247,18 @@ export default function TesseractCanvas({
   rotationSpeed = 1
 }: TesseractCanvasProps) {
   const [localUnfold, setLocalUnfold] = useState(unfoldProgress);
-  
+
   return (
     <div className="relative w-full h-[500px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [5, 4, 5], fov: 50 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.4} />
         <pointLight position={[5, 5, 5]} intensity={1} />
         <pointLight position={[-5, -5, 5]} intensity={0.6} color={palette.cyan} />
         <pointLight position={[0, 5, -5]} intensity={0.5} color={palette.purple} />
-        
+
         {/* Controls */}
         <OrbitControls
           enablePan={false}
@@ -275,7 +266,7 @@ export default function TesseractCanvas({
           maxDistance={15}
           autoRotate={false}
         />
-        
+
         {/* Grid floor */}
         <Grid
           infiniteGrid
@@ -287,16 +278,16 @@ export default function TesseractCanvas({
           fadeStrength={1.2}
           position={[0, -3, 0]}
         />
-        
+
         {/* Main Tesseract */}
         <RotatingTesseract unfoldProgress={localUnfold} rotationSpeed={rotationSpeed} />
-        
+
         {/* Dimension labels */}
         <DimensionLabels />
-        
+
         {/* Info panel */}
         <InfoPanel unfoldProgress={localUnfold} />
-        
+
         {/* 3D Branding */}
         <Float speed={1} rotationIntensity={0} floatIntensity={0.1}>
           <Text
@@ -309,7 +300,7 @@ export default function TesseractCanvas({
           </Text>
         </Float>
       </Canvas>
-      
+
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
@@ -317,7 +308,7 @@ export default function TesseractCanvas({
           Hyper_Geometry v4.0
         </span>
       </div>
-      
+
       {/* Unfold slider */}
       <div className="absolute bottom-4 left-4 right-4 space-y-2">
         <div className="flex justify-between items-center">
@@ -352,13 +343,13 @@ export default function TesseractCanvas({
                      [&::-moz-range-thumb]:cursor-pointer"
         />
       </div>
-      
+
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
         CHAMBER // S1.02<br />
         4D_PROJECTION: ACTIVE<br />
         ROTATION: {rotationSpeed.toFixed(1)}x
       </div>
-      
+
       <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
         Tesseract Lab 4D
       </div>

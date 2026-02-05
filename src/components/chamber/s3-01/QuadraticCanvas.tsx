@@ -23,7 +23,7 @@ export type CanvasLabels = {
 }
 
 // Glow Ribbon - 3D Parabolic Curve
-function GlowRibbon({ a, b, c, _h, _k }: { a: number; b: number; c: number; _h: number; _k: number }) {
+function GlowRibbon({ a, b, c }: { a: number; b: number; c: number }) {
   const ribbonRef = useRef<THREE.Mesh>(null);
 
   // Generate parabola points
@@ -387,7 +387,7 @@ function QuadraticScene({ quest }: { quest: CanvasQuest }) {
       <ScannerController onPositionChange={handleScannerPosition} />
 
       {/* Glow Ribbon - Parabola */}
-      <GlowRibbon a={a} b={b} c={c} _h={h} _k={k} />
+      <GlowRibbon a={a} b={b} c={c} />
 
       {/* Component Stack at scanner position */}
       <group ref={scannerRef}>
@@ -428,7 +428,7 @@ function QuadraticScene({ quest }: { quest: CanvasQuest }) {
   );
 }
 
-export default function S301QuadraticCanvas({ quest, labels }: { quest: CanvasQuest; labels: CanvasLabels }) {
+export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
   if (!quest) {
     return (
       <div className="w-full h-full relative flex items-center justify-center bg-[#020208] rounded-xl border border-white/10">
