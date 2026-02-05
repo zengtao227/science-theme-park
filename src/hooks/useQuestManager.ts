@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 
@@ -8,6 +10,7 @@ export interface Slot {
     labelLatex: string;
     placeholder: string;
     expected: number | string;
+    unit?: string; // Optional unit to display next to input
 }
 
 export interface Quest {
@@ -20,7 +23,7 @@ export interface Quest {
     slots: Slot[];
     correctLatex: string;
     hintLatex?: string[];
-    visual?: any;
+    visual?: unknown;
 }
 
 export interface UseQuestManagerOptions<T extends Quest, S extends string> {
@@ -63,13 +66,43 @@ export function useQuestManager<T extends Quest, S extends string>({
     const parseNumberLike = useCallback((s: string) => {
         const raw = s.trim();
         if (!raw) return null;
-        const normalized = locale === "DE" ? raw.replace(/,/g, ".") : raw;
+
+        // Handle German decimal comma
+        const normalized = (locale === "DE" ? raw.replace(/,/g, ".") : raw).replace(/\s+/g, "");
+
+        // Handle fractions (e.g., "4/3")
+        if (normalized.includes("/")) {
+            const [numStr, denStr] = normalized.split("/");
+            const num = Number(numStr);
+            const den = Number(denStr);
+            if (Number.isFinite(num) && Number.isFinite(den) && den !== 0) {
+                return num / den;
+            }
+            return null;
+        }
+
         const v = Number(normalized);
         return Number.isFinite(v) ? v : null;
     }, [locale]);
 
     const verify = useCallback(() => {
         if (!currentQuest) return;
+
+        let anyEmpty = false;
+        for (const slot of currentQuest.slots) {
+            const raw = inputs[slot.id] ?? "";
+            if (!raw.trim()) {
+                anyEmpty = true;
+                break;
+            }
+        }
+
+        if (anyEmpty) {
+            // Optional: You could set a special state for "Incomplete"
+            // For now, we'll just treat it as Incorrect but maybe the UI should handle it.
+            setLastCheck({ ok: false, correct: currentQuest.correctLatex });
+            return;
+        }
 
         for (const slot of currentQuest.slots) {
             const raw = inputs[slot.id] ?? "";
@@ -117,5 +150,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         next,
         handleDifficultyChange,
         handleStageChange,
+        parseNumberLike,
     };
 }

@@ -41,7 +41,6 @@ interface PhysicsSimulatorProps {
   bodies: PhysicsBody[];
   forces?: Force[];
   onUpdate?: (state: PhysicsState) => void;
-  showVectors?: boolean;
 }
 
 export function PhysicsSimulator({
@@ -50,8 +49,7 @@ export function PhysicsSimulator({
   gravity = { x: 0, y: 1 },
   bodies,
   forces = [],
-  onUpdate,
-  showVectors = true
+  onUpdate
 }: PhysicsSimulatorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<Matter.Engine | null>(null);

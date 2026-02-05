@@ -1,25 +1,26 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { clsx } from "clsx";
-
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S203_FunctionCanvas from "@/components/chamber/S203_FunctionCanvas";
+import S203_FunctionCanvas from "@/components/chamber/s2-03/FunctionCanvas";
 
-type Mg07T = typeof translations.EN.s2_03;
 type Stage = "LINES" | "LINEAR_FUNCTION" | "GRAPH_MATCH" | "INTERSECTION";
+type S203T = typeof translations.EN.s2_03;
 
 interface S203Quest extends Quest {
   stage: Stage;
-  visualMeta?: any;
+  visualMeta?: {
+    lines?: Array<{ m: number; b: number; color?: string }>;
+    points?: Array<{ x: number; y: number; color?: string }>;
+  };
 }
 
-function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): S203Quest[] {
+function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Quest[] {
   if (stage === "LINES") {
     return [
       {
@@ -63,25 +64,23 @@ function buildStagePool(t: Mg07T, difficulty: Difficulty, stage: Stage): S203Que
 }
 
 export default function S203Page() {
-  const { currentLanguage } = useAppStore();
-  const t = (translations as any)[currentLanguage].s2_03;
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = translations[currentLanguage].s2_03;
 
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
+    parseNumberLike,
   } = useQuestManager<S203Quest, Stage>({
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "LINES",
   });
 
-  const locale = currentLanguage === "DE" ? "DE" : "EN";
-
-  const parseNumber = (s: string) => {
-    const raw = s.trim();
-    if (!raw) return null;
-    const normalized = locale === "DE" ? raw.replace(/,/g, ".") : raw;
-    return Number.isFinite(Number(normalized)) ? Number(normalized) : null;
-  };
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("s2-03", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   const visualProps = useMemo(() => {
     const pm = currentQuest?.visualMeta || {};
@@ -90,16 +89,16 @@ export default function S203Page() {
     const userLines = [];
     const userPoints = [];
 
-    const m = parseNumber(inputs['m'] || '');
-    const b = parseNumber(inputs['b'] || '');
+    const m = parseNumberLike(inputs['m'] || '');
+    const b = parseNumberLike(inputs['b'] || '');
     if (m !== null && b !== null) userLines.push({ m, b });
 
-    const x = parseNumber(inputs['x'] || '');
-    const y = parseNumber(inputs['y'] || '');
+    const x = parseNumberLike(inputs['x'] || '');
+    const y = parseNumberLike(inputs['y'] || '');
     if (x !== null && y !== null) userPoints.push({ x, y });
 
     return { staticLines, staticPoints, userLines, userPoints };
-  }, [currentQuest, inputs, locale]);
+  }, [currentQuest, inputs, parseNumberLike]);
 
   return (
     <ChamberLayout
@@ -121,7 +120,7 @@ export default function S203Page() {
       translations={{
         back: t.back, check: t.check, next: t.next, correct: t.correct, incorrect: t.incorrect,
         ready: t.ready, monitor_title: t.monitor_title,
-        difficulty: { basic: t.difficulty.basic, core: t.difficulty.core, advanced: t.difficulty.advanced, elite: t.difficulty.elite },
+        difficulty: t.difficulty,
       }}
       monitorContent={
         <>

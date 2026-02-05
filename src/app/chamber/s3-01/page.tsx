@@ -3,14 +3,15 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S301QuadraticCanvas from "@/components/chamber/S301_QuadraticCanvas";
+import S301QuadraticCanvas from "@/components/chamber/s3-01/QuadraticCanvas";
 
-type Mg06T = typeof translations.EN.s3_01;
+type S301T = typeof translations.EN.s3_01;
 
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
 
@@ -19,15 +20,9 @@ interface S301Quest extends Quest {
   slotGroups?: Array<{ titleLatex: string; slotIds: string[] }>;
 }
 
-function parseNumberLike(s: string, locale: "DE" | "EN" | "CN") {
-  const raw = s.trim();
-  if (!raw) return null;
-  const normalized = locale === "DE" ? raw.replace(/,/g, ".") : raw;
-  const v = Number(normalized);
-  return Number.isFinite(v) ? v : null;
-}
 
-function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): S301Quest[] {
+
+function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Quest[] {
   if (stage === "TERMS") {
     const all: S301Quest[] = [
       {
@@ -512,8 +507,8 @@ function buildStagePool(t: Mg06T, difficulty: Difficulty, stage: Stage): S301Que
 }
 
 export default function S301Page() {
-  const { currentLanguage } = useAppStore();
-  const t = (translations as any)[currentLanguage].s3_01;
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = translations[currentLanguage].s3_01;
 
   const {
     difficulty,
@@ -526,11 +521,17 @@ export default function S301Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    locale,
+    parseNumberLike,
   } = useQuestManager<S301Quest, Stage>({
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "TERMS",
   });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("s3-01", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   const stages = [
     { id: "TERMS", label: t.stages.terms },
@@ -548,6 +549,8 @@ export default function S301Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      onVerify={verify}
+      onNext={next}
       footerLeft={t.footer_left}
       checkStatus={lastCheck}
       translations={{
@@ -621,7 +624,7 @@ export default function S301Page() {
                               onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
                               className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
                               placeholder={slot.placeholder}
-                              inputMode="numeric"
+                              inputMode="text"
                             />
                           </div>
                         );
@@ -642,17 +645,21 @@ export default function S301Page() {
                       onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
                       className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
                       placeholder={slot.placeholder}
-                      inputMode="numeric"
+                      inputMode="text"
                     />
                   </div>
                 ))}
               </div>
             )}
 
+            <div className="text-[10px] text-white/40 font-mono italic text-center mt-6">
+              {t.labels.fraction_hint}
+            </div>
+
             {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
                 <InlineMath
-                  math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "", locale as "DE" | "EN" | "CN") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "", locale as "DE" | "EN" | "CN") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
+                  math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
                 />
               </div>
             )}

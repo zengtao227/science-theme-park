@@ -3,12 +3,13 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S204_SimilarityCanvas, { SimilarityVisual } from "@/components/chamber/S204_SimilarityCanvas";
+import S204_SimilarityCanvas, { SimilarityVisual } from "@/components/chamber/s2-04/SimilarityCanvas";
 
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
 type Mg08T = typeof translations.EN.s2_04;
@@ -145,8 +146,8 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): S204Que
 }
 
 export default function S204Page() {
-    const { currentLanguage } = useAppStore();
-    const t = (translations as any)[currentLanguage].s2_04;
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = translations[currentLanguage].s2_04;
 
     const {
         difficulty,
@@ -163,6 +164,12 @@ export default function S204Page() {
         buildPool: (d, s) => buildStagePool(t, d, s),
         initialStage: "SCALE_FACTOR",
     });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("s2-04", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
 
     const stages = [
         { id: "SCALE_FACTOR", label: t.stages.scale_factor },

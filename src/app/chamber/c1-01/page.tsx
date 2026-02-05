@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
 import { useAppStore } from "@/lib/store";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import C101LabCanvas, { Substance, Tool } from "@/components/chamber/C101_LabCanvas";
+import C101LabCanvas, { Substance, Tool } from "@/components/chamber/c1-01/LabCanvas";
 
 type Stage = "IDENTIFY" | "PROPERTIES" | "REACTIONS";
 // type Substance = "soda" | "salt" | "starch"; // Removed locally defined type
@@ -131,7 +131,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): C101Quest[] {
 }
 
 export default function C101Page() {
-  const { currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
   const [testedReactions, setTestedReactions] = useState<Array<{ substance: Substance; tool: Tool }>>([]);
 
   const {
@@ -149,6 +149,12 @@ export default function C101Page() {
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "IDENTIFY",
   });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("c1-01", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
 

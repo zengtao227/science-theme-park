@@ -3,13 +3,14 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S202PythagorasCanvas from "@/components/chamber/S202_PythagorasCanvas";
-import RadicalSlotInput, { Radical } from "@/components/chamber/S202_RadicalInput";
+import S202PythagorasCanvas from "@/components/chamber/s2-02/PythagorasCanvas";
+import RadicalSlotInput, { Radical } from "@/components/chamber/s2-02/RadicalInput";
 
 type Mg05T = typeof translations.EN.s2_02;
 
@@ -81,16 +82,6 @@ function mulberry32(seed: number) {
     x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
     return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
   };
-}
-
-function shuffleDeterministic<T>(items: T[], seed: number) {
-  const arr = [...items];
-  const rnd = mulberry32(seed);
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
 }
 
 function triangleTriples() {
@@ -360,10 +351,10 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 
     // GRID Missions (3 random)
     for (let i = 0; i < 3; i++) {
-      let x1 = Math.floor(rnd() * 11) - 5;
-      let y1 = Math.floor(rnd() * 11) - 5;
+      const x1 = Math.floor(rnd() * 11) - 5;
+      const y1 = Math.floor(rnd() * 11) - 5;
       let x2 = Math.floor(rnd() * 11) - 5;
-      let y2 = Math.floor(rnd() * 11) - 5;
+      const y2 = Math.floor(rnd() * 11) - 5;
       if (x1 === x2 && y1 === y2) x2 += 2;
 
       const dx = x2 - x1;
@@ -570,8 +561,8 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 
 // Main component
 export default function S202Page() {
-  const { currentLanguage } = useAppStore();
-  const t = (translations as any)[currentLanguage].s2_02 as unknown as Mg05T;
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = translations[currentLanguage].s2_02 as Mg05T;
 
   const {
     difficulty,
@@ -588,6 +579,12 @@ export default function S202Page() {
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "SOLVE_HYP",
   });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("s2-02", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
 

@@ -3,12 +3,13 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S102_StatisticsCanvas from "@/components/chamber/S102_StatisticsCanvas";
+import S102_StatisticsCanvas from "@/components/chamber/s1-02/StatisticsCanvas";
 
 type Stage = "STATISTICS" | "PROBABILITY" | "COMBINATORICS";
 type Mg13T = typeof translations.EN.s1_02;
@@ -86,7 +87,7 @@ function buildStagePool(t: Mg13T, difficulty: Difficulty, stage: Stage): S102Que
                 promptLatex: `\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
                 expressionLatex: `\\text{Tram arrives in 10 min, you arrive randomly in 30 min}`,
                 targetLatex: `P`,
-                slots: [{ id: "P", labelLatex: `P`, placeholder: "probability", expected: 0.33 }],
+                slots: [{ id: "P", labelLatex: `P`, placeholder: "probability", expected: 1 / 3 }],
                 correctLatex: `P\\approx 0.33`,
                 hintLatex: [`P=\\frac{10}{30}\\approx 0.33`],
             },
@@ -133,8 +134,8 @@ function buildStagePool(t: Mg13T, difficulty: Difficulty, stage: Stage): S102Que
 }
 
 export default function S102Page() {
-    const { currentLanguage } = useAppStore();
-    const t = (translations as any)[currentLanguage].s1_02;
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = translations[currentLanguage].s1_02;
 
     const {
         difficulty,
@@ -151,6 +152,12 @@ export default function S102Page() {
         buildPool: (d, s) => buildStagePool(t, d, s),
         initialStage: "STATISTICS",
     });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("s1-02", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
 
     const stages = [
         { id: "STATISTICS", label: t.stages.statistics },
@@ -272,11 +279,20 @@ export default function S102Page() {
                                     onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
                                     className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
                                     placeholder={slot.placeholder}
-                                    inputMode="numeric"
+                                    inputMode="text"
                                 />
                             </div>
                         ))}
                     </div>
+                </div>
+
+                <div className="text-[10px] text-white/40 font-mono italic text-center mt-6">
+                    {currentLanguage === 'DE'
+                        ? "Tipp: Gib das Resultat als Ganzzahl, Bruch (z.B. 1/3) oder auf 2 Dezimalstellen gerundet an."
+                        : currentLanguage === 'CN'
+                            ? "提示：输入整数、分数 (如 1/3) 或保留 2 位小数。"
+                            : "Tip: Enter result as an integer, fraction (e.g. 1/3) or rounded to 2 decimal places."
+                    }
                 </div>
 
             </div>

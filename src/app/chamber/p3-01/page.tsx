@@ -2,11 +2,12 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import P301OpticsCanvas from "@/components/chamber/P301_OpticsCanvas";
+import P301OpticsCanvas from "@/components/chamber/p3-01/OpticsCanvas";
 
 type Stage = "REFLECTION" | "REFRACTION" | "LENSES";
 
@@ -22,20 +23,20 @@ interface P301Quest extends Quest {
 
 function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
   const quests: P301Quest[] = [];
-  
+
   // Stage 1: REFLECTION - Law of Reflection
   if (stage === "REFLECTION") {
-    const angles = difficulty === "BASIC" 
+    const angles = difficulty === "BASIC"
       ? [30, 45, 60]
       : difficulty === "CORE"
-      ? [20, 30, 40, 50, 60]
-      : difficulty === "ADVANCED"
-      ? [15, 25, 35, 45, 55, 65, 75]
-      : [10, 20, 30, 40, 50, 60, 70, 80];
-    
+        ? [20, 30, 40, 50, 60]
+        : difficulty === "ADVANCED"
+          ? [15, 25, 35, 45, 55, 65, 75]
+          : [10, 20, 30, 40, 50, 60, 70, 80];
+
     for (const angle of angles) {
       const reflectedAngle = angle; // Law of Reflection: θᵢ = θᵣ
-      
+
       quests.push({
         id: `REFLECTION|${difficulty}|${angle}`,
         difficulty,
@@ -63,31 +64,31 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
       { name: "Water→Glass", n1: 1.33, n2: 1.50 },
       { name: "Air→Diamond", n1: 1.00, n2: 2.42 },
     ];
-    
+
     const angles = difficulty === "BASIC"
       ? [30, 45, 60]
       : difficulty === "CORE"
-      ? [20, 30, 40, 50, 60]
-      : difficulty === "ADVANCED"
-      ? [15, 25, 35, 45, 55, 65]
-      : [10, 20, 30, 40, 50, 60, 70];
-    
-    const materialSet = difficulty === "BASIC" 
+        ? [20, 30, 40, 50, 60]
+        : difficulty === "ADVANCED"
+          ? [15, 25, 35, 45, 55, 65]
+          : [10, 20, 30, 40, 50, 60, 70];
+
+    const materialSet = difficulty === "BASIC"
       ? materials.slice(0, 2)
       : difficulty === "CORE"
-      ? materials.slice(0, 3)
-      : materials;
-    
+        ? materials.slice(0, 3)
+        : materials;
+
     for (const mat of materialSet) {
       for (const theta1 of angles) {
         const theta1Rad = (theta1 * Math.PI) / 180;
         const sinTheta2 = (mat.n1 * Math.sin(theta1Rad)) / mat.n2;
-        
+
         // Skip if total internal reflection would occur
         if (sinTheta2 > 1) continue;
-        
+
         const theta2 = Math.asin(sinTheta2) * (180 / Math.PI);
-        
+
         quests.push({
           id: `REFRACTION|${difficulty}|${mat.name}|${theta1}`,
           difficulty,
@@ -115,27 +116,27 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
     const focalLengths = difficulty === "BASIC"
       ? [50, 75, 100]
       : difficulty === "CORE"
-      ? [50, 75, 100, 125]
-      : difficulty === "ADVANCED"
-      ? [40, 60, 80, 100, 120]
-      : [30, 50, 70, 90, 110, 130];
-    
+        ? [50, 75, 100, 125]
+        : difficulty === "ADVANCED"
+          ? [40, 60, 80, 100, 120]
+          : [30, 50, 70, 90, 110, 130];
+
     const objectDistances = difficulty === "BASIC"
       ? [150, 200]
       : difficulty === "CORE"
-      ? [150, 200, 250]
-      : [120, 160, 200, 240];
-    
+        ? [150, 200, 250]
+        : [120, 160, 200, 240];
+
     for (const f of focalLengths) {
       for (const u of objectDistances) {
         // Lens equation: 1/f = 1/u + 1/v
         const v = (f * u) / (u - f);
-        
+
         // Skip if image is virtual or too far
         if (v < 0 || v > 500) continue;
-        
+
         const magnification = -v / u;
-        
+
         quests.push({
           id: `LENS|${difficulty}|${f}|${u}`,
           difficulty,
@@ -162,7 +163,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
 }
 
 export default function P301Page() {
-  const { currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
 
   const {
     difficulty,
@@ -179,6 +180,12 @@ export default function P301Page() {
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "REFLECTION",
   });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("p3-01", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
 

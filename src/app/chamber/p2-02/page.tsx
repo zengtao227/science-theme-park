@@ -2,11 +2,12 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import P202CircuitCanvas from "@/components/chamber/P202_CircuitCanvas";
+import P202CircuitCanvas from "@/components/chamber/p2-02/CircuitCanvas";
 
 type Stage = "LOOP" | "RESISTANCE" | "SERIES" | "PARALLEL";
 
@@ -21,16 +22,16 @@ interface P202Quest extends Quest {
 
 function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
   const quests: P202Quest[] = [];
-  
+
   // Stage 1: THE LOOP - Basic circuit understanding
   if (stage === "LOOP") {
     const voltages = difficulty === "BASIC" ? [3, 6, 9] : difficulty === "CORE" ? [6, 9, 12] : [9, 12, 15];
     const resistances = difficulty === "BASIC" ? [3, 6, 9] : difficulty === "CORE" ? [4, 8, 12] : [5, 10, 15];
-    
+
     for (const V of voltages) {
       for (const R of resistances) {
         const I = V / R; // Ohm's Law: I = V/R
-        
+
         quests.push({
           id: `LOOP|${difficulty}|${V}|${R}`,
           difficulty,
@@ -45,7 +46,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
           targetLatex: `I`,
           correctLatex: `I=${I.toFixed(2)}\\text{ A}`,
           slots: [
-            { id: "I", labelLatex: "I=\\frac{V}{R}", placeholder: "I (A)", expected: parseFloat(I.toFixed(2)) },
+            { id: "I", labelLatex: "I=\\frac{V}{R}", placeholder: "current", expected: I, unit: "A" },
           ],
         });
       }
@@ -57,11 +58,11 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
   if (stage === "RESISTANCE") {
     const voltages = difficulty === "BASIC" ? [6, 9, 12] : difficulty === "CORE" ? [9, 12, 15] : [12, 15, 18];
     const currents = difficulty === "BASIC" ? [0.5, 1, 1.5] : difficulty === "CORE" ? [1, 1.5, 2] : [1.5, 2, 2.5];
-    
+
     for (const V of voltages) {
       for (const I of currents) {
         const R = V / I; // R = V/I
-        
+
         quests.push({
           id: `RESISTANCE|${difficulty}|${V}|${I}`,
           difficulty,
@@ -76,7 +77,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
           targetLatex: `R`,
           correctLatex: `R=${R.toFixed(1)}\\Omega`,
           slots: [
-            { id: "R", labelLatex: "R=\\frac{V}{I}", placeholder: "R (Ω)", expected: parseFloat(R.toFixed(1)) },
+            { id: "R", labelLatex: "R=\\frac{V}{I}", placeholder: "resistance", expected: R, unit: "\\Omega" },
           ],
         });
       }
@@ -86,19 +87,19 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
 
   // Stage 3: SERIES - Calculate total resistance in series
   if (stage === "SERIES") {
-    const resistanceSets = difficulty === "BASIC" 
+    const resistanceSets = difficulty === "BASIC"
       ? [[2, 3], [3, 4], [4, 5]]
       : difficulty === "CORE"
-      ? [[2, 3, 4], [3, 4, 5], [4, 5, 6]]
-      : [[3, 4, 5, 6], [5, 6, 7, 8], [4, 6, 8, 10]];
-    
+        ? [[2, 3, 4], [3, 4, 5], [4, 5, 6]]
+        : [[3, 4, 5, 6], [5, 6, 7, 8], [4, 6, 8, 10]];
+
     const voltages = difficulty === "BASIC" ? [9, 12] : difficulty === "CORE" ? [12, 15] : [15, 18];
-    
+
     for (const V of voltages) {
       for (const resistances of resistanceSets) {
         const Rtotal = resistances.reduce((sum, r) => sum + r, 0);
         const I = V / Rtotal;
-        
+
         quests.push({
           id: `SERIES|${difficulty}|${V}|${resistances.join('-')}`,
           difficulty,
@@ -108,13 +109,13 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
           resistance: resistances,
           current: I,
           isPowered: true,
-          promptLatex: `\\text{Series circuit: }R_1=${resistances[0]}\\Omega${resistances.slice(1).map((r, i) => `,\\; R_${i+2}=${r}\\Omega`).join('')}`,
-          expressionLatex: `R_{total}=${resistances.map((_, i) => `R_${i+1}`).join('+')}`,
+          promptLatex: `\\text{Series circuit: }R_1=${resistances[0]}\\Omega${resistances.slice(1).map((r, i) => `,\\; R_${i + 2}=${r}\\Omega`).join('')}`,
+          expressionLatex: `R_{total}=${resistances.map((_, i) => `R_${i + 1}`).join('+')}`,
           targetLatex: `R_{total}`,
           correctLatex: `R_{total}=${Rtotal}\\Omega`,
           slots: [
-            { id: "Rtotal", labelLatex: "R_{total}", placeholder: "R_total (Ω)", expected: Rtotal },
-            { id: "I", labelLatex: "I=\\frac{V}{R_{total}}", placeholder: "I (A)", expected: parseFloat(I.toFixed(2)) },
+            { id: "Rtotal", labelLatex: "R_{total}", placeholder: "total resistance", expected: Rtotal, unit: "\\Omega" },
+            { id: "I", labelLatex: "I=\\frac{V}{R_{total}}", placeholder: "current", expected: I, unit: "A" },
           ],
         });
       }
@@ -127,18 +128,18 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
     const resistanceSets = difficulty === "BASIC"
       ? [[6, 6], [4, 4], [3, 6]]
       : difficulty === "CORE"
-      ? [[6, 6, 6], [4, 4, 4], [3, 6, 6]]
-      : [[4, 4, 4, 4], [6, 6, 6, 6], [3, 6, 9, 18]];
-    
+        ? [[6, 6, 6], [4, 4, 4], [3, 6, 6]]
+        : [[4, 4, 4, 4], [6, 6, 6, 6], [3, 6, 9, 18]];
+
     const voltages = difficulty === "BASIC" ? [6, 9] : difficulty === "CORE" ? [9, 12] : [12, 15];
-    
+
     for (const V of voltages) {
       for (const resistances of resistanceSets) {
         // 1/Rtotal = 1/R1 + 1/R2 + ...
-        const invRtotal = resistances.reduce((sum, r) => sum + 1/r, 0);
+        const invRtotal = resistances.reduce((sum, r) => sum + 1 / r, 0);
         const Rtotal = 1 / invRtotal;
         const I = V / Rtotal;
-        
+
         quests.push({
           id: `PARALLEL|${difficulty}|${V}|${resistances.join('-')}`,
           difficulty,
@@ -148,13 +149,13 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
           resistance: resistances,
           current: I,
           isPowered: true,
-          promptLatex: `\\text{Parallel circuit: }R_1=${resistances[0]}\\Omega${resistances.slice(1).map((r, i) => `,\\; R_${i+2}=${r}\\Omega`).join('')}`,
-          expressionLatex: `\\frac{1}{R_{total}}=${resistances.map((_, i) => `\\frac{1}{R_${i+1}}`).join('+')}`,
+          promptLatex: `\\text{Parallel circuit: }R_1=${resistances[0]}\\Omega${resistances.slice(1).map((r, i) => `,\\; R_${i + 2}=${r}\\Omega`).join('')}`,
+          expressionLatex: `\\frac{1}{R_{total}}=${resistances.map((_, i) => `\\frac{1}{R_${i + 1}}`).join('+')}`,
           targetLatex: `R_{total}`,
           correctLatex: `R_{total}=${Rtotal.toFixed(2)}\\Omega`,
           slots: [
-            { id: "Rtotal", labelLatex: "R_{total}", placeholder: "R_total (Ω)", expected: parseFloat(Rtotal.toFixed(2)) },
-            { id: "I", labelLatex: "I=\\frac{V}{R_{total}}", placeholder: "I (A)", expected: parseFloat(I.toFixed(2)) },
+            { id: "Rtotal", labelLatex: "R_{total}", placeholder: "total resistance", expected: Rtotal, unit: "\\Omega" },
+            { id: "I", labelLatex: "I=\\frac{V}{R_{total}}", placeholder: "current", expected: I, unit: "A" },
           ],
         });
       }
@@ -166,7 +167,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
 }
 
 export default function P202Page() {
-  const { currentLanguage } = useAppStore();
+  const { currentLanguage, completeStage } = useAppStore();
 
   const {
     difficulty,
@@ -183,6 +184,12 @@ export default function P202Page() {
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "LOOP",
   });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("p2-02", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
 
@@ -262,15 +269,31 @@ export default function P202Page() {
               <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                 <InlineMath math={slot.labelLatex} />
               </div>
-              <input
-                value={inputs[slot.id] || ""}
-                onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
-                placeholder={slot.placeholder}
-                inputMode="decimal"
-              />
+              <div className="flex items-center gap-4">
+                <input
+                  value={inputs[slot.id] || ""}
+                  onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                  className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                  placeholder={slot.placeholder}
+                  inputMode="decimal"
+                />
+                {slot.unit && (
+                  <div className="text-2xl font-black text-white px-4 border-l-2 border-white/10 min-w-[60px]">
+                    <InlineMath math={slot.unit} />
+                  </div>
+                )}
+              </div>
             </div>
           ))}
+
+          <div className="text-[10px] text-white/40 font-mono italic text-center">
+            {currentLanguage === 'DE'
+              ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
+              : currentLanguage === 'CN'
+                ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
+                : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
+            }
+          </div>
 
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Formula</div>

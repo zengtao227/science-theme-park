@@ -5,12 +5,12 @@ import { translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import ConceptIcon from '@/components/ConceptIcon';
 import { clsx } from 'clsx';
-import { Gamepad2, Atom, Globe, FlaskConical } from 'lucide-react';
+import { Gamepad2, Atom, FlaskConical } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress } = useAppStore();
-  const t = (translations as any)[currentLanguage];
+  const t = translations[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
     DE: '🇩🇪 DE',
@@ -104,6 +104,7 @@ export default function Home() {
 
             <ModuleCard code="S3.01" title={t.home.s3_01_title} desc={t.home.s3_01_subtitle} color="neon-purple" progress={getProgress('S3.01')} href="/chamber/s3-01" />
             <ModuleCard code="G1.01" title={t.home.g1_01_title} desc={t.home.g1_01_subtitle} color="neon-purple" progress={getProgress('G1.01')} href="/chamber/g1-01" />
+            <ModuleCard code="G2.01" title={t.home.g2_01_title} desc={t.home.g2_01_subtitle} color="neon-cyan" progress={getProgress('G2.01')} href="/chamber/g2-01" />
           </Sector>
 
           {/* PHYSICS SECTOR */}
@@ -115,27 +116,51 @@ export default function Home() {
           >
             <ModuleCard
               code="P1.02"
-              title="Newton's Laws"
-              desc="Mechanics, friction, acceleration, and collision dynamics"
+              title={t.home.p1_02_title}
+              desc={t.home.p1_02_subtitle}
               color="neon-green"
               progress={getProgress('P1.02')}
               href="/chamber/p1-02"
             />
             <ModuleCard
+              code="P1.03"
+              title={t.home.p1_03_title}
+              desc={t.home.p1_03_subtitle}
+              color="neon-green"
+              progress={getProgress('P1.03')}
+              href="/chamber/p1-03"
+            />
+            <ModuleCard
               code="P2.02"
-              title="Circuit Sandbox"
-              desc="Ohm's Law, series/parallel circuits, and electron flow"
+              title={t.home.p2_02_title}
+              desc={t.home.p2_02_subtitle}
               color="neon-cyan"
               progress={getProgress('P2.02')}
               href="/chamber/p2-02"
             />
             <ModuleCard
               code="P3.01"
-              title="Geometrical Optics"
-              desc="Ray tracing, reflection, refraction, and lenses"
+              title={t.home.p3_01_title}
+              desc={t.home.p3_01_subtitle}
               color="neon-purple"
               progress={getProgress('P3.01')}
               href="/chamber/p3-01"
+            />
+            <ModuleCard
+              code="P1.04"
+              title={t.home.p1_04_title}
+              desc={t.home.p1_04_subtitle}
+              color="neon-green"
+              progress={getProgress('P1.04')}
+              href="/chamber/p1-04"
+            />
+            <ModuleCard
+              code="P5.01"
+              title={t.home.p5_01_title}
+              desc={t.home.p5_01_subtitle}
+              color="neon-cyan"
+              progress={getProgress('P5.01')}
+              href="/chamber/p5-01"
             />
           </Sector>
 
@@ -153,6 +178,14 @@ export default function Home() {
               color="neon-purple"
               progress={getProgress('C1.01')}
               href="/chamber/c1-01"
+            />
+            <ModuleCard
+              code="C1.02"
+              title={t.home.c1_02_title}
+              desc={t.home.c1_02_subtitle}
+              color="neon-purple"
+              progress={getProgress('C1.02')}
+              href="/chamber/c1-02"
             />
           </Sector>
 
@@ -190,12 +223,41 @@ function Sector({ title, color, icon, progress, children }: { title: string, col
 }
 
 function ModuleCard({ code, title, desc, color, progress, href }: { code: string, title: string, desc: string, color: string, progress: { percent: number, completed: boolean }, href: string }) {
+  const colorStyles = {
+    "neon-cyan": {
+      text: "text-neon-cyan",
+      border: "border-neon-cyan/20",
+      hoverText: "group-hover:text-neon-cyan",
+      hoverBorder: "group-hover:border-neon-cyan",
+      hoverBg: "group-hover:bg-neon-cyan/5",
+      hoverIconBg: "group-hover:bg-neon-cyan/10",
+    },
+    "neon-purple": {
+      text: "text-neon-purple",
+      border: "border-neon-purple/20",
+      hoverText: "group-hover:text-neon-purple",
+      hoverBorder: "group-hover:border-neon-purple",
+      hoverBg: "group-hover:bg-neon-purple/5",
+      hoverIconBg: "group-hover:bg-neon-purple/10",
+    },
+    "neon-green": {
+      text: "text-neon-green",
+      border: "border-neon-green/20",
+      hoverText: "group-hover:text-neon-green",
+      hoverBorder: "group-hover:border-neon-green",
+      hoverBg: "group-hover:bg-neon-green/5",
+      hoverIconBg: "group-hover:bg-neon-green/10",
+    },
+  } as const;
+  const palette = colorStyles[color as keyof typeof colorStyles] ?? colorStyles["neon-green"];
+
   return (
     <Link href={href} className="group block h-full">
       <div className={clsx(
         "hud-panel p-6 h-full transition-all duration-300 border-white/5 flex flex-col justify-between relative overflow-hidden",
         "group-hover:border-opacity-50 group-hover:-translate-y-1",
-        `group-hover:border-${color} group-hover:bg-${color}/5`
+        palette.hoverBorder,
+        palette.hoverBg
       )}>
         {/* Progress Bar */}
         {progress.percent > 0 && (
@@ -207,12 +269,12 @@ function ModuleCard({ code, title, desc, color, progress, href }: { code: string
 
         <div>
           <div className="flex justify-between items-center mb-6">
-            <span className={clsx("text-[10px] font-mono font-black tracking-[0.2em] opacity-50", `text-${color}`)}>{code}</span>
+            <span className={clsx("text-[10px] font-mono font-black tracking-[0.2em] opacity-50", palette.text)}>{code}</span>
             <div className={clsx("w-1.5 h-1.5 rounded-full", progress.percent > 0 ? "bg-neon-green shadow-[0_0_8px_#39ff14]" : "bg-white/10")} />
           </div>
 
-          <h3 className={clsx("text-lg font-black tracking-tight mb-3 uppercase transition-colors flex items-center gap-3", `group-hover:text-${color}`)}>
-            <div className={clsx(`w-8 h-8 flex-shrink-0 border border-${color}/20 rounded flex items-center justify-center text-${color} group-hover:bg-${color}/10 transition-all`)}>
+          <h3 className={clsx("text-lg font-black tracking-tight mb-3 uppercase transition-colors flex items-center gap-3", palette.hoverText)}>
+            <div className={clsx("w-8 h-8 flex-shrink-0 border rounded flex items-center justify-center transition-all", palette.border, palette.text, palette.hoverIconBg)}>
               <ConceptIcon code={code} className="w-5 h-5" />
             </div>
             <span>{title}</span>

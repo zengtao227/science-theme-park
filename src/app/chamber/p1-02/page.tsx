@@ -2,12 +2,12 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useEffect } from "react";
 
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import P102LawsCanvas from "@/components/chamber/P102_LawsCanvas";
+import P102LawsCanvas from "@/components/chamber/p1-02/LawsCanvas";
 
 type P102T = {
   title: string;
@@ -56,12 +56,12 @@ function buildStagePool(t: P102T, difficulty: Difficulty, stage: Stage): P102Que
     const quests: P102Quest[] = [];
     const masses = difficulty === "BASIC" ? [2, 3, 4] : difficulty === "CORE" ? [3, 4, 5, 6] : [5, 6, 7, 8, 10];
     const frictions = difficulty === "BASIC" ? [0.2, 0.3, 0.4] : difficulty === "CORE" ? [0.25, 0.35, 0.45] : [0.3, 0.4, 0.5, 0.6];
-    
+
     for (const mass of masses) {
       for (const mu of frictions) {
         const normalForce = mass * 10; // g ≈ 10 m/s²
         const frictionForce = mu * normalForce;
-        
+
         quests.push({
           id: `FRICTION|${difficulty}|${mass}|${mu}`,
           difficulty,
@@ -91,12 +91,12 @@ function buildStagePool(t: P102T, difficulty: Difficulty, stage: Stage): P102Que
     const quests: P102Quest[] = [];
     const masses = difficulty === "BASIC" ? [2, 3, 4, 5] : difficulty === "CORE" ? [4, 5, 6, 8] : [6, 8, 10, 12];
     const accelerations = difficulty === "BASIC" ? [2, 3, 4] : difficulty === "CORE" ? [3, 4, 5, 6] : [5, 6, 8, 10];
-    
+
     for (const mass of masses) {
       for (const acc of accelerations) {
         const force = mass * acc;
         const forceX = force / 1000; // Convert to simulation units
-        
+
         quests.push({
           id: `ACCEL|${difficulty}|${mass}|${acc}`,
           difficulty,
@@ -125,7 +125,7 @@ function buildStagePool(t: P102T, difficulty: Difficulty, stage: Stage): P102Que
     const quests: P102Quest[] = [];
     const masses = difficulty === "BASIC" ? [2, 3] : difficulty === "CORE" ? [3, 4, 5] : [5, 6, 8];
     const velocities = difficulty === "BASIC" ? [5, 6] : difficulty === "CORE" ? [6, 8, 10] : [10, 12, 15];
-    
+
     for (const mass of masses) {
       for (const v of velocities) {
         const mu = 0.3;
@@ -133,7 +133,7 @@ function buildStagePool(t: P102T, difficulty: Difficulty, stage: Stage): P102Que
         const distance = (v * v) / (2 * mu * g); // v² = 2μgd
         // Convert velocity to simulation units (pixels per frame)
         const simVelocity = v * 2; // Scale factor for visual effect
-        
+
         quests.push({
           id: `COLLISION|${difficulty}|${mass}|${v}`,
           difficulty,
@@ -161,8 +161,8 @@ function buildStagePool(t: P102T, difficulty: Difficulty, stage: Stage): P102Que
 }
 
 export default function P102Page() {
-  const { currentLanguage } = useAppStore();
-  
+  const { completeStage } = useAppStore();
+
   // Temporary translations until i18n is updated
   const t: P102T = {
     title: "P1.02 // NEWTON'S LAWS",
@@ -214,6 +214,12 @@ export default function P102Page() {
     initialStage: "FRICTION",
   });
 
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("p1-02", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
+
   if (!currentQuest) return null;
 
   const stages = [
@@ -251,7 +257,6 @@ export default function P102Page() {
             forceX={currentQuest.forceX}
             initialVelocity={currentQuest.initialVelocity}
             gravity={currentQuest.gravity}
-            showVectors={true}
           />
           <div className="text-white/50 text-xs font-mono text-center space-y-1">
             <div>Mass: {currentQuest.mass} kg</div>

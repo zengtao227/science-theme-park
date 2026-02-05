@@ -2,17 +2,18 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useState, useRef, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S201BinomialCanvas from "@/components/chamber/S201_BinomialCanvas";
+import S201BinomialCanvas from "@/components/chamber/s2-01/BinomialCanvas";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
 type QuestMode = "EXPLORE" | "ARCHITECT" | "SCRAPPER" | "SPEEDSTER" | "ELITE" | "VOYAGER";
+type S201T = typeof translations.EN.s2_01;
 
 interface ArchitectQuest extends Quest {
   type: "EXPAND";
@@ -61,10 +62,8 @@ interface VoyagerQuest extends Quest {
 
 type S201Quest = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | VoyagerQuest;
 
-function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
+function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
   if (stage === "EXPLORE") return [];
-
-  const usedSignatures = new Set<string>();
 
   if (stage === "ARCHITECT") {
     const ca = Math.floor(Math.random() * 8) + 1;
@@ -231,8 +230,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 }
 
 export default function S201Page() {
-  const { currentLanguage } = useAppStore();
-  const t = (translations as any)[currentLanguage].s2_01;
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = translations[currentLanguage].s2_01;
 
   const [questMode, setQuestMode] = useState<QuestMode>("EXPLORE");
   const [a, setA] = useState(3);
@@ -242,12 +241,10 @@ export default function S201Page() {
 
   const {
     difficulty,
-    stage,
     inputs,
     lastCheck,
     currentQuest,
     setInputs,
-    verify,
     next,
     handleDifficultyChange,
     handleStageChange,
@@ -325,6 +322,12 @@ export default function S201Page() {
       return snappedBlocks["a2"] && snappedBlocks["b2"] && snappedBlocks["ab1"] && snappedBlocks["ab2"];
     return isVerified;
   }, [snappedBlocks, isVerified, questMode]);
+
+  useEffect(() => {
+    if (questMode !== "EXPLORE" && isSuccess) {
+      completeStage("s2-01", questMode);
+    }
+  }, [completeStage, isSuccess, questMode]);
 
   const targetSize = a + b;
   const initialPositions = useMemo(

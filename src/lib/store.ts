@@ -67,9 +67,9 @@ export const useAppStore = create<AppState>()(
       getSectorProgress: (sector) => {
         const state = get();
         const modules = {
-          math: ['s1-01', 's1-02', 's2-01', 's2-02', 's2-03', 's2-04', 's2-05', 's2-06', 's3-01', 'g1-01'],
-          physics: ['p1-02', 'p2-02', 'p3-01'],
-          chemistry: ['c1-01'],
+          math: ['s1-01', 's1-02', 's2-01', 's2-02', 's2-03', 's2-04', 's2-05', 's2-06', 's3-01', 'g1-01', 'g2-01'],
+          physics: ['p1-02', 'p1-03', 'p2-02', 'p3-01'],
+          chemistry: ['c1-01', 'c1-02'],
         };
 
         const sectorModules = modules[sector] || [];
@@ -94,4 +94,3 @@ export const useAppStore = create<AppState>()(
     }
   )
 );
-

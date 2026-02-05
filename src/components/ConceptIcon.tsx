@@ -74,6 +74,32 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'G2.01':
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <motion.line
+                        x1="20" y1="80" x2="80" y2="30"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.4, ease: "easeInOut" }}
+                    />
+                    <motion.polygon
+                        points="80,30 76,40 88,34"
+                        fill="currentColor"
+                        initial={{ scale: 0.6, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.9, duration: 0.6 }}
+                    />
+                    <circle cx="20" cy="80" r="4" fill="currentColor" opacity="0.4" />
+                    <motion.circle
+                        cx="50" cy="55" r="3" fill="currentColor"
+                        animate={{ opacity: [0.2, 0.9, 0.2] }}
+                        transition={{ repeat: Infinity, duration: 1.6 }}
+                    />
+                </svg>
+            );
         case 'S2.04': // Similarity
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,6 +205,25 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'P1.03':
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="20" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+                    <motion.g
+                        animate={{ rotate: 360 }}
+                        transition={{ repeat: Infinity, duration: 2.6, ease: "linear" }}
+                        style={{ transformOrigin: "50% 50%" }}
+                    >
+                        <path d="M50 30 L54 50 L50 70 L46 50 Z" fill="currentColor" opacity="0.6" />
+                        <path d="M30 50 L50 54 L70 50 L50 46 Z" fill="currentColor" opacity="0.6" />
+                    </motion.g>
+                    <motion.circle
+                        cx="50" cy="50" r="4" fill="currentColor"
+                        animate={{ scale: [0.9, 1.1, 0.9] }}
+                        transition={{ repeat: Infinity, duration: 1.4 }}
+                    />
+                </svg>
+            );
         case 'P2.02': // Circuits
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,6 +273,22 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                     <motion.circle cx="45" cy="70" r="2" fill="currentColor" animate={{ y: [0, -20], opacity: [0.8, 0] }} transition={{ repeat: Infinity, duration: 1.2 }} />
                     <motion.circle cx="55" cy="65" r="2.5" fill="currentColor" animate={{ y: [0, -15], opacity: [0.8, 0] }} transition={{ repeat: Infinity, duration: 1.5, delay: 0.5 }} />
+                </svg>
+            );
+        case 'C1.02':
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M35 15 H65 M50 15 V40 L70 80 H30 L50 40 Z" stroke="currentColor" strokeWidth="3" />
+                    <motion.path
+                        d="M35 70 H65"
+                        stroke="currentColor"
+                        strokeWidth="8"
+                        opacity="0.2"
+                        animate={{ opacity: [0.1, 0.5, 0.1] }}
+                        transition={{ repeat: Infinity, duration: 1.8 }}
+                    />
+                    <motion.circle cx="45" cy="68" r="3" fill="currentColor" animate={{ y: [0, -18], opacity: [0.8, 0] }} transition={{ repeat: Infinity, duration: 1.4 }} />
+                    <motion.circle cx="55" cy="62" r="2.5" fill="currentColor" animate={{ y: [0, -14], opacity: [0.8, 0] }} transition={{ repeat: Infinity, duration: 1.2, delay: 0.4 }} />
                 </svg>
             );
         default:

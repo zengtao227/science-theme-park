@@ -18,56 +18,60 @@
 | **P2.02** | Circuit Sandbox | 10 | ✅ Functional |
 | **P3.01** | Geometrical Optics | 7 | ⚠️ Low Content |
 | **C1.01** | Mystery Lab | 8 | ✅ Functional |
+| **C1.02** | Mole Master | 21 | ✅ Production |
+| **P1.03** | Energy: Turbine Quest | 21 | ✅ Production |
+| **G2.01** | Vector Pilot 3D | 21 | ✅ Production |
 
 ---
 
-## 🗺️ Future Expansion Plan (BS/BL Regional Alignment)
-*Aligned with Lehrplan 21 (Sek I P-Zug) and Gymnasium Lehrplan (BS/BL).*
+## 🗺️ The "Basilea 2026" Nexus: Mission-Led Development
+*Where Swiss Academic Excellence meets Premium Gamified Simulations.*
 
-### 📐 Mathematics (Sek I P-Zug & Gymnasium)
-| Chapter | Topic | Basel Focus | Priority |
-|:---|:---|:---|:---|
-| **G1.01** | **Calculus I: Derivatives** | Standard Gymnasium BS/BL | 🔥 HIGH |
-| G2.01 | Vector Geometry (2D/3D) | **Core Maturität Topic** | 🔥 HIGH |
-| G3.01 | Probability & Statistics | Lehrplan 21 (3. Zyklus) | High |
-| S1.03 | Trigonometry (Sine/Cosine) | Standard Sek I P-Zug | Med |
-| G2.02 | Complex Numbers | Gymnasium Focus (BS) | Med |
+### ⚛️ Section A: High-Energy Physics (CERN / Rhine Hub)
+| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
+|:---:|:---|:---|:---|
+| **P5.01** | **The Atomic Core** | Nuclear Decay & Stability | **Nuclear Balancer**: Balance equations to stabilize the reactor. |
+| **P1.03** | **Rhine Power Grid** | Energy & Efficiency ($\eta$) | **Sluice Control**: Match energy output to Basel city demand. |
+| **P1.04** | **The Gierseil-Fähri**| Vector Force Analysis | **Ferry Pilot**: Adjust cable angle to cross the Rhine using current. |
+| **P2.01** | **LHC Calibration** | Lorentz Force & Induction | **Vector Steering**: Use $F=qvB$ to guide particles to targets. |
 
-### ⚛️ Physics (Sek I & Gymnasium)
-| Chapter | Topic | Basel Focus | Priority |
-|:---|:---|:---|:---|
-| P1.03 | Energy, Work & Power | Core Sek I (BL Natur & Technik) | 🔥 HIGH |
-| P4.01 | Thermodynamics/Heat | Intro Physics (BS/BL) | High |
-| **P1.02** | **Newtonian Dynamics** | **Expanded for Vectors** | Med |
-| P2.01 | Electrostatics & Fields | Gymnasium Level | Med |
+### 🧪 Section B: Pharma Synthesis Lab (Novartis / Roche)
+| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
+|:---:|:---|:---|:---|
+| **C2.01** | **Rhine pH Sentinel** | Titration & Acid-Base | **Virtual Pipette**: Perform precision titration with real-time curves. |
+| **C3.01** | **Molecular Architect** | Organic Functional Groups | **3D Assembler**: Build medicinal molecules like Aspirin or Vitamin C. |
+| **C1.02** | **Stoichiometry Hub** | Molar Mass & Concentration | **Synthesis Rate**: Calculate reagents for 100% yield drug batches. |
 
-### 🧪 Chemistry (Sek I & Gymnasium)
-| Chapter | Topic | Basel Focus | Priority |
-|:---|:---|:---|:---|
-| C1.02 | **Stoichiometry (The Mole)** | **The "Backbone" of CH (Gym)** | 🔥 HIGH |
-| C1.03 | Atomic Models & Bonding | Intro Sek I (BS/BL) | High |
-| C1.04 | Acids, Bases & pH | Brönsted Concept (Gym) | Med |
-| C4.01 | Organic Chemistry | Alkanes/Alcohols | Med |
+### 📐 Section C: Higher Mathematics (Euler / Bernoulli)
+| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
+|:---:|:---|:---|:---|
+| **G2.01** | **Barfüsser Cruiser** | 3D Vector Geometry | **Drone Pilot**: Input $[x,y,z]$ to navigate a 3D scan of Basel city. |
+| **G1.01** | **Calculus Coast** | Derivatives & Slopes | **Tangent Surfer**: Adjust surfboard angle based on $f'(x)$. |
+| **G3.01** | **The Probability Vault**| Bernoulli & Distribution | **Vault Breaker**: Predict code sequences using stochastics. |
+
+**Scientist Spotlight**: Integration of Euler & Bernoulli biography cards in the HUD sidebars for all math modules.
 
 ---
 
-## 🛠️ Development Log (Phase 7 Summary)
+## 🛠️ Development Log: Basel 2026 Strategy
 
-### ✅ Basel-Specific Adjustments
-1. **Curriculum Mapping**: Conducted a full audit of Basel-Stadt (eduBS) and Basel-Landschaft (P-Zug) requirements.
-2. **Quest Logic**: Identified that current Geometry and Algebra modules align well with BL P-Zug levels.
-3. **Missing Criticals**: Highlighted **Vector Geometry** and **Stoichiometry** as the most critical missing pillars for Swiss Maturität prep.
+### ✅ Basel-Specific Compliance (BS/BL)
+1. **Lehrplan 21 (Sek I P-Zug)**: Strictly aligned with the "Lehrplan 21 Gesamtausgabe Basel-Stadt" and "Lehrplan 21 Baselland". Focus on high-demand algebraic manipulation and descriptive geometry.
+2. **Gymnasium KLT (BS/BL)**: Content follows the "Kantonalen Lehrplanteile (KLT) 2018/2020", specifically for the *Grundlagenfächer* (Core Subjects).
+3. **Local Setting**: Missions are contextualized in **CERN** (Physics link to Geneva but core research topic in Basel), **Novartis/Roche** (Chemistry), and the **Rhine River** (Physics/Hydro).
 
 ### ✅ Infrastructure & Productization
-1. **Visual Icons**: Created unique SVG icons for all 14 modules.
-2. **Analytics**: Integrated Vercel Analytics for user tracking.
-3. **Persistence**: Progress is now saved to local storage, allowing Swiss students to track their long-term study success.
+1. **Visual Icons**: Premium SVG animated icons for all 14 nodes.
+2. **Analytics**: Real-time study-flow monitoring enabled.
+3. **Persistence**: "Science Career" progress tracking via local storage.
 
 
-### 🚧 Critical Next Steps (Technical Debt)
+
+### 🚧 Critical Next Steps (Technical Debt & Strategy)
 - **Quest Deepening**: Most modules have less than 10 questions. The target is 30+ per module.
 - **Calculus Overhaul**: G1.01 needs a full set of derivative rules (Power rule, Product rule, Chain rule) integrated into the HUD.
-- **Localization**: Ensure all EN/CN/DE strings are symmetrical in `i18n.ts`.
+- **Logic First + English Priority**: To avoid efficiency traps, stop multi-language translation during development. Focus on implementing physics/math logic first, using only English in `i18n.ts`. 
+- **Localization (Deferred)**: Batch translate to CN/DE only after a module's logic is 100% complete and verified.
 
 ---
-*Document Date: 2026-02-04*
+*Document Date: 2026-02-05 (Updated for BS/BL Alignment & Development Strategy)*
