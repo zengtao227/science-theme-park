@@ -67,9 +67,9 @@ function ParticleField({
   bounds: { x: number; y: number; z: number };
   waterSurfaceY: number;
 }) {
-  const count = 180;
+  const count = 500;
   const ref = useRef<THREE.InstancedMesh>(null);
-  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const dummy = useRef(new THREE.Object3D());
   const positions = useRef(
     Array.from({ length: count }, (_, i) => {
       const x = (pseudo(i + 3) - 0.5) * bounds.x * 1.4;
@@ -90,6 +90,8 @@ function ParticleField({
   useFrame((_state, delta) => {
     const mesh = ref.current;
     if (!mesh) return;
+    const d = dummy.current;
+    
     for (let i = 0; i < count; i += 1) {
       const pos = positions.current[i];
       const vel = velocities.current[i];
@@ -108,9 +110,10 @@ function ParticleField({
         pos.y = waterSurfaceY + 0.25;
         vel.y = -Math.abs(vel.y) * 0.6;
       }
-      dummy.position.copy(pos);
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
+      d.position.copy(pos);
+      d.scale.setScalar(0.8 + pseudo(i) * 0.4);
+      d.updateMatrix();
+      mesh.setMatrixAt(i, d.matrix);
     }
     mesh.instanceMatrix.needsUpdate = true;
   });
