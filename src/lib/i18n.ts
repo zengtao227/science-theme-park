@@ -103,6 +103,8 @@ export const translations = {
             p3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
             p1_05_title: "P1.05 // THE RHINE FERRY",
             p1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
+            sp1_06_title: "SP1.06 // THE SWISS PENDULUM",
+            sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
             p5_01_title: "P5.01 // THE ATOMIC CORE",
             p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
             s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
@@ -1298,6 +1300,71 @@ export const translations = {
                 aspirin: "ASPIRIN",
                 caffeine: "CAFFEINE"
             }
+        },
+        sp1_06: {
+            back: "Back to Nexus",
+            title: "SP1.06 // THE SWISS PENDULUM",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Oscillation Data",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SP1.06_PENDULUM_MONITOR",
+            footer_left: "SP1.06_PENDULUM // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                period: "Period (T)",
+                length: "Length (L)",
+                gravity: "Gravity (g)",
+                frequency: "Frequency (f)"
+            },
+            mission: {
+                title: "THE CLOCKMAKER'S SECRET",
+                description: "Calibrate the mechanical master clock of Basel. Master the physics of simple harmonic motion and energy conservation."
+            },
+            stages: {
+                period: "PERIOD",
+                gravity: "GRAVITY",
+                energy: "ENERGY"
+            }
+        },
+        c1_01: {
+            back: "Back to Nexus",
+            title: "C1.01 // MYSTERY LAB",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Substance Analysis",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "C1.01_LAB_MONITOR",
+            footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                substance: "Substance",
+                tool: "Test Tool",
+                observation: "Observation"
+            },
+            mission: {
+                title: "POWDER IDENTIFICATION",
+                description: "Identify mysterious white powders using classical chemical tests. Master qualitative analysis."
+            },
+            stages: {
+                identify: "IDENTIFY",
+                properties: "PROPERTIES",
+                reactions: "REACTIONS"
+            }
         }
     },
     CN: {
@@ -1404,6 +1471,8 @@ export const translations = {
             p3_02_subtitle: "探索干涉、衍射和偏振现象。",
             p1_05_title: "P1.05 // 莱茵河渡轮",
             p1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
+            sp1_06_title: "SP1.06 // 瑞士钟摆",
+            sp1_06_subtitle: "时间的力学：与巴塞尔钟表匠一起探索周期、频率和引力。",
             p5_01_title: "P5.01 // 原子核核心",
             p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
             s3_02_title: "S3.02 // 三角函数之塔",
@@ -2599,6 +2668,71 @@ export const translations = {
                 aspirin: "阿司匹林",
                 caffeine: "咖啡因"
             }
+        },
+        sp1_06: {
+            back: "返回枢纽",
+            title: "SP1.06 // 瑞士钟摆",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "振荡数据",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "验证通过",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SP1.06_钟摆监控器",
+            footer_left: "SP1.06_钟摆力学 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                period: "周期 (T)",
+                length: "长度 (L)",
+                gravity: "重力加速度 (g)",
+                frequency: "频率 (f)"
+            },
+            mission: {
+                title: "钟表匠的秘密",
+                description: "校准巴塞尔的机械主钟。掌握简谐运动和能量守恒的物理学。"
+            },
+            stages: {
+                period: "周期",
+                gravity: "重力",
+                energy: "能量"
+            }
+        },
+        c1_01: {
+            back: "返回枢纽",
+            title: "C1.01 // 神秘实验室",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "物质分析",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "验证通过",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "C1.01_实验室监控器",
+            footer_left: "C1.01_神秘实验室 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                substance: "物质",
+                tool: "测试工具",
+                observation: "观察结果"
+            },
+            mission: {
+                title: "粉末鉴定任务",
+                description: "利用经典化学测试鉴定神秘白色粉末。掌握定性分析方法。"
+            },
+            stages: {
+                identify: "鉴定",
+                properties: "性质",
+                reactions: "反应"
+            }
         }
     },
     DE: {
@@ -2703,6 +2837,8 @@ export const translations = {
             p3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
             p1_05_title: "P1.05 // DIE RHEINFÄHRE",
             p1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
+            sp1_06_title: "SP1.06 // DAS SCHWEIZER PENDEL",
+            sp1_06_subtitle: "Die Mechanik der Zeit: Erforsche Periode, Frequenz und Gravitation beim Basler Uhrmacher.",
             p5_01_title: "P5.01 // DER ATOMKERN",
             p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
             s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
@@ -3899,6 +4035,71 @@ export const translations = {
             stages: {
                 aspirin: "ASPIRIN",
                 caffeine: "KOFFEIN"
+            }
+        },
+        c1_01: {
+            back: "Zurück zum Nexus",
+            title: "C1.01 // GEHEIM LABOR",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Substanzanalyse",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "C1.01_LABOR_MONITOR",
+            footer_left: "C1.01_GEHEIM_LABOR // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                substance: "Substanz",
+                tool: "Testwerkzeug",
+                observation: "Beobachtung"
+            },
+            mission: {
+                title: "PULVER-IDENTIFIKATION",
+                description: "Identifizieren Sie mysteriöse weiße Pulver mit klassischen chemischen Tests. Meistern Sie die qualitative Analyse."
+            },
+            stages: {
+                identify: "IDENTIFIZIEREN",
+                properties: "EIGENSCHAFTEN",
+                reactions: "REAKTIONEN"
+            }
+        },
+        sp1_06: {
+            back: "Zurück zum Nexus",
+            title: "SP1.06 // DAS SCHWEIZER PENDEL",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Oszillationsdaten",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SP1.06_PENDEL_MONITOR",
+            footer_left: "SP1.06_PENDEL // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                period: "Periode (T)",
+                length: "Länge (L)",
+                gravity: "Gravitation (g)",
+                frequency: "Frequenz (f)"
+            },
+            mission: {
+                title: "DAS GEHEIMNIS DES UHRMACHERS",
+                description: "Kalibrieren Sie die mechanische Hauptuhr von Basel. Meistern Sie die Physik der harmonischen Schwingung und der Energieerhaltung."
+            },
+            stages: {
+                period: "PERIODE",
+                gravity: "GRAVITATION",
+                energy: "ENERGIE"
             }
         }
     }

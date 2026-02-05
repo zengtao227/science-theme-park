@@ -7,8 +7,10 @@ import EntryProtocol from '@/components/EntryProtocol';
 import ModuleCard from '@/components/ui/ModuleCard';
 import MasteryRadar from '@/components/ui/MasteryRadar';
 import AchievementVault from '@/components/ui/AchievementVault';
+import ModuleFilter from '@/components/ui/ModuleFilter';
 import { clsx } from 'clsx';
 import { Gamepad2, Atom, FlaskConical, Sigma, Medal } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history } = useAppStore();
@@ -30,6 +32,7 @@ export default function Home() {
   const chemistryProgress = getSectorProgress('chemistry');
   const [vaultOpen, setVaultOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [now, setNow] = useState(0);
 
   useEffect(() => {
@@ -60,56 +63,89 @@ export default function Home() {
   }, [history, now]);
 
   const normalizedQuery = query.trim().toLowerCase();
-  const matches = (code: string, title: string) => {
+  const matches = (code: string, title: string, desc: string) => {
     if (!normalizedQuery) return true;
-    return code.toLowerCase().includes(normalizedQuery) || title.toLowerCase().includes(normalizedQuery);
+    return (
+      code.toLowerCase().includes(normalizedQuery) ||
+      title.toLowerCase().includes(normalizedQuery) ||
+      desc.toLowerCase().includes(normalizedQuery)
+    );
   };
 
   const mathModules = useMemo(() => ([
-    { code: "S1.01", title: t.home.s1_01_title, desc: t.home.s1_01_subtitle, color: "neon-purple", href: "/chamber/s1-01" },
-    { code: "S1.02", title: t.home.s1_02_title, desc: t.home.s1_02_subtitle, color: "neon-green", href: "/chamber/s1-02" },
-    { code: "S2.01", title: t.home.s2_01_title, desc: t.home.s2_01_subtitle, color: "neon-green", href: "/chamber/s2-01" },
-    { code: "S2.02", title: t.home.s2_02_title, desc: t.home.s2_02_subtitle, color: "neon-cyan", href: "/chamber/s2-02" },
-    { code: "S2.03", title: t.home.s2_03_title, desc: t.home.s2_03_subtitle, color: "neon-green", href: "/chamber/s2-03" },
-    { code: "S2.04", title: t.home.s2_04_title, desc: t.home.s2_04_subtitle, color: "neon-cyan", href: "/chamber/s2-04" },
-    { code: "S2.05", title: t.home.s2_05_title, desc: t.home.s2_05_subtitle, color: "neon-cyan", href: "/chamber/s2-05" },
-    { code: "S2.06", title: t.home.s2_06_title, desc: t.home.s2_06_subtitle, color: "neon-cyan", href: "/chamber/s2-06" },
-    { code: "S2.07", title: t.home.s2_07_title, desc: t.home.s2_07_subtitle, color: "neon-green", href: "/chamber/s2-07" },
-    { code: "S3.01", title: t.home.s3_01_title, desc: t.home.s3_01_subtitle, color: "neon-purple", href: "/chamber/s3-01" },
-    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-cyan", href: "/chamber/s3-02" },
-    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03" },
-    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04" },
-    { code: "G1.01", title: t.home.g1_01_title, desc: t.home.g1_01_subtitle, color: "neon-purple", href: "/chamber/g1-01" },
-    { code: "G2.01", title: t.home.g2_01_title, desc: t.home.g2_01_subtitle, color: "neon-cyan", href: "/chamber/g2-01" },
-    { code: "G3.01", title: t.home.g3_01_title, desc: t.home.g3_01_subtitle, color: "neon-purple", href: "/chamber/g3-01" },
+    { code: "S1.01", title: t.home.s1_01_title, desc: t.home.s1_01_subtitle, color: "neon-purple", href: "/chamber/s1-01", tags: ["math", "socratic"] },
+    { code: "S1.02", title: t.home.s1_02_title, desc: t.home.s1_02_subtitle, color: "neon-green", href: "/chamber/s1-02", tags: ["math"] },
+    { code: "S2.01", title: t.home.s2_01_title, desc: t.home.s2_01_subtitle, color: "neon-green", href: "/chamber/s2-01", tags: ["math", "socratic"] },
+    { code: "S2.02", title: t.home.s2_02_title, desc: t.home.s2_02_subtitle, color: "neon-cyan", href: "/chamber/s2-02", tags: ["math"] },
+    { code: "S2.03", title: t.home.s2_03_title, desc: t.home.s2_03_subtitle, color: "neon-green", href: "/chamber/s2-03", tags: ["math"] },
+    { code: "S2.04", title: t.home.s2_04_title, desc: t.home.s2_04_subtitle, color: "neon-cyan", href: "/chamber/s2-04", tags: ["math", "socratic"] },
+    { code: "S2.05", title: t.home.s2_05_title, desc: t.home.s2_05_subtitle, color: "neon-cyan", href: "/chamber/s2-05", tags: ["math"] },
+    { code: "S2.06", title: t.home.s2_06_title, desc: t.home.s2_06_subtitle, color: "neon-cyan", href: "/chamber/s2-06", tags: ["math"] },
+    { code: "S2.07", title: t.home.s2_07_title, desc: t.home.s2_07_subtitle, color: "neon-green", href: "/chamber/s2-07", tags: ["math"] },
+    { code: "S3.01", title: t.home.s3_01_title, desc: t.home.s3_01_subtitle, color: "neon-purple", href: "/chamber/s3-01", tags: ["math", "socratic"] },
+    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-cyan", href: "/chamber/s3-02", tags: ["math"] },
+    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03", tags: ["math", "biology"] },
+    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04", tags: ["math"] },
+    { code: "G1.01", title: t.home.g1_01_title, desc: t.home.g1_01_subtitle, color: "neon-purple", href: "/chamber/g1-01", tags: ["math", "socratic"] },
+    { code: "G2.01", title: t.home.g2_01_title, desc: t.home.g2_01_subtitle, color: "neon-cyan", href: "/chamber/g2-01", tags: ["math"] },
+    { code: "G3.01", title: t.home.g3_01_title, desc: t.home.g3_01_subtitle, color: "neon-purple", href: "/chamber/g3-01", tags: ["math", "socratic"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
-    { code: "P1.02", title: t.home.p1_02_title, desc: t.home.p1_02_subtitle, color: "neon-green", href: "/chamber/p1-02" },
-    { code: "P1.03", title: t.home.p1_03_title, desc: t.home.p1_03_subtitle, color: "neon-green", href: "/chamber/p1-03" },
-    { code: "P1.04", title: t.home.p1_04_title, desc: t.home.p1_04_subtitle, color: "neon-green", href: "/chamber/p1-04" },
-    { code: "P1.05", title: t.home.p1_05_title, desc: t.home.p1_05_subtitle, color: "neon-green", href: "/chamber/p1-05" },
-    { code: "P2.01", title: t.home.p2_01_title, desc: t.home.p2_01_subtitle, color: "neon-purple", href: "/chamber/p2-01" },
-    { code: "P2.02", title: t.home.p2_02_title, desc: t.home.p2_02_subtitle, color: "neon-cyan", href: "/chamber/p2-02" },
-    { code: "P3.01", title: t.home.p3_01_title, desc: t.home.p3_01_subtitle, color: "neon-purple", href: "/chamber/p3-01" },
-    { code: "P3.02", title: t.home.p3_02_title, desc: t.home.p3_02_subtitle, color: "neon-cyan", href: "/chamber/p3-02" },
-    { code: "P5.01", title: t.home.p5_01_title, desc: t.home.p5_01_subtitle, color: "neon-cyan", href: "/chamber/p5-01" },
-    { code: "P5.02", title: t.home.p5_02_title, desc: t.home.p5_02_subtitle, color: "neon-purple", href: "/chamber/p5-02" },
-    { code: "P5.03", title: t.home.p5_03_title, desc: t.home.p5_03_subtitle, color: "neon-amber", href: "/chamber/p5-03" },
+    { code: "P1.02", title: t.home.p1_02_title, desc: t.home.p1_02_subtitle, color: "neon-green", href: "/chamber/p1-02", tags: ["physics"] },
+    { code: "P1.03", title: t.home.p1_03_title, desc: t.home.p1_03_subtitle, color: "neon-green", href: "/chamber/p1-03", tags: ["physics"] },
+    { code: "P1.04", title: t.home.p1_04_title, desc: t.home.p1_04_subtitle, color: "neon-green", href: "/chamber/p1-04", tags: ["physics"] },
+    { code: "P1.05", title: t.home.p1_05_title, desc: t.home.p1_05_subtitle, color: "neon-green", href: "/chamber/p1-05", tags: ["physics"] },
+    { code: "P2.01", title: t.home.p2_01_title, desc: t.home.p2_01_subtitle, color: "neon-purple", href: "/chamber/p2-01", tags: ["physics"] },
+    { code: "P2.02", title: t.home.p2_02_title, desc: t.home.p2_02_subtitle, color: "neon-cyan", href: "/chamber/p2-02", tags: ["physics"] },
+    { code: "P3.01", title: t.home.p3_01_title, desc: t.home.p3_01_subtitle, color: "neon-purple", href: "/chamber/p3-01", tags: ["physics"] },
+    { code: "P3.02", title: t.home.p3_02_title, desc: t.home.p3_02_subtitle, color: "neon-cyan", href: "/chamber/p3-02", tags: ["physics"] },
+    { code: "P5.01", title: t.home.p5_01_title, desc: t.home.p5_01_subtitle, color: "neon-cyan", href: "/chamber/p5-01", tags: ["physics"] },
+    { code: "P5.02", title: t.home.p5_02_title, desc: t.home.p5_02_subtitle, color: "neon-purple", href: "/chamber/p5-02", tags: ["physics"] },
+    { code: "P5.03", title: t.home.p5_03_title, desc: t.home.p5_03_subtitle, color: "neon-amber", href: "/chamber/p5-03", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
-    { code: "C1.01", title: "Mystery Lab", desc: "Substance identification via chemical reactions (Acid/Base/Iodine)", color: "neon-purple", href: "/chamber/c1-01" },
-    { code: "C1.02", title: t.home.c1_02_title, desc: t.home.c1_02_subtitle, color: "neon-purple", href: "/chamber/c1-02" },
-    { code: "C2.01", title: t.home.c2_01_title, desc: t.home.c2_01_subtitle, color: "neon-cyan", href: "/chamber/c2-01" },
-    { code: "C3.01", title: t.home.c3_01_title, desc: t.home.c3_01_subtitle, color: "neon-green", href: "/chamber/c3-01" },
+    { code: "C1.01", title: "Mystery Lab", desc: "Substance identification via chemical reactions (Acid/Base/Iodine)", color: "neon-purple", href: "/chamber/c1-01", tags: ["chemistry"] },
+    { code: "C1.02", title: t.home.c1_02_title, desc: t.home.c1_02_subtitle, color: "neon-purple", href: "/chamber/c1-02", tags: ["chemistry"] },
+    { code: "C2.01", title: t.home.c2_01_title, desc: t.home.c2_01_subtitle, color: "neon-cyan", href: "/chamber/c2-01", tags: ["chemistry"] },
+    { code: "C3.01", title: t.home.c3_01_title, desc: t.home.c3_01_subtitle, color: "neon-green", href: "/chamber/c3-01", tags: ["chemistry"] },
   ]), [t]);
 
   const advancedModules = useMemo(() => ([
-    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-amber", href: "/chamber/s3-02" },
-    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03" },
-    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04" },
+    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-amber", href: "/chamber/s3-02", tags: ["math"] },
+    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03", tags: ["math", "biology"] },
+    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04", tags: ["math"] },
   ]), [t]);
+
+  const filterTags = useMemo(() => ([
+    { id: "physics", label: t.home.filter_tags.physics },
+    { id: "math", label: t.home.filter_tags.math },
+    { id: "chemistry", label: t.home.filter_tags.chemistry },
+    { id: "biology", label: t.home.filter_tags.biology },
+    { id: "socratic", label: t.home.filter_tags.socratic },
+  ]), [t]);
+
+  const toggleTag = (tagId: string) => {
+    setSelectedTags((prev) => (
+      prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]
+    ));
+  };
+
+  const filterModules = (modules: { code: string; title: string; desc: string; tags: string[] }[]) => {
+    return modules.filter((module) => {
+      const matchesText = matches(module.code, module.title, module.desc);
+      const matchesTags = selectedTags.length === 0 || module.tags.some((tag) => selectedTags.includes(tag));
+      return matchesText && matchesTags;
+    });
+  };
+
+  const filteredMath = useMemo(() => filterModules(mathModules), [mathModules, normalizedQuery, selectedTags]);
+  const filteredPhysics = useMemo(() => filterModules(physicsModules), [physicsModules, normalizedQuery, selectedTags]);
+  const filteredChemistry = useMemo(() => filterModules(chemistryModules), [chemistryModules, normalizedQuery, selectedTags]);
+  const filteredAdvanced = useMemo(() => filterModules(advancedModules), [advancedModules, normalizedQuery, selectedTags]);
+
+  const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredAdvanced.length;
 
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
@@ -172,16 +208,27 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mb-14 flex flex-col md:flex-row md:items-center gap-4">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">{t.home.search_label}</div>
-          <div className="flex-1">
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={t.home.search_placeholder}
-              className="w-full bg-black/70 border border-white/10 rounded-lg px-4 py-3 text-sm text-white font-mono focus:outline-none focus:border-neon-green/60"
-            />
-          </div>
+        <div className="mb-14">
+          <ModuleFilter
+            label={t.home.search_label}
+            query={query}
+            placeholder={t.home.search_placeholder}
+            tagsLabel={t.home.filter_tags_label}
+            tags={filterTags}
+            selectedTags={selectedTags}
+            onQueryChange={setQuery}
+            onToggleTag={toggleTag}
+            onClear={() => {
+              setQuery('');
+              setSelectedTags([]);
+            }}
+            clearLabel={t.home.filter_clear}
+          />
+          {totalFiltered === 0 && (
+            <div className="mt-6 border border-white/10 bg-white/[0.02] rounded-xl px-5 py-4 text-xs font-mono text-white/60">
+              {t.home.filter_empty}
+            </div>
+          )}
         </div>
 
         <div className="space-y-20">
@@ -199,97 +246,141 @@ export default function Home() {
             }}
           />
 
-          {/* MATHEMATICS SECTOR */}
-          <Sector
-            title="MATHEMATICS SECTOR"
-            color="neon-cyan"
-            progress={mathProgress}
-            icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-            tagIcon="📐"
-          >
-            {mathModules.filter((m) => matches(m.code, m.title)).map((module) => (
-              <ModuleCard
-                key={module.code}
-                code={module.code}
-                title={module.title}
-                desc={module.desc}
-                color={module.color}
-                progress={getProgress(module.code)}
-                href={module.href}
-                actionLabel={t.home.initiate_simulation}
-                completedLabel={t.home.completed_badge}
-              />
-            ))}
-          </Sector>
+          {filteredMath.length > 0 && (
+            <Sector
+              title="MATHEMATICS SECTOR"
+              color="neon-cyan"
+              progress={mathProgress}
+              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="📐"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredMath.map((module) => (
+                  <motion.div
+                    layout
+                    key={module.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ModuleCard
+                      code={module.code}
+                      title={module.title}
+                      desc={module.desc}
+                      color={module.color}
+                      progress={getProgress(module.code)}
+                      href={module.href}
+                      actionLabel={t.home.initiate_simulation}
+                      completedLabel={t.home.completed_badge}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Sector>
+          )}
 
-          {/* PHYSICS SECTOR */}
-          <Sector
-            title="PHYSICS SECTOR"
-            color="neon-green"
-            progress={physicsProgress}
-            icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-            tagIcon="⚛️"
-          >
-            {physicsModules.filter((m) => matches(m.code, m.title)).map((module) => (
-              <ModuleCard
-                key={module.code}
-                code={module.code}
-                title={module.title}
-                desc={module.desc}
-                color={module.color}
-                progress={getProgress(module.code)}
-                href={module.href}
-                actionLabel={t.home.initiate_simulation}
-                completedLabel={t.home.completed_badge}
-              />
-            ))}
-          </Sector>
+          {filteredPhysics.length > 0 && (
+            <Sector
+              title="PHYSICS SECTOR"
+              color="neon-green"
+              progress={physicsProgress}
+              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="⚛️"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredPhysics.map((module) => (
+                  <motion.div
+                    layout
+                    key={module.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ModuleCard
+                      code={module.code}
+                      title={module.title}
+                      desc={module.desc}
+                      color={module.color}
+                      progress={getProgress(module.code)}
+                      href={module.href}
+                      actionLabel={t.home.initiate_simulation}
+                      completedLabel={t.home.completed_badge}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Sector>
+          )}
 
-          {/* CHEMISTRY SECTOR */}
-          <Sector
-            title="CHEMISTRY SECTOR"
-            color="neon-purple"
-            progress={chemistryProgress}
-            icon={<FlaskConical className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-            tagIcon="🧪"
-          >
-            {chemistryModules.filter((m) => matches(m.code, m.title)).map((module) => (
-              <ModuleCard
-                key={module.code}
-                code={module.code}
-                title={module.title}
-                desc={module.desc}
-                color={module.color}
-                progress={getProgress(module.code)}
-                href={module.href}
-                actionLabel={t.home.initiate_simulation}
-                completedLabel={t.home.completed_badge}
-              />
-            ))}
-          </Sector>
+          {filteredChemistry.length > 0 && (
+            <Sector
+              title="CHEMISTRY SECTOR"
+              color="neon-purple"
+              progress={chemistryProgress}
+              icon={<FlaskConical className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="🧪"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredChemistry.map((module) => (
+                  <motion.div
+                    layout
+                    key={module.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ModuleCard
+                      code={module.code}
+                      title={module.title}
+                      desc={module.desc}
+                      color={module.color}
+                      progress={getProgress(module.code)}
+                      href={module.href}
+                      actionLabel={t.home.initiate_simulation}
+                      completedLabel={t.home.completed_badge}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Sector>
+          )}
 
-          {/* ADVANCED MATH SECTOR */}
-          <Sector
-            title="ADVANCED MATH SECTOR"
-            color="neon-amber"
-            progress={0}
-            icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-            tagIcon="∑"
-          >
-            {advancedModules.filter((m) => matches(m.code, m.title)).map((module) => (
-              <ModuleCard
-                key={module.code}
-                code={module.code}
-                title={module.title}
-                desc={module.desc}
-                color={module.color}
-                progress={getProgress(module.code)}
-                href={module.href}
-                actionLabel={t.home.initiate_simulation}
-                completedLabel={t.home.completed_badge}
-              />
-            ))}
-          </Sector>
+          {filteredAdvanced.length > 0 && (
+            <Sector
+              title="ADVANCED MATH SECTOR"
+              color="neon-amber"
+              progress={0}
+              icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="∑"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredAdvanced.map((module) => (
+                  <motion.div
+                    layout
+                    key={module.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ModuleCard
+                      code={module.code}
+                      title={module.title}
+                      desc={module.desc}
+                      color={module.color}
+                      progress={getProgress(module.code)}
+                      href={module.href}
+                      actionLabel={t.home.initiate_simulation}
+                      completedLabel={t.home.completed_badge}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Sector>
+          )}
 
         </div>
       </div>
