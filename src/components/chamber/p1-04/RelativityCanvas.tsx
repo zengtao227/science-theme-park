@@ -50,14 +50,103 @@ function Ring({ radius, color, progress }: { radius: number; color: string; prog
   );
 }
 
+function WarpedGrid({ size = 12, divisions = 80 }: { size?: number; divisions?: number }) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const baseRef = useRef<Float32Array | null>(null);
+
+  useFrame(({ clock }) => {
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    const geometry = mesh.geometry as THREE.PlaneGeometry;
+    const position = geometry.attributes.position as THREE.BufferAttribute;
+    if (!baseRef.current) {
+      baseRef.current = new Float32Array(position.array as Float32Array);
+    }
+    const base = baseRef.current;
+    const t = clock.elapsedTime * 0.6;
+    for (let i = 0; i < base.length; i += 3) {
+      const x = base[i];
+      const y = base[i + 1];
+      const wave = Math.sin(x * 0.6 + t) * Math.cos(y * 0.5 - t) * 0.35;
+      position.array[i + 2] = base[i + 2] + wave;
+    }
+    position.needsUpdate = true;
+  });
+
+  return (
+    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]}>
+      <planeGeometry args={[size, size, divisions, divisions]} />
+      <meshStandardMaterial color="#08101a" wireframe transparent opacity={0.5} />
+    </mesh>
+  );
+}
+
+function PhotonClock({ beta, gamma }: { beta: number; gamma: number }) {
+  const [linePoints, setLinePoints] = useState<THREE.Vector3[]>(() =>
+    Array.from({ length: 8 }, (_, i) => new THREE.Vector3(i * 0.1, 0, 0))
+  );
+  const height = 2.4;
+  const amplitude = 1.2 * beta;
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime * 0.8;
+    setLinePoints(
+      Array.from({ length: 8 }, (_, i) => {
+        const y = i % 2 === 0 ? -height / 2 : height / 2;
+        const x = (i % 2 === 0 ? -amplitude : amplitude) + Math.sin(t + i) * 0.08;
+        return new THREE.Vector3(x, y, 0);
+      })
+    );
+  });
+
+  return (
+    <group position={[0, 0, 1.2]}>
+      <mesh position={[0, height / 2, 0]}>
+        <boxGeometry args={[1.2, 0.08, 0.3]} />
+        <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={0.6} />
+      </mesh>
+      <mesh position={[0, -height / 2, 0]}>
+        <boxGeometry args={[1.2, 0.08, 0.3]} />
+        <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={0.6} />
+      </mesh>
+      <Line points={linePoints} color="#39ff14" lineWidth={2} transparent opacity={0.9} />
+      <Text position={[0, -height / 2 - 0.5, 0]} fontSize={0.16} color="#39ff14" font="/fonts/Inter-Bold.woff">
+        {`Light path × γ=${gamma.toFixed(2)}`}
+      </Text>
+    </group>
+  );
+}
+
+function Rocket({ restLength, gamma, beta }: { restLength: number; gamma: number; beta: number }) {
+  const contracted = restLength / gamma;
+  const pulse = 0.2 + beta * 0.8;
+  return (
+    <group position={[0, -0.8, 0]}>
+      <mesh position={[0, 0.6, 0]}>
+        <boxGeometry args={[restLength, 0.25, 0.25]} />
+        <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={0.2} />
+      </mesh>
+      <mesh position={[0, 0.2, 0]}>
+        <boxGeometry args={[contracted, 0.28, 0.28]} />
+        <meshStandardMaterial color="#a855f7" emissive="#a855f7" emissiveIntensity={0.35 + pulse * 0.3} />
+      </mesh>
+      <Text position={[-restLength * 0.5, 1.0, 0]} fontSize={0.14} color="#00e5ff" font="/fonts/Inter-Bold.woff">
+        L₀
+      </Text>
+      <Text position={[-contracted * 0.5, 0.0, 0]} fontSize={0.14} color="#a855f7" font="/fonts/Inter-Bold.woff">
+        L = L₀/γ
+      </Text>
+    </group>
+  );
+}
+
 function Scene({
-  velocityFraction = 0.6,
+  velocityFraction = 0.99,
   properTimeSeconds = 10,
   restLength = 3,
 }: RelativityCanvasProps) {
   const beta = clamp(velocityFraction, 0, 0.999);
   const gamma = gammaFromBeta(beta);
-  const dilated = restLength / gamma;
   const timeRef = useRef({ tau: 0, t: 0 });
   const [progress, setProgress] = useState({ tau: 0, t: 0 });
 
@@ -86,26 +175,13 @@ function Scene({
             Dilated Time t
           </Text>
         </group>
-        <group position={[0, 2.0, 0]}>
-          <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[restLength, 0.2, 0.2]} />
-            <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={0.4} />
-          </mesh>
-          <mesh position={[0, -0.4, 0]}>
-            <boxGeometry args={[dilated, 0.2, 0.2]} />
-            <meshStandardMaterial color="#a855f7" emissive="#a855f7" emissiveIntensity={0.4} />
-          </mesh>
-          <Text position={[0, 0.4, 0]} fontSize={0.16} color="#00e5ff" font="/fonts/Inter-Bold.woff">
-            L₀
-          </Text>
-          <Text position={[0, -0.8, 0]} fontSize={0.16} color="#a855f7" font="/fonts/Inter-Bold.woff">
-            L = L₀/γ
-          </Text>
-        </group>
+        <Rocket restLength={restLength} gamma={gamma} beta={beta} />
+        <PhotonClock beta={beta} gamma={gamma} />
         <Text position={[-4.6, 2.5, 0]} fontSize={0.2} color="rgba(255,255,255,0.5)" font="/fonts/Inter-Bold.woff">
           {`β=${beta.toFixed(2)}  γ=${gamma.toFixed(2)}`}
         </Text>
       </Float>
+      <WarpedGrid />
     </group>
   );
 }
