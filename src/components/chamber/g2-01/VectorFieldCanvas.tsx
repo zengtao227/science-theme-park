@@ -11,6 +11,13 @@ interface VectorFieldCanvasProps {
   showCurl?: boolean;
 }
 
+// Temporary objects for calculations to avoid GC pressure
+const _v1 = new THREE.Vector3();
+const _v2 = new THREE.Vector3();
+const _v3 = new THREE.Vector3();
+const _q1 = new THREE.Quaternion();
+const _yAxis = new THREE.Vector3(0, 1, 0);
+
 const palette = {
   cyan: "#00e5ff",
   purple: "#a855f7",
@@ -39,7 +46,7 @@ function calculateDivergence(
   const [, fy0] = field(x, y - h, z);
   const [, , fz1] = field(x, y, z + h);
   const [, , fz0] = field(x, y, z - h);
-  
+
   return ((fx1 - fx0) + (fy1 - fy0) + (fz1 - fz0)) / (2 * h);
 }
 
@@ -57,11 +64,11 @@ function calculateCurl(
   const [fx0z, , fz0x] = field(x, y, z - h);
   const [fx1y, fy1x] = field(x + h, y, z);
   const [fx0y, fy0x] = field(x - h, y, z);
-  
+
   const curlX = (fz1y - fz0y - fy1z + fy0z) / (2 * h);
   const curlY = (fx1z - fx0z - fz1x + fz0x) / (2 * h);
   const curlZ = (fy1x - fy0x - fx1y + fx0y) / (2 * h);
-  
+
   return [curlX, curlY, curlZ];
 }
 
@@ -87,14 +94,14 @@ function FlowArrows({
   const arrowMeshRef = useRef<THREE.InstancedMesh>(null);
   const coneMeshRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useRef(new THREE.Object3D());
-  
+
   const arrowCount = gridSize * gridSize * gridSize;
-  
+
   // Generate grid positions
   const gridPositions = useMemo(() => {
     const positions: [number, number, number][] = [];
     const offset = ((gridSize - 1) * spacing) / 2;
-    
+
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
         for (let k = 0; k < gridSize; k++) {
@@ -108,54 +115,50 @@ function FlowArrows({
     }
     return positions;
   }, [gridSize, spacing]);
-  
+
   useFrame(({ clock }) => {
     if (!arrowMeshRef.current || !coneMeshRef.current) return;
-    
+
     const time = clock.getElapsedTime();
     const d = dummy.current;
-    
+
     gridPositions.forEach(([x, y, z], i) => {
       // Get field vector at this position
       const [fx, fy, fz] = field(x, y, z);
       const magnitude = Math.sqrt(fx * fx + fy * fy + fz * fz);
-      
+
       if (magnitude < 0.001) {
-        // Hide arrow if field is too weak
-        d.scale.set(0, 0, 0);
+        d.scale.setScalar(0);
         d.updateMatrix();
         arrowMeshRef.current!.setMatrixAt(i, d.matrix);
         coneMeshRef.current!.setMatrixAt(i, d.matrix);
         return;
       }
-      
-      // Normalize direction
-      const dir = new THREE.Vector3(fx, fy, fz).normalize();
-      
-      // Arrow shaft (cylinder)
+
+      _v1.set(fx, fy, fz).normalize();
+
       const shaftLength = Math.min(magnitude * 0.4, 0.8);
-      const midpoint = new THREE.Vector3(x, y, z).add(dir.clone().multiplyScalar(shaftLength / 2));
-      
-      d.position.copy(midpoint);
-      d.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      _v2.set(x, y, z).addScaledVector(_v1, shaftLength / 2);
+
+      d.position.copy(_v2);
+      d.quaternion.setFromUnitVectors(_yAxis, _v1);
       d.scale.set(1, shaftLength, 1);
       d.updateMatrix();
       arrowMeshRef.current!.setMatrixAt(i, d.matrix);
-      
-      // Arrow head (cone)
-      const headPos = new THREE.Vector3(x, y, z).add(dir.clone().multiplyScalar(shaftLength));
-      d.position.copy(headPos);
-      d.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+
+      _v2.set(x, y, z).addScaledVector(_v1, shaftLength);
+      d.position.copy(_v2);
+      d.quaternion.setFromUnitVectors(_yAxis, _v1);
       const pulse = 1 + Math.sin(time * 2 + i * 0.1) * 0.1;
       d.scale.set(pulse, pulse, pulse);
       d.updateMatrix();
       coneMeshRef.current!.setMatrixAt(i, d.matrix);
     });
-    
+
     arrowMeshRef.current.instanceMatrix.needsUpdate = true;
     coneMeshRef.current.instanceMatrix.needsUpdate = true;
   });
-  
+
   return (
     <group>
       {/* Arrow shafts */}
@@ -171,7 +174,7 @@ function FlowArrows({
           roughness={0.2}
         />
       </instancedMesh>
-      
+
       {/* Arrow heads */}
       <instancedMesh ref={coneMeshRef} args={[undefined, undefined, arrowCount]}>
         <coneGeometry args={[0.12, 0.25, 8]} />
@@ -197,40 +200,41 @@ function ParticleTracers({
 }) {
   const particleMeshRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useRef(new THREE.Object3D());
-  
+
   useFrame((_, delta) => {
     if (!particleMeshRef.current || particles.length === 0) return;
-    
+
     const d = dummy.current;
     const dt = Math.min(delta, 0.1);
-    
+    const aliveCount = particles.length;
     particles.forEach((particle, i) => {
-      // Update particle position based on field
       const [fx, fy, fz] = field(
         particle.position.x,
         particle.position.y,
         particle.position.z
       );
-      
+
       particle.velocity.set(fx, fy, fz);
-      particle.position.add(particle.velocity.clone().multiplyScalar(dt * 0.5));
-      
-      // Update life
+      particle.position.addScaledVector(particle.velocity, dt * 0.5);
       particle.life -= dt;
-      
-      // Fade out as life decreases
+
       const lifeFactor = Math.max(0, particle.life / particle.maxLife);
       const scale = 0.08 * lifeFactor;
-      
+
       d.position.copy(particle.position);
       d.scale.setScalar(scale);
       d.updateMatrix();
       particleMeshRef.current!.setMatrixAt(i, d.matrix);
     });
-    
-    particleMeshRef.current.instanceMatrix.needsUpdate = true;
+
+    // Hide unused instances
+    for (let i = aliveCount; i < 100; i++) {
+      d.scale.setScalar(0);
+      d.updateMatrix();
+      particleMeshRef.current!.setMatrixAt(i, d.matrix);
+    }
   });
-  
+
   return (
     <instancedMesh ref={particleMeshRef} args={[undefined, undefined, 100]}>
       <sphereGeometry args={[1, 12, 12]} />
@@ -265,7 +269,7 @@ function VectorFieldScene({
     },
     [onSpawnParticle]
   );
-  
+
   return (
     <group>
       {/* Clickable plane for spawning particles */}
@@ -278,13 +282,13 @@ function VectorFieldScene({
         <planeGeometry args={[20, 20]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
-      
+
       {/* Flow arrows */}
       <FlowArrows field={field} gridSize={5} spacing={1.5} />
-      
+
       {/* Particle tracers */}
       <ParticleTracers particles={particles} field={field} />
-      
+
       {/* Axis labels */}
       <Float speed={1.5} rotationIntensity={0} floatIntensity={0.1}>
         <Text position={[4, 0, 0]} fontSize={0.3} color={palette.cyan}>
@@ -312,23 +316,23 @@ export default function VectorFieldCanvas({
 }: VectorFieldCanvasProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const nextParticleId = useRef(0);
-  
+
   // Calculate field properties at origin
   const divergence = useMemo(
     () => calculateDivergence(fieldFunction, 0, 0, 0),
     [fieldFunction]
   );
-  
+
   const curl = useMemo(
     () => calculateCurl(fieldFunction, 0, 0, 0),
     [fieldFunction]
   );
-  
+
   const curlMagnitude = useMemo(
     () => Math.sqrt(curl[0] ** 2 + curl[1] ** 2 + curl[2] ** 2),
     [curl]
   );
-  
+
   // Spawn particle at clicked position
   const handleSpawnParticle = useCallback((position: THREE.Vector3) => {
     const newParticle: Particle = {
@@ -338,30 +342,38 @@ export default function VectorFieldCanvas({
       life: 5,
       maxLife: 5,
     };
-    
+
     setParticles((prev) => {
       // Keep only alive particles + new one
       const alive = prev.filter((p) => p.life > 0);
       return [...alive.slice(-99), newParticle];
     });
   }, []);
-  
-  // Clean up dead particles
-  useFrame(() => {
-    setParticles((prev) => prev.filter((p) => p.life > 0));
+
+  // Clean up dead particles (throttle this update)
+  useFrame((_, delta) => {
+    setParticles((prev) => {
+      if (prev.length === 0) return prev;
+      const filtered = prev.filter((p) => {
+        p.life -= delta; // sync life deduction on state as well for cleanup
+        return p.life > 0;
+      });
+      if (filtered.length === prev.length) return prev;
+      return filtered;
+    });
   });
-  
+
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [8, 6, 8], fov: 50 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.4} />
         <pointLight position={[5, 5, 5]} intensity={1} />
         <pointLight position={[-5, -5, 5]} intensity={0.6} color={palette.cyan} />
         <pointLight position={[0, 5, -5]} intensity={0.5} color={palette.purple} />
-        
+
         {/* Controls */}
         <OrbitControls
           enablePan={true}
@@ -369,7 +381,7 @@ export default function VectorFieldCanvas({
           maxDistance={20}
           autoRotate={false}
         />
-        
+
         {/* Grid floor */}
         <Grid
           infiniteGrid
@@ -381,14 +393,14 @@ export default function VectorFieldCanvas({
           fadeStrength={1.2}
           position={[0, -4, 0]}
         />
-        
+
         {/* Main scene */}
         <VectorFieldScene
           field={fieldFunction}
           particles={particles}
           onSpawnParticle={handleSpawnParticle}
         />
-        
+
         {/* Title */}
         <Float speed={1} rotationIntensity={0} floatIntensity={0.1}>
           <Text
@@ -401,7 +413,7 @@ export default function VectorFieldCanvas({
           </Text>
         </Float>
       </Canvas>
-      
+
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 space-y-2">
         <div className="flex gap-2 items-center">
@@ -410,7 +422,7 @@ export default function VectorFieldCanvas({
             Field_Active v3.0
           </span>
         </div>
-        
+
         {showDivergence && (
           <div className="bg-black/60 border border-cyan-400/30 rounded px-3 py-2">
             <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider mb-1">
@@ -421,7 +433,7 @@ export default function VectorFieldCanvas({
             </div>
           </div>
         )}
-        
+
         {showCurl && (
           <div className="bg-black/60 border border-purple-400/30 rounded px-3 py-2">
             <div className="text-[9px] text-purple-400/60 uppercase tracking-wider mb-1">
@@ -436,7 +448,7 @@ export default function VectorFieldCanvas({
           </div>
         )}
       </div>
-      
+
       {/* Instructions */}
       <div className="absolute bottom-4 left-4 right-4 bg-black/70 border border-white/20 rounded-lg px-4 py-3">
         <div className="text-[10px] text-white/50 uppercase tracking-wider mb-2">
@@ -448,14 +460,14 @@ export default function VectorFieldCanvas({
           <div>• Field: <span className="font-mono text-amber-400">F(x,y,z) = [y, -x, sin(z)]</span></div>
         </div>
       </div>
-      
+
       {/* Status */}
       <div className="absolute top-4 right-4 text-[8px] font-mono text-white/20 text-right">
         CHAMBER // G2.01<br />
         VECTOR_FIELD: ACTIVE<br />
         PARTICLES: {particles.length}/100
       </div>
-      
+
       <div className="absolute bottom-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
         Hyper-Flow Analytics
       </div>
