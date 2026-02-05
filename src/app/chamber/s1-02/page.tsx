@@ -9,121 +9,155 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S102_StatisticsCanvas from "@/components/chamber/s1-02/StatisticsCanvas";
+import TesseractCanvas from "@/components/chamber/s1-02/TesseractCanvas";
 
-type Stage = "STATISTICS" | "PROBABILITY" | "COMBINATORICS";
+type Stage = "PROJECTION" | "ROTATION" | "UNFOLD";
 type Mg13T = typeof translations.EN.s1_02;
 
 interface S102Quest extends Quest {
     stage: Stage;
+    unfoldProgress?: number;
 }
 
 function buildStagePool(t: Mg13T, difficulty: Difficulty, stage: Stage): S102Quest[] {
-    if (stage === "STATISTICS") {
-        const all: S102Quest[] = [
-            {
-                id: "S1", difficulty, stage,
-                promptLatex: t.stages.statistics_prompt_latex,
-                expressionLatex: `\\text{Data: }2,4,6,8,10`,
-                targetLatex: `\\text{Mean},\\; \\text{Median}`,
-                slots: [
-                    { id: "mean", labelLatex: `\\text{Mean}`, placeholder: "mean", expected: 6 },
-                    { id: "median", labelLatex: `\\text{Median}`, placeholder: "median", expected: 6 },
-                ],
-                correctLatex: `\\text{Mean}=6,\\; \\text{Median}=6`,
-                hintLatex: [`\\text{Mean}=\\frac{2+4+6+8+10}{5}=6`, `\\text{Median}=6`],
-            },
-            {
-                id: "S2", difficulty, stage,
-                promptLatex: t.stages.statistics_prompt_latex,
-                expressionLatex: `\\text{Data: }3,5,7,9,11,13`,
-                targetLatex: `\\text{Mean},\\; \\text{Median}`,
-                slots: [
-                    { id: "mean", labelLatex: `\\text{Mean}`, placeholder: "mean", expected: 8 },
-                    { id: "median", labelLatex: `\\text{Median}`, placeholder: "median", expected: 8 },
-                ],
-                correctLatex: `\\text{Mean}=8,\\; \\text{Median}=8`,
-                hintLatex: [`\\text{Mean}=\\frac{3+5+7+9+11+13}{6}=8`, `\\text{Median}=\\frac{7+9}{2}=8`],
-            },
-            {
-                id: "S3", difficulty, stage,
-                promptLatex: `\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
-                expressionLatex: `\\text{Delays (min): }2,3,5,7,8`,
-                targetLatex: `\\text{Mean},\\; \\text{Median}`,
-                slots: [
-                    { id: "mean", labelLatex: `\\text{Mean}`, placeholder: "mean", expected: 5 },
-                    { id: "median", labelLatex: `\\text{Median}`, placeholder: "median", expected: 5 },
-                ],
-                correctLatex: `\\text{Mean}=5,\\; \\text{Median}=5`,
-                hintLatex: [`\\text{Mean}=\\frac{2+3+5+7+8}{5}=5`, `\\text{Median}=5`],
-            },
-        ];
-        if (difficulty === "BASIC") return all.slice(0, 2);
-        return all;
-    }
-
-    if (stage === "PROBABILITY") {
+    if (stage === "PROJECTION") {
         const all: S102Quest[] = [
             {
                 id: "P1", difficulty, stage,
-                promptLatex: t.stages.probability_prompt_latex,
-                expressionLatex: `\\text{Coin flip: }P(\\text{Heads})`,
-                targetLatex: `P`,
-                slots: [{ id: "P", labelLatex: `P`, placeholder: "probability", expected: 0.5 }],
-                correctLatex: `P=0.5`,
-                hintLatex: [`P(\\text{Heads})=\\frac{1}{2}=0.5`],
+                promptLatex: t.stages.projection_prompt_latex,
+                expressionLatex: `\\text{4D Point: }(1,1,1,0)`,
+                targetLatex: `\\text{3D Projection: }(x,y,z)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 1 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 1 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 1 },
+                ],
+                correctLatex: `(1,1,1)`,
+                hintLatex: [`\\text{When }w=0\\text{, projection is }(x,y,z)`, `\\text{Factor}=\\frac{d}{d-w}=1`],
+                unfoldProgress: 0,
             },
             {
                 id: "P2", difficulty, stage,
-                promptLatex: t.stages.probability_prompt_latex,
-                expressionLatex: `\\text{Die roll: }P(\\text{Even})`,
-                targetLatex: `P`,
-                slots: [{ id: "P", labelLatex: `P`, placeholder: "probability", expected: 0.5 }],
-                correctLatex: `P=0.5`,
-                hintLatex: [`P(\\text{Even})=\\frac{3}{6}=0.5`],
+                promptLatex: t.stages.projection_prompt_latex,
+                expressionLatex: `\\text{4D Point: }(2,0,0,1)`,
+                targetLatex: `\\text{3D Projection: }(x,y,z)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 3 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 0 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 0 },
+                ],
+                correctLatex: `(3,0,0)`,
+                hintLatex: [`\\text{Factor}=\\frac{3}{3-1}=1.5`, `x'=2\\times 1.5=3`],
+                unfoldProgress: 0,
             },
             {
                 id: "P3", difficulty, stage,
                 promptLatex: `\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
-                expressionLatex: `\\text{Tram arrives in 10 min, you arrive randomly in 30 min}`,
-                targetLatex: `P`,
-                slots: [{ id: "P", labelLatex: `P`, placeholder: "probability", expected: 1 / 3 }],
-                correctLatex: `P\\approx 0.33`,
-                hintLatex: [`P=\\frac{10}{30}\\approx 0.33`],
+                expressionLatex: `\\text{4D Point: }(1,1,0,0.5)`,
+                targetLatex: `\\text{3D Projection: }(x,y,z)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 1.2 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 1.2 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 0 },
+                ],
+                correctLatex: `(1.2,1.2,0)`,
+                hintLatex: [`\\text{Factor}=\\frac{3}{3-0.5}=1.2`, `x'=1\\times 1.2=1.2`],
+                unfoldProgress: 0,
             },
         ];
         if (difficulty === "BASIC") return all.slice(0, 2);
         return all;
     }
 
-    if (stage === "COMBINATORICS") {
+    if (stage === "ROTATION") {
         const all: S102Quest[] = [
             {
-                id: "C1", difficulty, stage,
-                promptLatex: t.stages.probability_prompt_latex, // Reuse probability prompt
-                expressionLatex: `\\text{Choose 2 from 4: }\\binom{4}{2}`,
-                targetLatex: `n`,
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "count", expected: 6 }],
-                correctLatex: `\\binom{4}{2}=6`,
-                hintLatex: [`\\binom{4}{2}=\\frac{4!}{2!2!}=6`],
+                id: "R1", difficulty, stage,
+                promptLatex: t.stages.rotation_prompt_latex,
+                expressionLatex: `\\text{Rotate }(1,0,0,0)\\text{ by }90^\\circ\\text{ in XY plane}`,
+                targetLatex: `\\text{Result: }(x,y,z,w)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 0 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 1 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 0 },
+                    { id: "w", labelLatex: `w`, placeholder: "w", expected: 0 },
+                ],
+                correctLatex: `(0,1,0,0)`,
+                hintLatex: [`\\text{XY rotation: }x'=x\\cos\\theta-y\\sin\\theta`, `y'=x\\sin\\theta+y\\cos\\theta`],
+                unfoldProgress: 0,
             },
             {
-                id: "C2", difficulty, stage,
-                promptLatex: t.stages.probability_prompt_latex,
-                expressionLatex: `\\text{Choose 3 from 5: }\\binom{5}{3}`,
-                targetLatex: `n`,
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "count", expected: 10 }],
-                correctLatex: `\\binom{5}{3}=10`,
-                hintLatex: [`\\binom{5}{3}=\\frac{5!}{3!2!}=10`],
+                id: "R2", difficulty, stage,
+                promptLatex: t.stages.rotation_prompt_latex,
+                expressionLatex: `\\text{Rotate }(0,0,1,0)\\text{ by }90^\\circ\\text{ in ZW plane}`,
+                targetLatex: `\\text{Result: }(x,y,z,w)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 0 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 0 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 0 },
+                    { id: "w", labelLatex: `w`, placeholder: "w", expected: 1 },
+                ],
+                correctLatex: `(0,0,0,1)`,
+                hintLatex: [`\\text{ZW rotation: }z'=z\\cos\\theta-w\\sin\\theta`, `w'=z\\sin\\theta+w\\cos\\theta`],
+                unfoldProgress: 0,
             },
             {
-                id: "C3", difficulty, stage,
+                id: "R3", difficulty, stage,
                 promptLatex: `\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
-                expressionLatex: `\\text{Choose 2 toppings from 6: }\\binom{6}{2}`,
-                targetLatex: `n`,
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "count", expected: 15 }],
-                correctLatex: `\\binom{6}{2}=15`,
-                hintLatex: [`\\binom{6}{2}=\\frac{6!}{2!4!}=15`],
+                expressionLatex: `\\text{Rotate }(1,1,0,0)\\text{ by }45^\\circ\\text{ in XY plane}`,
+                targetLatex: `\\text{Result: }(x,y,z,w)`,
+                slots: [
+                    { id: "x", labelLatex: `x`, placeholder: "x", expected: 0 },
+                    { id: "y", labelLatex: `y`, placeholder: "y", expected: 1.41 },
+                    { id: "z", labelLatex: `z`, placeholder: "z", expected: 0 },
+                    { id: "w", labelLatex: `w`, placeholder: "w", expected: 0 },
+                ],
+                correctLatex: `(0,\\sqrt{2},0,0)\\approx(0,1.41,0,0)`,
+                hintLatex: [`\\cos 45^\\circ=\\sin 45^\\circ=\\frac{\\sqrt{2}}{2}`, `x'=1\\cdot\\frac{\\sqrt{2}}{2}-1\\cdot\\frac{\\sqrt{2}}{2}=0`],
+                unfoldProgress: 0,
+            },
+        ];
+        if (difficulty === "BASIC") return all.slice(0, 2);
+        return all;
+    }
+
+    if (stage === "UNFOLD") {
+        const all: S102Quest[] = [
+            {
+                id: "U1", difficulty, stage,
+                promptLatex: t.stages.unfold_prompt_latex,
+                expressionLatex: `\\text{Tesseract: }16\\text{ vertices, }32\\text{ edges}`,
+                targetLatex: `\\text{How many 3D cells?}`,
+                slots: [
+                    { id: "cells", labelLatex: `\\text{Cells}`, placeholder: "cells", expected: 8 },
+                ],
+                correctLatex: `8\\text{ cells}`,
+                hintLatex: [`\\text{A tesseract has 8 cubic cells}`, `\\text{Like a cube has 6 square faces}`],
+                unfoldProgress: 0.3,
+            },
+            {
+                id: "U2", difficulty, stage,
+                promptLatex: t.stages.unfold_prompt_latex,
+                expressionLatex: `\\text{Tesseract: }8\\text{ cells, }24\\text{ faces per cell}`,
+                targetLatex: `\\text{Total faces?}`,
+                slots: [
+                    { id: "faces", labelLatex: `\\text{Faces}`, placeholder: "faces", expected: 24 },
+                ],
+                correctLatex: `24\\text{ faces}`,
+                hintLatex: [`\\text{Each face is shared by 2 cells}`, `\\frac{8\\times 6}{2}=24`],
+                unfoldProgress: 0.6,
+            },
+            {
+                id: "U3", difficulty, stage,
+                promptLatex: `\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
+                expressionLatex: `\\text{Tesseract edge length: }a`,
+                targetLatex: `\\text{4D hypervolume?}`,
+                slots: [
+                    { id: "volume", labelLatex: `V_4`, placeholder: "volume", expected: "a^4" },
+                ],
+                correctLatex: `V_4=a^4`,
+                hintLatex: [`\\text{1D: }a,\\;\\text{2D: }a^2,\\;\\text{3D: }a^3`, `\\text{4D: }a^4`],
+                unfoldProgress: 1,
             },
         ];
         if (difficulty === "BASIC") return all.slice(0, 2);
@@ -150,7 +184,7 @@ export default function S102Page() {
         handleStageChange,
     } = useQuestManager<S102Quest, Stage>({
         buildPool: (d, s) => buildStagePool(t, d, s),
-        initialStage: "STATISTICS",
+        initialStage: "PROJECTION",
     });
 
     useEffect(() => {
@@ -160,9 +194,9 @@ export default function S102Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stages = [
-        { id: "STATISTICS", label: t.stages.statistics },
-        { id: "PROBABILITY", label: t.stages.probability },
-        { id: "COMBINATORICS", label: t.stages.combinatorics },
+        { id: "PROJECTION", label: t.stages.projection },
+        { id: "ROTATION", label: t.stages.rotation },
+        { id: "UNFOLD", label: t.stages.unfold },
     ];
 
     return (
@@ -195,12 +229,11 @@ export default function S102Page() {
             }}
             monitorContent={
                 <>
-                    <S102_StatisticsCanvas
-                        type={stage}
-                        data={currentQuest?.expressionLatex.includes("Data:") ?
-                            currentQuest.expressionLatex.split("Data:")[1].split(",").map(n => parseFloat(n)) : undefined}
+                    <TesseractCanvas
+                        unfoldProgress={currentQuest.unfoldProgress || 0}
+                        rotationSpeed={stage === "ROTATION" ? 1.5 : 1}
                     />
-                    <div className="space-y-4">
+                    <div className="space-y-4 mt-4">
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {t.target_title}
                         </div>
@@ -268,7 +301,7 @@ export default function S102Page() {
                     <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                         {t.labels.input}
                     </div>
-                    <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                    <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : currentQuest.slots.length === 3 ? "grid-cols-3" : "grid-cols-2 sm:grid-cols-4")}>
                         {currentQuest.slots.map((slot) => (
                             <div key={slot.id} className="space-y-2">
                                 <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
@@ -288,10 +321,10 @@ export default function S102Page() {
 
                 <div className="text-[10px] text-white/40 font-mono italic text-center mt-6">
                     {currentLanguage === 'DE'
-                        ? "Tipp: Gib das Resultat als Ganzzahl, Bruch (z.B. 1/3) oder auf 2 Dezimalstellen gerundet an."
+                        ? "Tipp: Gib das Resultat als Ganzzahl, Dezimalzahl (z.B. 1.41) oder algebraischen Ausdruck (z.B. a^4) an."
                         : currentLanguage === 'CN'
-                            ? "提示：输入整数、分数 (如 1/3) 或保留 2 位小数。"
-                            : "Tip: Enter result as an integer, fraction (e.g. 1/3) or rounded to 2 decimal places."
+                            ? "提示：输入整数、小数 (如 1.41) 或代数表达式 (如 a^4)。"
+                            : "Tip: Enter result as an integer, decimal (e.g. 1.41) or algebraic expression (e.g. a^4)."
                     }
                 </div>
 

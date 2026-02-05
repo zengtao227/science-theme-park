@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Text } from "@react-three/drei";
+import { Float, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
@@ -21,162 +21,152 @@ interface HydroCanvasProps {
 
 const palette = {
   water: "#00e5ff",
-  turbine: "#a855f7",
   glow: "#39ff14",
   steel: "#1d2633",
-  text: "#dbe7ff",
+  purple: "#a855f7",
+  text: "#dbe7ff"
 };
+
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
 const pseudo = (n: number) => {
   const x = Math.sin(n * 12.9898) * 43758.5453;
   return x - Math.floor(x);
 };
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value));
-}
-
-function Turbine({ speed, powered }: { speed: number; powered: boolean }) {
-  const ref = useRef<THREE.Group>(null);
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.rotation.z += speed;
-    }
-  });
-
-  const bladeColor = powered ? palette.glow : "#536076";
-
+function PressureArrow({
+  origin,
+  direction,
+  magnitude,
+  color
+}: {
+  origin: THREE.Vector3;
+  direction: THREE.Vector3;
+  magnitude: number;
+  color: string;
+}) {
+  if (magnitude <= 0) return null;
+  const length = clamp(magnitude * 0.0006, 0.2, 1.2);
+  const end = origin.clone().add(direction.clone().normalize().multiplyScalar(length));
   return (
-    <group ref={ref} position={[0.4, -0.2, 0]}>
-      <mesh>
-        <cylinderGeometry args={[0.35, 0.35, 0.18, 24]} />
-        <meshStandardMaterial color={palette.turbine} emissive={palette.turbine} emissiveIntensity={powered ? 0.5 : 0.1} metalness={0.8} roughness={0.2} />
+    <group>
+      <Line points={[origin, end]} color={color} lineWidth={4} transparent opacity={0.8} />
+      <Line points={[origin, end]} color={color} lineWidth={10} transparent opacity={0.18} />
+      <mesh position={end}>
+        <coneGeometry args={[0.06, 0.16, 12]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.8} />
       </mesh>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <mesh key={i} rotation={[0, 0, (Math.PI / 3) * i]}>
-          <boxGeometry args={[0.08, 0.7, 0.1]} />
-          <meshStandardMaterial color={bladeColor} emissive={bladeColor} emissiveIntensity={powered ? 1 : 0.2} metalness={0.6} roughness={0.3} />
-        </mesh>
-      ))}
     </group>
   );
 }
 
-function FlowParticles({ intensity }: { intensity: number }) {
-  const count = 48;
+function Sediment({ bounds }: { bounds: { x: number; y: number; z: number } }) {
+  const count = 120;
   const ref = useRef<THREE.InstancedMesh>(null);
-  const offsets = useMemo(() => Array.from({ length: count }, (_, i) => pseudo(i + 1)), [count]);
-  const lanes = useMemo(() => Array.from({ length: count }, (_, i) => (i % 6) - 3), [count]);
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  const offsets = useMemo(() => Array.from({ length: count }, (_, i) => pseudo(i + 3)), [count]);
+  const seeds = useMemo(() => Array.from({ length: count }, (_, i) => pseudo(i + 31)), [count]);
 
   useFrame(({ clock }) => {
-    const mesh = ref.current;
-    if (!mesh) return;
-    const speed = Math.max(0.4, intensity * 1.6);
-    mesh.visible = intensity > 0.05;
-    const t = clock.elapsedTime * speed;
+    const t = clock.elapsedTime;
     for (let i = 0; i < count; i += 1) {
-      const x = -3 + ((t + offsets[i]) % 1) * 6;
-      const y = -0.7 + lanes[i] * 0.08;
-      dummy.position.set(x, y, -0.2);
+      const x = (offsets[i] - 0.5) * bounds.x * 1.6;
+      const y = -bounds.y * 0.5 + (seeds[i] * bounds.y);
+      const z = (pseudo(i + 80) - 0.5) * bounds.z * 1.4;
+      const drift = Math.sin(t * 0.6 + i) * 0.08;
+      dummy.position.set(x + drift, y + Math.sin(t * 0.4 + i) * 0.05, z);
       dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
+      ref.current?.setMatrixAt(i, dummy.matrix);
     }
-    mesh.instanceMatrix.needsUpdate = true;
+    if (ref.current) ref.current.instanceMatrix.needsUpdate = true;
   });
 
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[0.05, 8, 8]} />
-      <meshStandardMaterial color={palette.water} emissive={palette.water} emissiveIntensity={1.6} transparent opacity={0.85} />
+      <sphereGeometry args={[0.03, 8, 8]} />
+      <meshStandardMaterial color="#9fb3c8" emissive="#567089" emissiveIntensity={0.2} transparent opacity={0.5} />
     </instancedMesh>
   );
 }
 
-export default function HydroCanvas({
-  stage,
-  mass,
-  height,
-  velocity,
-  time,
-  efficiency,
-  readoutLabel,
-  readoutValue,
-  readoutUnit
-}: HydroCanvasProps) {
-  const flowIntensity = useMemo(() => {
-    if (stage === "POTENTIAL") return clamp((height ?? 0) / 50, 0.15, 1);
-    if (stage === "KINETIC") return clamp((velocity ?? 0) / 15, 0.15, 1);
-    if (stage === "POWER") return clamp((readoutValue ?? 0) / 30000, 0.15, 1);
-    return 0.4;
-  }, [height, readoutValue, stage, velocity]);
+export default function HydroCanvas({ stage }: HydroCanvasProps) {
+  const tank = { x: 4.6, y: 3.2, z: 2.4 };
+  const waterSurfaceY = 0.6;
+  const rho = 1000;
+  const g = 9.81;
+  const [probePos, setProbePos] = useState(new THREE.Vector3(0.4, 0.2, 0));
+  const dragRef = useRef(false);
 
-  const spinSpeed = useMemo(() => 0.02 + flowIntensity * 0.06, [flowIntensity]);
-  const powered = flowIntensity > 0.2;
-  const efficiencyGlow = efficiency ? clamp(efficiency, 0.2, 1) : 0.6;
+  const pressure = useMemo(() => {
+    const depth = Math.max(0, waterSurfaceY - probePos.y);
+    return rho * g * depth;
+  }, [probePos.y, rho, g, waterSurfaceY]);
 
-  const displayText = readoutValue !== undefined && readoutValue !== null
-    ? `${readoutLabel ?? ""} ${readoutValue.toFixed(1)} ${readoutUnit ?? ""}`.trim()
-    : `${readoutLabel ?? ""}`.trim();
+  const arrows = useMemo(() => {
+    const size = 0.22;
+    return [
+      { origin: probePos.clone().add(new THREE.Vector3(size, 0, 0)), dir: new THREE.Vector3(1, 0, 0) },
+      { origin: probePos.clone().add(new THREE.Vector3(-size, 0, 0)), dir: new THREE.Vector3(-1, 0, 0) },
+      { origin: probePos.clone().add(new THREE.Vector3(0, size, 0)), dir: new THREE.Vector3(0, 1, 0) },
+      { origin: probePos.clone().add(new THREE.Vector3(0, -size, 0)), dir: new THREE.Vector3(0, -1, 0) },
+      { origin: probePos.clone().add(new THREE.Vector3(0, 0, size)), dir: new THREE.Vector3(0, 0, 1) },
+      { origin: probePos.clone().add(new THREE.Vector3(0, 0, -size)), dir: new THREE.Vector3(0, 0, -1) }
+    ];
+  }, [probePos]);
 
   return (
-    <div className="w-full h-[320px] rounded-xl border border-white/10 bg-black/70 overflow-hidden">
-      <Canvas camera={{ position: [0, 1.8, 6.2], fov: 45 }}>
+    <div className="w-full h-[360px] rounded-xl border border-white/10 bg-black/70 overflow-hidden">
+      <Canvas camera={{ position: [0, 1.8, 6.4], fov: 45 }}>
         <color attach="background" args={["#05070c"]} />
-        <ambientLight intensity={0.4} />
-        <pointLight position={[3, 4, 3]} intensity={1.2} />
+        <ambientLight intensity={0.35} />
+        <pointLight position={[4, 4, 4]} intensity={1.2} />
         <pointLight position={[-4, -2, 2]} intensity={0.6} color={palette.water} />
-        <Float speed={0.8} rotationIntensity={0.1} floatIntensity={0.15}>
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.95, 0]}>
-            <planeGeometry args={[9, 4]} />
-            <meshStandardMaterial color="#08131f" metalness={0.2} roughness={0.7} />
+        <Float speed={0.6} rotationIntensity={0.1} floatIntensity={0.15}>
+          <mesh position={[0, -0.8, 0]}>
+            <boxGeometry args={[tank.x + 0.4, tank.y + 0.2, tank.z + 0.4]} />
+            <meshStandardMaterial color={palette.steel} metalness={0.7} roughness={0.3} />
           </mesh>
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.75, -0.2]}>
-            <planeGeometry args={[8.5, 3.2]} />
-            <meshStandardMaterial color={palette.water} emissive={palette.water} emissiveIntensity={0.2 + flowIntensity * 0.6} transparent opacity={0.5} />
+          <mesh position={[0, -0.7, 0]}>
+            <boxGeometry args={[tank.x, tank.y, tank.z]} />
+            <meshPhysicalMaterial color={palette.water} transmission={0.7} roughness={0.1} thickness={0.6} />
           </mesh>
-          <mesh position={[-1.8, -0.2, -0.4]}>
-            <boxGeometry args={[0.8, 2.2, 0.8]} />
-            <meshStandardMaterial color={palette.steel} metalness={0.7} roughness={0.2} />
+          <mesh position={[0, -0.7, 0]}>
+            <boxGeometry args={[tank.x * 0.98, tank.y * 0.95, tank.z * 0.98]} />
+            <meshStandardMaterial color={palette.water} transparent opacity={0.22} emissive={palette.water} emissiveIntensity={0.2} />
           </mesh>
-          <mesh position={[-0.8, -0.3, -0.4]}>
-            <boxGeometry args={[1.4, 1.8, 0.9]} />
-            <meshStandardMaterial color={palette.steel} metalness={0.6} roughness={0.3} />
+          <Sediment bounds={tank} />
+          <mesh
+            position={probePos}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              dragRef.current = true;
+            }}
+            onPointerUp={() => {
+              dragRef.current = false;
+            }}
+            onPointerMove={(e) => {
+              if (!dragRef.current) return;
+              const x = clamp(e.point.x, -tank.x * 0.4, tank.x * 0.4);
+              const y = clamp(e.point.y, -tank.y * 0.55, waterSurfaceY + 0.4);
+              const z = clamp(e.point.z, -tank.z * 0.4, tank.z * 0.4);
+              setProbePos(new THREE.Vector3(x, y, z));
+            }}
+          >
+            <boxGeometry args={[0.4, 0.4, 0.4]} />
+            <meshStandardMaterial color={palette.purple} emissive={palette.purple} emissiveIntensity={0.5} metalness={0.6} roughness={0.2} />
           </mesh>
-          <mesh position={[2.2, -0.1, -0.1]}>
-            <boxGeometry args={[1.6, 1.5, 0.7]} />
-            <meshStandardMaterial color="#111820" metalness={0.4} roughness={0.4} emissive={palette.turbine} emissiveIntensity={0.2 + efficiencyGlow * 0.6} />
-          </mesh>
-          <Turbine speed={spinSpeed} powered={powered} />
-          <FlowParticles intensity={flowIntensity} />
-          <Text position={[0, 1.1, 0]} fontSize={0.2} color={palette.text} font="/fonts/Inter-Bold.woff">
-            {displayText}
+          {arrows.map((arrow, i) => (
+            <PressureArrow key={i} origin={arrow.origin} direction={arrow.dir} magnitude={pressure} color={palette.glow} />
+          ))}
+          <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.6, 0))} fontSize={0.22} color={palette.text} font="/fonts/Inter-Bold.woff">
+            {`P = ${(pressure / 1000).toFixed(2)} kPa`}
           </Text>
-          {mass !== undefined && (
-            <Text position={[-2.4, 0.75, 0]} fontSize={0.14} color="#7b8ca3" font="/fonts/Inter-Bold.woff">
-              {`${mass} kg`}
-            </Text>
-          )}
-          {height !== undefined && (
-            <Text position={[-2.4, 0.52, 0]} fontSize={0.14} color="#7b8ca3" font="/fonts/Inter-Bold.woff">
-              {`${height} m`}
-            </Text>
-          )}
-          {velocity !== undefined && (
-            <Text position={[-2.4, 0.29, 0]} fontSize={0.14} color="#7b8ca3" font="/fonts/Inter-Bold.woff">
-              {`${velocity} m/s`}
-            </Text>
-          )}
-          {time !== undefined && (
-            <Text position={[-2.4, 0.06, 0]} fontSize={0.14} color="#7b8ca3" font="/fonts/Inter-Bold.woff">
-              {`${time} s`}
-            </Text>
-          )}
-          {efficiency !== undefined && (
-            <Text position={[-2.4, -0.17, 0]} fontSize={0.14} color={palette.glow} font="/fonts/Inter-Bold.woff">
-              {`η ${efficiency}`}
-            </Text>
-          )}
+          <Text position={probePos.clone().add(new THREE.Vector3(0.6, 0.4, 0))} fontSize={0.16} color={palette.text} font="/fonts/Inter-Bold.woff">
+            {`ρgh, h=${Math.max(0, waterSurfaceY - probePos.y).toFixed(2)} m`}
+          </Text>
+          <Text position={[-2.1, 1.4, 0]} fontSize={0.18} color={palette.text} font="/fonts/Inter-Bold.woff">
+            {stage}
+          </Text>
         </Float>
       </Canvas>
     </div>

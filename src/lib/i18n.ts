@@ -36,8 +36,8 @@ export const translations = {
             s2_05_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
             s1_01_title: "S1.01 // AREAS & VOLUMES",
             s1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
-            s1_02_title: "S1.02 // DATA & CHANCE",
-            s1_02_subtitle: "Analyze data sets with statistics and explore probability theory basics.",
+            s1_02_title: "S1.02 // 4D HYPER-GEOMETRY",
+            s1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
             p1_02_title: "P1.02 // NEWTON'S LAWS",
             p1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
             p2_02_title: "P2.02 // CIRCUIT SANDBOX",
@@ -573,7 +573,7 @@ export const translations = {
         },
         s1_02: {
             back: "Back to Nexus",
-            title: "S1.02 // DATA & CHANCE",
+            title: "S1.02 // 4D HYPER-GEOMETRY",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -581,28 +581,29 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "Data Analytics",
+            target_title: "4D Projection",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S1.02_MONITOR",
-            footer_left: "S1.02_STATISTICS // NODE: BASEL",
+            monitor_title: "S1.02_TESSERACT_LAB",
+            footer_left: "S1.02_4D_GEOMETRY // NODE: BASEL",
             stages: {
-                statistics: "STATISTICS",
-                probability: "PROBABILITY",
-                combinatorics: "COMBINATORICS",
-                statistics_prompt_latex: "\\text{Analyze the data. Find mean and median.}",
-                probability_prompt_latex: "\\text{Calculate the probability P(X).}"
+                projection: "4D PROJECTION",
+                rotation: "ROTATION MATRICES",
+                unfold: "TESSERACT UNFOLD",
+                projection_prompt_latex: "\\text{Calculate the 3D projection of the 4D point.}",
+                rotation_prompt_latex: "\\text{Apply 4D rotation and find the resulting coordinates.}",
+                unfold_prompt_latex: "\\text{Count the cells in the unfolded tesseract net.}"
             },
             labels: {
                 input: "INPUT",
                 hints: "HINTS"
             },
             mission: {
-                title: "MISSION: BERN STATION PUNCTUALITY",
-                description: "In Bern, analyze SBB arrival delays (minutes) to report average and median."
+                title: "MISSION: CERN HYPERCUBE CALIBRATION",
+                description: "At CERN, calibrate the 4D detector array by projecting hypercube vertices into 3D space."
             }
         },
         c1_02: {
@@ -824,8 +825,8 @@ export const translations = {
             s2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
             s1_01_title: "S1.01 // 面积与体积",
             s1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
-            s1_02_title: "S1.02 // 数据与概率",
-            s1_02_subtitle: "利用统计学分析数据集，并探索概率论基础知识。",
+            s1_02_title: "S1.02 // 四维超几何",
+            s1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
             p1_02_title: "P1.02 // 牛顿定律",
             p1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
             p2_02_title: "P2.02 // 电路沙盒",
@@ -1361,7 +1362,7 @@ export const translations = {
         },
         s1_02: {
             back: "返回枢纽",
-            title: "S1.02 // 数据与概率",
+            title: "S1.02 // 四维超几何",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -1369,28 +1370,29 @@ export const translations = {
                 elite: "精英"
             },
             objective_title: "当前任务目标",
-            target_title: "数据分析",
+            target_title: "四维投影",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S1.02_监控",
-            footer_left: "S1.02_统计与概率 // 节点：巴塞尔",
+            monitor_title: "S1.02_超立方体实验室",
+            footer_left: "S1.02_四维几何 // 节点：巴塞尔",
             stages: {
-                statistics: "统计学",
-                probability: "概率",
-                combinatorics: "组合学",
-                statistics_prompt_latex: "\\text{分析数据。找出平均数和中位数。}",
-                probability_prompt_latex: "\\text{计算概率 P(X)。}"
+                projection: "四维投影",
+                rotation: "旋转矩阵",
+                unfold: "超立方体展开",
+                projection_prompt_latex: "\\text{计算四维点的三维投影。}",
+                rotation_prompt_latex: "\\text{应用四维旋转并找到结果坐标。}",
+                unfold_prompt_latex: "\\text{计算展开的超立方体网格中的胞数。}"
             },
             labels: {
                 input: "输入",
                 hints: "提示"
             },
             mission: {
-                title: "任务：伯尔尼车站准点性",
-                description: "在伯尔尼，分析 SBB 到站延误（分钟）的平均数和中位数。"
+                title: "任务：CERN 超立方体校准",
+                description: "在 CERN，通过将超立方体顶点投影到三维空间来校准四维探测器阵列。"
             }
         },
         c1_02: {
@@ -1612,8 +1614,8 @@ export const translations = {
             s2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
             s1_01_title: "S1.01 // FLÄCHEN & VOLUMEN",
             s1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-            s1_02_title: "S1.02 // DATEN & ZUFALL",
-            s1_02_subtitle: "Analysiere Datensätze mit Statistik und erkunde Grundlagen der Wahrscheinlichkeit.",
+            s1_02_title: "S1.02 // 4D HYPER-GEOMETRIE",
+            s1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
             p1_02_title: "P1.02 // NEWTONS GESETZE",
             p1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
             p2_02_title: "P2.02 // STROMKREIS-SANDBOX",
@@ -2149,7 +2151,7 @@ export const translations = {
         },
         s1_02: {
             back: "Zurück zum Nexus",
-            title: "S1.02 // DATEN & ZUFALL",
+            title: "S1.02 // 4D HYPER-GEOMETRIE",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -2157,28 +2159,29 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Aktuelles Missionsziel",
-            target_title: "Datenanalyse",
+            target_title: "4D-Projektion",
             next: "Nächste Sequenz ausführen",
             check: "Prüfen",
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S1.02_MONITOR",
-            footer_left: "S1.02_STATISTIK // KNOTEN: BASEL",
+            monitor_title: "S1.02_TESSERAKT_LABOR",
+            footer_left: "S1.02_4D_GEOMETRIE // KNOTEN: BASEL",
             stages: {
-                statistics: "STATISTIK",
-                probability: "WAHRSCHEINLICHKEIT",
-                combinatorics: "KOMBINATORIK",
-                statistics_prompt_latex: "\\text{Analysiere die Daten. Bestimme Mittelwert und Median.}",
-                probability_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit P(X).}"
+                projection: "4D-PROJEKTION",
+                rotation: "ROTATIONSMATRIZEN",
+                unfold: "TESSERAKT-ENTFALTUNG",
+                projection_prompt_latex: "\\text{Berechne die 3D-Projektion des 4D-Punktes.}",
+                rotation_prompt_latex: "\\text{Wende 4D-Rotation an und finde die resultierenden Koordinaten.}",
+                unfold_prompt_latex: "\\text{Zähle die Zellen im entfalteten Tesserakt-Netz.}"
             },
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE"
             },
             mission: {
-                title: "MISSION: BAHNHOF BERN PÜNKTLICHKEIT",
-                description: "In Bern analysiere SBB-Verspätungen (Minuten) und bestimme Mittelwert und Median."
+                title: "MISSION: CERN HYPERWÜRFEL-KALIBRIERUNG",
+                description: "Bei CERN kalibriere das 4D-Detektorarray durch Projektion von Hyperwürfel-Eckpunkten in den 3D-Raum."
             }
         },
         c1_02: {

@@ -571,7 +571,7 @@ export default function S301Page() {
       monitorContent={
         <S301QuadraticCanvas
           quest={currentQuest}
-          labels={{ target: t.target_title, hints: t.labels.hints }}
+          _labels={{ target: t.target_title, hints: t.labels.hints }}
         />
       }
     >

@@ -122,17 +122,22 @@ function PhysicsCrate({
   const boundary = 10;
   const kineticMu = friction;
   const staticMu = Math.min(1, friction * 1.25);
-  const forcesRef = useRef({
+  const initialForces = {
     appliedForce: 0,
     frictionForce: 0,
     normalForce: mass * g,
     gravityForce: -mass * g
-  });
-  const [forces, setForces] = useState(forcesRef.current);
+  };
+  const forcesRef = useRef(initialForces);
+  const [forces, setForces] = useState(initialForces);
+  const initialKinematics = { velocity: initialVelocity, acceleration: 0 };
+  const kinematicsRef = useRef(initialKinematics);
+  const [kinematics, setKinematics] = useState(initialKinematics);
 
   useEffect(() => {
     const id = setInterval(() => {
       setForces({ ...forcesRef.current });
+      setKinematics({ ...kinematicsRef.current });
     }, 120);
     return () => clearInterval(id);
   }, []);
@@ -162,6 +167,10 @@ function PhysicsCrate({
     acceleration.current = netForce / mass;
     velocity.current += acceleration.current * delta;
     posX.current += velocity.current * delta;
+    kinematicsRef.current = {
+      velocity: velocity.current,
+      acceleration: acceleration.current
+    };
 
     if (posX.current > boundary - halfSize) {
       posX.current = boundary - halfSize;
@@ -270,17 +279,17 @@ function PhysicsCrate({
       />
 
       <ForceVector
-        direction={[velocity.current >= 0 ? 1 : -1, 0, 0]}
-        magnitude={Math.abs(velocity.current) * 120}
+        direction={[kinematics.velocity >= 0 ? 1 : -1, 0, 0]}
+        magnitude={Math.abs(kinematics.velocity) * 120}
         color="#7dd3fc"
-        label={`v ${velocity.current.toFixed(2)} m/s`}
+        label={`v ${kinematics.velocity.toFixed(2)} m/s`}
         position={[0, 1.8, 0]}
       />
       <ForceVector
-        direction={[acceleration.current >= 0 ? 1 : -1, 0, 0]}
-        magnitude={Math.abs(acceleration.current) * 120}
+        direction={[kinematics.acceleration >= 0 ? 1 : -1, 0, 0]}
+        magnitude={Math.abs(kinematics.acceleration) * 120}
         color="#c4b5fd"
-        label={`a ${acceleration.current.toFixed(2)} m/s²`}
+        label={`a ${kinematics.acceleration.toFixed(2)} m/s²`}
         position={[0, 2.4, 0]}
       />
     </group>
@@ -357,7 +366,7 @@ export default function P102LawsCanvas(props: P102CanvasProps) {
     frictionState: "kinetic" as const
   };
   const telemetryRef = useRef<Telemetry>(initialTelemetry);
-  const [telemetry, setTelemetry] = useState(initialTelemetry);
+  const [telemetry, setTelemetry] = useState<Telemetry>(initialTelemetry);
 
   useEffect(() => {
     const id = setInterval(() => {
