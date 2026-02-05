@@ -1,161 +1,243 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useEffect, useMemo, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
+import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import P104_FerryCanvas from "@/components/chamber/p1-04/FerryCanvas";
-import { RotateCw, Wind } from "lucide-react";
+import RelativityCanvas from "@/components/chamber/p1-04/RelativityCanvas";
+
+type Stage = "CONTRACTION" | "DILATION" | "SPACETIME";
+type P104T = typeof translations.EN.p1_04;
+
+interface P104Quest extends Quest {
+    stage: Stage;
+    v: number; // velocity as fraction of c (0 to 1)
+    l0?: number; // proper length
+    t0?: number; // proper time
+}
+
+const c = 1;
+
+function getGamma(v: number) {
+    return 1 / Math.sqrt(1 - v * v);
+}
+
+const questData = [
+    { id: "R1", v: 0.6 },
+    { id: "R2", v: 0.8 },
+    { id: "R3", v: 0.95 },
+    { id: "R4", v: 0.5 },
+    { id: "R5", v: 0.99 },
+    { id: "R6", v: 0.866 }, // gamma approx 2
+    { id: "R7", v: 0.943 }, // gamma approx 3
+];
+
+function buildStagePool(t: P104T, difficulty: Difficulty, stage: Stage): P104Quest[] {
+    const all = questData.map((item) => {
+        const gamma = getGamma(item.v);
+        const l0 = 10;
+        const t0 = 10;
+
+        let expected = 0;
+        let prompt = "";
+        let target = "";
+        let correct = "";
+        let slots: any[] = [];
+
+        if (stage === "CONTRACTION") {
+            expected = Number((l0 / gamma).toFixed(2));
+            prompt = t.stages.contraction_prompt_latex;
+            target = "L";
+            correct = `L = L_0/\\gamma = ${expected}\\;m`;
+            slots = [{ id: "L", labelLatex: "L", placeholder: "m", expected }];
+        } else if (stage === "DILATION") {
+            expected = Number((t0 * gamma).toFixed(2));
+            prompt = t.stages.dilation_prompt_latex;
+            target = "t";
+            correct = `t = t_0 \\cdot \\gamma = ${expected}\\;s`;
+            slots = [{ id: "t", labelLatex: "t", placeholder: "s", expected }];
+        } else {
+            expected = Number(gamma.toFixed(2));
+            prompt = t.stages.spacetime_prompt_latex;
+            target = "\\gamma";
+            correct = `\\gamma = ${expected}`;
+            slots = [{ id: "gamma", labelLatex: "\\gamma", placeholder: "factor", expected }];
+        }
+
+        return {
+            id: item.id,
+            difficulty,
+            stage,
+            v: item.v,
+            l0,
+            t0,
+            promptLatex: prompt,
+            expressionLatex: `v=${item.v}c,\\; L_0=10m,\\; t_0=10s`,
+            targetLatex: target,
+            slots,
+            correctLatex: correct,
+        };
+    });
+
+    if (difficulty === "BASIC") return all.slice(0, 4);
+    return all;
+}
 
 export default function P104Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage];
+    const t = translations[currentLanguage].p1_04;
 
-    // Physics State
-    const [angle, setAngle] = useState(0);
-    const [positionX, setPositionX] = useState(0); // 0 to 1
-    const [isSimulating, setIsSimulating] = useState(false);
-    const [status, setStatus] = useState<"IDLE" | "CROSSING" | "ARRIVED">("IDLE");
-
-    const riverSpeed = 2.5; // m/s
-    const liftCoefficient = 0.05;
+    const {
+        difficulty,
+        stage,
+        inputs,
+        lastCheck,
+        currentQuest,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+        parseNumberLike,
+    } = useQuestManager<P104Quest, Stage>({
+        buildPool: (d, s) => buildStagePool(t, d, s),
+        initialStage: "CONTRACTION",
+    });
 
     useEffect(() => {
-        let frame: number;
-        const update = () => {
-            if (isSimulating && status === "CROSSING") {
-                const angleRad = (angle * Math.PI) / 180;
-                const thrust = Math.sin(angleRad) * riverSpeed * liftCoefficient;
+        if (lastCheck?.ok) {
+            completeStage("p1-04", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
 
-                setPositionX(prev => {
-                    const next = prev + thrust;
-                    if (next >= 1) {
-                        setStatus("ARRIVED");
-                        setIsSimulating(false);
-                        completeStage("p1-04", "BASEL_CROSSING");
-                        return 1;
-                    }
-                    if (next <= 0 && prev > 0) return 0;
-                    return next;
-                });
-            }
-            frame = requestAnimationFrame(update);
-        };
-        frame = requestAnimationFrame(update);
-        return () => cancelAnimationFrame(frame);
-    }, [isSimulating, status, angle, completeStage]);
+    const [simVelocity, setSimVelocity] = useState(0.8);
 
-    const startCrossing = () => {
-        if (status === "ARRIVED") setPositionX(0);
-        setStatus("CROSSING");
-        setIsSimulating(true);
-    };
-
-    const reset = () => {
-        setPositionX(0);
-        setStatus("IDLE");
-        setIsSimulating(false);
-    };
+    useEffect(() => {
+        if (currentQuest) {
+            setSimVelocity(currentQuest.v);
+        }
+    }, [currentQuest]);
 
     return (
         <ChamberLayout
-            title={t.p1_04.title}
+            title={t.title}
             moduleCode="P1.04"
-            difficulty="CORE"
-            onDifficultyChange={() => { }}
-            stages={[{ id: "BASEL_CROSSING", label: t.p1_04.stage_label }]}
-            currentStage="BASEL_CROSSING"
-            onStageChange={() => { }}
-            onVerify={startCrossing}
-            onNext={reset}
-            checkStatus={status === "ARRIVED" ? { ok: true, correct: "SUCCESS" } : null}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={[
+                { id: "CONTRACTION", label: t.stages.contraction },
+                { id: "DILATION", label: t.stages.dilation },
+                { id: "SPACETIME", label: t.stages.spacetime },
+            ]}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
             translations={{
-                back: t.p1_04.back,
-                check: status === "CROSSING" ? t.p1_04.crossing : t.p1_04.start,
-                next: t.p1_04.reset,
-                correct: t.p1_04.arrived,
-                incorrect: t.p1_04.drifting,
-                ready: t.p1_04.ready,
-                difficulty: { core: "CORE" }
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
             }}
             monitorContent={
-                <P104_FerryCanvas
-                    angle={angle}
-                    velocity={riverSpeed}
-                    positionX={positionX}
-                />
-            }
-        >
-            <div className="space-y-12">
-                <div className="text-center space-y-2">
-                    <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.p1_04.header}</h3>
-                    <p className="text-base text-white/70 font-mono">
-                        {t.p1_04.description}
-                    </p>
-                </div>
+                <div className="space-y-4">
+                    <RelativityCanvas
+                        velocityFraction={simVelocity}
+                        restLength={currentQuest?.l0 || 3}
+                        properTimeSeconds={currentQuest?.t0 || 10}
+                    />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Control Panel */}
-                    <div className="hud-panel p-8 space-y-8 bg-white/[0.02] border-white/10">
-                        <div className="space-y-4">
-                            <label className="flex justify-between items-center text-xs font-black uppercase tracking-widest text-neon-cyan">
-                                <span className="flex items-center gap-2"><RotateCw className="w-4 h-4" /> {t.p1_04.rudder_angle}</span>
-                                <span className="text-xl">{angle}°</span>
-                            </label>
-                            <input
-                                type="range"
-                                min="-45"
-                                max="45"
-                                value={angle}
-                                onChange={(e) => setAngle(parseInt(e.target.value))}
-                                className="w-full accent-neon-cyan bg-white/10"
-                            />
-                            <div className="flex justify-between text-[10px] text-white/20 font-mono">
-                                <span>{t.p1_04.port}</span>
-                                <span>{t.p1_04.center}</span>
-                                <span>{t.p1_04.starboard}</span>
-                            </div>
-                        </div>
+                    <div className="hud-panel p-4 space-y-3 bg-white/[0.02] border-white/10">
+                        <label className="flex justify-between items-center text-[10px] uppercase font-black tracking-widest text-neon-cyan">
+                            <span>{t.labels.velocity}</span>
+                            <span className="text-sm font-mono">{simVelocity.toFixed(3)} c</span>
+                        </label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="0.99"
+                            step="0.01"
+                            value={simVelocity}
+                            onChange={(e) => setSimVelocity(parseFloat(e.target.value))}
+                            className="w-full accent-neon-cyan bg-white/10"
+                        />
 
-                        <div className="pt-6 border-t border-white/5 space-y-4">
-                            <div className="flex items-center justify-between text-[10px] text-white/40 uppercase tracking-widest">
-                                <span>{t.p1_04.environment}</span>
-                                <Wind className="w-3 h-3" />
+                        <div className="grid grid-cols-2 gap-4 pt-2">
+                            <div className="space-y-1">
+                                <div className="text-[8px] text-white/40 uppercase tracking-widest">{t.labels.gamma}</div>
+                                <div className="text-xs text-white font-mono">{getGamma(simVelocity).toFixed(3)}</div>
                             </div>
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-white/40 font-mono">{t.p1_04.river_velocity}:</span>
-                                    <span className="text-white font-black">{riverSpeed} m/s</span>
-                                </div>
-                                <div className="flex justify-between text-xs">
-                                    <span className="text-white/40 font-mono">{t.p1_04.cable_tension}:</span>
-                                    <span className="text-white font-black">{t.p1_04.optimal}</span>
-                                </div>
+                            <div className="space-y-1">
+                                <div className="text-[8px] text-white/40 uppercase tracking-widest">{t.labels.length}</div>
+                                <div className="text-xs text-white font-mono">{(3 / getGamma(simVelocity)).toFixed(2)}m</div>
                             </div>
                         </div>
                     </div>
+                </div>
+            }
+        >
+            <div className="space-y-10">
+                <div className="text-center space-y-2">
+                    <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
+                    <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+                </div>
 
-                    {/* Simulation Info */}
-                    <div className="space-y-6">
-                        <div className="p-6 bg-neon-green/5 border border-neon-green/20 rounded-2xl">
-                            <h4 className="text-[10px] text-neon-green font-black tracking-widest uppercase mb-4">{t.p1_04.mechanism_title}</h4>
-                            <p className="text-xs text-white/60 leading-relaxed font-mono">
-                                {t.p1_04.mechanism_desc}
-                            </p>
-                            <div className="mt-4 p-3 bg-black/40 rounded border border-white/5 text-[10px] font-mono text-neon-green">
-                                F_thrust = F_river * sin(θ) * k
-                            </div>
-                        </div>
+                <div className="text-center">
+                    <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+                    <p className="text-3xl text-white font-black italic">
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                    </p>
+                    <div className="mt-2 text-white/50 font-mono text-sm underline decoration-white/20">
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                    </div>
+                </div>
 
-                        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-2xl">
-                                🚢
+                <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-2xl mx-auto w-full space-y-8">
+                    <div className="grid grid-cols-1 gap-6">
+                        {currentQuest?.slots.map((slot) => (
+                            <div key={slot.id} className="space-y-3">
+                                <div className="text-center text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                                    <InlineMath math={slot.labelLatex} />
+                                </div>
+                                <div className="flex items-center gap-4 justify-center">
+                                    <input
+                                        value={inputs[slot.id] ?? ""}
+                                        onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
+                                        className="w-48 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
+                                        placeholder={slot.placeholder}
+                                        autoFocus
+                                    />
+                                    {slot.id !== 'gamma' && (
+                                        <span className="text-xl font-black text-white/40 font-mono">
+                                            <InlineMath math={slot.id === 'L' ? 'm' : 's'} />
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                            <div>
-                                <div className="text-[10px] text-white/30 uppercase tracking-widest font-black">{t.p1_04.active_ship}</div>
-                                <div className="text-sm text-white font-black">{t.p1_04.ship_name}</div>
-                            </div>
-                        </div>
+                        ))}
+                    </div>
+
+                    <div className="text-[10px] text-white/30 font-mono italic text-center border-t border-white/5 pt-6">
+                        {currentLanguage === 'CN'
+                            ? "提示：所有计算结果请保留 2 位小数。"
+                            : currentLanguage === 'DE'
+                                ? "Tipp: Alle Ergebnisse auf 2 Dezimalstellen runden."
+                                : "Tip: Round all calculations to 2 decimal places."
+                        }
                     </div>
                 </div>
             </div>

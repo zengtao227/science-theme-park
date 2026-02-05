@@ -46,10 +46,14 @@ export const translations = {
             p3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
             p1_03_title: "P1.03 // ENERGY & POWER",
             p1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
-            p1_04_title: "P1.04 // THE RHINE FERRY",
-            p1_04_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
+            p1_04_title: "P1.04 // TIME DILATION",
+            p1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
+            p1_05_title: "P1.05 // THE RHINE FERRY",
+            p1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
             p5_01_title: "P5.01 // THE ATOMIC CORE",
             p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
+            s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
+            s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
             c1_02_title: "C1.02 // MOLE MASTER",
             c1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
             coming_soon: "Simulation sequence not yet initialized.",
@@ -183,6 +187,48 @@ export const translations = {
                     square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
                     zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
                 }
+            }
+        },
+        s3_02: {
+            back: "Back to Nexus",
+            title: "S3.02 // TRIGONOMETRY TOWER",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Trigonometric Values",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "S3.02_TRIG_MONITOR",
+            footer_left: "S3.02_TRIGONOMETRY // NODE: ZURICH",
+            stages: {
+                unit_circle: "UNIT CIRCLE",
+                wave_functions: "WAVE FUNCTIONS",
+                triangle_solver: "TRIANGLE SOLVER",
+                unit_circle_prompt_latex: "\\text{Find }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{ on the unit circle.}",
+                wave_functions_prompt_latex: "\\text{Analyze the sine and cosine wave functions.}",
+                triangle_solver_prompt_latex: "\\text{Solve the right triangle using trigonometric ratios.}"
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                angle: "Angle (θ)",
+                sin: "sin(θ)",
+                cos: "cos(θ)",
+                tan: "tan(θ)",
+                opposite: "Opposite",
+                adjacent: "Adjacent",
+                hypotenuse: "Hypotenuse"
+            },
+            mission: {
+                title: "MISSION: ZURICH TOWER CALIBRATION",
+                description: "Calibrate the Zurich observation tower's angle sensors using trigonometric calculations."
             }
         },
         s2_03: {
@@ -721,7 +767,44 @@ export const translations = {
         },
         p1_04: {
             back: "Back to Nexus",
-            title: "P1.04 // THE RHINE FERRY",
+            title: "P1.04 // TIME DILATION SIMULATOR",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Spacetime HUD",
+            next: "Execute Next Sequence",
+            check: "Engage Warp",
+            correct: "Identity Confirmed",
+            incorrect: "Drift Detected",
+            ready: "Ready",
+            monitor_title: "P1.04_RELATIVITY_CORE",
+            footer_left: "P1.04_RELATIVITY // NODE: BASEL",
+            labels: {
+                velocity: "Velocity (v/c)",
+                gamma: "Lorentz Factor (γ)",
+                length: "Contraction (L)",
+                time: "Dilation (t)"
+            },
+            mission: {
+                title: "MISSION: EINSTEIN'S LABORATORY",
+                description: "Observe the warping of spacetime. As velocity approaches the speed of light, length contracts and time dilates."
+            },
+            stages: {
+                contraction: "LENGTH CONTRACTION",
+                dilation: "TIME DILATION",
+                spacetime: "SPACETIME GRID",
+                contraction_prompt_latex: "\\text{Calculate the contracted length } L = L_0/\\gamma.",
+                dilation_prompt_latex: "\\text{Calculate the dilated time } t = t_0 \\cdot \\gamma.",
+                spacetime_prompt_latex: "\\text{Analyze the Lorentz factor } \\gamma \\text{ for given } v/c."
+            }
+        },
+        p1_05: {
+            back: "Back to Nexus",
+            title: "P1.05 // THE RHINE FERRY",
             stage_label: "RHINE CROSSING",
             crossing: "CROSSING...",
             start: "START ENGINES",
@@ -786,6 +869,45 @@ export const translations = {
                 gamma_decay_prompt_latex: "\\text{Identify the Gamma emission (\\gamma) state.}",
                 fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
             }
+        },
+        p5_02: {
+            back: "Back to Nexus",
+            title: "P5.02 // RELATIVITY LAB",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Relativistic Effects",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "P5.02_RELATIVITY_MONITOR",
+            footer_left: "P5.02_SPECIAL_RELATIVITY // NODE: CERN",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                velocity: "Velocity (v/c)",
+                gamma: "Lorentz Factor (γ)",
+                length: "Contracted Length",
+                time: "Dilated Time"
+            },
+            mission: {
+                title: "EINSTEIN'S LABORATORY",
+                description: "At CERN, calibrate the particle accelerator by calculating relativistic effects at near-light speeds."
+            },
+            stages: {
+                lorentz: "LORENTZ FACTOR",
+                contraction: "LENGTH CONTRACTION",
+                dilation: "TIME DILATION",
+                lorentz_prompt_latex: "\\text{Calculate the Lorentz factor }\\gamma\\text{ at velocity }v.",
+                contraction_prompt_latex: "\\text{Calculate the contracted length }L=L_0/\\gamma.",
+                dilation_prompt_latex: "\\text{Calculate the dilated time }T=T_0\\times\\gamma."
+            }
         }
     },
     CN: {
@@ -835,10 +957,14 @@ export const translations = {
             p3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
             p1_03_title: "P1.03 // 能量与功率",
             p1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
-            p1_04_title: "P1.04 // 莱茵河渡轮",
-            p1_04_subtitle: "通过调整舵角与缆索张力，利用水流力量在巴塞尔跨越莱茵河。",
+            p1_04_title: "P1.04 // 时间膨胀模拟",
+            p1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
+            p1_05_title: "P1.05 // 莱茵河渡轮",
+            p1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
             p5_01_title: "P5.01 // 原子核核心",
             p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
+            s3_02_title: "S3.02 // 三角函数之塔",
+            s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
             c1_02_title: "C1.02 // 摩尔大师",
             c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
             coming_soon: "模拟序列尚未初始化。",
@@ -972,6 +1098,48 @@ export const translations = {
                     square_root_pm_latex: "\\text{开方时要考虑 }\\pm\\text{。}",
                     zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
                 }
+            }
+        },
+        s3_02: {
+            back: "返回枢纽",
+            title: "S3.02 // 三角函数之塔",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "三角函数值",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "S3.02_三角函数监控",
+            footer_left: "S3.02_三角函数 // 节点：苏黎世",
+            stages: {
+                unit_circle: "单位圆",
+                wave_functions: "波函数",
+                triangle_solver: "解三角形",
+                unit_circle_prompt_latex: "\\text{在单位圆上求 }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{。}",
+                wave_functions_prompt_latex: "\\text{分析正弦和余弦波函数。}",
+                triangle_solver_prompt_latex: "\\text{使用三角比解直角三角形。}"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示",
+                angle: "角度 (θ)",
+                sin: "sin(θ)",
+                cos: "cos(θ)",
+                tan: "tan(θ)",
+                opposite: "对边",
+                adjacent: "邻边",
+                hypotenuse: "斜边"
+            },
+            mission: {
+                title: "任务：苏黎世塔楼校准",
+                description: "使用三角函数计算校准苏黎世观测塔的角度传感器。"
             }
         },
         s2_03: {
@@ -1510,7 +1678,44 @@ export const translations = {
         },
         p1_04: {
             back: "返回枢纽",
-            title: "P1.04 // 莱茵河渡轮",
+            title: "P1.04 // 时间膨胀模拟器",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "时空控制台",
+            next: "执行下一序列",
+            check: "开启推进",
+            correct: "物理解析一致",
+            incorrect: "时空偏航",
+            ready: "就绪",
+            monitor_title: "P1.04_相对论核心",
+            footer_left: "P1.04_相对论 // 节点：巴塞尔",
+            labels: {
+                velocity: "速度 (v/c)",
+                gamma: "洛伦兹因子 (γ)",
+                length: "长度收缩 (L)",
+                time: "时间膨胀 (t)"
+            },
+            mission: {
+                title: "任务：爱因斯坦实验室",
+                description: "观察时空的扭曲。当物体接近光速时，长度会发生收缩，时间会发生膨胀。"
+            },
+            stages: {
+                contraction: "长度收缩",
+                dilation: "时间膨胀",
+                spacetime: "时空网格",
+                contraction_prompt_latex: "\\text{计算收缩后的长度 } L = L_0/\\gamma。",
+                dilation_prompt_latex: "\\text{计算膨胀后的时间 } t = t_0 \\cdot \\gamma。",
+                spacetime_prompt_latex: "\\text{分析给定速度下的洛伦兹因子 } \\gamma。"
+            }
+        },
+        p1_05: {
+            back: "返回枢纽",
+            title: "P1.05 // 莱茵河渡轮",
             stage_label: "莱茵河横渡",
             crossing: "正在横渡...",
             start: "启动引擎",
@@ -1575,6 +1780,45 @@ export const translations = {
                 gamma_decay_prompt_latex: "\\text{识别 γ 放射状态。}",
                 fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
             }
+        },
+        p5_02: {
+            back: "返回枢纽",
+            title: "P5.02 // 相对论实验室",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "相对论效应",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "P5.02_相对论监视器",
+            footer_left: "P5.02_狭义相对论 // 节点：CERN",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                velocity: "速度 (v/c)",
+                gamma: "洛伦兹因子 (γ)",
+                length: "收缩长度",
+                time: "膨胀时间"
+            },
+            mission: {
+                title: "爱因斯坦实验室",
+                description: "在 CERN，通过计算接近光速时的相对论效应来校准粒子加速器。"
+            },
+            stages: {
+                lorentz: "洛伦兹因子",
+                contraction: "长度收缩",
+                dilation: "时间膨胀",
+                lorentz_prompt_latex: "\\text{计算速度 }v\\text{ 下的洛伦兹因子 }\\gamma\\text{。}",
+                contraction_prompt_latex: "\\text{计算收缩长度 }L=L_0/\\gamma\\text{。}",
+                dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
+            }
         }
     },
     DE: {
@@ -1624,10 +1868,14 @@ export const translations = {
             p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
             p1_03_title: "P1.03 // ENERGIE & LEISTUNG",
             p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
-            p1_04_title: "P1.04 // DIE RHEINFÄHRE",
-            p1_04_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
+            p1_04_title: "P1.04 // ZEITDILATATION",
+            p1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
+            p1_05_title: "P1.05 // DIE RHEINFÄHRE",
+            p1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
             p5_01_title: "P5.01 // DER ATOMKERN",
             p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
+            s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
+            s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
             c1_02_title: "C1.02 // MOL-MEISTER",
             c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
@@ -1761,6 +2009,48 @@ export const translations = {
                     square_root_pm_latex: "\\text{Wurzel ziehen mit }\\pm\\text{.}",
                     zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
                 }
+            }
+        },
+        s3_02: {
+            back: "Zurück zum Nexus",
+            title: "S3.02 // TRIGONOMETRIE-TURM",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Trigonometrische Werte",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "S3.02_TRIG_MONITOR",
+            footer_left: "S3.02_TRIGONOMETRIE // KNOTEN: ZÜRICH",
+            stages: {
+                unit_circle: "EINHEITSKREIS",
+                wave_functions: "WELLENFUNKTIONEN",
+                triangle_solver: "DREIECKSLÖSER",
+                unit_circle_prompt_latex: "\\text{Bestimme }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{ am Einheitskreis.}",
+                wave_functions_prompt_latex: "\\text{Analysiere die Sinus- und Kosinuswellenfunktionen.}",
+                triangle_solver_prompt_latex: "\\text{Löse das rechtwinklige Dreieck mit trigonometrischen Verhältnissen.}"
+            },
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                angle: "Winkel (θ)",
+                sin: "sin(θ)",
+                cos: "cos(θ)",
+                tan: "tan(θ)",
+                opposite: "Gegenkathete",
+                adjacent: "Ankathete",
+                hypotenuse: "Hypotenuse"
+            },
+            mission: {
+                title: "MISSION: ZÜRICH TURM-KALIBRIERUNG",
+                description: "Kalibriere die Winkelsensoren des Zürcher Aussichtsturms mit trigonometrischen Berechnungen."
             }
         },
         s2_03: {
@@ -2299,7 +2589,44 @@ export const translations = {
         },
         p1_04: {
             back: "Zurück zum Nexus",
-            title: "P1.04 // DIE RHEINFÄHRE",
+            title: "P1.04 // ZEITDILATATIONSSIMULATOR",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Raumzeit-HUD",
+            next: "Nächste Sequenz ausführen",
+            check: "Warp aktivieren",
+            correct: "Identität verifiziert",
+            incorrect: "Drift erkannt",
+            ready: "Bereit",
+            monitor_title: "P1.04_RELATIVITAET_KERN",
+            footer_left: "P1.04_RELATIVITAET // KNOTEN: BASEL",
+            labels: {
+                velocity: "Geschwindigkeit (v/c)",
+                gamma: "Lorentz-Faktor (γ)",
+                length: "Kontraktion (L)",
+                time: "Dilatation (t)"
+            },
+            mission: {
+                title: "MISSION: EINSTEINS LABORATORIUM",
+                description: "Beobachte die Krümmung der Raumzeit. Wenn sich die Geschwindigkeit der Lichtgeschwindigkeit nähert, verkürzt sich die Länge und die Zeit dehnt sich aus."
+            },
+            stages: {
+                contraction: "LÄNGENKONTRAKTION",
+                dilation: "ZEITDILATATION",
+                spacetime: "RAUMZEIT-GITTER",
+                contraction_prompt_latex: "\\text{Berechne die kontrahierte Länge } L = L_0/\\gamma.",
+                dilation_prompt_latex: "\\text{Berechne die dilatierte Zeit } t = t_0 \\cdot \\gamma.",
+                spacetime_prompt_latex: "\\text{Analysiere den Lorentz-Faktor } \\gamma \\text{ für gegebenes } v/c."
+            }
+        },
+        p1_05: {
+            back: "Zurück zum Nexus",
+            title: "P1.05 // DIE RHEINFÄHRE",
             stage_label: "RHEIN-ÜBERFAHRT",
             crossing: "ÜBERFAHRT...",
             start: "ANTRIEB STARTEN",
@@ -2363,6 +2690,45 @@ export const translations = {
                 beta_decay_prompt_latex: "\\text{Gleichen Sie die Gleichung für den Beta-Zerfall (\\beta^-) aus.}",
                 gamma_decay_prompt_latex: "\\text{Identifizieren Sie den Zustand der Gamma-Strahlung (\\gamma).}",
                 fission_prompt_latex: "\\text{Bestimmen Sie das fehlende Produkt in dieser Spaltungsreaktion.}"
+            }
+        },
+        p5_02: {
+            back: "Zurück zum Nexus",
+            title: "P5.02 // RELATIVITÄTSLABOR",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Relativistische Effekte",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "P5.02_RELATIVITÄTS_MONITOR",
+            footer_left: "P5.02_SPEZIELLE_RELATIVITÄT // KNOTEN: CERN",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                velocity: "Geschwindigkeit (v/c)",
+                gamma: "Lorentz-Faktor (γ)",
+                length: "Kontrahierte Länge",
+                time: "Dilatierte Zeit"
+            },
+            mission: {
+                title: "EINSTEINS LABOR",
+                description: "Bei CERN kalibriere den Teilchenbeschleuniger durch Berechnung relativistischer Effekte bei nahezu Lichtgeschwindigkeit."
+            },
+            stages: {
+                lorentz: "LORENTZ-FAKTOR",
+                contraction: "LÄNGENKONTRAKTION",
+                dilation: "ZEITDILATATION",
+                lorentz_prompt_latex: "\\text{Berechne den Lorentz-Faktor }\\gamma\\text{ bei Geschwindigkeit }v.",
+                contraction_prompt_latex: "\\text{Berechne die kontrahierte Länge }L=L_0/\\gamma.",
+                dilation_prompt_latex: "\\text{Berechne die dilatierte Zeit }T=T_0\\times\\gamma."
             }
         }
     }

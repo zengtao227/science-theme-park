@@ -5,7 +5,7 @@ import { translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import ConceptIcon from '@/components/ConceptIcon';
 import { clsx } from 'clsx';
-import { Gamepad2, Atom, FlaskConical } from 'lucide-react';
+import { Gamepad2, Atom, FlaskConical, Sigma } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -103,6 +103,7 @@ export default function Home() {
             <ModuleCard code="S2.06" title={t.home.s2_06_title} desc={t.home.s2_06_subtitle} color="neon-cyan" progress={getProgress('S2.06')} href="/chamber/s2-06" />
 
             <ModuleCard code="S3.01" title={t.home.s3_01_title} desc={t.home.s3_01_subtitle} color="neon-purple" progress={getProgress('S3.01')} href="/chamber/s3-01" />
+            <ModuleCard code="S3.02" title={t.home.s3_02_title} desc={t.home.s3_02_subtitle} color="neon-cyan" progress={getProgress('S3.02')} href="/chamber/s3-02" />
             <ModuleCard code="G1.01" title={t.home.g1_01_title} desc={t.home.g1_01_subtitle} color="neon-purple" progress={getProgress('G1.01')} href="/chamber/g1-01" />
             <ModuleCard code="G2.01" title={t.home.g2_01_title} desc={t.home.g2_01_subtitle} color="neon-cyan" progress={getProgress('G2.01')} href="/chamber/g2-01" />
           </Sector>
@@ -162,6 +163,15 @@ export default function Home() {
               progress={getProgress('P5.01')}
               href="/chamber/p5-01"
             />
+            <ModuleCard
+              code="P1.05"
+              title={t.home.p1_05_title}
+              desc={t.home.p1_05_subtitle}
+              color="neon-green"
+              progress={getProgress('P1.05')}
+              href="/chamber/p1-05"
+            />
+
           </Sector>
 
           {/* CHEMISTRY SECTOR */}
@@ -186,6 +196,23 @@ export default function Home() {
               color="neon-purple"
               progress={getProgress('C1.02')}
               href="/chamber/c1-02"
+            />
+          </Sector>
+
+          {/* ADVANCED MATH SECTOR */}
+          <Sector
+            title="ADVANCED MATH SECTOR"
+            color="neon-amber"
+            progress={0}
+            icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+          >
+            <ModuleCard
+              code="S3.02"
+              title={t.home.s3_02_title}
+              desc={t.home.s3_02_subtitle}
+              color="neon-amber"
+              progress={getProgress('S3.02')}
+              href="/chamber/s3-02"
             />
           </Sector>
 
