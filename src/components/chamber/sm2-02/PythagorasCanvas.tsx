@@ -597,8 +597,8 @@ export interface S202CanvasProps {
 export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
   if (visual.kind === "triangle" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
-      <div className="relative w-full h-full bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [8, 6, 10], fov: 50 }} gl={{ antialias: true }}>
+      <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
+        <Canvas camera={{ position: [8, 6, 12], fov: 55 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -643,8 +643,8 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
 
   if (visual.kind === "space" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
-      <div className="relative w-full h-full bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [12, 10, 12], fov: 50 }} gl={{ antialias: true }}>
+      <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
+        <Canvas camera={{ position: [12, 10, 14], fov: 55 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
           <ambientLight intensity={0.3} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -684,8 +684,8 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
 
   if (visual.kind === "distance" && visual.p1 && visual.p2) {
     return (
-      <div className="relative w-full h-full bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [0, 0, 16], fov: 50 }} gl={{ antialias: true }}>
+      <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
+        <Canvas camera={{ position: [0, 0, 18], fov: 55 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -709,7 +709,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
   }
 
   return (
-    <div className="w-full h-full bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
+    <div className="w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
       <div className="text-white/40 text-center p-8">No visualization available</div>
     </div>
   );

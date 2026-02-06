@@ -328,8 +328,8 @@ export default function S201BinomialCanvas({
   const [exploded, setExploded] = useState(false);
 
   return (
-    <div className="w-full h-full relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-      <Canvas camera={{ position: [12, 10, 12], fov: 50 }} gl={{ antialias: true }}>
+    <div className="w-full h-[800px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+      <Canvas camera={{ position: [12, 12, 14], fov: 55 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
