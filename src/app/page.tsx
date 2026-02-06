@@ -87,8 +87,12 @@ export default function Home() {
     { code: "SM3.03", title: t.home.sm3_03_title, desc: t.home.sm3_03_subtitle, color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
     { code: "SM3.04", title: t.home.sm3_04_title, desc: t.home.sm3_04_subtitle, color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
     { code: "GM1.01", title: t.home.gm1_01_title, desc: t.home.gm1_01_subtitle, color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
+    { code: "GM1.01-ADV", title: t.home.gm1_01_title + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
     { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
+    { code: "GM4.01", title: "GM4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
+    { code: "GM5.01", title: "GM5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
+    { code: "GMS1.01", title: "GMS1.01 // FRACTAL EXPLORER", desc: "Explore fractals and self-similarity patterns.", color: "neon-green", href: "/chamber/gms1-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
@@ -97,27 +101,42 @@ export default function Home() {
     { code: "SP1.04", title: t.home.sp1_04_title, desc: t.home.sp1_04_subtitle, color: "neon-cyan", href: "/chamber/sp1-04", tags: ["physics"] },
     { code: "SP1.05", title: t.home.sp1_05_title, desc: t.home.sp1_05_subtitle, color: "neon-cyan", href: "/chamber/sp1-05", tags: ["physics"] },
     { code: "SP1.06", title: t.home.sp1_06_title, desc: t.home.sp1_06_subtitle, color: "neon-amber", href: "/chamber/sp1-06", tags: ["physics"] },
+    { code: "SP1.08", title: "SP1.08 // OPTICS LAB", desc: "Explore light, lenses, and optical phenomena", color: "neon-purple", href: "/chamber/sp1-08", tags: ["physics"] },
     { code: "SP2.01", title: t.home.sp2_01_title, desc: t.home.sp2_01_subtitle, color: "neon-amber", href: "/chamber/sp2-01", tags: ["physics"] },
     { code: "SP2.02", title: t.home.sp2_02_title, desc: t.home.sp2_02_subtitle, color: "neon-cyan", href: "/chamber/sp2-02", tags: ["physics"] },
+    { code: "SP2.03", title: "SP2.03 // MOTOR LAB", desc: "Electromagnetism and motor principles", color: "neon-green", href: "/chamber/sp2-03", tags: ["physics"] },
     { code: "SP3.01", title: t.home.sp3_01_title, desc: t.home.sp3_01_subtitle, color: "neon-purple", href: "/chamber/sp3-01", tags: ["physics"] },
     { code: "SP3.02", title: t.home.sp3_02_title, desc: t.home.sp3_02_subtitle, color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
+    { code: "SP4.01", title: "SP4.01 // WAVE BASICS", desc: "Wave properties and sound phenomena", color: "neon-amber", href: "/chamber/sp4-01", tags: ["physics"] },
     { code: "GP5.01", title: t.home.gp5_01_title, desc: t.home.gp5_01_subtitle, color: "neon-cyan", href: "/chamber/gp5-01", tags: ["physics"] },
     { code: "GP5.02", title: t.home.gp5_02_title, desc: t.home.gp5_02_subtitle, color: "neon-purple", href: "/chamber/gp5-02", tags: ["physics"] },
     { code: "GP5.03", title: t.home.gp5_03_title, desc: t.home.gp5_03_subtitle, color: "neon-amber", href: "/chamber/gp5-03", tags: ["physics"] },
+    { code: "GP5.04", title: "GP5.04 // QUANTUM TUNNEL", desc: "Quantum mechanics and wave-particle duality", color: "neon-purple", href: "/chamber/gp5-04", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
     { code: "SC1.01", title: t.home.sc1_01_title, desc: t.home.sc1_01_subtitle, color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
     { code: "SC1.02", title: t.home.sc1_02_title, desc: t.home.sc1_02_subtitle, color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
+    { code: "SC1.03", title: t.home.sc1_03_title || "SC1.03 // ATOMS FORGE", desc: t.home.sc1_03_subtitle || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
+    { code: "SC1.04", title: "SC1.04 // PERIODIC PUZZLE", desc: "Master the periodic table and electron configurations", color: "neon-cyan", href: "/chamber/sc1-04", tags: ["chemistry"] },
     { code: "SC2.01", title: t.home.sc2_01_title, desc: t.home.sc2_01_subtitle, color: "neon-cyan", href: "/chamber/sc2-01", tags: ["chemistry"] },
     { code: "SC2.02", title: t.home.sc2_02_title, desc: t.home.sc2_02_subtitle, color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
-    { code: "SC1.03", title: t.home.sc1_03_title || "SC1.03 // ATOMS FORGE", desc: t.home.sc1_03_subtitle || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
+    { code: "SC2.03", title: "SC2.03 // AERO LAB", desc: "Ideal gas laws and PV=nRT simulations", color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
+    { code: "SC2.04", title: "SC2.04 // SOLUBILITY LAB", desc: "Solutions and crystallization experiments", color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
+    { code: "SC3.01", title: "SC3.01 // MOLECULE CANVAS", desc: "Build and visualize molecular structures", color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
+    { code: "GC1.01", title: "GC1.01 // REDOX TITAN", desc: "Nernst equation and galvanic cells", color: "neon-amber", href: "/chamber/gc1-01", tags: ["chemistry"] },
+    { code: "GC2.01", title: "GC2.01 // CARBON KINGDOM", desc: "Organic chemistry and 3D isomers", color: "neon-green", href: "/chamber/gc2-01", tags: ["chemistry"] },
     { code: "GC3.01", title: t.home.gc3_01_title, desc: t.home.gc3_01_subtitle, color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
+    { code: "GC3.02", title: "GC3.02 // CRYSTAL PALACE", desc: "Solid state chemistry and crystal lattices", color: "neon-purple", href: "/chamber/gc3-02", tags: ["chemistry"] },
   ]), [t]);
 
-  const advancedModules = useMemo(() => ([
-    { code: "GM4.01", title: "GM4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
-    { code: "GM5.01", title: "GM5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
+  const advancedModules = useMemo(() => ([] as Array<{ code: string; title: string; desc: string; color: string; href: string; tags: string[] }>), []);
+
+  const biologyModules = useMemo(() => ([
+    { code: "SB1.01", title: "SB1.01 // CELL FACTORY", desc: "Explore cell structure and organelles", color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
+    { code: "SB1.01-MET", title: "SB1.01 // METABOLIC PATHWAYS", desc: "Cellular metabolism and energy production", color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
+    { code: "SB2.01", title: "SB2.01 // MENDEL'S GARDEN", desc: "Genetics and Punnett squares", color: "neon-purple", href: "/chamber/sb2-01", tags: ["biology"] },
+    { code: "GB3.01", title: "GB3.01 // DNA FORGE", desc: "Molecular biology and DNA replication", color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
   ]), []);
 
   const filterTags = useMemo(() => ([
@@ -143,9 +162,10 @@ export default function Home() {
   const filteredMath = mathModules.filter(matchesModule);
   const filteredPhysics = physicsModules.filter(matchesModule);
   const filteredChemistry = chemistryModules.filter(matchesModule);
+  const filteredBiology = biologyModules.filter(matchesModule);
   const filteredAdvanced = advancedModules.filter(matchesModule);
 
-  const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredAdvanced.length;
+  const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredBiology.length + filteredAdvanced.length;
 
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
@@ -358,6 +378,40 @@ export default function Home() {
             >
               <AnimatePresence mode="popLayout">
                 {filteredAdvanced.map((module) => (
+                  <motion.div
+                    layout
+                    key={module.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <ModuleCard
+                      code={module.code}
+                      title={module.title}
+                      desc={module.desc}
+                      color={module.color}
+                      progress={getProgress(module.code)}
+                      href={module.href}
+                      actionLabel={t.home.initiate_simulation}
+                      completedLabel={t.home.completed_badge}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </Sector>
+          )}
+
+          {filteredBiology.length > 0 && (
+            <Sector
+              title="BIOLOGY SECTOR"
+              color="neon-green"
+              progress={0}
+              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="🧬"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredBiology.map((module) => (
                   <motion.div
                     layout
                     key={module.code}
