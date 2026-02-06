@@ -14,6 +14,13 @@ export default function GS1_01_ComplexFractal() {
     const [centerX, setCenterX] = useState(-0.5);
     const [centerY, setCenterY] = useState(0);
     const [colorScheme, setColorScheme] = useState<"classic" | "fire" | "ice" | "rainbow">("classic");
+    const zoomValue = t("gs1_01.labels.zoom_value").replace("{value}", zoom.toFixed(1));
+    const schemeLabels = {
+        classic: t("gs1_01.labels.scheme.classic"),
+        fire: t("gs1_01.labels.scheme.fire"),
+        ice: t("gs1_01.labels.scheme.ice"),
+        rainbow: t("gs1_01.labels.scheme.rainbow"),
+    };
 
     return (
         <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
@@ -46,53 +53,53 @@ export default function GS1_01_ComplexFractal() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">MAX ITERATIONS</label>
+                        <label className="text-sm text-cyan-400">{t("gs1_01.labels.max_iterations")}</label>
                         <input type="range" min="50" max="500" step="10" value={maxIterations}
                             onChange={(e) => setMaxIterations(Number(e.target.value))} className="w-full" />
                         <div className="text-center text-lg text-cyan-300">{maxIterations}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-purple-400">ZOOM</label>
+                        <label className="text-sm text-purple-400">{t("gs1_01.labels.zoom")}</label>
                         <input type="range" min="0.1" max="100" step="0.1" value={zoom}
                             onChange={(e) => setZoom(Number(e.target.value))} className="w-full" />
-                        <div className="text-center text-lg text-purple-300">{zoom.toFixed(1)}x</div>
+                        <div className="text-center text-lg text-purple-300">{zoomValue}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-amber-400">CENTER X</label>
+                        <label className="text-sm text-amber-400">{t("gs1_01.labels.center_x")}</label>
                         <input type="range" min="-2" max="1" step="0.01" value={centerX}
                             onChange={(e) => setCenterX(Number(e.target.value))} className="w-full" />
                         <div className="text-center text-lg text-amber-300">{centerX.toFixed(3)}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-pink-400">CENTER Y</label>
+                        <label className="text-sm text-pink-400">{t("gs1_01.labels.center_y")}</label>
                         <input type="range" min="-1" max="1" step="0.01" value={centerY}
                             onChange={(e) => setCenterY(Number(e.target.value))} className="w-full" />
                         <div className="text-center text-lg text-pink-300">{centerY.toFixed(3)}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-green-400">COLOR SCHEME</label>
+                        <label className="text-sm text-green-400">{t("gs1_01.labels.color_scheme")}</label>
                         <div className="grid grid-cols-2 gap-2">
                             {(["classic", "fire", "ice", "rainbow"] as const).map((scheme) => (
                                 <button key={scheme} onClick={() => setColorScheme(scheme)}
                                     className={`px-3 py-2 border transition-colors ${
                                         colorScheme === scheme ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-gray-400"
                                     }`}>
-                                    {scheme.toUpperCase()}
+                                    {schemeLabels[scheme]}
                                 </button>
                             ))}
                         </div>
                     </div>
 
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">MANDELBROT SET</div>
+                        <div className="text-sm text-purple-400">{t("gs1_01.mandelbrot.title")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>z₀ = 0</div>
-                            <div>z_{n+1} = z_n² + c</div>
-                            <div>|z_n| &lt; 2 for all n</div>
+                            <div>{t("gs1_01.mandelbrot.line_1")}</div>
+                            <div>{t("gs1_01.mandelbrot.line_2")}</div>
+                            <div>{t("gs1_01.mandelbrot.line_3")}</div>
                         </div>
                     </div>
 

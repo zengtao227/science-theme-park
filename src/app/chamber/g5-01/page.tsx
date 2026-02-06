@@ -20,6 +20,7 @@ export default function G5_01_MatrixGeometry() {
     };
 
     const det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    const detLabel = t("g5_01.labels.det_value").replace("{value}", det.toFixed(2));
 
     return (
         <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
@@ -52,7 +53,7 @@ export default function G5_01_MatrixGeometry() {
                     </div>
 
                     <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">MATRIX A</div>
+                        <div className="text-sm text-cyan-400">{t("g5_01.labels.matrix_title")}</div>
                         <div className="grid grid-cols-2 gap-2">
                             {[0, 1].map(row => [0, 1].map(col => (
                                 <div key={`${row}-${col}`}>
@@ -62,52 +63,52 @@ export default function G5_01_MatrixGeometry() {
                                 </div>
                             )))}
                         </div>
-                        <div className="text-center text-xs text-cyan-300/70">det(A) = {det.toFixed(2)}</div>
+                        <div className="text-center text-xs text-cyan-300/70">{detLabel}</div>
                     </div>
 
                     <div className="space-y-2">
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showEigenvectors} onChange={(e) => setShowEigenvectors(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-yellow-400">Show Eigenvectors</span>
+                            <span className="text-yellow-400">{t("g5_01.labels.show_eigenvectors")}</span>
                         </label>
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showGrid} onChange={(e) => setShowGrid(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-purple-400">Show Grid</span>
+                            <span className="text-purple-400">{t("g5_01.labels.show_grid")}</span>
                         </label>
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={animate} onChange={(e) => setAnimate(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-green-400">Animate</span>
+                            <span className="text-green-400">{t("g5_01.labels.animate")}</span>
                         </label>
                     </div>
 
                     <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">PRESETS</div>
+                        <div className="text-sm text-green-400">{t("g5_01.presets.title")}</div>
                         <div className="grid grid-cols-2 gap-2">
                             <button onClick={() => setMatrix([[2, 0, 0], [0, 2, 0], [0, 0, 1]])}
                                 className="px-2 py-1 border border-green-500 hover:bg-green-500/20 text-xs">
-                                Scale
+                                {t("g5_01.presets.scale")}
                             </button>
                             <button onClick={() => setMatrix([[0, -1, 0], [1, 0, 0], [0, 0, 1]])}
                                 className="px-2 py-1 border border-green-500 hover:bg-green-500/20 text-xs">
-                                Rotate 90°
+                                {t("g5_01.presets.rotate")}
                             </button>
                             <button onClick={() => setMatrix([[1, 1, 0], [0, 1, 0], [0, 0, 1]])}
                                 className="px-2 py-1 border border-green-500 hover:bg-green-500/20 text-xs">
-                                Shear
+                                {t("g5_01.presets.shear")}
                             </button>
                             <button onClick={() => setMatrix([[-1, 0, 0], [0, 1, 0], [0, 0, 1]])}
                                 className="px-2 py-1 border border-green-500 hover:bg-green-500/20 text-xs">
-                                Reflect
+                                {t("g5_01.presets.reflect")}
                             </button>
                         </div>
                     </div>
 
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">LINEAR ALGEBRA</div>
+                        <div className="text-sm text-purple-400">{t("g5_01.linear.title")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>Ax = λx (eigenvalue equation)</div>
-                            <div>det(A - λI) = 0</div>
-                            <div>T(v) = Av</div>
+                            <div>{t("g5_01.linear.line_1")}</div>
+                            <div>{t("g5_01.linear.line_2")}</div>
+                            <div>{t("g5_01.linear.line_3")}</div>
                         </div>
                     </div>
 

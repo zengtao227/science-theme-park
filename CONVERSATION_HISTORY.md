@@ -681,3 +681,103 @@ Mission 59 (GC1.01 氧化还原巨人) 待处理。
 
 ## 📊 验收标准达成
 运行 `npm run lint` 确认以上 7 个文件零警告 ✅
+
+
+---
+
+## Mission K84: NVIDIA Translation Integration
+**状态**: ✅ 完成
+
+### 完成内容
+- ✅ 学习 NVIDIA 模型调用方法（nvidia_chat.py CLI 工具）
+- ✅ 审查 Trae 的 T-CleanupB 任务（已完成，零 warnings）
+- ✅ 给 Trae 安排新任务 T84（I18N Integration）
+- ✅ 使用 NVIDIA qwen 模型生成 EN/CN/DE 三语翻译
+  - 6 个新模块：GP5.02, GS1.01, SP1.08, G3.01, G5.01, GC2.01
+  - 每个模块 6 个 keys（title, back, footer_left, monitor_title, mission.title, mission.description）
+  - 共 36 个翻译条目
+- ✅ 将翻译添加到 `src/lib/i18n.ts` 的三个语言部分
+  - EN 部分：第 2314 行之前
+  - CN 部分：第 4685 行之前
+  - DE 部分：第 6920 行之前
+- ✅ 验证 i18n.ts 文件无错误
+- ✅ 更新 TASKS_FOR_TRAE.md，移除 BLOCKER，通知 Trae 开始工作
+
+### 技术实现
+- **NVIDIA 模型**: qwen/qwq-32b（中文任务，推理能力强）
+- **翻译质量**: 保持技术术语准确性，符合科学教育平台标准
+- **格式一致性**: 保留原有符号（//）和节点标识（NODE: BASEL/RHINE）
+
+### 文件路径
+- `src/lib/i18n.ts` (已更新)
+- `TASKS_FOR_TRAE.md` (已更新)
+- `.agent/workflows/nvidia-chat.md` (学习材料)
+
+---
+
+## 📊 工作流程总结
+1. ✅ 审查 Trae 工作（T-CleanupB 完成）
+2. ✅ 安排新任务（T84 - I18N Integration）
+3. ✅ 使用 NVIDIA 模型生成翻译
+4. ✅ 集成翻译到 i18n.ts
+5. ✅ 通知 Trae 开始工作
+
+下一步：等待 Trae 完成 Mission T84 的 i18n 集成工作。
+
+
+---
+
+## Mission K85: Complete "In Progress" Modules
+**状态**: ✅ 完成
+
+### 完成内容
+- ✅ **SP1.05 - Rhine Ferry** (莱茵河轮渡导航)
+  - 完整的矢量加法物理模拟
+  - 河流流速、缆绳角度、轮渡速度三参数控制
+  - 实时计算合成速度和漂移
+  - 3D 可视化：轮渡、河流粒子、缆绳系统
+  - 矢量分析面板（X/Z 分量、合成速度、合成角度、漂移）
+  - 物理公式：v⃗_resultant = v⃗_ferry + v⃗_river
+  
+- ✅ **SC2.01 - Kinetics Crash** (化学动力学)
+  - 阿伦尼乌斯方程实现：k = A × exp(-Ea / RT)
+  - 100 个分子粒子系统（InstancedMesh）
+  - 碰撞检测和反应模拟
+  - 温度和活化能双参数控制
+  - 能量图谱可视化（反应物 → 过渡态 → 产物）
+  - 碰撞理论：碰撞频率、活性分子分数
+  - 颜色编码：低能（青色）、高能（粉色）、产物（绿色）
+
+### 技术实现
+**SP1.05 - Rhine Ferry**:
+- 矢量加法：v_resultant = v_ferry + v_river
+- 实时轨迹计算：vX = v_ferry × sin(θ), vZ = v_ferry × cos(θ) + v_river
+- 河流粒子流动效果（200 个粒子）
+- 轮渡自动旋转朝向合成速度方向
+
+**SC2.01 - Kinetics Crash**:
+- Arrhenius 方程：k = A × exp(-Ea / RT)
+- 分子速度与温度关系：v ∝ √T
+- 碰撞检测：距离 < 0.3 单位触发碰撞
+- 反应条件：E_combined > Ea
+- 能量曲线：CatmullRomCurve3 绘制反应坐标图
+
+### 文件路径
+- `src/components/chamber/sp1-05/FerryCanvas.tsx`
+- `src/app/chamber/sp1-05/page.tsx`
+- `src/components/chamber/sc2-01/KineticsCanvas.tsx`
+- `src/app/chamber/sc2-01/page.tsx`
+
+### 验收标准
+- ✅ 所有文件通过 diagnostics 检查（零错误）
+- ✅ 物理公式准确实现
+- ✅ 3D 可视化流畅运行
+- ✅ 符合 "Cyber-Euler" 美学（霓虹色、发光效果）
+
+---
+
+## 📊 开发计划更新
+- ✅ SP1.05 Rhine Ferry: 🚧 In Progress → ✅ Production
+- ✅ SC2.01 Kinetics Crash: 🚧 In Progress → ✅ Production
+
+所有标记为 "In Progress" 的模块现已完成！

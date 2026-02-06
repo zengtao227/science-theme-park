@@ -8,6 +8,8 @@ import * as THREE from "three";
 interface RelativityCanvasProps {
   velocity: number;
   showPhotonClock?: boolean;
+  showDoppler?: boolean;
+  showContraction?: boolean;
 }
 
 const pseudo = (seed: number) => {

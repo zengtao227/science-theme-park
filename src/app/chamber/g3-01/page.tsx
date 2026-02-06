@@ -47,14 +47,14 @@ export default function G3_01_ProbabilityVault() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">ROWS (n)</label>
+                        <label className="text-sm text-cyan-400">{t("g3_01.labels.rows")}</label>
                         <input type="range" min="6" max="20" step="1" value={rows}
                             onChange={(e) => setRows(Number(e.target.value))} className="w-full" />
                         <div className="text-center text-lg text-cyan-300">{rows}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-purple-400">BALL COUNT</label>
+                        <label className="text-sm text-purple-400">{t("g3_01.labels.ball_count")}</label>
                         <input type="range" min="50" max="200" step="10" value={ballCount}
                             onChange={(e) => setBallCount(Number(e.target.value))} className="w-full" />
                         <div className="text-center text-lg text-purple-300">{ballCount}</div>
@@ -63,35 +63,35 @@ export default function G3_01_ProbabilityVault() {
                     <div className="space-y-2">
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showDistribution} onChange={(e) => setShowDistribution(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-green-400">Show Distribution</span>
+                            <span className="text-green-400">{t("g3_01.labels.show_distribution")}</span>
                         </label>
                     </div>
 
                     <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">NORMAL DISTRIBUTION</div>
+                        <div className="text-sm text-green-400">{t("g3_01.normal.title")}</div>
                         <div className="space-y-1 text-xs">
                             <div className="flex justify-between">
-                                <span className="text-green-300">Mean (μ):</span>
+                                <span className="text-green-300">{t("g3_01.normal.mean")}</span>
                                 <span className="text-green-200 font-bold">{mean.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-green-300">Std Dev (σ):</span>
+                                <span className="text-green-300">{t("g3_01.normal.std_dev")}</span>
                                 <span className="text-green-200 font-bold">{stdDev.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-green-300">Variance (σ²):</span>
+                                <span className="text-green-300">{t("g3_01.normal.variance")}</span>
                                 <span className="text-green-200 font-bold">{(stdDev * stdDev).toFixed(2)}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">BINOMIAL DISTRIBUTION</div>
+                        <div className="text-sm text-purple-400">{t("g3_01.binomial.title")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>P(X=k) = C(n,k) × p^k × (1-p)^(n-k)</div>
-                            <div>μ = np</div>
-                            <div>σ² = np(1-p)</div>
-                            <div>p = 0.5 (fair coin)</div>
+                            <div>{t("g3_01.binomial.line_1")}</div>
+                            <div>{t("g3_01.binomial.line_2")}</div>
+                            <div>{t("g3_01.binomial.line_3")}</div>
+                            <div>{t("g3_01.binomial.line_4")}</div>
                         </div>
                     </div>
 

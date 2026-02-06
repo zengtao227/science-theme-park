@@ -15,12 +15,13 @@ export default function GC2_01_CarbonKingdom() {
     const [rotationSpeed, setRotationSpeed] = useState(0.5);
 
     const moleculeInfo: Record<string, { formula: string; name: string; type: string }> = {
-        methane: { formula: "CH₄", name: "Methane", type: "Alkane" },
-        ethane: { formula: "C₂H₆", name: "Ethane", type: "Alkane" },
-        benzene: { formula: "C₆H₆", name: "Benzene", type: "Aromatic" },
-        glucose: { formula: "C₆H₁₂O₆", name: "Glucose", type: "Carbohydrate" },
-        alanine: { formula: "C₃H₇NO₂", name: "Alanine", type: "Amino Acid" },
+        methane: { formula: "CH₄", name: t("gc2_01.molecules.methane"), type: t("gc2_01.types.alkane") },
+        ethane: { formula: "C₂H₆", name: t("gc2_01.molecules.ethane"), type: t("gc2_01.types.alkane") },
+        benzene: { formula: "C₆H₆", name: t("gc2_01.molecules.benzene"), type: t("gc2_01.types.aromatic") },
+        glucose: { formula: "C₆H₁₂O₆", name: t("gc2_01.molecules.glucose"), type: t("gc2_01.types.carbohydrate") },
+        alanine: { formula: "C₃H₇NO₂", name: t("gc2_01.molecules.alanine"), type: t("gc2_01.types.amino_acid") },
     };
+    const rotationSpeedValue = t("gc2_01.labels.rotation_speed_value").replace("{value}", rotationSpeed.toFixed(1));
 
     return (
         <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
@@ -53,7 +54,7 @@ export default function GC2_01_CarbonKingdom() {
                     </div>
 
                     <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">MOLECULE INFO</div>
+                        <div className="text-sm text-cyan-400">{t("gc2_01.labels.molecule_info")}</div>
                         <div className="text-center">
                             <div className="text-2xl text-cyan-300 font-bold">{moleculeInfo[molecule].formula}</div>
                             <div className="text-sm text-cyan-300/70">{moleculeInfo[molecule].name}</div>
@@ -62,7 +63,7 @@ export default function GC2_01_CarbonKingdom() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-green-400">SELECT MOLECULE</label>
+                        <label className="text-sm text-green-400">{t("gc2_01.labels.select_molecule")}</label>
                         <div className="grid grid-cols-2 gap-2">
                             {(["methane", "ethane", "benzene", "glucose", "alanine"] as const).map((mol) => (
                                 <button key={mol} onClick={() => setMolecule(mol)}
@@ -76,51 +77,51 @@ export default function GC2_01_CarbonKingdom() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-purple-400">ROTATION SPEED</label>
+                        <label className="text-sm text-purple-400">{t("gc2_01.labels.rotation_speed")}</label>
                         <input type="range" min="0" max="2" step="0.1" value={rotationSpeed}
                             onChange={(e) => setRotationSpeed(Number(e.target.value))} className="w-full" />
-                        <div className="text-center text-lg text-purple-300">{rotationSpeed.toFixed(1)}x</div>
+                        <div className="text-center text-lg text-purple-300">{rotationSpeedValue}</div>
                     </div>
 
                     <div className="space-y-2">
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showBonds} onChange={(e) => setShowBonds(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-cyan-400">Show Bonds</span>
+                            <span className="text-cyan-400">{t("gc2_01.labels.show_bonds")}</span>
                         </label>
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showHydrogens} onChange={(e) => setShowHydrogens(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-pink-400">Show Hydrogens</span>
+                            <span className="text-pink-400">{t("gc2_01.labels.show_hydrogens")}</span>
                         </label>
                     </div>
 
                     <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">ATOM COLORS</div>
+                        <div className="text-sm text-amber-400">{t("gc2_01.labels.atom_colors")}</div>
                         <div className="text-xs space-y-1 text-amber-300/80">
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-gray-500"></div>
-                                <span>Carbon (C)</span>
+                                <span>{t("gc2_01.labels.atom_carbon")}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-white"></div>
-                                <span>Hydrogen (H)</span>
+                                <span>{t("gc2_01.labels.atom_hydrogen")}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                <span>Oxygen (O)</span>
+                                <span>{t("gc2_01.labels.atom_oxygen")}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                                <span>Nitrogen (N)</span>
+                                <span>{t("gc2_01.labels.atom_nitrogen")}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">BOND TYPES</div>
+                        <div className="text-sm text-purple-400">{t("gc2_01.labels.bond_types")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>Single Bond: C-C</div>
-                            <div>Double Bond: C=C</div>
-                            <div>Triple Bond: C≡C</div>
+                            <div>{t("gc2_01.labels.bond_single")}</div>
+                            <div>{t("gc2_01.labels.bond_double")}</div>
+                            <div>{t("gc2_01.labels.bond_triple")}</div>
                         </div>
                     </div>
 

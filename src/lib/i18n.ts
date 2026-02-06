@@ -128,7 +128,7 @@ export const translations = {
             },
             g5_01: {
                 back: "Back to Nexus",
-                title: "G5.01 // MATRIX RELOADED",
+                title: "G5.01 // MATRIX GEOMETRY",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -143,7 +143,7 @@ export const translations = {
                 incorrect: "Mismatch",
                 ready: "Ready",
                 monitor_title: "G5.01_MATRIX_MONITOR",
-                footer_left: "G5.01_MATRIX_RELOADED // NODE: BASEL",
+                footer_left: "G5.01_MATRIX_GEOMETRY // NODE: BASEL",
                 labels: {
                     matrix: "MATRIX A",
                     properties: "PROPERTIES",
@@ -155,11 +155,29 @@ export const translations = {
                     scale_y: "SCALE Y-AXIS",
                     scale_z: "SCALE Z-AXIS",
                     shear_xy: "SHEAR X BY Y",
-                    shear_xz: "SHEAR X BY Z"
+                    shear_xz: "SHEAR X BY Z",
+                    matrix_title: "MATRIX A",
+                    det_value: "det(A) = {value}",
+                    show_eigenvectors: "Show Eigenvectors",
+                    show_grid: "Show Grid",
+                    animate: "Animate"
+                },
+                presets: {
+                    title: "PRESETS",
+                    scale: "Scale",
+                    rotate: "Rotate 90°",
+                    shear: "Shear",
+                    reflect: "Reflect"
+                },
+                linear: {
+                    title: "LINEAR ALGEBRA",
+                    line_1: "Ax = λx (eigenvalue equation)",
+                    line_2: "det(A - λI) = 0",
+                    line_3: "T(v) = Av"
                 },
                 mission: {
-                    title: "MISSION: MATRIX GEOMETRY",
-                    description: "Visualize how matrices transform 3D space. Master rotation, scaling, and shear."
+                    title: "MISSION: LINEAR TRANSFORMATIONS",
+                    description: "Visualize linear algebra in 3D space. Explore matrix transformations, eigenvectors, and geometric intuition."
                 },
                 stages: {
                     rotation: "ROTATION",
@@ -331,7 +349,7 @@ export const translations = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "GC2.01_MOLECULE_MONITOR",
+                monitor_title: "GC2.01_ORGANIC_MONITOR",
                 footer_left: "GC2.01_CARBON_KINGDOM // NODE: BASEL",
                 labels: {
                     input: "INPUT",
@@ -339,11 +357,39 @@ export const translations = {
                     formula: "MOLECULAR FORMULA",
                     iupac_name: "IUPAC NAME",
                     composition: "COMPOSITION",
-                    molecular_mass: "Molecular Mass"
+                    molecular_mass: "Molecular Mass",
+                    molecule_info: "MOLECULE INFO",
+                    select_molecule: "SELECT MOLECULE",
+                    rotation_speed: "ROTATION SPEED",
+                    rotation_speed_value: "{value}x",
+                    show_bonds: "Show Bonds",
+                    show_hydrogens: "Show Hydrogens",
+                    atom_colors: "ATOM COLORS",
+                    atom_carbon: "Carbon (C)",
+                    atom_hydrogen: "Hydrogen (H)",
+                    atom_oxygen: "Oxygen (O)",
+                    atom_nitrogen: "Nitrogen (N)",
+                    bond_types: "BOND TYPES",
+                    bond_single: "Single Bond: C-C",
+                    bond_double: "Double Bond: C=C",
+                    bond_triple: "Triple Bond: C≡C"
+                },
+                molecules: {
+                    methane: "Methane",
+                    ethane: "Ethane",
+                    benzene: "Benzene",
+                    glucose: "Glucose",
+                    alanine: "Alanine"
+                },
+                types: {
+                    alkane: "Alkane",
+                    aromatic: "Aromatic",
+                    carbohydrate: "Carbohydrate",
+                    amino_acid: "Amino Acid"
                 },
                 mission: {
-                    title: "MISSION: ORGANIC SYNTHESIS",
-                    description: "Build organic molecules atom by atom. Master carbon chains and functional groups."
+                    title: "MISSION: ORGANIC CHEMISTRY",
+                    description: "Explore organic molecules in 3D. Study ball-and-stick models, chemical bonds, and molecular geometry."
                 },
                 stages: {
                     alkanes: "ALKANES",
@@ -1094,8 +1140,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "G3.01_PROBABILITY_BOARD",
-            footer_left: "G3.01_PROBABILITY // NODE: BASEL",
+            monitor_title: "G3.01_PROBABILITY_MONITOR",
+            footer_left: "G3.01_PROBABILITY_VAULT // NODE: BASEL",
             stages: {
                 bernoulli: "BERNOULLI",
                 conditional: "CONDITIONAL",
@@ -1109,11 +1155,27 @@ export const translations = {
             },
             labels: {
                 input: "INPUT",
-                hints: "HINTS"
+                hints: "HINTS",
+                rows: "ROWS (n)",
+                ball_count: "BALL COUNT",
+                show_distribution: "Show Distribution"
+            },
+            normal: {
+                title: "NORMAL DISTRIBUTION",
+                mean: "Mean (μ):",
+                std_dev: "Std Dev (σ):",
+                variance: "Variance (σ²):"
+            },
+            binomial: {
+                title: "BINOMIAL DISTRIBUTION",
+                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
+                line_2: "μ = np",
+                line_3: "σ² = np(1-p)",
+                line_4: "p = 0.5 (fair coin)"
             },
             mission: {
-                title: "QUANTUM PROBABILITY VAULT",
-                description: "The high-security vault of the Bank of Basel uses quantum probability gates. Map the Bernoulli trials and predict the distribution."
+                title: "MISSION: GALTON BOARD",
+                description: "Observe the central limit theorem in action. Watch balls fall through pegs and form a normal distribution."
             }
         },
         s2_06: {
@@ -2309,6 +2371,95 @@ export const translations = {
                 acceleration_hint: "Protons reach 99.9999991% speed of light",
                 collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
                 detection_hint: "Magnetic field bends charged particle tracks"
+            }
+        },
+        gp5_02: {
+            title: "GP5.02 // RELATIVITY LAB",
+            back: "Back to Nexus",
+            footer_left: "GP5.02_RELATIVITY_LAB // NODE: RHINE",
+            monitor_title: "GP5.02_RELATIVITY_MONITOR",
+            labels: {
+                lorentz_factor_title: "LORENTZ FACTOR",
+                velocity_label: "VELOCITY (v/c)",
+                velocity_value: "{value}% c",
+                toggle_doppler: "Show Doppler Effect",
+                toggle_contraction: "Show Length Contraction"
+            },
+            effects: {
+                title: "RELATIVISTIC EFFECTS",
+                time_dilation_label: "Time Dilation:",
+                time_dilation_value: "Δt' = {value}Δt",
+                length_contraction_label: "Length Contraction:",
+                length_contraction_value: "L' = {value}L"
+            },
+            formulas: {
+                title: "FORMULAS",
+                gamma: "γ = 1/√(1 - v²/c²)",
+                time: "Δt' = γΔt",
+                length: "L' = L/γ",
+                energy: "E = γmc²"
+            },
+            mission: {
+                title: "MISSION: SPECIAL RELATIVITY",
+                description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
+            }
+        },
+        gs1_01: {
+            title: "GS1.01 // COMPLEX FRACTAL",
+            back: "Back to Nexus",
+            footer_left: "GS1.01_FRACTAL_EXPLORER // NODE: BASEL",
+            monitor_title: "GS1.01_FRACTAL_MONITOR",
+            labels: {
+                max_iterations: "MAX ITERATIONS",
+                zoom: "ZOOM",
+                zoom_value: "{value}x",
+                center_x: "CENTER X",
+                center_y: "CENTER Y",
+                color_scheme: "COLOR SCHEME",
+                scheme: {
+                    classic: "CLASSIC",
+                    fire: "FIRE",
+                    ice: "ICE",
+                    rainbow: "RAINBOW"
+                }
+            },
+            mandelbrot: {
+                title: "MANDELBROT SET",
+                line_1: "z₀ = 0",
+                line_2: "z_{n+1} = z_n² + c",
+                line_3: "|z_n| < 2 for all n"
+            },
+            mission: {
+                title: "MISSION: MANDELBROT SET",
+                description: "Explore the Mandelbrot set with GPU-accelerated rendering. Zoom into infinite complexity and discover self-similar patterns."
+            }
+        },
+        sp1_08: {
+            title: "SP1.08 // OPTICS BENCH",
+            back: "Back to Nexus",
+            footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
+            monitor_title: "SP1.08_OPTICS_MONITOR",
+            labels: {
+                show_prism: "Show Prism Dispersion",
+                medium_1: "MEDIUM 1 (n₁)",
+                medium_2: "MEDIUM 2 (n₂)",
+                incident_angle: "INCIDENT ANGLE (θ₁)",
+                refraction_title: "REFRACTION",
+                refracted_angle: "Refracted Angle (θ₂):",
+                critical_angle: "Critical Angle:",
+                total_internal_reflection: "TOTAL INTERNAL REFLECTION",
+                na: "N/A",
+                angle_value: "{value}°"
+            },
+            snell: {
+                title: "SNELL'S LAW",
+                line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
+                line_2: "θ_c = arcsin(n₂/n₁)",
+                line_3: "v = c/n"
+            },
+            mission: {
+                title: "MISSION: RAY OPTICS",
+                description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
             }
         }
     },
@@ -4621,6 +4772,66 @@ export const translations = {
                 collision_hint: "对撞能量：13 TeV = 13,000 GeV",
                 detection_hint: "磁场使带电粒子径迹弯曲"
             }
+        },
+        gp5_02: {
+            title: "GP5.02 // 相对论实验室",
+            back: "返回 Nexus",
+            footer_left: "GP5.02_相对论实验室 // 节点: RHINE",
+            monitor_title: "GP5.02_相对论监测器",
+            mission: {
+                title: "任务：狭义相对论",
+                description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
+            }
+        },
+        gs1_01: {
+            title: "GS1.01 // 复杂分形",
+            back: "返回 Nexus",
+            footer_left: "GS1.01_分形探索器 // 节点: BASEL",
+            monitor_title: "GS1.01_分形监测器",
+            mission: {
+                title: "任务：曼德布罗特集",
+                description: "使用GPU加速渲染探索曼德布罗特集。深入无限复杂的图案并发现自相似结构。"
+            }
+        },
+        sp1_08: {
+            title: "SP1.08 // 光学工作台",
+            back: "返回 Nexus",
+            footer_left: "SP1.08_光学工作台 // 节点: BASEL",
+            monitor_title: "SP1.08_光学监测器",
+            mission: {
+                title: "任务：几何光学",
+                description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
+            }
+        },
+        g3_01: {
+            title: "G3.01 // 概率仓库",
+            back: "返回 Nexus",
+            footer_left: "G3.01_概率仓库 // 节点: BASEL",
+            monitor_title: "G3.01_概率监测器",
+            mission: {
+                title: "任务：高尔顿板",
+                description: "观察中心极限定理的实际运行。观察球体通过钉板形成正态分布。"
+            }
+        },
+        g5_01: {
+            title: "G5.01 // 矩阵几何",
+            back: "返回 Nexus",
+            footer_left: "G5.01_矩阵几何 // 节点: BASEL",
+            monitor_title: "G5.01_矩阵监测器",
+            mission: {
+                title: "任务：线性变换",
+                description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
+            }
+        },
+        gc2_01: {
+            title: "GC2.01 // 碳王国",
+            back: "返回 Nexus",
+            footer_left: "GC2.01_碳王国 // 节点: BASEL",
+            monitor_title: "GC2.01_有机监测器",
+            mission: {
+                title: "任务：有机化学",
+                description: "在三维空间中探索有机分子。研究球棍模型、化学键和分子几何结构。"
+            }
         }
     },
     DE: {
@@ -6807,6 +7018,56 @@ export const translations = {
                 acceleration_hint: "Protonen erreichen 99,9999991% der Lichtgeschwindigkeit",
                 collision_hint: "Kollisionsenergie: 13 TeV = 13.000 GeV",
                 detection_hint: "Magnetfeld biegt geladene Teilchenspuren"
+            }
+        },
+        gp5_02: {
+            title: "GP5.02 // Relativitätslabor",
+            back: "Zurück zum Nexus",
+            footer_left: "GP5.02_RELATIVITÄTSLABOR // KNOTEN: RHINE",
+            monitor_title: "GP5.02_RELATIVITÄTSMONITOR",
+            mission: {
+                title: "MISSION: Spezielle Relativität",
+                description: "Untersuchen Sie Effekte der speziellen Relativität. Beobachten Sie Zeitdilatation, Längenkontraktion und Dopplereffekt bei relativistischen Geschwindigkeiten."
+            }
+        },
+        gs1_01: {
+            title: "GS1.01 // Komplexes Fraktal",
+            back: "Zurück zum Nexus",
+            footer_left: "GS1.01_FRAKTAL-ERKUNDE // KNOTEN: BASEL",
+            monitor_title: "GS1.01_FRAKTALMONITOR",
+            mission: {
+                title: "MISSION: Mandelbrot-Menge",
+                description: "Untersuchen Sie die Mandelbrot-Menge mit GPU-beschleunigter Darstellung. Vergrößern Sie in unendliche Komplexität und entdecken Sie selbstähnliche Muster."
+            }
+        },
+        sp1_08: {
+            title: "SP1.08 // Optisches Labor",
+            back: "Zurück zum Nexus",
+            footer_left: "SP1.08_OPTIKLABOR // KNOTEN: BASEL",
+            monitor_title: "SP1.08_OPTIKMONITOR",
+            mission: {
+                title: "MISSION: Strahlenoptik",
+                description: "Meistern Sie Snellsches Gesetz und Strahlenoptik. Beobachten Sie Brechung, totale innere Reflexion und Prismadispersion."
+            }
+        },
+        g3_01: {
+            title: "G3.01 // Wahrscheinlichkeitslager",
+            back: "Zurück zum Nexus",
+            footer_left: "G3.01_WAHRSCHEINLICHKEITSLAGER // KNOTEN: BASEL",
+            monitor_title: "G3.01_WAHRSCHEINLICHKEITSMONITOR",
+            mission: {
+                title: "MISSION: Galtontisch",
+                description: "Beobachten Sie den Zentralen Grenzwertsatz im Einsatz. Beobachten Sie Kugeln, die durch Nägel fallen und eine Normalverteilung bilden."
+            }
+        },
+        g5_01: {
+            title: "G5.01 // Matrixgeometrie",
+            back: "Zurück zum Nexus",
+            footer_left: "G5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
+            monitor_title: "G5.01_MATRIXMONITOR",
+            mission: {
+                title: "MISSION: Lineare Transformationen",
+                description: "Visualisieren Sie lineare Algebra im 3D-Raum. Erkunden Sie Matrixtransformationen, Eigenvektoren und geometrische Intuition."
             }
         },
         gc2_01: {

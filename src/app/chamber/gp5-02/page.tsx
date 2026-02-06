@@ -18,6 +18,9 @@ export default function GP5_02_RelativityLab() {
     const gamma = 1 / Math.sqrt(1 - velocity * velocity);
     const timeDilation = gamma;
     const lengthContraction = 1 / gamma;
+    const velocityLabel = t("gp5_02.labels.velocity_value").replace("{value}", (velocity * 100).toFixed(0));
+    const timeDilationValue = t("gp5_02.effects.time_dilation_value").replace("{value}", timeDilation.toFixed(3));
+    const lengthContractionValue = t("gp5_02.effects.length_contraction_value").replace("{value}", lengthContraction.toFixed(3));
 
     return (
         <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
@@ -50,49 +53,49 @@ export default function GP5_02_RelativityLab() {
                     </div>
 
                     <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">LORENTZ FACTOR</div>
+                        <div className="text-sm text-green-400">{t("gp5_02.labels.lorentz_factor_title")}</div>
                         <div className="text-center text-3xl text-green-300 font-bold py-2">γ = {gamma.toFixed(3)}</div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">VELOCITY (v/c)</label>
+                        <label className="text-sm text-cyan-400">{t("gp5_02.labels.velocity_label")}</label>
                         <input type="range" min="0" max="0.99" step="0.01" value={velocity}
                             onChange={(e) => setVelocity(Number(e.target.value))} className="w-full" />
-                        <div className="text-center text-lg text-cyan-300">{(velocity * 100).toFixed(0)}% c</div>
+                        <div className="text-center text-lg text-cyan-300">{velocityLabel}</div>
                     </div>
 
                     <div className="space-y-2">
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showDoppler} onChange={(e) => setShowDoppler(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-purple-400">Show Doppler Effect</span>
+                            <span className="text-purple-400">{t("gp5_02.labels.toggle_doppler")}</span>
                         </label>
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" checked={showContraction} onChange={(e) => setShowContraction(e.target.checked)} className="w-4 h-4" />
-                            <span className="text-pink-400">Show Length Contraction</span>
+                            <span className="text-pink-400">{t("gp5_02.labels.toggle_contraction")}</span>
                         </label>
                     </div>
 
                     <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">RELATIVISTIC EFFECTS</div>
+                        <div className="text-sm text-cyan-400">{t("gp5_02.effects.title")}</div>
                         <div className="space-y-1 text-xs">
                             <div className="flex justify-between">
-                                <span className="text-cyan-300">Time Dilation:</span>
-                                <span className="text-cyan-200 font-bold">Δt&apos; = {timeDilation.toFixed(3)}Δt</span>
+                                <span className="text-cyan-300">{t("gp5_02.effects.time_dilation_label")}</span>
+                                <span className="text-cyan-200 font-bold">{timeDilationValue}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-cyan-300">Length Contraction:</span>
-                                <span className="text-cyan-200 font-bold">L&apos; = {lengthContraction.toFixed(3)}L</span>
+                                <span className="text-cyan-300">{t("gp5_02.effects.length_contraction_label")}</span>
+                                <span className="text-cyan-200 font-bold">{lengthContractionValue}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">FORMULAS</div>
+                        <div className="text-sm text-purple-400">{t("gp5_02.formulas.title")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>γ = 1/√(1 - v²/c²)</div>
-                            <div>Δt&apos; = γΔt</div>
-                            <div>L&apos; = L/γ</div>
-                            <div>E = γmc²</div>
+                            <div>{t("gp5_02.formulas.gamma")}</div>
+                            <div>{t("gp5_02.formulas.time")}</div>
+                            <div>{t("gp5_02.formulas.length")}</div>
+                            <div>{t("gp5_02.formulas.energy")}</div>
                         </div>
                     </div>
 
