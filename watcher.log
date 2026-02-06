@@ -255,3 +255,9 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    b472494..3b82470  main -> main
+[main 4072652] auto: daily sync 2026-02-06 15:44
+ 5 files changed, 298 insertions(+), 281 deletions(-)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   3b82470..4072652  main -> main

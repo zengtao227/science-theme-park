@@ -5237,7 +5237,7 @@ export const translations: Record<string, any> = {
                 locked_level_required: "GESPERRT // STUFE {level}",
                 engine_status_label: "Systemstatus",
                 engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
-            nodes_label: "Knoten",
+                nodes_label: "Knoten",
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
             search_label: "Module filtern",
             search_placeholder: "Nach Code oder Name suchen",
@@ -7393,6 +7393,49 @@ export const translations: Record<string, any> = {
             },
             mission: {
                 title: "MISSION: CHEMISCHES GLEICHGEWICHT",
+                description: "Meistern Sie Le Chateliers Prinzip. Beobachten Sie, wie Systeme auf Stress reagieren."
+            },
+            stages: {
+                concentration: "KONZENTRATION",
+                temperature: "TEMPERATUR",
+                pressure: "DRUCK",
+                concentration_desc: "Reaktant A hinzufügen und Gleichgewichtsverschiebung beobachten",
+                temperature_desc: "Temperatur erhöhen und Teilchengeschwindigkeit beobachten",
+                pressure_desc: "Druck ändern und Volumeneffekte sehen",
+                concentration_hint: "Höhere [A] verschiebt Gleichgewicht nach rechts → mehr C und D",
+                temperature_hint: "Höhere Temperatur erhöht kinetische Energie der Teilchen",
+                pressure_hint: "Höherer Druck verringert Behältervolumen"
+            }
+        },
+        gc3_02: {
+            back: "Zurück zum Nexus",
+            title: "GC3.02 // KRISTALLPALAST",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Kristallstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "GC3.02_KRISTALL_MONITOR",
+            footer_left: "GC3.02_KRISTALLPALAST // KNOTEN: BASEL",
+            labels: {
+                lattice_type: "GITTERTYP",
+                coordination: "KOORDINATIONSZAHL",
+                packing: "PACKUNGSEFFIZIENZ",
+                unit_cell: "EINHEITSZELLE",
+                atoms_per_cell: "Atome pro Zelle",
+                slice_plane: "SCHNITTEBENE (Y-ACHSE)",
+                reset_slice: "Zurücksetzen"
+            },
+            mission: {
+                title: "MISSION: FESTKÖRPERPHYSIK",
                 description: "Erkunden Sie Kristallstrukturen und Bravais-Gitter. Verstehen Sie atomare Packung und Koordination."
             },
             stages: {
@@ -7406,7 +7449,7 @@ export const translations: Record<string, any> = {
                 bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
                 fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
             }
-        }
+        },
     }
 };
 
