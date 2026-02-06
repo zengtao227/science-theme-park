@@ -73,51 +73,51 @@ export default function Home() {
   };
 
   const mathModules = useMemo(() => ([
-    { code: "S1.01", title: t.home.s1_01_title, desc: t.home.s1_01_subtitle, color: "neon-purple", href: "/chamber/s1-01", tags: ["math", "socratic"] },
-    { code: "S1.02", title: t.home.s1_02_title, desc: t.home.s1_02_subtitle, color: "neon-green", href: "/chamber/s1-02", tags: ["math"] },
-    { code: "S2.01", title: t.home.s2_01_title, desc: t.home.s2_01_subtitle, color: "neon-green", href: "/chamber/s2-01", tags: ["math", "socratic"] },
-    { code: "S2.02", title: t.home.s2_02_title, desc: t.home.s2_02_subtitle, color: "neon-cyan", href: "/chamber/s2-02", tags: ["math"] },
-    { code: "S2.03", title: t.home.s2_03_title, desc: t.home.s2_03_subtitle, color: "neon-green", href: "/chamber/s2-03", tags: ["math"] },
-    { code: "S2.04", title: t.home.s2_04_title, desc: t.home.s2_04_subtitle, color: "neon-cyan", href: "/chamber/s2-04", tags: ["math", "socratic"] },
-    { code: "S2.05", title: t.home.s2_05_title, desc: t.home.s2_05_subtitle, color: "neon-cyan", href: "/chamber/s2-05", tags: ["math"] },
-    { code: "S2.06", title: t.home.s2_06_title, desc: t.home.s2_06_subtitle, color: "neon-cyan", href: "/chamber/s2-06", tags: ["math"] },
-    { code: "S2.07", title: t.home.s2_07_title, desc: t.home.s2_07_subtitle, color: "neon-green", href: "/chamber/s2-07", tags: ["math"] },
-    { code: "S3.01", title: t.home.s3_01_title, desc: t.home.s3_01_subtitle, color: "neon-purple", href: "/chamber/s3-01", tags: ["math", "socratic"] },
-    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-cyan", href: "/chamber/s3-02", tags: ["math"] },
-    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03", tags: ["math", "biology"] },
-    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04", tags: ["math"] },
-    { code: "G1.01", title: t.home.g1_01_title, desc: t.home.g1_01_subtitle, color: "neon-purple", href: "/chamber/g1-01", tags: ["math", "socratic"] },
-    { code: "G2.01", title: t.home.g2_01_title, desc: t.home.g2_01_subtitle, color: "neon-cyan", href: "/chamber/g2-01", tags: ["math"] },
-    { code: "G3.01", title: t.home.g3_01_title, desc: t.home.g3_01_subtitle, color: "neon-purple", href: "/chamber/g3-01", tags: ["math", "socratic"] },
+    { code: "SM1.01", title: t.home.sm1_01_title, desc: t.home.sm1_01_subtitle, color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
+    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle, color: "neon-green", href: "/chamber/sm1-02", tags: ["math"] },
+    { code: "SM2.01", title: t.home.sm2_01_title, desc: t.home.sm2_01_subtitle, color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
+    { code: "SM2.02", title: t.home.sm2_02_title, desc: t.home.sm2_02_subtitle, color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
+    { code: "SM2.03", title: t.home.sm2_03_title, desc: t.home.sm2_03_subtitle, color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
+    { code: "SM2.04", title: t.home.sm2_04_title, desc: t.home.sm2_04_subtitle, color: "neon-cyan", href: "/chamber/sm2-04", tags: ["math", "socratic"] },
+    { code: "SM2.05", title: t.home.sm2_05_title, desc: t.home.sm2_05_subtitle, color: "neon-cyan", href: "/chamber/sm2-05", tags: ["math"] },
+    { code: "SM2.06", title: t.home.sm2_06_title, desc: t.home.sm2_06_subtitle, color: "neon-cyan", href: "/chamber/sm2-06", tags: ["math"] },
+    { code: "SM2.07", title: t.home.sm2_07_title, desc: t.home.sm2_07_subtitle, color: "neon-green", href: "/chamber/sm2-07", tags: ["math"] },
+    { code: "SM3.01", title: t.home.sm3_01_title, desc: t.home.sm3_01_subtitle, color: "neon-purple", href: "/chamber/sm3-01", tags: ["math", "socratic"] },
+    { code: "SM3.02", title: t.home.sm3_02_title, desc: t.home.sm3_02_subtitle, color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
+    { code: "SM3.03", title: t.home.sm3_03_title, desc: t.home.sm3_03_subtitle, color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
+    { code: "SM3.04", title: t.home.sm3_04_title, desc: t.home.sm3_04_subtitle, color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
+    { code: "GM1.01", title: t.home.gm1_01_title, desc: t.home.gm1_01_subtitle, color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
+    { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
+    { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
-    { code: "SP1.02", title: t.home.p1_02_title, desc: t.home.p1_02_subtitle, color: "neon-purple", href: "/chamber/p1-02", tags: ["physics"] },
-    { code: "SP1.03", title: t.home.p1_03_title, desc: t.home.p1_03_subtitle, color: "neon-green", href: "/chamber/p1-03", tags: ["physics"] },
-    { code: "SP1.04", title: t.home.p1_04_title, desc: t.home.p1_04_subtitle, color: "neon-cyan", href: "/chamber/p1-04", tags: ["physics"] },
-    { code: "SP1.05", title: t.home.p1_05_title, desc: t.home.p1_05_subtitle, color: "neon-cyan", href: "/chamber/p1-05", tags: ["physics"] },
+    { code: "SP1.02", title: t.home.sp1_02_title, desc: t.home.sp1_02_subtitle, color: "neon-purple", href: "/chamber/sp1-02", tags: ["physics"] },
+    { code: "SP1.03", title: t.home.sp1_03_title, desc: t.home.sp1_03_subtitle, color: "neon-green", href: "/chamber/sp1-03", tags: ["physics"] },
+    { code: "SP1.04", title: t.home.sp1_04_title, desc: t.home.sp1_04_subtitle, color: "neon-cyan", href: "/chamber/sp1-04", tags: ["physics"] },
+    { code: "SP1.05", title: t.home.sp1_05_title, desc: t.home.sp1_05_subtitle, color: "neon-cyan", href: "/chamber/sp1-05", tags: ["physics"] },
     { code: "SP1.06", title: t.home.sp1_06_title, desc: t.home.sp1_06_subtitle, color: "neon-amber", href: "/chamber/sp1-06", tags: ["physics"] },
-    { code: "SP2.01", title: t.home.p2_01_title, desc: t.home.p2_01_subtitle, color: "neon-amber", href: "/chamber/p2-01", tags: ["physics"] },
-    { code: "SP2.02", title: t.home.p2_02_title, desc: t.home.p2_02_subtitle, color: "neon-cyan", href: "/chamber/p2-02", tags: ["physics"] },
-    { code: "SP3.01", title: t.home.p3_01_title, desc: t.home.p3_01_subtitle, color: "neon-purple", href: "/chamber/p3-01", tags: ["physics"] },
-    { code: "GP3.02", title: t.home.p3_02_title, desc: t.home.p3_02_subtitle, color: "neon-cyan", href: "/chamber/p3-02", tags: ["physics"] },
-    { code: "GP5.01", title: t.home.p5_01_title, desc: t.home.p5_01_subtitle, color: "neon-cyan", href: "/chamber/p5-01", tags: ["physics"] },
-    { code: "GP5.02", title: t.home.p5_02_title, desc: t.home.p5_02_subtitle, color: "neon-purple", href: "/chamber/p5-02", tags: ["physics"] },
-    { code: "GP5.03", title: t.home.p5_03_title, desc: t.home.p5_03_subtitle, color: "neon-amber", href: "/chamber/p5-03", tags: ["physics"] },
+    { code: "SP2.01", title: t.home.sp2_01_title, desc: t.home.sp2_01_subtitle, color: "neon-amber", href: "/chamber/sp2-01", tags: ["physics"] },
+    { code: "SP2.02", title: t.home.sp2_02_title, desc: t.home.sp2_02_subtitle, color: "neon-cyan", href: "/chamber/sp2-02", tags: ["physics"] },
+    { code: "SP3.01", title: t.home.sp3_01_title, desc: t.home.sp3_01_subtitle, color: "neon-purple", href: "/chamber/sp3-01", tags: ["physics"] },
+    { code: "SP3.02", title: t.home.sp3_02_title, desc: t.home.sp3_02_subtitle, color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
+    { code: "GP5.01", title: t.home.gp5_01_title, desc: t.home.gp5_01_subtitle, color: "neon-cyan", href: "/chamber/gp5-01", tags: ["physics"] },
+    { code: "GP5.02", title: t.home.gp5_02_title, desc: t.home.gp5_02_subtitle, color: "neon-purple", href: "/chamber/gp5-02", tags: ["physics"] },
+    { code: "GP5.03", title: t.home.gp5_03_title, desc: t.home.gp5_03_subtitle, color: "neon-amber", href: "/chamber/gp5-03", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
-    { code: "SC1.01", title: t.home.c1_01_title, desc: t.home.c1_01_subtitle, color: "neon-purple", href: "/chamber/c1-01", tags: ["chemistry"] },
-    { code: "SC1.02", title: t.home.c1_02_title, desc: t.home.c1_02_subtitle, color: "neon-purple", href: "/chamber/c1-02", tags: ["chemistry"] },
-    { code: "SC2.01", title: t.home.sc2_01_title, desc: t.home.sc2_01_subtitle, color: "neon-cyan", href: "/chamber/c2-01", tags: ["chemistry"] },
+    { code: "SC1.01", title: t.home.sc1_01_title, desc: t.home.sc1_01_subtitle, color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
+    { code: "SC1.02", title: t.home.sc1_02_title, desc: t.home.sc1_02_subtitle, color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
+    { code: "SC2.01", title: t.home.sc2_01_title, desc: t.home.sc2_01_subtitle, color: "neon-cyan", href: "/chamber/sc2-01", tags: ["chemistry"] },
     { code: "SC2.02", title: t.home.sc2_02_title, desc: t.home.sc2_02_subtitle, color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
     { code: "SC1.03", title: t.home.sc1_03_title || "SC1.03 // ATOMS FORGE", desc: t.home.sc1_03_subtitle || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
     { code: "GC3.01", title: t.home.gc3_01_title, desc: t.home.gc3_01_subtitle, color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
   ]), [t]);
 
   const advancedModules = useMemo(() => ([
-    { code: "G4.01", title: "G4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/g4-01", tags: ["math"] },
-    { code: "G5.01", title: "G5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/g5-01", tags: ["math"] },
+    { code: "GM4.01", title: "GM4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
+    { code: "GM5.01", title: "GM5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
   ]), []);
 
   const filterTags = useMemo(() => ([

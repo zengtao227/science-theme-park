@@ -1,6 +1,6 @@
 import { useAppStore } from "@/lib/store";
 
-export const translations = {
+export const translations: Record<string, any> = {
     EN: {
         protocol: {
             system_name: "SYSTEM PROTOCOL v2.1",
@@ -63,26 +63,40 @@ export const translations = {
             gym_title: "GYMNASIUM // UPPER SECONDARY",
             nexus: "The Nexus",
             archive: "Archives",
+            sm1_01_title: "SM1.01 // AREAS & VOLUMES",
+            sm1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
+            sm1_02_title: "SM1.02 // 4D HYPER-GEOMETRY",
+            sm1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
             sm2_01_title: "SM2.01 // BINOMIAL FACTORY",
             sm2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
-            s2_02_title: "S2.02 // PYTHAGORAS & ROOTS",
-            s2_02_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            sm2_02_title: "SM2.02 // PYTHAGORAS & ROOTS",
+            sm2_02_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
+            sm2_03_title: "SM2.03 // LINES & FUNCTIONS",
+            sm2_03_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
+            sm2_04_title: "SM2.04 // SIMILARITY & SCALING",
+            sm2_04_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
+            sm2_05_title: "SM2.05 // POWERS & ROOTS",
+            sm2_05_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
+            sm2_06_title: "SM2.06 // LINEAR SYSTEMS",
+            sm2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
+            sm2_07_title: "SM2.07 // COORDINATE RECON",
+            sm2_07_subtitle: "Coordinate planes, translations, and plotting precision in the Basel grid.",
             sm3_01_title: "SM3.01 // QUADRATIC EQUATIONS",
             sm3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
-            s3_03_title: "S3.03 // EXPONENTIAL GROWTH",
-            s3_03_subtitle: "Model exponential and logarithmic growth with cell division simulations.",
-            s2_03_title: "S2.03 // LINES & FUNCTIONS",
-            s2_03_subtitle: "Master slope, intercept, graph matching, and intersections with low-input steps.",
-            s2_04_title: "S2.04 // SIMILARITY & SCALING",
-            s2_04_subtitle: "Train similarity ratios, scale factors, and applied proportional reasoning.",
-            g1_01_title: "G1.01 // CALCULUS INTRO",
-            g1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
-            g2_01_title: "G2.01 // VECTOR PILOT 3D",
-            g2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
+            sm3_02_title: "SM3.02 // TRIGONOMETRY ARRAY",
+            sm3_02_subtitle: "Train sine, cosine, and phase shifts with wave feedback.",
+            sm3_03_title: "SM3.03 // EXPONENTIAL GROWTH",
+            sm3_03_subtitle: "Model exponential and logarithmic growth with cell division simulations.",
+            sm3_04_title: "SM3.04 // LOGARITHMIC LAB",
+            sm3_04_subtitle: "Decode log scales and inverse growth with precision drills.",
+            gm1_01_title: "GM1.01 // CALCULUS INTRO",
+            gm1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+            gm2_01_title: "GM2.01 // VECTOR PILOT 3D",
+            gm2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
             gm3_01_title: "GM3.01 // PROBABILITY VAULT",
-            g4_01: {
+            gm4_01: {
                 back: "Back to Nexus",
-                title: "G4.01 // COMPLEX HORIZON",
+                title: "GM4.01 // COMPLEX HORIZON",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -96,8 +110,8 @@ export const translations = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "G4.01_COMPLEX_MONITOR",
-                footer_left: "G4.01_COMPLEX_HORIZON // NODE: ZURICH",
+                monitor_title: "GM4.01_COMPLEX_MONITOR",
+                footer_left: "GM4.01_COMPLEX_HORIZON // NODE: ZURICH",
                 labels: {
                     input: "INPUT",
                     hints: "HINTS",
@@ -128,7 +142,7 @@ export const translations = {
             },
             gm5_01: {
                 back: "Back to Nexus",
-                title: "G5.01 // MATRIX GEOMETRY",
+                title: "GM5.01 // MATRIX GEOMETRY",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -142,8 +156,8 @@ export const translations = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "G5.01_MATRIX_MONITOR",
-                footer_left: "G5.01_MATRIX_GEOMETRY // NODE: BASEL",
+                monitor_title: "GM5.01_MATRIX_MONITOR",
+                footer_left: "GM5.01_MATRIX_GEOMETRY // NODE: BASEL",
                 labels: {
                     matrix: "MATRIX A",
                     properties: "PROPERTIES",
@@ -191,35 +205,27 @@ export const translations = {
                     shear_hint: "Shear preserves volume (det = 1)"
                 }
             },
-            g3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
-            s2_06_title: "S2.06 // LINEAR SYSTEMS",
-            s2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
-            s2_05_title: "S2.05 // POWERS & ROOTS",
-            s2_05_subtitle: "Systematically train power laws, negative exponents, and scientific notation.",
-            s1_01_title: "S1.01 // AREAS & VOLUMES",
-            s1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
-            s1_02_title: "S1.02 // 4D HYPER-GEOMETRY",
-            s1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
-            p1_02_title: "SP1.02 // NEWTON'S LAWS",
-            p1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
-            p2_01_title: "SP2.01 // THERMODYNAMICS",
-            p2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
-            p2_02_title: "SP2.02 // CIRCUIT SANDBOX",
-            p2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
-            p3_01_title: "SP3.01 // GEOMETRICAL OPTICS",
-            p3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
-            p1_03_title: "SP1.03 // ENERGY & POWER",
-            p1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
-            p1_04_title: "SP1.04 // TIME DILATION",
-            p1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
-            p3_02_title: "GP3.02 // WAVE OPTICS",
-            p3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
-            p1_05_title: "SP1.05 // THE RHINE FERRY",
-            p1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
+            gm3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
+            sp1_02_title: "SP1.02 // NEWTON'S LAWS",
+            sp1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
+            sp2_01_title: "SP2.01 // THERMODYNAMICS",
+            sp2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
+            sp2_02_title: "SP2.02 // CIRCUIT SANDBOX",
+            sp2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
+            sp3_01_title: "SP3.01 // GEOMETRICAL OPTICS",
+            sp3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
+            sp1_03_title: "SP1.03 // ENERGY & POWER",
+            sp1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
+            sp1_04_title: "SP1.04 // TIME DILATION",
+            sp1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
+            sp3_02_title: "SP3.02 // WAVE OPTICS",
+            sp3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
+            sp1_05_title: "SP1.05 // THE RHINE FERRY",
+            sp1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
             sp1_06_title: "SP1.06 // THE SWISS PENDULUM",
             sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
-            p5_01_title: "GP5.01 // THE ATOMIC CORE",
-            p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
+            gp5_01_title: "GP5.01 // THE ATOMIC CORE",
+            gp5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
             gp5_02: {
                 back: "Back to Nexus",
                 title: "GP5.02 // RELATIVITY LAB",
@@ -271,7 +277,7 @@ export const translations = {
                     doppler_hint: "Light shifts red (receding) or blue (approaching)"
                 }
             },
-            p5_04: {
+            gp5_04: {
                 back: "Back to Nexus",
                 title: "GP5.04 // QUANTUM TUNNEL",
                 difficulty: {
@@ -320,15 +326,15 @@ export const translations = {
                     resonance_hint: "Resonance occurs at specific E/V₀ ratios"
                 }
             },
-            s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
+            sm3_02_title: "S3.02 // TRIGONOMETRY TOWER",
             s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
-            s2_07_title: "S2.07 // COORDINATE GEOMETRY",
+            sm2_07_title: "S2.07 // COORDINATE GEOMETRY",
             s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
-            s3_04_title: "S3.04 // LOGARITHMIC SCALES",
+            sm3_04_title: "S3.04 // LOGARITHMIC SCALES",
             s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
-            c1_01_title: "SC1.01 // MYSTERY LAB",
+            sc1_01_title: "SC1.01 // MYSTERY LAB",
             c1_01_subtitle: "Identify mysterious white powders through chemical tests.",
-            c1_02_title: "SC1.02 // MOLE MASTER",
+            sc1_02_title: "SC1.02 // MOLE MASTER",
             c1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
             sc1_03_title: "SC1.03 // ATOMS FORGE",
             sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
@@ -568,15 +574,15 @@ export const translations = {
             gc3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
             gc3_02_title: "GC3.02 // CRYSTAL PALACE",
             gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
-            g4_01_title: "G4.01 // COMPLEX HORIZON",
+            gm4_01_title: "G4.01 // COMPLEX HORIZON",
             g4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
             gm5_01_title: "GM5.01 // MATRIX TRANSFORM",
             gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
-            p5_02_title: "GP5.02 // RELATIVITY LAB",
+            gp5_02_title: "GP5.02 // RELATIVITY LAB",
             p5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
-            p5_03_title: "GP5.03 // PARTICLE COLLIDER",
+            gp5_03_title: "GP5.03 // PARTICLE COLLIDER",
             p5_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
-            p5_04_title: "GP5.04 // QUANTUM TUNNEL",
+            gp5_04_title: "GP5.04 // QUANTUM TUNNEL",
             p5_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
@@ -621,7 +627,7 @@ export const translations = {
                 experiment: "Experiment"
             }
         },
-        s2_02: {
+        sm2_02: {
             back: "Back to Nexus",
             title: "S2.02 // PYTHAGORAS & ROOTS",
             tabs: {
@@ -745,7 +751,7 @@ export const translations = {
                 }
             }
         },
-        s3_02: {
+        sm3_02: {
             back: "Back to Nexus",
             title: "S3.02 // TRIG CIRCLE",
             difficulty: {
@@ -786,7 +792,7 @@ export const translations = {
                 waves_hint: "Sine and cosine create periodic waves"
             }
         },
-        s3_03: {
+        sm3_03: {
             back: "Back to Nexus",
             title: "S3.03 // GROWTH & LOGS",
             difficulty: {
@@ -830,7 +836,7 @@ export const translations = {
                 applications: "N(t) = N_0 \\cdot e^{kt}"
             }
         },
-        s2_03: {
+        sm2_03: {
             back: "Back to Nexus",
             title: "S2.03 // LINE NAVIGATOR",
             difficulty: {
@@ -884,7 +890,7 @@ export const translations = {
                 level3: "LEVEL 3"
             }
         },
-        s2_04: {
+        sm2_04: {
             back: "Back to Nexus",
             title: "S2.04 // SIMILARITY & SCALING",
             difficulty: {
@@ -1019,7 +1025,7 @@ export const translations = {
                 simulating: "Simulating",
             }
         },
-        g1_01: {
+        gm1_01: {
             back: "Back to Nexus",
             title: "G1.01 // CALCULUS INTRO",
             tabs: {
@@ -1093,7 +1099,7 @@ export const translations = {
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
         },
-        g2_01: {
+        gm2_01: {
             back: "Back to Nexus",
             title: "G2.01 // VECTOR PILOT 3D",
             difficulty: {
@@ -1178,7 +1184,7 @@ export const translations = {
                 description: "Observe the central limit theorem in action. Watch balls fall through pegs and form a normal distribution."
             }
         },
-        s2_06: {
+        sm2_06: {
             back: "Back to Nexus",
             title: "S2.06 // LINEAR SYSTEMS",
             difficulty: {
@@ -1223,7 +1229,7 @@ export const translations = {
                 child: "Children"
             }
         },
-        s2_05: {
+        sm2_05: {
             back: "Back to Nexus",
             title: "S2.05 // POWERS & ROOTS",
             difficulty: {
@@ -1254,9 +1260,9 @@ export const translations = {
                 hints: "HINTS"
             }
         },
-        s1_01: {
+        sm1_01: {
             back: "Back to Nexus",
-            title: "S1.01 // AREAS & VOLUMES",
+            title: "SM1.01 // AREAS & VOLUMES",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1270,8 +1276,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S1.01_MONITOR",
-            footer_left: "S1.01_GEOMETRY // NODE: BASEL",
+            monitor_title: "SM1.01_MONITOR",
+            footer_left: "SM1.01_GEOMETRY // NODE: BASEL",
             stages: {
                 areas: "AREAS",
                 volumes: "VOLUMES",
@@ -1291,9 +1297,9 @@ export const translations = {
                 cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
             }
         },
-        s1_02: {
+        sm1_02: {
             back: "Back to Nexus",
-            title: "S1.02 // THALES TOWER",
+            title: "SM1.02 // THALES TOWER",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1307,8 +1313,8 @@ export const translations = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S1.02_THALES_MONITOR",
-            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "SM1.02_THALES_MONITOR",
+            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -1492,7 +1498,7 @@ export const translations = {
                 description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
             }
         },
-        p1_04: {
+        sp1_04: {
             back: "Back to Nexus",
             title: "P1.04 // TIME DILATION SIMULATOR",
             difficulty: {
@@ -1529,7 +1535,7 @@ export const translations = {
                 spacetime_prompt_latex: "\\text{Analyze the Lorentz factor } \\gamma \\text{ for given } v/c."
             }
         },
-        p1_05: {
+        sp1_05: {
             back: "Back to Nexus",
             title: "P1.05 // THE RHINE FERRY",
             stage_label: "RHINE CROSSING",
@@ -1554,7 +1560,7 @@ export const translations = {
             active_ship: "Active Ship",
             ship_name: "Vogel Gryff // Fähri-Basel"
         },
-        p2_01: {
+        sp2_01: {
             back: "Back to Nexus",
             title: "P2.01 // THERMAL DYNAMICS",
             difficulty: {
@@ -1598,7 +1604,7 @@ export const translations = {
                 mixed: "Q_{\\text{total}} = Q_1 + Q_2"
             }
         },
-        p3_02: {
+        sp3_02: {
             back: "Back to Nexus",
             title: "P3.02 // WAVE OPTICS",
             difficulty: {
@@ -1641,7 +1647,7 @@ export const translations = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        s2_07: {
+        sm2_07: {
             back: "Back to Nexus",
             title: "S2.07 // COORDINATE GEOMETRY",
             difficulty: {
@@ -1763,7 +1769,7 @@ export const translations = {
                 dilation_prompt_latex: "\\text{Calculate the dilated time }T=T_0\\times\\gamma."
             }
         },
-        s3_04: {
+        sm3_04: {
             back: "Back to Nexus",
             title: "S3.04 // LOGARITHMIC SCALES",
             difficulty: {
@@ -2331,7 +2337,7 @@ export const translations = {
                 crystallize_hint: "Cooling causes excess solute to crystallize"
             }
         },
-        p5_03: {
+        gp5_03: {
             back: "Back to Nexus",
             title: "GP5.03 // PARTICLE COLLIDER",
             difficulty: {
@@ -2373,7 +2379,7 @@ export const translations = {
                 detection_hint: "Magnetic field bends charged particle tracks"
             }
         },
-        ggp5_02: {
+        gp5_02: {
             title: "GP5.02 // RELATIVITY LAB",
             back: "Back to Nexus",
             footer_left: "GP5.02_RELATIVITY_LAB // NODE: RHINE",
@@ -2405,11 +2411,11 @@ export const translations = {
                 description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
             }
         },
-        gs1_01: {
-            title: "GS1.01 // COMPLEX FRACTAL",
+        gms1_01: {
+            title: "GMS1.01 // COMPLEX FRACTAL",
             back: "Back to Nexus",
-            footer_left: "GS1.01_FRACTAL_EXPLORER // NODE: BASEL",
-            monitor_title: "GS1.01_FRACTAL_MONITOR",
+            footer_left: "GMS1.01_FRACTAL_EXPLORER // NODE: BASEL",
+            monitor_title: "GMS1.01_FRACTAL_MONITOR",
             labels: {
                 max_iterations: "MAX ITERATIONS",
                 zoom: "ZOOM",
@@ -2526,52 +2532,52 @@ export const translations = {
             gym_title: "高级中学 // 预科阶段",
             nexus: "核心枢纽",
             archive: "实验档案",
-            s2_01_title: "S2.01 // 二项式工厂",
-            s2_01_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
-            s2_02_title: "S2.02 // 勾股定律与开平方",
-            s2_02_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
-            s3_01_title: "S3.01 // 一元二次方程",
-            s3_01_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
-            s3_03_title: "S3.03 // 指数与对数",
-            s3_03_subtitle: "通过细胞分裂模拟理解指数增长与对数刻度。",
-            s2_03_title: "S2.03 // 直线与函数",
-            s2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
-            s2_04_title: "S2.04 // 相似与比例",
-            s2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
-            g1_01_title: "G1.01 // 微积分初步",
-            g1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
-            g2_01_title: "G2.01 // 矢量飞行员 3D",
-            g2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
-            g3_01_title: "G3.01 // 概率金库",
-            g3_01_subtitle: "通过高尔顿钉板可视化二项分布。观察概率收敛到正态分布。",
-            s2_06_title: "S2.06 // 二元一次方程组",
-            s2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
-            s2_05_title: "S2.05 // 幂运算与根号",
-            s2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
-            s1_01_title: "S1.01 // 面积与体积",
-            s1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
-            s1_02_title: "S1.02 // 四维超几何",
-            s1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
-            p1_02_title: "SP1.02 // 牛顿定律",
-            p1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
-            p2_01_title: "SP2.01 // 热力学",
-            p2_01_subtitle: "通过 Q=mcΔT 与 Q=mL 追踪热量与相变过程。",
-            p2_02_title: "SP2.02 // 电路沙盒",
-            p2_02_subtitle: "构建电力网络。掌握欧姆定律以及串并联电路的逻辑。",
-            p3_01_title: "SP3.01 // 几何光学",
-            p3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
-            p1_03_title: "SP1.03 // 能量与功率",
-            p1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
-            p1_04_title: "SP1.04 // 时间膨胀模拟",
-            p1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
-            p3_02_title: "GP3.02 // 波动光学",
-            p3_02_subtitle: "探索干涉、衍射和偏振现象。",
-            p1_05_title: "SP1.05 // 莱茵河渡轮",
-            p1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
+            sm2_01_title: "S2.01 // 二项式工厂",
+            sm2_01_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
+            sm2_02_title: "S2.02 // 勾股定律与开平方",
+            sm2_02_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
+            sm3_01_title: "S3.01 // 一元二次方程",
+            sm3_01_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
+            sm3_03_title: "S3.03 // 指数与对数",
+            sm3_03_subtitle: "通过细胞分裂模拟理解指数增长与对数刻度。",
+            sm2_03_title: "S2.03 // 直线与函数",
+            sm2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
+            sm2_04_title: "S2.04 // 相似与比例",
+            sm2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
+            gm1_01_title: "G1.01 // 微积分初步",
+            gm1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+            gm2_01_title: "G2.01 // 矢量飞行员 3D",
+            gm2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
+            gm3_01_title: "G3.01 // 概率金库",
+            gm3_01_subtitle: "通过高尔顿钉板可视化二项分布。观察概率收敛到正态分布。",
+            sm2_06_title: "S2.06 // 二元一次方程组",
+            sm2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
+            sm2_05_title: "S2.05 // 幂运算与根号",
+            sm2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
+            sm1_01_title: "S1.01 // 面积与体积",
+            sm1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
+            sm1_02_title: "S1.02 // 四维超几何",
+            sm1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
+            sp1_02_title: "SP1.02 // 牛顿定律",
+            sp1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
+            sp2_01_title: "SP2.01 // 热力学",
+            sp2_01_subtitle: "通过 Q=mcΔT 与 Q=mL 追踪热量与相变过程。",
+            sp2_02_title: "SP2.02 // 电路沙盒",
+            sp2_02_subtitle: "构建电力网络。掌握欧姆定律以及串并联电路的逻辑。",
+            sp3_01_title: "SP3.01 // 几何光学",
+            sp3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
+            sp1_03_title: "SP1.03 // 能量与功率",
+            sp1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
+            sp1_04_title: "SP1.04 // 时间膨胀模拟",
+            sp1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
+            sp3_02_title: "SP3.02 // 波动光学",
+            sp3_02_subtitle: "探索干涉、衍射和偏振现象。",
+            sp1_05_title: "SP1.05 // 莱茵河渡轮",
+            sp1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
             sp1_06_title: "SP1.06 // 瑞士钟摆",
             sp1_06_subtitle: "时间的力学：与巴塞尔钟表匠一起探索周期、频率和引力。",
-            p5_01_title: "GP5.01 // 原子核核心",
-            p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
+            gp5_01_title: "GP5.01 // 原子核核心",
+            gp5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
             gp5_02: {
                 back: "返回枢纽",
                 title: "GP5.02 // 相对论实验室",
@@ -2623,7 +2629,7 @@ export const translations = {
                     doppler_hint: "光向红移（远离）或蓝移（接近）"
                 }
             },
-            p5_04: {
+            gp5_04: {
                 back: "返回枢纽",
                 title: "GP5.04 // 量子隧穿",
                 difficulty: {
@@ -2672,15 +2678,15 @@ export const translations = {
                     resonance_hint: "共振发生在特定 E/V₀ 比值"
                 }
             },
-            s3_02_title: "S3.02 // 三角函数之塔",
+            sm3_02_title: "S3.02 // 三角函数之塔",
             s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
-            s2_07_title: "S2.07 // 坐标几何",
+            sm2_07_title: "S2.07 // 坐标几何",
             s2_07_subtitle: "掌握距离、中点和斜率计算。",
-            s3_04_title: "S3.04 // 对数刻度",
+            sm3_04_title: "S3.04 // 对数刻度",
             s3_04_subtitle: "掌握 pH 值、分贝和里氏震级的对数计算。",
-            c1_01_title: "SC1.01 // 神秘挑战",
+            sc1_01_title: "SC1.01 // 神秘挑战",
             c1_01_subtitle: "通过化学测试鉴定神秘白色粉末。",
-            c1_02_title: "SC1.02 // 摩尔大师",
+            sc1_02_title: "SC1.02 // 摩尔大师",
             c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
             sc1_03_title: "SC1.03 // 原子熔炉",
             sc1_03_subtitle: "在 3D 空间中构建同位素并理解原子轨道。",
@@ -2751,15 +2757,15 @@ export const translations = {
             gc3_01_subtitle: "使用 3D 球棍模型组装药物分子。",
             gc3_02_title: "GC3.02 // 晶体宫殿",
             gc3_02_subtitle: "探索晶体结构：SC、BCC、FCC 晶格与间隙空位。",
-            g4_01_title: "G4.01 // 复数地平线",
+            gm4_01_title: "G4.01 // 复数地平线",
             g4_01_subtitle: "在 3D 空间可视化复平面与欧拉公式。",
-            g5_01_title: "G5.01 // 矩阵变形器",
+            gm5_01_title: "G5.01 // 矩阵变形器",
             g5_01_subtitle: "在 3D 空间中体验线性变换与特征向量。",
-            p5_02_title: "GP5.02 // 相对论实验室",
+            gp5_02_title: "GP5.02 // 相对论实验室",
             p5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
-            p5_03_title: "GP5.03 // 粒子对撞机",
+            gp5_03_title: "GP5.03 // 粒子对撞机",
             p5_03_subtitle: "模拟 CERN 的 LHC。在 13 TeV 下对撞质子并发现希格斯玻色子。",
-            p5_04_title: "GP5.04 // 量子隧穿",
+            gp5_04_title: "GP5.04 // 量子隧穿",
             p5_04_subtitle: "用波函数可视化量子隧穿通过势垒。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
@@ -2804,7 +2810,7 @@ export const translations = {
                 experiment: "实验"
             }
         },
-        s2_02: {
+        sm2_02: {
             back: "返回枢纽",
             title: "S2.02 // 勾股定律与开平方",
             tabs: {
@@ -2928,7 +2934,7 @@ export const translations = {
                 }
             }
         },
-        s3_02: {
+        sm3_02: {
             back: "返回枢纽",
             title: "S3.02 // 三角函数圆",
             difficulty: {
@@ -2969,7 +2975,7 @@ export const translations = {
                 waves_hint: "正弦和余弦形成周期波"
             }
         },
-        s3_03: {
+        sm3_03: {
             back: "返回枢纽",
             title: "S3.03 // 增长与对数",
             difficulty: {
@@ -3013,7 +3019,7 @@ export const translations = {
                 applications: "N(t) = N_0 \\cdot e^{kt}"
             }
         },
-        s2_03: {
+        sm2_03: {
             back: "返回枢纽",
             title: "S2.03 // 直线导航器",
             difficulty: {
@@ -3067,7 +3073,7 @@ export const translations = {
                 level3: "等级 3"
             }
         },
-        s2_04: {
+        sm2_04: {
             back: "返回枢纽",
             title: "S2.04 // 相似与比例",
             difficulty: {
@@ -3202,7 +3208,7 @@ export const translations = {
                 simulating: "模拟中",
             }
         },
-        g1_01: {
+        gm1_01: {
             back: "返回枢纽",
             title: "G1.01 // 微积分初步",
             tabs: {
@@ -3276,7 +3282,7 @@ export const translations = {
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
             integral_preview_hint: "掌握导数后解锁 →"
         },
-        g2_01: {
+        gm2_01: {
             back: "返回枢纽",
             title: "G2.01 // 矢量飞行员 3D",
             difficulty: {
@@ -3361,7 +3367,7 @@ export const translations = {
                 description: "观察中心极限定理的实际运行。观察球体通过钉板形成正态分布。"
             }
         },
-        s2_06: {
+        sm2_06: {
             back: "返回枢纽",
             title: "S2.06 // 二元一次方程组",
             difficulty: {
@@ -3406,7 +3412,7 @@ export const translations = {
                 child: "儿童"
             }
         },
-        s2_05: {
+        sm2_05: {
             back: "返回枢纽",
             title: "S2.05 // 幂运算与根号",
             difficulty: {
@@ -3437,9 +3443,9 @@ export const translations = {
                 hints: "提示"
             }
         },
-        s1_01: {
+        sm1_01: {
             back: "返回枢纽",
-            title: "S1.01 // 面积与体积",
+            title: "SM1.01 // 面积与体积",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3453,8 +3459,8 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S1.01_监控",
-            footer_left: "S1.01_几何测量 // 节点：巴塞尔",
+            monitor_title: "SM1.01_监控",
+            footer_left: "SM1.01_几何任务 // 节点：巴塞尔",
             stages: {
                 areas: "面积",
                 volumes: "体积",
@@ -3474,9 +3480,9 @@ export const translations = {
                 cube_desc: "在 CERN，标出立方体的空间对角线并计算其长度。"
             }
         },
-        s1_02: {
+        sm1_02: {
             back: "返回枢纽",
-            title: "S1.02 // THALES TOWER",
+            title: "SM1.02 // THALES TOWER",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3490,8 +3496,8 @@ export const translations = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S1.02_THALES_MONITOR",
-            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "SM1.02_THALES_MONITOR",
+            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -3675,7 +3681,7 @@ export const translations = {
                 description: "将莱茵河水能转化为清洁电力。追踪能量转化与涡轮功率。"
             }
         },
-        p1_04: {
+        sp1_04: {
             back: "返回枢纽",
             title: "P1.04 // 时间膨胀模拟器",
             difficulty: {
@@ -3712,7 +3718,7 @@ export const translations = {
                 spacetime_prompt_latex: "\\text{分析给定速度下的洛伦兹因子 } \\gamma。"
             }
         },
-        p1_05: {
+        sp1_05: {
             back: "返回枢纽",
             title: "P1.05 // 莱茵河渡轮",
             stage_label: "莱茵河横渡",
@@ -3737,7 +3743,7 @@ export const translations = {
             active_ship: "当前船只",
             ship_name: "Vogel Gryff // Fähri-Basel"
         },
-        p2_01: {
+        sp2_01: {
             back: "返回枢纽",
             title: "P2.01 // 热力学",
             difficulty: {
@@ -3781,7 +3787,7 @@ export const translations = {
                 mixed: "Q_{\\text{总}} = Q_1 + Q_2"
             }
         },
-        p3_02: {
+        sp3_02: {
             back: "返回枢纽",
             title: "P3.02 // 波动光学",
             difficulty: {
@@ -3824,7 +3830,7 @@ export const translations = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        s2_07: {
+        sm2_07: {
             back: "返回枢纽",
             title: "S2.07 // 坐标几何",
             difficulty: {
@@ -3946,7 +3952,7 @@ export const translations = {
                 dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
             }
         },
-        s3_04: {
+        sm3_04: {
             back: "返回枢纽",
             title: "S3.04 // 对数刻度",
             difficulty: {
@@ -4794,7 +4800,7 @@ export const translations = {
                 crystallize_hint: "冷却导致过量溶质结晶"
             }
         },
-        p5_03: {
+        gp5_03: {
             back: "返回枢纽",
             title: "GP5.03 // 粒子对撞机",
             difficulty: {
@@ -4868,7 +4874,7 @@ export const translations = {
                 description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
             }
         },
-        gs1_01: {
+        gms1_01: {
             title: "GS1.01 // 复杂分形",
             back: "返回 Nexus",
             footer_left: "GS1.01_分形探索器 // 节点: BASEL",
@@ -4989,50 +4995,50 @@ export const translations = {
             gym_title: "GYMNASIUM // MATURITÄTSSTUFE",
             nexus: "Nexus",
             archive: "Archiv",
-            s2_01_title: "S2.01 // BINOMISCHE FORMELN",
-            s2_01_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
-            s2_02_title: "S2.02 // PYTHAGORAS & WURZELN",
-            s2_02_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
-            s3_01_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
-            s3_01_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
-            s2_03_title: "S2.03 // GERADEN & FUNKTIONEN",
-            s2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
-            s2_04_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
-            s2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
-            g1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
-            g1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
-            g2_01_title: "G2.01 // VEKTOR-PILOT 3D",
-            g2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
-            g3_01_title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
-            g3_01_subtitle: "Visualisiere Binomialverteilung mit Galton-Brett. Beobachte Konvergenz zur Normalverteilung.",
-            s2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
-            s2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
-            s2_05_title: "S2.05 // POTENZEN & WURZELN",
-            s2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
-            s1_01_title: "S1.01 // FLÄCHEN & VOLUMEN",
-            s1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-            s1_02_title: "S1.02 // 4D HYPER-GEOMETRIE",
-            s1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
-            p1_02_title: "SP1.02 // NEWTONS GESETZE",
-            p1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
-            p2_01_title: "SP2.01 // THERMODYNAMIK",
-            p2_01_subtitle: "Meistere Wärmekapazität und Phasenübergänge mit Partikelsimulationen.",
-            p2_02_title: "SP2.02 // STROMKREIS-SANDBOX",
-            p2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
-            p3_01_title: "SP3.01 // GEOMETRISCHE OPTIK",
-            p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
-            p1_03_title: "SP1.03 // ENERGIE & LEISTUNG",
-            p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
-            p1_04_title: "SP1.04 // ZEITDILATATION",
-            p1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
-            p3_02_title: "GP3.02 // WELLENOPTIK",
-            p3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
-            p1_05_title: "SP1.05 // DIE RHEINFÄHRE",
-            p1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
+            sm2_01_title: "S2.01 // BINOMISCHE FORMELN",
+            sm2_01_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
+            sm2_02_title: "S2.02 // PYTHAGORAS & WURZELN",
+            sm2_02_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
+            sm3_01_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
+            sm3_01_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
+            sm2_03_title: "S2.03 // GERADEN & FUNKTIONEN",
+            sm2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
+            sm2_04_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
+            sm2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
+            gm1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
+            gm1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+            gm2_01_title: "G2.01 // VEKTOR-PILOT 3D",
+            gm2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
+            gm3_01_title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
+            gm3_01_subtitle: "Visualisiere Binomialverteilung mit Galton-Brett. Beobachte Konvergenz zur Normalverteilung.",
+            sm2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
+            sm2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
+            sm2_05_title: "S2.05 // POTENZEN & WURZELN",
+            sm2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
+            sm1_01_title: "S1.01 // FLÄCHEN & VOLUMEN",
+            sm1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
+            sm1_02_title: "S1.02 // 4D HYPER-GEOMETRIE",
+            sm1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
+            sp1_02_title: "SP1.02 // NEWTONS GESETZE",
+            sp1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
+            sp2_01_title: "SP2.01 // THERMODYNAMIK",
+            sp2_01_subtitle: "Meistere Wärmekapazität und Phasenübergänge mit Partikelsimulationen.",
+            sp2_02_title: "SP2.02 // STROMKREIS-SANDBOX",
+            sp2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
+            sp3_01_title: "SP3.01 // GEOMETRISCHE OPTIK",
+            sp3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
+            sp1_03_title: "SP1.03 // ENERGIE & LEISTUNG",
+            sp1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
+            sp1_04_title: "SP1.04 // ZEITDILATATION",
+            sp1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
+            sp3_02_title: "SP3.02 // WELLENOPTIK",
+            sp3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
+            sp1_05_title: "SP1.05 // DIE RHEINFÄHRE",
+            sp1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
             sp1_06_title: "SP1.06 // DAS SCHWEIZER PENDEL",
             sp1_06_subtitle: "Die Mechanik der Zeit: Erforsche Periode, Frequenz und Gravitation beim Basler Uhrmacher.",
-            p5_01_title: "GP5.01 // DER ATOMKERN",
-            p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
+            gp5_01_title: "GP5.01 // DER ATOMKERN",
+            gp5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
             gp5_02: {
                 back: "Zurück zum Nexus",
                 title: "GP5.02 // RELATIVITÄTSLABOR",
@@ -5084,7 +5090,7 @@ export const translations = {
                     doppler_hint: "Licht verschiebt sich rot (entfernend) oder blau (nähernd)"
                 }
             },
-            p5_04: {
+            gp5_04: {
                 back: "Zurück zum Nexus",
                 title: "GP5.04 // QUANTENTUNNEL",
                 difficulty: {
@@ -5133,17 +5139,17 @@ export const translations = {
                     resonance_hint: "Resonanz tritt bei bestimmten E/V₀-Verhältnissen auf"
                 }
             },
-            s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
+            sm3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
             s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
-            s2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
+            sm2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
             s2_07_subtitle: "Meistern Sie Entfernungs-, Mittelpunkt- und Steigungsberechnungen.",
-            s3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
+            sm3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
             s3_03_subtitle: "Modelliere exponentielles Wachstum und logarithmische Skalen mit Bakteriensimulationen.",
-            s3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
+            sm3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
             s3_04_subtitle: "Meistern Sie pH-Wert, Dezibel und Richterskala mit logarithmischen Berechnungen.",
-            c1_01_title: "SC1.01 // MYSTERY LAB",
+            sc1_01_title: "SC1.01 // MYSTERY LAB",
             c1_01_subtitle: "Identifizieren Sie mysteriöse weiße Pulver durch chemische Tests.",
-            c1_02_title: "SC1.02 // MOL-MEISTER",
+            sc1_02_title: "SC1.02 // MOL-MEISTER",
             c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
             sc1_03_title: "SC1.03 // ATOMSCHMIEDE",
             sc1_03_subtitle: "Baue Isotope und verstehe Atomorbitale in 3D.",
@@ -5215,15 +5221,15 @@ export const translations = {
                 gc3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
                 gc3_02_title: "GC3.02 // KRISTALLPALAST",
                 gc3_02_subtitle: "Erkunden Sie Kristallstrukturen: SC-, BCC-, FCC-Gitter mit Zwischengitterlücken.",
-                g4_01_title: "G4.01 // KOMPLEXER HORIZONT",
+                gm4_01_title: "G4.01 // KOMPLEXER HORIZONT",
                 g4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
-                g5_01_title: "G5.01 // MATRIX-TRANSFORMATION",
+                gm5_01_title: "G5.01 // MATRIX-TRANSFORMATION",
                 g5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
-                p5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
+                gp5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
                 p5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
-                p5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
+                gp5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
                 p5_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
-                p5_04_title: "GP5.04 // QUANTENTUNNEL",
+                gp5_04_title: "GP5.04 // QUANTENTUNNEL",
                 p5_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
                 coming_soon: "Simulationssequenz noch nicht initialisiert.",
                 engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
@@ -5268,7 +5274,7 @@ export const translations = {
                 experiment: "Experiment"
             }
         },
-        s2_02: {
+        sm2_02: {
             back: "Zurück zum Nexus",
             title: "S2.02 // PYTHAGORAS & WURZELN",
             tabs: {
@@ -5392,7 +5398,7 @@ export const translations = {
                 }
             }
         },
-        s3_02: {
+        sm3_02: {
             back: "Zurück zum Nexus",
             title: "S3.02 // TRIGONOMETRISCHER KREIS",
             difficulty: {
@@ -5450,7 +5456,7 @@ export const translations = {
                 }
             }
         },
-        s3_03: {
+        sm3_03: {
             back: "Zurück zum Nexus",
             title: "S3.03 // WACHSTUM & LOGARITHMEN",
             difficulty: {
@@ -5494,7 +5500,7 @@ export const translations = {
                 applications: "N(t) = N_0 \\cdot e^{kt}"
             }
         },
-        s2_03: {
+        sm2_03: {
             back: "Zurück zum Nexus",
             title: "S2.03 // LINIEN-NAVIGATOR",
             difficulty: {
@@ -5548,7 +5554,7 @@ export const translations = {
                 level3: "LEVEL 3"
             }
         },
-        s2_04: {
+        sm2_04: {
             back: "Zurück zum Nexus",
             title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
             difficulty: {
@@ -5683,7 +5689,7 @@ export const translations = {
                 simulating: "Simuliert",
             }
         },
-        g1_01: {
+        gm1_01: {
             back: "Zurück zum Nexus",
             title: "G1.01 // INFINITESIMALRECHNUNG",
             tabs: {
@@ -5757,7 +5763,7 @@ export const translations = {
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
             integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
         },
-        g2_01: {
+        gm2_01: {
             back: "Zurück zum Nexus",
             title: "G2.01 // VEKTOR-PILOT 3D",
             difficulty: {
@@ -5842,7 +5848,7 @@ export const translations = {
                 description: "Beobachten Sie den Zentralen Grenzwertsatz im Einsatz. Verfolgen Sie Kugeln, die durch Nägel fallen und eine Normalverteilung bilden."
             }
         },
-        s2_06: {
+        sm2_06: {
             back: "Zurück zum Nexus",
             title: "S2.06 // GLEICHUNGSSYSTEME",
             difficulty: {
@@ -5887,7 +5893,7 @@ export const translations = {
                 child: "Kinder"
             }
         },
-        s2_05: {
+        sm2_05: {
             back: "Zurück zum Nexus",
             title: "S2.05 // POTENZEN & WURZELN",
             difficulty: {
@@ -5918,9 +5924,9 @@ export const translations = {
                 hints: "HINWEISE"
             }
         },
-        s1_01: {
+        sm1_01: {
             back: "Zurück zum Nexus",
-            title: "S1.01 // FLÄCHEN & VOLUMEN",
+            title: "SM1.01 // FLÄCHEN & VOLUMEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -5934,8 +5940,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S1.01_MONITOR",
-            footer_left: "S1.01_GEOMETRIE // KNOTEN: BASEL",
+            monitor_title: "SM1.01_MONITOR",
+            footer_left: "SM1.01_GEOMETRIE // KNOTEN: BASEL",
             stages: {
                 areas: "FLÄCHEN",
                 volumes: "VOLUMEN",
@@ -5955,9 +5961,9 @@ export const translations = {
                 cube_desc: "In CERN markiere die Raumdiagonale des Wuerfels und berechne ihre Laenge."
             }
         },
-        s1_02: {
+        sm1_02: {
             back: "Zurück zum Nexus",
-            title: "S1.02 // THALES TOWER",
+            title: "SM1.02 // THALES TOWER",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -5971,8 +5977,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S1.02_THALES_MONITOR",
-            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "SM1.02_THALES_MONITOR",
+            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -6156,7 +6162,7 @@ export const translations = {
                 description: "Wandeln Sie die Energie des Rheins in sauberen Strom um. Verfolgen Sie die Energieübertragung und Turbinenleistung."
             }
         },
-        p1_04: {
+        sp1_04: {
             back: "Zurück zum Nexus",
             title: "P1.04 // ZEITDILATATIONSSIMULATOR",
             difficulty: {
@@ -6193,7 +6199,7 @@ export const translations = {
                 spacetime_prompt_latex: "\\text{Analysiere den Lorentz-Faktor } \\gamma \\text{ für gegebenes } v/c."
             }
         },
-        p1_05: {
+        sp1_05: {
             back: "Zurück zum Nexus",
             title: "P1.05 // DIE RHEINFÄHRE",
             stage_label: "RHEIN-ÜBERFAHRT",
@@ -6218,7 +6224,7 @@ export const translations = {
             active_ship: "Aktives Schiff",
             ship_name: "Vogel Gryff // Fähri-Basel"
         },
-        p2_01: {
+        sp2_01: {
             back: "Zurück zum Nexus",
             title: "P2.01 // THERMODYNAMIK",
             difficulty: {
@@ -6262,7 +6268,7 @@ export const translations = {
                 mixed: "Q_{\\text{gesamt}} = Q_1 + Q_2"
             }
         },
-        p3_02: {
+        sp3_02: {
             back: "Zurück zum Nexus",
             title: "P3.02 // WELLENOPTIK",
             difficulty: {
@@ -6305,7 +6311,7 @@ export const translations = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        s2_07: {
+        sm2_07: {
             back: "Zurück zum Nexus",
             title: "S2.07 // KOORDINATENGEOMETRIE",
             difficulty: {
@@ -6597,7 +6603,7 @@ export const translations = {
                 description: "Erkunden Sie die DNA-Struktur. Meistern Sie komplementäre Basenpaarung und Wasserstoffbrückenbindung."
             }
         },
-        s3_04: {
+        sm3_04: {
             back: "Zurück zum Nexus",
             title: "S3.04 // LOGARITHMISCHE SKALEN",
             difficulty: {
@@ -6778,7 +6784,7 @@ export const translations = {
                 isotopes_desc: "Studieren Sie Isotope: gleiche Protonenzahl, unterschiedliche Neutronenzahl"
             }
         },
-        g4_01: {
+        gm4_01: {
             back: "Zurück zum Nexus",
             title: "G4.01 // KOMPLEXER HORIZONT",
             difficulty: {
@@ -7106,7 +7112,7 @@ export const translations = {
                 crystallize_hint: "Abkühlung führt zur Kristallisation überschüssigen Stoffes"
             }
         },
-        p5_03: {
+        gp5_03: {
             back: "Zurück zum Nexus",
             title: "GP5.03 // TEILCHENBESCHLEUNIGER",
             difficulty: {
@@ -7180,7 +7186,7 @@ export const translations = {
                 description: "Untersuchen Sie Effekte der speziellen Relativität. Beobachten Sie Zeitdilatation, Längenkontraktion und Dopplereffekt bei relativistischen Geschwindigkeiten."
             }
         },
-        gs1_01: {
+        gms1_01: {
             title: "GS1.01 // Komplexes Fraktal",
             back: "Zurück zum Nexus",
             footer_left: "GS1.01_FRAKTAL-ERKUNDE // KNOTEN: BASEL",

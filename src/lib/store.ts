@@ -155,9 +155,9 @@ export const useAppStore = create<AppState>()(
       getSectorProgress: (sector) => {
         const state = get();
         const modules = {
-          math: ['s1-01', 's1-02', 's2-01', 's2-02', 's2-03', 's2-04', 's2-05', 's2-06', 's3-01', 'g1-01', 'g2-01'],
-          physics: ['p1-02', 'p1-03', 'p2-02', 'p3-01'],
-          chemistry: ['c1-01', 'c1-02'],
+          math: ['sm1-01', 'sm1-02', 'sm2-01', 'sm2-02', 'sm2-03', 'sm2-04', 'sm2-05', 'sm2-06', 'sm3-01', 'gm1-01', 'gm2-01'],
+          physics: ['sp1-02', 'sp1-03', 'sp2-02', 'sp3-01'],
+          chemistry: ['sc1-01', 'sc1-02'],
         };
 
         const sectorModules = modules[sector] || [];
