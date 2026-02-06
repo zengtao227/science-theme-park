@@ -515,9 +515,30 @@ export default function P202CircuitCanvas({
   current = 0,
   isPowered = false,
   showCurrent = true,
+  rlc,
 }: P202CircuitCanvasProps) {
-  const powered = isPowered && current > 0;
+  const isRlc = scenario === "rlc";
+  const powered = isRlc ? isPowered : isPowered && current > 0;
   const label = showCurrent ? `I = ${current.toFixed(2)} A` : "";
+  const rlcStateRef = useRef<RlcState>({ t: 0, i: 0, q: 0, vSource: 0, vR: 0, vL: 0, vC: 0 });
+  const [probeA, setProbeA] = useState<MeterProbe | null>(null);
+  const [probeB, setProbeB] = useState<MeterProbe | null>(null);
+  const [meterMode, setMeterMode] = useState<"voltage" | "current">("voltage");
+
+  const handleProbePick = useCallback((probe: MeterProbe) => {
+    if (!probeA || probeB) {
+      setProbeA(probe);
+      setProbeB(null);
+      return;
+    }
+    setProbeB(probe);
+  }, [probeA, probeB]);
+
+  const meterValue = useMemo(() => {
+    if (!probeA || !probeB) return null;
+    if (meterMode === "current") return probeA.current;
+    return probeA.voltage - probeB.voltage;
+  }, [meterMode, probeA, probeB]);
 
   return (
     <div className="relative w-full h-[420px] border border-white/10 rounded-lg bg-black/60 overflow-hidden">
@@ -540,16 +561,62 @@ export default function P202CircuitCanvas({
           {scenario === "simple" && (
             <SimpleCircuit voltage={voltage} resistance={resistance[0] ?? 1} current={current} powered={powered} />
           )}
+          {scenario === "rlc" && rlc && (
+            <RlcCircuit config={rlc} powered={powered} stateRef={rlcStateRef} onProbePick={handleProbePick} />
+          )}
         </Float>
         {showCurrent && (
           <Text position={[-3.6, 2.3, 0]} fontSize={0.2} color={powered ? neon.green : neon.muted} font="/fonts/Inter-Bold.woff">
             {label}
           </Text>
         )}
+        {scenario === "rlc" && probeA && (
+          <mesh position={[probeA.position.x, probeA.position.y, probeA.position.z + 0.1]}>
+            <sphereGeometry args={[0.12, 16, 16]} />
+            <meshStandardMaterial color={neon.green} emissive={neon.green} emissiveIntensity={1.4} />
+          </mesh>
+        )}
+        {scenario === "rlc" && probeB && (
+          <mesh position={[probeB.position.x, probeB.position.y, probeB.position.z + 0.1]}>
+            <sphereGeometry args={[0.12, 16, 16]} />
+            <meshStandardMaterial color={neon.purple} emissive={neon.purple} emissiveIntensity={1.4} />
+          </mesh>
+        )}
       </Canvas>
       <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 uppercase tracking-wider">
         Circuit Simulator
       </div>
+      {scenario === "rlc" && (
+        <div className="absolute bottom-2 left-2 space-y-2 text-[9px] font-mono text-white/70">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setMeterMode((v) => v === "voltage" ? "current" : "voltage")}
+              className="px-2 py-1 border border-white/30 hover:border-white/60 transition-colors uppercase tracking-wider"
+            >
+              {meterMode === "voltage" ? "Voltage" : "Current"}
+            </button>
+            <button
+              onClick={() => {
+                setProbeA(null);
+                setProbeB(null);
+              }}
+              className="px-2 py-1 border border-white/20 text-white/50 hover:text-white/80 transition-colors uppercase tracking-wider"
+            >
+              Reset
+            </button>
+          </div>
+          <div>
+            {meterValue === null
+              ? "Pick two wires to measure"
+              : meterMode === "voltage"
+                ? `ΔV = ${meterValue.toFixed(3)} V`
+                : `I = ${meterValue.toFixed(3)} A`}
+          </div>
+          <div>
+            {`V_R = ${rlcStateRef.current.vR.toFixed(2)}  V_L = ${rlcStateRef.current.vL.toFixed(2)}  V_C = ${rlcStateRef.current.vC.toFixed(2)}`}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
