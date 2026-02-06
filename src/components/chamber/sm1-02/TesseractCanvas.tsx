@@ -249,8 +249,8 @@ export default function TesseractCanvas({
   const [localUnfold, setLocalUnfold] = useState(unfoldProgress);
 
   return (
-    <div className="relative w-full h-[500px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [5, 4, 5], fov: 50 }} gl={{ antialias: true }}>
+    <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+      <Canvas camera={{ position: [6, 5, 6], fov: 55 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}

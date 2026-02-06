@@ -294,11 +294,11 @@ export default function LaserCanvas({
   }, [level, onHit, targetX, targetY]);
 
   return (
-    <div className="relative w-full h-[400px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <canvas
         ref={canvasRef}
-        width={600}
-        height={400}
+        width={800}
+        height={800}
         className="w-full h-full"
         onMouseDown={(event) => {
           if (!canvasRef.current) return;

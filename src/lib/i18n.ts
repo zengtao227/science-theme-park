@@ -574,8 +574,6 @@ export const translations: Record<string, any> = {
             sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
             sc3_01_title: "SC3.01 // MOLECULE CANVAS",
             sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
-            sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
-            sc1_04_subtitle: "Master the periodic table and electron configurations.",
             gc1_01_title: "GC1.01 // REDOX TITAN",
             gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
             gc2_01_title: "GC2.01 // CARBON KINGDOM",

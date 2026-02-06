@@ -351,8 +351,8 @@ export default function MoleCanvas({
   }, [targetValue]);
 
   return (
-    <div className="relative w-full h-[500px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 2, 8], fov: 50 }} gl={{ antialias: true }}>
+    <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+      <Canvas camera={{ position: [0, 2, 10], fov: 55 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}

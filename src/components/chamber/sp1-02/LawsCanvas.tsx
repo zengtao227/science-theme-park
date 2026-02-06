@@ -385,8 +385,8 @@ export default function P102LawsCanvas(props: P102CanvasProps) {
   }, [props.mass, props.gravity]);
 
   return (
-    <div className="w-full h-[500px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-      <Canvas shadows camera={{ position: [10, 8, 12], fov: 40 }}>
+    <div className="w-full h-[800px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+      <Canvas shadows camera={{ position: [12, 10, 14], fov: 45 }}>
         <color attach="background" args={["#000005"]} />
         <Suspense fallback={null}>
           <ambientLight intensity={0.4} />
