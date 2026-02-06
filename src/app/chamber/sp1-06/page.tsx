@@ -1,251 +1,225 @@
 "use client";
 
 import { useState } from "react";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import PendulumCanvas from "@/components/chamber/sp1-06/PendulumCanvas";
+import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-type Stage = "EARTH" | "MOON" | "CUSTOM";
+const PendulumCanvas = dynamic(() => import("@/components/chamber/sp1-06/PendulumCanvas"), {
+    ssr: false,
+});
 
-export default function SP106Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sp1_06 || translations.EN.sp1_06;
+export default function SP1_06_SwissPendulum() {
+    const { t } = useLanguage();
+    const [length, setLength] = useState(2.0); // meters
+    const [initialAngle, setInitialAngle] = useState(Math.PI / 6); // 30 degrees
+    const [gravity, setGravity] = useState(9.81); // m/s²
+    const [damping, setDamping] = useState(0.05);
+    const [showPhaseSpace, setShowPhaseSpace] = useState(true);
+    const [showEnergy, setShowEnergy] = useState(true);
 
-  const [stage, setStage] = useState<Stage>("EARTH");
-  const [length, setLength] = useState(1.0); // meters
-  const [gravity, setGravity] = useState(9.81); // m/s^2
-  const [initialAngle, setInitialAngle] = useState(15); // degrees
-  const [kineticEnergy, setKineticEnergy] = useState(0);
-  const [potentialEnergy, setPotentialEnergy] = useState(0);
+    // Calculate period with nonlinear correction
+    const T_small = 2 * Math.PI * Math.sqrt(length / gravity);
+    const T_large = T_small * (1 + (1 / 16) * initialAngle * initialAngle);
+    const frequency = 1 / T_large;
 
-  const handleStageChange = (newStage: Stage) => {
-    setStage(newStage);
-    if (newStage === "EARTH") {
-      setGravity(9.81);
-      setLength(1.0);
-    } else if (newStage === "MOON") {
-      setGravity(1.62);
-      setLength(1.0);
-    }
-  };
-
-  // Calculate period: T = 2π√(L/g)
-  const period = 2 * Math.PI * Math.sqrt(length / gravity);
-  const frequency = 1 / period;
-  const omega = 2 * Math.PI * frequency;
-
-  const handleEnergyUpdate = (kinetic: number, potential: number) => {
-    setKineticEnergy(kinetic);
-    setPotentialEnergy(potential);
-  };
-
-  const totalEnergy = kineticEnergy + potentialEnergy;
-  const kineticPercent = totalEnergy > 0 ? (kineticEnergy / totalEnergy) * 100 : 0;
-  const potentialPercent = totalEnergy > 0 ? (potentialEnergy / totalEnergy) * 100 : 0;
-
-  return (
-    <ChamberLayout
-      title={t?.title || "SP1.06 // THE SWISS PENDULUM"}
-      moduleCode="SP1.06"
-      difficulty="CORE"
-      onDifficultyChange={() => {}}
-      stages={[
-        { id: "EARTH", label: t?.stages?.earth || "EARTH" },
-        { id: "MOON", label: t?.stages?.moon || "MOON" },
-        { id: "CUSTOM", label: t?.stages?.custom || "CUSTOM" },
-      ]}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => {}}
-      onNext={() => {}}
-      checkStatus={null}
-      footerLeft={t?.footer_left || "SP1.06_PENDULUM // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "SP1.06_PENDULUM_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
-      monitorContent={
-        <div className="space-y-4">
-          <PendulumCanvas
-            length={length}
-            gravity={gravity}
-            initialAngle={initialAngle}
-            onEnergyUpdate={handleEnergyUpdate}
-          />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "OSCILLATION PARAMETERS"}
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formulas || "FORMULAS"}
+    return (
+        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
+            {/* Cyber grid background */}
+            <div className="fixed inset-0 opacity-10 pointer-events-none">
+                <div
+                    className="w-full h-full"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)
+                        `,
+                        backgroundSize: "50px 50px",
+                    }}
+                />
             </div>
-            <div className="text-white font-black text-base space-y-2">
-              <div><InlineMath math="T = 2\pi\sqrt{\frac{L}{g}}" /></div>
-              <div><InlineMath math="f = \frac{1}{T}" /></div>
-              <div><InlineMath math="\omega = 2\pi f" /></div>
-            </div>
-            <div className="pt-3 border-t border-white/10 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60 font-mono">Period (T):</span>
-                <span className="text-neon-cyan font-black">{period.toFixed(3)} s</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60 font-mono">Frequency (f):</span>
-                <span className="text-neon-green font-black">{frequency.toFixed(3)} Hz</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60 font-mono">ω:</span>
-                <span className="text-neon-purple font-black">{omega.toFixed(3)} rad/s</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Energy Tracking */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.energy || "ENERGY TRACKING"}
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-white/60 font-mono w-20">Kinetic:</span>
-                <div className="flex-1 h-6 bg-black/50 rounded overflow-hidden">
-                  <div
-                    className="h-full bg-neon-green transition-all duration-300"
-                    style={{ width: `${kineticPercent}%` }}
-                  />
+            {/* Header */}
+            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
+                <div className="flex justify-between items-center mb-2">
+                    <h1 className="text-2xl font-bold text-cyan-400">
+                        {t("sp1_06.title")}
+                    </h1>
+                    <Link
+                        href="/"
+                        className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
+                    >
+                        {t("sp1_06.back")}
+                    </Link>
                 </div>
-                <span className="text-xs text-neon-green font-black w-12 text-right">
-                  {kineticPercent.toFixed(0)}%
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-white/60 font-mono w-20">Potential:</span>
-                <div className="flex-1 h-6 bg-black/50 rounded overflow-hidden">
-                  <div
-                    className="h-full bg-neon-purple transition-all duration-300"
-                    style={{ width: `${potentialPercent}%` }}
-                  />
-                </div>
-                <span className="text-xs text-neon-purple font-black w-12 text-right">
-                  {potentialPercent.toFixed(0)}%
-                </span>
-              </div>
+                <div className="text-sm text-cyan-300/70">{t("sp1_06.footer_left")}</div>
             </div>
-          </div>
-        </div>
-      }
-    >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: BASEL CLOCKMAKER"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description || "Master pendulum oscillations. Control length and gravity to understand period relationships."}
-          </p>
-        </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
-          </h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={`T = ${period.toFixed(2)}\\;s`} />
-          </p>
-        </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-              {t?.labels?.length || "PENDULUM LENGTH (L)"}
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60 font-mono">L =</span>
-              <input
-                type="range"
-                min="0.5"
-                max="3.0"
-                step="0.1"
-                value={length}
-                onChange={(e) => setLength(parseFloat(e.target.value))}
-                className="flex-1"
-                disabled={stage !== "CUSTOM"}
-              />
-              <span className="text-xl font-black text-white min-w-[80px]">
-                {length.toFixed(1)} m
-              </span>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-              {t?.labels?.gravity || "GRAVITY (g)"}
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60 font-mono">g =</span>
-              <input
-                type="range"
-                min="1.0"
-                max="15.0"
-                step="0.1"
-                value={gravity}
-                onChange={(e) => setGravity(parseFloat(e.target.value))}
-                className="flex-1"
-                disabled={stage !== "CUSTOM"}
-              />
-              <span className="text-xl font-black text-white min-w-[100px]">
-                {gravity.toFixed(2)} m/s²
-              </span>
-            </div>
-          </div>
 
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-              {t?.labels?.angle || "INITIAL ANGLE (θ)"}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Canvas */}
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                    <PendulumCanvas
+                        length={length}
+                        initialAngle={initialAngle}
+                        gravity={gravity}
+                        damping={damping}
+                        showPhaseSpace={showPhaseSpace}
+                        showEnergy={showEnergy}
+                    />
+                </div>
+
+                {/* Control Panel */}
+                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
+                    <div className="border-b border-green-500 pb-2 mb-4">
+                        <h2 className="text-lg font-bold text-green-400">
+                            {t("sp1_06.monitor_title")}
+                        </h2>
+                    </div>
+
+                    {/* Period Display */}
+                    <div className="border border-green-500 p-3 space-y-2">
+                        <div className="text-sm text-green-400">{t("sp1_06.labels.period")}</div>
+                        <div className="text-center text-3xl text-green-300 font-bold py-2">
+                            {T_large.toFixed(3)} s
+                        </div>
+                        <div className="text-xs text-green-300/60 text-center">
+                            f = {frequency.toFixed(3)} Hz
+                        </div>
+                    </div>
+
+                    {/* Length Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-cyan-400">
+                            {t("sp1_06.labels.length")} (L)
+                        </label>
+                        <input
+                            type="range"
+                            min="0.5"
+                            max="5.0"
+                            step="0.1"
+                            value={length}
+                            onChange={(e) => setLength(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-cyan-300">{length.toFixed(1)} m</div>
+                    </div>
+
+                    {/* Initial Angle Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-purple-400">
+                            {t("sp1_06.labels.initial_angle")} (θ₀)
+                        </label>
+                        <input
+                            type="range"
+                            min="0.1"
+                            max="1.5"
+                            step="0.05"
+                            value={initialAngle}
+                            onChange={(e) => setInitialAngle(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-purple-300">
+                            {(initialAngle * 180 / Math.PI).toFixed(1)}° ({initialAngle.toFixed(2)} rad)
+                        </div>
+                    </div>
+
+                    {/* Gravity Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-amber-400">
+                            {t("sp1_06.labels.gravity")} (g)
+                        </label>
+                        <input
+                            type="range"
+                            min="1.0"
+                            max="20.0"
+                            step="0.1"
+                            value={gravity}
+                            onChange={(e) => setGravity(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-amber-300">{gravity.toFixed(2)} m/s²</div>
+                    </div>
+
+                    {/* Damping Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-pink-400">
+                            {t("sp1_06.labels.damping")} (γ)
+                        </label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="0.5"
+                            step="0.01"
+                            value={damping}
+                            onChange={(e) => setDamping(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-pink-300">{damping.toFixed(2)}</div>
+                    </div>
+
+                    {/* Visualization Toggles */}
+                    <div className="space-y-2">
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showPhaseSpace}
+                                onChange={(e) => setShowPhaseSpace(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-cyan-400">{t("sp1_06.labels.show_phase_space")}</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showEnergy}
+                                onChange={(e) => setShowEnergy(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-green-400">{t("sp1_06.labels.show_energy")}</span>
+                        </label>
+                    </div>
+
+                    {/* Period Comparison */}
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">{t("sp1_06.labels.period_comparison")}</div>
+                        <div className="space-y-1 text-xs">
+                            <div className="flex justify-between">
+                                <span className="text-cyan-300">Small angle:</span>
+                                <span className="text-cyan-200 font-bold">{T_small.toFixed(3)} s</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-cyan-300">Large angle:</span>
+                                <span className="text-cyan-200 font-bold">{T_large.toFixed(3)} s</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-cyan-300">Correction:</span>
+                                <span className="text-cyan-200 font-bold">
+                                    {((T_large - T_small) / T_small * 100).toFixed(2)}%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Formulas */}
+                    <div className="border border-purple-500 p-3 space-y-2">
+                        <div className="text-sm text-purple-400">{t("sp1_06.labels.formulas")}</div>
+                        <div className="text-xs space-y-1 text-purple-300/80">
+                            <div>T = 2π√(L/g)</div>
+                            <div>T ≈ T₀(1 + θ₀²/16)</div>
+                            <div>d²θ/dt² = -(g/L)sin(θ) - γ(dθ/dt)</div>
+                            <div>E = ½mL²ω² + mgL(1-cos(θ))</div>
+                        </div>
+                    </div>
+
+                    {/* Mission Info */}
+                    <div className="border border-amber-500 p-3 space-y-2">
+                        <div className="text-sm text-amber-400">{t("sp1_06.mission.title")}</div>
+                        <div className="text-xs text-amber-300/80">
+                            {t("sp1_06.mission.description")}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60 font-mono">θ =</span>
-              <input
-                type="range"
-                min="5"
-                max="30"
-                step="1"
-                value={initialAngle}
-                onChange={(e) => setInitialAngle(parseInt(e.target.value))}
-                className="flex-1"
-              />
-              <span className="text-xl font-black text-white min-w-[60px]">
-                {initialAngle}°
-              </span>
-            </div>
-            {initialAngle > 15 && (
-              <div className="text-xs text-amber-400 font-mono italic">
-                ⚠️ {t?.labels?.warning || "Warning: Large angles may deviate from simple harmonic motion"}
-              </div>
-            )}
-          </div>
-          
-          <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
-              {stage === "EARTH" && (t?.stages?.earth_desc || "Earth gravity: g = 9.81 m/s²")}
-              {stage === "MOON" && (t?.stages?.moon_desc || "Moon gravity: g = 1.62 m/s² (6x slower period)")}
-              {stage === "CUSTOM" && (t?.stages?.custom_desc || "Custom parameters: Adjust length and gravity freely")}
-            </div>
-          </div>
         </div>
-      </div>
-    </ChamberLayout>
-  );
+    );
 }

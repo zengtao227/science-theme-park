@@ -1,335 +1,173 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 
 interface RedoxCanvasProps {
-    znConcentration: number; // [Zn²⁺] in M
-    cuConcentration: number; // [Cu²⁺] in M
-    temperature: number; // in K
-    showElectrons: boolean;
-    showIons: boolean;
+  znConcentration: number;
+  cuConcentration: number;
+  temperature: number;
+  showElectrons: boolean;
+  showIons: boolean;
 }
 
-// Nernst equation: E = E° - (0.0592/n) * log(Q)
-function calculateCellPotential(znConc: number, cuConc: number, temp: number) {
-    const E0_Zn = -0.76; // V (Zn²⁺/Zn)
-    const E0_Cu = 0.34; // V (Cu²⁺/Cu)
-    const E0_cell = E0_Cu - E0_Zn; // 1.10 V
-    const n = 2; // electrons transferred
-    const R = 8.314; // J/(mol·K)
-    const F = 96485; // C/mol
-    
-    // Q = [Zn²⁺]/[Cu²⁺]
-    const Q = znConc / cuConc;
-    
-    // Nernst equation: E = E° - (RT/nF) * ln(Q)
-    // At 298K: E = E° - (0.0592/n) * log(Q)
-    const E = E0_cell - (R * temp / (n * F)) * Math.log(Q);
-    
-    return { E, E0_cell };
+const palette = {
+  zinc: new THREE.Color("#8b9dc3"),
+  copper: new THREE.Color("#ff6b35"),
+  cuSolution: new THREE.Color("#2563eb"),
+  znSolution: new THREE.Color("#0ea5a4"),
+  glass: "#ffffff",
+  electron: "#ffd166",
+  cation: "#ff2d7d",
+  anion: "#00e5ff",
+};
+
+function Electrode({ position, color, label }: { position: [number, number, number]; color: THREE.Color; label: string }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.7, 0]}>
+        <cylinderGeometry args={[0.15, 0.15, 3.2, 24]} />
+        <meshPhysicalMaterial color={color} metalness={0.9} roughness={0.1} />
+      </mesh>
+      <Text position={[0, 2.4, 0]} fontSize={0.28} color={color} anchorX="center" anchorY="middle">
+        {label}
+      </Text>
+    </group>
+  );
 }
 
-// Beaker component
-function Beaker({ position, color, concentration }: { position: [number, number, number]; color: string; concentration: number }) {
-    // Solution color intensity based on concentration
-    const solutionColor = useMemo(() => {
-        const intensity = Math.min(concentration / 2, 1); // Normalize to 0-1
-        if (color === "blue") {
-            return new THREE.Color(0, intensity * 0.5, intensity);
-        } else {
-            return new THREE.Color(intensity * 0.3, intensity * 0.3, intensity * 0.3);
-        }
-    }, [color, concentration]);
-
-    return (
-        <group position={position}>
-            {/* Beaker glass */}
-            <mesh>
-                <cylinderGeometry args={[1.5, 1.5, 4, 32, 1, true]} />
-                <meshPhysicalMaterial
-                    color="#ffffff"
-                    transparent
-                    opacity={0.2}
-                    roughness={0.1}
-                    metalness={0.1}
-                    transmission={0.9}
-                    thickness={0.5}
-                />
-            </mesh>
-            
-            {/* Solution */}
-            <mesh position={[0, -0.5, 0]}>
-                <cylinderGeometry args={[1.4, 1.4, 3, 32]} />
-                <meshPhysicalMaterial
-                    color={solutionColor}
-                    transparent
-                    opacity={0.6}
-                    emissive={solutionColor}
-                    emissiveIntensity={0.2}
-                />
-            </mesh>
-            
-            {/* Bottom */}
-            <mesh position={[0, -2, 0]} rotation={[Math.PI / 2, 0, 0]}>
-                <circleGeometry args={[1.5, 32]} />
-                <meshPhysicalMaterial
-                    color="#ffffff"
-                    transparent
-                    opacity={0.3}
-                    roughness={0.1}
-                    metalness={0.1}
-                />
-            </mesh>
-        </group>
-    );
+function Solution({ position, color, concentration }: { position: [number, number, number]; color: THREE.Color; concentration: number }) {
+  const mix = Math.max(0, Math.min(1, (concentration - 0.01) / 1.99));
+  const solutionColor = color.clone().lerp(new THREE.Color("#f8fafc"), 1 - mix * 0.9);
+  return (
+    <group position={position}>
+      <mesh>
+        <cylinderGeometry args={[1, 1, 2, 32, 1, true]} />
+        <meshPhysicalMaterial color={palette.glass} transparent opacity={0.15} metalness={0.1} roughness={0.9} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[0, -0.6, 0]}>
+        <cylinderGeometry args={[0.95, 0.95, 1, 32]} />
+        <meshPhysicalMaterial color={solutionColor} transparent opacity={0.35} metalness={0.1} roughness={0.8} />
+      </mesh>
+    </group>
+  );
 }
 
-// Electrode component
-function Electrode({ position, material, label }: { position: [number, number, number]; material: "Zn" | "Cu"; label: string }) {
-    const color = material === "Zn" ? "#c0c0c0" : "#ff6b35";
-    
-    return (
-        <group position={position}>
-            {/* Electrode rod */}
-            <mesh>
-                <cylinderGeometry args={[0.2, 0.2, 3.5, 16]} />
-                <meshPhysicalMaterial
-                    color={color}
-                    metalness={0.9}
-                    roughness={0.2}
-                    emissive={color}
-                    emissiveIntensity={0.1}
-                />
-            </mesh>
-            
-            {/* Label */}
-            <Text
-                position={[0, 2.5, 0]}
-                fontSize={0.3}
-                color="#00e5ff"
-                anchorX="center"
-                anchorY="middle"
-            >
-                {label}
-            </Text>
-        </group>
-    );
-}
+function FlowParticles({
+  path,
+  color,
+  count,
+  speed,
+  visible,
+}: {
+  path: THREE.CatmullRomCurve3;
+  color: string;
+  count: number;
+  speed: number;
+  visible: boolean;
+}) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const offsets = useMemo(() => Array.from({ length: count }, (_, i) => i / count), [count]);
 
-// Salt bridge
-function SaltBridge({ showIons }: { showIons: boolean }) {
-    return (
-        <group position={[0, 1.5, 0]}>
-            {/* Bridge tube */}
-            <mesh rotation={[0, 0, Math.PI / 2]}>
-                <cylinderGeometry args={[0.3, 0.3, 8, 16]} />
-                <meshPhysicalMaterial
-                    color="#ffffff"
-                    transparent
-                    opacity={0.3}
-                    roughness={0.1}
-                    metalness={0.1}
-                />
-            </mesh>
-            
-            {/* Salt solution */}
-            <mesh rotation={[0, 0, Math.PI / 2]}>
-                <cylinderGeometry args={[0.25, 0.25, 7.8, 16]} />
-                <meshPhysicalMaterial
-                    color="#a855f7"
-                    transparent
-                    opacity={0.4}
-                    emissive="#a855f7"
-                    emissiveIntensity={0.2}
-                />
-            </mesh>
-            
-            {showIons && <SaltBridgeIons />}
-        </group>
-    );
-}
-
-// Animated ions in salt bridge
-function SaltBridgeIons() {
-    const cationsRef = useRef<THREE.InstancedMesh>(null);
-    const anionsRef = useRef<THREE.InstancedMesh>(null);
-    const count = 30;
-    
-    const dummy = useMemo(() => new THREE.Object3D(), []);
-    
-    useFrame(({ clock }) => {
-        const time = clock.getElapsedTime();
-        
-        // Cations (K⁺) moving right
-        if (cationsRef.current) {
-            for (let i = 0; i < count; i++) {
-                const offset = (i / count) * 7.8;
-                const x = -3.9 + ((offset + time * 0.5) % 7.8);
-                const y = Math.sin(i * 0.5 + time) * 0.1;
-                const z = Math.cos(i * 0.7 + time) * 0.1;
-                
-                dummy.position.set(x, y, z);
-                dummy.updateMatrix();
-                cationsRef.current.setMatrixAt(i, dummy.matrix);
-            }
-            cationsRef.current.instanceMatrix.needsUpdate = true;
-        }
-        
-        // Anions (NO₃⁻) moving left
-        if (anionsRef.current) {
-            for (let i = 0; i < count; i++) {
-                const offset = (i / count) * 7.8;
-                const x = 3.9 - ((offset + time * 0.5) % 7.8);
-                const y = Math.sin(i * 0.5 + time + Math.PI) * 0.1;
-                const z = Math.cos(i * 0.7 + time + Math.PI) * 0.1;
-                
-                dummy.position.set(x, y, z);
-                dummy.updateMatrix();
-                anionsRef.current.setMatrixAt(i, dummy.matrix);
-            }
-            anionsRef.current.instanceMatrix.needsUpdate = true;
-        }
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    ref.current.visible = visible;
+    const t = clock.elapsedTime * speed;
+    offsets.forEach((offset, i) => {
+      const p = (t + offset) % 1;
+      const point = path.getPointAt(p);
+      dummy.position.copy(point);
+      dummy.scale.setScalar(0.08);
+      dummy.updateMatrix();
+      ref.current!.setMatrixAt(i, dummy.matrix);
     });
-    
-    return (
-        <>
-            {/* Cations (purple) */}
-            <instancedMesh ref={cationsRef} args={[undefined, undefined, count]}>
-                <sphereGeometry args={[0.08, 8, 8]} />
-                <meshBasicMaterial color="#a855f7" />
-            </instancedMesh>
-            
-            {/* Anions (pink) */}
-            <instancedMesh ref={anionsRef} args={[undefined, undefined, count]}>
-                <sphereGeometry args={[0.08, 8, 8]} />
-                <meshBasicMaterial color="#ff2d7d" />
-            </instancedMesh>
-        </>
-    );
+    ref.current.instanceMatrix.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh ref={ref} args={[undefined, undefined, count]}>
+      <sphereGeometry args={[0.08, 12, 12]} />
+      <meshPhysicalMaterial color={color} emissive={color} emissiveIntensity={1} metalness={0.7} roughness={0.2} transparent opacity={0.9} />
+    </instancedMesh>
+  );
 }
 
-// Wire connecting electrodes
-function Wire({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
-    const points = useMemo(() => {
-        // Create curved wire path
-        const curve = new THREE.CatmullRomCurve3([
-            new THREE.Vector3(...start),
-            new THREE.Vector3(start[0], start[1] + 2, start[2]),
-            new THREE.Vector3((start[0] + end[0]) / 2, start[1] + 3, start[2]),
-            new THREE.Vector3(end[0], end[1] + 2, end[2]),
-            new THREE.Vector3(...end),
-        ]);
-        return curve.getPoints(50);
-    }, [start, end]);
-    
-    const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points]);
-    
-    return (
-        <line geometry={geometry}>
-            <lineBasicMaterial color="#ffd166" linewidth={3} />
-        </line>
-    );
-}
+function RedoxScene({
+  znConcentration,
+  cuConcentration,
+  temperature,
+  showElectrons,
+  showIons,
+}: RedoxCanvasProps) {
+  const electronPath = useMemo(() => new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-2, 2.6, 0),
+    new THREE.Vector3(-2, 3.2, 0),
+    new THREE.Vector3(2, 3.2, 0),
+    new THREE.Vector3(2, 2.6, 0),
+  ]), []);
 
-// Electrons flowing through wire
-function ElectronFlow({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
-    const electronsRef = useRef<THREE.InstancedMesh>(null);
-    const count = 20;
-    
-    const curve = useMemo(() => {
-        return new THREE.CatmullRomCurve3([
-            new THREE.Vector3(...start),
-            new THREE.Vector3(start[0], start[1] + 2, start[2]),
-            new THREE.Vector3((start[0] + end[0]) / 2, start[1] + 3, start[2]),
-            new THREE.Vector3(end[0], end[1] + 2, end[2]),
-            new THREE.Vector3(...end),
-        ]);
-    }, [start, end]);
-    
-    const dummy = useMemo(() => new THREE.Object3D(), []);
-    
-    useFrame(({ clock }) => {
-        if (!electronsRef.current) return;
-        
-        const time = clock.getElapsedTime();
-        
-        for (let i = 0; i < count; i++) {
-            const t = ((i / count) + time * 0.2) % 1;
-            const pos = curve.getPoint(t);
-            
-            dummy.position.copy(pos);
-            dummy.scale.setScalar(0.8 + Math.sin(time * 5 + i) * 0.2);
-            dummy.updateMatrix();
-            electronsRef.current.setMatrixAt(i, dummy.matrix);
-        }
-        electronsRef.current.instanceMatrix.needsUpdate = true;
-    });
-    
-    return (
-        <instancedMesh ref={electronsRef} args={[undefined, undefined, count]}>
-            <sphereGeometry args={[0.1, 8, 8]} />
-            <meshBasicMaterial color="#ffff00" emissive="#ffff00" emissiveIntensity={1} />
-        </instancedMesh>
-    );
-}
+  const cationPath = useMemo(() => new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-1, 0.2, 0.4),
+    new THREE.Vector3(-0.2, 0.2, 0.4),
+    new THREE.Vector3(0.6, 0.2, -0.4),
+    new THREE.Vector3(1.2, 0.2, -0.4),
+  ]), []);
 
-function GalvanicCellScene({ znConcentration, cuConcentration, temperature, showElectrons, showIons }: RedoxCanvasProps) {
-    const { E } = calculateCellPotential(znConcentration, cuConcentration, temperature);
-    
-    return (
-        <>
-            <ambientLight intensity={0.4} />
-            <pointLight position={[10, 10, 10]} intensity={0.8} />
-            <pointLight position={[-10, 10, -10]} intensity={0.5} color="#00e5ff" />
-            
-            {/* Anode (Zn) - Left */}
-            <Beaker position={[-4, 0, 0]} color="gray" concentration={znConcentration} />
-            <Electrode position={[-4, 0.5, 0]} material="Zn" label="Zn (Anode)" />
-            
-            {/* Cathode (Cu) - Right */}
-            <Beaker position={[4, 0, 0]} color="blue" concentration={cuConcentration} />
-            <Electrode position={[4, 0.5, 0]} material="Cu" label="Cu (Cathode)" />
-            
-            {/* Salt Bridge */}
-            <SaltBridge showIons={showIons} />
-            
-            {/* External Circuit Wire */}
-            <Wire start={[-4, 2, 0]} end={[4, 2, 0]} />
-            
-            {/* Electron Flow */}
-            {showElectrons && E > 0 && <ElectronFlow start={[-4, 2, 0]} end={[4, 2, 0]} />}
-            
-            {/* Voltage Label */}
-            <Text
-                position={[0, 5, 0]}
-                fontSize={0.5}
-                color="#39ff14"
-                anchorX="center"
-                anchorY="middle"
-            >
-                {`E = ${E.toFixed(3)} V`}
-            </Text>
-            
-            {/* Grid */}
-            <gridHelper args={[20, 20, "#00e5ff", "#003344"]} position={[0, -2.5, 0]} />
-        </>
-    );
+  const anionPath = useMemo(() => new THREE.CatmullRomCurve3([
+    new THREE.Vector3(1.2, 0.1, 0.4),
+    new THREE.Vector3(0.4, 0.1, 0.4),
+    new THREE.Vector3(-0.4, 0.1, -0.4),
+    new THREE.Vector3(-1.1, 0.1, -0.4),
+  ]), []);
+
+  const electronSpeed = 0.6 + Math.abs(cuConcentration - znConcentration) * 0.4;
+  const ionSpeed = 0.4 + Math.abs(cuConcentration - znConcentration) * 0.3;
+
+  return (
+    <>
+      <Solution position={[-2, -1, 0]} color={palette.znSolution} concentration={znConcentration} />
+      <Electrode position={[-2, -1, 0]} color={palette.zinc} label="Zn (−)" />
+
+      <Solution position={[2, -1, 0]} color={palette.cuSolution} concentration={cuConcentration} />
+      <Electrode position={[2, -1, 0]} color={palette.copper} label="Cu (+)" />
+
+      <mesh rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.2, 0.2, 4.5, 16]} />
+        <meshPhysicalMaterial color={palette.glass} transparent opacity={0.2} metalness={0.1} roughness={0.9} />
+      </mesh>
+
+      <Line points={electronPath.getPoints(3)} color={palette.electron} lineWidth={3} />
+
+      <FlowParticles path={electronPath} color={palette.electron} count={8} speed={electronSpeed} visible={showElectrons} />
+      <FlowParticles path={cationPath} color={palette.cation} count={10} speed={ionSpeed} visible={showIons} />
+      <FlowParticles path={anionPath} color={palette.anion} count={10} speed={ionSpeed} visible={showIons} />
+
+      <Text position={[0, 0.9, 0]} fontSize={0.2} color="#ffffff" anchorX="center" anchorY="middle">
+        {`T = ${temperature} K`}
+      </Text>
+    </>
+  );
 }
 
 export default function RedoxCanvas(props: RedoxCanvasProps) {
-    return (
-        <Canvas camera={{ position: [0, 5, 15], fov: 50 }}>
-            <color attach="background" args={["#000000"]} />
-            <GalvanicCellScene {...props} />
-            <OrbitControls
-                enablePan={true}
-                enableZoom={true}
-                enableRotate={true}
-                maxPolarAngle={Math.PI / 2}
-            />
-        </Canvas>
-    );
+  return (
+    <div className="w-full h-full">
+      <Canvas>
+        <PerspectiveCamera makeDefault position={[0, 2.2, 9]} fov={50} />
+        <OrbitControls enablePan={false} minDistance={6} maxDistance={16} maxPolarAngle={Math.PI / 2} />
+        <ambientLight intensity={0.4} />
+        <pointLight position={[5, 5, 5]} intensity={0.8} />
+        <pointLight position={[-5, 5, 5]} intensity={0.8} />
+        <RedoxScene {...props} />
+        <gridHelper args={[10, 20, "#00e5ff", "#1a1a1a"]} position={[0, -2.5, 0]} />
+        <mesh>
+          <sphereGeometry args={[20, 32, 32]} />
+          <meshBasicMaterial color="#000000" side={THREE.BackSide} transparent opacity={0.9} />
+        </mesh>
+      </Canvas>
+    </div>
+  );
 }

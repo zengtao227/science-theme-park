@@ -2191,6 +2191,48 @@ export const translations = {
                 combined_hint: "Combined: All three variables interact"
             }
         },
+        sc1_03: {
+            back: "Back to Nexus",
+            title: "SC1.03 // ATOMS FORGE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Atomic Orbitals",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC1.03_ORBITAL_MONITOR",
+            footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+            labels: {
+                selected_element: "SELECTED ELEMENT",
+                orbital_type: "ORBITAL TYPE",
+                show_transition: "Show Electron Transition",
+                periodic_table: "PERIODIC TABLE (Z=1-20)",
+                orbital_shapes: "ORBITAL SHAPES",
+                quantum_numbers: "QUANTUM NUMBERS"
+            },
+            mission: {
+                title: "MISSION: QUANTUM MECHANICS",
+                description: "Explore electron orbitals and probability clouds. Visualize s, p, and d orbitals in 3D space."
+            },
+            stages: {
+                s_orbital: "S ORBITALS",
+                p_orbital: "P ORBITALS",
+                d_orbital: "D ORBITALS",
+                s_desc: "Spherical probability distribution",
+                p_desc: "Dumbbell-shaped orbitals (px, py, pz)",
+                d_desc: "Cloverleaf-shaped orbitals",
+                s_hint: "s orbitals: l=0, spherically symmetric",
+                p_hint: "p orbitals: l=1, three orientations",
+                d_hint: "d orbitals: l=2, five orientations"
+            }
+        },
         sc1_04: {
             back: "Back to Nexus",
             title: "SC1.04 // PERIODIC PUZZLE",
@@ -4515,6 +4557,48 @@ export const translations = {
                 combined_hint: "组合定律：三个变量相互作用"
             }
         },
+        sc1_03: {
+            back: "返回枢纽",
+            title: "SC1.03 // 原子熔炉",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "原子轨道",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC1.03_轨道监视器",
+            footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
+            labels: {
+                selected_element: "选定元素",
+                orbital_type: "轨道类型",
+                show_transition: "显示电子跃迁",
+                periodic_table: "元素周期表 (Z=1-20)",
+                orbital_shapes: "轨道形状",
+                quantum_numbers: "量子数"
+            },
+            mission: {
+                title: "任务：量子力学",
+                description: "探索电子轨道和概率云。在 3D 空间中可视化 s、p 和 d 轨道。"
+            },
+            stages: {
+                s_orbital: "S 轨道",
+                p_orbital: "P 轨道",
+                d_orbital: "D 轨道",
+                s_desc: "球形概率分布",
+                p_desc: "哑铃形轨道 (px, py, pz)",
+                d_desc: "四叶草形轨道",
+                s_hint: "s 轨道：l=0，球对称",
+                p_hint: "p 轨道：l=1，三个方向",
+                d_hint: "d 轨道：l=2，五个方向"
+            }
+        },
         sc1_04: {
             back: "返回枢纽",
             title: "SC1.04 // 元素周期拼图",
@@ -6660,6 +6744,48 @@ export const translations = {
                 boyle_hint: "Boyle-Gesetz: Volumen verringern → Druck erhöhen",
                 charles_hint: "Charles-Gesetz: Temperatur erhöhen → Volumen erhöhen",
                 combined_hint: "Kombiniert: Alle drei Variablen interagieren"
+            }
+        },
+        sc1_03: {
+            back: "Zurück zum Nexus",
+            title: "SC1.03 // ATOMSCHMIEDE",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Atomorbitale",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "SC1.03_ORBITAL_MONITOR",
+            footer_left: "SC1.03_ATOMSCHMIEDE // KNOTEN: BASEL",
+            labels: {
+                selected_element: "AUSGEWÄHLTES ELEMENT",
+                orbital_type: "ORBITALTYP",
+                show_transition: "Elektronenübergang anzeigen",
+                periodic_table: "PERIODENSYSTEM (Z=1-20)",
+                orbital_shapes: "ORBITALFORMEN",
+                quantum_numbers: "QUANTENZAHLEN"
+            },
+            mission: {
+                title: "MISSION: QUANTENMECHANIK",
+                description: "Erkunden Sie Elektronenorbitale und Wahrscheinlichkeitswolken. Visualisieren Sie s-, p- und d-Orbitale im 3D-Raum."
+            },
+            stages: {
+                s_orbital: "S-ORBITALE",
+                p_orbital: "P-ORBITALE",
+                d_orbital: "D-ORBITALE",
+                s_desc: "Kugelförmige Wahrscheinlichkeitsverteilung",
+                p_desc: "Hantelförmige Orbitale (px, py, pz)",
+                d_desc: "Kleeblattförmige Orbitale",
+                s_hint: "s-Orbitale: l=0, kugelsymmetrisch",
+                p_hint: "p-Orbitale: l=1, drei Orientierungen",
+                d_hint: "d-Orbitale: l=2, fünf Orientierungen"
             }
         },
         sc1_04: {

@@ -13,12 +13,13 @@ export default function G1_01_Advanced() {
     const { t } = useLanguage();
     const [mode, setMode] = useState<"tangent" | "newton">("tangent");
     const [xPosition, setXPosition] = useState(1);
+    const [yPosition, setYPosition] = useState(0.5);
     const [functionType, setFunctionType] = useState<"parabola" | "cubic" | "sine">("parabola");
 
     const functions = {
-        parabola: { name: "f(x) = x²", formula: "x²", derivative: "2x" },
-        cubic: { name: "f(x) = x³ - 3x", formula: "x³ - 3x", derivative: "3x² - 3" },
-        sine: { name: "f(x) = 2sin(x)", formula: "2sin(x)", derivative: "2cos(x)" },
+        parabola: { name: "f(x,y) = 0.12(x² + y²)", formula: "0.12(x² + y²)", derivative: "∇f = (0.24x, 0.24y)" },
+        cubic: { name: "f(x,y) = 0.08(x³ - 3x) + 0.05y²", formula: "0.08(x³ - 3x) + 0.05y²", derivative: "∇f = (0.24x² - 0.24, 0.1y)" },
+        sine: { name: "f(x,y) = 0.8sin(x) + 0.6cos(y)", formula: "0.8sin(x) + 0.6cos(y)", derivative: "∇f = (0.8cos(x), -0.6sin(y))" },
     };
 
     return (
@@ -59,6 +60,7 @@ export default function G1_01_Advanced() {
                     <CalculusCanvas
                         mode={mode}
                         xPosition={xPosition}
+                        yPosition={yPosition}
                         functionType={functionType}
                     />
                 </div>
@@ -136,14 +138,30 @@ export default function G1_01_Advanced() {
                         <div className="text-center text-lg text-pink-300">{xPosition.toFixed(1)}</div>
                     </div>
 
+                    <div className="space-y-2">
+                        <label className="text-sm text-cyan-400">
+                            {mode === "tangent" ? "POINT POSITION (y)" : "Y SLICE"}
+                        </label>
+                        <input
+                            type="range"
+                            min="-4"
+                            max="4"
+                            step="0.1"
+                            value={yPosition}
+                            onChange={(e) => setYPosition(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-cyan-300">{yPosition.toFixed(1)}</div>
+                    </div>
+
                     {/* Mode Info */}
                     {mode === "tangent" && (
                         <div className="border border-pink-500 p-3 space-y-2">
                             <div className="text-sm text-pink-400 font-bold">TANGENT LINE</div>
                             <div className="text-xs text-pink-300/80 space-y-1">
-                                <div>The tangent line touches the curve at exactly one point.</div>
-                                <div>Slope = f'(x) = derivative at that point</div>
-                                <div>Equation: y - y₀ = m(x - x₀)</div>
+                                <div>The tangent plane touches the surface at one point.</div>
+                                <div>Normal: (-f_x, 1, -f_y)</div>
+                                <div>Plane: z - z₀ = f_x(x₀, y₀)(x - x₀) + f_y(x₀, y₀)(y - y₀)</div>
                             </div>
                         </div>
                     )}

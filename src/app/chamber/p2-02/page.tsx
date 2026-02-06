@@ -436,12 +436,13 @@ export default function P202Page() {
             </div>
 
             <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
-            <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Formula</div>
-            <div className="text-sm text-white/60 font-mono">
-              <InlineMath math={currentQuest.expressionLatex} />
+              <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Formula</div>
+              <div className="text-sm text-white/60 font-mono">
+                <InlineMath math={currentQuest.expressionLatex} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </ChamberLayout>
   );

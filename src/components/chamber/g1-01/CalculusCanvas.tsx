@@ -1,248 +1,200 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 
 interface CalculusCanvasProps {
-    mode: "tangent" | "newton";
-    xPosition: number;
-    functionType: "parabola" | "cubic" | "sine";
+  mode: "tangent" | "newton";
+  xPosition: number;
+  yPosition: number;
+  functionType: "parabola" | "cubic" | "sine";
 }
 
-// Function definitions
 const functions = {
-    parabola: {
-        f: (x: number) => x * x,
-        df: (x: number) => 2 * x,
-    },
-    cubic: {
-        f: (x: number) => x * x * x - 3 * x,
-        df: (x: number) => 3 * x * x - 3,
-    },
-    sine: {
-        f: (x: number) => Math.sin(x) * 2,
-        df: (x: number) => Math.cos(x) * 2,
-    },
+  parabola: {
+    f: (x: number, y: number) => 0.12 * (x * x + y * y),
+    fx: (x: number) => 0.24 * x,
+    fy: (_x: number, y: number) => 0.24 * y,
+  },
+  cubic: {
+    f: (x: number, y: number) => 0.08 * (x * x * x - 3 * x) + 0.05 * y * y,
+    fx: (x: number) => 0.24 * x * x - 0.24,
+    fy: (_x: number, y: number) => 0.1 * y,
+  },
+  sine: {
+    f: (x: number, y: number) => Math.sin(x) * 0.8 + Math.cos(y) * 0.6,
+    fx: (x: number) => Math.cos(x) * 0.8,
+    fy: (_x: number, y: number) => -Math.sin(y) * 0.6,
+  },
 };
 
-function FunctionCurve({ functionType }: { functionType: "parabola" | "cubic" | "sine" }) {
-    const points = useMemo(() => {
-        const pts: THREE.Vector3[] = [];
-        const func = functions[functionType];
-        for (let x = -5; x <= 5; x += 0.1) {
-            const y = func.f(x);
-            pts.push(new THREE.Vector3(x, y, 0));
-        }
-        return pts;
-    }, [functionType]);
+function SurfaceMesh({ functionType }: { functionType: CalculusCanvasProps["functionType"] }) {
+  const geometry = useMemo(() => {
+    const size = 6;
+    const segments = 70;
+    const mesh = new THREE.PlaneGeometry(size * 2, size * 2, segments, segments);
+    const position = mesh.attributes.position as THREE.BufferAttribute;
+    for (let i = 0; i < position.count; i += 1) {
+      const x = position.getX(i);
+      const z = position.getY(i);
+      const y = functions[functionType].f(x, z);
+      position.setXYZ(i, x, y, z);
+    }
+    mesh.computeVertexNormals();
+    return mesh;
+  }, [functionType]);
 
-    return <Line points={points} color="#00e5ff" lineWidth={3} />;
+  return (
+    <mesh geometry={geometry}>
+      <meshPhysicalMaterial
+        color="#00e5ff"
+        emissive="#00e5ff"
+        emissiveIntensity={0.2}
+        metalness={0.6}
+        roughness={0.2}
+        transparent
+        opacity={0.75}
+      />
+    </mesh>
+  );
 }
 
-function TangentLine({ x, functionType }: { x: number; functionType: "parabola" | "cubic" | "sine" }) {
-    const func = functions[functionType];
-    const y = func.f(x);
-    const slope = func.df(x);
-
-    const points = useMemo(() => {
-        const pts: THREE.Vector3[] = [];
-        for (let dx = -2; dx <= 2; dx += 0.1) {
-            const tx = x + dx;
-            const ty = y + slope * dx;
-            pts.push(new THREE.Vector3(tx, ty, 0));
-        }
-        return pts;
-    }, [x, y, slope]);
-
-    return (
-        <>
-            <Line points={points} color="#ff2d7d" lineWidth={2} />
-            
-            {/* Point on curve */}
-            <mesh position={[x, y, 0]}>
-                <sphereGeometry args={[0.1, 16, 16]} />
-                <meshStandardMaterial color="#ff2d7d" emissive="#ff2d7d" emissiveIntensity={0.5} />
-            </mesh>
-
-            {/* Slope indicator */}
-            <Text position={[x + 1.5, y + slope * 1.5 + 0.5, 0]} fontSize={0.3} color="#ff2d7d">
-                {`m = ${slope.toFixed(2)}`}
-            </Text>
-        </>
-    );
-}
-
-function NewtonIteration({ 
-    startX, 
-    functionType, 
-    iterations 
-}: { 
-    startX: number; 
-    functionType: "parabola" | "cubic" | "sine";
-    iterations: number;
+function TangentPlane({
+  x,
+  y,
+  functionType,
+}: {
+  x: number;
+  y: number;
+  functionType: CalculusCanvasProps["functionType"];
 }) {
-    const func = functions[functionType];
-    
-    // Calculate Newton's method iterations
-    const points = useMemo(() => {
-        const pts: Array<{ x: number; y: number }> = [];
-        let x = startX;
-        
-        for (let i = 0; i < iterations && i < 10; i++) {
-            const y = func.f(x);
-            const slope = func.df(x);
-            
-            pts.push({ x, y });
-            
-            // Newton's method: x_new = x - f(x)/f'(x)
-            if (Math.abs(slope) > 0.001) {
-                x = x - y / slope;
-            } else {
-                break;
-            }
-        }
-        
-        return pts;
-    }, [startX, iterations, func]);
+  const fx = functions[functionType].fx(x);
+  const fy = functions[functionType].fy(x, y);
+  const z0 = functions[functionType].f(x, y);
+  const normal = useMemo(() => new THREE.Vector3(-fx, 1, -fy).normalize(), [fx, fy]);
+  const quaternion = useMemo(() => {
+    const q = new THREE.Quaternion();
+    q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+    return q;
+  }, [normal]);
 
-    return (
-        <>
-            {points.map((pt, i) => {
-                const nextX = i < points.length - 1 ? points[i + 1].x : pt.x;
-                
-                return (
-                    <group key={i}>
-                        {/* Vertical line from x-axis to curve */}
-                        <Line
-                            points={[
-                                new THREE.Vector3(pt.x, 0, 0),
-                                new THREE.Vector3(pt.x, pt.y, 0),
-                            ]}
-                            color="#ffd166"
-                            lineWidth={1}
-                            dashed
-                            dashScale={20}
-                        />
-                        
-                        {/* Tangent line to next x */}
-                        {i < points.length - 1 && (
-                            <Line
-                                points={[
-                                    new THREE.Vector3(pt.x, pt.y, 0),
-                                    new THREE.Vector3(nextX, 0, 0),
-                                ]}
-                                color="#a855f7"
-                                lineWidth={2}
-                            />
-                        )}
-                        
-                        {/* Point on curve */}
-                        <mesh position={[pt.x, pt.y, 0]}>
-                            <sphereGeometry args={[0.08, 16, 16]} />
-                            <meshStandardMaterial 
-                                color={i === points.length - 1 ? "#39ff14" : "#ffd166"}
-                                emissive={i === points.length - 1 ? "#39ff14" : "#ffd166"}
-                                emissiveIntensity={0.5}
-                            />
-                        </mesh>
-                        
-                        {/* Iteration label */}
-                        <Text position={[pt.x, pt.y + 0.5, 0]} fontSize={0.2} color="#ffd166">
-                            {`x${i}`}
-                        </Text>
-                    </group>
-                );
-            })}
-            
-            {/* Final root indicator */}
-            {points.length > 0 && (
-                <mesh position={[points[points.length - 1].x, 0, 0]}>
-                    <cylinderGeometry args={[0.05, 0.05, 0.3]} />
-                    <meshStandardMaterial color="#39ff14" emissive="#39ff14" emissiveIntensity={0.5} />
-                </mesh>
-            )}
-        </>
-    );
+  return (
+    <group>
+      <mesh position={[x, z0, y]} quaternion={quaternion}>
+        <planeGeometry args={[2.2, 2.2]} />
+        <meshStandardMaterial color="#ff2d7d" transparent opacity={0.4} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[x, z0, y]}>
+        <sphereGeometry args={[0.12, 16, 16]} />
+        <meshStandardMaterial color="#39ff14" emissive="#39ff14" emissiveIntensity={1} />
+      </mesh>
+    </group>
+  );
+}
+
+function NewtonIterations({
+  xStart,
+  functionType,
+}: {
+  xStart: number;
+  functionType: CalculusCanvasProps["functionType"];
+}) {
+  const steps = useMemo(() => {
+    const points: Array<{ x: number; y: number; next: number }> = [];
+    let x = xStart;
+    for (let i = 0; i < 6; i += 1) {
+      const y = functions[functionType].f(x, 0);
+      const slope = functions[functionType].fx(x);
+      if (Math.abs(slope) < 0.001) break;
+      const next = x - y / slope;
+      points.push({ x, y, next });
+      x = next;
+    }
+    return points;
+  }, [xStart, functionType]);
+
+  return (
+    <group>
+      {steps.map((step, i) => (
+        <group key={`${step.x}-${i}`}>
+          <Line
+            points={[
+              new THREE.Vector3(step.x, 0, 0),
+              new THREE.Vector3(step.x, step.y, 0),
+            ]}
+            color="#ffd166"
+            lineWidth={1}
+          />
+          <Line
+            points={[
+              new THREE.Vector3(step.x, step.y, 0),
+              new THREE.Vector3(step.next, 0, 0),
+            ]}
+            color="#a855f7"
+            lineWidth={2}
+          />
+          <mesh position={[step.x, step.y, 0]}>
+            <sphereGeometry args={[0.1, 12, 12]} />
+            <meshStandardMaterial color="#ffd166" emissive="#ffd166" emissiveIntensity={0.8} />
+          </mesh>
+        </group>
+      ))}
+      {steps.length > 0 && (
+        <mesh position={[steps[steps.length - 1].next, 0, 0]}>
+          <cylinderGeometry args={[0.06, 0.06, 0.3]} />
+          <meshStandardMaterial color="#39ff14" emissive="#39ff14" emissiveIntensity={1} />
+        </mesh>
+      )}
+    </group>
+  );
 }
 
 function Axes() {
-    return (
-        <>
-            {/* X-axis */}
-            <Line
-                points={[new THREE.Vector3(-6, 0, 0), new THREE.Vector3(6, 0, 0)]}
-                color="#666666"
-                lineWidth={2}
-            />
-            <Text position={[6.5, 0, 0]} fontSize={0.3} color="#666666">
-                x
-            </Text>
-            
-            {/* Y-axis */}
-            <Line
-                points={[new THREE.Vector3(0, -6, 0), new THREE.Vector3(0, 6, 0)]}
-                color="#666666"
-                lineWidth={2}
-            />
-            <Text position={[0, 6.5, 0]} fontSize={0.3} color="#666666">
-                y
-            </Text>
-            
-            {/* Grid */}
-            {[-4, -2, 2, 4].map((x) => (
-                <Line
-                    key={`vgrid-${x}`}
-                    points={[new THREE.Vector3(x, -6, 0), new THREE.Vector3(x, 6, 0)]}
-                    color="#333333"
-                    lineWidth={0.5}
-                />
-            ))}
-            {[-4, -2, 2, 4].map((y) => (
-                <Line
-                    key={`hgrid-${y}`}
-                    points={[new THREE.Vector3(-6, y, 0), new THREE.Vector3(6, y, 0)]}
-                    color="#333333"
-                    lineWidth={0.5}
-                />
-            ))}
-        </>
-    );
+  return (
+    <group>
+      <Line points={[new THREE.Vector3(-6, 0, 0), new THREE.Vector3(6, 0, 0)]} color="#444" lineWidth={2} />
+      <Line points={[new THREE.Vector3(0, 0, -6), new THREE.Vector3(0, 0, 6)]} color="#444" lineWidth={2} />
+      <Line points={[new THREE.Vector3(0, -2, 0), new THREE.Vector3(0, 3, 0)]} color="#666" lineWidth={2} />
+      <Text position={[6.3, 0, 0]} fontSize={0.3} color="#666">
+        x
+      </Text>
+      <Text position={[0, 0, 6.3]} fontSize={0.3} color="#666">
+        y
+      </Text>
+      <Text position={[0, 3.2, 0]} fontSize={0.3} color="#666">
+        z
+      </Text>
+    </group>
+  );
 }
 
-function Scene({ mode, xPosition, functionType }: CalculusCanvasProps) {
-    return (
-        <>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            
-            <Axes />
-            <FunctionCurve functionType={functionType} />
-            
-            {mode === "tangent" && (
-                <TangentLine x={xPosition} functionType={functionType} />
-            )}
-            
-            {mode === "newton" && (
-                <NewtonIteration 
-                    startX={xPosition} 
-                    functionType={functionType}
-                    iterations={5}
-                />
-            )}
-            
-            <OrbitControls enableRotate={false} enablePan={false} />
-        </>
-    );
+function Scene({ mode, xPosition, yPosition, functionType }: CalculusCanvasProps) {
+  return (
+    <>
+      <ambientLight intensity={0.4} />
+      <pointLight position={[8, 8, 8]} intensity={1.2} />
+      <pointLight position={[-6, 6, -6]} intensity={0.6} />
+      <Axes />
+      <SurfaceMesh functionType={functionType} />
+      {mode === "tangent" && (
+        <TangentPlane x={xPosition} y={yPosition} functionType={functionType} />
+      )}
+      {mode === "newton" && (
+        <NewtonIterations xStart={xPosition} functionType={functionType} />
+      )}
+      <OrbitControls enablePan={false} minDistance={6} maxDistance={16} />
+    </>
+  );
 }
 
 export default function CalculusCanvas(props: CalculusCanvasProps) {
-    return (
-        <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
-                <Scene {...props} />
-            </Canvas>
-        </div>
-    );
+  return (
+    <div className="w-full h-full">
+      <Canvas camera={{ position: [7, 6, 8], fov: 50 }}>
+        <Scene {...props} />
+      </Canvas>
+    </div>
+  );
 }
