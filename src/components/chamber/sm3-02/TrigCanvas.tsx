@@ -20,23 +20,25 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
     const tanLineRef = useRef<THREE.Group>(null);
 
     const rad = (angle * Math.PI) / 180;
-    const x = Math.cos(rad);
-    const y = Math.sin(rad);
+    const radius = 2.5; // Match the enlarged circle radius
+    const x = Math.cos(rad) * radius;
+    const y = Math.sin(rad) * radius;
     const tanValue = Math.tan(rad);
 
-    // Circle points
+    // Circle points - ENLARGED RADIUS
     const circlePoints = useMemo(() => {
         const points = [];
+        const radius = 2.5; // Increased from 1 to 2.5 for larger circle
         for (let i = 0; i <= 64; i++) {
             const a = (i / 64) * Math.PI * 2;
-            points.push(new THREE.Vector3(Math.cos(a), Math.sin(a), 0));
+            points.push(new THREE.Vector3(Math.cos(a) * radius, Math.sin(a) * radius, 0));
         }
         return points;
     }, []);
 
-    // Axes
-    const xAxisPoints = [new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1.5, 0, 0)];
-    const yAxisPoints = [new THREE.Vector3(0, -1.5, 0), new THREE.Vector3(0, 1.5, 0)];
+    // Axes - EXTENDED for larger circle
+    const xAxisPoints = [new THREE.Vector3(-3.5, 0, 0), new THREE.Vector3(3.5, 0, 0)];
+    const yAxisPoints = [new THREE.Vector3(0, -3.5, 0), new THREE.Vector3(0, 3.5, 0)];
 
     return (
         <group>
@@ -54,9 +56,9 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                 lineWidth={3}
             />
 
-            {/* Point on circle */}
+            {/* Point on circle - LARGER */}
             <mesh ref={pointRef} position={[x, y, 0]}>
-                <sphereGeometry args={[0.05, 16, 16]} />
+                <sphereGeometry args={[0.12, 16, 16]} />
                 <meshBasicMaterial color="#ff2d7d" />
             </mesh>
 
@@ -71,12 +73,12 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                         dashScale={20}
                     />
                     <Text
-                        position={[x / 2, -0.2, 0]}
-                        fontSize={0.12}
+                        position={[x / 2, -0.4, 0]}
+                        fontSize={0.25}
                         color="#39ff14"
                         anchorX="center"
                     >
-                        cos = {x.toFixed(2)}
+                        cos = {(x / radius).toFixed(2)}
                     </Text>
                 </group>
             )}
@@ -92,23 +94,23 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                         dashScale={20}
                     />
                     <Text
-                        position={[-0.25, y / 2, 0]}
-                        fontSize={0.12}
+                        position={[-0.5, y / 2, 0]}
+                        fontSize={0.25}
                         color="#ffd166"
                         anchorX="center"
                     >
-                        sin = {y.toFixed(2)}
+                        sin = {(y / radius).toFixed(2)}
                     </Text>
                 </group>
             )}
 
-            {/* Tangent line */}
+            {/* Tangent line - ADJUSTED for larger circle */}
             {showTan && Math.abs(Math.cos(rad)) > 0.01 && (
                 <group ref={tanLineRef}>
                     <Line
                         points={[
-                            new THREE.Vector3(1, 0, 0),
-                            new THREE.Vector3(1, tanValue, 0),
+                            new THREE.Vector3(radius, 0, 0),
+                            new THREE.Vector3(radius, tanValue * radius, 0),
                         ]}
                         color="#ff2d7d"
                         lineWidth={2}
@@ -116,7 +118,7 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                     <Line
                         points={[
                             new THREE.Vector3(x, y, 0),
-                            new THREE.Vector3(1, tanValue, 0),
+                            new THREE.Vector3(radius, tanValue * radius, 0),
                         ]}
                         color="#a855f7"
                         lineWidth={1}
@@ -124,8 +126,8 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                         dashScale={20}
                     />
                     <Text
-                        position={[1.2, tanValue / 2, 0]}
-                        fontSize={0.12}
+                        position={[radius + 0.5, (tanValue * radius) / 2, 0]}
+                        fontSize={0.25}
                         color="#ff2d7d"
                         anchorX="left"
                     >
@@ -134,14 +136,15 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                 </group>
             )}
 
-            {/* Angle arc */}
+            {/* Angle arc - ADJUSTED for larger circle */}
             <Line
                 points={useMemo(() => {
                     const points = [];
                     const steps = Math.max(2, Math.floor(Math.abs(angle) / 5));
+                    const arcRadius = 0.7; // Adjusted for larger circle
                     for (let i = 0; i <= steps; i++) {
                         const a = (i / steps) * rad;
-                        points.push(new THREE.Vector3(Math.cos(a) * 0.3, Math.sin(a) * 0.3, 0));
+                        points.push(new THREE.Vector3(Math.cos(a) * arcRadius, Math.sin(a) * arcRadius, 0));
                     }
                     return points;
                 }, [angle, rad])}
@@ -149,16 +152,16 @@ function UnitCircle({ angle, showSin, showCos, showTan }: Omit<TrigCanvasProps, 
                 lineWidth={2}
             />
 
-            {/* Angle label */}
-            <Text position={[0.4, 0.15, 0]} fontSize={0.1} color="#00e5ff" anchorX="center">
+            {/* Angle label - ADJUSTED */}
+            <Text position={[0.8, 0.3, 0]} fontSize={0.2} color="#00e5ff" anchorX="center">
                 {angle}°
             </Text>
 
-            {/* Axis labels */}
-            <Text position={[1.6, 0, 0]} fontSize={0.12} color="#666666">
+            {/* Axis labels - ADJUSTED */}
+            <Text position={[3.8, 0, 0]} fontSize={0.25} color="#666666">
                 x
             </Text>
-            <Text position={[0, 1.6, 0]} fontSize={0.12} color="#666666">
+            <Text position={[0, 3.8, 0]} fontSize={0.25} color="#666666">
                 y
             </Text>
         </group>
@@ -259,7 +262,7 @@ function Scene(props: TrigCanvasProps) {
 export default function TrigCanvas(props: TrigCanvasProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+            <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
                 <Scene {...props} />
             </Canvas>
         </div>

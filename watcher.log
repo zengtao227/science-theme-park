@@ -376,3 +376,12 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    8c88c77..e3e9d3f  main -> main
+[main 74cbd8b] auto: daily sync 2026-02-06 23:00
+ 6 files changed, 183 insertions(+), 9 deletions(-)
+ create mode 100644 src/app/chamber/sm2-01/error.tsx
+ create mode 100644 src/app/chamber/sm2-01/loading.tsx
+ create mode 100644 src/lib/basel-context.ts
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   e3e9d3f..74cbd8b  main -> main

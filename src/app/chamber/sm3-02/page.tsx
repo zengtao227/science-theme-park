@@ -55,8 +55,8 @@ export default function S3_02_TrigCircle() {
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {/* Canvas */}
-                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                {/* Canvas - ENLARGED AND VERTICAL */}
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[800px]">
                     <TrigCanvas
                         angle={angle}
                         showSin={showSin}

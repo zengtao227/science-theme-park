@@ -12,8 +12,11 @@ import { clsx } from 'clsx';
 import { Gamepad2, Atom, FlaskConical, Sigma, Medal } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
+import UserSwitcher from '@/components/UserSwitcher';
+import UserSetup from '@/components/UserSetup';
+
 export default function Home() {
-  const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history } = useAppStore();
+  const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history, currentUser } = useAppStore();
   const t = translations[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
@@ -171,6 +174,11 @@ export default function Home() {
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
   }
+  
+  // Show user setup if no user is selected
+  if (!currentUser) {
+    return <UserSetup />;
+  }
 
   return (
     <main className="h-screen overflow-y-auto bg-black text-white selection:bg-neon-green/30 pb-20">
@@ -192,7 +200,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm schoolchildren">
+        <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm">
+          <UserSwitcher />
           <button
             onClick={() => setVaultOpen(true)}
             className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"

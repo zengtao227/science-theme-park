@@ -29,6 +29,13 @@ export type AchievementRecord = {
   timestamp?: number;
 };
 
+export interface UserProfile {
+  username: string;
+  createdAt: number;
+  lastActive: number;
+  avatar?: string;
+}
+
 export interface ModuleProgress {
   [moduleId: string]: {
     stages: {
@@ -45,12 +52,25 @@ interface AppState {
   history: HistoryEntry[];
   achievements: Record<AchievementId, AchievementRecord>;
   lastAchievement?: AchievementId;
+  
+  // User system
+  currentUser: string | null;
+  users: Record<string, UserProfile>;
+  userProgress: Record<string, ModuleProgress>;
+  userHistory: Record<string, HistoryEntry[]>;
+  userAchievements: Record<string, Record<AchievementId, AchievementRecord>>;
 
   acceptProtocol: () => void;
   resetProtocol: () => void;
   setLanguage: (lang: 'EN' | 'CN' | 'DE') => void;
   addHistory: (entry: HistoryEntry) => void;
   clearLastAchievement: () => void;
+  
+  // User actions
+  setCurrentUser: (username: string) => void;
+  createUser: (username: string) => void;
+  switchUser: (username: string) => void;
+  getUserList: () => UserProfile[];
 
   // Progress Actions
   completeStage: (moduleId: string, stageId: string) => void;
@@ -73,6 +93,13 @@ export const useAppStore = create<AppState>()(
         time_traveler: { unlocked: false },
         calculus_god: { unlocked: false },
       },
+      
+      // User system initial state
+      currentUser: null,
+      users: {},
+      userProgress: {},
+      userHistory: {},
+      userAchievements: {},
 
       acceptProtocol: () => set({ hasAcceptedProtocol: true }),
       resetProtocol: () => set({ hasAcceptedProtocol: false }),
@@ -125,10 +152,80 @@ export const useAppStore = create<AppState>()(
           };
         }),
       clearLastAchievement: () => set({ lastAchievement: undefined }),
+      
+      // User system actions
+      setCurrentUser: (username) => set({ currentUser: username }),
+      
+      createUser: (username) =>
+        set((state) => {
+          const now = Date.now();
+          return {
+            currentUser: username,
+            users: {
+              ...state.users,
+              [username]: {
+                username,
+                createdAt: now,
+                lastActive: now,
+              },
+            },
+            userProgress: {
+              ...state.userProgress,
+              [username]: {},
+            },
+            userHistory: {
+              ...state.userHistory,
+              [username]: [],
+            },
+            userAchievements: {
+              ...state.userAchievements,
+              [username]: {
+                first_light: { unlocked: false },
+                first_launch: { unlocked: false },
+                mole_master: { unlocked: false },
+                molecular_architect: { unlocked: false },
+                time_traveler: { unlocked: false },
+                calculus_god: { unlocked: false },
+              },
+            },
+          };
+        }),
+      
+      switchUser: (username) =>
+        set((state) => {
+          if (!state.users[username]) return state;
+          return {
+            currentUser: username,
+            users: {
+              ...state.users,
+              [username]: {
+                ...state.users[username],
+                lastActive: Date.now(),
+              },
+            },
+            // Load user-specific data
+            progress: state.userProgress[username] || {},
+            history: state.userHistory[username] || [],
+            achievements: state.userAchievements[username] || {
+              first_light: { unlocked: false },
+              first_launch: { unlocked: false },
+              mole_master: { unlocked: false },
+              molecular_architect: { unlocked: false },
+              time_traveler: { unlocked: false },
+              calculus_god: { unlocked: false },
+            },
+          };
+        }),
+      
+      getUserList: () => {
+        const state = get();
+        return Object.values(state.users).sort((a, b) => b.lastActive - a.lastActive);
+      },
 
       completeStage: (moduleId, stageId) =>
-        set((state) => ({
-          progress: {
+        set((state) => {
+          const user = state.currentUser;
+          const newProgress = {
             ...state.progress,
             [moduleId]: {
               ...state.progress[moduleId],
@@ -138,8 +235,21 @@ export const useAppStore = create<AppState>()(
               },
               lastPlayed: Date.now(),
             },
-          },
-        })),
+          };
+          
+          // Save to user-specific progress if user exists
+          if (user) {
+            return {
+              progress: newProgress,
+              userProgress: {
+                ...state.userProgress,
+                [user]: newProgress,
+              },
+            };
+          }
+          
+          return { progress: newProgress };
+        }),
 
       getModuleProgress: (moduleId) => {
         const state = get();
