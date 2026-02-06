@@ -92,31 +92,33 @@ export default function Home() {
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
-    { code: "P1.02", title: t.home.p1_02_title, desc: t.home.p1_02_subtitle, color: "neon-green", href: "/chamber/p1-02", tags: ["physics"] },
-    { code: "P1.03", title: t.home.p1_03_title, desc: t.home.p1_03_subtitle, color: "neon-green", href: "/chamber/p1-03", tags: ["physics"] },
-    { code: "P1.04", title: t.home.p1_04_title, desc: t.home.p1_04_subtitle, color: "neon-green", href: "/chamber/p1-04", tags: ["physics"] },
-    { code: "P1.05", title: t.home.p1_05_title, desc: t.home.p1_05_subtitle, color: "neon-green", href: "/chamber/p1-05", tags: ["physics"] },
-    { code: "P2.01", title: t.home.p2_01_title, desc: t.home.p2_01_subtitle, color: "neon-purple", href: "/chamber/p2-01", tags: ["physics"] },
-    { code: "P2.02", title: t.home.p2_02_title, desc: t.home.p2_02_subtitle, color: "neon-cyan", href: "/chamber/p2-02", tags: ["physics"] },
-    { code: "P3.01", title: t.home.p3_01_title, desc: t.home.p3_01_subtitle, color: "neon-purple", href: "/chamber/p3-01", tags: ["physics"] },
-    { code: "P3.02", title: t.home.p3_02_title, desc: t.home.p3_02_subtitle, color: "neon-cyan", href: "/chamber/p3-02", tags: ["physics"] },
-    { code: "P5.01", title: t.home.p5_01_title, desc: t.home.p5_01_subtitle, color: "neon-cyan", href: "/chamber/p5-01", tags: ["physics"] },
-    { code: "P5.02", title: t.home.p5_02_title, desc: t.home.p5_02_subtitle, color: "neon-purple", href: "/chamber/p5-02", tags: ["physics"] },
-    { code: "P5.03", title: t.home.p5_03_title, desc: t.home.p5_03_subtitle, color: "neon-amber", href: "/chamber/p5-03", tags: ["physics"] },
+    { code: "SP1.02", title: t.home.p1_02_title, desc: t.home.p1_02_subtitle, color: "neon-purple", href: "/chamber/p1-02", tags: ["physics"] },
+    { code: "SP1.03", title: t.home.p1_03_title, desc: t.home.p1_03_subtitle, color: "neon-green", href: "/chamber/p1-03", tags: ["physics"] },
+    { code: "SP1.04", title: t.home.p1_04_title, desc: t.home.p1_04_subtitle, color: "neon-cyan", href: "/chamber/p1-04", tags: ["physics"] },
+    { code: "SP1.05", title: t.home.p1_05_title, desc: t.home.p1_05_subtitle, color: "neon-cyan", href: "/chamber/p1-05", tags: ["physics"] },
+    { code: "SP1.06", title: t.home.sp1_06_title, desc: t.home.sp1_06_subtitle, color: "neon-amber", href: "/chamber/sp1-06", tags: ["physics"] },
+    { code: "SP2.01", title: t.home.p2_01_title, desc: t.home.p2_01_subtitle, color: "neon-amber", href: "/chamber/p2-01", tags: ["physics"] },
+    { code: "SP2.02", title: t.home.p2_02_title, desc: t.home.p2_02_subtitle, color: "neon-cyan", href: "/chamber/p2-02", tags: ["physics"] },
+    { code: "SP3.01", title: t.home.p3_01_title, desc: t.home.p3_01_subtitle, color: "neon-purple", href: "/chamber/p3-01", tags: ["physics"] },
+    { code: "GP3.02", title: t.home.p3_02_title, desc: t.home.p3_02_subtitle, color: "neon-cyan", href: "/chamber/p3-02", tags: ["physics"] },
+    { code: "GP5.01", title: t.home.p5_01_title, desc: t.home.p5_01_subtitle, color: "neon-cyan", href: "/chamber/p5-01", tags: ["physics"] },
+    { code: "GP5.02", title: t.home.p5_02_title, desc: t.home.p5_02_subtitle, color: "neon-purple", href: "/chamber/p5-02", tags: ["physics"] },
+    { code: "GP5.03", title: t.home.p5_03_title, desc: t.home.p5_03_subtitle, color: "neon-amber", href: "/chamber/p5-03", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
-    { code: "C1.01", title: "Mystery Lab", desc: "Substance identification via chemical reactions (Acid/Base/Iodine)", color: "neon-purple", href: "/chamber/c1-01", tags: ["chemistry"] },
-    { code: "C1.02", title: t.home.c1_02_title, desc: t.home.c1_02_subtitle, color: "neon-purple", href: "/chamber/c1-02", tags: ["chemistry"] },
-    { code: "C2.01", title: t.home.c2_01_title, desc: t.home.c2_01_subtitle, color: "neon-cyan", href: "/chamber/c2-01", tags: ["chemistry"] },
-    { code: "C3.01", title: t.home.c3_01_title, desc: t.home.c3_01_subtitle, color: "neon-green", href: "/chamber/c3-01", tags: ["chemistry"] },
+    { code: "SC1.01", title: t.home.c1_01_title, desc: t.home.c1_01_subtitle, color: "neon-purple", href: "/chamber/c1-01", tags: ["chemistry"] },
+    { code: "SC1.02", title: t.home.c1_02_title, desc: t.home.c1_02_subtitle, color: "neon-purple", href: "/chamber/c1-02", tags: ["chemistry"] },
+    { code: "SC2.01", title: t.home.sc2_01_title, desc: t.home.sc2_01_subtitle, color: "neon-cyan", href: "/chamber/c2-01", tags: ["chemistry"] },
+    { code: "SC2.02", title: t.home.sc2_02_title, desc: t.home.sc2_02_subtitle, color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
+    { code: "SC1.03", title: t.home.sc1_03_title || "SC1.03 // ATOMS FORGE", desc: t.home.sc1_03_subtitle || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
+    { code: "GC3.01", title: t.home.gc3_01_title, desc: t.home.gc3_01_subtitle, color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
   ]), [t]);
 
   const advancedModules = useMemo(() => ([
-    { code: "S3.02", title: t.home.s3_02_title, desc: t.home.s3_02_subtitle, color: "neon-amber", href: "/chamber/s3-02", tags: ["math"] },
-    { code: "S3.03", title: t.home.s3_03_title, desc: t.home.s3_03_subtitle, color: "neon-amber", href: "/chamber/s3-03", tags: ["math", "biology"] },
-    { code: "S3.04", title: t.home.s3_04_title, desc: t.home.s3_04_subtitle, color: "neon-amber", href: "/chamber/s3-04", tags: ["math"] },
-  ]), [t]);
+    { code: "G4.01", title: "G4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/g4-01", tags: ["math"] },
+    { code: "G5.01", title: "G5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/g5-01", tags: ["math"] },
+  ]), []);
 
   const filterTags = useMemo(() => ([
     { id: "physics", label: t.home.filter_tags.physics },
@@ -132,18 +134,16 @@ export default function Home() {
     ));
   };
 
-  const filterModules = (modules: { code: string; title: string; desc: string; tags: string[] }[]) => {
-    return modules.filter((module) => {
-      const matchesText = matches(module.code, module.title, module.desc);
-      const matchesTags = selectedTags.length === 0 || module.tags.some((tag) => selectedTags.includes(tag));
-      return matchesText && matchesTags;
-    });
+  const matchesModule = (module: { code: string; title: string; desc: string; color: string; href: string; tags: string[] }) => {
+    const matchesText = matches(module.code, module.title, module.desc);
+    const matchesTags = selectedTags.length === 0 || module.tags.some((tag) => selectedTags.includes(tag));
+    return matchesText && matchesTags;
   };
 
-  const filteredMath = useMemo(() => filterModules(mathModules), [mathModules, normalizedQuery, selectedTags]);
-  const filteredPhysics = useMemo(() => filterModules(physicsModules), [physicsModules, normalizedQuery, selectedTags]);
-  const filteredChemistry = useMemo(() => filterModules(chemistryModules), [chemistryModules, normalizedQuery, selectedTags]);
-  const filteredAdvanced = useMemo(() => filterModules(advancedModules), [advancedModules, normalizedQuery, selectedTags]);
+  const filteredMath = mathModules.filter(matchesModule);
+  const filteredPhysics = physicsModules.filter(matchesModule);
+  const filteredChemistry = chemistryModules.filter(matchesModule);
+  const filteredAdvanced = advancedModules.filter(matchesModule);
 
   const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredAdvanced.length;
 

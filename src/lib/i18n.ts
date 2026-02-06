@@ -1,3 +1,5 @@
+import { useAppStore } from "@/lib/store";
+
 export const translations = {
     EN: {
         protocol: {
@@ -78,6 +80,99 @@ export const translations = {
             g2_01_title: "G2.01 // VECTOR PILOT 3D",
             g2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
             g3_01_title: "G3.01 // PROBABILITY VAULT",
+            g4_01: {
+                back: "Back to Nexus",
+                title: "G4.01 // COMPLEX HORIZON",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Complex Number",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "G4.01_COMPLEX_MONITOR",
+                footer_left: "G4.01_COMPLEX_HORIZON // NODE: ZURICH",
+                labels: {
+                    input: "INPUT",
+                    hints: "HINTS",
+                    original: "ORIGINAL (z)",
+                    result: "RESULT (z^n)",
+                    magnitude: "Magnitude",
+                    angle: "Angle",
+                    formulas: "FORMULAS",
+                    real_part: "REAL PART (a)",
+                    imaginary_part: "IMAGINARY PART (b)",
+                    power: "POWER (n)"
+                },
+                mission: {
+                    title: "MISSION: COMPLEX SPACE",
+                    description: "Explore the complex plane in 3D. Master Euler's formula and complex powers."
+                },
+                stages: {
+                    basics: "BASICS",
+                    powers: "POWERS",
+                    euler: "EULER",
+                    basics_desc: "Understand complex numbers as 2D vectors",
+                    powers_desc: "Visualize z^n as rotation and scaling",
+                    euler_desc: "Master Euler's formula: e^(iθ) = cos(θ) + i·sin(θ)",
+                    basics_hint: "Complex numbers as 2D vectors in the plane",
+                    powers_hint: "z^n rotates by n·θ and scales by r^n",
+                    euler_hint: "e^(iθ) traces the unit circle"
+                }
+            },
+            g5_01: {
+                back: "Back to Nexus",
+                title: "G5.01 // MATRIX RELOADED",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Transformation Matrix",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "G5.01_MATRIX_MONITOR",
+                footer_left: "G5.01_MATRIX_RELOADED // NODE: BASEL",
+                labels: {
+                    matrix: "MATRIX A",
+                    properties: "PROPERTIES",
+                    determinant: "Determinant",
+                    volume_scale: "Volume Scale",
+                    formulas: "FORMULAS",
+                    angle: "ROTATION ANGLE (θ)",
+                    scale_x: "SCALE X-AXIS",
+                    scale_y: "SCALE Y-AXIS",
+                    scale_z: "SCALE Z-AXIS",
+                    shear_xy: "SHEAR X BY Y",
+                    shear_xz: "SHEAR X BY Z"
+                },
+                mission: {
+                    title: "MISSION: MATRIX GEOMETRY",
+                    description: "Visualize how matrices transform 3D space. Master rotation, scaling, and shear."
+                },
+                stages: {
+                    rotation: "ROTATION",
+                    scale: "SCALE",
+                    shear: "SHEAR",
+                    rotation_desc: "Rotate the unit cube around the Z-axis",
+                    scale_desc: "Scale the cube along each axis independently",
+                    shear_desc: "Shear the cube to create parallelograms",
+                    rotation_hint: "Rotation preserves distances and angles",
+                    scale_hint: "Determinant = sx × sy × sz",
+                    shear_hint: "Shear preserves volume (det = 1)"
+                }
+            },
             g3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
             s2_06_title: "S2.06 // LINEAR SYSTEMS",
             s2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
@@ -87,42 +182,405 @@ export const translations = {
             s1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
             s1_02_title: "S1.02 // 4D HYPER-GEOMETRY",
             s1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
-            p1_02_title: "P1.02 // NEWTON'S LAWS",
+            p1_02_title: "SP1.02 // NEWTON'S LAWS",
             p1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
-            p2_01_title: "P2.01 // THERMODYNAMICS",
+            p2_01_title: "SP2.01 // THERMODYNAMICS",
             p2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
-            p2_02_title: "P2.02 // CIRCUIT SANDBOX",
+            p2_02_title: "SP2.02 // CIRCUIT SANDBOX",
             p2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
-            p3_01_title: "P3.01 // GEOMETRICAL OPTICS",
+            p3_01_title: "SP3.01 // GEOMETRICAL OPTICS",
             p3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
-            p1_03_title: "P1.03 // ENERGY & POWER",
+            p1_03_title: "SP1.03 // ENERGY & POWER",
             p1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
-            p1_04_title: "P1.04 // TIME DILATION",
+            p1_04_title: "SP1.04 // TIME DILATION",
             p1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
-            p3_02_title: "P3.02 // WAVE OPTICS",
+            p3_02_title: "GP3.02 // WAVE OPTICS",
             p3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
-            p1_05_title: "P1.05 // THE RHINE FERRY",
+            p1_05_title: "SP1.05 // THE RHINE FERRY",
             p1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
             sp1_06_title: "SP1.06 // THE SWISS PENDULUM",
             sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
-            p5_01_title: "P5.01 // THE ATOMIC CORE",
+            p5_01_title: "GP5.01 // THE ATOMIC CORE",
             p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
+            p5_02: {
+                back: "Back to Nexus",
+                title: "GP5.02 // RELATIVITY LAB",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Lorentz Transformation",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GP5.02_RELATIVITY_MONITOR",
+                footer_left: "GP5.02_RELATIVITY_LAB // NODE: CERN",
+                labels: {
+                    velocity: "VELOCITY",
+                    lorentz_factor: "Lorentz Factor (γ)",
+                    time_dilation: "TIME DILATION",
+                    proper_time: "Proper Time (Δt₀)",
+                    dilated_time: "Dilated Time (Δt)",
+                    length_contraction: "LENGTH CONTRACTION",
+                    rest_length: "Rest Length (L₀)",
+                    contracted_length: "Contracted Length (L)",
+                    doppler_effect: "RELATIVISTIC DOPPLER",
+                    doppler_factor: "Doppler Factor",
+                    shift_type: "Shift Type",
+                    red_shift: "Red Shift",
+                    blue_shift: "Blue Shift",
+                    particle_velocity: "PARTICLE VELOCITY (v/c)",
+                    formulas: "FORMULAS"
+                },
+                mission: {
+                    title: "MISSION: SPECIAL RELATIVITY",
+                    description: "Explore Einstein's special relativity at CERN. Observe time dilation and length contraction."
+                },
+                stages: {
+                    time_dilation: "TIME DILATION",
+                    length_contraction: "LENGTH CONTRACTION",
+                    doppler: "DOPPLER EFFECT",
+                    time_dilation_desc: "Observe photon clocks at relativistic speeds",
+                    length_contraction_desc: "Measure particle length contraction",
+                    doppler_desc: "Analyze relativistic Doppler shift",
+                    time_dilation_hint: "Moving clocks run slower: Δt = γΔt₀",
+                    length_contraction_hint: "Moving objects contract: L = L₀/γ",
+                    doppler_hint: "Light shifts red (receding) or blue (approaching)"
+                }
+            },
+            p5_04: {
+                back: "Back to Nexus",
+                title: "GP5.04 // QUANTUM TUNNEL",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Wave Function",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GP5.04_QUANTUM_MONITOR",
+                footer_left: "GP5.04_QUANTUM_TUNNEL // NODE: CERN",
+                labels: {
+                    particle_energy: "PARTICLE ENERGY (E)",
+                    barrier_height: "BARRIER HEIGHT (V₀)",
+                    barrier_width: "BARRIER WIDTH (a)",
+                    transmission: "TRANSMISSION COEFFICIENT",
+                    wave_function: "WAVE FUNCTION",
+                    probability_density: "PROBABILITY DENSITY |ψ|²",
+                    incident: "Incident",
+                    reflected: "Reflected",
+                    transmitted: "Transmitted",
+                    formulas: "FORMULAS",
+                    energy_ev: "Energy (eV)",
+                    barrier_ev: "Barrier (eV)",
+                    width_nm: "Width (nm)"
+                },
+                mission: {
+                    title: "MISSION: QUANTUM TUNNELING",
+                    description: "Explore quantum tunneling through potential barriers. Observe wave function behavior."
+                },
+                stages: {
+                    classical: "CLASSICAL LIMIT",
+                    tunneling: "QUANTUM TUNNELING",
+                    resonance: "RESONANCE",
+                    classical_desc: "Particle energy below barrier (E < V₀)",
+                    tunneling_desc: "Observe tunneling probability",
+                    resonance_desc: "Find resonance conditions (T ≈ 1)",
+                    classical_hint: "Classical physics: T = 0 when E < V₀",
+                    tunneling_hint: "Quantum mechanics: T > 0 even when E < V₀",
+                    resonance_hint: "Resonance occurs at specific E/V₀ ratios"
+                }
+            },
             s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
             s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
             s2_07_title: "S2.07 // COORDINATE GEOMETRY",
             s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
             s3_04_title: "S3.04 // LOGARITHMIC SCALES",
             s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
-            c1_02_title: "C1.02 // MOLE MASTER",
+            c1_01_title: "SC1.01 // MYSTERY LAB",
+            c1_01_subtitle: "Identify mysterious white powders through chemical tests.",
+            c1_02_title: "SC1.02 // MOLE MASTER",
             c1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
-            c2_01_title: "C2.01 // REACTION KINETICS",
-            c2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
-            c3_01_title: "C3.01 // MOLECULAR ARCHITECT",
-            c3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
-            p5_02_title: "P5.02 // RELATIVITY LAB",
+            sc1_03_title: "SC1.03 // ATOMS FORGE",
+            sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
+            sc1_04_subtitle: "Build atoms and discover the periodic table. Master electron configuration.",
+            gc2_01: {
+                back: "Back to Nexus",
+                title: "GC2.01 // CARBON KINGDOM",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Molecular Structure",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC2.01_MOLECULE_MONITOR",
+                footer_left: "GC2.01_CARBON_KINGDOM // NODE: BASEL",
+                labels: {
+                    input: "INPUT",
+                    hints: "HINTS",
+                    formula: "MOLECULAR FORMULA",
+                    iupac_name: "IUPAC NAME",
+                    composition: "COMPOSITION",
+                    molecular_mass: "Molecular Mass"
+                },
+                mission: {
+                    title: "MISSION: ORGANIC SYNTHESIS",
+                    description: "Build organic molecules atom by atom. Master carbon chains and functional groups."
+                },
+                stages: {
+                    alkanes: "ALKANES",
+                    alcohols: "ALCOHOLS",
+                    custom: "CUSTOM",
+                    alkanes_desc: "Build alkane chains (C-C-C)",
+                    alcohols_desc: "Add hydroxyl groups (C-OH)",
+                    custom_desc: "Free synthesis mode"
+                },
+                hints: {
+                    select_atom: "Click an atom to select it",
+                    add_atom: "Click atom tool to add new atom",
+                    bonds: "Atoms connect based on valence rules",
+                    delete: "Use DELETE to remove selected atom"
+                }
+            },
+            gc3_01: {
+                back: "Back to Nexus",
+                title: "GC3.01 // EQUILIBRIUM MASTER",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Chemical Equilibrium",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC3.01_EQUILIBRIUM_MONITOR",
+                footer_left: "GC3.01_EQUILIBRIUM_MASTER // NODE: BASEL",
+                labels: {
+                    reaction: "REVERSIBLE REACTION",
+                    particle_count: "PARTICLE COUNT",
+                    conditions: "CONDITIONS",
+                    temperature: "Temperature",
+                    pressure: "Pressure",
+                    concentration: "[A]",
+                    principle: "LE CHATELIER'S PRINCIPLE",
+                    principle_1: "• Add reactant → shifts right (more products)",
+                    principle_2: "• Increase pressure → shifts to fewer molecules",
+                    principle_3: "• Increase temperature → shifts endothermic direction",
+                    add_reactant: "ADD REACTANT A",
+                    system_temperature: "SYSTEM TEMPERATURE",
+                    system_pressure: "SYSTEM PRESSURE"
+                },
+                mission: {
+                    title: "MISSION: CHEMICAL EQUILIBRIUM",
+                    description: "Master Le Chatelier's Principle. Observe how systems respond to stress."
+                },
+                stages: {
+                    concentration: "CONCENTRATION",
+                    temperature: "TEMPERATURE",
+                    pressure: "PRESSURE",
+                    concentration_desc: "Add reactant A and watch equilibrium shift",
+                    temperature_desc: "Increase temperature and observe particle speed",
+                    pressure_desc: "Change pressure and see volume effects",
+                    concentration_hint: "Higher [A] shifts equilibrium right → more C and D",
+                    temperature_hint: "Higher temperature increases particle kinetic energy",
+                    pressure_hint: "Higher pressure decreases container volume"
+                }
+            },
+            gc1_01: {
+                back: "Back to Nexus",
+                title: "GC1.01 // REDOX TITAN",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Galvanic Cell",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC1.01_REDOX_MONITOR",
+                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
+                labels: {
+                    cell_potential: "CELL POTENTIAL",
+                    zn_concentration: "Zn²⁺ CONCENTRATION",
+                    cu_concentration: "Cu²⁺ CONCENTRATION",
+                    temperature: "TEMPERATURE",
+                    show_electrons: "Show Electron Flow",
+                    show_ions: "Show Ion Migration",
+                    reaction_quotient: "REACTION QUOTIENT (Q)",
+                    half_reactions: "HALF-REACTIONS",
+                    anode: "ANODE",
+                    cathode: "CATHODE",
+                    nernst_equation: "NERNST EQUATION"
+                },
+                mission: {
+                    title: "MISSION: ELECTROCHEMISTRY",
+                    description: "Build a galvanic cell and master the Nernst equation. Observe electron flow and ion migration in real-time."
+                },
+                stages: {
+                    build: "BUILD CELL",
+                    measure: "MEASURE POTENTIAL",
+                    analyze: "ANALYZE REACTIONS",
+                    build_desc: "Construct Zn-Cu galvanic cell",
+                    measure_desc: "Calculate cell potential with Nernst equation",
+                    analyze_desc: "Observe redox reactions and electron flow",
+                    build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
+                    measure_hint: "E = E° - (RT/nF)ln(Q)",
+                    analyze_hint: "Salt bridge maintains electrical neutrality"
+                }
+            },
+            gc3_02: {
+                back: "Back to Nexus",
+                title: "GC3.02 // CRYSTAL PALACE",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Crystal Structure",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC3.02_CRYSTAL_MONITOR",
+                footer_left: "GC3.02_CRYSTAL_PALACE // NODE: BASEL",
+                labels: {
+                    lattice_type: "LATTICE TYPE",
+                    properties: "PROPERTIES",
+                    atoms_per_cell: "Atoms/Cell",
+                    coordination: "Coordination",
+                    packing: "Packing",
+                    tet_voids: "Tet. Voids",
+                    voids: "INTERSTITIAL VOIDS",
+                    tetrahedral: "Tetrahedral",
+                    octahedral: "Octahedral",
+                    formulas: "FORMULAS",
+                    show_voids: "Show Interstitial Voids",
+                    slice_plane: "SLICE PLANE (Y-AXIS)",
+                    reset_slice: "Reset"
+                },
+                mission: {
+                    title: "MISSION: SOLID STATE PHYSICS",
+                    description: "Explore crystal structures and Bravais lattices. Understand atomic packing and coordination."
+                },
+                stages: {
+                    sc: "SIMPLE CUBIC",
+                    bcc: "BODY-CENTERED",
+                    fcc: "FACE-CENTERED",
+                    sc_desc: "Study simple cubic lattice (6 coordination)",
+                    bcc_desc: "Analyze body-centered cubic (8 coordination)",
+                    fcc_desc: "Master face-centered cubic (12 coordination)",
+                    sc_hint: "Lowest packing efficiency (52%)",
+                    bcc_hint: "Moderate packing (68%), metals like Fe, Cr",
+                    fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
+                }
+            },
+            sc1_03_subtitle: "Build isotopes and understand atomic orbitals in 3D.",
+            sc2_01_title: "SC2.01 // REACTION KINETICS",
+            sc2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
+            sc2_02_title: "SC2.02 // pH SENTINEL",
+            sc2_02_subtitle: "Master pH curves and titration with real-time feedback.",
+            sc2_03_title: "SC2.03 // AERO LAB",
+            sc2_03_subtitle: "Explore ideal gas laws with particle simulations. Master PV=nRT.",
+            sc2_04_title: "SC2.04 // SOLUBILITY LAB",
+            sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
+            gc1_01_title: "GC1.01 // REDOX TITAN",
+            gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
+            gc1_01: {
+                back: "Back to Nexus",
+                title: "GC1.01 // REDOX TITAN",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Galvanic Cell",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC1.01_REDOX_MONITOR",
+                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
+                labels: {
+                    cell_reaction: "CELL REACTION",
+                    half_reactions: "HALF-REACTIONS",
+                    anode: "Anode (−)",
+                    cathode: "Cathode (+)",
+                    cell_potential: "CELL POTENTIAL",
+                    standard_potential: "E⁰ (standard)",
+                    actual_potential: "E (actual)",
+                    standard_potentials: "STANDARD REDUCTION POTENTIALS",
+                    anode_metal: "ANODE METAL (−)",
+                    cathode_metal: "CATHODE METAL (+)",
+                    anode_concentration: "ANODE CONCENTRATION [M²⁺]",
+                    cathode_concentration: "CATHODE CONCENTRATION [M²⁺]",
+                    formulas: "FORMULAS"
+                },
+                mission: {
+                    title: "MISSION: ELECTROCHEMISTRY",
+                    description: "Master galvanic cells and redox reactions. Observe electron flow and calculate cell potentials."
+                },
+                stages: {
+                    daniell: "DANIELL CELL",
+                    custom: "CUSTOM CELL",
+                    nernst: "NERNST EQUATION",
+                    daniell_desc: "Study the classic Daniell cell (Zn-Cu)",
+                    custom_desc: "Build custom cells with different metals",
+                    nernst_desc: "Apply the Nernst equation to calculate E",
+                    daniell_hint: "Zn loses electrons (oxidation), Cu²⁺ gains electrons (reduction)",
+                    custom_hint: "Lower potential metal becomes anode (−)",
+                    nernst_hint: "Higher [products] decreases cell potential"
+                }
+            },
+            gc2_01_title: "GC2.01 // CARBON KINGDOM",
+            gc2_01_subtitle: "Assemble pharmaceutical molecules with 3D models.",
+            gc3_01_title: "GC3.01 // MOLECULAR ARCHITECT",
+            gc3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
+            gc3_02_title: "GC3.02 // CRYSTAL PALACE",
+            gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
+            g4_01_title: "G4.01 // COMPLEX HORIZON",
+            g4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
+            g5_01_title: "G5.01 // MATRIX TRANSFORM",
+            g5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
+            p5_02_title: "GP5.02 // RELATIVITY LAB",
             p5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
-            p5_03_title: "P5.03 // LHC CALIBRATION",
-            p5_03_subtitle: "Calibrate particle trajectories using Lorentz force and magnetic fields.",
+            p5_03_title: "GP5.03 // PARTICLE COLLIDER",
+            p5_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
+            p5_04_title: "GP5.04 // QUANTUM TUNNEL",
+            p5_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -133,7 +591,38 @@ export const translations = {
             nodes_value: "GENEVA // ZURICH // SHANGHAI",
             search_label: "Filter Modules",
             search_placeholder: "Search by code or name",
+            filter_tags_label: "Discipline Tags",
+            filter_clear: "Reset Filters",
+            filter_empty: "No modules match the current filters.",
+            filter_tags: {
+                physics: "Physics",
+                math: "Math",
+                chemistry: "Chemistry",
+                biology: "Biology",
+                socratic: "Socratic"
+            },
             completed_badge: "COMPLETED",
+        },
+        profile: {
+            title: "Scientist Profile",
+            subtitle: "Operator dossier // performance matrix",
+            radar_title: "Cognitive Spectrum",
+            stats_title: "Mission Stats",
+            timeline_title: "Learning Timeline",
+            timeline_empty: "No mission history recorded.",
+            timeline_accuracy: "Accuracy",
+            stats: {
+                completed_modules: "Modules Completed",
+                avg_accuracy: "Average Accuracy",
+                total_runs: "Total Runs",
+                experiment_index: "Experiment Index"
+            },
+            metrics: {
+                logic: "Logic",
+                intuition: "Intuition",
+                rigor: "Rigor",
+                experiment: "Experiment"
+            }
         },
         s2_02: {
             back: "Back to Nexus",
@@ -261,7 +750,7 @@ export const translations = {
         },
         s3_02: {
             back: "Back to Nexus",
-            title: "S3.02 // TRIGONOMETRY TOWER",
+            title: "S3.02 // TRIG CIRCLE",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -276,29 +765,28 @@ export const translations = {
             incorrect: "Mismatch",
             ready: "Ready",
             monitor_title: "S3.02_TRIG_MONITOR",
-            footer_left: "S3.02_TRIGONOMETRY // NODE: ZURICH",
-            stages: {
-                unit_circle: "UNIT CIRCLE",
-                wave_functions: "WAVE FUNCTIONS",
-                triangle_solver: "TRIANGLE SOLVER",
-                unit_circle_prompt_latex: "\\text{Find }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{ on the unit circle.}",
-                wave_functions_prompt_latex: "\\text{Analyze the sine and cosine wave functions.}",
-                triangle_solver_prompt_latex: "\\text{Solve the right triangle using trigonometric ratios.}"
-            },
+            footer_left: "S3.02_TRIG_CIRCLE // NODE: BASEL",
             labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                angle: "Angle (θ)",
-                sin: "sin(θ)",
-                cos: "cos(θ)",
-                tan: "tan(θ)",
-                opposite: "Opposite",
-                adjacent: "Adjacent",
-                hypotenuse: "Hypotenuse"
+                angle: "ANGLE (θ)",
+                values: "TRIGONOMETRIC VALUES",
+                display: "DISPLAY OPTIONS",
+                show_waves: "Show Wave Functions",
+                formulas: "FORMULAS"
             },
             mission: {
-                title: "MISSION: ZURICH TOWER CALIBRATION",
-                description: "Calibrate the Zurich observation tower's angle sensors using trigonometric calculations."
+                title: "MISSION: UNIT CIRCLE",
+                description: "Master the unit circle and trigonometric functions. Understand sin, cos, and tan relationships."
+            },
+            stages: {
+                unit_circle: "UNIT CIRCLE",
+                projections: "PROJECTIONS",
+                waves: "WAVE FUNCTIONS",
+                unit_circle_desc: "Explore the unit circle and angle rotation",
+                projections_desc: "Understand sine and cosine as projections",
+                waves_desc: "Visualize sine and cosine as wave functions",
+                unit_circle_hint: "Point on circle: (cos θ, sin θ)",
+                projections_hint: "sin = y-projection, cos = x-projection",
+                waves_hint: "Sine and cosine create periodic waves"
             }
         },
         s3_03: {
@@ -367,6 +855,27 @@ export const translations = {
                 target: "Target",
                 slope: "Slope (m)",
                 intercept: "Intercept (c)"
+            },
+            prompts: {
+                level1: "\\text{Hit the target with one reflection}",
+                level2: "\\text{Predict and hit the moving target}",
+                level3: "\\text{Hit the target with two reflections}"
+            },
+            hints: {
+                level1: "Use one reflection to hit the target. Adjust slope and intercept.",
+                level2: "Target is moving. Predict its position and adjust your laser path.",
+                level3: "Use two reflections to reach the target. Complex trajectory required.",
+                drag: "Drag the control points on the line to edit slope and intercept."
+            },
+            ui: {
+                current_function: "Current Function",
+                reflections: "Reflections",
+                target_position: "Target Position",
+                hit_badge: "TARGET HIT",
+                chamber: "CHAMBER",
+                laser_sim: "LASER_SIM",
+                level: "LEVEL",
+                hits: "Hits"
             },
             mission: {
                 title: "LASER REFLECTION LAB",
@@ -771,7 +1280,7 @@ export const translations = {
         },
         s1_02: {
             back: "Back to Nexus",
-            title: "S1.02 // 4D HYPER-GEOMETRY",
+            title: "S1.02 // THALES TOWER",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -779,29 +1288,81 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "4D Projection",
+            target_title: "Tower Height",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S1.02_TESSERACT_LAB",
-            footer_left: "S1.02_4D_GEOMETRY // NODE: BASEL",
+            monitor_title: "S1.02_THALES_MONITOR",
+            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
             stages: {
-                projection: "4D PROJECTION",
-                rotation: "ROTATION MATRICES",
-                unfold: "TESSERACT UNFOLD",
-                projection_prompt_latex: "\\text{Calculate the 3D projection of the 4D point.}",
-                rotation_prompt_latex: "\\text{Apply 4D rotation and find the resulting coordinates.}",
-                unfold_prompt_latex: "\\text{Count the cells in the unfolded tesseract net.}"
+                measure: "MEASURE",
+                measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
             },
             labels: {
                 input: "INPUT",
-                hints: "HINTS"
+                hints: "HINTS",
+                readings: "READINGS",
+                pole_height: "Pole Height (h)",
+                pole_shadow: "Pole Shadow (l)",
+                tower_shadow: "Tower Shadow (L)",
+                sun_angle: "Sun Angle",
+                solve_height: "Solve Tower Height (H)",
+                height_placeholder: "height in meters",
+                hint_ratio: "Hint: h/H = l/L"
             },
             mission: {
-                title: "MISSION: CERN HYPERCUBE CALIBRATION",
-                description: "At CERN, calibrate the 4D detector array by projecting hypercube vertices into 3D space."
+                title: "MISSION: BASEL CATHEDRAL SURVEY",
+                description: "Measure the tower height using Thales' theorem and shadow ratios."
+            }
+        },
+        sp2_03: {
+            back: "Back to Nexus",
+            title: "SP2.03 // MOTOR LAB",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Motor Assembly",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SP2.03_MOTOR_MONITOR",
+            footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                current: "CURRENT SWITCH",
+                current_on: "SWITCH ON",
+                current_off: "SWITCH OFF",
+                polarity: "MAGNET POLARITY",
+                direction: "ROTATION DIRECTION",
+                direction_cw: "CLOCKWISE",
+                direction_ccw: "COUNTER-CLOCKWISE",
+                direction_stop: "STOPPED",
+                speed: "ROTATION SPEED",
+                readout: "READOUT"
+            },
+            mission: {
+                title: "MISSION: BASEL MOTOR WORKSHOP",
+                description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
+            },
+            stages: {
+                assemble: "ASSEMBLE",
+                power: "POWER",
+                reverse: "REVERSE",
+                assemble_desc: "Place magnets and coil",
+                power_desc: "Close the circuit and observe rotation",
+                reverse_desc: "Swap poles to reverse direction",
+                assemble_hint: "Start with the switch open and align the magnets",
+                power_hint: "Close the circuit to energize the coil",
+                reverse_hint: "Swap N/S to reverse rotation"
             }
         },
         c1_02: {
@@ -1229,46 +1790,6 @@ export const translations = {
                 richter_scale: "M = \\log(A/A_0)"
             }
         },
-        p5_03: {
-            back: "Back to Nexus",
-            title: "P5.03 // LHC CALIBRATION",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Lorentz Force",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P5.03_LHC_MONITOR",
-            footer_left: "P5.03_LORENTZ_FORCE // NODE: CERN",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                magnetic_field: "Magnetic Field (B)",
-                radius: "Radius (r)",
-                mass: "Mass (m)"
-            },
-            mission: {
-                title: "LHC PARTICLE ACCELERATOR",
-                description: "CERN accelerator requires precise Lorentz force calculations. Calibrate magnetic field and particle trajectory."
-            },
-            stages: {
-                constant_b: "CONSTANT B",
-                varying_v: "VARYING v",
-                mass_spec: "MASS SPECTROMETRY",
-                constant_b_prompt_latex: "\\text{Calculate the magnetic field }B=\\frac{mv}{qR}.",
-                varying_v_prompt_latex: "\\text{Calculate the radius }r=\\frac{mv}{qB}.",
-                mass_spec_prompt_latex: "\\text{Calculate the mass }m=\\frac{rqB}{v}."
-            },
-            formulas: {
-                constant_b: "B = \\frac{mv}{qR}",
-                varying_v: "r = \\frac{mv}{qB}",
-                mass_spec: "m = \\frac{rqB}{v}"
-            }
-        },
         c3_01: {
             back: "Back to Nexus",
             title: "C3.01 // MOLECULAR ARCHITECT",
@@ -1334,6 +1855,176 @@ export const translations = {
                 energy: "ENERGY"
             }
         },
+        sp2_02: {
+            back: "Back to Nexus",
+            title: "SP2.02 // CIRCUIT SANDBOX 2.0",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Circuit Analysis",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SP2.02_CIRCUIT_MONITOR",
+            footer_left: "SP2.02_CIRCUIT_SANDBOX // NODE: BASEL",
+            labels: {
+                multimeter: "MULTIMETER",
+                oscilloscope: "OSCILLOSCOPE",
+                resistance: "RESISTANCE",
+                capacitance: "CAPACITANCE",
+                inductance: "INDUCTANCE",
+                voltage: "VOLTAGE",
+                analysis: "CIRCUIT ANALYSIS",
+                damping: "DAMPING TYPE",
+                formulas: "RLC FORMULAS",
+                reset: "RESET"
+            },
+            mission: {
+                title: "MISSION: RLC TRANSIENT ANALYSIS",
+                description: "Build and analyze RLC circuits. Use the multimeter to measure voltage and current. Observe transient responses on the oscilloscope."
+            },
+            stages: {
+                build: "BUILD CIRCUIT",
+                measure: "MEASURE VALUES",
+                analyze: "ANALYZE RESPONSE",
+                build_desc: "Connect resistors, capacitors, and inductors",
+                measure_desc: "Use multimeter to measure voltage and current",
+                analyze_desc: "Observe oscilloscope waveforms",
+                build_hint: "Click components to select them",
+                measure_hint: "Select 2 points to measure voltage drop",
+                analyze_hint: "Watch for overdamped, underdamped, or critically damped responses"
+            }
+        },
+        sp4_01: {
+            back: "Back to Nexus",
+            title: "SP4.01 // WAVE BASICS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Wave Parameters",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SP4.01_WAVE_MONITOR",
+            footer_left: "SP4.01_WAVE_BASICS // NODE: RHINE",
+            labels: {
+                wave_type: "WAVE TYPE",
+                transverse: "TRANSVERSE",
+                longitudinal: "LONGITUDINAL",
+                amplitude: "AMPLITUDE",
+                frequency: "FREQUENCY",
+                wave_speed: "WAVE SPEED",
+                wavelength: "WAVELENGTH",
+                period: "PERIOD",
+                angular_freq: "ANGULAR FREQUENCY",
+                calculated: "CALCULATED VALUES",
+                show_particles: "Show Particle Motion",
+                formulas: "FORMULAS"
+            },
+            mission: {
+                title: "MISSION: RHINE WAVE ANALYSIS",
+                description: "Study mechanical waves on the Rhine River. Master wave parameters: amplitude, frequency, wavelength, and period."
+            },
+            stages: {
+                transverse: "TRANSVERSE WAVES",
+                longitudinal: "LONGITUDINAL WAVES",
+                parameters: "WAVE PARAMETERS",
+                transverse_desc: "Observe perpendicular particle motion",
+                longitudinal_desc: "Study compression and rarefaction",
+                parameters_desc: "Calculate wavelength, period, and speed",
+                transverse_hint: "Particles oscillate perpendicular to wave direction",
+                longitudinal_hint: "Particles oscillate parallel to wave direction",
+                parameters_hint: "v = λf, T = 1/f, ω = 2πf"
+            }
+        },
+        sb1_01: {
+            back: "Back to Nexus",
+            title: "SB1.01 // CELL FACTORY",
+            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            objective_title: "Active Mission Objective",
+            target_title: "Cell Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SB1.01_CELL_MONITOR",
+            footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
+            labels: {
+                cutaway_view: "Cutaway View",
+                selected: "SELECTED ORGANELLE",
+                organelles: "ORGANELLES",
+                instructions: "INSTRUCTIONS"
+            },
+            mission: {
+                title: "MISSION: CELL EXPLORATION",
+                description: "Explore the animal cell structure. Identify organelles and understand their functions."
+            }
+        },
+        sb2_01: {
+            back: "Back to Nexus",
+            title: "SB2.01 // MENDEL'S GARDEN",
+            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            objective_title: "Active Mission Objective",
+            target_title: "Genetic Cross",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SB2.01_GENETICS_MONITOR",
+            footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
+            labels: {
+                genetics_basics: "GENETICS BASICS",
+                genotype_phenotype: "GENOTYPE VS PHENOTYPE",
+                dominance: "DOMINANCE RULES",
+                mendels_laws: "MENDEL'S LAWS",
+                instructions: "INSTRUCTIONS"
+            },
+            mission: {
+                title: "MISSION: MENDELIAN GENETICS",
+                description: "Master Mendel's laws of inheritance. Predict offspring ratios using Punnett Squares."
+            }
+        },
+        gb3_01: {
+            back: "Back to Nexus",
+            title: "GB3.01 // DNA FORGE",
+            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            objective_title: "Active Mission Objective",
+            target_title: "DNA Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "GB3.01_DNA_MONITOR",
+            footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
+            labels: {
+                rotation: "ROTATION",
+                auto_rotate: "Auto Rotate",
+                show_bonds: "Show Hydrogen Bonds",
+                highlight_pair: "HIGHLIGHT BASE PAIR",
+                pairing_rules: "BASE PAIRING RULES",
+                bases: "NUCLEOTIDE BASES",
+                structure: "DNA STRUCTURE"
+            },
+            mission: {
+                title: "MISSION: DNA DOUBLE HELIX",
+                description: "Explore DNA structure. Master complementary base pairing and hydrogen bonding."
+            }
+        },
         c1_01: {
             back: "Back to Nexus",
             title: "C1.01 // MYSTERY LAB",
@@ -1364,6 +2055,267 @@ export const translations = {
                 identify: "IDENTIFY",
                 properties: "PROPERTIES",
                 reactions: "REACTIONS"
+            }
+        },
+        sc1_03: {
+            back: "Back to Nexus",
+            title: "SC1.03 // ATOMS FORGE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Atomic Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC1.03_ATOM_MONITOR",
+            footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                properties: "PROPERTIES",
+                element: "Element",
+                atomic_number: "Atomic Number (Z)",
+                mass_number: "Mass Number (A)",
+                charge: "Charge",
+                periodic_table: "PERIODIC TABLE",
+                protons: "PROTONS (p⁺)",
+                neutrons: "NEUTRONEN (n⁰)",
+                electrons: "ELEKTRONEN (e⁻)"
+            },
+            mission: {
+                title: "MISSION: CYBER FORGE",
+                description: "Build atoms from subatomic particles. Master the Bohr model and periodic table."
+            },
+            stages: {
+                build: "BUILD",
+                elements: "ELEMENTS",
+                isotopes: "ISOTOPES",
+                build_desc: "Free mode: Build any atom configuration",
+                elements_desc: "Explore the first 20 elements of the periodic table",
+                isotopes_desc: "Study isotopes: same protons, different neutrons"
+            }
+        },
+        sc2_02: {
+            back: "Back to Nexus",
+            title: "SC2.02 // pH SENTINEL",
+            difficulty: {
+                core: "CORE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Titration Curve",
+            next: "Reset",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC2.02_TITRATION_MONITOR",
+            footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
+            start: "Start Titration",
+            pause: "Pause Flow",
+            reset: "Reset Run",
+            labels: {
+                current_ph: "CURRENT pH",
+                equivalence: "Equivalence Point",
+                indicators: "Indicators",
+                solution_config: "Solution Configuration",
+                acid_molarity: "Acid Molarity",
+                base_molarity: "Base Molarity",
+                acid_volume: "Acid Volume",
+                added_volume: "Added Volume",
+                flow_rate: "Flow Rate",
+                flow_control: "Flow Control"
+            },
+            indicators: {
+                phenolphthalein: "Phenolphthalein",
+                phenolphthalein_low: "Colorless",
+                phenolphthalein_mid: "Transition",
+                phenolphthalein_high: "Pink",
+                methyl_orange: "Methyl Orange",
+                methyl_orange_low: "Red",
+                methyl_orange_mid: "Orange",
+                methyl_orange_high: "Yellow"
+            },
+            mission: {
+                title: "MISSION: TITRATION SENTINEL",
+                description: "Calibrate the pH curve in real time. Control flow rate and track the indicator shift."
+            },
+            stages: {
+                titration: "TITRATION"
+            }
+        },
+        sc2_03: {
+            back: "Back to Nexus",
+            title: "SC2.03 // AERO LAB",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Gas Properties",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC2.03_GAS_MONITOR",
+            footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
+            labels: {
+                pressure: "PRESSURE",
+                state_variables: "STATE VARIABLES",
+                volume: "VOLUME (V)",
+                temperature: "TEMPERATURE (T)",
+                moles: "MOLES (n)",
+                formulas: "FORMULAS"
+            },
+            mission: {
+                title: "MISSION: IDEAL GAS LAWS",
+                description: "Explore the relationship between pressure, volume, and temperature in ideal gases."
+            },
+            stages: {
+                boyle: "BOYLE'S LAW",
+                charles: "CHARLES' LAW",
+                combined: "COMBINED GAS LAW",
+                boyle_desc: "Observe inverse relationship: P ∝ 1/V",
+                charles_desc: "Observe direct relationship: V ∝ T",
+                combined_desc: "Master the combined gas law",
+                boyle_hint: "Boyle's Law: Decrease volume → Increase pressure",
+                charles_hint: "Charles' Law: Increase temperature → Increase volume",
+                combined_hint: "Combined: All three variables interact"
+            }
+        },
+        sc1_04: {
+            back: "Back to Nexus",
+            title: "SC1.04 // PERIODIC PUZZLE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Atom Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC1.04_ATOM_MONITOR",
+            footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
+            labels: {
+                element_info: "ELEMENT INFO",
+                formulas: "FORMULAS",
+                protons: "PROTONS",
+                neutrons: "NEUTRONS",
+                electrons: "ELECTRONS",
+                select_element: "SELECT ELEMENT"
+            },
+            mission: {
+                title: "MISSION: PERIODIC TABLE",
+                description: "Build atoms and discover the periodic table. Master electron configuration."
+            },
+            stages: {
+                build: "BUILD ATOM",
+                periodic: "PERIODIC TABLE",
+                groups: "ELEMENT GROUPS",
+                build_desc: "Build atoms by adding protons, neutrons, and electrons",
+                periodic_desc: "Explore the first 20 elements",
+                groups_desc: "Understand element groups and periods",
+                build_hint: "Proton number determines the element",
+                periodic_hint: "Elements are arranged by atomic number",
+                groups_hint: "Same group = same valence electrons"
+            }
+        },
+        sc2_04: {
+            back: "Back to Nexus",
+            title: "SC2.04 // SOLUBILITY LAB",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Solution Status",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC2.04_SOLUBILITY_MONITOR",
+            footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
+            labels: {
+                solubility: "SOLUBILITY",
+                saturated: "SATURATED - Precipitate forming",
+                unsaturated: "UNSATURATED - Can dissolve more",
+                solution_data: "SOLUTION DATA",
+                temperature: "TEMPERATURE (°C)",
+                solute_amount: "SOLUTE AMOUNT (g)",
+                formulas: "FORMULAS"
+            },
+            mission: {
+                title: "MISSION: SOLUBILITY",
+                description: "Explore solubility and temperature relationships. Observe crystallization."
+            },
+            stages: {
+                dissolve: "DISSOLVE",
+                saturate: "SATURATE",
+                crystallize: "CRYSTALLIZE",
+                dissolve_desc: "Dissolve solute in water",
+                saturate_desc: "Reach saturation point",
+                crystallize_desc: "Cool solution to crystallize",
+                dissolve_hint: "Most salts dissolve better at higher temperatures",
+                saturate_hint: "Saturation: maximum amount dissolved",
+                crystallize_hint: "Cooling causes excess solute to crystallize"
+            }
+        },
+        p5_03: {
+            back: "Back to Nexus",
+            title: "GP5.03 // PARTICLE COLLIDER",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "LHC ATLAS DETECTOR",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "GP5.03_LHC_MONITOR",
+            footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
+            labels: {
+                beam_energy: "BEAM ENERGY",
+                relativistic_effects: "RELATIVISTIC EFFECTS",
+                formulas: "FORMULAS",
+                magnetic_field: "Enable Magnetic Field (Bending Magnets)",
+                colliding: "COLLIDING...",
+                initiate_collision: "INITIATE COLLISION"
+            },
+            mission: {
+                title: "MISSION: PARTICLE PHYSICS",
+                description: "Explore particle collisions at CERN's Large Hadron Collider. Discover the Higgs boson."
+            },
+            stages: {
+                acceleration: "ACCELERATION",
+                collision: "COLLISION",
+                detection: "DETECTION",
+                acceleration_desc: "Accelerate protons to near light speed",
+                collision_desc: "Collide proton beams at 13 TeV",
+                detection_desc: "Detect particle jets and tracks",
+                acceleration_hint: "Protons reach 99.9999991% speed of light",
+                collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
+                detection_hint: "Magnetic field bends charged particle tracks"
             }
         }
     },
@@ -1455,42 +2407,215 @@ export const translations = {
             s1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
             s1_02_title: "S1.02 // 四维超几何",
             s1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
-            p1_02_title: "P1.02 // 牛顿定律",
+            p1_02_title: "SP1.02 // 牛顿定律",
             p1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
-            p2_01_title: "P2.01 // 热力学",
+            p2_01_title: "SP2.01 // 热力学",
             p2_01_subtitle: "通过 Q=mcΔT 与 Q=mL 追踪热量与相变过程。",
-            p2_02_title: "P2.02 // 电路沙盒",
+            p2_02_title: "SP2.02 // 电路沙盒",
             p2_02_subtitle: "构建电力网络。掌握欧姆定律以及串并联电路的逻辑。",
-            p3_01_title: "P3.01 // 几何光学",
+            p3_01_title: "SP3.01 // 几何光学",
             p3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
-            p1_03_title: "P1.03 // 能量与功率",
+            p1_03_title: "SP1.03 // 能量与功率",
             p1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
-            p1_04_title: "P1.04 // 时间膨胀模拟",
+            p1_04_title: "SP1.04 // 时间膨胀模拟",
             p1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
-            p3_02_title: "P3.02 // 波动光学",
+            p3_02_title: "GP3.02 // 波动光学",
             p3_02_subtitle: "探索干涉、衍射和偏振现象。",
-            p1_05_title: "P1.05 // 莱茵河渡轮",
+            p1_05_title: "SP1.05 // 莱茵河渡轮",
             p1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
             sp1_06_title: "SP1.06 // 瑞士钟摆",
             sp1_06_subtitle: "时间的力学：与巴塞尔钟表匠一起探索周期、频率和引力。",
-            p5_01_title: "P5.01 // 原子核核心",
+            p5_01_title: "GP5.01 // 原子核核心",
             p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
+            p5_02: {
+                back: "返回枢纽",
+                title: "GP5.02 // 相对论实验室",
+                difficulty: {
+                    basic: "基础",
+                    core: "核心",
+                    advanced: "进阶",
+                    elite: "精英"
+                },
+                objective_title: "当前任务目标",
+                target_title: "洛伦兹变换",
+                next: "执行下一序列",
+                check: "验证",
+                correct: "已验证",
+                incorrect: "匹配失败",
+                ready: "就绪",
+                monitor_title: "GP5.02_相对论监视器",
+                footer_left: "GP5.02_相对论实验室 // 节点：CERN",
+                labels: {
+                    velocity: "速度",
+                    lorentz_factor: "洛伦兹因子 (γ)",
+                    time_dilation: "时间膨胀",
+                    proper_time: "固有时间 (Δt₀)",
+                    dilated_time: "膨胀时间 (Δt)",
+                    length_contraction: "长度收缩",
+                    rest_length: "静止长度 (L₀)",
+                    contracted_length: "收缩长度 (L)",
+                    doppler_effect: "相对论多普勒效应",
+                    doppler_factor: "多普勒因子",
+                    shift_type: "频移类型",
+                    red_shift: "红移",
+                    blue_shift: "蓝移",
+                    particle_velocity: "粒子速度 (v/c)",
+                    formulas: "公式"
+                },
+                mission: {
+                    title: "任务：狭义相对论",
+                    description: "在 CERN 探索爱因斯坦的狭义相对论。观察时间膨胀和长度收缩。"
+                },
+                stages: {
+                    time_dilation: "时间膨胀",
+                    length_contraction: "长度收缩",
+                    doppler: "多普勒效应",
+                    time_dilation_desc: "观察相对论速度下的光子钟",
+                    length_contraction_desc: "测量粒子长度收缩",
+                    doppler_desc: "分析相对论多普勒频移",
+                    time_dilation_hint: "运动的钟变慢：Δt = γΔt₀",
+                    length_contraction_hint: "运动的物体收缩：L = L₀/γ",
+                    doppler_hint: "光向红移（远离）或蓝移（接近）"
+                }
+            },
+            p5_04: {
+                back: "返回枢纽",
+                title: "GP5.04 // 量子隧穿",
+                difficulty: {
+                    basic: "基础",
+                    core: "核心",
+                    advanced: "进阶",
+                    elite: "精英"
+                },
+                objective_title: "当前任务目标",
+                target_title: "波函数",
+                next: "执行下一序列",
+                check: "验证",
+                correct: "已验证",
+                incorrect: "匹配失败",
+                ready: "就绪",
+                monitor_title: "GP5.04_量子监视器",
+                footer_left: "GP5.04_量子隧穿 // 节点：CERN",
+                labels: {
+                    particle_energy: "粒子能量 (E)",
+                    barrier_height: "势垒高度 (V₀)",
+                    barrier_width: "势垒宽度 (a)",
+                    transmission: "透射系数",
+                    wave_function: "波函数",
+                    probability_density: "概率密度 |ψ|²",
+                    incident: "入射",
+                    reflected: "反射",
+                    transmitted: "透射",
+                    formulas: "公式",
+                    energy_ev: "能量 (eV)",
+                    barrier_ev: "势垒 (eV)",
+                    width_nm: "宽度 (nm)"
+                },
+                mission: {
+                    title: "任务：量子隧穿",
+                    description: "探索量子隧穿通过势垒。观察波函数行为。"
+                },
+                stages: {
+                    classical: "经典极限",
+                    tunneling: "量子隧穿",
+                    resonance: "共振",
+                    classical_desc: "粒子能量低于势垒 (E < V₀)",
+                    tunneling_desc: "观察隧穿概率",
+                    resonance_desc: "寻找共振条件 (T ≈ 1)",
+                    classical_hint: "经典物理：E < V₀ 时 T = 0",
+                    tunneling_hint: "量子力学：即使 E < V₀，T > 0",
+                    resonance_hint: "共振发生在特定 E/V₀ 比值"
+                }
+            },
             s3_02_title: "S3.02 // 三角函数之塔",
             s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
             s2_07_title: "S2.07 // 坐标几何",
             s2_07_subtitle: "掌握距离、中点和斜率计算。",
             s3_04_title: "S3.04 // 对数刻度",
             s3_04_subtitle: "掌握 pH 值、分贝和里氏震级的对数计算。",
-            c1_02_title: "C1.02 // 摩尔大师",
+            c1_01_title: "SC1.01 // 神秘挑战",
+            c1_01_subtitle: "通过化学测试鉴定神秘白色粉末。",
+            c1_02_title: "SC1.02 // 摩尔大师",
             c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
-            c2_01_title: "C2.01 // 反应动力学",
-            c2_01_subtitle: "掌握阿伦尼乌斯方程、碰撞理论和反应速率。",
-            c3_01_title: "C3.01 // 分子建筑师",
-            c3_01_subtitle: "使用 3D 球棍模型组装药物分子。",
-            p5_02_title: "P5.02 // 相对论实验室",
+            sc1_03_title: "SC1.03 // 原子熔炉",
+            sc1_03_subtitle: "在 3D 空间中构建同位素并理解原子轨道。",
+            sc1_04_title: "SC1.04 // 元素周期拼图",
+            sc1_04_subtitle: "构建原子并发现元素周期表。掌握电子排布。",
+            sc2_01_title: "SC2.01 // 反应动力学",
+            sc2_01_subtitle: "掌握阿伦尼乌斯方程、碰撞理论和反应速率。",
+            sc2_02_title: "SC2.02 // pH 哨兵",
+            sc2_02_subtitle: "通过实时反馈掌握 pH 曲线与滴定实验。",
+            sc2_03_title: "SC2.03 // 气体实验室",
+            sc2_03_subtitle: "通过粒子模拟探索理想气体定律。掌握 PV=nRT。",
+            sc2_04_title: "SC2.04 // 溶解度实验室",
+            sc2_04_subtitle: "探索溶解度曲线与结晶过程。掌握饱和平衡。",
+            gc1_01_title: "GC1.01 // 氧化还原巨神",
+            gc1_01_subtitle: "掌握电化学电池与氧化还原电位。",
+            gc1_01: {
+                back: "返回枢纽",
+                title: "GC1.01 // 氧化还原巨神",
+                difficulty: {
+                    basic: "基础",
+                    core: "核心",
+                    advanced: "进阶",
+                    elite: "精英"
+                },
+                objective_title: "当前任务目标",
+                target_title: "原电池",
+                next: "执行下一序列",
+                check: "验证",
+                correct: "已验证",
+                incorrect: "匹配失败",
+                ready: "就绪",
+                monitor_title: "GC1.01_氧化还原监视器",
+                footer_left: "GC1.01_氧化还原巨神 // 节点：巴塞尔",
+                labels: {
+                    cell_reaction: "电池反应",
+                    half_reactions: "半反应",
+                    anode: "阳极 (−)",
+                    cathode: "阴极 (+)",
+                    cell_potential: "电池电势",
+                    standard_potential: "E⁰ (标准)",
+                    actual_potential: "E (实际)",
+                    standard_potentials: "标准还原电势",
+                    anode_metal: "阳极金属 (−)",
+                    cathode_metal: "阴极金属 (+)",
+                    anode_concentration: "阳极浓度 [M²⁺]",
+                    cathode_concentration: "阴极浓度 [M²⁺]",
+                    formulas: "公式"
+                },
+                mission: {
+                    title: "任务：电化学",
+                    description: "掌握原电池和氧化还原反应。观察电子流动并计算电池电势。"
+                },
+                stages: {
+                    daniell: "丹尼尔电池",
+                    custom: "自定义电池",
+                    nernst: "能斯特方程",
+                    daniell_desc: "研究经典丹尼尔电池 (Zn-Cu)",
+                    custom_desc: "用不同金属构建自定义电池",
+                    nernst_desc: "应用能斯特方程计算 E",
+                    daniell_hint: "Zn 失去电子（氧化），Cu²⁺ 获得电子（还原）",
+                    custom_hint: "电势较低的金属成为阳极 (−)",
+                    nernst_hint: "更高的 [产物] 降低电池电势"
+                }
+            },
+            gc2_01_title: "GC2.01 // 碳世界",
+            gc2_01_subtitle: "使用 3D 模型组装药物分子。",
+            gc3_01_title: "GC3.01 // 分子建筑师",
+            gc3_01_subtitle: "使用 3D 球棍模型组装药物分子。",
+            gc3_02_title: "GC3.02 // 晶体宫殿",
+            gc3_02_subtitle: "探索晶体结构：SC、BCC、FCC 晶格与间隙空位。",
+            g4_01_title: "G4.01 // 复数地平线",
+            g4_01_subtitle: "在 3D 空间可视化复平面与欧拉公式。",
+            g5_01_title: "G5.01 // 矩阵变形器",
+            g5_01_subtitle: "在 3D 空间中体验线性变换与特征向量。",
+            p5_02_title: "GP5.02 // 相对论实验室",
             p5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
-            p5_03_title: "P5.03 // LHC 校准",
-            p5_03_subtitle: "使用洛伦兹力和磁场校准粒子轨迹。",
+            p5_03_title: "GP5.03 // 粒子对撞机",
+            p5_03_subtitle: "模拟 CERN 的 LHC。在 13 TeV 下对撞质子并发现希格斯玻色子。",
+            p5_04_title: "GP5.04 // 量子隧穿",
+            p5_04_subtitle: "用波函数可视化量子隧穿通过势垒。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -1501,7 +2626,38 @@ export const translations = {
             nodes_value: "日内瓦 // 苏黎世 // 上海",
             search_label: "筛选模块",
             search_placeholder: "按编号或名称搜索",
+            filter_tags_label: "学科标签",
+            filter_clear: "清除筛选",
+            filter_empty: "没有模块符合当前筛选条件。",
+            filter_tags: {
+                physics: "物理",
+                math: "数学",
+                chemistry: "化学",
+                biology: "生物",
+                socratic: "苏格拉底式"
+            },
             completed_badge: "已完成",
+        },
+        profile: {
+            title: "科学家档案",
+            subtitle: "操作者档案 // 能力矩阵",
+            radar_title: "认知雷达",
+            stats_title: "任务统计",
+            timeline_title: "学习时间线",
+            timeline_empty: "暂无学习记录。",
+            timeline_accuracy: "正确率",
+            stats: {
+                completed_modules: "完成模块",
+                avg_accuracy: "平均正确率",
+                total_runs: "总实验次数",
+                experiment_index: "实验指数"
+            },
+            metrics: {
+                logic: "逻辑",
+                intuition: "直觉",
+                rigor: "严谨",
+                experiment: "实验"
+            }
         },
         s2_02: {
             back: "返回枢纽",
@@ -1629,7 +2785,7 @@ export const translations = {
         },
         s3_02: {
             back: "返回枢纽",
-            title: "S3.02 // 三角函数之塔",
+            title: "S3.02 // 三角函数圆",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -1644,25 +2800,30 @@ export const translations = {
             incorrect: "不匹配",
             ready: "就绪",
             monitor_title: "S3.02_三角函数监控",
-            footer_left: "S3.02_三角函数 // 节点：苏黎世",
+            footer_left: "S3.02_三角函数圆 // 节点：巴塞尔",
+            labels: {
+                angle: "角度 (θ)",
+                values: "三角函数值",
+                display: "显示选项",
+                show_waves: "显示波函数",
+                formulas: "公式"
+            },
+            mission: {
+                title: "任务：单位圆",
+                description: "掌握单位圆与三角函数。理解 sin、cos 和 tan 的关系。"
+            },
             stages: {
                 unit_circle: "单位圆",
-                wave_functions: "波函数",
-                triangle_solver: "解三角形",
-                unit_circle_prompt_latex: "\\text{在单位圆上求 }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{。}",
-                wave_functions_prompt_latex: "\\text{分析正弦和余弦波函数。}",
-                triangle_solver_prompt_latex: "\\text{使用三角比解直角三角形。}"
-            },
-            labels: {
-                input: "输入",
-                hints: "提示",
-                angle: "角度 (θ)",
-                sin: "sin(θ)",
-                cos: "cos(θ)",
-                tan: "tan(θ)",
-                opposite: "对边",
-                adjacent: "邻边",
-                hypotenuse: "斜边"
+                projections: "投影",
+                waves: "波函数",
+                unit_circle_desc: "探索单位圆和角度旋转",
+                projections_desc: "理解正弦和余弦作为投影",
+                waves_desc: "将正弦和余弦可视化为波函数",
+                unit_circle_hint: "圆上的点：(cos θ, sin θ)",
+                projections_hint: "sin = y 轴投影，cos = x 轴投影",
+                waves_hint: "正弦和余弦形成周期波"
+            }
+        },
             },
             mission: {
                 title: "任务：苏黎世塔楼校准",
@@ -1735,6 +2896,27 @@ export const translations = {
                 target: "目标",
                 slope: "斜率 (m)",
                 intercept: "截距 (c)"
+            },
+            prompts: {
+                level1: "\\text{用一次反射击中目标}",
+                level2: "\\text{预测并击中移动目标}",
+                level3: "\\text{用两次反射击中目标}"
+            },
+            hints: {
+                level1: "使用一次反射命中目标。调整斜率与截距。",
+                level2: "目标在移动，预测其位置并调整激光路径。",
+                level3: "使用两次反射到达目标，需要更复杂的轨迹。",
+                drag: "拖动直线上的控制点来修改斜率和截距。"
+            },
+            ui: {
+                current_function: "当前函数",
+                reflections: "反射次数",
+                target_position: "目标坐标",
+                hit_badge: "目标命中",
+                chamber: "舱室",
+                laser_sim: "激光模拟",
+                level: "等级",
+                hits: "命中"
             },
             mission: {
                 title: "激光反射实验室",
@@ -2139,7 +3321,7 @@ export const translations = {
         },
         s1_02: {
             back: "返回枢纽",
-            title: "S1.02 // 四维超几何",
+            title: "S1.02 // THALES TOWER",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -2147,29 +3329,81 @@ export const translations = {
                 elite: "精英"
             },
             objective_title: "当前任务目标",
-            target_title: "四维投影",
+            target_title: "Tower Height",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S1.02_超立方体实验室",
-            footer_left: "S1.02_四维几何 // 节点：巴塞尔",
+            monitor_title: "S1.02_THALES_MONITOR",
+            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
             stages: {
-                projection: "四维投影",
-                rotation: "旋转矩阵",
-                unfold: "超立方体展开",
-                projection_prompt_latex: "\\text{计算四维点的三维投影。}",
-                rotation_prompt_latex: "\\text{应用四维旋转并找到结果坐标。}",
-                unfold_prompt_latex: "\\text{计算展开的超立方体网格中的胞数。}"
+                measure: "MEASURE",
+                measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
             },
             labels: {
                 input: "输入",
-                hints: "提示"
+                hints: "提示",
+                readings: "READINGS",
+                pole_height: "Pole Height (h)",
+                pole_shadow: "Pole Shadow (l)",
+                tower_shadow: "Tower Shadow (L)",
+                sun_angle: "Sun Angle",
+                solve_height: "Solve Tower Height (H)",
+                height_placeholder: "height in meters",
+                hint_ratio: "Hint: h/H = l/L"
             },
             mission: {
-                title: "任务：CERN 超立方体校准",
-                description: "在 CERN，通过将超立方体顶点投影到三维空间来校准四维探测器阵列。"
+                title: "MISSION: BASEL CATHEDRAL SURVEY",
+                description: "Measure the tower height using Thales' theorem and shadow ratios."
+            }
+        },
+        sp2_03: {
+            back: "返回枢纽",
+            title: "SP2.03 // MOTOR LAB",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "Motor Assembly",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "SP2.03_MOTOR_MONITOR",
+            footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                current: "CURRENT SWITCH",
+                current_on: "SWITCH ON",
+                current_off: "SWITCH OFF",
+                polarity: "MAGNET POLARITY",
+                direction: "ROTATION DIRECTION",
+                direction_cw: "CLOCKWISE",
+                direction_ccw: "COUNTER-CLOCKWISE",
+                direction_stop: "STOPPED",
+                speed: "ROTATION SPEED",
+                readout: "READOUT"
+            },
+            mission: {
+                title: "MISSION: BASEL MOTOR WORKSHOP",
+                description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
+            },
+            stages: {
+                assemble: "ASSEMBLE",
+                power: "POWER",
+                reverse: "REVERSE",
+                assemble_desc: "Place magnets and coil",
+                power_desc: "Close the circuit and observe rotation",
+                reverse_desc: "Swap poles to reverse direction",
+                assemble_hint: "Start with the switch open and align the magnets",
+                power_hint: "Close the circuit to energize the coil",
+                reverse_hint: "Swap N/S to reverse rotation"
             }
         },
         c1_02: {
@@ -2597,46 +3831,6 @@ export const translations = {
                 richter_scale: "M = \\log(A/A_0)"
             }
         },
-        p5_03: {
-            back: "返回枢纽",
-            title: "P5.03 // LHC 校准",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "洛伦兹力",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "P5.03_LHC_监视器",
-            footer_left: "P5.03_洛伦兹力 // 节点：CERN",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                magnetic_field: "磁场 (B)",
-                radius: "半径 (r)",
-                mass: "质量 (m)"
-            },
-            mission: {
-                title: "LHC 粒子加速器",
-                description: "CERN 加速器需要精确的洛伦兹力计算。校准磁场和粒子轨迹。"
-            },
-            stages: {
-                constant_b: "恒定 B",
-                varying_v: "可变 v",
-                mass_spec: "质谱仪",
-                constant_b_prompt_latex: "\\text{计算磁场 }B=\\frac{mv}{qR}\\text{。}",
-                varying_v_prompt_latex: "\\text{计算半径 }r=\\frac{mv}{qB}\\text{。}",
-                mass_spec_prompt_latex: "\\text{计算质量 }m=\\frac{rqB}{v}\\text{。}"
-            },
-            formulas: {
-                constant_b: "B = \\frac{mv}{qR}",
-                varying_v: "r = \\frac{mv}{qB}",
-                mass_spec: "m = \\frac{rqB}{v}"
-            }
-        },
         c3_01: {
             back: "返回枢纽",
             title: "C3.01 // 分子建筑师",
@@ -2702,6 +3896,176 @@ export const translations = {
                 energy: "能量"
             }
         },
+        sp2_02: {
+            back: "返回枢纽",
+            title: "SP2.02 // 电路沙盒 2.0",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "电路分析",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SP2.02_电路监视器",
+            footer_left: "SP2.02_电路沙盒 // 节点：巴塞尔",
+            labels: {
+                multimeter: "万用表",
+                oscilloscope: "示波器",
+                resistance: "电阻",
+                capacitance: "电容",
+                inductance: "电感",
+                voltage: "电压",
+                analysis: "电路分析",
+                damping: "阻尼类型",
+                formulas: "RLC 公式",
+                reset: "重置"
+            },
+            mission: {
+                title: "任务：RLC 瞬态分析",
+                description: "构建和分析 RLC 电路。使用万用表测量电压和电流。在示波器上观察瞬态响应。"
+            },
+            stages: {
+                build: "构建电路",
+                measure: "测量数值",
+                analyze: "分析响应",
+                build_desc: "连接电阻、电容和电感",
+                measure_desc: "使用万用表测量电压和电流",
+                analyze_desc: "观察示波器波形",
+                build_hint: "点击组件以选择它们",
+                measure_hint: "选择 2 个点以测量电压降",
+                analyze_hint: "观察过阻尼、欠阻尼或临界阻尼响应"
+            }
+        },
+        sp4_01: {
+            back: "返回枢纽",
+            title: "SP4.01 // 波动基础",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "波动参数",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SP4.01_波动监视器",
+            footer_left: "SP4.01_波动基础 // 节点：莱茵河",
+            labels: {
+                wave_type: "波动类型",
+                transverse: "横波",
+                longitudinal: "纵波",
+                amplitude: "振幅",
+                frequency: "频率",
+                wave_speed: "波速",
+                wavelength: "波长",
+                period: "周期",
+                angular_freq: "角频率",
+                calculated: "计算值",
+                show_particles: "显示粒子运动",
+                formulas: "公式"
+            },
+            mission: {
+                title: "任务：莱茵河波动分析",
+                description: "研究莱茵河上的机械波。掌握波动参数：振幅、频率、波长和周期。"
+            },
+            stages: {
+                transverse: "横波",
+                longitudinal: "纵波",
+                parameters: "波动参数",
+                transverse_desc: "观察垂直粒子运动",
+                longitudinal_desc: "研究压缩和稀疏",
+                parameters_desc: "计算波长、周期和速度",
+                transverse_hint: "粒子垂直于波传播方向振动",
+                longitudinal_hint: "粒子平行于波传播方向振动",
+                parameters_hint: "v = λf, T = 1/f, ω = 2πf"
+            }
+        },
+        sb1_01: {
+            back: "返回枢纽",
+            title: "SB1.01 // 细胞工厂",
+            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            objective_title: "当前任务目标",
+            target_title: "细胞结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SB1.01_细胞监视器",
+            footer_left: "SB1.01_细胞工厂 // 节点：巴塞尔",
+            labels: {
+                cutaway_view: "切面视图",
+                selected: "选中的细胞器",
+                organelles: "细胞器",
+                instructions: "操作说明"
+            },
+            mission: {
+                title: "任务：细胞探索",
+                description: "探索动物细胞结构。识别细胞器并理解其功能。"
+            }
+        },
+        sb2_01: {
+            back: "返回枢纽",
+            title: "SB2.01 // 孟德尔花园",
+            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            objective_title: "当前任务目标",
+            target_title: "遗传杂交",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SB2.01_遗传学监视器",
+            footer_left: "SB2.01_孟德尔花园 // 节点：巴塞尔",
+            labels: {
+                genetics_basics: "遗传学基础",
+                genotype_phenotype: "基因型与表现型",
+                dominance: "显性规则",
+                mendels_laws: "孟德尔定律",
+                instructions: "操作说明"
+            },
+            mission: {
+                title: "任务：孟德尔遗传学",
+                description: "掌握孟德尔遗传定律。使用普瑞特方格预测子代比例。"
+            }
+        },
+        gb3_01: {
+            back: "返回枢纽",
+            title: "GB3.01 // DNA 熔炉",
+            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            objective_title: "当前任务目标",
+            target_title: "DNA 结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GB3.01_DNA_监视器",
+            footer_left: "GB3.01_DNA_熔炉 // 节点：巴塞尔",
+            labels: {
+                rotation: "旋转",
+                auto_rotate: "自动旋转",
+                show_bonds: "显示氢键",
+                highlight_pair: "高亮碱基对",
+                pairing_rules: "碱基配对规则",
+                bases: "核苷酸碱基",
+                structure: "DNA 结构"
+            },
+            mission: {
+                title: "任务：DNA 双螺旋",
+                description: "探索 DNA 结构。掌握互补碱基配对和氢键。"
+            }
+        },
         c1_01: {
             back: "返回枢纽",
             title: "C1.01 // 神秘实验室",
@@ -2732,6 +4096,550 @@ export const translations = {
                 identify: "鉴定",
                 properties: "性质",
                 reactions: "反应"
+            }
+        },
+        sc1_03: {
+            back: "返回枢纽",
+            title: "SC1.03 // 原子熔炉",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "原子结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC1.03_原子监视器",
+            footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                properties: "属性",
+                element: "元素",
+                atomic_number: "原子序数 (Z)",
+                mass_number: "质量数 (A)",
+                charge: "电荷",
+                periodic_table: "元素周期表",
+                protons: "质子 (p⁺)",
+                neutrons: "中子 (n⁰)",
+                electrons: "电子 (e⁻)"
+            },
+            mission: {
+                title: "任务：赛博熔炉",
+                description: "从亚原子粒子构建原子。掌握波尔模型和元素周期表。"
+            },
+            stages: {
+                build: "构建",
+                elements: "元素",
+                isotopes: "同位素",
+                build_desc: "自由模式：构建任意原子配置",
+                elements_desc: "探索元素周期表前 20 号元素",
+                isotopes_desc: "研究同位素：相同质子数，不同中子数"
+            }
+        },
+        gc2_01: {
+            back: "返回枢纽",
+            title: "GC2.01 // 碳世界",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "分子结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GC2.01_分子监视器",
+            footer_left: "GC2.01_碳世界 // 节点：巴塞尔",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                formula: "分子式",
+                iupac_name: "IUPAC 命名",
+                composition: "组成",
+                molecular_mass: "分子质量"
+            },
+            mission: {
+                title: "任务：有机合成",
+                description: "逐个原子构建有机分子。掌握碳链和官能团。"
+            },
+            stages: {
+                alkanes: "烷烃",
+                alcohols: "醇类",
+                custom: "自定义",
+                alkanes_desc: "构建烷烃链 (C-C-C)",
+                alcohols_desc: "添加羟基 (C-OH)",
+                custom_desc: "自由合成模式"
+            },
+            hints: {
+                select_atom: "点击原子以选择它",
+                add_atom: "点击原子工具添加新原子",
+                bonds: "原子根据化合价规则连接",
+                delete: "使用 DELETE 删除选中的原子"
+            }
+        },
+        gc3_01: {
+            back: "返回枢纽",
+            title: "GC3.01 // 平衡大师",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "化学平衡",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GC3.01_平衡监视器",
+            footer_left: "GC3.01_平衡大师 // 节点：巴塞尔",
+            labels: {
+                reaction: "可逆反应",
+                particle_count: "粒子计数",
+                conditions: "条件",
+                temperature: "温度",
+                pressure: "压力",
+                concentration: "[A]",
+                principle: "勒夏特列原理",
+                principle_1: "• 添加反应物 → 平衡右移（更多产物）",
+                principle_2: "• 增加压力 → 平衡向分子数少的方向移动",
+                principle_3: "• 升高温度 → 平衡向吸热方向移动",
+                add_reactant: "添加反应物 A",
+                system_temperature: "系统温度",
+                system_pressure: "系统压力"
+            },
+            mission: {
+                title: "任务：化学平衡",
+                description: "掌握勒夏特列原理。观察系统如何响应外界压力。"
+            },
+            stages: {
+                concentration: "浓度",
+                temperature: "温度",
+                pressure: "压力",
+                concentration_desc: "添加反应物A并观察平衡移动",
+                temperature_desc: "升高温度并观察粒子速度",
+                pressure_desc: "改变压力并观察体积效应",
+                concentration_hint: "更高的 [A] 使平衡右移 → 更多 C 和 D",
+                temperature_hint: "更高的温度增加粒子动能",
+                pressure_hint: "更高的压力减小容器体积"
+            }
+        },
+        gc1_01: {
+            back: "返回枢纽",
+            title: "GC1.01 // 氧化还原巨人",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "原电池",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GC1.01_氧化还原监视器",
+            footer_left: "GC1.01_氧化还原巨人 // 节点：巴塞尔",
+            labels: {
+                cell_potential: "电池电势",
+                zn_concentration: "Zn²⁺ 浓度",
+                cu_concentration: "Cu²⁺ 浓度",
+                temperature: "温度",
+                show_electrons: "显示电子流动",
+                show_ions: "显示离子迁移",
+                reaction_quotient: "反应商 (Q)",
+                half_reactions: "半反应",
+                anode: "阳极",
+                cathode: "阴极",
+                nernst_equation: "能斯特方程"
+            },
+            mission: {
+                title: "任务：电化学",
+                description: "构建原电池并掌握能斯特方程。实时观察电子流动和离子迁移。"
+            },
+            stages: {
+                build: "构建电池",
+                measure: "测量电势",
+                analyze: "分析反应",
+                build_desc: "构建 Zn-Cu 原电池",
+                measure_desc: "使用能斯特方程计算电池电势",
+                analyze_desc: "观察氧化还原反应和电子流动",
+                build_hint: "Zn 在阳极被氧化，Cu²⁺ 在阴极被还原",
+                measure_hint: "E = E° - (RT/nF)ln(Q)",
+                analyze_hint: "盐桥维持电中性"
+            }
+        },
+        gc3_02: {
+            back: "返回枢纽",
+            title: "GC3.02 // 晶体宫殿",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "晶体结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GC3.02_晶体监视器",
+            footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
+            labels: {
+                lattice_type: "晶格类型",
+                properties: "性质",
+                atoms_per_cell: "原子/晶胞",
+                coordination: "配位数",
+                packing: "堆积率",
+                tet_voids: "四面体空隙",
+                voids: "间隙空位",
+                tetrahedral: "四面体",
+                octahedral: "八面体",
+                formulas: "公式",
+                show_voids: "显示间隙空位",
+                slice_plane: "切片平面 (Y轴)",
+                reset_slice: "重置"
+            },
+            mission: {
+                title: "任务：固体物理",
+                description: "探索晶体结构和布拉维晶格。理解原子堆积和配位数。"
+            },
+            stages: {
+                sc: "简单立方",
+                bcc: "体心立方",
+                fcc: "面心立方",
+                sc_desc: "研究简单立方晶格（配位数6）",
+                bcc_desc: "分析体心立方（配位数8）",
+                fcc_desc: "掌握面心立方（配位数12）",
+                sc_hint: "最低堆积效率（52%）",
+                bcc_hint: "中等堆积（68%），金属如 Fe、Cr",
+                fcc_hint: "最高堆积（74%），金属如 Cu、Al、Au"
+            }
+        },
+        g4_01: {
+            back: "返回枢纽",
+            title: "G4.01 // 复数地平线",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "复数",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "G4.01_复数监视器",
+            footer_left: "G4.01_复数地平线 // 节点：苏黎世",
+            labels: {
+                input: "输入",
+                hints: "提示",
+                original: "原始 (z)",
+                result: "结果 (z^n)",
+                magnitude: "模长",
+                angle: "角度",
+                formulas: "公式",
+                real_part: "实部 (a)",
+                imaginary_part: "虚部 (b)",
+                power: "幂次 (n)"
+            },
+            mission: {
+                title: "任务：复数空间",
+                description: "在 3D 空间中探索复平面。掌握欧拉公式和复数幂运算。"
+            },
+            stages: {
+                basics: "基础",
+                powers: "幂运算",
+                euler: "欧拉公式",
+                basics_desc: "理解复数作为二维向量",
+                powers_desc: "可视化 z^n 的旋转与缩放",
+                euler_desc: "掌握欧拉公式：e^(iθ) = cos(θ) + i·sin(θ)",
+                basics_hint: "复数作为平面上的二维向量",
+                powers_hint: "z^n 旋转 n·θ 并缩放 r^n",
+                euler_hint: "e^(iθ) 描绘单位圆"
+            }
+        },
+        g5_01: {
+            back: "返回枢纽",
+            title: "G5.01 // 矩阵变形器",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "变换矩阵",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "G5.01_矩阵监视器",
+            footer_left: "G5.01_矩阵变形器 // 节点：巴塞尔",
+            labels: {
+                matrix: "矩阵 A",
+                properties: "属性",
+                determinant: "行列式",
+                volume_scale: "体积缩放",
+                formulas: "公式",
+                angle: "旋转角度 (θ)",
+                scale_x: "X轴缩放",
+                scale_y: "Y轴缩放",
+                scale_z: "Z轴缩放",
+                shear_xy: "Y对X的切变",
+                shear_xz: "Z对X的切变"
+            },
+            mission: {
+                title: "任务：矩阵几何",
+                description: "可视化矩阵如何变换3D空间。掌握旋转、缩放和切变。"
+            },
+            stages: {
+                rotation: "旋转",
+                scale: "缩放",
+                shear: "切变",
+                rotation_desc: "绕Z轴旋转单位立方体",
+                scale_desc: "沿各轴独立缩放立方体",
+                shear_desc: "切变立方体形成平行四边形",
+                rotation_hint: "旋转保持距离和角度",
+                scale_hint: "行列式 = sx × sy × sz",
+                shear_hint: "切变保持体积 (det = 1)"
+            }
+        },
+        sc2_02: {
+            back: "返回枢纽",
+            title: "SC2.02 // pH 哨兵",
+            difficulty: {
+                core: "核心"
+            },
+            objective_title: "当前任务目标",
+            target_title: "滴定曲线",
+            next: "重置",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC2.02_滴定监视器",
+            footer_left: "SC2.02_pH哨兵 // 节点：巴塞尔",
+            start: "开始滴定",
+            pause: "暂停流速",
+            reset: "重置实验",
+            labels: {
+                current_ph: "当前 pH",
+                equivalence: "当量点",
+                indicators: "指示剂",
+                solution_config: "溶液配置",
+                acid_molarity: "酸浓度",
+                base_molarity: "碱浓度",
+                acid_volume: "酸体积",
+                added_volume: "已加入体积",
+                flow_rate: "流速",
+                flow_control: "流速控制"
+            },
+            indicators: {
+                phenolphthalein: "酚酞",
+                phenolphthalein_low: "无色",
+                phenolphthalein_mid: "过渡",
+                phenolphthalein_high: "粉红",
+                methyl_orange: "甲基橙",
+                methyl_orange_low: "红色",
+                methyl_orange_mid: "橙色",
+                methyl_orange_high: "黄色"
+            },
+            mission: {
+                title: "任务：滴定哨兵",
+                description: "实时校准 pH 曲线。控制流速并观察指示剂变化。"
+            },
+            stages: {
+                titration: "滴定"
+            }
+        },
+        sc2_03: {
+            back: "返回枢纽",
+            title: "SC2.03 // 气体实验室",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "气体性质",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC2.03_气体监视器",
+            footer_left: "SC2.03_气体实验室 // 节点：巴塞尔",
+            labels: {
+                pressure: "压力",
+                state_variables: "状态变量",
+                volume: "体积 (V)",
+                temperature: "温度 (T)",
+                moles: "摩尔数 (n)",
+                formulas: "公式"
+            },
+            mission: {
+                title: "任务：理想气体定律",
+                description: "探索理想气体中压力、体积和温度之间的关系。"
+            },
+            stages: {
+                boyle: "波义耳定律",
+                charles: "查理定律",
+                combined: "组合气体定律",
+                boyle_desc: "观察反比关系：P ∝ 1/V",
+                charles_desc: "观察正比关系：V ∝ T",
+                combined_desc: "掌握组合气体定律",
+                boyle_hint: "波义耳定律：减小体积 → 增大压力",
+                charles_hint: "查理定律：升高温度 → 增大体积",
+                combined_hint: "组合定律：三个变量相互作用"
+            }
+        },
+        sc1_04: {
+            back: "返回枢纽",
+            title: "SC1.04 // 元素周期拼图",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "原子结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC1.04_原子监视器",
+            footer_left: "SC1.04_元素周期拼图 // 节点：巴塞尔",
+            labels: {
+                element_info: "元素信息",
+                formulas: "公式",
+                protons: "质子",
+                neutrons: "中子",
+                electrons: "电子",
+                select_element: "选择元素"
+            },
+            mission: {
+                title: "任务：元素周期表",
+                description: "构建原子并发现元素周期表。掌握电子排布。"
+            },
+            stages: {
+                build: "构建原子",
+                periodic: "元素周期表",
+                groups: "元素族",
+                build_desc: "通过添加质子、中子和电子来构建原子",
+                periodic_desc: "探索前 20 个元素",
+                groups_desc: "理解元素族和周期",
+                build_hint: "质子数决定元素种类",
+                periodic_hint: "元素按原子序数排列",
+                groups_hint: "同族元素 = 相同价电子数"
+            }
+        },
+        sc2_04: {
+            back: "返回枢纽",
+            title: "SC2.04 // 溶解度实验室",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "溶液状态",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "SC2.04_溶解度监视器",
+            footer_left: "SC2.04_溶解度实验室 // 节点：巴塞尔",
+            labels: {
+                solubility: "溶解度",
+                saturated: "饱和 - 正在形成沉淀",
+                unsaturated: "未饱和 - 可继续溶解",
+                solution_data: "溶液数据",
+                temperature: "温度 (°C)",
+                solute_amount: "溶质量 (g)",
+                formulas: "公式"
+            },
+            mission: {
+                title: "任务：溶解度",
+                description: "探索溶解度与温度的关系。观察结晶过程。"
+            },
+            stages: {
+                dissolve: "溶解",
+                saturate: "饱和",
+                crystallize: "结晶",
+                dissolve_desc: "将溶质溶解在水中",
+                saturate_desc: "达到饱和点",
+                crystallize_desc: "冷却溶液使其结晶",
+                dissolve_hint: "大多数盐在高温下溶解度更高",
+                saturate_hint: "饱和：溶解的最大量",
+                crystallize_hint: "冷却导致过量溶质结晶"
+            }
+        },
+        p5_03: {
+            back: "返回枢纽",
+            title: "GP5.03 // 粒子对撞机",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "LHC ATLAS 探测器",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GP5.03_LHC_监视器",
+            footer_left: "GP5.03_粒子对撞机 // 节点：CERN",
+            labels: {
+                beam_energy: "束流能量",
+                relativistic_effects: "相对论效应",
+                formulas: "公式",
+                magnetic_field: "启用磁场（弯曲磁铁）",
+                colliding: "对撞中...",
+                initiate_collision: "启动对撞"
+            },
+            mission: {
+                title: "任务：粒子物理",
+                description: "探索 CERN 大型强子对撞机的粒子碰撞。发现希格斯玻色子。"
+            },
+            stages: {
+                acceleration: "加速",
+                collision: "对撞",
+                detection: "探测",
+                acceleration_desc: "将质子加速到接近光速",
+                collision_desc: "在 13 TeV 下对撞质子束",
+                detection_desc: "探测粒子喷注和径迹",
+                acceleration_hint: "质子达到光速的 99.9999991%",
+                collision_hint: "对撞能量：13 TeV = 13,000 GeV",
+                detection_hint: "磁场使带电粒子径迹弯曲"
             }
         }
     },
@@ -2821,26 +4729,126 @@ export const translations = {
             s1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
             s1_02_title: "S1.02 // 4D HYPER-GEOMETRIE",
             s1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
-            p1_02_title: "P1.02 // NEWTONS GESETZE",
+            p1_02_title: "SP1.02 // NEWTONS GESETZE",
             p1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
-            p2_02_title: "P2.02 // STROMKREIS-SANDBOX",
-            p2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
-            p3_01_title: "P3.01 // GEOMETRISCHE OPTIK",
-            p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
-            p1_03_title: "P1.03 // ENERGIE & LEISTUNG",
-            p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
-            p2_01_title: "P2.01 // THERMODYNAMIK",
+            p2_01_title: "SP2.01 // THERMODYNAMIK",
             p2_01_subtitle: "Meistere Wärmekapazität und Phasenübergänge mit Partikelsimulationen.",
-            p1_04_title: "P1.04 // ZEITDILATATION",
+            p2_02_title: "SP2.02 // STROMKREIS-SANDBOX",
+            p2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
+            p3_01_title: "SP3.01 // GEOMETRISCHE OPTIK",
+            p3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
+            p1_03_title: "SP1.03 // ENERGIE & LEISTUNG",
+            p1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
+            p1_04_title: "SP1.04 // ZEITDILATATION",
             p1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
-            p3_02_title: "P3.02 // WELLENOPTIK",
+            p3_02_title: "GP3.02 // WELLENOPTIK",
             p3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
-            p1_05_title: "P1.05 // DIE RHEINFÄHRE",
+            p1_05_title: "SP1.05 // DIE RHEINFÄHRE",
             p1_05_subtitle: "Meistere die Gierseilfähri. Navigiere über den Rhein nur mit der Strömung.",
             sp1_06_title: "SP1.06 // DAS SCHWEIZER PENDEL",
             sp1_06_subtitle: "Die Mechanik der Zeit: Erforsche Periode, Frequenz und Gravitation beim Basler Uhrmacher.",
-            p5_01_title: "P5.01 // DER ATOMKERN",
+            p5_01_title: "GP5.01 // DER ATOMKERN",
             p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
+            p5_02: {
+                back: "Zurück zum Nexus",
+                title: "GP5.02 // RELATIVITÄTSLABOR",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                objective_title: "Aktuelles Missionsziel",
+                target_title: "Lorentz-Transformation",
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "GP5.02_RELATIVITAETS_MONITOR",
+                footer_left: "GP5.02_RELATIVITAETSLABOR // KNOTEN: CERN",
+                labels: {
+                    velocity: "GESCHWINDIGKEIT",
+                    lorentz_factor: "Lorentz-Faktor (γ)",
+                    time_dilation: "ZEITDILATATION",
+                    proper_time: "Eigenzeit (Δt₀)",
+                    dilated_time: "Dilatierte Zeit (Δt)",
+                    length_contraction: "LÄNGENKONTRAKTION",
+                    rest_length: "Ruhelänge (L₀)",
+                    contracted_length: "Kontrahierte Länge (L)",
+                    doppler_effect: "RELATIVISTISCHER DOPPLER",
+                    doppler_factor: "Doppler-Faktor",
+                    shift_type: "Verschiebungstyp",
+                    red_shift: "Rotverschiebung",
+                    blue_shift: "Blauverschiebung",
+                    particle_velocity: "TEILCHENGESCHWINDIGKEIT (v/c)",
+                    formulas: "FORMELN"
+                },
+                mission: {
+                    title: "MISSION: SPEZIELLE RELATIVITÄT",
+                    description: "Erkunden Sie Einsteins spezielle Relativitätstheorie bei CERN. Beobachten Sie Zeitdilatation und Längenkontraktion."
+                },
+                stages: {
+                    time_dilation: "ZEITDILATATION",
+                    length_contraction: "LÄNGENKONTRAKTION",
+                    doppler: "DOPPLER-EFFEKT",
+                    time_dilation_desc: "Beobachten Sie Photonenuhren bei relativistischen Geschwindigkeiten",
+                    length_contraction_desc: "Messen Sie die Längenkontraktion von Teilchen",
+                    doppler_desc: "Analysieren Sie die relativistische Dopplerverschiebung",
+                    time_dilation_hint: "Bewegte Uhren gehen langsamer: Δt = γΔt₀",
+                    length_contraction_hint: "Bewegte Objekte kontrahieren: L = L₀/γ",
+                    doppler_hint: "Licht verschiebt sich rot (entfernend) oder blau (nähernd)"
+                }
+            },
+            p5_04: {
+                back: "Zurück zum Nexus",
+                title: "GP5.04 // QUANTENTUNNEL",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                objective_title: "Aktuelles Missionsziel",
+                target_title: "Wellenfunktion",
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "GP5.04_QUANTEN_MONITOR",
+                footer_left: "GP5.04_QUANTENTUNNEL // KNOTEN: CERN",
+                labels: {
+                    particle_energy: "TEILCHENENERGIE (E)",
+                    barrier_height: "BARRIERENHÖHE (V₀)",
+                    barrier_width: "BARRIERENBREITE (a)",
+                    transmission: "TRANSMISSIONSKOEFFIZIENT",
+                    wave_function: "WELLENFUNKTION",
+                    probability_density: "WAHRSCHEINLICHKEITSDICHTE |ψ|²",
+                    incident: "Einfallend",
+                    reflected: "Reflektiert",
+                    transmitted: "Transmittiert",
+                    formulas: "FORMELN",
+                    energy_ev: "Energie (eV)",
+                    barrier_ev: "Barriere (eV)",
+                    width_nm: "Breite (nm)"
+                },
+                mission: {
+                    title: "MISSION: QUANTENTUNNELN",
+                    description: "Erkunden Sie Quantentunneln durch Potentialbarrieren. Beobachten Sie Wellenfunktionsverhalten."
+                },
+                stages: {
+                    classical: "KLASSISCHER GRENZFALL",
+                    tunneling: "QUANTENTUNNELN",
+                    resonance: "RESONANZ",
+                    classical_desc: "Teilchenenergie unter Barriere (E < V₀)",
+                    tunneling_desc: "Beobachten Sie Tunnelwahrscheinlichkeit",
+                    resonance_desc: "Finden Sie Resonanzbedingungen (T ≈ 1)",
+                    classical_hint: "Klassische Physik: T = 0 wenn E < V₀",
+                    tunneling_hint: "Quantenmechanik: T > 0 auch wenn E < V₀",
+                    resonance_hint: "Resonanz tritt bei bestimmten E/V₀-Verhältnissen auf"
+                }
+            },
             s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
             s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
             s2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
@@ -2849,16 +4857,89 @@ export const translations = {
             s3_03_subtitle: "Modelliere exponentielles Wachstum und logarithmische Skalen mit Bakteriensimulationen.",
             s3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
             s3_04_subtitle: "Meistern Sie pH-Wert, Dezibel und Richterskala mit logarithmischen Berechnungen.",
-            c1_02_title: "C1.02 // MOL-MEISTER",
+            c1_01_title: "SC1.01 // MYSTERY LAB",
+            c1_01_subtitle: "Identifizieren Sie mysteriöse weiße Pulver durch chemische Tests.",
+            c1_02_title: "SC1.02 // MOL-MEISTER",
             c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
-            c2_01_title: "C2.01 // REAKTIONSKINETIK",
-            c2_01_subtitle: "Meistern Sie Arrhenius-Gleichung, Kollisionstheorie und Reaktionsgeschwindigkeiten.",
-            c3_01_title: "C3.01 // MOLEKULARER ARCHITEKT",
-            c3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
-            p5_02_title: "P5.02 // RELATIVITÄTSLABOR",
+            sc1_03_title: "SC1.03 // ATOMSCHMIEDE",
+            sc1_03_subtitle: "Baue Isotope und verstehe Atomorbitale in 3D.",
+            sc1_04_title: "SC1.04 // PERIODISCHES PUZZLE",
+            sc1_04_subtitle: "Baue Atome und entdecke das Periodensystem. Meistere die Elektronenkonfiguration.",
+            sc2_01_title: "SC2.01 // REAKTIONSKINETIK",
+            sc2_01_subtitle: "Meistern Sie Arrhenius-Gleichung, Kollisionstheorie und Reaktionsgeschwindigkeiten.",
+            sc2_02_title: "SC2.02 // pH-WÄCHTER",
+            sc2_02_subtitle: "Meistern Sie pH-Kurven und Titration mit Echtzeit-Feedback.",
+            sc2_03_title: "SC2.03 // AERO LABOR",
+            sc2_03_subtitle: "Erkunden Sie ideale Gasgesetze mit Partikelsimulationen. Meistern Sie PV=nRT.",
+            sc2_04_title: "SC2.04 // LÖSLICHKEITSLABOR",
+            sc2_04_subtitle: "Erkunden Sie Löslichkeitskurven und Kristallisation. Meistern Sie Sättigungsgleichgewicht.",
+            gc1_01_title: "GC1.01 // REDOX-TITAN",
+            gc1_01_subtitle: "Meistern Sie elektrochemische Zellen und Redoxpotentiale.",
+            gc1_01: {
+                back: "Zurück zum Nexus",
+                title: "GC1.01 // REDOX-TITAN",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                objective_title: "Aktuelles Missionsziel",
+                target_title: "Galvanische Zelle",
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "GC1.01_REDOX_MONITOR",
+                footer_left: "GC1.01_REDOX_TITAN // KNOTEN: BASEL",
+                labels: {
+                    cell_reaction: "ZELLREAKTION",
+                    half_reactions: "HALBREAKTIONEN",
+                    anode: "Anode (−)",
+                    cathode: "Kathode (+)",
+                    cell_potential: "ZELLPOTENTIAL",
+                    standard_potential: "E⁰ (Standard)",
+                    actual_potential: "E (tatsächlich)",
+                    standard_potentials: "STANDARD-REDUKTIONSPOTENTIALE",
+                    anode_metal: "ANODENMETALL (−)",
+                    cathode_metal: "KATHODENMETALL (+)",
+                    anode_concentration: "ANODENKONZENTRATION [M²⁺]",
+                    cathode_concentration: "KATHODENKONZENTRATION [M²⁺]",
+                    formulas: "FORMELN"
+                },
+                mission: {
+                    title: "MISSION: ELEKTROCHEMIE",
+                    description: "Meistern Sie galvanische Zellen und Redoxreaktionen. Beobachten Sie Elektronenfluss und berechnen Sie Zellpotentiale."
+                },
+                stages: {
+                    daniell: "DANIELL-ZELLE",
+                    custom: "BENUTZERDEFINIERTE ZELLE",
+                    nernst: "NERNST-GLEICHUNG",
+                    daniell_desc: "Studieren Sie die klassische Daniell-Zelle (Zn-Cu)",
+                    custom_desc: "Bauen Sie benutzerdefinierte Zellen mit verschiedenen Metallen",
+                    nernst_desc: "Wenden Sie die Nernst-Gleichung an, um E zu berechnen",
+                    daniell_hint: "Zn verliert Elektronen (Oxidation), Cu²⁺ gewinnt Elektronen (Reduktion)",
+                    custom_hint: "Metall mit niedrigerem Potential wird zur Anode (−)",
+                    nernst_hint: "Höhere [Produkte] verringern das Zellpotential"
+                }
+            },
+            gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
+            gc2_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Modellen.",
+            gc3_01_title: "GC3.01 // MOLEKULARER ARCHITEKT",
+            gc3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
+            gc3_02_title: "GC3.02 // KRISTALLPALAST",
+            gc3_02_subtitle: "Erkunden Sie Kristallstrukturen: SC-, BCC-, FCC-Gitter mit Zwischengitterlücken.",
+            g4_01_title: "G4.01 // KOMPLEXER HORIZONT",
+            g4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
+            g5_01_title: "G5.01 // MATRIX-TRANSFORMATION",
+            g5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
+            p5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
             p5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
-            p5_03_title: "P5.03 // LHC KALIBRIERUNG",
-            p5_03_subtitle: "Kalibrieren Sie Teilchenbahnen mit Lorentzkraft und Magnetfeldern.",
+            p5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
+            p5_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
+            p5_04_title: "GP5.04 // QUANTENTUNNEL",
+            p5_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -2869,7 +4950,38 @@ export const translations = {
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
             search_label: "Module filtern",
             search_placeholder: "Nach Code oder Name suchen",
+            filter_tags_label: "Fach-Tags",
+            filter_clear: "Filter zurücksetzen",
+            filter_empty: "Keine Module entsprechen den Filtern.",
+            filter_tags: {
+                physics: "Physik",
+                math: "Mathe",
+                chemistry: "Chemie",
+                biology: "Biologie",
+                socratic: "Sokratisch"
+            },
             completed_badge: "ABGESCHLOSSEN",
+        },
+        profile: {
+            title: "Wissenschaftlerprofil",
+            subtitle: "Operator-Dossier // Leistungs-Matrix",
+            radar_title: "Kognitives Radar",
+            stats_title: "Missionsstatistik",
+            timeline_title: "Lernzeitlinie",
+            timeline_empty: "Noch keine Missionshistorie.",
+            timeline_accuracy: "Genauigkeit",
+            stats: {
+                completed_modules: "Abgeschlossene Module",
+                avg_accuracy: "Durchschnittliche Genauigkeit",
+                total_runs: "Gesamtläufe",
+                experiment_index: "Experimentindex"
+            },
+            metrics: {
+                logic: "Logik",
+                intuition: "Intuition",
+                rigor: "Präzision",
+                experiment: "Experiment"
+            }
         },
         s2_02: {
             back: "Zurück zum Nexus",
@@ -2997,7 +5109,7 @@ export const translations = {
         },
         s3_02: {
             back: "Zurück zum Nexus",
-            title: "S3.02 // TRIGONOMETRIE-TURM",
+            title: "S3.02 // TRIGONOMETRISCHER KREIS",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -3012,12 +5124,30 @@ export const translations = {
             incorrect: "Abweichung",
             ready: "Bereit",
             monitor_title: "S3.02_TRIG_MONITOR",
-            footer_left: "S3.02_TRIGONOMETRIE // KNOTEN: ZÜRICH",
+            footer_left: "S3.02_TRIG_KREIS // KNOTEN: BASEL",
+            labels: {
+                angle: "WINKEL (θ)",
+                values: "TRIGONOMETRISCHE WERTE",
+                display: "ANZEIGEOPTIONEN",
+                show_waves: "Wellenfunktionen anzeigen",
+                formulas: "FORMELN"
+            },
+            mission: {
+                title: "MISSION: EINHEITSKREIS",
+                description: "Meistern Sie den Einheitskreis und trigonometrische Funktionen. Verstehen Sie sin-, cos- und tan-Beziehungen."
+            },
             stages: {
                 unit_circle: "EINHEITSKREIS",
-                wave_functions: "WELLENFUNKTIONEN",
-                triangle_solver: "DREIECKSLÖSER",
-                unit_circle_prompt_latex: "\\text{Bestimme }\\sin\\theta,\\cos\\theta,\\tan\\theta\\text{ am Einheitskreis.}",
+                projections: "PROJEKTIONEN",
+                waves: "WELLENFUNKTIONEN",
+                unit_circle_desc: "Erkunden Sie den Einheitskreis und Winkelrotation",
+                projections_desc: "Verstehen Sie Sinus und Kosinus als Projektionen",
+                waves_desc: "Visualisieren Sie Sinus und Kosinus als Wellenfunktionen",
+                unit_circle_hint: "Punkt auf Kreis: (cos θ, sin θ)",
+                projections_hint: "sin = y-Projektion, cos = x-Projektion",
+                waves_hint: "Sinus und Kosinus erzeugen periodische Wellen"
+            }
+        },
                 wave_functions_prompt_latex: "\\text{Analysiere die Sinus- und Kosinuswellenfunktionen.}",
                 triangle_solver_prompt_latex: "\\text{Löse das rechtwinklige Dreieck mit trigonometrischen Verhältnissen.}"
             },
@@ -3103,6 +5233,27 @@ export const translations = {
                 target: "Ziel",
                 slope: "Steigung (m)",
                 intercept: "Achsenabschnitt (c)"
+            },
+            prompts: {
+                level1: "\\text{Triff das Ziel mit einer Reflexion}",
+                level2: "\\text{Sage die Bewegung voraus und triff das Ziel}",
+                level3: "\\text{Triff das Ziel mit zwei Reflexionen}"
+            },
+            hints: {
+                level1: "Nutze eine Reflexion, um das Ziel zu treffen. Passe Steigung und Achsenabschnitt an.",
+                level2: "Das Ziel bewegt sich. Prognostiziere die Position und passe den Laserpfad an.",
+                level3: "Nutze zwei Reflexionen, um das Ziel zu erreichen. Komplexere Trajektorie erforderlich.",
+                drag: "Ziehe die Kontrollpunkte der Geraden, um Steigung und Achsenabschnitt anzupassen."
+            },
+            ui: {
+                current_function: "Aktuelle Funktion",
+                reflections: "Reflexionen",
+                target_position: "Zielposition",
+                hit_badge: "ZIEL GETROFFEN",
+                chamber: "KAMMER",
+                laser_sim: "LASER_SIM",
+                level: "LEVEL",
+                hits: "Treffer"
             },
             mission: {
                 title: "LASER-REFLEXIONS-LABOR",
@@ -3507,7 +5658,7 @@ export const translations = {
         },
         s1_02: {
             back: "Zurück zum Nexus",
-            title: "S1.02 // 4D HYPER-GEOMETRIE",
+            title: "S1.02 // THALES TOWER",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -3515,29 +5666,81 @@ export const translations = {
                 elite: "ELITE"
             },
             objective_title: "Aktuelles Missionsziel",
-            target_title: "4D-Projektion",
+            target_title: "Tower Height",
             next: "Nächste Sequenz ausführen",
             check: "Prüfen",
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S1.02_TESSERAKT_LABOR",
-            footer_left: "S1.02_4D_GEOMETRIE // KNOTEN: BASEL",
+            monitor_title: "S1.02_THALES_MONITOR",
+            footer_left: "S1.02_THALES_TOWER // NODE: BASEL",
             stages: {
-                projection: "4D-PROJEKTION",
-                rotation: "ROTATIONSMATRIZEN",
-                unfold: "TESSERAKT-ENTFALTUNG",
-                projection_prompt_latex: "\\text{Berechne die 3D-Projektion des 4D-Punktes.}",
-                rotation_prompt_latex: "\\text{Wende 4D-Rotation an und finde die resultierenden Koordinaten.}",
-                unfold_prompt_latex: "\\text{Zähle die Zellen im entfalteten Tesserakt-Netz.}"
+                measure: "MEASURE",
+                measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
             },
             labels: {
                 input: "EINGABE",
-                hints: "HINWEISE"
+                hints: "HINWEISE",
+                readings: "READINGS",
+                pole_height: "Pole Height (h)",
+                pole_shadow: "Pole Shadow (l)",
+                tower_shadow: "Tower Shadow (L)",
+                sun_angle: "Sun Angle",
+                solve_height: "Solve Tower Height (H)",
+                height_placeholder: "height in meters",
+                hint_ratio: "Hint: h/H = l/L"
             },
             mission: {
-                title: "MISSION: CERN HYPERWÜRFEL-KALIBRIERUNG",
-                description: "Bei CERN kalibriere das 4D-Detektorarray durch Projektion von Hyperwürfel-Eckpunkten in den 3D-Raum."
+                title: "MISSION: BASEL CATHEDRAL SURVEY",
+                description: "Measure the tower height using Thales' theorem and shadow ratios."
+            }
+        },
+        sp2_03: {
+            back: "Zurück zum Nexus",
+            title: "SP2.03 // MOTOR LAB",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Motor Assembly",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SP2.03_MOTOR_MONITOR",
+            footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                current: "CURRENT SWITCH",
+                current_on: "SWITCH ON",
+                current_off: "SWITCH OFF",
+                polarity: "MAGNET POLARITY",
+                direction: "ROTATION DIRECTION",
+                direction_cw: "CLOCKWISE",
+                direction_ccw: "COUNTER-CLOCKWISE",
+                direction_stop: "STOPPED",
+                speed: "ROTATION SPEED",
+                readout: "READOUT"
+            },
+            mission: {
+                title: "MISSION: BASEL MOTOR WORKSHOP",
+                description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
+            },
+            stages: {
+                assemble: "ASSEMBLE",
+                power: "POWER",
+                reverse: "REVERSE",
+                assemble_desc: "Place magnets and coil",
+                power_desc: "Close the circuit and observe rotation",
+                reverse_desc: "Swap poles to reverse direction",
+                assemble_hint: "Start with the switch open and align the magnets",
+                power_hint: "Close the circuit to energize the coil",
+                reverse_hint: "Swap N/S to reverse rotation"
             }
         },
         c1_02: {
@@ -3925,6 +6128,176 @@ export const translations = {
                 dilation_prompt_latex: "\\text{Berechne die dilatierte Zeit }T=T_0\\times\\gamma."
             }
         },
+        sp2_02: {
+            back: "Zurück zum Nexus",
+            title: "SP2.02 // SCHALTKREIS-SANDBOX 2.0",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Schaltkreisanalyse",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "SP2.02_SCHALTKREIS_MONITOR",
+            footer_left: "SP2.02_SCHALTKREIS_SANDBOX // KNOTEN: BASEL",
+            labels: {
+                multimeter: "MULTIMETER",
+                oscilloscope: "OSZILLOSKOP",
+                resistance: "WIDERSTAND",
+                capacitance: "KAPAZITÄT",
+                inductance: "INDUKTIVITÄT",
+                voltage: "SPANNUNG",
+                analysis: "SCHALTKREISANALYSE",
+                damping: "DÄMPFUNGSTYP",
+                formulas: "RLC-FORMELN",
+                reset: "ZURÜCKSETZEN"
+            },
+            mission: {
+                title: "MISSION: RLC-TRANSIENTEN-ANALYSE",
+                description: "Bauen und analysieren Sie RLC-Schaltkreise. Verwenden Sie das Multimeter zur Messung von Spannung und Strom. Beobachten Sie transiente Antworten auf dem Oszilloskop."
+            },
+            stages: {
+                build: "SCHALTKREIS BAUEN",
+                measure: "WERTE MESSEN",
+                analyze: "ANTWORT ANALYSIEREN",
+                build_desc: "Widerstände, Kondensatoren und Spulen verbinden",
+                measure_desc: "Multimeter zur Messung von Spannung und Strom verwenden",
+                analyze_desc: "Oszilloskop-Wellenformen beobachten",
+                build_hint: "Klicken Sie auf Komponenten, um sie auszuwählen",
+                measure_hint: "Wählen Sie 2 Punkte, um Spannungsabfall zu messen",
+                analyze_hint: "Achten Sie auf überdämpfte, unterdämpfte oder kritisch gedämpfte Antworten"
+            }
+        },
+        sp4_01: {
+            back: "Zurück zum Nexus",
+            title: "SP4.01 // WELLENGRUNDLAGEN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Wellenparameter",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SP4.01_WELLEN_MONITOR",
+            footer_left: "SP4.01_WELLENGRUNDLAGEN // KNOTEN: RHEIN",
+            labels: {
+                wave_type: "WELLENTYP",
+                transverse: "TRANSVERSAL",
+                longitudinal: "LONGITUDINAL",
+                amplitude: "AMPLITUDE",
+                frequency: "FREQUENZ",
+                wave_speed: "WELLENGESCHWINDIGKEIT",
+                wavelength: "WELLENLÄNGE",
+                period: "PERIODE",
+                angular_freq: "KREISFREQUENZ",
+                calculated: "BERECHNETE WERTE",
+                show_particles: "Teilchenbewegung anzeigen",
+                formulas: "FORMELN"
+            },
+            mission: {
+                title: "MISSION: RHEIN-WELLENANALYSE",
+                description: "Studieren Sie mechanische Wellen auf dem Rhein. Meistern Sie Wellenparameter: Amplitude, Frequenz, Wellenlänge und Periode."
+            },
+            stages: {
+                transverse: "TRANSVERSALWELLEN",
+                longitudinal: "LONGITUDINALWELLEN",
+                parameters: "WELLENPARAMETER",
+                transverse_desc: "Beobachten Sie senkrechte Teilchenbewegung",
+                longitudinal_desc: "Studieren Sie Kompression und Verdünnung",
+                parameters_desc: "Berechnen Sie Wellenlänge, Periode und Geschwindigkeit",
+                transverse_hint: "Teilchen schwingen senkrecht zur Wellenrichtung",
+                longitudinal_hint: "Teilchen schwingen parallel zur Wellenrichtung",
+                parameters_hint: "v = λf, T = 1/f, ω = 2πf"
+            }
+        },
+        sb1_01: {
+            back: "Zurück zum Nexus",
+            title: "SB1.01 // ZELLFABRIK",
+            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Zellstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SB1.01_ZELL_MONITOR",
+            footer_left: "SB1.01_ZELLFABRIK // KNOTEN: BASEL",
+            labels: {
+                cutaway_view: "Schnittansicht",
+                selected: "AUSGEWÄHLTE ORGANELLE",
+                organelles: "ORGANELLEN",
+                instructions: "ANWEISUNGEN"
+            },
+            mission: {
+                title: "MISSION: ZELLERKUNDUNG",
+                description: "Erkunden Sie die tierische Zellstruktur. Identifizieren Sie Organellen und verstehen Sie ihre Funktionen."
+            }
+        },
+        sb2_01: {
+            back: "Zurück zum Nexus",
+            title: "SB2.01 // MENDELS GARTEN",
+            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Genetische Kreuzung",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SB2.01_GENETIK_MONITOR",
+            footer_left: "SB2.01_MENDELS_GARTEN // KNOTEN: BASEL",
+            labels: {
+                genetics_basics: "GENETIK-GRUNDLAGEN",
+                genotype_phenotype: "GENOTYP VS PHÄNOTYP",
+                dominance: "DOMINANZREGELN",
+                mendels_laws: "MENDELS GESETZE",
+                instructions: "ANWEISUNGEN"
+            },
+            mission: {
+                title: "MISSION: MENDELSCHE GENETIK",
+                description: "Meistern Sie Mendels Vererbungsgesetze. Sagen Sie Nachkommenverhältnisse mit Punnett-Quadraten voraus."
+            }
+        },
+        gb3_01: {
+            back: "Zurück zum Nexus",
+            title: "GB3.01 // DNA-SCHMIEDE",
+            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "DNA-Struktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "GB3.01_DNA_MONITOR",
+            footer_left: "GB3.01_DNA_SCHMIEDE // KNOTEN: BASEL",
+            labels: {
+                rotation: "ROTATION",
+                auto_rotate: "Automatische Rotation",
+                show_bonds: "Wasserstoffbrücken anzeigen",
+                highlight_pair: "BASENPAAR HERVORHEBEN",
+                pairing_rules: "BASENPAARUNGSREGELN",
+                bases: "NUKLEOTIDBASEN",
+                structure: "DNA-STRUKTUR"
+            },
+            mission: {
+                title: "MISSION: DNA-DOPPELHELIX",
+                description: "Erkunden Sie die DNA-Struktur. Meistern Sie komplementäre Basenpaarung und Wasserstoffbrückenbindung."
+            }
+        },
         s3_04: {
             back: "Zurück zum Nexus",
             title: "S3.04 // LOGARITHMISCHE SKALEN",
@@ -3963,46 +6336,6 @@ export const translations = {
                 ph_scale: "pH = -\\log[H^+]",
                 decibel_scale: "dB = 10\\log(I/I_0)",
                 richter_scale: "M = \\log(A/A_0)"
-            }
-        },
-        p5_03: {
-            back: "Zurück zum Nexus",
-            title: "P5.03 // LHC KALIBRIERUNG",
-            difficulty: {
-                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
-            },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Lorentzkraft",
-            next: "Nächste Sequenz ausführen",
-            check: "Verifizieren",
-            correct: "Verifiziert",
-            incorrect: "Fehlreaktion",
-            ready: "Bereit",
-            monitor_title: "P5.03_LHC_MONITOR",
-            footer_left: "P5.03_LORENTZKRAFT // KNOTEN: CERN",
-            labels: {
-                input: "EINGABE",
-                hints: "HINWEISE",
-                magnetic_field: "Magnetfeld (B)",
-                radius: "Radius (r)",
-                mass: "Masse (m)"
-            },
-            mission: {
-                title: "LHC TEILCHENBESCHLEUNIGER",
-                description: "CERN-Beschleuniger erfordert präzise Lorentzkraft-Berechnungen. Kalibrieren Sie Magnetfeld und Teilchenbahn."
-            },
-            stages: {
-                constant_b: "KONSTANTES B",
-                varying_v: "VARIABLE v",
-                mass_spec: "MASSENSPEKTROMETRIE",
-                constant_b_prompt_latex: "\\text{Berechnen Sie das Magnetfeld }B=\\frac{mv}{qR}.",
-                varying_v_prompt_latex: "\\text{Berechnen Sie den Radius }r=\\frac{mv}{qB}.",
-                mass_spec_prompt_latex: "\\text{Berechnen Sie die Masse }m=\\frac{rqB}{v}."
-            },
-            formulas: {
-                constant_b: "B = \\frac{mv}{qR}",
-                varying_v: "r = \\frac{mv}{qB}",
-                mass_spec: "m = \\frac{rqB}{v}"
             }
         },
         c3_01: {
@@ -4101,9 +6434,564 @@ export const translations = {
                 gravity: "GRAVITATION",
                 energy: "ENERGIE"
             }
+        },
+        sc1_03: {
+            back: "Zurück zum Nexus",
+            title: "SC1.03 // ATOMSCHMIEDE",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Atomstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "SC1.03_ATOM_MONITOR",
+            footer_left: "SC1.03_ATOMSCHMIEDE // KNOTEN: BASEL",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                properties: "EIGENSCHAFTEN",
+                element: "Element",
+                atomic_number: "Ordnungszahl (Z)",
+                mass_number: "Massenzahl (A)",
+                charge: "Ladung",
+                periodic_table: "PERIODENSYSTEM",
+                protons: "PROTONEN (p⁺)",
+                neutrons: "NEUTRONEN (n⁰)",
+                electrons: "ELEKTRONEN (e⁻)"
+            },
+            mission: {
+                title: "MISSION: CYBER-SCHMIEDE",
+                description: "Bauen Sie Atome aus subatomaren Teilchen. Meistern Sie das Bohr-Modell und das Periodensystem."
+            },
+            stages: {
+                build: "BAUEN",
+                elements: "ELEMENTE",
+                isotopes: "ISOTOPE",
+                build_desc: "Freier Modus: Beliebige Atomkonfiguration erstellen",
+                elements_desc: "Erkunden Sie die ersten 20 Elemente des Periodensystems",
+                isotopes_desc: "Studieren Sie Isotope: gleiche Protonenzahl, unterschiedliche Neutronenzahl"
+            }
+        },
+        g4_01: {
+            back: "Zurück zum Nexus",
+            title: "G4.01 // KOMPLEXER HORIZONT",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "ERWEITERT",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Komplexe Zahl",
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "G4.01_KOMPLEX_MONITOR",
+            footer_left: "G4.01_KOMPLEXER_HORIZONT // KNOTEN: ZÜRICH",
+            labels: {
+                input: "EINGABE",
+                hints: "HINWEISE",
+                original: "ORIGINAL (z)",
+                result: "ERGEBNIS (z^n)",
+                magnitude: "Betrag",
+                angle: "Winkel",
+                formulas: "FORMELN",
+                real_part: "REALTEIL (a)",
+                imaginary_part: "IMAGINÄRTEIL (b)",
+                power: "POTENZ (n)"
+            },
+            mission: {
+                title: "MISSION: KOMPLEXER RAUM",
+                description: "Erkunden Sie die komplexe Ebene in 3D. Meistern Sie Eulers Formel und komplexe Potenzen."
+            },
+            stages: {
+                basics: "GRUNDLAGEN",
+                powers: "POTENZEN",
+                euler: "EULER",
+                basics_desc: "Verstehen Sie komplexe Zahlen als 2D-Vektoren",
+                powers_desc: "Visualisieren Sie z^n als Rotation und Skalierung",
+                euler_desc: "Meistern Sie Eulers Formel: e^(iθ) = cos(θ) + i·sin(θ)",
+                basics_hint: "Komplexe Zahlen als 2D-Vektoren in der Ebene",
+                powers_hint: "z^n rotiert um n·θ und skaliert mit r^n",
+                euler_hint: "e^(iθ) zeichnet den Einheitskreis"
+            }
+        },
+        g5_01: {
+            back: "Zurück zum Nexus",
+            title: "G5.01 // MATRIX RELOADED",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Transformationsmatrix",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "G5.01_MATRIX_MONITOR",
+            footer_left: "G5.01_MATRIX_RELOADED // KNOTEN: BASEL",
+            labels: {
+                matrix: "MATRIX A",
+                properties: "EIGENSCHAFTEN",
+                determinant: "Determinante",
+                volume_scale: "Volumenskalierung",
+                formulas: "FORMELN",
+                angle: "ROTATIONSWINKEL (θ)",
+                scale_x: "X-ACHSE SKALIEREN",
+                scale_y: "Y-ACHSE SKALIEREN",
+                scale_z: "Z-ACHSE SKALIEREN",
+                shear_xy: "SCHERUNG X DURCH Y",
+                shear_xz: "SCHERUNG X DURCH Z"
+            },
+            mission: {
+                title: "MISSION: MATRIX-GEOMETRIE",
+                description: "Visualisieren Sie, wie Matrizen den 3D-Raum transformieren. Meistern Sie Rotation, Skalierung und Scherung."
+            },
+            stages: {
+                rotation: "ROTATION",
+                scale: "SKALIERUNG",
+                shear: "SCHERUNG",
+                rotation_desc: "Drehen Sie den Einheitswürfel um die Z-Achse",
+                scale_desc: "Skalieren Sie den Würfel entlang jeder Achse unabhängig",
+                shear_desc: "Scheren Sie den Würfel, um Parallelogramme zu erstellen",
+                rotation_hint: "Rotation erhält Abstände und Winkel",
+                scale_hint: "Determinante = sx × sy × sz",
+                shear_hint: "Scherung erhält Volumen (det = 1)"
+            }
+        },
+        sc2_02: {
+            back: "Zurück zum Nexus",
+            title: "SC2.02 // pH-WÄCHTER",
+            difficulty: {
+                core: "KERN"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Titrationskurve",
+            next: "Zurücksetzen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SC2.02_TITRATION_MONITOR",
+            footer_left: "SC2.02_PH_WAECHTER // KNOTEN: BASEL",
+            start: "Titration starten",
+            pause: "Fluss pausieren",
+            reset: "Lauf zurücksetzen",
+            labels: {
+                current_ph: "Aktueller pH",
+                equivalence: "Äquivalenzpunkt",
+                indicators: "Indikatoren",
+                solution_config: "Lösungs-Konfiguration",
+                acid_molarity: "Säure-Molarität",
+                base_molarity: "Base-Molarität",
+                acid_volume: "Säurevolumen",
+                added_volume: "Zugegebenes Volumen",
+                flow_rate: "Flussrate",
+                flow_control: "Flusssteuerung"
+            },
+            indicators: {
+                phenolphthalein: "Phenolphthalein",
+                phenolphthalein_low: "Farblos",
+                phenolphthalein_mid: "Übergang",
+                phenolphthalein_high: "Pink",
+                methyl_orange: "Methylorange",
+                methyl_orange_low: "Rot",
+                methyl_orange_mid: "Orange",
+                methyl_orange_high: "Gelb"
+            },
+            mission: {
+                title: "MISSION: TITRATIONSSENTINEL",
+                description: "Kalibrieren Sie die pH-Kurve in Echtzeit. Steuern Sie die Flussrate und verfolgen Sie den Indikatorwechsel."
+            },
+            stages: {
+                titration: "TITRATION"
+            }
+        },
+        sc2_03: {
+            back: "Zurück zum Nexus",
+            title: "SC2.03 // AERO LABOR",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Gaseigenschaften",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SC2.03_GAS_MONITOR",
+            footer_left: "SC2.03_AERO_LABOR // KNOTEN: BASEL",
+            labels: {
+                pressure: "DRUCK",
+                state_variables: "ZUSTANDSVARIABLEN",
+                volume: "VOLUMEN (V)",
+                temperature: "TEMPERATUR (T)",
+                moles: "STOFFMENGE (n)",
+                formulas: "FORMELN"
+            },
+            mission: {
+                title: "MISSION: IDEALE GASGESETZE",
+                description: "Erkunden Sie die Beziehung zwischen Druck, Volumen und Temperatur in idealen Gasen."
+            },
+            stages: {
+                boyle: "BOYLE-GESETZ",
+                charles: "CHARLES-GESETZ",
+                combined: "KOMBINIERTES GASGESETZ",
+                boyle_desc: "Beobachten Sie umgekehrte Beziehung: P ∝ 1/V",
+                charles_desc: "Beobachten Sie direkte Beziehung: V ∝ T",
+                combined_desc: "Meistern Sie das kombinierte Gasgesetz",
+                boyle_hint: "Boyle-Gesetz: Volumen verringern → Druck erhöhen",
+                charles_hint: "Charles-Gesetz: Temperatur erhöhen → Volumen erhöhen",
+                combined_hint: "Kombiniert: Alle drei Variablen interagieren"
+            }
+        },
+        sc1_04: {
+            back: "Zurück zum Nexus",
+            title: "SC1.04 // PERIODISCHES PUZZLE",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Atomstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SC1.04_ATOM_MONITOR",
+            footer_left: "SC1.04_PERIODISCHES_PUZZLE // KNOTEN: BASEL",
+            labels: {
+                element_info: "ELEMENTINFORMATIONEN",
+                formulas: "FORMELN",
+                protons: "PROTONEN",
+                neutrons: "NEUTRONEN",
+                electrons: "ELEKTRONEN",
+                select_element: "ELEMENT AUSWÄHLEN"
+            },
+            mission: {
+                title: "MISSION: PERIODENSYSTEM",
+                description: "Baue Atome und entdecke das Periodensystem. Meistere die Elektronenkonfiguration."
+            },
+            stages: {
+                build: "ATOM BAUEN",
+                periodic: "PERIODENSYSTEM",
+                groups: "ELEMENTGRUPPEN",
+                build_desc: "Baue Atome durch Hinzufügen von Protonen, Neutronen und Elektronen",
+                periodic_desc: "Erkunde die ersten 20 Elemente",
+                groups_desc: "Verstehe Elementgruppen und Perioden",
+                build_hint: "Protonenzahl bestimmt das Element",
+                periodic_hint: "Elemente sind nach Ordnungszahl angeordnet",
+                groups_hint: "Gleiche Gruppe = gleiche Valenzelektronen"
+            }
+        },
+        sc2_04: {
+            back: "Zurück zum Nexus",
+            title: "SC2.04 // LÖSLICHKEITSLABOR",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Lösungsstatus",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "SC2.04_LÖSLICHKEITS_MONITOR",
+            footer_left: "SC2.04_LÖSLICHKEITSLABOR // KNOTEN: BASEL",
+            labels: {
+                solubility: "LÖSLICHKEIT",
+                saturated: "GESÄTTIGT - Niederschlag bildet sich",
+                unsaturated: "UNGESÄTTIGT - Kann mehr lösen",
+                solution_data: "LÖSUNGSDATEN",
+                temperature: "TEMPERATUR (°C)",
+                solute_amount: "GELÖSTE STOFFMENGE (g)",
+                formulas: "FORMELN"
+            },
+            mission: {
+                title: "MISSION: LÖSLICHKEIT",
+                description: "Erkunden Sie Löslichkeit und Temperaturbeziehungen. Beobachten Sie Kristallisation."
+            },
+            stages: {
+                dissolve: "AUFLÖSEN",
+                saturate: "SÄTTIGEN",
+                crystallize: "KRISTALLISIEREN",
+                dissolve_desc: "Löse Stoff in Wasser auf",
+                saturate_desc: "Erreiche den Sättigungspunkt",
+                crystallize_desc: "Kühle Lösung zur Kristallisation",
+                dissolve_hint: "Die meisten Salze lösen sich bei höheren Temperaturen besser",
+                saturate_hint: "Sättigung: maximal gelöste Menge",
+                crystallize_hint: "Abkühlung führt zur Kristallisation überschüssigen Stoffes"
+            }
+        },
+        p5_03: {
+            back: "Zurück zum Nexus",
+            title: "GP5.03 // TEILCHENBESCHLEUNIGER",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "LHC ATLAS DETEKTOR",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "GP5.03_LHC_MONITOR",
+            footer_left: "GP5.03_TEILCHENBESCHLEUNIGER // KNOTEN: CERN",
+            labels: {
+                beam_energy: "STRAHLENERGIE",
+                relativistic_effects: "RELATIVISTISCHE EFFEKTE",
+                formulas: "FORMELN",
+                magnetic_field: "Magnetfeld aktivieren (Biegemagnete)",
+                colliding: "KOLLISION...",
+                initiate_collision: "KOLLISION STARTEN"
+            },
+            mission: {
+                title: "MISSION: TEILCHENPHYSIK",
+                description: "Erkunden Sie Teilchenkollisionen am CERN Large Hadron Collider. Entdecken Sie das Higgs-Boson."
+            },
+            stages: {
+                acceleration: "BESCHLEUNIGUNG",
+                collision: "KOLLISION",
+                detection: "DETEKTION",
+                acceleration_desc: "Beschleunigen Sie Protonen auf nahezu Lichtgeschwindigkeit",
+                collision_desc: "Kollidieren Sie Protonenstrahlen bei 13 TeV",
+                detection_desc: "Detektieren Sie Teilchenjets und Spuren",
+                acceleration_hint: "Protonen erreichen 99,9999991% der Lichtgeschwindigkeit",
+                collision_hint: "Kollisionsenergie: 13 TeV = 13.000 GeV",
+                detection_hint: "Magnetfeld biegt geladene Teilchenspuren"
+            }
+        },
+        gc2_01: {
+            back: "Zurück zum Nexus",
+            title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
+            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Molekülstruktur",
+            next: "Weiter",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            monitor_title: "GC2.01_MOLEKUEL_MONITOR",
+            footer_left: "GC2.01_KOHLENSTOFF_KOENIGREICH // KNOTEN: BASEL",
+            labels: {
+                formula: "MOLEKÜLFORMEL",
+                iupac_name: "IUPAC-NAME",
+                composition: "ZUSAMMENSETZUNG",
+                molecular_mass: "Molekülmasse",
+                hints: "HINWEISE"
+            },
+            mission: {
+                title: "MISSION: ORGANISCHE SYNTHESE",
+                description: "Bauen Sie organische Moleküle Atom für Atom. Meistern Sie Kohlenstoffketten und funktionelle Gruppen."
+            },
+            stages: {
+                alkanes: "ALKANE",
+                alcohols: "ALKOHOLE",
+                custom: "CUSTOM",
+                alkanes_desc: "Baue Alkanketten (C-C-C)",
+                alcohols_desc: "Füge Hydroxylgruppen hinzu (C-OH)",
+                custom_desc: "Freier Synthesemodus"
+            },
+            hints: {
+                select_atom: "Klicken Sie auf ein Atom, um es auszuwählen",
+                add_atom: "Klicken Sie auf das Atom-Werkzeug, um ein neues Atom hinzuzufügen",
+                bonds: "Atome verbinden sich basierend auf Valenzregeln",
+                delete: "Verwenden Sie DELETE, um das ausgewählte Atom zu entfernen"
+            }
+        },
+        gc1_01: {
+            back: "Zurück zum Nexus",
+            title: "GC1.01 // REDOX-TITAN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Galvanische Zelle",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "GC1.01_REDOX_MONITOR",
+            footer_left: "GC1.01_REDOX_TITAN // KNOTEN: BASEL",
+            labels: {
+                cell_potential: "ZELLPOTENTIAL",
+                zn_concentration: "Zn²⁺-KONZENTRATION",
+                cu_concentration: "Cu²⁺-KONZENTRATION",
+                temperature: "TEMPERATUR",
+                show_electrons: "Elektronenfluss anzeigen",
+                show_ions: "Ionenmigration anzeigen",
+                reaction_quotient: "REAKTIONSQUOTIENT (Q)",
+                half_reactions: "HALBREAKTIONEN",
+                anode: "ANODE",
+                cathode: "KATHODE",
+                nernst_equation: "NERNST-GLEICHUNG"
+            },
+            mission: {
+                title: "MISSION: ELEKTROCHEMIE",
+                description: "Bauen Sie eine galvanische Zelle und meistern Sie die Nernst-Gleichung. Beobachten Sie Elektronenfluss und Ionenmigration in Echtzeit."
+            },
+            stages: {
+                build: "ZELLE BAUEN",
+                measure: "POTENTIAL MESSEN",
+                analyze: "REAKTIONEN ANALYSIEREN",
+                build_desc: "Zn-Cu-Galvanische Zelle konstruieren",
+                measure_desc: "Zellpotential mit Nernst-Gleichung berechnen",
+                analyze_desc: "Redoxreaktionen und Elektronenfluss beobachten",
+                build_hint: "Zn wird an der Anode oxidiert, Cu²⁺ an der Kathode reduziert",
+                measure_hint: "E = E° - (RT/nF)ln(Q)",
+                analyze_hint: "Salzbrücke erhält elektrische Neutralität"
+            }
+        },
+        gc3_01: {
+            back: "Zurück zum Nexus",
+            title: "GC3.01 // GLEICHGEWICHTSMEISTER",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Chemisches Gleichgewicht",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "GC3.01_GLEICHGEWICHT_MONITOR",
+            footer_left: "GC3.01_GLEICHGEWICHTSMEISTER // KNOTEN: BASEL",
+            labels: {
+                reaction: "REVERSIBLE REAKTION",
+                particle_count: "PARTIKELANZAHL",
+                conditions: "BEDINGUNGEN",
+                temperature: "Temperatur",
+                pressure: "Druck",
+                concentration: "[A]",
+                principle: "LE CHATELIERS PRINZIP",
+                principle_1: "• Reaktant hinzufügen → verschiebt nach rechts (mehr Produkte)",
+                principle_2: "• Druck erhöhen → verschiebt zu weniger Molekülen",
+                principle_3: "• Temperatur erhöhen → verschiebt in endotherme Richtung",
+                add_reactant: "REAKTANT A HINZUFÜGEN",
+                system_temperature: "SYSTEMTEMPERATUR",
+                system_pressure: "SYSTEMDRUCK"
+            },
+            mission: {
+                title: "MISSION: CHEMISCHES GLEICHGEWICHT",
+                description: "Meistern Sie Le Chateliers Prinzip. Beobachten Sie, wie Systeme auf Stress reagieren."
+            },
+            stages: {
+                concentration: "KONZENTRATION",
+                temperature: "TEMPERATUR",
+                pressure: "DRUCK",
+                concentration_desc: "Fügen Sie Reaktant A hinzu und beobachten Sie die Gleichgewichtsverschiebung",
+                temperature_desc: "Erhöhen Sie die Temperatur und beobachten Sie die Partikelgeschwindigkeit",
+                pressure_desc: "Ändern Sie den Druck und sehen Sie Volumeneffekte",
+                concentration_hint: "Höheres [A] verschiebt Gleichgewicht nach rechts → mehr C und D",
+                temperature_hint: "Höhere Temperatur erhöht kinetische Energie der Partikel",
+                pressure_hint: "Höherer Druck verringert Behältervolumen"
+            }
+        },
+        gc3_02: {
+            back: "Zurück zum Nexus",
+            title: "GC3.02 // KRISTALLPALAST",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Kristallstruktur",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
+            ready: "Bereit",
+            monitor_title: "GC3.02_KRISTALL_MONITOR",
+            footer_left: "GC3.02_KRISTALLPALAST // KNOTEN: BASEL",
+            labels: {
+                lattice_type: "GITTERTYP",
+                properties: "EIGENSCHAFTEN",
+                atoms_per_cell: "Atome/Zelle",
+                coordination: "Koordination",
+                packing: "Packung",
+                tet_voids: "Tetr. Lücken",
+                voids: "ZWISCHENGITTERLÜCKEN",
+                tetrahedral: "Tetraedrisch",
+                octahedral: "Oktaedrisch",
+                formulas: "FORMELN",
+                show_voids: "Zwischengitterlücken anzeigen",
+                slice_plane: "SCHNITTEBENE (Y-ACHSE)",
+                reset_slice: "Zurücksetzen"
+            },
+            mission: {
+                title: "MISSION: FESTKÖRPERPHYSIK",
+                description: "Erkunden Sie Kristallstrukturen und Bravais-Gitter. Verstehen Sie atomare Packung und Koordination."
+            },
+            stages: {
+                sc: "EINFACH KUBISCH",
+                bcc: "RAUMZENTRIERT",
+                fcc: "FLÄCHENZENTRIERT",
+                sc_desc: "Studieren Sie einfach kubisches Gitter (Koordination 6)",
+                bcc_desc: "Analysieren Sie raumzentriert kubisch (Koordination 8)",
+                fcc_desc: "Meistern Sie flächenzentriert kubisch (Koordination 12)",
+                sc_hint: "Niedrigste Packungseffizienz (52%)",
+                bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
+                fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
+            }
         }
     }
 };
+
+export function useLanguage() {
+    const { currentLanguage, setLanguage } = useAppStore();
+    const t = (path: string) => {
+        const segments = path.split(".");
+        let node: any = translations[currentLanguage];
+        for (const segment of segments) {
+            if (!node || typeof node !== "object" || !(segment in node)) {
+                return path;
+            }
+            node = node[segment];
+        }
+        return typeof node === "string" ? node : path;
+    };
+
+    return { t, currentLanguage, setLanguage };
+}
 
 export interface Translations {
     EN: typeof translations.EN;

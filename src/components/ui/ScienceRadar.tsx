@@ -121,11 +121,9 @@ export default function ScienceRadar({ logic, intuition, rigor, experiment, labe
                 fill={
                   metric.color === "neon-purple"
                     ? "var(--color-mastery-purple)"
-                    : metric.color === "neon-amber"
+                    : metric.color === "neon-green" || metric.color === "neon-amber"
                       ? "var(--color-neon-green)"
-                      : metric.color === "neon-green"
-                        ? "var(--color-neon-green)"
-                        : "var(--color-mastery-cyan)"
+                      : "var(--color-mastery-cyan)"
                 }
                 animate={{ cx: x, cy: y }}
                 transition={transition}

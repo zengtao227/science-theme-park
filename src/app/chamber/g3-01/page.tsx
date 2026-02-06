@@ -17,7 +17,6 @@ export default function G301Page() {
   const [stage, setStage] = useState<Stage>("UNIFORM");
   const [probability, setProbability] = useState(0.5);
   const [ballCount, setBallCount] = useState(500);
-  const [distribution, setDistribution] = useState<number[]>([]);
 
   const handleStageChange = (newStage: Stage) => {
     setStage(newStage);
@@ -67,7 +66,7 @@ export default function G301Page() {
           <GaltonCanvas
             probability={probability}
             ballCount={ballCount}
-            onDistributionUpdate={setDistribution}
+            onDistributionUpdate={() => {}}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t?.target_title || "PROBABILITY DISTRIBUTION"}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -13,7 +13,7 @@ export default function P105Page() {
 
     // Physics State
     const [angle, setAngle] = useState(0);
-    const [positionX, setPositionX] = useState(0); // 0 to 1
+    const positionXRef = useRef(0);
     const [isSimulating, setIsSimulating] = useState(false);
     const [status, setStatus] = useState<"IDLE" | "CROSSING" | "ARRIVED">("IDLE");
 
@@ -27,17 +27,15 @@ export default function P105Page() {
                 const angleRad = (angle * Math.PI) / 180;
                 const thrust = Math.sin(angleRad) * riverSpeed * liftCoefficient;
 
-                setPositionX(prev => {
-                    const next = prev + thrust;
-                    if (next >= 1) {
-                        setStatus("ARRIVED");
-                        setIsSimulating(false);
-                        completeStage("p1-05", "BASEL_CROSSING");
-                        return 1;
-                    }
-                    if (next <= 0 && prev > 0) return 0;
-                    return next;
-                });
+                const next = positionXRef.current + thrust;
+                if (next >= 1) {
+                    positionXRef.current = 1;
+                    setStatus("ARRIVED");
+                    setIsSimulating(false);
+                    completeStage("p1-05", "BASEL_CROSSING");
+                    return;
+                }
+                positionXRef.current = Math.max(0, next);
             }
             frame = requestAnimationFrame(update);
         };
@@ -46,13 +44,13 @@ export default function P105Page() {
     }, [isSimulating, status, angle, completeStage]);
 
     const startCrossing = () => {
-        if (status === "ARRIVED") setPositionX(0);
+        if (status === "ARRIVED") positionXRef.current = 0;
         setStatus("CROSSING");
         setIsSimulating(true);
     };
 
     const reset = () => {
-        setPositionX(0);
+        positionXRef.current = 0;
         setStatus("IDLE");
         setIsSimulating(false);
     };

@@ -1,14 +1,13 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Line } from "@react-three/drei";
+import { OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 
 interface LogarithmicCanvasProps {
   stage: "PH" | "DECIBEL" | "RICHTER";
   value?: number;
-  showLinear?: boolean;
 }
 
 const palette = {
@@ -21,7 +20,7 @@ const palette = {
 };
 
 // pH Scale visualization
-function PHScale({ value, showLinear }: { value: number; showLinear: boolean }) {
+function PHScale({ value }: { value: number }) {
   const barRef = useRef<THREE.Mesh>(null);
   
   useFrame(({ clock }) => {
@@ -31,9 +30,7 @@ function PHScale({ value, showLinear }: { value: number; showLinear: boolean }) 
   });
   
   // pH scale from 0 to 14
-  const concentration = Math.pow(10, -value); // [H+]
   const logPosition = value; // 0-14
-  const linearPosition = concentration * 1e14; // scaled for visualization
   
   return (
     <group>
@@ -85,7 +82,7 @@ function PHScale({ value, showLinear }: { value: number; showLinear: boolean }) 
 }
 
 // Decibel Scale visualization
-function DecibelScale({ value, showLinear }: { value: number; showLinear: boolean }) {
+function DecibelScale({ value }: { value: number }) {
   const waveRef = useRef<THREE.Group>(null);
   
   useFrame(({ clock }) => {
@@ -151,7 +148,7 @@ function DecibelScale({ value, showLinear }: { value: number; showLinear: boolea
 }
 
 // Richter Scale visualization
-function RichterScale({ value, showLinear }: { value: number; showLinear: boolean }) {
+function RichterScale({ value }: { value: number }) {
   const quakeRef = useRef<THREE.Group>(null);
   
   useFrame(({ clock }) => {
@@ -161,7 +158,6 @@ function RichterScale({ value, showLinear }: { value: number; showLinear: boolea
   });
   
   // Amplitude is 10^magnitude
-  const amplitude = Math.pow(10, value);
   
   return (
     <group>
@@ -229,7 +225,6 @@ function RichterScale({ value, showLinear }: { value: number; showLinear: boolea
 export default function LogarithmicCanvas({
   stage = "PH",
   value = 7,
-  showLinear = false,
 }: LogarithmicCanvasProps) {
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
@@ -250,9 +245,9 @@ export default function LogarithmicCanvas({
         />
         
         {/* Stage-specific visualization */}
-        {stage === "PH" && <PHScale value={value} showLinear={showLinear} />}
-        {stage === "DECIBEL" && <DecibelScale value={value} showLinear={showLinear} />}
-        {stage === "RICHTER" && <RichterScale value={value} showLinear={showLinear} />}
+        {stage === "PH" && <PHScale value={value} />}
+        {stage === "DECIBEL" && <DecibelScale value={value} />}
+        {stage === "RICHTER" && <RichterScale value={value} />}
       </Canvas>
       
       {/* Info panel */}

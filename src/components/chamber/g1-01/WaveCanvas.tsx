@@ -40,7 +40,6 @@ function WaveSurface({ functionType }: { functionType: "power" | "product" | "ch
     
     for (let i = 0; i < positions.count; i++) {
       const x = positions.getX(i);
-      const y = positions.getY(i);
       
       let z = 0;
       if (functionType === "power") {
@@ -61,11 +60,11 @@ function WaveSurface({ functionType }: { functionType: "power" | "product" | "ch
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const time = clock.elapsedTime;
-    const positions = geometry.attributes.position;
+    const geom = meshRef.current.geometry as THREE.PlaneGeometry;
+    const positions = geom.attributes.position;
     
     for (let i = 0; i < positions.count; i++) {
       const x = positions.getX(i);
-      const y = positions.getY(i);
       
       let z = 0;
       if (functionType === "power") {
@@ -80,7 +79,7 @@ function WaveSurface({ functionType }: { functionType: "power" | "product" | "ch
     }
     
     positions.needsUpdate = true;
-    geometry.computeVertexNormals();
+    geom.computeVertexNormals();
   });
   
   return (
@@ -126,7 +125,6 @@ function Surfer({
   }
   
   // Calculate angle from derivative
-  const angleActual = Math.atan(slopeActual);
   const angleUser = Math.atan(derivative);
   
   useFrame(({ clock }) => {

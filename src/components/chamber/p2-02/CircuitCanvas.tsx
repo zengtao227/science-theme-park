@@ -1,17 +1,27 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Grid, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 
+interface RlcConfig {
+  R: number;
+  L: number;
+  C: number;
+  sourceType: "step" | "sine" | "square";
+  amplitude: number;
+  frequency: number;
+}
+
 interface P202CircuitCanvasProps {
-  scenario: "series" | "parallel" | "mixed" | "simple";
+  scenario: "series" | "parallel" | "mixed" | "simple" | "rlc";
   voltage: number;
   resistance: number[];
   current?: number;
   isPowered?: boolean;
   showCurrent?: boolean;
+  rlc?: RlcConfig;
 }
 
 type PathData = {

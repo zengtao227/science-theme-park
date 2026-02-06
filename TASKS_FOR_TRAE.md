@@ -1,65 +1,70 @@
-# 🎯 TASKS FOR TRAE (AI2) — Mission Batch 31-32
+# 🎯 TASKS FOR TRAE (AI2) — Mission Batch 57-60 (PHASE 2: FLESH)
 
 > **角色**: UI/UX 专家 & 系统架构师  
-> **当前时间**: 2026-02-05 22:45 CET  
-> **状态**: Mission T29-30 ✅ COMPLETED (Vault & Responsive)
+> **当前时间**: 2026-02-06 10:55 CET  
+> **状态**: Mission 57-60 🚧 IN PROGRESS
 
 ---
 
 ## 🚦 核心工作流规约 (Mandatory Workflow)
-**[重要]** 领工必读：
-1. **实时对齐**: 本文件包含 **Antigravity** 提供的专家级 UI 设计模式。你**必须**在开始每个 Mission 前重新读取此文件，确保样式完全符合“赛博科学 (Cyber-Science)”审美。
-2. **拒绝平庸**: 禁止使用标准的按钮和背景，必须严格执行 `🧠 EXPERT GUIDANCE` 中的动效与毛玻璃参数。
-3. **Blocker 报告**: 遇到任何 Recharts 渲染、Zustand 持久化冲突，请在底部 `## [BLOCKER]` 区留言。
+1. **条件轮询 (POST-SUBMISSION SYNC)**: 在你标记 **✅ COMPLETE** 并提交工作后，请每隔 **60 秒** 检查一次本文件以获取新指令。施工阶段请专注于代码，无需扫描。
+2. **严苛验收 (INSPECTION)**: 任务标记 ✅ 后，我将进行代码核查。未通过验收的功能将被自动列入“技术债”，强制在下一轮任务中优先补齐。
+3. **血肉准则**: 禁止使用简单的占位符。所有物理参数（如速度、角度、活化能）必须真实驱动 UI。
 
 ---
 
-## 📋 Mission T31 - NEXUS ADVANCED SEARCH & FILTERING
+## 📋 Mission 57 - SC2.01 // KINETICS CRASH (Flesh Upgrade)
 
-### 🧠 EXPERT GUIDANCE
-> **组件架构**:
-- **搜索条**: 使用 `framer-motion` 实现展开动效。边框带有 `neon-purple` 扫光效果。
-- **标签过滤**: 实现学科类别的胶囊标签（Physics, Math, Chemistry, Biology, Socratic）。
-- **动效**: 过滤列表时，卡片必须有平滑的布局转换（使用 `AnimatePresence` 和 `layout` prop）。
-
-### 目标
-在首页 Nexus 增加高级模块筛选系统。
-
-### 技术要求
-- **位置**: `src/app/page.tsx`
-- **组件**: `src/components/ui/ModuleFilter.tsx`
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 将简单的化学反应页面升级为“动力学交互实验”。
+- **物理驱动**: 
+  - 实现 **Arrhenius Equation**: $k = A e^{-E_a/RT}$。
+  - 用户调节温度 $T$ 和活化能 $E_a$。
+- **动态 UI**: 
+  - 实时绘制反应速率 $k$ 随时间变化的平滑曲线。
+  - 模拟“有效碰撞”：展示在高能级下，分子碰撞频率增加的粒子动画。
+- **组件**: `src/app/chamber/sc2-01/page.tsx`
 
 ---
 
-## 📋 Mission T32 - USER SCIENCE PROFILE (Stats Dashboard)
+## 📋 Mission 58 - S2.01 // BINOMIAL BEAUTY (Flesh Upgrade)
 
-### 目标
-创建一个沉浸式的“科学家档案”页面。展示用户在各个维度（逻辑、直觉、严谨、实验）的能力值。
-
-### 核心详情
-- **雷达图**: 深度集成之前开发的 `ScienceRadar`。
-- **模块统计**: 展示已完成的模块数量、平均正确率。
-- **时间轴**: 记录学习足迹的垂直时间轴。
-
-### 技术要求
-- **页面**: `src/app/profile/page.tsx`
-- **组件**: `src/components/profile/StatsMatrix.tsx`
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 实现完全平方公式 $(a+b)^2 = a^2 + 2ab + b^2$ 的几何拆解。
+- **交互逻辑**: 
+  - 提供 4 块积木（一个 $a \times a$ 正方形，一个 $b \times b$ 正方形，两个 $a \times b$ 矩形）。
+  - 支持拖拽/点击组合。当积木严丝合缝拼成大正方形时，弹出代数恒等式。
+- **组件**: `src/app/chamber/s2-01/page.tsx`
 
 ---
 
-## ⚠️ 代码质量要求
-- **原子化设计**: 继续拆分通用 UI 组件到 `src/components/ui/`。
-- **i18n**: 确保所有状态描述文本都在 `i18n.ts` 中定义。
+## 📋 Mission 59 - SP1.04 // THE RHINE FERRY (Flesh Upgrade)
+
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 莱茵河横渡矢量合成模拟（基于 Basel Gierseilfähri）。
+- **矢量计算**: 
+  - 自动叠加水流速度向量 $\vec{v}_{river}$ 和缆绳牵引向量 $\vec{v}_{cable}$。
+  - 用户需调整船头角度，抵消侧向漂移，实现“对冲导航”。
+- **组件**: `src/app/chamber/p1-05/page.tsx` (升级逻辑)
+
+---
+
+## 📋 Mission 60 - S2.02 // PYTHAGORAS 3D (Flesh Upgrade)
+
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 勾股定理的 3D 实证（水箱证明法）。
+- **仿真逻辑**: 
+  - 在直角三角形三边上挂载 3D 透明水箱。
+  - 点击“旋转”，直角边上的水缓慢注入斜边水箱。
+  - 必须通过体积守恒证明 $V_a + V_b = V_c$。
 
 ---
 
 ## [MISSION LOG ARCHIVE]
-
-### ✅ Mission T29-30 (2026-02-05)
-- **Achievement Vault**: 实现。
-- **Responsive Layout**: 完成 `ChamberLayout` 的移动端堆叠优化。
+- ✅ Mission T47: Thales Tower (Skeleton Verified)
+- ✅ Mission T48: Motor Lab (Skeleton Verified)
 
 ---
 
 ## [BLOCKER]
-- 暂无。
+- 暂无。Trae 请立即重启执行 60s 轮询，并开始 Mission 57。

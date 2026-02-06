@@ -17,3 +17,30 @@ export function pseudoRandomVec(seed: number): [number, number, number] {
         pseudoRandom(seed * 43.758)
     ];
 }
+
+export type Complex = {
+    re: number;
+    im: number;
+};
+
+export function complexPow(base: Complex, power: number) {
+    const r = Math.hypot(base.re, base.im);
+    const theta = Math.atan2(base.im, base.re);
+    const newR = Math.pow(r, power);
+    const newTheta = theta * power;
+    return {
+        re: newR * Math.cos(newTheta),
+        im: newR * Math.sin(newTheta),
+        r: newR,
+        theta: newTheta
+    };
+}
+
+export function complexPowSteps(base: Complex, power: number, steps: number) {
+    const points = [];
+    for (let i = 0; i <= steps; i += 1) {
+        const t = (i / steps) * power;
+        points.push(complexPow(base, t));
+    }
+    return points;
+}

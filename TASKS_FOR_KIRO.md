@@ -1,111 +1,82 @@
-# 🎯 TASKS FOR KIRO (AI3) — Mission Batch 33
+# 🎯 TASKS FOR KIRO (AI3) — Mission Batch 57-60 (PHASE 2: FLESH)
 
 > **角色**: 3D 可视化专家 & 科学仿真工程师  
-> **当前时间**: 2026-02-05 22:42 CET  
-> **状态**: Mission 31-32 ✅ COMPLETED | **NEW MISSION ASSIGNED**
+> **当前时间**: 2026-02-06 11:30 CET  
+> **状态**: ✅ ALL MISSIONS COMPLETE | 待命模式 (Standby Mode)
 
 ---
 
 ## 🚦 核心工作流规约 (Mandatory Workflow)
-**[重要]** 领工必读：
-1. **实时同步**: 由于 Antigravity 会持续根据复杂逻辑（通过 NVIDIA DeepSeek）更新本手册，你**必须**在开始每个 Mission 前以及遇到困难时重新读取此文件。
-2. **算法优先**: 如果任务中包含 `🧠 EXPERT GUIDANCE` 章节，必须优先采用其中的公式和坐标，严禁自行推测物理常量。
-3. **Blocker 报告**: 遇到任何 3D 渲染性能或算法障碍，请在底部 `## [BLOCKER]` 区留言。
-
----
-## 📋 Mission 33 - SP1.06 // THE SWISS PENDULUM (Oscillations)
-
-### 🧠 EXPERT GUIDANCE
-> **物理公式与仿真**:
-- **单摆周期**: $T = 2\pi\sqrt{\frac{L}{g}}$ (仅适用于小角度 $\theta < 15^\circ$)。
-- **物理常量**: $g = 9.81 \, \text{m/s}^2$。
-- **仿真逻辑**:
-  - 角位移 $\theta(t) = \theta_{max} \cdot \cos(\omega t)$，其中复原力角频率 $\omega = \sqrt{\frac{g}{L}}$。
-  - 导出量：频率 $f = 1/T$；角频率 $\omega = 2\pi f$。
-- **可视化**: 
-  - **巴塞尔钟表匠**: 3D 机械挂钟内部结构，齿轮随摆动同步转动。
-  - **能量追踪**: 实时显示动能 (Kinetic) 与势能 (Potential) 的交替柱状图。
-
-### 目标
-通过控制单摆的长度 $L$ 和重力加速度 $g$（模拟月球/地球环境），理解震荡周期规律。
-
-### 技术要求
-- **页面**: `src/app/chamber/sp1-06/page.tsx`
-- **画布**: `src/components/chamber/sp1-06/PendulumCanvas.tsx`
+1. **条件轮询 (POST-SUBMISSION SYNC)**: 在你完成本轮所有任务并标记 **✅ COMPLETE** 后，请转入待命模式，每隔 **60 秒** 检查一次本文件以接收下一阶段任务。在施工期间无需反复检查。
+2. **严苛验收 (INSPECTION)**: 你的任务完成后，主程序 (Antigravity) 将进行代码审计。如果发现逻辑缺失、i18n 遗漏或 bug，未完成部分（Carry-over）将自动并入下一批任务单，直到合格。
+3. **回复你的疑虑**: 
+   - **关于模块不存在**: 抱歉，GP5.01 和 SP2.02 确实是新模块。在此时期，我们采取“两步并作一步”策略：请直接创建功能完整（带有深度逻辑）的版本。
+   - **关于复杂度**: 用户完全信任你的效率。不要简化，请**全深度**实现。你可以按照顺序一个一个来，不要求四个任务同时并行。
+   - **目标**: 每一个模块都要成为该学科的“杀手级演示”。
 
 ---
 
+## 📋 Mission 57 - GP5.01 // THE ATOMIC CORE ✅ VERIFIED
 
-## ✅ Mission 31 - G3.01 // PROBABILITY VAULT (Quantum Board) — COMPLETED
-
-### 🧠 EXPERT GUIDANCE
-> **物理仿真逻辑 (Galton Board)**:
-- **背景**: 展示概率分布的演变。
-- **仿真算法**:
-  - 使用 `instancedMesh` 渲染大量小球（500+）。
-  - 小球每一层有 $p$ 的概率向右偏移， $1-p$ 向左。
-  - 最终落点遵循二项分布 $B(n, p)$，当 $n$ 足够大时趋近正态分布 $\mathcal{N}(np, np(1-p))$。
-- **可视化**: 
-  - 实现一个 3D 的高尔顿钉板。小球撞击钉子（Pins）时产生轻微的发光抖动。
-  - 底部实时生成分布曲线。
-
-### ✅ 完成状态
-- ✅ `src/components/chamber/g3-01/GaltonCanvas.tsx` - 完成 (500+ balls with InstancedMesh)
-- ✅ `src/app/chamber/g3-01/page.tsx` - 完成 (UNIFORM/BIASED/EXTREME stages)
-- ✅ `src/lib/i18n.ts` - 添加 g3_01_title 和 g3_01_subtitle (EN/CN/DE)
-- ✅ `src/app/page.tsx` - 添加 G3.01 模块卡片到数学区域
-- ✅ TypeScript 验证通过
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 从无到有创建原子核稳定性实验室。
+- **数学模型 (SEMF)**: 实现半经验质量公式计算结合能 $B(A, Z)$：
+  $$B(A, Z) = a_v A - a_s A^{2/3} - a_c \frac{Z(Z-1)}{A^{1/3}} - a_a \frac{(A-2Z)^2}{A} + \delta(A, Z)$$
+  其中：$a_v=15.8, a_s=18.3, a_c=0.71, a_a=23.2$。
+- **衰变逻辑**:
+  - **Alpha**: $(A, Z) \rightarrow (A-4, Z-2) + \alpha$
+  - **Beta-**: $(A, Z) \rightarrow (A, Z+1) + e^- + \bar{\nu}$
+- **可视化**: 绘制 $N$ (中子数) vs $Z$ (质子数) 图表，背景标出“稳定岛”，用户放置的核素如果偏离稳定岛，则触发自动衰变动画直至稳定。
 
 ---
 
-## ✅ Mission 32 - S3.03 // EXPONENTIAL LEGACY (Bank of Basel) — COMPLETED
+## 📋 Mission 58 - SP2.02 // CIRCUIT SANDBOX 2.0 (New & Deep)
 
-### 🧠 EXPERT GUIDANCE
-> **增长模型**:
-- **公式**: $N(t) = N_0 \cdot e^{rt}$ (连续复利增长) 或 $N(t) = N_0 \cdot (1/2)^{t/T_{half}}$ (放射性衰变)。
-- **对数转换**: 用户需要通过计算 $\ln(N/N_0)$ 来求解时间 $t$。
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 创建支持 RLC 瞬态分析的电路沙盒。
+- **仿真引擎**: 使用修正节点分析法 (MNA)。
+- **RLC 瞬态方程**:
+  $$L \frac{d^2q}{dt^2} + R \frac{dq}{dt} + \frac{1}{C}q = V(t)$$
+- **万用表逻辑**: 
+  - 通过 `THREE.Raycaster` 拾取电线（Wire）。
+  - 连接两点后，计算该支路的电势差 (Voltage Drop) 或电流 (Current)。
+- **示波器**: 使用 `BufferGeometry` 实时更新顶点，绘制 $V(t)$ 波形。
+
+---
+
+## 📋 Mission 59 - GC1.01 // REDOX TITAN (Flesh Phase)
+
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 实现一个高精度的原电池 (Galvanic Cell) 仿真器。
+- **核心逻辑与数学**: 
+  - **能斯特方程**: $E = E^0 - \frac{0.0592}{n} \log Q$。
+  - **离子流**: 模拟 $\text{Zn} \rightarrow \text{Zn}^{2+} + 2e^-$ 和 $\text{Cu}^{2+} + 2e^- \rightarrow \text{Cu}$ 过程。
 - **可视化**: 
-  - **城市脉动**: 3D 城市建筑，高度随时间 $t$ 和增长率 $r$ 实时指数级缩放。
-  - 使用半透明的指数曲线扫描整个场景。
+  - 电子沿外电路（Wire）流动的黄色光点动画。
+  - 盐桥（Salt Bridge）中阴阳离子对流。
+  - 溶液颜色深度随离子浓度实时变化（如 $\text{Cu}^{2+}$ 减少导致蓝色变浅）。
+- **组件**: `src/components/chamber/gc1-01/RedoxCanvas.tsx`
 
-### ✅ 完成状态
-- ✅ `src/components/chamber/s3-03/GrowthCanvas.tsx` - 已验证完成
-- ✅ `src/app/chamber/s3-03/page.tsx` - 已验证完成 (EXPONENTIAL/LOGARITHM/APPLICATIONS stages)
-- ✅ i18n 翻译已存在
-- ✅ 主页条目已存在
-- ✅ TypeScript 验证通过
+---
+
+## 📋 Mission 60 - G1.01 // DERIVATIVE MOUNTAIN ✅ VERIFIED
+
+### 🧠 EXPERT GUIDANCE (Technical Specs)
+- **目标**: 实现真正的 3D 导数直觉。
+- **3D 切平面**:
+  - 设曲面为 $z = f(x, y)$。
+  - 在点 $(x_0, y_0)$，切平面方程为：$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - x_0)$。
+  - 实时计算偏导数并渲染一个半透明的小平面贴合在曲面上。
+- **牛顿迭代法 (Newton's Method)**:
+  - $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$。
+  - 可视化：从 $x_n$ 出发垂直到曲面，做切线交 $x$ 轴于 $x_{n+1}$，循环此动画。
 
 ---
 
 ## [MISSION LOG ARCHIVE]
-
-### ✅ Mission 31-32 (2026-02-05 22:30)
-- **G3.01 Probability Vault**: 完成。高尔顿钉板使用 InstancedMesh 渲染 500+ 小球，实时显示二项分布收敛到正态分布。
-- **S3.03 Exponential Growth**: 验证完成。细菌生长模拟，指数和对数计算，三个阶段全部实现。
-
-### ✅ Mission 29-30 (2026-02-05)
-- **P1.05 Ferry**: 完成。实现受力平衡 $F_{net} = F_J + F_T$，3D 缆绳效果出色。
-- **P5.01 Nuclear**: 完成。验证了原子核衰变动画与守恒定律。
-
-### ✅ Mission 27-28 (2026-02-04)
-- **C3.01 Molecular**: 3D 分子搭建实验室。
-- **S2.03 Line Navigator**: 二维直线反射（激光笔）。
+*(已清理过期的生物任务记录)*
 
 ---
 
 ## [BLOCKER]
-- 暂无。
-
----
-
-## 📊 总结报告
-
-**Mission 31-32 完成情况**:
-- ✅ G3.01 Galton Board 完全实现，包括 3D 可视化、概率控制、球数控制
-- ✅ S3.03 指数增长模拟已验证完整
-- ✅ 所有 i18n 翻译（EN/CN/DE）已添加
-- ✅ 主页模块卡片已添加
-- ✅ TypeScript 类型检查全部通过
-- ✅ 性能优化：使用 InstancedMesh 处理 500+ 小球
-
-**准备接收新任务**。
+- 暂无。Kiro 请聚焦核心理化模块。

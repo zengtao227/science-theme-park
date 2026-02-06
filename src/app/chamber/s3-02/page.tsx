@@ -1,232 +1,178 @@
 "use client";
 
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
-import { useEffect } from "react";
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import TrigonometryCanvas from "@/components/chamber/math/TrigonometryCanvas";
+import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-type Stage = "UNIT_CIRCLE" | "WAVE_FUNCTIONS" | "TRIANGLE_SOLVER";
-type S302T = typeof translations.EN.s3_02;
+const TrigCanvas = dynamic(() => import("@/components/chamber/s3-02/TrigCanvas"), {
+    ssr: false,
+});
 
-interface S302Quest extends Quest {
-  stage: Stage;
-  angle: number; // in degrees
-  mode: "circle" | "triangle" | "waves";
-}
+export default function S3_02_TrigCircle() {
+    const { t } = useLanguage();
+    const [angle, setAngle] = useState(45);
+    const [showSin, setShowSin] = useState(true);
+    const [showCos, setShowCos] = useState(true);
+    const [showTan, setShowTan] = useState(false);
+    const [showWaves, setShowWaves] = useState(false);
 
-function buildStagePool(t: S302T, difficulty: Difficulty, stage: Stage): S302Quest[] {
-  if (stage === "UNIT_CIRCLE") {
-    const angles = [30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
-    const all = angles.map((angle, i) => {
-      const rad = (angle * Math.PI) / 180;
-      const sin = Math.round(Math.sin(rad) * 1000) / 1000;
-      const cos = Math.round(Math.cos(rad) * 1000) / 1000;
-      const tan = Math.abs(Math.cos(rad)) > 0.01 ? Math.round(Math.tan(rad) * 1000) / 1000 : null;
+    const rad = (angle * Math.PI) / 180;
+    const sinValue = Math.sin(rad);
+    const cosValue = Math.cos(rad);
+    const tanValue = Math.tan(rad);
 
-      return {
-        id: `U${i + 1}`,
-        difficulty,
-        stage,
-        angle,
-        mode: "circle" as const,
-        promptLatex: t.stages.unit_circle_prompt_latex,
-        expressionLatex: `\\theta=${angle}^\\circ`,
-        targetLatex: "\\sin\\theta,\\cos\\theta,\\tan\\theta",
-        slots: [
-          { id: "sin", labelLatex: "\\sin\\theta", placeholder: "sin", expected: sin },
-          { id: "cos", labelLatex: "\\cos\\theta", placeholder: "cos", expected: cos },
-          ...(tan !== null ? [{ id: "tan", labelLatex: "\\tan\\theta", placeholder: "tan", expected: tan }] : []),
-        ],
-        correctLatex: tan !== null
-          ? `\\sin=${sin},\\cos=${cos},\\tan=${tan}`
-          : `\\sin=${sin},\\cos=${cos},\\tan=\\text{undefined}`,
-      };
-    });
-    if (difficulty === "BASIC") return all.slice(0, 5);
-    if (difficulty === "CORE") return all.slice(0, 10);
-    return all;
-  }
-
-  if (stage === "WAVE_FUNCTIONS") {
-    const angles = [0, 30, 45, 60, 90, 120, 135, 150, 180];
-    const all = angles.map((angle, i) => {
-      const rad = (angle * Math.PI) / 180;
-      const sin = Math.round(Math.sin(rad) * 1000) / 1000;
-      const cos = Math.round(Math.cos(rad) * 1000) / 1000;
-
-      return {
-        id: `W${i + 1}`,
-        difficulty,
-        stage,
-        angle,
-        mode: "waves" as const,
-        promptLatex: t.stages.wave_functions_prompt_latex,
-        expressionLatex: `\\theta=${angle}^\\circ`,
-        targetLatex: "\\sin\\theta,\\cos\\theta",
-        slots: [
-          { id: "sin", labelLatex: "\\sin\\theta", placeholder: "sin", expected: sin },
-          { id: "cos", labelLatex: "\\cos\\theta", placeholder: "cos", expected: cos },
-        ],
-        correctLatex: `\\sin=${sin},\\cos=${cos}`,
-      };
-    });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    if (difficulty === "CORE") return all.slice(0, 7);
-    return all;
-  }
-
-  // TRIANGLE_SOLVER
-  const triangles = [
-    { angle: 30, hyp: 2 },
-    { angle: 45, hyp: 2 },
-    { angle: 60, hyp: 2 },
-    { angle: 37, hyp: 5 },
-    { angle: 53, hyp: 5 },
-    { angle: 25, hyp: 10 },
-    { angle: 70, hyp: 8 },
-  ];
-  const all = triangles.map((item, i) => {
-    const rad = (item.angle * Math.PI) / 180;
-    const opp = Math.round(Math.sin(rad) * item.hyp * 100) / 100;
-    const adj = Math.round(Math.cos(rad) * item.hyp * 100) / 100;
-
-    return {
-      id: `T${i + 1}`,
-      difficulty,
-      stage,
-      angle: item.angle,
-      mode: "triangle" as const,
-      promptLatex: t.stages.triangle_solver_prompt_latex,
-      expressionLatex: `\\theta=${item.angle}^\\circ,\\; \\text{hyp}=${item.hyp}`,
-      targetLatex: "\\text{opp},\\text{adj}",
-      slots: [
-        { id: "opp", labelLatex: "\\text{opposite}", placeholder: "opp", expected: opp },
-        { id: "adj", labelLatex: "\\text{adjacent}", placeholder: "adj", expected: adj },
-      ],
-      correctLatex: `\\text{opp}=${opp},\\text{adj}=${adj}`,
-    };
-  });
-  if (difficulty === "BASIC") return all.slice(0, 3);
-  if (difficulty === "CORE") return all.slice(0, 5);
-  return all;
-}
-
-export default function S302Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s3_02;
-
-  const {
-    difficulty,
-    stage,
-    inputs,
-    lastCheck,
-    currentQuest,
-    successRate,
-    setInputs,
-    verify,
-    next,
-    handleDifficultyChange,
-    handleStageChange,
-  } = useQuestManager<S302Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
-    initialStage: "UNIT_CIRCLE",
-  });
-
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("s3-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
-
-  return (
-    <ChamberLayout
-      title={t.title}
-      moduleCode="S3.02"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "UNIT_CIRCLE", label: t.stages.unit_circle },
-        { id: "WAVE_FUNCTIONS", label: t.stages.wave_functions },
-        { id: "TRIANGLE_SOLVER", label: t.stages.triangle_solver },
-      ]}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      successRate={successRate}
-      checkStatus={lastCheck}
-      footerLeft={t.footer_left}
-      translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
-        difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
-        },
-      }}
-      monitorContent={
-        <div className="space-y-4">
-          <TrigonometryCanvas
-            angle={currentQuest?.angle || 45}
-            mode={currentQuest?.mode || "circle"}
-          />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-white/70 text-sm font-mono">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
-            </div>
-          </div>
-        </div>
-      }
-    >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
-        </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
-          </p>
-        </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {currentQuest?.slots.map((slot) => (
-              <div key={slot.id} className="space-y-2">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                  <InlineMath math={slot.labelLatex} />
-                </div>
-                <input
-                  value={inputs[slot.id] ?? ""}
-                  onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                  className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
-                  placeholder={slot.placeholder}
+    return (
+        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
+            {/* Cyber grid background */}
+            <div className="fixed inset-0 opacity-10 pointer-events-none">
+                <div
+                    className="w-full h-full"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)
+                        `,
+                        backgroundSize: "50px 50px",
+                    }}
                 />
-              </div>
-            ))}
-          </div>
-          <div className="text-[10px] text-white/40 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? "Tipp: Gib das Resultat auf 2-3 Dezimalstellen gerundet an."
-              : currentLanguage === 'CN'
-                ? "提示：保留 2-3 位小数。"
-                : "Tip: Enter result rounded to 2-3 decimal places."
-            }
-          </div>
+            </div>
+
+            {/* Header */}
+            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
+                <div className="flex justify-between items-center mb-2">
+                    <h1 className="text-2xl font-bold text-cyan-400">
+                        {t("s3_02.title")}
+                    </h1>
+                    <Link
+                        href="/"
+                        className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
+                    >
+                        {t("s3_02.back")}
+                    </Link>
+                </div>
+                <div className="text-sm text-cyan-300/70">{t("s3_02.footer_left")}</div>
+            </div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Canvas */}
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                    <TrigCanvas
+                        angle={angle}
+                        showSin={showSin}
+                        showCos={showCos}
+                        showTan={showTan}
+                        showWaves={showWaves}
+                    />
+                </div>
+
+                {/* Control Panel */}
+                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4">
+                    <div className="border-b border-green-500 pb-2 mb-4">
+                        <h2 className="text-lg font-bold text-green-400">
+                            {t("s3_02.monitor_title")}
+                        </h2>
+                    </div>
+
+                    {/* Angle Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-cyan-400">{t("s3_02.labels.angle")}</label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="360"
+                            value={angle}
+                            onChange={(e) => setAngle(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-xl text-cyan-300">{angle}°</div>
+                        <div className="text-center text-sm text-cyan-300/70">
+                            {(rad).toFixed(3)} rad
+                        </div>
+                    </div>
+
+                    {/* Values Display */}
+                    <div className="border border-purple-500 p-3 space-y-2">
+                        <div className="text-sm text-purple-300">{t("s3_02.labels.values")}</div>
+                        <div className="space-y-1 text-sm">
+                            <div className="flex justify-between">
+                                <span className="text-yellow-400">sin(θ) =</span>
+                                <span className="text-yellow-300 font-bold">{sinValue.toFixed(4)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-green-400">cos(θ) =</span>
+                                <span className="text-green-300 font-bold">{cosValue.toFixed(4)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-pink-400">tan(θ) =</span>
+                                <span className="text-pink-300 font-bold">
+                                    {Math.abs(cosValue) < 0.01 ? "∞" : tanValue.toFixed(4)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Toggle Controls */}
+                    <div className="space-y-2">
+                        <div className="text-sm text-cyan-400 mb-2">{t("s3_02.labels.display")}</div>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showSin}
+                                onChange={(e) => setShowSin(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-yellow-400">sin(θ)</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showCos}
+                                onChange={(e) => setShowCos(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-green-400">cos(θ)</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showTan}
+                                onChange={(e) => setShowTan(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-pink-400">tan(θ)</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={showWaves}
+                                onChange={(e) => setShowWaves(e.target.checked)}
+                                className="w-4 h-4"
+                            />
+                            <span className="text-purple-400">{t("s3_02.labels.show_waves")}</span>
+                        </label>
+                    </div>
+
+                    {/* Formulas */}
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">{t("s3_02.labels.formulas")}</div>
+                        <div className="text-xs space-y-1 text-cyan-300/80">
+                            <div>x = r·cos(θ)</div>
+                            <div>y = r·sin(θ)</div>
+                            <div>tan(θ) = sin(θ)/cos(θ)</div>
+                            <div>sin²(θ) + cos²(θ) = 1</div>
+                        </div>
+                    </div>
+
+                    {/* Mission Info */}
+                    <div className="border border-amber-500 p-3 space-y-2">
+                        <div className="text-sm text-amber-400">{t("s3_02.mission.title")}</div>
+                        <div className="text-xs text-amber-300/80">
+                            {t("s3_02.mission.description")}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </ChamberLayout>
-  );
+    );
 }

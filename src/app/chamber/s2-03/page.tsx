@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -20,11 +20,11 @@ interface S203Quest extends Quest {
 
 function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Quest[] {
   if (stage === "LEVEL1") {
-    // Fixed target, single reflection
+    const prompt = t?.prompts?.level1 || "\\text{Hit the target with one reflection}";
     return [
       {
         id: "L1", difficulty, stage,
-        promptLatex: "\\text{Hit the target with one reflection}",
+        promptLatex: prompt,
         expressionLatex: "\\text{Target: }(8, 6)",
         targetLatex: "m,\\; c",
         targetX: 8,
@@ -37,7 +37,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       },
       {
         id: "L2", difficulty, stage,
-        promptLatex: "\\text{Hit the target with one reflection}",
+        promptLatex: prompt,
         expressionLatex: "\\text{Target: }(7, 4)",
         targetLatex: "m,\\; c",
         targetX: 7,
@@ -52,11 +52,11 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
   }
   
   if (stage === "LEVEL2") {
-    // Moving target
+    const prompt = t?.prompts?.level2 || "\\text{Predict and hit the moving target}";
     return [
       {
         id: "L1", difficulty, stage,
-        promptLatex: "\\text{Predict and hit the moving target}",
+        promptLatex: prompt,
         expressionLatex: "\\text{Target: }(6, 8)",
         targetLatex: "m,\\; c",
         targetX: 6,
@@ -70,11 +70,11 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
     ];
   }
   
-  // LEVEL3 - Two reflections
+  const prompt = t?.prompts?.level3 || "\\text{Hit the target with two reflections}";
   return [
     {
       id: "L1", difficulty, stage: "LEVEL3",
-      promptLatex: "\\text{Hit the target with two reflections}",
+      promptLatex: prompt,
       expressionLatex: "\\text{Target: }(9, 5)",
       targetLatex: "m,\\; c",
       targetX: 9,
@@ -90,10 +90,9 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
 
 export default function S203Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s2_03;
+  const locale = translations[currentLanguage] as typeof translations.EN;
+  const t = locale.s2_03 || translations.EN.s2_03;
 
-  const [slope, setSlope] = useState(1);
-  const [intercept, setIntercept] = useState(2);
   const [hits, setHits] = useState(0);
 
   const {
@@ -111,13 +110,24 @@ export default function S203Page() {
   }, [lastCheck, completeStage, stage]);
 
   useEffect(() => {
+    if (!inputs.m && !inputs.c) {
+      setInputs({ m: "1", c: "0" });
+    }
+  }, [inputs, setInputs]);
+
+  const slope = useMemo(() => {
     const m = parseFloat(inputs['m'] || '0');
+    return Number.isFinite(m) ? m : 1;
+  }, [inputs]);
+
+  const intercept = useMemo(() => {
     const c = parseFloat(inputs['c'] || '0');
-    if (!isNaN(m)) setSlope(m);
-    if (!isNaN(c)) setIntercept(c);
+    return Number.isFinite(c) ? c : 2;
   }, [inputs]);
 
   const level = stage === "LEVEL1" ? 1 : stage === "LEVEL2" ? 2 : 3;
+  const targetX = currentQuest?.targetX ?? (level === 1 ? 8 : level === 2 ? 6 : 9);
+  const targetY = currentQuest?.targetY ?? (level === 1 ? 6 : level === 2 ? 8 : 5);
 
   return (
     <ChamberLayout
@@ -126,9 +136,9 @@ export default function S203Page() {
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "LEVEL1", label: "LEVEL 1" },
-        { id: "LEVEL2", label: "LEVEL 2" },
-        { id: "LEVEL3", label: "LEVEL 3" },
+        { id: "LEVEL1", label: t?.stages?.level1 || "LEVEL 1" },
+        { id: "LEVEL2", label: t?.stages?.level2 || "LEVEL 2" },
+        { id: "LEVEL3", label: t?.stages?.level3 || "LEVEL 3" },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
@@ -157,7 +167,25 @@ export default function S203Page() {
             level={level}
             slope={slope}
             intercept={intercept}
+            targetX={targetX}
+            targetY={targetY}
+            onLineChange={(nextSlope: number, nextIntercept: number) => {
+              setInputs((v) => ({
+                ...v,
+                m: Number.isFinite(nextSlope) ? nextSlope.toFixed(2) : v.m,
+                c: Number.isFinite(nextIntercept) ? nextIntercept.toFixed(2) : v.c,
+              }));
+            }}
             onHit={() => setHits(h => h + 1)}
+            labels={{
+              current_function: t?.ui?.current_function || "Current Function",
+              reflections: t?.ui?.reflections || "Reflections",
+              target_position: t?.ui?.target_position || "Target Position",
+              hit_badge: t?.ui?.hit_badge || "TARGET HIT",
+              chamber: t?.ui?.chamber || "CHAMBER",
+              laser_sim: t?.ui?.laser_sim || "LASER_SIM",
+              level: t?.ui?.level || "LEVEL"
+            }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t?.target_title || "TARGET"}
@@ -167,9 +195,12 @@ export default function S203Page() {
               {t?.labels?.hints || "HINTS"}
             </div>
             <div className="text-white/70 text-sm font-mono">
-              {level === 1 && "Use one reflection to hit the target. Adjust slope and intercept."}
-              {level === 2 && "Target is moving. Predict its position and adjust your laser path."}
-              {level === 3 && "Use two reflections to reach the target. Complex trajectory required."}
+              {level === 1 && (t?.hints?.level1 || "Use one reflection to hit the target. Adjust slope and intercept.")}
+              {level === 2 && (t?.hints?.level2 || "Target is moving. Predict its position and adjust your laser path.")}
+              {level === 3 && (t?.hints?.level3 || "Use two reflections to reach the target. Complex trajectory required.")}
+            </div>
+            <div className="text-white/50 text-xs font-mono">
+              {t?.hints?.drag || "Drag the control points on the line to edit slope and intercept."}
             </div>
             <div className="text-white font-black text-lg">
               <InlineMath math="y = mx + c" />
@@ -196,6 +227,54 @@ export default function S203Page() {
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                {t?.labels?.slope || "Slope (m)"}
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="range"
+                  min={-3}
+                  max={3}
+                  step={0.01}
+                  value={slope}
+                  onChange={(e) => setInputs((v) => ({ ...v, m: e.target.value }))}
+                  className="flex-1"
+                />
+                <input
+                  type="number"
+                  step="0.01"
+                  value={inputs.m ?? ""}
+                  onChange={(e) => setInputs((v) => ({ ...v, m: e.target.value }))}
+                  className="w-24 bg-black border-2 border-white/20 p-2 text-center outline-none focus:border-white text-white font-black text-sm"
+                />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                {t?.labels?.intercept || "Intercept (c)"}
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="range"
+                  min={-2}
+                  max={10}
+                  step={0.01}
+                  value={intercept}
+                  onChange={(e) => setInputs((v) => ({ ...v, c: e.target.value }))}
+                  className="flex-1"
+                />
+                <input
+                  type="number"
+                  step="0.01"
+                  value={inputs.c ?? ""}
+                  onChange={(e) => setInputs((v) => ({ ...v, c: e.target.value }))}
+                  className="w-24 bg-black border-2 border-white/20 p-2 text-center outline-none focus:border-white text-white font-black text-sm"
+                />
+              </div>
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="space-y-2">
@@ -217,7 +296,7 @@ export default function S203Page() {
           </div>
           <div className="text-center">
             <div className="text-[10px] text-white/40 font-mono italic">
-              Hits: {hits}
+              {t?.ui?.hits || "Hits"}: {hits}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Line, Sphere } from "@react-three/drei";
+import { OrbitControls, Text, Sphere } from "@react-three/drei";
 import * as THREE from "three";
 
 interface Atom {
@@ -18,7 +18,6 @@ interface Bond {
 
 interface MoleculeCanvasProps {
   target: "ASPIRIN" | "CAFFEINE";
-  onComplete?: () => void;
 }
 
 const palette = {
@@ -243,7 +242,7 @@ function MoleculeStructure({ target }: { target: "ASPIRIN" | "CAFFEINE" }) {
   );
 }
 
-export default function MoleculeCanvas({ target, onComplete }: MoleculeCanvasProps) {
+export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
   const [rotation, setRotation] = useState(0);
   
   return (

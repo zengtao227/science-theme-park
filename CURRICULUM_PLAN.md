@@ -1,99 +1,111 @@
 # 🎡 Science Theme Park: STEM Curriculum & Development Roadmap
 
-## 📊 Current Status: Quest Inventory (v2.1)
+## 📊 Current Status: Quest Inventory (v2.2)
 
-| Module Code | Module Title | Quest Count | Status |
+### 📐 Mathematics (Basel Standard)
+| Code | Module Title | Status | Grade |
 |:---:|:---|:---:|:---:|
-| **S1.01** | Geometry: Areas & Volumes | 21 | ✅ Production |
-| **S1.02** | Data Analysis | 24 | ✅ Production |
-| **S2.01** | Binomial Formulas | 22 | ✅ Production |
-| **S2.02** | Pythagoras Theorem | 41 | ✅ Production |
-| **S2.03** | Linear Functions | 10 | ⚠️ Needs Fill |
-| **S2.04** | Similarity | 17 | ✅ Production |
-| **S2.05** | Powers & Roots | 7 | ⚠️ Low Content |
-| **S2.06** | Linear Systems | 6 | ⚠️ Low Content |
-| **S3.01** | Quadratics | 98 | 🏆 Gold Standard |
-| **G1.01** | **Calculus (High School)** | 1 | 🚨 Critical: Empty |
-| **P1.02** | Newton's Laws | 7 | ⚠️ Low Content |
-| **P2.02** | Circuit Sandbox | 10 | ✅ Functional |
-| **P3.01** | Geometrical Optics | 7 | ⚠️ Low Content |
-| **C1.01** | Mystery Lab | 8 | ✅ Functional |
-| **C1.02** | Mole Master | 21 | ✅ Production |
-| **P1.03** | Energy: Turbine Quest | 21 | ✅ Production |
-| **G2.01** | Vector Pilot 3D | 21 | ✅ Production |
+| **S1.01** | Geometry: Areas & Volumes | ✅ Production | Sek |
+| **S1.02** | Thales Theorem (Similarity) | ✅ Production | Sek |
+| **S2.01** | Binomial Formulas | ✅ Production | Sek |
+| **S2.02** | Pythagoras Theorem | ✅ Production | Sek |
+| **S2.03** | Linear Functions | ✅ Production | Sek |
+| **S3.01** | Quadratics (p-q formula) | ✅ Production | Sek |
+| **S3.02** | Trig Circle | ✅ Production | Sek |
+| **S3.03** | Exponential Growth | ✅ Production | Sek |
+| **G1.01** | Calculus (Derivatives) | ✅ Production | Gym |
+| **G2.01** | Vector Geometry 3D | ✅ Production | Gym |
+| **G3.01** | Probability Vault | ✅ Production | Gym |
+| **G4.01** | Complex Numbers (z-plane) | ✅ Production | Gym |
+| **G5.01** | Matrix Geometry | ✅ Production | Gym |
+
+### ⚛️ Physics (Swiss KLT)
+| Code | Module Title | Status | Grade |
+|:---:|:---|:---:|:---:|
+| **SP1.02** | Newton's Laws (Mechanics) | ✅ Production | Sek |
+| **SP1.03** | Energy & Power | ✅ Production | Sek |
+| **SP1.04** | Rhine Ferry (Forces) | ✅ Production | Sek |
+| **SP1.06** | The Swiss Pendulum | ✅ Production | Sek |
+| **SP2.02** | Circuit Sandbox | ✅ Functional | Sek |
+| **SP2.03** | Motor Lab (Electromagnetism) | ✅ Production | Sek |
+| **SP3.01** | Geometrical Optics | ✅ Production | Sek |
+| **SP4.01** | Wave Basics | ✅ Production | Sek |
+| **GP5.01** | The Atomic Core | ✅ Production | Gym |
+| **GP5.02** | Relativity Lab | ✅ Production | Gym |
+| **GP5.03** | Particle Collider | ✅ Production | Gym |
+| **GP5.04** | Quantum Tunnel | ✅ Production | Gym |
 
 ---
 
-## 🗺️ The "Basilea 2026" Nexus: Mission-Led Development
-*Where Swiss Academic Excellence meets Premium Gamified Simulations.*
+## 🗺️ The "Basilea 2026" Nexus: Expansion Roadmap
 
-### ⚛️ Section A: High-Energy Physics (CERN / Rhine Hub)
-| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
-|:---:|:---|:---|:---|
-| **P5.01** | **The Atomic Core** | Nuclear Decay & Stability | **Nuclear Balancer**: Balance equations to stabilize the reactor. |
-| **P1.03** | **Rhine Power Grid** | Energy & Efficiency ($\eta$) | **Sluice Control**: Match energy output to Basel city demand. |
-| **P1.04** | **The Gierseil-Fähri**| Vector Force Analysis | **Ferry Pilot**: Adjust cable angle to cross the Rhine using current. |
-| **P2.01** | **LHC Calibration** | Lorentz Force & Induction | **Vector Steering**: Use $F=qvB$ to guide particles to targets. |
+### 🧪 Chemistry: The Pharma Hub (Novartis/Roche)
+We are expanding the Chemistry track to bridge the gap between basic substances and complex pharma synthesis.
 
-### 🧪 Section B: Pharma Synthesis Lab (Novartis / Roche)
-| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
-|:---:|:---|:---|:---|
-| **C2.01** | **Rhine pH Sentinel** | Titration & Acid-Base | **Virtual Pipette**: Perform precision titration with real-time curves. |
-| **C3.01** | **Molecular Architect** | Organic Functional Groups | **3D Assembler**: Build medicinal molecules like Aspirin or Vitamin C. |
-| **C1.02** | **Stoichiometry Hub** | Molar Mass & Concentration | **Synthesis Rate**: Calculate reagents for 100% yield drug batches. |
+| Code | Mission Title | Status | Learning Goal | Grade |
+|:---:|:---|:---:|:---|:---:|
+| **SC1.01** | **Mystery Lab** | ✅ Production | Qualitative Analysis (Powders) | Sek |
+| **SC1.02** | **Mole Master** | ✅ Production | Stoichiometry & Yield | Sek |
+| **SC1.03** | **Atoms Forge** | ✅ Production | Atomic Structure & Periodic Table | Sek |
+| **SC1.04** | **Periodic Puzzle** | ✅ Production | Electronic Configuration | Sek |
+| **SC2.02** | **pH Sentinel** | ✅ Production | Acid-Base Titration Curves | Sek |
+| **SC2.03** | **Aero Lab** | ✅ Production | Ideal Gas Laws (PV=nRT) | Sek |
+| **SC2.04** | **Solubility Lab** | ✅ Production | Solutions & Crystallization | Sek |
+| **GC1.01** | **Redox Titan** | ✅ Production | Oxidation-Reduction & Cells | Gym |
+| **GC2.01** | **Carbon Kingdom** | ✅ Production | Organic Chemistry & 3D Isomers | Gym |
+| **GC3.01** | **Equilibrium Master** | ✅ Production | Le Chatelier's Principle | Gym |
+| **GC3.02** | **Crystal Palace** | ✅ Production | Solid State & Lattices | Gym |
 
-### 📐 Section C: Higher Mathematics (Euler / Bernoulli)
-| Code | Mission Title | Learning Goal (Basel KLT) | Gamification Mechanic |
-|:---:|:---|:---|:---|
-| **G2.01** | **Barfüsser Cruiser** | 3D Vector Geometry | **Drone Pilot**: Input $[x,y,z]$ to navigate a 3D scan of Basel city. |
-| **G1.01** | **Calculus Coast** | Derivatives & Slopes | **Tangent Surfer**: Adjust surfboard angle based on $f'(x)$. |
-| **G3.01** | **The Probability Vault**| Bernoulli & Distribution | **Vault Breaker**: Predict code sequences using stochastics. |
+### ⌛ Future Expansion: Biology & Life Sciences
+> **Status**: DEFERRED (Planned for Phase 4)
+*Wait for core Math/Physics/Chemistry skeletons to reach Flesh stage.*
 
-**Scientist Spotlight**: Integration of Euler & Bernoulli biography cards in the HUD sidebars for all math modules.
+| Code | Mission Title | Status | Learning Goal | Grade |
+|:---:|:---|:---:|:---|:---:|
+| **SB1.01** | **Cell Factory** | ⏸️ Deferred | Cell Structure & Organelles | Sek |
+| **SB2.01** | **Mendel's Garden** | ⏸️ Deferred | Genetics & Punnett Squares | Sek |
+| **GB3.01** | **DNA Forge** | ⏸️ Deferred | Molecular Biology & Replication | Gym |
+
+### 🧭 New Naming Convention
+- **S** / **G**: Mathematics (Sekundarschule / Gymnasium)
+- **SP** / **GP**: Physics (Sek Physics / Gym Physics)
+- **SC** / **GC**: Chemistry (Sek Chemistry / Gym Chemistry)
+- **SB** / **GB**: Biology (Sek Biology / Gym Biology)
 
 ---
 
 ## 🛠️ Development Log: Basel 2026 Strategy
 
-### ✅ Basel-Specific Compliance (BS/BL)
-1. **Lehrplan 21 (Sek I P-Zug)**: Strictly aligned with the "Lehrplan 21 Gesamtausgabe Basel-Stadt" and "Lehrplan 21 Baselland". Focus on high-demand algebraic manipulation and descriptive geometry.
-2. **Gymnasium KLT (BS/BL)**: Content follows the "Kantonalen Lehrplanteile (KLT) 2018/2020", specifically for the *Grundlagenfächer* (Core Subjects).
-3. **Local Setting**: Missions are contextualized in **CERN** (Physics link to Geneva but core research topic in Basel), **Novartis/Roche** (Chemistry), and the **Rhine River** (Physics/Hydro).
+### 🏗️ Development Philosophy: The "Skeleton-Flesh-Skin" Protocol
+This project follows a strict three-phase cycle for all new modules to ensure systematic quality control:
 
-### ✅ Infrastructure & Productization
-1. **Visual Icons**: Premium SVG animated icons for all 14 nodes.
-2. **Analytics**: Real-time study-flow monitoring enabled.
-3. **Persistence**: "Science Career" progress tracking via local storage.
+**Phase 1: The Skeleton (骨架)**
+- **Goal**: Functional "Minimum Viable Module" (MVM).
+- **Definition**: The module exists, the core algorithm words, and the page is accessible.
+- **Action**: Create file structure, implement basic canvas/math logic, ensure bug-free compilation.
 
+**Phase 2: The Flesh (血肉)**
+- **Goal**: Educational Depth & Logic Saturation.
+- **Definition**: The module teaches something effectively.
+- **Action**: Add "Expert Guidance" content, physics constraints (e.g., collisions, realistic values), step-by-step experiment flows, and bilingual translations (i18n).
 
+**Phase 3: The Skin (皮肤)**
+- **Goal**: UI Polish, Gamification & Performance.
+- **Definition**: The module feels like a premium app.
+- **Action**: Add texture shaders, particle effects (InstancedMesh), sound effects, animations, VR support, and mobile optimization.
 
-### 🚧 Critical Next Steps (Technical Debt & Strategy)
-- **Quest Deepening**: Most modules have less than 10 questions. The target is 30+ per module.
-- **Calculus Overhaul**: G1.01 needs a full set of derivative rules (Power rule, Product rule, Chain rule) integrated into the HUD.
-- **Logic First + English Priority**: To avoid efficiency traps, stop multi-language translation during development. Focus on implementing physics/math logic first, using only English in `i18n.ts`. 
-- **Localization (Deferred)**: Batch translate to CN/DE only after a module's logic is 100% complete and verified.
+> **Rule**: Never jump to Phase 3 before Phase 2 is complete. Never start Phase 2 before Phase 1 is stable.
 
----
+### ✅ Architecture Refactoring
+1. **Difficulty Decoupling**: Separation of 'S' (Primary/Sek) and 'G' (Advanced/Gym) across all science subjects.
+2. **Contextual Learning**: Sek = Basel City Life; Gym = CERN/Pharma Research.
 
-## 🧭 Phase 4: Multi-Platform & Analytics Strategy (Long-term)
-
-### 1. 📱 跨平台策略：响应式优先 (Responsive First)
-经过战略评估，团队决定采用 **“完全响应式设计”** 作为核心路径，辅以 **“局部模块化切换”**：
-- **自适应布局**: 使用 CSS Grid/Flexbox 确保 UI 在移动端自动重排（垂直堆叠）。
-- **画质自适应**: 画布 (Canvas) 检测到手机访问时，自动降低模型精度或采用静态预览图提速。
-- **交互补偿**: 为触摸屏增大点击目标区域。
-
-### 2. 📊 数据驱动：Vercel Analytics 管理
-- **性能监控**: 利用 Vercel 工具链监控移动端的 LCP (最大内容渲染) 和 CLS (累积布局偏移)。
-- **优先级排序**: 
-  - 统计各设备流量占比。若手机端占比超过 40%，立即启动 `ChamberLayout` 的移动端 UI 专项修补。
-  - 通过目标转化率（模块完成度）定位移动端流失严重的环节。
-
-### 3. 🗓️ 四阶段路线图
-1. **审计期**: 当前阶段。完成全模块逻辑开发，埋入基础分析。
-2. **骨架重组**: 修改 `ChamberLayout` 实现响应式断点（Mobile 16:9 垂直布局）。
-3. **分批上线**: 优先发布手机适配良好的线性代数和几何模块。
-4. **深度优化**: 为高阶物理模拟开发 PWA (Progressive Web App) 离线模式。
+### 🚧 Critical Next Steps
+- **Ongoing (Mission 57-60) - 进阶 "血肉" (Phase 2)**:
+  - **Kiro**: 负责 **GP5.01 Atomic Core**, **SP2.02 Circuits**, **GC1.01 Redox**, **G1.01 Calculus**.
+  - **Trae**: 负责 **SC2.01 Kinetics**, **S2.01 Binomials**, **SP1.04 Rhine Ferry**, **S2.02 Pythagoras**.
+- **Upcoming**:
+  - 全面提升实验交互深度，完成所有 Primary Science 骨架。
 
 ---
-*Generated by Antigravity (Enhanced by NVIDIA DeepSeek-V3) - 2026-02-05*
+*Generated by Antigravity (Enhanced by DeepSeek-V3) - 2026-02-06*
