@@ -163,8 +163,8 @@ function Nucleus({ protons, neutrons }: { protons: number; neutrons: number }) {
         }
     });
     
-    // Position nucleons in a sphere
-    useMemo(() => {
+    // Position nucleons in a sphere using useEffect instead of useMemo
+    useEffect(() => {
         if (!nucleonsRef.current) return;
         
         const dummy = new THREE.Object3D();
@@ -204,7 +204,7 @@ function Nucleus({ protons, neutrons }: { protons: number; neutrons: number }) {
         if (nucleonsRef.current.instanceColor) {
             nucleonsRef.current.instanceColor.needsUpdate = true;
         }
-    }, [protons, neutrons, radius]);
+    }, [protons, neutrons]);
     
     return (
         <group ref={groupRef} position={[0, 2, 0]}>

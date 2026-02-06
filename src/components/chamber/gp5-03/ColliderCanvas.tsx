@@ -11,6 +11,11 @@ interface ColliderCanvasProps {
   isColliding: boolean;
 }
 
+const pseudo = (seed: number) => {
+  const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+};
+
 function ParticleBeam({ direction, energy, isActive }: { direction: 1 | -1; energy: number; isActive: boolean }) {
   const particlesRef = useRef<THREE.InstancedMesh>(null);
   const particleCount = 20;
@@ -67,10 +72,11 @@ function CollisionPoint({ isColliding, energy }: { isColliding: boolean; energy:
 
   useEffect(() => {
     if (isColliding) {
-      const newJets = Array.from({ length: 30 }, () => {
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        const speed = (Math.random() * 0.5 + 0.5) * energy * 0.5;
+      const newJets = Array.from({ length: 30 }, (_, i) => {
+        const seed = i * 13.7 + energy * 3.1;
+        const theta = pseudo(seed) * Math.PI * 2;
+        const phi = Math.acos(2 * pseudo(seed + 1) - 1);
+        const speed = (pseudo(seed + 2) * 0.5 + 0.5) * energy * 0.5;
 
         return {
           position: new THREE.Vector3(0, 0, 0),

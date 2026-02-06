@@ -516,55 +516,6 @@ export const translations = {
             sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
             gc1_01_title: "GC1.01 // REDOX TITAN",
             gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
-            gc1_01: {
-                back: "Back to Nexus",
-                title: "GC1.01 // REDOX TITAN",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Galvanic Cell",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC1.01_REDOX_MONITOR",
-                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
-                labels: {
-                    cell_reaction: "CELL REACTION",
-                    half_reactions: "HALF-REACTIONS",
-                    anode: "Anode (−)",
-                    cathode: "Cathode (+)",
-                    cell_potential: "CELL POTENTIAL",
-                    standard_potential: "E⁰ (standard)",
-                    actual_potential: "E (actual)",
-                    standard_potentials: "STANDARD REDUCTION POTENTIALS",
-                    anode_metal: "ANODE METAL (−)",
-                    cathode_metal: "CATHODE METAL (+)",
-                    anode_concentration: "ANODE CONCENTRATION [M²⁺]",
-                    cathode_concentration: "CATHODE CONCENTRATION [M²⁺]",
-                    formulas: "FORMULAS"
-                },
-                mission: {
-                    title: "MISSION: ELECTROCHEMISTRY",
-                    description: "Master galvanic cells and redox reactions. Observe electron flow and calculate cell potentials."
-                },
-                stages: {
-                    daniell: "DANIELL CELL",
-                    custom: "CUSTOM CELL",
-                    nernst: "NERNST EQUATION",
-                    daniell_desc: "Study the classic Daniell cell (Zn-Cu)",
-                    custom_desc: "Build custom cells with different metals",
-                    nernst_desc: "Apply the Nernst equation to calculate E",
-                    daniell_hint: "Zn loses electrons (oxidation), Cu²⁺ gains electrons (reduction)",
-                    custom_hint: "Lower potential metal becomes anode (−)",
-                    nernst_hint: "Higher [products] decreases cell potential"
-                }
-            },
             gc2_01_title: "GC2.01 // CARBON KINGDOM",
             gc2_01_subtitle: "Assemble pharmaceutical molecules with 3D models.",
             gc3_01_title: "GC3.01 // MOLECULAR ARCHITECT",
@@ -2191,7 +2142,7 @@ export const translations = {
                 combined_hint: "Combined: All three variables interact"
             }
         },
-        sc1_03: {
+        sc1_03_orbitals: {
             back: "Back to Nexus",
             title: "SC1.03 // ATOMS FORGE",
             difficulty: {
@@ -2864,12 +2815,6 @@ export const translations = {
                 unit_circle_hint: "圆上的点：(cos θ, sin θ)",
                 projections_hint: "sin = y 轴投影，cos = x 轴投影",
                 waves_hint: "正弦和余弦形成周期波"
-            }
-        },
-            },
-            mission: {
-                title: "任务：苏黎世塔楼校准",
-                description: "使用三角函数计算校准苏黎世观测塔的角度传感器。"
             }
         },
         s3_03: {
@@ -4327,55 +4272,6 @@ export const translations = {
         },
         gc3_02: {
             back: "返回枢纽",
-            title: "GC3.02 // 晶体宫殿",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "晶体结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC3.02_晶体监视器",
-            footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
-            labels: {
-                lattice_type: "晶格类型",
-                properties: "性质",
-                atoms_per_cell: "原子/晶胞",
-                coordination: "配位数",
-                packing: "堆积率",
-                tet_voids: "四面体空隙",
-                voids: "间隙空位",
-                tetrahedral: "四面体",
-                octahedral: "八面体",
-                formulas: "公式",
-                show_voids: "显示间隙空位",
-                slice_plane: "切片平面 (Y轴)",
-                reset_slice: "重置"
-            },
-            mission: {
-                title: "任务：固体物理",
-                description: "探索晶体结构和布拉维晶格。理解原子堆积和配位数。"
-            },
-            stages: {
-                sc: "简单立方",
-                bcc: "体心立方",
-                fcc: "面心立方",
-                sc_desc: "研究简单立方晶格（配位数6）",
-                bcc_desc: "分析体心立方（配位数8）",
-                fcc_desc: "掌握面心立方（配位数12）",
-                sc_hint: "最低堆积效率（52%）",
-                bcc_hint: "中等堆积（68%），金属如 Fe、Cr",
-                fcc_hint: "最高堆积（74%），金属如 Cu、Al、Au"
-            }
-        },
-        g4_01: {
-            back: "返回枢纽",
             title: "G4.01 // 复数地平线",
             difficulty: {
                 basic: "基础",
@@ -4557,7 +4453,7 @@ export const translations = {
                 combined_hint: "组合定律：三个变量相互作用"
             }
         },
-        sc1_03: {
+        sc1_03_orbitals: {
             back: "返回枢纽",
             title: "SC1.03 // 原子熔炉",
             difficulty: {
@@ -5229,26 +5125,24 @@ export const translations = {
                 waves_desc: "Visualisieren Sie Sinus und Kosinus als Wellenfunktionen",
                 unit_circle_hint: "Punkt auf Kreis: (cos θ, sin θ)",
                 projections_hint: "sin = y-Projektion, cos = x-Projektion",
-                waves_hint: "Sinus und Kosinus erzeugen periodische Wellen"
-            }
-        },
+                waves_hint: "Sinus und Kosinus erzeugen periodische Wellen",
                 wave_functions_prompt_latex: "\\text{Analysiere die Sinus- und Kosinuswellenfunktionen.}",
-                triangle_solver_prompt_latex: "\\text{Löse das rechtwinklige Dreieck mit trigonometrischen Verhältnissen.}"
-            },
-            labels: {
-                input: "EINGABE",
-                hints: "HINWEISE",
-                angle: "Winkel (θ)",
-                sin: "sin(θ)",
-                cos: "cos(θ)",
-                tan: "tan(θ)",
-                opposite: "Gegenkathete",
-                adjacent: "Ankathete",
-                hypotenuse: "Hypotenuse"
-            },
-            mission: {
-                title: "MISSION: ZÜRICH TURM-KALIBRIERUNG",
-                description: "Kalibriere die Winkelsensoren des Zürcher Aussichtsturms mit trigonometrischen Berechnungen."
+                triangle_solver_prompt_latex: "\\text{Löse das rechtwinklige Dreieck mit trigonometrischen Verhältnissen.}",
+                labels: {
+                    input: "EINGABE",
+                    hints: "HINWEISE",
+                    angle: "Winkel (θ)",
+                    sin: "sin(θ)",
+                    cos: "cos(θ)",
+                    tan: "tan(θ)",
+                    opposite: "Gegenkathete",
+                    adjacent: "Ankathete",
+                    hypotenuse: "Hypotenuse"
+                },
+                mission: {
+                    title: "MISSION: ZÜRICH TURM-KALIBRIERUNG",
+                    description: "Kalibriere die Winkelsensoren des Zürcher Aussichtsturms mit trigonometrischen Berechnungen."
+                }
             }
         },
         s3_03: {
@@ -6746,7 +6640,7 @@ export const translations = {
                 combined_hint: "Kombiniert: Alle drei Variablen interagieren"
             }
         },
-        sc1_03: {
+        sc1_03_orbitals: {
             back: "Zurück zum Nexus",
             title: "SC1.03 // ATOMSCHMIEDE",
             difficulty: {
@@ -7036,55 +6930,6 @@ export const translations = {
             },
             mission: {
                 title: "MISSION: CHEMISCHES GLEICHGEWICHT",
-                description: "Meistern Sie Le Chateliers Prinzip. Beobachten Sie, wie Systeme auf Stress reagieren."
-            },
-            stages: {
-                concentration: "KONZENTRATION",
-                temperature: "TEMPERATUR",
-                pressure: "DRUCK",
-                concentration_desc: "Fügen Sie Reaktant A hinzu und beobachten Sie die Gleichgewichtsverschiebung",
-                temperature_desc: "Erhöhen Sie die Temperatur und beobachten Sie die Partikelgeschwindigkeit",
-                pressure_desc: "Ändern Sie den Druck und sehen Sie Volumeneffekte",
-                concentration_hint: "Höheres [A] verschiebt Gleichgewicht nach rechts → mehr C und D",
-                temperature_hint: "Höhere Temperatur erhöht kinetische Energie der Partikel",
-                pressure_hint: "Höherer Druck verringert Behältervolumen"
-            }
-        },
-        gc3_02: {
-            back: "Zurück zum Nexus",
-            title: "GC3.02 // KRISTALLPALAST",
-            difficulty: {
-                basic: "BASIS",
-                core: "KERN",
-                advanced: "FORTGESCHRITTEN",
-                elite: "ELITE"
-            },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Kristallstruktur",
-            next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
-            correct: "Verifiziert",
-            incorrect: "Fehlanpassung",
-            ready: "Bereit",
-            monitor_title: "GC3.02_KRISTALL_MONITOR",
-            footer_left: "GC3.02_KRISTALLPALAST // KNOTEN: BASEL",
-            labels: {
-                lattice_type: "GITTERTYP",
-                properties: "EIGENSCHAFTEN",
-                atoms_per_cell: "Atome/Zelle",
-                coordination: "Koordination",
-                packing: "Packung",
-                tet_voids: "Tetr. Lücken",
-                voids: "ZWISCHENGITTERLÜCKEN",
-                tetrahedral: "Tetraedrisch",
-                octahedral: "Oktaedrisch",
-                formulas: "FORMELN",
-                show_voids: "Zwischengitterlücken anzeigen",
-                slice_plane: "SCHNITTEBENE (Y-ACHSE)",
-                reset_slice: "Zurücksetzen"
-            },
-            mission: {
-                title: "MISSION: FESTKÖRPERPHYSIK",
                 description: "Erkunden Sie Kristallstrukturen und Bravais-Gitter. Verstehen Sie atomare Packung und Koordination."
             },
             stages: {

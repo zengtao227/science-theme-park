@@ -40,6 +40,11 @@ const maxBonds: Record<AtomType, number> = {
   N: 3,
 };
 
+const pseudo = (seed: number) => {
+  const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+};
+
 const calculateFormula = (atomList: Atom[]): string => {
   const counts: Record<string, number> = {};
   atomList.forEach((atom) => {
@@ -256,10 +261,11 @@ export default function MoleculeAssembler({ onMoleculeChange }: MoleculeAssemble
     }
 
     // Calculate position for new atom (offset from selected atom)
+    const seed = atomCounter.current * 13.7;
     const offset = new THREE.Vector3(
-      (Math.random() - 0.5) * 0.5,
-      (Math.random() - 0.5) * 0.5,
-      (Math.random() - 0.5) * 0.5
+      (pseudo(seed) - 0.5) * 0.5,
+      (pseudo(seed + 1) - 0.5) * 0.5,
+      (pseudo(seed + 2) - 0.5) * 0.5
     ).normalize().multiplyScalar(0.4);
 
     const newPosition = selectedAtom.position.clone().add(offset);

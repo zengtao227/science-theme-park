@@ -6,13 +6,13 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import RelativityCanvas from "@/components/chamber/p5-02/RelativityCanvas";
+import RelativityCanvas from "@/components/chamber/gp5-02/RelativityCanvas";
 
 type Stage = "TIME_DILATION" | "LENGTH_CONTRACTION" | "DOPPLER";
 
 export default function P502Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].p5_02 || translations.EN.p5_02;
+  const t = (translations[currentLanguage].p5_02 || translations.EN.p5_02) as any;
 
   const [stage, setStage] = useState<Stage>("TIME_DILATION");
   const [velocity, setVelocity] = useState(0.5); // fraction of c

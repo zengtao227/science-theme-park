@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -24,7 +24,7 @@ export default function GP5_01_AtomicCore() {
     const decayMode = getDecayMode(protons, neutrons);
     
     // Simulate decay chain
-    const simulateDecay = () => {
+    const simulateDecay = useCallback(() => {
         const chain: Array<{Z: number, N: number, mode: string}> = [];
         let currentZ = protons;
         let currentN = neutrons;
@@ -56,7 +56,7 @@ export default function GP5_01_AtomicCore() {
         }
         
         setDecayChain(chain);
-    };
+    }, [protons, neutrons]);
     
     useEffect(() => {
         if (!stable) {
@@ -64,7 +64,7 @@ export default function GP5_01_AtomicCore() {
         } else {
             setDecayChain([]);
         }
-    }, [protons, neutrons]);
+    }, [stable, simulateDecay]);
     
     // Preset nuclei
     const presets = [

@@ -44,12 +44,19 @@ function SOrbital({ scale = 1, color = "#00e5ff" }: { scale?: number; color?: st
     const positions = useMemo(() => {
         const pos = new Float32Array(count * 3);
         
+        // Pre-generate random numbers (seeded approach)
+        const seed = scale * 1000;
+        const random = (i: number) => {
+            const x = Math.sin(seed + i) * 10000;
+            return x - Math.floor(x);
+        };
+        
         for (let i = 0; i < count; i++) {
             // Radial probability distribution for 1s orbital: P(r) = 4πr²|ψ|²
             // Using exponential decay: ψ(r) ∝ exp(-r/a₀)
-            const r = -Math.log(Math.random()) * 0.5 * scale;
-            const theta = Math.acos(2 * Math.random() - 1);
-            const phi = Math.random() * Math.PI * 2;
+            const r = -Math.log(random(i * 3)) * 0.5 * scale;
+            const theta = Math.acos(2 * random(i * 3 + 1) - 1);
+            const phi = random(i * 3 + 2) * Math.PI * 2;
             
             pos[i * 3] = r * Math.sin(theta) * Math.cos(phi);
             pos[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);
@@ -95,15 +102,22 @@ function POrbital({ axis = "z", scale = 1, color = "#a855f7" }: { axis?: "x" | "
     const positions = useMemo(() => {
         const pos = new Float32Array(count * 3);
         
+        // Pre-generate random numbers
+        const seed = scale * 1000 + (axis === "x" ? 100 : axis === "y" ? 200 : 300);
+        const random = (i: number) => {
+            const x = Math.sin(seed + i) * 10000;
+            return x - Math.floor(x);
+        };
+        
         for (let i = 0; i < count; i++) {
             // P orbital: ψ ∝ r·exp(-r/2a₀)·cos(θ) for pz
-            const r = -Math.log(Math.random()) * 0.8 * scale;
-            const theta = Math.acos(2 * Math.random() - 1);
-            const phi = Math.random() * Math.PI * 2;
+            const r = -Math.log(random(i * 3)) * 0.8 * scale;
+            const theta = Math.acos(2 * random(i * 3 + 1) - 1);
+            const phi = random(i * 3 + 2) * Math.PI * 2;
             
             // Angular part: cos²(θ) for pz
             const angularProb = Math.abs(Math.cos(theta));
-            if (Math.random() > angularProb) continue;
+            if (random(i * 3 + 3) > angularProb) continue;
             
             let x = r * Math.sin(theta) * Math.cos(phi);
             let y = r * Math.sin(theta) * Math.sin(phi);
@@ -160,10 +174,17 @@ function DOrbital({ type = "dz2", scale = 1, color = "#ff2d7d" }: { type?: "dz2"
     const positions = useMemo(() => {
         const pos = new Float32Array(count * 3);
         
+        // Pre-generate random numbers
+        const seed = scale * 1000 + (type === "dz2" ? 400 : 500);
+        const random = (i: number) => {
+            const x = Math.sin(seed + i) * 10000;
+            return x - Math.floor(x);
+        };
+        
         for (let i = 0; i < count; i++) {
-            const r = -Math.log(Math.random()) * 1.0 * scale;
-            const theta = Math.acos(2 * Math.random() - 1);
-            const phi = Math.random() * Math.PI * 2;
+            const r = -Math.log(random(i * 3)) * 1.0 * scale;
+            const theta = Math.acos(2 * random(i * 3 + 1) - 1);
+            const phi = random(i * 3 + 2) * Math.PI * 2;
             
             let angularProb = 0;
             
@@ -175,7 +196,7 @@ function DOrbital({ type = "dz2", scale = 1, color = "#ff2d7d" }: { type?: "dz2"
                 angularProb = Math.pow(Math.sin(theta), 2) * Math.pow(Math.sin(2 * phi), 2);
             }
             
-            if (Math.random() > angularProb) continue;
+            if (random(i * 3 + 3) > angularProb) continue;
             
             pos[i * 3] = r * Math.sin(theta) * Math.cos(phi);
             pos[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);

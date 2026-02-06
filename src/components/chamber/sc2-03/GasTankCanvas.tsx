@@ -18,6 +18,11 @@ interface Particle {
   velocity: THREE.Vector3;
 }
 
+const pseudo = (seed: number) => {
+  const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+};
+
 function GasParticles({ volume, temperature, moles, particleCount = 100 }: GasTankCanvasProps) {
   const particlesRef = useRef<THREE.InstancedMesh>(null);
   const particles = useRef<Particle[]>([]);
@@ -31,18 +36,19 @@ function GasParticles({ volume, temperature, moles, particleCount = 100 }: GasTa
 
   // Initialize particles
   useEffect(() => {
-    particles.current = Array.from({ length: particleCount }, () => {
+    particles.current = Array.from({ length: particleCount }, (_, i) => {
+      const seed = i * 13.7 + temperature * 0.1;
       const pos = new THREE.Vector3(
-        (Math.random() - 0.5) * containerSize.x,
-        (Math.random() - 0.5) * containerSize.y,
-        (Math.random() - 0.5) * containerSize.z
+        (pseudo(seed) - 0.5) * containerSize.x,
+        (pseudo(seed + 1) - 0.5) * containerSize.y,
+        (pseudo(seed + 2) - 0.5) * containerSize.z
       );
 
       // Calculate velocity from temperature (Maxwell-Boltzmann)
       const m = 0.029; // kg (air molecule mass)
       const speed = rmsVelocity(temperature, m) * 0.001; // Scale for visualization
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
+      const theta = pseudo(seed + 3) * Math.PI * 2;
+      const phi = Math.acos(2 * pseudo(seed + 4) - 1);
 
       const vel = new THREE.Vector3(
         speed * Math.sin(phi) * Math.cos(theta),
@@ -89,7 +95,7 @@ function GasParticles({ volume, temperature, moles, particleCount = 100 }: GasTa
   });
 
   return (
-    <instancedMesh ref={particlesRef} args={[undefined, undefined, particleCount]}>
+    <instancedMesh ref={particlesRef} args={[undefined, undefined, particleCount]} frustumCulled={true}>
       <sphereGeometry args={[0.05, 8, 8]} />
       <meshPhysicalMaterial
         color="#00e5ff"

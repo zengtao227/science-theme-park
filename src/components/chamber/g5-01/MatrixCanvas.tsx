@@ -2,221 +2,263 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera, Line } from "@react-three/drei";
+import { OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 
 interface MatrixCanvasProps {
-  matrix: number[][]; // 3x3 matrix
-  showOriginal?: boolean;
+    matrix: number[][]; // 3x3 matrix
+    showEigenvectors: boolean;
+    showGrid: boolean;
+    animate: boolean;
 }
 
-function TransformedCube({ matrix, color, opacity = 1 }: { matrix: number[][]; color: string; opacity?: number }) {
-  const vertices = useMemo(() => {
-    // Unit cube vertices
-    const original = [
-      [-0.5, -0.5, -0.5],
-      [0.5, -0.5, -0.5],
-      [0.5, 0.5, -0.5],
-      [-0.5, 0.5, -0.5],
-      [-0.5, -0.5, 0.5],
-      [0.5, -0.5, 0.5],
-      [0.5, 0.5, 0.5],
-      [-0.5, 0.5, 0.5],
-    ];
-
-    // Apply matrix transformation
-    return original.map(([x, y, z]) => {
-      const newX = matrix[0][0] * x + matrix[0][1] * y + matrix[0][2] * z;
-      const newY = matrix[1][0] * x + matrix[1][1] * y + matrix[1][2] * z;
-      const newZ = matrix[2][0] * x + matrix[2][1] * y + matrix[2][2] * z;
-      return new THREE.Vector3(newX, newY, newZ);
-    });
-  }, [matrix]);
-
-  // Cube edges
-  const edges = [
-    [0, 1], [1, 2], [2, 3], [3, 0], // Bottom face
-    [4, 5], [5, 6], [6, 7], [7, 4], // Top face
-    [0, 4], [1, 5], [2, 6], [3, 7], // Vertical edges
-  ];
-
-  return (
-    <group>
-      {edges.map(([start, end], index) => (
-        <Line
-          key={index}
-          points={[vertices[start], vertices[end]]}
-          color={color}
-          lineWidth={2}
-          transparent
-          opacity={opacity}
-        />
-      ))}
-      {/* Vertices */}
-      {vertices.map((vertex, index) => (
-        <mesh key={index} position={vertex}>
-          <sphereGeometry args={[0.05, 16, 16]} />
-          <meshPhysicalMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={0.5}
-            transparent
-            opacity={opacity}
-            metalness={0.9}
-            roughness={0.1}
-          />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function Eigenvectors({ matrix }: { matrix: number[][] }) {
-  // Simplified eigenvector visualization (for demonstration)
-  // In a real implementation, you'd calculate actual eigenvectors
-  const vectors = useMemo(() => {
-    // For now, show the transformed basis vectors
-    const i = new THREE.Vector3(matrix[0][0], matrix[1][0], matrix[2][0]);
-    const j = new THREE.Vector3(matrix[0][1], matrix[1][1], matrix[2][1]);
-    const k = new THREE.Vector3(matrix[0][2], matrix[1][2], matrix[2][2]);
-    return [i, j, k];
-  }, [matrix]);
-
-  const colors = ["#ff2d7d", "#39ff14", "#00e5ff"];
-
-  return (
-    <group>
-      {vectors.map((vec, index) => (
-        <group key={index}>
-          <Line
-            points={[new THREE.Vector3(0, 0, 0), vec]}
-            color={colors[index]}
-            lineWidth={3}
-          />
-          <mesh position={vec}>
-            <coneGeometry args={[0.08, 0.2, 8]} />
-            <meshPhysicalMaterial
-              color={colors[index]}
-              emissive={colors[index]}
-              emissiveIntensity={0.8}
-              metalness={1}
-              roughness={0.1}
-            />
-          </mesh>
-        </group>
-      ))}
-    </group>
-  );
-}
-
-function GridPlane() {
-  const gridRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    if (gridRef.current) {
-      gridRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+// Calculate eigenvalues and eigenvectors for 3x3 matrix
+function calculateEigen(matrix: number[][]): { values: number[]; vectors: THREE.Vector3[] } {
+    // Simplified: only handle 2x2 for demonstration
+    // For full 3x3, would need numerical methods
+    const a = matrix[0][0];
+    const b = matrix[0][1];
+    const c = matrix[1][0];
+    const d = matrix[1][1];
+    
+    // Characteristic equation: det(A - λI) = 0
+    // λ² - (a+d)λ + (ad-bc) = 0
+    const trace = a + d;
+    const det = a * d - b * c;
+    
+    const discriminant = trace * trace - 4 * det;
+    
+    if (discriminant < 0) {
+        return { values: [], vectors: [] };
     }
-  });
-
-  return (
-    <group ref={gridRef}>
-      <gridHelper args={[10, 20, "#00e5ff", "#1a1a1a"]} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
-        <planeGeometry args={[10, 10]} />
-        <meshBasicMaterial
-          color="#000000"
-          transparent
-          opacity={0.3}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-    </group>
-  );
+    
+    const lambda1 = (trace + Math.sqrt(discriminant)) / 2;
+    const lambda2 = (trace - Math.sqrt(discriminant)) / 2;
+    
+    // Eigenvectors
+    const v1 = new THREE.Vector3(b, lambda1 - a, 0).normalize();
+    const v2 = new THREE.Vector3(b, lambda2 - a, 0).normalize();
+    
+    return {
+        values: [lambda1, lambda2],
+        vectors: [v1, v2],
+    };
 }
 
-function AxisLines() {
-  return (
-    <group>
-      {/* X axis - Red */}
-      <Line
-        points={[new THREE.Vector3(-3, 0, 0), new THREE.Vector3(3, 0, 0)]}
-        color="#ff2d7d"
-        lineWidth={1}
-        transparent
-        opacity={0.3}
-      />
-      {/* Y axis - Green */}
-      <Line
-        points={[new THREE.Vector3(0, -3, 0), new THREE.Vector3(0, 3, 0)]}
-        color="#39ff14"
-        lineWidth={1}
-        transparent
-        opacity={0.3}
-      />
-      {/* Z axis - Cyan */}
-      <Line
-        points={[new THREE.Vector3(0, 0, -3), new THREE.Vector3(0, 0, 3)]}
-        color="#00e5ff"
-        lineWidth={1}
-        transparent
-        opacity={0.3}
-      />
-    </group>
-  );
+// Grid that transforms with matrix
+function TransformingGrid({ matrix, animate }: { matrix: number[][]; animate: boolean }) {
+    const gridRef = useRef<THREE.Group>(null);
+    const gridSize = 10;
+    const gridDivisions = 20;
+    
+    useFrame(({ clock }) => {
+        if (!gridRef.current) return;
+        
+        const t = animate ? (Math.sin(clock.getElapsedTime()) + 1) / 2 : 1;
+        
+        // Interpolate between identity and target matrix
+        const m = new THREE.Matrix4();
+        m.set(
+            1 + (matrix[0][0] - 1) * t, matrix[0][1] * t, matrix[0][2] * t, 0,
+            matrix[1][0] * t, 1 + (matrix[1][1] - 1) * t, matrix[1][2] * t, 0,
+            matrix[2][0] * t, matrix[2][1] * t, 1 + (matrix[2][2] - 1) * t, 0,
+            0, 0, 0, 1
+        );
+        
+        gridRef.current.matrix.copy(m);
+        gridRef.current.matrixAutoUpdate = false;
+    });
+    
+    // Create grid lines
+    const gridLines = useMemo(() => {
+        const lines: JSX.Element[] = [];
+        const step = gridSize / gridDivisions;
+        
+        // Horizontal lines
+        for (let i = 0; i <= gridDivisions; i++) {
+            const y = -gridSize / 2 + i * step;
+            const color = i === gridDivisions / 2 ? "#ff2d7d" : "#00e5ff";
+            lines.push(
+                <line key={`h${i}`}>
+                    <bufferGeometry>
+                        <bufferAttribute
+                            attach="attributes-position"
+                            count={2}
+                            array={new Float32Array([
+                                -gridSize / 2, y, 0,
+                                gridSize / 2, y, 0
+                            ])}
+                            itemSize={3}
+                        />
+                    </bufferGeometry>
+                    <lineBasicMaterial color={color} opacity={0.5} transparent />
+                </line>
+            );
+        }
+        
+        // Vertical lines
+        for (let i = 0; i <= gridDivisions; i++) {
+            const x = -gridSize / 2 + i * step;
+            const color = i === gridDivisions / 2 ? "#39ff14" : "#00e5ff";
+            lines.push(
+                <line key={`v${i}`}>
+                    <bufferGeometry>
+                        <bufferAttribute
+                            attach="attributes-position"
+                            count={2}
+                            array={new Float32Array([
+                                x, -gridSize / 2, 0,
+                                x, gridSize / 2, 0
+                            ])}
+                            itemSize={3}
+                        />
+                    </bufferGeometry>
+                    <lineBasicMaterial color={color} opacity={0.5} transparent />
+                </line>
+            );
+        }
+        
+        return lines;
+    }, [gridSize, gridDivisions]);
+    
+    return <group ref={gridRef}>{gridLines}</group>;
 }
 
-export default function MatrixCanvas({ matrix, showOriginal = true }: MatrixCanvasProps) {
-  const identityMatrix = [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
-  ];
+// Eigenvector arrows
+function Eigenvectors({ matrix }: { matrix: number[][] }) {
+    const eigen = useMemo(() => calculateEigen(matrix), [matrix]);
+    
+    if (eigen.values.length === 0) return null;
+    
+    return (
+        <group>
+            {eigen.vectors.map((vec, i) => {
+                const color = i === 0 ? "#ffd166" : "#a855f7";
+                const scale = Math.abs(eigen.values[i]);
+                const direction = vec.clone().multiplyScalar(scale);
+                
+                return (
+                    <group key={i}>
+                        <arrowHelper
+                            args={[
+                                vec,
+                                new THREE.Vector3(0, 0, 0),
+                                scale * 2,
+                                color,
+                                0.3,
+                                0.2
+                            ]}
+                        />
+                        <Text
+                            position={[direction.x * 1.5, direction.y * 1.5, 0]}
+                            fontSize={0.3}
+                            color={color}
+                            anchorX="center"
+                            anchorY="middle"
+                        >
+                            λ{i + 1} = {eigen.values[i].toFixed(2)}
+                        </Text>
+                    </group>
+                );
+            })}
+        </group>
+    );
+}
 
-  return (
-    <div className="w-full h-[400px] bg-black rounded-xl overflow-hidden border border-white/10">
-      <Canvas>
-        <PerspectiveCamera makeDefault position={[3, 3, 3]} fov={50} />
-        <OrbitControls
-          enablePan={false}
-          minDistance={2}
-          maxDistance={10}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
+// Unit vectors showing transformation
+function UnitVectors({ matrix, animate }: { matrix: number[][]; animate: boolean }) {
+    const i_hatRef = useRef<THREE.Group>(null);
+    const j_hatRef = useRef<THREE.Group>(null);
+    
+    useFrame(({ clock }) => {
+        if (!i_hatRef.current || !j_hatRef.current) return;
+        
+        const t = animate ? (Math.sin(clock.getElapsedTime()) + 1) / 2 : 1;
+        
+        // Transform i-hat (1, 0, 0)
+        const i_transformed = new THREE.Vector3(
+            1 + (matrix[0][0] - 1) * t,
+            matrix[1][0] * t,
+            matrix[2][0] * t
+        );
+        
+        // Transform j-hat (0, 1, 0)
+        const j_transformed = new THREE.Vector3(
+            matrix[0][1] * t,
+            1 + (matrix[1][1] - 1) * t,
+            matrix[2][1] * t
+        );
+        
+        i_hatRef.current.position.copy(i_transformed);
+        j_hatRef.current.position.copy(j_transformed);
+    });
+    
+    return (
+        <group>
+            {/* i-hat */}
+            <group ref={i_hatRef}>
+                <mesh>
+                    <sphereGeometry args={[0.1, 16, 16]} />
+                    <meshBasicMaterial color="#ff2d7d" />
+                </mesh>
+            </group>
+            
+            {/* j-hat */}
+            <group ref={j_hatRef}>
+                <mesh>
+                    <sphereGeometry args={[0.1, 16, 16]} />
+                    <meshBasicMaterial color="#39ff14" />
+                </mesh>
+            </group>
+            
+            {/* Original unit vectors */}
+            <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1, "#ff2d7d", 0.2, 0.1]} />
+            <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1, "#39ff14", 0.2, 0.1]} />
+        </group>
+    );
+}
 
-        <ambientLight intensity={0.2} />
-        <pointLight position={[5, 5, 5]} intensity={0.5} />
-        <pointLight position={[-5, -5, -5]} intensity={0.3} />
+function MatrixScene({ matrix, showEigenvectors, showGrid, animate }: MatrixCanvasProps) {
+    const det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    
+    return (
+        <>
+            <ambientLight intensity={0.4} />
+            <pointLight position={[10, 10, 10]} intensity={0.8} />
+            
+            {showGrid && <TransformingGrid matrix={matrix} animate={animate} />}
+            
+            <UnitVectors matrix={matrix} animate={animate} />
+            
+            {showEigenvectors && <Eigenvectors matrix={matrix} />}
+            
+            {/* Matrix display */}
+            <Text
+                position={[0, 6, 0]}
+                fontSize={0.4}
+                color="#00e5ff"
+                anchorX="center"
+                anchorY="middle"
+            >
+                det(A) = {det.toFixed(2)}
+            </Text>
+            
+            {/* Axes */}
+            <axesHelper args={[5]} />
+        </>
+    );
+}
 
-        <GridPlane />
-        <AxisLines />
-
-        {/* Original cube (ghost) */}
-        {showOriginal && (
-          <TransformedCube
-            matrix={identityMatrix}
-            color="#ffffff"
-            opacity={0.2}
-          />
-        )}
-
-        {/* Transformed cube */}
-        <TransformedCube matrix={matrix} color="#a855f7" opacity={1} />
-
-        {/* Eigenvectors */}
-        <Eigenvectors matrix={matrix} />
-
-        {/* Background sphere */}
-        <mesh>
-          <sphereGeometry args={[15, 32, 32]} />
-          <meshBasicMaterial
-            color="#000000"
-            side={THREE.BackSide}
-            transparent
-            opacity={0.9}
-          />
-        </mesh>
-      </Canvas>
-    </div>
-  );
+export default function MatrixCanvas(props: MatrixCanvasProps) {
+    return (
+        <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
+            <color attach="background" args={["#000000"]} />
+            <MatrixScene {...props} />
+            <OrbitControls
+                enablePan={true}
+                enableZoom={true}
+                enableRotate={true}
+            />
+        </Canvas>
+    );
 }

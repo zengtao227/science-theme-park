@@ -1,160 +1,106 @@
 "use client";
 
 import { useState } from "react";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import GaltonCanvas from "@/components/chamber/g3-01/GaltonCanvas";
+import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-type Stage = "UNIFORM" | "BIASED" | "EXTREME";
+const ProbabilityCanvas = dynamic(() => import("@/components/chamber/g3-01/ProbabilityCanvas"), { ssr: false });
 
-export default function G301Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].g3_01 || translations.EN.g3_01;
+export default function G3_01_ProbabilityVault() {
+    const { t } = useLanguage();
+    const [rows, setRows] = useState(12);
+    const [ballCount, setBallCount] = useState(100);
+    const [showDistribution, setShowDistribution] = useState(true);
 
-  const [stage, setStage] = useState<Stage>("UNIFORM");
-  const [probability, setProbability] = useState(0.5);
-  const [ballCount, setBallCount] = useState(500);
+    const mean = rows / 2;
+    const stdDev = Math.sqrt(rows / 4);
 
-  const handleStageChange = (newStage: Stage) => {
-    setStage(newStage);
-    if (newStage === "UNIFORM") {
-      setProbability(0.5);
-    } else if (newStage === "BIASED") {
-      setProbability(0.7);
-    } else if (newStage === "EXTREME") {
-      setProbability(0.9);
-    }
-  };
-
-  return (
-    <ChamberLayout
-      title={t?.title || "G3.01 // PROBABILITY VAULT"}
-      moduleCode="G3.01"
-      difficulty="CORE"
-      onDifficultyChange={() => {}}
-      stages={[
-        { id: "UNIFORM", label: t?.stages?.uniform || "UNIFORM" },
-        { id: "BIASED", label: t?.stages?.biased || "BIASED" },
-        { id: "EXTREME", label: t?.stages?.extreme || "EXTREME" },
-      ]}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => {}}
-      onNext={() => {}}
-      checkStatus={null}
-      footerLeft={t?.footer_left || "G3.01_PROBABILITY // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "G3.01_GALTON_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
-      monitorContent={
-        <div className="space-y-4">
-          <GaltonCanvas
-            probability={probability}
-            ballCount={ballCount}
-            onDistributionUpdate={() => {}}
-          />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "PROBABILITY DISTRIBUTION"}
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.hints || "THEORY"}
+    return (
+        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
+            <div className="fixed inset-0 opacity-10 pointer-events-none">
+                <div className="w-full h-full" style={{
+                    backgroundImage: `linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                                     linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)`,
+                    backgroundSize: "50px 50px",
+                }} />
             </div>
-            <div className="text-white font-black text-lg">
-              <InlineMath math="B(n, p) \approx \mathcal{N}(\mu, \sigma^2)" />
+
+            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
+                <div className="flex justify-between items-center mb-2">
+                    <h1 className="text-2xl font-bold text-cyan-400">{t("g3_01.title")}</h1>
+                    <Link href="/" className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors">
+                        {t("g3_01.back")}
+                    </Link>
+                </div>
+                <div className="text-sm text-cyan-300/70">{t("g3_01.footer_left")}</div>
             </div>
-            <div className="text-white/70 text-sm font-mono space-y-1">
-              <div><InlineMath math="\mu = np" /></div>
-              <div><InlineMath math="\sigma^2 = np(1-p)" /></div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                    <ProbabilityCanvas rows={rows} ballCount={ballCount} showDistribution={showDistribution} />
+                </div>
+
+                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
+                    <div className="border-b border-green-500 pb-2 mb-4">
+                        <h2 className="text-lg font-bold text-green-400">{t("g3_01.monitor_title")}</h2>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-cyan-400">ROWS (n)</label>
+                        <input type="range" min="6" max="20" step="1" value={rows}
+                            onChange={(e) => setRows(Number(e.target.value))} className="w-full" />
+                        <div className="text-center text-lg text-cyan-300">{rows}</div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-purple-400">BALL COUNT</label>
+                        <input type="range" min="50" max="200" step="10" value={ballCount}
+                            onChange={(e) => setBallCount(Number(e.target.value))} className="w-full" />
+                        <div className="text-center text-lg text-purple-300">{ballCount}</div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" checked={showDistribution} onChange={(e) => setShowDistribution(e.target.checked)} className="w-4 h-4" />
+                            <span className="text-green-400">Show Distribution</span>
+                        </label>
+                    </div>
+
+                    <div className="border border-green-500 p-3 space-y-2">
+                        <div className="text-sm text-green-400">NORMAL DISTRIBUTION</div>
+                        <div className="space-y-1 text-xs">
+                            <div className="flex justify-between">
+                                <span className="text-green-300">Mean (μ):</span>
+                                <span className="text-green-200 font-bold">{mean.toFixed(2)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-green-300">Std Dev (σ):</span>
+                                <span className="text-green-200 font-bold">{stdDev.toFixed(2)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-green-300">Variance (σ²):</span>
+                                <span className="text-green-200 font-bold">{(stdDev * stdDev).toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="border border-purple-500 p-3 space-y-2">
+                        <div className="text-sm text-purple-400">BINOMIAL DISTRIBUTION</div>
+                        <div className="text-xs space-y-1 text-purple-300/80">
+                            <div>P(X=k) = C(n,k) × p^k × (1-p)^(n-k)</div>
+                            <div>μ = np</div>
+                            <div>σ² = np(1-p)</div>
+                            <div>p = 0.5 (fair coin)</div>
+                        </div>
+                    </div>
+
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">{t("g3_01.mission.title")}</div>
+                        <div className="text-xs text-cyan-300/80">{t("g3_01.mission.description")}</div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      }
-    >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description || "Observe how random processes converge to predictable distributions. The Galton Board demonstrates the Central Limit Theorem."}
-          </p>
-        </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
-          </h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={`P(\\text{right}) = ${probability.toFixed(2)}`} />
-          </p>
-        </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-              Probability Control
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60 font-mono">p =</span>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={probability}
-                onChange={(e) => setProbability(parseFloat(e.target.value))}
-                className="flex-1"
-              />
-              <span className="text-xl font-black text-white min-w-[60px]">
-                {probability.toFixed(2)}
-              </span>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-              Ball Count
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-white/60 font-mono">n =</span>
-              <input
-                type="range"
-                min="100"
-                max="1000"
-                step="100"
-                value={ballCount}
-                onChange={(e) => setBallCount(parseInt(e.target.value))}
-                className="flex-1"
-              />
-              <span className="text-xl font-black text-white min-w-[60px]">
-                {ballCount}
-              </span>
-            </div>
-          </div>
-          
-          <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
-              {stage === "UNIFORM" && "Symmetric distribution (p = 0.5)"}
-              {stage === "BIASED" && "Right-skewed distribution (p = 0.7)"}
-              {stage === "EXTREME" && "Extreme bias (p = 0.9)"}
-            </div>
-          </div>
-        </div>
-      </div>
-    </ChamberLayout>
-  );
+    );
 }

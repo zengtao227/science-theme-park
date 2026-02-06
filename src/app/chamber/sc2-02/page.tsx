@@ -1,245 +1,276 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import TitrationCurve from "@/components/chamber/sc2-02/TitrationCurve";
+import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-const computePh = (acidM: number, acidMl: number, baseM: number, baseMl: number) => {
-  const acidMoles = acidM * (acidMl / 1000);
-  const baseMoles = baseM * (baseMl / 1000);
-  const totalVolume = (acidMl + baseMl) / 1000;
-  if (totalVolume <= 0) return 7;
+const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/TitrationCanvas"), {
+    ssr: false,
+});
 
-  if (baseMoles < acidMoles) {
-    const h = (acidMoles - baseMoles) / totalVolume;
-    return Math.max(0, Math.min(14, -Math.log10(h)));
-  }
+export default function SC2_02_pHSentinel() {
+    const { t } = useLanguage();
+    const [acidType, setAcidType] = useState<"strong" | "weak">("weak");
+    const [baseType, setBaseType] = useState<"strong" | "weak">("strong");
+    const [acidConcentration, setAcidConcentration] = useState(0.1); // M
+    const [baseConcentration, setBaseConcentration] = useState(0.1); // M
+    const [volumeAdded, setVolumeAdded] = useState(0); // mL
+    const [indicator, setIndicator] = useState<"phenolphthalein" | "methyl_orange" | "universal">("phenolphthalein");
+    const [isRunning, setIsRunning] = useState(false);
 
-  if (Math.abs(baseMoles - acidMoles) < 1e-9) {
-    return 7;
-  }
+    // Auto-titration
+    const handleStartTitration = () => {
+        setIsRunning(true);
+        setVolumeAdded(0);
+        
+        const interval = setInterval(() => {
+            setVolumeAdded((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setIsRunning(false);
+                    return 100;
+                }
+                return prev + 0.5;
+            });
+        }, 100);
+    };
 
-  const oh = (baseMoles - acidMoles) / totalVolume;
-  const poh = -Math.log10(oh);
-  return Math.max(0, Math.min(14, 14 - poh));
-};
+    const handleReset = () => {
+        setIsRunning(false);
+        setVolumeAdded(0);
+    };
 
-export default function SC202Page() {
-  const { currentLanguage } = useAppStore();
-  const locale = translations[currentLanguage] as typeof translations.EN;
-  const t = locale.sc2_02 || translations.EN.sc2_02;
+    // Calculate equivalence point
+    const equivalenceVolume = (acidConcentration * 50) / baseConcentration;
 
-  const [acidMolarity, setAcidMolarity] = useState(0.1);
-  const [baseMolarity, setBaseMolarity] = useState(0.1);
-  const [acidVolume, setAcidVolume] = useState(25);
-  const [addedVolume, setAddedVolume] = useState(0);
-  const [flowRate, setFlowRate] = useState(0.5);
-  const [running, setRunning] = useState(false);
-
-  const maxVolume = 50;
-
-  useEffect(() => {
-    if (!running) return;
-    const handle = window.setInterval(() => {
-      setAddedVolume((prev) => {
-        const next = Math.min(maxVolume, prev + flowRate * 0.1);
-        if (next >= maxVolume) {
-          setRunning(false);
-        }
-        return next;
-      });
-    }, 100);
-    return () => window.clearInterval(handle);
-  }, [flowRate, running]);
-
-  const curveData = useMemo(() => {
-    const points = [];
-    for (let v = 0; v <= maxVolume; v += 1) {
-      points.push({
-        volume: v,
-        pH: Number(computePh(acidMolarity, acidVolume, baseMolarity, v).toFixed(3)),
-      });
-    }
-    return points;
-  }, [acidMolarity, acidVolume, baseMolarity]);
-
-  const currentPh = useMemo(
-    () => computePh(acidMolarity, acidVolume, baseMolarity, addedVolume),
-    [acidMolarity, acidVolume, baseMolarity, addedVolume]
-  );
-
-  const equivalenceVolume = (acidMolarity * acidVolume) / baseMolarity;
-
-  const phenolphthalein =
-    currentPh < 8.2 ? t.indicators.phenolphthalein_low : currentPh > 10 ? t.indicators.phenolphthalein_high : t.indicators.phenolphthalein_mid;
-  const methylOrange =
-    currentPh < 3.1 ? t.indicators.methyl_orange_low : currentPh > 4.4 ? t.indicators.methyl_orange_high : t.indicators.methyl_orange_mid;
-
-  return (
-    <ChamberLayout
-      title={t.title}
-      moduleCode="SC2.02"
-      difficulty="CORE"
-      onDifficultyChange={() => {}}
-      stages={[{ id: "TITRATION", label: t.stages.titration }]}
-      currentStage="TITRATION"
-      onStageChange={() => {}}
-      onVerify={() => setRunning((prev) => !prev)}
-      onNext={() => {
-        setRunning(false);
-        setAddedVolume(0);
-      }}
-      checkStatus={null}
-      footerLeft={t.footer_left}
-      translations={{
-        back: t.back,
-        check: running ? t.pause : t.start,
-        next: t.reset,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
-        difficulty: { core: t.difficulty.core },
-      }}
-      monitorContent={
-        <div className="space-y-5">
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t.labels.current_ph}
-            </div>
-            <div className="text-3xl text-neon-cyan font-black">{currentPh.toFixed(2)}</div>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-              <div className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-black">
-                {t.labels.equivalence}
-              </div>
-              <div className="text-xl text-white font-black">{equivalenceVolume.toFixed(1)} mL</div>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-              <div className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-black">
-                {t.labels.flow_rate}
-              </div>
-              <div className="text-xl text-white font-black">{flowRate.toFixed(2)} mL/s</div>
-            </div>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t.labels.indicators}
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-white/60 font-mono">{t.indicators.phenolphthalein}</span>
-              <span className="text-neon-amber font-black">{phenolphthalein}</span>
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-white/60 font-mono">{t.indicators.methyl_orange}</span>
-              <span className="text-neon-amber font-black">{methylOrange}</span>
-            </div>
-          </div>
-        </div>
-      }
-    >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t.mission.title}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t.mission.description}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-4">
-            <TitrationCurve data={curveData} currentVolume={addedVolume} currentPh={currentPh} accent="#39ff14" />
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-              <div className="flex items-center justify-between text-xs text-white/60 font-mono">
-                <span>{t.labels.added_volume}</span>
-                <span className="text-white font-black">{addedVolume.toFixed(1)} mL</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={maxVolume}
-                step={0.1}
-                value={addedVolume}
-                onChange={(e) => setAddedVolume(Number(e.target.value))}
-                className="w-full accent-neon-green"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-4">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                {t.labels.solution_config}
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>{t.labels.acid_molarity}</span>
-                  <span className="text-white font-black">{acidMolarity.toFixed(2)} M</span>
-                </div>
-                <input
-                  type="range"
-                  min={0.05}
-                  max={0.5}
-                  step={0.01}
-                  value={acidMolarity}
-                  onChange={(e) => setAcidMolarity(Number(e.target.value))}
-                  className="w-full accent-neon-cyan"
+    return (
+        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
+            {/* Cyber grid background */}
+            <div className="fixed inset-0 opacity-10 pointer-events-none">
+                <div
+                    className="w-full h-full"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)
+                        `,
+                        backgroundSize: "50px 50px",
+                    }}
                 />
-                <div className="flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>{t.labels.base_molarity}</span>
-                  <span className="text-white font-black">{baseMolarity.toFixed(2)} M</span>
-                </div>
-                <input
-                  type="range"
-                  min={0.05}
-                  max={0.5}
-                  step={0.01}
-                  value={baseMolarity}
-                  onChange={(e) => setBaseMolarity(Number(e.target.value))}
-                  className="w-full accent-neon-purple"
-                />
-                <div className="flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>{t.labels.acid_volume}</span>
-                  <span className="text-white font-black">{acidVolume.toFixed(0)} mL</span>
-                </div>
-                <input
-                  type="range"
-                  min={10}
-                  max={50}
-                  step={1}
-                  value={acidVolume}
-                  onChange={(e) => setAcidVolume(Number(e.target.value))}
-                  className="w-full accent-neon-green"
-                />
-              </div>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-4">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                {t.labels.flow_control}
-              </div>
-              <div className="flex items-center justify-between text-xs text-white/60 font-mono">
-                <span>{t.labels.flow_rate}</span>
-                <span className="text-white font-black">{flowRate.toFixed(2)} mL/s</span>
-              </div>
-              <input
-                type="range"
-                min={0.1}
-                max={2}
-                step={0.1}
-                value={flowRate}
-                onChange={(e) => setFlowRate(Number(e.target.value))}
-                className="w-full accent-neon-amber"
-              />
+            {/* Header */}
+            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
+                <div className="flex justify-between items-center mb-2">
+                    <h1 className="text-2xl font-bold text-cyan-400">
+                        {t("sc2_02.title")}
+                    </h1>
+                    <Link
+                        href="/"
+                        className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
+                    >
+                        {t("sc2_02.back")}
+                    </Link>
+                </div>
+                <div className="text-sm text-cyan-300/70">{t("sc2_02.footer_left")}</div>
             </div>
-          </div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Canvas */}
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                    <TitrationCanvas
+                        acidType={acidType}
+                        baseType={baseType}
+                        acidConcentration={acidConcentration}
+                        baseConcentration={baseConcentration}
+                        volumeAdded={volumeAdded}
+                        indicator={indicator}
+                    />
+                </div>
+
+                {/* Control Panel */}
+                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
+                    <div className="border-b border-green-500 pb-2 mb-4">
+                        <h2 className="text-lg font-bold text-green-400">
+                            {t("sc2_02.monitor_title")}
+                        </h2>
+                    </div>
+
+                    {/* Titration Controls */}
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">{t("sc2_02.labels.titration_control")}</div>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={handleStartTitration}
+                                disabled={isRunning}
+                                className={`flex-1 px-3 py-2 border transition-colors ${
+                                    isRunning
+                                        ? "border-gray-600 text-gray-600"
+                                        : "border-green-500 text-green-300 hover:bg-green-500/20"
+                                }`}
+                            >
+                                {t("sc2_02.labels.start")}
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="flex-1 px-3 py-2 border border-red-500 text-red-300 hover:bg-red-500/20 transition-colors"
+                            >
+                                {t("sc2_02.labels.reset")}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Volume Control */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-purple-400">
+                            {t("sc2_02.labels.volume_added")}
+                        </label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            step="0.5"
+                            value={volumeAdded}
+                            onChange={(e) => setVolumeAdded(Number(e.target.value))}
+                            disabled={isRunning}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-purple-300">{volumeAdded.toFixed(1)} mL</div>
+                    </div>
+
+                    {/* Acid Type */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-cyan-400">{t("sc2_02.labels.acid_type")}</label>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => setAcidType("strong")}
+                                className={`flex-1 px-3 py-2 border transition-colors ${
+                                    acidType === "strong"
+                                        ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
+                                        : "border-gray-600 text-gray-400"
+                                }`}
+                            >
+                                {t("sc2_02.labels.strong")}
+                            </button>
+                            <button
+                                onClick={() => setAcidType("weak")}
+                                className={`flex-1 px-3 py-2 border transition-colors ${
+                                    acidType === "weak"
+                                        ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
+                                        : "border-gray-600 text-gray-400"
+                                }`}
+                            >
+                                {t("sc2_02.labels.weak")}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Acid Concentration */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-amber-400">
+                            {t("sc2_02.labels.acid_concentration")}
+                        </label>
+                        <input
+                            type="range"
+                            min="0.01"
+                            max="1.0"
+                            step="0.01"
+                            value={acidConcentration}
+                            onChange={(e) => setAcidConcentration(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-amber-300">{acidConcentration.toFixed(2)} M</div>
+                    </div>
+
+                    {/* Base Concentration */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-pink-400">
+                            {t("sc2_02.labels.base_concentration")}
+                        </label>
+                        <input
+                            type="range"
+                            min="0.01"
+                            max="1.0"
+                            step="0.01"
+                            value={baseConcentration}
+                            onChange={(e) => setBaseConcentration(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="text-center text-lg text-pink-300">{baseConcentration.toFixed(2)} M</div>
+                    </div>
+
+                    {/* Indicator Selection */}
+                    <div className="space-y-2">
+                        <label className="text-sm text-green-400">{t("sc2_02.labels.indicator")}</label>
+                        <div className="grid grid-cols-3 gap-2">
+                            <button
+                                onClick={() => setIndicator("phenolphthalein")}
+                                className={`px-2 py-2 border text-xs transition-colors ${
+                                    indicator === "phenolphthalein"
+                                        ? "border-pink-500 bg-pink-500/20 text-pink-300"
+                                        : "border-gray-600 text-gray-400"
+                                }`}
+                            >
+                                Phenol.
+                            </button>
+                            <button
+                                onClick={() => setIndicator("methyl_orange")}
+                                className={`px-2 py-2 border text-xs transition-colors ${
+                                    indicator === "methyl_orange"
+                                        ? "border-orange-500 bg-orange-500/20 text-orange-300"
+                                        : "border-gray-600 text-gray-400"
+                                }`}
+                            >
+                                Methyl O.
+                            </button>
+                            <button
+                                onClick={() => setIndicator("universal")}
+                                className={`px-2 py-2 border text-xs transition-colors ${
+                                    indicator === "universal"
+                                        ? "border-purple-500 bg-purple-500/20 text-purple-300"
+                                        : "border-gray-600 text-gray-400"
+                                }`}
+                            >
+                                Universal
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Equivalence Point */}
+                    <div className="border border-green-500 p-3 space-y-2">
+                        <div className="text-sm text-green-400">{t("sc2_02.labels.equivalence_point")}</div>
+                        <div className="text-center text-xl text-green-300 font-bold">
+                            {equivalenceVolume.toFixed(1)} mL
+                        </div>
+                        <div className="text-xs text-green-300/60 text-center">
+                            {volumeAdded >= equivalenceVolume - 2 && volumeAdded <= equivalenceVolume + 2
+                                ? t("sc2_02.labels.near_equivalence")
+                                : ""}
+                        </div>
+                    </div>
+
+                    {/* Formulas */}
+                    <div className="border border-purple-500 p-3 space-y-2">
+                        <div className="text-sm text-purple-400">{t("sc2_02.labels.formulas")}</div>
+                        <div className="text-xs space-y-1 text-purple-300/80">
+                            <div>pH = -log[H⁺]</div>
+                            <div>pOH = -log[OH⁻]</div>
+                            <div>pH + pOH = 14</div>
+                            <div>Henderson-Hasselbalch:</div>
+                            <div>pH = pKa + log([A⁻]/[HA])</div>
+                        </div>
+                    </div>
+
+                    {/* Mission Info */}
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">{t("sc2_02.mission.title")}</div>
+                        <div className="text-xs text-cyan-300/80">
+                            {t("sc2_02.mission.description")}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </ChamberLayout>
-  );
+    );
 }

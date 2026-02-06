@@ -1,176 +1,135 @@
 "use client";
 
 import { useState } from "react";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import MoleculeAssembler from "@/components/chamber/gc2-01/MoleculeAssembler";
+import { useLanguage } from "@/lib/i18n";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-type Stage = "ALKANES" | "ALCOHOLS" | "CUSTOM";
+const OrganicCanvas = dynamic(() => import("@/components/chamber/gc2-01/OrganicCanvas"), { ssr: false });
 
-export default function GC201Page() {
-  const { currentLanguage } = useAppStore();
-  const locale = translations[currentLanguage] as typeof translations.EN;
-  const t = locale.gc2_01 || translations.EN.gc2_01;
+export default function GC2_01_CarbonKingdom() {
+    const { t } = useLanguage();
+    const [molecule, setMolecule] = useState<"methane" | "ethane" | "benzene" | "glucose" | "alanine">("benzene");
+    const [showBonds, setShowBonds] = useState(true);
+    const [showHydrogens, setShowHydrogens] = useState(true);
+    const [rotationSpeed, setRotationSpeed] = useState(0.5);
 
-  const [stage, setStage] = useState<Stage>("ALKANES");
-  const [molecularFormula, setMolecularFormula] = useState("C");
-  const [iupacName, setIupacName] = useState("methane");
-  const [atomCount, setAtomCount] = useState({ C: 1, H: 0, O: 0, N: 0 });
+    const moleculeInfo: Record<string, { formula: string; name: string; type: string }> = {
+        methane: { formula: "CH₄", name: "Methane", type: "Alkane" },
+        ethane: { formula: "C₂H₆", name: "Ethane", type: "Alkane" },
+        benzene: { formula: "C₆H₆", name: "Benzene", type: "Aromatic" },
+        glucose: { formula: "C₆H₁₂O₆", name: "Glucose", type: "Carbohydrate" },
+        alanine: { formula: "C₃H₇NO₂", name: "Alanine", type: "Amino Acid" },
+    };
 
-  const handleMoleculeChange = (formula: string, atoms: { type: string }[], name: string) => {
-    setMolecularFormula(formula);
-    setIupacName(name);
-
-    // Count atoms
-    const counts = { C: 0, H: 0, O: 0, N: 0 };
-    atoms.forEach((atom) => {
-      if (atom.type in counts) {
-        counts[atom.type as keyof typeof counts]++;
-      }
-    });
-    setAtomCount(counts);
-  };
-
-  const handleStageChange = (newStage: Stage) => {
-    setStage(newStage);
-  };
-
-  // Calculate molecular mass
-  const atomicMasses = { C: 12, H: 1, O: 16, N: 14 };
-  const molecularMass =
-    atomCount.C * atomicMasses.C +
-    atomCount.H * atomicMasses.H +
-    atomCount.O * atomicMasses.O +
-    atomCount.N * atomicMasses.N;
-
-  return (
-    <ChamberLayout
-      title={t?.title || "GC2.01 // CARBON KINGDOM"}
-      moduleCode="GC2.01"
-      difficulty="CORE"
-      onDifficultyChange={() => { }}
-      stages={[
-        { id: "ALKANES", label: t?.stages?.alkanes || "ALKANES" },
-        { id: "ALCOHOLS", label: t?.stages?.alcohols || "ALCOHOLS" },
-        { id: "CUSTOM", label: t?.stages?.custom || "CUSTOM" },
-      ]}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => { }}
-      onNext={() => { }}
-      checkStatus={null}
-      footerLeft={t?.footer_left || "GC2.01_CARBON_KINGDOM // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GC2.01_MOLECULE_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
-      monitorContent={
-        <div className="space-y-4">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "MOLECULAR STRUCTURE"}
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formula || "MOLECULAR FORMULA"}
+    return (
+        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
+            <div className="fixed inset-0 opacity-10 pointer-events-none">
+                <div className="w-full h-full" style={{
+                    backgroundImage: `linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                                     linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)`,
+                    backgroundSize: "50px 50px",
+                }} />
             </div>
-            <div className="text-3xl text-white font-black text-center">
-              <InlineMath math={molecularFormula || "C"} />
-            </div>
-          </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.iupac_name || "IUPAC NAME"}
+            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
+                <div className="flex justify-between items-center mb-2">
+                    <h1 className="text-2xl font-bold text-cyan-400">{t("gc2_01.title")}</h1>
+                    <Link href="/" className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors">
+                        {t("gc2_01.back")}
+                    </Link>
+                </div>
+                <div className="text-sm text-cyan-300/70">{t("gc2_01.footer_left")}</div>
             </div>
-            <div className="text-xl text-white font-black text-center uppercase tracking-[0.2em]">
-              {iupacName}
-            </div>
-          </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.composition || "COMPOSITION"}
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">Carbon (C):</span>
-                <span className="text-white font-black">{atomCount.C}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">Hydrogen (H):</span>
-                <span className="text-white font-black">{atomCount.H}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">Oxygen (O):</span>
-                <span className="text-white font-black">{atomCount.O}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">Nitrogen (N):</span>
-                <span className="text-white font-black">{atomCount.N}</span>
-              </div>
-            </div>
-            <div className="pt-2 border-t border-white/10">
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60 font-mono">
-                  {t?.labels?.molecular_mass || "Molecular Mass"}:
-                </span>
-                <span className="text-neon-cyan font-black">{molecularMass} g/mol</span>
-              </div>
-            </div>
-          </div>
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
+                    <OrganicCanvas molecule={molecule} showBonds={showBonds} showHydrogens={showHydrogens} rotationSpeed={rotationSpeed} />
+                </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.hints || "HINTS"}
+                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
+                    <div className="border-b border-green-500 pb-2 mb-4">
+                        <h2 className="text-lg font-bold text-green-400">{t("gc2_01.monitor_title")}</h2>
+                    </div>
+
+                    <div className="border border-cyan-500 p-3 space-y-2">
+                        <div className="text-sm text-cyan-400">MOLECULE INFO</div>
+                        <div className="text-center">
+                            <div className="text-2xl text-cyan-300 font-bold">{moleculeInfo[molecule].formula}</div>
+                            <div className="text-sm text-cyan-300/70">{moleculeInfo[molecule].name}</div>
+                            <div className="text-xs text-cyan-300/50">{moleculeInfo[molecule].type}</div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-green-400">SELECT MOLECULE</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            {(["methane", "ethane", "benzene", "glucose", "alanine"] as const).map((mol) => (
+                                <button key={mol} onClick={() => setMolecule(mol)}
+                                    className={`px-2 py-2 border text-xs transition-colors ${
+                                        molecule === mol ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-gray-400"
+                                    }`}>
+                                    {moleculeInfo[mol].name}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-purple-400">ROTATION SPEED</label>
+                        <input type="range" min="0" max="2" step="0.1" value={rotationSpeed}
+                            onChange={(e) => setRotationSpeed(Number(e.target.value))} className="w-full" />
+                        <div className="text-center text-lg text-purple-300">{rotationSpeed.toFixed(1)}x</div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" checked={showBonds} onChange={(e) => setShowBonds(e.target.checked)} className="w-4 h-4" />
+                            <span className="text-cyan-400">Show Bonds</span>
+                        </label>
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" checked={showHydrogens} onChange={(e) => setShowHydrogens(e.target.checked)} className="w-4 h-4" />
+                            <span className="text-pink-400">Show Hydrogens</span>
+                        </label>
+                    </div>
+
+                    <div className="border border-amber-500 p-3 space-y-2">
+                        <div className="text-sm text-amber-400">ATOM COLORS</div>
+                        <div className="text-xs space-y-1 text-amber-300/80">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-gray-500"></div>
+                                <span>Carbon (C)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-white"></div>
+                                <span>Hydrogen (H)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                <span>Oxygen (O)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                                <span>Nitrogen (N)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="border border-purple-500 p-3 space-y-2">
+                        <div className="text-sm text-purple-400">BOND TYPES</div>
+                        <div className="text-xs space-y-1 text-purple-300/80">
+                            <div>Single Bond: C-C</div>
+                            <div>Double Bond: C=C</div>
+                            <div>Triple Bond: C≡C</div>
+                        </div>
+                    </div>
+
+                    <div className="border border-green-500 p-3 space-y-2">
+                        <div className="text-sm text-green-400">{t("gc2_01.mission.title")}</div>
+                        <div className="text-xs text-green-300/80">{t("gc2_01.mission.description")}</div>
+                    </div>
+                </div>
             </div>
-            <div className="text-xs text-white/70 font-mono space-y-1">
-              <div>• {t?.hints?.select_atom || "Click an atom to select it"}</div>
-              <div>• {t?.hints?.add_atom || "Click atom tool to add new atom"}</div>
-              <div>• {t?.hints?.bonds || "Atoms connect based on valence rules"}</div>
-              <div>• {t?.hints?.delete || "Use DELETE to remove selected atom"}</div>
-            </div>
-          </div>
         </div>
-      }
-    >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: ORGANIC SYNTHESIS"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description ||
-              "Build organic molecules atom by atom. Master carbon chains and functional groups."}
-          </p>
-        </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
-          </h3>
-          <p className="text-3xl text-white font-black italic">
-            {stage === "ALKANES" && (t?.stages?.alkanes_desc || "Build alkane chains (C-C-C)")}
-            {stage === "ALCOHOLS" && (t?.stages?.alcohols_desc || "Add hydroxyl groups (C-OH)")}
-            {stage === "CUSTOM" && (t?.stages?.custom_desc || "Free synthesis mode")}
-          </p>
-        </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-5xl mx-auto w-full">
-          <MoleculeAssembler onMoleculeChange={handleMoleculeChange} />
-        </div>
-      </div>
-    </ChamberLayout>
-  );
+    );
 }

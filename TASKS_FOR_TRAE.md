@@ -7,7 +7,7 @@
 2. **深度验收**: 每一个模块必须包含核心物理驱动、高性能渲染、全 i18n 翻译及零占位符内容。
 3. **血肉准则**: 禁止使用占位符。所有物理参数必须真实驱动 UI 和 3D 动画。
 4. **强制自检 (Self-Audit)**: 在标记完成并进入下一个任务前，请务必执行本地编译检查。如果代码报错，必须先修复错误。
-确保所有实验都符合 `ChamberLayout` 的规范，且具备阶段式 (Stages) 教学进度。
+5. **严禁修改 `i18n.ts`**: 请在代码中使用 `t('key')` 占位，并将所有的翻译对记录在 `PENDING_I18N_TRAE.md`（新建文件）中。由 Antigravity 统一调用 NVIDIA DeepSeek 进行后续集成。
 
 ---
 
@@ -91,11 +91,82 @@
 
 ---
 
+## 📋 Mission T67 - S1.04 // BOHR'S FORGE (Advanced Atom)
+- **目标**: 玻尔模型原子搭建增强。
+- **深度逻辑**: 电子能级跃迁辐射光波方程 $E = hf$ 的可视化。
+- **UI**: 能级阶梯图 + 吸收/发射光谱实时生成。
+- **组件**: `src/app/chamber/sc1-04/page.tsx`
+
+---
+
+## 📋 Mission T68 - SP3.02 // FARADAY'S CAGE (Electrolysis)
+- **目标**: 电解与法拉第定律。
+- **深度逻辑**: $m = (Q/F) \cdot (M/z)$ 实时计算沉积质量。
+- **UI**: 电解池 UI + 随着电解进行，电极模型实时“变厚”或“变薄”。
+- **组件**: `src/app/chamber/sp3-02/page.tsx`
+
+---
+
+## 📋 Mission T69 - S3.04 // GEOMETRIC OPTICS (Lenses)
+- **目标**: 透镜成像规律。
+- **深度逻辑**: 运用透镜公式 $1/f = 1/u + 1/v$。
+- **UI**: 拖动蜡烛（物距），实时渲染成实像或虚像的射线路径。
+- **组件**: `src/app/chamber/s3-04/page.tsx`
+
+---
+
+## 📋 Mission T70 - GP5.05 // ASTRO LAB (Kepler's Laws)
+- **目标**: 开普勒行星运动。
+- **深度逻辑**: 面积定律（近日点快，远日点慢）与周期定律。
+- **UI**: 实现可调节离心率的轨道仿真 + 扫过面积的实时着色。
+- **组件**: `src/app/chamber/gp5-05/page.tsx`
+
+---
+
+## 📋 Mission T71 - SYSTEM // THE GLOBAL HUD (Nexus UI)
+- **目标**: 实验室顶层状态栏。
+- **深度逻辑**: 集成 `useLanguage`, `useAppStore` (Score/Level)。
+- **UI**: 实现半透明玻璃态背景、响应式指南针、当前展厅坐标。
+- **组件**: `src/components/layout/NexusHUD.tsx`
+
+---
+
+## 📋 Mission T72 - HUB // LAB NAVIGATION (3D Map)
+- **目标**: 展厅 3D 导航图。
+- **深度逻辑**: 建立展厅间的拓扑连接。
+- **UI**: 实现极简 3D 连线图，支持点击跳转不同 `chamber` 路由。
+- **组件**: `src/app/nexus/map/page.tsx`
+
+---
+
+## 📋 Mission T73 - SYSTEM // NOTIFICATION HUB
+- **目标**: 实时成就与引导通知。
+- **深度逻辑**: 监听任务状态，弹射全局 Toast。
+- **UI**: 响应式悬浮卡片 + 粒子爆炸效果。
+- **组件**: `src/components/system/NotificationProvider.tsx`
+
+---
+
+## 📋 Mission T74 - ARCH // SAVE SYSTEM (Zustand Persistence)
+- **目标**: 进度持久化。
+- **深度逻辑**: 配置 `zustand/middleware` 的 `persist`。
+- **UI**: 增加“保存进度”视觉反馈。
+
+---
+
+## 📋 Mission T75 - FINAL // PHASE 2 INTEGRATION TEST
+- **目标**: 全量模块自检。
+- **行动**: 遍历所有已标记 ✅ 的模块。
+- **输出**: 修复所有 Linter 错误及未使用的导入。
+
+---
+
 ## 🏁 MISSION LOG ARCHIVE (Verifications)
 - ✅ Mission T47: Thales Tower (Skeleton Verified)
 - ✅ Mission T48: Motor Lab (Skeleton Verified)
+- 🛠️ Mission T57-T60 (Currently in progress by Kiro/Trae - Pending Audit)
 
 ---
 
 ## [BLOCKER]
-- 暂无。请 Trae 开启“自动狂暴模式”，完成一轮检查一轮，不必回复我。
+- 暂无。请 Trae 严格按照此 MD 文档顺序开工，完成一项勾选一项。

@@ -29,6 +29,11 @@ interface Ball {
   isActive: boolean;
 }
 
+const pseudo = (seed: number) => {
+  const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+};
+
 // Galton Board Pins
 function Pins({ rows }: { rows: number }) {
   const pinsRef = useRef<THREE.InstancedMesh>(null);
@@ -74,7 +79,7 @@ function Pins({ rows }: { rows: number }) {
       <meshPhysicalMaterial
         color={palette.cyan}
         emissive={palette.cyan}
-        emissiveIntensity={0.5}
+        emissiveIntensity={0.6}
         metalness={0.8}
         roughness={0.2}
       />
@@ -94,9 +99,11 @@ function Balls({
 }) {
   const ballsRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useRef(new THREE.Object3D());
+  const tickRef = useRef(0);
   
   useFrame(() => {
     if (!ballsRef.current) return;
+    tickRef.current += 1;
     
     const d = dummy.current;
     const spacing = 0.5;
@@ -115,8 +122,8 @@ function Balls({
         if (currentLayer > ball.layer && currentLayer < rows) {
           ball.layer = currentLayer;
           
-          // Decide direction based on probability
-          const goRight = Math.random() < probability;
+          const roll = pseudo(ball.id * 13 + ball.layer * 17 + tickRef.current * 0.2);
+          const goRight = roll < probability;
           ball.velocity.x = goRight ? 0.05 : -0.05;
           ball.velocity.y = -0.1;
           
@@ -124,8 +131,7 @@ function Balls({
             ball.binIndex++;
           }
           
-          // Add some randomness
-          ball.velocity.x += (Math.random() - 0.5) * 0.02;
+          ball.velocity.x += (pseudo(ball.id * 31 + ball.layer * 11 + tickRef.current * 0.4) - 0.5) * 0.02;
         }
         
         // Check if reached bottom
@@ -146,7 +152,7 @@ function Balls({
   });
   
   return (
-    <instancedMesh ref={ballsRef} args={[undefined, undefined, balls.length]}>
+    <instancedMesh ref={ballsRef} args={[undefined, undefined, balls.length]} frustumCulled={true}>
       <sphereGeometry args={[0.08, 12, 12]} />
       <meshPhysicalMaterial
         color={palette.green}
