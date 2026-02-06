@@ -1,0 +1,64 @@
+[main 10b1de9] auto: daily sync 2026-02-06 11:08
+ 77 files changed, 17768 insertions(+), 2455 deletions(-)
+ create mode 100644 CONVERSATION_HISTORY.md
+ create mode 100644 automation_log.txt
+ create mode 100644 src/app/chamber/g1-01-advanced/page.tsx
+ create mode 100644 src/app/chamber/g4-01/page.tsx
+ create mode 100644 src/app/chamber/g5-01/page.tsx
+ create mode 100644 src/app/chamber/gb3-01/page.tsx
+ create mode 100644 src/app/chamber/gc1-01/page.tsx
+ create mode 100644 src/app/chamber/gc2-01/page.tsx
+ create mode 100644 src/app/chamber/gc3-01/page.tsx
+ create mode 100644 src/app/chamber/gc3-02/page.tsx
+ create mode 100644 src/app/chamber/gp5-01/page.tsx
+ create mode 100644 src/app/chamber/p5-04/page.tsx
+ create mode 100644 src/app/chamber/sb1-01-metabolic/page.tsx
+ create mode 100644 src/app/chamber/sb1-01/page.tsx
+ create mode 100644 src/app/chamber/sb2-01/page.tsx
+ create mode 100644 src/app/chamber/sc1-03/page.tsx
+ create mode 100644 src/app/chamber/sc1-04/page.tsx
+ create mode 100644 src/app/chamber/sc2-02/page.tsx
+ create mode 100644 src/app/chamber/sc2-03/page.tsx
+ create mode 100644 src/app/chamber/sc2-04/page.tsx
+ create mode 100644 src/app/chamber/sp1-06/page.tsx
+ create mode 100644 src/app/chamber/sp2-02/page.tsx
+ create mode 100644 src/app/chamber/sp2-03/page.tsx
+ create mode 100644 src/app/chamber/sp4-01/page.tsx
+ create mode 100644 src/components/chamber/g1-01/CalculusCanvas.tsx
+ create mode 100644 src/components/chamber/g4-01/ComplexPlaneCanvas.tsx
+ create mode 100644 src/components/chamber/g5-01/MatrixCanvas.tsx
+ create mode 100644 src/components/chamber/gb3-01/DnaCanvas.tsx
+ create mode 100644 src/components/chamber/gc1-01/GalvanicCell.tsx
+ create mode 100644 src/components/chamber/gc1-01/RedoxCanvas.tsx
+ create mode 100644 src/components/chamber/gc2-01/MoleculeAssembler.tsx
+ create mode 100644 src/components/chamber/gc3-01/EquilibriumCanvas.tsx
+ create mode 100644 src/components/chamber/gc3-02/CrystalCanvas.tsx
+ create mode 100644 src/components/chamber/gp5-01/NuclearSim.tsx
+ create mode 100644 src/components/chamber/gp5-03/ColliderCanvas.tsx
+ create mode 100644 src/components/chamber/p5-02/RelativityCanvas.tsx
+ create mode 100644 src/components/chamber/p5-04/TunnellingCanvas.tsx
+ create mode 100644 src/components/chamber/s1-02/ThalesTowerCanvas.tsx
+ create mode 100644 src/components/chamber/s3-02/TrigCanvas.tsx
+ create mode 100644 src/components/chamber/sb1-01/CellCanvas.tsx
+ create mode 100644 src/components/chamber/sb1-01/MetabolicCell.tsx
+ create mode 100644 src/components/chamber/sb2-01/GeneticsLab.tsx
+ create mode 100644 src/components/chamber/sc1-03/AtomCanvas.tsx
+ create mode 100644 src/components/chamber/sc1-04/AtomBuilder.tsx
+ create mode 100644 src/components/chamber/sc2-02/TitrationCurve.tsx
+ create mode 100644 src/components/chamber/sc2-03/GasTankCanvas.tsx
+ create mode 100644 src/components/chamber/sc2-04/BeakerCanvas.tsx
+ create mode 100644 src/components/chamber/sp1-06/PendulumCanvas.tsx
+ create mode 100644 src/components/chamber/sp2-02/CircuitCanvas.tsx
+ create mode 100644 src/components/chamber/sp2-03/MotorLabCanvas.tsx
+ create mode 100644 src/components/chamber/sp4-01/WaveCanvas.tsx
+ create mode 100644 src/lib/physics/electromagnetism.ts
+ create mode 100644 src/lib/physics/index.ts
+ create mode 100644 src/lib/physics/kinematics.ts
+ create mode 100644 src/lib/physics/quantum.ts
+ create mode 100644 src/lib/physics/thermodynamics.ts
+ create mode 100644 watcher.log
+ create mode 100644 watcher.py
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   15254f8..10b1de9  main -> main
