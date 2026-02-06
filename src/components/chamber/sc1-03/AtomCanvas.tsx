@@ -190,9 +190,9 @@ function ElectronShells({ electrons }: { electrons: number }) {
 
 export default function AtomCanvas({ protons, neutrons, electrons }: AtomCanvasProps) {
   return (
-    <div className="w-full h-[400px] bg-black rounded-xl overflow-hidden border border-white/10">
+    <div className="w-full h-[800px] bg-black rounded-xl overflow-hidden border border-white/10">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 0, 4]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={55} />
         <OrbitControls
           enablePan={false}
           minDistance={2}

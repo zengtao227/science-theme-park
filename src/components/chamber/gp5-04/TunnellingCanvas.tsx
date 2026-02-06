@@ -147,9 +147,9 @@ function AxisLabels() {
 
 export default function TunnellingCanvas(props: TunnellingCanvasProps) {
   return (
-    <div className="w-full h-[400px] bg-black rounded-xl overflow-hidden border border-white/10">
+    <div className="w-full h-[800px] bg-black rounded-xl overflow-hidden border border-white/10">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 0, 12]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 0, 14]} fov={55} />
         <OrbitControls
           enablePan={false}
           minDistance={8}
