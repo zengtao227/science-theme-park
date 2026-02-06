@@ -277,3 +277,36 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    6ac085f..3b0c0fc  main -> main
+[main cb6f667] auto: daily sync 2026-02-06 17:14
+ 30 files changed, 1885 insertions(+), 5249 deletions(-)
+ delete mode 100644 BRAINSTORM_BASEL.md
+ delete mode 100644 CONTENT_QUALITY_REPORT.md
+ delete mode 100644 CONVERSATION_HISTORY.md
+ create mode 100644 DEPLOYMENT_AND_CURRICULUM_STATUS.md
+ create mode 100644 DEVELOPMENT_ROADMAP.md
+ delete mode 100644 EXECUTION_PLAN_V2.md
+ delete mode 100644 FINAL_COMPLETION_REPORT.md
+ delete mode 100644 FINAL_STATUS.md
+ delete mode 100644 FINAL_SUMMARY_REPORT.md
+ delete mode 100644 K1_DUPLICATE_CHECK_RESULT.md
+ delete mode 100644 KIRO_WORK_COMPLETION_REPORT.md
+ delete mode 100644 MODULE_COMPLETION_REPORT.md
+ create mode 100644 MODULE_REVIEW_CHECKLIST.md
+ delete mode 100644 PENDING_I18N.md
+ delete mode 100644 PENDING_I18N_BATCH1.md
+ delete mode 100644 PROGRESS_REPORT.md
+ create mode 100644 PROJECT_STATUS_VISUAL.md
+ create mode 100644 SUMMARY_2026-02-06.md
+ delete mode 100644 TASKS_FOR_KIRO.md
+ delete mode 100644 TASKS_FOR_TRAE.md
+ delete mode 100644 TASKS_FOR_TRAE_DETAILED.md
+ delete mode 100644 TASK_DISTRIBUTION.md
+ delete mode 100644 TRAE_START_SIGNAL.md
+ delete mode 100644 VERCEL_FIX_REPORT.md
+ delete mode 100644 WORKFLOW_PROTOCOL.md
+ delete mode 100644 WORK_SUMMARY_2026-02-06.md
+ create mode 100644 "\351\241\271\347\233\256\345\256\214\346\210\220\346\200\273\347\273\223_\344\270\255\346\226\207.md"
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   3b0c0fc..cb6f667  main -> main
