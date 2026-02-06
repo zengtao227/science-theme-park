@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import S206_SystemsCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/SystemsCanvas";
 
 type Stage = "SUBSTITUTION" | "ELIMINATION" | "MISSION";
-type S206T = typeof translations.EN.s2_06;
+type S206T = typeof translations.EN.sm2_06;
 
 interface S206Quest extends Quest {
   stage: Stage;
@@ -72,7 +72,7 @@ function buildStagePool(t: S206T, difficulty: Difficulty): S206Quest[] {
 
 export default function S206Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s2_06;
+  const t = translations[currentLanguage].sm2_06;
 
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,
@@ -85,14 +85,14 @@ export default function S206Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s2-06", stage);
+      completeStage("sm2-06", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S2.06"
+      moduleCode="SM2.06"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

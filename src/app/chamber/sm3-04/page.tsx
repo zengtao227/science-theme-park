@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import LogarithmicCanvas from "@/components/chamber/sm3-04/LogarithmicCanvas";
 
 type Stage = "PH" | "DECIBEL" | "RICHTER";
-type S304T = typeof translations.EN.s3_04;
+type S304T = typeof translations.EN.sm3_04;
 
 interface S304Quest extends Quest {
   stage: Stage;
@@ -125,7 +125,7 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
 
 export default function S304Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s3_04;
+  const t = translations[currentLanguage].sm3_04;
 
   const {
     difficulty,
@@ -145,14 +145,14 @@ export default function S304Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s3-04", stage);
+      completeStage("sm3-04", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S3.04"
+      moduleCode="SM3.04"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

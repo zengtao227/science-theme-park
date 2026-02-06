@@ -157,3 +157,94 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    a7f9617..e6972d5  main -> main
+[main b472494] auto: daily sync 2026-02-06 14:44
+ 90 files changed, 1052 insertions(+), 4136 deletions(-)
+ create mode 100644 K1_DUPLICATE_CHECK_RESULT.md
+ create mode 100644 PROGRESS_REPORT.md
+ create mode 100644 TRAE_START_SIGNAL.md
+ delete mode 100644 src/app/chamber/c2-01/page.tsx
+ rename src/app/chamber/{g1-01-advanced => gm1-01-advanced}/page.tsx (99%)
+ rename src/app/chamber/{g1-01 => gm1-01}/page.tsx (99%)
+ rename src/app/chamber/{g2-01 => gm2-01}/page.tsx (99%)
+ rename src/app/chamber/{g3-01 => gm3-01}/page.tsx (99%)
+ rename src/app/chamber/{g4-01 => gm4-01}/page.tsx (99%)
+ rename src/app/chamber/{g5-01 => gm5-01}/page.tsx (99%)
+ rename src/app/chamber/{gs1-01 => gms1-01}/page.tsx (100%)
+ rename src/app/chamber/{p5-03 => gp5-03}/page.tsx (100%)
+ rename src/app/chamber/{p5-04 => gp5-04}/page.tsx (100%)
+ delete mode 100644 src/app/chamber/p1-05/page.tsx
+ delete mode 100644 src/app/chamber/p2-02/page.tsx
+ delete mode 100644 src/app/chamber/p5-01/page.tsx
+ delete mode 100644 src/app/chamber/p5-02/page.tsx
+ rename src/app/chamber/{c1-01 => sc1-01}/page.tsx (100%)
+ rename src/app/chamber/{c1-02 => sc1-02}/page.tsx (100%)
+ rename src/app/chamber/{c3-01 => sc3-01}/page.tsx (100%)
+ rename src/app/chamber/{s1-01 => sm1-01}/page.tsx (99%)
+ rename src/app/chamber/{s1-02 => sm1-02}/page.tsx (98%)
+ rename src/app/chamber/{s2-01 => sm2-01}/page.tsx (99%)
+ rename src/app/chamber/{s2-02 => sm2-02}/page.tsx (99%)
+ rename src/app/chamber/{s2-03 => sm2-03}/page.tsx (99%)
+ rename src/app/chamber/{s2-04 => sm2-04}/page.tsx (99%)
+ rename src/app/chamber/{s2-05 => sm2-05}/page.tsx (99%)
+ rename src/app/chamber/{s2-06 => sm2-06}/page.tsx (99%)
+ rename src/app/chamber/{s2-07 => sm2-07}/page.tsx (99%)
+ rename src/app/chamber/{s3-01 => sm3-01}/page.tsx (99%)
+ rename src/app/chamber/{s3-02 => sm3-02}/page.tsx (98%)
+ rename src/app/chamber/{s3-03 => sm3-03}/page.tsx (99%)
+ rename src/app/chamber/{s3-04 => sm3-04}/page.tsx (99%)
+ rename src/app/chamber/{p1-02 => sp1-02}/page.tsx (99%)
+ rename src/app/chamber/{p1-03 => sp1-03}/page.tsx (99%)
+ rename src/app/chamber/{p1-04 => sp1-04}/page.tsx (99%)
+ rename src/app/chamber/{p2-01 => sp2-01}/page.tsx (99%)
+ rename src/app/chamber/{p3-01 => sp3-01}/page.tsx (99%)
+ rename src/app/chamber/{p3-02 => sp3-02}/page.tsx (100%)
+ delete mode 100644 src/components/chamber/c2-01/ReactionCanvas.tsx
+ delete mode 100644 src/components/chamber/c2-01/TitrationCanvas.tsx
+ rename src/components/chamber/{g1-01 => gm1-01}/CalculusCanvas.tsx (100%)
+ rename src/components/chamber/{g1-01 => gm1-01}/DerivativeCanvas.tsx (100%)
+ rename src/components/chamber/{g1-01 => gm1-01}/WaveCanvas.tsx (100%)
+ rename src/components/chamber/{g2-01 => gm2-01}/VectorFieldCanvas.tsx (100%)
+ rename src/components/chamber/{g2-01 => gm2-01}/VectorPilotHud.tsx (100%)
+ rename src/components/chamber/{g3-01 => gm3-01}/GaltonCanvas.tsx (100%)
+ rename src/components/chamber/{g3-01 => gm3-01}/ProbabilityCanvas.tsx (100%)
+ rename src/components/chamber/{g4-01 => gm4-01}/ComplexPlaneCanvas.tsx (100%)
+ rename src/components/chamber/{g5-01 => gm5-01}/MatrixCanvas.tsx (100%)
+ rename src/components/chamber/{gs1-01 => gms1-01}/FractalCanvas.tsx (100%)
+ rename src/components/chamber/{p5-04 => gp5-04}/TunnellingCanvas.tsx (100%)
+ delete mode 100644 src/components/chamber/p1-05/FerryCanvas.tsx
+ delete mode 100644 src/components/chamber/p2-02/CircuitCanvas.tsx
+ delete mode 100644 src/components/chamber/p5-01/NuclearCanvas.tsx
+ delete mode 100644 src/components/chamber/p5-02/RelativityCanvas.tsx
+ delete mode 100644 src/components/chamber/p5-03/LhcCanvas.tsx
+ rename src/components/chamber/{c1-01 => sc1-01}/LabCanvas.tsx (100%)
+ rename src/components/chamber/{c1-02 => sc1-02}/MoleCanvas.tsx (100%)
+ rename src/components/chamber/{c3-01 => sc3-01}/MoleculeCanvas.tsx (100%)
+ rename src/components/chamber/{s1-01 => sm1-01}/GeometryCanvas.tsx (100%)
+ rename src/components/chamber/{s1-02 => sm1-02}/StatisticsCanvas.tsx (100%)
+ rename src/components/chamber/{s1-02 => sm1-02}/TesseractCanvas.tsx (100%)
+ rename src/components/chamber/{s1-02 => sm1-02}/ThalesTowerCanvas.tsx (100%)
+ rename src/components/chamber/{s2-01 => sm2-01}/BinomialCanvas.tsx (100%)
+ rename src/components/chamber/{s2-02 => sm2-02}/PythagorasCanvas.tsx (100%)
+ rename src/components/chamber/{s2-02 => sm2-02}/RadicalInput.tsx (100%)
+ rename src/components/chamber/{s2-03 => sm2-03}/FunctionCanvas.tsx (100%)
+ rename src/components/chamber/{s2-03 => sm2-03}/LaserCanvas.tsx (100%)
+ rename src/components/chamber/{s2-04 => sm2-04}/SimilarityCanvas.tsx (100%)
+ rename src/components/chamber/{s2-05 => sm2-05}/PowerCanvas.tsx (100%)
+ rename src/components/chamber/{s2-06 => sm2-06}/SystemsCanvas.tsx (100%)
+ rename src/components/chamber/{s2-07 => sm2-07}/CoordinateCanvas.tsx (100%)
+ rename src/components/chamber/{s3-01 => sm3-01}/QuadraticCanvas.tsx (100%)
+ rename src/components/chamber/{s3-02 => sm3-02}/TrigCanvas.tsx (100%)
+ rename src/components/chamber/{s3-03 => sm3-03}/GrowthCanvas.tsx (100%)
+ rename src/components/chamber/{s3-04 => sm3-04}/LogarithmicCanvas.tsx (100%)
+ rename src/components/chamber/{p1-02 => sp1-02}/LawsCanvas.tsx (100%)
+ rename src/components/chamber/{p1-03 => sp1-03}/HydroCanvas.tsx (100%)
+ rename src/components/chamber/{p1-04 => sp1-04}/FerryCanvas.tsx (100%)
+ rename src/components/chamber/{p1-04 => sp1-04}/RelativityCanvas.tsx (100%)
+ rename src/components/chamber/{p1-04 => sp1-04}/TimeDilationCanvas.tsx (100%)
+ rename src/components/chamber/{p2-01 => sp2-01}/ThermalCanvas.tsx (100%)
+ rename src/components/chamber/{p3-01 => sp3-01}/OpticsCanvas.tsx (100%)
+ rename src/components/chamber/{p3-02 => sp3-02}/WaveOpticsCanvas.tsx (100%)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   e6972d5..b472494  main -> main

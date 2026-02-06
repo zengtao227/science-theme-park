@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RelativityCanvas from "@/components/chamber/sp1-04/RelativityCanvas";
 
 type Stage = "CONTRACTION" | "DILATION" | "SPACETIME";
-type P104T = typeof translations.EN.p1_04;
+type P104T = typeof translations.EN.sp1_04;
 
 interface P104Quest extends Quest {
     stage: Stage;
@@ -86,7 +86,7 @@ function buildStagePool(t: P104T, difficulty: Difficulty, stage: Stage): P104Que
 
 export default function P104Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].p1_04;
+    const t = translations[currentLanguage].sp1_04;
 
     const {
         difficulty,
@@ -107,7 +107,7 @@ export default function P104Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("p1-04", stage);
+            completeStage("sp1-04", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -123,7 +123,7 @@ export default function P104Page() {
     return (
         <ChamberLayout
             title={t.title}
-            moduleCode="P1.04"
+            moduleCode="SP1.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={[

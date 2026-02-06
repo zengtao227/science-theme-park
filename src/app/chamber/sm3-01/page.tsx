@@ -11,7 +11,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S301QuadraticCanvas from "@/components/chamber/sm3-01/QuadraticCanvas";
 
-type S301T = typeof translations.EN.s3_01;
+type S301T = typeof translations.EN.sm3_01;
 
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
 
@@ -508,7 +508,7 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
 
 export default function S301Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s3_01;
+  const t = translations[currentLanguage].sm3_01;
 
   const {
     difficulty,
@@ -530,7 +530,7 @@ export default function S301Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s3-01", stage);
+      completeStage("sm3-01", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -544,7 +544,7 @@ export default function S301Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S3.01"
+      moduleCode="SM3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}

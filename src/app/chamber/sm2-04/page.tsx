@@ -12,7 +12,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import S204_SimilarityCanvas, { SimilarityVisual } from "@/components/chamber/sm2-04/SimilarityCanvas";
 
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
-type Mg08T = typeof translations.EN.s2_04;
+type Mg08T = typeof translations.EN.sm2_04;
 
 interface S204Quest extends Quest {
     stage: Stage;
@@ -147,7 +147,7 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): S204Que
 
 export default function S204Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].s2_04;
+    const t = translations[currentLanguage].sm2_04;
 
     const {
         difficulty,
@@ -168,7 +168,7 @@ export default function S204Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("s2-04", stage);
+            completeStage("sm2-04", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -181,7 +181,7 @@ export default function S204Page() {
     return (
         <ChamberLayout
             title={t.title}
-            moduleCode="S2.04"
+            moduleCode="SM2.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stages}

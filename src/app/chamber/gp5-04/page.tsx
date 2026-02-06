@@ -6,14 +6,14 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import TunnellingCanvas from "@/components/chamber/p5-04/TunnellingCanvas";
+import TunnellingCanvas from "@/components/chamber/gp5-04/TunnellingCanvas";
 import { calculateTransmissionCoefficient } from "@/lib/physics";
 
 type Stage = "classical" | "tunneling" | "resonance";
 
 export default function P504Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].p5_04 || translations.EN.p5_04;
+  const t = translations[currentLanguage].gp5_04 || translations.EN.gp5_04;
 
   const [stage, setStage] = useState<Stage>("classical");
   const [particleEnergy, setParticleEnergy] = useState(3); // eV

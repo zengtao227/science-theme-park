@@ -165,7 +165,7 @@ export default function P102Page() {
 
   // Temporary translations until i18n is updated
   const t: P102T = {
-    title: "P1.02 // NEWTON'S LAWS",
+    title: "SP1.02 // NEWTON'S LAWS",
     back: "Back",
     check: "Verify",
     next: "Next",
@@ -217,7 +217,7 @@ export default function P102Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("p1-02", stage);
+      completeStage("sp1-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -232,7 +232,7 @@ export default function P102Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="P1.02"
+      moduleCode="SP1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}

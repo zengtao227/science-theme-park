@@ -7,10 +7,10 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import MoleCanvas from "@/components/chamber/c1-02/MoleCanvas";
+import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
 
 type Stage = "MOLAR_MASS" | "STOICHIOMETRY" | "YIELD";
-type C102T = typeof translations.EN.c1_02;
+type C102T = typeof translations.EN.sc1_02;
 
 interface ReagentInfo {
   label: string;
@@ -305,7 +305,7 @@ function buildStagePool(t: C102T, difficulty: Difficulty, stage: Stage): C102Que
 
 export default function C102Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].c1_02;
+  const t = translations[currentLanguage].sc1_02;
 
   const {
     difficulty,
@@ -326,7 +326,7 @@ export default function C102Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("c1-02", stage);
+      completeStage("sc1-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -346,7 +346,7 @@ export default function C102Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="C1.02"
+      moduleCode="SC1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

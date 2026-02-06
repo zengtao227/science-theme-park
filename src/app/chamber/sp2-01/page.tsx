@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThermalCanvas from "@/components/chamber/sp2-01/ThermalCanvas";
 
 type Stage = "HEAT_CAPACITY" | "PHASE_CHANGE" | "MIXED";
-type P201T = typeof translations.EN.p2_01;
+type P201T = typeof translations.EN.sp2_01;
 
 interface P201Quest extends Quest {
   stage: Stage;
@@ -135,7 +135,7 @@ function buildStagePool(t: P201T, difficulty: Difficulty, stage: Stage): P201Que
 
 export default function P201Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].p2_01;
+  const t = translations[currentLanguage].sp2_01;
 
   const {
     difficulty,
@@ -156,14 +156,14 @@ export default function P201Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("p2-01", stage);
+      completeStage("sp2-01", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="P2.01"
+      moduleCode="SP2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

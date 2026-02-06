@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import S205_PowerCanvas, { type PowerVisual } from "@/components/chamber/sm2-05/PowerCanvas";
 
 type Stage = "RULES" | "NEGATIVE" | "SCIENTIFIC";
-type S205T = typeof translations.EN.s2_05;
+type S205T = typeof translations.EN.sm2_05;
 
 interface S205Quest extends Quest {
     stage: Stage;
@@ -105,7 +105,7 @@ function buildStagePool(t: S205T, difficulty: Difficulty, stage: Stage): S205Que
 
 export default function S205Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].s2_05;
+    const t = translations[currentLanguage].sm2_05;
 
     const {
         difficulty, stage, inputs, lastCheck, currentQuest,
@@ -118,14 +118,14 @@ export default function S205Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("s2-05", stage);
+            completeStage("sm2-05", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     return (
         <ChamberLayout
             title={t.title}
-            moduleCode="S2.05"
+            moduleCode="SM2.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={[

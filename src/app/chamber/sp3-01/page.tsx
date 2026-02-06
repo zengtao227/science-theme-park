@@ -184,7 +184,7 @@ export default function P301Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("p3-01", stage);
+      completeStage("sp3-01", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -198,8 +198,8 @@ export default function P301Page() {
 
   return (
     <ChamberLayout
-      title="P3.01 // GEOMETRICAL OPTICS"
-      moduleCode="P3.01"
+      title="SP3.01 // GEOMETRICAL OPTICS"
+      moduleCode="SP3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}

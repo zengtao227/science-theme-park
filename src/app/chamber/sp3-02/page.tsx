@@ -7,10 +7,10 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import WaveOpticsCanvas from "@/components/chamber/p3-02/WaveOpticsCanvas";
+import WaveOpticsCanvas from "@/components/chamber/sp3-02/WaveOpticsCanvas";
 
 type Stage = "INTERFERENCE" | "DIFFRACTION" | "POLARIZATION";
-type P302T = typeof translations.EN.p3_02;
+type P302T = typeof translations.EN.sp3_02;
 
 interface P302Quest extends Quest {
   stage: Stage;
@@ -134,7 +134,7 @@ function buildStagePool(t: P302T, difficulty: Difficulty, stage: Stage): P302Que
 
 export default function P302Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].p3_02;
+  const t = translations[currentLanguage].sp3_02;
 
   const {
     difficulty,
@@ -155,14 +155,14 @@ export default function P302Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("p3-02", stage);
+      completeStage("sp3-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="P3.02"
+      moduleCode="SP3.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

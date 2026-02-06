@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import MoleculeCanvas from "@/components/chamber/c3-01/MoleculeCanvas";
+import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
 
 type Stage = "ASPIRIN" | "CAFFEINE";
 
 export default function C301Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].c3_01 || translations.EN.c3_01;
+  const t = translations[currentLanguage].sc3_01 || translations.EN.sc3_01;
 
   const [stage, setStage] = useState<Stage>("ASPIRIN");
   const [completed, setCompleted] = useState(false);
@@ -18,7 +18,7 @@ export default function C301Page() {
   return (
     <ChamberLayout
       title={t?.title || "C3.01 // MOLECULAR ARCHITECT"}
-      moduleCode="C3.01"
+      moduleCode="SC3.01"
       difficulty="CORE"
       onDifficultyChange={() => {}}
       stages={[

@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CoordinateCanvas from "@/components/chamber/sm2-07/CoordinateCanvas";
 
 type Stage = "DISTANCE" | "MIDPOINT" | "SLOPE";
-type S207T = typeof translations.EN.s2_07;
+type S207T = typeof translations.EN.sm2_07;
 
 interface S207Quest extends Quest {
   stage: Stage;
@@ -129,7 +129,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
 
 export default function S207Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s2_07;
+  const t = translations[currentLanguage].sm2_07;
 
   const {
     difficulty,
@@ -150,14 +150,14 @@ export default function S207Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s2-07", stage);
+      completeStage("sm2-07", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S2.07"
+      moduleCode="SM2.07"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

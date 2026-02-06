@@ -12,7 +12,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
 
-type Mg05T = typeof translations.EN.s2_02;
+type Mg05T = typeof translations.EN.sm2_02;
 
 type Stage =
   | "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT"
@@ -562,7 +562,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 // Main component
 export default function S202Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s2_02 as Mg05T;
+  const t = translations[currentLanguage].sm2_02 as Mg05T;
 
   const {
     difficulty,
@@ -583,7 +583,7 @@ export default function S202Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s2-02", stage);
+      completeStage("sm2-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -623,7 +623,7 @@ export default function S202Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S2.02"
+      moduleCode="SM2.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={currentStages}

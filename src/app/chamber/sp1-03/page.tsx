@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import HydroCanvas from "@/components/chamber/sp1-03/HydroCanvas";
 
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
-type P103T = typeof translations.EN.p1_03;
+type P103T = typeof translations.EN.sp1_03;
 
 interface P103Quest extends Quest {
   stage: Stage;
@@ -126,7 +126,7 @@ function buildStagePool(t: P103T, difficulty: Difficulty, stage: Stage): P103Que
 
 export default function P103Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].p1_03;
+  const t = translations[currentLanguage].sp1_03;
 
   const {
     difficulty,
@@ -147,14 +147,14 @@ export default function P103Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("p1-03", stage);
+      completeStage("sp1-03", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="P1.03"
+      moduleCode="SP1.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

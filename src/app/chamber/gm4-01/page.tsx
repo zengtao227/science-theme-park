@@ -12,7 +12,7 @@ type Stage = "BASICS" | "POWERS" | "EULER";
 
 export default function G401Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].g4_01 || translations.EN.g4_01;
+  const t = translations[currentLanguage].gm4_01 || translations.EN.gm4_01;
 
   const [stage, setStage] = useState<Stage>("BASICS");
   const [real, setReal] = useState(2);
@@ -43,7 +43,7 @@ export default function G401Page() {
   return (
     <ChamberLayout
       title={t?.title || "G4.01 // COMPLEX HORIZON"}
-      moduleCode="G4.01"
+      moduleCode="GM4.01"
       difficulty="ADVANCED"
       onDifficultyChange={() => {}}
       stages={[

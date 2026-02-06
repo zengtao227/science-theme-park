@@ -42,16 +42,16 @@ export default function S3_02_TrigCircle() {
             <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
                 <div className="flex justify-between items-center mb-2">
                     <h1 className="text-2xl font-bold text-cyan-400">
-                        {t("s3_02.title")}
+                        {t("sm3_02.title")}
                     </h1>
                     <Link
                         href="/"
                         className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
                     >
-                        {t("s3_02.back")}
+                        {t("sm3_02.back")}
                     </Link>
                 </div>
-                <div className="text-sm text-cyan-300/70">{t("s3_02.footer_left")}</div>
+                <div className="text-sm text-cyan-300/70">{t("sm3_02.footer_left")}</div>
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -70,13 +70,13 @@ export default function S3_02_TrigCircle() {
                 <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4">
                     <div className="border-b border-green-500 pb-2 mb-4">
                         <h2 className="text-lg font-bold text-green-400">
-                            {t("s3_02.monitor_title")}
+                            {t("sm3_02.monitor_title")}
                         </h2>
                     </div>
 
                     {/* Angle Control */}
                     <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">{t("s3_02.labels.angle")}</label>
+                        <label className="text-sm text-cyan-400">{t("sm3_02.labels.angle")}</label>
                         <input
                             type="range"
                             min="0"
@@ -93,7 +93,7 @@ export default function S3_02_TrigCircle() {
 
                     {/* Values Display */}
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-300">{t("s3_02.labels.values")}</div>
+                        <div className="text-sm text-purple-300">{t("sm3_02.labels.values")}</div>
                         <div className="space-y-1 text-sm">
                             <div className="flex justify-between">
                                 <span className="text-yellow-400">sin(θ) =</span>
@@ -114,7 +114,7 @@ export default function S3_02_TrigCircle() {
 
                     {/* Toggle Controls */}
                     <div className="space-y-2">
-                        <div className="text-sm text-cyan-400 mb-2">{t("s3_02.labels.display")}</div>
+                        <div className="text-sm text-cyan-400 mb-2">{t("sm3_02.labels.display")}</div>
                         <label className="flex items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
@@ -149,13 +149,13 @@ export default function S3_02_TrigCircle() {
                                 onChange={(e) => setShowWaves(e.target.checked)}
                                 className="w-4 h-4"
                             />
-                            <span className="text-purple-400">{t("s3_02.labels.show_waves")}</span>
+                            <span className="text-purple-400">{t("sm3_02.labels.show_waves")}</span>
                         </label>
                     </div>
 
                     {/* Formulas */}
                     <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">{t("s3_02.labels.formulas")}</div>
+                        <div className="text-sm text-cyan-400">{t("sm3_02.labels.formulas")}</div>
                         <div className="text-xs space-y-1 text-cyan-300/80">
                             <div>x = r·cos(θ)</div>
                             <div>y = r·sin(θ)</div>
@@ -166,9 +166,9 @@ export default function S3_02_TrigCircle() {
 
                     {/* Mission Info */}
                     <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">{t("s3_02.mission.title")}</div>
+                        <div className="text-sm text-amber-400">{t("sm3_02.mission.title")}</div>
                         <div className="text-xs text-amber-300/80">
-                            {t("s3_02.mission.description")}
+                            {t("sm3_02.mission.description")}
                         </div>
                     </div>
                 </div>

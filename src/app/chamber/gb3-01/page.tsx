@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -17,7 +17,7 @@ export default function GB3_01_DnaForge() {
     const [autoRotate, setAutoRotate] = useState(false);
 
     // Auto-rotation effect
-    React.useEffect(() => {
+    useEffect(() => {
         if (!autoRotate) return;
         const interval = setInterval(() => {
             setRotation((prev) => (prev + 0.02) % (Math.PI * 2));

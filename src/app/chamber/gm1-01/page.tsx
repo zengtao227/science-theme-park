@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import WaveCanvas from "@/components/chamber/gm1-01/WaveCanvas";
 
 type Stage = "POWER_RULE" | "PRODUCT_RULE" | "CHAIN_RULE";
-type G101T = typeof translations.EN.g1_01;
+type G101T = typeof translations.EN.gm1_01;
 
 interface G101Quest extends Quest {
   stage: Stage;
@@ -127,7 +127,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
 
 export default function G101Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].g1_01;
+  const t = translations[currentLanguage].gm1_01;
 
   const {
     difficulty,
@@ -147,14 +147,14 @@ export default function G101Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("g1-01", stage);
+      completeStage("gm1-01", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="G1.01"
+      moduleCode="GM1.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

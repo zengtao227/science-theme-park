@@ -13,7 +13,7 @@ import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
 type QuestMode = "EXPLORE" | "ARCHITECT" | "SCRAPPER" | "SPEEDSTER" | "ELITE" | "VOYAGER";
-type S201T = typeof translations.EN.s2_01;
+type S201T = typeof translations.EN.sm2_01;
 
 interface ArchitectQuest extends Quest {
   type: "EXPAND";
@@ -231,7 +231,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
 
 export default function S201Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s2_01;
+  const t = translations[currentLanguage].sm2_01;
 
   const [questMode, setQuestMode] = useState<QuestMode>("EXPLORE");
   const [a, setA] = useState(3);
@@ -326,7 +326,7 @@ export default function S201Page() {
 
   useEffect(() => {
     if (questMode !== "EXPLORE" && isSuccess) {
-      completeStage("s2-01", questMode);
+      completeStage("sm2-01", questMode);
     }
   }, [completeStage, isSuccess, questMode]);
 
@@ -422,7 +422,7 @@ export default function S201Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S2.01"
+      moduleCode="SM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}

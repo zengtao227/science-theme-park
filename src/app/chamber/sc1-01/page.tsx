@@ -7,7 +7,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import C101LabCanvas, { Substance, Tool } from "@/components/chamber/c1-01/LabCanvas";
+import C101LabCanvas, { Substance, Tool } from "@/components/chamber/sc1-01/LabCanvas";
 
 type Stage = "IDENTIFY" | "PROPERTIES" | "REACTIONS";
 // type Substance = "soda" | "salt" | "starch"; // Removed locally defined type
@@ -152,7 +152,7 @@ export default function C101Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("c1-01", stage);
+      completeStage("sc1-01", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -175,8 +175,8 @@ export default function C101Page() {
 
   return (
     <ChamberLayout
-      title="C1.01 // MYSTERY LAB"
-      moduleCode="C1.01"
+      title="SC1.01 // MYSTERY LAB"
+      moduleCode="SC1.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}

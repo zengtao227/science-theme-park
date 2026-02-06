@@ -406,7 +406,54 @@ export const translations = {
                     delete: "Use DELETE to remove selected atom"
                 }
             },
-            gsc3_01: {
+            gsc1_01: {
+                back: "Back to Nexus",
+                title: "GC1.01 // REDOX TITAN",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                objective_title: "Active Mission Objective",
+                target_title: "Galvanic Cell",
+                next: "Execute Next Sequence",
+                check: "Verify",
+                correct: "Verified",
+                incorrect: "Mismatch",
+                ready: "Ready",
+                monitor_title: "GC1.01_REDOX_MONITOR",
+                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
+                labels: {
+                    cell_potential: "CELL POTENTIAL",
+                    zn_concentration: "Zn²⁺ CONCENTRATION",
+                    cu_concentration: "Cu²⁺ CONCENTRATION",
+                    temperature: "TEMPERATURE",
+                    show_electrons: "Show Electron Flow",
+                    show_ions: "Show Ion Migration",
+                    reaction_quotient: "REACTION QUOTIENT (Q)",
+                    half_reactions: "HALF-REACTIONS",
+                    anode: "ANODE",
+                    cathode: "CATHODE",
+                    nernst_equation: "NERNST EQUATION"
+                },
+                mission: {
+                    title: "MISSION: ELECTROCHEMISTRY",
+                    description: "Build a galvanic cell and master the Nernst equation. Observe electron flow and ion migration in real-time."
+                },
+                stages: {
+                    build: "BUILD CELL",
+                    measure: "MEASURE POTENTIAL",
+                    analyze: "ANALYZE REACTIONS",
+                    build_desc: "Construct Zn-Cu galvanic cell",
+                    measure_desc: "Calculate cell potential with Nernst equation",
+                    analyze_desc: "Observe redox reactions and electron flow",
+                    build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
+                    measure_hint: "E = E° - (RT/nF)ln(Q)",
+                    analyze_hint: "Salt bridge maintains electrical neutrality"
+                }
+            },
+            gc3_01: {
                 back: "Back to Nexus",
                 title: "GC3.01 // EQUILIBRIUM MASTER",
                 difficulty: {
@@ -453,53 +500,6 @@ export const translations = {
                     concentration_hint: "Higher [A] shifts equilibrium right → more C and D",
                     temperature_hint: "Higher temperature increases particle kinetic energy",
                     pressure_hint: "Higher pressure decreases container volume"
-                }
-            },
-            gsc1_01: {
-                back: "Back to Nexus",
-                title: "GC1.01 // REDOX TITAN",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Galvanic Cell",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC1.01_REDOX_MONITOR",
-                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
-                labels: {
-                    cell_potential: "CELL POTENTIAL",
-                    zn_concentration: "Zn²⁺ CONCENTRATION",
-                    cu_concentration: "Cu²⁺ CONCENTRATION",
-                    temperature: "TEMPERATURE",
-                    show_electrons: "Show Electron Flow",
-                    show_ions: "Show Ion Migration",
-                    reaction_quotient: "REACTION QUOTIENT (Q)",
-                    half_reactions: "HALF-REACTIONS",
-                    anode: "ANODE",
-                    cathode: "CATHODE",
-                    nernst_equation: "NERNST EQUATION"
-                },
-                mission: {
-                    title: "MISSION: ELECTROCHEMISTRY",
-                    description: "Build a galvanic cell and master the Nernst equation. Observe electron flow and ion migration in real-time."
-                },
-                stages: {
-                    build: "BUILD CELL",
-                    measure: "MEASURE POTENTIAL",
-                    analyze: "ANALYZE REACTIONS",
-                    build_desc: "Construct Zn-Cu galvanic cell",
-                    measure_desc: "Calculate cell potential with Nernst equation",
-                    analyze_desc: "Observe redox reactions and electron flow",
-                    build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
-                    measure_hint: "E = E° - (RT/nF)ln(Q)",
-                    analyze_hint: "Salt bridge maintains electrical neutrality"
                 }
             },
             gc3_02: {
@@ -4370,55 +4370,6 @@ export const translations = {
                 delete: "使用 DELETE 删除选中的原子"
             }
         },
-        gsc3_01: {
-            back: "返回枢纽",
-            title: "GC3.01 // 平衡大师",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "化学平衡",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC3.01_平衡监视器",
-            footer_left: "GC3.01_平衡大师 // 节点：巴塞尔",
-            labels: {
-                reaction: "可逆反应",
-                particle_count: "粒子计数",
-                conditions: "条件",
-                temperature: "温度",
-                pressure: "压力",
-                concentration: "[A]",
-                principle: "勒夏特列原理",
-                principle_1: "• 添加反应物 → 平衡右移（更多产物）",
-                principle_2: "• 增加压力 → 平衡向分子数少的方向移动",
-                principle_3: "• 升高温度 → 平衡向吸热方向移动",
-                add_reactant: "添加反应物 A",
-                system_temperature: "系统温度",
-                system_pressure: "系统压力"
-            },
-            mission: {
-                title: "任务：化学平衡",
-                description: "掌握勒夏特列原理。观察系统如何响应外界压力。"
-            },
-            stages: {
-                concentration: "浓度",
-                temperature: "温度",
-                pressure: "压力",
-                concentration_desc: "添加反应物A并观察平衡移动",
-                temperature_desc: "升高温度并观察粒子速度",
-                pressure_desc: "改变压力并观察体积效应",
-                concentration_hint: "更高的 [A] 使平衡右移 → 更多 C 和 D",
-                temperature_hint: "更高的温度增加粒子动能",
-                pressure_hint: "更高的压力减小容器体积"
-            }
-        },
         gsc1_01: {
             back: "返回枢纽",
             title: "GC1.01 // 氧化还原巨人",
@@ -4464,6 +4415,55 @@ export const translations = {
                 build_hint: "Zn 在阳极被氧化，Cu²⁺ 在阴极被还原",
                 measure_hint: "E = E° - (RT/nF)ln(Q)",
                 analyze_hint: "盐桥维持电中性"
+            }
+        },
+        gc3_01: {
+            back: "返回枢纽",
+            title: "GC3.01 // 平衡大师",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "化学平衡",
+            next: "执行下一步",
+            check: "验证",
+            correct: "正确",
+            incorrect: "错误",
+            ready: "准备就绪",
+            monitor_title: "GC3.01_平衡监视器",
+            footer_left: "GC3.01_平衡大师 // 节点: 巴塞尔",
+            labels: {
+                reaction: "可逆反应",
+                particle_count: "粒子计数",
+                conditions: "条件",
+                temperature: "温度",
+                pressure: "压强",
+                concentration: "[A]",
+                principle: "勒夏特列原理",
+                principle_1: "• 增加反应物 → 平衡右移（更多产物）",
+                principle_2: "• 增加压强 → 平衡向分子数少的方向移动",
+                principle_3: "• 升高温度 → 平衡向吸热方向移动",
+                add_reactant: "添加反应物 A",
+                system_temperature: "系统温度",
+                system_pressure: "系统压强"
+            },
+            mission: {
+                title: "任务: 化学平衡",
+                description: "掌握勒夏特列原理。观察系统如何响应外界条件变化。"
+            },
+            stages: {
+                concentration: "浓度",
+                temperature: "温度",
+                pressure: "压强",
+                concentration_desc: "添加反应物 A 并观察平衡移动",
+                temperature_desc: "升高温度并观察粒子速度",
+                pressure_desc: "改变压强并观察体积效应",
+                concentration_hint: "增加 [A] 使平衡右移 → 更多 C 和 D",
+                temperature_hint: "温度升高增加粒子动能",
+                pressure_hint: "压强增大使容器体积减小"
             }
         },
         gc3_02: {
@@ -5208,28 +5208,29 @@ export const translations = {
                     nernst_hint: "Höhere [Produkte] verringern das Zellpotential"
                 }
             },
-            gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
-            gc2_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Modellen.",
-            gc3_01_title: "GC3.01 // MOLEKULARER ARCHITEKT",
-            gc3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
-            gc3_02_title: "GC3.02 // KRISTALLPALAST",
-            gc3_02_subtitle: "Erkunden Sie Kristallstrukturen: SC-, BCC-, FCC-Gitter mit Zwischengitterlücken.",
-            g4_01_title: "G4.01 // KOMPLEXER HORIZONT",
-            g4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
-            g5_01_title: "G5.01 // MATRIX-TRANSFORMATION",
-            g5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
-            p5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
-            p5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
-            p5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
-            p5_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
-            p5_04_title: "GP5.04 // QUANTENTUNNEL",
-            p5_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
-            coming_soon: "Simulationssequenz noch nicht initialisiert.",
-            engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
-            initiate_simulation: "Simulation starten",
-            locked_level_required: "GESPERRT // STUFE {level}",
-            engine_status_label: "Systemstatus",
-            engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
+            home: {
+                gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
+                gc2_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Modellen.",
+                gc3_01_title: "GC3.01 // MOLEKULARER ARCHITEKT",
+                gc3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
+                gc3_02_title: "GC3.02 // KRISTALLPALAST",
+                gc3_02_subtitle: "Erkunden Sie Kristallstrukturen: SC-, BCC-, FCC-Gitter mit Zwischengitterlücken.",
+                g4_01_title: "G4.01 // KOMPLEXER HORIZONT",
+                g4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
+                g5_01_title: "G5.01 // MATRIX-TRANSFORMATION",
+                g5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
+                p5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
+                p5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
+                p5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
+                p5_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
+                p5_04_title: "GP5.04 // QUANTENTUNNEL",
+                p5_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
+                coming_soon: "Simulationssequenz noch nicht initialisiert.",
+                engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
+                initiate_simulation: "Simulation starten",
+                locked_level_required: "GESPERRT // STUFE {level}",
+                engine_status_label: "Systemstatus",
+                engine_status_value: "R3F-PHYSIK-ENGINE AKTIV",
             nodes_label: "Knoten",
             nodes_value: "GENF // ZÜRICH // SHANGHAI",
             search_label: "Module filtern",
@@ -7351,7 +7352,7 @@ export const translations = {
                 analyze_hint: "Salzbrücke erhält elektrische Neutralität"
             }
         },
-        gsc3_01: {
+        gc3_01: {
             back: "Zurück zum Nexus",
             title: "GC3.01 // GLEICHGEWICHTSMEISTER",
             difficulty: {

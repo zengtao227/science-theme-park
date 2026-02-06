@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import LaserCanvas from "@/components/chamber/sm2-03/LaserCanvas";
 
 type Stage = "LEVEL1" | "LEVEL2" | "LEVEL3";
-type S203T = typeof translations.EN.s2_03;
+type S203T = typeof translations.EN.sm2_03;
 
 interface S203Quest extends Quest {
   stage: Stage;
@@ -91,7 +91,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
 export default function S203Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const locale = translations[currentLanguage] as typeof translations.EN;
-  const t = locale.s2_03 || translations.EN.s2_03;
+  const t = locale.sm2_03 || translations.EN.sm2_03;
 
   const [hits, setHits] = useState(0);
 
@@ -105,7 +105,7 @@ export default function S203Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s2-03", stage);
+      completeStage("sm2-03", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -132,7 +132,7 @@ export default function S203Page() {
   return (
     <ChamberLayout
       title={t?.title || "S2.03 // LINE NAVIGATOR"}
-      moduleCode="S2.03"
+      moduleCode="SM2.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

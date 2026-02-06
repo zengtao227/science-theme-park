@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import GrowthCanvas from "@/components/chamber/sm3-03/GrowthCanvas";
 
 type Stage = "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
-type S303T = typeof translations.EN.s3_03;
+type S303T = typeof translations.EN.sm3_03;
 
 interface S303Quest extends Quest {
   stage: Stage;
@@ -116,7 +116,7 @@ function buildStagePool(t: S303T, difficulty: Difficulty, stage: Stage): S303Que
 
 export default function S303Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].s3_03;
+  const t = translations[currentLanguage].sm3_03;
 
   const {
     difficulty,
@@ -137,14 +137,14 @@ export default function S303Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s3-03", stage);
+      completeStage("sm3-03", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S3.03"
+      moduleCode="SM3.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

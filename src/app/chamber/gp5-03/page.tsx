@@ -12,7 +12,7 @@ type Stage = "acceleration" | "collision" | "detection";
 
 export default function P503Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].p5_03 || translations.EN.p5_03;
+  const t = translations[currentLanguage].gp5_03 || translations.EN.gp5_03;
 
   const [stage, setStage] = useState<Stage>("acceleration");
   const [energy, setEnergy] = useState(7); // TeV

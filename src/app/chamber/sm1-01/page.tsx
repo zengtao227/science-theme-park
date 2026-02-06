@@ -12,7 +12,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
 
 type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
-type Mg12T = typeof translations.EN.s1_01;
+type Mg12T = typeof translations.EN.sm1_01;
 
 interface S101Quest extends Quest {
     stage: Stage;
@@ -137,7 +137,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
 
 export default function S101Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].s1_01;
+    const t = translations[currentLanguage].sm1_01;
 
     const {
         difficulty,
@@ -158,7 +158,7 @@ export default function S101Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("s1-01", stage);
+            completeStage("sm1-01", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -174,7 +174,7 @@ export default function S101Page() {
     return (
         <ChamberLayout
             title={t.title}
-            moduleCode="S1.01"
+            moduleCode="SM1.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stages}

@@ -15,7 +15,7 @@ type ThalesQuest = Quest & { stage: Stage };
 export default function S102Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
-  const t = locale.s1_02 || translations.EN.s1_02;
+  const t = locale.sm1_02 || translations.EN.sm1_02;
   const [sunAngle, setSunAngle] = useState(35);
   const [towerShadow, setTowerShadow] = useState(18);
 
@@ -68,7 +68,7 @@ export default function S102Page() {
 
   useEffect(() => {
     if (lastCheck?.ok) {
-      completeStage("s1-02", stage);
+      completeStage("sm1-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
 
@@ -83,7 +83,7 @@ export default function S102Page() {
   return (
     <ChamberLayout
       title={t.title}
-      moduleCode="S1.02"
+      moduleCode="SM1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[{ id: "MEASURE", label: t.stages.measure }]}
