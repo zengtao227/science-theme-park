@@ -156,6 +156,241 @@ function Led({ position, powered }: { position: [number, number, number]; powere
   );
 }
 
+function Inductor({ position, value, powered }: { position: [number, number, number]; value: number; powered: boolean }) {
+  const curve = useMemo(() => {
+    const pts: THREE.Vector3[] = [];
+    for (let i = 0; i <= 40; i += 1) {
+      const t = i / 40;
+      const angle = t * Math.PI * 10;
+      pts.push(new THREE.Vector3(Math.cos(angle) * 0.25, (t - 0.5) * 1.8, Math.sin(angle) * 0.25));
+    }
+    return new THREE.CatmullRomCurve3(pts);
+  }, []);
+  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 120, 0.06, 8, false), [curve]);
+  const color = powered ? neon.purple : "#3d4a5d";
+  return (
+    <group position={position}>
+      <mesh geometry={geometry}>
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={powered ? 0.6 : 0.1} metalness={0.7} roughness={0.2} />
+      </mesh>
+      <Text position={[0, -1.2, 0.2]} fontSize={0.16} color={powered ? neon.purple : neon.muted} font="/fonts/Inter-Bold.woff">
+        {`${value.toFixed(2)}H`}
+      </Text>
+    </group>
+  );
+}
+
+function Capacitor({ position, value, powered }: { position: [number, number, number]; value: number; powered: boolean }) {
+  const color = powered ? neon.cyan : "#3d4a5d";
+  return (
+    <group position={position}>
+      <mesh position={[-0.2, 0, 0]}>
+        <boxGeometry args={[0.08, 0.9, 0.4]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={powered ? 0.6 : 0.1} metalness={0.6} roughness={0.3} />
+      </mesh>
+      <mesh position={[0.2, 0, 0]}>
+        <boxGeometry args={[0.08, 0.9, 0.4]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={powered ? 0.6 : 0.1} metalness={0.6} roughness={0.3} />
+      </mesh>
+      <Text position={[0, -0.8, 0.2]} fontSize={0.16} color={powered ? neon.cyan : neon.muted} font="/fonts/Inter-Bold.woff">
+        {`${value.toFixed(2)}F`}
+      </Text>
+    </group>
+  );
+}
+
+type MeterProbe = {
+  id: string;
+  position: THREE.Vector3;
+  voltage: number;
+  current: number;
+};
+
+type RlcState = {
+  t: number;
+  i: number;
+  q: number;
+  vSource: number;
+  vR: number;
+  vL: number;
+  vC: number;
+};
+
+function WireSegment({
+  points,
+  powered,
+  id,
+  onPick,
+}: {
+  points: THREE.Vector3[];
+  powered: boolean;
+  id: string;
+  onPick: (id: string, point: THREE.Vector3) => void;
+}) {
+  const curve = useMemo(() => new THREE.CatmullRomCurve3(points), [points]);
+  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 40, 0.05, 8, false), [curve]);
+  const color = powered ? neon.green : "#3b4a5e";
+  return (
+    <group>
+      <mesh geometry={geometry} onPointerDown={(e) => {
+        e.stopPropagation();
+        onPick(id, e.point);
+      }}>
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={powered ? 0.5 : 0.1} metalness={0.6} roughness={0.3} />
+      </mesh>
+      <Line points={points} color={color} lineWidth={2.5} transparent opacity={0.6} />
+    </group>
+  );
+}
+
+function OscilloscopeTrace({ stateRef }: { stateRef: React.MutableRefObject<RlcState> }) {
+  const lineRef = useRef<THREE.Line>(null);
+  const sampleCount = 160;
+  const samples = useRef<Float32Array>(new Float32Array(sampleCount));
+  const cursor = useRef(0);
+  const positions = useMemo(() => new Float32Array(sampleCount * 3), [sampleCount]);
+
+  useFrame(() => {
+    const v = stateRef.current.vC;
+    samples.current[cursor.current] = v;
+    cursor.current = (cursor.current + 1) % sampleCount;
+
+    const scale = 0.25;
+    const xStart = -2.8;
+    const dx = 5.6 / (sampleCount - 1);
+    for (let i = 0; i < sampleCount; i += 1) {
+      const idx = (cursor.current + i) % sampleCount;
+      positions[i * 3] = xStart + i * dx;
+      positions[i * 3 + 1] = samples.current[idx] * scale;
+      positions[i * 3 + 2] = 0;
+    }
+    const geometry = lineRef.current?.geometry as THREE.BufferGeometry | undefined;
+    if (geometry) {
+      geometry.attributes.position.array = positions;
+      geometry.attributes.position.needsUpdate = true;
+    }
+  });
+
+  return (
+    <group position={[0, 2.3, 0]}>
+      <line ref={lineRef}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={sampleCount} array={positions} itemSize={3} />
+        </bufferGeometry>
+        <lineBasicMaterial color={neon.cyan} />
+      </line>
+      <Line points={[new THREE.Vector3(-2.9, 0, 0), new THREE.Vector3(2.9, 0, 0)]} color="#1b2a44" lineWidth={1} />
+      <Line points={[new THREE.Vector3(0, -0.8, 0), new THREE.Vector3(0, 0.8, 0)]} color="#1b2a44" lineWidth={1} />
+      <Text position={[-2.8, 0.9, 0]} fontSize={0.18} color={neon.muted} font="/fonts/Inter-Bold.woff">
+        V(t)
+      </Text>
+    </group>
+  );
+}
+
+function RlcCircuit({
+  config,
+  powered,
+  stateRef,
+  onProbePick,
+}: {
+  config: RlcConfig;
+  powered: boolean;
+  stateRef: React.MutableRefObject<RlcState>;
+  onProbePick: (probe: MeterProbe) => void;
+}) {
+  const safeL = Math.max(0.05, config.L);
+  const safeC = Math.max(0.05, config.C);
+  const resetRef = useRef(0);
+
+  useEffect(() => {
+    stateRef.current = { t: 0, i: 0, q: 0, vSource: 0, vR: 0, vL: 0, vC: 0 };
+    resetRef.current += 1;
+  }, [config.R, config.L, config.C, config.sourceType, config.amplitude, config.frequency, stateRef]);
+
+  const getSource = useCallback((t: number) => {
+    if (!powered) return 0;
+    if (config.sourceType === "sine") {
+      return config.amplitude * Math.sin(2 * Math.PI * config.frequency * t);
+    }
+    if (config.sourceType === "square") {
+      return config.amplitude * (Math.sin(2 * Math.PI * config.frequency * t) >= 0 ? 1 : -1);
+    }
+    return config.amplitude;
+  }, [config, powered]);
+
+  useFrame((_, delta) => {
+    const dt = Math.min(0.02, delta);
+    const steps = 4;
+    const step = dt / steps;
+    for (let s = 0; s < steps; s += 1) {
+      const t = stateRef.current.t + step;
+      const vSource = getSource(t);
+      const i = stateRef.current.i;
+      const q = stateRef.current.q;
+      const di = (vSource - config.R * i - q / safeC) / safeL;
+      const nextI = i + di * step;
+      const nextQ = q + nextI * step;
+      stateRef.current = {
+        t,
+        i: powered ? nextI : nextI * 0.98,
+        q: powered ? nextQ : nextQ * 0.98,
+        vSource,
+        vR: config.R * nextI,
+        vL: safeL * di,
+        vC: nextQ / safeC,
+      };
+    }
+  });
+
+  const leftX = -3.5;
+  const rightX = 3.5;
+  const topY = 1.8;
+  const bottomY = -1.8;
+
+  const segments = [
+    { id: "source", points: [new THREE.Vector3(leftX, 0.9, 0), new THREE.Vector3(leftX, topY, 0)] },
+    { id: "source", points: [new THREE.Vector3(leftX, topY, 0), new THREE.Vector3(-1.4, topY, 0)] },
+    { id: "afterR", points: [new THREE.Vector3(1.4, topY, 0), new THREE.Vector3(rightX, topY, 0)] },
+    { id: "afterR", points: [new THREE.Vector3(rightX, topY, 0), new THREE.Vector3(rightX, 0.9, 0)] },
+    { id: "afterL", points: [new THREE.Vector3(rightX, -0.9, 0), new THREE.Vector3(rightX, bottomY, 0)] },
+    { id: "afterL", points: [new THREE.Vector3(rightX, bottomY, 0), new THREE.Vector3(1.0, bottomY, 0)] },
+    { id: "ground", points: [new THREE.Vector3(-1.0, bottomY, 0), new THREE.Vector3(leftX, bottomY, 0)] },
+    { id: "ground", points: [new THREE.Vector3(leftX, bottomY, 0), new THREE.Vector3(leftX, -0.9, 0)] },
+  ];
+
+  const getVoltageAt = useCallback((id: string) => {
+    const state = stateRef.current;
+    if (id === "source") return state.vSource;
+    if (id === "afterR") return state.vSource - state.vR;
+    if (id === "afterL") return state.vSource - state.vR - state.vL;
+    return state.vSource - state.vR - state.vL - state.vC;
+  }, [stateRef]);
+
+  const handlePick = useCallback((id: string, point: THREE.Vector3) => {
+    const state = stateRef.current;
+    onProbePick({
+      id,
+      position: point.clone(),
+      voltage: getVoltageAt(id),
+      current: state.i,
+    });
+  }, [getVoltageAt, onProbePick, stateRef]);
+
+  return (
+    <group>
+      {segments.map((segment, i) => (
+        <WireSegment key={`${segment.id}-${i}`} points={segment.points} powered={powered} id={segment.id} onPick={handlePick} />
+      ))}
+      <Battery position={[leftX, 0, 0]} voltage={config.amplitude} powered={powered} />
+      <Resistor position={[0, topY, 0]} value={config.R} powered={powered} />
+      <Inductor position={[rightX, 0, 0]} value={config.L} powered={powered} />
+      <Capacitor position={[0, bottomY, 0]} value={config.C} powered={powered} />
+      <OscilloscopeTrace stateRef={stateRef} />
+    </group>
+  );
+}
+
 function FlowParticles({
   paths,
   current,
