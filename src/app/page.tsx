@@ -92,9 +92,9 @@ export default function Home() {
     { code: "GM1.01-ADV", title: t.home.gm1_01_title + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
     { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
-    { code: "GM4.01", title: "GM4.01 // COMPLEX HORIZON", desc: "Visualize the complex plane and Euler's formula in 3D space.", color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
-    { code: "GM5.01", title: "GM5.01 // MATRIX TRANSFORM", desc: "Linear transformations and eigenvectors mapped to the Basel grid.", color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
-    { code: "GMS1.01", title: "GMS1.01 // FRACTAL EXPLORER", desc: "Explore fractals and self-similarity patterns.", color: "neon-green", href: "/chamber/gms1-01", tags: ["math"] },
+    { code: "GM4.01", title: t.home.gm4_01_title, desc: t.home.gm4_01_subtitle, color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
+    { code: "GM5.01", title: t.home.gm5_01_title, desc: t.home.gm5_01_subtitle, color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
+    { code: "GMS1.01", title: t.home.gms1_01_title, desc: t.home.gms1_01_subtitle, color: "neon-green", href: "/chamber/gms1-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([

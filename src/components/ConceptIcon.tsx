@@ -143,6 +143,95 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'S2.07': // Coordinate Geometry
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" strokeWidth="2" />
+                    <line x1="20" y1="80" x2="20" y2="20" stroke="currentColor" strokeWidth="2" />
+                    <motion.circle cx="45" cy="55" r="4" fill="currentColor" initial={{ scale: 0 }} animate={{ scale: 1 }} />
+                    <motion.circle cx="60" cy="40" r="4" fill="currentColor" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+                    <motion.line x1="45" y1="55" x2="60" y2="40" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.6 }} />
+                </svg>
+            );
+        case 'S3.02': // Trigonometry
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="2" />
+                    <line x1="50" y1="50" x2="80" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <motion.line
+                        x1="50" y1="50" x2="71" y2="29"
+                        stroke="currentColor" strokeWidth="3"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                    />
+                    <motion.circle cx="71" cy="29" r="3" fill="currentColor" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8 }} />
+                    <motion.path
+                        d="M 60 50 A 10 10 0 0 1 65 43"
+                        stroke="currentColor" strokeWidth="1.5" fill="none"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5 }}
+                    />
+                </svg>
+            );
+        case 'S3.04': // Logarithms
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="20" y="70" fontSize="40" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }}>log</text>
+                    <motion.path
+                        d="M25 30 Q40 25 55 35 T85 30"
+                        stroke="currentColor" strokeWidth="3" fill="none"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                    />
+                    <line x1="20" y1="80" x2="85" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                </svg>
+            );
+        case 'G4.01': // Complex Numbers
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="20" y1="50" x2="80" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <line x1="50" y1="20" x2="50" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                    <motion.circle
+                        cx="50" cy="50" r="25" stroke="currentColor" strokeWidth="2" fill="none"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                    />
+                    <motion.line
+                        x1="50" y1="50" x2="68" y2="35"
+                        stroke="currentColor" strokeWidth="3"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5 }}
+                    />
+                    <motion.circle cx="68" cy="35" r="4" fill="currentColor" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1 }} />
+                    <text x="72" y="32" fontSize="12" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }}>i</text>
+                </svg>
+            );
+        case 'G5.01': // Matrix
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 25 L25 25 L25 75 L30 75" stroke="currentColor" strokeWidth="3" />
+                    <path d="M70 25 L75 25 L75 75 L70 75" stroke="currentColor" strokeWidth="3" />
+                    <motion.text x="40" y="45" fontSize="20" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>a</motion.text>
+                    <motion.text x="60" y="45" fontSize="20" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>b</motion.text>
+                    <motion.text x="40" y="65" fontSize="20" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>c</motion.text>
+                    <motion.text x="60" y="65" fontSize="20" fill="currentColor" fontWeight="900" style={{ fontFamily: 'monospace' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>d</motion.text>
+                </svg>
+            );
+        case 'GMS1.01': // Fractals
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <motion.path
+                        d="M30 70 L50 30 L70 70 Z"
+                        stroke="currentColor" strokeWidth="2"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                    />
+                    <motion.path
+                        d="M40 70 L50 50 L60 70 Z"
+                        stroke="currentColor" strokeWidth="1.5" opacity="0.7"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5 }}
+                    />
+                    <motion.path
+                        d="M45 70 L50 60 L55 70 Z"
+                        stroke="currentColor" strokeWidth="1" opacity="0.5"
+                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1 }}
+                    />
+                </svg>
+            );
         case 'S3.01': // Quadratics
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
