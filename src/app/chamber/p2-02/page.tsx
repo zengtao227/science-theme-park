@@ -2,18 +2,18 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import P202CircuitCanvas from "@/components/chamber/p2-02/CircuitCanvas";
 
-type Stage = "LOOP" | "RESISTANCE" | "SERIES" | "PARALLEL";
+type Stage = "LOOP" | "RESISTANCE" | "SERIES" | "PARALLEL" | "TRANSIENT";
 
 interface P202Quest extends Quest {
   stage: Stage;
-  scenario: "simple" | "series" | "parallel" | "mixed";
+  scenario: "simple" | "series" | "parallel" | "mixed" | "rlc";
   voltage: number;
   resistance: number[];
   current: number;
@@ -163,6 +163,24 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P202Quest[] {
     return quests;
   }
 
+  if (stage === "TRANSIENT") {
+    return [{
+      id: `TRANSIENT|${difficulty}`,
+      difficulty,
+      stage,
+      scenario: "rlc",
+      voltage: 9,
+      resistance: [8],
+      current: 0,
+      isPowered: true,
+      promptLatex: "\\text{Simulate RLC transient response with MNA}",
+      expressionLatex: "L\\frac{d^2q}{dt^2}+R\\frac{dq}{dt}+\\frac{1}{C}q=V(t)",
+      targetLatex: "V(t)",
+      correctLatex: "RLC\\;Transient",
+      slots: [],
+    }];
+  }
+
   return [];
 }
 
@@ -186,8 +204,16 @@ export default function P202Page() {
     initialStage: "LOOP",
   });
 
+  const [rlcResistance, setRlcResistance] = useState(8);
+  const [rlcInductance, setRlcInductance] = useState(0.8);
+  const [rlcCapacitance, setRlcCapacitance] = useState(0.4);
+  const [sourceType, setSourceType] = useState<"step" | "sine" | "square">("step");
+  const [sourceAmplitude, setSourceAmplitude] = useState(9);
+  const [sourceFrequency, setSourceFrequency] = useState(0.5);
+  const [powerOn, setPowerOn] = useState(true);
+
   useEffect(() => {
-    if (lastCheck?.ok) {
+    if (stage !== "TRANSIENT" && lastCheck?.ok) {
       completeStage("p2-02", stage);
     }
   }, [lastCheck, completeStage, stage]);
@@ -199,7 +225,18 @@ export default function P202Page() {
     { id: "RESISTANCE", label: "Resistance" },
     { id: "SERIES", label: "Series" },
     { id: "PARALLEL", label: "Parallel" },
+    { id: "TRANSIENT", label: "Transient" },
   ];
+
+  const isTransient = stage === "TRANSIENT";
+  const rlcConfig = {
+    R: rlcResistance,
+    L: rlcInductance,
+    C: rlcCapacitance,
+    sourceType,
+    amplitude: sourceAmplitude,
+    frequency: sourceFrequency,
+  };
 
   return (
     <ChamberLayout
@@ -210,10 +247,10 @@ export default function P202Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      checkStatus={lastCheck}
-      onVerify={verify}
-      onNext={next}
-      successRate={successRate}
+      checkStatus={isTransient ? null : lastCheck}
+      onVerify={isTransient ? undefined : verify}
+      onNext={isTransient ? undefined : next}
+      successRate={isTransient ? undefined : successRate}
       translations={{
         back: "Back",
         check: "Verify",
@@ -230,18 +267,21 @@ export default function P202Page() {
       monitorContent={
         <div className="space-y-4">
           <P202CircuitCanvas
-            scenario={currentQuest.scenario}
-            voltage={currentQuest.voltage}
-            resistance={currentQuest.resistance}
-            current={currentQuest.current}
-            isPowered={currentQuest.isPowered && lastCheck?.ok === true}
-            showCurrent={lastCheck?.ok === true}
+            scenario={isTransient ? "rlc" : currentQuest.scenario}
+            voltage={isTransient ? sourceAmplitude : currentQuest.voltage}
+            resistance={isTransient ? [rlcResistance] : currentQuest.resistance}
+            current={isTransient ? 0 : currentQuest.current}
+            isPowered={isTransient ? powerOn : currentQuest.isPowered && lastCheck?.ok === true}
+            showCurrent={!isTransient && lastCheck?.ok === true}
+            rlc={isTransient ? rlcConfig : undefined}
           />
-          <div className="text-white/50 text-xs font-mono text-center space-y-1">
-            <div>Voltage: {currentQuest.voltage}V</div>
-            <div>Resistance: {currentQuest.resistance.join(', ')}Ω</div>
-            {lastCheck?.ok && <div className="text-neon-green">✓ Circuit Powered!</div>}
-          </div>
+          {!isTransient && (
+            <div className="text-white/50 text-xs font-mono text-center space-y-1">
+              <div>Voltage: {currentQuest.voltage}V</div>
+              <div>Resistance: {currentQuest.resistance.join(', ')}Ω</div>
+              {lastCheck?.ok && <div className="text-neon-green">✓ Circuit Powered!</div>}
+            </div>
+          )}
         </div>
       }
     >
@@ -265,39 +305,137 @@ export default function P202Page() {
           </div>
         </div>
 
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          {currentQuest.slots.map((slot) => (
-            <div key={slot.id} className="space-y-3">
-              <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-                <InlineMath math={slot.labelLatex} />
-              </div>
-              <div className="flex items-center gap-4">
+        {isTransient ? (
+          <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-4xl mx-auto w-full space-y-6">
+            <div className="text-center text-white/70 font-mono">
+              <InlineMath math="L\\frac{d^2q}{dt^2}+R\\frac{dq}{dt}+\\frac{1}{C}q=V(t)" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">R (Ω)</div>
                 <input
-                  value={inputs[slot.id] || ""}
-                  onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                  className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
-                  placeholder={slot.placeholder}
-                  inputMode="decimal"
+                  type="range"
+                  min="1"
+                  max="20"
+                  step="0.5"
+                  value={rlcResistance}
+                  onChange={(e) => setRlcResistance(Number(e.target.value))}
+                  className="w-full"
                 />
-                {slot.unit && (
-                  <div className="text-2xl font-black text-white px-4 border-l-2 border-white/10 min-w-[60px]">
-                    <InlineMath math={slot.unit} />
-                  </div>
-                )}
+                <div className="text-center text-white">{rlcResistance.toFixed(2)}</div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">L (H)</div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="2.5"
+                  step="0.05"
+                  value={rlcInductance}
+                  onChange={(e) => setRlcInductance(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="text-center text-white">{rlcInductance.toFixed(2)}</div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">C (F)</div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="2.0"
+                  step="0.05"
+                  value={rlcCapacitance}
+                  onChange={(e) => setRlcCapacitance(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="text-center text-white">{rlcCapacitance.toFixed(2)}</div>
               </div>
             </div>
-          ))}
-
-          <div className="text-[10px] text-white/40 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
-              : currentLanguage === 'CN'
-                ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
-                : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
-            }
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Source</div>
+                <div className="flex gap-2">
+                  {(["step", "sine", "square"] as const).map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => setSourceType(mode)}
+                      className={`flex-1 px-3 py-2 border text-[10px] font-black uppercase tracking-[0.2em] ${sourceType === mode ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/60"}`}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Amplitude (V)</div>
+                <input
+                  type="range"
+                  min="1"
+                  max="15"
+                  step="0.5"
+                  value={sourceAmplitude}
+                  onChange={(e) => setSourceAmplitude(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="text-center text-white">{sourceAmplitude.toFixed(1)}</div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Frequency (Hz)</div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="2.0"
+                  step="0.1"
+                  value={sourceFrequency}
+                  onChange={(e) => setSourceFrequency(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="text-center text-white">{sourceFrequency.toFixed(1)}</div>
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => setPowerOn((v) => !v)}
+                className="px-6 py-2 border border-white/40 hover:border-white text-[10px] font-black uppercase tracking-[0.4em]"
+              >
+                {powerOn ? "Power On" : "Power Off"}
+              </button>
+            </div>
           </div>
+        ) : (
+          <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+            {currentQuest.slots.map((slot) => (
+              <div key={slot.id} className="space-y-3">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+                  <InlineMath math={slot.labelLatex} />
+                </div>
+                <div className="flex items-center gap-4">
+                  <input
+                    value={inputs[slot.id] || ""}
+                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                    className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                    placeholder={slot.placeholder}
+                    inputMode="decimal"
+                  />
+                  {slot.unit && (
+                    <div className="text-2xl font-black text-white px-4 border-l-2 border-white/10 min-w-[60px]">
+                      <InlineMath math={slot.unit} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
 
-          <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
+            <div className="text-[10px] text-white/40 font-mono italic text-center">
+              {currentLanguage === 'DE'
+                ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
+                : currentLanguage === 'CN'
+                  ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
+                  : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
+              }
+            </div>
+
+            <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Formula</div>
             <div className="text-sm text-white/60 font-mono">
               <InlineMath math={currentQuest.expressionLatex} />
