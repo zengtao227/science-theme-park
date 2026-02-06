@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -18,7 +17,6 @@ function calculateRateConstant(Ea: number, T: number): number {
 }
 
 export default function SC2_01_KineticsCrash() {
-    const { t } = useLanguage();
     const [temperature, setTemperature] = useState(300); // Kelvin
     const [activationEnergy, setActivationEnergy] = useState(50); // kJ/mol
     const [showCollisions, setShowCollisions] = useState(true);

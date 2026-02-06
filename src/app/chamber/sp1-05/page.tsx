@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -10,7 +9,6 @@ const FerryCanvas = dynamic(() => import("@/components/chamber/sp1-05/FerryCanva
 });
 
 export default function SP1_05_RhineFerry() {
-    const { t } = useLanguage();
     const [riverSpeed, setRiverSpeed] = useState(2.0); // m/s
     const [cableAngle, setCableAngle] = useState(30); // degrees
     const [ferrySpeed, setFerrySpeed] = useState(3.0); // m/s

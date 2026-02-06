@@ -2382,6 +2382,7 @@ export const translations = {
                 lorentz_factor_title: "LORENTZ FACTOR",
                 velocity_label: "VELOCITY (v/c)",
                 velocity_value: "{value}% c",
+                gamma_value: "γ = {value}",
                 toggle_doppler: "Show Doppler Effect",
                 toggle_contraction: "Show Length Contraction"
             },
@@ -3322,8 +3323,8 @@ export const translations = {
             correct: "验证通过",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "G3.01_概率可视化",
-            footer_left: "G3.01_概率理论 // 节点: 巴塞尔",
+            monitor_title: "G3.01_概率监测器",
+            footer_left: "G3.01_概率仓库 // 节点: 巴塞尔",
             stages: {
                 bernoulli: "伯努利试验",
                 conditional: "条件概率",
@@ -3337,11 +3338,27 @@ export const translations = {
             },
             labels: {
                 input: "输入",
-                hints: "提示"
+                hints: "提示",
+                rows: "行数 (n)",
+                ball_count: "小球数量",
+                show_distribution: "显示分布"
+            },
+            normal: {
+                title: "正态分布",
+                mean: "均值 (μ)：",
+                std_dev: "标准差 (σ)：",
+                variance: "方差 (σ²)："
+            },
+            binomial: {
+                title: "二项分布",
+                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
+                line_2: "μ = np",
+                line_3: "σ² = np(1-p)",
+                line_4: "p = 0.5（公平硬币）"
             },
             mission: {
-                title: "量子概率金库",
-                description: "巴塞尔银行的高安全金库采用量子概率门。绘制伯努利试验图并预测分布。"
+                title: "任务：高尔顿板",
+                description: "观察中心极限定理的实际运行。观察球体通过钉板形成正态分布。"
             }
         },
         s2_06: {
@@ -4296,7 +4313,7 @@ export const translations = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "GC2.01_分子监视器",
+            monitor_title: "GC2.01_有机监测器",
             footer_left: "GC2.01_碳世界 // 节点：巴塞尔",
             labels: {
                 input: "输入",
@@ -4304,11 +4321,39 @@ export const translations = {
                 formula: "分子式",
                 iupac_name: "IUPAC 命名",
                 composition: "组成",
-                molecular_mass: "分子质量"
+                molecular_mass: "分子质量",
+                molecule_info: "分子信息",
+                select_molecule: "选择分子",
+                rotation_speed: "旋转速度",
+                rotation_speed_value: "{value}x",
+                show_bonds: "显示化学键",
+                show_hydrogens: "显示氢原子",
+                atom_colors: "原子颜色",
+                atom_carbon: "碳 (C)",
+                atom_hydrogen: "氢 (H)",
+                atom_oxygen: "氧 (O)",
+                atom_nitrogen: "氮 (N)",
+                bond_types: "键类型",
+                bond_single: "单键：C-C",
+                bond_double: "双键：C=C",
+                bond_triple: "三键：C≡C"
+            },
+            molecules: {
+                methane: "甲烷",
+                ethane: "乙烷",
+                benzene: "苯",
+                glucose: "葡萄糖",
+                alanine: "丙氨酸"
+            },
+            types: {
+                alkane: "烷烃",
+                aromatic: "芳香族",
+                carbohydrate: "碳水化合物",
+                amino_acid: "氨基酸"
             },
             mission: {
-                title: "任务：有机合成",
-                description: "逐个原子构建有机分子。掌握碳链和官能团。"
+                title: "任务：有机化学",
+                description: "在三维空间中探索有机分子。研究球棍模型、化学键和分子几何结构。"
             },
             stages: {
                 alkanes: "烷烃",
@@ -4469,7 +4514,7 @@ export const translations = {
         },
         g5_01: {
             back: "返回枢纽",
-            title: "G5.01 // 矩阵变形器",
+            title: "G5.01 // 矩阵几何",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -4484,7 +4529,7 @@ export const translations = {
             incorrect: "匹配失败",
             ready: "就绪",
             monitor_title: "G5.01_矩阵监视器",
-            footer_left: "G5.01_矩阵变形器 // 节点：巴塞尔",
+            footer_left: "G5.01_矩阵几何 // 节点：巴塞尔",
             labels: {
                 matrix: "矩阵 A",
                 properties: "属性",
@@ -4496,11 +4541,29 @@ export const translations = {
                 scale_y: "Y轴缩放",
                 scale_z: "Z轴缩放",
                 shear_xy: "Y对X的切变",
-                shear_xz: "Z对X的切变"
+                shear_xz: "Z对X的切变",
+                matrix_title: "矩阵 A",
+                det_value: "det(A) = {value}",
+                show_eigenvectors: "显示特征向量",
+                show_grid: "显示网格",
+                animate: "动画"
+            },
+            presets: {
+                title: "预设",
+                scale: "缩放",
+                rotate: "旋转 90°",
+                shear: "切变",
+                reflect: "镜像"
+            },
+            linear: {
+                title: "线性代数",
+                line_1: "Ax = λx（特征值方程）",
+                line_2: "det(A - λI) = 0",
+                line_3: "T(v) = Av"
             },
             mission: {
-                title: "任务：矩阵几何",
-                description: "可视化矩阵如何变换3D空间。掌握旋转、缩放和切变。"
+                title: "任务：线性变换",
+                description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
             },
             stages: {
                 rotation: "旋转",
@@ -4778,6 +4841,28 @@ export const translations = {
             back: "返回 Nexus",
             footer_left: "GP5.02_相对论实验室 // 节点: RHINE",
             monitor_title: "GP5.02_相对论监测器",
+            labels: {
+                lorentz_factor_title: "洛伦兹因子",
+                velocity_label: "速度 (v/c)",
+                velocity_value: "{value}% c",
+                gamma_value: "γ = {value}",
+                toggle_doppler: "显示多普勒效应",
+                toggle_contraction: "显示长度收缩"
+            },
+            effects: {
+                title: "相对论效应",
+                time_dilation_label: "时间膨胀：",
+                time_dilation_value: "Δt' = {value}Δt",
+                length_contraction_label: "长度收缩：",
+                length_contraction_value: "L' = {value}L"
+            },
+            formulas: {
+                title: "公式",
+                gamma: "γ = 1/√(1 - v²/c²)",
+                time: "Δt' = γΔt",
+                length: "L' = L/γ",
+                energy: "E = γmc²"
+            },
             mission: {
                 title: "任务：狭义相对论",
                 description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
@@ -4788,6 +4873,26 @@ export const translations = {
             back: "返回 Nexus",
             footer_left: "GS1.01_分形探索器 // 节点: BASEL",
             monitor_title: "GS1.01_分形监测器",
+            labels: {
+                max_iterations: "最大迭代次数",
+                zoom: "缩放",
+                zoom_value: "{value}x",
+                center_x: "中心 X",
+                center_y: "中心 Y",
+                color_scheme: "配色方案",
+                scheme: {
+                    classic: "经典",
+                    fire: "火焰",
+                    ice: "冰霜",
+                    rainbow: "彩虹"
+                }
+            },
+            mandelbrot: {
+                title: "曼德勃罗集",
+                line_1: "z₀ = 0",
+                line_2: "z_{n+1} = z_n² + c",
+                line_3: "|z_n| < 2 对所有 n"
+            },
             mission: {
                 title: "任务：曼德布罗特集",
                 description: "使用GPU加速渲染探索曼德布罗特集。深入无限复杂的图案并发现自相似结构。"
@@ -4798,39 +4903,27 @@ export const translations = {
             back: "返回 Nexus",
             footer_left: "SP1.08_光学工作台 // 节点: BASEL",
             monitor_title: "SP1.08_光学监测器",
+            labels: {
+                show_prism: "显示棱镜色散",
+                medium_1: "介质 1 (n₁)",
+                medium_2: "介质 2 (n₂)",
+                incident_angle: "入射角 (θ₁)",
+                refraction_title: "折射",
+                refracted_angle: "折射角 (θ₂)：",
+                critical_angle: "临界角：",
+                total_internal_reflection: "全内反射",
+                na: "无",
+                angle_value: "{value}°"
+            },
+            snell: {
+                title: "斯涅尔定律",
+                line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
+                line_2: "θ_c = arcsin(n₂/n₁)",
+                line_3: "v = c/n"
+            },
             mission: {
                 title: "任务：几何光学",
                 description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
-            }
-        },
-        g3_01: {
-            title: "G3.01 // 概率仓库",
-            back: "返回 Nexus",
-            footer_left: "G3.01_概率仓库 // 节点: BASEL",
-            monitor_title: "G3.01_概率监测器",
-            mission: {
-                title: "任务：高尔顿板",
-                description: "观察中心极限定理的实际运行。观察球体通过钉板形成正态分布。"
-            }
-        },
-        g5_01: {
-            title: "G5.01 // 矩阵几何",
-            back: "返回 Nexus",
-            footer_left: "G5.01_矩阵几何 // 节点: BASEL",
-            monitor_title: "G5.01_矩阵监测器",
-            mission: {
-                title: "任务：线性变换",
-                description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
-            }
-        },
-        gc2_01: {
-            title: "GC2.01 // 碳王国",
-            back: "返回 Nexus",
-            footer_left: "GC2.01_碳王国 // 节点: BASEL",
-            monitor_title: "GC2.01_有机监测器",
-            mission: {
-                title: "任务：有机化学",
-                description: "在三维空间中探索有机分子。研究球棍模型、化学键和分子几何结构。"
             }
         }
     },
@@ -5710,8 +5803,8 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Fehlermeldung",
             ready: "Bereit",
-            monitor_title: "G3.01_WAHRSCHEINLICHKEIT_BOARD",
-            footer_left: "G3.01_WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
+            monitor_title: "G3.01_WAHRSCHEINLICHKEITSMONITOR",
+            footer_left: "G3.01_WAHRSCHEINLICHKEITS-TRESOR // KNOTEN: BASEL",
             stages: {
                 bernoulli: "BERNOULLI",
                 conditional: "BEDINGT",
@@ -5725,11 +5818,27 @@ export const translations = {
             },
             labels: {
                 input: "EINGABE",
-                hints: "HINWEISE"
+                hints: "HINWEISE",
+                rows: "REIHEN (n)",
+                ball_count: "ANZAHL KUGELN",
+                show_distribution: "Verteilung anzeigen"
+            },
+            normal: {
+                title: "NORMALVERTEILUNG",
+                mean: "Mittelwert (μ):",
+                std_dev: "Standardabweichung (σ):",
+                variance: "Varianz (σ²):"
+            },
+            binomial: {
+                title: "BINOMIALVERTEILUNG",
+                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
+                line_2: "μ = np",
+                line_3: "σ² = np(1-p)",
+                line_4: "p = 0.5 (faire Münze)"
             },
             mission: {
-                title: "QUANTEN-WAHRSCHEINLICHKEITS-TRESOR",
-                description: "Der Hochsicherheitstresor der Basler Bank nutzt Quantenwahrscheinlichkeitstore. Erstellen Sie Bernoulli-Versuche und sagen Sie die Verteilung voraus."
+                title: "MISSION: GALTON-BRETT",
+                description: "Beobachten Sie den Zentralen Grenzwertsatz im Einsatz. Verfolgen Sie Kugeln, die durch Nägel fallen und eine Normalverteilung bilden."
             }
         },
         s2_06: {
@@ -6716,7 +6825,7 @@ export const translations = {
         },
         g5_01: {
             back: "Zurück zum Nexus",
-            title: "G5.01 // MATRIX RELOADED",
+            title: "G5.01 // MATRIXGEOMETRIE",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6731,7 +6840,7 @@ export const translations = {
             incorrect: "Fehlanpassung",
             ready: "Bereit",
             monitor_title: "G5.01_MATRIX_MONITOR",
-            footer_left: "G5.01_MATRIX_RELOADED // KNOTEN: BASEL",
+            footer_left: "G5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
             labels: {
                 matrix: "MATRIX A",
                 properties: "EIGENSCHAFTEN",
@@ -6743,11 +6852,29 @@ export const translations = {
                 scale_y: "Y-ACHSE SKALIEREN",
                 scale_z: "Z-ACHSE SKALIEREN",
                 shear_xy: "SCHERUNG X DURCH Y",
-                shear_xz: "SCHERUNG X DURCH Z"
+                shear_xz: "SCHERUNG X DURCH Z",
+                matrix_title: "MATRIX A",
+                det_value: "det(A) = {value}",
+                show_eigenvectors: "Eigenvektoren anzeigen",
+                show_grid: "Gitter anzeigen",
+                animate: "Animation"
+            },
+            presets: {
+                title: "VOREINSTELLUNGEN",
+                scale: "Skalieren",
+                rotate: "Rotation 90°",
+                shear: "Scherung",
+                reflect: "Spiegeln"
+            },
+            linear: {
+                title: "LINEARE ALGEBRA",
+                line_1: "Ax = λx (Eigenwertgleichung)",
+                line_2: "det(A - λI) = 0",
+                line_3: "T(v) = Av"
             },
             mission: {
-                title: "MISSION: MATRIX-GEOMETRIE",
-                description: "Visualisieren Sie, wie Matrizen den 3D-Raum transformieren. Meistern Sie Rotation, Skalierung und Scherung."
+                title: "MISSION: LINEARE TRANSFORMATIONEN",
+                description: "Visualisieren Sie lineare Algebra im 3D-Raum. Erkunden Sie Matrixtransformationen, Eigenvektoren und geometrische Intuition."
             },
             stages: {
                 rotation: "ROTATION",
@@ -7025,6 +7152,28 @@ export const translations = {
             back: "Zurück zum Nexus",
             footer_left: "GP5.02_RELATIVITÄTSLABOR // KNOTEN: RHINE",
             monitor_title: "GP5.02_RELATIVITÄTSMONITOR",
+            labels: {
+                lorentz_factor_title: "LORENTZ-FAKTOR",
+                velocity_label: "GESCHWINDIGKEIT (v/c)",
+                velocity_value: "{value}% c",
+                gamma_value: "γ = {value}",
+                toggle_doppler: "Doppler-Effekt anzeigen",
+                toggle_contraction: "Längenkontraktion anzeigen"
+            },
+            effects: {
+                title: "RELATIVISTISCHE EFFEKTE",
+                time_dilation_label: "Zeitdilatation:",
+                time_dilation_value: "Δt' = {value}Δt",
+                length_contraction_label: "Längenkontraktion:",
+                length_contraction_value: "L' = {value}L"
+            },
+            formulas: {
+                title: "FORMELN",
+                gamma: "γ = 1/√(1 - v²/c²)",
+                time: "Δt' = γΔt",
+                length: "L' = L/γ",
+                energy: "E = γmc²"
+            },
             mission: {
                 title: "MISSION: Spezielle Relativität",
                 description: "Untersuchen Sie Effekte der speziellen Relativität. Beobachten Sie Zeitdilatation, Längenkontraktion und Dopplereffekt bei relativistischen Geschwindigkeiten."
@@ -7035,6 +7184,26 @@ export const translations = {
             back: "Zurück zum Nexus",
             footer_left: "GS1.01_FRAKTAL-ERKUNDE // KNOTEN: BASEL",
             monitor_title: "GS1.01_FRAKTALMONITOR",
+            labels: {
+                max_iterations: "MAX. ITERATIONEN",
+                zoom: "ZOOM",
+                zoom_value: "{value}x",
+                center_x: "ZENTRUM X",
+                center_y: "ZENTRUM Y",
+                color_scheme: "FARBSCHEMA",
+                scheme: {
+                    classic: "KLASSISCH",
+                    fire: "FEUER",
+                    ice: "EIS",
+                    rainbow: "REGENBOGEN"
+                }
+            },
+            mandelbrot: {
+                title: "MANDELBROT-MENGE",
+                line_1: "z₀ = 0",
+                line_2: "z_{n+1} = z_n² + c",
+                line_3: "|z_n| < 2 für alle n"
+            },
             mission: {
                 title: "MISSION: Mandelbrot-Menge",
                 description: "Untersuchen Sie die Mandelbrot-Menge mit GPU-beschleunigter Darstellung. Vergrößern Sie in unendliche Komplexität und entdecken Sie selbstähnliche Muster."
@@ -7045,29 +7214,27 @@ export const translations = {
             back: "Zurück zum Nexus",
             footer_left: "SP1.08_OPTIKLABOR // KNOTEN: BASEL",
             monitor_title: "SP1.08_OPTIKMONITOR",
+            labels: {
+                show_prism: "Prismen-Dispersion anzeigen",
+                medium_1: "MEDIUM 1 (n₁)",
+                medium_2: "MEDIUM 2 (n₂)",
+                incident_angle: "EINFALLSWINKEL (θ₁)",
+                refraction_title: "BRECHUNG",
+                refracted_angle: "Brechungswinkel (θ₂):",
+                critical_angle: "Grenzwinkel:",
+                total_internal_reflection: "TOTALREFLEXION",
+                na: "k. A.",
+                angle_value: "{value}°"
+            },
+            snell: {
+                title: "SNELLIUS-GESETZ",
+                line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
+                line_2: "θ_c = arcsin(n₂/n₁)",
+                line_3: "v = c/n"
+            },
             mission: {
                 title: "MISSION: Strahlenoptik",
                 description: "Meistern Sie Snellsches Gesetz und Strahlenoptik. Beobachten Sie Brechung, totale innere Reflexion und Prismadispersion."
-            }
-        },
-        g3_01: {
-            title: "G3.01 // Wahrscheinlichkeitslager",
-            back: "Zurück zum Nexus",
-            footer_left: "G3.01_WAHRSCHEINLICHKEITSLAGER // KNOTEN: BASEL",
-            monitor_title: "G3.01_WAHRSCHEINLICHKEITSMONITOR",
-            mission: {
-                title: "MISSION: Galtontisch",
-                description: "Beobachten Sie den Zentralen Grenzwertsatz im Einsatz. Beobachten Sie Kugeln, die durch Nägel fallen und eine Normalverteilung bilden."
-            }
-        },
-        g5_01: {
-            title: "G5.01 // Matrixgeometrie",
-            back: "Zurück zum Nexus",
-            footer_left: "G5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
-            monitor_title: "G5.01_MATRIXMONITOR",
-            mission: {
-                title: "MISSION: Lineare Transformationen",
-                description: "Visualisieren Sie lineare Algebra im 3D-Raum. Erkunden Sie Matrixtransformationen, Eigenvektoren und geometrische Intuition."
             }
         },
         gc2_01: {
@@ -7081,18 +7248,46 @@ export const translations = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "GC2.01_MOLEKUEL_MONITOR",
+            monitor_title: "GC2.01_ORGANIK_MONITOR",
             footer_left: "GC2.01_KOHLENSTOFF_KOENIGREICH // KNOTEN: BASEL",
             labels: {
                 formula: "MOLEKÜLFORMEL",
                 iupac_name: "IUPAC-NAME",
                 composition: "ZUSAMMENSETZUNG",
                 molecular_mass: "Molekülmasse",
-                hints: "HINWEISE"
+                hints: "HINWEISE",
+                molecule_info: "MOLEKÜLINFORMATIONEN",
+                select_molecule: "MOLEKÜL AUSWÄHLEN",
+                rotation_speed: "ROTATIONSGESCHWINDIGKEIT",
+                rotation_speed_value: "{value}x",
+                show_bonds: "Bindungen anzeigen",
+                show_hydrogens: "Wasserstoff anzeigen",
+                atom_colors: "ATOMFARBEN",
+                atom_carbon: "Kohlenstoff (C)",
+                atom_hydrogen: "Wasserstoff (H)",
+                atom_oxygen: "Sauerstoff (O)",
+                atom_nitrogen: "Stickstoff (N)",
+                bond_types: "BINDUNGSTYPEN",
+                bond_single: "Einfachbindung: C-C",
+                bond_double: "Doppelbindung: C=C",
+                bond_triple: "Dreifachbindung: C≡C"
+            },
+            molecules: {
+                methane: "Methan",
+                ethane: "Ethan",
+                benzene: "Benzol",
+                glucose: "Glukose",
+                alanine: "Alanin"
+            },
+            types: {
+                alkane: "Alkan",
+                aromatic: "Aromatisch",
+                carbohydrate: "Kohlenhydrat",
+                amino_acid: "Aminosäure"
             },
             mission: {
-                title: "MISSION: ORGANISCHE SYNTHESE",
-                description: "Bauen Sie organische Moleküle Atom für Atom. Meistern Sie Kohlenstoffketten und funktionelle Gruppen."
+                title: "MISSION: ORGANISCHE CHEMIE",
+                description: "Erkunden Sie organische Moleküle in 3D. Studieren Sie Kugel-Stab-Modelle, chemische Bindungen und Molekülgeometrie."
             },
             stages: {
                 alkanes: "ALKANE",

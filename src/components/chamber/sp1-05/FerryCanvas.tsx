@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Line } from "@react-three/drei";
 import * as THREE from "three";
@@ -10,6 +10,11 @@ interface FerryCanvasProps {
     cableAngle: number; // degrees
     ferrySpeed: number; // m/s
 }
+
+const pseudo = (seed: number) => {
+    const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+};
 
 // Ferry boat component
 function Ferry({ position, rotation }: { position: [number, number, number]; rotation: number }) {
@@ -35,17 +40,22 @@ function Ferry({ position, rotation }: { position: [number, number, number]; rot
 function River({ speed }: { speed: number }) {
     const particlesRef = useRef<THREE.Points>(null);
     const particleCount = 200;
+    const seedRef = useRef(0);
 
-    const particles = useRef(
-        Array.from({ length: particleCount }, () => ({
-            position: new THREE.Vector3(
-                (Math.random() - 0.5) * 20,
-                0.1,
-                Math.random() * 30 - 15
-            ),
-            velocity: speed,
-        }))
-    );
+    const initialParticles = useMemo(() => {
+        return Array.from({ length: particleCount }, (_, i) => {
+            const seed = i * 9.17;
+            return {
+                position: new THREE.Vector3(
+                    (pseudo(seed) - 0.5) * 20,
+                    0.1,
+                    (pseudo(seed + 1) - 0.5) * 30
+                ),
+                velocity: speed,
+            };
+        });
+    }, [particleCount, speed]);
+    const particles = useRef(initialParticles);
 
     useFrame((_, delta) => {
         if (!particlesRef.current) return;
@@ -59,7 +69,8 @@ function River({ speed }: { speed: number }) {
             // Reset particle if it goes too far
             if (particle.position.z > 15) {
                 particle.position.z = -15;
-                particle.position.x = (Math.random() - 0.5) * 20;
+                seedRef.current += 1;
+                particle.position.x = (pseudo(seedRef.current) - 0.5) * 20;
             }
 
             positions[i * 3] = particle.position.x;
@@ -70,12 +81,15 @@ function River({ speed }: { speed: number }) {
         particlesRef.current.geometry.attributes.position.needsUpdate = true;
     });
 
-    const particlePositions = new Float32Array(particleCount * 3);
-    particles.current.forEach((p, i) => {
-        particlePositions[i * 3] = p.position.x;
-        particlePositions[i * 3 + 1] = p.position.y;
-        particlePositions[i * 3 + 2] = p.position.z;
-    });
+    const particlePositions = useMemo(() => {
+        const positions = new Float32Array(particleCount * 3);
+        initialParticles.forEach((p, i) => {
+            positions[i * 3] = p.position.x;
+            positions[i * 3 + 1] = p.position.y;
+            positions[i * 3 + 2] = p.position.z;
+        });
+        return positions;
+    }, [initialParticles, particleCount]);
 
     return (
         <group>
@@ -94,12 +108,7 @@ function River({ speed }: { speed: number }) {
             {/* Flow particles */}
             <points ref={particlesRef}>
                 <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={particleCount}
-                        array={particlePositions}
-                        itemSize={3}
-                    />
+                    <bufferAttribute attach="attributes-position" args={[particlePositions, 3]} />
                 </bufferGeometry>
                 <pointsMaterial size={0.1} color="#00e5ff" transparent opacity={0.8} />
             </points>
@@ -140,28 +149,15 @@ function CableSystem({ angle, ferryPos }: { angle: number; ferryPos: [number, nu
 
 function FerryScene({ riverSpeed, cableAngle, ferrySpeed }: FerryCanvasProps) {
     const [ferryPos, setFerryPos] = useState<[number, number, number]>([-8, 0.5, 0]);
-    const [ferryRotation, setFerryRotation] = useState(0);
+    const angleRad = (cableAngle * Math.PI) / 180;
+    const vFerryX = Math.sin(angleRad) * ferrySpeed;
+    const vFerryZ = Math.cos(angleRad) * ferrySpeed;
+    const vRiverZ = riverSpeed;
+    const vResultantX = vFerryX;
+    const vResultantZ = vFerryZ + vRiverZ;
+    const ferryRotation = Math.atan2(vResultantX, vResultantZ);
 
     useEffect(() => {
-        // Calculate ferry trajectory based on vector addition
-        const angleRad = (cableAngle * Math.PI) / 180;
-        
-        // Ferry velocity components
-        const vFerryX = Math.sin(angleRad) * ferrySpeed;
-        const vFerryZ = Math.cos(angleRad) * ferrySpeed;
-        
-        // River velocity (only Z component)
-        const vRiverZ = riverSpeed;
-        
-        // Resultant velocity
-        const vResultantX = vFerryX;
-        const vResultantZ = vFerryZ + vRiverZ;
-        
-        // Update ferry rotation to face resultant direction
-        const resultantAngle = Math.atan2(vResultantX, vResultantZ);
-        setFerryRotation(resultantAngle);
-        
-        // Simulate ferry movement
         const interval = setInterval(() => {
             setFerryPos((prev) => {
                 const newX = prev[0] + vResultantX * 0.1;
@@ -177,7 +173,7 @@ function FerryScene({ riverSpeed, cableAngle, ferrySpeed }: FerryCanvasProps) {
         }, 100);
         
         return () => clearInterval(interval);
-    }, [riverSpeed, cableAngle, ferrySpeed]);
+    }, [riverSpeed, cableAngle, ferrySpeed, vResultantX, vResultantZ]);
 
     return (
         <>

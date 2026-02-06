@@ -79,7 +79,9 @@ export default function SP1_08_OpticsBench() {
                                 <label className="text-sm text-amber-400">{t("sp1_08.labels.incident_angle")}</label>
                                 <input type="range" min="0" max="89" step="1" value={incidentAngle}
                                     onChange={(e) => setIncidentAngle(Number(e.target.value))} className="w-full" />
-                                <div className="text-center text-lg text-amber-300">{incidentAngle}°</div>
+                                <div className="text-center text-lg text-amber-300">
+                                    {t("sp1_08.labels.angle_value").replace("{value}", incidentAngle.toString())}
+                                </div>
                             </div>
 
                             <div className="border border-green-500 p-3 space-y-2">

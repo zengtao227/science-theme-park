@@ -131,3 +131,15 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    6a537d4..fbeba64  main -> main
+[main a7f9617] auto: daily sync 2026-02-06 13:44
+ 19 files changed, 1630 insertions(+), 279 deletions(-)
+ create mode 100644 i18n_canvas_translation_request.txt
+ create mode 100644 i18n_translation_request.txt
+ create mode 100644 src/app/chamber/sc2-01/page.tsx
+ create mode 100644 src/app/chamber/sp1-05/page.tsx
+ create mode 100644 src/components/chamber/sc2-01/KineticsCanvas.tsx
+ create mode 100644 src/components/chamber/sp1-05/FerryCanvas.tsx
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   fbeba64..a7f9617  main -> main

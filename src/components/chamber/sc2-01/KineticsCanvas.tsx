@@ -11,13 +11,10 @@ interface KineticsCanvasProps {
     showCollisions: boolean;
 }
 
-// Arrhenius equation: k = A * exp(-Ea / RT)
-function calculateRateConstant(Ea: number, T: number): number {
-    const R = 8.314; // J/(mol·K)
-    const A = 1e13; // Pre-exponential factor (frequency factor)
-    const EaJoules = Ea * 1000; // Convert kJ to J
-    return A * Math.exp(-EaJoules / (R * T));
-}
+const pseudo = (seed: number) => {
+    const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+};
 
 // Molecule particle system
 function Molecules({ temperature, activationEnergy, showCollisions }: KineticsCanvasProps) {
@@ -26,22 +23,26 @@ function Molecules({ temperature, activationEnergy, showCollisions }: KineticsCa
     const particleCount = 100;
     const dummy = useMemo(() => new THREE.Object3D(), []);
 
-    const particles = useRef(
-        Array.from({ length: particleCount }, () => ({
-            position: new THREE.Vector3(
-                (Math.random() - 0.5) * 10,
-                (Math.random() - 0.5) * 10,
-                (Math.random() - 0.5) * 10
-            ),
-            velocity: new THREE.Vector3(
-                (Math.random() - 0.5) * 0.1,
-                (Math.random() - 0.5) * 0.1,
-                (Math.random() - 0.5) * 0.1
-            ),
-            energy: Math.random() * 100, // kJ/mol
-            reacted: false,
-        }))
-    );
+    const initialParticles = useMemo(() => {
+        return Array.from({ length: particleCount }, (_, i) => {
+            const seed = i * 11.37;
+            return {
+                position: new THREE.Vector3(
+                    (pseudo(seed) - 0.5) * 10,
+                    (pseudo(seed + 1) - 0.5) * 10,
+                    (pseudo(seed + 2) - 0.5) * 10
+                ),
+                velocity: new THREE.Vector3(
+                    (pseudo(seed + 3) - 0.5) * 0.1,
+                    (pseudo(seed + 4) - 0.5) * 0.1,
+                    (pseudo(seed + 5) - 0.5) * 0.1
+                ),
+                energy: pseudo(seed + 6) * 100,
+                reacted: false,
+            };
+        });
+    }, [particleCount]);
+    const particles = useRef(initialParticles);
 
     const collisions = useRef<Array<{ position: THREE.Vector3; life: number }>>([]);
 
@@ -53,7 +54,6 @@ function Molecules({ temperature, activationEnergy, showCollisions }: KineticsCa
 
         particles.current.forEach((particle, i) => {
             // Update velocity magnitude based on temperature
-            const currentSpeed = particle.velocity.length();
             const targetSpeed = 0.1 * speedFactor;
             particle.velocity.normalize().multiplyScalar(targetSpeed);
 

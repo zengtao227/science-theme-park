@@ -19,6 +19,7 @@ export default function GP5_02_RelativityLab() {
     const timeDilation = gamma;
     const lengthContraction = 1 / gamma;
     const velocityLabel = t("gp5_02.labels.velocity_value").replace("{value}", (velocity * 100).toFixed(0));
+    const gammaValue = t("gp5_02.labels.gamma_value").replace("{value}", gamma.toFixed(3));
     const timeDilationValue = t("gp5_02.effects.time_dilation_value").replace("{value}", timeDilation.toFixed(3));
     const lengthContractionValue = t("gp5_02.effects.length_contraction_value").replace("{value}", lengthContraction.toFixed(3));
 
@@ -54,7 +55,7 @@ export default function GP5_02_RelativityLab() {
 
                     <div className="border border-green-500 p-3 space-y-2">
                         <div className="text-sm text-green-400">{t("gp5_02.labels.lorentz_factor_title")}</div>
-                        <div className="text-center text-3xl text-green-300 font-bold py-2">γ = {gamma.toFixed(3)}</div>
+                        <div className="text-center text-3xl text-green-300 font-bold py-2">{gammaValue}</div>
                     </div>
 
                     <div className="space-y-2">
