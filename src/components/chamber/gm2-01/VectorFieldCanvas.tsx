@@ -69,11 +69,10 @@ function Projection({ vectorA, vectorB }: { vectorA: [number, number, number]; v
                     <bufferAttribute
                         attach="attributes-position"
                         count={2}
-                        array={new Float32Array([
+                        args={[new Float32Array([
                             vectorA[0], vectorA[1], vectorA[2],
                             projection.x, projection.y, projection.z
-                        ])}
-                        itemSize={3}
+                        ]), 3]}
                     />
                 </bufferGeometry>
                 <lineDashedMaterial color="#ffffff" dashSize={0.1} gapSize={0.05} opacity={0.5} transparent />
@@ -129,14 +128,13 @@ function CrossProduct({ vectorA, vectorB, animate }: { vectorA: [number, number,
                     <bufferAttribute
                         attach="attributes-position"
                         count={5}
-                        array={new Float32Array([
+                        args={[new Float32Array([
                             ...parallelogramPoints[0].toArray(),
                             ...parallelogramPoints[1].toArray(),
                             ...parallelogramPoints[2].toArray(),
                             ...parallelogramPoints[3].toArray(),
                             ...parallelogramPoints[0].toArray(),
-                        ])}
-                        itemSize={3}
+                        ]), 3]}
                     />
                 </bufferGeometry>
                 <lineBasicMaterial color="#a855f7" opacity={0.5} transparent />
@@ -148,15 +146,14 @@ function CrossProduct({ vectorA, vectorB, animate }: { vectorA: [number, number,
                     <bufferAttribute
                         attach="attributes-position"
                         count={6}
-                        array={new Float32Array([
+                        args={[new Float32Array([
                             ...parallelogramPoints[0].toArray(),
                             ...parallelogramPoints[1].toArray(),
                             ...parallelogramPoints[2].toArray(),
                             ...parallelogramPoints[0].toArray(),
                             ...parallelogramPoints[2].toArray(),
                             ...parallelogramPoints[3].toArray(),
-                        ])}
-                        itemSize={3}
+                        ]), 3]}
                     />
                 </bufferGeometry>
                 <meshBasicMaterial color="#a855f7" opacity={0.2} transparent side={THREE.DoubleSide} />
@@ -212,8 +209,7 @@ function DotProductVisualization({ vectorA, vectorB }: { vectorA: [number, numbe
                     <bufferAttribute
                         attach="attributes-position"
                         count={arcPoints.length}
-                        array={new Float32Array(arcPoints.flatMap(p => p.toArray()))}
-                        itemSize={3}
+                        args={[new Float32Array(arcPoints.flatMap(p => p.toArray())), 3]}
                     />
                 </bufferGeometry>
                 <lineBasicMaterial color="#00e5ff" linewidth={2} />

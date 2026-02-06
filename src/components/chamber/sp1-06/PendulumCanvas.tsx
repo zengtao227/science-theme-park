@@ -16,7 +16,7 @@ interface PendulumCanvasProps {
 
 function Pendulum({ length, initialAngle, gravity, damping, onUpdate }: PendulumCanvasProps & { onUpdate: (theta: number, omega: number, time: number) => void }) {
     const bobRef = useRef<THREE.Mesh>(null);
-    const rodRef = useRef<THREE.Line>(null);
+    const rodRef = useRef<THREE.Line>(null!);
     const [theta, setTheta] = useState(initialAngle);
     const [omega, setOmega] = useState(0); // angular velocity
     const [time, setTime] = useState(0);
@@ -81,13 +81,12 @@ function Pendulum({ length, initialAngle, gravity, damping, onUpdate }: Pendulum
             </mesh>
             
             {/* Rod */}
-            <line ref={rodRef}>
+            <line ref={rodRef as any}>
                 <bufferGeometry>
                     <bufferAttribute
                         attach="attributes-position"
                         count={2}
-                        array={new Float32Array([0, 0, 0, x, y, 0])}
-                        itemSize={3}
+                        args={[new Float32Array([0, 0, 0, x, y, 0]), 3]}
                     />
                 </bufferGeometry>
                 <lineBasicMaterial color="#00e5ff" linewidth={2} />
@@ -129,8 +128,7 @@ function PendulumScene(props: PendulumCanvasProps & { onUpdate: (theta: number, 
                     <bufferAttribute
                         attach="attributes-position"
                         count={2}
-                        array={new Float32Array([0, 0, 0, 0, -props.length * 1.2, 0])}
-                        itemSize={3}
+                        args={[new Float32Array([0, 0, 0, 0, -props.length * 1.2, 0]), 3]}
                     />
                 </bufferGeometry>
                 <lineBasicMaterial color="#ffffff" opacity={0.3} transparent linewidth={1} />

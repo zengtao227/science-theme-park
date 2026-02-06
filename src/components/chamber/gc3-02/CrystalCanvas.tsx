@@ -132,8 +132,7 @@ function UnitCellEdges() {
             <bufferAttribute
               attach="attributes-position"
               count={2}
-              array={new Float32Array([...edge[0].toArray(), ...edge[1].toArray()])}
-              itemSize={3}
+              args={[new Float32Array([...edge[0].toArray(), ...edge[1].toArray()]), 3]}
             />
           </bufferGeometry>
           <lineBasicMaterial color="#00e5ff" transparent opacity={0.4} />

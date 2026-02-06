@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
@@ -71,7 +71,7 @@ function TransformingGrid({ matrix, animate }: { matrix: number[][]; animate: bo
     
     // Create grid lines
     const gridLines = useMemo(() => {
-        const lines: JSX.Element[] = [];
+        const lines: React.ReactElement[] = [];
         const step = gridSize / gridDivisions;
         
         // Horizontal lines
@@ -84,11 +84,10 @@ function TransformingGrid({ matrix, animate }: { matrix: number[][]; animate: bo
                         <bufferAttribute
                             attach="attributes-position"
                             count={2}
-                            array={new Float32Array([
+                            args={[new Float32Array([
                                 -gridSize / 2, y, 0,
                                 gridSize / 2, y, 0
-                            ])}
-                            itemSize={3}
+                            ]), 3]}
                         />
                     </bufferGeometry>
                     <lineBasicMaterial color={color} opacity={0.5} transparent />
@@ -106,11 +105,10 @@ function TransformingGrid({ matrix, animate }: { matrix: number[][]; animate: bo
                         <bufferAttribute
                             attach="attributes-position"
                             count={2}
-                            array={new Float32Array([
+                            args={[new Float32Array([
                                 x, -gridSize / 2, 0,
                                 x, gridSize / 2, 0
-                            ])}
-                            itemSize={3}
+                            ]), 3]}
                         />
                     </bufferGeometry>
                     <lineBasicMaterial color={color} opacity={0.5} transparent />

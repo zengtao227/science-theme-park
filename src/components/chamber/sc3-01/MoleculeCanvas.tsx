@@ -18,6 +18,7 @@ interface Bond {
 
 interface MoleculeCanvasProps {
   target: "ASPIRIN" | "CAFFEINE";
+  onComplete?: () => void;
 }
 
 const palette = {

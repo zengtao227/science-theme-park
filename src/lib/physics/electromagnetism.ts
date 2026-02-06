@@ -177,7 +177,7 @@ export function nernstEquation(
 ): number {
   const R = 8.314; // Gas constant (J/(mol·K))
   const F = 96485; // Faraday constant (C/mol)
-  return E0 - (R * T) / (n * F) * Math.ln(Q);
+  return E0 - (R * T) / (n * F) * Math.log(Q);
 }
 
 /**

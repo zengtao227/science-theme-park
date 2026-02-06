@@ -326,11 +326,11 @@ export const translations: Record<string, any> = {
                     resonance_hint: "Resonance occurs at specific E/V₀ ratios"
                 }
             },
-            sm3_02_title: "S3.02 // TRIGONOMETRY TOWER",
+            s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
             s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
-            sm2_07_title: "S2.07 // COORDINATE GEOMETRY",
+            s2_07_title: "S2.07 // COORDINATE GEOMETRY",
             s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
-            sm3_04_title: "S3.04 // LOGARITHMIC SCALES",
+            s3_04_title: "S3.04 // LOGARITHMIC SCALES",
             s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
             sc1_01_title: "SC1.01 // MYSTERY LAB",
             c1_01_subtitle: "Identify mysterious white powders through chemical tests.",
@@ -1730,45 +1730,6 @@ export const translations: Record<string, any> = {
                 fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
             }
         },
-        gp5_02: {
-            back: "Back to Nexus",
-            title: "P5.02 // RELATIVITY LAB",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Relativistic Effects",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P5.02_RELATIVITY_MONITOR",
-            footer_left: "P5.02_SPECIAL_RELATIVITY // NODE: CERN",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                velocity: "Velocity (v/c)",
-                gamma: "Lorentz Factor (γ)",
-                length: "Contracted Length",
-                time: "Dilated Time"
-            },
-            mission: {
-                title: "EINSTEIN'S LABORATORY",
-                description: "At CERN, calibrate the particle accelerator by calculating relativistic effects at near-light speeds."
-            },
-            stages: {
-                lorentz: "LORENTZ FACTOR",
-                contraction: "LENGTH CONTRACTION",
-                dilation: "TIME DILATION",
-                lorentz_prompt_latex: "\\text{Calculate the Lorentz factor }\\gamma\\text{ at velocity }v.",
-                contraction_prompt_latex: "\\text{Calculate the contracted length }L=L_0/\\gamma.",
-                dilation_prompt_latex: "\\text{Calculate the dilated time }T=T_0\\times\\gamma."
-            }
-        },
         sm3_04: {
             back: "Back to Nexus",
             title: "S3.04 // LOGARITHMIC SCALES",
@@ -2678,16 +2639,16 @@ export const translations: Record<string, any> = {
                     resonance_hint: "共振发生在特定 E/V₀ 比值"
                 }
             },
-            sm3_02_title: "S3.02 // 三角函数之塔",
+            s3_02_title: "S3.02 // 三角函数之塔",
             s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
-            sm2_07_title: "S2.07 // 坐标几何",
+            s2_07_title: "S2.07 // 坐标几何",
             s2_07_subtitle: "掌握距离、中点和斜率计算。",
-            sm3_04_title: "S3.04 // 对数刻度",
+            s3_04_title: "S3.04 // 对数刻度",
             s3_04_subtitle: "掌握 pH 值、分贝和里氏震级的对数计算。",
             sc1_01_title: "SC1.01 // 神秘挑战",
-            c1_01_subtitle: "通过化学测试鉴定神秘白色粉末。",
+            sc1_01_subtitle: "通过化学测试鉴定神秘白色粉末。",
             sc1_02_title: "SC1.02 // 摩尔大师",
-            c1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
+            sc1_02_subtitle: "执行诺华级化学计量计算：摩尔质量、比例与产率。",
             sc1_03_title: "SC1.03 // 原子熔炉",
             sc1_03_subtitle: "在 3D 空间中构建同位素并理解原子轨道。",
             sc1_04_title: "SC1.04 // 元素周期拼图",
@@ -5139,16 +5100,16 @@ export const translations: Record<string, any> = {
                     resonance_hint: "Resonanz tritt bei bestimmten E/V₀-Verhältnissen auf"
                 }
             },
-            sm3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
+            s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
             s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
-            sm2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
+            s2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
             s2_07_subtitle: "Meistern Sie Entfernungs-, Mittelpunkt- und Steigungsberechnungen.",
-            sm3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
+            s3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
             s3_03_subtitle: "Modelliere exponentielles Wachstum und logarithmische Skalen mit Bakteriensimulationen.",
-            sm3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
+            s3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
             s3_04_subtitle: "Meistern Sie pH-Wert, Dezibel und Richterskala mit logarithmischen Berechnungen.",
             sc1_01_title: "SC1.01 // MYSTERY LAB",
-            c1_01_subtitle: "Identifizieren Sie mysteriöse weiße Pulver durch chemische Tests.",
+            sc1_01_subtitle: "Identifizieren Sie mysteriöse weiße Pulver durch chemische Tests.",
             sc1_02_title: "SC1.02 // MOL-MEISTER",
             c1_02_subtitle: "Führe Stöchiometrie auf Novartis-Niveau durch: Molmassen, Verhältnisse und Ausbeuten.",
             sc1_03_title: "SC1.03 // ATOMSCHMIEDE",
@@ -5214,8 +5175,7 @@ export const translations: Record<string, any> = {
                     nernst_hint: "Höhere [Produkte] verringern das Zellpotential"
                 }
             },
-            home: {
-                gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
+            gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
                 gc2_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Modellen.",
                 gc3_01_title: "GC3.01 // MOLEKULARER ARCHITEKT",
                 gc3_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Kugel-Stab-Modellen.",
