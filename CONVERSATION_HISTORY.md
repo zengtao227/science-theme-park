@@ -590,3 +590,59 @@ Mission 59 (GC1.01 氧化还原巨人) 待处理。
 
 ## 📊 CURRENT STATUS
 所有 Phase 3 审计任务完成，额外修复了 linter 错误。等待新任务指令。
+
+
+---
+
+## Mission K81: Additional Linter Cleanup
+**状态**: ✅ 完成
+
+### 完成内容
+- ✅ 修复 `gp5-01/page.tsx` 中的 useEffect 依赖警告
+  - 添加 `protons, neutrons` 到依赖数组
+- ✅ 修复 `g3-01/ProbabilityCanvas.tsx` 中的依赖警告
+  - 添加 `rows` 到 useEffect 依赖数组
+- ✅ 修复 `gp5-01/NuclearSim.tsx` 中的警告
+  - 移除未使用的 `state` 参数
+  - 添加 `radius` 到 useEffect 依赖数组
+- ✅ 修复 `g2-01/VectorFieldCanvas.tsx` 中的未使用变量
+  - 移除未使用的 `perpendicular` 变量
+- ✅ 所有修复文件通过 diagnostics 检查
+
+### 文件路径
+- `src/app/chamber/gp5-01/page.tsx`
+- `src/components/chamber/g3-01/ProbabilityCanvas.tsx`
+- `src/components/chamber/gp5-01/NuclearSim.tsx`
+- `src/components/chamber/g2-01/VectorFieldCanvas.tsx`
+
+---
+
+## 📊 PHASE 3 FINAL STATUS
+所有 K65-K75 模块完全清理完成：
+- 零 TypeScript 错误 ✅
+- 零 React Hooks 错误 ✅
+- 零未使用变量警告 ✅
+- 所有依赖数组正确 ✅
+
+
+---
+
+## Mission K82: SP1-08 OpticsCanvas Cleanup
+**状态**: ✅ 完成
+
+### 完成内容
+- ✅ 移除未使用的导入（useRef, useFrame, Text）
+- ✅ 修复 LightRay 组件的 geometry 使用
+  - 创建的 geometry 现在正确传递给 line 元素
+  - 简化了 line 组件结构
+- ✅ 标记未使用但必需的参数（incidentAngle, showTotalReflection）
+  - 使用 `_` 前缀表示有意未使用
+- ✅ 文件通过 diagnostics 检查
+
+### 文件路径
+- `src/components/chamber/sp1-08/OpticsCanvas.tsx`
+
+---
+
+## 📊 K65-K75 模块完全清理
+所有 6 个新模块（K65, K66, K68, K69, K72, K75）现在完全无错误无警告。

@@ -53,9 +53,6 @@ function Projection({ vectorA, vectorB }: { vectorA: [number, number, number]; v
     const projectionScalar = dotProduct / bLengthSq;
     const projection = vB.clone().multiplyScalar(projectionScalar);
     
-    // Perpendicular component
-    const perpendicular = vA.clone().sub(projection);
-    
     return (
         <group>
             {/* Projection vector */}

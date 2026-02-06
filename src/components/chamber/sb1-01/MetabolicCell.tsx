@@ -10,30 +10,36 @@ interface MetabolicCellProps {
     showATP: boolean;
 }
 
+const pseudo = (seed: number) => {
+    const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+};
+
 function ATPParticles({ count = 50 }: { count?: number }) {
     const particlesRef = useRef<THREE.InstancedMesh>(null);
     const dummy = useMemo(() => new THREE.Object3D(), []);
     
     // ATP particle paths (from mitochondria to cell membrane)
     const paths = useMemo(() => {
-        return Array.from({ length: count }, () => {
-            const angle = Math.random() * Math.PI * 2;
-            const startRadius = 0.5 + Math.random() * 0.5;
-            const endRadius = 3.0 + Math.random() * 0.3;
+        return Array.from({ length: count }, (_, i) => {
+            const seed = i * 13.7;
+            const angle = pseudo(seed) * Math.PI * 2;
+            const startRadius = 0.5 + pseudo(seed + 1) * 0.5;
+            const endRadius = 3.0 + pseudo(seed + 2) * 0.3;
             
             return {
                 start: new THREE.Vector3(
                     Math.cos(angle) * startRadius,
                     Math.sin(angle) * startRadius,
-                    (Math.random() - 0.5) * 0.5
+                    (pseudo(seed + 3) - 0.5) * 0.5
                 ),
                 end: new THREE.Vector3(
                     Math.cos(angle) * endRadius,
                     Math.sin(angle) * endRadius,
-                    (Math.random() - 0.5) * 0.5
+                    (pseudo(seed + 4) - 0.5) * 0.5
                 ),
-                phase: Math.random() * Math.PI * 2,
-                speed: 0.5 + Math.random() * 0.5,
+                phase: pseudo(seed + 5) * Math.PI * 2,
+                speed: 0.5 + pseudo(seed + 6) * 0.5,
             };
         });
     }, [count]);

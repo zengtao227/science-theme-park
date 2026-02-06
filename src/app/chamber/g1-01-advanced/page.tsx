@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -10,7 +9,6 @@ const CalculusCanvas = dynamic(() => import("@/components/chamber/g1-01/Calculus
 });
 
 export default function G1_01_Advanced() {
-    const { t } = useLanguage();
     const [mode, setMode] = useState<"tangent" | "newton">("tangent");
     const [xPosition, setXPosition] = useState(1);
     const [yPosition, setYPosition] = useState(0.5);
@@ -95,7 +93,7 @@ export default function G1_01_Advanced() {
                                         : "border-gray-600 text-gray-400 hover:border-purple-500/50"
                                 }`}
                             >
-                                NEWTON'S METHOD
+                                NEWTON&apos;S METHOD
                             </button>
                         </div>
                     </div>
@@ -115,7 +113,7 @@ export default function G1_01_Advanced() {
                                     }`}
                                 >
                                     <div className="font-bold">{functions[key].name}</div>
-                                    <div className="text-xs">f'(x) = {functions[key].derivative}</div>
+                                    <div className="text-xs">f&apos;(x) = {functions[key].derivative}</div>
                                 </button>
                             ))}
                         </div>
@@ -168,10 +166,10 @@ export default function G1_01_Advanced() {
 
                     {mode === "newton" && (
                         <div className="border border-purple-500 p-3 space-y-2">
-                            <div className="text-sm text-purple-400 font-bold">NEWTON'S METHOD</div>
+                            <div className="text-sm text-purple-400 font-bold">NEWTON&apos;S METHOD</div>
                             <div className="text-xs text-purple-300/80 space-y-1">
                                 <div>Iterative root-finding algorithm</div>
-                                <div>Formula: xₙ₊₁ = xₙ - f(xₙ)/f'(xₙ)</div>
+                                <div>Formula: xₙ₊₁ = xₙ - f(xₙ)/f&apos;(xₙ)</div>
                                 <div>Yellow dots: iteration points</div>
                                 <div>Green dot: converged root</div>
                                 <div>Purple lines: tangent approximations</div>
@@ -184,8 +182,8 @@ export default function G1_01_Advanced() {
                         <div className="text-sm text-amber-400 font-bold">DERIVATIVE RULES</div>
                         <div className="text-xs text-amber-300/80 space-y-1">
                             <div>Power Rule: d/dx(xⁿ) = n·xⁿ⁻¹</div>
-                            <div>Chain Rule: d/dx(f(g(x))) = f'(g(x))·g'(x)</div>
-                            <div>Product Rule: d/dx(u·v) = u'v + uv'</div>
+                            <div>Chain Rule: d/dx(f(g(x))) = f&apos;(g(x))·g&apos;(x)</div>
+                            <div>Product Rule: d/dx(u·v) = u&apos;v + uv&apos;</div>
                         </div>
                     </div>
 

@@ -157,7 +157,7 @@ function Nucleus({ protons, neutrons }: { protons: number; neutrons: number }) {
     const A = protons + neutrons;
     const radius = Math.pow(A, 1/3) * 0.3;
     
-    useFrame((state) => {
+    useFrame(() => {
         if (groupRef.current) {
             groupRef.current.rotation.y += 0.005;
         }
@@ -204,7 +204,7 @@ function Nucleus({ protons, neutrons }: { protons: number; neutrons: number }) {
         if (nucleonsRef.current.instanceColor) {
             nucleonsRef.current.instanceColor.needsUpdate = true;
         }
-    }, [protons, neutrons]);
+    }, [protons, neutrons, radius]);
     
     return (
         <group ref={groupRef} position={[0, 2, 0]}>

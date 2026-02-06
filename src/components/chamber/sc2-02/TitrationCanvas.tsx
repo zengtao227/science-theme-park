@@ -226,9 +226,8 @@ function TitrationScene(props: TitrationCanvasProps) {
 
 export default function TitrationCanvas(props: TitrationCanvasProps) {
     const curveCanvasRef = useRef<HTMLCanvasElement>(null);
-    const [phHistory, setPhHistory] = useState<Array<{ volume: number; pH: number }>>([]);
+    const phHistoryRef = useRef<Array<{ volume: number; pH: number }>>([]);
     
-    // Update pH history
     useEffect(() => {
         const pH = calculatePH(
             props.acidType,
@@ -238,18 +237,12 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
             props.volumeAdded
         );
         
-        setPhHistory((prev) => {
-            const newHistory = [...prev, { volume: props.volumeAdded, pH }];
-            // Keep only unique volumes
-            const uniqueHistory = newHistory.filter((item, index, self) =>
-                index === self.findIndex((t) => Math.abs(t.volume - item.volume) < 0.1)
-            );
-            return uniqueHistory.slice(-100);
-        });
-    }, [props.volumeAdded, props.acidType, props.baseType, props.acidConcentration, props.baseConcentration]);
-    
-    // Draw titration curve
-    useEffect(() => {
+        const newHistory = [...phHistoryRef.current, { volume: props.volumeAdded, pH }];
+        const uniqueHistory = newHistory.filter((item, index, self) =>
+            index === self.findIndex((t) => Math.abs(t.volume - item.volume) < 0.1)
+        );
+        phHistoryRef.current = uniqueHistory.slice(-100);
+
         const canvas = curveCanvasRef.current;
         if (!canvas) return;
         
@@ -285,6 +278,7 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
         ctx.stroke();
         
         // Draw pH curve
+        const phHistory = phHistoryRef.current;
         if (phHistory.length > 1) {
             ctx.strokeStyle = "#39ff14";
             ctx.lineWidth = 3;
@@ -323,7 +317,7 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
         ctx.fillText("7", 10, canvas.height / 2);
         ctx.fillText("0", 10, canvas.height - 10);
         ctx.fillText("Volume (mL)", canvas.width - 100, canvas.height - 10);
-    }, [phHistory]);
+    }, [props.volumeAdded, props.acidType, props.baseType, props.acidConcentration, props.baseConcentration]);
     
     return (
         <div className="w-full h-full flex flex-col">

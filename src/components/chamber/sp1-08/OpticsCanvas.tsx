@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Text, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 interface OpticsCanvasProps {
@@ -29,30 +28,8 @@ function calculateRefraction(n1: number, n2: number, theta1Deg: number): { theta
 
 // Light ray component
 function LightRay({ start, end, color = "#ffff00" }: { start: [number, number, number]; end: [number, number, number]; color?: string }) {
-    const points = useMemo(() => [
-        new THREE.Vector3(...start),
-        new THREE.Vector3(...end),
-    ], [start, end]);
-    
     return (
-        <>
-            <line>
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={2}
-                        array={new Float32Array([...start, ...end])}
-                        itemSize={3}
-                    />
-                </bufferGeometry>
-                <lineBasicMaterial color={color} linewidth={2} />
-            </line>
-            {/* Glow effect */}
-            <mesh position={end}>
-                <sphereGeometry args={[0.05, 8, 8]} />
-                <meshBasicMaterial color={color} transparent opacity={0.8} />
-            </mesh>
-        </>
+        <Line points={[start, end]} color={color} lineWidth={2} />
     );
 }
 
@@ -116,30 +93,10 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
             </mesh>
             
             {/* Interface line */}
-            <line>
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={2}
-                        array={new Float32Array([-4, 0, 0, 4, 0, 0])}
-                        itemSize={3}
-                    />
-                </bufferGeometry>
-                <lineBasicMaterial color="#ffffff" linewidth={2} />
-            </line>
+            <Line points={[[-4, 0, 0], [4, 0, 0]]} color="#ffffff" lineWidth={2} />
             
             {/* Normal line */}
-            <line>
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={2}
-                        array={new Float32Array([0, -3, 0, 0, 3, 0])}
-                        itemSize={3}
-                    />
-                </bufferGeometry>
-                <lineDashedMaterial color="#ffd166" dashSize={0.1} gapSize={0.05} linewidth={1} />
-            </line>
+            <Line points={[[0, -3, 0], [0, 3, 0]]} color="#ffd166" lineWidth={1} dashed dashSize={0.1} gapSize={0.05} />
             
             {/* Incident ray */}
             <LightRay start={incidentStart} end={incidentEnd} color="#ffff00" />
@@ -210,7 +167,7 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
 }
 
 // Prism with dispersion
-function Prism({ incidentAngle }: { incidentAngle: number }) {
+function Prism({ incidentAngle: _incidentAngle }: { incidentAngle: number }) {
     // Prism vertices (equilateral triangle)
     const prismGeometry = useMemo(() => {
         const shape = new THREE.Shape();
@@ -280,7 +237,7 @@ function Prism({ incidentAngle }: { incidentAngle: number }) {
     );
 }
 
-function OpticsScene({ n1, n2, incidentAngle, showPrism, showTotalReflection }: OpticsCanvasProps) {
+function OpticsScene({ n1, n2, incidentAngle, showPrism, showTotalReflection: _showTotalReflection }: OpticsCanvasProps) {
     return (
         <>
             <ambientLight intensity={0.5} />

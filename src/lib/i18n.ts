@@ -6951,12 +6951,16 @@ export function useLanguage() {
     const { currentLanguage, setLanguage } = useAppStore();
     const t = (path: string) => {
         const segments = path.split(".");
-        let node: any = translations[currentLanguage];
+        let node: unknown = translations[currentLanguage];
         for (const segment of segments) {
-            if (!node || typeof node !== "object" || !(segment in node)) {
+            if (!node || typeof node !== "object") {
                 return path;
             }
-            node = node[segment];
+            const record = node as Record<string, unknown>;
+            if (!(segment in record)) {
+                return path;
+            }
+            node = record[segment];
         }
         return typeof node === "string" ? node : path;
     };

@@ -43,7 +43,7 @@ function GaltonBoard({ rows, ballCount, showDistribution, onBallLanded }: Probab
                 active: false,
             }));
         }
-    }, [ballCount]);
+    }, [ballCount, rows]);
     
     // Peg positions
     const pegs = useMemo(() => {

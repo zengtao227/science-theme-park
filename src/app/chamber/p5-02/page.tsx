@@ -10,9 +10,52 @@ import RelativityCanvas from "@/components/chamber/gp5-02/RelativityCanvas";
 
 type Stage = "TIME_DILATION" | "LENGTH_CONTRACTION" | "DOPPLER";
 
+type RelativityStages = Partial<{
+  time_dilation: string;
+  length_contraction: string;
+  doppler: string;
+  time_dilation_desc: string;
+  length_contraction_desc: string;
+  doppler_desc: string;
+  time_dilation_hint: string;
+  length_contraction_hint: string;
+  doppler_hint: string;
+  lorentz: string;
+  contraction: string;
+  dilation: string;
+}>;
+
+type RelativityLabels = Partial<{
+  velocity: string;
+  lorentz_factor: string;
+  time_dilation: string;
+  proper_time: string;
+  dilated_time: string;
+  length_contraction: string;
+  rest_length: string;
+  contracted_length: string;
+  doppler_effect: string;
+  doppler_factor: string;
+  shift_type: string;
+  red_shift: string;
+  blue_shift: string;
+  particle_velocity: string;
+  formulas: string;
+  input: string;
+  hints: string;
+  gamma: string;
+  length: string;
+  time: string;
+}>;
+
+type RelativityTranslations = Omit<typeof translations.EN.p5_02, "stages" | "labels"> & {
+  stages?: RelativityStages;
+  labels?: RelativityLabels;
+};
+
 export default function P502Page() {
   const { currentLanguage } = useAppStore();
-  const t = (translations[currentLanguage].p5_02 || translations.EN.p5_02) as any;
+  const t = (translations[currentLanguage].p5_02 || translations.EN.p5_02) as RelativityTranslations;
 
   const [stage, setStage] = useState<Stage>("TIME_DILATION");
   const [velocity, setVelocity] = useState(0.5); // fraction of c

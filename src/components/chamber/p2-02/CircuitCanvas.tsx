@@ -244,11 +244,11 @@ function WireSegment({
 }
 
 function OscilloscopeTrace({ stateRef }: { stateRef: React.MutableRefObject<RlcState> }) {
-  const lineRef = useRef<THREE.Line>(null);
+  const geometryRef = useRef<THREE.BufferGeometry>(null);
   const sampleCount = 160;
   const samples = useRef<Float32Array>(new Float32Array(sampleCount));
   const cursor = useRef(0);
-  const positions = useMemo(() => new Float32Array(sampleCount * 3), [sampleCount]);
+  const initialPositions = useMemo(() => new Float32Array(sampleCount * 3), [sampleCount]);
 
   useFrame(() => {
     const v = stateRef.current.vC;
@@ -258,24 +258,24 @@ function OscilloscopeTrace({ stateRef }: { stateRef: React.MutableRefObject<RlcS
     const scale = 0.25;
     const xStart = -2.8;
     const dx = 5.6 / (sampleCount - 1);
+    const positions = new Float32Array(sampleCount * 3);
     for (let i = 0; i < sampleCount; i += 1) {
       const idx = (cursor.current + i) % sampleCount;
       positions[i * 3] = xStart + i * dx;
       positions[i * 3 + 1] = samples.current[idx] * scale;
       positions[i * 3 + 2] = 0;
     }
-    const geometry = lineRef.current?.geometry as THREE.BufferGeometry | undefined;
-    if (geometry) {
-      geometry.attributes.position.array = positions;
-      geometry.attributes.position.needsUpdate = true;
+    if (geometryRef.current) {
+      geometryRef.current.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometryRef.current.attributes.position.needsUpdate = true;
     }
   });
 
   return (
     <group position={[0, 2.3, 0]}>
-      <line ref={lineRef}>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={sampleCount} array={positions} itemSize={3} />
+      <line>
+        <bufferGeometry ref={geometryRef}>
+          <bufferAttribute attach="attributes-position" args={[initialPositions, 3]} />
         </bufferGeometry>
         <lineBasicMaterial color={neon.cyan} />
       </line>
@@ -293,15 +293,18 @@ function RlcCircuit({
   powered,
   stateRef,
   onProbePick,
+  onReadout,
 }: {
   config: RlcConfig;
   powered: boolean;
   stateRef: React.MutableRefObject<RlcState>;
   onProbePick: (probe: MeterProbe) => void;
+  onReadout?: (readout: { vR: number; vL: number; vC: number }) => void;
 }) {
   const safeL = Math.max(0.05, config.L);
   const safeC = Math.max(0.05, config.C);
   const resetRef = useRef(0);
+  const readoutTick = useRef(0);
 
   useEffect(() => {
     stateRef.current = { t: 0, i: 0, q: 0, vSource: 0, vR: 0, vL: 0, vC: 0 };
@@ -340,6 +343,16 @@ function RlcCircuit({
         vL: safeL * di,
         vC: nextQ / safeC,
       };
+    }
+    if (onReadout) {
+      readoutTick.current += 1;
+      if (readoutTick.current % 3 === 0) {
+        onReadout({
+          vR: stateRef.current.vR,
+          vL: stateRef.current.vL,
+          vC: stateRef.current.vC,
+        });
+      }
     }
   });
 
@@ -524,6 +537,7 @@ export default function P202CircuitCanvas({
   const [probeA, setProbeA] = useState<MeterProbe | null>(null);
   const [probeB, setProbeB] = useState<MeterProbe | null>(null);
   const [meterMode, setMeterMode] = useState<"voltage" | "current">("voltage");
+  const [rlcReadout, setRlcReadout] = useState({ vR: 0, vL: 0, vC: 0 });
 
   const handleProbePick = useCallback((probe: MeterProbe) => {
     if (!probeA || probeB) {
@@ -562,7 +576,7 @@ export default function P202CircuitCanvas({
             <SimpleCircuit voltage={voltage} resistance={resistance[0] ?? 1} current={current} powered={powered} />
           )}
           {scenario === "rlc" && rlc && (
-            <RlcCircuit config={rlc} powered={powered} stateRef={rlcStateRef} onProbePick={handleProbePick} />
+            <RlcCircuit config={rlc} powered={powered} stateRef={rlcStateRef} onProbePick={handleProbePick} onReadout={setRlcReadout} />
           )}
         </Float>
         {showCurrent && (
@@ -613,7 +627,7 @@ export default function P202CircuitCanvas({
                 : `I = ${meterValue.toFixed(3)} A`}
           </div>
           <div>
-            {`V_R = ${rlcStateRef.current.vR.toFixed(2)}  V_L = ${rlcStateRef.current.vL.toFixed(2)}  V_C = ${rlcStateRef.current.vC.toFixed(2)}`}
+            {`V_R = ${rlcReadout.vR.toFixed(2)}  V_L = ${rlcReadout.vL.toFixed(2)}  V_C = ${rlcReadout.vC.toFixed(2)}`}
           </div>
         </div>
       )}

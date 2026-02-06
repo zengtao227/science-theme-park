@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -15,7 +15,6 @@ export default function GP5_01_AtomicCore() {
     const [protons, setProtons] = useState(26); // Iron-56
     const [neutrons, setNeutrons] = useState(30);
     const [showStabilityIsland, setShowStabilityIsland] = useState(true);
-    const [decayChain, setDecayChain] = useState<Array<{Z: number, N: number, mode: string}>>([]);
     
     const A = protons + neutrons;
     const bindingEnergy = calculateBindingEnergy(A, protons);
@@ -24,7 +23,7 @@ export default function GP5_01_AtomicCore() {
     const decayMode = getDecayMode(protons, neutrons);
     
     // Simulate decay chain
-    const simulateDecay = useCallback(() => {
+    const buildDecayChain = useCallback(() => {
         const chain: Array<{Z: number, N: number, mode: string}> = [];
         let currentZ = protons;
         let currentN = neutrons;
@@ -55,16 +54,13 @@ export default function GP5_01_AtomicCore() {
             chain.push({ Z: currentZ, N: currentN, mode: "stable" });
         }
         
-        setDecayChain(chain);
+        return chain;
     }, [protons, neutrons]);
-    
-    useEffect(() => {
-        if (!stable) {
-            simulateDecay();
-        } else {
-            setDecayChain([]);
-        }
-    }, [stable, simulateDecay]);
+
+    const decayChain = useMemo(() => {
+        if (stable) return [];
+        return buildDecayChain();
+    }, [stable, buildDecayChain]);
     
     // Preset nuclei
     const presets = [
