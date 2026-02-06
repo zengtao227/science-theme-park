@@ -760,3 +760,322 @@ completeStage: (moduleId, stageId) =>
 4. Scope all progress/history by username
 5. Persist to localStorage with user namespace
 
+
+## Data Models
+
+### User Profile Model
+```typescript
+interface UserProfile {
+  username: string;
+  createdAt: number;
+  lastActive: number;
+  avatar?: string;
+}
+```
+
+### Module Metadata Model
+```typescript
+interface ModuleMetadata {
+  code: string;
+  title: string;
+  curriculumLevel: 'SEK1' | 'SEK2' | 'SEK3' | 'GYM' | 'ENRICHMENT';
+  baselCurriculumRef?: string;
+  difficulty: 'BASIC' | 'CORE' | 'ADVANCED' | 'ELITE';
+  topics: string[];
+}
+```
+
+### Translation Structure
+```typescript
+interface TranslationEntry {
+  [key: string]: string | TranslationEntry;
+}
+
+interface Translations {
+  EN: TranslationEntry;
+  DE: TranslationEntry;
+  CN: TranslationEntry;
+}
+```
+
+### Canvas Configuration
+```typescript
+interface CanvasConfig {
+  width: number;
+  height: number;
+  aspectRatio: number;  // height/width for vertical orientation
+  cameraPosition: [number, number, number];
+  fov: number;
+}
+```
+
+
+## Correctness Properties
+
+*A property is a characteristic or behavior that should hold true across all valid executions of a system—essentially, a formal statement about what the system should do. Properties serve as the bridge between human-readable specifications and machine-verifiable correctness guarantees.*
+
+### Property Reflection
+
+After analyzing all acceptance criteria, I identified the following redundancies:
+- Properties 1.1 and 1.2 both test translation retrieval - combined into Property 1
+- Properties 4.1 and 4.2 both test translation completeness - combined into Property 2
+- Properties 8.1 and 8.2 are identical - combined into Property 6
+- Properties 2.3 and 2.4 test the same aspect ratio concept - combined into Property 3
+
+### Property 1: Translation Key Retrieval
+*For any* module code that has a translation key in Translation_System, retrieving and displaying that module's title should return a non-empty string from the current language's translation set.
+
+**Validates: Requirements 1.1, 1.2**
+
+### Property 2: Translation Completeness
+*For any* language selection (EN, DE, CN), all UI text elements in module components should use translation keys from Translation_System, with no hardcoded strings in other languages appearing.
+
+**Validates: Requirements 4.1, 4.2, 4.5**
+
+### Property 3: Vertical Layout Aspect Ratio
+*For any* module that renders 3D graphics in Monitor_Area, the canvas aspect ratio (height/width) should be greater than 1.0, indicating vertical orientation.
+
+**Validates: Requirements 2.3, 2.4**
+
+### Property 4: Graphics Size Increase
+*For any* 3D visualization canvas, the new dimensions should be at least 1.5 times the original dimensions while maintaining the original aspect ratio.
+
+**Validates: Requirements 3.1, 3.3**
+
+### Property 5: No Horizontal Overflow
+*For any* enlarged graphics canvas, the width should not exceed the viewport width at standard screen resolutions (1920px), ensuring no horizontal scrolling occurs.
+
+**Validates: Requirements 3.5**
+
+### Property 6: Hochdeutsch Compliance
+*For any* German translation text, the text should not contain Swiss German dialect patterns (e.g., "usrächne", "Ufgab", "Mathe") and should use standard German mathematical vocabulary.
+
+**Validates: Requirements 8.1, 8.2, 8.4**
+
+### Property 7: German Terminology Consistency
+*For any* mathematical concept that appears in multiple modules, the German translation should use the same term consistently across all occurrences.
+
+**Validates: Requirements 8.5**
+
+### Property 8: Translation Fallback
+*For any* translation key that does not exist in Translation_System, the system should log a warning and display the key name as fallback text.
+
+**Validates: Requirements 4.3**
+
+### Property 9: User Data Isolation
+*For any* username in the system, completing a module should associate the learning record with that username, and switching users should show only that user's progress and history.
+
+**Validates: Requirements 9.2, 9.3, 9.5**
+
+### Property 10: Route Accessibility
+*For all* module routes defined in the application, navigating to that route should successfully load the module page without 404 errors.
+
+**Validates: Requirements 6.5**
+
+### Property 11: Error Logging
+*For any* routing error or module load failure, the system should log the error to the console with sufficient detail for debugging.
+
+**Validates: Requirements 6.3, 6.4**
+
+### Property 12: Module Metadata Completeness
+*For all* modules in the system, module metadata should exist and contain curriculum level, difficulty, and topic information.
+
+**Validates: Requirements 5.4, 5.5**
+
+### Property 13: Existing Functionality Preservation
+*For any* existing module functionality before fixes, that functionality should continue to work identically after fixes are applied.
+
+**Validates: Requirements 10.3**
+
+
+## Error Handling
+
+### Translation Errors
+- **Missing Translation Key**: Log warning, display key name as fallback
+- **Invalid Language Code**: Fall back to English (EN)
+- **Malformed Translation Object**: Log error, use empty string
+
+### Routing Errors
+- **404 Not Found**: Display error boundary with "Try Again" button
+- **Component Load Failure**: Show loading state, retry after timeout
+- **Hydration Mismatch**: Log error, force client-side re-render
+
+### User System Errors
+- **localStorage Unavailable**: Show warning, operate in memory-only mode
+- **Corrupted User Data**: Reset to default state, log error
+- **Invalid Username**: Reject empty/whitespace-only names
+
+### Canvas Rendering Errors
+- **WebGL Not Supported**: Display fallback 2D visualization
+- **Canvas Initialization Failure**: Show error message with browser requirements
+- **Memory Overflow**: Reduce quality settings, log warning
+
+### Curriculum Validation Errors
+- **Missing Metadata**: Log warning, mark as "UNCATEGORIZED"
+- **Invalid Curriculum Level**: Default to "ENRICHMENT"
+
+
+## Testing Strategy
+
+### Dual Testing Approach
+
+This project requires both **unit tests** and **property-based tests** to ensure comprehensive coverage:
+
+- **Unit tests**: Verify specific examples, edge cases, and error conditions
+- **Property tests**: Verify universal properties across all inputs
+- Both are complementary and necessary for comprehensive coverage
+
+### Unit Testing Focus
+
+Unit tests should focus on:
+- **Specific examples**: SM2.07, SM3.02, SM3.04 title display (Requirement 1.3)
+- **Module-specific fixes**: SM2.02, SM2.01, SM3.02 vertical layout (Requirement 2.4)
+- **Basel localization examples**: Specific references in geometry, chemistry, physics (Requirements 7.1-7.4)
+- **User flow examples**: First visit prompt, user switching UI (Requirements 9.1, 9.4)
+- **Curriculum decisions**: SM1.02 placement (Requirements 5.2, 5.3)
+- **Routing stability**: SM2.01 route loading (Requirement 6.1)
+- **Edge cases**: Empty username, missing translation keys, WebGL unavailable
+
+### Property-Based Testing Configuration
+
+- **Library**: Use `fast-check` for TypeScript/JavaScript property-based testing
+- **Minimum Iterations**: 100 runs per property test
+- **Tag Format**: `// Feature: science-park-fixes, Property {number}: {property_text}`
+- **Each correctness property MUST be implemented by a SINGLE property-based test**
+
+### Property Test Implementation
+
+**Property 1: Translation Key Retrieval**
+```typescript
+// Feature: science-park-fixes, Property 1: Translation Key Retrieval
+test('translation keys return non-empty strings', () => {
+  fc.assert(
+    fc.property(
+      fc.constantFrom('EN', 'DE', 'CN'),
+      fc.constantFrom('sm1-01', 'sm2-07', 'sm3-02', 'sm3-04'),
+      (lang, moduleCode) => {
+        const title = getModuleTitle(moduleCode, lang);
+        return title.length > 0;
+      }
+    ),
+    { numRuns: 100 }
+  );
+});
+```
+
+**Property 2: Translation Completeness**
+```typescript
+// Feature: science-park-fixes, Property 2: Translation Completeness
+test('no hardcoded strings in other languages', () => {
+  fc.assert(
+    fc.property(
+      fc.constantFrom('EN', 'DE', 'CN'),
+      fc.constantFrom(...allModuleComponents),
+      (selectedLang, component) => {
+        const renderedText = renderComponent(component, selectedLang);
+        const otherLangs = ['EN', 'DE', 'CN'].filter(l => l !== selectedLang);
+        return !containsTextFromLanguages(renderedText, otherLangs);
+      }
+    ),
+    { numRuns: 100 }
+  );
+});
+```
+
+**Property 3: Vertical Layout Aspect Ratio**
+```typescript
+// Feature: science-park-fixes, Property 3: Vertical Layout Aspect Ratio
+test('3D graphics use vertical aspect ratio', () => {
+  fc.assert(
+    fc.property(
+      fc.constantFrom('sm2-02', 'sm2-01', 'sm3-02'),
+      (moduleCode) => {
+        const canvas = getModuleCanvas(moduleCode);
+        const aspectRatio = canvas.height / canvas.width;
+        return aspectRatio > 1.0;
+      }
+    ),
+    { numRuns: 100 }
+  );
+});
+```
+
+**Property 6: Hochdeutsch Compliance**
+```typescript
+// Feature: science-park-fixes, Property 6: Hochdeutsch Compliance
+test('German translations use Hochdeutsch', () => {
+  const swissDialectPatterns = [/\busrächne\b/, /\bUfgab\b/, /\bMathe\b/];
+  
+  fc.assert(
+    fc.property(
+      fc.constantFrom(...allGermanTranslationKeys),
+      (key) => {
+        const text = getGermanTranslation(key);
+        return !swissDialectPatterns.some(pattern => pattern.test(text));
+      }
+    ),
+    { numRuns: 100 }
+  );
+});
+```
+
+**Property 9: User Data Isolation**
+```typescript
+// Feature: science-park-fixes, Property 9: User Data Isolation
+test('user progress is isolated per username', () => {
+  fc.assert(
+    fc.property(
+      fc.string({ minLength: 1, maxLength: 20 }),
+      fc.string({ minLength: 1, maxLength: 20 }),
+      fc.constantFrom(...allModuleCodes),
+      (user1, user2, moduleCode) => {
+        fc.pre(user1 !== user2); // Ensure different users
+        
+        // User 1 completes module
+        switchUser(user1);
+        completeModule(moduleCode);
+        const user1Progress = getProgress(moduleCode);
+        
+        // User 2 should have no progress
+        switchUser(user2);
+        const user2Progress = getProgress(moduleCode);
+        
+        return user1Progress > 0 && user2Progress === 0;
+      }
+    ),
+    { numRuns: 100 }
+  );
+});
+```
+
+### Integration Testing
+
+- Test complete user flows: first visit → username setup → module completion → user switch
+- Test language switching across multiple modules
+- Test routing for all 53 modules
+- Test canvas rendering in different viewport sizes
+
+### Manual Testing Checklist
+
+Week 1 Fixes:
+- [ ] Verify SM2.07, SM3.02, SM3.04 titles display correctly
+- [ ] Verify SM2.02, SM2.01, SM3.02 use vertical layout
+- [ ] Verify graphics are 50%+ larger and details visible
+- [ ] Verify SM2.01 loads consistently without 404 errors
+- [ ] Verify SM1.02 curriculum alignment decision
+
+Week 2-3 Enhancements:
+- [ ] Audit all modules for hardcoded English text
+- [ ] Verify Basel references in geometry, chemistry, physics modules
+- [ ] Test user system: create user, switch users, verify data isolation
+- [ ] Review all German translations for Hochdeutsch compliance
+- [ ] Verify curriculum metadata for all modules
+
+### Regression Testing
+
+- Run existing test suite after each fix
+- Verify no existing functionality broken
+- Test on multiple browsers (Chrome, Firefox, Safari)
+- Test on mobile devices (responsive design)
+- Verify Vercel deployment succeeds
+

@@ -358,3 +358,14 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    1689e15..bf72c85  main -> main
+[main 8c88c77] auto: daily sync 2026-02-06 21:59
+ 7 files changed, 1808 insertions(+)
+ create mode 100644 .kiro/specs/science-park-fixes/.config.kiro
+ create mode 100644 .kiro/specs/science-park-fixes/design.md
+ create mode 100644 .kiro/specs/science-park-fixes/requirements.md
+ create mode 100644 COMPREHENSIVE_FIX_PLAN.md
+ create mode 100644 ISSUES_FOUND_2026-02-06.md
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   bf72c85..8c88c77  main -> main
