@@ -75,12 +75,7 @@ function SOrbital({ scale = 1, color = "#00e5ff" }: { scale?: number; color?: st
     return (
         <points ref={pointsRef}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={count}
-                    array={positions}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" args={[positions, 3]} />
             </bufferGeometry>
             <pointsMaterial
                 size={0.02}
@@ -147,12 +142,7 @@ function POrbital({ axis = "z", scale = 1, color = "#a855f7" }: { axis?: "x" | "
     return (
         <points ref={pointsRef}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={count}
-                    array={positions}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" args={[positions, 3]} />
             </bufferGeometry>
             <pointsMaterial
                 size={0.02}
@@ -215,12 +205,7 @@ function DOrbital({ type = "dz2", scale = 1, color = "#ff2d7d" }: { type?: "dz2"
     return (
         <points ref={pointsRef}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={count}
-                    array={positions}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" args={[positions, 3]} />
             </bufferGeometry>
             <pointsMaterial
                 size={0.02}
@@ -235,7 +220,7 @@ function DOrbital({ type = "dz2", scale = 1, color = "#ff2d7d" }: { type?: "dz2"
 }
 
 // Nucleus
-function Nucleus({ atomicNumber }: { atomicNumber: number }) {
+function Nucleus() {
     return (
         <mesh>
             <sphereGeometry args={[0.3, 32, 32]} />
@@ -268,7 +253,7 @@ function TransitionElectron({ fromLevel, toLevel }: { fromLevel: number; toLevel
     return (
         <mesh ref={electronRef}>
             <sphereGeometry args={[0.1, 16, 16]} />
-            <meshBasicMaterial color="#ffff00" emissive="#ffff00" emissiveIntensity={1} />
+            <meshStandardMaterial color="#ffff00" emissive="#ffff00" emissiveIntensity={1} />
         </mesh>
     );
 }
@@ -280,7 +265,7 @@ function AtomScene({ element, atomicNumber, orbitalType, showTransition }: Orbit
             <pointLight position={[10, 10, 10]} intensity={0.5} />
             
             {/* Nucleus */}
-            <Nucleus atomicNumber={atomicNumber} />
+            <Nucleus />
             
             {/* Orbitals based on type */}
             {orbitalType === "s" && (

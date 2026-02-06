@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -62,7 +62,7 @@ export default function SP2_02_CircuitSandbox() {
     ]);
 
     // RLC transient analysis
-    const solveRLC = (t: number) => {
+    const solveRLC = useCallback((t: number) => {
         const R = resistance;
         const L = inductance;
         const C = capacitance;
@@ -92,7 +92,7 @@ export default function SP2_02_CircuitSandbox() {
         }
 
         return v_t;
-    };
+    }, [capacitance, inductance, resistance, voltage]);
 
     // Update time and oscilloscope
     useEffect(() => {
@@ -107,7 +107,7 @@ export default function SP2_02_CircuitSandbox() {
         }, 16);
 
         return () => clearInterval(interval);
-    }, [time, resistance, capacitance, inductance, voltage]);
+    }, [time, resistance, capacitance, inductance, voltage, solveRLC]);
 
     // Draw oscilloscope
     useEffect(() => {

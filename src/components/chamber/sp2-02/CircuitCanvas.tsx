@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useEffect } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 // Circuit component types
@@ -120,16 +120,12 @@ function Battery({ position, selected }: { position: [number, number, number]; s
 }
 
 function Wire({ start, end, selected }: { start: [number, number, number]; end: [number, number, number]; selected: boolean }) {
-    const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)];
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
     return (
-        <line geometry={geometry}>
-            <lineBasicMaterial
-                color={selected ? "#ff2d7d" : "#00e5ff"}
-                linewidth={selected ? 3 : 2}
-            />
-        </line>
+        <Line
+            points={[start, end]}
+            color={selected ? "#ff2d7d" : "#00e5ff"}
+            lineWidth={selected ? 3 : 2}
+        />
     );
 }
 
@@ -167,8 +163,7 @@ function solveCircuit(components: CircuitComponent[], time: number) {
 
 function CircuitScene({ components, onComponentClick, multimeterMode, selectedPoints, time }: CircuitCanvasProps) {
     const { camera, raycaster, gl } = useThree();
-    const [hoveredId, setHoveredId] = useState<string | null>(null);
-    const circuitResults = solveCircuit(components, time);
+    solveCircuit(components, time);
 
     // Raycaster for multimeter picking
     useEffect(() => {

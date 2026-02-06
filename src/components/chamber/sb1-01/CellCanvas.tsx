@@ -2,28 +2,9 @@
 
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Html } from "@react-three/drei";
+import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
 
-interface Organelle {
-    id: string;
-    name: string;
-    position: [number, number, number];
-    color: string;
-    size: number;
-    shape: "sphere" | "ellipsoid" | "rod";
-}
-
-const organelles: Organelle[] = [
-    { id: "nucleus", name: "Nucleus", position: [0, 0, 0], color: "#a855f7", size: 1.2, shape: "sphere" },
-    { id: "mitochondria1", name: "Mitochondria", position: [2, 0.5, 0.5], color: "#ff2d7d", size: 0.4, shape: "rod" },
-    { id: "mitochondria2", name: "Mitochondria", position: [-2, -0.5, -0.5], color: "#ff2d7d", size: 0.4, shape: "rod" },
-    { id: "ribosome1", name: "Ribosome", position: [1, 1, 1], color: "#39ff14", size: 0.15, shape: "sphere" },
-    { id: "ribosome2", name: "Ribosome", position: [-1, 1, -1], color: "#39ff14", size: 0.15, shape: "sphere" },
-    { id: "ribosome3", name: "Ribosome", position: [1, -1, -1], color: "#39ff14", size: 0.15, shape: "sphere" },
-    { id: "golgi", name: "Golgi Apparatus", position: [1.5, -0.5, 1], color: "#ffd166", size: 0.5, shape: "ellipsoid" },
-    { id: "er", name: "Endoplasmic Reticulum", position: [-1.5, 0.5, 1], color: "#00e5ff", size: 0.6, shape: "ellipsoid" },
-];
 
 interface CellCanvasProps {
     selectedOrganelle: string | null;
@@ -34,7 +15,7 @@ interface CellCanvasProps {
 function Nucleus({ selected, onClick }: { selected: boolean; onClick: () => void }) {
     const meshRef = useRef<THREE.Mesh>(null);
 
-    useFrame((state) => {
+    useFrame(() => {
         if (meshRef.current) {
             meshRef.current.rotation.y += 0.002;
         }
@@ -66,7 +47,7 @@ function Nucleus({ selected, onClick }: { selected: boolean; onClick: () => void
 function Mitochondria({ position, selected, onClick }: { position: [number, number, number]; selected: boolean; onClick: () => void }) {
     const meshRef = useRef<THREE.Mesh>(null);
 
-    useFrame((state) => {
+    useFrame(() => {
         if (meshRef.current) {
             meshRef.current.rotation.z += 0.01;
         }

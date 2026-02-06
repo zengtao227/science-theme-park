@@ -4,7 +4,7 @@ import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
-import { idealGasPressure, rmsVelocity } from "@/lib/physics";
+import { rmsVelocity } from "@/lib/physics";
 
 interface GasTankCanvasProps {
   volume: number; // L
@@ -23,7 +23,8 @@ const pseudo = (seed: number) => {
   return x - Math.floor(x);
 };
 
-function GasParticles({ volume, temperature, moles, particleCount = 100 }: GasTankCanvasProps) {
+function GasParticles(props: GasTankCanvasProps) {
+  const { volume, temperature, particleCount = 100 } = props;
   const particlesRef = useRef<THREE.InstancedMesh>(null);
   const particles = useRef<Particle[]>([]);
   const dummyRef = useRef(new THREE.Object3D());
@@ -140,7 +141,7 @@ function Container({ volume }: { volume: number }) {
   );
 }
 
-function Piston({ volume, maxVolume }: { volume: number; maxVolume: number }) {
+function Piston({ volume }: { volume: number }) {
   const position = useMemo(() => {
     const side = Math.cbrt(volume);
     return new THREE.Vector3(0, side / 2 + 0.1, 0);
@@ -188,7 +189,7 @@ export default function GasTankCanvas(props: GasTankCanvasProps) {
         <GridPlane />
         <Container volume={props.volume} />
         <GasParticles {...props} />
-        <Piston volume={props.volume} maxVolume={10} />
+        <Piston volume={props.volume} />
 
         {/* Background */}
         <mesh>

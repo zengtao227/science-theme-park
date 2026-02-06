@@ -12,7 +12,7 @@ const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/Titrat
 export default function SC2_02_pHSentinel() {
     const { t } = useLanguage();
     const [acidType, setAcidType] = useState<"strong" | "weak">("weak");
-    const [baseType, setBaseType] = useState<"strong" | "weak">("strong");
+    const [baseType] = useState<"strong" | "weak">("strong");
     const [acidConcentration, setAcidConcentration] = useState(0.1); // M
     const [baseConcentration, setBaseConcentration] = useState(0.1); // M
     const [volumeAdded, setVolumeAdded] = useState(0); // mL

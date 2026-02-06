@@ -25,7 +25,7 @@ const pseudo = (seed: number) => {
 };
 
 // Galton Board (Bean Machine)
-function GaltonBoard({ rows, ballCount, showDistribution, onBallLanded }: ProbabilityCanvasProps & { onBallLanded: (bin: number) => void }) {
+function GaltonBoard({ rows, ballCount, onBallLanded }: ProbabilityCanvasProps & { onBallLanded: (bin: number) => void }) {
     const ballsRef = useRef<Ball[]>([]);
     const instancedMeshRef = useRef<THREE.InstancedMesh>(null);
     const [nextBallId, setNextBallId] = useState(0);

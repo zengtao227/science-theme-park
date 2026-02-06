@@ -27,9 +27,6 @@ export default function GC1_01_RedoxTitan() {
     
     const Q = znConcentration / cuConcentration;
     const E = E0_cell - (R * temperature / (n * F)) * Math.log(Q);
-    
-    // Simplified approximation at 298K: E = E° - (0.0592/n) * log₁₀(Q)
-    const E_simplified = E0_cell - (0.0592 / n) * Math.log10(Q);
 
     return (
         <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">

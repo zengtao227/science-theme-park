@@ -13,7 +13,7 @@ export default function SP1_08_OpticsBench() {
     const [n2, setN2] = useState(1.5); // Glass
     const [incidentAngle, setIncidentAngle] = useState(30);
     const [showPrism, setShowPrism] = useState(false);
-    const [showTotalReflection, setShowTotalReflection] = useState(false);
+    const showTotalReflection = false; // Reserved for future feature
 
     const criticalAngle = n1 > n2 ? Math.asin(n2 / n1) * 180 / Math.PI : 90;
     const sinTheta2 = (n1 / n2) * Math.sin(incidentAngle * Math.PI / 180);

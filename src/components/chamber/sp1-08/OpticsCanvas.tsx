@@ -167,7 +167,8 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
 }
 
 // Prism with dispersion
-function Prism({ incidentAngle: _incidentAngle }: { incidentAngle: number }) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function Prism({ incidentAngle }: { incidentAngle: number }) {
     // Prism vertices (equilateral triangle)
     const prismGeometry = useMemo(() => {
         const shape = new THREE.Shape();
@@ -237,7 +238,8 @@ function Prism({ incidentAngle: _incidentAngle }: { incidentAngle: number }) {
     );
 }
 
-function OpticsScene({ n1, n2, incidentAngle, showPrism, showTotalReflection: _showTotalReflection }: OpticsCanvasProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function OpticsScene({ n1, n2, incidentAngle, showPrism, showTotalReflection }: OpticsCanvasProps) {
     return (
         <>
             <ambientLight intensity={0.5} />

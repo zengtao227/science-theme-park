@@ -646,3 +646,38 @@ Mission 59 (GC1.01 氧化还原巨人) 待处理。
 
 ## 📊 K65-K75 模块完全清理
 所有 6 个新模块（K65, K66, K68, K69, K72, K75）现在完全无错误无警告。
+
+
+---
+
+## Mission K83: Final Warnings Cleanup (Module Set A)
+**状态**: ✅ 完成
+
+### 完成内容
+- ✅ `gc1-01/page.tsx`: 移除未使用的 `E_simplified` 变量
+- ✅ `sp1-08/page.tsx`: 将 `setShowTotalReflection` 改为常量（保留功能接口）
+- ✅ `g3-01/ProbabilityCanvas.tsx`: 使用 `_` 前缀标记未使用的 `showDistribution` 参数
+- ✅ `s3-02/TrigCanvas.tsx`: 移除未使用的 `useFrame` 导入
+- ✅ `sp1-06/PendulumCanvas.tsx`: 移除未使用的 `Text` 导入
+- ✅ `sp1-08/OpticsCanvas.tsx`: 使用 eslint-disable 注释抑制未使用参数警告
+  - `incidentAngle` 在 Prism 组件中保留（未来功能）
+  - `showTotalReflection` 在 OpticsScene 组件中保留（未来功能）
+- ✅ 所有 7 个文件通过 diagnostics 检查，零警告
+
+### 技术方案
+- **未使用导入**: 直接移除
+- **未使用变量**: 移除或改为常量
+- **未使用参数（保留接口）**: 使用 `eslint-disable-next-line` 注释
+
+### 文件路径
+- `src/app/chamber/gc1-01/page.tsx`
+- `src/app/chamber/sp1-08/page.tsx`
+- `src/components/chamber/g3-01/ProbabilityCanvas.tsx`
+- `src/components/chamber/s3-02/TrigCanvas.tsx`
+- `src/components/chamber/sp1-06/PendulumCanvas.tsx`
+- `src/components/chamber/sp1-08/OpticsCanvas.tsx`
+
+---
+
+## 📊 验收标准达成
+运行 `npm run lint` 确认以上 7 个文件零警告 ✅

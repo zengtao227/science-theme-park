@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useMemo } from "react";
-
 type Allele = "R" | "r";
 type Genotype = "RR" | "Rr" | "rR" | "rr";
 

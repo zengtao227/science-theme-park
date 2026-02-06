@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
@@ -18,7 +18,8 @@ interface Particle {
   dissolved: boolean;
 }
 
-function SoluteParticles({ temperature, soluteAmount, solubility, isSaturated }: BeakerCanvasProps) {
+function SoluteParticles(props: BeakerCanvasProps) {
+  const { soluteAmount, solubility, isSaturated } = props;
   const particlesRef = useRef<THREE.InstancedMesh>(null);
   const particles = useRef<Particle[]>([]);
   const dummyRef = useRef(new THREE.Object3D());

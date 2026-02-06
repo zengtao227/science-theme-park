@@ -138,7 +138,7 @@ function CellMembrane({ osmolarity }: { osmolarity: number }) {
 function Mitochondria({ position }: { position: [number, number, number] }) {
     const meshRef = useRef<THREE.Mesh>(null);
     
-    useFrame((state) => {
+    useFrame(() => {
         if (meshRef.current) {
             meshRef.current.rotation.z += 0.01;
         }

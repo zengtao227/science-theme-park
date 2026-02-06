@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -10,7 +9,6 @@ const MetabolicCell = dynamic(() => import("@/components/chamber/sb1-01/Metaboli
 });
 
 export default function SB1_01_Metabolic() {
-    const { t } = useLanguage();
     const [osmolarity, setOsmolarity] = useState(0);
     const [showATP, setShowATP] = useState(true);
 

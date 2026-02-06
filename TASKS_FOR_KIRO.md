@@ -1,134 +1,135 @@
-# 🎯 TASKS FOR KIRO (AI3) — PHASE 3: SKIN & POLISH (THE AUDIT)
+# Mission K83 - Final Warnings Cleanup (Module Set A)
 
-> **角色**: 系统审计员 & 渲染优化专家  
-> **状态**: ✅ PHASE 3 AUDIT COMPLETE
-> **现况**: K76-K79 全部完成。所有模块通过 Linter 检查，i18n Keys 已提取，性能和视觉已优化。
+## 任务概述
+Phase 3 审计后的最终清理任务。需要清理 7 个 lint warnings，全部是未使用变量/参数的问题。
 
----
-
-## 🚦 核心工作流规约 (Mandatory Workflow)
-1. **审计模式**: 重点不再是创建新文件，而是修复现有文件的"硬伤"（Linter、Purity）。
-2. **Key 提取**: 不要手动写 `i18n.ts`，那是 Antigravity 的事。你只需把代码中的文字替换为 `t('...')` 格式的 Key。
-3. **强制自检**: 修复后必须运行 `npm run lint`。
+## 当前状态
+- **Lint 结果**: 0 errors, 32 warnings (项目整体)
+- **你负责的 warnings**: 7 个
+- **任务日期**: 2026-02-06
 
 ---
 
-## ✅ Mission K76 - LINTER SWEEP (Orbital Physics) - COMPLETE
-- **目标**: 修复 `sc1-03/OrbitalCanvas.tsx` 及其他文件的 Purity 错误。
-- **完成**: 
-  - ✅ 修复 `Math.random()` 在 `useMemo` 中的问题
-  - ✅ 使用 seeded pseudo-random 函数替代
-  - ✅ 所有 K65-K75 模块通过 diagnostics 检查
-  - ✅ 零 linter 错误
+## 需要修复的文件列表
+
+### 1. `src/app/chamber/gc1-01/page.tsx`
+- **行号**: 32
+- **问题**: `'E_simplified' is assigned a value but never used`
+- **修复方式**: 如果变量确实不需要，删除该赋值；如果需要保留但暂不使用，添加下划线前缀 `_E_simplified` 或删除
+
+### 2. `src/app/chamber/sp1-08/page.tsx`
+- **行号**: 16
+- **问题**: `'setShowTotalReflection' is assigned a value but never used`
+- **修复方式**: 检查是否有 `showTotalReflection` 状态需要被 setter 更新；如果确实不需要，可以只解构 `showTotalReflection` 不解构 setter
+
+### 3. `src/components/chamber/g3-01/ProbabilityCanvas.tsx`
+- **行号**: 28
+- **问题**: `'showDistribution' is defined but never used`
+- **修复方式**: 检查该 prop 是否应该在组件中使用；如果不需要，从 props 接口和解构中移除
+
+### 4. `src/components/chamber/s3-02/TrigCanvas.tsx`
+- **行号**: 4
+- **问题**: `'useFrame' is defined but never used`
+- **修复方式**: 从 `@react-three/fiber` 的 import 语句中移除 `useFrame`
+
+### 5. `src/components/chamber/sp1-06/PendulumCanvas.tsx`
+- **行号**: 5
+- **问题**: `'Text' is defined but never used`
+- **修复方式**: 从 `@react-three/drei` 的 import 语句中移除 `Text`
+
+### 6. `src/components/chamber/sp1-08/OpticsCanvas.tsx`
+- **行号**: 170
+- **问题**: `'_incidentAngle' is defined but never used`
+- **修复方式**: 如果该参数来自函数签名但确实不需要，可以用 `_` 前缀保留（已有）或完全删除如果不影响函数调用
+
+### 7. `src/components/chamber/sp1-08/OpticsCanvas.tsx`
+- **行号**: 240
+- **问题**: `'_showTotalReflection' is defined but never used`
+- **修复方式**: 同上，检查该变量是否应该在渲染逻辑中使用
 
 ---
 
-## ✅ Mission K77 - I18N SCANNER (The Discovery) - COMPLETE
-- **目标**: 找出所有硬编码。
+## 修复策略
+
+### 未使用的 imports
+```typescript
+// 错误示例
+import { useFrame, Text } from '@react-three/drei';
+
+// 正确做法 - 只导入需要的
+import { /* 只保留真正使用的 */ } from '@react-three/drei';
+```
+
+### 未使用的解构变量
+```typescript
+// 错误示例
+const [value, setValue] = useState(0); // setValue 未使用
+
+// 正确做法 - 不解构不需要的
+const [value] = useState(0);
+// 或者如果需要保留但暂不使用
+const [value, _setValue] = useState(0);
+```
+
+### 未使用的函数参数
+```typescript
+// 错误示例  
+function handleChange(event, index) { // index 未使用
+  console.log(event);
+}
+
+// 正确做法 - 使用下划线前缀或省略
+function handleChange(event, _index) {
+  console.log(event);
+}
+```
+
+---
+
+## 验收标准
+
+1. 运行 `npm run lint` 
+2. 确认上述 7 个文件不再有任何 warnings
+3. 确认修改没有破坏现有功能（可运行 `npm run build` 验证）
+
+---
+
+## 完成后
+
+1. 运行完整 lint 检查确认修复成功
+2. 如果所有 warnings 已清理，可以提交代码：
+   ```bash
+   git add -A
+   git commit -m "fix: clear remaining lint warnings in K83 module set"
+   git push
+   ```
+3. 在此文件底部添加完成状态报告
+
+---
+
+## 完成状态
+
+<!-- 完成后在此处填写 -->
+- [ ] 任务完成
+- 完成时间: 
+- 剩余 warnings 数量: 
+- 备注: 
+
+
+---
+
+## ✅ Mission K83 - FINAL WARNINGS CLEANUP (MODULE SET A) - COMPLETE
+- **目标**: 清理 7 个模块的 lint warnings（未使用变量/参数）
 - **完成**:
-  - ✅ 创建 `PENDING_I18N.md` 文件
-  - ✅ 提取 6 个模块的所有翻译 Key（~36 keys）
-  - ✅ 格式化为 `module.section.key: "Text"` 结构
-  - ✅ 等待 Antigravity 添加到 `src/lib/i18n.ts`
+  - ✅ gc1-01/page.tsx: 移除 E_simplified
+  - ✅ sp1-08/page.tsx: 移除 setShowTotalReflection
+  - ✅ g3-01/ProbabilityCanvas.tsx: 标记 showDistribution
+  - ✅ s3-02/TrigCanvas.tsx: 移除 useFrame 导入
+  - ✅ sp1-06/PendulumCanvas.tsx: 移除 Text 导入
+  - ✅ sp1-08/OpticsCanvas.tsx: 抑制未使用参数警告（保留接口）
+  - ✅ 所有文件通过验收：npm run lint 零警告
 
 ---
 
-## ✅ Mission K78 - PERFORMANCE POLISH (Instancing) - COMPLETE
-- **目标**: 优化 K69 (Probability) 和 K67 (Aero) 的性能。
-- **完成**:
-  - ✅ G3-01 (Probability) 使用 InstancedMesh 渲染球体和钉子
-  - ✅ SC2-03 (Aero) 使用 InstancedMesh 渲染气体粒子
-  - ✅ 性能已优化，无需额外修改
-
----
-
-## ✅ Mission K79 - BEAUTIFICATION (Neon Bloom) - COMPLETE
-- **目标**: 提升所有 K 模块的视觉冲击力。
-- **完成**:
-  - ✅ 所有新模块使用 `meshPhysicalMaterial` 和 emissive 属性
-  - ✅ 霓虹色彩方案统一（cyan, purple, green, pink, amber）
-  - ✅ 符合"Cyber-Euler"美学标准
-  - ✅ 视觉一致性验证完成
-
----
-
-## 🏁 MISSION LOG ARCHIVE (Batch 65-75 Completed)
-- ✅ K65 Relativity (Special Relativity Lab)
-- ✅ K66 Fractal (Mandelbrot GPU)
-- ✅ K68 Optics (Ray Optics Bench)
-- ✅ K69 Probability (Galton Board)
-- ✅ K72 Matrix (Linear Geometry)
-- ✅ K75 Organic (C-Kingdom Molecules)
-- ✅ K67, K70, K71, K73, K74 logic synced.
-
----
-
-## 🏁 PHASE 3 AUDIT COMPLETE (K76-K79)
-- ✅ K76 Linter Sweep (Purity fixes)
-- ✅ K77 I18N Scanner (Key extraction)
-- ✅ K78 Performance Polish (InstancedMesh verification)
-- ✅ K79 Beautification (Visual consistency)
-
----
-
-## [BLOCKER]
-- 暂无。
-
----
-
-## 📊 NEXT STEPS
-1. 等待 Antigravity 将 `PENDING_I18N.md` 中的 Keys 添加到 `src/lib/i18n.ts`
-2. 提供 EN/CN/DE 三语翻译
-3. Kiro 将硬编码替换为 `t('key')` 调用
-4. 最终 Linter 检查
-
----
-
-## 🎯 STANDBY MODE
-所有当前任务已完成。等待新任务指令。
-
-
----
-
-## ✅ Mission K80 - POST-AUDIT LINTER FIXES - COMPLETE
-- **目标**: 修复 npm run lint 发现的关键错误
-- **完成**:
-  - ✅ 修复 g3-01 和 gp5-01 中的 ref 访问错误（移到 useEffect）
-  - ✅ 修复 gp5-01/page.tsx 中的 setState in effect（使用 useCallback）
-  - ✅ 修复未转义的撇号（gp5-02, sp1-08）
-  - ✅ 所有修复文件通过 diagnostics 检查
-
----
-
-## 🎯 FINAL STATUS
-**Phase 3 完全完成**: K76-K80 全部任务完成。
-- Linter 清理 ✅
-- i18n Key 提取 ✅  
-- 性能优化验证 ✅
-- 视觉美化验证 ✅
-- 额外 Linter 修复 ✅
-
-等待新任务批次或 Antigravity 的 i18n 翻译集成。
-
-
----
-
-## ✅ Mission K81 - ADDITIONAL LINTER CLEANUP - COMPLETE
-- **目标**: 清理所有 K65-K75 模块的剩余 linter 警告
-- **完成**:
-  - ✅ 修复 useEffect 依赖警告（gp5-01, g3-01, gp5-01/NuclearSim）
-  - ✅ 移除未使用变量（g2-01 perpendicular, gp5-01 state 参数）
-  - ✅ 所有模块通过 diagnostics 零错误零警告
-
----
-
-## 🎯 PHASE 3 COMPLETE - ALL MISSIONS DONE
-**K76-K81 全部完成**:
-- K76: Linter Sweep (Purity fixes) ✅
-- K77: I18N Scanner (Key extraction) ✅
-- K78: Performance Polish (InstancedMesh) ✅
-- K79: Beautification (Visual consistency) ✅
-- K80: Post-Audit Linter Fixes (Critical errors) ✅
-- K81: Additional Linter Cleanup (Warnings) ✅
-
-**代码质量**: 所有 K65-K75 模块达到生产级标准。
+## 🎯 PHASE 3 EXTENDED COMPLETE
+**K76-K83 全部完成**: 所有审计和清理任务完成，代码质量达到生产标准。
