@@ -63,12 +63,12 @@ export const translations = {
             gym_title: "GYMNASIUM // UPPER SECONDARY",
             nexus: "The Nexus",
             archive: "Archives",
-            s2_01_title: "S2.01 // BINOMIAL FACTORY",
-            s2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
+            sm2_01_title: "SM2.01 // BINOMIAL FACTORY",
+            sm2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
             s2_02_title: "S2.02 // PYTHAGORAS & ROOTS",
             s2_02_subtitle: "Train the Pythagorean theorem and square roots with realistic difficulty gradients.",
-            s3_01_title: "S3.01 // QUADRATIC EQUATIONS",
-            s3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
+            sm3_01_title: "SM3.01 // QUADRATIC EQUATIONS",
+            sm3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
             s3_03_title: "S3.03 // EXPONENTIAL GROWTH",
             s3_03_subtitle: "Model exponential and logarithmic growth with cell division simulations.",
             s2_03_title: "S2.03 // LINES & FUNCTIONS",
@@ -79,7 +79,7 @@ export const translations = {
             g1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
             g2_01_title: "G2.01 // VECTOR PILOT 3D",
             g2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
-            g3_01_title: "G3.01 // PROBABILITY VAULT",
+            gm3_01_title: "GM3.01 // PROBABILITY VAULT",
             g4_01: {
                 back: "Back to Nexus",
                 title: "G4.01 // COMPLEX HORIZON",
@@ -126,7 +126,7 @@ export const translations = {
                     euler_hint: "e^(iθ) traces the unit circle"
                 }
             },
-            g5_01: {
+            gm5_01: {
                 back: "Back to Nexus",
                 title: "G5.01 // MATRIX GEOMETRY",
                 difficulty: {
@@ -220,7 +220,7 @@ export const translations = {
             sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
             p5_01_title: "GP5.01 // THE ATOMIC CORE",
             p5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
-            p5_02: {
+            gp5_02: {
                 back: "Back to Nexus",
                 title: "GP5.02 // RELATIVITY LAB",
                 difficulty: {
@@ -333,7 +333,7 @@ export const translations = {
             sc1_03_title: "SC1.03 // ATOMS FORGE",
             sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
             sc1_04_subtitle: "Build atoms and discover the periodic table. Master electron configuration.",
-            gc2_01: {
+            gsc2_01: {
                 back: "Back to Nexus",
                 title: "GC2.01 // CARBON KINGDOM",
                 difficulty: {
@@ -406,7 +406,7 @@ export const translations = {
                     delete: "Use DELETE to remove selected atom"
                 }
             },
-            gc3_01: {
+            gsc3_01: {
                 back: "Back to Nexus",
                 title: "GC3.01 // EQUILIBRIUM MASTER",
                 difficulty: {
@@ -455,7 +455,7 @@ export const translations = {
                     pressure_hint: "Higher pressure decreases container volume"
                 }
             },
-            gc1_01: {
+            gsc1_01: {
                 back: "Back to Nexus",
                 title: "GC1.01 // REDOX TITAN",
                 difficulty: {
@@ -570,8 +570,8 @@ export const translations = {
             gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
             g4_01_title: "G4.01 // COMPLEX HORIZON",
             g4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
-            g5_01_title: "G5.01 // MATRIX TRANSFORM",
-            g5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
+            gm5_01_title: "GM5.01 // MATRIX TRANSFORM",
+            gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
             p5_02_title: "GP5.02 // RELATIVITY LAB",
             p5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
             p5_03_title: "GP5.03 // PARTICLE COLLIDER",
@@ -681,7 +681,7 @@ export const translations = {
                 chain: "Segment Chain"
             }
         },
-        s3_01: {
+        sm3_01: {
             back: "Back to Nexus",
             title: "S3.01 // QUADRATIC EQUATIONS",
             difficulty: {
@@ -935,7 +935,7 @@ export const translations = {
                 }
             }
         },
-        s2_01: {
+        sm2_01: {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
             title: "S2.01 // BINOMIAL FACTORY",
@@ -1127,7 +1127,7 @@ export const translations = {
                 description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
             }
         },
-        g3_01: {
+        gm3_01: {
             back: "Back to Nexus",
             title: "G3.01 // PROBABILITY VAULT",
             difficulty: {
@@ -1378,7 +1378,7 @@ export const translations = {
                 reverse_hint: "Swap N/S to reverse rotation"
             }
         },
-        c1_02: {
+        sc1_02: {
             back: "Back to Nexus",
             title: "C1.02 // MOLE MASTER",
             difficulty: {
@@ -1413,7 +1413,7 @@ export const translations = {
                 description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
             }
         },
-        c2_01: {
+        sc2_01: {
             back: "Back to Nexus",
             title: "C2.01 // CHEMICAL KINETICS",
             difficulty: {
@@ -1452,7 +1452,7 @@ export const translations = {
                 collision: "f = e^{-E_a/RT}"
             }
         },
-        p1_03: {
+        sp1_03: {
             back: "Back to Nexus",
             title: "P1.03 // ENERGY & POWER",
             difficulty: {
@@ -1681,7 +1681,7 @@ export const translations = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        p5_01: {
+        gp5_01: {
             back: "Back to Nexus",
             title: "P5.01 // THE ATOMIC CORE",
             difficulty: {
@@ -1724,7 +1724,7 @@ export const translations = {
                 fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
             }
         },
-        p5_02: {
+        gp5_02: {
             back: "Back to Nexus",
             title: "P5.02 // RELATIVITY LAB",
             difficulty: {
@@ -1803,7 +1803,7 @@ export const translations = {
                 richter_scale: "M = \\log(A/A_0)"
             }
         },
-        c3_01: {
+        sc3_01: {
             back: "Back to Nexus",
             title: "C3.01 // MOLECULAR ARCHITECT",
             difficulty: {
@@ -2038,7 +2038,7 @@ export const translations = {
                 description: "Explore DNA structure. Master complementary base pairing and hydrogen bonding."
             }
         },
-        c1_01: {
+        sc1_01: {
             back: "Back to Nexus",
             title: "C1.01 // MYSTERY LAB",
             difficulty: {
@@ -2373,7 +2373,7 @@ export const translations = {
                 detection_hint: "Magnetic field bends charged particle tracks"
             }
         },
-        gp5_02: {
+        ggp5_02: {
             title: "GP5.02 // RELATIVITY LAB",
             back: "Back to Nexus",
             footer_left: "GP5.02_RELATIVITY_LAB // NODE: RHINE",
@@ -2572,7 +2572,7 @@ export const translations = {
             sp1_06_subtitle: "时间的力学：与巴塞尔钟表匠一起探索周期、频率和引力。",
             p5_01_title: "GP5.01 // 原子核核心",
             p5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
-            p5_02: {
+            gp5_02: {
                 back: "返回枢纽",
                 title: "GP5.02 // 相对论实验室",
                 difficulty: {
@@ -2696,7 +2696,7 @@ export const translations = {
             sc2_04_subtitle: "探索溶解度曲线与结晶过程。掌握饱和平衡。",
             gc1_01_title: "GC1.01 // 氧化还原巨神",
             gc1_01_subtitle: "掌握电化学电池与氧化还原电位。",
-            gc1_01: {
+            gsc1_01: {
                 back: "返回枢纽",
                 title: "GC1.01 // 氧化还原巨神",
                 difficulty: {
@@ -2864,7 +2864,7 @@ export const translations = {
                 chain: "链式路径"
             }
         },
-        s3_01: {
+        sm3_01: {
             back: "返回枢纽",
             title: "S3.01 // 一元二次方程",
             difficulty: {
@@ -3118,7 +3118,7 @@ export const translations = {
                 }
             }
         },
-        s2_01: {
+        sm2_01: {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
             title: "S2.01 // 二项式工厂",
@@ -3310,7 +3310,7 @@ export const translations = {
                 description: "在莱茵河上空校准无人机航线。输入 3D 向量并用点积验证安全走廊。"
             }
         },
-        g3_01: {
+        gm3_01: {
             back: "返回枢纽",
             title: "G3.01 // 概率金库",
             difficulty: {
@@ -3561,7 +3561,7 @@ export const translations = {
                 reverse_hint: "Swap N/S to reverse rotation"
             }
         },
-        c1_02: {
+        sc1_02: {
             back: "返回枢纽",
             title: "C1.02 // 摩尔大师",
             difficulty: {
@@ -3596,7 +3596,7 @@ export const translations = {
                 description: "校准制药级反应流程。平衡摩尔比例并核对理论产量。"
             }
         },
-        c2_01: {
+        sc2_01: {
             back: "返回枢纽",
             title: "C2.01 // 化学动力学",
             difficulty: {
@@ -3635,7 +3635,7 @@ export const translations = {
                 collision: "f = e^{-E_a/RT}"
             }
         },
-        p1_03: {
+        sp1_03: {
             back: "返回枢纽",
             title: "P1.03 // 能量与功率",
             difficulty: {
@@ -3864,7 +3864,7 @@ export const translations = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        p5_01: {
+        gp5_01: {
             back: "返回枢纽",
             title: "P5.01 // 原子核核心",
             difficulty: {
@@ -3907,7 +3907,7 @@ export const translations = {
                 fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
             }
         },
-        p5_02: {
+        gp5_02: {
             back: "返回枢纽",
             title: "P5.02 // 相对论实验室",
             difficulty: {
@@ -3986,7 +3986,7 @@ export const translations = {
                 richter_scale: "M = \\log(A/A_0)"
             }
         },
-        c3_01: {
+        sc3_01: {
             back: "返回枢纽",
             title: "C3.01 // 分子建筑师",
             difficulty: {
@@ -4221,7 +4221,7 @@ export const translations = {
                 description: "探索 DNA 结构。掌握互补碱基配对和氢键。"
             }
         },
-        c1_01: {
+        sc1_01: {
             back: "返回枢纽",
             title: "C1.01 // 神秘实验室",
             difficulty: {
@@ -4297,7 +4297,7 @@ export const translations = {
                 isotopes_desc: "研究同位素：相同质子数，不同中子数"
             }
         },
-        gc2_01: {
+        gsc2_01: {
             back: "返回枢纽",
             title: "GC2.01 // 碳世界",
             difficulty: {
@@ -4370,7 +4370,7 @@ export const translations = {
                 delete: "使用 DELETE 删除选中的原子"
             }
         },
-        gc3_01: {
+        gsc3_01: {
             back: "返回枢纽",
             title: "GC3.01 // 平衡大师",
             difficulty: {
@@ -4419,7 +4419,7 @@ export const translations = {
                 pressure_hint: "更高的压力减小容器体积"
             }
         },
-        gc1_01: {
+        gsc1_01: {
             back: "返回枢纽",
             title: "GC1.01 // 氧化还原巨人",
             difficulty: {
@@ -4512,7 +4512,7 @@ export const translations = {
                 euler_hint: "e^(iθ) 描绘单位圆"
             }
         },
-        g5_01: {
+        gm5_01: {
             back: "返回枢纽",
             title: "G5.01 // 矩阵几何",
             difficulty: {
@@ -4836,7 +4836,7 @@ export const translations = {
                 detection_hint: "磁场使带电粒子径迹弯曲"
             }
         },
-        gp5_02: {
+        ggp5_02: {
             title: "GP5.02 // 相对论实验室",
             back: "返回 Nexus",
             footer_left: "GP5.02_相对论实验室 // 节点: RHINE",
@@ -5033,7 +5033,7 @@ export const translations = {
             sp1_06_subtitle: "Die Mechanik der Zeit: Erforsche Periode, Frequenz und Gravitation beim Basler Uhrmacher.",
             p5_01_title: "GP5.01 // DER ATOMKERN",
             p5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
-            p5_02: {
+            gp5_02: {
                 back: "Zurück zum Nexus",
                 title: "GP5.02 // RELATIVITÄTSLABOR",
                 difficulty: {
@@ -5159,7 +5159,7 @@ export const translations = {
             sc2_04_subtitle: "Erkunden Sie Löslichkeitskurven und Kristallisation. Meistern Sie Sättigungsgleichgewicht.",
             gc1_01_title: "GC1.01 // REDOX-TITAN",
             gc1_01_subtitle: "Meistern Sie elektrochemische Zellen und Redoxpotentiale.",
-            gc1_01: {
+            gsc1_01: {
                 back: "Zurück zum Nexus",
                 title: "GC1.01 // REDOX-TITAN",
                 difficulty: {
@@ -5327,7 +5327,7 @@ export const translations = {
                 chain: "Streckenkette"
             }
         },
-        s3_01: {
+        sm3_01: {
             back: "Zurück zum Nexus",
             title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
             difficulty: {
@@ -5598,7 +5598,7 @@ export const translations = {
                 }
             }
         },
-        s2_01: {
+        sm2_01: {
             back: "← Zurück zum Nexus",
             back_short: "Zurück zum Nexus",
             title: "S2.01 // BINOMISCHE FORMELN",
@@ -5790,7 +5790,7 @@ export const translations = {
                 description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
             }
         },
-        g3_01: {
+        gm3_01: {
             back: "Zurück zum Nexus",
             title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
             difficulty: {
@@ -6041,7 +6041,7 @@ export const translations = {
                 reverse_hint: "Swap N/S to reverse rotation"
             }
         },
-        c1_02: {
+        sc1_02: {
             back: "Zurück zum Nexus",
             title: "C1.02 // MOL-MEISTER",
             difficulty: {
@@ -6076,7 +6076,7 @@ export const translations = {
                 description: "Kalibriere eine pharmazeutische Reaktion. Balanciere Mol-Verhältnisse und prüfe Ausbeuten."
             }
         },
-        c2_01: {
+        sc2_01: {
             back: "Zurück zum Nexus",
             title: "C2.01 // CHEMISCHE KINETIK",
             difficulty: {
@@ -6115,7 +6115,7 @@ export const translations = {
                 collision: "f = e^{-E_a/RT}"
             }
         },
-        p1_03: {
+        sp1_03: {
             back: "Zurück zum Nexus",
             title: "P1.03 // ENERGIE & LEISTUNG",
             difficulty: {
@@ -6344,7 +6344,7 @@ export const translations = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        p5_01: {
+        gp5_01: {
             back: "Zurück zum Nexus",
             title: "P5.01 // DER ATOMKERN",
             difficulty: {
@@ -6387,7 +6387,7 @@ export const translations = {
                 fission_prompt_latex: "\\text{Bestimmen Sie das fehlende Produkt in dieser Spaltungsreaktion.}"
             }
         },
-        p5_02: {
+        gp5_02: {
             back: "Zurück zum Nexus",
             title: "P5.02 // RELATIVITÄTSLABOR",
             difficulty: {
@@ -6636,7 +6636,7 @@ export const translations = {
                 richter_scale: "M = \\log(A/A_0)"
             }
         },
-        c3_01: {
+        sc3_01: {
             back: "Zurück zum Nexus",
             title: "C3.01 // MOLEKULARER ARCHITEKT",
             difficulty: {
@@ -6668,7 +6668,7 @@ export const translations = {
                 caffeine: "KOFFEIN"
             }
         },
-        c1_01: {
+        sc1_01: {
             back: "Zurück zum Nexus",
             title: "C1.01 // GEHEIM LABOR",
             difficulty: {
@@ -6823,7 +6823,7 @@ export const translations = {
                 euler_hint: "e^(iθ) zeichnet den Einheitskreis"
             }
         },
-        g5_01: {
+        gm5_01: {
             back: "Zurück zum Nexus",
             title: "G5.01 // MATRIXGEOMETRIE",
             difficulty: {
@@ -7147,7 +7147,7 @@ export const translations = {
                 detection_hint: "Magnetfeld biegt geladene Teilchenspuren"
             }
         },
-        gp5_02: {
+        ggp5_02: {
             title: "GP5.02 // Relativitätslabor",
             back: "Zurück zum Nexus",
             footer_left: "GP5.02_RELATIVITÄTSLABOR // KNOTEN: RHINE",
@@ -7237,7 +7237,7 @@ export const translations = {
                 description: "Meistern Sie Snellsches Gesetz und Strahlenoptik. Beobachten Sie Brechung, totale innere Reflexion und Prismadispersion."
             }
         },
-        gc2_01: {
+        gsc2_01: {
             back: "Zurück zum Nexus",
             title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
             difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -7304,7 +7304,7 @@ export const translations = {
                 delete: "Verwenden Sie DELETE, um das ausgewählte Atom zu entfernen"
             }
         },
-        gc1_01: {
+        gsc1_01: {
             back: "Zurück zum Nexus",
             title: "GC1.01 // REDOX-TITAN",
             difficulty: {
@@ -7351,7 +7351,7 @@ export const translations = {
                 analyze_hint: "Salzbrücke erhält elektrische Neutralität"
             }
         },
-        gc3_01: {
+        gsc3_01: {
             back: "Zurück zum Nexus",
             title: "GC3.01 // GLEICHGEWICHTSMEISTER",
             difficulty: {
