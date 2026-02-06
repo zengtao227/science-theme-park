@@ -74,7 +74,6 @@ export default function Home() {
 
   const mathModules = useMemo(() => ([
     { code: "SM1.01", title: t.home.sm1_01_title, desc: t.home.sm1_01_subtitle, color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
-    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle, color: "neon-green", href: "/chamber/sm1-02", tags: ["math"] },
     { code: "SM2.01", title: t.home.sm2_01_title, desc: t.home.sm2_01_subtitle, color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
     { code: "SM2.02", title: t.home.sm2_02_title, desc: t.home.sm2_02_subtitle, color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
     { code: "SM2.03", title: t.home.sm2_03_title, desc: t.home.sm2_03_subtitle, color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
@@ -130,7 +129,9 @@ export default function Home() {
     { code: "GC3.02", title: "GC3.02 // CRYSTAL PALACE", desc: "Solid state chemistry and crystal lattices", color: "neon-purple", href: "/chamber/gc3-02", tags: ["chemistry"] },
   ]), [t]);
 
-  const advancedModules = useMemo(() => ([] as Array<{ code: string; title: string; desc: string; color: string; href: string; tags: string[] }>), []);
+  const enrichmentModules = useMemo(() => ([
+    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle + " (Advanced/Enrichment)", color: "neon-purple", href: "/chamber/sm1-02", tags: ["math", "enrichment"] },
+  ]), [t]);
 
   const biologyModules = useMemo(() => ([
     { code: "SB1.01", title: "SB1.01 // CELL FACTORY", desc: "Explore cell structure and organelles", color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
@@ -163,9 +164,9 @@ export default function Home() {
   const filteredPhysics = physicsModules.filter(matchesModule);
   const filteredChemistry = chemistryModules.filter(matchesModule);
   const filteredBiology = biologyModules.filter(matchesModule);
-  const filteredAdvanced = advancedModules.filter(matchesModule);
+  const filteredEnrichment = enrichmentModules.filter(matchesModule);
 
-  const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredBiology.length + filteredAdvanced.length;
+  const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredBiology.length + filteredEnrichment.length;
 
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
@@ -368,16 +369,16 @@ export default function Home() {
             </Sector>
           )}
 
-          {filteredAdvanced.length > 0 && (
+          {filteredEnrichment.length > 0 && (
             <Sector
-              title="ADVANCED MATH SECTOR"
-              color="neon-amber"
+              title="ENRICHMENT & ADVANCED TOPICS"
+              color="neon-purple"
               progress={0}
               icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-              tagIcon="∑"
+              tagIcon="⭐"
             >
               <AnimatePresence mode="popLayout">
-                {filteredAdvanced.map((module) => (
+                {filteredEnrichment.map((module) => (
                   <motion.div
                     layout
                     key={module.code}
