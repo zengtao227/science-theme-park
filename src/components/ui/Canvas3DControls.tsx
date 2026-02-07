@@ -26,20 +26,10 @@ export default function Canvas3DControls({
   const [showHelp, setShowHelp] = useState(false);
 
   return (
-    <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 items-end">
-      {/* Reset按钮 */}
-      <button
-        onClick={onReset}
-        className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm"
-        title={instructionsText.reset}
-      >
-        <RotateCcw className="w-4 h-4" />
-        <span>Reset</span>
-      </button>
-
-      {/* 使用说明按钮 */}
+    <div className="absolute top-4 right-4 z-10 flex flex-row gap-2 items-start">
+      {/* 使用说明按钮 - 放在左边 */}
       {showInstructions && (
-        <>
+        <div className="relative">
           <button
             onClick={() => setShowHelp(!showHelp)}
             className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/60 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm"
@@ -48,9 +38,9 @@ export default function Canvas3DControls({
             <span>使用说明</span>
           </button>
 
-          {/* 使用说明面板 */}
+          {/* 使用说明面板 - 向左展开 */}
           {showHelp && (
-            <div className="bg-black/90 border border-white/20 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md max-w-xs">
+            <div className="absolute top-12 right-0 bg-black/90 border border-white/20 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md w-64">
               <div className="font-bold text-neon-green mb-3 text-sm">3D 控制说明</div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
@@ -80,8 +70,18 @@ export default function Canvas3DControls({
               </div>
             </div>
           )}
-        </>
+        </div>
       )}
+
+      {/* Reset按钮 - 放在右边 */}
+      <button
+        onClick={onReset}
+        className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm"
+        title={instructionsText.reset}
+      >
+        <RotateCcw className="w-4 h-4" />
+        <span>Reset</span>
+      </button>
     </div>
   );
 }

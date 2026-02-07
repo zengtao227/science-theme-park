@@ -33,7 +33,7 @@ interface S201BinomialCanvasProps {
   onSnap: (id: string, isSnapped: boolean) => void;
 }
 
-// Individual cube component with glassy material
+// Individual cube component - NO animations
 function GlassCube({
   position,
   size,
@@ -51,21 +51,7 @@ function GlassCube({
   exploded: boolean;
   explosionOffset: [number, number, number];
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = useState(false);
-
-  useFrame(() => {
-    if (!meshRef.current) return;
-
-    // Breathing effect
-    const breath = 1 + Math.sin(Date.now() * 0.002) * 0.02;
-    meshRef.current.scale.setScalar(breath);
-
-    // Gentle rotation when hovered
-    if (hovered) {
-      meshRef.current.rotation.y += 0.01;
-    }
-  });
+  // No animations - completely static
 
   const finalPosition: [number, number, number] = exploded
     ? [
@@ -77,16 +63,12 @@ function GlassCube({
 
   return (
     <group position={finalPosition}>
-      <mesh
-        ref={meshRef}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
+      <mesh>
         <boxGeometry args={size} />
         <meshPhysicalMaterial
           color={color}
           emissive={emissive}
-          emissiveIntensity={hovered ? 0.5 : 0.3}
+          emissiveIntensity={0.3}
           transparent
           opacity={0.7}
           metalness={0.9}
