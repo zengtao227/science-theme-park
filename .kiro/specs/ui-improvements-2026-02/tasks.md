@@ -5,32 +5,32 @@
 - [x] 1.1 创建ResizableLayout组件
 - [x] 1.2 创建Canvas3DControls组件
 - [ ] 1.3 创建3D立方体组件（用于SM1.01体积部分）
-- [ ] 1.4 测试ResizableLayout在单个模块中的集成
+- [x] 1.4 测试ResizableLayout在单个模块中的集成
 
 ## 阶段二：SM1.01改进
 
-- [ ] 2.1 集成ResizableLayout到SM1.01
-- [ ] 2.2 为体积部分添加3D立方体渲染
-- [ ] 2.3 添加Canvas3DControls
+- [x] 2.1 集成ResizableLayout到SM1.01
+- [x] 2.2 为体积部分添加3D立方体渲染
+- [x] 2.3 添加Canvas3DControls
 - [ ] 2.4 添加任务背景说明（EN/CN/DE）
 - [ ] 2.5 测试SM1.01所有功能
 
 ## 阶段三：SM2.01改进
 
-- [ ] 3.1 集成ResizableLayout到SM2.01
-- [ ] 3.2 禁用自动旋转
-- [ ] 3.3 添加展开/收起按钮
-- [ ] 3.4 修复公式标签（固定位置，不随旋转）
-- [ ] 3.5 优化爆炸动画（方块方向一致）
-- [ ] 3.6 添加颜色编码和图例（4个代数项）
-- [ ] 3.7 添加Canvas3DControls
+- [x] 3.1 集成ResizableLayout到SM2.01
+- [x] 3.2 禁用自动旋转
+- [x] 3.3 添加展开/收起按钮
+- [x] 3.4 修复公式标签（固定位置，不随旋转）
+- [x] 3.5 优化爆炸动画（方块方向一致）
+- [x] 3.6 添加颜色编码和图例（4个代数项）
+- [x] 3.7 添加Canvas3DControls
 - [ ] 3.8 测试SM2.01所有功能
 
 ## 阶段四：全局应用
 
-- [ ] 4.1 为所有53个模块集成ResizableLayout
-- [ ] 4.2 为所有3D Canvas组件添加Canvas3DControls
-- [ ] 4.3 禁用所有自动旋转
+- [x] 4.1 为所有53个模块集成ResizableLayout
+- [x] 4.2 为所有3D Canvas组件添加Canvas3DControls
+- [x] 4.3 禁用所有自动旋转
 - [ ] 4.4 测试所有模块的分界线功能
 
 ## 阶段五：内容增强

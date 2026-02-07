@@ -3,7 +3,9 @@
 import { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Grid } from "@react-three/drei";
+import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from "three";
+import Canvas3DControls from "@/components/ui/Canvas3DControls";
 
 interface S201BinomialCanvasProps {
   a: number;
@@ -52,11 +54,11 @@ function GlassCube({
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
-  useFrame(({ clock }) => {
+  useFrame(() => {
     if (!meshRef.current) return;
 
     // Breathing effect
-    const breath = 1 + Math.sin(clock.getElapsedTime() * 2) * 0.02;
+    const breath = 1 + Math.sin(Date.now() * 0.002) * 0.02;
     meshRef.current.scale.setScalar(breath);
 
     // Gentle rotation when hovered
@@ -118,47 +120,40 @@ function GlassCube({
 
 // Main 3D Binomial Cube Scene
 function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: boolean }) {
-  const groupRef = useRef<THREE.Group>(null);
-
-  useFrame(({ clock }) => {
-    if (groupRef.current && !exploded) {
-      groupRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.3) * 0.2;
-      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.2) * 0.1;
-    }
-  });
+  // No auto-rotation - only manual user control
 
   // Calculate positions for the 8 components
   // The cube (a+b)³ is divided into:
-  // 1x a³ (green)
-  // 3x a²b (cyan)
-  // 3x ab² (orange)
-  // 1x b³ (purple)
+  // 1x a³ (red)
+  // 3x a²b (orange)
+  // 3x ab² (blue)
+  // 1x b³ (green)
 
   const explosionFactor = exploded ? 2 : 0;
 
-  // Component definitions
+  // Component definitions with color coding for 4 algebraic terms
   const components = useMemo(() => {
     const offset = -(a + b) / 2; // Center the cube
 
     return [
-      // a³ - bottom-left-back corner (green)
+      // a³ - bottom-left-back corner (RED)
       {
         id: 'a3',
         position: [offset + a / 2, offset + a / 2, offset + a / 2] as [number, number, number],
         size: [a, a, a] as [number, number, number],
-        color: '#00ff88',
-        emissive: '#00ff88',
+        color: '#ff3131',
+        emissive: '#ff3131',
         label: 'a³',
         explosionOffset: [-explosionFactor, -explosionFactor, -explosionFactor] as [number, number, number]
       },
 
-      // a²b - three pieces (cyan)
+      // a²b - three pieces (ORANGE)
       {
         id: 'a2b_1',
         position: [offset + a / 2, offset + a / 2, offset + a + b / 2] as [number, number, number],
         size: [a, a, b] as [number, number, number],
-        color: '#00ddff',
-        emissive: '#00ddff',
+        color: '#ffaa00',
+        emissive: '#ffaa00',
         label: 'a²b',
         explosionOffset: [-explosionFactor * 0.8, -explosionFactor * 0.8, explosionFactor] as [number, number, number]
       },
@@ -166,8 +161,8 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         id: 'a2b_2',
         position: [offset + a / 2, offset + a + b / 2, offset + a / 2] as [number, number, number],
         size: [a, b, a] as [number, number, number],
-        color: '#00ddff',
-        emissive: '#00ddff',
+        color: '#ffaa00',
+        emissive: '#ffaa00',
         label: 'a²b',
         explosionOffset: [-explosionFactor * 0.8, explosionFactor, -explosionFactor * 0.8] as [number, number, number]
       },
@@ -175,19 +170,19 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         id: 'a2b_3',
         position: [offset + a + b / 2, offset + a / 2, offset + a / 2] as [number, number, number],
         size: [b, a, a] as [number, number, number],
-        color: '#00ddff',
-        emissive: '#00ddff',
+        color: '#ffaa00',
+        emissive: '#ffaa00',
         label: 'a²b',
         explosionOffset: [explosionFactor, -explosionFactor * 0.8, -explosionFactor * 0.8] as [number, number, number]
       },
 
-      // ab² - three pieces (orange)
+      // ab² - three pieces (BLUE)
       {
         id: 'ab2_1',
         position: [offset + a + b / 2, offset + a + b / 2, offset + a / 2] as [number, number, number],
         size: [b, b, a] as [number, number, number],
-        color: '#ffaa00',
-        emissive: '#ffaa00',
+        color: '#4444ff',
+        emissive: '#4444ff',
         label: 'ab²',
         explosionOffset: [explosionFactor, explosionFactor, -explosionFactor * 0.8] as [number, number, number]
       },
@@ -195,8 +190,8 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         id: 'ab2_2',
         position: [offset + a + b / 2, offset + a / 2, offset + a + b / 2] as [number, number, number],
         size: [b, a, b] as [number, number, number],
-        color: '#ffaa00',
-        emissive: '#ffaa00',
+        color: '#4444ff',
+        emissive: '#4444ff',
         label: 'ab²',
         explosionOffset: [explosionFactor, -explosionFactor * 0.8, explosionFactor] as [number, number, number]
       },
@@ -204,19 +199,19 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         id: 'ab2_3',
         position: [offset + a / 2, offset + a + b / 2, offset + a + b / 2] as [number, number, number],
         size: [a, b, b] as [number, number, number],
-        color: '#ffaa00',
-        emissive: '#ffaa00',
+        color: '#4444ff',
+        emissive: '#4444ff',
         label: 'ab²',
         explosionOffset: [-explosionFactor * 0.8, explosionFactor, explosionFactor] as [number, number, number]
       },
 
-      // b³ - top-right-front corner (purple)
+      // b³ - top-right-front corner (GREEN)
       {
         id: 'b3',
         position: [offset + a + b / 2, offset + a + b / 2, offset + a + b / 2] as [number, number, number],
         size: [b, b, b] as [number, number, number],
-        color: '#ff00ff',
-        emissive: '#ff00ff',
+        color: '#39ff14',
+        emissive: '#39ff14',
         label: 'b³',
         explosionOffset: [explosionFactor, explosionFactor, explosionFactor] as [number, number, number]
       }
@@ -224,7 +219,7 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
   }, [a, b, explosionFactor]);
 
   return (
-    <group ref={groupRef}>
+    <group>
       {components.map((comp) => (
         <GlassCube
           key={comp.id}
@@ -249,7 +244,7 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
   );
 }
 
-// Legend component
+// Legend component with color coding
 function Legend({ a, b }: { a: number; b: number }) {
   return (
     <group position={[-6, 0, 0]}>
@@ -257,19 +252,19 @@ function Legend({ a, b }: { a: number; b: number }) {
         (a+b)³ Decomposition
       </Text>
 
-      <Text position={[0, 2, 0]} fontSize={0.25} color="#00ff88" anchorX="left">
+      <Text position={[0, 2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">
         1× a³ = {a ** 3}
       </Text>
 
-      <Text position={[0, 1.5, 0]} fontSize={0.25} color="#00ddff" anchorX="left">
+      <Text position={[0, 1.5, 0]} fontSize={0.25} color="#ffaa00" anchorX="left">
         3× a²b = {3 * a * a * b}
       </Text>
 
-      <Text position={[0, 1, 0]} fontSize={0.25} color="#ffaa00" anchorX="left">
+      <Text position={[0, 1, 0]} fontSize={0.25} color="#4444ff" anchorX="left">
         3× ab² = {3 * a * b * b}
       </Text>
 
-      <Text position={[0, 0.5, 0]} fontSize={0.25} color="#ff00ff" anchorX="left">
+      <Text position={[0, 0.5, 0]} fontSize={0.25} color="#39ff14" anchorX="left">
         1× b³ = {b ** 3}
       </Text>
 
@@ -277,7 +272,7 @@ function Legend({ a, b }: { a: number; b: number }) {
         ───────────────
       </Text>
 
-      <Text position={[0, -0.8, 0]} fontSize={0.3} color="#39ff14" anchorX="left">
+      <Text position={[0, -0.8, 0]} fontSize={0.3} color="#ffffff" anchorX="left">
         Total = {(a + b) ** 3}
       </Text>
 
@@ -288,44 +283,18 @@ function Legend({ a, b }: { a: number; b: number }) {
   );
 }
 
-// Animated formula display
-function FormulaDisplay({ exploded }: { exploded: boolean }) {
-  const textRef = useRef<THREE.Group>(null);
-
-  useFrame(({ clock }) => {
-    if (textRef.current) {
-      textRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.1;
-    }
-  });
-
-  return (
-    <group ref={textRef} position={[0, 6, 0]}>
-      <Text fontSize={0.5} color="#ffffff" anchorX="center">
-        (a+b)³ = a³ + 3a²b + 3ab² + b³
-      </Text>
-
-      <Text position={[0, -0.8, 0]} fontSize={0.25} color="#00ffff" anchorX="center">
-        {exploded ? "EXPLODED VIEW" : "ASSEMBLED VIEW"}
-      </Text>
-    </group>
-  );
-}
-
-// Animation controller component
-function AnimationController({ onExplodedChange }: { onExplodedChange: (exploded: boolean) => void }) {
-  useFrame(({ clock }) => {
-    const time = clock.getElapsedTime();
-    const shouldExplode = Math.floor(time / 6) % 2 === 1;
-    onExplodedChange(shouldExplode);
-  });
-  return null;
-}
-
 export default function S201BinomialCanvas({
   a,
   b,
 }: S201BinomialCanvasProps) {
   const [exploded, setExploded] = useState(false);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+
+  const handleReset = () => {
+    if (controlsRef.current) {
+      controlsRef.current.reset();
+    }
+  };
 
   return (
     <div className="w-full h-[800px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
@@ -338,13 +307,13 @@ export default function S201BinomialCanvas({
         <pointLight position={[-10, -10, 10]} intensity={0.6} color="#00ffff" />
         <pointLight position={[10, -10, -10]} intensity={0.5} color="#ff00ff" />
 
-        {/* Controls */}
+        {/* Controls - NO AUTO-ROTATION */}
         <OrbitControls
+          ref={controlsRef}
           enablePan={false}
           minDistance={8}
           maxDistance={30}
-          autoRotate={!exploded}
-          autoRotateSpeed={1}
+          autoRotate={false}
         />
 
         {/* Grid floor */}
@@ -361,14 +330,8 @@ export default function S201BinomialCanvas({
           position={[0, -(a + b) / 2 - 2, 0]}
         />
 
-        {/* Animation controller */}
-        <AnimationController onExplodedChange={setExploded} />
-
         {/* Main cube */}
         <BinomialCube3D a={a} b={b} exploded={exploded} />
-
-        {/* Formula display */}
-        <FormulaDisplay exploded={exploded} />
 
         {/* Legend */}
         <Legend a={a} b={b} />
@@ -381,43 +344,85 @@ export default function S201BinomialCanvas({
         </group>
       </Canvas>
 
-      {/* HUD Overlay */}
-      <div className="absolute top-4 left-4 flex gap-2 items-center">
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
-          Binomial_Cube_Lab v3.0
-        </span>
+      {/* 3D Controls */}
+      <Canvas3DControls
+        onReset={handleReset}
+        showInstructions={true}
+        instructionsText={{
+          rotate: "拖动鼠标旋转查看各个立方体",
+          zoom: "滚轮缩放视图",
+          reset: "重置到初始视角"
+        }}
+      />
+
+      {/* Expand/Collapse Buttons */}
+      <div className="absolute top-20 right-4 flex flex-col gap-2">
+        <button
+          onClick={() => setExploded(true)}
+          disabled={exploded}
+          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          展开
+        </button>
+        <button
+          onClick={() => setExploded(false)}
+          disabled={!exploded}
+          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          收起
+        </button>
       </div>
 
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white/50">
-        <div className="text-green-400">a³: {a ** 3} units³</div>
-        <div className="text-cyan-400">3a²b: {3 * a * a * b} units³</div>
-        <div className="text-orange-400">3ab²: {3 * a * b * b} units³</div>
-        <div className="text-purple-400">b³: {b ** 3} units³</div>
-        <div className="text-white font-bold mt-2">
-          Total: {(a + b) ** 3} units³
+      {/* Fixed Formula Display - Does NOT rotate with 3D */}
+      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/20 backdrop-blur-md">
+        <div className="text-white font-mono text-sm space-y-2">
+          <div className="text-neon-cyan font-bold text-base">(a+b)³ = a³ + 3a²b + 3ab² + b³</div>
+          <div className="text-white/60 text-xs">
+            {exploded ? "展开视图" : "组合视图"}
+          </div>
         </div>
       </div>
 
+      {/* Color Legend - Fixed Position */}
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/20 backdrop-blur-sm">
+        <div className="text-white/60 font-bold mb-2">颜色编码</div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
+          <span className="text-[#ff3131]">a³ = {a ** 3} units³</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
+          <span className="text-[#ffaa00]">3a²b = {3 * a * a * b} units³</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#4444ff] rounded"></div>
+          <span className="text-[#4444ff]">3ab² = {3 * a * b * b} units³</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
+          <span className="text-[#39ff14]">b³ = {b ** 3} units³</span>
+        </div>
+        <div className="text-white font-bold mt-2 pt-2 border-t border-white/20">
+          总计: {(a + b) ** 3} units³
+        </div>
+      </div>
+
+      {/* Status Indicator */}
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
         CHAMBER // S2.01<br />
         3D_VOLUME_PROOF<br />
         MODE: {exploded ? 'EXPLODED' : 'ASSEMBLED'}
       </div>
 
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
-        Binomial Cube 3D
-      </div>
-
       {/* Volume conservation indicator */}
-      <div className="absolute top-1/2 right-4 -translate-y-1/2 space-y-2">
-        <div className="text-[10px] font-mono text-white/30 uppercase tracking-wider text-right">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="text-[10px] font-mono text-white/20 uppercase tracking-wider text-center">
           Volume Conservation
         </div>
-        <div className="text-2xl font-black text-green-400 text-right">
+        <div className="text-4xl font-black text-green-400 text-center">
           ✓
         </div>
-        <div className="text-[9px] font-mono text-white/40 text-right">
+        <div className="text-[12px] font-mono text-white/30 text-center">
           {(a + b) ** 3} = {(a + b) ** 3}
         </div>
       </div>

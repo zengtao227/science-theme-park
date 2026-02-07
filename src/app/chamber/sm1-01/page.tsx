@@ -11,6 +11,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ResizableLayout from "@/components/layout/ResizableLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
+import Cube3D from "@/components/chamber/sm1-01/Cube3D";
 
 type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
 type Mg12T = typeof translations.EN.sm1_01;
@@ -204,14 +205,24 @@ export default function S101Page() {
             monitorContent={
                 <>
                     <div className="relative w-full">
-                        <S101_GeometryCanvas
-                            geometry={currentQuest.visualMeta}
-                            userAnswer={parsedAnswer}
-                            isVolumeMode={stage === 'VOLUMES'}
-                        />
-                        <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">
-                            REAL-TIME GEOMETRY
-                        </div>
+                        {/* Use 3D Cube for volume stage with cube geometry */}
+                        {stage === 'VOLUMES' && currentQuest.visualMeta?.type === 'cube' ? (
+                            <Cube3D 
+                                sideLength={currentQuest.visualMeta.params.a} 
+                                showDiagonal={false}
+                            />
+                        ) : (
+                            <>
+                                <S101_GeometryCanvas
+                                    geometry={currentQuest.visualMeta}
+                                    userAnswer={parsedAnswer}
+                                    isVolumeMode={stage === 'VOLUMES'}
+                                />
+                                <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">
+                                    REAL-TIME GEOMETRY
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <div className="space-y-4">
