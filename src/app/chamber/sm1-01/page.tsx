@@ -9,6 +9,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import ResizableLayout from "@/components/layout/ResizableLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
 
 type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
