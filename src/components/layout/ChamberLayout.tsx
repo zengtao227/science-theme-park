@@ -7,6 +7,7 @@ import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import ConceptIcon from "@/components/ConceptIcon";
 import NotificationToast from "@/components/ui/NotificationToast";
+import ResizableLayout from "@/components/layout/ResizableLayout";
 import { useAppStore, type HistoryEntry } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";
 import { translations as i18n } from "@/lib/i18n";
@@ -276,8 +277,60 @@ export default function ChamberLayout({
                 </div>
             </header>
 
-            <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-                <main className="flex-1 md:border-r-2 border-white/10 p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
+            <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+                {/* 桌面端：可拖动布局 */}
+                <div className="hidden md:flex flex-1 overflow-hidden">
+                    <ResizableLayout
+                        moduleCode={moduleCode}
+                        leftContent={
+                            <main className="h-full p-6 flex flex-col gap-4 bg-black overflow-y-auto items-center">
+                                <div className="w-full max-w-5xl space-y-10">
+                                    <div className="flex flex-wrap gap-3 justify-center">
+                                        {stages.map((s) => (
+                                            <button
+                                                key={s.id}
+                                                onClick={() => onStageChange(s.id)}
+                                                className={clsx(
+                                                    "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
+                                                    currentStage === s.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
+                                                )}
+                                            >
+                                                {s.label}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {children}
+
+                                    {actionPanel && (
+                                        <div>
+                                            {actionPanel}
+                                        </div>
+                                    )}
+                                </div>
+                            </main>
+                        }
+                        rightContent={
+                            <aside className="h-full relative bg-black flex flex-col">
+                                <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
+                                    <span>{translations.monitor_title || "SYSTEM MONITOR"}</span>
+                                    <div className="flex gap-2">
+                                        <div className="w-1 h-1 bg-white" />
+                                        <div className="w-1 h-1 bg-white/40" />
+                                    </div>
+                                </div>
+                                <div className="flex-1 p-6 overflow-y-auto">
+                                    <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] min-h-full flex flex-col gap-6">
+                                        {monitorContent}
+                                    </div>
+                                </div>
+                            </aside>
+                        }
+                    />
+                </div>
+
+                {/* 移动端：原有布局 */}
+                <main className="flex-1 md:hidden p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
                     <div className="w-full max-w-5xl space-y-10">
                         <div className="flex flex-wrap gap-3 justify-center">
                             {stages.map((s) => (
@@ -297,15 +350,15 @@ export default function ChamberLayout({
                         {children}
 
                         {actionPanel && (
-                            <div className="hidden md:block">
+                            <div>
                                 {actionPanel}
                             </div>
                         )}
                     </div>
                 </main>
 
-                <aside className="w-full md:w-[520px] relative bg-black flex flex-col border-t border-white/10 md:border-t-0 md:border-l md:border-white/10">
-                    <div className="md:hidden px-4 py-3 border-b border-white/10 flex items-center gap-2">
+                <aside className="w-full md:hidden relative bg-black flex flex-col border-t border-white/10">
+                    <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2">
                         {(["controls", "monitor", "history"] as const).map((key) => (
                             <button
                                 key={key}
@@ -322,7 +375,7 @@ export default function ChamberLayout({
                         ))}
                     </div>
 
-                    <div className="md:hidden flex-1 overflow-y-auto p-4 space-y-4">
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
                         {activePanel === "controls" && (
                             <div className="space-y-4">
                                 <div className="flex flex-wrap gap-2 justify-center">
@@ -350,21 +403,6 @@ export default function ChamberLayout({
                             </div>
                         )}
                         {activePanel === "history" && historyPanel}
-                    </div>
-
-                    <div className="hidden md:flex flex-1 flex-col">
-                        <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
-                            <span>{translations.monitor_title || "SYSTEM MONITOR"}</span>
-                            <div className="flex gap-2">
-                                <div className="w-1 h-1 bg-white" />
-                                <div className="w-1 h-1 bg-white/40" />
-                            </div>
-                        </div>
-                        <div className="flex-1 p-6 overflow-y-auto">
-                            <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] min-h-full flex flex-col gap-6">
-                                {monitorContent}
-                            </div>
-                        </div>
                     </div>
                 </aside>
             </div>
