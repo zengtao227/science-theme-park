@@ -264,8 +264,6 @@ export default function ThermalCanvas({
           enablePan={false}
           minDistance={8}
           maxDistance={15}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         {/* Container */}

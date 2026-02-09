@@ -74,7 +74,7 @@ function VoxelChain({ base }: { base: number }) {
       const wave = Math.sin(time * 2 + i * 0.3) * 0.1;
 
       dummy.position.set(offset * spacing, wave, 0);
-      dummy.rotation.y = time + i * 0.2;
+      // dummy.rotation.y = time + i * 0.2; // Removed auto-rotation
       dummy.scale.setScalar(1 + Math.sin(time * 3 + i * 0.5) * 0.1);
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
@@ -146,7 +146,7 @@ function VoxelGrid2D({ base }: { base: number }) {
 
       dummy.position.set(x, y, wave);
       dummy.scale.setScalar(pulse);
-      dummy.rotation.z = Math.sin(time + i * 0.1) * 0.1;
+      // dummy.rotation.z = Math.sin(time + i * 0.1) * 0.1; // Removed auto-rotation
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
     }
@@ -198,9 +198,9 @@ function VoxelCube3D({ base }: { base: number }) {
 
     const time = clock.getElapsedTime();
 
-    // Rotate the whole cube
-    groupRef.current.rotation.y = time * 0.3;
-    groupRef.current.rotation.x = Math.sin(time * 0.2) * 0.2;
+    // Rotate the whole cube - DISABLED
+    // groupRef.current.rotation.y = time * 0.3;
+    // groupRef.current.rotation.x = Math.sin(time * 0.2) * 0.2;
 
     // Split animation
     const splitFactor = (Math.sin(time * 0.5) + 1) / 2; // 0 to 1
@@ -286,9 +286,9 @@ function RootExtraction({ base }: { base: number }) {
 
     const time = clock.getElapsedTime();
 
-    // Rotate cube
-    cubeRef.current.rotation.y = time * 0.3;
-    cubeRef.current.rotation.x = time * 0.2;
+    // Rotate cube - DISABLED
+    // cubeRef.current.rotation.y = time * 0.3;
+    // cubeRef.current.rotation.x = time * 0.2;
 
     // Peel animation - extract plane
     const peelProgress = (Math.sin(time * 0.8) + 1) / 2; // 0 to 1
@@ -491,8 +491,6 @@ export default function S205PowerCanvas({ visual }: { visual?: PowerVisual }) {
           enablePan={false}
           minDistance={3}
           maxDistance={15}
-          autoRotate={visual.mode !== 'root'}
-          autoRotateSpeed={0.5}
         />
 
         {/* Grid floor */}

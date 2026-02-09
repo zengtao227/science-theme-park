@@ -202,8 +202,6 @@ export default function EquilibriumCanvas(props: EquilibriumCanvasProps) {
           enablePan={false}
           minDistance={3}
           maxDistance={15}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.2} />

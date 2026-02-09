@@ -364,8 +364,6 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
           enablePan={false}
           minDistance={8}
           maxDistance={25}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         {/* Grid floor */}

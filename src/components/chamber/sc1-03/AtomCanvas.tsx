@@ -197,8 +197,6 @@ export default function AtomCanvas({ protons, neutrons, electrons }: AtomCanvasP
           enablePan={false}
           minDistance={2}
           maxDistance={8}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.2} />

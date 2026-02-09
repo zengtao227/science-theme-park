@@ -10,7 +10,9 @@ import {
     Text,
     ContactShadows,
     Edges,
-    Bounds
+    Bounds,
+    useBounds,
+    OrbitControls
 } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -73,6 +75,7 @@ function NeonShape({
 
 function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"] }) {
     const sunPos: [number, number, number] = [10, 8, 5];
+    const bounds = useBounds();
 
     return (
         <group position={[0, -1, 0]}>
@@ -86,32 +89,69 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
 
             {/* Ground */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow position={[0, -0.01, 0]}>
-                <planeGeometry args={[20, 20]} />
+                <planeGeometry args={[40, 40]} />
                 <meshStandardMaterial color="#050505" transparent opacity={0.8} />
             </mesh>
             <GridHelper />
 
-            {/* Tower */}
-            <mesh position={[-2, 1.5, 0]} castShadow>
-                <boxGeometry args={[0.8, 3, 0.8]} />
-                <meshStandardMaterial color="#1d2633" />
-                <Edges color="#fff" />
-                <Text position={[0, 2, 0]} fontSize={0.3} color="#fff">{labels?.tower || "TOWER"}</Text>
-            </mesh>
+            {/* Tower Group */}
+            <group position={[-3, 0, 0]} onClick={(e) => (e.stopPropagation(), bounds.refresh(e.object).clip().fit())}>
+                <mesh position={[0, 3, 0]} castShadow>
+                    <boxGeometry args={[1, 6, 1]} />
+                    <meshStandardMaterial color="#1d2633" />
+                    <Edges color="#fff" />
+                </mesh>
+                <Text position={[0, 6.5, 0]} fontSize={0.4} color="#fff" font="/fonts/Inter-Bold.woff">
+                    {labels?.tower || "CLOCK TOWER"}
+                </Text>
+                {/* Measurement for shadow */}
+                <Line
+                    points={[new THREE.Vector3(0.5, 0.05, 0), new THREE.Vector3(8, 0.05, 4.5)]}
+                    color="#00e5ff"
+                    lineWidth={2}
+                    opacity={0.8}
+                    transparent
+                />
+                <Text position={[4, 0.2, 2.25]} fontSize={0.25} color="#00e5ff" rotation={[-Math.PI / 2, 0, Math.PI / 1.5]}>
+                    SHADOW: H
+                </Text>
+            </group>
 
-            {/* Stick */}
-            <mesh position={[2, 0.5, 0]} castShadow>
-                <cylinderGeometry args={[0.05, 0.05, 1]} />
-                <meshStandardMaterial color="#fbbf24" />
-                <Edges color="#fbbf24" />
-                <Text position={[0, 0.8, 0]} fontSize={0.2} color="#fbbf24">{labels?.stick || "STICK"}</Text>
-            </mesh>
+            {/* Stick Group */}
+            <group position={[4, 0, 2]} onClick={(e) => (e.stopPropagation(), bounds.refresh(e.object).clip().fit())}>
+                <mesh position={[0, 0.5, 0]} castShadow>
+                    <cylinderGeometry args={[0.05, 0.05, 1]} />
+                    <meshStandardMaterial color="#fbbf24" />
+                    <Edges color="#fbbf24" />
+                </mesh>
+                <Text position={[0, 1.2, 0]} fontSize={0.25} color="#fbbf24" font="/fonts/Inter-Bold.woff">
+                    {labels?.stick || "STICK"}
+                </Text>
+                {/* Measurement for shadow */}
+                <Line
+                    points={[new THREE.Vector3(0.05, 0.05, 0), new THREE.Vector3(1.3, 0.05, 0.7)]}
+                    color="#fbbf24"
+                    lineWidth={1.5}
+                    opacity={0.8}
+                    transparent
+                />
+                <Text position={[0.7, 0.1, 0.35]} fontSize={0.15} color="#fbbf24" rotation={[-Math.PI / 2, 0, Math.PI / 1.5]}>
+                    SHADOW: h
+                </Text>
+            </group>
 
-            {/* Sunlight Rays */}
+            {/* Sunlight Rays for both */}
             <Line
-                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(-2, 3, 0)]}
+                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(-3, 6, 0)]}
                 color="#fbbf24"
-                opacity={0.1}
+                opacity={0.05}
+                transparent
+                lineWidth={0.5}
+            />
+            <Line
+                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(4, 1, 2)]}
+                color="#fbbf24"
+                opacity={0.05}
                 transparent
                 lineWidth={0.5}
             />
@@ -137,7 +177,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                 <Suspense fallback={null}>
                     <Environment preset="city" />
 
-                    <Bounds fit clip observe margin={1.2}>
+                    <Bounds fit clip observe margin={1.0}>
                         {visual.kind === "rect-scale" && (
                             <group position={[0, 0, 0]}>
                                 <NeonShape
@@ -169,7 +209,6 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
 
                         {visual.kind === "tri-sim" && (
                             <group position={[0, 0, 0]}>
-                                {/* Visualizing similarity as shapes in 3D */}
                                 <mesh position={[-2, 0, 0]} rotation={[0, 0, 0.2]}>
                                     <coneGeometry args={[0.8, 1.2, 3]} />
                                     <meshStandardMaterial color="#fbbf24" transparent opacity={0.1} />
@@ -206,6 +245,14 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                             </group>
                         )}
                     </Bounds>
+
+                    <OrbitControls
+                        makeDefault
+                        enablePan={true}
+                        enableZoom={true}
+                        minPolarAngle={Math.PI / 4}
+                        maxPolarAngle={Math.PI / 2.1}
+                    />
 
                     <ContactShadows
                         opacity={0.4}

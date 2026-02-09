@@ -256,8 +256,6 @@ export default function CrystalCanvas(props: CrystalCanvasProps) {
           enablePan={false}
           minDistance={2}
           maxDistance={8}
-          autoRotate
-          autoRotateSpeed={1}
         />
 
         <ambientLight intensity={0.3} />

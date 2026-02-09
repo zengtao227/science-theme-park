@@ -220,8 +220,6 @@ export default function ColliderCanvas(props: ColliderCanvasProps) {
           enablePan={false}
           minDistance={5}
           maxDistance={15}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.3} />

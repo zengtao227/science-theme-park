@@ -232,8 +232,6 @@ export default function BeakerCanvas(props: BeakerCanvasProps) {
           enablePan={false}
           minDistance={2}
           maxDistance={8}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.3} />

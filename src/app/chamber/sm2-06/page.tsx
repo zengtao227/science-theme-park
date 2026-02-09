@@ -7,7 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S206_SystemsCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/SystemsCanvas";
+import AlchemistCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/AlchemistCanvas";
 
 type Stage = "SUBSTITUTION" | "ELIMINATION" | "MISSION";
 type S206T = typeof translations.EN.sm2_06;
@@ -113,7 +113,7 @@ export default function S206Page() {
       }}
       monitorContent={
         <div className="w-full flex justify-center">
-          <S206_SystemsCanvas visual={currentQuest?.visual} />
+          <AlchemistCanvas visual={currentQuest?.visual} inputs={inputs} />
         </div>
       }
     >

@@ -158,8 +158,6 @@ export default function AtomBuilder(props: AtomBuilderProps) {
           enablePan={false}
           minDistance={3}
           maxDistance={12}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.3} />

@@ -41,7 +41,7 @@
   - Add FPS counter for debugging
 
 ### 1.3 Performance Testing & Optimization
-- [-] Test on target devices
+- [x] Test on target devices
   - Desktop: Chrome, Firefox, Safari
   - Mobile: iOS Safari, Android Chrome
   - Measure FPS with 100, 150, 200 particles

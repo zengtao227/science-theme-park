@@ -453,8 +453,6 @@ export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
           enablePan={false}
           minDistance={6}
           maxDistance={20}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         {/* Grid floor */}

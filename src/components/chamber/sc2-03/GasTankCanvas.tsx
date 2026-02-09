@@ -178,8 +178,6 @@ export default function GasTankCanvas(props: GasTankCanvasProps) {
           enablePan={false}
           minDistance={3}
           maxDistance={10}
-          autoRotate
-          autoRotateSpeed={0.5}
         />
 
         <ambientLight intensity={0.3} />
