@@ -9,6 +9,7 @@ import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S201BinomialCanvas from "@/components/chamber/sm2-01/BinomialCanvas";
+import BinomialSquareCanvas from "@/components/chamber/sm2-01/BinomialSquareCanvas";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -449,17 +450,8 @@ export default function S201Page() {
       monitorContent={
         <>
           <div className="flex-1 relative">
-            <S201BinomialCanvas
-              a={a}
-              b={b}
-              locked={locked}
-              targetSize={targetSize}
-              initialPositions={initialPositions}
-              targetPositions={targetPositions}
-              labels={getCanvasLabels()}
-              titleText={getCanvasTitleText()}
-              onSnap={(id, isSnapped) => setSnappedBlocks((p) => ({ ...p, [id]: isSnapped }))}
-            />
+            {/* 使用新的二项式平方可视化 */}
+            <BinomialSquareCanvas a={a} b={b} />
 
             <AnimatePresence>
               {isSuccess && (
