@@ -1760,3 +1760,13 @@ error: cannot pull with rebase: You have unstaged changes.
 error: Please commit or stash them.
 To https://github.com/zengtao227/science-theme-park.git
    a4afb3d..c0025ac  main -> main
+[main 904ef87] auto: daily sync 2026-02-09 17:33
+ 2 files changed, 10 insertions(+)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+remote: Internal Server Error        
+remote: Request ID C1D2:13CFD2:F6E36D:14576EB:698A0C6C        
+remote: Time 2026-02-09T16:33:49Z
+To https://github.com/zengtao227/science-theme-park.git
+ ! [remote rejected] main -> main (Internal Server Error)
+error: failed to push some refs to 'https://github.com/zengtao227/science-theme-park.git'
