@@ -23,9 +23,9 @@ export default function ThalesTowerCanvas({ sunAngle, poleHeight, towerShadow }:
   const poleShadowPx = poleShadow * scale;
 
   return (
-    <div className="w-full h-[320px] bg-black rounded-xl border border-white/10 overflow-hidden">
-      <svg viewBox="0 0 800 320" className="w-full h-full">
-        <rect x="0" y="0" width="800" height="320" fill="#05050a" />
+    <div className="w-full aspect-[800/320] bg-black rounded-xl border border-white/10 overflow-hidden">
+      <svg viewBox="0 0 800 320" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+        <rect x="0" y="0" width="100%" height="100%" fill="#05050a" />
         <rect x="60" y="240" width="680" height="6" fill="#1d2633" />
         <circle cx="680" cy="60" r="18" fill="#ffd166" />
         <line x1="680" y1="60" x2="120" y2="240" stroke="#ffd166" strokeWidth="2" opacity="0.7" />

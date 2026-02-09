@@ -9,7 +9,8 @@ import {
     Line,
     Text,
     ContactShadows,
-    Edges
+    Edges,
+    Bounds
 } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -136,73 +137,75 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                 <Suspense fallback={null}>
                     <Environment preset="city" />
 
-                    {visual.kind === "rect-scale" && (
-                        <group position={[0, 0, 0]}>
-                            <NeonShape
-                                position={[-2.5, 0, 0]}
-                                scale={[1.2, 0.6, 1]}
-                                color="rgba(255,255,255,0.4)"
-                                label="ORIGINAL"
-                            />
-
-                            {/* Connecting Path */}
-                            <Line
-                                points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
-                                color="#fff"
-                                opacity={0.1}
-                                transparent
-                                dashed
-                            />
-
-                            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+                    <Bounds fit clip observe margin={1.2}>
+                        {visual.kind === "rect-scale" && (
+                            <group position={[0, 0, 0]}>
                                 <NeonShape
-                                    position={[2, 0, 0]}
-                                    scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
-                                    color="#00e5ff"
-                                    label={`k = ${visual.k ?? 1.5}`}
+                                    position={[-2.5, 0, 0]}
+                                    scale={[1.2, 0.6, 1]}
+                                    color="rgba(255,255,255,0.4)"
+                                    label="ORIGINAL"
                                 />
-                            </Float>
-                        </group>
-                    )}
 
-                    {visual.kind === "tri-sim" && (
-                        <group position={[0, 0, 0]}>
-                            {/* Visualizing similarity as shapes in 3D */}
-                            <mesh position={[-2, 0, 0]} rotation={[0, 0, 0.2]}>
-                                <coneGeometry args={[0.8, 1.2, 3]} />
-                                <meshStandardMaterial color="#fbbf24" transparent opacity={0.1} />
-                                <Edges color="#fbbf24" />
-                            </mesh>
+                                {/* Connecting Path */}
+                                <Line
+                                    points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                    color="#fff"
+                                    opacity={0.1}
+                                    transparent
+                                    dashed
+                                />
 
-                            <mesh position={[2, 0, 0]} rotation={[0, 0, 0.2]} scale={1.5}>
-                                <coneGeometry args={[0.8, 1.2, 3]} />
-                                <meshStandardMaterial color="#a855f7" transparent opacity={0.2} emissive="#a855f7" emissiveIntensity={0.5} />
-                                <Edges color="#a855f7" />
-                            </mesh>
-                        </group>
-                    )}
+                                <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+                                    <NeonShape
+                                        position={[2, 0, 0]}
+                                        scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
+                                        color="#00e5ff"
+                                        label={`k = ${visual.k ?? 1.5}`}
+                                    />
+                                </Float>
+                            </group>
+                        )}
 
-                    {visual.kind === "shadow" && (
-                        <ShadowScene labels={labels} />
-                    )}
+                        {visual.kind === "tri-sim" && (
+                            <group position={[0, 0, 0]}>
+                                {/* Visualizing similarity as shapes in 3D */}
+                                <mesh position={[-2, 0, 0]} rotation={[0, 0, 0.2]}>
+                                    <coneGeometry args={[0.8, 1.2, 3]} />
+                                    <meshStandardMaterial color="#fbbf24" transparent opacity={0.1} />
+                                    <Edges color="#fbbf24" />
+                                </mesh>
 
-                    {visual.kind === "ring" && (
-                        <group rotation={[Math.PI / 3, 0, 0]}>
-                            <mesh>
-                                <ringGeometry args={[1.5, 1.55, 64]} />
-                                <meshBasicMaterial color="#333" />
-                            </mesh>
-                            <mesh>
-                                <ringGeometry args={[0.9, 1, 64]} />
-                                <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={1} />
-                            </mesh>
-                            <Line
-                                points={[new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]}
-                                color="#39ff14"
-                                lineWidth={2}
-                            />
-                        </group>
-                    )}
+                                <mesh position={[2, 0, 0]} rotation={[0, 0, 0.2]} scale={1.5}>
+                                    <coneGeometry args={[0.8, 1.2, 3]} />
+                                    <meshStandardMaterial color="#a855f7" transparent opacity={0.2} emissive="#a855f7" emissiveIntensity={0.5} />
+                                    <Edges color="#a855f7" />
+                                </mesh>
+                            </group>
+                        )}
+
+                        {visual.kind === "shadow" && (
+                            <ShadowScene labels={labels} />
+                        )}
+
+                        {visual.kind === "ring" && (
+                            <group rotation={[Math.PI / 3, 0, 0]}>
+                                <mesh>
+                                    <ringGeometry args={[1.5, 1.55, 64]} />
+                                    <meshBasicMaterial color="#333" />
+                                </mesh>
+                                <mesh>
+                                    <ringGeometry args={[0.9, 1, 64]} />
+                                    <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={1} />
+                                </mesh>
+                                <Line
+                                    points={[new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                    color="#39ff14"
+                                    lineWidth={2}
+                                />
+                            </group>
+                        )}
+                    </Bounds>
 
                     <ContactShadows
                         opacity={0.4}

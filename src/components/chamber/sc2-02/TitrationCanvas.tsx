@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -26,7 +26,7 @@ function calculatePH(
     const nAcid = acidConc * initialVolume / 1000; // moles
     const nBase = baseConc * volumeAdded / 1000; // moles
     const totalVolume = (initialVolume + volumeAdded) / 1000; // L
-    
+
     if (acidType === "strong" && baseType === "strong") {
         // Strong acid + strong base
         if (nBase < nAcid) {
@@ -45,7 +45,7 @@ function calculatePH(
     } else if (acidType === "weak" && baseType === "strong") {
         // Weak acid + strong base
         const Ka = 1.8e-5; // Acetic acid
-        
+
         if (nBase < nAcid) {
             // Buffer region
             const nA = nAcid - nBase; // Remaining acid
@@ -66,7 +66,7 @@ function calculatePH(
             return 14 - pOH;
         }
     }
-    
+
     // Default fallback
     return 7;
 }
@@ -108,7 +108,7 @@ function getIndicatorColor(pH: number, indicator: string): string {
 function Beaker({ pH, indicator, volumeAdded }: { pH: number; indicator: string; volumeAdded: number }) {
     const solutionColor = getIndicatorColor(pH, indicator);
     const fillLevel = Math.min(50 + volumeAdded, 100) / 100;
-    
+
     return (
         <group position={[0, 0, 0]}>
             {/* Beaker glass */}
@@ -124,7 +124,7 @@ function Beaker({ pH, indicator, volumeAdded }: { pH: number; indicator: string;
                     thickness={0.5}
                 />
             </mesh>
-            
+
             {/* Solution */}
             <mesh position={[0, -2 + fillLevel * 2, 0]}>
                 <cylinderGeometry args={[1.4, 1.4, fillLevel * 4, 32]} />
@@ -136,7 +136,7 @@ function Beaker({ pH, indicator, volumeAdded }: { pH: number; indicator: string;
                     emissiveIntensity={0.2}
                 />
             </mesh>
-            
+
             {/* Bottom */}
             <mesh position={[0, -2, 0]} rotation={[Math.PI / 2, 0, 0]}>
                 <circleGeometry args={[1.5, 32]} />
@@ -156,7 +156,7 @@ function Beaker({ pH, indicator, volumeAdded }: { pH: number; indicator: string;
 function Burette({ volumeAdded }: { volumeAdded: number }) {
     const maxVolume = 50;
     const fillLevel = 1 - (volumeAdded / maxVolume);
-    
+
     return (
         <group position={[3, 2, 0]}>
             {/* Burette tube */}
@@ -170,7 +170,7 @@ function Burette({ volumeAdded }: { volumeAdded: number }) {
                     metalness={0.1}
                 />
             </mesh>
-            
+
             {/* Base solution */}
             <mesh position={[0, -2.5 + fillLevel * 2.5, 0]}>
                 <cylinderGeometry args={[0.28, 0.28, fillLevel * 5, 16]} />
@@ -182,13 +182,13 @@ function Burette({ volumeAdded }: { volumeAdded: number }) {
                     emissiveIntensity={0.2}
                 />
             </mesh>
-            
+
             {/* Stopcock */}
             <mesh position={[0, -2.5, 0]}>
                 <boxGeometry args={[0.2, 0.4, 0.2]} />
                 <meshPhysicalMaterial color="#ffd166" metalness={0.8} roughness={0.2} />
             </mesh>
-            
+
             {/* Drip */}
             {volumeAdded > 0 && volumeAdded < maxVolume && (
                 <mesh position={[0, -2.8, 0]}>
@@ -208,16 +208,16 @@ function TitrationScene(props: TitrationCanvasProps) {
         props.baseConcentration,
         props.volumeAdded
     );
-    
+
     return (
         <>
             <ambientLight intensity={0.4} />
             <pointLight position={[10, 10, 10]} intensity={0.8} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00e5ff" />
-            
+
             <Beaker pH={pH} indicator={props.indicator} volumeAdded={props.volumeAdded} />
             <Burette volumeAdded={props.volumeAdded} />
-            
+
             {/* Grid */}
             <gridHelper args={[10, 10, "#00e5ff", "#003344"]} position={[0, -2.5, 0]} />
         </>
@@ -226,8 +226,23 @@ function TitrationScene(props: TitrationCanvasProps) {
 
 export default function TitrationCanvas(props: TitrationCanvasProps) {
     const curveCanvasRef = useRef<HTMLCanvasElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const phHistoryRef = useRef<Array<{ volume: number; pH: number }>>([]);
-    
+    const [dimensions, setDimensions] = useState({ width: 800, height: 192 });
+
+    useEffect(() => {
+        const observer = new ResizeObserver((entries) => {
+            const { width, height } = entries[0].contentRect;
+            setDimensions({ width, height });
+        });
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     useEffect(() => {
         const pH = calculatePH(
             props.acidType,
@@ -236,58 +251,61 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
             props.baseConcentration,
             props.volumeAdded
         );
-        
+
         const newHistory = [...phHistoryRef.current, { volume: props.volumeAdded, pH }];
         const uniqueHistory = newHistory.filter((item, index, self) =>
             index === self.findIndex((t) => Math.abs(t.volume - item.volume) < 0.1)
         );
-        phHistoryRef.current = uniqueHistory.slice(-100);
+        phHistoryRef.current = uniqueHistory.slice(-100); // Keep last 100 points history
 
         const canvas = curveCanvasRef.current;
         if (!canvas) return;
-        
+
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        
+
+        // Ensure accurate sizing
+        const { width, height } = dimensions;
+
         ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
+        ctx.fillRect(0, 0, width, height);
+
         // Draw grid
         ctx.strokeStyle = "#003344";
         ctx.lineWidth = 1;
         for (let i = 0; i <= 10; i++) {
-            const x = (i / 10) * canvas.width;
-            const y = (i / 10) * canvas.height;
+            const x = (i / 10) * width;
+            const y = (i / 10) * height;
             ctx.beginPath();
             ctx.moveTo(x, 0);
-            ctx.lineTo(x, canvas.height);
+            ctx.lineTo(x, height);
             ctx.stroke();
             ctx.beginPath();
             ctx.moveTo(0, y);
-            ctx.lineTo(canvas.width, y);
+            ctx.lineTo(width, y);
             ctx.stroke();
         }
-        
+
         // Draw axes
         ctx.strokeStyle = "#00e5ff";
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(0, canvas.height);
+        ctx.moveTo(0, height);
         ctx.lineTo(0, 0);
-        ctx.lineTo(canvas.width, 0);
+        ctx.lineTo(width, 0);
         ctx.stroke();
-        
+
         // Draw pH curve
         const phHistory = phHistoryRef.current;
         if (phHistory.length > 1) {
             ctx.strokeStyle = "#39ff14";
             ctx.lineWidth = 3;
             ctx.beginPath();
-            
+
             phHistory.forEach((point, i) => {
-                const x = (point.volume / 100) * canvas.width;
-                const y = canvas.height - (point.pH / 14) * canvas.height;
-                
+                const x = (Math.max(0, Math.min(point.volume, 100)) / 100) * width;
+                const y = height - (Math.max(0, Math.min(point.pH, 14)) / 14) * height;
+
                 if (i === 0) {
                     ctx.moveTo(x, y);
                 } else {
@@ -295,42 +313,47 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
                 }
             });
             ctx.stroke();
-            
+
             // Draw equivalence point marker
             const equivalenceVolume = 50; // Simplified
-            const eqX = (equivalenceVolume / 100) * canvas.width;
+            const eqX = (equivalenceVolume / 100) * width;
             ctx.strokeStyle = "#ff2d7d";
             ctx.lineWidth = 2;
             ctx.setLineDash([5, 5]);
             ctx.beginPath();
             ctx.moveTo(eqX, 0);
-            ctx.lineTo(eqX, canvas.height);
+            ctx.lineTo(eqX, height);
             ctx.stroke();
             ctx.setLineDash([]);
         }
-        
+
         // Labels
         ctx.fillStyle = "#00e5ff";
         ctx.font = "12px monospace";
         ctx.fillText("pH", 10, 20);
         ctx.fillText("14", 10, 30);
-        ctx.fillText("7", 10, canvas.height / 2);
-        ctx.fillText("0", 10, canvas.height - 10);
-        ctx.fillText("Volume (mL)", canvas.width - 100, canvas.height - 10);
-    }, [props.volumeAdded, props.acidType, props.baseType, props.acidConcentration, props.baseConcentration]);
-    
+        ctx.fillText("7", 10, height / 2);
+        ctx.fillText("0", 10, height - 10);
+        ctx.fillText("Volume (mL)", width - 100, height - 10);
+    }, [props.volumeAdded, props.acidType, props.baseType, props.acidConcentration, props.baseConcentration, dimensions]);
+
     return (
         <div className="w-full h-full flex flex-col">
-            <div className="flex-1">
+            <div className="flex-1 min-h-0">
                 <Canvas camera={{ position: [0, 2, 8], fov: 50 }}>
                     <color attach="background" args={["#000000"]} />
                     <TitrationScene {...props} />
                     <OrbitControls enablePan={false} enableZoom={true} enableRotate={true} />
                 </Canvas>
             </div>
-            
-            <div className="h-48 border-t border-cyan-500">
-                <canvas ref={curveCanvasRef} width={800} height={192} className="w-full h-full" />
+
+            <div className="h-48 border-t border-cyan-500" ref={containerRef}>
+                <canvas
+                    ref={curveCanvasRef}
+                    width={dimensions.width}
+                    height={dimensions.height}
+                    className="w-full h-full block"
+                />
             </div>
         </div>
     );
