@@ -224,6 +224,23 @@ export default function Home() {
             </button>
           ))}
         </div>
+        
+        {/* STEM Mastery Radar - Compact version in header area */}
+        <div className="mt-4">
+          <MasteryRadar
+            conceptual={masteryMetrics.conceptual}
+            speed={masteryMetrics.speed}
+            rigor={masteryMetrics.rigor}
+            decay={masteryMetrics.decay}
+            labels={{
+              title: t.common.mastery_title,
+              conceptual: t.common.mastery_conceptual,
+              speed: t.common.mastery_speed,
+              rigor: t.common.mastery_rigor,
+              decay: t.common.mastery_decay,
+            }}
+          />
+        </div>
       </header>
 
       {/* Main Grid Content */}
@@ -261,22 +278,7 @@ export default function Home() {
           )}
         </div>
 
-        <div className="space-y-20">
-          <MasteryRadar
-            conceptual={masteryMetrics.conceptual}
-            speed={masteryMetrics.speed}
-            rigor={masteryMetrics.rigor}
-            decay={masteryMetrics.decay}
-            labels={{
-              title: t.common.mastery_title,
-              conceptual: t.common.mastery_conceptual,
-              speed: t.common.mastery_speed,
-              rigor: t.common.mastery_rigor,
-              decay: t.common.mastery_decay,
-            }}
-          />
-
-          {filteredMath.length > 0 && (
+        <div className="space-y-20">{filteredMath.length > 0 && (
             <Sector
               title="MATHEMATICS SECTOR"
               color="neon-cyan"
