@@ -1,45 +1,35 @@
-# Mission K84 - Math Visualization Overhaul (Phase 1)
+# Mission K84 - Math Visualization Overhaul (Phased Approach)
 
-## 任务概述
-根据总监批准的《数学可视化改进提案》，彻底重构 SM2 系列的三个核心模块。目标是引入直观的物理模型和真实场景，替换掉枯燥的数字计算和静态图表。
+## Reference
+See `DESIGN.md` for detailed technical specifications.
 
-## 涉及模块
-1. **SM2-01**: 二项式定理 (The Binomial Factory) -> 改为 **Mendel's Garden (孟德尔花园)**
-2. **SM2-02**: 勾股定理 (The Pythagorean Studio) -> 改为 **The Fluid Chamber (流体室)**
-3. **SM2-03**: 直线与函数 (Linear Navigator) -> 改为 **Slope Rider (极速滑雪)**
+## Phase 1: Infrastructure & POC (High Risk)
+### The Fluid Chamber (SM2-02)
+- [ ] **Goal**: Validate Matter.js for fluid simulation on mobile.
+- [ ] **Task**: Implement `PythagorasFluidCanvas.tsx` prototype.
+  - Three square containers (a², b², c²) connected at vertices.
+  - ~100-200 particle "fluid" bodies.
+  - Interactive rotation (drag/tilt).
+- [ ] **Success Criteria**: Smooth fluid flow proving area conservation (c² fills completely).
+- [ ] **Fallback**: If performance <30fps, pivot to `PythagorasDissectionCanvas` (SVG animation).
 
----
+## Phase 2: Core Logic Implementation (Low Risk)
+### Mendel's Garden (SM2-01)
+- [ ] **Task**: Implement `MendelGeneticsCanvas.tsx`.
+  - Dynamic Punnett Square SVG grid.
+  - Color-coded genotypes (AA, Aa, aa).
+  - Interactive sliders for parent traits.
 
-## 详细任务清单
+### Slope Rider (SM2-03)
+- [ ] **Task**: Implement `SlopeRiderCanvas.tsx`.
+  - Real-time `y = mx + c` line preview.
+  - Simple 2D physics loop (gravity + slope force).
+  - Success/Fail states (hit target / crash).
 
-### 1. SM2-01: Mendel's Garden (二项式定理)
-- [ ] **创建新组件**: `src/components/chamber/sm2-01/MendelGeneticsCanvas.tsx`
-- [ ] **交互逻辑**:
-  - 输入：父代基因型 (如 Aa x Aa, 或 Aa x aa)。
-  - 可视化：不再是单纯的边长 a, b，而是基因组合的正方形网格 (Punnett Square)。
-  - **核心点**: 突出 `(A+a)² = AA + 2Aa + aa` 的结构。
-  - **反馈**: 能够看到子代特征分布（如显性红花 vs 隐性白花），直观感受 `2Aa` 中系数 2 的来源。
-- [ ] **替换旧组件**: 在 `src/app/chamber/sm2-01/page.tsx` 中替换 `BinomialSquareCanvas`。
-
-### 2. SM2-02: The Fluid Chamber (勾股定理)
-- [ ] **技术准备**: 安装 `matter-js` (`npm install matter-js @types/matter-js`)。
-- [ ] **创建新组件**: `src/components/chamber/sm2-02/PythagorasFluidCanvas.tsx`
-- [ ] **交互逻辑**:
-  - 创建三个围绕直角三角形旋转的正方形容器 (a², b², c²)。
-  - 初始状态：a² 和 b² 容器装满“流体粒子”（用 matter-js 模拟）。
-  - **操作**: 用户旋转整个装置。
-  - **反馈**: 流体受重力流向 c² 容器，最终填满，直观证明面积守恒。
-- [ ] **替换旧组件**: 在 `src/app/chamber/sm2-02/page.tsx` 中替换 `PythagorasSimple2D`。
-
-### 3. SM2-03: Slope Rider (直线与函数)
-- [ ] **创建新组件**: `src/components/chamber/sm2-03/SlopeRiderCanvas.tsx`
-- [ ] **交互逻辑**:
-  - 场景：滑雪场或飞行跑道。
-  - **参数 m (Slope)**: 控制坡度的陡峭程度。正值上坡，负值下坡。|m| 越大越陡。
-  - **参数 c (Intercept)**: 控制起跳台/跑道的高度。
-  - **反馈**: 实时绘制 `y = mx + c` 的直线路径。角色（滑雪者/飞机）沿线运动。
-  - **目标**: 调整 m, c 避开障碍并在终点着陆。
-- [ ] **替换旧组件**: 在 `src/app/chamber/sm2-03/page.tsx` 中替换 `LaserCanvas`。
+## Phase 3: Integration & Polish
+- [ ] **Task**: Replace old components in `page.tsx`.
+- [ ] **Task**: Add responsive layout support (using `useResizeObserver`).
+- [ ] **Task**: Add explanatory overlays (math formulas).
 
 ---
 

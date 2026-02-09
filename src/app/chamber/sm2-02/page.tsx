@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
@@ -11,6 +11,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
+import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
 
 type Mg05T = typeof translations.EN.sm2_02;
@@ -564,6 +565,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 export default function S202Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].sm2_02 as Mg05T;
+  const [useFluidViz, setUseFluidViz] = useState(false);
 
   const {
     difficulty,
@@ -651,17 +653,35 @@ export default function S202Page() {
       }}
       monitorContent={
         <div className="space-y-6">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {isPythagorasTab ? t.tabs.pythagoras : t.tabs.sqrt}
+          <div className="flex items-center justify-between">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+              {isPythagorasTab ? t.tabs.pythagoras : t.tabs.sqrt}
+            </div>
+            {/* Toggle for testing fluid visualization */}
+            <button
+              onClick={() => setUseFluidViz(!useFluidViz)}
+              className="px-3 py-1 text-[8px] uppercase tracking-wider border border-white/30 text-white/70 hover:border-white/60 hover:text-white transition-all"
+            >
+              {useFluidViz ? "2D View" : "Fluid View"}
+            </button>
           </div>
           {/* 使用简单的2D可视化，适合初二学生 */}
           {currentQuest.visual.kind === "triangle" && currentQuest.visual.a && currentQuest.visual.b && currentQuest.visual.c ? (
-            <PythagorasSimple2D
-              a={currentQuest.visual.a}
-              b={currentQuest.visual.b}
-              c={currentQuest.visual.c}
-              highlightRightAngle={currentQuest.visual.highlightRightAngle}
-            />
+            useFluidViz ? (
+              <PythagorasFluidCanvas
+                a={currentQuest.visual.a}
+                b={currentQuest.visual.b}
+                c={currentQuest.visual.c}
+                highlightRightAngle={currentQuest.visual.highlightRightAngle}
+              />
+            ) : (
+              <PythagorasSimple2D
+                a={currentQuest.visual.a}
+                b={currentQuest.visual.b}
+                c={currentQuest.visual.c}
+                highlightRightAngle={currentQuest.visual.highlightRightAngle}
+              />
+            )
           ) : (
             <S202PythagorasCanvas visual={currentQuest.visual} />
           )}

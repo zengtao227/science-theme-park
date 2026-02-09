@@ -149,29 +149,40 @@
 
 | Risk | Impact | Probability | Mitigation |
 |------|--------|-------------|------------|
-| Matter.js performance issues | High | Medium | Implement particle pooling, limit particle count |
+| Matter.js performance issues on mobile | High | Medium | Implement particle pooling, limit to <200 particles, fallback to Perigal's dissection |
 | Complex genetics confuses students | Medium | Low | Start with simple Aa×Aa case, add complexity gradually |
-| Physics simulation feels "toy-like" | Low | Medium | Fine-tune parameters for realistic behavior |
-| Breaking existing functionality | High | Low | Thorough testing, feature flags for gradual rollout |
+| Physics simulation feels "toy-like" | Low | Medium | Fine-tune parameters for realistic behavior, add visual polish |
+| Breaking existing functionality | High | Low | Component-level rewrite only, maintain existing page structure |
+| Canvas rendering performance on low-end devices | Medium | Medium | Use Canvas API for SM2-03, optimize draw calls, implement frame skipping |
 
 ---
 
 ## 9. Implementation Phases
 
-### Phase 1: Foundation (Current)
-- Set up Matter.js
-- Create basic component structure
-- Implement SM2-02 (Pythagoras Fluid) as proof of concept
+### Phase 1: Infrastructure & POC (High Risk)
+**Goal**: Validate Matter.js viability for fluid simulation
+- Set up Matter.js integration
+- Implement `PythagorasFluidCanvas.tsx` prototype
+- Test performance on mobile (target: >30fps)
+- **Fallback**: If performance <30fps, pivot to `PythagorasDissectionCanvas` (SVG animation using Perigal's dissection)
 
-### Phase 2: Core Features
-- Implement SM2-01 (Mendel's Garden)
-- Implement SM2-03 (Slope Rider)
-- Add animations and polish
+### Phase 2: Core Logic Implementation (Low Risk)
+**Goal**: Replace SM2-01 and SM2-03 visualizations
+- Implement `MendelGeneticsCanvas.tsx` (SM2-01)
+  - Dynamic Punnett Square SVG grid
+  - Color-coded genotypes
+  - Interactive sliders
+- Implement `SlopeRiderCanvas.tsx` (SM2-03)
+  - Real-time line preview
+  - Simple 2D physics loop
+  - Success/fail states
 
-### Phase 3: Polish & Testing
-- User testing with target audience
-- Performance optimization
-- Bug fixes and refinements
+### Phase 3: Integration & Polish
+**Goal**: UX refinement and production readiness
+- Replace old components in respective `page.tsx` files
+- Add responsive layout support using `useResizeObserver`
+- Add explanatory overlays with math formulas
+- User testing and bug fixes
 
 ---
 
