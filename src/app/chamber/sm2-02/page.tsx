@@ -10,6 +10,7 @@ import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
+import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
 
 type Mg05T = typeof translations.EN.sm2_02;
@@ -653,7 +654,17 @@ export default function S202Page() {
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {isPythagorasTab ? t.tabs.pythagoras : t.tabs.sqrt}
           </div>
-          <S202PythagorasCanvas visual={currentQuest.visual} />
+          {/* 使用简单的2D可视化，适合初二学生 */}
+          {currentQuest.visual.kind === "triangle" && currentQuest.visual.a && currentQuest.visual.b && currentQuest.visual.c ? (
+            <PythagorasSimple2D
+              a={currentQuest.visual.a}
+              b={currentQuest.visual.b}
+              c={currentQuest.visual.c}
+              highlightRightAngle={currentQuest.visual.highlightRightAngle}
+            />
+          ) : (
+            <S202PythagorasCanvas visual={currentQuest.visual} />
+          )}
           {currentQuest.visual.kind === "space" && (
             <div className="text-white/60 text-sm font-mono text-center">
               <InlineMath math={`d^2=a^2+b^2+c^2`} />

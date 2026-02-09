@@ -92,12 +92,7 @@ function VoxelGrid({
 
 // 3D Pythagorean Theorem with Animated Voxel Grids
 function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
-  const groupRef = useRef<THREE.Group>(null);
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.3) * 0.3;
-    }
-  });
+  // 移除自动旋转动画
 
   // Calculate positions for the right triangle
   const origin = new THREE.Vector3(0, 0, 0);
@@ -127,7 +122,7 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
   });
 
   return (
-    <group ref={groupRef}>
+    <group>
       {/* Triangle frame with neon glow */}
       <Line
         points={trianglePoints}
@@ -237,15 +232,10 @@ interface SpaceCanvasProps {
 
 // Elite Space: Glassy 3D Cuboid with Glowing Body Diagonal
 function Space3D({ a, b, c }: SpaceCanvasProps) {
-  const groupRef = useRef<THREE.Group>(null);
+  // 移除自动旋转
   const diagonalRef = useRef<THREE.Mesh>(null);
 
   useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.25;
-      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.3) * 0.15;
-    }
-
     // Pulsing diagonal glow
     if (diagonalRef.current) {
       const pulse = 0.8 + Math.sin(clock.getElapsedTime() * 2) * 0.2;
@@ -267,7 +257,7 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
   const diagonal = Math.sqrt(a * a + b * b + c * c);
 
   return (
-    <group ref={groupRef} position={[-a / 2, -b / 2, -c / 2]}>
+    <group position={[-a / 2, -b / 2, -c / 2]}>
       {/* Glassy cuboid faces */}
       {/* Bottom face */}
       <mesh position={[a / 2, 0, c / 2]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -469,7 +459,7 @@ interface DistanceCanvasProps {
 
 // 3D Coordinate Distance with Voxel Path
 function Distance3D({ p1, p2 }: DistanceCanvasProps) {
-  const groupRef = useRef<THREE.Group>(null);
+  // 移除自动旋转
 
   const distance = Math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2);
   const dx = Math.abs(p2.x - p1.x);
@@ -479,14 +469,8 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
   const P2 = new THREE.Vector3(p2.x, p2.y, 0);
   const corner = new THREE.Vector3(p2.x, p1.y, 0);
 
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.5) * 0.05;
-    }
-  });
-
   return (
-    <group ref={groupRef}>
+    <group>
       {/* Grid plane */}
       <Grid
         args={[24, 24]}
@@ -609,8 +593,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
             enablePan={false}
             minDistance={6}
             maxDistance={25}
-            autoRotate
-            autoRotateSpeed={1.5}
+            autoRotate={false}
           />
 
           <Triangle3D
@@ -655,8 +638,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
             enablePan={false}
             minDistance={6}
             maxDistance={30}
-            autoRotate
-            autoRotateSpeed={1}
+            autoRotate={false}
           />
 
           <Space3D a={visual.a} b={visual.b} c={visual.c} />
