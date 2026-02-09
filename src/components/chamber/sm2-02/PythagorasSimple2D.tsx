@@ -14,22 +14,23 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle }: Pyt
   const [showProof, setShowProof] = useState(false);
   
   // 缩放因子，让图形适合显示
-  const scale = 40;
-  const centerX = 400;
+  const scale = 35;
+  const centerX = 250;
   const centerY = 400;
   
   // 三角形顶点
   const trianglePoints = `${centerX},${centerY} ${centerX + a * scale},${centerY} ${centerX},${centerY - b * scale}`;
   
-  // 正方形位置
-  const aSquareX = centerX;
+  // 正方形位置 - 调整以确保都在可视范围内
+  const aSquareX = centerX + 10;
   const aSquareY = centerY + 20;
   
-  const bSquareX = centerX - b * scale - 20;
+  const bSquareX = centerX - b * scale - 10;
   const bSquareY = centerY - b * scale;
   
-  const cSquareX = centerX + a * scale / 2 - c * scale / 2;
-  const cSquareY = centerY - b * scale / 2 - c * scale / 2 - 40;
+  // c²正方形放在右上方，确保不超出边界
+  const cSquareX = centerX + a * scale + 30;
+  const cSquareY = centerY - c * scale - 20;
   
   return (
     <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">

@@ -226,8 +226,25 @@ export default function Home() {
                 </button>
               ))}
             </div>
-            
-            {/* STEM Mastery Radar - Below language selection */}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Grid Content */}
+      <div className="max-w-7xl mx-auto pt-12 px-6">
+
+        <div className="mb-10 flex items-start justify-between gap-8">
+          <div className="border-l-2 border-neon-green pl-6 py-2 flex-1">
+            <h2 className="text-5xl font-black tracking-tighter mb-2 max-w-2xl leading-[0.9]">
+              {t.home.subtitle}
+            </h2>
+            <p className="text-white/50 font-mono text-sm tracking-widest uppercase">
+              Interactive STEM Simulations // V2.1
+            </p>
+          </div>
+          
+          {/* STEM Mastery Radar - Side by side with title */}
+          <div className="flex-shrink-0">
             <MasteryRadar
               conceptual={masteryMetrics.conceptual}
               speed={masteryMetrics.speed}
@@ -242,19 +259,6 @@ export default function Home() {
               }}
             />
           </div>
-        </div>
-      </header>
-
-      {/* Main Grid Content */}
-      <div className="max-w-7xl mx-auto pt-12 px-6">
-
-        <div className="mb-10 border-l-2 border-neon-green pl-6 py-2">
-          <h2 className="text-5xl font-black tracking-tighter mb-2 max-w-2xl leading-[0.9]">
-            {t.home.subtitle}
-          </h2>
-          <p className="text-white/50 font-mono text-sm tracking-widest uppercase">
-            Interactive STEM Simulations // V2.1
-          </p>
         </div>
 
         <div className="mb-14">

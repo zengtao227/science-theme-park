@@ -144,10 +144,10 @@ function BinomialSquare({ a, b, exploded }: { a: number; b: number; exploded: bo
   );
 }
 
-// 图例组件
+// 图例组件 - 移到右侧避免被方块挡住
 function Legend({ a, b }: { a: number; b: number }) {
   return (
-    <group position={[-6, 0, 0]}>
+    <group position={[6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.35} color="#ffffff" anchorX="left">
         (a+b)² 展开
       </Text>

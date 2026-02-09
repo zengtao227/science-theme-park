@@ -7,7 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import CoordinateCanvas from "@/components/chamber/sm2-07/CoordinateCanvas";
+import CoordinateCanvas2D from "@/components/chamber/sm2-07/CoordinateCanvas2D";
 
 type Stage = "DISTANCE" | "MIDPOINT" | "SLOPE";
 type S207T = typeof translations.EN.sm2_07;
@@ -189,7 +189,7 @@ export default function S207Page() {
       }}
       monitorContent={
         <div className="space-y-4">
-          <CoordinateCanvas
+          <CoordinateCanvas2D
             stage={stage}
             point1={currentQuest?.point1 || [2, 3]}
             point2={currentQuest?.point2 || [6, 7]}
