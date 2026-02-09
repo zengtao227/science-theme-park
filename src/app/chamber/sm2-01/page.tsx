@@ -550,6 +550,16 @@ export default function S201Page() {
         ) : (
           <div className="space-y-8 animate-in slide-in-from-bottom duration-700 min-h-[65vh] flex flex-col justify-center">
             <div className="space-y-6">
+              {/* 场景背景 */}
+              <div className="bg-white/[0.02] border border-white/10 rounded-xl p-6 max-w-3xl mx-auto">
+                <div className="text-white/80 text-sm font-mono leading-relaxed">
+                  {questMode === "ARCHITECT" && t.scenarios.architect_context}
+                  {questMode === "SCRAPPER" && t.scenarios.scrapper_context}
+                  {questMode === "SPEEDSTER" && t.scenarios.speedster_context}
+                  {questMode === "VOYAGER" && t.scenarios.voyager_context}
+                </div>
+              </div>
+              
               <div className="text-center">
                 <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
                   {t.active_objective}
