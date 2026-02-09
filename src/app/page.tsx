@@ -186,60 +186,62 @@ export default function Home() {
       <div className="fixed inset-0 pointer-events-none z-50 scanline opacity-20" />
 
       {/* HUD Header */}
-      <header className="sticky top-0 left-0 w-full p-6 flex justify-between items-center z-40 bg-black/80 backdrop-blur-xl border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-sm border border-neon-green flex items-center justify-center animate-pulse">
-            <Gamepad2 className="w-5 h-5 text-neon-green" />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t.home.title}</h1>
-            <div className="flex gap-4 text-[10px] text-neutral-300 font-mono tracking-widest leading-none mt-1 uppercase">
-              <span>SYS.ONLINE</span>
-              <span className="text-neon-green">●</span>
+      <header className="sticky top-0 left-0 w-full p-6 z-40 bg-black/80 backdrop-blur-xl border-b border-white/5">
+        <div className="flex justify-between items-start">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-sm border border-neon-green flex items-center justify-center animate-pulse">
+              <Gamepad2 className="w-5 h-5 text-neon-green" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t.home.title}</h1>
+              <div className="flex gap-4 text-[10px] text-neutral-300 font-mono tracking-widest leading-none mt-1 uppercase">
+                <span>SYS.ONLINE</span>
+                <span className="text-neon-green">●</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm">
-          <UserSwitcher />
-          <button
-            onClick={() => setVaultOpen(true)}
-            className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"
-          >
-            <Medal className="w-4 h-4" />
-            {t.common.achievements_title}
-          </button>
-          {languages.map((lang) => (
-            <button
-              key={lang}
-              onClick={() => setLanguage(lang)}
-              className={clsx(
-                "text-xs font-bold transition-all px-2 py-1 rounded",
-                currentLanguage === lang
-                  ? "text-neon-green bg-neon-green/10"
-                  : "text-neutral-300 hover:text-white"
-              )}
-            >
-              {languageLabel[lang]}
-            </button>
-          ))}
-        </div>
-        
-        {/* STEM Mastery Radar - Compact version in header area */}
-        <div className="mt-4">
-          <MasteryRadar
-            conceptual={masteryMetrics.conceptual}
-            speed={masteryMetrics.speed}
-            rigor={masteryMetrics.rigor}
-            decay={masteryMetrics.decay}
-            labels={{
-              title: t.common.mastery_title,
-              conceptual: t.common.mastery_conceptual,
-              speed: t.common.mastery_speed,
-              rigor: t.common.mastery_rigor,
-              decay: t.common.mastery_decay,
-            }}
-          />
+          <div className="flex flex-col items-end gap-4">
+            <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm">
+              <UserSwitcher />
+              <button
+                onClick={() => setVaultOpen(true)}
+                className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"
+              >
+                <Medal className="w-4 h-4" />
+                {t.common.achievements_title}
+              </button>
+              {languages.map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className={clsx(
+                    "text-xs font-bold transition-all px-2 py-1 rounded",
+                    currentLanguage === lang
+                      ? "text-neon-green bg-neon-green/10"
+                      : "text-neutral-300 hover:text-white"
+                  )}
+                >
+                  {languageLabel[lang]}
+                </button>
+              ))}
+            </div>
+            
+            {/* STEM Mastery Radar - Below language selection */}
+            <MasteryRadar
+              conceptual={masteryMetrics.conceptual}
+              speed={masteryMetrics.speed}
+              rigor={masteryMetrics.rigor}
+              decay={masteryMetrics.decay}
+              labels={{
+                title: t.common.mastery_title,
+                conceptual: t.common.mastery_conceptual,
+                speed: t.common.mastery_speed,
+                rigor: t.common.mastery_rigor,
+                decay: t.common.mastery_decay,
+              }}
+            />
+          </div>
         </div>
       </header>
 
