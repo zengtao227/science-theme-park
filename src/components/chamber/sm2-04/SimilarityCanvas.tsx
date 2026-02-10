@@ -83,7 +83,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
 
     return (
         <group position={[0, -2, 0]}>
-            <ambientLight intensity={0.4} />
+            <ambientLight intensity={1.5} />
             <directionalLight
                 position={sunPos}
                 intensity={2}
@@ -106,7 +106,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
             <group position={[-4, 0, 0]}>
                 <mesh position={[0, 4, 0]} castShadow>
                     <boxGeometry args={[1.5, 8, 1.5]} />
-                    <meshStandardMaterial color="#1d2633" />
+                    <meshStandardMaterial color="#475569" emissive="#1e293b" emissiveIntensity={0.5} />
                     <Edges color="#fff" />
                 </mesh>
                 <Text position={[0, 8.5, 0]} fontSize={0.5} color="#fff" anchorY="bottom">
@@ -165,16 +165,16 @@ function InitialCamera({ kind }: { kind: SimilarityVisual["kind"] }) {
     let fov = 45;
 
     if (kind === "shadow") {
-        pos = [5, 8, 15]; // Look down at the scene
-        fov = 50;
+        pos = [0, 10, 24]; // Look down from further away to see everything
+        fov = 45;
     } else if (kind === "rect-scale") {
-        pos = [0, 1, 8];
-        fov = 40;
+        pos = [0, 1, 10];
+        fov = 35;
     } else if (kind === "tri-sim") {
-        pos = [0, 2, 8];
+        pos = [0, 0, 14]; // Further back to see full height of triangles
         fov = 40;
     } else if (kind === "ring") {
-        pos = [0, 5, 5];
+        pos = [0, 0, 10];
         fov = 45;
     }
 
@@ -185,7 +185,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
     if (!visual) return null;
 
     return (
-        <div className="relative w-full aspect-[2/1] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
+        <div className="relative w-full aspect-[2/1] min-h-[300px] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
             <Canvas shadows className="w-full h-full" dpr={[1, 2]}>
                 <color attach="background" args={["#050505"]} />
                 <InitialCamera kind={visual.kind} />
@@ -224,7 +224,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                     )}
 
                     {visual.kind === "tri-sim" && (
-                        <group position={[0, -1, 0]}>
+                        <group position={[0, 0, 0]}>
                             <group position={[-2.5, 0, 0]}>
                                 <mesh rotation={[0, 0, 0]}>
                                     <coneGeometry args={[1, 2, 3]} />
