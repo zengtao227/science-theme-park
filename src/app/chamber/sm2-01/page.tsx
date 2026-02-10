@@ -8,8 +8,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S201BinomialCanvas from "@/components/chamber/sm2-01/BinomialCanvas";
-import BinomialSquareCanvas from "@/components/chamber/sm2-01/BinomialSquareCanvas";
+import BinomialSquare2D from "@/components/chamber/sm2-01/BinomialSquare2D";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -79,14 +78,14 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         vb,
         formula: `(${ca === 1 ? "" : ca}x + ${vb})²`,
         promptLatex: t.scenarios.architect_mission,
-        expressionLatex: `(${ca === 1 ? "" : ca}x + ${vb})^2`,
-        targetLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
+        expressionLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+        targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
         slots: [
-          { id: "a2", labelLatex: "a^2", placeholder: "a²", expected: ca ** 2 },
-          { id: "ab", labelLatex: "2ab", placeholder: "2ab", expected: 2 * ca * vb },
-          { id: "b2", labelLatex: "b^2", placeholder: "b²", expected: vb ** 2 },
+          { id: "a2", labelLatex: "x²", placeholder: "coeff", expected: ca ** 2 },
+          { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
+          { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
         ],
-        correctLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
+        correctLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
       },
     ];
   }
@@ -109,9 +108,9 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         promptLatex: t.scenarios.scrapper_mission,
         expressionLatex:
           variant === "XY"
-            ? `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`
-            : `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
-        targetLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})^2`,
+            ? `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`
+            : `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+        targetLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
         slots: [
           { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
           { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
@@ -151,12 +150,12 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         b2: combo.offset ** 2,
         target: combo.base ** 2,
         promptLatex: t.scenarios.speedster_mission,
-        expressionLatex: `${combo.base}^2`,
+        expressionLatex: `${combo.base}²`,
         targetLatex: `${combo.roundBase ** 2} + ${signedMiddle} + ${combo.offset ** 2}`,
         slots: [
-          { id: "part1", labelLatex: "a^2", placeholder: "a²", expected: combo.roundBase ** 2 },
+          { id: "part1", labelLatex: "a²", placeholder: "a²", expected: combo.roundBase ** 2 },
           { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: signedMiddle },
-          { id: "part3", labelLatex: "b^2", placeholder: "b²", expected: combo.offset ** 2 },
+          { id: "part3", labelLatex: "b²", placeholder: "b²", expected: combo.offset ** 2 },
         ],
         correctLatex: `${combo.roundBase ** 2} + ${signedMiddle} + ${combo.offset ** 2}`,
       },
@@ -176,15 +175,15 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         C,
         V,
         promptLatex: t.scenarios.elite_mission,
-        expressionLatex: `${C ** 2}x^2y^2 - ${V ** 2}`,
-        targetLatex: `(${C}xy - ${V})^2 + ${2 * C * V}xy - ${2 * V ** 2}`,
+        expressionLatex: `${C ** 2}x²y² - ${V ** 2}`,
+        targetLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
         slots: [
           { id: "base", labelLatex: "Cxy", placeholder: "Cxy", expected: `${C === 1 ? "" : C}xy` },
           { id: "sub", labelLatex: "V", placeholder: "V", expected: V.toString() },
           { id: "add_term", labelLatex: "2CVxy", placeholder: "2CVxy", expected: `${2 * C * V}xy` },
           { id: "const_term", labelLatex: "2V^2", placeholder: "2V²", expected: (2 * V ** 2).toString() },
         ],
-        correctLatex: `(${C}xy - ${V})^2 + ${2 * C * V}xy - ${2 * V ** 2}`,
+        correctLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
       },
     ];
   }
@@ -211,7 +210,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         subType,
         promptLatex: t.scenarios.voyager_mission,
         expressionLatex: expr,
-        targetLatex: subType === "EXPAND" ? `${ca ** 2}x^2 - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
+        targetLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
         slots:
           subType === "FACTOR"
             ? [
@@ -413,9 +412,8 @@ export default function S201Page() {
       }}
       monitorContent={
         <>
-          <div className="flex-1 relative">
-            {/* 使用新的二项式平方可视化, using dynamic params */}
-            <BinomialSquareCanvas a={canvasA} b={canvasB} />
+          <div className="flex-1 relative flex items-center justify-center p-8">
+            <BinomialSquare2D a={canvasA} b={canvasB} />
 
             <AnimatePresence>
               {isSuccess && (
@@ -549,37 +547,41 @@ export default function S201Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 justify-center max-w-xl mx-auto">
+            <div className="flex flex-col items-center gap-10 max-w-4xl mx-auto">
               {questMode === "ARCHITECT" && (
-                <>
-                  <div className="flex flex-col gap-4 text-center">
-                    <span className="text-xs text-white uppercase font-black tracking-widest">{t.ui?.part_1_a2 ?? "a²"}</span>
+                <div className="flex flex-wrap items-center justify-center gap-4 bg-white/5 p-10 rounded-3xl border border-white/10 shadow-inner">
+                  <div className="flex flex-col gap-3">
                     <input
                       value={inputs.a2 || ""}
                       onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
-                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white"
+                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                       placeholder="?"
                     />
+                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                   </div>
-                  <div className="flex flex-col gap-4 text-center">
-                    <span className="text-xs text-white uppercase font-black tracking-widest">{t.ui?.part_2_2ab ?? "2ab"}</span>
+                  <span className="text-4xl font-black text-white/80">x²</span>
+                  <span className="text-4xl font-black text-neon-cyan">+</span>
+                  <div className="flex flex-col gap-3">
                     <input
                       value={inputs.ab || ""}
                       onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
-                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white"
+                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                       placeholder="?"
                     />
+                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                   </div>
-                  <div className="flex flex-col gap-4 text-center">
-                    <span className="text-xs text-white uppercase font-black tracking-widest">{t.ui?.part_3_b2 ?? "b²"}</span>
+                  <span className="text-4xl font-black text-white/80">x</span>
+                  <span className="text-4xl font-black text-neon-cyan">+</span>
+                  <div className="flex flex-col gap-3">
                     <input
                       value={inputs.b2 || ""}
                       onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
-                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white"
+                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                       placeholder="?"
                     />
+                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
                   </div>
-                </>
+                </div>
               )}
               {questMode === "SCRAPPER" && (
                 <>
