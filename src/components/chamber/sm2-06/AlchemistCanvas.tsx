@@ -12,7 +12,8 @@ import {
     Cylinder,
     Box,
     PerspectiveCamera,
-    Environment
+    Environment,
+    Grid
 } from "@react-three/drei";
 import * as THREE from "three";
 
