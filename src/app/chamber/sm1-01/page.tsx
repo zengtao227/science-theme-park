@@ -22,47 +22,71 @@ interface S101Quest extends Quest {
 }
 
 function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Quest[] {
+    const isElite = difficulty === "ELITE";
+    const isHard = difficulty === "ADVANCED" || difficulty === "ELITE";
+
+    // Difficulty Factors
+    const scale = difficulty === "BASIC" ? 1 :
+        difficulty === "CORE" ? 1.5 :
+            difficulty === "ADVANCED" ? 2.8 : 4.5;
+
     if (stage === "AREAS") {
+        // Quest A1: Rectangle
+        const a1 = Math.round(5 * scale);
+        const b1 = Math.round(8 * scale);
+
+        // Quest A2: Triangle
+        const b2 = Math.round(6 * scale);
+        const h2 = isHard ? parseFloat((4.5 * scale).toFixed(1)) : Math.round(4 * scale);
+
+        // Quest A3: Trapezoid
+        const a3 = Math.round(4 * scale);
+        const b3 = Math.round(6 * scale);
+        const h3 = Math.round(5 * scale);
+
+        // Quest A4: Circle
+        const r4 = isHard ? parseFloat((3.5 * scale).toFixed(1)) : Math.round(3 * scale);
+
         const all: S101Quest[] = [
             {
                 id: "A1", difficulty, stage,
                 promptLatex: `\\text{${t.quests.ski}}`,
-                expressionLatex: `\\text{${t.labels.length} }a=5\\text{m, }\\text{${t.labels.width} }b=8\\text{m，\\text{${t.labels.calculate_area}}}`,
+                expressionLatex: `\\text{${t.labels.length} }a=${a1}\\text{m, }\\text{${t.labels.width} }b=${b1}\\text{m，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 40, unit: "cm^2" }],
-                correctLatex: `A=5\\cdot 8=40`,
-                hintLatex: [`A=a\\cdot b`, `A=40`],
-                visualMeta: { type: 'rectangle', params: { a: 5, b: 8 } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: a1 * b1, unit: "m^2" }],
+                correctLatex: `A=${a1}\\cdot ${b1}=${a1 * b1}`,
+                hintLatex: [`A=a\\cdot b`, `A=${a1 * b1}`],
+                visualMeta: { type: 'rectangle', params: { a: a1, b: b1 } },
             },
             {
                 id: "A2", difficulty, stage,
                 promptLatex: `\\text{${t.quests.sail}}`,
-                expressionLatex: `\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=4\\text{m，\\text{${t.labels.calculate_area}}}`,
+                expressionLatex: `\\text{${t.labels.base} }b=${b2}\\text{m, }\\text{${t.labels.height} }h=${h2}\\text{m，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 12, unit: "cm^2" }],
-                correctLatex: `A=\\frac{1}{2}\\cdot 6\\cdot 4=12`,
-                hintLatex: [`A=\\frac{1}{2}bh`, `A=12`],
-                visualMeta: { type: 'triangle', params: { b: 6, h: 4 } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 0.5 * b2 * h2, unit: "m^2" }],
+                correctLatex: `A=\\frac{1}{2}\\cdot ${b2}\\cdot ${h2}=${0.5 * b2 * h2}`,
+                hintLatex: [`A=\\frac{1}{2}bh`, `A=${0.5 * b2 * h2}`],
+                visualMeta: { type: 'triangle', params: { b: b2, h: h2 } },
             },
             {
                 id: "A3", difficulty, stage,
                 promptLatex: `\\text{${t.quests.gate}}`,
-                expressionLatex: `\\text{${t.labels.side} }a=4\\text{m, }\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=5\\text{m, \\text{${t.labels.calculate_area}}}`,
+                expressionLatex: `\\text{${t.labels.side} }a=${a3}\\text{m, }\\text{${t.labels.base} }b=${b3}\\text{m, }\\text{${t.labels.height} }h=${h3}\\text{m, \\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 25, unit: "cm^2" }],
-                correctLatex: `A=\\frac{1}{2}(4+6)\\cdot 5=25`,
-                hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=25`],
-                visualMeta: { type: 'trapezoid', params: { a: 4, b: 6, h: 5 } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 0.5 * (a3 + b3) * h3, unit: "m^2" }],
+                correctLatex: `A=\\frac{1}{2}(${a3}+${b3})\\cdot ${h3}=${0.5 * (a3 + b3) * h3}`,
+                hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=${0.5 * (a3 + b3) * h3}`],
+                visualMeta: { type: 'trapezoid', params: { a: a3, b: b3, h: h3 } },
             },
             {
                 id: "A4", difficulty, stage,
                 promptLatex: `\\text{${t.quests.cheese}}`,
-                expressionLatex: `\\text{${t.labels.radius} }r=3\\text{cm，\\text{${t.labels.calculate_area}}}`,
+                expressionLatex: `\\text{${t.labels.radius} }r=${r4}\\text{cm，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 28.27, unit: "cm^2" }],
-                correctLatex: `A=\\pi r^2\\approx 28.27`,
-                hintLatex: [`A=\\pi r^2`, `A\\approx 28.27`],
-                visualMeta: { type: 'circle', params: { r: 3 } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: parseFloat((Math.PI * r4 * r4).toFixed(2)), unit: "cm^2" }],
+                correctLatex: `A=\\pi r^2\\approx ${(Math.PI * r4 * r4).toFixed(2)}`,
+                hintLatex: [`A=\\pi r^2`],
+                visualMeta: { type: 'circle', params: { r: r4 } },
             },
         ];
         if (difficulty === "BASIC") return all.slice(0, 2);
@@ -71,36 +95,43 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
     }
 
     if (stage === "VOLUMES") {
+        const a1 = Math.round(4 * scale);
+        const l2 = Math.round(3 * scale);
+        const w2 = Math.round(4 * scale);
+        const h2 = Math.round(5 * scale);
+        const r3 = isElite ? parseFloat((2.5 * scale).toFixed(1)) : Math.round(2 * scale);
+        const h3 = Math.round(5 * scale);
+
         const all: S101Quest[] = [
             {
                 id: "V1", difficulty, stage,
                 promptLatex: `\\text{${t.quests.attic}}`,
-                expressionLatex: `\\text{${t.labels.side} }a=4\\text{m，\\text{${t.labels.calculate_volume}}}`,
+                expressionLatex: `\\text{${t.labels.side} }a=${a1}\\text{m，\\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
-                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 64, unit: "cm^3" }],
-                correctLatex: `V=4^3=64`,
-                hintLatex: [`V=a^3`, `V=64`],
-                visualMeta: { type: 'cube', params: { a: 4 } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: a1 ** 3, unit: "m^3" }],
+                correctLatex: `V=${a1}^3=${a1 ** 3}`,
+                hintLatex: [`V=a^3`, `V=${a1 ** 3}`],
+                visualMeta: { type: 'cube', params: { a: a1 } },
             },
             {
                 id: "V2", difficulty, stage,
                 promptLatex: `\\text{${t.quests.crate}}`,
-                expressionLatex: `\\text{${t.labels.length} }a=3\\text{m, }\\text{${t.labels.width} }b=4\\text{m, }\\text{${t.labels.height} }c=5\\text{m, \\text{${t.labels.calculate_volume}}}`,
+                expressionLatex: `\\text{${t.labels.length} }a=${l2}\\text{m, }\\text{${t.labels.width} }b=${w2}\\text{m, }\\text{${t.labels.height} }h=${h2}\\text{m, \\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
-                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 60, unit: "cm^3" }],
-                correctLatex: `V=3\\cdot 4\\cdot 5=60`,
-                hintLatex: [`V=abc`, `V=60`],
-                visualMeta: { type: 'prism', params: { a: 3, b: 4, c: 5 } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: l2 * w2 * h2, unit: "m^3" }],
+                correctLatex: `V=${l2}\\cdot ${w2}\\cdot ${h2}=${l2 * w2 * h2}`,
+                hintLatex: [`V=abc`, `V=${l2 * w2 * h2}`],
+                visualMeta: { type: 'prism', params: { a: l2, b: w2, c: h2 } },
             },
             {
                 id: "V3", difficulty, stage,
                 promptLatex: `\\text{${t.quests.pylon}}`,
-                expressionLatex: `\\text{${t.labels.radius} }r=2\\text{cm, }\\text{${t.labels.height} }h=5\\text{cm, \\text{${t.labels.calculate_volume}}}`,
+                expressionLatex: `\\text{${t.labels.radius} }r=${r3}\\text{cm, }\\text{${t.labels.height} }h=${h3}\\text{cm, \\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
-                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 62.83, unit: "cm^3" }],
-                correctLatex: `V=\\pi r^2h\\approx 62.83`,
-                hintLatex: [`V=\\pi r^2h`, `V\\approx 62.83`],
-                visualMeta: { type: 'cylinder', params: { r: 2, h: 5 } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: parseFloat((Math.PI * r3 * r3 * h3).toFixed(2)), unit: "cm^3" }],
+                correctLatex: `V=\\pi r^2h\\approx ${(Math.PI * r3 * r3 * h3).toFixed(2)}`,
+                hintLatex: [`V=\\pi r^2h`],
+                visualMeta: { type: 'cylinder', params: { r: r3, h: h3 } },
             },
         ];
         if (difficulty === "BASIC") return all.slice(0, 2);
