@@ -71,7 +71,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
   const isCore = difficulty === "CORE";
   const isAdvanced = difficulty === "ADVANCED";
   const isElite = difficulty === "ELITE";
-  const poolSize = 10;
+  const poolSize = 20;
 
   const getFullTerm = (coeff: number, variable: string) => {
     if (coeff === 1) return variable;

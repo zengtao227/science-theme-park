@@ -143,7 +143,7 @@ export default function ChamberLayout({
                 {onNext && (
                     <button
                         onClick={onNext}
-                        className="min-h-[44px] px-6 py-3 border-2 border-white/30 text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:border-white hover:text-white active:scale-95"
+                        className="min-h-[44px] px-6 py-3 border-2 border-white/50 text-[10px] font-black tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black active:scale-95 flex items-center gap-2"
                     >
                         {translations.next}
                     </button>
