@@ -14,78 +14,82 @@ type S203T = typeof translations.EN.sm2_03;
 
 interface S203Quest extends Quest {
   stage: Stage;
-  targetX?: number;
-  targetY?: number;
+  // Plan A (Target or Ref)
+  m1: number;
+  c1: number;
+  // Plan B (Competitor or Variable)
+  m2?: number;
+  c2?: number;
+  targetX?: number; // Distance
+  targetY?: number; // Price
+  mode: "CALCULATE" | "INTERSECT" | "OPTIMIZE";
 }
 
-function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Quest[] {
+function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest[] {
+  const quests: S203Quest[] = [];
+
   if (stage === "LEVEL1") {
-    const prompt = t?.prompts?.level1 || "\\text{Hit the target with one reflection}";
-    return [
-      {
-        id: "L1", difficulty, stage,
-        promptLatex: prompt,
-        expressionLatex: "\\text{ Distance: 8km, Budget: 6 CHF}",
-        targetLatex: "m,\\; c",
-        targetX: 8,
-        targetY: 6,
-        slots: [
-          { id: "m", labelLatex: "m", placeholder: "slope", expected: 0.75 },
-          { id: "c", labelLatex: "c", placeholder: "intercept", expected: 0 }
-        ],
-        correctLatex: "y=0.75x",
-      },
-      {
-        id: "L2", difficulty, stage,
-        promptLatex: prompt,
-        expressionLatex: "\\text{ Distance: 7km, Budget: 4 CHF}",
-        targetLatex: "m,\\; c",
-        targetX: 7,
-        targetY: 4,
-        slots: [
-          { id: "m", labelLatex: "m", placeholder: "slope", expected: 0.57 },
-          { id: "c", labelLatex: "c", placeholder: "intercept", expected: 0 }
-        ],
-        correctLatex: "y=0.57x",
-      },
+    // Stage 1: Basic Calculation (y = mx + c)
+    // The user needs to find the total price for a given distance
+    const data = [
+      { m: 0.5, c: 4, x: 10, id: "L1-1" },
+      { m: 1.2, c: 0, x: 5, id: "L1-2" },
+      { m: 0.8, c: 10, x: 20, id: "L1-3" },
     ];
+    for (const d of data) {
+      quests.push({
+        id: `S1|${d.id}`, difficulty, stage,
+        mode: "CALCULATE",
+        m1: d.m, c1: d.c, targetX: d.x, targetY: d.m * d.x + d.c,
+        promptLatex: `\\text{${t.prompts.level1}}`,
+        expressionLatex: `\\text{Plan: } y = ${d.m}x + ${d.c} \\\\ \\text{Distance: } x = ${d.x} \\text{ km}`,
+        targetLatex: "y",
+        correctLatex: `y=${d.m * d.x + d.c}`,
+        slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price", expected: d.m * d.x + d.c }],
+      });
+    }
+  } else if (stage === "LEVEL2") {
+    // Stage 2: Break-Even Point (m1*x + c1 = m2*x + c2)
+    // The user needs to find the distance x where two plans are equal
+    const data = [
+      { m1: 2.0, c1: 0, m2: 0.5, c2: 15, id: "L2-1" }, // 1.5x = 15 => x = 10
+      { m1: 1.5, c1: 2, m2: 0.5, c2: 8, id: "L2-2" }, // 1.0x = 6 => x = 6
+      { m1: 3.0, c1: 0, m2: 1.0, c2: 10, id: "L2-3" }, // 2.0x = 10 => x = 5
+    ];
+    for (const d of data) {
+      const x = (d.c2 - d.c1) / (d.m1 - d.m2);
+      quests.push({
+        id: `S2|${d.id}`, difficulty, stage,
+        mode: "INTERSECT",
+        m1: d.m1, c1: d.c1, m2: d.m2, c2: d.m2, // m2/c2 for drawing
+        targetX: x, targetY: d.m1 * x + d.c1,
+        promptLatex: `\\text{${t.prompts.level2}}`,
+        expressionLatex: `\\text{Plan A: } 2.0/\\text{km} \\\\ \\text{Plan B: } 0.5/\\text{km} + 15 \\text{ flat}`, // Simplified for now, will dynamicize later
+        targetLatex: "x",
+        correctLatex: `x=${x}`,
+        slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
+      });
+    }
+    // Hardcoded overrides for better clarity
+    quests[0].expressionLatex = `\\text{Plan A: } y = 2.0x \\\\ \\text{Plan B: } y = 0.5x + 15`;
+    quests[1].expressionLatex = `\\text{Plan A: } y = 1.5x + 2 \\\\ \\text{Plan B: } y = 0.5x + 8`;
+    quests[2].expressionLatex = `\\text{Plan A: } y = 3.0x \\\\ \\text{Plan B: } y = 1.0x + 10`;
+  } else {
+    // Stage 3: Optimization / Inequalities
+    quests.push({
+      id: "L3-1", difficulty, stage: "LEVEL3",
+      mode: "OPTIMIZE",
+      m1: 0.2, c1: 50, m2: 1.0, c2: 5,
+      targetX: 56.25, targetY: 61.25,
+      promptLatex: `\\text{${t.prompts.level3}}`,
+      expressionLatex: `\\text{Plan A: } y = 0.2x + 50 \\\\ \\text{Plan B: } y = 1.0x + 5`,
+      targetLatex: "x > ?",
+      correctLatex: "x > 56.25",
+      slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold", expected: 56.25 }],
+    });
   }
 
-  if (stage === "LEVEL2") {
-    const prompt = t?.prompts?.level2 || "\\text{Predict and hit the moving target}";
-    return [
-      {
-        id: "L1", difficulty, stage,
-        promptLatex: prompt,
-        expressionLatex: "\\text{ Distance: 6km, Fare limit: 8 CHF}",
-        targetLatex: "m,\\; c",
-        targetX: 6,
-        targetY: 8,
-        slots: [
-          { id: "m", labelLatex: "m", placeholder: "slope", expected: 1.33 },
-          { id: "c", labelLatex: "c", placeholder: "intercept", expected: 0 }
-        ],
-        correctLatex: "y=1.33x",
-      },
-    ];
-  }
-
-  const prompt = t?.prompts?.level3 || "\\text{Hit the target with two reflections}";
-  return [
-    {
-      id: "L1", difficulty, stage: "LEVEL3",
-      promptLatex: prompt,
-      expressionLatex: "\\text{ Route: 9km, Competing fare: 5 CHF}",
-      targetLatex: "m,\\; c",
-      targetX: 9,
-      targetY: 5,
-      slots: [
-        { id: "m", labelLatex: "m", placeholder: "slope", expected: 2.0 },
-        { id: "c", labelLatex: "c", placeholder: "intercept", expected: 1 }
-      ],
-      correctLatex: "y=2x+1",
-    },
-  ];
+  return quests;
 }
 
 export default function S203Page() {
@@ -169,26 +173,22 @@ export default function S203Page() {
         <div className="space-y-4">
           <LaserCanvas
             level={level}
-            slope={slope}
-            intercept={intercept}
-            targetX={targetX}
-            targetY={targetY}
-            onLineChange={(nextSlope: number, nextIntercept: number) => {
-              setInputs((v) => ({
-                ...v,
-                m: Number.isFinite(nextSlope) ? nextSlope.toFixed(2) : v.m,
-                c: Number.isFinite(nextIntercept) ? nextIntercept.toFixed(2) : v.c,
-              }));
-            }}
+            mode={currentQuest?.mode}
+            m1={currentQuest?.m1 || 0}
+            c1={currentQuest?.c1 || 0}
+            m2={currentQuest?.m2}
+            c2={currentQuest?.c2}
+            targetX={currentQuest?.targetX}
+            targetY={currentQuest?.targetY}
             onHit={() => setHits(h => h + 1)}
             labels={{
-              current_function: t?.ui?.current_function || "Current Function",
-              reflections: t?.ui?.reflections || "Reflections",
-              target_position: t?.ui?.target_position || "Target Position",
-              hit_badge: t?.ui?.hit_badge || "TARGET HIT",
-              chamber: t?.ui?.chamber || "CHAMBER",
-              laser_sim: t?.ui?.laser_sim || "LASER_SIM",
-              level: t?.ui?.level || "LEVEL"
+              current_function: t?.ui?.current_function || "Fare Statistics",
+              reflections: t?.ui?.reflections || "Fare Plans",
+              target_position: t?.ui?.target_position || "Break-even Point",
+              hit_badge: t?.ui?.hit_badge || "OPTIMIZED",
+              chamber: t?.ui?.chamber || "BAHNHOF",
+              laser_sim: t?.ui?.laser_sim || "FARE_SIM",
+              level: t?.ui?.level || "PHASE"
             }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
@@ -253,54 +253,7 @@ export default function S203Page() {
           </div>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                {t?.labels?.slope || "Slope (m)"}
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="range"
-                  min={-3}
-                  max={3}
-                  step={0.01}
-                  value={slope}
-                  onChange={(e) => setInputs((v) => ({ ...v, m: e.target.value }))}
-                  className="flex-1"
-                />
-                <input
-                  type="number"
-                  step="0.01"
-                  value={inputs.m ?? ""}
-                  onChange={(e) => setInputs((v) => ({ ...v, m: e.target.value }))}
-                  className="w-24 bg-black border-2 border-white/20 p-2 text-center outline-none focus:border-white text-white font-black text-sm"
-                />
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                {t?.labels?.intercept || "Intercept (c)"}
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="range"
-                  min={-2}
-                  max={10}
-                  step={0.01}
-                  value={intercept}
-                  onChange={(e) => setInputs((v) => ({ ...v, c: e.target.value }))}
-                  className="flex-1"
-                />
-                <input
-                  type="number"
-                  step="0.01"
-                  value={inputs.c ?? ""}
-                  onChange={(e) => setInputs((v) => ({ ...v, c: e.target.value }))}
-                  className="w-24 bg-black border-2 border-white/20 p-2 text-center outline-none focus:border-white text-white font-black text-sm"
-                />
-              </div>
-            </div>
-          </div>
+          {/* Conditionally show sliders if we want interactive exploration, but for now focus on calculated answers */}
           <div className="grid grid-cols-2 gap-4">
             {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="space-y-2">
