@@ -727,7 +727,19 @@ export default function S202Page() {
             {t.objective_title}
           </h3>
           <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-            <InlineMath math={currentQuest.promptLatex.replace(/:\\;/g, ":\\\\")} />
+            {(() => {
+              const latex = currentQuest.promptLatex;
+              // If it's a scenario/mission description (text-heavy), render as HTML
+              if (latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
+                const clean = latex
+                  .replace(/\\text\{/g, "")
+                  .replace(/\}/g, "")
+                  .replace(/\\\\/g, "\n");
+                return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
+              }
+              // Default: Math expression
+              return <InlineMath math={latex.replace(/:\\;/g, ":\\\\")} />;
+            })()}
           </p>
         </div>
 
