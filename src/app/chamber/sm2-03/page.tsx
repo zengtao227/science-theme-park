@@ -14,82 +14,158 @@ type S203T = typeof translations.EN.sm2_03;
 
 interface S203Quest extends Quest {
   stage: Stage;
-  // Plan A (Target or Ref)
   m1: number;
   c1: number;
-  // Plan B (Competitor or Variable)
   m2?: number;
   c2?: number;
-  targetX?: number; // Distance
-  targetY?: number; // Price
+  targetX?: number;
+  targetY?: number;
   mode: "CALCULATE" | "INTERSECT" | "OPTIMIZE";
 }
 
+/* ────────────────────────────────────────────────
+ *  Quest factory helpers
+ * ──────────────────────────────────────────────── */
+
+function r2(n: number) { return Math.round(n * 100) / 100; }
+
+function makeCalc(
+  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
+  id: string, m: number, c: number, x: number,
+) {
+  const y = r2(m * x + c);
+  quests.push({
+    id: `S1|${id}`, difficulty, stage, mode: "CALCULATE",
+    m1: m, c1: c, targetX: x, targetY: y,
+    promptLatex: `\\\\text{${t.prompts.level1}}`,
+    expressionLatex: `\\\\text{Plan: } y = ${m}x + ${c} \\\\quad x = ${x} \\\\text{ km}`,
+    targetLatex: "y", correctLatex: `y=${y}`,
+    slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
+  });
+}
+
+function makeIntersect(
+  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
+  id: string, m1: number, c1: number, m2: number, c2: number,
+) {
+  const x = r2((c2 - c1) / (m1 - m2));
+  const y = r2(m1 * x + c1);
+  quests.push({
+    id: `S2|${id}`, difficulty, stage, mode: "INTERSECT",
+    m1, c1, m2, c2, targetX: x, targetY: y,
+    promptLatex: `\\\\text{${t.prompts.level2}}`,
+    expressionLatex: `\\\\text{A: } y=${m1}x+${c1} \\\\quad \\\\text{B: } y=${m2}x+${c2}`,
+    targetLatex: "x", correctLatex: `x=${x}`,
+    slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
+  });
+}
+
+function makeOptimize(
+  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
+  id: string, m1: number, c1: number, m2: number, c2: number,
+) {
+  // Plan A: low slope, high base  |  Plan B: high slope, low base
+  // Plan A cheaper when x > threshold
+  const x = r2((c1 - c2) / (m2 - m1));
+  const y = r2(m1 * x + c1);
+  quests.push({
+    id: `S3|${id}`, difficulty, stage: "LEVEL3", mode: "OPTIMIZE",
+    m1, c1, m2, c2, targetX: x, targetY: y,
+    promptLatex: `\\\\text{${t.prompts.level3}}`,
+    expressionLatex: `\\\\text{A: } y=${m1}x+${c1} \\\\quad \\\\text{B: } y=${m2}x+${c2}`,
+    targetLatex: "x",
+    correctLatex: `x=${x}`,
+    slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
+  });
+}
+
+/* ────────────────────────────────────────────────
+ *  Build quest pool — 4 difficulty tiers per level
+ * ──────────────────────────────────────────────── */
+
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest[] {
-  const quests: S203Quest[] = [];
+  const q: S203Quest[] = [];
 
   if (stage === "LEVEL1") {
-    // Stage 1: Basic Calculation (y = mx + c)
-    // The user needs to find the total price for a given distance
-    const data = [
-      { m: 0.5, c: 4, x: 10, id: "L1-1" },
-      { m: 1.2, c: 0, x: 5, id: "L1-2" },
-      { m: 0.8, c: 10, x: 20, id: "L1-3" },
-    ];
-    for (const d of data) {
-      quests.push({
-        id: `S1|${d.id}`, difficulty, stage,
-        mode: "CALCULATE",
-        m1: d.m, c1: d.c, targetX: d.x, targetY: d.m * d.x + d.c,
-        promptLatex: `\\text{${t.prompts.level1}}`,
-        expressionLatex: `\\text{Plan: } y = ${d.m}x + ${d.c} \\\\ \\text{Distance: } x = ${d.x} \\text{ km}`,
-        targetLatex: "y",
-        correctLatex: `y=${d.m * d.x + d.c}`,
-        slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price", expected: d.m * d.x + d.c }],
-      });
+    // ── Calculate y = m·x + c ──
+    switch (difficulty) {
+      case "BASIC":
+        // Whole numbers, simple mental math
+        makeCalc(q, t, difficulty, stage, "B1", 2, 0, 5);    // y=10
+        makeCalc(q, t, difficulty, stage, "B2", 3, 0, 4);    // y=12
+        makeCalc(q, t, difficulty, stage, "B3", 1, 5, 10);   // y=15
+        break;
+      case "CORE":
+        // One decimal in slope
+        makeCalc(q, t, difficulty, stage, "C1", 1.5, 3, 8);  // y=15
+        makeCalc(q, t, difficulty, stage, "C2", 0.5, 4, 12); // y=10
+        makeCalc(q, t, difficulty, stage, "C3", 2.5, 2, 6);  // y=17
+        break;
+      case "ADVANCED":
+        // Two-decimal slope, larger intercept
+        makeCalc(q, t, difficulty, stage, "A1", 0.75, 5, 12);  // y=14
+        makeCalc(q, t, difficulty, stage, "A2", 1.25, 3.5, 10); // y=16
+        makeCalc(q, t, difficulty, stage, "A3", 0.35, 8, 20);  // y=15
+        break;
+      default: // ELITE
+        // Hard decimals, requires careful calculation
+        makeCalc(q, t, difficulty, stage, "E1", 0.85, 6.5, 14); // y=18.4
+        makeCalc(q, t, difficulty, stage, "E2", 1.15, 2.75, 12); // y=16.55
+        makeCalc(q, t, difficulty, stage, "E3", 0.45, 11.5, 18); // y=19.6
+        break;
     }
   } else if (stage === "LEVEL2") {
-    // Stage 2: Break-Even Point (m1*x + c1 = m2*x + c2)
-    // The user needs to find the distance x where two plans are equal
-    const data = [
-      { m1: 2.0, c1: 0, m2: 0.5, c2: 15, id: "L2-1" }, // 1.5x = 15 => x = 10
-      { m1: 1.5, c1: 2, m2: 0.5, c2: 8, id: "L2-2" }, // 1.0x = 6 => x = 6
-      { m1: 3.0, c1: 0, m2: 1.0, c2: 10, id: "L2-3" }, // 2.0x = 10 => x = 5
-    ];
-    for (const d of data) {
-      const x = (d.c2 - d.c1) / (d.m1 - d.m2);
-      quests.push({
-        id: `S2|${d.id}`, difficulty, stage,
-        mode: "INTERSECT",
-        m1: d.m1, c1: d.c1, m2: d.m2, c2: d.c2,
-        targetX: x, targetY: d.m1 * x + d.c1,
-        promptLatex: `\\text{${t.prompts.level2}}`,
-        expressionLatex: `\\text{Plan A: } 2.0/\\text{km} \\\\ \\text{Plan B: } 0.5/\\text{km} + 15 \\text{ flat}`, // Simplified for now, will dynamicize later
-        targetLatex: "x",
-        correctLatex: `x=${x}`,
-        slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
-      });
+    // ── Break-even: m1·x + c1 = m2·x + c2 ──
+    switch (difficulty) {
+      case "BASIC":
+        // Integer answers, one plan has c=0
+        makeIntersect(q, t, difficulty, stage, "B1", 3, 0, 1, 10);  // x=5
+        makeIntersect(q, t, difficulty, stage, "B2", 4, 0, 1, 12);  // x=4
+        makeIntersect(q, t, difficulty, stage, "B3", 2, 0, 1, 8);   // x=8
+        break;
+      case "CORE":
+        // One decimal slope, integer answer
+        makeIntersect(q, t, difficulty, stage, "C1", 2, 0, 0.5, 15);   // x=10
+        makeIntersect(q, t, difficulty, stage, "C2", 2.5, 0, 1, 12);   // x=8
+        makeIntersect(q, t, difficulty, stage, "C3", 3, 2, 1, 12);     // x=5
+        break;
+      case "ADVANCED":
+        // Both plans have intercepts
+        makeIntersect(q, t, difficulty, stage, "A1", 1.5, 2, 0.5, 8);   // x=6
+        makeIntersect(q, t, difficulty, stage, "A2", 2.5, 1, 0.5, 9);   // x=4
+        makeIntersect(q, t, difficulty, stage, "A3", 1.8, 3, 0.6, 18);  // x=12.5
+        break;
+      default: // ELITE
+        // Non-integer answers
+        makeIntersect(q, t, difficulty, stage, "E1", 2.4, 1.5, 0.9, 12);    // x=7
+        makeIntersect(q, t, difficulty, stage, "E2", 3.5, 0, 1.25, 13.5);   // x=6
+        makeIntersect(q, t, difficulty, stage, "E3", 1.75, 4.5, 0.5, 20);   // x=12.4
+        break;
     }
-    // Hardcoded overrides for better clarity
-    quests[0].expressionLatex = `\\text{Plan A: } y = 2.0x \\\\ \\text{Plan B: } y = 0.5x + 15`;
-    quests[1].expressionLatex = `\\text{Plan A: } y = 1.5x + 2 \\\\ \\text{Plan B: } y = 0.5x + 8`;
-    quests[2].expressionLatex = `\\text{Plan A: } y = 3.0x \\\\ \\text{Plan B: } y = 1.0x + 10`;
   } else {
-    // Stage 3: Optimization / Inequalities
-    quests.push({
-      id: "L3-1", difficulty, stage: "LEVEL3",
-      mode: "OPTIMIZE",
-      m1: 0.2, c1: 50, m2: 1.0, c2: 5,
-      targetX: 56.25, targetY: 61.25,
-      promptLatex: `\\text{${t.prompts.level3}}`,
-      expressionLatex: `\\text{Plan A: } y = 0.2x + 50 \\\\ \\text{Plan B: } y = 1.0x + 5`,
-      targetLatex: "x > ?",
-      correctLatex: "x > 56.25",
-      slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold", expected: 56.25 }],
-    });
+    // ── LEVEL3: Threshold (Plan A cheaper when x > ?) ──
+    // Plan A has lower m (per-km) but higher c (base fare)
+    switch (difficulty) {
+      case "BASIC":
+        makeOptimize(q, t, difficulty, stage, "B1", 1, 10, 3, 0);  // x=5
+        makeOptimize(q, t, difficulty, stage, "B2", 1, 8, 3, 0);  // x=4
+        break;
+      case "CORE":
+        makeOptimize(q, t, difficulty, stage, "C1", 0.5, 15, 2, 0);  // x=10
+        makeOptimize(q, t, difficulty, stage, "C2", 1, 12, 2.5, 0);  // x=8
+        break;
+      case "ADVANCED":
+        makeOptimize(q, t, difficulty, stage, "A1", 0.5, 12, 1.5, 2);  // x=10
+        makeOptimize(q, t, difficulty, stage, "A2", 0.8, 15, 2, 3);    // x=10
+        break;
+      default: // ELITE
+        makeOptimize(q, t, difficulty, stage, "E1", 0.2, 18, 1.4, 3);     // x=12.5
+        makeOptimize(q, t, difficulty, stage, "E2", 0.35, 20, 1.6, 2.5);  // x=14
+        break;
+    }
   }
 
-  return quests;
+  return q;
 }
 
 export default function S203Page() {
@@ -182,7 +258,7 @@ export default function S203Page() {
             </div>
             <div className="text-white/70 text-sm font-mono">
               {level === 1 && (t?.hints?.level1 || "Calculate the total price y for a given distance x. Use y = mx + c.")}
-              {level === 2 && (t?.hints?.level2 || "Two plans have different m and c. Find the distance x where they cost the same: m₁x + c₁ = m₂x + c₂.")}
+              {level === 2 && (t?.hints?.level2 || "Two plans have different m and c. Find the distance x where they cost the same: m\u2081x + c\u2081 = m\u2082x + c\u2082.")}
               {level === 3 && (t?.hints?.level3 || "Find the distance threshold where Plan A becomes cheaper than Plan B.")}
             </div>
             <div className="text-white/50 text-xs font-mono">
@@ -203,7 +279,7 @@ export default function S203Page() {
           <div className="space-y-4">
             <p className="text-3xl text-white font-black italic whitespace-normal break-words">
               {(() => {
-                const latex = currentQuest?.promptLatex || "\\text{Hit the target}";
+                const latex = currentQuest?.promptLatex || "\\\\text{Hit the target}";
                 if (latex.includes("\\text{")) {
                   return <span className="font-sans not-italic">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
                 }
@@ -230,12 +306,11 @@ export default function S203Page() {
               {t?.mission?.title || "SBB SYSTEM LOG"}
             </h3>
             <p className="text-sm text-white/80 font-mono leading-relaxed">
-              {t?.mission?.description || "Navigate laser beams through reflections to hit targets. Master linear functions and reflection laws."}
+              {t?.mission?.description || "Model railway ticket prices as linear functions. Slope = cost per km, intercept = base fare. Find the break-even point between fare plans!"}
             </p>
           </div>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          {/* Conditionally show sliders if we want interactive exploration, but for now focus on calculated answers */}
           <div className="grid grid-cols-2 gap-4">
             {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="space-y-2">

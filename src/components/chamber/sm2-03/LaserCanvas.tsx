@@ -54,8 +54,8 @@ export default function LaserCanvas({
 
   const originX = 60;
   const originY = 700; // Inverted Y, origin near bottom-left
-  const maxX = 100; // 100km
-  const maxY = 100; // 100 CHF
+  const maxX = 30;  // 30 km — keeps targets near center
+  const maxY = 30;  // 30 CHF
 
   // Convert grid coordinates to canvas coordinates
   const toCanvas = (x: number, y: number) => ({
@@ -81,16 +81,17 @@ export default function LaserCanvas({
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // 1. GRID
+      const step = maxX / 10;
       ctx.strokeStyle = palette.grid;
       ctx.lineWidth = 0.5;
-      for (let i = 0; i <= maxX; i += maxX / 10) {
+      for (let i = 0; i <= maxX; i += step) {
         const { cx } = toCanvas(i, 0);
         ctx.beginPath();
         ctx.moveTo(cx, originY);
         ctx.lineTo(cx, toCanvas(0, maxY).cy);
         ctx.stroke();
       }
-      for (let i = 0; i <= maxY; i += maxY / 10) {
+      for (let i = 0; i <= maxY; i += step) {
         const { cy } = toCanvas(0, i);
         ctx.beginPath();
         ctx.moveTo(originX, cy);
@@ -110,11 +111,27 @@ export default function LaserCanvas({
       ctx.lineTo(toCanvas(maxX, 0).cx + 20, originY);
       ctx.stroke();
 
-      // Axis Labels
+      // Tick labels
+      ctx.fillStyle = "#ffffff88";
+      ctx.font = "11px monospace";
+      ctx.textAlign = "center";
+      for (let i = step; i <= maxX; i += step) {
+        const { cx } = toCanvas(i, 0);
+        ctx.fillText(String(Math.round(i)), cx, originY + 18);
+      }
+      ctx.textAlign = "right";
+      for (let i = step; i <= maxY; i += step) {
+        const { cy } = toCanvas(0, i);
+        ctx.fillText(String(Math.round(i)), originX - 8, cy + 4);
+      }
+      // Axis names
       ctx.fillStyle = palette.white;
-      ctx.font = "bold 14px font-mono";
-      ctx.fillText("dist (km)", toCanvas(maxX, 0).cx - 60, originY + 40);
-      ctx.fillText("price (CHF)", originX - 50, toCanvas(0, maxY).cy - 30);
+      ctx.font = "bold 13px monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("km", toCanvas(maxX, 0).cx + 10, originY + 36);
+      ctx.textAlign = "right";
+      ctx.fillText("CHF", originX - 6, toCanvas(0, maxY).cy - 12);
+      ctx.textAlign = "start"; // reset
 
       // 3. PLAN A (Static/Target) - The Cyan Line
       const drawLine = (m: number, c: number, color: string, label: string) => {
