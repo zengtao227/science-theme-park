@@ -21,6 +21,7 @@ interface ArchitectQuest extends Quest {
   ca: number;
   vb: number;
   formula: string;
+  isFactor?: boolean;
 }
 
 interface ScrapperQuest extends Quest {
@@ -29,6 +30,7 @@ interface ScrapperQuest extends Quest {
   ca: number;
   vb: number;
   variant: "XY" | "X";
+  isFactor?: boolean;
 }
 
 interface SpeedsterQuest extends Quest {
@@ -99,8 +101,9 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         {
           id: `ARCH_FAC_${ca}${vb}`,
           difficulty, stage, type: "EXPAND", ca, vb,
+          isFactor: true,
           formula: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-          promptLatex: `识别结构并因式分解为 (ax + b)² 形式`,
+          promptLatex: `识别项并因式分解为 (ax + b)² 形式`,
           expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
           targetLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
           slots: [
@@ -108,7 +111,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
             { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
           ],
           correctLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
-        } as any, // Temporary cast as we're extending logic
+        },
       ];
     }
   }
@@ -413,7 +416,11 @@ export default function S201Page() {
       monitorContent={
         <>
           <div className="flex-1 relative flex items-center justify-center p-8">
-            <BinomialSquare2D a={canvasA} b={canvasB} />
+            <BinomialSquare2D
+              a={canvasA}
+              b={canvasB}
+              hideRoots={!!(currentQuest as any)?.isFactor || questMode === "ELITE"}
+            />
 
             <AnimatePresence>
               {isSuccess && (
@@ -550,37 +557,66 @@ export default function S201Page() {
             <div className="flex flex-col items-center gap-10 max-w-4xl mx-auto">
               {questMode === "ARCHITECT" && (
                 <div className="flex flex-wrap items-center justify-center gap-4 bg-white/5 p-10 rounded-3xl border border-white/10 shadow-inner">
-                  <div className="flex flex-col gap-3">
-                    <input
-                      value={inputs.a2 || ""}
-                      onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
-                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                      placeholder="?"
-                    />
-                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
-                  </div>
-                  <span className="text-4xl font-black text-white/80">x²</span>
-                  <span className="text-4xl font-black text-neon-cyan">+</span>
-                  <div className="flex flex-col gap-3">
-                    <input
-                      value={inputs.ab || ""}
-                      onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
-                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                      placeholder="?"
-                    />
-                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
-                  </div>
-                  <span className="text-4xl font-black text-white/80">x</span>
-                  <span className="text-4xl font-black text-neon-cyan">+</span>
-                  <div className="flex flex-col gap-3">
-                    <input
-                      value={inputs.b2 || ""}
-                      onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
-                      className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                      placeholder="?"
-                    />
-                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
-                  </div>
+                  {architectQuest?.isFactor ? (
+                    <>
+                      <span className="text-4xl font-black text-white/80">(</span>
+                      <div className="flex flex-col gap-3">
+                        <input
+                          value={inputs.a || ""}
+                          onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
+                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          placeholder="a"
+                        />
+                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">a</span>
+                      </div>
+                      <span className="text-4xl font-black text-white/80">x</span>
+                      <span className="text-4xl font-black text-neon-cyan">+</span>
+                      <div className="flex flex-col gap-3">
+                        <input
+                          value={inputs.b || ""}
+                          onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
+                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          placeholder="b"
+                        />
+                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">b</span>
+                      </div>
+                      <span className="text-4xl font-black text-white/80">)²</span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-col gap-3">
+                        <input
+                          value={inputs.a2 || ""}
+                          onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
+                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          placeholder="?"
+                        />
+                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                      </div>
+                      <span className="text-4xl font-black text-white/80">x²</span>
+                      <span className="text-4xl font-black text-neon-cyan">+</span>
+                      <div className="flex flex-col gap-3">
+                        <input
+                          value={inputs.ab || ""}
+                          onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
+                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          placeholder="?"
+                        />
+                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                      </div>
+                      <span className="text-4xl font-black text-white/80">x</span>
+                      <span className="text-4xl font-black text-neon-cyan">+</span>
+                      <div className="flex flex-col gap-3">
+                        <input
+                          value={inputs.b2 || ""}
+                          onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
+                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          placeholder="?"
+                        />
+                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
               {questMode === "SCRAPPER" && (

@@ -5,9 +5,10 @@ import React from 'react';
 interface BinomialSquare2DProps {
     a: number;
     b: number;
+    hideRoots?: boolean;
 }
 
-export default function BinomialSquare2D({ a, b }: BinomialSquare2DProps) {
+export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSquare2DProps) {
     const total = a + b;
     const padding = 40;
     const viewSize = 400;
@@ -94,10 +95,10 @@ export default function BinomialSquare2D({ a, b }: BinomialSquare2DProps) {
                 </g>
 
                 {/* External Labels */}
-                <text x={padding + aw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">a</text>
-                <text x={padding + aw + bw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">b</text>
-                <text x={padding - 15} y={padding + aw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw / 2})`}>a</text>
-                <text x={padding - 15} y={padding + aw + bw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>b</text>
+                <text x={padding + aw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">{hideRoots ? "a" : a}</text>
+                <text x={padding + aw + bw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">{hideRoots ? "b" : b}</text>
+                <text x={padding - 15} y={padding + aw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw / 2})`}>{hideRoots ? "a" : a}</text>
+                <text x={padding - 15} y={padding + aw + bw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>{hideRoots ? "b" : b}</text>
             </svg>
 
             {/* Legend Overlay */}
