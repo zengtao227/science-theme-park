@@ -94,7 +94,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         },
       ];
     } else {
-      // ADVANCED/ELITE: Factoring
+      // ADVANCED/ELITE: Factoring with explicit decomposition slots
       const ca = isAdvanced ? 1 : Math.floor(Math.random() * 4) + 2;
       const vb = Math.floor(Math.random() * 12) + 2;
       return [
@@ -103,14 +103,17 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
           difficulty, stage, type: "EXPAND", ca, vb,
           isFactor: true,
           formula: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-          promptLatex: `识别项并因式分解为 (ax + b)² 形式`,
+          promptLatex: `识别项并进行结构化分解`,
           expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-          targetLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          targetLatex: `(${ca}x)² + 2(${ca}x)(${vb}) + (${vb})²`,
           slots: [
-            { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
-            { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
+            { id: "a_root", labelLatex: "a", placeholder: "a", expected: ca },
+            { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb },
+            // Repeat to ensure they fill the whole pattern
+            { id: "a_mid", labelLatex: "a", placeholder: "a", expected: ca },
+            { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb },
           ],
-          correctLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          correctLatex: `(${ca}x)² + 2(${ca}x)(${vb}) + (${vb})² = (${ca === 1 ? "" : ca}x + ${vb})²`,
         },
       ];
     }
@@ -558,30 +561,52 @@ export default function S201Page() {
               {questMode === "ARCHITECT" && (
                 <div className="flex flex-wrap items-center justify-center gap-4 bg-white/5 p-10 rounded-3xl border border-white/10 shadow-inner">
                   {architectQuest?.isFactor ? (
-                    <>
-                      <span className="text-4xl font-black text-white/80">(</span>
-                      <div className="flex flex-col gap-3">
+                    <div className="flex flex-col items-center gap-8 w-full">
+                      <div className="flex flex-wrap items-center justify-center gap-2 text-2xl font-black">
+                        <span className="text-white/40">(</span>
                         <input
-                          value={inputs.a || ""}
-                          onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
-                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          value={inputs.a_root || ""}
+                          onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
+                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder="a"
                         />
-                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">a</span>
-                      </div>
-                      <span className="text-4xl font-black text-white/80">x</span>
-                      <span className="text-4xl font-black text-neon-cyan">+</span>
-                      <div className="flex flex-col gap-3">
+                        <span className="text-white/80">x)²</span>
+
+                        <span className="text-neon-cyan mx-2">+</span>
+
+                        <span className="text-white/40 text-3xl">2</span>
+                        <span className="text-white/40">(</span>
                         <input
-                          value={inputs.b || ""}
-                          onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
-                          className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
+                          value={inputs.a_mid || ""}
+                          onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
+                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
+                          placeholder="a"
+                        />
+                        <span className="text-white/80">x)(</span>
+                        <input
+                          value={inputs.b_mid || ""}
+                          onChange={(e) => setInputs({ ...inputs, b_mid: e.target.value })}
+                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder="b"
                         />
-                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">b</span>
+                        <span className="text-white/40">)</span>
+
+                        <span className="text-neon-cyan mx-2">+</span>
+
+                        <span className="text-white/40">(</span>
+                        <input
+                          value={inputs.b_root || ""}
+                          onChange={(e) => setInputs({ ...inputs, b_root: e.target.value })}
+                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
+                          placeholder="b"
+                        />
+                        <span className="text-white/80">)²</span>
                       </div>
-                      <span className="text-4xl font-black text-white/80">)²</span>
-                    </>
+                      <div className="h-px bg-white/10 w-full max-w-lg" />
+                      <div className="text-white/40 text-sm uppercase tracking-widest font-mono">
+                        Decomposition Pattern: a² + 2ab + b²
+                      </div>
+                    </div>
                   ) : (
                     <>
                       <div className="flex flex-col gap-3">
