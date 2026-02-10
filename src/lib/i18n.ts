@@ -674,11 +674,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "Answer",
             pythagoras: {
-                solve_hyp: "🚒 Fire rescue: Find the ladder length",
-                solve_leg: "🏔️ Mountain climb: Find the vertical height",
-                check_right: "📐 Engineering check: Is this a right triangle?",
-                distance: "🚁 Drone delivery: Calculate flight distance",
-                elite_space: "🔬 CERN lab: Find the space diagonal"
+                solve_hyp: " Fire rescue: Find the ladder length",
+                solve_leg: " Mountain climb: Find the vertical height",
+                check_right: " Engineering check: Is this a right triangle?",
+                distance: " Drone delivery: Calculate flight distance",
+                elite_space: " CERN lab: Find the space diagonal"
             },
             sqrt: {
                 perfect: "Perfect squares",
@@ -878,9 +878,9 @@ export const translations: Record<string, any> = {
                 intercept: "Base fare (c)"
             },
             prompts: {
-                level1: "\\text{🚂 Calculate the ticket price for the given destination}",
-                level2: "\\text{🚂 Find the distance where two fare plans cost the same}",
-                level3: "\\text{🚂 Design a fare plan that is cheapest for long-distance travel}"
+                level1: "\\text{ Calculate the ticket price for the given destination}",
+                level2: "\\text{ Find the distance where two fare plans cost the same}",
+                level3: "\\text{ Design a fare plan that is cheapest for long-distance travel}"
             },
             hints: {
                 level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
@@ -2840,11 +2840,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "答案",
             pythagoras: {
-                solve_hyp: "🚒 消防救援：计算消防梯最短长度",
-                solve_leg: "🏔️ 阿尔卑斯登山：计算垂直攀升高度",
-                check_right: "📐 工程验收：这是直角三角形吗？",
-                distance: "🚁 无人机快递：计算直线飞行距离",
-                elite_space: "🔬 CERN 实验室：计算空间对角线"
+                solve_hyp: " 消防救援：计算消防梯最短长度",
+                solve_leg: " 阿尔卑斯登山：计算垂直攀升高度",
+                check_right: " 工程验收：这是直角三角形吗？",
+                distance: " 无人机快递：计算直线飞行距离",
+                elite_space: " CERN 实验室：计算空间对角线"
             },
             sqrt: {
                 perfect: "完全平方数",
@@ -3044,9 +3044,9 @@ export const translations: Record<string, any> = {
                 intercept: "基础票价 (c)"
             },
             prompts: {
-                level1: "\\text{🚂 计算到达目的地的票价}",
-                level2: "\\text{🚂 找到两种票价方案费用相同的距离}",
-                level3: "\\text{🚂 设计一个适合长途旅行的最优票价方案}"
+                level1: "\\text{ 计算到达目的地的票价}",
+                level2: "\\text{ 找到两种票价方案费用相同的距离}",
+                level3: "\\text{ 设计一个适合长途旅行的最优票价方案}"
             },
             hints: {
                 level1: "斜率 m = 每公里费用。截距 c = 基础票价（起步价）。总票价 y = m × 距离 + c。",
@@ -5325,11 +5325,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "Antwort",
             pythagoras: {
-                solve_hyp: "🚒 Feuerwehr: Leiterlänge berechnen",
-                solve_leg: "🏔️ Bergrettung: Vertikale Höhe finden",
-                check_right: "📐 Ingenieurscheck: Rechtwinkliges Dreieck?",
-                distance: "🚁 Drohnenlieferung: Flugdistanz berechnen",
-                elite_space: "🔬 CERN Labor: Raumdiagonale finden"
+                solve_hyp: " Feuerwehr: Leiterlänge berechnen",
+                solve_leg: " Bergrettung: Vertikale Höhe finden",
+                check_right: " Ingenieurscheck: Rechtwinkliges Dreieck?",
+                distance: " Drohnenlieferung: Flugdistanz berechnen",
+                elite_space: " CERN Labor: Raumdiagonale finden"
             },
             sqrt: {
                 perfect: "Quadratzahlen",
@@ -5546,9 +5546,9 @@ export const translations: Record<string, any> = {
                 intercept: "Grundgebühr (c)"
             },
             prompts: {
-                level1: "\\text{🚂 Berechne den Ticketpreis für das Ziel}",
-                level2: "\\text{🚂 Finde die Distanz, wo zwei Tarife gleich kosten}",
-                level3: "\\text{🚂 Entwerfe einen Tarif für Langstrecken}"
+                level1: "\\text{ Berechne den Ticketpreis für das Ziel}",
+                level2: "\\text{ Finde die Distanz, wo zwei Tarife gleich kosten}",
+                level3: "\\text{ Entwerfe einen Tarif für Langstrecken}"
             },
             hints: {
                 level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",

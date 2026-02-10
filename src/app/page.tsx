@@ -174,7 +174,7 @@ export default function Home() {
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
   }
-  
+
   // Show user setup if no user is selected
   if (!currentUser) {
     return <UserSetup />;
@@ -231,10 +231,10 @@ export default function Home() {
       </header>
 
       {/* Main Grid Content */}
-      <div className="max-w-7xl mx-auto pt-12 px-6">
+      <div className="max-w-7xl mx-auto pt-6 px-6">
 
-        <div className="mb-10 flex items-start justify-between gap-8">
-          <div className="border-l-2 border-neon-green pl-6 py-2 flex-1">
+        <div className="mb-4 flex items-start justify-between gap-8 relative">
+          <div className="border-l-2 border-neon-green pl-6 py-2 flex-1 z-10">
             <h2 className="text-5xl font-black tracking-tighter mb-2 max-w-2xl leading-[0.9]">
               {t.home.subtitle}
             </h2>
@@ -242,9 +242,9 @@ export default function Home() {
               Interactive STEM Simulations // V2.1
             </p>
           </div>
-          
+
           {/* STEM Mastery Radar - Side by side with title */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 -mt-6 relative z-0">
             <MasteryRadar
               conceptual={masteryMetrics.conceptual}
               speed={masteryMetrics.speed}
@@ -261,7 +261,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mb-14">
+        <div className="mb-8">
           <ModuleFilter
             label={t.home.search_label}
             query={query}
@@ -285,38 +285,38 @@ export default function Home() {
         </div>
 
         <div className="space-y-20">{filteredMath.length > 0 && (
-            <Sector
-              title="MATHEMATICS SECTOR"
-              color="neon-cyan"
-              progress={mathProgress}
-              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-              tagIcon="📐"
-            >
-              <AnimatePresence mode="popLayout">
-                {filteredMath.map((module) => (
-                  <motion.div
-                    layout
-                    key={module.code}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ModuleCard
-                      code={module.code}
-                      title={module.title}
-                      desc={module.desc}
-                      color={module.color}
-                      progress={getProgress(module.code)}
-                      href={module.href}
-                      actionLabel={t.home.initiate_simulation}
-                      completedLabel={t.home.completed_badge}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </Sector>
-          )}
+          <Sector
+            title="MATHEMATICS SECTOR"
+            color="neon-cyan"
+            progress={mathProgress}
+            icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+            tagIcon="📐"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredMath.map((module) => (
+                <motion.div
+                  layout
+                  key={module.code}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <ModuleCard
+                    code={module.code}
+                    title={module.title}
+                    desc={module.desc}
+                    color={module.color}
+                    progress={getProgress(module.code)}
+                    href={module.href}
+                    actionLabel={t.home.initiate_simulation}
+                    completedLabel={t.home.completed_badge}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </Sector>
+        )}
 
           {filteredPhysics.length > 0 && (
             <Sector
