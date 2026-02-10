@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Line, Grid, Float } from "@react-three/drei";
+import { OrbitControls, Text, Line, Grid, Float, Billboard } from "@react-three/drei";
 import * as THREE from "three";
 
 interface TriangleCanvasProps {
@@ -232,7 +232,6 @@ interface SpaceCanvasProps {
 
 // Elite Space: Glassy 3D Cuboid with Glowing Body Diagonal
 function Space3D({ a, b, c }: SpaceCanvasProps) {
-  // 移除自动旋转
   const diagonalRef = useRef<THREE.Mesh>(null);
 
   useFrame(({ clock }) => {
@@ -253,7 +252,6 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
   const F = new THREE.Vector3(a, b, c);
   const G = new THREE.Vector3(0, b, c);
 
-  // Space diagonal
   const diagonal = Math.sqrt(a * a + b * b + c * c);
 
   return (
@@ -387,19 +385,30 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
         </mesh>
       ))}
 
-      {/* Labels with enhanced styling - depthTest disabled so they are always on top */}
-      <Text position={[a / 2, 0.4, 0]} fontSize={0.35} color="#39ff14" anchorX="center" material-depthTest={false}>
-        a = {a}
-      </Text>
-      <Text position={[a + 0.6, b / 2, 0]} fontSize={0.35} color="#00e5ff" anchorX="center" material-depthTest={false}>
-        b = {b}
-      </Text>
-      <Text position={[a + 0.6, b, c / 2]} fontSize={0.35} color="#a855f7" anchorX="center" material-depthTest={false}>
-        c = {c}
-      </Text>
-      <Text position={[a / 2, b + 1.2, c / 2]} fontSize={0.4} color="#ff0080" anchorX="center" material-depthTest={false}>
-        d = ?
-      </Text>
+      {/* Labels with enhanced styling - Billboard ensures they always face the camera */}
+      <Billboard position={[a / 2, 0.8, -0.5]}>
+        <Text fontSize={0.5} color="#39ff14" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          a = {a}
+        </Text>
+      </Billboard>
+
+      <Billboard position={[a + 0.8, b / 2, -0.5]}>
+        <Text fontSize={0.5} color="#00e5ff" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          b = {b}
+        </Text>
+      </Billboard>
+
+      <Billboard position={[a + 0.8, b + 0.5, c / 2]}>
+        <Text fontSize={0.5} color="#a855f7" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          c = {c}
+        </Text>
+      </Billboard>
+
+      <Billboard position={[a / 2, b + 1.8, c / 2]}>
+        <Text fontSize={0.6} color="#ff0080" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          d = ?
+        </Text>
+      </Billboard>
     </group>
   );
 }
@@ -498,15 +507,23 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
         />
       </mesh>
 
-      <Text position={[p1.x, p1.y + 1, 0.1]} fontSize={0.4} color="#ffffff" anchorX="center" material-depthTest={false}>
-        ({p1.x}, {p1.y})
-      </Text>
-      <Text position={[p2.x, p2.y + 1, 0.1]} fontSize={0.4} color="#39ff14" anchorX="center" material-depthTest={false}>
-        ({p2.x}, {p2.y})
-      </Text>
-      <Text position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.2, 0.1]} fontSize={0.5} color="#d946ef" anchorX="center" material-depthTest={false}>
-        d = ?
-      </Text>
+      <Billboard position={[p1.x, p1.y + 1, 0.5]}>
+        <Text fontSize={0.5} color="#ffffff" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          ({p1.x}, {p1.y})
+        </Text>
+      </Billboard>
+
+      <Billboard position={[p2.x, p2.y + 1, 0.5]}>
+        <Text fontSize={0.5} color="#39ff14" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          ({p2.x}, {p2.y})
+        </Text>
+      </Billboard>
+
+      <Billboard position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.5, 0.5]}>
+        <Text fontSize={0.6} color="#d946ef" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
+          d = ?
+        </Text>
+      </Billboard>
       <Text position={[(p1.x + corner.x) / 2, p1.y - 0.7, 0]} fontSize={0.35} color="#39ff14" anchorX="center">
         Δx = {dx}
       </Text>
@@ -579,9 +596,9 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
     return (
       <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
         <Canvas camera={{ position: [12, 10, 14], fov: 55 }} gl={{ antialias: true }}>
-          <color attach="background" args={["#000005"]} />
-          <ambientLight intensity={0.3} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
+          <color attach="background" args={["#050510"]} />
+          <ambientLight intensity={0.6} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
           <pointLight position={[-10, -10, 10]} intensity={0.6} color="#ff0080" />
           <pointLight position={[0, 15, 0]} intensity={0.5} color="#00ffff" />
 
