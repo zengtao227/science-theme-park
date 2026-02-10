@@ -22,57 +22,51 @@ interface S101Quest extends Quest {
 }
 
 function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Quest[] {
-    const scale = difficulty === "BASIC" ? 1 : difficulty === "CORE" ? 1.5 : difficulty === "ADVANCED" ? 2.2 : 3.8;
-    const isElite = difficulty === "ELITE";
-
     if (stage === "AREAS") {
         const all: S101Quest[] = [
             {
                 id: "A1", difficulty, stage,
                 promptLatex: `\\text{ 阿尔卑斯滑雪场需要铺设新雪道。雪道是长方形，}`,
-                expressionLatex: `\\text{长 }a=${Math.round(5 * scale)}\\text{m, 宽 }b=${Math.round(8 * scale)}\\text{m，计算雪道面积}`,
+                expressionLatex: `\\text{长 }a=5\\text{m, 宽 }b=8\\text{m，计算雪道面积}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: Math.round(40 * scale * scale) }],
-                correctLatex: `A=${Math.round(5 * scale)}\\cdot ${Math.round(8 * scale)}=${Math.round(40 * scale * scale)}`,
-                hintLatex: [`A=a\\cdot b`],
-                visualMeta: { type: 'rectangle', params: { a: 5 * scale, b: 8 * scale } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 40, unit: "cm^2" }],
+                correctLatex: `A=5\\cdot 8=40`,
+                hintLatex: [`A=a\\cdot b`, `A=40`],
+                visualMeta: { type: 'rectangle', params: { a: 5, b: 8 } },
             },
             {
                 id: "A2", difficulty, stage,
                 promptLatex: `\\text{ 苏黎世帆船俱乐部需要订制新帆布。帆是三角形，}`,
-                expressionLatex: `\\text{底边 }b=${Math.round(6 * scale)}\\text{m, 高 }h=${Math.round(4 * scale)}\\text{m，计算帆的面积}`,
+                expressionLatex: `\\text{底边 }b=6\\text{m, 高 }h=4\\text{m，计算帆的面积}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: Math.round(12 * scale * scale) }],
-                correctLatex: `A=\\frac{1}{2}\\cdot ${Math.round(6 * scale)}\\cdot ${Math.round(4 * scale)}=${Math.round(12 * scale * scale)}`,
-                hintLatex: [`A=\\frac{1}{2}bh`],
-                visualMeta: { type: 'triangle', params: { b: 6 * scale, h: 4 * scale } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 12, unit: "cm^2" }],
+                correctLatex: `A=\\frac{1}{2}\\cdot 6\\cdot 4=12`,
+                hintLatex: [`A=\\frac{1}{2}bh`, `A=12`],
+                visualMeta: { type: 'triangle', params: { b: 6, h: 4 } },
             },
             {
                 id: "A3", difficulty, stage,
                 promptLatex: `\\text{ 巴塞尔莱茵河防洪闸门截面是梯形，}`,
-                expressionLatex: `\\text{上底 }a=${Math.round(4 * scale)}\\text{m, 下底 }b=${Math.round(6 * scale)}\\text{m, 高 }h=${Math.round(5 * scale)}\\text{m, 求截面积}`,
+                expressionLatex: `\\text{上底 }a=4\\text{m, 下底 }b=6\\text{m, 高 }h=5\\text{m, 求截面积}`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: Math.round(25 * scale * scale) }],
-                correctLatex: `A=\\frac{1}{2}(${Math.round(4 * scale)}+${Math.round(6 * scale)})\\cdot ${Math.round(5 * scale)}=${Math.round(25 * scale * scale)}`,
-                hintLatex: [`A=\\frac{1}{2}(a+b)h`],
-                visualMeta: { type: 'trapezoid', params: { a: 4 * scale, b: 6 * scale, h: 5 * scale } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 25, unit: "cm^2" }],
+                correctLatex: `A=\\frac{1}{2}(4+6)\\cdot 5=25`,
+                hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=25`],
+                visualMeta: { type: 'trapezoid', params: { a: 4, b: 6, h: 5 } },
             },
             {
                 id: "A4", difficulty, stage,
                 promptLatex: `\\text{ 格律耶尔奶酪工厂的圆形模具，}`,
-                expressionLatex: `\\text{半径 }r=${isElite ? (3.5 * scale).toFixed(1) : Math.round(3 * scale)}\\text{cm，计算模具底面积}`,
+                expressionLatex: `\\text{半径 }r=3\\text{cm，计算模具底面积}`,
                 targetLatex: `A`,
-                slots: [{
-                    id: "A",
-                    labelLatex: `A`,
-                    placeholder: "area",
-                    expected: parseFloat((Math.PI * Math.pow(isElite ? 3.5 * scale : 3 * scale, 2)).toFixed(2))
-                }],
-                correctLatex: `A=\\pi\\cdot (${isElite ? (3.5 * scale).toFixed(1) : Math.round(3 * scale)})^2\\approx ${(Math.PI * Math.pow(isElite ? 3.5 * scale : 3 * scale, 2)).toFixed(2)}`,
-                hintLatex: [`A=\\pi r^2`],
-                visualMeta: { type: 'circle', params: { r: isElite ? 3.5 * scale : 3 * scale } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 28.27, unit: "cm^2" }],
+                correctLatex: `A=\\pi r^2\\approx 28.27`,
+                hintLatex: [`A=\\pi r^2`, `A\\approx 28.27`],
+                visualMeta: { type: 'circle', params: { r: 3 } },
             },
         ];
+        if (difficulty === "BASIC") return all.slice(0, 2);
+        if (difficulty === "CORE") return all.slice(0, 3);
         return all;
     }
 
@@ -81,60 +75,62 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             {
                 id: "V1", difficulty, stage,
                 promptLatex: `\\text{ 瑞士木屋阁楼是正方体空间，需要选购空气净化器，}`,
-                expressionLatex: `\\text{边长 }a=${Math.round(4 * scale)}\\text{m，计算空间体积}`,
+                expressionLatex: `\\text{边长 }a=4\\text{m，计算空间体积}`,
                 targetLatex: `V`,
-                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: Math.pow(Math.round(4 * scale), 3) }],
-                correctLatex: `V=${Math.round(4 * scale)}^3=${Math.pow(Math.round(4 * scale), 3)}`,
-                hintLatex: [`V=a^3`],
-                visualMeta: { type: 'cube', params: { a: 4 * scale } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 64, unit: "cm^3" }],
+                correctLatex: `V=4^3=64`,
+                hintLatex: [`V=a^3`, `V=64`],
+                visualMeta: { type: 'cube', params: { a: 4 } },
             },
             {
                 id: "V2", difficulty, stage,
                 promptLatex: `\\text{ CERN 实验室需要一个精密仪器的储存箱，}`,
-                expressionLatex: `\\text{长 }a=${Math.round(3 * scale)}\\text{m, 宽 }b=${Math.round(4 * scale)}\\text{m, 高 }c=${Math.round(5 * scale)}\\text{m, 计算储存箱容积}`,
+                expressionLatex: `\\text{长 }a=3\\text{m, 宽 }b=4\\text{m, 高 }c=5\\text{m, 计算储存箱容积}`,
                 targetLatex: `V`,
-                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: Math.round(60 * Math.pow(scale, 3)) }],
-                correctLatex: `V=${Math.round(3 * scale)}\\cdot ${Math.round(4 * scale)}\\cdot ${Math.round(5 * scale)}=${Math.round(60 * Math.pow(scale, 3))}`,
-                hintLatex: [`V=abc`],
-                visualMeta: { type: 'prism', params: { a: 3 * scale, b: 4 * scale, c: 5 * scale } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 60, unit: "cm^3" }],
+                correctLatex: `V=3\\cdot 4\\cdot 5=60`,
+                hintLatex: [`V=abc`, `V=60`],
+                visualMeta: { type: 'prism', params: { a: 3, b: 4, c: 5 } },
             },
             {
                 id: "V3", difficulty, stage,
-                promptLatex: `\\text{ 圣莫里茨的滑雪缆车支架是圆柱体，}`,
-                expressionLatex: `\\text{底面半径 }r=${Math.round(3 * scale)}\\text{m, 高 }h=${Math.round(10 * scale)}\\text{m，计算支架体积}`,
+                promptLatex: `\\text{ 格律耶尔奶酪工厂的圆柱形模具，}`,
+                expressionLatex: `\\text{半径 }r=2\\text{cm, 高 }h=5\\text{cm, 计算模具容积}`,
                 targetLatex: `V`,
-                slots: [{
-                    id: "V",
-                    labelLatex: `V`,
-                    placeholder: "volume",
-                    expected: parseFloat((Math.PI * Math.pow(Math.round(3 * scale), 2) * Math.round(10 * scale)).toFixed(2))
-                }],
-                correctLatex: `V=\\pi\\cdot ${Math.round(3 * scale)}^2\\cdot ${Math.round(10 * scale)}\\approx ${(Math.PI * Math.pow(Math.round(3 * scale), 2) * Math.round(10 * scale)).toFixed(2)}`,
-                hintLatex: [`V=\\pi r^2 h`],
-                visualMeta: { type: 'cylinder', params: { r: 3 * scale, h: 10 * scale } },
+                slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 62.83, unit: "cm^3" }],
+                correctLatex: `V=\\pi r^2h\\approx 62.83`,
+                hintLatex: [`V=\\pi r^2h`, `V\\approx 62.83`],
+                visualMeta: { type: 'cylinder', params: { r: 2, h: 5 } },
             },
         ];
+        if (difficulty === "BASIC") return all.slice(0, 2);
         return all;
     }
 
     if (stage === "COMPLEX") {
-        const h = Math.round(5 * scale);
-        const a = Math.round(8 * scale);
-        const b = Math.round(12 * scale);
-        const expected = 0.5 * (a + b) * h;
-
         const all: S101Quest[] = [
             {
                 id: "C1", difficulty, stage,
                 promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.title}}\\\\\\text{${t.mission?.description}}`,
-                expressionLatex: `\\text{Trapezoid: }a=${a},\\; b=${b},\\; h=${h}`,
+                expressionLatex: `\\text{Trapezoid: }a=8,\\; b=12,\\; h=5`,
                 targetLatex: `A`,
-                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected }],
-                correctLatex: `A=\\frac{1}{2}(${a}+${b})\\cdot ${h}=${expected}`,
-                hintLatex: [`A=\\frac{1}{2}(a+b)h`],
-                visualMeta: { type: 'trapezoid', params: { a, b, h } },
+                slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 50 }],
+                correctLatex: `A=\\frac{1}{2}(8+12)\\cdot 5=50`,
+                hintLatex: [`A=\\frac{1}{2}(a+b)h`, `A=50`],
+                visualMeta: { type: 'trapezoid', params: { a: 8, b: 12, h: 5 } },
+            },
+            {
+                id: "C2", difficulty, stage,
+                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.cube_title}}\\\\\\text{${t.mission?.cube_desc}}`,
+                expressionLatex: `\\text{Cube: }a=6`,
+                targetLatex: `d`,
+                slots: [{ id: "d", labelLatex: `d`, placeholder: "diagonal", expected: 10.39 }],
+                correctLatex: `d=a\\sqrt{3}\\approx 10.39`,
+                hintLatex: [`d=a\\sqrt{3}`, `d\\approx 10.39`],
+                visualMeta: { type: 'cube', params: { a: 6 } },
             },
         ];
+        if (difficulty === "BASIC") return all.slice(0, 1);
         return all;
     }
 
@@ -209,8 +205,8 @@ export default function S101Page() {
                 },
             }}
             monitorContent={
-                <div className="space-y-6">
-                    <div className="relative w-full aspect-square bg-black/20 rounded-xl overflow-hidden shadow-inner">
+                <>
+                    <div className="relative w-full">
                         {/* Use 3D Cube for volume stage with cube geometry */}
                         {stage === 'VOLUMES' && currentQuest.visualMeta?.type === 'cube' ? (
                             <Cube3D
@@ -244,7 +240,7 @@ export default function S101Page() {
                             <InlineMath math={currentQuest.promptLatex} />
                         </div>
                         {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
-                            <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em] pt-4 border-t border-white/5">
+                            <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
                                 <div className="text-white/40">{t.labels.hints}</div>
                                 {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
                                     <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
@@ -257,10 +253,16 @@ export default function S101Page() {
                             </div>
                         )}
                     </div>
-                </div>
+
+                    <div className="space-y-2">
+                        <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
+                            {difficulty}{" // "}S1.01{" // "}{t.stages[stage.toLowerCase() as keyof typeof t.stages]}
+                        </div>
+                    </div>
+                </>
             }
         >
-            <div className="space-y-12 py-10">
+            <div className="space-y-6">
                 <div className="text-center">
                     <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
                         {t.objective_title}
@@ -306,45 +308,47 @@ export default function S101Page() {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div className="p-8 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
-                    <div className="space-y-6">
-                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-                            {t.labels.input}
-                        </div>
-                        <div className={clsx("grid gap-6", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                            {currentQuest.slots.map((slot) => (
-                                <div key={slot.id} className="space-y-3">
-                                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
-                                        <InlineMath math={slot.labelLatex} />
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <input
-                                            value={inputs[slot.id] ?? ""}
-                                            onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                                            className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white transition-all focus:border-neon-cyan"
-                                            placeholder={slot.placeholder}
-                                            inputMode="numeric"
-                                        />
-                                        {slot.unit && (
-                                            <div className="text-xl font-black text-white/80 min-w-[50px]">
-                                                <InlineMath math={slot.unit} />
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+            <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
+                <div className="space-y-4">
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+                        {t.labels.input}
                     </div>
-                    <div className="mt-8 pt-6 border-t border-white/5 text-[10px] text-white/40 font-mono italic text-center">
-                        {currentLanguage === 'DE'
-                            ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
-                            : currentLanguage === 'CN'
-                                ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
-                                : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
-                        }
+                    <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                        {currentQuest.slots.map((slot) => (
+                            <div key={slot.id} className="space-y-2">
+                                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                                    <InlineMath math={slot.labelLatex} />
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <input
+                                        value={inputs[slot.id] ?? ""}
+                                        onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
+                                        className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                                        placeholder={slot.placeholder}
+                                        inputMode="numeric"
+                                    />
+                                    {slot.unit && (
+                                        <div className="text-xl font-black text-white/80 min-w-[50px]">
+                                            <InlineMath math={slot.unit} />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
+
+                <div className="text-[10px] text-white/40 font-mono italic text-center">
+                    {currentLanguage === 'DE'
+                        ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
+                        : currentLanguage === 'CN'
+                            ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
+                            : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
+                    }
+                </div>
+
             </div>
         </ChamberLayout>
     );

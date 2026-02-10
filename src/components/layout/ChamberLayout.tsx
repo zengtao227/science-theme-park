@@ -283,8 +283,8 @@ export default function ChamberLayout({
                     <ResizableLayout
                         moduleCode={moduleCode}
                         leftContent={
-                            <main className="h-full p-6 flex flex-col gap-4 bg-black overflow-y-auto items-center justify-center">
-                                <div className="w-full max-w-5xl space-y-10 py-12">
+                            <main className="h-full p-6 flex flex-col gap-4 bg-black overflow-y-auto items-center">
+                                <div className="w-full max-w-5xl space-y-10">
                                     <div className="flex flex-wrap gap-3 justify-center">
                                         {stages.map((s) => (
                                             <button
@@ -319,13 +319,9 @@ export default function ChamberLayout({
                                         <div className="w-1 h-1 bg-white/40" />
                                     </div>
                                 </div>
-                                <div className="flex-1 p-6 overflow-y-auto flex flex-col">
-                                    <div className="border border-white/10 rounded-2xl p-8 bg-gradient-to-b from-white/[0.03] to-transparent min-h-full flex flex-col items-center justify-center gap-8 shadow-inner relative overflow-hidden group">
-                                        {/* Decorative scanning line animation effect */}
-                                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent animate-scan z-0" />
-                                        <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8">
-                                            {monitorContent}
-                                        </div>
+                                <div className="flex-1 p-6 overflow-y-auto">
+                                    <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02] min-h-full flex flex-col gap-6">
+                                        {monitorContent}
                                     </div>
                                 </div>
                             </aside>
