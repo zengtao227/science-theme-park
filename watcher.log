@@ -2240,3 +2240,9 @@ To https://github.com/zengtao227/science-theme-park.git
 [2026-02-10 15:41:07] WATCHER_TIMER: Hourly backup triggered.
 [2026-02-10 15:41:07] Git Sync Triggered: Committing and Pushing to origin...
 [2026-02-10 15:41:09] Git Sync Success: Repository pushed to GitHub.
+[main 4326d80] auto: daily sync 2026-02-10 16:11
+ 1 file changed, 2 insertions(+)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   c6f7d79..4326d80  main -> main
