@@ -3102,9 +3102,9 @@ export const translations: Record<string, any> = {
             },
             hints: {
                 level1: "斜率 m = 每公里费用。截距 c = 基础票价（起步价）。总票价 y = m × 距离 + c。",
-                level2: "两种票价方案的 m 和 c 不同。找到交点——那就是费用相同的距离！",
-                level3: "调整斜率和截距，让你的方案在某个距离之后变得最便宜。",
-                drag: "调整滑块来改变斜率（每公里费用）和截距（基础票价）。"
+                level2: "两种票价方案的斜率 m 和截距 c 不同。让两个方程相等：m₁x + c₁ = m₂x + c₂，解出 x。",
+                level3: "找到方案 A 变得比方案 B 便宜的临界距离。",
+                drag: "在下方输入框中输入你的答案。"
             },
             ui: {
                 current_function: "票价公式",
@@ -5652,9 +5652,9 @@ export const translations: Record<string, any> = {
             },
             hints: {
                 level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",
-                level2: "Zwei Tarife haben unterschiedliche m und c. Finde den Schnittpunkt — dort kosten sie gleich!",
-                level3: "Passe Steigung und Achsenabschnitt an, damit dein Tarif ab einer bestimmten Distanz am günstigsten ist.",
-                drag: "Passe den Schieberegler an, um Steigung (Kosten/km) und Achsenabschnitt (Grundgebühr) zu ändern."
+                level2: "Zwei Tarife haben unterschiedliche m und c. Setze m₁x + c₁ = m₂x + c₂ und löse nach x.",
+                level3: "Finde die Distanz, ab der Plan A günstiger als Plan B ist.",
+                drag: "Gib deine Antwort im Eingabefeld unten ein."
             },
             ui: {
                 current_function: "Tarifformel",

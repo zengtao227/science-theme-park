@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -61,7 +61,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
       quests.push({
         id: `S2|${d.id}`, difficulty, stage,
         mode: "INTERSECT",
-        m1: d.m1, c1: d.c1, m2: d.m2, c2: d.m2, // m2/c2 for drawing
+        m1: d.m1, c1: d.c1, m2: d.m2, c2: d.c2,
         targetX: x, targetY: d.m1 * x + d.c1,
         promptLatex: `\\text{${t.prompts.level2}}`,
         expressionLatex: `\\text{Plan A: } 2.0/\\text{km} \\\\ \\text{Plan B: } 0.5/\\text{km} + 15 \\text{ flat}`, // Simplified for now, will dynamicize later
@@ -116,25 +116,7 @@ export default function S203Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
-  useEffect(() => {
-    if (!inputs.m && !inputs.c) {
-      setInputs({ m: "1", c: "0" });
-    }
-  }, [inputs, setInputs]);
-
-  const slope = useMemo(() => {
-    const m = parseFloat(inputs['m'] || '0');
-    return Number.isFinite(m) ? m : 1;
-  }, [inputs]);
-
-  const intercept = useMemo(() => {
-    const c = parseFloat(inputs['c'] || '0');
-    return Number.isFinite(c) ? c : 2;
-  }, [inputs]);
-
   const level = stage === "LEVEL1" ? 1 : stage === "LEVEL2" ? 2 : 3;
-  const targetX = currentQuest?.targetX ?? (level === 1 ? 8 : level === 2 ? 6 : 9);
-  const targetY = currentQuest?.targetY ?? (level === 1 ? 6 : level === 2 ? 8 : 5);
 
   return (
     <ChamberLayout
@@ -199,12 +181,12 @@ export default function S203Page() {
               {t?.labels?.hints || "HINTS"}
             </div>
             <div className="text-white/70 text-sm font-mono">
-              {level === 1 && (t?.hints?.level1 || "Use one reflection to hit the target. Adjust slope and intercept.")}
-              {level === 2 && (t?.hints?.level2 || "Target is moving. Predict its position and adjust your laser path.")}
-              {level === 3 && (t?.hints?.level3 || "Use two reflections to reach the target. Complex trajectory required.")}
+              {level === 1 && (t?.hints?.level1 || "Calculate the total price y for a given distance x. Use y = mx + c.")}
+              {level === 2 && (t?.hints?.level2 || "Two plans have different m and c. Find the distance x where they cost the same: m₁x + c₁ = m₂x + c₂.")}
+              {level === 3 && (t?.hints?.level3 || "Find the distance threshold where Plan A becomes cheaper than Plan B.")}
             </div>
             <div className="text-white/50 text-xs font-mono">
-              {t?.hints?.drag || "Drag the control points on the line to edit slope and intercept."}
+              {t?.hints?.drag || "Enter your answer in the input field below."}
             </div>
             <div className="text-white font-black text-lg">
               <InlineMath math="y = mx + c" />

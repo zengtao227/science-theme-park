@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
 interface LaserCanvasProps {
@@ -51,14 +50,8 @@ export default function LaserCanvas({
   labels,
 }: LaserCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const prevHitRef = useRef(false);
   const [hitVisible, setHitVisible] = useState(false);
-  const dragRef = useRef<{ active: boolean; mode: "intercept" | "slope" | null }>({
-    active: false,
-    mode: null,
-  });
 
-  const gridSize = 30; // Better spacing
   const originX = 60;
   const originY = 700; // Inverted Y, origin near bottom-left
   const maxX = 100; // 100km
