@@ -239,7 +239,7 @@ export default function Home() {
               {t.home.subtitle}
             </h2>
             <p className="text-white/50 font-mono text-sm tracking-widest uppercase">
-              Interactive STEM Simulations // V2.1
+              Interactive STEM Simulations // V2.2 (Scenario Update)
             </p>
           </div>
 
