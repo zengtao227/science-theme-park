@@ -71,19 +71,24 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
   const isCore = difficulty === "CORE";
   const isAdvanced = difficulty === "ADVANCED";
   const isElite = difficulty === "ELITE";
+  const poolSize = 10;
+
+  const getFullTerm = (coeff: number, variable: string) => {
+    if (coeff === 1) return variable;
+    return `${coeff}${variable}`;
+  };
 
   if (stage === "ARCHITECT") {
-    // Structural Choice: BASIC/CORE are EXPAND, ADVANCED/ELITE are FACTOR (or mixed)
-    if (isBasic || isCore) {
-      const ca = isBasic ? 1 : Math.floor(Math.random() * 5) + 2;
-      const vb = Math.floor(Math.random() * 10) + 1;
-      return [
-        {
-          id: `ARCH_EXP_${ca}${vb}`,
+    return Array.from({ length: poolSize }).map((_, i) => {
+      if (isBasic || isCore) {
+        const ca = isBasic ? 1 : Math.floor(Math.random() * 4) + 2;
+        const vb = Math.floor(Math.random() * 8) + 2 + i;
+        return {
+          id: `ARCH_EXP_${ca}_${vb}_${i}`,
           difficulty, stage, type: "EXPAND", ca, vb,
-          formula: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          formula: `(${getFullTerm(ca, "x")} + ${vb})²`,
           promptLatex: t.scenarios.architect_mission,
-          expressionLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          expressionLatex: `(${getFullTerm(ca, "x")} + ${vb})²`,
           targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
           slots: [
             { id: "a2", labelLatex: "x²", placeholder: "coeff", expected: ca ** 2 },
@@ -91,145 +96,143 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
             { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
           ],
           correctLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-        },
-      ];
-    } else {
-      // ADVANCED/ELITE: Factoring with explicit decomposition slots
-      const ca = isAdvanced ? 1 : Math.floor(Math.random() * 4) + 2;
-      const vb = Math.floor(Math.random() * 12) + 2;
-      return [
-        {
-          id: `ARCH_FAC_${ca}${vb}`,
+        };
+      } else {
+        const ca = isAdvanced ? 1 : Math.floor(Math.random() * 4) + 2;
+        const vb = Math.floor(Math.random() * 8) + 3 + i;
+        const aTerm = getFullTerm(ca, "x");
+        return {
+          id: `ARCH_FAC_${ca}_${vb}_${i}`,
           difficulty, stage, type: "EXPAND", ca, vb,
           isFactor: true,
           formula: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
           promptLatex: `识别项并进行结构化分解`,
           expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-          targetLatex: `(${ca}x)² + 2(${ca}x)(${vb}) + (${vb})²`,
+          targetLatex: `(${aTerm})² + 2(${aTerm})(${vb}) + (${vb})²`,
           slots: [
-            { id: "a_root", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
+            { id: "a_root", labelLatex: "a", placeholder: "ax", expected: aTerm },
             { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb.toString() },
-            // Repeat to ensure they fill the whole pattern
-            { id: "a_mid", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
+            { id: "a_mid", labelLatex: "a", placeholder: "ax", expected: aTerm },
             { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb.toString() },
           ],
-          correctLatex: `(${ca === 1 ? "" : ca}x)² + 2(${ca === 1 ? "" : ca}x)(${vb}) + (${vb})² = (${ca === 1 ? "" : ca}x + ${vb})²`,
-        },
-      ];
-    }
+          correctLatex: `(${aTerm})² + 2(${aTerm})(${vb}) + (${vb})² = (${aTerm} + ${vb})²`,
+        };
+      }
+    });
   }
 
   if (stage === "SCRAPPER") {
-    const choices = isBasic ? [1, 2, 3] : [2, 3, 4, 5, 8, 10];
-    const ca = choices[Math.floor(Math.random() * choices.length)];
-    const vb = isBasic ? Math.floor(Math.random() * 5) + 1 : Math.floor(Math.random() * 12) + 2;
-    const variant: "XY" | "X" = (isAdvanced || isElite) ? (Math.random() > 0.5 ? "XY" : "X") : "X";
+    return Array.from({ length: poolSize }).map((_, i) => {
+      const coeffs = [1, 2, 3, 5, 10, 4];
+      const ca = isBasic ? (i % 2 + 1) : coeffs[i % coeffs.length];
+      const vb = isBasic ? (i % 3 + 2) : (i + 5);
+      const variant: "XY" | "X" = (isAdvanced || isElite) ? (i % 2 === 0 ? "XY" : "X") : "X";
+      const aTerm = getFullTerm(ca, "x");
+      const bTerm = variant === "XY" ? getFullTerm(vb, "y") : vb.toString();
 
-    return [
-      {
-        id: `SCRAP${ca}${vb}${variant}`,
+      return {
+        id: `SCRAP_${ca}_${vb}_${variant}_${i}`,
         difficulty, stage, type: "SCRAPPER", ca, vb, variant,
+        isFactor: true,
         promptLatex: t.scenarios.scrapper_mission,
         expressionLatex:
           variant === "XY"
             ? `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`
             : `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-        targetLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
+        targetLatex: `(${aTerm} + ${bTerm})²`,
         slots: [
-          { id: "a", labelLatex: "root a", placeholder: "ax", expected: `${ca}x` },
-          { id: "b", labelLatex: "root b", placeholder: "by", expected: `${vb}${variant === "XY" ? "y" : ""}` },
+          { id: "a", labelLatex: "root a", placeholder: "ax", expected: aTerm },
+          { id: "b", labelLatex: "root b", placeholder: variant === "XY" ? "by" : "b", expected: bTerm },
         ],
-        correctLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
-      },
-    ];
+        correctLatex: `(${aTerm} + ${bTerm})²`,
+      };
+    });
   }
 
   if (stage === "SPEEDSTER") {
-    const roundBases = isBasic ? [10, 20, 50] : [100, 80, 50, 40];
-    const offsets = isElite ? [7, 8, 9] : [1, 2, 3];
-    const friendlyBases = roundBases
-      .flatMap((roundBase) =>
-        offsets.flatMap((offset) => [
-          { base: roundBase + offset, roundBase, offset, sign: "+" as const },
-          { base: roundBase - offset, roundBase, offset, sign: "-" as const },
-        ])
-      )
-      .filter((c) => c.base > 0);
+    return Array.from({ length: poolSize }).map((_, i) => {
+      const baseOptions = isBasic ? [11, 12, 15, 21, 25, 51] : [103, 98, 45, 52, 89, 75];
+      const val = baseOptions[i % baseOptions.length];
+      const roundBase = val > 50 ? Math.round(val / 10) * 10 : Math.floor(val / 10) * 10;
+      const offset = Math.abs(val - roundBase);
+      const sign = val >= roundBase ? "+" : "-";
+      const signedMiddle = (sign === "-" ? -1 : 1) * 2 * roundBase * offset;
 
-    const combo = friendlyBases[Math.floor(Math.random() * friendlyBases.length)];
-    const signedMiddle = (combo.sign === "-" ? -1 : 1) * 2 * combo.roundBase * combo.offset;
-
-    return [
-      {
-        id: `SPEED${combo.roundBase}${combo.sign}${combo.offset}`,
+      return {
+        id: `SPEED_${val}_${i}`,
         difficulty, stage, type: "SPEEDSTER",
-        base: combo.base, roundBase: combo.roundBase, offset: combo.offset, sign: combo.sign,
-        a2: combo.roundBase ** 2, middle: signedMiddle, b2: combo.offset ** 2, target: combo.base ** 2,
+        base: val, roundBase, offset, sign,
+        a2: roundBase ** 2, middle: signedMiddle, b2: offset ** 2, target: val ** 2,
         promptLatex: t.scenarios.speedster_mission,
-        expressionLatex: `${combo.base}²`,
-        targetLatex: `${combo.roundBase ** 2} + ${signedMiddle} + ${combo.offset ** 2}`,
+        expressionLatex: `${val}²`,
+        targetLatex: `${roundBase ** 2} + ${signedMiddle} + ${offset ** 2}`,
         slots: [
-          { id: "part1", labelLatex: "a²", placeholder: "a²", expected: combo.roundBase ** 2 },
+          { id: "part1", labelLatex: "a²", placeholder: "a²", expected: roundBase ** 2 },
           { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: signedMiddle },
-          { id: "part3", labelLatex: "b²", placeholder: "b²", expected: combo.offset ** 2 },
+          { id: "part3", labelLatex: "b²", placeholder: "b²", expected: offset ** 2 },
         ],
-        correctLatex: `${combo.roundBase ** 2} + ${signedMiddle} + ${combo.offset ** 2}`,
-      },
-    ];
+        correctLatex: `${roundBase ** 2} + ${signedMiddle} + ${offset ** 2} = ${val ** 2}`,
+      };
+    });
   }
 
   if (stage === "ELITE") {
-    const C = isBasic ? Math.floor(Math.random() * 3) + 1 : Math.floor(Math.random() * 10) + 1;
-    const V = isBasic ? Math.floor(Math.random() * 5) + 2 : Math.floor(Math.random() * 20) + 2;
+    return Array.from({ length: poolSize }).map((_, i) => {
+      const coeffs = [2, 3, 5, 10, 4, 6];
+      const C = isBasic ? (i % 3 + 1) : coeffs[i % coeffs.length];
+      const V = isBasic ? (i % 4 + 2) : (i + 10);
+      const aTerm = getFullTerm(C, "xy");
 
-    return [
-      {
-        id: `ELITE${C}${V}`,
+      return {
+        id: `ELITE_${C}_${V}_${i}`,
         difficulty, stage, type: "ELITE", C, V,
+        isFactor: true,
         promptLatex: t.scenarios.elite_mission,
         expressionLatex: `${C ** 2}x²y² - ${V ** 2}`,
-        targetLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
+        targetLatex: `(${aTerm} - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
         slots: [
-          { id: "base", labelLatex: "Cxy", placeholder: "Cxy", expected: `${C === 1 ? "" : C}xy` },
-          { id: "sub", labelLatex: "V", placeholder: "V", expected: V.toString() },
-          { id: "add_term", labelLatex: "2CVxy", placeholder: "2CVxy", expected: `${2 * C * V}xy` },
-          { id: "const_term", labelLatex: "2V²", placeholder: "2V²", expected: (2 * V ** 2).toString() },
+          { id: "base", labelLatex: "root a", placeholder: "Cxy", expected: aTerm },
+          { id: "sub", labelLatex: "root b", placeholder: "V", expected: V.toString() },
+          { id: "add_term", labelLatex: "2ab", placeholder: "2CVxy", expected: `${2 * C * V}xy` },
+          { id: "const_term", labelLatex: "2b²", placeholder: "2V²", expected: (2 * V ** 2).toString() },
         ],
-        correctLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
-      },
-    ];
+        correctLatex: `(${aTerm} - ${V})² + ${2 * C * V}xy - ${2 * V ** 2} = ${C ** 2}x²y² - ${V ** 2}`,
+      };
+    });
   }
 
   if (stage === "VOYAGER") {
-    const ca = isBasic ? 1 : Math.floor(Math.random() * 10) + 1;
-    const vb = isBasic ? Math.floor(Math.random() * 10) + 1 : Math.floor(Math.random() * 25) + 1;
-    const subType: "EXPAND" | "FACTOR" = isAdvanced || isElite ? (Math.random() > 0.5 ? "EXPAND" : "FACTOR") : "EXPAND";
+    return Array.from({ length: poolSize }).map((_, i) => {
+      const ca = isBasic ? 1 : (i % 5 + 2);
+      const vb = isBasic ? (i % 5 + 4) : (i * 3 + 15);
+      const subType: "EXPAND" | "FACTOR" = isAdvanced || isElite ? (i % 2 === 0 ? "EXPAND" : "FACTOR") : "EXPAND";
+      const aTerm = getFullTerm(ca, "x");
 
-    const expr =
-      subType === "EXPAND"
-        ? `(${ca === 1 ? "" : ca}x + ${vb})(${ca === 1 ? "" : ca}x - ${vb})`
-        : `${ca * ca === 1 ? "" : ca * ca}x² - ${vb * vb}`;
+      const expr =
+        subType === "EXPAND"
+          ? `(${aTerm} + ${vb})(${aTerm} - ${vb})`
+          : `${ca * ca === 1 ? "" : ca * ca}x² - ${vb * vb}`;
 
-    return [
-      {
-        id: `VOY${ca}${vb}${subType}`,
+      return {
+        id: `VOY_${ca}_${vb}_${subType}_${i}`,
         difficulty, stage, type: "DIFFERENCE", ca, vb, expr, subType,
+        isFactor: subType === "FACTOR",
         promptLatex: t.scenarios.voyager_mission,
         expressionLatex: expr,
-        targetLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
+        targetLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${aTerm} + ${vb})(${aTerm} - ${vb})`,
         slots:
           subType === "FACTOR"
             ? [
-              { id: "a", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
-              { id: "b", labelLatex: "b", placeholder: "b", expected: vb.toString() },
+              { id: "a", labelLatex: "root a", placeholder: "ax", expected: aTerm },
+              { id: "b", labelLatex: "root b", placeholder: "b", expected: vb.toString() },
             ]
             : [
               { id: "part1", labelLatex: "a²", placeholder: "a²", expected: ca ** 2 },
               { id: "part2", labelLatex: "b²", placeholder: "b²", expected: vb ** 2 },
             ],
-        correctLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
-      },
-    ];
+        correctLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${aTerm} + ${vb})(${aTerm} - ${vb})`,
+      };
+    });
   }
 
   return [];
@@ -664,25 +667,25 @@ export default function S201Page() {
                   </div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {t.ui?.identify_root_a ?? "a"}
+                      {t.ui?.identify_root_a ?? "ROOT A"}
                     </span>
                     <input
                       value={inputs.a || ""}
                       onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white"
-                      placeholder="?"
+                      placeholder="ax"
                     />
                   </div>
                   <div className="flex items-end pb-4 justify-center text-4xl text-white font-black">+</div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {t.ui?.identify_root_b ?? "b"}
+                      {t.ui?.identify_root_b ?? "ROOT B"}
                     </span>
                     <input
                       value={inputs.b || ""}
                       onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white"
-                      placeholder="?"
+                      placeholder={scrapperQuest?.variant === "XY" ? "by" : "b"}
                     />
                   </div>
                 </>
