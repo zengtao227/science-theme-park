@@ -403,6 +403,7 @@ export default function S201Page() {
       footerLeft={t.ui?.footer_left ?? "S2.01_BINOMIAL_FACTORY"}
       checkStatus={lastCheck}
       onVerify={verify}
+      onNext={next}
       successRate={successRate}
       translations={{
         back: t.back,
