@@ -64,7 +64,6 @@ function NeonShape({
                     position={[0, -1, 0]}
                     fontSize={0.25}
                     color={color}
-                    font="/fonts/Inter-Bold.woff"
                 >
                     {label}
                 </Text>
@@ -110,7 +109,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     <meshStandardMaterial color="#1d2633" />
                     <Edges color="#fff" />
                 </mesh>
-                <Text position={[0, 8.5, 0]} fontSize={0.5} color="#fff" font="/fonts/Inter-Bold.woff" anchorY="bottom">
+                <Text position={[0, 8.5, 0]} fontSize={0.5} color="#fff" anchorY="bottom">
                     {labels?.tower || "CLOCK TOWER"}
                 </Text>
                 {/* Shadow Measurement */}
@@ -132,7 +131,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     <cylinderGeometry args={[0.05, 0.05, 1.5]} />
                     <meshStandardMaterial color="#fbbf24" />
                 </mesh>
-                <Text position={[0, 1.8, 0]} fontSize={0.3} color="#fbbf24" font="/fonts/Inter-Bold.woff" anchorY="bottom">
+                <Text position={[0, 1.8, 0]} fontSize={0.3} color="#fbbf24" anchorY="bottom">
                     {labels?.stick || "STICK (1.5m)"}
                 </Text>
                 {/* Shadow Measurement */}
