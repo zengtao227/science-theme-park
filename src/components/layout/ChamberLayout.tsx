@@ -232,7 +232,7 @@ export default function ChamberLayout({
                     <button
                         onClick={() => setHistoryOpen((v) => !v)}
                         className={clsx(
-                            "hidden md:inline-flex min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border",
+                            "hidden md:inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border",
                             historyOpen ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
                         )}
                     >

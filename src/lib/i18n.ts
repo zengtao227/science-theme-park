@@ -1307,16 +1307,36 @@ export const translations: Record<string, any> = {
                 areas_prompt_latex: "\\text{Read the scenario and calculate the required area.}",
                 volumes_prompt_latex: "\\text{Read the scenario and calculate the required volume.}"
             },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS"
-            },
+
             mission: {
                 title: "MISSION: RHINE FLOOD GATE",
-                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+                protocol: "Nexus Protocol // Node Geneva",
                 description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid.",
                 cube_title: "CERN CUBE VAULT",
                 cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
+            },
+            labels: {
+                input: "INPUT",
+                hints: "HINTS",
+                length: "Length",
+                width: "Width",
+                height: "Height",
+                base: "Base",
+                radius: "Radius",
+                side: "Side",
+                area: "Area",
+                volume: "Volume",
+                calculate_area: "Calculate the area.",
+                calculate_volume: "Calculate the volume.",
+            },
+            quests: {
+                ski: "An Alpine ski slope needs new snow. The slope is rectangular.",
+                sail: "The Zurich Sailing Club needs custom canvas. The sail is triangular.",
+                gate: "A Rhine flood gate cross-section is trapezoidal.",
+                cheese: "A circular mold for Gruyère cheese factory.",
+                attic: "A Swiss chalet attic is a cubic space, needing an air purifier.",
+                crate: "CERN lab needs a storage box for precision instruments.",
+                pylon: "St. Moritz ski cable pylons are cylindrical."
             }
         },
         sm1_02: {
@@ -3473,16 +3493,35 @@ export const translations: Record<string, any> = {
                 areas_prompt_latex: "\\text{阅读场景，计算所需面积。}",
                 volumes_prompt_latex: "\\text{阅读场景，计算所需体积。}"
             },
-            labels: {
-                input: "输入",
-                hints: "提示"
-            },
             mission: {
                 title: "任务：莱茵河防洪闸门",
-                protocol: "NEXUS PROTOCOL // 瑞士节点在线",
-                description: "在巴塞尔，工程师把莱茵河防洪闸门的截面近似为梯形。",
-                cube_title: "CERN 立方体穹仓",
-                cube_desc: "在 CERN，标出立方体的空间对角线并计算其长度。"
+                protocol: "Nexus 协议 // 日内瓦节点",
+                description: "在巴塞尔，工程师将莱茵河防洪闸门的横截面建模为梯形。",
+                cube_title: "CERN 立方体保险库",
+                cube_desc: "在 CERN，识别立方体保险库的空间对角线并计算其长度。"
+            },
+            labels: {
+                input: "输入",
+                hints: "提示",
+                length: "长",
+                width: "宽",
+                height: "高",
+                base: "底边",
+                radius: "半径",
+                side: "边长",
+                area: "面积",
+                volume: "体积",
+                calculate_area: "计算面积",
+                calculate_volume: "计算体积",
+            },
+            quests: {
+                ski: "阿尔卑斯滑雪场需要铺设新雪道。雪道是长方形的。",
+                sail: "苏黎世帆船俱乐部需要订制新帆布。帆是三角形的。",
+                gate: "莱茵河防洪闸门的一个截面是梯形的。",
+                cheese: "格律耶尔奶酪工厂的圆形模具。",
+                attic: "瑞士木屋阁楼是一个正方体空间，需要空气净化器。",
+                crate: "CERN 实验室需要精密仪器的储存箱。",
+                pylon: "圣莫里茨的滑雪缆车支架是圆柱形的。"
             }
         },
         sm1_02: {
@@ -5975,16 +6014,35 @@ export const translations: Record<string, any> = {
                 areas_prompt_latex: "\\text{Lies das Szenario und berechne die Fläche.}",
                 volumes_prompt_latex: "\\text{Lies das Szenario und berechne das Volumen.}"
             },
+            mission: {
+                title: "MISSION: RHEIN-HOCHWASSERSCHUTZ",
+                protocol: "Nexus-Protokoll // Knoten Genf",
+                description: "In Basel modellieren Ingenieure den Querschnitt eines Rheinhochwassertors als Trapez.",
+                cube_title: "CERN WÜRFELTRESOR",
+                cube_desc: "Identifizieren Sie im CERN die Raumdiagonale eines würfelförmigen Tresors."
+            },
             labels: {
                 input: "EINGABE",
-                hints: "HINWEISE"
+                hints: "HINWEISE",
+                length: "Länge",
+                width: "Breite",
+                height: "Höhe",
+                base: "Basis",
+                radius: "Radius",
+                side: "Seite",
+                area: "Fläche",
+                volume: "Volumen",
+                calculate_area: "Berechnen Sie die Fläche.",
+                calculate_volume: "Berechnen Sie das Volumen.",
             },
-            mission: {
-                title: "MISSION: RHEIN-FLUTTOR",
-                protocol: "NEXUS PROTOCOL // SCHWEIZ-KNOTEN LIVE",
-                description: "In Basel modellieren Ingenieure den Querschnitt eines Rhein-Fluttors als Trapez.",
-                cube_title: "CERN WUERFEL-TRESOR",
-                cube_desc: "In CERN markiere die Raumdiagonale des Wuerfels und berechne ihre Laenge."
+            quests: {
+                ski: "Eine alpine Skipiste benötigt Neuschnee. Die Piste ist rechteckig.",
+                sail: "Der Segelclub Zürich benötigt Segeltuch. Das Segel ist dreieckig.",
+                gate: "Ein Querschnitt des Rheinhochwassertors ist trapezförmig.",
+                cheese: "Eine kreisförmige Form für die Greyerzer Käsefabrik.",
+                attic: "Dachboden in einem Schweizer Chalet ist ein würfelförmiger Raum.",
+                crate: "Das CERN-Labor benötigt Kisten für Präzisionsinstrumente.",
+                pylon: "Skipfosten in St. Moritz sind zylindrisch."
             }
         },
         sm1_02: {

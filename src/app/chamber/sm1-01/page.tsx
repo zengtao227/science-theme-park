@@ -26,8 +26,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
         const all: S101Quest[] = [
             {
                 id: "A1", difficulty, stage,
-                promptLatex: `\\text{ 阿尔卑斯滑雪场需要铺设新雪道。雪道是长方形，}`,
-                expressionLatex: `\\text{长 }a=5\\text{m, 宽 }b=8\\text{m，计算雪道面积}`,
+                promptLatex: `\\text{${t.quests.ski}}`,
+                expressionLatex: `\\text{${t.labels.length} }a=5\\text{m, }\\text{${t.labels.width} }b=8\\text{m，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
                 slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 40, unit: "cm^2" }],
                 correctLatex: `A=5\\cdot 8=40`,
@@ -36,8 +36,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             },
             {
                 id: "A2", difficulty, stage,
-                promptLatex: `\\text{ 苏黎世帆船俱乐部需要订制新帆布。帆是三角形，}`,
-                expressionLatex: `\\text{底边 }b=6\\text{m, 高 }h=4\\text{m，计算帆的面积}`,
+                promptLatex: `\\text{${t.quests.sail}}`,
+                expressionLatex: `\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=4\\text{m，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
                 slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 12, unit: "cm^2" }],
                 correctLatex: `A=\\frac{1}{2}\\cdot 6\\cdot 4=12`,
@@ -46,8 +46,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             },
             {
                 id: "A3", difficulty, stage,
-                promptLatex: `\\text{ 巴塞尔莱茵河防洪闸门截面是梯形，}`,
-                expressionLatex: `\\text{上底 }a=4\\text{m, 下底 }b=6\\text{m, 高 }h=5\\text{m, 求截面积}`,
+                promptLatex: `\\text{${t.quests.gate}}`,
+                expressionLatex: `\\text{${t.labels.side} }a=4\\text{m, }\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=5\\text{m, \\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
                 slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 25, unit: "cm^2" }],
                 correctLatex: `A=\\frac{1}{2}(4+6)\\cdot 5=25`,
@@ -56,8 +56,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             },
             {
                 id: "A4", difficulty, stage,
-                promptLatex: `\\text{ 格律耶尔奶酪工厂的圆形模具，}`,
-                expressionLatex: `\\text{半径 }r=3\\text{cm，计算模具底面积}`,
+                promptLatex: `\\text{${t.quests.cheese}}`,
+                expressionLatex: `\\text{${t.labels.radius} }r=3\\text{cm，\\text{${t.labels.calculate_area}}}`,
                 targetLatex: `A`,
                 slots: [{ id: "A", labelLatex: `A`, placeholder: "area", expected: 28.27, unit: "cm^2" }],
                 correctLatex: `A=\\pi r^2\\approx 28.27`,
@@ -74,8 +74,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
         const all: S101Quest[] = [
             {
                 id: "V1", difficulty, stage,
-                promptLatex: `\\text{ 瑞士木屋阁楼是正方体空间，需要选购空气净化器，}`,
-                expressionLatex: `\\text{边长 }a=4\\text{m，计算空间体积}`,
+                promptLatex: `\\text{${t.quests.attic}}`,
+                expressionLatex: `\\text{${t.labels.side} }a=4\\text{m，\\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
                 slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 64, unit: "cm^3" }],
                 correctLatex: `V=4^3=64`,
@@ -84,8 +84,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             },
             {
                 id: "V2", difficulty, stage,
-                promptLatex: `\\text{ CERN 实验室需要一个精密仪器的储存箱，}`,
-                expressionLatex: `\\text{长 }a=3\\text{m, 宽 }b=4\\text{m, 高 }c=5\\text{m, 计算储存箱容积}`,
+                promptLatex: `\\text{${t.quests.crate}}`,
+                expressionLatex: `\\text{${t.labels.length} }a=3\\text{m, }\\text{${t.labels.width} }b=4\\text{m, }\\text{${t.labels.height} }c=5\\text{m, \\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
                 slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 60, unit: "cm^3" }],
                 correctLatex: `V=3\\cdot 4\\cdot 5=60`,
@@ -94,8 +94,8 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             },
             {
                 id: "V3", difficulty, stage,
-                promptLatex: `\\text{ 格律耶尔奶酪工厂的圆柱形模具，}`,
-                expressionLatex: `\\text{半径 }r=2\\text{cm, 高 }h=5\\text{cm, 计算模具容积}`,
+                promptLatex: `\\text{${t.quests.pylon}}`,
+                expressionLatex: `\\text{${t.labels.radius} }r=2\\text{cm, }\\text{${t.labels.height} }h=5\\text{cm, \\text{${t.labels.calculate_volume}}}`,
                 targetLatex: `V`,
                 slots: [{ id: "V", labelLatex: `V`, placeholder: "volume", expected: 62.83, unit: "cm^3" }],
                 correctLatex: `V=\\pi r^2h\\approx 62.83`,
