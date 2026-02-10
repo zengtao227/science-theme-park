@@ -277,31 +277,31 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
       {/* Top face */}
       <mesh position={[a / 2, b, c / 2]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[a, c]} />
-        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
+        <meshBasicMaterial color="#00ffff" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Front face */}
       <mesh position={[a / 2, b / 2, 0]}>
         <planeGeometry args={[a, b]} />
-        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
+        <meshBasicMaterial color="#00ffff" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Back face */}
       <mesh position={[a / 2, b / 2, c]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[a, b]} />
-        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
+        <meshBasicMaterial color="#00ffff" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Left face */}
       <mesh position={[0, b / 2, c / 2]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[c, b]} />
-        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
+        <meshBasicMaterial color="#00ffff" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Right face */}
       <mesh position={[a, b / 2, c / 2]} rotation={[0, -Math.PI / 2, 0]}>
         <planeGeometry args={[c, b]} />
-        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
+        <meshBasicMaterial color="#00ffff" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Metallic edges */}
@@ -387,17 +387,17 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
         </mesh>
       ))}
 
-      {/* Labels with enhanced styling */}
-      <Text position={[a / 2, -0.6, 0]} fontSize={0.35} color="#39ff14" anchorX="center">
+      {/* Labels with enhanced styling - depthTest disabled so they are always on top */}
+      <Text position={[a / 2, 0.4, 0]} fontSize={0.35} color="#39ff14" anchorX="center" material-depthTest={false}>
         a = {a}
       </Text>
-      <Text position={[a + 0.6, b / 2, 0]} fontSize={0.35} color="#00e5ff" anchorX="center">
+      <Text position={[a + 0.6, b / 2, 0]} fontSize={0.35} color="#00e5ff" anchorX="center" material-depthTest={false}>
         b = {b}
       </Text>
-      <Text position={[a + 0.6, b, c / 2]} fontSize={0.35} color="#a855f7" anchorX="center">
+      <Text position={[a + 0.6, b, c / 2]} fontSize={0.35} color="#a855f7" anchorX="center" material-depthTest={false}>
         c = {c}
       </Text>
-      <Text position={[a / 2, b + 1, c / 2]} fontSize={0.4} color="#ff0080" anchorX="center">
+      <Text position={[a / 2, b + 1.2, c / 2]} fontSize={0.4} color="#ff0080" anchorX="center" material-depthTest={false}>
         d = ?
       </Text>
     </group>
@@ -498,14 +498,13 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
         />
       </mesh>
 
-      {/* Labels */}
-      <Text position={[p1.x, p1.y + 1, 0]} fontSize={0.45} color="#ffffff" anchorX="center">
+      <Text position={[p1.x, p1.y + 1, 0.1]} fontSize={0.4} color="#ffffff" anchorX="center" material-depthTest={false}>
         ({p1.x}, {p1.y})
       </Text>
-      <Text position={[p2.x, p2.y + 1, 0]} fontSize={0.45} color="#39ff14" anchorX="center">
+      <Text position={[p2.x, p2.y + 1, 0.1]} fontSize={0.4} color="#39ff14" anchorX="center" material-depthTest={false}>
         ({p2.x}, {p2.y})
       </Text>
-      <Text position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.2, 0]} fontSize={0.5} color="#d946ef" anchorX="center">
+      <Text position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.2, 0.1]} fontSize={0.5} color="#d946ef" anchorX="center" material-depthTest={false}>
         d = ?
       </Text>
       <Text position={[(p1.x + corner.x) / 2, p1.y - 0.7, 0]} fontSize={0.35} color="#39ff14" anchorX="center">
@@ -598,14 +597,14 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
           <Grid
             args={[30, 30]}
             cellSize={1}
-            cellThickness={0.5}
-            cellColor="#ffffff"
+            cellThickness={0.3}
+            cellColor="#222222"
             sectionSize={5}
-            sectionThickness={1}
-            sectionColor="#00ffff"
+            sectionThickness={0.8}
+            sectionColor="#444444"
             fadeDistance={30}
             fadeStrength={1}
-            position={[0, -visual.b / 2 - 1.5, 0]}
+            position={[0, -visual.b / 2 - 3, 0]}
           />
         </Canvas>
 
