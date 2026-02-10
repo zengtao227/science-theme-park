@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -26,7 +26,7 @@ export default function S102Page() {
   }, [sunAngle]);
   const towerHeight = useMemo(() => poleHeight * (towerShadow / poleShadow), [poleHeight, poleShadow, towerShadow]);
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage): ThalesQuest[] => {
+  const buildStagePool = useCallback((t: typeof translations.EN.sm1_02, difficulty: Difficulty, stage: Stage): ThalesQuest[] => {
     const height = Number(towerHeight.toFixed(2));
     return [
       {
@@ -48,7 +48,9 @@ export default function S102Page() {
         correctLatex: `H=${height}\\,\\text{m}`,
       },
     ];
-  }, [poleHeight, poleShadow, t.labels.height_placeholder, t.stages.measure_prompt_latex, towerHeight, towerShadow]);
+  }, [poleHeight, poleShadow, towerHeight]);
+
+  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(t, difficulty, stage), [t, buildStagePool]);
 
   const {
     stage,
