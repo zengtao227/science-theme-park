@@ -178,8 +178,11 @@ export function useQuestManager<T extends Quest, S extends string>({
                     return s.trim()
                         .toLowerCase()
                         .replace(/\s/g, "")
-                        .replace(/^1([a-z])/, "$1")           // "1x" -> "x" (at start)
-                        .replace(/([^0-9])1([a-z])/, "$1$2"); // "2+1x" -> "2+x"
+                        .replace(/²/g, "^2") // Normalize superscript
+                        .replace(/³/g, "^3") // Normalize superscript
+                        .replace(/\^1(?![0-9])/, "") // Remove ^1
+                        .replace(/^1([a-z^])/, "$1") // "1x" -> "x" (at start)
+                        .replace(/([^0-9.])1([a-z^])/, "$1$2"); // "2+1x" -> "2+x"
                 };
 
                 if (normalize(raw) !== normalize(slot.expected.toString())) {

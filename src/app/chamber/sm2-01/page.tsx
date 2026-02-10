@@ -71,7 +71,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
   const isCore = difficulty === "CORE";
   const isAdvanced = difficulty === "ADVANCED";
   const isElite = difficulty === "ELITE";
-  const poolSize = 24; // Round number for variety
+  const poolSize = 30;
 
   const getFullTerm = (coeff: number, variable: string) => {
     if (coeff === 1) return variable;
@@ -80,17 +80,25 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
 
   if (stage === "ARCHITECT") {
     return Array.from({ length: poolSize }).map((_, i) => {
-      if (isBasic || isCore) {
-        // Differentiation: Basic is strictly x+b, Core introduces ax+b
-        const ca = isBasic ? 1 : (i % 4 + 2);
-        const vb = isBasic ? (i % 8 + 2) : (i + 5);
+      if (isBasic) {
+        const vb = (i % 8) + 2;
         return {
-          id: `ARCH_EXP_${ca}_${vb}_${i}`,
-          difficulty, stage, type: "EXPAND", ca, vb,
-          formula: `(${getFullTerm(ca, "x")} + ${vb})²`,
-          promptLatex: t.scenarios.architect_mission,
-          expressionLatex: `(${getFullTerm(ca, "x")} + ${vb})²`,
-          targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+          id: `ARCH_B_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb,
+          formula: `(x + ${vb})²`, promptLatex: t.scenarios.architect_mission,
+          expressionLatex: `(x + ${vb})²`, targetLatex: `x² + ${2 * vb}x + ${vb ** 2}`,
+          slots: [
+            { id: "a2", labelLatex: "x²", placeholder: "1", expected: 1 },
+            { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * vb },
+            { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
+          ],
+          correctLatex: `x² + ${2 * vb}x + ${vb ** 2}`,
+        };
+      } else if (isCore) {
+        const ca = (i % 4) + 2; const vb = (i % 5) + 3;
+        return {
+          id: `ARCH_C_${i}`, difficulty, stage, type: "EXPAND", ca, vb,
+          formula: `(${ca}x + ${vb})²`, promptLatex: t.scenarios.architect_mission,
+          expressionLatex: `(${ca}x + ${vb})²`, targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
           slots: [
             { id: "a2", labelLatex: "x²", placeholder: "coeff", expected: ca ** 2 },
             { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
@@ -98,33 +106,35 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
           ],
           correctLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
         };
-      } else {
-        // Differentiation: Advanced is standard factoring, Elite adds extra complexity (variable y)
-        const ca = isAdvanced ? (i % 3 + 1) : (i % 5 + 2);
-        const vb = isAdvanced ? (i % 6 + 4) : (i % 8 + 11);
-        const hasY = isElite && i % 2 === 0;
-        const aTerm = getFullTerm(ca, "x");
-        const bTerm = hasY ? getFullTerm(vb, "y") : vb.toString();
-
-        const expression = hasY
-          ? `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`
-          : `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`;
-
+      } else if (isAdvanced) {
+        const vb = (i % 10) + 2;
         return {
-          id: `ARCH_FAC_${ca}_${vb}_${hasY ? "Y" : "X"}_${i}`,
-          difficulty, stage, type: "EXPAND", ca, vb,
-          isFactor: true,
-          formula: expression,
-          promptLatex: `结构化重构项识别`,
-          expressionLatex: expression,
+          id: `ARCH_A_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb, isFactor: true,
+          formula: `x² + ${2 * vb}x + ${vb ** 2}`, promptLatex: `项识别与因式分解练习`,
+          expressionLatex: `x² + ${2 * vb}x + ${vb ** 2}`,
+          targetLatex: `(x)² + 2(x)(${vb}) + (${vb})²`,
+          slots: [
+            { id: "a_root", labelLatex: "a", placeholder: "x", expected: "x" },
+            { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb.toString() },
+            { id: "a_mid", labelLatex: "a", placeholder: "x", expected: "x" },
+            { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb.toString() },
+          ],
+          correctLatex: `x² + ${2 * vb}x + ${vb ** 2} = (x + ${vb})²`,
+        };
+      } else {
+        const ca = (i % 4) + 2; const vb = (i % 6) + 3; const aTerm = `${ca}x`; const bTerm = `${vb}y`;
+        return {
+          id: `ARCH_E_${i}`, difficulty, stage, type: "EXPAND", ca, vb, isFactor: true,
+          formula: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`, promptLatex: `双变量因式分解挑战`,
+          expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`,
           targetLatex: `(${aTerm})² + 2(${aTerm})(${bTerm}) + (${bTerm})²`,
           slots: [
             { id: "a_root", labelLatex: "a", placeholder: "ax", expected: aTerm },
-            { id: "b_root", labelLatex: "b", placeholder: hasY ? "by" : "b", expected: bTerm },
+            { id: "b_root", labelLatex: "b", placeholder: "by", expected: bTerm },
             { id: "a_mid", labelLatex: "a", placeholder: "ax", expected: aTerm },
-            { id: "b_mid", labelLatex: "b", placeholder: hasY ? "by" : "b", expected: bTerm },
+            { id: "b_mid", labelLatex: "b", placeholder: "by", expected: bTerm },
           ],
-          correctLatex: `(${aTerm})² + 2(${aTerm})(${bTerm}) + (${bTerm})² = (${aTerm} + ${bTerm})²`,
+          correctLatex: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y² = (${aTerm} + ${bTerm})²`,
         };
       }
     });
@@ -132,34 +142,24 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
 
   if (stage === "SCRAPPER") {
     return Array.from({ length: poolSize }).map((_, i) => {
-      // Basic: Simple roots, Core: coeffs, Advanced: 2 vars, Elite: Higher powers/primes
-      let ca, vb, varA = "x", varB = "";
+      let ca, vb, vA = "x", vB = "";
+      let variant: "X" | "XY" = "X";
+      if (isBasic) { ca = 1; vb = (i % 6) + 2; }
+      else if (isCore) { ca = (i % 5) + 2; vb = (i % 5) + 2; }
+      else if (isAdvanced) { ca = (i % 4) + 2; vb = (i % 4) + 3; vB = "y"; variant = "XY"; }
+      else { ca = ((i % 4) + 3) * 2; vb = (i % 4) + 2; vA = "x²"; vB = i % 2 === 0 ? "y²" : ""; variant = vB ? "XY" : "X"; }
 
-      if (isBasic) { ca = 1; vb = (i % 5 + 1); }
-      else if (isCore) { ca = (i % 4 + 2); vb = (i % 6 + 1); }
-      else if (isAdvanced) { ca = [2, 3, 5, 10][i % 4]; vb = [4, 6, 8, 9][i % 4]; varB = "y"; }
-      else {
-        // Elite: Larger squares and variety
-        const elites = [12, 13, 15, 20, 25];
-        ca = elites[i % elites.length];
-        vb = elites[(i + 2) % elites.length];
-        varB = i % 2 === 0 ? "y" : "";
-        if (i % 3 === 0) varA = "x²"; // Higher order
-      }
-
-      const aTerm = getFullTerm(ca, varA);
-      const bTerm = varB ? getFullTerm(vb, varB) : vb.toString();
+      const aTerm = getFullTerm(ca, vA);
+      const bTerm = vB ? getFullTerm(vb, vB) : vb.toString();
+      const expr = `${ca ** 2}${vA === "x²" ? "x⁴" : "x²"} + ${2 * ca * vb}${vA}${vB} + ${vb ** 2}${vB === "y" ? "y²" : (vB === "y²" ? "y⁴" : "")}`;
 
       return {
-        id: `SCRAP_${ca}_${vb}_${i}`,
-        difficulty, stage, type: "SCRAPPER", ca, vb,
-        isFactor: true,
-        promptLatex: t.scenarios.scrapper_mission,
-        expressionLatex: `${ca ** 2}${varA === "x²" ? "x⁴" : "x²"} + ${2 * ca * vb}${varA}${varB || ""} + ${vb ** 2}${varB === "y" ? "y²" : ""}`,
+        id: `SCRAP_${difficulty}_${i}`, difficulty, stage, type: "SCRAPPER", ca, vb, variant, isFactor: true,
+        promptLatex: t.scenarios.scrapper_mission, expressionLatex: expr,
         targetLatex: `(${aTerm} + ${bTerm})²`,
         slots: [
-          { id: "a", labelLatex: "root a", placeholder: varA === "x²" ? "ax²" : "ax", expected: aTerm },
-          { id: "b", labelLatex: "root b", placeholder: varB === "y" ? "by" : "b", expected: bTerm },
+          { id: "a", labelLatex: "root a", placeholder: vA === "x²" ? "ax²" : "ax", expected: aTerm },
+          { id: "b", labelLatex: "root b", placeholder: vB ? (vB === "y²" ? "by²" : "by") : "b", expected: bTerm },
         ],
         correctLatex: `(${aTerm} + ${bTerm})²`,
       };
@@ -168,104 +168,76 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
 
   if (stage === "SPEEDSTER") {
     return Array.from({ length: poolSize }).map((_, i) => {
-      let val, roundBase, offset, sign: "+" | "-" = "+";
+      let val, rb, off, sn: "+" | "-" = "+";
+      if (isBasic) { val = [11, 12, 15, 21][i % 4]; rb = val < 20 ? 10 : 20; off = val - rb; }
+      else if (isCore) { val = [49, 51, 99, 101][i % 4]; rb = val < 90 ? 50 : 100; off = Math.abs(val - rb); sn = val < rb ? "-" : "+"; }
+      else if (isAdvanced) { val = [103, 98, 43, 197][i % 4]; rb = Math.round(val / 10) * 10; off = Math.abs(val - rb); sn = val < rb ? "-" : "+"; }
+      else { val = [5.1, 10.2, 4.9, 2.1][i % 4]; rb = Math.round(val); off = parseFloat(Math.abs(val - rb).toFixed(1)); sn = val < rb ? "-" : "+"; }
 
-      if (isBasic) { val = [11, 12, 15, 21][i % 4]; roundBase = val < 20 ? 10 : 20; offset = val - roundBase; }
-      else if (isCore) { val = [49, 51, 99, 101][i % 4]; roundBase = val < 90 ? 50 : 100; offset = Math.abs(val - roundBase); sign = val < roundBase ? "-" : "+"; }
-      else if (isAdvanced) { val = [103, 98, 43, 57][i % 4]; roundBase = Math.round(val / 10) * 10; offset = Math.abs(val - roundBase); sign = val < roundBase ? "-" : "+"; }
-      else {
-        // Elite: Decimal expansion! (e.g., 5.1 -> 5 + 0.1)
-        const bases = [5.1, 10.2, 3.9, 6.1];
-        val = bases[i % bases.length];
-        roundBase = Math.round(val);
-        offset = parseFloat(Math.abs(val - roundBase).toFixed(1));
-        sign = val < roundBase ? "-" : "+";
-      }
-
-      const signedMiddle = (sign === "-" ? -1 : 1) * 2 * roundBase * offset;
-
+      const mid = (sn === "-" ? -1 : 1) * 2 * rb * off;
       return {
-        id: `SPEED_${val}_${i}`,
-        difficulty, stage, type: "SPEEDSTER",
-        base: val, roundBase, offset, sign,
-        a2: parseFloat((roundBase ** 2).toFixed(2)),
-        middle: parseFloat(signedMiddle.toFixed(2)),
-        b2: parseFloat((offset ** 2).toFixed(2)),
-        target: parseFloat((val ** 2).toFixed(2)),
-        promptLatex: t.scenarios.speedster_mission,
-        expressionLatex: `${val}²`,
-        targetLatex: `${roundBase ** 2} ${sign} ${Math.abs(signedMiddle)} + ${offset ** 2}`,
+        id: `SPEED_${difficulty}_${i}`, difficulty, stage, type: "SPEEDSTER",
+        base: val, roundBase: rb, offset: off, sign: sn,
+        a2: parseFloat((rb ** 2).toFixed(2)), middle: parseFloat(mid.toFixed(2)), b2: parseFloat((off ** 2).toFixed(2)), target: parseFloat((val ** 2).toFixed(2)),
+        promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}²`,
+        targetLatex: `${rb}² ${sn} 2(${rb})(${off}) + ${off}²`,
         slots: [
-          { id: "part1", labelLatex: "a²", placeholder: "a²", expected: roundBase ** 2 },
-          { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: signedMiddle },
-          { id: "part3", labelLatex: "b²", placeholder: "b²", expected: parseFloat((offset ** 2).toFixed(2)) },
+          { id: "part1", labelLatex: "a²", placeholder: "a²", expected: rb ** 2 },
+          { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: mid },
+          { id: "part3", labelLatex: "b²", placeholder: "b²", expected: parseFloat((off ** 2).toFixed(2)) },
         ],
-        correctLatex: `${roundBase ** 2} ${sign === "-" ? "-" : "+"} ${Math.abs(signedMiddle)} + ${offset ** 2} = ${parseFloat((val ** 2).toFixed(2))}`,
+        correctLatex: `${rb ** 2} ${sn === "-" ? "-" : "+"} ${Math.abs(mid)} + ${parseFloat((off ** 2).toFixed(2))} = ${parseFloat((val ** 2).toFixed(2))}`,
       };
     });
   }
 
   if (stage === "ELITE") {
-    // Actually designing different types for ELITE Mode based on overall difficulty
     return Array.from({ length: poolSize }).map((_, i) => {
-      let C, V, varA = "xy", varB = "";
+      let C, V, vA = "xy";
+      if (isBasic) { C = 1; V = (i % 5) + 2; }
+      else if (isCore) { C = (i % 3) + 2; V = (i % 4) + 4; }
+      else if (isAdvanced) { C = (i % 4) + 4; V = (i % 5) + 10; }
+      else { C = (i % 3) + 10; V = (i % 3) + 20; vA = "xyz"; }
 
-      if (isBasic) { C = 1; V = i % 5 + 2; }
-      else if (isCore) { C = i % 3 + 2; V = i % 4 + 3; }
-      else if (isAdvanced) { C = i % 5 + 3; V = i + 10; varA = "xy"; }
-      else { C = [4, 5, 10, 12][i % 4]; V = [15, 20, 25][i % 3]; varA = "xyz"; } // High var count or large nums
-
-      const aTerm = getFullTerm(C, varA);
+      const aTerm = getFullTerm(C, vA);
       return {
-        id: `ELITE_${C}_${V}_${i}`,
-        difficulty, stage, type: "ELITE", C, V,
-        isFactor: true,
+        id: `ELITE_${difficulty}_${i}`, difficulty, stage, type: "ELITE", C, V, isFactor: true,
         promptLatex: t.scenarios.elite_mission,
-        expressionLatex: `${C ** 2}${varA === "xy" ? "x²y²" : "x²y²z²"} - ${V ** 2}`,
-        targetLatex: `(${aTerm} - ${V})² + ${2 * C * V}${varA} - ${2 * V ** 2}`,
+        expressionLatex: `${C ** 2}${vA === "xy" ? "x²y²" : "x²y²z²"} - ${V ** 2}`,
+        targetLatex: `(${aTerm} - ${V})² + ${2 * C * V}${vA} - ${2 * V ** 2}`,
         slots: [
-          { id: "base", labelLatex: "root a", placeholder: varA === "xy" ? "Cxy" : "Cxyz", expected: aTerm },
+          { id: "base", labelLatex: "root a", placeholder: vA.toUpperCase(), expected: aTerm },
           { id: "sub", labelLatex: "root b", placeholder: "V", expected: V.toString() },
-          { id: "add_term", labelLatex: "2ab", placeholder: "linear", expected: `${2 * C * V}${varA}` },
+          { id: "add_term", labelLatex: "2ab", placeholder: "linear", expected: `${2 * C * V}${vA}` },
           { id: "const_term", labelLatex: "2b²", placeholder: "const", expected: (2 * V ** 2).toString() },
         ],
-        correctLatex: `(${aTerm} - ${V})² + ${2 * C * V}${varA} - ${2 * V ** 2} = ${C ** 2}${varA === "xy" ? "x²y²" : "x²y²z²"} - ${V ** 2}`,
+        correctLatex: `(${aTerm} - ${V})² + ${2 * C * V}${vA} - ${2 * V ** 2} = ${C ** 2}${vA === "xy" ? "x²y²" : "x²y²z²"} - ${V ** 2}`,
       };
     });
   }
 
   if (stage === "VOYAGER") {
     return Array.from({ length: poolSize }).map((_, i) => {
-      // Basic: (x+b)(x-b), Core: (ax+b)(ax-b), Advanced/Elite: Factoring with multi-vars or higher order
-      const ca = isBasic ? 1 : (isCore ? (i % 3 + 2) : (i % 6 + 3));
-      const vb = isBasic ? (i % 5 + 2) : (i + 12);
-      const isFactoring = isAdvanced || isElite;
-      const hasY = isElite && i % 2 !== 0;
+      let ca, vb, vB = "";
+      if (isBasic) { ca = 1; vb = (i % 8) + 2; }
+      else if (isCore) { ca = (i % 5) + 2; vb = (i % 5) + 5; }
+      else if (isAdvanced) { ca = (i % 6) + 3; vb = (i % 6) + 10; }
+      else { ca = (i % 5) + 10; vb = (i % 5) + 15; vB = "y"; }
 
-      const aTerm = getFullTerm(ca, "x");
-      const bTerm = hasY ? getFullTerm(vb, "y") : vb.toString();
-
-      const expression = isFactoring
-        ? `${ca ** 2}x² - ${vb ** 2}${hasY ? "y²" : ""}`
-        : `(${aTerm} + ${bTerm})(${aTerm} - ${bTerm})`;
+      const aT = getFullTerm(ca, "x"); const bT = vB ? getFullTerm(vb, vB) : vb.toString();
+      const isFact = isAdvanced || isElite;
+      const subType: "EXPAND" | "FACTOR" = isFact ? "FACTOR" : "EXPAND";
+      const expr = isFact ? `${ca ** 2}x² - ${vb ** 2}${vB ? "y²" : ""}` : `(${aT} + ${bT})(${aT} - ${bT})`;
 
       return {
-        id: `VOY_${ca}_${vb}_${i}`,
-        difficulty, stage, type: "DIFFERENCE", ca, vb, expr: expression,
-        isFactor: isFactoring,
-        promptLatex: t.scenarios.voyager_mission,
-        expressionLatex: expression,
-        targetLatex: isFactoring ? `(${aTerm} + ${bTerm})(${aTerm} - ${bTerm})` : `${ca ** 2}x² - ${vb ** 2}${hasY ? "y²" : ""}`,
-        slots: isFactoring
-          ? [
-            { id: "a", labelLatex: "root a", placeholder: "ax", expected: aTerm },
-            { id: "b", labelLatex: "root b", placeholder: hasY ? "by" : "b", expected: bTerm },
-          ]
-          : [
-            { id: "part1", labelLatex: "a²", placeholder: "a²", expected: ca ** 2 },
-            { id: "part2", labelLatex: "b²", placeholder: "b²", expected: vb ** 2 },
-          ],
-        correctLatex: isFactoring ? `(${aTerm} + ${bTerm})(${aTerm} - ${bTerm})` : `${ca ** 2}x² - ${vb ** 2}${hasY ? "y²" : ""}`,
+        id: `VOY_${difficulty}_${i}`, difficulty, stage, type: "DIFFERENCE", ca, vb, isFactor: isFact,
+        expr, subType,
+        promptLatex: t.scenarios.voyager_mission, expressionLatex: expr,
+        targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x² - ${vb ** 2}${vB ? "y²" : ""}`,
+        slots: isFact
+          ? [{ id: "a", labelLatex: "root a", placeholder: "ax", expected: aT }, { id: "b", labelLatex: "root b", placeholder: vB ? "by" : "b", expected: bT }]
+          : [{ id: "part1", labelLatex: "a²", placeholder: "a²", expected: ca ** 2 }, { id: "part2", labelLatex: "b²", placeholder: "b²", expected: vb ** 2 }],
+        correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x² - ${vb ** 2}${vB ? "y²" : ""}`,
       };
     });
   }
