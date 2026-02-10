@@ -65,46 +65,64 @@ type S201Quest = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | 
 function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
   if (stage === "EXPLORE") return [];
 
+  const isBasic = difficulty === "BASIC";
+  const isCore = difficulty === "CORE";
+  const isAdvanced = difficulty === "ADVANCED";
+  const isElite = difficulty === "ELITE";
+
   if (stage === "ARCHITECT") {
-    const ca = Math.floor(Math.random() * 8) + 1;
-    const vb = Math.floor(Math.random() * 15) + 1;
-    return [
-      {
-        id: `ARCH${ca}${vb}`,
-        difficulty,
-        stage,
-        type: "EXPAND",
-        ca,
-        vb,
-        formula: `(${ca === 1 ? "" : ca}x + ${vb})²`,
-        promptLatex: t.scenarios.architect_mission,
-        expressionLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
-        targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-        slots: [
-          { id: "a2", labelLatex: "x²", placeholder: "coeff", expected: ca ** 2 },
-          { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
-          { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
-        ],
-        correctLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
-      },
-    ];
+    // Structural Choice: BASIC/CORE are EXPAND, ADVANCED/ELITE are FACTOR (or mixed)
+    if (isBasic || isCore) {
+      const ca = isBasic ? 1 : Math.floor(Math.random() * 5) + 2;
+      const vb = Math.floor(Math.random() * 10) + 1;
+      return [
+        {
+          id: `ARCH_EXP_${ca}${vb}`,
+          difficulty, stage, type: "EXPAND", ca, vb,
+          formula: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          promptLatex: t.scenarios.architect_mission,
+          expressionLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          targetLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+          slots: [
+            { id: "a2", labelLatex: "x²", placeholder: "coeff", expected: ca ** 2 },
+            { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
+            { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
+          ],
+          correctLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+        },
+      ];
+    } else {
+      // ADVANCED/ELITE: Factoring
+      const ca = isAdvanced ? 1 : Math.floor(Math.random() * 4) + 2;
+      const vb = Math.floor(Math.random() * 12) + 2;
+      return [
+        {
+          id: `ARCH_FAC_${ca}${vb}`,
+          difficulty, stage, type: "EXPAND", ca, vb,
+          formula: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+          promptLatex: `识别结构并因式分解为 (ax + b)² 形式`,
+          expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
+          targetLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+          slots: [
+            { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
+            { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
+          ],
+          correctLatex: `(${ca === 1 ? "" : ca}x + ${vb})²`,
+        } as any, // Temporary cast as we're extending logic
+      ];
+    }
   }
 
   if (stage === "SCRAPPER") {
-    const choices = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const choices = isBasic ? [1, 2, 3] : [2, 3, 4, 5, 8, 10];
     const ca = choices[Math.floor(Math.random() * choices.length)];
-    const vb = choices[Math.floor(Math.random() * choices.length)];
-    const variant: "XY" | "X" = Math.random() > 0.5 ? "XY" : "X";
+    const vb = isBasic ? Math.floor(Math.random() * 5) + 1 : Math.floor(Math.random() * 12) + 2;
+    const variant: "XY" | "X" = (isAdvanced || isElite) ? (Math.random() > 0.5 ? "XY" : "X") : "X";
 
     return [
       {
         id: `SCRAP${ca}${vb}${variant}`,
-        difficulty,
-        stage,
-        type: "SCRAPPER",
-        ca,
-        vb,
-        variant,
+        difficulty, stage, type: "SCRAPPER", ca, vb, variant,
         promptLatex: t.scenarios.scrapper_mission,
         expressionLatex:
           variant === "XY"
@@ -115,14 +133,14 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
           { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
           { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
         ],
-        correctLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})^2`,
+        correctLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
       },
     ];
   }
 
   if (stage === "SPEEDSTER") {
-    const roundBases = [100, 80, 70, 50, 40, 30];
-    const offsets = [1, 2, 3];
+    const roundBases = isBasic ? [10, 20, 50] : [100, 80, 50, 40];
+    const offsets = isElite ? [7, 8, 9] : [1, 2, 3];
     const friendlyBases = roundBases
       .flatMap((roundBase) =>
         offsets.flatMap((offset) => [
@@ -138,17 +156,9 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
     return [
       {
         id: `SPEED${combo.roundBase}${combo.sign}${combo.offset}`,
-        difficulty,
-        stage,
-        type: "SPEEDSTER",
-        base: combo.base,
-        roundBase: combo.roundBase,
-        offset: combo.offset,
-        sign: combo.sign,
-        a2: combo.roundBase ** 2,
-        middle: signedMiddle,
-        b2: combo.offset ** 2,
-        target: combo.base ** 2,
+        difficulty, stage, type: "SPEEDSTER",
+        base: combo.base, roundBase: combo.roundBase, offset: combo.offset, sign: combo.sign,
+        a2: combo.roundBase ** 2, middle: signedMiddle, b2: combo.offset ** 2, target: combo.base ** 2,
         promptLatex: t.scenarios.speedster_mission,
         expressionLatex: `${combo.base}²`,
         targetLatex: `${combo.roundBase ** 2} + ${signedMiddle} + ${combo.offset ** 2}`,
@@ -163,17 +173,13 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
   }
 
   if (stage === "ELITE") {
-    const C = Math.floor(Math.random() * 10) + 1;
-    const V = Math.floor(Math.random() * 20) + 2;
+    const C = isBasic ? Math.floor(Math.random() * 3) + 1 : Math.floor(Math.random() * 10) + 1;
+    const V = isBasic ? Math.floor(Math.random() * 5) + 2 : Math.floor(Math.random() * 20) + 2;
 
     return [
       {
         id: `ELITE${C}${V}`,
-        difficulty,
-        stage,
-        type: "ELITE",
-        C,
-        V,
+        difficulty, stage, type: "ELITE", C, V,
         promptLatex: t.scenarios.elite_mission,
         expressionLatex: `${C ** 2}x²y² - ${V ** 2}`,
         targetLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
@@ -181,7 +187,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
           { id: "base", labelLatex: "Cxy", placeholder: "Cxy", expected: `${C === 1 ? "" : C}xy` },
           { id: "sub", labelLatex: "V", placeholder: "V", expected: V.toString() },
           { id: "add_term", labelLatex: "2CVxy", placeholder: "2CVxy", expected: `${2 * C * V}xy` },
-          { id: "const_term", labelLatex: "2V^2", placeholder: "2V²", expected: (2 * V ** 2).toString() },
+          { id: "const_term", labelLatex: "2V²", placeholder: "2V²", expected: (2 * V ** 2).toString() },
         ],
         correctLatex: `(${C}xy - ${V})² + ${2 * C * V}xy - ${2 * V ** 2}`,
       },
@@ -189,9 +195,9 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
   }
 
   if (stage === "VOYAGER") {
-    const ca = Math.floor(Math.random() * 10) + 1;
-    const vb = Math.floor(Math.random() * 25) + 1;
-    const subType: "EXPAND" | "FACTOR" = Math.random() > 0.5 ? "EXPAND" : "FACTOR";
+    const ca = isBasic ? 1 : Math.floor(Math.random() * 10) + 1;
+    const vb = isBasic ? Math.floor(Math.random() * 10) + 1 : Math.floor(Math.random() * 25) + 1;
+    const subType: "EXPAND" | "FACTOR" = isAdvanced || isElite ? (Math.random() > 0.5 ? "EXPAND" : "FACTOR") : "EXPAND";
 
     const expr =
       subType === "EXPAND"
@@ -201,13 +207,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
     return [
       {
         id: `VOY${ca}${vb}${subType}`,
-        difficulty,
-        stage,
-        type: "DIFFERENCE",
-        ca,
-        vb,
-        expr,
-        subType,
+        difficulty, stage, type: "DIFFERENCE", ca, vb, expr, subType,
         promptLatex: t.scenarios.voyager_mission,
         expressionLatex: expr,
         targetLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
@@ -218,10 +218,10 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
               { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
             ]
             : [
-              { id: "part1", labelLatex: "a^2", placeholder: "a²", expected: ca ** 2 },
-              { id: "part2", labelLatex: "b^2", placeholder: "b²", expected: vb ** 2 },
+              { id: "part1", labelLatex: "a²", placeholder: "a²", expected: ca ** 2 },
+              { id: "part2", labelLatex: "b²", placeholder: "b²", expected: vb ** 2 },
             ],
-        correctLatex: subType === "EXPAND" ? `${ca ** 2}x^2 - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
+        correctLatex: subType === "EXPAND" ? `${ca ** 2}x² - ${vb ** 2}` : `(${ca}x + ${vb})(${ca}x - ${vb})`,
       },
     ];
   }
@@ -404,10 +404,10 @@ export default function S201Page() {
         ready: "READY",
         monitor_title: t.ui?.visual_reference_position ?? "VISUAL_MONITOR",
         difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
+          basic: t.difficulty?.basic ?? "BASIC",
+          core: t.difficulty?.core ?? "CORE",
+          advanced: t.difficulty?.advanced ?? "ADVANCED",
+          elite: t.difficulty?.elite ?? "ELITE",
         },
       }}
       monitorContent={

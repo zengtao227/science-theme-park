@@ -963,6 +963,12 @@ export const translations: Record<string, any> = {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
             title: "S2.01 // BINOMIAL FACTORY",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
             mode_1: "1st Formula: (a+b)²",
             mode_2: "2nd Formula: (a-b)²",
             param_a: "Parameter a",
@@ -3159,6 +3165,12 @@ export const translations: Record<string, any> = {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
             title: "S2.01 // 二项式工厂",
+            difficulty: {
+                basic: "初级",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
             mode_1: "第一公式: (a+b)²",
             mode_2: "第二公式: (a-b)²",
             param_a: "参数 a",
@@ -5690,6 +5702,12 @@ export const translations: Record<string, any> = {
             back: "← Zurück zum Nexus",
             back_short: "Zurück zum Nexus",
             title: "S2.01 // BINOMISCHE FORMELN",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
             mode_1: "1. Formel: (a+b)²",
             mode_2: "2. Formel: (a-b)²",
             param_a: "Parameter a",
