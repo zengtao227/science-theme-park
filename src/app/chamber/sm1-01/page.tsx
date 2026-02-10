@@ -207,8 +207,8 @@ export default function S101Page() {
                     <div className="relative w-full">
                         {/* Use 3D Cube for volume stage with cube geometry */}
                         {stage === 'VOLUMES' && currentQuest.visualMeta?.type === 'cube' ? (
-                            <Cube3D 
-                                sideLength={currentQuest.visualMeta.params.a} 
+                            <Cube3D
+                                sideLength={currentQuest.visualMeta.params.a}
                                 showDiagonal={false}
                             />
                         ) : (
@@ -265,8 +265,11 @@ export default function S101Page() {
                     <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
                         {t.objective_title}
                     </h3>
-                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                        <InlineMath math={currentQuest.promptLatex} />
+                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
+                        {/* Smart render for prompts: strip \text{} wrapper if present for better wrapping */}
+                        {currentQuest.promptLatex.startsWith("\\text{") && currentQuest.promptLatex.endsWith("}")
+                            ? currentQuest.promptLatex.slice(6, -1)
+                            : <InlineMath math={currentQuest.promptLatex} />}
                     </p>
                 </div>
 
@@ -277,8 +280,9 @@ export default function S101Page() {
                             {t.target_title}
                         </span>
                         <div className="space-y-4">
-                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[0.95] whitespace-nowrap">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
+                                {/* Inject line breaks for long expressions */}
+                                <InlineMath math={currentQuest.expressionLatex.replace(/(\text{m)[,，]/g, "$1}, \\\\ \\text{")} />
                             </div>
                             <div className="text-white/60 font-black">
                                 <InlineMath math={currentQuest.targetLatex} />

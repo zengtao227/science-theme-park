@@ -726,17 +726,17 @@ export default function S202Page() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
             {t.objective_title}
           </h3>
-          <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-            <InlineMath math={currentQuest.promptLatex} />
+          <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
+            <InlineMath math={currentQuest.promptLatex.replace(/:\\;/g, ":\\\\")} />
           </p>
         </div>
 
-        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
           <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
           <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
             {t.target_title}
           </span>
-          <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
+          <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
             <InlineMath math={currentQuest.targetLatex} />
           </div>
         </div>

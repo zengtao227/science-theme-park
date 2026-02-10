@@ -50,7 +50,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       },
     ];
   }
-  
+
   if (stage === "LEVEL2") {
     const prompt = t?.prompts?.level2 || "\\text{Predict and hit the moving target}";
     return [
@@ -69,7 +69,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       },
     ];
   }
-  
+
   const prompt = t?.prompts?.level3 || "\\text{Hit the target with two reflections}";
   return [
     {
@@ -222,9 +222,19 @@ export default function S203Page() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
             {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
           </h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || "\\text{Hit the target}"} />
-          </p>
+          <div className="space-y-4">
+            <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+              <InlineMath math={currentQuest?.promptLatex || "\\text{Hit the target}"} />
+            </p>
+            {currentQuest?.expressionLatex && (
+              <p className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
+                {/* Render expression as text if it's a text wrapper, else math */}
+                {currentQuest.expressionLatex.startsWith("\\text{")
+                  ? currentQuest.expressionLatex.slice(6, -1)
+                  : <InlineMath math={currentQuest.expressionLatex} />}
+              </p>
+            )}
+          </div>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="grid grid-cols-2 gap-6">
