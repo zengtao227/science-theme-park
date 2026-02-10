@@ -650,7 +650,9 @@ export const translations: Record<string, any> = {
             title: "S2.02 // PYTHAGORAS & ROOTS",
             tabs: {
                 pythagoras: "PYTHAGORAS",
-                sqrt: "SQUARE ROOT"
+                sqrt: "SQUARE ROOT",
+                explorer: "EXPLORER LAB",
+                quest_mode: "QUEST MODES"
             },
             difficulty: {
                 basic: "BASIC",
@@ -678,7 +680,8 @@ export const translations: Record<string, any> = {
                 solve_leg: " Mountain climb: Find the vertical height",
                 check_right: "📐 Engineering check: Is this a right triangle?",
                 distance: "🚁 Drone delivery: Calculate flight distance",
-                elite_space: " CERN lab: Find the space diagonal"
+                elite_space: " CERN lab: Find the space diagonal",
+                explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants."
             },
             sqrt: {
                 perfect: "Perfect squares",
@@ -2858,7 +2861,9 @@ export const translations: Record<string, any> = {
             title: "S2.02 // 勾股定律与开平方",
             tabs: {
                 pythagoras: "勾股定律",
-                sqrt: "开平方"
+                sqrt: "开平方",
+                explorer: "探索实验室",
+                quest_mode: "挑战模式"
             },
             difficulty: {
                 basic: "基础",
@@ -2886,7 +2891,8 @@ export const translations: Record<string, any> = {
                 solve_leg: " 阿尔卑斯登山：计算垂直攀升高度",
                 check_right: "📐 工程验收：这是直角三角形吗？",
                 distance: "🚁 无人机快递：计算直线飞行距离",
-                elite_space: " CERN 实验室：计算空间对角线"
+                elite_space: " CERN 实验室：求解空间对角线强度",
+                explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。"
             },
             sqrt: {
                 perfect: "完全平方数",
@@ -2897,15 +2903,15 @@ export const translations: Record<string, any> = {
                 title: "任务",
                 protocol: "NEXUS PROTOCOL // 瑞士节点在线",
                 cern_title: "CERN 校准阵列",
-                cern_desc: "校准 16:9 观测阵列。高=9s，宽=16s，求对角线。",
+                cern_desc: "校准 16:9 观测阵列。高=9s，宽=16s。求对角线。",
                 roof_title: "格林德瓦防雪屋顶",
-                roof_desc: "半跨度 6m，高 6m，计算屋顶支撑梁长度。",
+                roof_desc: "半跨度 6m，高 6m。计算屋顶支撑梁长度。",
                 ladder_title: "卢塞恩登梯码头",
-                ladder_desc: "梯子距墙 5m，可达高度 12m，求梯子长度。",
+                ladder_desc: "梯子距墙 5m，可达高度 12m。求梯子长度。",
                 grid_title: "巴塞尔网格距离",
                 grid_desc: "计算巴塞尔城市网格中两个导航节点的距离。",
                 chain_title: "CERN 转运通道",
-                chain_desc: "转运通道跨越矩形平台并上升至高位，求完整对角线。"
+                chain_desc: "转运通道跨越矩形平台并上升至高位。求完整对角线。"
             },
             mental: {
                 title: "心算",
@@ -5386,7 +5392,9 @@ export const translations: Record<string, any> = {
             title: "S2.02 // PYTHAGORAS & WURZELN",
             tabs: {
                 pythagoras: "PYTHAGORAS",
-                sqrt: "QUADRATWURZEL"
+                sqrt: "QUADRATWURZEL",
+                explorer: "ENTDECKER-LABOR",
+                quest_mode: "QUEST-MODI"
             },
             difficulty: {
                 basic: "BASIS",
@@ -5414,7 +5422,8 @@ export const translations: Record<string, any> = {
                 solve_leg: " Bergrettung: Vertikale Höhe finden",
                 check_right: " Ingenieurscheck: Rechtwinkliges Dreieck?",
                 distance: " Drohnenlieferung: Flugdistanz berechnen",
-                elite_space: " CERN Labor: Raumdiagonale finden"
+                elite_space: " CERN-Labor: Raumdiagonale berechnen",
+                explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten."
             },
             sqrt: {
                 perfect: "Quadratzahlen",

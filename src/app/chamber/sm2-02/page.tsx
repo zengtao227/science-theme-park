@@ -17,6 +17,7 @@ import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalIn
 type Mg05T = typeof translations.EN.sm2_02;
 
 type Stage =
+  | "EXPLORER"
   | "SOLVE_HYP" | "SOLVE_LEG" | "CHECK_RIGHT"
   | "DISTANCE" | "ELITE_SPACE" | "MISSION"
   | "MENTAL" | "CHAIN"
@@ -103,9 +104,23 @@ function difficultyScale(d: Difficulty) {
 // Build quest pool for each stage
 function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Quest[] {
   const tab: "PYTHAGORAS" | "SQRT" =
-    ["SOLVE_HYP", "SOLVE_LEG", "CHECK_RIGHT", "DISTANCE", "ELITE_SPACE", "MISSION", "MENTAL", "CHAIN"].includes(stage)
+    ["EXPLORER", "SOLVE_HYP", "SOLVE_LEG", "CHECK_RIGHT", "DISTANCE", "ELITE_SPACE", "MISSION", "MENTAL", "CHAIN"].includes(stage)
       ? "PYTHAGORAS"
       : "SQRT";
+
+  if (stage === "EXPLORER") {
+    return [{
+      id: "EXPLORER",
+      difficulty, stage, tab,
+      promptLatex: t.pythagoras.explorer_mission || "Pythagorean Explorer: Adjust scale and witness constants.",
+      expressionLatex: "a^2 + b^2 = c^2",
+      targetLatex: "(k a)^2 + (k b)^2 = (k c)^2",
+      correctLatex: "",
+      slots: [],
+      steps: [],
+      visual: { kind: "triangle", a: 3, b: 4, c: 5 },
+    }];
+  }
 
   // PYTHAGORAS TAB - SOLVE_HYP
   if (stage === "SOLVE_HYP") {
@@ -586,6 +601,10 @@ export default function S202Page() {
     initialStage: "SOLVE_HYP",
   });
 
+  const [explorerA, setExplorerA] = useState(3);
+  const [explorerB, setExplorerB] = useState(4);
+  const [explorerK, setExplorerK] = useState(1);
+
   useEffect(() => {
     if (lastCheck?.ok) {
       completeStage("sm2-02", stage);
@@ -668,24 +687,40 @@ export default function S202Page() {
             </button>
           </div>
           {/* 使用简单的2D可视化，适合初二学生 */}
-          {currentQuest.visual.kind === "triangle" && currentQuest.visual.a && currentQuest.visual.b && currentQuest.visual.c ? (
+          {stage === "EXPLORER" ? (
             useFluidViz ? (
               <PythagorasFluidCanvas
-                a={currentQuest.visual.a}
-                b={currentQuest.visual.b}
-                c={currentQuest.visual.c}
-                highlightRightAngle={currentQuest.visual.highlightRightAngle}
+                a={explorerA * explorerK}
+                b={explorerB * explorerK}
+                c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
               />
             ) : (
               <PythagorasSimple2D
-                a={currentQuest.visual.a}
-                b={currentQuest.visual.b}
-                c={currentQuest.visual.c}
-                highlightRightAngle={currentQuest.visual.highlightRightAngle}
+                a={explorerA * explorerK}
+                b={explorerB * explorerK}
+                c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
+                highlightRightAngle={true}
               />
             )
           ) : (
-            <S202PythagorasCanvas visual={currentQuest.visual} />
+            currentQuest.visual.kind === "triangle" && currentQuest.visual.a && currentQuest.visual.b && currentQuest.visual.c ? (
+              useFluidViz ? (
+                <PythagorasFluidCanvas
+                  a={currentQuest.visual.a}
+                  b={currentQuest.visual.b}
+                  c={currentQuest.visual.c}
+                />
+              ) : (
+                <PythagorasSimple2D
+                  a={currentQuest.visual.a}
+                  b={currentQuest.visual.b}
+                  c={currentQuest.visual.c}
+                  highlightRightAngle={currentQuest.visual.highlightRightAngle}
+                />
+              )
+            ) : (
+              <S202PythagorasCanvas visual={currentQuest.visual} />
+            )
           )}
           {currentQuest.visual.kind === "space" && (
             <div className="text-white/60 text-sm font-mono text-center">
@@ -699,123 +734,230 @@ export default function S202Page() {
       {/* Tab Switcher */}
       <div className="flex gap-3 justify-center mb-8">
         <button
-          onClick={() => handleTabChange("PYTHAGORAS")}
+          onClick={() => handleStageChange("EXPLORER")}
           className={clsx(
             "px-6 py-3 border-2 text-[10px] font-black tracking-[0.3em] uppercase transition-all",
-            isPythagorasTab
+            stage === "EXPLORER"
               ? "border-white bg-white text-black"
               : "border-white/30 text-white hover:border-white/50"
           )}
         >
-          {t.tabs.pythagoras}
+          {t?.tabs?.explorer || "EXPLORER LAB"}
         </button>
         <button
-          onClick={() => handleTabChange("SQRT")}
+          onClick={() => { if (stage === "EXPLORER") handleStageChange("SOLVE_HYP"); }}
           className={clsx(
             "px-6 py-3 border-2 text-[10px] font-black tracking-[0.3em] uppercase transition-all",
-            isSqrtTab
+            stage !== "EXPLORER"
               ? "border-white bg-white text-black"
               : "border-white/30 text-white hover:border-white/50"
           )}
         >
-          {t.tabs.sqrt}
+          {t?.tabs?.quest_mode || "QUEST MODES"}
         </button>
       </div>
 
-      {/* Quest Content */}
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t.objective_title}
-          </h3>
-          <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-            {(() => {
-              const latex = currentQuest.promptLatex;
-              // If it's a scenario/mission description (text-heavy), render as HTML
-              if (latex.includes("\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
-                const clean = latex
-                  .replace(/\\text\{/g, "")
-                  .replace(/\}/g, "")
-                  .replace(/\\\\/g, "\n")
-                  .replace(/\\;/g, " ")
-                  .replace(/\\,/g, " ")
-                  .replace(/\\quad/g, "  ")
-                  .replace(/\\!/g, "");
-                return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
-              }
-              // Default: Math expression
-              return <InlineMath math={latex} />;
-            })()}
-          </p>
-        </div>
+      {stage === "EXPLORER" ? (
+        <div className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 p-8 space-y-8 max-w-4xl mx-auto mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <h4 className="text-neon-cyan font-bold uppercase tracking-widest text-[10px]">Triangle Base Configuration</h4>
+              <div className="space-y-5">
+                <div>
+                  <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                    <span>Base Leg a: {explorerA}</span>
+                    <span className="text-neon-cyan">a² = {explorerA * explorerA}</span>
+                  </div>
+                  <input
+                    type="range" min="1" max="25" step="1"
+                    value={explorerA} onChange={(e) => setExplorerA(parseInt(e.target.value))}
+                    className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-neon-cyan"
+                  />
+                </div>
+                <div>
+                  <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                    <span>Base Leg b: {explorerB}</span>
+                    <span className="text-neon-blue">b² = {explorerB * explorerB}</span>
+                  </div>
+                  <input
+                    type="range" min="1" max="25" step="1"
+                    value={explorerB} onChange={(e) => setExplorerB(parseInt(e.target.value))}
+                    className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-neon-blue"
+                  />
+                </div>
+              </div>
 
-        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
-          <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
-          <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
-            {t.target_title}
-          </span>
-          <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
-            <InlineMath math={currentQuest.targetLatex} />
-          </div>
-        </div>
-      </div>
-
-      {/* Input Section */}
-      <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-        {currentQuest.steps.map((step) => (
-          <div key={step.id} className="space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-              <InlineMath math={step.labelLatex} />
+              <div className="flex gap-2 pt-4 flex-wrap">
+                {[[3, 4], [5, 12], [8, 15], [7, 24], [20, 21]].map(([ba, bb]) => (
+                  <button
+                    key={`${ba}-${bb}`}
+                    onClick={() => { setExplorerA(ba); setExplorerB(bb); }}
+                    className={clsx(
+                      "px-3 py-2 bg-white/5 border border-white/10 rounded text-[10px] font-mono hover:bg-white/10 transition-all text-white/80",
+                      explorerA === ba && explorerB === bb && "border-neon-cyan bg-white/10 text-white"
+                    )}
+                  >
+                    {ba}:{bb}:{Math.sqrt(ba * ba + bb * bb)}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {step.input === "number" && (
-              <input
-                value={inputs[step.id] || ""}
-                onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
-                className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
-                placeholder="?"
-                inputMode="numeric"
-              />
-            )}
-
-            {step.input === "radical" && (
-              <RadicalSlotInput
-                value={(() => { try { return JSON.parse(inputs[step.id] || "{}"); } catch { return { k: 0, m: 0 }; } })()}
-                onChange={(v) => setInputs({ ...inputs, [step.id]: JSON.stringify(v) })}
-                labelK={t.input_k}
-                labelM={t.input_m}
-              />
-            )}
-
-            {step.input === "boolean" && (
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={() => setInputs({ ...inputs, [step.id]: "true" })}
-                  className={clsx(
-                    "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
-                    inputs[step.id] === "true"
-                      ? "border-white bg-white/10"
-                      : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
-                  )}
-                >
-                  {t.yes}
-                </button>
-                <button
-                  onClick={() => setInputs({ ...inputs, [step.id]: "false" })}
-                  className={clsx(
-                    "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
-                    inputs[step.id] === "false"
-                      ? "border-white bg-white/10"
-                      : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
-                  )}
-                >
-                  {t.no}
-                </button>
+            <div className="space-y-6">
+              <h4 className="text-neon-purple font-bold uppercase tracking-widest text-[10px]">Homothetic Scaling (k)</h4>
+              <div>
+                <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                  <span>Multiplier k: {explorerK}</span>
+                  <span className="text-neon-purple">Ratio Constant</span>
+                </div>
+                <input
+                  type="range" min="0.5" max="20" step="0.1"
+                  value={explorerK} onChange={(e) => setExplorerK(parseFloat(e.target.value))}
+                  className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-neon-purple"
+                />
               </div>
-            )}
+
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                {[1, 2, 5, 10].map((k) => (
+                  <button
+                    key={k}
+                    onClick={() => setExplorerK(k)}
+                    className={clsx(
+                      "py-2 bg-white/5 border border-white/10 rounded text-[10px] font-mono text-white/60 hover:text-white transition-all",
+                      explorerK === k && "border-neon-purple bg-white/10 text-white"
+                    )}
+                  >
+                    k = {k}
+                  </button>
+                ))}
+              </div>
+
+              <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
+                <div className="text-[9px] text-white/40 uppercase font-mono tracking-widest">Similarity Theorem</div>
+                <p className="text-[11px] text-white/70 leading-relaxed italic">
+                  Scaled triangles (ka, kb, kc) are similar to (a, b, c).
+                  The relationship <span className="text-neon-cyan">a²+b²=c²</span> remains invariant under any positive scale factor <span className="text-neon-purple">k</span>.
+                </p>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
+
+          <div className="flex justify-center pt-8 border-t border-white/5">
+            <div className="text-center group">
+              <div className="text-white/20 text-[9px] mb-3 uppercase tracking-[0.4em] font-black group-hover:text-white/40 transition-all font-mono">
+                Real-time Geometry Engine
+              </div>
+              <div className="text-3xl font-black text-white tracking-tighter">
+                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}²</span>
+                <span className="mx-3 opacity-30">+</span>
+                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}²</span>
+                <span className="mx-3 opacity-30">=</span>
+                <span className="text-neon-green">{(explorerA * explorerA * explorerK * explorerK + explorerB * explorerB * explorerK * explorerK).toFixed(1)}</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <div className="h-px w-8 bg-white/10" />
+                <div className="text-neon-green text-sm font-bold font-mono px-4 border border-neon-green/20 py-1 rounded-full bg-neon-green/5">
+                  Hypotenuse c = {Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2)).toFixed(2)}
+                </div>
+                <div className="h-px w-8 bg-white/10" />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          <div className="text-center">
+            <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
+              {t.objective_title}
+            </h3>
+            <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
+              {(() => {
+                const latex = currentQuest.promptLatex;
+                if (latex.includes("\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
+                  const clean = latex
+                    .replace(/\\text\{/g, "")
+                    .replace(/\}/g, "")
+                    .replace(/\\\\/g, "\n")
+                    .replace(/\\;/g, " ")
+                    .replace(/\\,/g, " ")
+                    .replace(/\\quad/g, "  ")
+                    .replace(/\\!/g, "");
+                  return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
+                }
+                return <InlineMath math={latex} />;
+              })()}
+            </p>
+          </div>
+
+          {/* Target Display */}
+          <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
+            <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
+            <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
+              {t.target_title}
+            </span>
+            <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
+              <InlineMath math={currentQuest.targetLatex} />
+            </div>
+          </div>
+
+          {/* Input Section */}
+          <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+            {currentQuest.steps.map((step) => (
+              <div key={step.id} className="space-y-3">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+                  <InlineMath math={step.labelLatex} />
+                </div>
+
+                {step.input === "number" && (
+                  <input
+                    value={inputs[step.id] || ""}
+                    onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
+                    className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                    placeholder="?"
+                    inputMode="numeric"
+                  />
+                )}
+
+                {step.input === "radical" && (
+                  <RadicalSlotInput
+                    value={(() => { try { return JSON.parse(inputs[step.id] || "{}"); } catch { return { k: 1, m: 1 }; } })()}
+                    onChange={(v) => setInputs({ ...inputs, [step.id]: JSON.stringify(v) })}
+                    labelK={t.input_k}
+                    labelM={t.input_m}
+                  />
+                )}
+
+                {step.input === "boolean" && (
+                  <div className="flex items-center justify-center gap-4">
+                    <button
+                      onClick={() => setInputs({ ...inputs, [step.id]: "true" })}
+                      className={clsx(
+                        "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
+                        inputs[step.id] === "true"
+                          ? "border-white bg-white/10"
+                          : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+                      )}
+                    >
+                      {t.yes}
+                    </button>
+                    <button
+                      onClick={() => setInputs({ ...inputs, [step.id]: "false" })}
+                      className={clsx(
+                        "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
+                        inputs[step.id] === "false"
+                          ? "border-white bg-white/10"
+                          : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
+                      )}
+                    >
+                      {t.no}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </ChamberLayout>
   );
 }
