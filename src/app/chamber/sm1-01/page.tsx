@@ -274,7 +274,11 @@ export default function S101Page() {
                                 const clean = latex
                                     .replace(/\\text\{/g, "")
                                     .replace(/\}/g, "")
-                                    .replace(/\\\\/g, "\n");
+                                    .replace(/\\\\/g, "\n")
+                                    .replace(/\\;/g, " ")
+                                    .replace(/\\,/g, " ")
+                                    .replace(/\\quad/g, "  ")
+                                    .replace(/\\!/g, "");
                                 return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
                             }
                             return <InlineMath math={latex} />;
@@ -293,7 +297,7 @@ export default function S101Page() {
                                 {(() => {
                                     const latex = currentQuest.expressionLatex;
                                     if (latex.includes("\\text{")) {
-                                        return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                                        return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
                                     }
                                     return <InlineMath math={latex.replace(/(\text{m)[,，]/g, "$1}, \\\\ \\text{")} />;
                                 })()}

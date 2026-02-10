@@ -220,7 +220,7 @@ export default function S207Page() {
             {(() => {
               const latex = currentQuest?.promptLatex || "";
               if (latex.includes("\\text{")) {
-                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
               }
               return <InlineMath math={latex} />;
             })()}
