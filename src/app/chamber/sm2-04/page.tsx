@@ -114,7 +114,7 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): S204Que
         const all: S204Quest[] = [
             {
                 id: "M1", difficulty, stage,
-                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.tower_title}}\\\\\\text{${t.mission?.description}}`,
+                promptLatex: `${t.mission?.protocol}\n${t.mission?.tower_title}\n${t.mission?.description}`,
                 expressionLatex: `\\text{Tower Shadow}=12\\text{ m},\\; \\text{Stick}(1.5\\text{ m})\\text{ Shadow}=2.4\\text{ m}`,
                 targetLatex: `\\text{Tower Height}(H)`,
                 slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 7.5 }],
@@ -130,7 +130,7 @@ function buildStagePool(t: Mg08T, difficulty: Difficulty, stage: Stage): S204Que
             const ringW = Number((ringR - ringD).toFixed(2));
             all.push({
                 id: `M2-${idx}`, difficulty, stage,
-                promptLatex: `\\text{${t.mission?.protocol}}\\\\\\text{${t.mission?.ring_title}}\\\\\\text{${t.mission?.ring_desc}}`,
+                promptLatex: `${t.mission?.protocol}\n${t.mission?.ring_title}\n${t.mission?.ring_desc}`,
                 expressionLatex: `R=${ringR}\\text{ cm},\\; L=${ringL}\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: `w-${idx}`, labelLatex: `w`, placeholder: "width", expected: ringW }],
@@ -225,13 +225,13 @@ export default function S204Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {t.target_title}
                         </div>
-                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
+                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-normal break-words">
                             <span className="inline-block">
                                 <InlineMath math={currentQuest.expressionLatex} />
                             </span>
                         </div>
-                        <div className="text-white/70 font-mono text-sm break-words">
-                            <InlineMath math={currentQuest.promptLatex} />
+                        <div className="text-white/70 font-mono text-sm whitespace-pre-wrap break-words">
+                            {currentQuest.promptLatex}
                         </div>
                         {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
                             <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
@@ -261,14 +261,8 @@ export default function S204Page() {
                     <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
                         {t.objective_title}
                     </h3>
-                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-                        {(() => {
-                            const latex = currentQuest.promptLatex;
-                            if (latex.includes("\\text{")) {
-                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
-                            }
-                            return <InlineMath math={latex} />;
-                        })()}
+                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-pre-wrap break-words">
+                        {currentQuest.promptLatex}
                     </p>
                 </div>
 

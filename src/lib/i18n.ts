@@ -935,7 +935,7 @@ export const translations: Record<string, any> = {
                 scale_factor: "SCALE",
                 similar_triangles: "SIMILAR",
                 application: "APPLY",
-                stages_prompt_latex: "\\text{Use proportionality to find the missing value.}"
+                stages_prompt_latex: "Use proportionality to find the missing value."
             },
             labels: {
                 input: "INPUT",
@@ -3148,7 +3148,7 @@ export const translations: Record<string, any> = {
                 scale_factor: "缩放",
                 similar_triangles: "相似",
                 application: "应用",
-                stages_prompt_latex: "\\text{使用比例关系求出未知量。}"
+                stages_prompt_latex: "使用比例关系求出未知量。"
             },
             labels: {
                 input: "输入",
@@ -5698,7 +5698,7 @@ export const translations: Record<string, any> = {
                 scale_factor: "STRECKUNG",
                 similar_triangles: "ÄHNLICH",
                 application: "ANWENDUNG",
-                stages_prompt_latex: "\\text{Nutze Proportionen, um den fehlenden Wert zu bestimmen.}"
+                stages_prompt_latex: "Nutze Proportionen, um den fehlenden Wert zu bestimmen."
             },
             labels: {
                 input: "EINGABE",
