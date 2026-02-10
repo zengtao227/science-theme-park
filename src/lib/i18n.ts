@@ -674,11 +674,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "Answer",
             pythagoras: {
-                solve_hyp: "Find hypotenuse",
-                solve_leg: "Find leg",
-                check_right: "Check right triangle",
-                distance: "Distance on grid",
-                elite_space: "Space diagonal"
+                solve_hyp: "🚒 Fire rescue: Find the ladder length",
+                solve_leg: "🏔️ Mountain climb: Find the vertical height",
+                check_right: "📐 Engineering check: Is this a right triangle?",
+                distance: "🚁 Drone delivery: Calculate flight distance",
+                elite_space: "🔬 CERN lab: Find the space diagonal"
             },
             sqrt: {
                 perfect: "Perfect squares",
@@ -874,33 +874,33 @@ export const translations: Record<string, any> = {
                 hints: "HINTS",
                 emitter: "Emitter",
                 target: "Target",
-                slope: "Slope (m)",
-                intercept: "Intercept (c)"
+                slope: "Cost per km (m)",
+                intercept: "Base fare (c)"
             },
             prompts: {
-                level1: "\\text{Hit the target with one reflection}",
-                level2: "\\text{Predict and hit the moving target}",
-                level3: "\\text{Hit the target with two reflections}"
+                level1: "\\text{🚂 Calculate the ticket price for the given destination}",
+                level2: "\\text{🚂 Find the distance where two fare plans cost the same}",
+                level3: "\\text{🚂 Design a fare plan that is cheapest for long-distance travel}"
             },
             hints: {
-                level1: "Use one reflection to hit the target. Adjust slope and intercept.",
-                level2: "Target is moving. Predict its position and adjust your laser path.",
-                level3: "Use two reflections to reach the target. Complex trajectory required.",
-                drag: "Drag the control points on the line to edit slope and intercept."
+                level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
+                level2: "Two fare plans have different m and c. Find the intersection point — that's where they cost the same!",
+                level3: "Design the slope and intercept so your plan is cheapest beyond a certain distance.",
+                drag: "Adjust the slider to change the slope (cost/km) and intercept (base fare)."
             },
             ui: {
-                current_function: "Current Function",
-                reflections: "Reflections",
-                target_position: "Target Position",
-                hit_badge: "TARGET HIT",
-                chamber: "CHAMBER",
-                laser_sim: "LASER_SIM",
+                current_function: "Fare Formula",
+                reflections: "Fare Plans",
+                target_position: "Destination (km)",
+                hit_badge: "FARE MATCHED",
+                chamber: "STATION",
+                laser_sim: "FARE_CALC",
                 level: "LEVEL",
-                hits: "Hits"
+                hits: "Matches"
             },
             mission: {
-                title: "LASER REFLECTION LAB",
-                description: "Use linear equations to reflect lasers off walls and hit targets. Master y = mx + c."
+                title: "SWISS RAILWAY FARE CALCULATOR",
+                description: "Model railway ticket prices as linear functions. Slope = cost per km, intercept = base fare. Find the break-even point between fare plans!"
             },
             stages: {
                 level1: "LEVEL 1",
@@ -981,21 +981,21 @@ export const translations: Record<string, any> = {
                 target_minus: "(a-b)²",
             },
             scenarios: {
-                architect_title: "Scenario A: The Architect",
-                architect_desc: "Calculate material for room extensions. Don't forget the corners!",
-                architect_context: "An architect is designing a new house for a client. The living room needs new carpet. The architect has measured the room dimensions and now needs to calculate the exact carpet area to order the right amount of material from the supplier.",
-                scrapper_title: "Scenario B: The Scrapper",
-                scrapper_desc: "Reconstruct debris into perfect squares for spaceport docking.",
-                scrapper_context: "A recycling center needs to order new recycling bins. Each bin has a fixed volume capacity. The center manager needs to calculate how many bins are required to hold all the materials collected this week.",
-                speedster_title: "Scenario C: The Speedster",
-                speedster_desc: "Master the art of rapid mental estimation using expansions.",
-                speedster_context: "A math competition student is training for rapid calculation skills. The coach presents a series of geometric shapes and requires calculating all areas in the shortest time possible.",
-                voyager_context: "A sailboat is navigating at sea. The captain needs to calculate the shortest distance from the current position to the destination port. Using GPS coordinates, the captain can calculate the straight-line distance using the Pythagorean theorem.",
-                architect_mission: "Task: Expand the blueprints to buy the correct amount of carpet.",
-                scrapper_mission: "Task: Factor the debris cluster into a stable docking square.",
-                speedster_mission: "Task: Calculate the target value instantly using (a+b)² shortcuts.",
-                voyager_mission: "Task: Calculate the sailing distance.",
-                elite_mission: "Task: Deconstruct complex clusters into secondary polynomial forms."
+                architect_title: "Scenario A: Garden Extension",
+                architect_desc: "Your lakeside garden (a×a) is being extended by b meters on each side. Calculate the new total area.",
+                architect_context: "You own a square garden plot by Lake Zurich with side length 'a' meters. The city allows you to extend it by 'b' meters on two sides. To buy the right amount of soil and seeds, you need to know the new total area. Notice: the total area is NOT simply a² + b² — the two rectangular strips and the corner square matter!",
+                scrapper_title: "Scenario B: Tile Factory",
+                scrapper_desc: "A factory produced tiles in three shapes. Reassemble them into a perfect square.",
+                scrapper_context: "A Swiss tile factory produces three types of tiles: one large square (a²), two rectangular strips (a×b each), and one small square (b²). Your job is to verify that these four pieces can be perfectly assembled into a single large square of side (a+b). This proves the binomial identity geometrically.",
+                speedster_title: "Scenario C: Mental Math Sprint",
+                speedster_desc: "Compute large squares instantly by splitting them into (round + offset)².",
+                speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)² = a² + 2ab + b² = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
+                voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a² - b².",
+                architect_mission: "Task: Calculate the expanded garden area using (a+b)² = a² + 2ab + b².",
+                scrapper_mission: "Task: Identify a and b from the expanded form and reconstruct the perfect square.",
+                speedster_mission: "Task: Break the number into (round ± offset) and use binomial expansion to compute instantly.",
+                voyager_mission: "Task: Use the difference of squares formula to find the area difference.",
+                elite_mission: "Task: Factor the complex polynomial into binomial product form."
             },
             speedster_hint: "Use binomial expansion (a±b)² to simplify calculation",
             elite_tips_title: "TIPS: Binomial Isolation Strategy",
@@ -1007,9 +1007,9 @@ export const translations: Record<string, any> = {
             units: "UNITS",
             tabs: {
                 explore: "EXPLORE",
-                architect: "ARCHITECT",
-                scrapper: "SCRAPPER",
-                speedster: "SPEEDSTER",
+                architect: "GARDEN",
+                scrapper: "TILE LAB",
+                speedster: "SPRINT",
                 voyager: "VOYAGER",
                 elite: "ELITE"
             },
@@ -1304,8 +1304,8 @@ export const translations: Record<string, any> = {
                 areas: "AREAS",
                 volumes: "VOLUMES",
                 complex: "COMPLEX",
-                areas_prompt_latex: "\\text{Calculate the area of the given figure.}",
-                volumes_prompt_latex: "\\text{Calculate the volume or surface area.}"
+                areas_prompt_latex: "\\text{Read the scenario and calculate the required area.}",
+                volumes_prompt_latex: "\\text{Read the scenario and calculate the required volume.}"
             },
             labels: {
                 input: "INPUT",
@@ -2840,11 +2840,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "答案",
             pythagoras: {
-                solve_hyp: "求斜边",
-                solve_leg: "求直角边",
-                check_right: "判定直角三角形",
-                distance: "坐标距离",
-                elite_space: "空间对角线"
+                solve_hyp: "🚒 消防救援：计算消防梯最短长度",
+                solve_leg: "🏔️ 阿尔卑斯登山：计算垂直攀升高度",
+                check_right: "📐 工程验收：这是直角三角形吗？",
+                distance: "🚁 无人机快递：计算直线飞行距离",
+                elite_space: "🔬 CERN 实验室：计算空间对角线"
             },
             sqrt: {
                 perfect: "完全平方数",
@@ -3038,35 +3038,35 @@ export const translations: Record<string, any> = {
             labels: {
                 input: "输入",
                 hints: "提示",
-                emitter: "发射器",
-                target: "目标",
-                slope: "斜率 (m)",
-                intercept: "截距 (c)"
+                emitter: "出发站",
+                target: "目的地",
+                slope: "每公里费用 (m)",
+                intercept: "基础票价 (c)"
             },
             prompts: {
-                level1: "\\text{用一次反射击中目标}",
-                level2: "\\text{预测并击中移动目标}",
-                level3: "\\text{用两次反射击中目标}"
+                level1: "\\text{🚂 计算到达目的地的票价}",
+                level2: "\\text{🚂 找到两种票价方案费用相同的距离}",
+                level3: "\\text{🚂 设计一个适合长途旅行的最优票价方案}"
             },
             hints: {
-                level1: "使用一次反射命中目标。调整斜率与截距。",
-                level2: "目标在移动，预测其位置并调整激光路径。",
-                level3: "使用两次反射到达目标，需要更复杂的轨迹。",
-                drag: "拖动直线上的控制点来修改斜率和截距。"
+                level1: "斜率 m = 每公里费用。截距 c = 基础票价（起步价）。总票价 y = m × 距离 + c。",
+                level2: "两种票价方案的 m 和 c 不同。找到交点——那就是费用相同的距离！",
+                level3: "调整斜率和截距，让你的方案在某个距离之后变得最便宜。",
+                drag: "调整滑块来改变斜率（每公里费用）和截距（基础票价）。"
             },
             ui: {
-                current_function: "当前函数",
-                reflections: "反射次数",
-                target_position: "目标坐标",
-                hit_badge: "目标命中",
-                chamber: "舱室",
-                laser_sim: "激光模拟",
+                current_function: "票价公式",
+                reflections: "票价方案",
+                target_position: "目的地 (km)",
+                hit_badge: "票价已匹配",
+                chamber: "站台",
+                laser_sim: "票价计算",
                 level: "等级",
-                hits: "命中"
+                hits: "匹配"
             },
             mission: {
-                title: "激光反射实验室",
-                description: "使用线性方程控制激光反射并击中目标。掌握 y = mx + c。"
+                title: "瑞士铁路票价计算器",
+                description: "将铁路票价建模为线性函数。斜率 = 每公里费用，截距 = 基础票价。找到两种票价方案的临界点！"
             },
             stages: {
                 level1: "等级 1",
@@ -3147,21 +3147,21 @@ export const translations: Record<string, any> = {
                 target_minus: "(a-b)²",
             },
             scenarios: {
-                architect_title: "场景 A: 资深建筑师",
-                architect_desc: "计算房屋扩建材料。别忘了地毯的边角料！",
-                architect_context: "一位建筑师正在为客户设计新房子。客户的客厅需要铺设新地毯。建筑师测量了房间的尺寸，现在需要计算准确的地毯面积，以便向地毯供应商订购合适数量的材料。",
-                scrapper_title: "场景 B: 遗迹回收员",
-                scrapper_desc: "将零散的碎片重组成完美的正方形，以适配空港接口。",
-                scrapper_context: "一个回收中心需要订购新的回收箱。每个回收箱的容积是固定的。回收中心经理需要计算需要多少个回收箱才能容纳本周收集的所有材料。",
-                speedster_title: "场景 C: 速算突击手",
-                speedster_desc: "利用公式展开实现超人类的快速口算估值。",
-                speedster_context: "一位数学竞赛选手正在训练快速计算能力。教练给出了一系列几何图形，要求在最短时间内计算出所有面积。",
-                voyager_context: "一艘帆船正在海上航行。船长需要计算从当前位置到目的地港口的最短距离。使用GPS坐标，船长可以通过勾股定理计算直线距离。",
-                architect_mission: "任务：展开蓝图以购买准确面积的地毯。",
-                scrapper_mission: "任务：对废料集群进行因式分解，重组为稳定的对接方块。",
-                speedster_mission: "任务：利用 (a+b)² 快捷键瞬间计算目标值。",
-                voyager_mission: "任务：计算航行距离。",
-                elite_mission: "任务：对复杂的代数集群进行解构与重组，实现二次多项式变形。"
+                architect_title: "场景 A: 花园扩建",
+                architect_desc: "你的湖畔花园（a×a）要向外扩展 b 米。计算新的总面积。",
+                architect_context: "你在苏黎世湖边有一块边长为 a 米的正方形花坛。市政府批准你可以向两侧各扩展 b 米。为了购买正确数量的泥土和种子，你需要计算新的总面积。注意：总面积并不只是 a² + b²，还有两条矩形带和一个角落小方块！",
+                scrapper_title: "场景 B: 瓷砖工厂",
+                scrapper_desc: "工厂生产了三种形状的瓷砖，把它们拼成一个完美正方形。",
+                scrapper_context: "一家瑞士瓷砖工厂生产了三种瓷砖：一块大正方形 (a²)、两块长方形 (各 a×b)、一块小正方形 (b²)。你的任务是验证这四块砖能完美拼成一个边长为 (a+b) 的大正方形。这就是二项式恒等式的几何证明。",
+                speedster_title: "场景 C: 速算冲刺",
+                speedster_desc: "把大数分拆成 (整数 + 零头)²，瞬间计算。",
+                speedster_context: "在瑞士数学奥林匹克中，你需要在脑中计算 103² 或 47² 这样的数字。技巧：把 103 分拆成 (100+3)，然后用 (a+b)² = a² + 2ab + b² = 10000 + 600 + 9 = 10609。比直接算 103×103 快得多！",
+                voyager_context: "两块正方形田地共享一条边界。一块边长 a，另一块边长 b。测量员通过比较合并面积和各自面积来验证差的公式 (a+b)(a-b) = a² - b²。",
+                architect_mission: "任务：用 (a+b)² = a² + 2ab + b² 计算扩建后的花园面积。",
+                scrapper_mission: "任务：从展开式中识别 a 和 b，重新拼回完美正方形。",
+                speedster_mission: "任务：把数字拆成 (整数 ± 零头)，用二项式展开瞬间计算。",
+                voyager_mission: "任务：用平方差公式计算面积差。",
+                elite_mission: "任务：将复杂多项式分解为二项式乘积形式。"
             },
             speedster_hint: "使用二项式展开 (a±b)² 简化计算",
             elite_tips_title: "提示：二项式分离策略",
@@ -3173,9 +3173,9 @@ export const translations: Record<string, any> = {
             units: "单位",
             tabs: {
                 explore: "探索",
-                architect: "建筑师",
-                scrapper: "回收员",
-                speedster: "速算者",
+                architect: "花园扩建",
+                scrapper: "瓷砖实验室",
+                speedster: "速算冲刺",
                 voyager: "航行者",
                 elite: "精英"
             },
@@ -3470,8 +3470,8 @@ export const translations: Record<string, any> = {
                 areas: "面积",
                 volumes: "体积",
                 complex: "综合",
-                areas_prompt_latex: "\\text{计算给定图形的面积。}",
-                volumes_prompt_latex: "\\text{计算几何体的体积或表面积。}"
+                areas_prompt_latex: "\\text{阅读场景，计算所需面积。}",
+                volumes_prompt_latex: "\\text{阅读场景，计算所需体积。}"
             },
             labels: {
                 input: "输入",
@@ -5325,11 +5325,11 @@ export const translations: Record<string, any> = {
             input_m: "m",
             input_number: "Antwort",
             pythagoras: {
-                solve_hyp: "Hypotenuse berechnen",
-                solve_leg: "Kathete berechnen",
-                check_right: "Rechtwinklig prüfen",
-                distance: "Abstand im Koordinatensystem",
-                elite_space: "Raumdiagonale"
+                solve_hyp: "🚒 Feuerwehr: Leiterlänge berechnen",
+                solve_leg: "🏔️ Bergrettung: Vertikale Höhe finden",
+                check_right: "📐 Ingenieurscheck: Rechtwinkliges Dreieck?",
+                distance: "🚁 Drohnenlieferung: Flugdistanz berechnen",
+                elite_space: "🔬 CERN Labor: Raumdiagonale finden"
             },
             sqrt: {
                 perfect: "Quadratzahlen",
@@ -5540,35 +5540,35 @@ export const translations: Record<string, any> = {
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
-                emitter: "Emitter",
+                emitter: "Abfahrtsbahnhof",
                 target: "Ziel",
-                slope: "Steigung (m)",
-                intercept: "Achsenabschnitt (c)"
+                slope: "Kosten pro km (m)",
+                intercept: "Grundgebühr (c)"
             },
             prompts: {
-                level1: "\\text{Triff das Ziel mit einer Reflexion}",
-                level2: "\\text{Sage die Bewegung voraus und triff das Ziel}",
-                level3: "\\text{Triff das Ziel mit zwei Reflexionen}"
+                level1: "\\text{🚂 Berechne den Ticketpreis für das Ziel}",
+                level2: "\\text{🚂 Finde die Distanz, wo zwei Tarife gleich kosten}",
+                level3: "\\text{🚂 Entwerfe einen Tarif für Langstrecken}"
             },
             hints: {
-                level1: "Nutze eine Reflexion, um das Ziel zu treffen. Passe Steigung und Achsenabschnitt an.",
-                level2: "Das Ziel bewegt sich. Prognostiziere die Position und passe den Laserpfad an.",
-                level3: "Nutze zwei Reflexionen, um das Ziel zu erreichen. Komplexere Trajektorie erforderlich.",
-                drag: "Ziehe die Kontrollpunkte der Geraden, um Steigung und Achsenabschnitt anzupassen."
+                level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",
+                level2: "Zwei Tarife haben unterschiedliche m und c. Finde den Schnittpunkt — dort kosten sie gleich!",
+                level3: "Passe Steigung und Achsenabschnitt an, damit dein Tarif ab einer bestimmten Distanz am günstigsten ist.",
+                drag: "Passe den Schieberegler an, um Steigung (Kosten/km) und Achsenabschnitt (Grundgebühr) zu ändern."
             },
             ui: {
-                current_function: "Aktuelle Funktion",
-                reflections: "Reflexionen",
-                target_position: "Zielposition",
-                hit_badge: "ZIEL GETROFFEN",
-                chamber: "KAMMER",
-                laser_sim: "LASER_SIM",
+                current_function: "Tarifformel",
+                reflections: "Tarifpläne",
+                target_position: "Ziel (km)",
+                hit_badge: "TARIF PASST",
+                chamber: "BAHNHOF",
+                laser_sim: "TARIF_RECHNER",
                 level: "LEVEL",
                 hits: "Treffer"
             },
             mission: {
-                title: "LASER-REFLEXIONS-LABOR",
-                description: "Nutzen Sie lineare Gleichungen, um Laser an Wänden zu reflektieren und Ziele zu treffen. Meistern Sie y = mx + c."
+                title: "SBB FAHRPREIS-RECHNER",
+                description: "Modelliere Bahnticketpreise als lineare Funktionen. Steigung = Kosten/km, Achsenabschnitt = Grundgebühr."
             },
             stages: {
                 level1: "LEVEL 1",
@@ -5649,21 +5649,21 @@ export const translations: Record<string, any> = {
                 target_minus: "(a-b)²",
             },
             scenarios: {
-                architect_title: "Szenario A: Der Architekt",
-                architect_desc: "Berechne Material für Raumerweiterungen. Vergiss die Ecken nicht!",
-                architect_context: "Ein Architekt entwirft ein neues Haus für einen Kunden. Das Wohnzimmer benötigt einen neuen Teppich. Der Architekt hat die Raumabmessungen gemessen und muss nun die genaue Teppichfläche berechnen, um die richtige Materialmenge beim Lieferanten zu bestellen.",
-                scrapper_title: "Szenario B: Der Scrapper",
-                scrapper_desc: "Rekonstruiere Schrott in perfekte Quadrate für das Weltraum-Docking.",
-                scrapper_context: "Ein Recyclingzentrum muss neue Recyclingbehälter bestellen. Jeder Behälter hat ein festes Volumen. Der Zentrumsleiter muss berechnen, wie viele Behälter benötigt werden, um alle in dieser Woche gesammelten Materialien aufzunehmen.",
-                speedster_title: "Szenario C: Der Speedster",
-                speedster_desc: "Meistere die Kunst der schnellen Schätzung durch Formelausdrücke.",
-                speedster_context: "Ein Mathematikwettbewerbs-Schüler trainiert schnelle Rechenfähigkeiten. Der Trainer präsentiert eine Reihe geometrischer Formen und verlangt, alle Flächen in kürzester Zeit zu berechnen.",
-                voyager_context: "Ein Segelboot navigiert auf See. Der Kapitän muss die kürzeste Entfernung von der aktuellen Position zum Zielhafen berechnen. Mit GPS-Koordinaten kann der Kapitän die Luftlinie mit dem Satz des Pythagoras berechnen.",
-                architect_mission: "Mission: Erweitere die Pläne, um die richtige Menge Teppich zu kaufen.",
-                scrapper_mission: "Mission: Faktorisiere den Schrotthaufen in ein stabiles Docking-Quadrat.",
-                speedster_mission: "Mission: Berechne den Zielwert sofort mit (a+b)² Abkürzungen.",
-                voyager_mission: "Mission: Berechne die Segelentfernung.",
-                elite_mission: "Mission: Dekonstruieren Sie komplexe Cluster in sekundäre Polynomformen."
+                architect_title: "Szenario A: Gartenerweiterung",
+                architect_desc: "Dein Garten am See (a×a) wird um b Meter erweitert. Berechne die neue Gesamtfläche.",
+                architect_context: "Du besitzt ein quadratisches Gartenbeet am Zürichsee mit Seitenlänge 'a' Meter. Die Stadt erlaubt dir, es um 'b' Meter auf zwei Seiten zu erweitern. Um die richtige Menge Erde und Samen zu kaufen, musst du die neue Gesamtfläche kennen.",
+                scrapper_title: "Szenario B: Fliesenfabrik",
+                scrapper_desc: "Eine Fabrik hat drei Fliesenformen produziert. Setze sie zu einem perfekten Quadrat zusammen.",
+                scrapper_context: "Eine Schweizer Fliesenfabrik produziert drei Arten von Fliesen: ein grosses Quadrat (a²), zwei rechteckige Streifen (je a×b) und ein kleines Quadrat (b²). Deine Aufgabe ist es zu überprüfen, dass diese vier Teile perfekt zu einem grossen Quadrat der Seitenlänge (a+b) zusammengesetzt werden können.",
+                speedster_title: "Szenario C: Kopfrechen-Sprint",
+                speedster_desc: "Berechne grosse Quadratzahlen sofort durch Aufteilen in (Runde+Rest)².",
+                speedster_context: "Im Schweizer Mathe-Olympiad musst du Zahlen wie 103 oder 47 im Kopf quadrieren. Der Trick: 103 = (100+3), dann (a+b)² = 10000 + 600 + 9 = 10609.",
+                voyager_context: "Zwei quadratische Felder teilen eine gemeinsame Grenze. Eines hat die Seitenlänge a, das andere b.",
+                architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit (a+b)² = a² + 2ab + b².",
+                scrapper_mission: "Aufgabe: Identifiziere a und b aus der expandierten Form und rekonstruiere das Quadrat.",
+                speedster_mission: "Aufgabe: Zerlege die Zahl in (Runde ± Rest) und nutze die binomische Formel.",
+                voyager_mission: "Aufgabe: Nutze die dritte binomische Formel zur Flächendifferenz.",
+                elite_mission: "Aufgabe: Faktorisiere das komplexe Polynom in binomischer Produktform."
             },
             speedster_hint: "Verwenden Sie die binomische Formel (a±b)² zur Vereinfachung",
             elite_tips_title: "TIPPS: Binomiale Isolationsstrategie",
@@ -5675,9 +5675,9 @@ export const translations: Record<string, any> = {
             units: "EINHEITEN",
             tabs: {
                 explore: "ERKUNDEN",
-                architect: "ARCHITEKT",
-                scrapper: "SCRAPPER",
-                speedster: "SPEEDSTER",
+                architect: "GARTEN",
+                scrapper: "FLIESEN LAB",
+                speedster: "SPRINT",
                 voyager: "VOYAGER",
                 elite: "ELITE"
             },
@@ -5972,8 +5972,8 @@ export const translations: Record<string, any> = {
                 areas: "FLÄCHEN",
                 volumes: "VOLUMEN",
                 complex: "KOMPLEX",
-                areas_prompt_latex: "\\text{Berechne die Fläche der gegebenen Figur.}",
-                volumes_prompt_latex: "\\text{Berechne das Volumen oder die Oberfläche.}"
+                areas_prompt_latex: "\\text{Lies das Szenario und berechne die Fläche.}",
+                volumes_prompt_latex: "\\text{Lies das Szenario und berechne das Volumen.}"
             },
             labels: {
                 input: "EINGABE",

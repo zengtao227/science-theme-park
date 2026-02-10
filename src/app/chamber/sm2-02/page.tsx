@@ -123,7 +123,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|SOLVE_HYP|${difficulty}|${a}|${b}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_hyp}:\\; a=${a},\\; b=${b}`,
+          promptLatex: `${t.pythagoras.solve_hyp}:\\; \\text{水平距离 }a=${a}\\text{m, 垂直高度 }b=${b}\\text{m}`,
           expressionLatex: `c^2=a^2+b^2`,
           targetLatex: `c`,
           correctLatex: `c=${c}`,
@@ -158,7 +158,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|SOLVE_LEG|${difficulty}|${c}|${known}|${knownIsA ? "A" : "B"}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_leg}:\\; c=${c},\\; ${knownIsA ? "a" : "b"}=${known}`,
+          promptLatex: `${t.pythagoras.solve_leg}:\\; \\text{绳索全长 }c=${c}\\text{m, ${knownIsA ? "水平移动" : "已知"} }${knownIsA ? "a" : "b"}=${known}\\text{m}`,
           expressionLatex: `${knownIsA ? "b^2" : "a^2"}=c^2-${knownIsA ? "a^2" : "b^2"}`,
           targetLatex: `${knownIsA ? "b" : "a"}`,
           correctLatex: `${knownIsA ? "b" : "a"}=${missing}`,
@@ -238,7 +238,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `${t.pythagoras.distance}:\\; (${x1},${y1})\\to(${x2},${y2})`,
+        promptLatex: `${t.pythagoras.distance}:\\; \\text{从 }(${x1},${y1})\\text{ 飞往 }(${x2},${y2})`,
         expressionLatex: `d^2=(\\Delta x)^2+(\\Delta y)^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,

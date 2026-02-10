@@ -25,7 +25,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       {
         id: "L1", difficulty, stage,
         promptLatex: prompt,
-        expressionLatex: "\\text{Target: }(8, 6)",
+        expressionLatex: "\\text{🚂 Distance: 8km, Budget: 6 CHF}",
         targetLatex: "m,\\; c",
         targetX: 8,
         targetY: 6,
@@ -38,7 +38,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       {
         id: "L2", difficulty, stage,
         promptLatex: prompt,
-        expressionLatex: "\\text{Target: }(7, 4)",
+        expressionLatex: "\\text{🚂 Distance: 7km, Budget: 4 CHF}",
         targetLatex: "m,\\; c",
         targetX: 7,
         targetY: 4,
@@ -57,7 +57,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
       {
         id: "L1", difficulty, stage,
         promptLatex: prompt,
-        expressionLatex: "\\text{Target: }(6, 8)",
+        expressionLatex: "\\text{🚂 Distance: 6km, Fare limit: 8 CHF}",
         targetLatex: "m,\\; c",
         targetX: 6,
         targetY: 8,
@@ -75,7 +75,7 @@ function buildStagePool(t: S203T, difficulty: Difficulty, stage: Stage): S203Que
     {
       id: "L1", difficulty, stage: "LEVEL3",
       promptLatex: prompt,
-      expressionLatex: "\\text{Target: }(9, 5)",
+      expressionLatex: "\\text{🚂 Route: 9km, Competing fare: 5 CHF}",
       targetLatex: "m,\\; c",
       targetX: 9,
       targetY: 5,
