@@ -171,7 +171,7 @@ function InitialCamera({ kind }: { kind: SimilarityVisual["kind"] }) {
         pos = [0, 1, 10];
         fov = 35;
     } else if (kind === "tri-sim") {
-        pos = [0, 0, 14]; // Further back to see full height of triangles
+        pos = [0, 1, 16]; // Lifted y slightly to center better
         fov = 40;
     } else if (kind === "ring") {
         pos = [0, 0, 10];
@@ -224,7 +224,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                     )}
 
                     {visual.kind === "tri-sim" && (
-                        <group position={[0, 0, 0]}>
+                        <group position={[0, 1.5, 0]}>
                             <group position={[-2.5, 0, 0]}>
                                 <mesh rotation={[0, 0, 0]}>
                                     <coneGeometry args={[1, 2, 3]} />
