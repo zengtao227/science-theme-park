@@ -530,7 +530,7 @@ export default function S201Page() {
                   {t.active_objective}
                 </h3>
                 <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md">
-                  {currentQuest?.promptLatex}
+                  {currentQuest?.promptLatex?.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}
                 </p>
               </div>
 

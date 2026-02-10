@@ -268,10 +268,17 @@ export default function S101Page() {
                         {t.objective_title}
                     </h3>
                     <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-                        {/* Smart render for prompts: strip \text{} wrapper if present for better wrapping */}
-                        {currentQuest.promptLatex.startsWith("\\text{") && currentQuest.promptLatex.endsWith("}")
-                            ? currentQuest.promptLatex.slice(6, -1)
-                            : <InlineMath math={currentQuest.promptLatex} />}
+                        {(() => {
+                            const latex = currentQuest.promptLatex;
+                            if (latex.includes("\\text{")) {
+                                const clean = latex
+                                    .replace(/\\text\{/g, "")
+                                    .replace(/\}/g, "")
+                                    .replace(/\\\\/g, "\n");
+                                return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
+                            }
+                            return <InlineMath math={latex} />;
+                        })()}
                     </p>
                 </div>
 
@@ -283,8 +290,13 @@ export default function S101Page() {
                         </span>
                         <div className="space-y-4">
                             <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
-                                {/* Inject line breaks for long expressions */}
-                                <InlineMath math={currentQuest.expressionLatex.replace(/(\text{m)[,，]/g, "$1}, \\\\ \\text{")} />
+                                {(() => {
+                                    const latex = currentQuest.expressionLatex;
+                                    if (latex.includes("\\text{")) {
+                                        return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                                    }
+                                    return <InlineMath math={latex.replace(/(\text{m)[,，]/g, "$1}, \\\\ \\text{")} />;
+                                })()}
                             </div>
                             <div className="text-white/60 font-black">
                                 <InlineMath math={currentQuest.targetLatex} />

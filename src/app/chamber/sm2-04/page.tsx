@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
@@ -149,6 +149,8 @@ export default function S204Page() {
     const { currentLanguage, completeStage } = useAppStore();
     const t = translations[currentLanguage].sm2_04;
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
     const {
         difficulty,
         stage,
@@ -162,7 +164,7 @@ export default function S204Page() {
         handleDifficultyChange,
         handleStageChange,
     } = useQuestManager<S204Quest, Stage>({
-        buildPool: (d, s) => buildStagePool(t, d, s),
+        buildPool,
         initialStage: "SCALE_FACTOR",
     });
 
@@ -259,8 +261,14 @@ export default function S204Page() {
                     <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
                         {t.objective_title}
                     </h3>
-                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                        <InlineMath math={currentQuest.promptLatex} />
+                    <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
+                        {(() => {
+                            const latex = currentQuest.promptLatex;
+                            if (latex.includes("\\text{")) {
+                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                            }
+                            return <InlineMath math={latex} />;
+                        })()}
                     </p>
                 </div>
 
@@ -271,7 +279,7 @@ export default function S204Page() {
                             {t.target_title}
                         </span>
                         <div className="space-y-4">
-                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[0.95] whitespace-nowrap">
+                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
                                 <InlineMath math={currentQuest.expressionLatex} />
                             </div>
                             <div className="text-white/60 font-black">

@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -74,12 +74,22 @@ export default function S206Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].sm2_06;
 
+  const buildPool = useCallback((d: Difficulty) => buildStagePool(t, d), [t]);
+
   const {
-    difficulty, stage, inputs, lastCheck, currentQuest,
+    difficulty,
+    stage,
+    inputs,
+    lastCheck,
+    currentQuest,
     successRate,
-    setInputs, verify, next, handleDifficultyChange, handleStageChange,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
   } = useQuestManager<S206Quest, Stage>({
-    buildPool: (d) => buildStagePool(t, d),
+    buildPool,
     initialStage: "SUBSTITUTION",
   });
 
@@ -122,8 +132,14 @@ export default function S206Page() {
           <div className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-cyan transition-colors">
             {t.objective_title}
           </div>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+          <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+            {(() => {
+              const latex = currentQuest?.promptLatex || "";
+              if (latex.includes("\\text{")) {
+                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+              }
+              return <InlineMath math={latex} />;
+            })()}
           </p>
           <div className="mt-8 p-6 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm">
             <div className="text-4xl text-white font-black">

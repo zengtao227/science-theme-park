@@ -217,8 +217,14 @@ export default function P103Page() {
         </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+          <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+            {(() => {
+              const latex = currentQuest?.promptLatex || "";
+              if (latex.includes("\\text{")) {
+                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+              }
+              return <InlineMath math={latex} />;
+            })()}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -59,7 +59,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
       const [x1, y1] = item.point1;
       const [x2, y2] = item.point2;
       const distance = round2(Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
-      
+
       return {
         id: item.id,
         difficulty,
@@ -83,7 +83,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
       const [x2, y2] = item.point2;
       const mx = round2((x1 + x2) / 2);
       const my = round2((y1 + y2) / 2);
-      
+
       return {
         id: item.id,
         difficulty,
@@ -109,7 +109,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
     const [x1, y1] = item.point1;
     const [x2, y2] = item.point2;
     const slope = round2((y2 - y1) / (x2 - x1));
-    
+
     return {
       id: item.id,
       difficulty,
@@ -131,6 +131,8 @@ export default function S207Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].sm2_07;
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
   const {
     difficulty,
     stage,
@@ -144,7 +146,7 @@ export default function S207Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<S207Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "DISTANCE",
   });
 
@@ -214,8 +216,14 @@ export default function S207Page() {
         </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-          <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+          <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+            {(() => {
+              const latex = currentQuest?.promptLatex || "";
+              if (latex.includes("\\text{")) {
+                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+              }
+              return <InlineMath math={latex} />;
+            })()}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

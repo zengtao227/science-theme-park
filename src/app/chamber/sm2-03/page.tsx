@@ -220,14 +220,23 @@ export default function S203Page() {
           </h3>
           <div className="space-y-4">
             <p className="text-3xl text-white font-black italic whitespace-normal break-words">
-              <InlineMath math={currentQuest?.promptLatex || "\\text{Hit the target}"} />
+              {(() => {
+                const latex = currentQuest?.promptLatex || "\\text{Hit the target}";
+                if (latex.includes("\\text{")) {
+                  return <span className="font-sans not-italic">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                }
+                return <InlineMath math={latex} />;
+              })()}
             </p>
             {currentQuest?.expressionLatex && (
               <p className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
-                {/* Render expression as text if it's a text wrapper, else math */}
-                {currentQuest.expressionLatex.startsWith("\\text{")
-                  ? currentQuest.expressionLatex.slice(6, -1)
-                  : <InlineMath math={currentQuest.expressionLatex} />}
+                {(() => {
+                  const latex = currentQuest.expressionLatex;
+                  if (latex.includes("\\text{")) {
+                    return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                  }
+                  return <InlineMath math={latex} />;
+                })()}
               </p>
             )}
           </div>

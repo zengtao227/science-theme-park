@@ -198,8 +198,14 @@ export default function P104Page() {
 
                 <div className="text-center">
                     <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
-                    <p className="text-3xl text-white font-black italic">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                    <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+                        {(() => {
+                            const latex = currentQuest?.promptLatex || "";
+                            if (latex.includes("\\text{")) {
+                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n")}</span>;
+                            }
+                            return <InlineMath math={latex} />;
+                        })()}
                     </p>
                     <div className="mt-2 text-white/50 font-mono text-sm underline decoration-white/20">
                         <InlineMath math={currentQuest?.expressionLatex || ""} />
