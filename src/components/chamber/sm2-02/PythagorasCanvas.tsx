@@ -265,88 +265,43 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
         <meshPhysicalMaterial
           color="#00ffff"
           transparent
-          opacity={0.08}
+          opacity={0.02}
           side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.5}
-          thickness={0.5}
+          metalness={0.1}
+          roughness={0}
+          transmission={1}
+          thickness={0.01}
         />
       </mesh>
 
       {/* Top face */}
       <mesh position={[a / 2, b, c / 2]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[a, c]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          transparent
-          opacity={0.08}
-          side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.5}
-          thickness={0.5}
-        />
+        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
       </mesh>
 
       {/* Front face */}
       <mesh position={[a / 2, b / 2, 0]}>
         <planeGeometry args={[a, b]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          transparent
-          opacity={0.1}
-          side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.6}
-          thickness={0.5}
-        />
+        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
       </mesh>
 
       {/* Back face */}
       <mesh position={[a / 2, b / 2, c]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[a, b]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          transparent
-          opacity={0.1}
-          side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.6}
-          thickness={0.5}
-        />
+        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
       </mesh>
 
       {/* Left face */}
       <mesh position={[0, b / 2, c / 2]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[c, b]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          transparent
-          opacity={0.08}
-          side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.5}
-          thickness={0.5}
-        />
+        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
       </mesh>
 
       {/* Right face */}
       <mesh position={[a, b / 2, c / 2]} rotation={[0, -Math.PI / 2, 0]}>
         <planeGeometry args={[c, b]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          transparent
-          opacity={0.08}
-          side={THREE.DoubleSide}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.5}
-          thickness={0.5}
-        />
+        <meshPhysicalMaterial color="#00ffff" transparent opacity={0.02} side={THREE.DoubleSide} transmission={1} thickness={0.01} />
       </mesh>
 
       {/* Metallic edges */}
@@ -442,11 +397,8 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
       <Text position={[a + 0.6, b, c / 2]} fontSize={0.35} color="#a855f7" anchorX="center">
         c = {c}
       </Text>
-      <Text position={[a / 2, b / 2, c + 1]} fontSize={0.45} color="#ff0080" anchorX="center">
-        d = {diagonal.toFixed(2)}
-      </Text>
-      <Text position={[a / 2, b + 1, c / 2]} fontSize={0.3} color="#ffffff" anchorX="center">
-        d² = a² + b² + c²
+      <Text position={[a / 2, b + 1, c / 2]} fontSize={0.4} color="#ff0080" anchorX="center">
+        d = ?
       </Text>
     </group>
   );
@@ -553,8 +505,8 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
       <Text position={[p2.x, p2.y + 1, 0]} fontSize={0.45} color="#39ff14" anchorX="center">
         ({p2.x}, {p2.y})
       </Text>
-      <Text position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.2, 0]} fontSize={0.55} color="#d946ef" anchorX="center">
-        d = {distance.toFixed(2)}
+      <Text position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.2, 0]} fontSize={0.5} color="#d946ef" anchorX="center">
+        d = ?
       </Text>
       <Text position={[(p1.x + corner.x) / 2, p1.y - 0.7, 0]} fontSize={0.35} color="#39ff14" anchorX="center">
         Δx = {dx}
@@ -675,9 +627,9 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
 
           <OrbitControls
             enablePan={true}
+            enableRotate={false}
             minDistance={8}
-            maxDistance={25}
-            enableRotate={true}
+            maxDistance={30}
           />
 
           <Distance3D p1={visual.p1} p2={visual.p2} />
