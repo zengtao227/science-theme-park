@@ -52,7 +52,18 @@ export default function S101_GeometryCanvas({
     if (!geometry) return null;
 
     const { type, params } = geometry;
-    const scale = 35;
+
+    // Dynamic scaling logic to ensure shapes fit in the 400x300 viewBox
+    // We want the largest dimension to be roughly 180-200px on the canvas
+    const maxBound = type === 'rectangle' ? Math.max(params.a, params.b) :
+        type === 'triangle' ? Math.max(params.b, params.h) :
+            type === 'trapezoid' ? Math.max(params.a, params.b, params.h) :
+                type === 'circle' ? params.r * 2 :
+                    type === 'cube' ? params.a * 1.5 : // Adjust for perspective offset
+                        type === 'prism' ? Math.max(params.a, params.b, params.c) :
+                            type === 'cylinder' ? Math.max(params.r * 2, params.h) : 10;
+
+    const scale = 180 / Math.max(maxBound, 1);
     const centerX = 200;
     const centerY = 150;
 

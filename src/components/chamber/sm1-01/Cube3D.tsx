@@ -20,9 +20,9 @@ function CubeGeometry({ sideLength, showDiagonal }: Cube3DProps) {
       {/* 立方体主体 */}
       <mesh>
         <boxGeometry args={[sideLength, sideLength, sideLength]} />
-        <meshStandardMaterial 
-          color="#00e5ff" 
-          transparent 
+        <meshStandardMaterial
+          color="#00e5ff"
+          transparent
           opacity={0.3}
           wireframe={false}
         />
@@ -100,14 +100,17 @@ export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps
     }
   };
 
+  // Dynamically calculate camera distance so the cube always fits nicely
+  const cameraDistance = Math.max(sideLength * 2.2, 8);
+
   return (
-    <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="relative w-full aspect-square bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas
-        camera={{ position: [6, 5, 6], fov: 50 }}
+        camera={{ position: [cameraDistance, cameraDistance * 0.8, cameraDistance], fov: 45 }}
         gl={{ antialias: true }}
       >
         <color attach="background" args={["#000005"]} />
-        
+
         {/* 灯光 */}
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
@@ -123,8 +126,8 @@ export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps
           enableZoom={true}
           enablePan={false}
           autoRotate={false}
-          minDistance={5}
-          maxDistance={20}
+          minDistance={sideLength}
+          maxDistance={sideLength * 8}
         />
       </Canvas>
 
