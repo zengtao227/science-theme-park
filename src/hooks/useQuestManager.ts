@@ -173,8 +173,16 @@ export function useQuestManager<T extends Quest, S extends string>({
                     return;
                 }
             } else {
-                // String comparison fallback
-                if (raw.trim() !== slot.expected) {
+                // Robust String comparison with mathematical normalization (e.g., 1x == x)
+                const normalize = (s: string) => {
+                    return s.trim()
+                        .toLowerCase()
+                        .replace(/\s/g, "")
+                        .replace(/^1([a-z])/, "$1")           // "1x" -> "x" (at start)
+                        .replace(/([^0-9])1([a-z])/, "$1$2"); // "2+1x" -> "2+x"
+                };
+
+                if (normalize(raw) !== normalize(slot.expected.toString())) {
                     const stageKey = `${stage}`;
                     const questKey = `${stage}:${currentQuest.id}`;
                     setStageStats((prev) => {

@@ -107,13 +107,13 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
           expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
           targetLatex: `(${ca}x)² + 2(${ca}x)(${vb}) + (${vb})²`,
           slots: [
-            { id: "a_root", labelLatex: "a", placeholder: "a", expected: ca },
-            { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb },
+            { id: "a_root", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
+            { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb.toString() },
             // Repeat to ensure they fill the whole pattern
-            { id: "a_mid", labelLatex: "a", placeholder: "a", expected: ca },
-            { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb },
+            { id: "a_mid", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
+            { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb.toString() },
           ],
-          correctLatex: `(${ca}x)² + 2(${ca}x)(${vb}) + (${vb})² = (${ca === 1 ? "" : ca}x + ${vb})²`,
+          correctLatex: `(${ca === 1 ? "" : ca}x)² + 2(${ca === 1 ? "" : ca}x)(${vb}) + (${vb})² = (${ca === 1 ? "" : ca}x + ${vb})²`,
         },
       ];
     }
@@ -136,8 +136,8 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
             : `${ca ** 2}x² + ${2 * ca * vb}x + ${vb ** 2}`,
         targetLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
         slots: [
-          { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
-          { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
+          { id: "a", labelLatex: "root a", placeholder: "ax", expected: `${ca}x` },
+          { id: "b", labelLatex: "root b", placeholder: "by", expected: `${vb}${variant === "XY" ? "y" : ""}` },
         ],
         correctLatex: `(${ca}x + ${vb}${variant === "XY" ? "y" : ""})²`,
       },
@@ -220,8 +220,8 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         slots:
           subType === "FACTOR"
             ? [
-              { id: "a", labelLatex: "a", placeholder: "a", expected: ca },
-              { id: "b", labelLatex: "b", placeholder: "b", expected: vb },
+              { id: "a", labelLatex: "a", placeholder: "ax", expected: `${ca === 1 ? "" : ca}x` },
+              { id: "b", labelLatex: "b", placeholder: "b", expected: vb.toString() },
             ]
             : [
               { id: "part1", labelLatex: "a²", placeholder: "a²", expected: ca ** 2 },
@@ -567,10 +567,10 @@ export default function S201Page() {
                         <input
                           value={inputs.a_root || ""}
                           onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
-                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="a"
+                          className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
+                          placeholder="ax"
                         />
-                        <span className="text-white/80">x)²</span>
+                        <span className="text-white/80">)²</span>
 
                         <span className="text-neon-cyan mx-2">+</span>
 
@@ -579,10 +579,10 @@ export default function S201Page() {
                         <input
                           value={inputs.a_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
-                          className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="a"
+                          className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
+                          placeholder="ax"
                         />
-                        <span className="text-white/80">x)(</span>
+                        <span className="text-white/80">)(</span>
                         <input
                           value={inputs.b_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, b_mid: e.target.value })}
@@ -793,25 +793,25 @@ export default function S201Page() {
               {questMode === "VOYAGER" && (
                 <div className="col-span-3 space-y-12">
                   {voyagerQuest?.subType === "FACTOR" ? (
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-3 font-black text-xl justify-center bg-white/10 p-8 rounded-2xl border-2 border-white/40 max-w-6xl mx-auto">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-3 font-black text-xl justify-center bg-white/10 p-8 rounded-2xl border-2 border-white/40 max-w-6xl mx-auto text-3xl">
                       <span className="text-white">(</span>
                       <input
                         value={inputs.a || ""}
                         onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
-                        className="w-16 sm:w-24 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder="a"
+                        className="w-24 sm:w-32 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
+                        placeholder="ax"
                       />
-                      <span className="text-white">x +</span>
+                      <span className="text-white">+</span>
                       <input
                         value={inputs.b || ""}
                         onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
-                        className="w-16 sm:w-24 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
+                        className="w-20 sm:w-28 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
                         placeholder="b"
                       />
                       <span className="text-white">) (</span>
-                      <span className="text-white/70 min-w-[48px] text-center">{inputs.a || "a"}</span>
-                      <span className="text-white">x -</span>
-                      <span className="text-white/70 min-w-[48px] text-center">{inputs.b || "b"}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || "ax"}</span>
+                      <span className="text-white">-</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || "b"}</span>
                       <span className="text-white">)</span>
                     </div>
                   ) : (
