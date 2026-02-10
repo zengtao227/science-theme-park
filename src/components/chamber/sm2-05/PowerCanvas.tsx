@@ -248,49 +248,112 @@ function DivideScene({ base, m, n }: { base: string, m: number, n: number }) {
   );
 }
 
-// 4. SCIENTIFIC SCENE (Zoom Concept)
-// Instead of blocks, maybe just text that zooms?
-// Or 1 block -> 10 blocks -> 100 blocks?
-// Let's stick to exponent concept if possible.
-// Scientific notation is typically m * 10^n. 
-// Show a number, and 'User' zooms in/out.
-function ScientificScene({ base, m, n }: { base: string, m: number, n: number }) {
-  // n is the exponent of 10.
-  // m is the coefficient (Wait, m in visual prop corresponds to what? 
-  // In Scientific, we might map coeff -> m, exp -> n? 
-  // Actually the interface says m: number, n: number.
-  // Let's assume m = coeff, n = exponent?
-  // But m is number.
-
-  // Let's just show a simple zoom animation.
-  const textRef = useRef<THREE.Group>(null);
-
-  useFrame(({ clock }) => {
-    if (!textRef.current) return;
-    const t = clock.getElapsedTime();
-    const cycle = t % 4;
-    let scale = 1;
-    if (n > 0) {
-      // Zoom out (number gets bigger components?) 
-      // 4.2 * 10^3 = 4200.
-      // Animation: 4.2 -> x10 -> 42 -> x10 -> 420 ...
-      scale = 1 + (cycle / 4) * n; // Simple scaling
-    } else {
-      // Zoom in
-      scale = 1 / (1 + (cycle / 4) * Math.abs(n));
-    }
-    // textRef.current.scale.setScalar(scale);
-  });
+// Visualizes a^-n = 1 / a^n
+function NegativeScene({ base, n }: { base: string, n: number }) {
+  // Left: Red Stack (Negative) representing a^-n
+  // Right: Fraction structure 1 / a^n (Blue Stack)
+  // Animation: Transformation arrow
 
   return (
-    <Center>
-      <Text fontSize={1} color={BASE_COLOR}>
-        {`${m} × 10^${n}`}
-      </Text>
-      <Text position={[0, -1.5, 0]} fontSize={0.5} color="white">
-        {`Scientific Notation`}
-      </Text>
-    </Center>
+    <group>
+      {/* Left Side: a^-n */}
+      <group position={[-2.5, 0, 0]}>
+        <Stack count={n} baseLabel={`-${base}`} color="#ef4444" />
+        <Text position={[0, -n * 0.9 - 0.5, 0]} fontSize={0.4} color="#ef4444">
+          {`${base}^-${n}`}
+        </Text>
+      </group>
+
+      {/* Arrow */}
+      <Text position={[0, 0, 0]} fontSize={0.8} color="white">→</Text>
+      <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">Reciprocal</Text>
+
+      {/* Right Side: 1 / a^n */}
+      <group position={[2.5, 0.5, 0]}>
+        {/* Numerator: 1 */}
+        <Text position={[0, 1.2, 0]} fontSize={0.8} color="white">1</Text>
+
+        {/* Fraction Bar */}
+        <mesh position={[0, 0.6, 0]}>
+          <boxGeometry args={[2, 0.05, 0.05]} />
+          <meshStandardMaterial color="white" />
+        </mesh>
+
+        {/* Denominator: a^n (Blue Stack) */}
+        <group position={[0, -1, 0]} scale={0.8}>
+          {/* We need to scale the stack down slightly to fit? Or just position it lower */}
+          <Stack count={n} baseLabel={String(base)} position={[0, 0, 0]} color={BASE_COLOR} gap={0.05} />
+        </group>
+
+        <Text position={[1.5, 0, 0]} fontSize={0.4} color={BASE_COLOR}>
+          {`${base}^${n}`}
+        </Text>
+      </group>
+    </group>
+  );
+}
+
+// Visualizes Scientific Notation: Decimal Shift
+function ScientificScene({ m, n }: { m: number, n: number }) {
+  // Show the number m.
+  // Show the decimal point moving n times.
+  // For n=3, m=4.2 -> 4.200 -> 4200.
+
+  // Deconstruct m into string
+  const originalStr = m.toString(); // "4.2"
+
+  const steps = n > 0 ? n : Math.abs(n);
+  const [cycle, setCycle] = useState(0);
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    // Cycle from 0 to steps + 1
+    const speed = 1.5; // seconds per step
+    const c = Math.floor(t / speed) % (steps + 2);
+    setCycle(c);
+  });
+
+  // Calculate current value string based on cycle
+  const currentValue = useMemo(() => {
+    if (cycle === 0) return m.toString();
+    if (cycle > steps) return (m * Math.pow(10, n)).toString(); // Final result
+
+    // Intermediate steps simulation
+    // This logic is tricky for generalized m.
+    // Let's try simple multiplication for display
+    const p = n > 0 ? cycle : -cycle;
+    const val = m * Math.pow(10, p);
+    // Fix precision issues
+    return parseFloat(val.toFixed(6)).toString();
+  }, [m, n, cycle, steps]);
+
+  return (
+    <group>
+      <Center>
+        <Text fontSize={1.2} color="white">
+          {currentValue}
+        </Text>
+      </Center>
+
+      <group position={[0, -1.5, 0]}>
+        <Text fontSize={0.4} color={BLOOM_COLOR}>
+          {`× 10^${n}`}
+        </Text>
+        <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">
+          {n > 0 ? `Move Right ${cycle > steps ? steps : cycle}/${steps}` : `Move Left ${cycle > steps ? steps : cycle}/${steps}`}
+        </Text>
+      </group>
+
+      {/* Visual Dots for Placeholders */}
+      <group position={[0, 1, 0]}>
+        {Array.from({ length: steps }).map((_, i) => (
+          <mesh key={i} position={[(i - steps / 2) * 0.5, 0, 0]}>
+            <sphereGeometry args={[0.05, 16, 16]} />
+            <meshStandardMaterial color={i < cycle ? BASE_COLOR : "#333"} emissive={i < cycle ? BASE_COLOR : "black"} />
+          </mesh>
+        ))}
+      </group>
+    </group>
   );
 }
 
@@ -315,8 +378,8 @@ export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
           {mode === 'MULTIPLY' && <MultiplyScene base={String(base)} m={m} n={n} />}
           {mode === 'POWER' && <PowerRuleScene base={String(base)} m={m} n={n} />}
           {mode === 'DIVIDE' && <DivideScene base={String(base)} m={m} n={n} />}
-          {mode === 'SCIENTIFIC' && <ScientificScene base={String(base)} m={m} n={n} />}
-          {mode === 'NEGATIVE' && <DivideScene base={String(base)} m={0} n={-n} />} {/* Reuse divide? */}
+          {mode === 'SCIENTIFIC' && <ScientificScene m={Number(m)} n={n} />}
+          {mode === 'NEGATIVE' && <NegativeScene base={String(base)} n={n} />}
         </Center>
 
         <OrbitControls enableZoom={true} enablePan={true} />
