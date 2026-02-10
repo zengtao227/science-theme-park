@@ -681,7 +681,9 @@ export const translations: Record<string, any> = {
                 check_right: "📐 Engineering check: Is this a right triangle?",
                 distance: "🚁 Drone delivery: Calculate flight distance",
                 elite_space: " CERN lab: Find the space diagonal",
-                explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants."
+                explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
+                fluid_title: "Fluid Volume Conservation",
+                fluid_desc: "Tilt to see A² + B² flow into C². This visualizes area conservation: the geometry sum remains constant."
             },
             sqrt: {
                 perfect: "Perfect squares",
@@ -2891,8 +2893,10 @@ export const translations: Record<string, any> = {
                 solve_leg: " 阿尔卑斯登山：计算垂直攀升高度",
                 check_right: "📐 工程验收：这是直角三角形吗？",
                 distance: "🚁 无人机快递：计算直线飞行距离",
-                elite_space: " CERN 实验室：求解空间对角线强度",
-                explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。"
+                elite_space: " CERN 实验室：求解状态空间对角线",
+                explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。",
+                fluid_title: "流体面积守恒实验",
+                fluid_desc: "倾斜容器观察 A² + B² 的液体如何精准填满 C²。这直观证明了面积之和的守恒性。"
             },
             sqrt: {
                 perfect: "完全平方数",
@@ -5423,7 +5427,9 @@ export const translations: Record<string, any> = {
                 check_right: " Ingenieurscheck: Rechtwinkliges Dreieck?",
                 distance: " Drohnenlieferung: Flugdistanz berechnen",
                 elite_space: " CERN-Labor: Raumdiagonale berechnen",
-                explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten."
+                explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten.",
+                fluid_title: "Fluid-Volumenerhaltung",
+                fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie A² + B² exakt C² füllen. Dies visualisiert die Flächenerhaltung."
             },
             sqrt: {
                 perfect: "Quadratzahlen",

@@ -253,7 +253,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `${t.pythagoras.distance}:\\; \\text{从 }(${x1},${y1})\\text{ 飞往 }(${x2},${y2})`,
+        promptLatex: `${t.pythagoras.distance}:\\; (${x1},${y1}) \\rightarrow (${x2},${y2})`,
         expressionLatex: `d^2=(\\Delta x)^2+(\\Delta y)^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -285,7 +285,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|SPACE|${difficulty}|${a}|${b}|${c}`,
         difficulty, stage, tab,
-        promptLatex: `${t.pythagoras.elite_space}:\\; ${a}\\times${b}\\times${c}`,
+        promptLatex: `${t.pythagoras.elite_space}:\\; a=${a},\\, b=${b},\\, c=${c}`,
         expressionLatex: `d^2=a^2+b^2+c^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,

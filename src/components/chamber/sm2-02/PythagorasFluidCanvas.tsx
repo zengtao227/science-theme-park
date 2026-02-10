@@ -14,6 +14,9 @@ interface PythagorasFluidCanvasProps {
  * Fluid-based Pythagoras visualization using Matter.js
  * Demonstrates a² + b² = c² through liquid flow between containers
  */
+import { useAppStore } from "@/lib/store";
+import { translations } from "@/lib/i18n";
+
 interface PythagorasFluidCanvasProps {
   a: number;
   b: number;
@@ -144,6 +147,9 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
     isDragging.current = false;
   };
 
+  const { currentLanguage } = useAppStore();
+  const t = translations[currentLanguage].sm2_02;
+
   return (
     <div
       ref={containerRef}
@@ -167,8 +173,12 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
       </div>
 
       <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm p-3 rounded-lg border border-white/10">
-        <div className="text-white text-xs font-bold mb-1 uppercase tracking-tighter">Gravity Orientation Control</div>
-        <div className="text-[10px] text-white/60">Drag anywhere to tilt the containers and observe the flow.</div>
+        <div className="text-white text-xs font-bold mb-1 uppercase tracking-tighter">
+          {t.pythagoras.fluid_title || "Fluid Conservation Lab"}
+        </div>
+        <div className="text-[10px] text-white/60">
+          {t.pythagoras.fluid_desc || "Tilt to observe how A² + B² perfectly fills C². This demonstrates that the sum of the areas of the squares on the legs equals the area of the square on the hypotenuse."}
+        </div>
       </div>
     </div>
   );
