@@ -1336,7 +1336,17 @@ export const translations: Record<string, any> = {
                 cheese: "A circular mold for Gruyère cheese factory.",
                 attic: "A Swiss chalet attic is a cubic space, needing an air purifier.",
                 crate: "CERN lab needs a storage box for precision instruments.",
-                pylon: "St. Moritz ski cable pylons are cylindrical."
+                pylon: "St. Moritz ski cable pylons are cylindrical.",
+
+                // Structural Templates
+                rect_core: "The width is ${w}, and the length is ${diff} more than the width.",
+                rect_advanced: "The length is ${l}, and the width is exactly half of the length.",
+                rect_elite: "The total perimeter is ${p}, and the length is ${ratio} times the width.",
+                tri_elite: "An isosceles right-angled sail with a hypotenuse of ${c}.",
+                circle_elite: "The total circumference of the mold is ${c}.",
+                cube_elite: "The total surface area of the cubic space is ${sa}.",
+                prism_elite: "The base is a square with perimeter ${p}, and the height is ${h}.",
+                cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
             }
         },
         sm1_02: {
@@ -3521,7 +3531,17 @@ export const translations: Record<string, any> = {
                 cheese: "格律耶尔奶酪工厂的圆形模具。",
                 attic: "瑞士木屋阁楼是一个正方体空间，需要空气净化器。",
                 crate: "CERN 实验室需要精密仪器的储存箱。",
-                pylon: "圣莫里茨的滑雪缆车支架是圆柱形的。"
+                pylon: "圣莫里茨的滑雪缆车支架是圆柱形的。",
+
+                // 结构化模版
+                rect_core: "宽度为 ${w}，长度比宽度多 ${diff}。",
+                rect_advanced: "长度为 ${l}，宽度正好是长度的一半。",
+                rect_elite: "总周长为 ${p}，长度是宽度的 ${ratio} 倍。",
+                tri_elite: "等腰直角三角形帆，斜边长度为 ${c}。",
+                circle_elite: "模具的总周长为 ${c}。",
+                cube_elite: "正方体空间的表面积为 ${sa}。",
+                prism_elite: "底面是周长为 ${p} 的正方形，高度为 ${h}。",
+                cyl_elite: "侧面积为 ${la}，半径为 ${r}。"
             }
         },
         sm1_02: {
@@ -6037,12 +6057,22 @@ export const translations: Record<string, any> = {
             },
             quests: {
                 ski: "Eine alpine Skipiste benötigt Neuschnee. Die Piste ist rechteckig.",
-                sail: "Der Segelclub Zürich benötigt Segeltuch. Das Segel ist dreieckig.",
+                sail: "Der Segelclub Zürich benötigt Segeltuch. Das Arbeitsegel ist dreieckig.",
                 gate: "Ein Querschnitt des Rheinhochwassertors ist trapezförmig.",
                 cheese: "Eine kreisförmige Form für die Greyerzer Käsefabrik.",
                 attic: "Dachboden in einem Schweizer Chalet ist ein würfelförmiger Raum.",
                 crate: "Das CERN-Labor benötigt Kisten für Präzisionsinstrumente.",
-                pylon: "Skipfosten in St. Moritz sind zylindrisch."
+                pylon: "Skipfosten in St. Moritz sind zylindrisch.",
+
+                // Struktur-Vorlagen
+                rect_core: "Die Breite ist ${w}, und die Länge ist ${diff} mehr als die Breite.",
+                rect_advanced: "Die Länge ist ${l}, und die Breite ist genau die Hälfte der Länge.",
+                rect_elite: "Der Gesamtumfang ist ${p}, und die Länge ist ${ratio}-mal so groß wie die Breite.",
+                tri_elite: "Ein gleichschenklig-rechtwinkliges Segel mit einer Hypotenuse von ${c}.",
+                circle_elite: "Der Gesamtumfang der Form beträgt ${c}.",
+                cube_elite: "Die Gesamtoberfläche des Würfels beträgt ${sa}.",
+                prism_elite: "Die Grundfläche ist ein Quadrat mit Umfang ${p}, die Höhe ist ${h}.",
+                cyl_elite: "Die Mantelfläche beträgt ${la}, der Radius ist ${r}."
             }
         },
         sm1_02: {
