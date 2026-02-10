@@ -113,7 +113,7 @@ export default function Home() {
     { code: "GP5.01", title: t.home.gp5_01_title, desc: t.home.gp5_01_subtitle, color: "neon-cyan", href: "/chamber/gp5-01", tags: ["physics"] },
     { code: "GP5.02", title: t.home.gp5_02_title, desc: t.home.gp5_02_subtitle, color: "neon-purple", href: "/chamber/gp5-02", tags: ["physics"] },
     { code: "GP5.03", title: t.home.gp5_03_title, desc: t.home.gp5_03_subtitle, color: "neon-amber", href: "/chamber/gp5-03", tags: ["physics"] },
-    { code: "GP5.04", title: t.home.gp5_04_title, desc: t.home.p5_04_subtitle, color: "neon-purple", href: "/chamber/gp5-04", tags: ["physics"] },
+    { code: "GP5.04", title: t.home.gp5_04_title, desc: t.home.gp5_04_subtitle, color: "neon-purple", href: "/chamber/gp5-04", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
