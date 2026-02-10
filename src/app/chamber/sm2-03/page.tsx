@@ -37,8 +37,8 @@ function makeCalc(
   quests.push({
     id: `S1|${id}`, difficulty, stage, mode: "CALCULATE",
     m1: m, c1: c, targetX: x, targetY: y,
-    promptLatex: `\\\\text{${t.prompts.level1}}`,
-    expressionLatex: `\\\\text{Plan: } y = ${m}x + ${c} \\\\quad x = ${x} \\\\text{ km}`,
+    promptLatex: t.prompts.level1 || "Calculate the ticket price for the given destination",
+    expressionLatex: `Plan: y = ${m}x + ${c}    |    x = ${x} km`,
     targetLatex: "y", correctLatex: `y=${y}`,
     slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
   });
@@ -53,8 +53,8 @@ function makeIntersect(
   quests.push({
     id: `S2|${id}`, difficulty, stage, mode: "INTERSECT",
     m1, c1, m2, c2, targetX: x, targetY: y,
-    promptLatex: `\\\\text{${t.prompts.level2}}`,
-    expressionLatex: `\\\\text{A: } y=${m1}x+${c1} \\\\quad \\\\text{B: } y=${m2}x+${c2}`,
+    promptLatex: t.prompts.level2 || "Find the distance where two fare plans cost the same",
+    expressionLatex: `Plan A: y = ${m1}x + ${c1}    |    Plan B: y = ${m2}x + ${c2}`,
     targetLatex: "x", correctLatex: `x=${x}`,
     slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
   });
@@ -71,8 +71,8 @@ function makeOptimize(
   quests.push({
     id: `S3|${id}`, difficulty, stage: "LEVEL3", mode: "OPTIMIZE",
     m1, c1, m2, c2, targetX: x, targetY: y,
-    promptLatex: `\\\\text{${t.prompts.level3}}`,
-    expressionLatex: `\\\\text{A: } y=${m1}x+${c1} \\\\quad \\\\text{B: } y=${m2}x+${c2}`,
+    promptLatex: t.prompts.level3 || "Find the threshold distance where Plan A becomes cheaper",
+    expressionLatex: `Plan A: y = ${m1}x + ${c1}    |    Plan B: y = ${m2}x + ${c2}`,
     targetLatex: "x",
     correctLatex: `x=${x}`,
     slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
@@ -277,24 +277,12 @@ export default function S203Page() {
             {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
           </h3>
           <div className="space-y-4">
-            <p className="text-3xl text-white font-black italic whitespace-normal break-words">
-              {(() => {
-                const latex = currentQuest?.promptLatex || "\\\\text{Hit the target}";
-                if (latex.includes("\\text{")) {
-                  return <span className="font-sans not-italic">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
-                }
-                return <InlineMath math={latex} />;
-              })()}
+            <p className="text-3xl text-white font-black whitespace-normal break-words">
+              {currentQuest?.promptLatex || "Calculate the fare"}
             </p>
             {currentQuest?.expressionLatex && (
               <p className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
-                {(() => {
-                  const latex = currentQuest.expressionLatex;
-                  if (latex.includes("\\text{")) {
-                    return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
-                  }
-                  return <InlineMath math={latex} />;
-                })()}
+                {currentQuest.expressionLatex}
               </p>
             )}
           </div>

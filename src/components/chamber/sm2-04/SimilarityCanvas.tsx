@@ -73,96 +73,113 @@ function NeonShape({
     );
 }
 
+function GridHelper() {
+    return (
+        <gridHelper args={[20, 20, "#1a1a1a", "#0a0a0a"]} rotation={[0, 0, 0]} position={[0, 0.01, 0]} />
+    );
+}
+
 function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"] }) {
-    const sunPos: [number, number, number] = [10, 8, 5];
-    const bounds = useBounds();
+    const sunPos: [number, number, number] = [10, 15, 10]; // Higher sun for better shadows
 
     return (
-        <group position={[0, -1, 0]}>
+        <group position={[0, -2, 0]}>
             <ambientLight intensity={0.4} />
             <directionalLight
                 position={sunPos}
-                intensity={1.5}
+                intensity={2}
                 castShadow
-                shadow-mapSize={[1024, 1024]}
+                shadow-mapSize={[2048, 2048]}
+                shadow-camera-left={-20}
+                shadow-camera-right={20}
+                shadow-camera-top={20}
+                shadow-camera-bottom={-20}
             />
 
             {/* Ground */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow position={[0, -0.01, 0]}>
-                <planeGeometry args={[40, 40]} />
-                <meshStandardMaterial color="#050505" transparent opacity={0.8} />
+                <planeGeometry args={[100, 100]} />
+                <meshStandardMaterial color="#0a0a0a" roughness={0.8} metalness={0.2} />
             </mesh>
             <GridHelper />
 
             {/* Tower Group */}
-            <group position={[-3, 0, 0]} onClick={(e) => (e.stopPropagation(), bounds.refresh(e.object).clip().fit())}>
-                <mesh position={[0, 3, 0]} castShadow>
-                    <boxGeometry args={[1, 6, 1]} />
+            <group position={[-4, 0, 0]}>
+                <mesh position={[0, 4, 0]} castShadow>
+                    <boxGeometry args={[1.5, 8, 1.5]} />
                     <meshStandardMaterial color="#1d2633" />
                     <Edges color="#fff" />
                 </mesh>
-                <Text position={[0, 6.5, 0]} fontSize={0.4} color="#fff" font="/fonts/Inter-Bold.woff">
+                <Text position={[0, 8.5, 0]} fontSize={0.5} color="#fff" font="/fonts/Inter-Bold.woff" anchorY="bottom">
                     {labels?.tower || "CLOCK TOWER"}
                 </Text>
-                {/* Measurement for shadow */}
+                {/* Shadow Measurement */}
                 <Line
-                    points={[new THREE.Vector3(0.5, 0.05, 0), new THREE.Vector3(8, 0.05, 4.5)]}
+                    points={[new THREE.Vector3(0.75, 0.1, 0), new THREE.Vector3(8, 0.1, 4)]}
                     color="#00e5ff"
-                    lineWidth={2}
-                    opacity={0.8}
+                    lineWidth={3}
                     transparent
+                    opacity={0.6}
                 />
-                <Text position={[4, 0.2, 2.25]} fontSize={0.25} color="#00e5ff" rotation={[-Math.PI / 2, 0, Math.PI / 1.5]}>
-                    SHADOW: H
+                <Text position={[4, 0.5, 2]} fontSize={0.4} color="#00e5ff" rotation={[-Math.PI / 2, 0, 0]}>
+                    SHADOW: 12m
                 </Text>
             </group>
 
             {/* Stick Group */}
-            <group position={[4, 0, 2]} onClick={(e) => (e.stopPropagation(), bounds.refresh(e.object).clip().fit())}>
-                <mesh position={[0, 0.5, 0]} castShadow>
-                    <cylinderGeometry args={[0.05, 0.05, 1]} />
+            <group position={[4, 0, 3]}>
+                <mesh position={[0, 0.75, 0]} castShadow>
+                    <cylinderGeometry args={[0.05, 0.05, 1.5]} />
                     <meshStandardMaterial color="#fbbf24" />
-                    <Edges color="#fbbf24" />
                 </mesh>
-                <Text position={[0, 1.2, 0]} fontSize={0.25} color="#fbbf24" font="/fonts/Inter-Bold.woff">
-                    {labels?.stick || "STICK"}
+                <Text position={[0, 1.8, 0]} fontSize={0.3} color="#fbbf24" font="/fonts/Inter-Bold.woff" anchorY="bottom">
+                    {labels?.stick || "STICK (1.5m)"}
                 </Text>
-                {/* Measurement for shadow */}
+                {/* Shadow Measurement */}
                 <Line
-                    points={[new THREE.Vector3(0.05, 0.05, 0), new THREE.Vector3(1.3, 0.05, 0.7)]}
+                    points={[new THREE.Vector3(0, 0.1, 0), new THREE.Vector3(1.4, 0.1, 0.8)]}
                     color="#fbbf24"
-                    lineWidth={1.5}
-                    opacity={0.8}
+                    lineWidth={3}
                     transparent
+                    opacity={0.6}
                 />
-                <Text position={[0.7, 0.1, 0.35]} fontSize={0.15} color="#fbbf24" rotation={[-Math.PI / 2, 0, Math.PI / 1.5]}>
-                    SHADOW: h
+                <Text position={[0.7, 0.3, 0.4]} fontSize={0.25} color="#fbbf24" rotation={[-Math.PI / 2, 0, 0]}>
+                    shadow: 2.4m
                 </Text>
             </group>
 
-            {/* Sunlight Rays for both */}
+            {/* Sun Rays visualization */}
             <Line
-                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(-3, 6, 0)]}
+                points={[new THREE.Vector3(10, 15, 10), new THREE.Vector3(-4, 8, 0)]}
                 color="#fbbf24"
-                opacity={0.05}
+                opacity={0.1}
                 transparent
-                lineWidth={0.5}
-            />
-            <Line
-                points={[new THREE.Vector3(...sunPos), new THREE.Vector3(4, 1, 2)]}
-                color="#fbbf24"
-                opacity={0.05}
-                transparent
-                lineWidth={0.5}
+                lineWidth={1}
             />
         </group>
     );
 }
 
-function GridHelper() {
-    return (
-        <gridHelper args={[20, 20, "#1a1a1a", "#0a0a0a"]} rotation={[0, 0, 0]} position={[0, 0.01, 0]} />
-    );
+function InitialCamera({ kind }: { kind: SimilarityVisual["kind"] }) {
+    // Determine best camera position based on kind
+    let pos: [number, number, number] = [0, 2, 10];
+    let fov = 45;
+
+    if (kind === "shadow") {
+        pos = [5, 8, 15]; // Look down at the scene
+        fov = 50;
+    } else if (kind === "rect-scale") {
+        pos = [0, 1, 8];
+        fov = 40;
+    } else if (kind === "tri-sim") {
+        pos = [0, 2, 8];
+        fov = 40;
+    } else if (kind === "ring") {
+        pos = [0, 5, 5];
+        fov = 45;
+    }
+
+    return <PerspectiveCamera makeDefault position={pos} fov={fov} />;
 }
 
 export default function S204_SimilarityCanvas({ visual, labels }: S204_SimilarityCanvasProps) {
@@ -170,95 +187,106 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
 
     return (
         <div className="relative w-full aspect-[2/1] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
-            <Canvas shadows className="w-full h-full">
-                <PerspectiveCamera makeDefault position={[0, 2, 8]} fov={35} />
+            <Canvas shadows className="w-full h-full" dpr={[1, 2]}>
                 <color attach="background" args={["#050505"]} />
+                <InitialCamera kind={visual.kind} />
+                <ambientLight intensity={0.5} />
 
                 <Suspense fallback={null}>
-                    <Environment preset="city" />
+                    {visual.kind === "rect-scale" && (
+                        <group position={[0, -0.5, 0]}>
+                            <NeonShape
+                                position={[-2.5, 0, 0]}
+                                scale={[1.2, 0.6, 1]}
+                                color="rgba(255,255,255,0.4)"
+                                label="ORIGINAL (4)"
+                            />
 
-                    <Bounds fit clip observe margin={1.0}>
-                        {visual.kind === "rect-scale" && (
-                            <group position={[0, 0, 0]}>
+                            <Line
+                                points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                color="#fff"
+                                opacity={0.1}
+                                transparent
+                                dashed
+                            />
+
+                            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
                                 <NeonShape
-                                    position={[-2.5, 0, 0]}
-                                    scale={[1.2, 0.6, 1]}
-                                    color="rgba(255,255,255,0.4)"
-                                    label="ORIGINAL"
+                                    position={[2, 0, 0]}
+                                    scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
+                                    color="#00e5ff"
+                                    label={`NEW (${Math.round(4 * (visual.k ?? 1.5))})`}
                                 />
+                            </Float>
+                            <Text position={[0, 1, 0]} fontSize={0.3} color="white">
+                                {`Scale Factor k = ${visual.k ?? 1.5}`}
+                            </Text>
+                        </group>
+                    )}
 
-                                {/* Connecting Path */}
-                                <Line
-                                    points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
-                                    color="#fff"
-                                    opacity={0.1}
-                                    transparent
-                                    dashed
-                                />
-
-                                <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-                                    <NeonShape
-                                        position={[2, 0, 0]}
-                                        scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
-                                        color="#00e5ff"
-                                        label={`k = ${visual.k ?? 1.5}`}
-                                    />
-                                </Float>
-                            </group>
-                        )}
-
-                        {visual.kind === "tri-sim" && (
-                            <group position={[0, 0, 0]}>
-                                <mesh position={[-2, 0, 0]} rotation={[0, 0, 0.2]}>
-                                    <coneGeometry args={[0.8, 1.2, 3]} />
-                                    <meshStandardMaterial color="#fbbf24" transparent opacity={0.1} />
+                    {visual.kind === "tri-sim" && (
+                        <group position={[0, -1, 0]}>
+                            <group position={[-2.5, 0, 0]}>
+                                <mesh rotation={[0, 0, 0]}>
+                                    <coneGeometry args={[1, 2, 3]} />
+                                    <meshStandardMaterial color="#fbbf24" transparent opacity={0.2} />
                                     <Edges color="#fbbf24" />
                                 </mesh>
+                                <Text position={[0, -1.5, 0]} fontSize={0.3} color="#fbbf24">Original</Text>
+                            </group>
 
-                                <mesh position={[2, 0, 0]} rotation={[0, 0, 0.2]} scale={1.5}>
-                                    <coneGeometry args={[0.8, 1.2, 3]} />
-                                    <meshStandardMaterial color="#a855f7" transparent opacity={0.2} emissive="#a855f7" emissiveIntensity={0.5} />
+                            <Text position={[0, 0, 0]} fontSize={0.5} color="white">→</Text>
+
+                            <group position={[2.5, 0, 0]}>
+                                <mesh scale={visual.k ?? 1.5}>
+                                    <coneGeometry args={[1, 2, 3]} />
+                                    <meshStandardMaterial color="#a855f7" transparent opacity={0.2} />
                                     <Edges color="#a855f7" />
                                 </mesh>
+                                <Text position={[0, -1.5 * (visual.k ?? 1.5) - 0.5, 0]} fontSize={0.3} color="#a855f7">Scaled</Text>
                             </group>
-                        )}
+                        </group>
+                    )}
 
-                        {visual.kind === "shadow" && (
-                            <ShadowScene labels={labels} />
-                        )}
+                    {visual.kind === "shadow" && (
+                        <ShadowScene labels={labels} />
+                    )}
 
-                        {visual.kind === "ring" && (
-                            <group rotation={[Math.PI / 3, 0, 0]}>
-                                <mesh>
-                                    <ringGeometry args={[1.5, 1.55, 64]} />
-                                    <meshBasicMaterial color="#333" />
-                                </mesh>
-                                <mesh>
-                                    <ringGeometry args={[0.9, 1, 64]} />
-                                    <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={1} />
-                                </mesh>
-                                <Line
-                                    points={[new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]}
-                                    color="#39ff14"
-                                    lineWidth={2}
-                                />
-                            </group>
-                        )}
-                    </Bounds>
+                    {visual.kind === "ring" && (
+                        <group rotation={[Math.PI / 4, 0, 0]} position={[0, -1, 0]}>
+                            {/* Outer Ring */}
+                            <mesh>
+                                <ringGeometry args={[1.8, 2, 64]} />
+                                <meshStandardMaterial color="#333" />
+                            </mesh>
+                            {/* Inner Ring (Visualizing width) */}
+                            <mesh>
+                                <ringGeometry args={[1.2, 1.8, 64]} />
+                                <meshStandardMaterial color="#00e5ff" transparent opacity={0.3} side={THREE.DoubleSide} />
+                            </mesh>
+
+                            <Text position={[0, 2.5, 0]} fontSize={0.4} color="white">
+                                {`Radius R = ${visual.r ?? 0}`}
+                            </Text>
+                            <Text position={[0, -2.5, 0]} fontSize={0.4} color="#00e5ff">
+                                {`Width w = ?`}
+                            </Text>
+                        </group>
+                    )}
 
                     <OrbitControls
                         makeDefault
                         enablePan={true}
                         enableZoom={true}
-                        minPolarAngle={Math.PI / 4}
-                        maxPolarAngle={Math.PI / 2.1}
+                        minPolarAngle={0}
+                        maxPolarAngle={Math.PI / 1.8}
                     />
 
                     <ContactShadows
                         opacity={0.4}
-                        scale={15}
-                        blur={2.5}
-                        far={4}
+                        scale={20}
+                        blur={2}
+                        far={5}
                         resolution={256}
                         color="#000000"
                     />

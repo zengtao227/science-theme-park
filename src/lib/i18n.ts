@@ -883,9 +883,9 @@ export const translations: Record<string, any> = {
                 intercept: "Base fare (c)"
             },
             prompts: {
-                level1: "\\text{Calculate the ticket price for the given destination}",
-                level2: "\\text{Find the distance where two fare plans cost the same}",
-                level3: "\\text{Design a fare plan that is cheapest for long-distance travel}"
+                level1: "Calculate the ticket price for the given destination",
+                level2: "Find the distance where two fare plans cost the same",
+                level3: "Find the threshold distance where Plan A becomes cheaper"
             },
             hints: {
                 level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
@@ -3096,9 +3096,9 @@ export const translations: Record<string, any> = {
                 intercept: "基础票价 (c)"
             },
             prompts: {
-                level1: "\\text{计算到达目的地的票价}",
-                level2: "\\text{找到两种票价方案费用相同的距离}",
-                level3: "\\text{设计一个适合长途旅行的最优票价方案}"
+                level1: "计算到达目的地的票价",
+                level2: "找到两种票价方案费用相同的距离",
+                level3: "找到方案 A 变得更便宜的临界距离"
             },
             hints: {
                 level1: "斜率 m = 每公里费用。截距 c = 基础票价（起步价）。总票价 y = m × 距离 + c。",
@@ -5646,9 +5646,9 @@ export const translations: Record<string, any> = {
                 intercept: "Grundgebühr (c)"
             },
             prompts: {
-                level1: "\\text{ Berechne den Ticketpreis für das Ziel}",
-                level2: "\\text{ Finde die Distanz, wo zwei Tarife gleich kosten}",
-                level3: "\\text{ Entwerfe einen Tarif für Langstrecken}"
+                level1: "Berechne den Ticketpreis für das Ziel",
+                level2: "Finde die Distanz, wo zwei Tarife gleich kosten",
+                level3: "Finde die Schwelle, ab der Plan A günstiger wird"
             },
             hints: {
                 level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",
