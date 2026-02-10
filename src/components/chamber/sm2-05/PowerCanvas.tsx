@@ -1,540 +1,330 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Grid, Float } from "@react-three/drei";
+import { OrbitControls, Text, Grid, Float, Center, PerspectiveCamera, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 export interface PowerVisual {
-  base: number;
-  exponent: number;
-  mode: 'dimension' | 'growth' | 'root';
+  mode: 'MULTIPLY' | 'DIVIDE' | 'POWER' | 'NEGATIVE' | 'SCIENTIFIC';
+  base: string | number;
+  m: number;
+  n: number; // For single operand laws, n might be 0 or ignored
 }
 
-// n^0: Quantum Dot
-function QuantumDot() {
-  const dotRef = useRef<THREE.Mesh>(null);
+const BLOOM_COLOR = "#a855f7"; // Neon Purple
+const BASE_COLOR = "#00e5ff"; // Cyan
 
-  useFrame(({ clock }) => {
-    if (!dotRef.current) return;
-    const pulse = 1 + Math.sin(clock.getElapsedTime() * 4) * 0.3;
-    dotRef.current.scale.setScalar(pulse);
-  });
-
+function EnergyBlock({
+  position,
+  label,
+  color = BASE_COLOR,
+  opacity = 1,
+  scale = 1
+}: {
+  position: [number, number, number],
+  label: string,
+  color?: string,
+  opacity?: number,
+  scale?: number
+}) {
   return (
-    <Float speed={3} rotationIntensity={0} floatIntensity={0.5}>
-      <mesh ref={dotRef}>
-        <sphereGeometry args={[0.3, 32, 32]} />
-        <meshPhysicalMaterial
-          color="#ffffff"
-          emissive="#ffffff"
-          emissiveIntensity={2}
-          metalness={0.9}
-          roughness={0.1}
-        />
-        <pointLight color="#ffffff" intensity={2} distance={3} />
-      </mesh>
-
-      {/* Outer glow rings */}
-      {[1, 2, 3].map((i) => (
-        <mesh key={i} rotation={[Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[0.4 * i, 0.42 * i, 32]} />
-          <meshBasicMaterial
-            color="#00ffff"
-            transparent
-            opacity={0.3 / i}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-      ))}
-
-      <Text position={[0, -1, 0]} fontSize={0.3} color="#ffffff" anchorX="center">
-        n⁰ = 1
-      </Text>
-    </Float>
-  );
-}
-
-// n^1: Linear Voxel Chain
-function VoxelChain({ base }: { base: number }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
-  const dummyRef = useRef(new THREE.Object3D());
-  const dummy = dummyRef.current;
-
-  const count = Math.min(base, 20);
-  const spacing = 0.5;
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-
-    const time = clock.getElapsedTime();
-
-    for (let i = 0; i < count; i++) {
-      const offset = i - count / 2;
-      const wave = Math.sin(time * 2 + i * 0.3) * 0.1;
-
-      dummy.position.set(offset * spacing, wave, 0);
-      // dummy.rotation.y = time + i * 0.2; // Removed auto-rotation
-      dummy.scale.setScalar(1 + Math.sin(time * 3 + i * 0.5) * 0.1);
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-    }
-
-    meshRef.current.instanceMatrix.needsUpdate = true;
-  });
-
-  return (
-    <group>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-        <boxGeometry args={[0.4, 0.4, 0.4]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          emissive="#00ffff"
+    <group position={position} scale={scale}>
+      <mesh>
+        <boxGeometry args={[0.8, 0.8, 0.8]} />
+        <meshStandardMaterial
+          color={color}
+          transparent
+          opacity={0.8 * opacity}
+          emissive={color}
           emissiveIntensity={0.5}
-          metalness={0.8}
-          roughness={0.2}
-          transparent
-          opacity={0.9}
         />
-      </instancedMesh>
-
-      {/* Connecting lines */}
+      </mesh>
       <lineSegments>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            args={[new Float32Array(
-              Array.from({ length: count }, (_, i) => {
-                const offset = (i - count / 2) * spacing;
-                return [offset, 0, 0];
-              }).flat()
-            ), 3]}
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color="#00ffff" transparent opacity={0.3} />
+        <edgesGeometry args={[new THREE.BoxGeometry(0.8, 0.8, 0.8)]} />
+        <lineBasicMaterial color="white" transparent opacity={0.5 * opacity} />
       </lineSegments>
-
-      <Text position={[0, -1.5, 0]} fontSize={0.3} color="#00ffff" anchorX="center">
-        n¹ = {base}
+      <Text position={[0, 0, 0.41]} fontSize={0.4} color="white">
+        {label}
       </Text>
     </group>
   );
 }
 
-// n^2: 2D Voxel Grid
-function VoxelGrid2D({ base }: { base: number }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
-  const dummyRef = useRef(new THREE.Object3D());
-  const dummy = dummyRef.current;
-
-  const size = Math.min(base, 12);
-  const count = size * size;
-  const spacing = 0.45;
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-
-    const time = clock.getElapsedTime();
-
-    for (let i = 0; i < count; i++) {
-      const row = Math.floor(i / size);
-      const col = i % size;
-      const x = (col - size / 2) * spacing;
-      const y = (row - size / 2) * spacing;
-      const wave = Math.sin(time * 2 + i * 0.1) * 0.05;
-      const pulse = 1 + Math.sin(time * 3 + i * 0.15) * 0.1;
-
-      dummy.position.set(x, y, wave);
-      dummy.scale.setScalar(pulse);
-      // dummy.rotation.z = Math.sin(time + i * 0.1) * 0.1; // Removed auto-rotation
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-    }
-
-    meshRef.current.instanceMatrix.needsUpdate = true;
-  });
+function Stack({
+  count,
+  baseLabel,
+  position = [0, 0, 0],
+  color = BASE_COLOR,
+  gap = 0.1
+}: {
+  count: number,
+  baseLabel: string,
+  position?: [number, number, number],
+  color?: string,
+  gap?: number
+}) {
+  const blocks = useMemo(() => {
+    return Array.from({ length: count }).map((_, i) => ({
+      id: i,
+      offset: i * (0.8 + gap)
+    }));
+  }, [count, gap]);
 
   return (
-    <group>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-        <boxGeometry args={[0.4, 0.4, 0.1]} />
-        <meshPhysicalMaterial
-          color="#00ff88"
-          emissive="#00ff88"
-          emissiveIntensity={0.4}
-          metalness={0.7}
-          roughness={0.2}
-          transparent
-          opacity={0.85}
+    <group position={position}>
+      {blocks.map((b) => (
+        <EnergyBlock
+          key={b.id}
+          position={[0, b.offset, 0]}
+          label={baseLabel}
+          color={color}
         />
-      </instancedMesh>
-
-      {/* Grid frame */}
-      <lineSegments>
-        <edgesGeometry args={[new THREE.PlaneGeometry(size * spacing, size * spacing)]} />
-        <lineBasicMaterial color="#00ff88" transparent opacity={0.5} linewidth={2} />
-      </lineSegments>
-
-      <Text position={[0, -size * spacing / 2 - 0.8, 0]} fontSize={0.3} color="#00ff88" anchorX="center">
-        n² = {base * base}
-      </Text>
+      ))}
     </group>
   );
 }
 
-// n^3: 3D Voxel Cube with split and rotate
-function VoxelCube3D({ base }: { base: number }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
+// Visualizes a^m * a^n = a^(m+n)
+function MultiplyScene({ base, m, n }: { base: string, m: number, n: number }) {
+  // Initial state: Two stacks side by side
+  // Animation: Right stack moves on top of Left stack
   const groupRef = useRef<THREE.Group>(null);
-  const dummyRef = useRef(new THREE.Object3D());
-  const dummy = dummyRef.current;
 
-  const size = Math.min(base, 8);
-  const count = size * size * size;
-  const spacing = 0.4;
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const time = state.clock.getElapsedTime();
+    const t = (Math.sin(time) + 1) / 2; // 0 to 1 cycle
 
-  useFrame(({ clock }) => {
-    if (!meshRef.current || !groupRef.current) return;
+    // Right stack position interpolation
+    // Start: x = 2, y = 0
+    // End: x = 0, y = m * (0.9)
 
-    const time = clock.getElapsedTime();
+    const stackHeight = 0.9;
 
-    // Rotate the whole cube - DISABLED
-    // groupRef.current.rotation.y = time * 0.3;
-    // groupRef.current.rotation.x = Math.sin(time * 0.2) * 0.2;
+    // We want a clear 3-phase animation:
+    // 1. Pause (separate)
+    // 2. Move
+    // 3. Pause (combined)
 
-    // Split animation
-    const splitFactor = (Math.sin(time * 0.5) + 1) / 2; // 0 to 1
+    const cycle = time % 4;
+    let progress = 0;
+    if (cycle < 1) progress = 0;
+    else if (cycle < 2) progress = cycle - 1; // 0 -> 1
+    else progress = 1;
 
-    for (let i = 0; i < count; i++) {
-      const layer = Math.floor(i / (size * size));
-      const inLayer = i % (size * size);
-      const row = Math.floor(inLayer / size);
-      const col = inLayer % size;
+    // Ease
+    const ease = 1 - Math.pow(1 - progress, 3);
 
-      const x = (col - size / 2) * spacing;
-      const y = (row - size / 2) * spacing;
-      const z = (layer - size / 2) * spacing;
-
-      // Split effect - push voxels outward
-      const centerDist = Math.sqrt(
-        Math.pow(col - size / 2, 2) +
-        Math.pow(row - size / 2, 2) +
-        Math.pow(layer - size / 2, 2)
-      );
-      const splitOffset = splitFactor * centerDist * 0.15;
-
-      const dx = (col - size / 2) / size;
-      const dy = (row - size / 2) / size;
-      const dz = (layer - size / 2) / size;
-
-      dummy.position.set(
-        x + dx * splitOffset,
-        y + dy * splitOffset,
-        z + dz * splitOffset
-      );
-
-      const pulse = 1 + Math.sin(time * 3 + i * 0.05) * 0.05;
-      dummy.scale.setScalar(pulse);
-      dummy.rotation.set(
-        Math.sin(time + i * 0.1) * 0.1,
-        Math.cos(time + i * 0.1) * 0.1,
-        0
-      );
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
+    const rightStack = groupRef.current.children[1];
+    if (rightStack) {
+      rightStack.position.x = THREE.MathUtils.lerp(2.5, 0, ease);
+      rightStack.position.y = THREE.MathUtils.lerp(0, m * stackHeight, ease);
     }
 
-    meshRef.current.instanceMatrix.needsUpdate = true;
+    // Camera auto-fit? 
+    // Maybe just center the whole group
+    const totalH = (m + n) * stackHeight;
+    groupRef.current.position.y = -totalH / 3;
   });
 
   return (
     <group ref={groupRef}>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-        <boxGeometry args={[0.35, 0.35, 0.35]} />
-        <meshPhysicalMaterial
-          color="#a855f7"
-          emissive="#a855f7"
-          emissiveIntensity={0.4}
-          metalness={0.8}
-          roughness={0.2}
-          transparent
-          opacity={0.8}
-        />
-      </instancedMesh>
+      {/* Left Stack (m) */}
+      <Stack count={m} baseLabel={String(base)} position={[-1, 0, 0]} color={BASE_COLOR} />
 
-      {/* Outer cube frame */}
-      <lineSegments>
-        <edgesGeometry args={[new THREE.BoxGeometry(size * spacing, size * spacing, size * spacing)]} />
-        <lineBasicMaterial color="#a855f7" transparent opacity={0.4} linewidth={2} />
-      </lineSegments>
+      {/* Right Stack (n) */}
+      <Stack count={n} baseLabel={String(base)} position={[1.5, 0, 0]} color={BLOOM_COLOR} />
 
-      <Text position={[0, -size * spacing / 2 - 1, 0]} fontSize={0.35} color="#a855f7" anchorX="center">
-        n³ = {base * base * base}
-      </Text>
+      {/* Labels */}
+      <Text position={[-1, -1, 0]} fontSize={0.5} color="white">{`m=${m}`}</Text>
+      <Text position={[2.5, -1, 0]} fontSize={0.5} color="white">{`n=${n}`}</Text>
     </group>
   );
 }
 
-// Root Extraction: Mechanical Peel Animation
-function RootExtraction({ base }: { base: number }) {
-  const cubeRef = useRef<THREE.Mesh>(null);
-  const planeRef = useRef<THREE.Mesh>(null);
-  const extractedRef = useRef<THREE.Group>(null);
+// Visualizes (a^m)^n = a^(m*n)
+function PowerRuleScene({ base, m, n }: { base: string, m: number, n: number }) {
+  // Show n stacks of m
+  // Animation: They stack up vertically
+  const groupRef = useRef<THREE.Group>(null);
 
-  useFrame(({ clock }) => {
-    if (!cubeRef.current || !planeRef.current || !extractedRef.current) return;
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const time = state.clock.getElapsedTime();
+    const cycle = time % 5;
+    // 1. Spread out horizontally (0-1s)
+    // 2. Stack up (1-2s)
+    // 3. Hold (2-4s)
 
-    const time = clock.getElapsedTime();
+    let progress = 0;
+    if (cycle < 1) progress = 0;
+    else if (cycle < 2) progress = cycle - 1;
+    else progress = 1;
 
-    // Rotate cube - DISABLED
-    // cubeRef.current.rotation.y = time * 0.3;
-    // cubeRef.current.rotation.x = time * 0.2;
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const stackHeight = m * 0.9;
 
-    // Peel animation - extract plane
-    const peelProgress = (Math.sin(time * 0.8) + 1) / 2; // 0 to 1
-    extractedRef.current.position.z = peelProgress * 3;
-    extractedRef.current.rotation.y = peelProgress * Math.PI * 0.5;
+    // Children are the stacks
+    groupRef.current.children.forEach((child, idx) => {
+      if (idx >= n) return; // Skip labels if any
+      // Target X: 0
+      // Target Y: idx * stackHeight
+      // Start X: (idx - (n-1)/2) * 2
+      // Start Y: 0
 
-    // Plane glow pulse
-    const pulse = 0.5 + Math.sin(time * 3) * 0.3;
-    (planeRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = pulse;
+      const startX = (idx - (n - 1) / 2) * 1.5;
+      child.position.x = THREE.MathUtils.lerp(startX, 0, ease);
+      child.position.y = THREE.MathUtils.lerp(0, idx * stackHeight, ease);
+    });
+
+    const finalTotalHeight = m * n * 0.9;
+    groupRef.current.position.y = -finalTotalHeight / 3;
   });
 
-  const cubeSize = Math.min(base, 8) * 0.4;
-  const planeSize = cubeSize;
+  return (
+    <group ref={groupRef}>
+      {Array.from({ length: n }).map((_, i) => (
+        <Stack key={i} count={m} baseLabel={String(base)} position={[0, 0, 0]} color={i % 2 === 0 ? BASE_COLOR : BLOOM_COLOR} />
+      ))}
+    </group>
+  );
+}
+
+// Visualizes a^m / a^n = a^(m-n)
+function DivideScene({ base, m, n }: { base: string, m: number, n: number }) {
+  // Show Stack m
+  // Show Stack n (Anti-particles)
+  // Animation: n moves to m, and both disappear
+  const mRef = useRef<THREE.Group>(null);
+  const nRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    if (!mRef.current || !nRef.current) return;
+    const time = state.clock.getElapsedTime();
+    const cycle = time % 4;
+
+    let progress = 0;
+    if (cycle < 1) progress = 0;
+    else if (cycle < 2) progress = cycle - 1;
+    else progress = 1;
+
+    const ease = 1 - Math.pow(1 - progress, 3);
+
+    // Assume n stack starts at right, moves to overwrite top n blocks of m
+    // M stack is at left
+
+    // Move N stack to overlap with top of M stack
+    const targetX = -1;
+    const targetY = (m - n) * 0.9; // Top part
+
+    nRef.current.position.x = THREE.MathUtils.lerp(2, targetX, ease);
+    nRef.current.position.y = THREE.MathUtils.lerp(0, targetY, ease);
+
+    // Opacity fade when overlapped (simulated by distance check or just time)
+    if (progress > 0.8) {
+      // Fade out the top n blocks of M and the N stack
+      const fade = 1 - (progress - 0.8) * 5; // 0.8->1.0 maps to 1->0
+      nRef.current.scale.setScalar(Math.max(0, fade));
+      // Ideally we'd fade specific blocks in M, but that requires more complex state.
+      // For now, let's just make the interacting parts flash red
+    } else {
+      nRef.current.scale.setScalar(1);
+    }
+  });
 
   return (
-    <group>
-      {/* Original cube (being peeled) */}
-      <mesh ref={cubeRef}>
-        <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
-        <meshPhysicalMaterial
-          color="#ff00ff"
-          emissive="#ff00ff"
-          emissiveIntensity={0.3}
-          transparent
-          opacity={0.4}
-          metalness={0.9}
-          roughness={0.1}
-          transmission={0.6}
-          thickness={0.5}
-        />
-      </mesh>
+    <group position={[0, -2, 0]}>
+      {/* Main Stack m */}
+      <Stack count={m} baseLabel={String(base)} position={[-1, 0, 0]} color={BASE_COLOR} />
 
-      {/* Extracted plane (the root) */}
-      <group ref={extractedRef}>
-        <mesh ref={planeRef}>
-          <planeGeometry args={[planeSize, planeSize]} />
-          <meshPhysicalMaterial
-            color="#39ff14"
-            emissive="#39ff14"
-            emissiveIntensity={0.8}
-            transparent
-            opacity={0.9}
-            metalness={0.8}
-            roughness={0.2}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-
-        {/* Plane edges */}
-        <lineSegments>
-          <edgesGeometry args={[new THREE.PlaneGeometry(planeSize, planeSize)]} />
-          <lineBasicMaterial color="#39ff14" linewidth={3} />
-        </lineSegments>
-
-        <Text position={[0, -planeSize / 2 - 0.5, 0]} fontSize={0.3} color="#39ff14" anchorX="center">
-          ∛{base ** 3} = {base}
-        </Text>
+      {/* Anti Stack n */}
+      <group ref={nRef} position={[2, 0, 0]}>
+        <Stack count={n} baseLabel={`-${base}`} color="#ef4444" />{/* Red for subtract */}
       </group>
 
-      {/* Mechanical arms (visual effect) */}
-      {[0, 1, 2, 3].map((i) => {
-        const angle = (i / 4) * Math.PI * 2;
-        const radius = cubeSize / 2;
-        return (
-          <group key={i} rotation={[0, 0, angle]}>
-            <mesh position={[radius, 0, 0]}>
-              <cylinderGeometry args={[0.05, 0.05, 1, 8]} />
-              <meshPhysicalMaterial
-                color="#ffffff"
-                emissive="#00ffff"
-                emissiveIntensity={0.5}
-                metalness={0.9}
-                roughness={0.1}
-              />
-            </mesh>
-          </group>
-        );
-      })}
-
-      {/* Radical symbol */}
-      <Text position={[-cubeSize - 1, cubeSize / 2, 0]} fontSize={0.8} color="#39ff14" anchorX="center">
-        ∛
-      </Text>
-
-      <Text position={[0, -cubeSize - 1.5, 0]} fontSize={0.25} color="#ffffff" anchorX="center" fillOpacity={0.6}>
-        EXTRACTING ROOT
-      </Text>
+      <Text position={[0, -1, 0]} fontSize={0.5} color="white">Division = Cancellation</Text>
     </group>
   );
 }
 
-// Growth mode: Exponential multiplication
-function GrowthVisualization({ base, exponent }: { base: number; exponent: number }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
-  const dummyRef = useRef(new THREE.Object3D());
-  const dummy = dummyRef.current;
+// 4. SCIENTIFIC SCENE (Zoom Concept)
+// Instead of blocks, maybe just text that zooms?
+// Or 1 block -> 10 blocks -> 100 blocks?
+// Let's stick to exponent concept if possible.
+// Scientific notation is typically m * 10^n. 
+// Show a number, and 'User' zooms in/out.
+function ScientificScene({ base, m, n }: { base: string, m: number, n: number }) {
+  // n is the exponent of 10.
+  // m is the coefficient (Wait, m in visual prop corresponds to what? 
+  // In Scientific, we might map coeff -> m, exp -> n? 
+  // Actually the interface says m: number, n: number.
+  // Let's assume m = coeff, n = exponent?
+  // But m is number.
 
-  const count = Math.min(Math.pow(base, Math.abs(exponent)), 200);
+  // Let's just show a simple zoom animation.
+  const textRef = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-
-    const time = clock.getElapsedTime();
-
-    for (let i = 0; i < count; i++) {
-      // Spiral pattern
-      const angle = i * 0.5;
-      const radius = Math.sqrt(i) * 0.3;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-      const z = (i / count) * 2 - 1;
-
-      dummy.position.set(x, y, z);
-      dummy.rotation.set(time + i * 0.1, time * 0.5 + i * 0.1, 0);
-
-      const pulse = 1 + Math.sin(time * 4 + i * 0.1) * 0.2;
-      dummy.scale.setScalar(0.15 * pulse);
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
+    if (!textRef.current) return;
+    const t = clock.getElapsedTime();
+    const cycle = t % 4;
+    let scale = 1;
+    if (n > 0) {
+      // Zoom out (number gets bigger components?) 
+      // 4.2 * 10^3 = 4200.
+      // Animation: 4.2 -> x10 -> 42 -> x10 -> 420 ...
+      scale = 1 + (cycle / 4) * n; // Simple scaling
+    } else {
+      // Zoom in
+      scale = 1 / (1 + (cycle / 4) * Math.abs(n));
     }
-
-    meshRef.current.instanceMatrix.needsUpdate = true;
+    // textRef.current.scale.setScalar(scale);
   });
 
   return (
-    <group>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial
-          color="#00ffff"
-          emissive="#00ffff"
-          emissiveIntensity={0.6}
-          metalness={0.8}
-          roughness={0.2}
-        />
-      </instancedMesh>
-
-      <Text position={[0, -3, 0]} fontSize={0.35} color="#00ffff" anchorX="center">
-        {base}^{exponent} = {Math.pow(base, exponent)}
+    <Center>
+      <Text fontSize={1} color={BASE_COLOR}>
+        {`${m} × 10^${n}`}
       </Text>
-    </group>
+      <Text position={[0, -1.5, 0]} fontSize={0.5} color="white">
+        {`Scientific Notation`}
+      </Text>
+    </Center>
   );
 }
 
-// Main scene component
-function PowerScene({ visual }: { visual: PowerVisual }) {
-  const { base, exponent, mode } = visual;
+export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
+  if (!visual) return null;
 
-  if (mode === 'root') {
-    return <RootExtraction base={base} />;
-  }
+  const { mode, base, m, n } = visual;
 
-  if (mode === 'growth') {
-    return <GrowthVisualization base={base} exponent={exponent} />;
-  }
-
-  // Dimension mode
-  if (exponent === 0) {
-    return <QuantumDot />;
-  } else if (exponent === 1) {
-    return <VoxelChain base={base} />;
-  } else if (exponent === 2) {
-    return <VoxelGrid2D base={base} />;
-  } else {
-    return <VoxelCube3D base={base} />;
-  }
-}
-
-export default function S205PowerCanvas({ visual }: { visual?: PowerVisual }) {
-  if (!visual) {
-    return (
-      <div className="relative w-full aspect-square max-w-[500px] bg-[#020208] rounded-2xl border border-white/10 flex items-center justify-center">
-        <div className="text-white/40 text-center p-8">No power data</div>
-      </div>
-    );
-  }
-
-  const getModeLabel = () => {
-    if (visual.mode === 'root') return 'ROOT EXTRACTION';
-    if (visual.mode === 'growth') return 'EXPONENTIAL GROWTH';
-    if (visual.exponent === 0) return '0D: POINT';
-    if (visual.exponent === 1) return '1D: LINE';
-    if (visual.exponent === 2) return '2D: PLANE';
-    return '3D: VOLUME';
-  };
+  // Camera setup based on mode/size
+  const camPos: [number, number, number] = [0, 2, 12];
 
   return (
-    <div className="relative w-full aspect-square max-w-[500px] bg-[#020208] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [5, 4, 5], fov: 50 }} gl={{ antialias: true }}>
-        <color attach="background" args={["#000005"]} />
+    <div className="relative w-full aspect-square max-w-[500px] min-h-[300px] bg-[#020208] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+      <Canvas dpr={[1, 2]}>
+        <color attach="background" args={["#020208"]} />
+        <PerspectiveCamera makeDefault position={camPos} fov={45} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 10, 5]} intensity={1} />
+        <directionalLight position={[-5, 5, 5]} intensity={0.5} color={BLOOM_COLOR} />
 
-        {/* Lighting */}
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, 5]} intensity={0.6} color="#00ffff" />
-        <pointLight position={[0, 10, -10]} intensity={0.5} color="#ff00ff" />
+        <Center>
+          {mode === 'MULTIPLY' && <MultiplyScene base={String(base)} m={m} n={n} />}
+          {mode === 'POWER' && <PowerRuleScene base={String(base)} m={m} n={n} />}
+          {mode === 'DIVIDE' && <DivideScene base={String(base)} m={m} n={n} />}
+          {mode === 'SCIENTIFIC' && <ScientificScene base={String(base)} m={m} n={n} />}
+          {mode === 'NEGATIVE' && <DivideScene base={String(base)} m={0} n={-n} />} {/* Reuse divide? */}
+        </Center>
 
-        {/* Controls */}
-        <OrbitControls
-          enablePan={false}
-          minDistance={3}
-          maxDistance={15}
-        />
-
-        {/* Grid floor */}
-        <Grid
-          args={[20, 20]}
-          cellSize={0.5}
-          cellThickness={0.5}
-          cellColor="#ffffff"
-          sectionSize={2.5}
-          sectionThickness={1}
-          sectionColor="#00ffff"
-          fadeDistance={20}
-          fadeStrength={1}
-          position={[0, -3, 0]}
-        />
-
-        {/* Main scene */}
-        <PowerScene visual={visual} />
+        <OrbitControls enableZoom={true} enablePan={true} />
       </Canvas>
 
-      {/* HUD Overlay */}
-      <div className="absolute top-4 left-4 flex gap-2 items-center">
-        <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
-          Dimensional_Transformer v3.0
-        </span>
-      </div>
-
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white/50">
-        <div className="text-purple-400">Base: {visual.base}</div>
-        <div className="text-cyan-400">Exponent: {visual.exponent}</div>
-        <div className="text-white font-bold">
-          Result: {visual.mode === 'root' ? `∛${visual.base ** 3} = ${visual.base}` : `${visual.base}^${visual.exponent} = ${Math.pow(visual.base, visual.exponent)}`}
-        </div>
-      </div>
-
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
-        CHAMBER // S2.05<br />
-        MODE: {getModeLabel()}<br />
-        DIMENSION: {visual.mode === 'root' ? '3D→2D' : `${visual.exponent}D`}
-      </div>
-
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
-        Powers & Roots 3D
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/30 text-right uppercase">
+        VISUAL_MODE: {mode}<br />
+        BASE: {base} // M: {m} // N: {n}
       </div>
     </div>
   );

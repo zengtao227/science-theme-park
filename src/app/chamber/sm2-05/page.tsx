@@ -18,88 +18,112 @@ interface S205Quest extends Quest {
 }
 
 function buildStagePool(t: S205T, difficulty: Difficulty, stage: Stage): S205Quest[] {
+    const isBasic = difficulty === "BASIC";
+    const isCore = difficulty === "CORE";
+    const isAdv = difficulty === "ADVANCED";
+    const isElite = difficulty === "ELITE";
+
+    // Helper to get base string based on difficulty
+    const getBase = (n: number | string) => {
+        if (isBasic) return String(n); // "2"
+        if (isCore) return "x";
+        if (isAdv) return "a";
+        return "y";
+    };
+
     if (stage === "RULES") {
-        return [
-            {
-                id: "R1", difficulty, stage,
-                promptLatex: t.stages.rules_prompt_latex,
-                expressionLatex: `2^3\\cdot 2^4`,
-                targetLatex: `2^n`,
-                visual: { base: 2, exponent: 3, mode: 'dimension' },
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 7 }],
-                correctLatex: `2^7`,
-                hintLatex: [`a^m\\cdot a^n=a^{m+n}`, `2^{3+4}=2^7`],
-            },
-            {
-                id: "R2", difficulty, stage,
-                promptLatex: t.stages.rules_prompt_latex,
-                expressionLatex: `3^5\\div 3^2`,
-                targetLatex: `3^n`,
-                visual: { base: 3, exponent: 2, mode: 'dimension' },
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 3 }],
-                correctLatex: `3^3`,
-                hintLatex: [`a^m\\div a^n=a^{m-n}`, `3^{5-2}=3^3`],
-            },
-            {
-                id: "R3", difficulty, stage,
-                promptLatex: t.stages.rules_prompt_latex,
-                expressionLatex: `(2^2)^3`,
-                targetLatex: `2^n`,
-                visual: { base: 2, exponent: 3, mode: 'dimension' },
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 6 }],
-                correctLatex: `2^6`,
-                hintLatex: [`(a^m)^n=a^{m\\cdot n}`, `2^{2\\cdot 3}=2^6`],
-            }
-        ];
+        const quests: S205Quest[] = [];
+
+        // 1. Multiply Rule: a^m * a^n = a^(m+n)
+        const baseMult = isBasic ? 2 : (isCore ? "x" : (isAdv ? "a" : "y"));
+        const m1 = isBasic ? 2 : 3;
+        const n1 = isBasic ? 3 : 4;
+        const sum1 = m1 + n1;
+
+        quests.push({
+            id: "R1", difficulty, stage,
+            promptLatex: t.stages.rules_prompt_latex,
+            expressionLatex: isBasic ? `${baseMult}^${m1} \\cdot ${baseMult}^${n1}` : `${baseMult}^${m1} \\cdot ${baseMult}^${n1}`,
+            targetLatex: `${baseMult}^k`,
+            visual: { mode: 'MULTIPLY', base: baseMult, m: m1, n: n1 },
+            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: sum1 }],
+            correctLatex: `${baseMult}^{${sum1}}`,
+            hintLatex: [`a^m \\cdot a^n = a^{m+n}`, `${baseMult}^{${m1}+${n1}}`],
+        });
+
+        // 2. Divide Rule: a^m / a^n = a^(m-n)
+        const baseDiv = isBasic ? 3 : (isCore ? "y" : "b");
+        const m2 = isBasic ? 5 : 6;
+        const n2 = isBasic ? 2 : 3;
+        const diff2 = m2 - n2;
+
+        quests.push({
+            id: "R2", difficulty, stage,
+            promptLatex: t.stages.rules_prompt_latex,
+            expressionLatex: `${baseDiv}^${m2} \\div ${baseDiv}^${n2}`,
+            targetLatex: `${baseDiv}^k`,
+            visual: { mode: 'DIVIDE', base: baseDiv, m: m2, n: n2 },
+            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: diff2 }],
+            correctLatex: `${baseDiv}^{${diff2}}`,
+            hintLatex: [`a^m \\div a^n = a^{m-n}`, `${baseDiv}^{${m2}-${n2}}`],
+        });
+
+        // 3. Power Rule: (a^m)^n = a^(m*n)
+        const basePow = isBasic ? 2 : (isCore ? "z" : "c");
+        const m3 = isBasic ? 2 : 3;
+        const n3 = isBasic ? 3 : 2;
+        const prod3 = m3 * n3;
+
+        quests.push({
+            id: "R3", difficulty, stage,
+            promptLatex: t.stages.rules_prompt_latex,
+            expressionLatex: `(${basePow}^${m3})^${n3}`,
+            targetLatex: `${basePow}^k`,
+            visual: { mode: 'POWER', base: basePow, m: m3, n: n3 },
+            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: prod3 }],
+            correctLatex: `${basePow}^{${prod3}}`,
+            hintLatex: [`(a^m)^n = a^{m \\cdot n}`, `${basePow}^{${m3}\\cdot${n3}}`],
+        });
+
+        return quests;
     }
+
     if (stage === "NEGATIVE") {
+        const base = isBasic ? 5 : (isCore ? "x" : "a");
+        const exp = isBasic ? 2 : 3;
+        const val = Math.pow(Number(base), exp); // Only for basic
+
         return [
             {
                 id: "N1", difficulty, stage,
                 promptLatex: t.stages.negative_prompt_latex,
-                expressionLatex: `5^{-2}`,
-                targetLatex: `\\frac{1}{x}`,
-                visual: { base: 5, exponent: -2, mode: 'growth' },
-                slots: [{ id: "x", labelLatex: `x`, placeholder: "val", expected: 25 }],
-                correctLatex: `5^{-2} = \\frac{1}{5^2} = \\frac{1}{25}`,
-                hintLatex: [`a^{-n} = \\frac{1}{a^n}`, `\\frac{1}{5^2} = \\frac{1}{25}`],
-            },
-            {
-                id: "N2", difficulty, stage,
-                promptLatex: t.stages.negative_prompt_latex,
-                expressionLatex: `\\left(\\frac{1}{2}\\right)^{-3}`,
-                targetLatex: `x`,
-                visual: { base: 2, exponent: 3, mode: 'growth' },
-                slots: [{ id: "x", labelLatex: `x`, placeholder: "val", expected: 8 }],
-                correctLatex: `\\left(\\frac{1}{2}\\right)^{-3} = 2^3 = 8`,
-                hintLatex: [`(\\frac{1}{a})^{-n} = a^n`, `2^3 = 8`],
+                expressionLatex: isBasic ? `${base}^{-${exp}}` : `${base}^{-${exp}}`,
+                targetLatex: isBasic ? `\\frac{1}{${val}}` : `\\frac{1}{${base}^n}`,
+                visual: { mode: 'NEGATIVE', base: base, m: 1, n: exp },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "?", expected: isBasic ? val : exp }],
+                correctLatex: `\\frac{1}{${base}^${exp}}`,
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             }
         ];
     }
+
     if (stage === "SCIENTIFIC") {
+        const m = 4.2;
+        const n = 3;
         return [
             {
                 id: "S1", difficulty, stage,
                 promptLatex: t.stages.scientific_prompt_latex,
                 expressionLatex: `4200`,
                 targetLatex: `4.2 \\cdot 10^n`,
-                visual: { base: 10, exponent: 3, mode: 'growth' },
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: 3 }],
+                visual: { mode: 'SCIENTIFIC', base: 10, m: 4.2, n: 3 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
                 correctLatex: `4.2 \\cdot 10^3`,
-                hintLatex: [`4.200 = 4.2 \\cdot 10^3`],
-            },
-            {
-                id: "S2", difficulty, stage,
-                promptLatex: t.stages.scientific_prompt_latex,
-                expressionLatex: `0.015`,
-                targetLatex: `1.5 \\cdot 10^n`,
-                visual: { base: 10, exponent: -2, mode: 'growth' },
-                slots: [{ id: "n", labelLatex: `n`, placeholder: "n", expected: -2 }],
-                correctLatex: `1.5 \\cdot 10^{-2}`,
-                hintLatex: [`0.015 = 1.5 \\cdot 10^{-2}`],
+                hintLatex: [`Move decimal 3 places left`],
             }
         ];
     }
+
     return [];
 }
 
