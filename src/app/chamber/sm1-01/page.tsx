@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
@@ -141,6 +141,8 @@ export default function S101Page() {
     const { currentLanguage, completeStage } = useAppStore();
     const t = translations[currentLanguage].sm1_01;
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
     const {
         difficulty,
         stage,
@@ -154,7 +156,7 @@ export default function S101Page() {
         handleDifficultyChange,
         handleStageChange,
     } = useQuestManager<S101Quest, Stage>({
-        buildPool: (d, s) => buildStagePool(t, d, s),
+        buildPool,
         initialStage: "AREAS",
     });
 

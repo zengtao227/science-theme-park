@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -95,11 +95,14 @@ export default function S203Page() {
 
   const [hits, setHits] = useState(0);
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
   const {
     difficulty, stage, inputs, lastCheck, currentQuest,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
+    successRate,
   } = useQuestManager<S203Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "LEVEL1",
   });
 
@@ -145,6 +148,7 @@ export default function S203Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      successRate={successRate}
       footerLeft={t?.footer_left || "S2.03_LINE_NAVIGATOR // NODE: BASEL"}
       translations={{
         back: t?.back || "Back to Nexus",
@@ -210,14 +214,6 @@ export default function S203Page() {
       }
     >
       <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description || "Navigate laser beams through reflections to hit targets. Master linear functions and reflection laws."}
-          </p>
-        </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
             {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
@@ -234,6 +230,17 @@ export default function S203Page() {
                   : <InlineMath math={currentQuest.expressionLatex} />}
               </p>
             )}
+          </div>
+        </div>
+
+        <div className="bg-white/[0.04] border-l-4 border-neon-blue/50 rounded-r-xl p-6 max-w-3xl mx-auto backdrop-blur-sm">
+          <div className="text-center md:text-left space-y-2">
+            <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
+              {t?.mission?.title || "SBB SYSTEM LOG"}
+            </h3>
+            <p className="text-sm text-white/80 font-mono leading-relaxed">
+              {t?.mission?.description || "Navigate laser beams through reflections to hit targets. Master linear functions and reflection laws."}
+            </p>
           </div>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
@@ -567,6 +567,8 @@ export default function S202Page() {
   const t = translations[currentLanguage].sm2_02 as Mg05T;
   const [useFluidViz, setUseFluidViz] = useState(false);
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
   const {
     difficulty,
     stage,
@@ -580,7 +582,7 @@ export default function S202Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<S202Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "SOLVE_HYP",
   });
 
