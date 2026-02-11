@@ -23,105 +23,189 @@ function buildStagePool(t: S205T, difficulty: Difficulty, stage: Stage): S205Que
     const isAdv = difficulty === "ADVANCED";
     const isElite = difficulty === "ELITE";
 
-    // Helper to get base string based on difficulty
-    const getBase = (n: number | string) => {
-        if (isBasic) return String(n); // "2"
-        if (isCore) return "x";
-        if (isAdv) return "a";
-        return "y";
-    };
-
     if (stage === "RULES") {
         const quests: S205Quest[] = [];
 
-        // 1. Multiply Rule: a^m * a^n = a^(m+n)
-        const baseMult = isBasic ? 2 : (isCore ? "x" : (isAdv ? "a" : "y"));
-        const m1 = isBasic ? 2 : 3;
-        const n1 = isBasic ? 3 : 4;
-        const sum1 = m1 + n1;
-
-        quests.push({
-            id: "R1", difficulty, stage,
-            promptLatex: t.stages.rules_prompt_latex,
-            expressionLatex: isBasic ? `${baseMult}^${m1} \\cdot ${baseMult}^${n1}` : `${baseMult}^${m1} \\cdot ${baseMult}^${n1}`,
-            targetLatex: `${baseMult}^k`,
-            visual: { mode: 'MULTIPLY', base: baseMult, m: m1, n: n1 },
-            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: sum1 }],
-            correctLatex: `${baseMult}^{${sum1}}`,
-            hintLatex: [`a^m \\cdot a^n = a^{m+n}`, `${baseMult}^{${m1}+${n1}}`],
-        });
-
-        // 2. Divide Rule: a^m / a^n = a^(m-n)
-        const baseDiv = isBasic ? 3 : (isCore ? "y" : "b");
-        const m2 = isBasic ? 5 : 6;
-        const n2 = isBasic ? 2 : 3;
-        const diff2 = m2 - n2;
-
-        quests.push({
-            id: "R2", difficulty, stage,
-            promptLatex: t.stages.rules_prompt_latex,
-            expressionLatex: `${baseDiv}^${m2} \\div ${baseDiv}^${n2}`,
-            targetLatex: `${baseDiv}^k`,
-            visual: { mode: 'DIVIDE', base: baseDiv, m: m2, n: n2 },
-            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: diff2 }],
-            correctLatex: `${baseDiv}^{${diff2}}`,
-            hintLatex: [`a^m \\div a^n = a^{m-n}`, `${baseDiv}^{${m2}-${n2}}`],
-        });
-
-        // 3. Power Rule: (a^m)^n = a^(m*n)
-        const basePow = isBasic ? 2 : (isCore ? "z" : "c");
-        const m3 = isBasic ? 2 : 3;
-        const n3 = isBasic ? 3 : 2;
-        const prod3 = m3 * n3;
-
-        quests.push({
-            id: "R3", difficulty, stage,
-            promptLatex: t.stages.rules_prompt_latex,
-            expressionLatex: `(${basePow}^${m3})^${n3}`,
-            targetLatex: `${basePow}^k`,
-            visual: { mode: 'POWER', base: basePow, m: m3, n: n3 },
-            slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: prod3 }],
-            correctLatex: `${basePow}^{${prod3}}`,
-            hintLatex: [`(a^m)^n = a^{m \\cdot n}`, `${basePow}^{${m3}\\cdot${n3}}`],
-        });
-
+        if (isBasic) {
+            // Numeric basis, simple laws
+            quests.push({
+                id: "R1-B", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `2^3 \\cdot 2^2`,
+                targetLatex: `2^x`,
+                visual: { mode: 'MULTIPLY', base: 2, m: 3, n: 2 },
+                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5 }],
+                correctLatex: `2^5`,
+                hintLatex: [`a^m \\cdot a^n = a^{m+n}`, `2^{3+2}=2^5`],
+            });
+            quests.push({
+                id: "R2-B", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `3^6 \\div 3^2`,
+                targetLatex: `3^x`,
+                visual: { mode: 'DIVIDE', base: 3, m: 6, n: 2 },
+                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4 }],
+                correctLatex: `3^4`,
+                hintLatex: [`a^m \\div a^n = a^{m-n}`, `3^{6-2}=3^4`],
+            });
+        } else if (isCore) {
+            // Algebraic variables
+            quests.push({
+                id: "R1-C", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `x^5 \\cdot x^4`,
+                targetLatex: `x^n`,
+                visual: { mode: 'MULTIPLY', base: 'x', m: 5, n: 4 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 9 }],
+                correctLatex: `x^9`,
+                hintLatex: [`x^5 \\cdot x^4 = x^{5+4}`],
+            });
+            quests.push({
+                id: "R2-C", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `(z^4)^2`,
+                targetLatex: `z^n`,
+                visual: { mode: 'POWER', base: 'z', m: 4, n: 2 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
+                correctLatex: `z^8`,
+                hintLatex: [`(z^4)^2 = z^{4 \\cdot 2}`],
+            });
+        } else if (isAdv) {
+            // Combined rules
+            quests.push({
+                id: "R1-A", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `a^2 \\cdot (a^3)^2`,
+                targetLatex: `a^n`,
+                visual: { mode: 'POWER', base: 'a', m: 3, n: 2 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
+                correctLatex: `a^2 \\cdot a^6 = a^8`,
+                hintLatex: [`Apply (a^m)^n first`, `Then a^m \\cdot a^n`],
+            });
+            quests.push({
+                id: "R2-A", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `(b^4 \\cdot b^2)^3`,
+                targetLatex: `b^n`,
+                visual: { mode: 'MULTIPLY', base: 'b', m: 4, n: 2 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 18 }],
+                correctLatex: `(b^{4+2})^3 = (b^6)^3 = b^{18}`,
+                hintLatex: [`Apply a^m \\cdot a^n inside parentheses first`],
+            });
+        } else {
+            // Elite: Constant and multiple variables
+            quests.push({
+                id: "R1-E", difficulty, stage,
+                promptLatex: t.stages.rules_prompt_latex,
+                expressionLatex: `(2x^3)^2 \\div 4x^2`,
+                targetLatex: `x^n`,
+                visual: { mode: 'POWER', base: '2x', m: 3, n: 2 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                correctLatex: `4x^6 \\div 4x^2 = x^4`,
+                hintLatex: [`(cx^m)^n = c^n \\cdot x^{mn}`, `Then divide`],
+            });
+        }
         return quests;
     }
 
     if (stage === "NEGATIVE") {
-        const base = isBasic ? 5 : (isCore ? "x" : "a");
-        const exp = isBasic ? 2 : 3;
-        const val = Math.pow(Number(base), exp); // Only for basic
-
-        return [
-            {
-                id: "N1", difficulty, stage,
+        const quests: S205Quest[] = [];
+        if (isBasic) {
+            quests.push({
+                id: "N1-B", difficulty, stage,
                 promptLatex: t.stages.negative_prompt_latex,
-                expressionLatex: isBasic ? `${base}^{-${exp}}` : `${base}^{-${exp}}`,
-                targetLatex: isBasic ? `\\frac{1}{${val}}` : `\\frac{1}{${base}^n}`,
-                visual: { mode: 'NEGATIVE', base: base, m: 1, n: exp },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "?", expected: isBasic ? val : exp }],
-                correctLatex: `\\frac{1}{${base}^${exp}}`,
+                expressionLatex: `5^{-2}`,
+                targetLatex: `\\frac{1}{x}`,
+                visual: { mode: 'NEGATIVE', base: 5, m: 1, n: 2 },
+                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 25 }],
+                correctLatex: `\\frac{1}{5^2} = \\frac{1}{25}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
-            }
-        ];
+            });
+        } else if (isCore) {
+            quests.push({
+                id: "N1-C", difficulty, stage,
+                promptLatex: t.stages.negative_prompt_latex,
+                expressionLatex: `x^{-4}`,
+                targetLatex: `\\frac{1}{x^n}`,
+                visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 4 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                correctLatex: `\\frac{1}{x^4}`,
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
+            });
+        } else if (isAdv) {
+            quests.push({
+                id: "N1-A", difficulty, stage,
+                promptLatex: t.stages.negative_prompt_latex,
+                expressionLatex: `\\frac{1}{a^{-3}}`,
+                targetLatex: `a^n`,
+                visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                correctLatex: `a^3`,
+                hintLatex: [`\\frac{1}{a^{-n}} = a^n`],
+            });
+        } else {
+            quests.push({
+                id: "N1-E", difficulty, stage,
+                promptLatex: t.stages.negative_prompt_latex,
+                expressionLatex: `\\left(\\frac{x}{2}\\right)^{-3}`,
+                targetLatex: `\\frac{8}{x^n}`,
+                visual: { mode: 'NEGATIVE', base: 'x/2', m: 1, n: 3 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                correctLatex: `(\\frac{2}{x})^3 = \\frac{8}{x^3}`,
+                hintLatex: [`(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n`],
+            });
+        }
+        return quests;
     }
 
     if (stage === "SCIENTIFIC") {
-        const m = 4.2;
-        const n = 3;
-        return [
-            {
-                id: "S1", difficulty, stage,
+        const quests: S205Quest[] = [];
+        if (isBasic) {
+            quests.push({
+                id: "S1-B", difficulty, stage,
                 promptLatex: t.stages.scientific_prompt_latex,
-                expressionLatex: `4200`,
-                targetLatex: `4.2 \\cdot 10^n`,
-                visual: { mode: 'SCIENTIFIC', base: 10, m: 4.2, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `4.2 \\cdot 10^3`,
-                hintLatex: [`Move decimal 3 places left`],
-            }
-        ];
+                expressionLatex: `72000`,
+                targetLatex: `7.2 \\cdot 10^n`,
+                visual: { mode: 'SCIENTIFIC', base: 10, m: 7.2, n: 4 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                correctLatex: `7.2 \\cdot 10^4`,
+                hintLatex: [`Move decimal 4 places left`],
+            });
+        } else if (isCore) {
+            quests.push({
+                id: "S1-C", difficulty, stage,
+                promptLatex: t.stages.scientific_prompt_latex,
+                expressionLatex: `0.00035`,
+                targetLatex: `3.5 \\cdot 10^n`,
+                visual: { mode: 'SCIENTIFIC', base: 10, m: 3.5, n: -4 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -4 }],
+                correctLatex: `3.5 \\cdot 10^{-4}`,
+                hintLatex: [`Move decimal 4 places right`],
+            });
+        } else if (isAdv) {
+            quests.push({
+                id: "S1-A", difficulty, stage,
+                promptLatex: t.stages.scientific_prompt_latex,
+                expressionLatex: `1.2 \\cdot 10^5`,
+                targetLatex: `x`,
+                visual: { mode: 'SCIENTIFIC', base: 10, m: 1.2, n: 5 },
+                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 120000 }],
+                correctLatex: `120,000`,
+                hintLatex: [`Add 5 zeros and move decimal`],
+            });
+        } else {
+            quests.push({
+                id: "S1-E", difficulty, stage,
+                promptLatex: t.stages.scientific_prompt_latex,
+                expressionLatex: `(3 \\cdot 10^4) \\cdot (2 \\cdot 10^3)`,
+                targetLatex: `6 \\cdot 10^n`,
+                visual: { mode: 'SCIENTIFIC', base: 10, m: 6, n: 7 },
+                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
+                correctLatex: `(3\\cdot 2) \\cdot 10^{4+3} = 6 \\cdot 10^7`,
+                hintLatex: [`Multiply coefficients, add exponents`],
+            });
+        }
+        return quests;
     }
 
     return [];
@@ -181,7 +265,7 @@ export default function S205Page() {
                     <div className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-purple transition-colors">
                         {t.objective_title}
                     </div>
-                    <p className="text-3xl text-white font-black italic whitespace-normal break-words">
+                    <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
                         {(() => {
                             const latex = currentQuest?.promptLatex || "";
                             if (latex.includes("\\text{")) {
@@ -189,7 +273,7 @@ export default function S205Page() {
                             }
                             return <InlineMath math={latex} />;
                         })()}
-                    </p>
+                    </div>
                     <div className="mt-8 p-8 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm shadow-2xl">
                         <div className="text-5xl text-white font-black tracking-widest">
                             <InlineMath math={currentQuest?.expressionLatex || ""} />
