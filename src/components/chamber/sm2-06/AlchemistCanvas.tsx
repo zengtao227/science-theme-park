@@ -145,7 +145,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                 <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={35} />
                 <color attach="background" args={["#010103"]} />
 
-                <Suspense fallback={null}>
+                <ClientOnlySuspense fallback={null}>
                     <ambientLight intensity={0.4} />
                     <pointLight position={[10, 10, 10]} intensity={1.5} />
 
@@ -183,7 +183,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                         />
 
                         {/* User Data Core */}
-                        <EnergyCore x={x} y={y} active={isSolved} />
+                        <EnergyCore x={x} y={y} active={!!isSolved} />
 
                         {/* Solving Visual Feedback */}
                         {isSolved && (
@@ -208,7 +208,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                         maxDistance={25}
                         minDistance={5}
                     />
-                </Suspense>
+                </ClientOnlySuspense>
             </Canvas>
 
             {/* Clear UI Labels */}
@@ -253,9 +253,9 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
 }
 
 // Simple internal client check for R3F
-function Suspense(props: { fallback: React.ReactNode, children: React.ReactNode }) {
+function ClientOnlySuspense(props: { fallback: React.ReactNode, children: React.ReactNode }) {
     const [isClient, setIsClient] = useState(false);
     useEffect(() => setIsClient(true), []);
     if (!isClient) return <>{props.fallback}</>;
-    return <React.Suspense fallback={props.fallback}>{props.children}</React.Suspense>;
+    return <Suspense fallback={props.fallback}>{props.children}</Suspense>;
 }
