@@ -95,7 +95,6 @@ function PotionVat({
                 position={[0, 2.2, 0]}
                 fontSize={0.3}
                 color={isBalanced ? "#fff" : "#888"}
-                font="/fonts/Inter-Bold.woff"
             >
                 {label}
             </Text>

@@ -18,54 +18,123 @@ interface S206Quest extends Quest {
 }
 
 function buildStagePool(t: S206T, difficulty: Difficulty): S206Quest[] {
+  const isBasic = difficulty === "BASIC";
+  const isCore = difficulty === "CORE";
+  const isAdv = difficulty === "ADVANCED";
+  const isElite = difficulty === "ELITE";
+
+  if (isBasic) {
+    return [
+      {
+        id: "S1-B", difficulty, stage: "SUBSTITUTION",
+        promptLatex: t.stages.substitution_prompt_latex,
+        expressionLatex: `\\begin{cases} x = 2y \\\\ x + y = 6 \\end{cases}`,
+        targetLatex: `x, y`,
+        visual: {
+          eq1: { a: 1, b: -2, c: 0 },
+          eq2: { a: 1, b: 1, c: 6 },
+          intersect: { x: 4, y: 2 }
+        },
+        slots: [
+          { id: "x", labelLatex: "x", placeholder: "x", expected: 4 },
+          { id: "y", labelLatex: "y", placeholder: "y", expected: 2 }
+        ],
+        correctLatex: `x=4, y=2`,
+      },
+      {
+        id: "E1-B", difficulty, stage: "ELIMINATION",
+        promptLatex: t.stages.elimination_prompt_latex,
+        expressionLatex: `\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}`,
+        targetLatex: `x, y`,
+        visual: {
+          eq1: { a: 1, b: 1, c: 5 },
+          eq2: { a: 1, b: -1, c: 1 },
+          intersect: { x: 3, y: 2 }
+        },
+        slots: [
+          { id: "x", labelLatex: "x", placeholder: "x", expected: 3 },
+          { id: "y", labelLatex: "y", placeholder: "y", expected: 2 }
+        ],
+        correctLatex: `x=3, y=2`,
+      }
+    ];
+  }
+
+  if (isCore) {
+    return [
+      {
+        id: "S1-C", difficulty, stage: "SUBSTITUTION",
+        promptLatex: t.stages.substitution_prompt_latex,
+        expressionLatex: `\\begin{cases} y = 3x - 1 \\\\ x + y = 7 \\end{cases}`,
+        targetLatex: `x, y`,
+        visual: {
+          eq1: { a: 3, b: -1, c: 1 },
+          eq2: { a: 1, b: 1, c: 7 },
+          intersect: { x: 2, y: 5 }
+        },
+        slots: [
+          { id: "x", labelLatex: "x", placeholder: "x", expected: 2 },
+          { id: "y", labelLatex: "y", placeholder: "y", expected: 5 }
+        ],
+        correctLatex: `x=2, y=5`,
+      },
+      {
+        id: "E1-C", difficulty, stage: "ELIMINATION",
+        promptLatex: t.stages.elimination_prompt_latex,
+        expressionLatex: `\\begin{cases} 2x + y = 10 \\\\ 2x - y = 6 \\end{cases}`,
+        targetLatex: `x, y`,
+        visual: {
+          eq1: { a: 2, b: 1, c: 10 },
+          eq2: { a: 2, b: -1, c: 6 },
+          intersect: { x: 4, y: 2 }
+        },
+        slots: [
+          { id: "x", labelLatex: "x", placeholder: "x", expected: 4 },
+          { id: "y", labelLatex: "y", placeholder: "y", expected: 2 }
+        ],
+        correctLatex: `x=4, y=2`,
+      }
+    ];
+  }
+
+  if (isAdv) {
+    return [
+      {
+        id: "E1-A", difficulty, stage: "ELIMINATION",
+        promptLatex: t.stages.elimination_prompt_latex,
+        expressionLatex: `\\begin{cases} 3x + 2y = 12 \\\\ 5x - 2y = 4 \\end{cases}`,
+        targetLatex: `x, y`,
+        visual: {
+          eq1: { a: 3, b: 2, c: 12 },
+          eq2: { a: 5, b: -2, c: 4 },
+          intersect: { x: 2, y: 3 }
+        },
+        slots: [
+          { id: "x", labelLatex: "x", placeholder: "x", expected: 2 },
+          { id: "y", labelLatex: "y", placeholder: "y", expected: 3 }
+        ],
+        correctLatex: `x=2, y=3`,
+      }
+    ];
+  }
+
+  // Elite: More complex coefficients
   return [
     {
-      id: "S1", difficulty, stage: "SUBSTITUTION",
-      promptLatex: t.stages.substitution_prompt_latex,
-      expressionLatex: `\\begin{cases} x = 2y \\\\ x + y = 6 \\end{cases}`,
+      id: "E1-E", difficulty, stage: "ELIMINATION",
+      promptLatex: t.stages.elimination_prompt_latex,
+      expressionLatex: `\\begin{cases} 2x + 3y = 13 \\\\ 3x + 2y = 12 \\end{cases}`,
       targetLatex: `x, y`,
       visual: {
-        eq1: { a: 1, b: -2, c: 0 },
-        eq2: { a: 1, b: 1, c: 6 },
-        intersect: { x: 4, y: 2 }
-      },
-      slots: [
-        { id: "x", labelLatex: "x", placeholder: "x", expected: 4 },
-        { id: "y", labelLatex: "y", placeholder: "y", expected: 2 }
-      ],
-      correctLatex: `x=4, y=2`,
-    },
-    {
-      id: "S2", difficulty, stage: "SUBSTITUTION",
-      promptLatex: t.stages.substitution_prompt_latex,
-      expressionLatex: `\\begin{cases} y = 3x - 1 \\\\ x + y = 7 \\end{cases}`,
-      targetLatex: `x, y`,
-      visual: {
-        eq1: { a: 3, b: -1, c: 1 },
-        eq2: { a: 1, b: 1, c: 7 },
-        intersect: { x: 2, y: 5 }
+        eq1: { a: 2, b: 3, c: 13 },
+        eq2: { a: 3, b: 2, c: 12 },
+        intersect: { x: 2, y: 3 }
       },
       slots: [
         { id: "x", labelLatex: "x", placeholder: "x", expected: 2 },
-        { id: "y", labelLatex: "y", placeholder: "y", expected: 5 }
+        { id: "y", labelLatex: "y", placeholder: "y", expected: 3 }
       ],
-      correctLatex: `x=2, y=5`,
-    },
-    {
-      id: "E1", difficulty, stage: "ELIMINATION",
-      promptLatex: t.stages.elimination_prompt_latex,
-      expressionLatex: `\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}`,
-      targetLatex: `x, y`,
-      visual: {
-        eq1: { a: 1, b: 1, c: 5 },
-        eq2: { a: 1, b: -1, c: 1 },
-        intersect: { x: 3, y: 2 }
-      },
-      slots: [
-        { id: "x", labelLatex: "x", placeholder: "x", expected: 3 },
-        { id: "y", labelLatex: "y", placeholder: "y", expected: 2 }
-      ],
-      correctLatex: `x=3, y=2`,
+      correctLatex: `x=2, y=3`,
     }
   ];
 }
