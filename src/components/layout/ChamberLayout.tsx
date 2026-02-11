@@ -179,7 +179,7 @@ export default function ChamberLayout({
             )}
 
             {moduleEntries.length === 0 && (
-                <div className="text-sm text-white/50 font-mono border border-white/10 rounded-xl p-6 text-center">
+                <div className="text-sm text-white font-mono border border-white/10 rounded-xl p-6 text-center">
                     {common.history_empty}
                 </div>
             )}
@@ -195,7 +195,7 @@ export default function ChamberLayout({
                                 <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{entry.stageLabel}</div>
                                 <div className="text-xs text-white/60 font-mono">{formatAccuracy(entry.score)} · {entry.difficulty}</div>
                             </div>
-                            <div className="text-xs text-white/40 font-mono">{formatTime(entry.timestamp)}</div>
+                            <div className="text-xs text-white/90 font-mono">{formatTime(entry.timestamp)}</div>
                         </button>
                         {expandedId === entry.id && (
                             <div className="px-4 py-3 text-xs text-white/60 font-mono border-t border-white/10 space-y-1">
@@ -222,7 +222,7 @@ export default function ChamberLayout({
                 </Link>
 
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
-                    <ConceptIcon code={moduleCode} className="w-8 h-8 text-white/50 mb-1" />
+                    <ConceptIcon code={moduleCode} className="w-8 h-8 text-white mb-1" />
                     <div className="text-lg font-black tracking-[0.25em] uppercase text-white shadow-neon text-nowrap">
                         {title}
                     </div>
@@ -233,7 +233,7 @@ export default function ChamberLayout({
                         onClick={() => setHistoryOpen((v) => !v)}
                         className={clsx(
                             "hidden md:inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border",
-                            historyOpen ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
+                            historyOpen ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
                         )}
                     >
                         {common.history_toggle}
@@ -248,7 +248,7 @@ export default function ChamberLayout({
                                     "min-h-[44px] px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
                                     difficulty === d
                                         ? "border-white bg-white text-black"
-                                        : "border-white/30 text-white hover:border-white/50"
+                                        : "border-white/70 text-white hover:border-white/50"
                                 )}
                             >
                                 {translations.difficulty[d.toLowerCase()]}
@@ -256,7 +256,7 @@ export default function ChamberLayout({
                         ))}
                     </div>
 
-                    <div className="w-px h-4 bg-white/20 hidden md:block" />
+                    <div className="w-px h-4 bg-white/60 hidden md:block" />
 
                     <div className="flex items-center gap-2">
                         {(['DE', 'EN', 'CN'] as const).map((lang) => (
@@ -267,7 +267,7 @@ export default function ChamberLayout({
                                     "text-[10px] font-black w-6 h-6 flex items-center justify-center rounded transition-all border",
                                     currentLanguage === lang
                                         ? "bg-white text-black border-white"
-                                        : "text-white border-white/30 hover:border-white/50"
+                                        : "text-white border-white/70 hover:border-white/50"
                                 )}
                             >
                                 {lang}
@@ -292,7 +292,7 @@ export default function ChamberLayout({
                                                 onClick={() => onStageChange(s.id)}
                                                 className={clsx(
                                                     "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                                                    currentStage === s.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
+                                                    currentStage === s.id ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
                                                 )}
                                             >
                                                 {s.label}
@@ -312,7 +312,7 @@ export default function ChamberLayout({
                         }
                         rightContent={
                             <aside className="h-full relative bg-black flex flex-col">
-                                <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white/50 font-black flex justify-between items-center">
+                                <div className="p-4 border-b border-white/10 text-[9px] uppercase tracking-[0.4em] text-white font-black flex justify-between items-center">
                                     <span>{translations.monitor_title || "SYSTEM MONITOR"}</span>
                                     <div className="flex gap-2">
                                         <div className="w-1 h-1 bg-white" />
@@ -339,7 +339,7 @@ export default function ChamberLayout({
                                     onClick={() => onStageChange(s.id)}
                                     className={clsx(
                                         "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                                        currentStage === s.id ? "border-white bg-white text-black" : "border-white/30 text-white hover:border-white/50"
+                                        currentStage === s.id ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
                                     )}
                                 >
                                     {s.label}
@@ -367,7 +367,7 @@ export default function ChamberLayout({
                                     "min-h-[44px] px-3 text-[9px] font-black tracking-[0.3em] uppercase transition-all border flex-1",
                                     activePanel === key
                                         ? "border-white bg-white text-black"
-                                        : "border-white/30 text-white hover:border-white/50"
+                                        : "border-white/70 text-white hover:border-white/50"
                                 )}
                             >
                                 {panelLabels[key]}
@@ -387,7 +387,7 @@ export default function ChamberLayout({
                                                 "min-h-[44px] px-3 py-2 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
                                                 difficulty === d
                                                     ? "border-white bg-white text-black"
-                                                    : "border-white/30 text-white hover:border-white/50"
+                                                    : "border-white/70 text-white hover:border-white/50"
                                             )}
                                         >
                                             {translations.difficulty[d.toLowerCase()]}
@@ -420,7 +420,7 @@ export default function ChamberLayout({
                             <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{common.history_title}</div>
                             <button
                                 onClick={() => setHistoryOpen(false)}
-                                className="w-8 h-8 min-h-[44px] min-w-[44px] flex items-center justify-center border border-white/20 hover:border-white/50 transition-all"
+                                className="w-8 h-8 min-h-[44px] min-w-[44px] flex items-center justify-center border border-white/60 hover:border-white/50 transition-all"
                             >
                                 <X className="w-4 h-4" />
                             </button>
@@ -437,7 +437,7 @@ export default function ChamberLayout({
             <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
                 <span>{footerLeft}</span>
                 <span className="flex items-center gap-2">
-                    <Sigma className="w-3 h-3 text-white/50" />
+                    <Sigma className="w-3 h-3 text-white" />
                     {checkStatus ? (checkStatus.ok ? translations.correct : translations.incorrect) : (translations.ready || "SYSTEM READY")}
                 </span>
             </footer>

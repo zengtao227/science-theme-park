@@ -14,7 +14,7 @@ export default function Error({
         <p className="text-white/70 mb-6 font-mono text-sm">
           SM2.01 // BINOMIAL FACTORY failed to load
         </p>
-        <p className="text-white/50 mb-6 text-xs">
+        <p className="text-white mb-6 text-xs">
           {error.message}
         </p>
         <button
@@ -25,7 +25,7 @@ export default function Error({
         </button>
         <a
           href="/"
-          className="block w-full mt-3 px-6 py-3 border border-white/20 text-center text-white/70 hover:bg-white/5 transition-all"
+          className="block w-full mt-3 px-6 py-3 border border-white/60 text-center text-white/70 hover:bg-white/5 transition-all"
         >
           RETURN TO NEXUS
         </a>

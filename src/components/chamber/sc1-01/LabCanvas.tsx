@@ -85,7 +85,7 @@ export default function C101LabCanvas({
     <div className="space-y-6">
       {/* Lab Bench */}
       <div className="relative p-8 bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 rounded-2xl">
-        <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 uppercase tracking-wider">
+        <div className="absolute top-2 right-2 text-[9px] font-mono text-white/70 uppercase tracking-wider">
           Mystery Lab
         </div>
 
@@ -104,7 +104,7 @@ export default function C101LabCanvas({
                   "relative p-6 border-2 rounded-xl transition-all",
                   selectedTool
                     ? "border-neon-green hover:bg-neon-green/10 cursor-pointer"
-                    : "border-white/20 cursor-not-allowed",
+                    : "border-white/60 cursor-not-allowed",
                   isAnimating && "animate-pulse"
                 )}
               >
@@ -143,7 +143,7 @@ export default function C101LabCanvas({
                     <div className="text-xs text-neon-green font-mono">{sub.realName}</div>
                   )}
                   {hasTests && (
-                    <div className="mt-2 text-[10px] text-white/40">
+                    <div className="mt-2 text-[10px] text-white/90">
                       {testedReactions.filter(t => t.substance === sub.id).length} tests
                     </div>
                   )}
@@ -167,7 +167,7 @@ export default function C101LabCanvas({
                   "p-4 border-2 rounded-xl transition-all",
                   selectedTool === tool.id
                     ? `border-${tool.color} bg-${tool.color}/10`
-                    : "border-white/20 hover:border-white/40"
+                    : "border-white/60 hover:border-white/40"
                 )}
               >
                 <div className="text-4xl mb-2">{tool.icon}</div>
@@ -183,7 +183,7 @@ export default function C101LabCanvas({
         <div className="text-xs text-white/60 uppercase tracking-wider mb-4">Lab Notes</div>
         <div className="space-y-2 max-h-40 overflow-y-auto">
           {testedReactions.length === 0 ? (
-            <div className="text-sm text-white/40 italic">No tests performed yet...</div>
+            <div className="text-sm text-white/90 italic">No tests performed yet...</div>
           ) : (
             testedReactions.map((test, i) => {
               const sub = substances.find(s => s.id === test.substance);

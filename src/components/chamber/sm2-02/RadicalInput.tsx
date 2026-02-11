@@ -23,7 +23,7 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
             const kk = Number(e.target.value.trim());
             onChange({ k: Number.isFinite(kk) ? kk : 0, m: value.m });
           }}
-          className="w-20 bg-black border-2 border-neon-cyan/40 p-3 text-center outline-none focus:border-neon-cyan placeholder:text-white/30 font-black text-2xl text-white"
+          className="w-20 bg-black border-2 border-neon-cyan/40 p-3 text-center outline-none focus:border-neon-cyan placeholder:text-white/70 font-black text-2xl text-white"
           inputMode="numeric"
           placeholder="?"
         />
@@ -37,7 +37,7 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
             const mm = Number(e.target.value.trim());
             onChange({ k: value.k, m: Number.isFinite(mm) ? mm : 0 });
           }}
-          className="w-20 bg-black border-2 border-neon-green/40 p-3 text-center outline-none focus:border-neon-green placeholder:text-white/30 font-black text-2xl text-white"
+          className="w-20 bg-black border-2 border-neon-green/40 p-3 text-center outline-none focus:border-neon-green placeholder:text-white/70 font-black text-2xl text-white"
           inputMode="numeric"
           placeholder="?"
         />

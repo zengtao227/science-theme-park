@@ -225,7 +225,7 @@ export default function GP5_01_AtomicCore() {
                                         </span>
                                         {i < decayChain.length - 1 && (
                                             <>
-                                                <span className="text-gray-400">→</span>
+                                                <span className="text-white">→</span>
                                                 <span className="text-red-400 text-xs">{step.mode}</span>
                                             </>
                                         )}

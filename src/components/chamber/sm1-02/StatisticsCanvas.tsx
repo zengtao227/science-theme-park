@@ -25,16 +25,16 @@ export default function S102_StatisticsCanvas({ data, type, label }: StatisticsC
     if (type === 'PROBABILITY') {
         return (
             <div className="w-full aspect-video bg-[#0a0a0a] rounded-lg border border-white/10 flex flex-col items-center justify-center gap-4 p-6 overflow-hidden relative">
-                <div className="absolute top-2 left-2 text-[8px] font-black text-white/20 uppercase tracking-widest">PROBABILITY ENGINE</div>
+                <div className="absolute top-2 left-2 text-[8px] font-black text-white/60 uppercase tracking-widest">PROBABILITY ENGINE</div>
                 <div className="flex gap-8">
                     <div className="w-20 h-20 rounded-full border-4 border-dashed border-white/10 flex items-center justify-center animate-spin-slow">
-                        <div className="w-12 h-12 rounded-full bg-white/5 border border-white/20 flex items-center justify-center">
-                            <span className="text-white/40 font-black text-xl">?</span>
+                        <div className="w-12 h-12 rounded-full bg-white/5 border border-white/60 flex items-center justify-center">
+                            <span className="text-white/90 font-black text-xl">?</span>
                         </div>
                     </div>
                 </div>
                 <div className="text-center">
-                    <div className="text-[10px] text-white/50 uppercase tracking-[0.3em] font-black">{label}</div>
+                    <div className="text-[10px] text-white uppercase tracking-[0.3em] font-black">{label}</div>
                 </div>
             </div>
         );
@@ -43,7 +43,7 @@ export default function S102_StatisticsCanvas({ data, type, label }: StatisticsC
     if (!data || data.length === 0) {
         return (
             <div className="w-full aspect-video bg-[#0a0a0a] rounded-lg border border-white/10 flex items-center justify-center">
-                <span className="text-white/20 text-[10px] uppercase font-black tracking-widest">Waiting for data...</span>
+                <span className="text-white/60 text-[10px] uppercase font-black tracking-widest">Waiting for data...</span>
             </div>
         );
     }
@@ -54,15 +54,15 @@ export default function S102_StatisticsCanvas({ data, type, label }: StatisticsC
     return (
         <div className="w-full bg-[#0a0a0a] rounded-lg border border-white/10 p-6 space-y-4">
             <div className="flex justify-between items-center mb-2">
-                <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Data Distribution</span>
+                <span className="text-[8px] font-black text-white/90 uppercase tracking-widest">Data Distribution</span>
                 <div className="flex gap-3">
                     <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-neon-purple rounded-full"></div>
-                        <span className="text-[8px] text-white/40 uppercase">Mean</span>
+                        <span className="text-[8px] text-white/90 uppercase">Mean</span>
                     </div>
                     <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-white/60 rounded-full"></div>
-                        <span className="text-[8px] text-white/40 uppercase">Median</span>
+                        <span className="text-[8px] text-white/90 uppercase">Median</span>
                     </div>
                 </div>
             </div>
@@ -107,11 +107,11 @@ export default function S102_StatisticsCanvas({ data, type, label }: StatisticsC
 
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white/[0.03] border border-white/5 p-2 rounded">
-                    <div className="text-[8px] text-white/30 uppercase tracking-widest mb-1">Mean Value</div>
+                    <div className="text-[8px] text-white/70 uppercase tracking-widest mb-1">Mean Value</div>
                     <div className="text-sm font-black text-neon-purple">{stats?.mean.toFixed(2)}</div>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 p-2 rounded">
-                    <div className="text-[8px] text-white/30 uppercase tracking-widest mb-1">Median Value</div>
+                    <div className="text-[8px] text-white/70 uppercase tracking-widest mb-1">Median Value</div>
                     <div className="text-sm font-black text-white">{stats?.median}</div>
                 </div>
             </div>

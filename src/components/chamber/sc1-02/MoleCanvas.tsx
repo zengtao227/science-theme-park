@@ -439,7 +439,7 @@ export default function MoleCanvas({
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${status === "correct" ? "bg-green-400" : status === "incorrect" ? "bg-pink-400" : "bg-cyan-400"
           }`} />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Mole_Master v2.0
         </span>
       </div>
@@ -457,8 +457,8 @@ export default function MoleCanvas({
       )}
 
       {/* Instructions */}
-      <div className="absolute bottom-4 left-4 right-4 bg-black/70 border border-white/20 rounded-lg px-4 py-3">
-        <div className="text-[10px] text-white/50 uppercase tracking-wider mb-2">
+      <div className="absolute bottom-4 left-4 right-4 bg-black/70 border border-white/60 rounded-lg px-4 py-3">
+        <div className="text-[10px] text-white uppercase tracking-wider mb-2">
           Stoichiometry Lab
         </div>
         <div className="text-[9px] text-white/70 space-y-1">
@@ -469,7 +469,7 @@ export default function MoleCanvas({
       </div>
 
       {/* Module info */}
-      <div className="absolute top-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute top-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // C1.02<br />
         MOLE_BALANCE: ACTIVE<br />
         STATUS: {status.toUpperCase()}

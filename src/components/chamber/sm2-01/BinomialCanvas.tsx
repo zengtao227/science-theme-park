@@ -342,21 +342,21 @@ export default function S201BinomialCanvas({
         <button
           onClick={() => setExploded(true)}
           disabled={exploded}
-          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
           展开
         </button>
         <button
           onClick={() => setExploded(false)}
           disabled={!exploded}
-          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
           收起
         </button>
       </div>
 
       {/* Fixed Formula Display - Does NOT rotate with 3D */}
-      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/20 backdrop-blur-md">
+      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
         <div className="text-white font-mono text-sm space-y-2">
           <div className="text-neon-cyan font-bold text-base">(a+b)³ = a³ + 3a²b + 3ab² + b³</div>
           <div className="text-white/60 text-xs">
@@ -366,7 +366,7 @@ export default function S201BinomialCanvas({
       </div>
 
       {/* Color Legend - Fixed Position */}
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/20 backdrop-blur-sm">
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
         <div className="text-white/60 font-bold mb-2">颜色编码</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
@@ -384,13 +384,13 @@ export default function S201BinomialCanvas({
           <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
           <span className="text-[#39ff14]">b³ = {b ** 3} units³</span>
         </div>
-        <div className="text-white font-bold mt-2 pt-2 border-t border-white/20">
+        <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
           总计: {(a + b) ** 3} units³
         </div>
       </div>
 
       {/* Status Indicator */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S2.01<br />
         3D_VOLUME_PROOF<br />
         MODE: {exploded ? 'EXPLODED' : 'ASSEMBLED'}
@@ -398,13 +398,13 @@ export default function S201BinomialCanvas({
 
       {/* Volume conservation indicator */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-        <div className="text-[10px] font-mono text-white/20 uppercase tracking-wider text-center">
+        <div className="text-[10px] font-mono text-white/60 uppercase tracking-wider text-center">
           Volume Conservation
         </div>
         <div className="text-4xl font-black text-green-400 text-center">
           ✓
         </div>
-        <div className="text-[12px] font-mono text-white/30 text-center">
+        <div className="text-[12px] font-mono text-white/70 text-center">
           {(a + b) ** 3} = {(a + b) ** 3}
         </div>
       </div>

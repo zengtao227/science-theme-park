@@ -142,9 +142,9 @@ export default function S203_FunctionCanvas({
             />
             <div className="absolute top-4 left-4 flex gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
-                <div className="text-[8px] font-black text-white/40 uppercase tracking-[0.3em]">Matrix Visualizer v2.0</div>
+                <div className="text-[8px] font-black text-white/90 uppercase tracking-[0.3em]">Matrix Visualizer v2.0</div>
             </div>
-            <div className="absolute bottom-4 right-4 text-[7px] font-mono text-white/20 uppercase tracking-widest text-right">
+            <div className="absolute bottom-4 right-4 text-[7px] font-mono text-white/60 uppercase tracking-widest text-right">
                 CHART_MODE: CARTESIAN<br />
                 RENDER_ENGINE: 2D_NEON_CORE
             </div>

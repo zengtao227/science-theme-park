@@ -60,7 +60,7 @@ export default function ScienceRadar({ logic, intuition, rigor, experiment, labe
       <div className="scanning-line-vertical" />
       <div className="flex items-center justify-between">
         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{labels.title}</div>
-        <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-black">
+        <div className="text-[10px] uppercase tracking-[0.3em] text-white/90 font-black">
           {Math.round((logic + intuition + rigor + experiment) * 25)}%
         </div>
       </div>

@@ -306,7 +306,7 @@ export default function CoordinateCanvas2D({
               <div className="text-cyan-400 font-bold text-sm">
                 = {slope.toFixed(2)}
               </div>
-              <div className="text-white/50 text-xs mt-3 pt-3 border-t border-white/20">
+              <div className="text-white text-xs mt-3 pt-3 border-t border-white/60">
                 直线方程: y = {slope.toFixed(2)}x + {b.toFixed(2)}
               </div>
             </div>
@@ -317,13 +317,13 @@ export default function CoordinateCanvas2D({
       {/* 控制按钮 */}
       <button
         onClick={() => setShowFormula(!showFormula)}
-        className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-cyan-400/50 transition-all text-xs font-mono backdrop-blur-sm"
+        className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-cyan-400/50 transition-all text-xs font-mono backdrop-blur-sm"
       >
         {showFormula ? "隐藏公式" : "显示公式"}
       </button>
 
       {/* 状态指示 */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // SM2.07<br />
         COORDINATE_GEOMETRY<br />
         MODE: {stage}

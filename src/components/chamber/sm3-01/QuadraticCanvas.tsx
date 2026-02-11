@@ -432,7 +432,7 @@ export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
   if (!quest) {
     return (
       <div className="w-full h-full relative flex items-center justify-center bg-[#020208] rounded-xl border border-white/10">
-        <div className="text-white/40 text-center p-8">No quadratic data</div>
+        <div className="text-white/90 text-center p-8">No quadratic data</div>
       </div>
     );
   }
@@ -476,12 +476,12 @@ export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
       {/* HUD Overlay */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Parabolic_Scanner v3.0
         </span>
       </div>
 
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white/50">
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white">
         <div className="text-red-400">ax²: coefficient = {quest.a ?? 1}</div>
         <div className="text-cyan-400">bx: coefficient = {quest.b ?? 0}</div>
         <div className="text-green-400">c: constant = {quest.c ?? 0}</div>
@@ -490,19 +490,19 @@ export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S3.01<br />
         3D_QUADRATIC_SPACE<br />
         SCAN_MODE: ACTIVE
       </div>
 
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Quadratic Functions 3D
       </div>
 
       {/* Component legend */}
       <div className="absolute top-1/2 right-4 -translate-y-1/2 space-y-2">
-        <div className="text-[10px] font-mono text-white/30 uppercase tracking-wider text-right">
+        <div className="text-[10px] font-mono text-white/70 uppercase tracking-wider text-right">
           Components
         </div>
         <div className="space-y-1 text-right">

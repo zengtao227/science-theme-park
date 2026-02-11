@@ -650,12 +650,12 @@ export default function P301OpticsCanvas({
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Photon_Tracer v3.0
         </span>
       </div>
       
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white/50">
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white">
         <div className="text-cyan-400">Mode: {scenario.toUpperCase()}</div>
         {scenario !== "lens" && scenario !== "prism" && (
           <>
@@ -668,13 +668,13 @@ export default function P301OpticsCanvas({
         )}
       </div>
       
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // P3.01<br />
         RAY_TRACING: ACTIVE<br />
         GLASS_PHYSICS: ENABLED
       </div>
       
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Optics Lab 3D
       </div>
     </div>

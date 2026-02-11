@@ -364,7 +364,7 @@ export default function GaltonCanvas({
         <div className="text-2xl font-mono text-white font-black">
           p = {probability.toFixed(2)}
         </div>
-        <div className="text-[9px] text-white/40 mt-1">
+        <div className="text-[9px] text-white/90 mt-1">
           Expected: μ = {(rows * probability).toFixed(1)}
         </div>
       </div>
@@ -381,7 +381,7 @@ export default function GaltonCanvas({
       </div>
       
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // G3.01<br />
         GALTON_SIM: {isRunning ? "ACTIVE" : "STANDBY"}<br />
         QUANTUM_MODE: PROBABILISTIC

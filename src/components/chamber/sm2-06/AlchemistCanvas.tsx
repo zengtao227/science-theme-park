@@ -101,7 +101,7 @@ function PotionVat({
             </Text>
 
             <Html position={[0, -2, 0]} center>
-                <div className={`px-2 py-1 rounded text-[10px] font-mono whitespace-nowrap transition-colors ${isBalanced ? 'bg-green-500 text-black font-bold' : 'bg-black/80 text-white/40'}`}>
+                <div className={`px-2 py-1 rounded text-[10px] font-mono whitespace-nowrap transition-colors ${isBalanced ? 'bg-green-500 text-black font-bold' : 'bg-black/80 text-white/90'}`}>
                     {equation.a}x + {equation.b}y = {currentValue.toFixed(1)} / {equation.c}
                 </div>
             </Html>
@@ -225,7 +225,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
             {/* Header Overlay */}
             <div className="absolute top-4 left-6 flex items-center gap-3">
                 <div className={`w-2 h-2 rounded-full ${isAllBalanced ? 'bg-green-400 shadow-[0_0_10px_#4ade80]' : 'bg-red-500 animate-pulse'}`} />
-                <span className="text-[10px] font-mono text-white/40 tracking-[0.4em] uppercase">
+                <span className="text-[10px] font-mono text-white/90 tracking-[0.4em] uppercase">
                     Alchemy_Stabilizer v1.2 //
                     <span className={isAllBalanced ? 'text-green-400' : 'text-red-400'}>
                         {isAllBalanced ? ' STABLE' : ' UNSTABLE'}
@@ -235,7 +235,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
 
             <div className="absolute bottom-6 right-6 text-right space-y-1">
                 <div className="text-[12px] font-black text-white italic tracking-tighter">THE ALCHEMIST LAB</div>
-                <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest">Equilibrium Finder</div>
+                <div className="text-[8px] font-mono text-white/60 uppercase tracking-widest">Equilibrium Finder</div>
             </div>
 
             {isAllBalanced && (

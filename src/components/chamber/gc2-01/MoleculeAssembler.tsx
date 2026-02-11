@@ -372,7 +372,7 @@ export default function MoleculeAssembler({ onMoleculeChange }: MoleculeAssemble
               }}
               className={`px-4 py-2 rounded border font-black transition-all ${selectedTool === type
                 ? "border-neon-cyan bg-neon-cyan/20 text-neon-cyan"
-                : "border-white/20 bg-white/5 text-white/60 hover:border-white/40"
+                : "border-white/60 bg-white/5 text-white/60 hover:border-white/40"
                 }`}
               disabled={!selectedAtomId}
             >
@@ -390,7 +390,7 @@ export default function MoleculeAssembler({ onMoleculeChange }: MoleculeAssemble
         </button>
         <button
           onClick={resetMolecule}
-          className="px-4 py-2 rounded border border-white/20 bg-white/5 text-white/60 font-black hover:border-white/40 transition-all"
+          className="px-4 py-2 rounded border border-white/60 bg-white/5 text-white/60 font-black hover:border-white/40 transition-all"
         >
           RESET
         </button>

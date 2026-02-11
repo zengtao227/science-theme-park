@@ -261,7 +261,7 @@ export default function S203Page() {
               {level === 2 && (t?.hints?.level2 || "Two plans have different m and c. Find the distance x where they cost the same: m\u2081x + c\u2081 = m\u2082x + c\u2082.")}
               {level === 3 && (t?.hints?.level3 || "Find the distance threshold where Plan A becomes cheaper than Plan B.")}
             </div>
-            <div className="text-white/50 text-xs font-mono">
+            <div className="text-white text-xs font-mono">
               {t?.hints?.drag || "Enter your answer in the input field below."}
             </div>
             <div className="text-white font-black text-lg">
@@ -302,7 +302,7 @@ export default function S203Page() {
           <div className="grid grid-cols-2 gap-4">
             {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="space-y-2">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                   <InlineMath math={slot.labelLatex} />
                 </div>
                 <div className="flex items-center gap-3">
@@ -311,7 +311,7 @@ export default function S203Page() {
                     step="0.01"
                     value={inputs[slot.id] ?? ""}
                     onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                    className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
+                    className="flex-1 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
                     placeholder={slot.placeholder}
                   />
                 </div>
@@ -319,7 +319,7 @@ export default function S203Page() {
             ))}
           </div>
           <div className="text-center">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {t?.ui?.hits || "Hits"}: {hits}
             </div>
           </div>

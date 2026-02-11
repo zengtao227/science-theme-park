@@ -279,7 +279,7 @@ export default function ThermalCanvas({
       {/* Temperature control */}
       <div className="absolute bottom-4 left-4 right-4 space-y-2">
         <div className="flex justify-between items-center">
-          <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider">
+          <span className="text-[10px] font-mono text-white uppercase tracking-wider">
             Temperature (°C)
           </span>
           <span className="text-[10px] font-mono text-cyan-400">
@@ -302,7 +302,7 @@ export default function ThermalCanvas({
                      [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(0,229,255,0.5)]
                      [&::-webkit-slider-thumb]:cursor-pointer"
         />
-        <div className="flex justify-between text-[8px] text-white/30 font-mono">
+        <div className="flex justify-between text-[8px] text-white/70 font-mono">
           <span>ICE (-50°C)</span>
           <span>WATER (0-100°C)</span>
           <span>STEAM (150°C)</span>
@@ -317,7 +317,7 @@ export default function ThermalCanvas({
         <div className="text-lg font-mono text-white font-black">
           {localPhase.toUpperCase()}
         </div>
-        <div className="text-[8px] text-white/50">
+        <div className="text-[8px] text-white">
           {localPhase === "solid" && "Cubic lattice structure"}
           {localPhase === "liquid" && "Fluid dynamics active"}
           {localPhase === "gas" && "High-energy chaos"}
@@ -332,13 +332,13 @@ export default function ThermalCanvas({
         <div className="text-[11px] font-mono text-white">
           Q = mcΔT
         </div>
-        <div className="text-[9px] text-white/40 mt-1">
+        <div className="text-[9px] text-white/90 mt-1">
           m = {mass}kg
         </div>
       </div>
 
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // P2.01<br />
         THERMAL_SIM: ACTIVE<br />
         PARTICLES: 200

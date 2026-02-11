@@ -374,7 +374,7 @@ export default function TrigonometryCanvas({
             className={`px-3 py-1 rounded text-[9px] font-mono uppercase tracking-wider transition-colors ${
               localMode === m
                 ? "bg-cyan-400 text-black"
-                : "bg-black/70 text-white/50 border border-white/20 hover:text-white/80"
+                : "bg-black/70 text-white border border-white/60 hover:text-white/80"
             }`}
           >
             {m}
@@ -406,7 +406,7 @@ export default function TrigonometryCanvas({
       {/* Angle slider */}
       <div className="absolute bottom-4 left-4 right-4 space-y-2">
         <div className="flex justify-between items-center">
-          <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider">
+          <span className="text-[10px] font-mono text-white uppercase tracking-wider">
             Angle (θ)
           </span>
           <span className="text-[10px] font-mono text-cyan-400">
@@ -432,7 +432,7 @@ export default function TrigonometryCanvas({
       </div>
       
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         TRIG_TOWER<br />
         MODE: {localMode.toUpperCase()}<br />
         θ = {localAngle.toFixed(0)}°

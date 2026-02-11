@@ -168,7 +168,7 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
         className="w-full h-full"
       />
 
-      <div className="absolute top-4 right-4 text-white/40 text-[10px] uppercase font-mono tracking-widest">
+      <div className="absolute top-4 right-4 text-white/90 text-[10px] uppercase font-mono tracking-widest">
         Fluid Dynamic Proof
       </div>
 

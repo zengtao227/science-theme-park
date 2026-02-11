@@ -247,7 +247,7 @@ export default function LaserCanvas({
       )}
 
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         {labels?.chamber || "CHAMBER"} {"//"} S2.03<br />
         {labels?.laser_sim || "LASER_SIM"}: ACTIVE<br />
         {labels?.level || "LEVEL"}: {level}

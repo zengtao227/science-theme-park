@@ -120,7 +120,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                 </div>
             </div>
 
-            <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right uppercase">
+            <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
                 2D Geometry Proof<br />
                 S2.01 Binomial factory<br />
                 Node: Zurich

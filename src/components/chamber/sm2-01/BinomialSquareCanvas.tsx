@@ -237,21 +237,21 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
         <button
           onClick={() => setExploded(true)}
           disabled={exploded}
-          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
           展开
         </button>
         <button
           onClick={() => setExploded(false)}
           disabled={!exploded}
-          className="px-4 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
           收起
         </button>
       </div>
 
       {/* 固定公式显示 */}
-      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/20 backdrop-blur-md">
+      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
         <div className="text-white font-mono text-sm space-y-2">
           <div className="text-neon-cyan font-bold text-base">(a+b)² = a² + 2ab + b²</div>
           <div className="text-white/60 text-xs">
@@ -261,7 +261,7 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
       </div>
 
       {/* 颜色图例 */}
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/20 backdrop-blur-sm">
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
         <div className="text-white/60 font-bold mb-2">颜色编码</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
@@ -275,13 +275,13 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
           <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
           <span className="text-[#39ff14]">b² = {b * b}</span>
         </div>
-        <div className="text-white font-bold mt-2 pt-2 border-t border-white/20">
+        <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
           总计: {(a + b) ** 2}
         </div>
       </div>
 
       {/* 状态指示 */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S2.01<br />
         BINOMIAL_SQUARE<br />
         MODE: {exploded ? 'EXPLODED' : 'ASSEMBLED'}

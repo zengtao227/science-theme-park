@@ -59,7 +59,7 @@ export default function MasteryRadar({ conceptual, speed, rigor, decay, labels }
     >
       <div className="flex items-center justify-between mb-4">
         <div className="text-[9px] uppercase tracking-[0.35em] text-white/60 font-black">{labels.title}</div>
-        <div className="text-[9px] uppercase tracking-[0.25em] text-white/40 font-black">
+        <div className="text-[9px] uppercase tracking-[0.25em] text-white/90 font-black">
           {labels.decay}: {Math.round(decay * 100)}%
         </div>
       </div>

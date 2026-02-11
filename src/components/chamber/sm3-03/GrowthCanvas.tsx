@@ -296,7 +296,7 @@ export default function GrowthCanvas({
       {/* Time control */}
       <div className="absolute bottom-4 left-4 right-4 space-y-2">
         <div className="flex justify-between items-center">
-          <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider">
+          <span className="text-[10px] font-mono text-white uppercase tracking-wider">
             Time (hours)
           </span>
           <span className="text-[10px] font-mono text-green-400">
@@ -319,7 +319,7 @@ export default function GrowthCanvas({
                      [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(57,255,20,0.5)]
                      [&::-webkit-slider-thumb]:cursor-pointer"
         />
-        <div className="flex justify-between text-[8px] text-white/30 font-mono">
+        <div className="flex justify-between text-[8px] text-white/70 font-mono">
           <span>0h</span>
           <span>{(maxTime / 2).toFixed(0)}h</span>
           <span>{maxTime.toFixed(0)}h</span>
@@ -346,13 +346,13 @@ export default function GrowthCanvas({
         <div className="text-[11px] font-mono text-white">
           N(t) = N₀ · 2^(t/d)
         </div>
-        <div className="text-[9px] text-white/40 mt-1">
+        <div className="text-[9px] text-white/90 mt-1">
           Semi-log plot
         </div>
       </div>
 
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S3.03<br />
         GROWTH_SIM: ACTIVE<br />
         BACTERIA: {bacteriaCount}

@@ -57,7 +57,7 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
               </div>
               <button
                 onClick={onClose}
-                className="w-10 h-10 min-h-[44px] min-w-[44px] flex items-center justify-center border border-white/20 hover:border-white/50 transition-all"
+                className="w-10 h-10 min-h-[44px] min-w-[44px] flex items-center justify-center border border-white/60 hover:border-white/50 transition-all"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -78,19 +78,19 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
                   >
                     <div className={clsx(
                       "w-11 h-11 rounded-xl border flex items-center justify-center",
-                      unlocked ? "border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan" : "border-white/10 text-white/30"
+                      unlocked ? "border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan" : "border-white/10 text-white/70"
                     )}>
                       {unlocked ? <Award className="w-5 h-5" /> : <Lock className="w-5 h-5" />}
                     </div>
                     <div className="flex-1">
-                      <div className={clsx("text-sm font-black", unlocked ? "text-white" : "text-white/40")}>
+                      <div className={clsx("text-sm font-black", unlocked ? "text-white" : "text-white/90")}>
                         {common.achievements[id].title}
                       </div>
-                      <div className={clsx("text-xs font-mono mt-1", unlocked ? "text-white/60" : "text-white/30")}>
+                      <div className={clsx("text-xs font-mono mt-1", unlocked ? "text-white/60" : "text-white/70")}>
                         {common.achievements[id].description}
                       </div>
                       {record?.timestamp && (
-                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-black mt-3">
+                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/70 font-black mt-3">
                           {new Date(record.timestamp).toLocaleString(
                             currentLanguage === "CN" ? "zh-CN" : currentLanguage === "DE" ? "de-DE" : "en-US",
                             { hour12: false }

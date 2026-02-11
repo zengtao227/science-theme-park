@@ -178,8 +178,8 @@ export default function S101_GeometryCanvas({
 
             {/* Status Indicator */}
             <div className="absolute top-4 right-4 flex items-center gap-2">
-                <div className={`w-1.5 h-1.5 rounded-full ${userAnswer === undefined ? 'bg-white/20' : (isCorrect ? 'bg-neon-green animate-pulse shadow-[0_0_8px_#39ff14]' : 'bg-neon-red shadow-[0_0_8px_#ff3131]')}`} />
-                <span className="text-[7px] font-mono text-white/30 uppercase tracking-[0.2em]">{userAnswer === undefined ? 'Pending' : (isCorrect ? 'Verified' : 'Error')}</span>
+                <div className={`w-1.5 h-1.5 rounded-full ${userAnswer === undefined ? 'bg-white/60' : (isCorrect ? 'bg-neon-green animate-pulse shadow-[0_0_8px_#39ff14]' : 'bg-neon-red shadow-[0_0_8px_#ff3131]')}`} />
+                <span className="text-[7px] font-mono text-white/70 uppercase tracking-[0.2em]">{userAnswer === undefined ? 'Pending' : (isCorrect ? 'Verified' : 'Error')}</span>
             </div>
 
         </div>

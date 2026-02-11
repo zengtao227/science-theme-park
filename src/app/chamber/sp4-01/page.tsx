@@ -82,7 +82,7 @@ export default function SP4_01_WaveBasics() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     waveType === "transverse"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400 hover:border-cyan-500/50"
+                                        : "border-gray-600 text-white hover:border-cyan-500/50"
                                 }`}
                             >
                                 {t("sp4_01.labels.transverse")}
@@ -92,7 +92,7 @@ export default function SP4_01_WaveBasics() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     waveType === "longitudinal"
                                         ? "border-green-500 bg-green-500/20 text-green-300"
-                                        : "border-gray-600 text-gray-400 hover:border-green-500/50"
+                                        : "border-gray-600 text-white hover:border-green-500/50"
                                 }`}
                             >
                                 {t("sp4_01.labels.longitudinal")}

@@ -175,7 +175,7 @@ export default function SC104Page() {
           {stage === "build" && (
             <>
               <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                   {t?.labels?.protons || "PROTONS"}
                 </div>
                 <div className="flex items-center gap-4">
@@ -193,7 +193,7 @@ export default function SC104Page() {
               </div>
 
               <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                   {t?.labels?.neutrons || "NEUTRONS"}
                 </div>
                 <div className="flex items-center gap-4">
@@ -211,7 +211,7 @@ export default function SC104Page() {
               </div>
 
               <div className="space-y-4">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                   {t?.labels?.electrons || "ELECTRONS"}
                 </div>
                 <div className="flex items-center gap-4">
@@ -232,7 +232,7 @@ export default function SC104Page() {
 
           {stage === "periodic" && (
             <div className="space-y-4">
-              <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                 {t?.labels?.select_element || "SELECT ELEMENT"}
               </div>
               <div className="grid grid-cols-5 gap-2">
@@ -243,7 +243,7 @@ export default function SC104Page() {
                     className={`p-3 border-2 rounded-lg font-black transition-all ${
                       selectedElement === index
                         ? "border-neon-cyan bg-neon-cyan/20 text-neon-cyan"
-                        : "border-white/20 bg-white/5 text-white hover:border-white/40"
+                        : "border-white/60 bg-white/5 text-white hover:border-white/40"
                     }`}
                   >
                     <div className="text-xs">{element.protons}</div>
@@ -255,7 +255,7 @@ export default function SC104Page() {
           )}
 
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {stage === "build" && (t?.stages?.build_hint || "Proton number determines the element")}
               {stage === "periodic" && (t?.stages?.periodic_hint || "Elements are arranged by atomic number")}
               {stage === "groups" && (t?.stages?.groups_hint || "Same group = same valence electrons")}

@@ -32,7 +32,7 @@ export default function Canvas3DControls({
         <div className="relative">
           <button
             onClick={() => setShowHelp(!showHelp)}
-            className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/60 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm"
+            className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/60 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm"
           >
             <Info className="w-4 h-4" />
             <span>使用说明</span>
@@ -40,7 +40,7 @@ export default function Canvas3DControls({
 
           {/* 使用说明面板 - 向左展开 */}
           {showHelp && (
-            <div className="absolute top-12 right-0 bg-black/90 border border-white/20 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md w-64">
+            <div className="absolute top-12 right-0 bg-black/90 border border-white/60 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md w-64">
               <div className="font-bold text-neon-green mb-3 text-sm">3D 控制说明</div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
@@ -65,7 +65,7 @@ export default function Canvas3DControls({
                   </div>
                 </div>
               </div>
-              <div className="mt-3 pt-3 border-t border-white/10 text-white/50 text-[10px]">
+              <div className="mt-3 pt-3 border-t border-white/10 text-white text-[10px]">
                 提示：拖动时可以从任意角度观察3D模型
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function Canvas3DControls({
       {/* Reset按钮 - 放在右边 */}
       <button
         onClick={onReset}
-        className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/20 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm"
+        className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm"
         title={instructionsText.reset}
       >
         <RotateCcw className="w-4 h-4" />

@@ -109,7 +109,7 @@ export default function SC1_03_AtomsForge() {
                                 className={`px-3 py-2 border transition-colors ${
                                     orbitalType === "s"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400 hover:border-cyan-500/50"
+                                        : "border-gray-600 text-white hover:border-cyan-500/50"
                                 }`}
                             >
                                 s
@@ -119,7 +119,7 @@ export default function SC1_03_AtomsForge() {
                                 className={`px-3 py-2 border transition-colors ${
                                     orbitalType === "p"
                                         ? "border-purple-500 bg-purple-500/20 text-purple-300"
-                                        : "border-gray-600 text-gray-400 hover:border-purple-500/50"
+                                        : "border-gray-600 text-white hover:border-purple-500/50"
                                 }`}
                             >
                                 p
@@ -129,7 +129,7 @@ export default function SC1_03_AtomsForge() {
                                 className={`px-3 py-2 border transition-colors ${
                                     orbitalType === "d"
                                         ? "border-pink-500 bg-pink-500/20 text-pink-300"
-                                        : "border-gray-600 text-gray-400 hover:border-pink-500/50"
+                                        : "border-gray-600 text-white hover:border-pink-500/50"
                                 }`}
                             >
                                 d
@@ -162,7 +162,7 @@ export default function SC1_03_AtomsForge() {
                                     className={`px-2 py-2 border text-xs transition-colors ${
                                         selectedElement.z === elem.z
                                             ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                            : "border-gray-700 text-gray-400 hover:border-cyan-500/50"
+                                            : "border-gray-700 text-white hover:border-cyan-500/50"
                                     }`}
                                 >
                                     <div className="font-bold">{elem.symbol}</div>

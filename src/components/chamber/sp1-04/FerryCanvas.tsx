@@ -97,7 +97,7 @@ export default function P104_FerryCanvas({ angle, positionX }: FerryCanvasProps)
 
             {/* HUD Overlay */}
             <div className="absolute top-4 right-4 text-right font-mono space-y-1">
-                <div className="text-[10px] text-white/30 uppercase tracking-widest">Hydraulic Monitor</div>
+                <div className="text-[10px] text-white/70 uppercase tracking-widest">Hydraulic Monitor</div>
                 <div className="text-xs text-neon-cyan">CURRENT: 2.4 m/s</div>
                 <div className="text-xs text-neon-green">LIFT: {(Math.sin(THREE.MathUtils.degToRad(angle)) * 1.5).toFixed(2)} kN</div>
             </div>

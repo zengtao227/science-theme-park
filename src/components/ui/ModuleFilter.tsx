@@ -44,7 +44,7 @@ export default function ModuleFilter({
   return (
     <div className="space-y-5">
       <div className="flex flex-col md:flex-row md:items-center gap-4">
-        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">{label}</div>
+        <div className="text-[10px] uppercase tracking-[0.4em] text-white font-black">{label}</div>
         <motion.div
           className="relative flex-1 min-w-[240px]"
           animate={{ maxWidth: expanded ? 640 : 420 }}
@@ -82,7 +82,7 @@ export default function ModuleFilter({
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <div className="text-[9px] uppercase tracking-[0.4em] text-white/40 font-black">{tagsLabel}</div>
+        <div className="text-[9px] uppercase tracking-[0.4em] text-white/90 font-black">{tagsLabel}</div>
         {tags.map((tag) => {
           const active = selectedTags.includes(tag.id);
           return (

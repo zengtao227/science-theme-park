@@ -150,7 +150,7 @@ function PeaPlant({ genotype, label }: { genotype: Genotype; label: string }) {
 
     return (
         <div className="flex flex-col items-center space-y-2">
-            <div className="text-xs text-gray-400">{label}</div>
+            <div className="text-xs text-white">{label}</div>
             <div className="relative w-20 h-24">
                 {/* Stem */}
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-16 bg-green-600"></div>
@@ -167,7 +167,7 @@ function PeaPlant({ genotype, label }: { genotype: Genotype; label: string }) {
                 ></div>
             </div>
             <div className="text-sm font-bold text-cyan-300">{normalized}</div>
-            <div className="text-xs text-gray-400">{isPurple ? "Purple" : "White"}</div>
+            <div className="text-xs text-white">{isPurple ? "Purple" : "White"}</div>
         </div>
     );
 }
@@ -190,7 +190,7 @@ export default function GeneticsLab({ parent1, parent2, onParent1Change, onParen
                                 className={`w-full px-3 py-2 border transition-colors ${
                                     parent1 === g
                                         ? "border-purple-400 bg-purple-500/30 text-purple-200"
-                                        : "border-gray-600 text-gray-400 hover:border-purple-500/50"
+                                        : "border-gray-600 text-white hover:border-purple-500/50"
                                 }`}
                             >
                                 {g}
@@ -210,7 +210,7 @@ export default function GeneticsLab({ parent1, parent2, onParent1Change, onParen
                                 className={`w-full px-3 py-2 border transition-colors ${
                                     parent2 === g
                                         ? "border-cyan-400 bg-cyan-500/30 text-cyan-200"
-                                        : "border-gray-600 text-gray-400 hover:border-cyan-500/50"
+                                        : "border-gray-600 text-white hover:border-cyan-500/50"
                                 }`}
                             >
                                 {g}

@@ -148,7 +148,7 @@ export default function P503Page() {
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t?.labels?.beam_energy || "BEAM ENERGY (TeV)"}
             </div>
             <div className="flex items-center gap-4">
@@ -191,7 +191,7 @@ export default function P503Page() {
           </div>
 
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {stage === "acceleration" && (t?.stages?.acceleration_hint || "Protons reach 99.9999991% speed of light")}
               {stage === "collision" && (t?.stages?.collision_hint || "Collision energy: 13 TeV = 13,000 GeV")}
               {stage === "detection" && (t?.stages?.detection_hint || "Magnetic field bends charged particle tracks")}

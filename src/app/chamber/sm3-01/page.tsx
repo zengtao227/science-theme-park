@@ -586,7 +586,7 @@ export default function S301Page() {
           </div>
 
           <div className="flex justify-center overflow-x-auto w-full">
-            <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
+            <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
               <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
               <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
               <div className="space-y-4">
@@ -608,7 +608,7 @@ export default function S301Page() {
               <div className="space-y-4">
                 {currentQuest.slotGroups.map((group) => (
                   <div key={group.titleLatex} className="space-y-3">
-                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                       <InlineMath math={group.titleLatex} />
                     </div>
                     <div className={clsx("grid gap-4", group.slotIds.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
@@ -617,13 +617,13 @@ export default function S301Page() {
                         if (!slot) return null;
                         return (
                           <div key={slot.id} className="space-y-2">
-                            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                               <InlineMath math={slot.labelLatex} />
                             </div>
                             <input
                               value={inputs[slot.id] ?? ""}
                               onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                              className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                              className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                               placeholder={slot.placeholder}
                               inputMode="text"
                             />
@@ -638,13 +638,13 @@ export default function S301Page() {
               <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
                 {currentQuest.slots.map((slot) => (
                   <div key={slot.id} className="space-y-2">
-                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                       <InlineMath math={slot.labelLatex} />
                     </div>
                     <input
                       value={inputs[slot.id] ?? ""}
                       onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                      className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                      className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                       placeholder={slot.placeholder}
                       inputMode="text"
                     />
@@ -653,12 +653,12 @@ export default function S301Page() {
               </div>
             )}
 
-            <div className="text-[10px] text-white/40 font-mono italic text-center mt-6">
+            <div className="text-[10px] text-white/90 font-mono italic text-center mt-6">
               {t.labels.fraction_hint}
             </div>
 
             {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
-              <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/90 font-black">
                 <InlineMath
                   math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
                 />
@@ -666,7 +666,7 @@ export default function S301Page() {
             )}
 
             {stage === "EQUATIONS" && currentQuest.id === "E5" && (
-              <div className="text-[10px] uppercase tracking-[0.35em] text-white/40 font-black">
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/90 font-black">
                 <InlineMath math={`\\text{Preview: }x=\\frac{${(inputs.p ?? "").trim() || "p"}}{${(inputs.q ?? "").trim() || "q"}}`} />
               </div>
             )}

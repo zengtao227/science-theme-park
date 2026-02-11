@@ -176,32 +176,32 @@ export default function SP203Page() {
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.polarity}
             </div>
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setPolarity("NS")}
-                className={`min-h-[44px] px-4 border-2 ${polarity === "NS" ? "border-white text-white" : "border-white/30 text-white/60"}`}
+                className={`min-h-[44px] px-4 border-2 ${polarity === "NS" ? "border-white text-white" : "border-white/70 text-white/60"}`}
               >
                 N → S
               </button>
               <button
                 onClick={() => setPolarity("SN")}
-                className={`min-h-[44px] px-4 border-2 ${polarity === "SN" ? "border-white text-white" : "border-white/30 text-white/60"}`}
+                className={`min-h-[44px] px-4 border-2 ${polarity === "SN" ? "border-white text-white" : "border-white/70 text-white/60"}`}
               >
                 S → N
               </button>
             </div>
           </div>
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.current}
             </div>
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setCurrentOn((v) => !v)}
-                className={`min-h-[44px] px-6 border-2 ${currentOn ? "border-neon-green text-neon-green" : "border-white/30 text-white/60"}`}
+                className={`min-h-[44px] px-6 border-2 ${currentOn ? "border-neon-green text-neon-green" : "border-white/70 text-white/60"}`}
               >
                 {currentOn ? t.labels.current_on : t.labels.current_off}
               </button>
@@ -211,7 +211,7 @@ export default function SP203Page() {
             </div>
           </div>
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {stage === "ASSEMBLE" && t.stages.assemble_hint}
               {stage === "POWER" && t.stages.power_hint}
               {stage === "REVERSE" && t.stages.reverse_hint}

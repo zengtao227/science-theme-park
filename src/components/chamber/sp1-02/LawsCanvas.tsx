@@ -404,7 +404,7 @@ export default function P102LawsCanvas(props: P102CanvasProps) {
       {/* HUD OVERLAY */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Newton_Dynamics_Lab v3.0
         </span>
       </div>
@@ -429,10 +429,10 @@ export default function P102LawsCanvas(props: P102CanvasProps) {
         <div className="text-blue-300">v⃗ = [{telemetry.velocity.toFixed(2)}, 0, 0]</div>
         <div className="text-purple-300">a⃗ = [{telemetry.acceleration.toFixed(2)}, 0, 0]</div>
         <div className="text-green-300">F⃗ = [{telemetry.netForce.toFixed(2)}, 0, 0]</div>
-        <div className="text-white/40">m = {props.mass} kg</div>
+        <div className="text-white/90">m = {props.mass} kg</div>
       </div>
 
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase text-right">
+      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase text-right">
         Newtonian Mechanics<br />
         3D Vector Field Analysis
       </div>

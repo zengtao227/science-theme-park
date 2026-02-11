@@ -204,7 +204,7 @@ export default function GC302Page() {
           </div>
 
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t?.labels?.slice_plane || "SLICE PLANE (Y-AXIS)"}
             </div>
             <div className="flex items-center gap-4">
@@ -219,7 +219,7 @@ export default function GC302Page() {
               />
               <button
                 onClick={() => setSlicePosition(undefined)}
-                className="px-4 py-2 bg-white/10 border border-white/20 text-white text-sm font-black rounded hover:bg-white/20"
+                className="px-4 py-2 bg-white/10 border border-white/60 text-white text-sm font-black rounded hover:bg-white/60"
               >
                 {t?.labels?.reset_slice || "Reset"}
               </button>
@@ -227,7 +227,7 @@ export default function GC302Page() {
           </div>
 
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {stage === "SC" && (t?.stages?.sc_hint || "Lowest packing efficiency (52%)")}
               {stage === "BCC" && (t?.stages?.bcc_hint || "Moderate packing (68%), metals like Fe, Cr")}
               {stage === "FCC" && (t?.stages?.fcc_hint || "Highest packing (74%), metals like Cu, Al, Au")}

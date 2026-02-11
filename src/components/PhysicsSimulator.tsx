@@ -230,19 +230,19 @@ export function PhysicsSimulator({
       <div className="absolute top-2 left-2 flex gap-2">
         <button
           onClick={togglePause}
-          className="px-3 py-1 bg-black/80 border border-white/30 text-white text-[10px] font-black uppercase tracking-wider hover:border-white/50 transition-all"
+          className="px-3 py-1 bg-black/80 border border-white/70 text-white text-[10px] font-black uppercase tracking-wider hover:border-white/50 transition-all"
         >
           {isPaused ? 'Resume' : 'Pause'}
         </button>
         <button
           onClick={handleReset}
-          className="px-3 py-1 bg-black/80 border border-white/30 text-white text-[10px] font-black uppercase tracking-wider hover:border-white/50 transition-all"
+          className="px-3 py-1 bg-black/80 border border-white/70 text-white text-[10px] font-black uppercase tracking-wider hover:border-white/50 transition-all"
         >
           Reset
         </button>
       </div>
 
-      <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">
+      <div className="absolute top-2 right-2 text-[9px] font-mono text-white/70 pointer-events-none">
         PHYSICS ENGINE
       </div>
     </div>

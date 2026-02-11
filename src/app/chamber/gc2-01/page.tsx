@@ -68,7 +68,7 @@ export default function GC2_01_CarbonKingdom() {
                             {(["methane", "ethane", "benzene", "glucose", "alanine"] as const).map((mol) => (
                                 <button key={mol} onClick={() => setMolecule(mol)}
                                     className={`px-2 py-2 border text-xs transition-colors ${
-                                        molecule === mol ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-gray-400"
+                                        molecule === mol ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-white"
                                     }`}>
                                     {moleculeInfo[mol].name}
                                 </button>

@@ -167,13 +167,13 @@ export default function VectorPilotHud({
           VECTOR PILOT HUD
         </Text>
       </Canvas>
-      <div className="absolute bottom-3 left-3 text-[10px] font-mono text-white/50 space-y-1">
+      <div className="absolute bottom-3 left-3 text-[10px] font-mono text-white space-y-1">
         <div>FROM: [{from.join(", ")}]</div>
         <div>TO: [{to.join(", ")}]</div>
         <div>VEC: [{vector.join(", ")}]</div>
         {assistVector && <div>ASSIST: [{assistVector.join(", ")}]</div>}
       </div>
-      <div className="absolute top-3 right-3 text-[9px] font-mono text-white/40 uppercase tracking-[0.3em]">
+      <div className="absolute top-3 right-3 text-[9px] font-mono text-white/90 uppercase tracking-[0.3em]">
         {stage}
       </div>
     </div>

@@ -126,7 +126,7 @@ export default function GB3_01_DnaForge() {
                                     className={`px-2 py-1 border text-xs transition-colors ${
                                         highlightPair === i
                                             ? "border-cyan-400 bg-cyan-500/30 text-cyan-200"
-                                            : "border-gray-600 text-gray-400 hover:border-cyan-500/50"
+                                            : "border-gray-600 text-white hover:border-cyan-500/50"
                                     }`}
                                 >
                                     {i + 1}
@@ -143,13 +143,13 @@ export default function GB3_01_DnaForge() {
                                 <span className="text-cyan-400">A</span>
                                 <span>↔</span>
                                 <span className="text-pink-400">T</span>
-                                <span className="text-gray-400">(2 H-bonds)</span>
+                                <span className="text-white">(2 H-bonds)</span>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <span className="text-green-400">C</span>
                                 <span>↔</span>
                                 <span className="text-amber-400">G</span>
-                                <span className="text-gray-400">(3 H-bonds)</span>
+                                <span className="text-white">(3 H-bonds)</span>
                             </div>
                         </div>
                     </div>

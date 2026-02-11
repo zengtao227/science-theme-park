@@ -1285,7 +1285,7 @@ export const translations: Record<string, any> = {
                 negative: "NEGATIVE",
                 scientific: "SCI-NOTATION",
                 rules_prompt_latex: "\\text{Apply power laws to simplify.}",
-                negative_prompt_latex: "\\text{Simplify terms with negative exponents.}",
+                negative_prompt_latex: "\\text{Simplify terms with negative exponents (find n in the denominator).}",
                 scientific_prompt_latex: "\\text{Convert to or calculate in scientific notation.}"
             },
             labels: {
@@ -3498,7 +3498,7 @@ export const translations: Record<string, any> = {
                 negative: "负指数",
                 scientific: "科学计数",
                 rules_prompt_latex: "\\text{应用幂运算法则化简。}",
-                negative_prompt_latex: "\\text{化简含负指数的项。}",
+                negative_prompt_latex: "\\text{将负指数项化简（求分母中的指数 n）。}",
                 scientific_prompt_latex: "\\text{转换或应用科学计数法计算。}"
             },
             labels: {
@@ -6048,7 +6048,7 @@ export const translations: Record<string, any> = {
                 negative: "NEGATIV",
                 scientific: "NOTATION",
                 rules_prompt_latex: "\\text{Potenzgesetze zur Vereinfachung anwenden.}",
-                negative_prompt_latex: "\\text{Terme mit negativen Exponenten vereinfachen.}",
+                negative_prompt_latex: "\\text{Terme mit negativen Exponenten vereinfachen (finde n im Nenner).}",
                 scientific_prompt_latex: "\\text{In wissenschaftliche Schreibweise umwandeln oder damit rechnen.}"
             },
             labels: {

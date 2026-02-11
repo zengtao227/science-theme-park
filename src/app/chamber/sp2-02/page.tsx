@@ -297,7 +297,7 @@ export default function SP2_02_CircuitSandbox() {
                                 className={`flex-1 px-2 py-1 border text-xs transition-colors ${
                                     multimeterMode === "voltage"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 V
@@ -307,7 +307,7 @@ export default function SP2_02_CircuitSandbox() {
                                 className={`flex-1 px-2 py-1 border text-xs transition-colors ${
                                     multimeterMode === "current"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 A
@@ -320,7 +320,7 @@ export default function SP2_02_CircuitSandbox() {
                                 className={`flex-1 px-2 py-1 border text-xs transition-colors ${
                                     multimeterMode === "off"
                                         ? "border-gray-500 bg-gray-500/20 text-gray-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 OFF

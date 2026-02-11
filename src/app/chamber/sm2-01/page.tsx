@@ -463,7 +463,7 @@ export default function S201Page() {
             </AnimatePresence>
           </div>
           {questMode !== "EXPLORE" && (
-            <div className="p-4 bg-white/[0.02] border-t-2 border-white/10 text-[9px] font-black text-white/40 uppercase tracking-[0.4em] flex justify-between items-center">
+            <div className="p-4 bg-white/[0.02] border-t-2 border-white/10 text-[9px] font-black text-white/90 uppercase tracking-[0.4em] flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_10px_#00ff9d]" />{" "}
                 {t.ui?.status_operational ?? "OPERATIONAL"}
@@ -545,7 +545,7 @@ export default function S201Page() {
 
               {/* MISSION CONTEXT / PROMPT */}
               <div className="text-center">
-                <h3 className="text-[9px] text-white/50 uppercase tracking-[0.4em] font-black mb-2">
+                <h3 className="text-[9px] text-white uppercase tracking-[0.4em] font-black mb-2">
                   {t.active_objective}
                 </h3>
                 <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md">
@@ -554,16 +554,16 @@ export default function S201Page() {
               </div>
 
               {/* TARGET EXPRESSION - STABILIZED */}
-              <div className="p-4 sm:p-6 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-4xl mx-auto shadow-xl overflow-x-auto">
-                <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-white/30" />
-                <span className="text-[9px] text-white/40 uppercase tracking-[0.6em] font-black block mb-3">
+              <div className="p-4 sm:p-6 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative max-w-4xl mx-auto shadow-xl overflow-x-auto">
+                <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-white/70" />
+                <span className="text-[9px] text-white/90 uppercase tracking-[0.6em] font-black block mb-3">
                   {t.target_expression}
                 </span>
                 <div className="font-black italic tracking-tighter text-white block py-1 drop-shadow-lg text-[clamp(1.5rem,5vw,4.5rem)] leading-tight whitespace-normal break-words">
                   {currentQuest?.expressionLatex}
                 </div>
                 {questMode === "SPEEDSTER" && (
-                  <div className="text-sm text-white/40 font-normal tracking-wide mt-2">{t.speedster_hint}</div>
+                  <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{t.speedster_hint}</div>
                 )}
               </div>
             </div>
@@ -574,7 +574,7 @@ export default function S201Page() {
                   {architectQuest?.isFactor ? (
                     <div className="flex flex-col items-center gap-8 w-full">
                       <div className="flex flex-wrap items-center justify-center gap-2 text-2xl font-black">
-                        <span className="text-white/40">(</span>
+                        <span className="text-white/90">(</span>
                         <input
                           value={inputs.a_root || ""}
                           onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
@@ -585,8 +585,8 @@ export default function S201Page() {
 
                         <span className="text-neon-cyan mx-2">+</span>
 
-                        <span className="text-white/40 text-3xl">2</span>
-                        <span className="text-white/40">(</span>
+                        <span className="text-white/90 text-3xl">2</span>
+                        <span className="text-white/90">(</span>
                         <input
                           value={inputs.a_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
@@ -600,11 +600,11 @@ export default function S201Page() {
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder="b"
                         />
-                        <span className="text-white/40">)</span>
+                        <span className="text-white/90">)</span>
 
                         <span className="text-neon-cyan mx-2">+</span>
 
-                        <span className="text-white/40">(</span>
+                        <span className="text-white/90">(</span>
                         <input
                           value={inputs.b_root || ""}
                           onChange={(e) => setInputs({ ...inputs, b_root: e.target.value })}
@@ -614,7 +614,7 @@ export default function S201Page() {
                         <span className="text-white/80">)²</span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
-                      <div className="text-white/40 text-sm uppercase tracking-widest font-mono">
+                      <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
                         Decomposition Pattern: a² + 2ab + b²
                       </div>
                     </div>
@@ -627,7 +627,7 @@ export default function S201Page() {
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                           placeholder="?"
                         />
-                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
                       <span className="text-4xl font-black text-white/80">x²</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -638,7 +638,7 @@ export default function S201Page() {
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                           placeholder="?"
                         />
-                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
                       <span className="text-4xl font-black text-white/80">x</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -649,7 +649,7 @@ export default function S201Page() {
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                           placeholder="?"
                         />
-                        <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
                       </div>
                     </>
                   )}
@@ -658,7 +658,7 @@ export default function S201Page() {
               {questMode === "SCRAPPER" && (
                 <>
                   <div className="col-span-3 mb-6">
-                    <div className="bg-white/5 border border-white/20 rounded-xl p-6 max-w-2xl mx-auto">
+                    <div className="bg-white/5 border border-white/60 rounded-xl p-6 max-w-2xl mx-auto">
                       <div className="text-white/60 text-xs font-mono uppercase tracking-widest mb-3">
                         {t.scrapper_step01}
                       </div>
@@ -680,7 +680,7 @@ export default function S201Page() {
                     <input
                       value={inputs.a || ""}
                       onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
-                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white"
+                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
                       placeholder="ax"
                     />
                   </div>
@@ -692,7 +692,7 @@ export default function S201Page() {
                     <input
                       value={inputs.b || ""}
                       onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
-                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/40 font-black text-2xl text-white"
+                      className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
                       placeholder={scrapperQuest?.variant === "XY" ? "by" : "b"}
                     />
                   </div>
@@ -705,21 +705,21 @@ export default function S201Page() {
                     <input
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
-                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white flex-shrink-0"
+                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
                       placeholder="a²"
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part2 || ""}
                       onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
-                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white flex-shrink-0"
+                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
                       placeholder="2ab"
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
-                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/40 text-2xl font-black text-white flex-shrink-0"
+                      className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
                       placeholder="b²"
                     />
                   </div>
@@ -831,7 +831,7 @@ export default function S201Page() {
                         <input
                           value={inputs.part1 || ""}
                           onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
-                          className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-3xl text-white"
+                          className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
                           placeholder="?"
                         />
                         <span className="text-white ml-2">x²</span>
@@ -841,7 +841,7 @@ export default function S201Page() {
                         <input
                           value={inputs.part2 || ""}
                           onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
-                          className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-3xl text-white"
+                          className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
                           placeholder="?"
                         />
                       </div>
@@ -861,10 +861,10 @@ export default function S201Page() {
                 {t.ui?.logic_lattice_title ?? "LOGIC"}
               </span>
             </div>
-            <div className="p-5 bg-white/[0.03] border-2 border-white/10 rounded-lg font-mono text-xs space-y-3 hover:border-white/20 transition-all">
+            <div className="p-5 bg-white/[0.03] border-2 border-white/10 rounded-lg font-mono text-xs space-y-3 hover:border-white/60 transition-all">
               {questMode === "ARCHITECT" && (
                 <>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
                     {t.ui?.logic_architect_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
@@ -872,7 +872,7 @@ export default function S201Page() {
                       ? `${architectQuest.ca}x (${architectQuest.ca}x + ${architectQuest.vb}) + ${architectQuest.vb} (${architectQuest.ca}x + ${architectQuest.vb})`
                       : ""}
                   </div>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {t.ui?.logic_architect_step_2 ?? "STEP 2"}
                   </div>
                   <div className="text-white font-black">
@@ -885,13 +885,13 @@ export default function S201Page() {
               )}
               {questMode === "SCRAPPER" && (
                 <>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
                     {t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
                     {scrapperQuest ? `√(${scrapperQuest.ca * scrapperQuest.ca})x² = ${scrapperQuest.ca}x` : ""}
                   </div>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
                   </div>
                   <div className="text-white font-black">
@@ -901,18 +901,18 @@ export default function S201Page() {
               )}
               {questMode === "VOYAGER" && (
                 <>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
                     {t.ui?.logic_voyager_axiom_title ?? "AXIOM"}
                   </div>
                   <div className="text-white font-black">{t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A² - B²"}</div>
-                  <div className="text-white/40 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
+                  <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
                   </div>
                   <div className="text-white font-black">A² + AB - AB - B² ≡ A² - B²</div>
                 </>
               )}
               {!["ARCHITECT", "SCRAPPER", "VOYAGER"].includes(questMode) && (
-                <div className="text-white/20 italic text-[10px] py-8 text-center uppercase tracking-[0.3em] font-black">
+                <div className="text-white/60 italic text-[10px] py-8 text-center uppercase tracking-[0.3em] font-black">
                   {t.ui?.link_established ?? "LINK ESTABLISHED"}
                 </div>
               )}

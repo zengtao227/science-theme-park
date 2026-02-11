@@ -148,7 +148,7 @@ export default function SC2_02_pHSentinel() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     acidType === "strong"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 {t("sc2_02.labels.strong")}
@@ -158,7 +158,7 @@ export default function SC2_02_pHSentinel() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     acidType === "weak"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 {t("sc2_02.labels.weak")}
@@ -209,7 +209,7 @@ export default function SC2_02_pHSentinel() {
                                 className={`px-2 py-2 border text-xs transition-colors ${
                                     indicator === "phenolphthalein"
                                         ? "border-pink-500 bg-pink-500/20 text-pink-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 Phenol.
@@ -219,7 +219,7 @@ export default function SC2_02_pHSentinel() {
                                 className={`px-2 py-2 border text-xs transition-colors ${
                                     indicator === "methyl_orange"
                                         ? "border-orange-500 bg-orange-500/20 text-orange-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 Methyl O.
@@ -229,7 +229,7 @@ export default function SC2_02_pHSentinel() {
                                 className={`px-2 py-2 border text-xs transition-colors ${
                                     indicator === "universal"
                                         ? "border-purple-500 bg-purple-500/20 text-purple-300"
-                                        : "border-gray-600 text-gray-400"
+                                        : "border-gray-600 text-white"
                                 }`}
                             >
                                 Universal

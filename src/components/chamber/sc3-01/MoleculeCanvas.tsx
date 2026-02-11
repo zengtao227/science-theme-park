@@ -337,7 +337,7 @@ export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
       </div>
       
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // C3.01<br />
         MOLECULE_SIM: ACTIVE<br />
         MODE: {target}

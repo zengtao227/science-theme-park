@@ -129,7 +129,7 @@ export default function S206Page() {
     >
       <div className="space-y-12">
         <div className="text-center group">
-          <div className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-cyan transition-colors">
+          <div className="text-[10px] text-white/90 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-cyan transition-colors">
             {t.objective_title}
           </div>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
@@ -154,7 +154,7 @@ export default function S206Page() {
               <div key={slot.id} className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan/50" />
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                  <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                     <InlineMath math={slot.labelLatex} />
                   </div>
                 </div>

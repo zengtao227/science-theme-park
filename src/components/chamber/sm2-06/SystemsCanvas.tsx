@@ -343,7 +343,7 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
   if (!visual) {
     return (
       <div className="relative w-full aspect-square max-w-[500px] bg-[#020208] rounded-2xl border border-white/10 flex items-center justify-center">
-        <div className="text-white/40 text-center p-8">No system data</div>
+        <div className="text-white/90 text-center p-8">No system data</div>
       </div>
     );
   }
@@ -387,12 +387,12 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
       {/* HUD Overlay */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Matrix_Scanner v3.0
         </span>
       </div>
 
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white/50">
+      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white">
         <div className="text-cyan-400">L1: {visual.eq1.a}x + {visual.eq1.b}y = {visual.eq1.c}</div>
         <div className="text-pink-400">L2: {visual.eq2.a}x + {visual.eq2.b}y = {visual.eq2.c}</div>
         {visual.intersect && (
@@ -402,13 +402,13 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
         )}
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S2.06<br />
         3D_MATRIX_SPACE<br />
         SCAN_STATUS: {visual.intersect ? 'LOCKED' : 'SEARCHING'}
       </div>
 
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Linear Systems 3D
       </div>
     </div>

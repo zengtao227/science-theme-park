@@ -28,11 +28,11 @@ export default function UserSwitcher() {
     <div className="relative">
       <button
         onClick={() => setShowMenu(!showMenu)}
-        className="flex items-center gap-2 px-4 py-2 border border-white/20 hover:border-neon-green/50 transition-colors bg-black/50 min-h-[44px]"
+        className="flex items-center gap-2 px-4 py-2 border border-white/60 hover:border-neon-green/50 transition-colors bg-black/50 min-h-[44px]"
       >
         <User className="w-4 h-4 text-neon-green" />
         <span className="text-sm font-mono text-white">{currentUser}</span>
-        <ChevronDown className="w-3 h-3 text-white/50" />
+        <ChevronDown className="w-3 h-3 text-white" />
       </button>
 
       {showMenu && (
@@ -44,11 +44,11 @@ export default function UserSwitcher() {
               setShowNewUser(false);
             }}
           />
-          <div className="absolute top-full right-0 mt-2 bg-black border-2 border-white/20 min-w-[220px] z-50 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+          <div className="absolute top-full right-0 mt-2 bg-black border-2 border-white/60 min-w-[220px] z-50 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
             {!showNewUser ? (
               <>
                 <div className="p-2 border-b border-white/10">
-                  <div className="text-[10px] text-white/40 font-mono uppercase tracking-wider px-2 py-1">
+                  <div className="text-[10px] text-white/90 font-mono uppercase tracking-wider px-2 py-1">
                     Switch User
                   </div>
                 </div>
@@ -82,7 +82,7 @@ export default function UserSwitcher() {
               </>
             ) : (
               <form onSubmit={handleCreateUser} className="p-4">
-                <div className="text-[10px] text-white/40 font-mono uppercase tracking-wider mb-3">
+                <div className="text-[10px] text-white/90 font-mono uppercase tracking-wider mb-3">
                   New User
                 </div>
                 <input
@@ -90,7 +90,7 @@ export default function UserSwitcher() {
                   value={newUsername}
                   onChange={(e) => setNewUsername(e.target.value)}
                   placeholder="Enter name..."
-                  className="w-full p-2 bg-black border border-white/20 text-white text-sm font-mono focus:border-neon-green focus:outline-none mb-3"
+                  className="w-full p-2 bg-black border border-white/60 text-white text-sm font-mono focus:border-neon-green focus:outline-none mb-3"
                   autoFocus
                   maxLength={30}
                 />
@@ -108,7 +108,7 @@ export default function UserSwitcher() {
                       setShowNewUser(false);
                       setNewUsername('');
                     }}
-                    className="px-3 py-2 border border-white/20 text-white text-xs hover:bg-white/10 transition-colors"
+                    className="px-3 py-2 border border-white/60 text-white text-xs hover:bg-white/10 transition-colors"
                   >
                     CANCEL
                   </button>

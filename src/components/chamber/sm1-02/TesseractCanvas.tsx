@@ -304,7 +304,7 @@ export default function TesseractCanvas({
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-        <span className="text-[8px] font-mono text-white/40 tracking-[0.3em] uppercase">
+        <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
           Hyper_Geometry v4.0
         </span>
       </div>
@@ -312,7 +312,7 @@ export default function TesseractCanvas({
       {/* Unfold slider */}
       <div className="absolute bottom-4 left-4 right-4 space-y-2">
         <div className="flex justify-between items-center">
-          <span className="text-[10px] font-mono text-white/50 uppercase tracking-wider">
+          <span className="text-[10px] font-mono text-white uppercase tracking-wider">
             Unfold (展开)
           </span>
           <span className="text-[10px] font-mono text-cyan-400">
@@ -344,13 +344,13 @@ export default function TesseractCanvas({
         />
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S1.02<br />
         4D_PROJECTION: ACTIVE<br />
         ROTATION: {rotationSpeed.toFixed(1)}x
       </div>
 
-      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+      <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Tesseract Lab 4D
       </div>
     </div>

@@ -262,7 +262,7 @@ export default function S205Page() {
         >
             <div className="space-y-12">
                 <div className="text-center group">
-                    <div className="text-[10px] text-white/40 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-purple transition-colors">
+                    <div className="text-[10px] text-white/90 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-purple transition-colors">
                         {t.objective_title}
                     </div>
                     <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
@@ -278,7 +278,7 @@ export default function S205Page() {
                         <div className="text-5xl text-white font-black tracking-widest">
                             <InlineMath math={currentQuest?.expressionLatex || ""} />
                         </div>
-                        <div className="mt-4 text-white/40 font-mono text-[10px] tracking-[0.4em] uppercase">
+                        <div className="mt-4 text-white/90 font-mono text-[10px] tracking-[0.4em] uppercase">
                             Target_Pattern: <InlineMath math={currentQuest?.targetLatex || ""} />
                         </div>
                     </div>
@@ -290,7 +290,7 @@ export default function S205Page() {
                             <div key={slot.id} className="space-y-4">
                                 <div className="flex items-center gap-2">
                                     <div className="w-1.5 h-1.5 rounded-full bg-neon-purple/50" />
-                                    <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                                    <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                                         Input_Param: <InlineMath math={slot.labelLatex} />
                                     </div>
                                 </div>
@@ -307,11 +307,11 @@ export default function S205Page() {
 
                 {/* Decoder Visual Overlay */}
                 <div className="flex justify-center gap-8 opacity-20 group pointer-events-none">
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/20 self-center" />
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/60 self-center" />
                     <div className="text-[8px] font-mono text-white tracking-[0.6em] uppercase">
                         Quantum_Scaling_Active...
                     </div>
-                    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/20 self-center" />
+                    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/60 self-center" />
                 </div>
             </div>
         </ChamberLayout>

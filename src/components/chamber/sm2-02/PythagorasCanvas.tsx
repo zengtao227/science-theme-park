@@ -585,7 +585,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
           />
         </Canvas>
 
-        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
           Voxel Pythagorean Proof
         </div>
       </div>
@@ -625,7 +625,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
           />
         </Canvas>
 
-        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
           Elite Space Diagonal
         </div>
       </div>
@@ -651,7 +651,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
           <Distance3D p1={visual.p1} p2={visual.p2} />
         </Canvas>
 
-        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/20 uppercase tracking-wider">
+        <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
           Distance Formula 3D
         </div>
       </div>
@@ -660,7 +660,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
 
   return (
     <div className="w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
-      <div className="text-white/40 text-center p-8">No visualization available</div>
+      <div className="text-white/90 text-center p-8">No visualization available</div>
     </div>
   );
 }

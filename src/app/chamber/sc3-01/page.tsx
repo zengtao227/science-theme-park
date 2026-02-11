@@ -87,7 +87,7 @@ export default function C301Page() {
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="text-center space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               MOLECULAR FORMULA
             </div>
             <div className="text-2xl font-black text-white">

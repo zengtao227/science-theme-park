@@ -178,11 +178,11 @@ export default function P104Page() {
 
                         <div className="grid grid-cols-2 gap-4 pt-2">
                             <div className="space-y-1">
-                                <div className="text-[8px] text-white/40 uppercase tracking-widest">{t.labels.gamma}</div>
+                                <div className="text-[8px] text-white/90 uppercase tracking-widest">{t.labels.gamma}</div>
                                 <div className="text-xs text-white font-mono">{getGamma(simVelocity).toFixed(3)}</div>
                             </div>
                             <div className="space-y-1">
-                                <div className="text-[8px] text-white/40 uppercase tracking-widest">{t.labels.length}</div>
+                                <div className="text-[8px] text-white/90 uppercase tracking-widest">{t.labels.length}</div>
                                 <div className="text-xs text-white font-mono">{(3 / getGamma(simVelocity)).toFixed(2)}m</div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@ export default function P104Page() {
                             return <InlineMath math={latex} />;
                         })()}
                     </p>
-                    <div className="mt-2 text-white/50 font-mono text-sm underline decoration-white/20">
+                    <div className="mt-2 text-white font-mono text-sm underline decoration-white/60">
                         <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
                 </div>
@@ -216,19 +216,19 @@ export default function P104Page() {
                     <div className="grid grid-cols-1 gap-6">
                         {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="space-y-3">
-                                <div className="text-center text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                                <div className="text-center text-[10px] uppercase tracking-[0.35em] text-white font-black">
                                     <InlineMath math={slot.labelLatex} />
                                 </div>
                                 <div className="flex items-center gap-4 justify-center">
                                     <input
                                         value={inputs[slot.id] ?? ""}
                                         onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                                        className="w-48 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
+                                        className="w-48 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
                                         placeholder={slot.placeholder}
                                         autoFocus
                                     />
                                     {slot.id !== 'gamma' && (
-                                        <span className="text-xl font-black text-white/40 font-mono">
+                                        <span className="text-xl font-black text-white/90 font-mono">
                                             <InlineMath math={slot.id === 'L' ? 'm' : 's'} />
                                         </span>
                                     )}
@@ -237,7 +237,7 @@ export default function P104Page() {
                         ))}
                     </div>
 
-                    <div className="text-[10px] text-white/30 font-mono italic text-center border-t border-white/5 pt-6">
+                    <div className="text-[10px] text-white/70 font-mono italic text-center border-t border-white/5 pt-6">
                         {currentLanguage === 'CN'
                             ? "提示：所有计算结果请保留 2 位小数。"
                             : currentLanguage === 'DE'

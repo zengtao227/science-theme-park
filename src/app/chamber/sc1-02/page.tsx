@@ -419,14 +419,14 @@ export default function C102Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="space-y-2">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                   <InlineMath math={slot.labelLatex} />
                 </div>
                 <div className="flex items-center gap-3">
                   <input
                     value={inputs[slot.id] ?? ""}
                     onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                    className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
+                    className="flex-1 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
                     placeholder={slot.placeholder}
                   />
                   {slot.unit && (
@@ -438,7 +438,7 @@ export default function C102Page() {
               </div>
             ))}
           </div>
-          <div className="text-[10px] text-white/40 font-mono italic text-center">
+          <div className="text-[10px] text-white/90 font-mono italic text-center">
             {currentLanguage === 'DE'
               ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 1 Dezimalstelle gerundet an."
               : currentLanguage === 'CN'

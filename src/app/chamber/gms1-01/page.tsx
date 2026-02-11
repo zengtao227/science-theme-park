@@ -86,7 +86,7 @@ export default function GS1_01_ComplexFractal() {
                             {(["classic", "fire", "ice", "rainbow"] as const).map((scheme) => (
                                 <button key={scheme} onClick={() => setColorScheme(scheme)}
                                     className={`px-3 py-2 border transition-colors ${
-                                        colorScheme === scheme ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-gray-400"
+                                        colorScheme === scheme ? "border-green-500 bg-green-500/20 text-green-300" : "border-gray-600 text-white"
                                     }`}>
                                     {schemeLabels[scheme]}
                                 </button>

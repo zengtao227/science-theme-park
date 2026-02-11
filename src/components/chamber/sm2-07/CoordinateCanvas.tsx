@@ -326,7 +326,7 @@ export default function CoordinateCanvas({
       </div>
       
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // S2.07<br />
         COORDINATE_SIM: ACTIVE<br />
         MODE: {stage}

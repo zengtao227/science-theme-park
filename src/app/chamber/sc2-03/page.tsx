@@ -150,7 +150,7 @@ export default function SC203Page() {
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t?.labels?.volume || "VOLUME (V)"}
             </div>
             <div className="flex items-center gap-4">
@@ -169,7 +169,7 @@ export default function SC203Page() {
           </div>
 
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t?.labels?.temperature || "TEMPERATURE (T)"}
             </div>
             <div className="flex items-center gap-4">
@@ -188,7 +188,7 @@ export default function SC203Page() {
           </div>
 
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t?.labels?.moles || "MOLES (n)"}
             </div>
             <div className="flex items-center gap-4">
@@ -206,7 +206,7 @@ export default function SC203Page() {
           </div>
 
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {stage === "boyle" && (t?.stages?.boyle_hint || "Boyle's Law: Decrease volume → Increase pressure")}
               {stage === "charles" && (t?.stages?.charles_hint || "Charles' Law: Increase temperature → Increase volume")}
               {stage === "combined" && (t?.stages?.combined_hint || "Combined: All three variables interact")}

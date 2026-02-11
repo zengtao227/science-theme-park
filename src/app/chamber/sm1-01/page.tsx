@@ -308,7 +308,7 @@ export default function S101Page() {
                                     userAnswer={parsedAnswer}
                                     isVolumeMode={stage === 'VOLUMES'}
                                 />
-                                <div className="absolute top-2 right-2 text-[9px] font-mono text-white/30 pointer-events-none">
+                                <div className="absolute top-2 right-2 text-[9px] font-mono text-white/70 pointer-events-none">
                                     REAL-TIME GEOMETRY
                                 </div>
                             </>
@@ -328,11 +328,11 @@ export default function S101Page() {
                             <InlineMath math={currentQuest.promptLatex} />
                         </div>
                         {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
-                            <div className="space-y-2 text-white/50 font-black text-[10px] uppercase tracking-[0.25em]">
-                                <div className="text-white/40">{t.labels.hints}</div>
+                            <div className="space-y-2 text-white font-black text-[10px] uppercase tracking-[0.25em]">
+                                <div className="text-white/90">{t.labels.hints}</div>
                                 {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
                                     <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
-                                        <div className="text-white/30 w-6">{String(idx + 1).padStart(2, "0")}</div>
+                                        <div className="text-white/70 w-6">{String(idx + 1).padStart(2, "0")}</div>
                                         <div className="flex-1">
                                             <InlineMath math={h} />
                                         </div>
@@ -343,7 +343,7 @@ export default function S101Page() {
                     </div>
 
                     <div className="space-y-2">
-                        <div className="text-white/30 text-[10px] font-black tracking-[0.3em] uppercase">
+                        <div className="text-white/70 text-[10px] font-black tracking-[0.3em] uppercase">
                             {difficulty}{" // "}S1.01{" // "}{t.stages[stage.toLowerCase() as keyof typeof t.stages]}
                         </div>
                     </div>
@@ -375,7 +375,7 @@ export default function S101Page() {
                 </div>
 
                 <div className="flex justify-center overflow-x-auto w-full">
-                    <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
+                    <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
                         <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
                         <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
                             {t.target_title}
@@ -406,14 +406,14 @@ export default function S101Page() {
                     <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
                         {currentQuest.slots.map((slot) => (
                             <div key={slot.id} className="space-y-2">
-                                <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+                                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                                     <InlineMath math={slot.labelLatex} />
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <input
                                         value={inputs[slot.id] ?? ""}
                                         onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
-                                        className="flex-1 bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                                        className="flex-1 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                                         placeholder={slot.placeholder}
                                         inputMode="numeric"
                                     />
@@ -428,7 +428,7 @@ export default function S101Page() {
                     </div>
                 </div>
 
-                <div className="text-[10px] text-white/40 font-mono italic text-center">
+                <div className="text-[10px] text-white/90 font-mono italic text-center">
                     {currentLanguage === 'DE'
                         ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
                         : currentLanguage === 'CN'

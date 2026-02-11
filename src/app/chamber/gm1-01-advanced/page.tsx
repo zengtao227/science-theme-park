@@ -80,7 +80,7 @@ export default function G1_01_Advanced() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     mode === "tangent"
                                         ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-gray-400 hover:border-cyan-500/50"
+                                        : "border-gray-600 text-white hover:border-cyan-500/50"
                                 }`}
                             >
                                 TANGENT LINE
@@ -90,7 +90,7 @@ export default function G1_01_Advanced() {
                                 className={`flex-1 px-3 py-2 border transition-colors ${
                                     mode === "newton"
                                         ? "border-purple-500 bg-purple-500/20 text-purple-300"
-                                        : "border-gray-600 text-gray-400 hover:border-purple-500/50"
+                                        : "border-gray-600 text-white hover:border-purple-500/50"
                                 }`}
                             >
                                 NEWTON&apos;S METHOD
@@ -109,7 +109,7 @@ export default function G1_01_Advanced() {
                                     className={`w-full px-3 py-2 border transition-colors text-left ${
                                         functionType === key
                                             ? "border-purple-400 bg-purple-500/20 text-purple-200"
-                                            : "border-gray-600 text-gray-400 hover:border-purple-500/50"
+                                            : "border-gray-600 text-white hover:border-purple-500/50"
                                     }`}
                                 >
                                     <div className="font-bold">{functions[key].name}</div>

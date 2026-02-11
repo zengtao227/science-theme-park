@@ -578,7 +578,7 @@ export default function G101_DerivativeCanvas({
             <div className="absolute top-4 left-4 flex flex-col gap-1">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">Flux_Sentinel // Analysis</span>
+                    <span className="text-[10px] font-black text-white/90 uppercase tracking-[0.4em]">Flux_Sentinel // Analysis</span>
                 </div>
                 <div className="text-[12px] font-mono text-cyan-400/80">
                     MOD: {mode}<br />
@@ -609,7 +609,7 @@ export default function G101_DerivativeCanvas({
                 </button>
             </div>
 
-            <div className="absolute bottom-4 right-4 text-[9px] font-mono text-white/20 text-right uppercase leading-relaxed">
+            <div className="absolute bottom-4 right-4 text-[9px] font-mono text-white/60 text-right uppercase leading-relaxed">
                 Basel_Protocol_1744<br />
                 Temporal_Subdivision: {subdivisionLevel}x<br />
                 Integration_Engine: {isScanning ? 'ACTIVE' : 'STANDBY'}<br />
@@ -618,7 +618,7 @@ export default function G101_DerivativeCanvas({
 
             {/* Limit visualization indicator */}
             <div className="absolute bottom-4 left-4 space-y-1">
-                <div className="text-[10px] font-mono text-white/30 uppercase tracking-wider">
+                <div className="text-[10px] font-mono text-white/70 uppercase tracking-wider">
                     Limit Visualization
                 </div>
                 <div className="flex items-center gap-2">
@@ -628,7 +628,7 @@ export default function G101_DerivativeCanvas({
                             style={{ width: `${Math.max(0, 100 - (hValue / 1.0) * 100)}%` }}
                         />
                     </div>
-                    <span className="text-[9px] font-mono text-white/50">
+                    <span className="text-[9px] font-mono text-white">
                         {hValue < 0.05 ? 'h→0' : `h=${hValue.toFixed(3)}`}
                     </span>
                 </div>

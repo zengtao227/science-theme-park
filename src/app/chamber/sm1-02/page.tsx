@@ -155,7 +155,7 @@ export default function S102Page() {
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.sun_angle}
             </div>
             <div className="flex items-center gap-4">
@@ -174,7 +174,7 @@ export default function S102Page() {
             </div>
           </div>
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.tower_shadow}
             </div>
             <div className="flex items-center gap-4">
@@ -193,18 +193,18 @@ export default function S102Page() {
             </div>
           </div>
           <div className="space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-black">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.solve_height}
             </div>
             <input
               value={inputs.H ?? ""}
               onChange={(e) => setInputs((prev) => ({ ...prev, H: e.target.value }))}
-              className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+              className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
               placeholder={t.labels.height_placeholder}
             />
           </div>
           <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/40 font-mono italic">
+            <div className="text-[10px] text-white/90 font-mono italic">
               {t.labels.hint_ratio}
             </div>
           </div>

@@ -385,7 +385,7 @@ export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
         <OrbitControls enableZoom={true} enablePan={true} />
       </Canvas>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/30 text-right uppercase">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/70 text-right uppercase">
         VISUAL_MODE: {mode}<br />
         BASE: {base} // M: {m} // N: {n}
       </div>

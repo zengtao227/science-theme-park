@@ -295,13 +295,13 @@ export default function WaveCanvas({
         <div className="text-[11px] font-mono text-white">
           x = {xPosition.toFixed(2)}
         </div>
-        <div className="text-[9px] text-white/40 mt-1">
+        <div className="text-[9px] text-white/90 mt-1">
           Your slope: {derivative.toFixed(2)}
         </div>
       </div>
       
       {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/20 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // G1.01<br />
         CALCULUS_SIM: ACTIVE<br />
         MODE: {functionType.toUpperCase()}

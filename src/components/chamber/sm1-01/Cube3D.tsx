@@ -143,7 +143,7 @@ export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps
       />
 
       {/* 公式显示 - 固定位置 */}
-      <div className="absolute bottom-4 left-4 bg-black/80 p-4 rounded border border-white/20 backdrop-blur-sm">
+      <div className="absolute bottom-4 left-4 bg-black/80 p-4 rounded border border-white/60 backdrop-blur-sm">
         <div className="text-white font-mono text-sm">
           <div className="text-neon-green mb-2">立方体体积</div>
           <div>V = a³ = {sideLength}³ = {sideLength ** 3} cm³</div>

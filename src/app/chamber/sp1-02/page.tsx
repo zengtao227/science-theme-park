@@ -260,7 +260,7 @@ export default function P102Page() {
             initialVelocity={currentQuest.initialVelocity}
             gravity={currentQuest.gravity}
           />
-          <div className="text-white/50 text-xs font-mono text-center space-y-1">
+          <div className="text-white text-xs font-mono text-center space-y-1">
             <div>Mass: {currentQuest.mass} kg</div>
             <div>Friction: μ = {currentQuest.friction}</div>
             {currentQuest.forceX > 0 && <div>Applied Force: {(currentQuest.forceX * 1000).toFixed(1)} N</div>}
@@ -278,7 +278,7 @@ export default function P102Page() {
           </p>
         </div>
 
-        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
+        <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-hidden">
           <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
           <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
             {t.target_title}
@@ -297,7 +297,7 @@ export default function P102Page() {
               <input
                 value={inputs[slot.id] || ""}
                 onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                 placeholder={slot.placeholder}
                 inputMode="decimal"
               />
@@ -305,7 +305,7 @@ export default function P102Page() {
           ))}
 
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
-            <div className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-black mb-2">Hint</div>
+            <div className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-black mb-2">Hint</div>
             <div className="text-sm text-white/60 font-mono">
               <InlineMath math={currentQuest.expressionLatex} />
             </div>

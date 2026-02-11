@@ -50,7 +50,7 @@ export default function UserSetup() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your name..."
-              className="w-full p-3 bg-black border-2 border-white/20 text-white font-mono focus:border-neon-green focus:outline-none transition-colors"
+              className="w-full p-3 bg-black border-2 border-white/60 text-white font-mono focus:border-neon-green focus:outline-none transition-colors"
               autoFocus
               maxLength={30}
             />
@@ -66,7 +66,7 @@ export default function UserSetup() {
         </form>
         
         <div className="mt-6 pt-6 border-t border-white/10">
-          <p className="text-xs text-white/40 font-mono text-center">
+          <p className="text-xs text-white/90 font-mono text-center">
             SYSTEM v2.1 // BASEL EDUCATION PLATFORM
           </p>
         </div>

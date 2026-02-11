@@ -681,7 +681,7 @@ export default function S202Page() {
             {/* Toggle for testing fluid visualization */}
             <button
               onClick={() => setUseFluidViz(!useFluidViz)}
-              className="px-3 py-1 text-[8px] uppercase tracking-wider border border-white/30 text-white/70 hover:border-white/60 hover:text-white transition-all"
+              className="px-3 py-1 text-[8px] uppercase tracking-wider border border-white/70 text-white/70 hover:border-white/60 hover:text-white transition-all"
             >
               {useFluidViz ? "2D View" : "Fluid View"}
             </button>
@@ -739,7 +739,7 @@ export default function S202Page() {
             "px-6 py-3 border-2 text-[10px] font-black tracking-[0.3em] uppercase transition-all",
             stage === "EXPLORER"
               ? "border-white bg-white text-black"
-              : "border-white/30 text-white hover:border-white/50"
+              : "border-white/70 text-white hover:border-white/50"
           )}
         >
           {t?.tabs?.explorer || "EXPLORER LAB"}
@@ -750,7 +750,7 @@ export default function S202Page() {
             "px-6 py-3 border-2 text-[10px] font-black tracking-[0.3em] uppercase transition-all",
             stage !== "EXPLORER"
               ? "border-white bg-white text-black"
-              : "border-white/30 text-white hover:border-white/50"
+              : "border-white/70 text-white hover:border-white/50"
           )}
         >
           {t?.tabs?.quest_mode || "QUEST MODES"}
@@ -764,7 +764,7 @@ export default function S202Page() {
               <h4 className="text-neon-cyan font-bold uppercase tracking-widest text-[10px]">Triangle Base Configuration</h4>
               <div className="space-y-5">
                 <div>
-                  <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                  <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>Base Leg a: {explorerA}</span>
                     <span className="text-neon-cyan">a² = {explorerA * explorerA}</span>
                   </div>
@@ -775,7 +775,7 @@ export default function S202Page() {
                   />
                 </div>
                 <div>
-                  <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                  <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>Base Leg b: {explorerB}</span>
                     <span className="text-neon-blue">b² = {explorerB * explorerB}</span>
                   </div>
@@ -806,7 +806,7 @@ export default function S202Page() {
             <div className="space-y-6">
               <h4 className="text-neon-purple font-bold uppercase tracking-widest text-[10px]">Homothetic Scaling (k)</h4>
               <div>
-                <div className="flex justify-between text-[10px] text-white/40 mb-2 font-mono uppercase tracking-widest">
+                <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                   <span>Multiplier k: {explorerK}</span>
                   <span className="text-neon-purple">Ratio Constant</span>
                 </div>
@@ -833,7 +833,7 @@ export default function S202Page() {
               </div>
 
               <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
-                <div className="text-[9px] text-white/40 uppercase font-mono tracking-widest">Similarity Theorem</div>
+                <div className="text-[9px] text-white/90 uppercase font-mono tracking-widest">Similarity Theorem</div>
                 <p className="text-[11px] text-white/70 leading-relaxed italic">
                   Scaled triangles (ka, kb, kc) are similar to (a, b, c).
                   The relationship <span className="text-neon-cyan">a²+b²=c²</span> remains invariant under any positive scale factor <span className="text-neon-purple">k</span>.
@@ -844,7 +844,7 @@ export default function S202Page() {
 
           <div className="flex justify-center pt-8 border-t border-white/5">
             <div className="text-center group">
-              <div className="text-white/20 text-[9px] mb-3 uppercase tracking-[0.4em] font-black group-hover:text-white/40 transition-all font-mono">
+              <div className="text-white/60 text-[9px] mb-3 uppercase tracking-[0.4em] font-black group-hover:text-white/90 transition-all font-mono">
                 Real-time Geometry Engine
               </div>
               <div className="text-3xl font-black text-white tracking-tighter">
@@ -890,7 +890,7 @@ export default function S202Page() {
           </div>
 
           {/* Target Display */}
-          <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/20 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
+          <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
             <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
             <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
               {t.target_title}
@@ -912,7 +912,7 @@ export default function S202Page() {
                   <input
                     value={inputs[step.id] || ""}
                     onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
-                    className="w-full bg-black border-2 border-white/20 p-4 text-center outline-none focus:border-white placeholder:text-white/30 font-black text-2xl text-white"
+                    className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                     placeholder="?"
                     inputMode="numeric"
                   />
