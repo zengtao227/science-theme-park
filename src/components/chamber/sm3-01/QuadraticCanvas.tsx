@@ -1,9 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text, Grid, Line } from "@react-three/drei";
-import * as THREE from "three";
+import { useMemo } from "react";
 
 export type CanvasQuest = {
   id: string;
@@ -13,227 +10,265 @@ export type CanvasQuest = {
   b?: number;
   c?: number;
   vizMode?: "AREA" | "PARABOLA";
+  hintLatex?: string[];
+  correctLatex?: string;
 }
 
-// ---------------------------------------------------------
-// 1. AREA MODEL COMPONENT (Geometric factorization blocks)
-// ---------------------------------------------------------
-function AreaModel({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: number }) {
-  const absB = Math.min(Math.abs(Math.round(b)), 10);
-  const absC = Math.min(Math.abs(Math.round(c)), 12);
+// ---------------------------------------------------------------
+// PURE 2D SVG PARABOLA — Only shown for EQUATIONS stage.
+// Pedagogical purpose: Show exactly HOW the curve crosses the x-axis.
+// ---------------------------------------------------------------
+function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
+  const W = 400;
+  const H = 300;
+  const ox = W / 2;
+  const oy = H / 2 + 40; // shift origin down slightly to show more of the curve
 
-  return (
-    <group position={[-2.5, 0, 0]}>
-      {/* x² block (large red square) */}
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[2, 2, 0.3]} />
-        <meshPhysicalMaterial color="#ff4444" emissive="#ff2222" emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.9} />
-      </mesh>
-      <Text position={[0, 0, 0.2]} fontSize={0.5} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
-        {a === 1 ? '' : a}x²
-      </Text>
+  // Dynamic scale: fit vertex and roots into view
+  const vx = -b / (2 * a);
+  const vy = a * vx * vx + b * vx + c;
+  const disc = b * b - 4 * a * c;
+  const roots: number[] = [];
+  if (disc >= 0) {
+    const r1 = (-b - Math.sqrt(disc)) / (2 * a);
+    const r2 = (-b + Math.sqrt(disc)) / (2 * a);
+    roots.push(r1);
+    if (Math.abs(r1 - r2) > 0.01) roots.push(r2);
+  }
 
-      {/* bx strips (cyan bars stacked vertically) */}
-      {absB > 0 && (
-        <group position={[1.6, 0, 0]}>
-          {Array.from({ length: absB }).map((_, i) => (
-            <mesh key={`b-${i}`} position={[0, (i - absB / 2 + 0.5) * 0.35, 0]}>
-              <boxGeometry args={[0.3, 0.3, 0.3]} />
-              <meshPhysicalMaterial color={b > 0 ? "#00ddff" : "#ff8800"} emissive={b > 0 ? "#00bbdd" : "#cc6600"} emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.85} />
-            </mesh>
-          ))}
-          <Text position={[0, absB * 0.35 / 2 + 0.5, 0]} fontSize={0.3} color={b > 0 ? "#00ddff" : "#ff8800"} anchorX="center">
-            {b > 0 ? '+' : ''}{b}x
-          </Text>
-        </group>
-      )}
+  // Determine the range we need to show
+  const allXs = [vx, ...roots, 0];
+  const maxAbsX = Math.max(...allXs.map(Math.abs), 3) + 2;
+  const maxAbsY = Math.max(Math.abs(vy), Math.abs(c), 3) + 2;
+  const scaleX = (W / 2 - 30) / maxAbsX;
+  const scaleY = (H / 2 - 30) / maxAbsY;
+  const scale = Math.min(scaleX, scaleY, 25);
 
-      {/* c unit blocks (green small cubes) */}
-      {absC > 0 && (
-        <group position={[2.6, 0, 0]}>
-          {Array.from({ length: absC }).map((_, i) => (
-            <mesh key={`c-${i}`} position={[0, (i - absC / 2 + 0.5) * 0.25, 0]}>
-              <boxGeometry args={[0.2, 0.2, 0.2]} />
-              <meshPhysicalMaterial color={c > 0 ? "#00ff88" : "#ff4488"} emissive={c > 0 ? "#00dd66" : "#dd2266"} emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.85} />
-            </mesh>
-          ))}
-          <Text position={[0, absC * 0.25 / 2 + 0.5, 0]} fontSize={0.3} color={c > 0 ? "#00ff88" : "#ff4488"} anchorX="center">
-            {c > 0 ? '+' : ''}{c}
-          </Text>
-        </group>
-      )}
+  const toSvg = (x: number, y: number): [number, number] => [ox + x * scale, oy - y * scale];
 
-      {/* Title */}
-      <Text position={[1, -2.2, 0]} fontSize={0.35} color="white" anchorX="center">
-        Area Model: {a === 1 ? '' : a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
-      </Text>
-    </group>
-  );
-}
-
-// ---------------------------------------------------------
-// 2. PARABOLA VISUALIZER (Roots + Vertex)
-// ---------------------------------------------------------
-function ParabolaVisualizer({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: number }) {
-  const points = useMemo(() => {
-    const pts: THREE.Vector3[] = [];
-    for (let x = -7; x <= 7; x += 0.08) {
-      const y = a * x * x + b * x + c;
-      if (y > -12 && y < 12) {
-        pts.push(new THREE.Vector3(x, y, 0));
+  // Build parabola path
+  const path = useMemo(() => {
+    const pts: string[] = [];
+    for (let px = -maxAbsX - 1; px <= maxAbsX + 1; px += 0.1) {
+      const py = a * px * px + b * px + c;
+      const [sx, sy] = toSvg(px, py);
+      if (sy > -50 && sy < H + 50) {
+        pts.push(`${pts.length === 0 ? 'M' : 'L'}${sx.toFixed(1)},${sy.toFixed(1)}`);
       }
     }
-    return pts;
-  }, [a, b, c]);
+    return pts.join(' ');
+  }, [a, b, c, maxAbsX, scale]);
 
-  const vertex = useMemo(() => {
-    const vx = -b / (2 * a);
-    const vy = a * vx * vx + b * vx + c;
-    return new THREE.Vector3(vx, vy, 0);
-  }, [a, b, c]);
-
-  const discriminant = b * b - 4 * a * c;
-  const roots = useMemo(() => {
-    if (discriminant < 0) return [];
-    const r1 = (-b - Math.sqrt(discriminant)) / (2 * a);
-    const r2 = (-b + Math.sqrt(discriminant)) / (2 * a);
-    if (Math.abs(r1 - r2) < 0.01) return [r1];
-    return [r1, r2];
-  }, [a, b, c, discriminant]);
+  const [svx, svy] = toSvg(vx, vy);
 
   return (
-    <group>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full rounded-lg" style={{ background: '#080812' }}>
+      <defs>
+        <filter id="svgGlow">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* Grid */}
+      {Array.from({ length: Math.ceil(maxAbsX) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsX);
+        const [sx] = toSvg(val, 0);
+        return <line key={`gv-${i}`} x1={sx} y1={0} x2={sx} y2={H} stroke="#ffffff" strokeWidth="0.3" opacity="0.06" />;
+      })}
+      {Array.from({ length: Math.ceil(maxAbsY) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsY);
+        const [, sy] = toSvg(0, val);
+        return <line key={`gh-${i}`} x1={0} y1={sy} x2={W} y2={sy} stroke="#ffffff" strokeWidth="0.3" opacity="0.06" />;
+      })}
+
+      {/* Axes */}
+      <line x1={0} y1={oy} x2={W} y2={oy} stroke="#00e5ff" strokeWidth="1.5" opacity="0.3" />
+      <line x1={ox} y1={0} x2={ox} y2={H} stroke="#00e5ff" strokeWidth="1.5" opacity="0.3" />
+
+      {/* Axis labels */}
+      <text x={W - 15} y={oy - 8} fill="#00e5ff" fontSize="11" opacity="0.5" fontWeight="bold">x</text>
+      <text x={ox + 8} y={15} fill="#00e5ff" fontSize="11" opacity="0.5" fontWeight="bold">y</text>
+
+      {/* Tick marks with numbers on axes */}
+      {Array.from({ length: Math.ceil(maxAbsX) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsX);
+        if (val === 0) return null;
+        const [sx] = toSvg(val, 0);
+        if (sx < 10 || sx > W - 10) return null;
+        return (
+          <g key={`tx-${i}`}>
+            <line x1={sx} y1={oy - 3} x2={sx} y2={oy + 3} stroke="#00e5ff" strokeWidth="1" opacity="0.3" />
+            <text x={sx} y={oy + 14} fill="#00e5ff" fontSize="8" textAnchor="middle" opacity="0.3">{val}</text>
+          </g>
+        );
+      })}
+      {Array.from({ length: Math.ceil(maxAbsY) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsY);
+        if (val === 0) return null;
+        const [, sy] = toSvg(0, val);
+        if (sy < 10 || sy > H - 10) return null;
+        return (
+          <g key={`ty-${i}`}>
+            <line x1={ox - 3} y1={sy} x2={ox + 3} y2={sy} stroke="#00e5ff" strokeWidth="1" opacity="0.3" />
+            <text x={ox - 10} y={sy + 3} fill="#00e5ff" fontSize="8" textAnchor="end" opacity="0.3">{val}</text>
+          </g>
+        );
+      })}
+
       {/* Parabola curve */}
-      {points.length > 2 && (
-        <Line points={points} color="#00ffff" lineWidth={3} />
+      <path d={path} fill="none" stroke="#00ffff" strokeWidth="2.5" filter="url(#svgGlow)" opacity="0.9" />
+
+      {/* Vertex */}
+      <circle cx={svx} cy={svy} r="5" fill="#ff00ff" filter="url(#svgGlow)" />
+      <text x={svx + 10} y={svy - 8} fill="#ff00ff" fontSize="11" fontWeight="bold">
+        V({vx.toFixed(1)}, {vy.toFixed(1)})
+      </text>
+
+      {/* Roots */}
+      {roots.map((r, i) => {
+        const [rx, ry] = toSvg(r, 0);
+        return (
+          <g key={i}>
+            <circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" />
+            <text x={rx} y={ry + 18} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">
+              x={r.toFixed(1)}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* No real roots */}
+      {disc < 0 && (
+        <text x={W / 2} y={30} fill="#ff4444" fontSize="12" textAnchor="middle" fontWeight="bold">
+          Δ &lt; 0 — No real roots
+        </text>
       )}
 
-      {/* Vertex marker */}
-      <group position={vertex}>
-        <mesh>
-          <sphereGeometry args={[0.2, 16, 16]} />
-          <meshBasicMaterial color="#ff00ff" />
-        </mesh>
-        <pointLight color="#ff00ff" intensity={2} distance={3} />
-        <Text position={[0, -0.6, 0.5]} fontSize={0.28} color="#ff00ff" anchorX="center">
-          V({vertex.x.toFixed(1)}, {vertex.y.toFixed(1)})
-        </Text>
-      </group>
-
-      {/* Root markers */}
-      {roots.map((r, i) => (
-        <group key={i} position={[r, 0, 0]}>
-          <mesh>
-            <sphereGeometry args={[0.15, 16, 16]} />
-            <meshBasicMaterial color="#39ff14" />
-          </mesh>
-          <pointLight color="#39ff14" intensity={1.5} distance={2} />
-          <Text position={[0, 0.5, 0.5]} fontSize={0.25} color="#39ff14" anchorX="center">
-            x={r.toFixed(1)}
-          </Text>
-        </group>
-      ))}
-
-      {/* Equation label at top */}
-      <Text position={[0, 8, 0]} fontSize={0.45} color="white" anchorX="center">
+      {/* Equation label */}
+      <text x={W / 2} y={H - 10} fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" opacity="0.7">
         y = {a === 1 ? '' : a === -1 ? '-' : a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
-      </Text>
-
-      {/* No roots indicator */}
-      {discriminant < 0 && (
-        <Text position={[3, 3, 0]} fontSize={0.3} color="#ff4444" anchorX="center">
-          Δ &lt; 0 (no real roots)
-        </Text>
-      )}
-    </group>
+      </text>
+    </svg>
   );
 }
 
-// ---------------------------------------------------------
-// MAIN SCENE
-// ---------------------------------------------------------
-function QuadraticScene({ quest }: { quest: CanvasQuest }) {
-  const a = quest.a ?? 1;
-  const b = quest.b ?? 0;
-  const c = quest.c ?? 0;
-  const vizMode = quest.vizMode ?? "PARABOLA";
+// ---------------------------------------------------------------
+// HINT PANEL — Shown for TERMS, FACTORIZE, FRACTIONS
+// Shows relevant identities and rules
+// ---------------------------------------------------------------
+function HintPanel({ stage, hints }: { stage: string; hints?: string[] }) {
+  // Stage-specific reference formulas
+  const formulas: Record<string, { title: string; items: string[] }> = {
+    TERMS: {
+      title: "Combining Like Terms",
+      items: [
+        "ax + bx = (a+b)x",
+        "Group same variables",
+        "Watch signs: -(a-b) = -a+b",
+        "Distribute: c(x+y) = cx + cy",
+      ],
+    },
+    FACTORIZE: {
+      title: "Factorization Identities",
+      items: [
+        "(x+A)(x+B) = x² + (A+B)x + AB",
+        "u² − v² = (u−v)(u+v)",
+        "(a+b)² = a² + 2ab + b²",
+        "Always check: GCF first",
+      ],
+    },
+    FRACTIONS: {
+      title: "Simplifying Fractions",
+      items: [
+        "Factor numerator & denominator",
+        "Cancel common factors",
+        "a²−b² = (a−b)(a+b)",
+        "Check domain restrictions",
+      ],
+    },
+    EQUATIONS: {
+      title: "Solving Equations",
+      items: [
+        "Zero Product: if pq=0, then p=0 or q=0",
+        "Quadratic formula: x = (−b ± √Δ) / 2a",
+        "Δ = b² − 4ac",
+        "Complete the square for vertex form",
+      ],
+    },
+  };
+
+  const data = formulas[stage] || formulas["TERMS"];
 
   return (
-    <group>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1.2} />
-      <pointLight position={[-5, 5, 5]} intensity={0.6} color="#00ffff" />
+    <div className="w-full rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-3 border-b border-white/10 bg-white/[0.02]">
+        <div className="text-[9px] uppercase tracking-[0.4em] font-black text-cyan-400/80">{data.title}</div>
+      </div>
 
-      {/* Grid behind the parabola */}
-      <Grid
-        args={[20, 20]}
-        cellSize={1}
-        cellThickness={0.5}
-        cellColor="#222"
-        sectionSize={5}
-        sectionThickness={1}
-        sectionColor="#00ffff"
-        fadeDistance={25}
-        position={[0, 0, -0.5]}
-      />
+      {/* Reference Formulas */}
+      <div className="p-4 space-y-2">
+        {data.items.map((item, i) => (
+          <div key={i} className="flex items-start gap-2">
+            <span className="text-cyan-400/40 text-xs mt-0.5">▸</span>
+            <span className="text-white/70 font-mono text-xs leading-relaxed">{item}</span>
+          </div>
+        ))}
+      </div>
 
-      {/* Coordinate axes */}
-      <Line points={[new THREE.Vector3(-10, 0, 0), new THREE.Vector3(10, 0, 0)]} color="#ff4444" lineWidth={2} />
-      <Line points={[new THREE.Vector3(0, -10, 0), new THREE.Vector3(0, 10, 0)]} color="#44ff44" lineWidth={2} />
-      <Text position={[9.5, 0.5, 0]} fontSize={0.3} color="#ff4444" anchorX="center">x</Text>
-      <Text position={[0.5, 9.5, 0]} fontSize={0.3} color="#44ff44" anchorX="center">y</Text>
-
-      {/* VIZ MODE SWITCH */}
-      {vizMode === "AREA" ? (
-        <AreaModel a={a} b={b} c={c} />
-      ) : (
-        <ParabolaVisualizer a={a} b={b} c={c} />
+      {/* Quest-specific hints */}
+      {hints && hints.length > 0 && (
+        <div className="border-t border-white/5 p-4 space-y-2">
+          <div className="text-[8px] uppercase tracking-[0.3em] font-black text-yellow-400/70 mb-2">Step-by-Step Hints</div>
+          {hints.map((h, i) => (
+            <div key={i} className="flex items-start gap-2">
+              <span className="text-yellow-400/50 text-[10px] font-black mt-0.5">{i + 1}.</span>
+              <span className="text-white/60 font-mono text-[11px] leading-relaxed">{h}</span>
+            </div>
+          ))}
+        </div>
       )}
-    </group>
+    </div>
   );
 }
 
-// ---------------------------------------------------------
-// EXPORTED COMPONENT
-// ---------------------------------------------------------
+// ---------------------------------------------------------------
+// MAIN EXPORTED COMPONENT — Smart switch based on stage
+// ---------------------------------------------------------------
 export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
   if (!quest) {
     return (
-      <div className="w-full aspect-[4/3] bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
-        <span className="text-white/60 font-mono text-sm">Loading Module...</span>
+      <div className="w-full rounded-xl border border-white/10 bg-white/[0.02] p-8 flex items-center justify-center">
+        <span className="text-white/40 font-mono text-sm">Loading...</span>
       </div>
     );
   }
 
+  const showParabola = quest.stage === "EQUATIONS" && quest.a != null && quest.a !== 0;
+
   return (
-    <div className="w-full aspect-[4/3] relative bg-[#000005] rounded-xl overflow-hidden shadow-2xl border border-white/10">
-      <Canvas camera={{ position: [0, 2, 14], fov: 45 }} gl={{ antialias: true }}>
-        <color attach="background" args={["#000005"]} />
-        <OrbitControls enablePan={false} maxDistance={25} minDistance={5} />
-        <QuadraticScene quest={quest} />
-      </Canvas>
-
-      {/* HUD Overlay */}
-      <div className="absolute top-3 left-3 flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="text-[9px] font-mono text-cyan-400/80 uppercase tracking-widest">
-          {quest.vizMode === "AREA" ? "Algebraic Decomposition" : "Parabolic Analyzer"}
-        </span>
-      </div>
-
-      {/* Coefficient Panel */}
-      <div className="absolute bottom-3 left-3 p-3 rounded-lg border border-white/5 bg-black/50 backdrop-blur-md">
-        <div className="text-[8px] font-mono text-white/30 uppercase mb-1.5 tracking-wider">Coefficients</div>
-        <div className="flex gap-4">
-          <div><span className="text-[8px] text-red-400 block">a</span><span className="text-sm font-black text-white">{quest.a ?? '–'}</span></div>
-          <div><span className="text-[8px] text-cyan-400 block">b</span><span className="text-sm font-black text-white">{quest.b ?? '–'}</span></div>
-          <div><span className="text-[8px] text-green-400 block">c</span><span className="text-sm font-black text-white">{quest.c ?? '–'}</span></div>
+    <div className="space-y-4">
+      {/* Only show parabola for EQUATIONS stage where a, b, c are defined */}
+      {showParabola && (
+        <div className="w-full rounded-xl border border-white/10 overflow-hidden shadow-lg">
+          <ParabolaSVG a={quest.a!} b={quest.b ?? 0} c={quest.c ?? 0} />
+          <div className="px-3 py-2 bg-black/50 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#39ff14]" />
+              <span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">Roots</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#ff00ff]" />
+              <span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">Vertex</span>
+            </div>
+            <span className="text-[7px] font-mono text-white/20 uppercase tracking-wider">SM3.01 / {quest.id}</span>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="absolute bottom-3 right-3 text-[7px] font-mono text-white/30 text-right uppercase leading-relaxed tracking-wider">
-        SM3.01 // {quest.stage}<br />ID: {quest.id}
-      </div>
+      {/* Always show the hint panel */}
+      <HintPanel stage={quest.stage} hints={quest.hintLatex} />
     </div>
   );
 }
