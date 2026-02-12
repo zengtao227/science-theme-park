@@ -74,13 +74,11 @@ export default function CoordinateCanvas2D({
     <div className="relative w-full aspect-[4/3] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
         <defs>
-          {/* 渐变 */}
           <linearGradient id="gridGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.05" />
             <stop offset="100%" stopColor="#a855f7" stopOpacity="0.05" />
           </linearGradient>
 
-          {/* 发光效果 */}
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
             <feMerge>
@@ -90,7 +88,6 @@ export default function CoordinateCanvas2D({
           </filter>
         </defs>
 
-        {/* 背景 */}
         <rect width={width} height={height} fill="url(#gridGrad)" />
 
         {/* 网格线 */}
@@ -107,206 +104,135 @@ export default function CoordinateCanvas2D({
           })}
         </g>
 
-        {/* 坐标轴 */}
-        <g>
-          <line x1="0" y1={originY} x2={width} y2={originY} stroke="#00e5ff" strokeWidth="2" />
-          <line x1={originX} y1="0" x2={originX} y2={height} stroke="#00e5ff" strokeWidth="2" />
+        {/* 坐标轴 - 强化视觉，提升至 strokeWidth 3 并加发光 */}
+        <g filter="url(#glow)">
+          <line x1="0" y1={originY} x2={width} y2={originY} stroke="#00e5ff" strokeWidth="3" />
+          <line x1={originX} y1="0" x2={originX} y2={height} stroke="#00e5ff" strokeWidth="3" />
+        </g>
 
-          {/* 箭头 */}
+        {/* 轴标识 */}
+        <g>
           <polygon points={`${width - 10},${originY - 5} ${width},${originY} ${width - 10},${originY + 5}`} fill="#00e5ff" />
           <polygon points={`${originX - 5},10 ${originX},0 ${originX + 5},10`} fill="#00e5ff" />
+          <text x={width - 10} y={originY + 35} fill="#00e5ff" fontSize="16" fontWeight="900" textAnchor="end" letterSpacing="2">X-AXIS</text>
+          <text x={originX + 20} y="25" fill="#00e5ff" fontSize="16" fontWeight="900" letterSpacing="2">Y-AXIS</text>
 
-          {/* 轴标签 - 移到更安全的位置避免切边 */}
-          <text x={width - 15} y={originY + 25} fill="#00e5ff" fontSize="14" fontWeight="black" textAnchor="end">X-AXIS</text>
-          <text x={originX + 15} y="15" fill="#00e5ff" fontSize="14" fontWeight="black">Y-AXIS</text>
-
-          {/* 刻度 */}
+          {/* 全刻度显示系统 */}
           {Array.from({ length: 21 }).map((_, i) => {
             const val = i - 10;
             if (val === 0) return null;
             const [svgX, svgY] = toSVG(val, 0);
             const [svgX2, svgY2] = toSVG(0, val);
-            // 只有偶数显示数字，减少视觉混乱
-            const showLabel = val % 2 === 0;
+            const isMajor = val % 5 === 0;
             return (
               <g key={i}>
-                {/* X轴刻度 */}
-                <line x1={svgX} y1={originY - 4} x2={svgX} y2={originY + 4} stroke="#00e5ff" strokeWidth="1" opacity={showLabel ? 0.8 : 0.3} />
-                {showLabel && <text x={svgX} y={originY + 22} fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.4" fontStyle="italic">{val}</text>}
+                {/* X轴刻度与数字 */}
+                <line x1={svgX} y1={originY - (isMajor ? 8 : 4)} x2={svgX} y2={originY + (isMajor ? 8 : 4)} stroke="#00e5ff" strokeWidth={isMajor ? 2 : 1} />
+                <text
+                  x={svgX} y={originY + 28}
+                  fill={isMajor ? "#fff" : "#00e5ff"}
+                  fontSize="12"
+                  fontWeight="900"
+                  textAnchor="middle"
+                  opacity={isMajor ? 1 : 0.7}
+                >
+                  {val}
+                </text>
 
-                {/* Y轴刻度 */}
-                <line x1={originX - 4} y1={svgY2} x2={originX + 4} y2={svgY2} stroke="#00e5ff" strokeWidth="1" opacity={showLabel ? 0.8 : 0.3} />
-                {showLabel && <text x={originX - 12} y={svgY2 + 3} fill="#00e5ff" fontSize="9" textAnchor="end" opacity="0.4" fontStyle="italic">{val}</text>}
+                {/* Y轴刻度与数字 */}
+                <line x1={originX - (isMajor ? 8 : 4)} y1={svgY2} x2={originX + (isMajor ? 8 : 4)} y2={svgY2} stroke="#00e5ff" strokeWidth={isMajor ? 2 : 1} />
+                <text
+                  x={originX - 18} y={svgY2 + 5}
+                  fill={isMajor ? "#fff" : "#00e5ff"}
+                  fontSize="12"
+                  fontWeight="900"
+                  textAnchor="end"
+                  opacity={isMajor ? 1 : 0.7}
+                >
+                  {val}
+                </text>
               </g>
             );
           })}
         </g>
 
-        {/* 根据stage显示不同内容 */}
         {stage === "DISTANCE" && (
           <g>
-            {/* 直角三角形 */}
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY1} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
             <line x1={svgX2} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
-
-            {/* 直角标记 */}
             <rect x={svgX2 - 10} y={svgY1 - 10} width="10" height="10" fill="none" stroke="#ffd166" strokeWidth="1.5" />
 
-            {/* Δx 和 Δy 标签 - 智能避让 */}
+            <text x={(svgX1 + svgX2) / 2} y={svgY1 + (y1 >= 0 ? 30 : -20)} fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle">Δx = {Math.abs(deltaX)}</text>
             <text
-              x={(svgX1 + svgX2) / 2}
-              y={svgY1 + (y1 >= 0 ? 25 : -15)}
-              fill="#ffd166" fontSize="13" fontWeight="black" textAnchor="middle"
-            >
-              Δx = {Math.abs(deltaX)}
-            </text>
-            <text
-              x={svgX2 + (x2 >= 0 ? 15 : -15)}
+              x={svgX2 + (x2 >= 0 ? 20 : -20)}
               y={(svgY1 + svgY2) / 2}
-              fill="#ffd166" fontSize="13" fontWeight="black"
+              fill="#ffd166" fontSize="13" fontWeight="900"
               textAnchor={x2 >= 0 ? "start" : "end"}
-            >
-              Δy = {Math.abs(deltaY)}
-            </text>
+            >Δy = {Math.abs(deltaY)}</text>
 
-            {/* 距离线 */}
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="3" filter="url(#glow)" />
-
-            {/* 距离标签 - 偏移出主线 */}
-            <text
-              x={(svgX1 + svgX2) / 2 - 20}
-              y={(svgY1 + svgY2) / 2 - 20}
-              fill="#39ff14"
-              fontSize="18"
-              fontWeight="black"
-              filter="url(#glow)"
-              textAnchor="end"
-            >
-              d = ?
-            </text>
+            <text x={(svgX1 + svgX2) / 2 - 30} y={(svgY1 + svgY2) / 2 - 30} fill="#39ff14" fontSize="20" fontWeight="900" filter="url(#glow)" textAnchor="end">d = ?</text>
           </g>
         )}
 
         {stage === "MIDPOINT" && (
           <g>
-            {/* 连线 */}
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#a855f7" strokeWidth="3" />
-
-            {/* 中点到两端的虚线 */}
             <line x1={svgX1} y1={svgY1} x2={svgMidX} y2={svgMidY} stroke="#ff2d7d" strokeWidth="2" strokeDasharray="8,4" />
             <line x1={svgMidX} y1={svgMidY} x2={svgX2} y2={svgY2} stroke="#ff2d7d" strokeWidth="2" strokeDasharray="8,4" />
-
-            {/* 中点 */}
             <circle cx={svgMidX} cy={svgMidY} r="8" fill="#ff2d7d" filter="url(#glow)" />
-            <circle cx={svgMidX} cy={svgMidY} r="12" fill="none" stroke="#ff2d7d" strokeWidth="2" opacity="0.5" />
 
-            {/* 中点标签 - 避开轴线 */}
             <text
-              x={svgMidX}
-              y={svgMidY + (midY >= 0 ? -25 : 35)}
-              fill="#ff2d7d" fontSize="16" fontWeight="black" textAnchor="middle" filter="url(#glow)"
-            >
-              M(x, y)
-            </text>
-
-            {/* 距离标记 */}
-            <text x={(svgX1 + svgMidX) / 2} y={(svgY1 + svgMidY) / 2 + 20} fill="#ff2d7d" fontSize="12" opacity="0.8" textAnchor="middle">
-              d/2
-            </text>
-            <text x={(svgMidX + svgX2) / 2} y={(svgMidY + svgY2) / 2 + 20} fill="#ff2d7d" fontSize="12" opacity="0.8" textAnchor="middle">
-              d/2
-            </text>
+              x={svgMidX + (midX === 0 ? 40 : 0)}
+              y={svgMidY + (midY === 0 ? 10 : (midY > 0 ? -40 : 50))}
+              fill="#ff2d7d" fontSize="18" fontWeight="900"
+              textAnchor={midX === 0 ? "start" : "middle"}
+              filter="url(#glow)"
+            >M(x, y)</text>
           </g>
         )}
 
         {stage === "SLOPE" && (
           <g>
-            {/* 扩展的直线 */}
             <line x1={svgLineX1} y1={svgLineY1} x2={svgLineX2} y2={svgLineY2} stroke="#00e5ff" strokeWidth="2" opacity="0.3" strokeDasharray="5,5" />
-
-            {/* 两点之间的线段 */}
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#00e5ff" strokeWidth="3" filter="url(#glow)" />
+            <polygon points={`${svgX1},${svgY1} ${svgX2},${svgY1} ${svgX2},${svgY2}`} fill="#ffd166" opacity="0.2" stroke="#ffd166" strokeWidth="2" />
 
-            {/* 斜率三角形 */}
-            <polygon
-              points={`${svgX1},${svgY1} ${svgX2},${svgY1} ${svgX2},${svgY2}`}
-              fill="#ffd166"
-              opacity="0.2"
-              stroke="#ffd166"
-              strokeWidth="2"
-            />
-
-            {/* rise 和 run 标签 - 避让轴线 */}
+            <text x={(svgX1 + svgX2) / 2} y={svgY1 + (y1 >= 0 ? 30 : -20)} fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle">run = {deltaX}</text>
             <text
-              x={(svgX1 + svgX2) / 2}
-              y={svgY1 + (y1 >= 0 ? 25 : -15)}
-              fill="#ffd166" fontSize="13" fontWeight="black" textAnchor="middle"
-            >
-              run = {deltaX}
-            </text>
-            <text
-              x={svgX2 + (x2 >= 0 ? 15 : -15)}
+              x={svgX2 + (x2 >= 0 ? 20 : -20)}
               y={(svgY1 + svgY2) / 2}
-              fill="#ffd166" fontSize="13" fontWeight="black"
+              fill="#ffd166" fontSize="13" fontWeight="900"
               textAnchor={x2 >= 0 ? "start" : "end"}
-            >
-              rise = {deltaY}
-            </text>
+            >rise = {deltaY}</text>
 
-            {/* 斜率标签 */}
-            <text
-              x={(svgX1 + svgX2) / 2}
-              y={(svgY1 + svgY2) / 2 - 30}
-              fill="#00e5ff"
-              fontSize="20"
-              fontWeight="bold"
-              textAnchor="middle"
-            >
-              m = ?
-            </text>
-
-            {/* 直线方程 */}
-            <text
-              x="50"
-              y="50"
-              fill="#00e5ff"
-              fontSize="16"
-              fontWeight="bold"
-            >
-              {t.line_eq} y = mx + b
-            </text>
+            <text x={(svgX1 + svgX2) / 2} y={(svgY1 + svgY2) / 2 - 40} fill="#00e5ff" fontSize="22" fontWeight="900" textAnchor="middle" filter="url(#glow)">m = ?</text>
+            <text x="50" y="50" fill="#00e5ff" fontSize="16" fontWeight="900" filter="url(#glow)">{t.line_eq} y = mx + b</text>
           </g>
         )}
 
-        {/* 点 A 和 B - 自适应偏移 */}
+        {/* 关键点 - 采用强制偏离算法，绝不压线 */}
         <g>
-          {/* 点 A */}
           <circle cx={svgX1} cy={svgY1} r="6" fill="#39ff14" filter="url(#glow)" />
-          <circle cx={svgX1} cy={svgY1} r="10" fill="none" stroke="#39ff14" strokeWidth="2" opacity="0.5" />
           <text
-            x={svgX1 + (x1 >= 0 ? 15 : -15)}
-            y={svgY1 + (y1 >= 0 ? -20 : 30)}
-            fill="#39ff14" fontSize="15" fontWeight="black"
-            textAnchor={x1 >= 0 ? "start" : "end"}
-          >
-            A({x1}, {y1})
-          </text>
+            x={svgX1 + (x1 === 0 ? 40 : (x1 > 0 ? 25 : -25))}
+            y={svgY1 + (y1 === 0 ? 10 : (y1 > 0 ? -30 : 45))}
+            fill="#39ff14" fontSize="16" fontWeight="900"
+            textAnchor={x1 === 0 ? "start" : (x1 > 0 ? "start" : "end")}
+            filter="url(#glow)"
+          >A({x1}, {y1})</text>
 
-          {/* 点 B */}
           <circle cx={svgX2} cy={svgY2} r="6" fill="#a855f7" filter="url(#glow)" />
-          <circle cx={svgX2} cy={svgY2} r="10" fill="none" stroke="#a855f7" strokeWidth="2" opacity="0.5" />
           <text
-            x={svgX2 + (x2 >= 0 ? 15 : -15)}
-            y={svgY2 + (y1 >= 0 ? -20 : 30)}
-            fill="#a855f7" fontSize="15" fontWeight="black"
-            textAnchor={x2 >= 0 ? "start" : "end"}
-          >
-            B({x2}, {y2})
-          </text>
+            x={svgX2 + (x2 === 0 ? 40 : (x2 > 0 ? 25 : -25))}
+            y={svgY2 + (y2 === 0 ? 10 : (y2 > 0 ? -30 : 45))}
+            fill="#a855f7" fontSize="16" fontWeight="900"
+            textAnchor={x2 === 0 ? "start" : (x2 > 0 ? "start" : "end")}
+            filter="url(#glow)"
+          >B({x2}, {y2})</text>
         </g>
       </svg>
 
-      {/* 公式面板 */}
       {showFormula && (
         <div className="absolute top-4 left-4 bg-black/90 border border-cyan-400/30 rounded-lg px-5 py-4 space-y-3 backdrop-blur-md max-w-xs">
           <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider font-bold">
@@ -314,70 +240,39 @@ export default function CoordinateCanvas2D({
             {stage === "MIDPOINT" && t.midpoint_formula}
             {stage === "SLOPE" && t.slope_formula}
           </div>
-
           {stage === "DISTANCE" && (
             <div className="space-y-2">
-              <div className="text-white font-mono text-sm">
-                d = √[(x₂-x₁)² + (y₂-y₁)²]
-              </div>
-              <div className="text-white/60 text-xs">
-                = √[({x2}-{x1})² + ({y2}-{y1})²]
-              </div>
-              <div className="text-white/60 text-xs">
-                = √[{deltaX}² + {deltaY}²]
-              </div>
-              <div className="text-white/60 text-xs text-center italic mt-2">
-                Calculate d
-              </div>
+              <div className="text-white font-mono text-sm">d = √[(x₂-x₁)² + (y₂-y₁)²]</div>
+              <div className="text-white/60 text-xs">= √[({x2}-{x1})² + ({y2}-{y1})²]</div>
+              <div className="text-white/60 text-xs text-center italic mt-2">Calculate d</div>
             </div>
           )}
-
           {stage === "MIDPOINT" && (
             <div className="space-y-2">
-              <div className="text-white font-mono text-sm">
-                M = ((x₁+x₂)/2, (y₁+y₂)/2)
-              </div>
-              <div className="text-white/60 text-xs">
-                = (({x1}+{x2})/2, ({y1}+{y2})/2)
-              </div>
-              <div className="text-pink-400/60 text-xs text-center italic mt-2">
-                Calculate M(x, y)
-              </div>
+              <div className="text-white font-mono text-sm">M = ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+              <div className="text-white/60 text-xs">= (({x1}+{x2})/2, ({y1}+{y2})/2)</div>
+              <div className="text-pink-400/60 text-xs text-center italic mt-2">Calculate M(x, y)</div>
             </div>
           )}
-
           {stage === "SLOPE" && (
             <div className="space-y-2">
-              <div className="text-white font-mono text-sm">
-                m = (y₂-y₁)/(x₂-x₁) = rise/run
-              </div>
-              <div className="text-white/60 text-xs">
-                = ({y2}-{y1})/({x2}-{x1})
-              </div>
-              <div className="text-white/60 text-xs">
-                = {deltaY}/{deltaX}
-              </div>
-              <div className="text-cyan-400/60 text-xs text-center italic mt-2">
-                Calculate m
-              </div>
+              <div className="text-white font-mono text-sm">m = (y₂-y₁)/(x₂-x₁) = rise/run</div>
+              <div className="text-white/60 text-xs">= ({y2}-{y1})/({x2}-{x1})</div>
+              <div className="text-cyan-400/60 text-xs text-center italic mt-2">Calculate m</div>
             </div>
           )}
         </div>
       )}
 
-      {/* 控制按钮 */}
       <button
         onClick={() => setShowFormula(!showFormula)}
-        className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-cyan-400/50 transition-all text-xs font-mono backdrop-blur-sm"
+        className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white transition-all text-xs font-mono"
       >
         {showFormula ? t.hide_formula : t.show_formula}
       </button>
 
-      {/* 状态指示 */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // SM2.07<br />
-        COORDINATE_GEOMETRY<br />
-        MODE: {stage}
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase tracking-widest leading-relaxed">
+        CHAMBER // SM2.07<br />COORDINATE_GEOMETRY<br />MODE: {stage}
       </div>
     </div>
   );
