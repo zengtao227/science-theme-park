@@ -797,7 +797,11 @@ export const translations: Record<string, any> = {
                 values: "TRIGONOMETRIC VALUES",
                 display: "DISPLAY OPTIONS",
                 show_waves: "Show Wave Functions",
-                formulas: "FORMULAS"
+                formulas: "FORMULAS",
+                special_angles: "SPECIAL ANGLES",
+                exact_value: "EXACT VALUE",
+                decimal_value: "DECIMAL",
+                quadrant: "QUADRANT"
             },
             mission: {
                 title: "MISSION: UNIT CIRCLE",
@@ -812,7 +816,10 @@ export const translations: Record<string, any> = {
                 waves_desc: "Visualize sine and cosine as wave functions",
                 unit_circle_hint: "Point on circle: (cos θ, sin θ)",
                 projections_hint: "sin = y-projection, cos = x-projection",
-                waves_hint: "Sine and cosine create periodic waves"
+                waves_hint: "Sine and cosine create periodic waves",
+                unit_circle_prompt_latex: "\\text{Determine the quadrant or sign.}",
+                projections_prompt_latex: "\\text{Calculate the exact trigonometric value.}",
+                waves_prompt_latex: "\\text{Find the amplitude or period.}"
             }
         },
         sm3_03: {
@@ -3010,7 +3017,11 @@ export const translations: Record<string, any> = {
                 values: "三角函数值",
                 display: "显示选项",
                 show_waves: "显示波函数",
-                formulas: "公式"
+                formulas: "公式",
+                special_angles: "特殊角",
+                exact_value: "精确值",
+                decimal_value: "数值",
+                quadrant: "象限"
             },
             mission: {
                 title: "任务：单位圆",
@@ -3025,7 +3036,10 @@ export const translations: Record<string, any> = {
                 waves_desc: "将正弦和余弦可视化为波函数",
                 unit_circle_hint: "圆上的点：(cos θ, sin θ)",
                 projections_hint: "sin = y 轴投影，cos = x 轴投影",
-                waves_hint: "正弦和余弦形成周期波"
+                waves_hint: "sin 和 cos 形成周期波",
+                unit_circle_prompt_latex: "\\text{判断象限或正负号。}",
+                projections_prompt_latex: "\\text{计算三角函数的精确值。}",
+                waves_prompt_latex: "\\text{求振幅或周期。}"
             }
         },
         sm3_03: {
@@ -3073,7 +3087,7 @@ export const translations: Record<string, any> = {
             }
         },
         sm2_03: {
-            back: "返回枢纽",
+            back: "执行下一序列",
             title: "S2.03 // 直线导航器",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
@@ -5543,7 +5557,19 @@ export const translations: Record<string, any> = {
                 values: "TRIGONOMETRISCHE WERTE",
                 display: "ANZEIGEOPTIONEN",
                 show_waves: "Wellenfunktionen anzeigen",
-                formulas: "FORMELN"
+                formulas: "FORMELN",
+                special_angles: "SPEZIALWINKEL",
+                exact_value: "EXAKTER WERT",
+                decimal_value: "DEZIMALWERT",
+                quadrant: "QUADRANT",
+                input: "EINGABE",
+                hints: "HINWEISE",
+                sin: "sin(θ)",
+                cos: "cos(θ)",
+                tan: "tan(θ)",
+                opposite: "Gegenkathete",
+                adjacent: "Ankathete",
+                hypotenuse: "Hypotenuse"
             },
             mission: {
                 title: "MISSION: EINHEITSKREIS",
@@ -5559,23 +5585,9 @@ export const translations: Record<string, any> = {
                 unit_circle_hint: "Punkt auf Kreis: (cos θ, sin θ)",
                 projections_hint: "sin = y-Projektion, cos = x-Projektion",
                 waves_hint: "Sinus und Kosinus erzeugen periodische Wellen",
-                wave_functions_prompt_latex: "\\text{Analysiere die Sinus- und Kosinuswellenfunktionen.}",
-                triangle_solver_prompt_latex: "\\text{Löse das rechtwinklige Dreieck mit trigonometrischen Verhältnissen.}",
-                labels: {
-                    input: "EINGABE",
-                    hints: "HINWEISE",
-                    angle: "Winkel (θ)",
-                    sin: "sin(θ)",
-                    cos: "cos(θ)",
-                    tan: "tan(θ)",
-                    opposite: "Gegenkathete",
-                    adjacent: "Ankathete",
-                    hypotenuse: "Hypotenuse"
-                },
-                mission: {
-                    title: "MISSION: ZÜRICH TURM-KALIBRIERUNG",
-                    description: "Kalibriere die Winkelsensoren des Zürcher Aussichtsturms mit trigonometrischen Berechnungen."
-                }
+                unit_circle_prompt_latex: "\\text{Bestimme den Quadranten oder das Vorzeichen.}",
+                projections_prompt_latex: "\\text{Berechne den exakten trigonometrischen Wert.}",
+                waves_prompt_latex: "\\text{Finde Amplitude oder Periode.}"
             }
         },
         sm3_03: {
