@@ -16,12 +16,14 @@ interface S207Quest extends Quest {
   stage: Stage;
   point1: [number, number];
   point2: [number, number];
+  promptKey?: string;   // For dynamic localization
+  promptParams?: any;   // For dynamic localization
 }
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// Helper: Get Localized Prompt
-const getPrompt = (key: string, lang: string, params: any = {}) => {
+// Helper: Get Localized Prompt (Now used exclusively in the render phase for dynamic questions)
+const getLocalizedPrompt = (key: string, lang: string, params: any = {}) => {
   const isCN = lang === 'CN';
   const isDE = lang === 'DE';
 
@@ -48,15 +50,15 @@ const getPrompt = (key: string, lang: string, params: any = {}) => {
   return "";
 };
 
-function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: string): S207Quest[] {
+function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Quest[] {
   // --- DISTANCE STAGE ---
   if (stage === "DISTANCE") {
-    // ELITE: Reverse Distance
     if (difficulty === "ELITE") {
       return [
         {
           id: "D-E1", difficulty, stage, point1: [0, 0], point2: [3, 4],
-          promptLatex: getPrompt('DIST_REV_Y', lang, { d: 5 }),
+          promptKey: 'DIST_REV_Y', promptParams: { d: 5 },
+          promptLatex: "", // Will be dynamically generated
           expressionLatex: "A(0,0), B(3,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
@@ -64,7 +66,8 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         },
         {
           id: "D-E2", difficulty, stage, point1: [1, 1], point2: [6, 13],
-          promptLatex: getPrompt('DIST_REV_X', lang, { d: 13 }),
+          promptKey: 'DIST_REV_X', promptParams: { d: 13 },
+          promptLatex: "",
           expressionLatex: "A(1,1), B(x,13)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 6 }],
@@ -73,9 +76,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
       ];
     }
 
-    // Custom pools based on difficulty
     let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
-
     if (difficulty === "BASIC") {
       pool = [
         { id: "D1", point1: [0, 0], point2: [3, 4] },
@@ -90,7 +91,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         { id: "D-C3", point1: [0, -5], point2: [-12, 0] },
         { id: "D-C4", point1: [-3, -4], point2: [3, 4] }
       ];
-    } else if (difficulty === "ADVANCED") {
+    } else {
       pool = [
         { id: "D-A1", point1: [-5, -5], point2: [7, 0] },
         { id: "D-A2", point1: [10, 10], point2: [4, 2] },
@@ -121,7 +122,6 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
 
   // --- MIDPOINT STAGE ---
   if (stage === "MIDPOINT") {
-    // ADVANCED & ELITE: Reverse Midpoint
     if (difficulty === "ADVANCED" || difficulty === "ELITE") {
       const reversePool = [
         { id: "M-R1", A: [2, 2], M: [5, 5], B: [8, 8] },
@@ -136,7 +136,8 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         stage,
         point1: item.A as [number, number],
         point2: item.B as [number, number],
-        promptLatex: getPrompt('MID_REV', lang),
+        promptKey: 'MID_REV',
+        promptLatex: "",
         expressionLatex: `A(${item.A[0]},${item.A[1]}),\\; M(${item.M[0]},${item.M[1]})`,
         targetLatex: "B(x,y)",
         slots: [
@@ -147,7 +148,6 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
       }));
     }
 
-    // Standard Midpoint
     let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
     if (difficulty === "BASIC") {
       pool = [
@@ -156,7 +156,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         { id: "M-B3", point1: [1, 3], point2: [5, 1] },
         { id: "M-B4", point1: [10, 2], point2: [2, 10] }
       ];
-    } else if (difficulty === "CORE") {
+    } else {
       pool = [
         { id: "M-C1", point1: [-2, -4], point2: [2, 4] },
         { id: "M-C2", point1: [-5, 2], point2: [1, -6] },
@@ -191,12 +191,12 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
 
   // --- SLOPE STAGE ---
   if (stage === "SLOPE") {
-    // ELITE: Collinearity
     if (difficulty === "ELITE") {
       return [
         {
           id: "S-E1", difficulty, stage, point1: [0, 0], point2: [2, 4],
-          promptLatex: getPrompt('COLLINEAR', lang, { target: 'y' }),
+          promptKey: 'COLLINEAR', promptParams: { target: 'y' },
+          promptLatex: "",
           expressionLatex: "A(0,0), B(1,2), C(2,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
@@ -204,7 +204,8 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         },
         {
           id: "S-E2", difficulty, stage, point1: [1, 3], point2: [5, 11], // m=2
-          promptLatex: getPrompt('COLLINEAR', lang, { target: 'x' }),
+          promptKey: 'COLLINEAR', promptParams: { target: 'x' },
+          promptLatex: "",
           expressionLatex: "A(1,3), B(3,7), C(x,11)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
@@ -213,7 +214,6 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
       ];
     }
 
-    // Standard Slope
     let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
     if (difficulty === "BASIC") {
       pool = [
@@ -229,7 +229,7 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: st
         { id: "S-C3", point1: [-5, 5], point2: [5, -5] },
         { id: "S-C4", point1: [2, -3], point2: [-2, 3] }
       ];
-    } else if (difficulty === "ADVANCED") {
+    } else {
       pool = [
         { id: "S-A1", point1: [-10, -5], point2: [5, 10] },
         { id: "S-A2", point1: [-3.5, 2], point2: [1.5, -3] },
@@ -265,8 +265,9 @@ export default function S207Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].sm2_07;
 
-  // Pass currentLanguage to buildStagePool
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s, currentLanguage), [t, currentLanguage]);
+  // buildPool now only depends on 't'. We don't need 'lang' as a dependency for the generator 
+  // because we handle localization dynamically in the render phase for new question types.
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
   const {
     difficulty,
@@ -358,12 +359,7 @@ export default function S207Page() {
         incorrect: t.incorrect,
         ready: t.ready,
         monitor_title: t.monitor_title,
-        difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
-        }
+        difficulty: t.difficulty
       }}
     >
       <div className="space-y-10">
@@ -375,9 +371,24 @@ export default function S207Page() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
             {(() => {
-              const latex = currentQuest?.promptLatex || "";
+              // DYNAMIC LOCALIZATION LOGIC
+              let latex = currentQuest?.promptLatex || "";
+
+              // If this is a new question type with a promptKey, get the localized version NOW
+              if (currentQuest?.promptKey) {
+                latex = getLocalizedPrompt(currentQuest.promptKey, currentLanguage, currentQuest.promptParams);
+              }
+
               if (latex.includes("\\text{")) {
-                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+                return (
+                  <span className="font-sans not-italic whitespace-pre-wrap">
+                    {latex
+                      .replace(/\\text\{/g, "")
+                      .replace(/\}/g, "")
+                      .replace(/\\\\/g, "\n")
+                      .replace(/\\;/g, " ")}
+                  </span>
+                );
               }
               return <InlineMath math={latex} />;
             })()}
@@ -397,11 +408,6 @@ export default function S207Page() {
                     className="flex-1 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
                     placeholder={slot.placeholder}
                   />
-                  {slot.unit && (
-                    <div className="text-xl font-black text-white/80 min-w-[30px]">
-                      <InlineMath math={slot.unit} />
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
