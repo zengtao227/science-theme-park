@@ -104,7 +104,7 @@ export default function CoordinateCanvas2D({
           })}
         </g>
 
-        {/* 坐标轴 - 强化视觉，提升至 strokeWidth 3 并加发光 */}
+        {/* 坐标轴 - 强化视觉 */}
         <g filter="url(#glow)">
           <line x1="0" y1={originY} x2={width} y2={originY} stroke="#00e5ff" strokeWidth="3" />
           <line x1={originX} y1="0" x2={originX} y2={height} stroke="#00e5ff" strokeWidth="3" />
@@ -126,7 +126,6 @@ export default function CoordinateCanvas2D({
             const isMajor = val % 5 === 0;
             return (
               <g key={i}>
-                {/* X轴刻度与数字 */}
                 <line x1={svgX} y1={originY - (isMajor ? 8 : 4)} x2={svgX} y2={originY + (isMajor ? 8 : 4)} stroke="#00e5ff" strokeWidth={isMajor ? 2 : 1} />
                 <text
                   x={svgX} y={originY + 28}
@@ -139,7 +138,6 @@ export default function CoordinateCanvas2D({
                   {val}
                 </text>
 
-                {/* Y轴刻度与数字 */}
                 <line x1={originX - (isMajor ? 8 : 4)} y1={svgY2} x2={originX + (isMajor ? 8 : 4)} y2={svgY2} stroke="#00e5ff" strokeWidth={isMajor ? 2 : 1} />
                 <text
                   x={originX - 18} y={svgY2 + 5}
@@ -160,14 +158,21 @@ export default function CoordinateCanvas2D({
           <g>
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY1} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
             <line x1={svgX2} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
-            <rect x={svgX2 - 10} y={svgY1 - 10} width="10" height="10" fill="none" stroke="#ffd166" strokeWidth="1.5" />
+            <rect x={svgX2 - 10} y={svgY2 < svgY1 ? svgY1 - 10 : svgY1} width="10" height="10" fill="none" stroke="#ffd166" strokeWidth="1.5" />
 
-            <text x={(svgX1 + svgX2) / 2} y={svgY1 + (y1 >= 0 ? 30 : -20)} fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle">Δx = {Math.abs(deltaX)}</text>
+            {/* Δx 标签 - 强制放在三角形下方/外侧 */}
             <text
-              x={svgX2 + (x2 >= 0 ? 20 : -20)}
+              x={(svgX1 + svgX2) / 2}
+              y={svgY1 + (svgY2 < svgY1 ? 30 : -20)}
+              fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle"
+            >Δx = {Math.abs(deltaX)}</text>
+
+            {/* Δy 标签 - 强制放在三角形右侧/外侧 */}
+            <text
+              x={svgX2 + (svgX1 < svgX2 ? 20 : -20)}
               y={(svgY1 + svgY2) / 2}
               fill="#ffd166" fontSize="13" fontWeight="900"
-              textAnchor={x2 >= 0 ? "start" : "end"}
+              textAnchor={svgX1 < svgX2 ? "start" : "end"}
             >Δy = {Math.abs(deltaY)}</text>
 
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="3" filter="url(#glow)" />
@@ -198,12 +203,19 @@ export default function CoordinateCanvas2D({
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#00e5ff" strokeWidth="3" filter="url(#glow)" />
             <polygon points={`${svgX1},${svgY1} ${svgX2},${svgY1} ${svgX2},${svgY2}`} fill="#ffd166" opacity="0.2" stroke="#ffd166" strokeWidth="2" />
 
-            <text x={(svgX1 + svgX2) / 2} y={svgY1 + (y1 >= 0 ? 30 : -20)} fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle">run = {deltaX}</text>
+            {/* run 标签 - 外部避让 */}
             <text
-              x={svgX2 + (x2 >= 0 ? 20 : -20)}
+              x={(svgX1 + svgX2) / 2}
+              y={svgY1 + (svgY2 < svgY1 ? 30 : -20)}
+              fill="#ffd166" fontSize="13" fontWeight="900" textAnchor="middle"
+            >run = {deltaX}</text>
+
+            {/* rise 标签 - 外部避让 */}
+            <text
+              x={svgX2 + (svgX1 < svgX2 ? 20 : -20)}
               y={(svgY1 + svgY2) / 2}
               fill="#ffd166" fontSize="13" fontWeight="900"
-              textAnchor={x2 >= 0 ? "start" : "end"}
+              textAnchor={svgX1 < svgX2 ? "start" : "end"}
             >rise = {deltaY}</text>
 
             <text x={(svgX1 + svgX2) / 2} y={(svgY1 + svgY2) / 2 - 40} fill="#00e5ff" fontSize="22" fontWeight="900" textAnchor="middle" filter="url(#glow)">m = ?</text>
