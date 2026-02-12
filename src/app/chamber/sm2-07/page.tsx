@@ -54,7 +54,33 @@ const slopeData = [
 ];
 
 function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Quest[] {
+  // --- DISTANCE STAGE ---
   if (stage === "DISTANCE") {
+    // Elite: Find missing coordinate given distance (e.g. Find y if dist(A,B)=5)
+    if (difficulty === "ELITE") {
+      return [
+        {
+          id: "D-E1", difficulty, stage,
+          point1: [0, 0], point2: [3, 4],
+          promptLatex: "\\text{Distance } d=5 \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.",
+          expressionLatex: "A(0,0), B(3,y)",
+          targetLatex: "y",
+          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
+          correctLatex: "y=4"
+        },
+        {
+          id: "D-E2", difficulty, stage,
+          point1: [1, 1], point2: [6, 13],
+          promptLatex: "\\text{Distance } d=13 \\text{. Find } x \\text{ for } B(x,13) \\text{ (x>1)}.",
+          expressionLatex: "A(1,1), B(x,13)",
+          targetLatex: "x",
+          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 6 }],
+          correctLatex: "x=6"
+        }
+      ];
+    }
+
+    // Standard Distance Calculation
     const all = distanceData.map((item) => {
       const [x1, y1] = item.point1;
       const [x2, y2] = item.point2;
@@ -77,7 +103,35 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
     return all;
   }
 
+  // --- MIDPOINT STAGE ---
   if (stage === "MIDPOINT") {
+    // Advanced & Elite: Reverse Midpoint (Find Endpoint given Midpoint)
+    if (difficulty === "ADVANCED" || difficulty === "ELITE") {
+      return midpointData.slice(0, 4).map(item => {
+        const [x1, y1] = item.point1;
+        const [x2, y2] = item.point2;
+        const mx = (x1 + x2) / 2;
+        const my = (y1 + y2) / 2;
+
+        return {
+          id: `M-REV-${item.id}`,
+          difficulty,
+          stage,
+          point1: item.point1,
+          point2: item.point2, // Canvas still shows B
+          promptLatex: "\\text{M is midpoint. Find B(x,y).}",
+          expressionLatex: `A(${x1},${y1}),\\; M(${mx},${my})`,
+          targetLatex: "B(x,y)",
+          slots: [
+            { id: "bx", labelLatex: "x_B", placeholder: "x", expected: x2 },
+            { id: "by", labelLatex: "y_B", placeholder: "y", expected: y2 }
+          ],
+          correctLatex: `B(${x2},${y2})`
+        };
+      });
+    }
+
+    // Standard Midpoint
     const all = midpointData.map((item) => {
       const [x1, y1] = item.point1;
       const [x2, y2] = item.point2;
@@ -104,7 +158,31 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
     return all;
   }
 
-  // SLOPE
+  // --- SLOPE STAGE ---
+  // Elite: Collinearity (Find missing coord to match slope)
+  if (difficulty === "ELITE") {
+    return [
+      {
+        id: "S-E1", difficulty, stage,
+        point1: [0, 0], point2: [2, 4],
+        promptLatex: "\\text{Points A, B, C are collinear. Find y.}",
+        expressionLatex: "A(0,0), B(1,2), C(2,y)",
+        targetLatex: "y",
+        slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
+        correctLatex: "y=4"
+      },
+      {
+        id: "S-E2", difficulty, stage,
+        point1: [1, 3], point2: [5, 11], // m=2
+        promptLatex: "\\text{Points A, B, C are collinear. Find x.}",
+        expressionLatex: "A(1,3), B(3,7), C(x,11)",
+        targetLatex: "x",
+        slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
+        correctLatex: "x=5"
+      }
+    ];
+  }
+
   const all = slopeData.map((item) => {
     const [x1, y1] = item.point1;
     const [x2, y2] = item.point2;
@@ -195,6 +273,28 @@ export default function S207Page() {
             stage={stage}
             point1={currentQuest?.point1 || [2, 3]}
             point2={currentQuest?.point2 || [6, 7]}
+            translations={currentLanguage === "CN" ? {
+              distance_formula: "距离公式",
+              midpoint_formula: "中点公式",
+              slope_formula: "斜率公式",
+              line_eq: "直线方程",
+              hide_formula: "隐藏公式",
+              show_formula: "显示公式"
+            } : currentLanguage === "DE" ? {
+              distance_formula: "Abstandsformel",
+              midpoint_formula: "Mittelpunktsformel",
+              slope_formula: "Steigungsformel",
+              line_eq: "Geradengleichung",
+              hide_formula: "Formel verbergen",
+              show_formula: "Formel anzeigen"
+            } : {
+              distance_formula: "Distance Formula",
+              midpoint_formula: "Midpoint Formula",
+              slope_formula: "Slope Formula",
+              line_eq: "Line Equation",
+              hide_formula: "Hide Formula",
+              show_formula: "Show Formula"
+            }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">

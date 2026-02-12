@@ -6,14 +6,32 @@ interface CoordinateCanvas2DProps {
   stage: "DISTANCE" | "MIDPOINT" | "SLOPE";
   point1?: [number, number];
   point2?: [number, number];
+  translations?: {
+    distance_formula: string;
+    midpoint_formula: string;
+    slope_formula: string;
+    line_eq: string;
+    hide_formula: string;
+    show_formula: string;
+  };
 }
 
 export default function CoordinateCanvas2D({
   stage = "DISTANCE",
   point1 = [2, 3],
   point2 = [6, 7],
+  translations,
 }: CoordinateCanvas2DProps) {
   const [showFormula, setShowFormula] = useState(true);
+
+  const t = translations || {
+    distance_formula: "Distance Formula",
+    midpoint_formula: "Midpoint Formula",
+    slope_formula: "Slope Formula",
+    line_eq: "Line Equation: ",
+    hide_formula: "Hide Formula",
+    show_formula: "Show Formula"
+  };
 
   // SVG配置
   const width = 800;
@@ -229,7 +247,7 @@ export default function CoordinateCanvas2D({
               fontSize="16"
               fontWeight="bold"
             >
-              y = {slope.toFixed(2)}x + {b.toFixed(2)}
+              {t.line_eq} y = {slope.toFixed(2)}x + {b.toFixed(2)}
             </text>
           </g>
         )}
@@ -256,9 +274,9 @@ export default function CoordinateCanvas2D({
       {showFormula && (
         <div className="absolute top-4 left-4 bg-black/90 border border-cyan-400/30 rounded-lg px-5 py-4 space-y-3 backdrop-blur-md max-w-xs">
           <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider font-bold">
-            {stage === "DISTANCE" && "距离公式 Distance Formula"}
-            {stage === "MIDPOINT" && "中点公式 Midpoint Formula"}
-            {stage === "SLOPE" && "斜率公式 Slope Formula"}
+            {stage === "DISTANCE" && t.distance_formula}
+            {stage === "MIDPOINT" && t.midpoint_formula}
+            {stage === "SLOPE" && t.slope_formula}
           </div>
 
           {stage === "DISTANCE" && (
@@ -307,7 +325,7 @@ export default function CoordinateCanvas2D({
                 = {slope.toFixed(2)}
               </div>
               <div className="text-white text-xs mt-3 pt-3 border-t border-white/60">
-                直线方程: y = {slope.toFixed(2)}x + {b.toFixed(2)}
+                {t.line_eq} y = {slope.toFixed(2)}x + {b.toFixed(2)}
               </div>
             </div>
           )}
@@ -319,7 +337,7 @@ export default function CoordinateCanvas2D({
         onClick={() => setShowFormula(!showFormula)}
         className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-cyan-400/50 transition-all text-xs font-mono backdrop-blur-sm"
       >
-        {showFormula ? "隐藏公式" : "显示公式"}
+        {showFormula ? t.hide_formula : t.show_formula}
       </button>
 
       {/* 状态指示 */}
