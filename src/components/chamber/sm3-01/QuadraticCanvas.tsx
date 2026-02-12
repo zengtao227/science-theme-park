@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Grid, Float, Line, QuadraticBezierLine } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Text, Grid, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 export type CanvasQuest = {
@@ -16,53 +16,70 @@ export type CanvasQuest = {
 }
 
 // ---------------------------------------------------------
-// 1. AREA MODEL COMPONENT (Geometric interpretation of factorization)
-// Shows x*x square, x*1 rectangles, and 1*1 squares
+// 1. AREA MODEL COMPONENT (Geometric factorization blocks)
 // ---------------------------------------------------------
 function AreaModel({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: number }) {
-  // Logic: For x^2 + (p+q)x + pq, we show a rectangle of sides (x+p) and (x+q)
-  // Simplified for viz: show the "blocks" that make up the expression
-  const group = useRef<THREE.Group>(null);
+  const absB = Math.min(Math.abs(Math.round(b)), 10);
+  const absC = Math.min(Math.abs(Math.round(c)), 12);
 
   return (
-    <group ref={group} position={[-2, 0, 0]}>
-      {/* Big x^2 square */}
+    <group position={[-2.5, 0, 0]}>
+      {/* x² block (large red square) */}
       <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[2, 2, 0.2]} />
-        <meshPhysicalMaterial color="#ff4444" emissive="#ff4444" emissiveIntensity={0.2} metalness={0.8} roughness={0.2} transparent opacity={0.9} />
-        <Text position={[0, 0, 0.15]} fontSize={0.4} color="white">x²</Text>
+        <boxGeometry args={[2, 2, 0.3]} />
+        <meshPhysicalMaterial color="#ff4444" emissive="#ff2222" emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.9} />
       </mesh>
+      <Text position={[0, 0, 0.2]} fontSize={0.5} color="white" anchorX="center" anchorY="middle" fontWeight="bold">
+        {a === 1 ? '' : a}x²
+      </Text>
 
-      {/* b*x strips */}
-      {Array.from({ length: Math.abs(Math.round(b)) }).map((_, i) => (
-        <mesh key={`b-${i}`} position={[2 + 0.3, (i * 0.5) - 0.75, 0]}>
-          <boxGeometry args={[0.4, 0.4, 0.2]} />
-          <meshPhysicalMaterial color="#00ddff" emissive="#00ddff" emissiveIntensity={0.2} metalness={0.8} roughness={0.2} transparent opacity={0.8} />
-        </mesh>
-      ))}
-      <Text position={[2.3, 1.2, 0]} fontSize={0.25} color="#00ddff">{b}x</Text>
+      {/* bx strips (cyan bars stacked vertically) */}
+      {absB > 0 && (
+        <group position={[1.6, 0, 0]}>
+          {Array.from({ length: absB }).map((_, i) => (
+            <mesh key={`b-${i}`} position={[0, (i - absB / 2 + 0.5) * 0.35, 0]}>
+              <boxGeometry args={[0.3, 0.3, 0.3]} />
+              <meshPhysicalMaterial color={b > 0 ? "#00ddff" : "#ff8800"} emissive={b > 0 ? "#00bbdd" : "#cc6600"} emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.85} />
+            </mesh>
+          ))}
+          <Text position={[0, absB * 0.35 / 2 + 0.5, 0]} fontSize={0.3} color={b > 0 ? "#00ddff" : "#ff8800"} anchorX="center">
+            {b > 0 ? '+' : ''}{b}x
+          </Text>
+        </group>
+      )}
 
-      {/* c units */}
-      {Array.from({ length: Math.min(Math.abs(Math.round(c)), 12) }).map((_, i) => (
-        <mesh key={`c-${i}`} position={[3.2, (i * 0.3) - 0.75, 0]}>
-          <boxGeometry args={[0.2, 0.2, 0.2]} />
-          <meshPhysicalMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={0.2} metalness={0.8} roughness={0.2} transparent opacity={0.8} />
-        </mesh>
-      ))}
-      <Text position={[3.2, 1.2, 0]} fontSize={0.25} color="#00ff88">const: {c}</Text>
+      {/* c unit blocks (green small cubes) */}
+      {absC > 0 && (
+        <group position={[2.6, 0, 0]}>
+          {Array.from({ length: absC }).map((_, i) => (
+            <mesh key={`c-${i}`} position={[0, (i - absC / 2 + 0.5) * 0.25, 0]}>
+              <boxGeometry args={[0.2, 0.2, 0.2]} />
+              <meshPhysicalMaterial color={c > 0 ? "#00ff88" : "#ff4488"} emissive={c > 0 ? "#00dd66" : "#dd2266"} emissiveIntensity={0.3} metalness={0.7} roughness={0.3} transparent opacity={0.85} />
+            </mesh>
+          ))}
+          <Text position={[0, absC * 0.25 / 2 + 0.5, 0]} fontSize={0.3} color={c > 0 ? "#00ff88" : "#ff4488"} anchorX="center">
+            {c > 0 ? '+' : ''}{c}
+          </Text>
+        </group>
+      )}
+
+      {/* Title */}
+      <Text position={[1, -2.2, 0]} fontSize={0.35} color="white" anchorX="center">
+        Area Model: {a === 1 ? '' : a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
+      </Text>
     </group>
   );
 }
 
 // ---------------------------------------------------------
-// 2. PARABOLA VISUALIZER (Precise root and vertex highlighting)
+// 2. PARABOLA VISUALIZER (Roots + Vertex)
 // ---------------------------------------------------------
 function ParabolaVisualizer({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: number }) {
   const points = useMemo(() => {
     const pts: THREE.Vector3[] = [];
-    for (let x = -6; x <= 6; x += 0.1) {
+    for (let x = -7; x <= 7; x += 0.08) {
       const y = a * x * x + b * x + c;
-      if (Math.abs(y) < 20) { // Keep in view
+      if (y > -12 && y < 12) {
         pts.push(new THREE.Vector3(x, y, 0));
       }
     }
@@ -75,19 +92,21 @@ function ParabolaVisualizer({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: 
     return new THREE.Vector3(vx, vy, 0);
   }, [a, b, c]);
 
-  // Calculate roots if real
   const discriminant = b * b - 4 * a * c;
   const roots = useMemo(() => {
     if (discriminant < 0) return [];
     const r1 = (-b - Math.sqrt(discriminant)) / (2 * a);
     const r2 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    if (Math.abs(r1 - r2) < 0.01) return [r1];
     return [r1, r2];
   }, [a, b, c, discriminant]);
 
   return (
     <group>
-      {/* Path */}
-      <Line points={points} color="#00ffff" lineWidth={3} />
+      {/* Parabola curve */}
+      {points.length > 2 && (
+        <Line points={points} color="#00ffff" lineWidth={3} />
+      )}
 
       {/* Vertex marker */}
       <group position={vertex}>
@@ -95,8 +114,9 @@ function ParabolaVisualizer({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: 
           <sphereGeometry args={[0.2, 16, 16]} />
           <meshBasicMaterial color="#ff00ff" />
         </mesh>
-        <Text position={[0, -0.5, 0.5]} fontSize={0.3} color="#ff00ff" anchorX="center">
-          Vertex ({vertex.x.toFixed(1)}, {vertex.y.toFixed(1)})
+        <pointLight color="#ff00ff" intensity={2} distance={3} />
+        <Text position={[0, -0.6, 0.5]} fontSize={0.28} color="#ff00ff" anchorX="center">
+          V({vertex.x.toFixed(1)}, {vertex.y.toFixed(1)})
         </Text>
       </group>
 
@@ -105,52 +125,65 @@ function ParabolaVisualizer({ a = 1, b = 0, c = 0 }: { a: number; b: number; c: 
         <group key={i} position={[r, 0, 0]}>
           <mesh>
             <sphereGeometry args={[0.15, 16, 16]} />
-            <meshBasicMaterial color="#00ff00" />
+            <meshBasicMaterial color="#39ff14" />
           </mesh>
-          <Text position={[0, 0.5, 0.5]} fontSize={0.25} color="#00ff00" anchorX="center">
-            Root: {r.toFixed(1)}
+          <pointLight color="#39ff14" intensity={1.5} distance={2} />
+          <Text position={[0, 0.5, 0.5]} fontSize={0.25} color="#39ff14" anchorX="center">
+            x={r.toFixed(1)}
           </Text>
         </group>
-      )}
+      ))}
 
-      {/* Parabola Equation Label */}
-      <Text position={[0, 7, 0]} fontSize={0.5} color="white">
-        y = {a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
+      {/* Equation label at top */}
+      <Text position={[0, 8, 0]} fontSize={0.45} color="white" anchorX="center">
+        y = {a === 1 ? '' : a === -1 ? '-' : a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
       </Text>
+
+      {/* No roots indicator */}
+      {discriminant < 0 && (
+        <Text position={[3, 3, 0]} fontSize={0.3} color="#ff4444" anchorX="center">
+          Δ &lt; 0 (no real roots)
+        </Text>
+      )}
     </group>
   );
 }
 
 // ---------------------------------------------------------
-// MAIN SCENE CONTROLLER
+// MAIN SCENE
 // ---------------------------------------------------------
 function QuadraticScene({ quest }: { quest: CanvasQuest }) {
-  const { a = 0, b = 0, c = 0, vizMode = "PARABOLA" } = quest;
+  const a = quest.a ?? 1;
+  const b = quest.b ?? 0;
+  const c = quest.c ?? 0;
+  const vizMode = quest.vizMode ?? "PARABOLA";
 
   return (
     <group>
       <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} />
+      <pointLight position={[10, 10, 10]} intensity={1.2} />
+      <pointLight position={[-5, 5, 5]} intensity={0.6} color="#00ffff" />
 
-      {/* Dynamic Grid */}
+      {/* Grid behind the parabola */}
       <Grid
         args={[20, 20]}
         cellSize={1}
-        cellThickness={1}
-        cellColor="#333"
+        cellThickness={0.5}
+        cellColor="#222"
         sectionSize={5}
-        sectionThickness={1.5}
+        sectionThickness={1}
         sectionColor="#00ffff"
-        fadeDistance={30}
-        position={[0, -0.01, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
+        fadeDistance={25}
+        position={[0, 0, -0.5]}
       />
 
-      {/* Axes */}
-      <Line points={[new THREE.Vector3(-10, 0, 0), new THREE.Vector3(10, 0, 0)]} color="#ff4444" lineWidth={1} />
-      <Line points={[new THREE.Vector3(0, -10, 0), new THREE.Vector3(0, 10, 0)]} color="#44ff44" lineWidth={1} />
+      {/* Coordinate axes */}
+      <Line points={[new THREE.Vector3(-10, 0, 0), new THREE.Vector3(10, 0, 0)]} color="#ff4444" lineWidth={2} />
+      <Line points={[new THREE.Vector3(0, -10, 0), new THREE.Vector3(0, 10, 0)]} color="#44ff44" lineWidth={2} />
+      <Text position={[9.5, 0.5, 0]} fontSize={0.3} color="#ff4444" anchorX="center">x</Text>
+      <Text position={[0.5, 9.5, 0]} fontSize={0.3} color="#44ff44" anchorX="center">y</Text>
 
-      {/* Content based on quest mode */}
+      {/* VIZ MODE SWITCH */}
       {vizMode === "AREA" ? (
         <AreaModel a={a} b={b} c={c} />
       ) : (
@@ -160,53 +193,46 @@ function QuadraticScene({ quest }: { quest: CanvasQuest }) {
   );
 }
 
+// ---------------------------------------------------------
+// EXPORTED COMPONENT
+// ---------------------------------------------------------
 export default function S301QuadraticCanvas({ quest }: { quest: CanvasQuest }) {
-  if (!quest) return <div className="w-full h-full bg-[#020208] flex items-center justify-center text-white">Initializing Quantum Processor...</div>;
+  if (!quest) {
+    return (
+      <div className="w-full aspect-[4/3] bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
+        <span className="text-white/60 font-mono text-sm">Loading Module...</span>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full h-full relative bg-[#000005] rounded-xl overflow-hidden shadow-2xl border border-white/10">
-      <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
+    <div className="w-full aspect-[4/3] relative bg-[#000005] rounded-xl overflow-hidden shadow-2xl border border-white/10">
+      <Canvas camera={{ position: [0, 2, 14], fov: 45 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         <OrbitControls enablePan={false} maxDistance={25} minDistance={5} />
         <QuadraticScene quest={quest} />
       </Canvas>
 
-      {/* HUD Labels */}
-      <div className="absolute top-4 left-4 space-y-1">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">Orbital Analysis</span>
+      {/* HUD Overlay */}
+      <div className="absolute top-3 left-3 flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+        <span className="text-[9px] font-mono text-cyan-400/80 uppercase tracking-widest">
+          {quest.vizMode === "AREA" ? "Algebraic Decomposition" : "Parabolic Analyzer"}
+        </span>
+      </div>
+
+      {/* Coefficient Panel */}
+      <div className="absolute bottom-3 left-3 p-3 rounded-lg border border-white/5 bg-black/50 backdrop-blur-md">
+        <div className="text-[8px] font-mono text-white/30 uppercase mb-1.5 tracking-wider">Coefficients</div>
+        <div className="flex gap-4">
+          <div><span className="text-[8px] text-red-400 block">a</span><span className="text-sm font-black text-white">{quest.a ?? '–'}</span></div>
+          <div><span className="text-[8px] text-cyan-400 block">b</span><span className="text-sm font-black text-white">{quest.b ?? '–'}</span></div>
+          <div><span className="text-[8px] text-green-400 block">c</span><span className="text-sm font-black text-white">{quest.c ?? '–'}</span></div>
         </div>
       </div>
 
-      <div className="absolute bottom-4 left-4 p-4 rounded-lg border border-white/5 bg-black/40 backdrop-blur-md">
-        <div className="text-[9px] font-mono text-white/40 uppercase mb-2">Parameters</div>
-        <div className="grid grid-cols-3 gap-4">
-          <div><div className="text-[8px] text-red-400 uppercase">a (Quadratic)</div><div className="text-sm font-bold text-white">{quest.a ?? 0}</div></div>
-          <div><div className="text-[8px] text-cyan-400 uppercase">b (Linear)</div><div className="text-sm font-bold text-white">{quest.b ?? 0}</div></div>
-          <div><div className="text-[8px] text-green-400 uppercase">c (Constant)</div><div className="text-sm font-bold text-white">{quest.c ?? 0}</div></div>
-        </div>
-      </div>
-
-      <div className="absolute top-4 right-4 text-right">
-        <div className="text-[8px] font-mono text-white/30 uppercase leading-relaxed">
-          CHAMBER SM3.01<br />
-          MATH_CORE_V4.0<br />
-          STAGE: {quest.stage}<br />
-          ID: {quest.id}
-        </div>
-      </div>
-
-      {/* Legend */}
-      <div className="absolute top-1/2 right-4 -translate-y-1/2 flex flex-col items-end gap-3 pointer-events-none opacity-60">
-        <div className="flex items-center gap-2">
-          <span className="text-[8px] text-white/70 uppercase">Vertex</span>
-          <div className="w-2 h-2 bg-[#ff00ff] rounded-full" />
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[8px] text-white/70 uppercase">Roots</span>
-          <div className="w-2 h-2 bg-[#00ff00] rounded-full" />
-        </div>
+      <div className="absolute bottom-3 right-3 text-[7px] font-mono text-white/30 text-right uppercase leading-relaxed tracking-wider">
+        SM3.01 // {quest.stage}<br />ID: {quest.id}
       </div>
     </div>
   );

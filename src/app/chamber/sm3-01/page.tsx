@@ -42,13 +42,13 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
     }
     if (difficulty === "ADVANCED") {
       return [
-        { id: "T-A1", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "2x^2 + 3x - x^2 + 5", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", expected: 1 }, { id: "bx", labelLatex: "b", expected: 3 }, { id: "c", labelLatex: "c", expected: 5 }], correctLatex: "x^2+3x+5", a: 1, b: 3, c: 5, vizMode: "PARABOLA" },
-        { id: "T-A2", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "4x(x - 2) + 3x + 2", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", expected: 4 }, { id: "bx", labelLatex: "b", expected: -5 }, { id: "c", labelLatex: "c", expected: 2 }], correctLatex: "4x^2-5x+2", a: 4, b: -5, c: 2, vizMode: "PARABOLA" }
+        { id: "T-A1", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "2x^2 + 3x - x^2 + 5", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", placeholder: "?", expected: 1 }, { id: "bx", labelLatex: "b", placeholder: "?", expected: 3 }, { id: "c", labelLatex: "c", placeholder: "?", expected: 5 }], correctLatex: "x^2+3x+5", a: 1, b: 3, c: 5, vizMode: "PARABOLA" },
+        { id: "T-A2", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "4x(x - 2) + 3x + 2", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", placeholder: "?", expected: 4 }, { id: "bx", labelLatex: "b", placeholder: "?", expected: -5 }, { id: "c", labelLatex: "c", placeholder: "?", expected: 2 }], correctLatex: "4x^2-5x+2", a: 4, b: -5, c: 2, vizMode: "PARABOLA" }
       ];
     }
     // ELITE: Complex multi-variable and high powers
     return [
-      { id: "T-E1", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "3x^2 - 2x(x - 4) + 5", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", expected: 1 }, { id: "bx", labelLatex: "b", expected: 8 }, { id: "c", labelLatex: "c", expected: 5 }], correctLatex: "x^2+8x+5", a: 1, b: 8, c: 5 }
+      { id: "T-E1", difficulty, stage, promptLatex: t.stages.terms_prompt_latex, expressionLatex: "3x^2 - 2x(x - 4) + 5", targetLatex: "ax^2+bx+c", slots: [{ id: "ax2", labelLatex: "a", placeholder: "?", expected: 1 }, { id: "bx", labelLatex: "b", placeholder: "?", expected: 8 }, { id: "c", labelLatex: "c", placeholder: "?", expected: 5 }], correctLatex: "x^2+8x+5", a: 1, b: 8, c: 5 }
     ];
   }
 
@@ -56,26 +56,26 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
   if (stage === "FACTORIZE") {
     if (difficulty === "BASIC") {
       return [
-        { id: "F-B1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 + 3x + 2", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: 1 }, { id: "B", labelLatex: "B", expected: 2 }], correctLatex: "(x+1)(x+2)", a: 1, b: 3, c: 2, vizMode: "AREA" },
-        { id: "F-B2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 + 5x + 6", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: 2 }, { id: "B", labelLatex: "B", expected: 3 }], correctLatex: "(x+2)(x+3)", a: 1, b: 5, c: 6, vizMode: "AREA" }
+        { id: "F-B1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 + 3x + 2", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: 1 }, { id: "B", labelLatex: "B", placeholder: "?", expected: 2 }], correctLatex: "(x+1)(x+2)", a: 1, b: 3, c: 2, vizMode: "AREA" },
+        { id: "F-B2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 + 5x + 6", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: 2 }, { id: "B", labelLatex: "B", placeholder: "?", expected: 3 }], correctLatex: "(x+2)(x+3)", a: 1, b: 5, c: 6, vizMode: "AREA" }
       ];
     }
     if (difficulty === "CORE") {
       return [
-        { id: "F-C1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 - 4", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: -2 }, { id: "B", labelLatex: "B", expected: 2 }], correctLatex: "(x-2)(x+2)", a: 1, b: 0, c: -4, vizMode: "AREA" },
-        { id: "F-C2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 - x - 6", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: -3 }, { id: "B", labelLatex: "B", expected: 2 }], correctLatex: "(x-3)(x+2)", a: 1, b: -1, c: -6, vizMode: "AREA" }
+        { id: "F-C1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 - 4", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: -2 }, { id: "B", labelLatex: "B", placeholder: "?", expected: 2 }], correctLatex: "(x-2)(x+2)", a: 1, b: 0, c: -4, vizMode: "AREA" },
+        { id: "F-C2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "x^2 - x - 6", targetLatex: "(x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: -3 }, { id: "B", labelLatex: "B", placeholder: "?", expected: 2 }], correctLatex: "(x-3)(x+2)", a: 1, b: -1, c: -6, vizMode: "AREA" }
       ];
     }
     if (difficulty === "ADVANCED") {
       // Non-unitary a
       return [
-        { id: "F-A1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "2x^2 + 5x + 3", targetLatex: "(2x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: 3 }, { id: "B", labelLatex: "B", expected: 1 }], correctLatex: "(2x+3)(x+1)", a: 2, b: 5, c: 3, vizMode: "AREA" },
-        { id: "F-A2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "3x^2 - 10x + 3", targetLatex: "(3x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", expected: -1 }, { id: "B", labelLatex: "B", expected: -3 }], correctLatex: "(3x-1)(x-3)", a: 3, b: -10, c: 3 }
+        { id: "F-A1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "2x^2 + 5x + 3", targetLatex: "(2x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: 3 }, { id: "B", labelLatex: "B", placeholder: "?", expected: 1 }], correctLatex: "(2x+3)(x+1)", a: 2, b: 5, c: 3, vizMode: "AREA" },
+        { id: "F-A2", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "3x^2 - 10x + 3", targetLatex: "(3x+A)(x+B)", slots: [{ id: "A", labelLatex: "A", placeholder: "?", expected: -1 }, { id: "B", labelLatex: "B", placeholder: "?", expected: -3 }], correctLatex: "(3x-1)(x-3)", a: 3, b: -10, c: 3 }
       ];
     }
     // ELITE: Complex combinations
     return [
-      { id: "F-E1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "4x^2 - 12x + 9", targetLatex: "(ax-b)^2", slots: [{ id: "a", labelLatex: "a", expected: 2 }, { id: "b", labelLatex: "b", expected: 3 }], correctLatex: "(2x-3)^2", a: 4, b: -12, c: 9 }
+      { id: "F-E1", difficulty, stage, promptLatex: t.stages.factor_prompt_latex, expressionLatex: "4x^2 - 12x + 9", targetLatex: "(ax-b)^2", slots: [{ id: "a", labelLatex: "a", placeholder: "?", expected: 2 }, { id: "b", labelLatex: "b", placeholder: "?", expected: 3 }], correctLatex: "(2x-3)^2", a: 4, b: -12, c: 9 }
     ];
   }
 
@@ -83,21 +83,21 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
   if (stage === "FRACTIONS") {
     if (difficulty === "BASIC") {
       return [
-        { id: "R-B1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{2x}{4x^2}", targetLatex: "\\frac{1}{ax}", slots: [{ id: "a", labelLatex: "a", expected: 2 }], correctLatex: "\\frac{1}{2x}" }
+        { id: "R-B1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{2x}{4x^2}", targetLatex: "\\frac{1}{ax}", slots: [{ id: "a", labelLatex: "a", placeholder: "?", expected: 2 }], correctLatex: "\\frac{1}{2x}" }
       ];
     }
     if (difficulty === "CORE") {
       return [
-        { id: "R-C1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2+2x}{x}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", expected: 2 }], correctLatex: "x+2" }
+        { id: "R-C1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2+2x}{x}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", placeholder: "?", expected: 2 }], correctLatex: "x+2" }
       ];
     }
     if (difficulty === "ADVANCED") {
       return [
-        { id: "R-A1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2-9}{x+3}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", expected: -3 }], correctLatex: "x-3" }
+        { id: "R-A1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2-9}{x+3}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", placeholder: "?", expected: -3 }], correctLatex: "x-3" }
       ];
     }
     return [
-      { id: "R-E1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2+5x+6}{x+2}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", expected: 3 }], correctLatex: "x+3" }
+      { id: "R-E1", difficulty, stage, promptLatex: t.stages.fractions_prompt_latex, expressionLatex: "\\frac{x^2+5x+6}{x+2}", targetLatex: "x+b", slots: [{ id: "b", labelLatex: "b", placeholder: "?", expected: 3 }], correctLatex: "x+3" }
     ];
   }
 
@@ -105,23 +105,23 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
   if (stage === "EQUATIONS") {
     if (difficulty === "BASIC") {
       return [
-        { id: "E-B1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 = 9", targetLatex: "x = \\pm k", slots: [{ id: "k", labelLatex: "k", expected: 3 }], correctLatex: "x=\\pm 3", a: 1, b: 0, c: -9, vizMode: "PARABOLA" },
-        { id: "E-B2", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x(x - 4) = 0", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", expected: 0 }, { id: "x2", labelLatex: "x_2", expected: 4 }], correctLatex: "0, 4", a: 1, b: -4, c: 0, vizMode: "PARABOLA" }
+        { id: "E-B1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 = 9", targetLatex: "x = \\pm k", slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: 3 }], correctLatex: "x=\\pm 3", a: 1, b: 0, c: -9, vizMode: "PARABOLA" },
+        { id: "E-B2", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x(x - 4) = 0", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", placeholder: "?", expected: 0 }, { id: "x2", labelLatex: "x_2", placeholder: "?", expected: 4 }], correctLatex: "0, 4", a: 1, b: -4, c: 0, vizMode: "PARABOLA" }
       ];
     }
     if (difficulty === "CORE") {
       return [
-        { id: "E-C1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 + 5x + 6 = 0", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", expected: -3 }, { id: "x2", labelLatex: "x_2", expected: -2 }], correctLatex: "-3, -2", a: 1, b: 5, c: 6, vizMode: "PARABOLA" }
+        { id: "E-C1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 + 5x + 6 = 0", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", placeholder: "?", expected: -3 }, { id: "x2", labelLatex: "x_2", placeholder: "?", expected: -2 }], correctLatex: "-3, -2", a: 1, b: 5, c: 6, vizMode: "PARABOLA" }
       ];
     }
     if (difficulty === "ADVANCED") {
       return [
-        { id: "E-A1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 - 4x = 5", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", expected: -1 }, { id: "x2", labelLatex: "x_2", expected: 5 }], correctLatex: "-1, 5", a: 1, b: -4, c: -5, vizMode: "PARABOLA" }
+        { id: "E-A1", difficulty, stage, promptLatex: t.stages.equations_prompt_latex, expressionLatex: "x^2 - 4x = 5", targetLatex: "x_1, x_2", slots: [{ id: "x1", labelLatex: "x_1", placeholder: "?", expected: -1 }, { id: "x2", labelLatex: "x_2", placeholder: "?", expected: 5 }], correctLatex: "-1, 5", a: 1, b: -4, c: -5, vizMode: "PARABOLA" }
       ];
     }
     // ELITE: Completing the square or complex roots
     return [
-      { id: "E-E1", difficulty, stage, promptLatex: "Find k if one root of x^2 - 6x + k = 0 is 2", targetLatex: "k", slots: [{ id: "k", labelLatex: "k", expected: 8 }], correctLatex: "k=8", a: 1, b: -6, c: 8, vizMode: "PARABOLA" }
+      { id: "E-E1", difficulty, stage, promptLatex: "Find k if one root of x^2 - 6x + k = 0 is 2", expressionLatex: "x^2 - 6x + k = 0", targetLatex: "k", slots: [{ id: "k", labelLatex: "k", placeholder: "?", expected: 8 }], correctLatex: "k=8", a: 1, b: -6, c: 8, vizMode: "PARABOLA" }
     ];
   }
 
