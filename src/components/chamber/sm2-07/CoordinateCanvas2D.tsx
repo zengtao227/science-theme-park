@@ -37,34 +37,35 @@ export default function CoordinateCanvas2D({
   const height = 600;
 
   // --- DYNAMIC SCALING ENGINE ---
-  // Ensure all points and labels fit within the 800x600 canvas
-  const { gridSize, originX, originY } = useMemo(() => {
-    const coords = [...point1, ...point2];
-    const maxX = Math.max(...coords.filter((_, i) => i % 2 === 0).map(Math.abs));
-    const maxY = Math.max(...coords.filter((_, i) => i % 2 !== 0).map(Math.abs));
+  // Ensure ALL points and labels fit within the 800x600 canvas with generous padding
+  const [x1, y1] = point1;
+  const [x2, y2] = point2;
 
-    // We want to fit at least -10 to 10 range, or the points themselves if they are larger
-    const rangeX = Math.max(10, maxX + 2); // +2 for label padding
-    const rangeY = Math.max(8, maxY + 2); // +2 for label padding
+  const { gridSize, originX, originY } = useMemo(() => {
+    const maxAbsX = Math.max(Math.abs(x1), Math.abs(x2));
+    const maxAbsY = Math.max(Math.abs(y1), Math.abs(y2));
+
+    // Fit range: at least 10 units, or largest coordinate + 3 (for label padding)
+    const rangeX = Math.max(10, maxAbsX + 3);
+    const rangeY = Math.max(8, maxAbsY + 3);
 
     const scaleX = (width / 2) / rangeX;
     const scaleY = (height / 2) / rangeY;
 
-    const size = Math.min(scaleX, scaleY, 40); // Max grid size of 40 for aesthetics
+    // Use the smaller scale to guarantee both axes fit, cap at 40 for aesthetics
+    const size = Math.min(scaleX, scaleY, 40);
 
     return {
       gridSize: size,
       originX: width / 2,
       originY: height / 2
     };
-  }, [point1, point2]);
+  }, [x1, y1, x2, y2]);
 
   const toSVG = (x: number, y: number): [number, number] => {
     return [originX + x * gridSize, originY - y * gridSize];
   };
 
-  const [x1, y1] = point1;
-  const [x2, y2] = point2;
   const [svgX1, svgY1] = toSVG(x1, y1);
   const [svgX2, svgY2] = toSVG(x2, y2);
 
