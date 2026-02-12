@@ -21,6 +21,14 @@ export interface SystemsVisual {
 interface AlchemistCanvasProps {
     visual?: SystemsVisual;
     inputs?: Record<string, string>;
+    translations?: {
+        legend: string;
+        eq1: string;
+        eq2: string;
+        cursor: string;
+        locked: string;
+        view: string;
+    };
 }
 
 // --- Components ---
@@ -83,15 +91,13 @@ function GridSystem() {
     );
 }
 
-// 2. High-Visibility Equation Line
+// 2. High-Visibility Equation Line (No Labels)
 function GlowingLine({
     equation,
-    color,
-    label
+    color
 }: {
     equation: { a: number, b: number, c: number },
-    color: string,
-    label: string
+    color: string
 }) {
     const points = useMemo(() => {
         const { a, b, c } = equation;
@@ -110,20 +116,6 @@ function GlowingLine({
         return pts;
     }, [equation]);
 
-    // Label position (dynamic)
-    const labelPos = useMemo(() => {
-        const p1 = points[0];
-        const p2 = points[1];
-        const t = 0.8; // Place label towards one end
-        return new THREE.Vector3(
-            p1.x + (p2.x - p1.x) * t,
-            p1.y + (p2.y - p1.y) * t,
-            0
-        );
-    }, [points]);
-
-    const eqString = `${equation.a}x + ${equation.b < 0 ? `(${equation.b})` : equation.b}y = ${equation.c}`;
-
     return (
         <group>
             {/* Glow Layer (Thick, Transparent) */}
@@ -131,22 +123,12 @@ function GlowingLine({
 
             {/* Core Line (Solid) */}
             <Line points={points} color={color} lineWidth={3} />
-
-            {/* Equation Label Box */}
-            <group position={labelPos}>
-                <Html center transform sprite>
-                    <div className="px-2 py-1 bg-black/80 border border-white/20 rounded text-[10px] font-mono text-white whitespace-nowrap shadow-xl backdrop-blur-sm" style={{ borderColor: color }}>
-                        <span style={{ color }} className="font-bold mr-2">{label}</span>
-                        <span>{eqString}</span>
-                    </div>
-                </Html>
-            </group>
         </group>
     );
 }
 
 // 3. Interactive Cursor & Solution Highlight
-function InteractiveCursor({ x, y, visual }: { x: number, y: number, visual: SystemsVisual }) {
+function InteractiveCursor({ x, y, visual, lockedLabel }: { x: number, y: number, visual: SystemsVisual, lockedLabel?: string }) {
     const isSolved = visual.intersect &&
         Math.abs(x - visual.intersect.x) < 0.1 &&
         Math.abs(y - visual.intersect.y) < 0.1;
@@ -171,7 +153,7 @@ function InteractiveCursor({ x, y, visual }: { x: number, y: number, visual: Sys
             <Html position={[0, 0.8, 0]} center transform sprite>
                 <div className={`px-2 py-1 rounded text-xs font-mono font-bold whitespace-nowrap shadow-lg ${isSolved ? 'bg-green-500 text-black' : 'bg-yellow-500 text-black'}`}>
                     ({x.toFixed(1)}, {y.toFixed(1)})
-                    {isSolved && <span className="ml-2">✓ LOCKED</span>}
+                    {isSolved && <span className="ml-2">✓ {lockedLabel || "LOCKED"}</span>}
                 </div>
             </Html>
         </group>
@@ -196,11 +178,24 @@ function SolutionHint({ x, y }: { x: number, y: number }) {
 
 
 // --- Main Canvas ---
-export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps) {
+export default function AlchemistCanvas({ visual, inputs, translations }: AlchemistCanvasProps) {
     const inputX = parseFloat(inputs?.x || "0") || 0;
     const inputY = parseFloat(inputs?.y || "0") || 0;
 
+    const t = translations || {
+        legend: "LEGEND",
+        eq1: "Equation 1",
+        eq2: "Equation 2",
+        cursor: "Target Cursor",
+        locked: "LOCKED",
+        view: "GRAPH_VIEW: ORTHOGRAPHIC_2D"
+    };
+
     if (!visual) return null;
+
+    const formatEq = (eq: { a: number, b: number, c: number }) => {
+        return `${eq.a}x + ${eq.b < 0 ? `(${eq.b})` : eq.b}y = ${eq.c}`;
+    };
 
     return (
         <div className="relative w-full aspect-[16/9] bg-[#050505] rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
@@ -212,16 +207,14 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                     {/* The Grid System */}
                     <GridSystem />
 
-                    {/* Equations */}
+                    {/* Equations - No Labels on Lines */}
                     <GlowingLine
                         equation={visual.eq1}
                         color="#d946ef" // Fuchsia-500 (Neon Magenta)
-                        label="EQ 1"
                     />
                     <GlowingLine
                         equation={visual.eq2}
                         color="#06b6d4" // Cyan-500 (Neon Cyan)
-                        label="EQ 2"
                     />
 
                     {/* Hint for the True Intersection */}
@@ -230,7 +223,7 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                     )}
 
                     {/* Interactive User Cursor */}
-                    <InteractiveCursor x={inputX} y={inputY} visual={visual} />
+                    <InteractiveCursor x={inputX} y={inputY} visual={visual} lockedLabel={t.locked} />
 
                     {/* Controls (Pan/Zoom restricted) */}
                     <OrbitControls
@@ -242,25 +235,45 @@ export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps
                 </ClientOnlySuspense>
             </Canvas>
 
-            {/* Static UI Legend */}
-            <div className="absolute top-4 left-4 p-3 bg-black/80 border border-white/10 rounded-lg pointer-events-none backdrop-blur-sm">
-                <div className="text-[9px] font-mono text-white/50 mb-2 uppercase tracking-widest font-bold">LEGEND</div>
-                <div className="flex items-center gap-2 mb-1">
-                    <div className="w-8 h-1 bg-[#d946ef] rounded-full" />
-                    <span className="text-[10px] text-white">Equation 1</span>
+            {/* Enhanced Static UI Legend - Now with Dynamic Equations */}
+            <div className="absolute top-4 left-4 p-4 bg-black/90 border border-white/20 rounded-lg pointer-events-none backdrop-blur-sm shadow-xl min-w-[180px]">
+                <div className="text-[10px] font-mono text-white/50 mb-3 uppercase tracking-widest font-bold border-b border-white/10 pb-1">
+                    {t.legend}
                 </div>
-                <div className="flex items-center gap-2 mb-1">
-                    <div className="w-8 h-1 bg-[#06b6d4] rounded-full" />
-                    <span className="text-[10px] text-white">Equation 2</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full border-2 border-[#fbbf24]" />
-                    <span className="text-[10px] text-white">Target Cursor</span>
+
+                <div className="flex flex-col gap-3">
+                    {/* Eq 1 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-1">
+                            <div className="w-3 h-3 bg-[#d946ef] rounded-sm" />
+                            <span className="text-[11px] font-bold text-[#d946ef]">{t.eq1}</span>
+                        </div>
+                        <div className="text-[10px] font-mono text-white pl-5 opacity-80">
+                            {formatEq(visual.eq1)}
+                        </div>
+                    </div>
+
+                    {/* Eq 2 */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-1">
+                            <div className="w-3 h-3 bg-[#06b6d4] rounded-sm" />
+                            <span className="text-[11px] font-bold text-[#06b6d4]">{t.eq2}</span>
+                        </div>
+                        <div className="text-[10px] font-mono text-white pl-5 opacity-80">
+                            {formatEq(visual.eq2)}
+                        </div>
+                    </div>
+
+                    {/* Cursor */}
+                    <div className="flex items-center gap-2 mt-1 pt-2 border-t border-white/10">
+                        <div className="w-2 h-2 rounded-full border-2 border-[#fbbf24]" />
+                        <span className="text-[10px] text-white">{t.cursor}</span>
+                    </div>
                 </div>
             </div>
 
             <div className="absolute bottom-4 left-4 text-[9px] text-white/30 font-mono">
-                GRAPH_VIEW: ORTHOGRAPHIC_2D // GRID_01
+                {t.view} // GRID_01
             </div>
         </div>
     );

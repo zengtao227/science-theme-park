@@ -192,7 +192,32 @@ export default function S206Page() {
       }}
       monitorContent={
         <div className="w-full flex justify-center">
-          <AlchemistCanvas visual={currentQuest?.visual} inputs={inputs} />
+          <AlchemistCanvas
+            visual={currentQuest?.visual}
+            inputs={inputs}
+            translations={currentLanguage === "CN" ? {
+              legend: "图例",
+              eq1: "方程 1",
+              eq2: "方程 2",
+              cursor: "目标光标",
+              locked: "已锁定",
+              view: "视图: 2D正交坐标系"
+            } : currentLanguage === "DE" ? {
+              legend: "LEGENDE",
+              eq1: "Gleichung 1",
+              eq2: "Gleichung 2",
+              cursor: "Ziel-Cursor",
+              locked: "GESPERRT",
+              view: "ANSICHT: ORTHOGONAL_2D"
+            } : {
+              legend: "LEGEND",
+              eq1: "Equation 1",
+              eq2: "Equation 2",
+              cursor: "Target Cursor",
+              locked: "LOCKED",
+              view: "VIEW: ORTHOGRAPHIC_2D"
+            }}
+          />
         </div>
       }
     >
