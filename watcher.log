@@ -3101,3 +3101,9 @@ To https://github.com/zengtao227/science-theme-park.git
 [2026-02-12 14:54:12] Git Sync Triggered: Committing and Pushing to origin...
 [2026-02-12 14:54:13] Git Sync Success: Repository pushed to GitHub.
 [2026-02-12 14:54:13] Log retention check: Old logs removed (2-day limit).
+[main c8e393c] auto: daily sync 2026-02-12 15:24
+ 2 files changed, 125 insertions(+)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   9c712f9..c8e393c  main -> main
