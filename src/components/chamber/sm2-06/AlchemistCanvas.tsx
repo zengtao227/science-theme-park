@@ -58,11 +58,11 @@ function GridSystem() {
 
             {/* X Axis (Thick White) */}
             <Line points={[[-11, 0, 0], [11, 0, 0]]} color="white" lineWidth={3} />
-            <Text position={[11.5, 0, 0]} fontSize={0.6} color="white" font="/fonts/Inter-Bold.woff">x</Text>
+            <Text position={[11.5, 0, 0]} fontSize={0.6} color="white">x</Text>
 
             {/* Y Axis (Thick White) */}
             <Line points={[[0, -11, 0], [0, 11, 0]]} color="white" lineWidth={3} />
-            <Text position={[0, 11.5, 0]} fontSize={0.6} color="white" font="/fonts/Inter-Bold.woff">y</Text>
+            <Text position={[0, 11.5, 0]} fontSize={0.6} color="white">y</Text>
 
             {/* Ticks & Numbers */}
             {ticks.map(val => (
