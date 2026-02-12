@@ -20,58 +20,51 @@ interface S207Quest extends Quest {
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// Distance data
-const distanceData = [
-  { id: "D1", point1: [2, 3] as [number, number], point2: [6, 7] as [number, number] },
-  { id: "D2", point1: [1, 2] as [number, number], point2: [4, 6] as [number, number] },
-  { id: "D3", point1: [0, 0] as [number, number], point2: [3, 4] as [number, number] },
-  { id: "D4", point1: [-2, 1] as [number, number], point2: [3, 5] as [number, number] },
-  { id: "D5", point1: [5, 2] as [number, number], point2: [1, 5] as [number, number] },
-  { id: "D6", point1: [-3, -1] as [number, number], point2: [2, 3] as [number, number] },
-  { id: "D7", point1: [4, 7] as [number, number], point2: [1, 3] as [number, number] },
-];
+// Helper: Get Localized Prompt
+const getPrompt = (key: string, lang: string, params: any = {}) => {
+  const isCN = lang === 'CN';
+  const isDE = lang === 'DE';
 
-// Midpoint data
-const midpointData = [
-  { id: "M1", point1: [2, 4] as [number, number], point2: [6, 8] as [number, number] },
-  { id: "M2", point1: [1, 3] as [number, number], point2: [5, 7] as [number, number] },
-  { id: "M3", point1: [0, 0] as [number, number], point2: [4, 6] as [number, number] },
-  { id: "M4", point1: [-2, 2] as [number, number], point2: [4, 6] as [number, number] },
-  { id: "M5", point1: [3, 1] as [number, number], point2: [7, 9] as [number, number] },
-  { id: "M6", point1: [-4, -2] as [number, number], point2: [2, 4] as [number, number] },
-  { id: "M7", point1: [5, 3] as [number, number], point2: [1, 7] as [number, number] },
-];
+  if (key === 'DIST_REV_Y') {
+    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(0,0), B(3,y) \\text{ 且 } y>0 \\text{，求 } y \\text{。}`;
+    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } y \\text{ für } B(3,y) \\text{ (y>0)}.`;
+    return `\\text{Distance } d=${params.d} \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.`;
+  }
+  if (key === 'DIST_REV_X') {
+    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(1,1), B(x,13) \\text{ 且 } x>1 \\text{，求 } x \\text{。}`;
+    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ für } B(x,13) \\text{ (x>1)}.`;
+    return `\\text{Distance } d=${params.d} \\text{. Find } x \\text{ for } B(x,13) \\text{ (x>1)}.`;
+  }
+  if (key === 'MID_REV') {
+    if (isCN) return `\\text{M 是中点。已知 A 和 M，求 B(x,y)。}`;
+    if (isDE) return `\\text{M ist der Mittelpunkt. Finde B(x,y).}`;
+    return `\\text{M is midpoint. Find B(x,y).}`;
+  }
+  if (key === 'COLLINEAR') {
+    if (isCN) return `\\text{A, B, C 三点共线。求 } ${params.target} \\text{。}`;
+    if (isDE) return `\\text{Punkte A, B, C sind kollinear. Finde } ${params.target} \\text{.}`;
+    return `\\text{Points A, B, C are collinear. Find } ${params.target} \\text{.}`;
+  }
+  return "";
+};
 
-// Slope data
-const slopeData = [
-  { id: "S1", point1: [1, 2] as [number, number], point2: [3, 6] as [number, number] },
-  { id: "S2", point1: [2, 1] as [number, number], point2: [4, 5] as [number, number] },
-  { id: "S3", point1: [0, 0] as [number, number], point2: [2, 4] as [number, number] },
-  { id: "S4", point1: [-1, 3] as [number, number], point2: [2, 9] as [number, number] },
-  { id: "S5", point1: [3, 7] as [number, number], point2: [5, 3] as [number, number] },
-  { id: "S6", point1: [-2, -1] as [number, number], point2: [1, 5] as [number, number] },
-  { id: "S7", point1: [4, 2] as [number, number], point2: [6, 8] as [number, number] },
-];
-
-function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Quest[] {
+function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage, lang: string): S207Quest[] {
   // --- DISTANCE STAGE ---
   if (stage === "DISTANCE") {
-    // Elite: Find missing coordinate given distance (e.g. Find y if dist(A,B)=5)
+    // ELITE: Reverse Distance
     if (difficulty === "ELITE") {
       return [
         {
-          id: "D-E1", difficulty, stage,
-          point1: [0, 0], point2: [3, 4],
-          promptLatex: "\\text{Distance } d=5 \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.",
+          id: "D-E1", difficulty, stage, point1: [0, 0], point2: [3, 4],
+          promptLatex: getPrompt('DIST_REV_Y', lang, { d: 5 }),
           expressionLatex: "A(0,0), B(3,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
           correctLatex: "y=4"
         },
         {
-          id: "D-E2", difficulty, stage,
-          point1: [1, 1], point2: [6, 13],
-          promptLatex: "\\text{Distance } d=13 \\text{. Find } x \\text{ for } B(x,13) \\text{ (x>1)}.",
+          id: "D-E2", difficulty, stage, point1: [1, 1], point2: [6, 13],
+          promptLatex: getPrompt('DIST_REV_X', lang, { d: 13 }),
           expressionLatex: "A(1,1), B(x,13)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 6 }],
@@ -80,8 +73,33 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
       ];
     }
 
-    // Standard Distance Calculation
-    const all = distanceData.map((item) => {
+    // Custom pools based on difficulty
+    let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
+
+    if (difficulty === "BASIC") {
+      pool = [
+        { id: "D1", point1: [0, 0], point2: [3, 4] },
+        { id: "D2", point1: [1, 1], point2: [4, 5] },
+        { id: "D3", point1: [2, 0], point2: [8, 8] },
+        { id: "D4", point1: [5, 5], point2: [5, 10] }
+      ];
+    } else if (difficulty === "CORE") {
+      pool = [
+        { id: "D-C1", point1: [-1, -1], point2: [2, 3] },
+        { id: "D-C2", point1: [-2, 5], point2: [4, -3] },
+        { id: "D-C3", point1: [0, -5], point2: [-12, 0] },
+        { id: "D-C4", point1: [-3, -4], point2: [3, 4] }
+      ];
+    } else if (difficulty === "ADVANCED") {
+      pool = [
+        { id: "D-A1", point1: [-5, -5], point2: [7, 0] },
+        { id: "D-A2", point1: [10, 10], point2: [4, 2] },
+        { id: "D-A3", point1: [-8, 2], point2: [7, 10] },
+        { id: "D-A4", point1: [-7, -7], point2: [-2, 5] }
+      ];
+    }
+
+    return pool.map((item) => {
       const [x1, y1] = item.point1;
       const [x2, y2] = item.point2;
       const distance = round2(Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
@@ -99,40 +117,55 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
         correctLatex: `d=${distance}`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   // --- MIDPOINT STAGE ---
   if (stage === "MIDPOINT") {
-    // Advanced & Elite: Reverse Midpoint (Find Endpoint given Midpoint)
+    // ADVANCED & ELITE: Reverse Midpoint
     if (difficulty === "ADVANCED" || difficulty === "ELITE") {
-      return midpointData.slice(0, 4).map(item => {
-        const [x1, y1] = item.point1;
-        const [x2, y2] = item.point2;
-        const mx = (x1 + x2) / 2;
-        const my = (y1 + y2) / 2;
+      const reversePool = [
+        { id: "M-R1", A: [2, 2], M: [5, 5], B: [8, 8] },
+        { id: "M-R2", A: [0, 0], M: [-3, 4], B: [-6, 8] },
+        { id: "M-R3", A: [-2, -1], M: [1, 2], B: [4, 5] },
+        { id: "M-R4", A: [4, -2], M: [2, 1], B: [0, 4] }
+      ];
 
-        return {
-          id: `M-REV-${item.id}`,
-          difficulty,
-          stage,
-          point1: item.point1,
-          point2: item.point2, // Canvas still shows B
-          promptLatex: "\\text{M is midpoint. Find B(x,y).}",
-          expressionLatex: `A(${x1},${y1}),\\; M(${mx},${my})`,
-          targetLatex: "B(x,y)",
-          slots: [
-            { id: "bx", labelLatex: "x_B", placeholder: "x", expected: x2 },
-            { id: "by", labelLatex: "y_B", placeholder: "y", expected: y2 }
-          ],
-          correctLatex: `B(${x2},${y2})`
-        };
-      });
+      return reversePool.map(item => ({
+        id: item.id,
+        difficulty,
+        stage,
+        point1: item.A as [number, number],
+        point2: item.B as [number, number],
+        promptLatex: getPrompt('MID_REV', lang),
+        expressionLatex: `A(${item.A[0]},${item.A[1]}),\\; M(${item.M[0]},${item.M[1]})`,
+        targetLatex: "B(x,y)",
+        slots: [
+          { id: "bx", labelLatex: "x_B", placeholder: "x", expected: item.B[0] },
+          { id: "by", labelLatex: "y_B", placeholder: "y", expected: item.B[1] }
+        ],
+        correctLatex: `B(${item.B[0]},${item.B[1]})`
+      }));
     }
 
     // Standard Midpoint
-    const all = midpointData.map((item) => {
+    let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
+    if (difficulty === "BASIC") {
+      pool = [
+        { id: "M-B1", point1: [2, 2], point2: [6, 6] },
+        { id: "M-B2", point1: [0, 0], point2: [4, 8] },
+        { id: "M-B3", point1: [1, 3], point2: [5, 1] },
+        { id: "M-B4", point1: [10, 2], point2: [2, 10] }
+      ];
+    } else if (difficulty === "CORE") {
+      pool = [
+        { id: "M-C1", point1: [-2, -4], point2: [2, 4] },
+        { id: "M-C2", point1: [-5, 2], point2: [1, -6] },
+        { id: "M-C3", point1: [-8, -8], point2: [-2, -2] },
+        { id: "M-C4", point1: [3, -5], point2: [-3, 5] }
+      ];
+    }
+
+    return pool.map((item) => {
       const [x1, y1] = item.point1;
       const [x2, y2] = item.point2;
       const mx = round2((x1 + x2) / 2);
@@ -154,62 +187,86 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
         correctLatex: `M(${mx},${my})`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   // --- SLOPE STAGE ---
-  // Elite: Collinearity (Find missing coord to match slope)
-  if (difficulty === "ELITE") {
-    return [
-      {
-        id: "S-E1", difficulty, stage,
-        point1: [0, 0], point2: [2, 4],
-        promptLatex: "\\text{Points A, B, C are collinear. Find y.}",
-        expressionLatex: "A(0,0), B(1,2), C(2,y)",
-        targetLatex: "y",
-        slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
-        correctLatex: "y=4"
-      },
-      {
-        id: "S-E2", difficulty, stage,
-        point1: [1, 3], point2: [5, 11], // m=2
-        promptLatex: "\\text{Points A, B, C are collinear. Find x.}",
-        expressionLatex: "A(1,3), B(3,7), C(x,11)",
-        targetLatex: "x",
-        slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
-        correctLatex: "x=5"
-      }
-    ];
+  if (stage === "SLOPE") {
+    // ELITE: Collinearity
+    if (difficulty === "ELITE") {
+      return [
+        {
+          id: "S-E1", difficulty, stage, point1: [0, 0], point2: [2, 4],
+          promptLatex: getPrompt('COLLINEAR', lang, { target: 'y' }),
+          expressionLatex: "A(0,0), B(1,2), C(2,y)",
+          targetLatex: "y",
+          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
+          correctLatex: "y=4"
+        },
+        {
+          id: "S-E2", difficulty, stage, point1: [1, 3], point2: [5, 11], // m=2
+          promptLatex: getPrompt('COLLINEAR', lang, { target: 'x' }),
+          expressionLatex: "A(1,3), B(3,7), C(x,11)",
+          targetLatex: "x",
+          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
+          correctLatex: "x=5"
+        }
+      ];
+    }
+
+    // Standard Slope
+    let pool: { id: string, point1: [number, number], point2: [number, number] }[] = [];
+    if (difficulty === "BASIC") {
+      pool = [
+        { id: "S-B1", point1: [1, 1], point2: [2, 2] },
+        { id: "S-B2", point1: [1, 1], point2: [2, 3] },
+        { id: "S-B3", point1: [0, 0], point2: [3, 1] },
+        { id: "S-B4", point1: [2, 5], point2: [4, 5] }
+      ];
+    } else if (difficulty === "CORE") {
+      pool = [
+        { id: "S-C1", point1: [-1, 1], point2: [1, -1] },
+        { id: "S-C2", point1: [-2, -2], point2: [2, 4] },
+        { id: "S-C3", point1: [-5, 5], point2: [5, -5] },
+        { id: "S-C4", point1: [2, -3], point2: [-2, 3] }
+      ];
+    } else if (difficulty === "ADVANCED") {
+      pool = [
+        { id: "S-A1", point1: [-10, -5], point2: [5, 10] },
+        { id: "S-A2", point1: [-3.5, 2], point2: [1.5, -3] },
+        { id: "S-A3", point1: [100, 200], point2: [200, 400] },
+        { id: "S-A4", point1: [0.1, 0.1], point2: [0.2, 0.3] }
+      ];
+    }
+
+    return pool.map((item) => {
+      const [x1, y1] = item.point1;
+      const [x2, y2] = item.point2;
+      const slope = round2((y2 - y1) / (x2 - x1));
+
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        point1: item.point1,
+        point2: item.point2,
+        promptLatex: t.stages.slope_prompt_latex,
+        expressionLatex: `A(${x1},${y1}),\\; B(${x2},${y2})`,
+        targetLatex: "m",
+        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: slope }],
+        correctLatex: `m=${slope}`,
+      };
+    });
   }
 
-  const all = slopeData.map((item) => {
-    const [x1, y1] = item.point1;
-    const [x2, y2] = item.point2;
-    const slope = round2((y2 - y1) / (x2 - x1));
-
-    return {
-      id: item.id,
-      difficulty,
-      stage,
-      point1: item.point1,
-      point2: item.point2,
-      promptLatex: t.stages.slope_prompt_latex,
-      expressionLatex: `A(${x1},${y1}),\\; B(${x2},${y2})`,
-      targetLatex: "m",
-      slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: slope }],
-      correctLatex: `m=${slope}`,
-    };
-  });
-  if (difficulty === "BASIC") return all.slice(0, 4);
-  return all;
+  return [];
 }
 
 export default function S207Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].sm2_07;
 
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+  // Pass currentLanguage to buildStagePool
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s, currentLanguage), [t, currentLanguage]);
 
   const {
     difficulty,
@@ -252,21 +309,6 @@ export default function S207Page() {
       successRate={successRate}
       checkStatus={lastCheck}
       footerLeft={t.footer_left}
-      translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
-        difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
-        },
-      }}
       monitorContent={
         <div className="space-y-4">
           <CoordinateCanvas2D
@@ -308,6 +350,21 @@ export default function S207Page() {
           </div>
         </div>
       }
+      translations={{
+        back: t.back,
+        check: t.check,
+        next: t.next,
+        correct: t.correct,
+        incorrect: t.incorrect,
+        ready: t.ready,
+        monitor_title: t.monitor_title,
+        difficulty: {
+          basic: t.difficulty.basic,
+          core: t.difficulty.core,
+          advanced: t.difficulty.advanced,
+          elite: t.difficulty.elite,
+        }
+      }}
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
