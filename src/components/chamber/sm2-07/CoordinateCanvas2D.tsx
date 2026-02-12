@@ -63,41 +63,39 @@ export default function CoordinateCanvas2D({
   const [svgLineX1, svgLineY1] = toSVG(lineExtendX1, lineExtendY1);
   const [svgLineX2, svgLineY2] = toSVG(lineExtendX2, lineExtendY2);
 
-  // --- REFINED LABEL POSITIONING LOGIC ---
-  // A "Force Field" function to push text away from axes and their labels
-  const getSafePos = (x: number, y: number, preferX: 'start' | 'end' | 'middle' = 'middle') => {
-    let finalX = x;
-    let finalY = y;
-    let anchor = preferX;
+  // --- QUADRANT-AWARE LABEL POSITIONING ---
+  // Ensuring labels stay in the same quadrant as the point and never cross axes
+  const getQuadrantSafePos = (mathX: number, mathY: number, labelPadding = 0.8) => {
+    // mathX, mathY are in coordinate units (-10 to 10)
 
-    const xDist = x - originX;
-    const yDist = y - originY;
+    // Determine the "push" direction based on quadrant
+    // If on axis (0), we push towards positive as default
+    const dirX = mathX >= 0 ? 1 : -1;
+    const dirY = mathY >= 0 ? 1 : -1;
 
-    // Buffer zones: 45px for Y-axis (to avoid numbers), 35px for X-axis
-    const hBuffer = 50;
-    const vBuffer = 40;
+    // We want the label to be slightly further into the quadrant than the point
+    let finalMathX = mathX + (dirX * labelPadding);
+    let finalMathY = mathY + (dirY * labelPadding);
 
-    // Horizontally avoid Y-axis
-    if (Math.abs(xDist) < hBuffer) {
-      if (xDist >= 0) {
-        finalX = originX + hBuffer;
-        anchor = 'start';
-      } else {
-        finalX = originX - hBuffer;
-        anchor = 'end';
-      }
+    // Axis Avoidance: Ensure the label doesn't sit on the axis
+    // Minimum distance from axis in coordinate units
+    const minAxisDistX = 1.2; // enough to clear Y-axis numbers
+    const minAxisDistY = 0.8; // enough to clear X-axis numbers
+
+    if (Math.abs(finalMathX) < minAxisDistX) {
+      finalMathX = dirX * minAxisDistX;
+    }
+    if (Math.abs(finalMathY) < minAxisDistY) {
+      finalMathY = dirY * minAxisDistY;
     }
 
-    // Vertically avoid X-axis
-    if (Math.abs(yDist) < vBuffer) {
-      if (yDist >= 0) {
-        finalY = originY - vBuffer; // Above axis
-      } else {
-        finalY = originY + vBuffer; // Below axis
-      }
-    }
+    const [sx, sy] = toSVG(finalMathX, finalMathY);
 
-    return { x: finalX, y: finalY, anchor };
+    return {
+      x: sx,
+      y: sy,
+      anchor: dirX > 0 ? 'start' : 'end'
+    };
   };
 
   return (
@@ -147,7 +145,6 @@ export default function CoordinateCanvas2D({
             if (val === 0) return null;
             const [svgX, svgY] = toSVG(val, 0);
             const [svgX2, svgY2] = toSVG(0, val);
-            const is5 = val % 5 === 0;
             return (
               <g key={i}>
                 <line x1={svgX} y1={originY - 4} x2={svgX} y2={originY + 4} stroke="#00e5ff" strokeWidth="1.5" />
@@ -167,21 +164,24 @@ export default function CoordinateCanvas2D({
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY1} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
             <line x1={svgX2} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
 
-            {/* Δx Label */}
+            {/* Δx Label - Stays on the outer side of the horizontal segment */}
             {(() => {
-              const center = (svgX1 + svgX2) / 2;
-              const offset = svgY2 < svgY1 ? 35 : -25;
-              const pos = getSafePos(center, svgY1 + offset);
+              const mx = (x1 + x2) / 2;
+              const my = y1;
+              // Move further away from current vertical quadrant of the line
+              const pushY = y2 < y1 ? 0.8 : -0.8;
+              const pos = getQuadrantSafePos(mx, my + pushY, 0);
               return (
-                <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor={pos.anchor as any}>Δx = {Math.abs(deltaX)}</text>
+                <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor="middle">Δx = {Math.abs(deltaX)}</text>
               );
             })()}
 
-            {/* Δy Label */}
+            {/* Δy Label - Stays on the outer side of the vertical segment */}
             {(() => {
-              const center = (svgY1 + svgY2) / 2;
-              const offset = svgX1 < svgX2 ? 25 : -25;
-              const pos = getSafePos(svgX2 + offset, center, svgX1 < svgX2 ? 'start' : 'end');
+              const mx = x2;
+              const my = (y1 + y2) / 2;
+              const pushX = x1 < x2 ? 0.8 : -0.8;
+              const pos = getQuadrantSafePos(mx + pushX, my, 0);
               return (
                 <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor={pos.anchor as any}>Δy = {Math.abs(deltaY)}</text>
               );
@@ -189,12 +189,14 @@ export default function CoordinateCanvas2D({
 
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="4" filter="url(#glow)" />
 
-            {/* d = ? Label */}
+            {/* d = ? Label - Quadrant biased */}
             {(() => {
-              const cx = (svgX1 + svgX2) / 2;
-              const cy = (svgY1 + svgY2) / 2;
-              // Offset away from line
-              const pos = getSafePos(cx - 40, cy - 40, 'end');
+              const mx = (x1 + x2) / 2;
+              const my = (y1 + y2) / 2;
+              // Decide push based on slope to stay "outside" the triangle
+              const pushX = x1 < x2 ? -1.0 : 1.0;
+              const pushY = y1 < y2 ? 1.0 : -1.0;
+              const pos = getQuadrantSafePos(mx + pushX, my + pushY, 0);
               return (
                 <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="22" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>d = ?</text>
               );
@@ -207,7 +209,7 @@ export default function CoordinateCanvas2D({
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#a855f7" strokeWidth="3" />
             <circle cx={svgMidX} cy={svgMidY} r="8" fill="#ff2d7d" filter="url(#glow)" />
             {(() => {
-              const pos = getSafePos(svgMidX, svgMidY - 35);
+              const pos = getQuadrantSafePos(midX, midY, 1.0);
               return (
                 <text x={pos.x} y={pos.y} fill="#ff2d7d" fontSize="18" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>M(x, y)</text>
               );
@@ -222,9 +224,9 @@ export default function CoordinateCanvas2D({
 
             {/* m = ? Label */}
             {(() => {
-              const cx = (svgX1 + svgX2) / 2;
-              const cy = (svgY1 + svgY2) / 2;
-              const pos = getSafePos(cx, cy - 45);
+              const mx = (x1 + x2) / 2;
+              const my = (y1 + y2) / 2;
+              const pos = getQuadrantSafePos(mx, my, 1.2);
               return (
                 <text x={pos.x} y={pos.y} fill="#00e5ff" fontSize="24" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>m = ?</text>
               );
@@ -233,12 +235,12 @@ export default function CoordinateCanvas2D({
           </g>
         )}
 
-        {/* A and B Points with Collision Avoidance */}
+        {/* A and B Points with Proper Quadrant Labeling */}
         <g>
           {/* A */}
           <circle cx={svgX1} cy={svgY1} r="7" fill="#39ff14" filter="url(#glow)" />
           {(() => {
-            const pos = getSafePos(svgX1, svgY1 - 25);
+            const pos = getQuadrantSafePos(x1, y1, 0.8);
             return (
               <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="16" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>A({x1}, {y1})</text>
             );
@@ -247,7 +249,7 @@ export default function CoordinateCanvas2D({
           {/* B */}
           <circle cx={svgX2} cy={svgY2} r="7" fill="#a855f7" filter="url(#glow)" />
           {(() => {
-            const pos = getSafePos(svgX2, svgY2 - 25);
+            const pos = getQuadrantSafePos(x2, y2, 0.8);
             return (
               <text x={pos.x} y={pos.y} fill="#a855f7" fontSize="16" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>B({x2}, {y2})</text>
             );
