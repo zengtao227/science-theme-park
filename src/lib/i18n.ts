@@ -846,8 +846,23 @@ export const translations: Record<string, any> = {
                 population: "Population (N)",
                 time: "Time (t)",
                 doubling_time: "Doubling Time (d)",
-                initial: "Initial Count (N₀)"
+                initial: "Initial Count (N₀)",
+                formula_ref: "FORMULA REFERENCE",
+                parameters: "CURRENT PARAMETERS",
+                growth_rate: "Growth Rate (k)",
+                half_life: "Half-life",
+                principal: "Principal (P)",
+                rate: "Interest Rate (r)"
             },
+            hints: {
+                exp_rule1: "Each doubling multiplies the population by 2",
+                exp_rule2: "After n doublings: N = N₀ × 2ⁿ",
+                log_rule1: "log₂(2ⁿ) = n",
+                log_rule2: "Change of base: logₐ(x) = ln(x)/ln(a)",
+                app_rule1: "Half-life: N(t) = N₀ × (½)^(t/h)",
+                app_rule2: "Compound interest: A = P(1+r)^t"
+            },
+            input_tip: "Tip: Enter result as integer or rounded to 1 decimal place.",
             mission: {
                 title: "BACTERIAL GROWTH LAB",
                 description: "Novartis biolab requires exponential growth modeling. Calculate bacterial populations and logarithmic scales."
@@ -858,7 +873,18 @@ export const translations: Record<string, any> = {
                 applications: "APPLICATIONS",
                 exponential_prompt_latex: "\\text{Calculate population using }N(t)=N_0\\cdot 2^{t/d}.",
                 logarithm_prompt_latex: "\\text{Solve for time using logarithms.}",
-                applications_prompt_latex: "\\text{Apply exponential models to real scenarios.}"
+                applications_prompt_latex: "\\text{Apply exponential models to real scenarios.}",
+                exp_basic_prompt: "\\text{Calculate the population at time } t.",
+                exp_advanced_prompt: "\\text{Find the number of doublings.}",
+                exp_elite_prompt: "\\text{Find the continuous growth rate } k.",
+                log_basic_prompt: "\\text{Solve for time using } t = d \\cdot \\log_2(N/N_0).",
+                log_core_prompt: "\\text{Evaluate the logarithm.}",
+                log_advanced_prompt: "\\text{Use the change of base formula.}",
+                log_elite_prompt: "\\text{Solve the logarithmic equation.}",
+                app_half_prompt: "\\text{Calculate remaining quantity after half-life decay.}",
+                app_compound_prompt: "\\text{Calculate compound interest: } A=P(1+r)^t.",
+                app_rate_prompt: "\\text{Find the growth rate from data.}",
+                app_ph_prompt: "\\text{Calculate pH from hydrogen ion concentration.}"
             },
             formulas: {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
@@ -3066,8 +3092,23 @@ export const translations: Record<string, any> = {
                 population: "种群数量 (N)",
                 time: "时间 (t)",
                 doubling_time: "倍增时间 (d)",
-                initial: "初始数量 (N₀)"
+                initial: "初始数量 (N₀)",
+                formula_ref: "公式参考",
+                parameters: "当前参数",
+                growth_rate: "增长率 (k)",
+                half_life: "半衰期",
+                principal: "本金 (P)",
+                rate: "利率 (r)"
             },
+            hints: {
+                exp_rule1: "每次倍增，种群数量乘以 2",
+                exp_rule2: "n 次倍增后：N = N₀ × 2ⁿ",
+                log_rule1: "log₂(2ⁿ) = n",
+                log_rule2: "换底公式：logₐ(x) = ln(x)/ln(a)",
+                app_rule1: "半衰期：N(t) = N₀ × (½)^(t/h)",
+                app_rule2: "复利：A = P(1+r)^t"
+            },
+            input_tip: "提示：输入整数或保留 1 位小数。",
             mission: {
                 title: "细菌增长实验室",
                 description: "诺华生物实验室需要指数增长建模。计算细菌种群和对数尺度。"
@@ -3078,7 +3119,18 @@ export const translations: Record<string, any> = {
                 applications: "应用",
                 exponential_prompt_latex: "\\text{使用 }N(t)=N_0\\cdot 2^{t/d}\\text{ 计算种群数量。}",
                 logarithm_prompt_latex: "\\text{使用对数求解时间。}",
-                applications_prompt_latex: "\\text{将指数模型应用于实际场景。}"
+                applications_prompt_latex: "\\text{将指数模型应用于实际场景。}",
+                exp_basic_prompt: "\\text{计算时间 } t \\text{ 时的种群数量。}",
+                exp_advanced_prompt: "\\text{求倍增次数。}",
+                exp_elite_prompt: "\\text{求连续增长率 } k\\text{。}",
+                log_basic_prompt: "\\text{用 } t = d \\cdot \\log_2(N/N_0) \\text{ 求时间。}",
+                log_core_prompt: "\\text{计算对数值。}",
+                log_advanced_prompt: "\\text{使用换底公式。}",
+                log_elite_prompt: "\\text{求解对数方程。}",
+                app_half_prompt: "\\text{计算半衰期后剩余量。}",
+                app_compound_prompt: "\\text{计算复利：} A=P(1+r)^t\\text{。}",
+                app_rate_prompt: "\\text{从数据中求增长率。}",
+                app_ph_prompt: "\\text{由氢离子浓度计算 pH 值。}"
             },
             formulas: {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
@@ -5614,8 +5666,23 @@ export const translations: Record<string, any> = {
                 population: "Population (N)",
                 time: "Zeit (t)",
                 doubling_time: "Verdopplungszeit (d)",
-                initial: "Anfangszahl (N₀)"
+                initial: "Anfangszahl (N₀)",
+                formula_ref: "FORMELREFERENZ",
+                parameters: "AKTUELLE PARAMETER",
+                growth_rate: "Wachstumsrate (k)",
+                half_life: "Halbwertszeit",
+                principal: "Kapital (P)",
+                rate: "Zinssatz (r)"
             },
+            hints: {
+                exp_rule1: "Jede Verdopplung multipliziert die Population mit 2",
+                exp_rule2: "Nach n Verdopplungen: N = N₀ × 2ⁿ",
+                log_rule1: "log₂(2ⁿ) = n",
+                log_rule2: "Basiswechsel: logₐ(x) = ln(x)/ln(a)",
+                app_rule1: "Halbwertszeit: N(t) = N₀ × (½)^(t/h)",
+                app_rule2: "Zinseszins: A = P(1+r)^t"
+            },
+            input_tip: "Tipp: Gib das Resultat als Ganzzahl oder auf 1 Dezimalstelle gerundet an.",
             mission: {
                 title: "BAKTERIENWACHSTUM-LABOR",
                 description: "Das Novartis-Biolabor benötigt exponentielle Wachstumsmodellierung. Berechne Bakterienpopulationen und logarithmische Skalen."
@@ -5626,7 +5693,18 @@ export const translations: Record<string, any> = {
                 applications: "ANWENDUNGEN",
                 exponential_prompt_latex: "\\text{Berechne Population mit }N(t)=N_0\\cdot 2^{t/d}.",
                 logarithm_prompt_latex: "\\text{Löse nach Zeit mit Logarithmen.}",
-                applications_prompt_latex: "\\text{Wende exponentielle Modelle auf reale Szenarien an.}"
+                applications_prompt_latex: "\\text{Wende exponentielle Modelle auf reale Szenarien an.}",
+                exp_basic_prompt: "\\text{Berechne die Population zur Zeit } t.",
+                exp_advanced_prompt: "\\text{Bestimme die Anzahl der Verdopplungen.}",
+                exp_elite_prompt: "\\text{Finde die kontinuierliche Wachstumsrate } k.",
+                log_basic_prompt: "\\text{Löse nach Zeit: } t = d \\cdot \\log_2(N/N_0).",
+                log_core_prompt: "\\text{Berechne den Logarithmus.}",
+                log_advanced_prompt: "\\text{Verwende die Basiswechselformel.}",
+                log_elite_prompt: "\\text{Löse die logarithmische Gleichung.}",
+                app_half_prompt: "\\text{Berechne die Restmenge nach Halbwertszeit.}",
+                app_compound_prompt: "\\text{Berechne Zinseszins: } A=P(1+r)^t.",
+                app_rate_prompt: "\\text{Bestimme die Wachstumsrate aus Daten.}",
+                app_ph_prompt: "\\text{Berechne den pH-Wert aus der H⁺-Konzentration.}"
             },
             formulas: {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
