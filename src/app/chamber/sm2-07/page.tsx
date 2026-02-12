@@ -33,9 +33,9 @@ const getLocalizedPrompt = (key: string, lang: string, params: any = {}) => {
     return `\\text{Distance } d=${params.d} \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.`;
   }
   if (key === 'DIST_REV_X') {
-    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(1,1), B(x,13) \\text{ 且 } x>1 \\text{，求 } x \\text{。}`;
-    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ für } B(x,13) \\text{ (x>1)}.`;
-    return `\\text{Distance } d=${params.d} \\text{. Find } x \\text{ for } B(x,13) \\text{ (x>1)}.`;
+    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(1,1), B(x,5) \\text{ 且 } x>1 \\text{，求 } x \\text{。}`;
+    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ für } B(x,5) \\text{ (x>1)}.`;
+    return `\\text{Distance } d=${params.d} \\text{. Find } x \\text{ for } B(x,5) \\text{ (x>1)}.`;
   }
   if (key === 'MID_REV') {
     if (isCN) return `\\text{M 是中点。已知 A 和 M，求 B(x,y)。}`;
@@ -65,13 +65,13 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
           correctLatex: "y=4"
         },
         {
-          id: "D-E2", difficulty, stage, point1: [1, 1], point2: [6, 13],
-          promptKey: 'DIST_REV_X', promptParams: { d: 13 },
+          id: "D-E2", difficulty, stage, point1: [1, 1], point2: [4, 5],
+          promptKey: 'DIST_REV_X', promptParams: { d: 5 },
           promptLatex: "",
-          expressionLatex: "A(1,1), B(x,13)",
+          expressionLatex: "A(1,1), B(x,5)",
           targetLatex: "x",
-          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 6 }],
-          correctLatex: "x=6"
+          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 4 }],
+          correctLatex: "x=4"
         }
       ];
     }
@@ -88,14 +88,14 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
       pool = [
         { id: "D-C1", point1: [-1, -1], point2: [2, 3] },
         { id: "D-C2", point1: [-2, 5], point2: [4, -3] },
-        { id: "D-C3", point1: [0, -5], point2: [-12, 0] },
+        { id: "D-C3", point1: [0, -5], point2: [-7, 0] },
         { id: "D-C4", point1: [-3, -4], point2: [3, 4] }
       ];
     } else {
       pool = [
         { id: "D-A1", point1: [-5, -5], point2: [7, 0] },
-        { id: "D-A2", point1: [10, 10], point2: [4, 2] },
-        { id: "D-A3", point1: [-8, 2], point2: [7, 10] },
+        { id: "D-A2", point1: [6, 8], point2: [2, -4] },
+        { id: "D-A3", point1: [-6, 2], point2: [5, 8] },
         { id: "D-A4", point1: [-7, -7], point2: [-2, 5] }
       ];
     }
@@ -154,13 +154,13 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
         { id: "M-B1", point1: [2, 2], point2: [6, 6] },
         { id: "M-B2", point1: [0, 0], point2: [4, 8] },
         { id: "M-B3", point1: [1, 3], point2: [5, 1] },
-        { id: "M-B4", point1: [10, 2], point2: [2, 10] }
+        { id: "M-B4", point1: [8, 2], point2: [2, 8] }
       ];
     } else {
       pool = [
         { id: "M-C1", point1: [-2, -4], point2: [2, 4] },
         { id: "M-C2", point1: [-5, 2], point2: [1, -6] },
-        { id: "M-C3", point1: [-8, -8], point2: [-2, -2] },
+        { id: "M-C3", point1: [-7, -7], point2: [-2, -2] },
         { id: "M-C4", point1: [3, -5], point2: [-3, 5] }
       ];
     }
@@ -231,10 +231,10 @@ function buildStagePool(t: S207T, difficulty: Difficulty, stage: Stage): S207Que
       ];
     } else {
       pool = [
-        { id: "S-A1", point1: [-10, -5], point2: [5, 10] },
-        { id: "S-A2", point1: [-3.5, 2], point2: [1.5, -3] },
-        { id: "S-A3", point1: [100, 200], point2: [200, 400] },
-        { id: "S-A4", point1: [0.1, 0.1], point2: [0.2, 0.3] }
+        { id: "S-A1", point1: [-7, -4], point2: [5, 8] },
+        { id: "S-A2", point1: [-4, 2], point2: [2, -3] },
+        { id: "S-A3", point1: [-6, -3], point2: [4, 7] },
+        { id: "S-A4", point1: [3, -7], point2: [-3, 5] }
       ];
     }
 
