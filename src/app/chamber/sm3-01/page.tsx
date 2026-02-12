@@ -197,6 +197,7 @@ export default function S301Page() {
       monitorContent={
         <S301QuadraticCanvas
           quest={currentQuest}
+          lang={currentLanguage}
         />
       }
     >
