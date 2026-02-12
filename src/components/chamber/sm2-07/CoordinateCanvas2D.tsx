@@ -18,8 +18,8 @@ interface CoordinateCanvas2DProps {
 
 export default function CoordinateCanvas2D({
   stage = "DISTANCE",
-  point1 = [2, 3],
-  point2 = [6, 7],
+  point1 = [0, 0],
+  point2 = [3, 4],
   translations,
 }: CoordinateCanvas2DProps) {
   const [showFormula, setShowFormula] = useState(true);
@@ -51,51 +51,58 @@ export default function CoordinateCanvas2D({
   const midX = (x1 + x2) / 2;
   const midY = (y1 + y2) / 2;
   const [svgMidX, svgMidY] = toSVG(midX, midY);
-  const slope = (y2 - y1) / (x2 - x1);
   const deltaX = x2 - x1;
   const deltaY = y2 - y1;
-  const b = y1 - slope * x1;
 
-  const lineExtendX1 = -10;
-  const lineExtendY1 = slope * lineExtendX1 + b;
-  const lineExtendX2 = 10;
-  const lineExtendY2 = slope * lineExtendX2 + b;
-  const [svgLineX1, svgLineY1] = toSVG(lineExtendX1, lineExtendY1);
-  const [svgLineX2, svgLineY2] = toSVG(lineExtendX2, lineExtendY2);
+  // --- EXTERIOR POSITIONING ENGINE ---
+  // Ensuring everything is OUTSIDE the triangle formed by (x1,y1)-(x2,y1)-(x2,y2)
 
-  // --- QUADRANT-AWARE LABEL POSITIONING ---
-  // Ensuring labels stay in the same quadrant as the point and never cross axes
-  const getQuadrantSafePos = (mathX: number, mathY: number, labelPadding = 0.8) => {
-    // mathX, mathY are in coordinate units (-10 to 10)
-
-    // Determine the "push" direction based on quadrant
-    // If on axis (0), we push towards positive as default
-    const dirX = mathX >= 0 ? 1 : -1;
-    const dirY = mathY >= 0 ? 1 : -1;
-
-    // We want the label to be slightly further into the quadrant than the point
-    let finalMathX = mathX + (dirX * labelPadding);
-    let finalMathY = mathY + (dirY * labelPadding);
-
-    // Axis Avoidance: Ensure the label doesn't sit on the axis
-    // Minimum distance from axis in coordinate units
-    const minAxisDistX = 1.2; // enough to clear Y-axis numbers
-    const minAxisDistY = 0.8; // enough to clear X-axis numbers
-
-    if (Math.abs(finalMathX) < minAxisDistX) {
-      finalMathX = dirX * minAxisDistX;
-    }
-    if (Math.abs(finalMathY) < minAxisDistY) {
-      finalMathY = dirY * minAxisDistY;
+  // 1. Point Label logic: Push away from the triangle's center
+  const getPointLabelPos = (x: number, y: number, isOrigin: boolean) => {
+    if (isOrigin) {
+      // Hard rule for A(0,0): Always push to 3rd quadrant (bottom-left) to clear 1st quadrant clutter
+      const [sx, sy] = toSVG(x - 1.2, y - 0.8);
+      return { x: sx, y: sy, anchor: 'end' };
     }
 
-    const [sx, sy] = toSVG(finalMathX, finalMathY);
+    // For other points, push outwards from the center of the viewport or geometry
+    const dirX = x >= 0 ? 1 : -1;
+    const dirY = y >= 0 ? 1 : -1;
+    const [sx, sy] = toSVG(x + dirX * 1.2, y + dirY * 0.8);
+    return { x: sx, y: sy, anchor: dirX > 0 ? 'start' : 'end' };
+  };
 
-    return {
-      x: sx,
-      y: sy,
-      anchor: dirX > 0 ? 'start' : 'end'
-    };
+  // 2. Auxiliary Line Labels: Strict exterior rules
+  const getAuxLabelPos = (type: 'dx' | 'dy') => {
+    if (type === 'dx') {
+      const mx = (x1 + x2) / 2;
+      // If triangle is above horizontal (y2 > y1), label dx BELOW y1
+      // If triangle is below horizontal (y2 < y1), label dx ABOVE y1
+      const mathY = y1 + (y2 >= y1 ? -1.0 : 1.0);
+      const [sx, sy] = toSVG(mx, mathY);
+      return { x: sx, y: sy, anchor: 'middle' };
+    } else {
+      const my = (y1 + y2) / 2;
+      // If triangle is to the right (x2 > x1), label dy to the RIGHT of x2
+      // If triangle is to the left (x2 < x1), label dy to the LEFT of x2
+      const mathX = x2 + (x2 >= x1 ? 1.0 : -1.0);
+      const [sx, sy] = toSVG(mathX, my);
+      return { x: sx, y: sy, anchor: mathX >= x2 ? 'start' : 'end' };
+    }
+  };
+
+  // 3. Hypotenuse d=? Label: Push away from the right-angle vertex (x2, y1)
+  const getHypotenusePos = () => {
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+
+    // Normal vector from right angle (x2, y1) towards hypotenuse center
+    // But simpler: just push opposite to the triangle interior
+    const pushX = x2 > x1 ? -1.5 : 1.5;
+    const pushY = y2 > y1 ? 1.5 : -1.5;
+
+    const [sx, sy] = toSVG(mx + pushX, my + pushY);
+    return { x: sx, y: sy, anchor: pushX > 0 ? 'start' : 'end' };
   };
 
   return (
@@ -106,7 +113,6 @@ export default function CoordinateCanvas2D({
             <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.05" />
             <stop offset="100%" stopColor="#a855f7" stopOpacity="0.05" />
           </linearGradient>
-
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
             <feMerge>
@@ -118,182 +124,123 @@ export default function CoordinateCanvas2D({
 
         <rect width={width} height={height} fill="url(#gridGrad)" />
 
-        {/* 网格线 */}
-        <g opacity="0.1">
-          {Array.from({ length: 21 }).map((_, i) => {
-            const x = i * gridSize;
-            const y = i * gridSize;
-            return (
-              <g key={i}>
-                <line x1={x} y1="0" x2={x} y2={height} stroke="#00e5ff" strokeWidth="0.5" />
-                <line x1="0" y1={y} x2={width} y2={y} stroke="#00e5ff" strokeWidth="0.5" />
-              </g>
-            );
-          })}
+        {/* 极简网格线 */}
+        <g opacity="0.05">
+          {Array.from({ length: 21 }).map((_, i) => (
+            <g key={i}>
+              <line x1={i * gridSize} y1="0" x2={i * gridSize} y2={height} stroke="#00e5ff" strokeWidth="0.5" />
+              <line x1="0" y1={i * gridSize} x2={width} y2={i * gridSize} stroke="#00e5ff" strokeWidth="0.5" />
+            </g>
+          ))}
         </g>
 
-        {/* 坐标轴 */}
+        {/* 强化坐标轴 */}
         <g filter="url(#glow)">
-          <line x1="0" y1={originY} x2={width} y2={originY} stroke="#00e5ff" strokeWidth="3" opacity="0.8" />
-          <line x1={originX} y1="0" x2={originX} y2={height} stroke="#00e5ff" strokeWidth="3" opacity="0.8" />
+          <line x1="0" y1={originY} x2={width} y2={originY} stroke="#00e5ff" strokeWidth="3" opacity="0.6" />
+          <line x1={originX} y1="0" x2={originX} y2={height} stroke="#00e5ff" strokeWidth="3" opacity="0.6" />
         </g>
 
-        {/* 刻度与数字 */}
-        <g>
+        {/* 轴刻度 */}
+        <g opacity="0.3">
           {Array.from({ length: 21 }).map((_, i) => {
             const val = i - 10;
             if (val === 0) return null;
-            const [svgX, svgY] = toSVG(val, 0);
-            const [svgX2, svgY2] = toSVG(0, val);
+            const [sx, sy] = toSVG(val, 0);
+            const [sx2, sy2] = toSVG(0, val);
             return (
-              <g key={i}>
-                <line x1={svgX} y1={originY - 4} x2={svgX} y2={originY + 4} stroke="#00e5ff" strokeWidth="1.5" />
-                <text x={svgX} y={originY + 22} fill="#00e5ff" fontSize="10" fontWeight="bold" textAnchor="middle" opacity="0.5">{val}</text>
-
-                <line x1={originX - 4} y1={svgY2} x2={originX + 4} y2={svgY2} stroke="#00e5ff" strokeWidth="1.5" />
-                <text x={originX - 12} y={svgY2 + 4} fill="#00e5ff" fontSize="10" fontWeight="bold" textAnchor="end" opacity="0.5">{val}</text>
+              <g key={i} fill="#00e5ff" fontSize="10">
+                <line x1={sx} y1={originY - 4} x2={sx} y2={originY + 4} stroke="#00e5ff" />
+                <text x={sx} y={originY + 18} textAnchor="middle">{val}</text>
+                <line x1={originX - 4} y1={sy2} x2={originX + 4} y2={sy2} stroke="#00e5ff" />
+                <text x={originX - 10} y={sy2 + 4} textAnchor="end">{val}</text>
               </g>
             );
           })}
-          <text x={width - 20} y={originY + 40} fill="#00e5ff" fontSize="14" fontWeight="900" textAnchor="end">X</text>
-          <text x={originX + 20} y={25} fill="#00e5ff" fontSize="14" fontWeight="900">Y</text>
         </g>
 
         {stage === "DISTANCE" && (
           <g>
-            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY1} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
-            <line x1={svgX2} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#ffd166" strokeWidth="2" strokeDasharray="5,5" />
+            {/* 辅助三角形 - 虚线 */}
+            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY1} stroke="#ffd166" strokeWidth="1.5" strokeDasharray="6,4" />
+            <line x1={svgX2} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#ffd166" strokeWidth="1.5" strokeDasharray="6,4" />
+            <rect x={svgX2 > svgX1 ? svgX2 - 12 : svgX2} y={y1 < y2 ? svgY1 - 12 : svgY1} width="12" height="12" fill="none" stroke="#ffd166" opacity="0.5" />
 
-            {/* Δx Label - Stays on the outer side of the horizontal segment */}
+            {/* Δx 标签 - 严格三角形外部 */}
             {(() => {
-              const mx = (x1 + x2) / 2;
-              const my = y1;
-              // Move further away from current vertical quadrant of the line
-              const pushY = y2 < y1 ? 0.8 : -0.8;
-              const pos = getQuadrantSafePos(mx, my + pushY, 0);
-              return (
-                <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor="middle">Δx = {Math.abs(deltaX)}</text>
-              );
+              const pos = getAuxLabelPos('dx');
+              return <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor="middle">Δx = {Math.abs(deltaX)}</text>;
             })()}
 
-            {/* Δy Label - Stays on the outer side of the vertical segment */}
+            {/* Δy 标签 - 严格三角形外部 */}
             {(() => {
-              const mx = x2;
-              const my = (y1 + y2) / 2;
-              const pushX = x1 < x2 ? 0.8 : -0.8;
-              const pos = getQuadrantSafePos(mx + pushX, my, 0);
-              return (
-                <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor={pos.anchor as any}>Δy = {Math.abs(deltaY)}</text>
-              );
+              const pos = getAuxLabelPos('dy');
+              return <text x={pos.x} y={pos.y} fill="#ffd166" fontSize="14" fontWeight="900" textAnchor={pos.anchor as any}>Δy = {Math.abs(deltaY)}</text>;
             })()}
 
-            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="4" filter="url(#glow)" />
+            {/* 主距离线 */}
+            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="4" filter="url(#glow)" strokeLinecap="round" />
 
-            {/* d = ? Label - Quadrant biased */}
+            {/* d=? 标签 - 强制推向三角形相对于直角顶点的对角 */}
             {(() => {
-              const mx = (x1 + x2) / 2;
-              const my = (y1 + y2) / 2;
-              // Decide push based on slope to stay "outside" the triangle
-              const pushX = x1 < x2 ? -1.0 : 1.0;
-              const pushY = y1 < y2 ? 1.0 : -1.0;
-              const pos = getQuadrantSafePos(mx + pushX, my + pushY, 0);
-              return (
-                <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="22" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>d = ?</text>
-              );
+              const pos = getHypotenusePos();
+              return <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="24" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>d = ?</text>;
             })()}
           </g>
         )}
 
         {stage === "MIDPOINT" && (
           <g>
-            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#a855f7" strokeWidth="3" />
+            <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#a855f7" strokeWidth="3" opacity="0.6" />
             <circle cx={svgMidX} cy={svgMidY} r="8" fill="#ff2d7d" filter="url(#glow)" />
             {(() => {
-              const pos = getQuadrantSafePos(midX, midY, 1.0);
-              return (
-                <text x={pos.x} y={pos.y} fill="#ff2d7d" fontSize="18" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>M(x, y)</text>
-              );
+              const pos = getPointLabelPos(midX, midY, false);
+              return <text x={pos.x} y={pos.y} fill="#ff2d7d" fontSize="18" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>M(x, y)</text>;
             })()}
           </g>
         )}
 
         {stage === "SLOPE" && (
           <g>
-            <line x1={svgLineX1} y1={svgLineY1} x2={svgLineX2} y2={svgLineY2} stroke="#00e5ff" strokeWidth="2" opacity="0.3" strokeDasharray="5,5" />
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#00e5ff" strokeWidth="4" filter="url(#glow)" />
-
-            {/* m = ? Label */}
             {(() => {
-              const mx = (x1 + x2) / 2;
-              const my = (y1 + y2) / 2;
-              const pos = getQuadrantSafePos(mx, my, 1.2);
-              return (
-                <text x={pos.x} y={pos.y} fill="#00e5ff" fontSize="24" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>m = ?</text>
-              );
+              const pos = getHypotenusePos();
+              return <text x={pos.x} y={pos.y} fill="#00e5ff" fontSize="24" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>m = ?</text>;
             })()}
-            <text x="50" y="50" fill="#00e5ff" fontSize="16" fontWeight="900" filter="url(#glow)">{t.line_eq} y = mx + b</text>
           </g>
         )}
 
-        {/* A and B Points with Proper Quadrant Labeling */}
+        {/* 关键顶点 A 和 B */}
         <g>
-          {/* A */}
           <circle cx={svgX1} cy={svgY1} r="7" fill="#39ff14" filter="url(#glow)" />
           {(() => {
-            const pos = getQuadrantSafePos(x1, y1, 0.8);
-            return (
-              <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="16" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>A({x1}, {y1})</text>
-            );
+            const pos = getPointLabelPos(x1, y1, x1 === 0 && y1 === 0);
+            return <text x={pos.x} y={pos.y} fill="#39ff14" fontSize="16" fontWeight="900" textAnchor={pos.anchor as any} filter="url(#glow)">A({x1}, {y1})</text>;
           })()}
 
-          {/* B */}
           <circle cx={svgX2} cy={svgY2} r="7" fill="#a855f7" filter="url(#glow)" />
           {(() => {
-            const pos = getQuadrantSafePos(x2, y2, 0.8);
-            return (
-              <text x={pos.x} y={pos.y} fill="#a855f7" fontSize="16" fontWeight="900" filter="url(#glow)" textAnchor={pos.anchor as any}>B({x2}, {y2})</text>
-            );
+            const pos = getPointLabelPos(x2, y2, x2 === 0 && y2 === 0);
+            return <text x={pos.x} y={pos.y} fill="#a855f7" fontSize="16" fontWeight="900" textAnchor={pos.anchor as any} filter="url(#glow)">B({x2}, {y2})</text>;
           })()}
         </g>
       </svg>
 
+      {/* 公式引导 */}
       {showFormula && (
-        <div className="absolute top-4 left-4 bg-black/90 border border-cyan-400/30 rounded-lg px-5 py-4 space-y-3 backdrop-blur-md max-w-xs transition-all">
-          <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider font-bold">
-            {stage === "DISTANCE" && t.distance_formula}
-            {stage === "MIDPOINT" && t.midpoint_formula}
-            {stage === "SLOPE" && t.slope_formula}
-          </div>
-          {stage === "DISTANCE" && (
-            <div className="space-y-2">
-              <div className="text-white font-mono text-sm">d = √[(x₂-x₁)² + (y₂-y₁)²]</div>
-              <div className="text-white/60 text-xs text-center italic mt-2">Calculate d</div>
-            </div>
-          )}
-          {stage === "MIDPOINT" && (
-            <div className="space-y-2">
-              <div className="text-white font-mono text-sm">M = ((x₁+x₂)/2, (y₁+y₂)/2)</div>
-              <div className="text-pink-400/60 text-xs text-center italic mt-2">Calculate M(x, y)</div>
-            </div>
-          )}
-          {stage === "SLOPE" && (
-            <div className="space-y-2">
-              <div className="text-white font-mono text-sm">m = (y₂-y₁)/(x₂-x₁)</div>
-              <div className="text-cyan-400/60 text-xs text-center italic mt-2">Calculate m</div>
-            </div>
-          )}
+        <div className="absolute top-4 left-4 bg-black/80 border border-white/10 rounded-lg p-5 backdrop-blur-md max-w-[240px] shadow-xl">
+          <div className="text-[10px] text-cyan-400 font-black uppercase mb-3 tracking-widest opacity-70">Geometry Engine</div>
+          {stage === "DISTANCE" && <div className="text-white/90 font-mono text-sm leading-relaxed">Find distance <span className="text-green-400">d</span> using:<br />d = √[Δx² + Δy²]</div>}
+          {stage === "MIDPOINT" && <div className="text-white/90 font-mono text-sm leading-relaxed">Find mid <span className="text-pink-400">M</span>:<br />M = (Σx/2, Σy/2)</div>}
+          {stage === "SLOPE" && <div className="text-white/90 font-mono text-sm leading-relaxed">Find slope <span className="text-cyan-400">m</span>:<br />m = Δy / Δx</div>}
         </div>
       )}
 
-      <button
-        onClick={() => setShowFormula(!showFormula)}
-        className="absolute top-4 right-4 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white transition-all text-xs font-mono shadow-lg active:scale-95"
-      >
-        {showFormula ? t.hide_formula : t.show_formula}
+      <button onClick={() => setShowFormula(!showFormula)} className="absolute top-4 right-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-all text-[10px] uppercase font-bold tracking-tighter">
+        {showFormula ? "Minimize" : "Analysis"}
       </button>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase tracking-widest leading-relaxed">
-        CHAMBER // SM2.07<br />COORDINATE_GEOMETRY<br />MODE: {stage}
+      <div className="absolute bottom-6 left-6 text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">
+        Chamber SM2.07 // Advanced Logic
       </div>
     </div>
   );
