@@ -2812,3 +2812,9 @@ To https://github.com/zengtao227/science-theme-park.git
 [2026-02-12 00:06:55] Git Sync Success: Repository pushed to GitHub.
 [2026-02-12 00:06:55] Log retention check: Old logs removed (2-day limit).
 [2026-02-12 00:36:56] WATCHER_TIMER: Hourly backup triggered.
+[main 9ff77cf] auto: daily sync 2026-02-12 00:36
+ 2 files changed, 125 insertions(+), 172 deletions(-)
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+To https://github.com/zengtao227/science-theme-park.git
+   9140f95..9ff77cf  main -> main
