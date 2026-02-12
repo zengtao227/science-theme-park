@@ -169,7 +169,7 @@ export default function CoordinateCanvas2D({
               fontSize="18"
               fontWeight="bold"
             >
-              d = {distance.toFixed(2)}
+              d = ?
             </text>
           </g>
         )}
@@ -189,7 +189,7 @@ export default function CoordinateCanvas2D({
 
             {/* 中点标签 */}
             <text x={svgMidX} y={svgMidY - 25} fill="#ff2d7d" fontSize="16" fontWeight="bold" textAnchor="middle">
-              M({midX.toFixed(1)}, {midY.toFixed(1)})
+              M(x, y)
             </text>
 
             {/* 距离标记 */}
@@ -236,7 +236,7 @@ export default function CoordinateCanvas2D({
               fontWeight="bold"
               textAnchor="middle"
             >
-              m = {slope.toFixed(2)}
+              m = ?
             </text>
 
             {/* 直线方程 */}
@@ -247,7 +247,7 @@ export default function CoordinateCanvas2D({
               fontSize="16"
               fontWeight="bold"
             >
-              {t.line_eq} y = {slope.toFixed(2)}x + {b.toFixed(2)}
+              {t.line_eq} y = mx + b
             </text>
           </g>
         )}
@@ -290,8 +290,8 @@ export default function CoordinateCanvas2D({
               <div className="text-white/60 text-xs">
                 = √[{deltaX}² + {deltaY}²]
               </div>
-              <div className="text-cyan-400 font-bold text-sm">
-                = {distance.toFixed(2)}
+              <div className="text-white/60 text-xs text-center italic mt-2">
+                Calculate d
               </div>
             </div>
           )}
@@ -304,8 +304,8 @@ export default function CoordinateCanvas2D({
               <div className="text-white/60 text-xs">
                 = (({x1}+{x2})/2, ({y1}+{y2})/2)
               </div>
-              <div className="text-pink-400 font-bold text-sm">
-                = ({midX.toFixed(1)}, {midY.toFixed(1)})
+              <div className="text-pink-400/60 text-xs text-center italic mt-2">
+                Calculate M(x, y)
               </div>
             </div>
           )}
@@ -321,11 +321,8 @@ export default function CoordinateCanvas2D({
               <div className="text-white/60 text-xs">
                 = {deltaY}/{deltaX}
               </div>
-              <div className="text-cyan-400 font-bold text-sm">
-                = {slope.toFixed(2)}
-              </div>
-              <div className="text-white text-xs mt-3 pt-3 border-t border-white/60">
-                {t.line_eq} y = {slope.toFixed(2)}x + {b.toFixed(2)}
+              <div className="text-cyan-400/60 text-xs text-center italic mt-2">
+                Calculate m
               </div>
             </div>
           )}
