@@ -1,19 +1,17 @@
 "use client";
 
-import React, { useRef, useMemo, useState, useEffect, Suspense } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
     OrbitControls,
     Text,
-    Float,
-    Sparkles,
-    PerspectiveCamera,
-    Grid,
-    Center,
-    Line
+    Line,
+    OrthographicCamera,
+    Html
 } from "@react-three/drei";
 import * as THREE from "three";
 
+// --- Types ---
 export interface SystemsVisual {
     eq1: { a: number, b: number, c: number };
     eq2: { a: number, b: number, c: number };
@@ -25,22 +23,50 @@ interface AlchemistCanvasProps {
     inputs?: Record<string, string>;
 }
 
-// Renders a laser beam based on equation ax + by = c
-function LaserBeam({
+// --- Components ---
+
+// 1. 2D Coordinate Grid with Axes
+function Grid2D() {
+    return (
+        <group>
+            {/* Background Grid Lines (Gray) */}
+            <gridHelper args={[20, 20, 0x333333, 0x222222]} rotation={[Math.PI / 2, 0, 0]} />
+
+            {/* X Axis (White, Thick) */}
+            <Line
+                points={[[-10, 0, 0], [10, 0, 0]]}
+                color="white"
+                lineWidth={2}
+            />
+            <Text position={[9.5, -0.5, 0]} fontSize={0.4} color="white">x</Text>
+
+            {/* Y Axis (White, Thick) */}
+            <Line
+                points={[[0, -10, 0], [0, 10, 0]]}
+                color="white"
+                lineWidth={2}
+            />
+            <Text position={[0.5, 9.5, 0]} fontSize={0.4} color="white">y</Text>
+
+            {/* Origin Label */}
+            <Text position={[-0.3, -0.3, 0]} fontSize={0.3} color="#888">0</Text>
+        </group>
+    );
+}
+
+// 2. Linear Equation Renderer (2D Line)
+function LinearEquation2D({
     equation,
     color,
-    currentPos,
     label
 }: {
     equation: { a: number, b: number, c: number },
     color: string,
-    currentPos: [number, number],
     label: string
 }) {
-    // Generate points for the line within a visible range [-10, 10]
     const points = useMemo(() => {
-        const pts: THREE.Vector3[] = [];
         const { a, b, c } = equation;
+        const pts: THREE.Vector3[] = [];
 
         // Handle vertical line case (b=0)
         if (Math.abs(b) < 0.001) {
@@ -49,213 +75,175 @@ function LaserBeam({
             pts.push(new THREE.Vector3(x, 10, 0));
         } else {
             // y = (c - ax) / b
+            // Calculate y at x = -10 and x = 10
             pts.push(new THREE.Vector3(-10, (c - a * -10) / b, 0));
             pts.push(new THREE.Vector3(10, (c - a * 10) / b, 0));
         }
         return pts;
     }, [equation]);
 
-    // Check if the current user position is on this line
-    const [x, y] = currentPos;
-    const error = Math.abs(equation.a * x + equation.b * y - equation.c);
-    const isOnLine = error < 0.2;
+    // Calculate a position for the label (e.g., at x=5 or near center)
+    const labelPos = useMemo(() => {
+        const p1 = points[0];
+        const p2 = points[1];
+        // Interpolate to find a visible spot, e.g., 70% along the visible segment
+        const t = 0.7;
+        return new THREE.Vector3(
+            p1.x + (p2.x - p1.x) * t,
+            p1.y + (p2.y - p1.y) * t,
+            0
+        );
+    }, [points]);
+
+    // Construct equation string: ax + by = c
+    const eqString = `${equation.a}x + ${equation.b < 0 ? `(${equation.b})` : equation.b}y = ${equation.c}`;
 
     return (
         <group>
-            {/* The Beam */}
-            <Line
-                points={points}
-                color={color}
-                lineWidth={isOnLine ? 5 : 1}
-                transparent
-                opacity={isOnLine ? 1 : 0.3}
-            />
+            <Line points={points} color={color} lineWidth={3} />
 
-            {/* Label Emitter at one end */}
-            <group position={[points[0].x, points[0].y, 0]}>
+            {/* Tag on line */}
+            <group position={labelPos}>
                 <mesh>
-                    <sphereGeometry args={[0.2, 16, 16]} />
-                    <meshStandardMaterial color={color} emissive={color} emissiveIntensity={2} />
+                    <boxGeometry args={[3.2, 0.6, 0.01]} />
+                    <meshBasicMaterial color="black" transparent opacity={0.6} />
                 </mesh>
-                <Text position={[0, 0.5, 0]} fontSize={0.3} color={color}>
-                    {label}
+                <Text position={[0, 0, 0.1]} fontSize={0.35} color={color} anchorX="center" anchorY="middle">
+                    {eqString}
                 </Text>
             </group>
-
-            {/* Glow if active */}
-            {isOnLine && (
-                <Sparkles
-                    count={20}
-                    scale={[10, 10, 1]}
-                    size={2}
-                    speed={0.5}
-                    color={color}
-                />
-            )}
         </group>
     );
 }
 
-// User's current input position as a 3D core
-function EnergyCore({ x, y, active }: { x: number, y: number, active: boolean }) {
-    const meshRef = useRef<THREE.Mesh>(null);
-
-    useFrame((state) => {
-        if (!meshRef.current) return;
-        meshRef.current.rotation.y += 0.02;
-        meshRef.current.rotation.z += 0.01;
-    });
-
+// 3. User Input Point & Intersection Highlight
+function Point2D({ x, y, color, label, isSolution }: { x: number, y: number, color: string, label?: string, isSolution?: boolean }) {
     return (
         <group position={[x, y, 0.1]}>
-            <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                <mesh ref={meshRef}>
-                    <octahedronGeometry args={[0.4, 0]} />
-                    <meshStandardMaterial
-                        color={active ? "#fff" : "#444"}
-                        emissive={active ? "#00e5ff" : "#222"}
-                        emissiveIntensity={active ? 5 : 0.5}
-                        wireframe
-                    />
+            {/* The Point */}
+            <mesh>
+                <circleGeometry args={[isSolution ? 0.3 : 0.15, 32]} />
+                <meshBasicMaterial color={color} />
+            </mesh>
+
+            {/* Pulse Effect for Solution */}
+            {isSolution && (
+                <mesh>
+                    <ringGeometry args={[0.3, 0.4, 32]} />
+                    <meshBasicMaterial color={color} transparent opacity={0.5} />
                 </mesh>
-            </Float>
+            )}
 
-            <Sparkles count={active ? 50 : 10} scale={1} size={active ? 4 : 1} color="#00e5ff" />
-
-            <Text position={[0, -0.6, 0]} fontSize={0.25} color="white">
-                {`(${x.toFixed(1)}, ${y.toFixed(1)})`}
-            </Text>
+            {/* High-Contrast Coordinate Label */}
+            <group position={[0, 0.6, 0]}>
+                <mesh>
+                    <boxGeometry args={[isSolution ? 2.5 : 1.8, 0.6, 0.01]} />
+                    <meshBasicMaterial color="black" transparent opacity={0.8} />
+                </mesh>
+                <Text position={[0, 0, 0.1]} fontSize={0.35} color="white" fontWeight="bold">
+                    {label || `(${x.toFixed(1)}, ${y.toFixed(1)})`}
+                </Text>
+            </group>
         </group>
     );
 }
 
+// --- Main Canvas ---
 export default function AlchemistCanvas({ visual, inputs }: AlchemistCanvasProps) {
-    const x = parseFloat(inputs?.x || "0") || 0;
-    const y = parseFloat(inputs?.y || "0") || 0;
+    const inputX = parseFloat(inputs?.x || "0") || 0;
+    const inputY = parseFloat(inputs?.y || "0") || 0;
 
     if (!visual) return null;
 
     const isSolved = visual.intersect &&
-        Math.abs(x - visual.intersect.x) < 0.1 &&
-        Math.abs(y - visual.intersect.y) < 0.1;
+        Math.abs(inputX - visual.intersect.x) < 0.1 &&
+        Math.abs(inputY - visual.intersect.y) < 0.1;
 
     return (
-        <div className="relative w-full aspect-[16/9] bg-[#020205] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-            <Canvas shadows>
-                <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={35} />
-                <color attach="background" args={["#010103"]} />
+        <div className="relative w-full aspect-[16/9] bg-[#111] rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
+            <Canvas>
+                <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={25} />
+                <color attach="background" args={["#111"]} />
 
                 <ClientOnlySuspense fallback={null}>
-                    <ambientLight intensity={0.4} />
-                    <pointLight position={[10, 10, 10]} intensity={1.5} />
+                    {/* 2D Coordinate System */}
+                    <Grid2D />
 
-                    {/* Dark Sci-Fi Environment */}
-                    <Grid
-                        position={[0, 0, -0.1]}
-                        args={[20, 20]}
-                        cellSize={1}
-                        sectionSize={5}
-                        fadeDistance={25}
-                        infiniteGrid
-                        cellColor="#111"
-                        sectionColor="#222"
+                    {/* Equation 1: Neon Magenta (#FF00FF) */}
+                    <LinearEquation2D
+                        equation={visual.eq1}
+                        color="#FF00FF"
+                        label="EQ 1"
                     />
 
-                    {/* Coordinate Axes */}
-                    <Line points={[new THREE.Vector3(-10, 0, 0), new THREE.Vector3(10, 0, 0)]} color="#333" lineWidth={1} />
-                    <Line points={[new THREE.Vector3(0, -10, 0), new THREE.Vector3(0, 10, 0)]} color="#333" lineWidth={1} />
+                    {/* Equation 2: Neon Cyan (#00FFFF) */}
+                    <LinearEquation2D
+                        equation={visual.eq2}
+                        color="#00FFFF"
+                        label="EQ 2"
+                    />
 
-                    <group>
-                        {/* Equation 1 Beam (Red) */}
-                        <LaserBeam
-                            equation={visual.eq1}
-                            color="#ff2d7d"
-                            currentPos={[x, y]}
-                            label="EQ_1"
+                    {/* True Intersection (Ghost Hint) */}
+                    {visual.intersect && (
+                        <Point2D
+                            x={visual.intersect.x}
+                            y={visual.intersect.y}
+                            color="#FFFFFF"
+                            label="SOLUTION"
+                            isSolution={true}
                         />
+                    )}
 
-                        {/* Equation 2 Beam (Blue) */}
-                        <LaserBeam
-                            equation={visual.eq2}
-                            color="#00e5ff"
-                            currentPos={[x, y]}
-                            label="EQ_2"
-                        />
+                    {/* User Input Cursor */}
+                    <Point2D
+                        x={inputX}
+                        y={inputY}
+                        color={isSolved ? "#00FF00" : "#FFFF00"}
+                        label={isSolved ? "MATCH!" : "CURSOR"}
+                    />
 
-                        {/* User Data Core */}
-                        <EnergyCore x={x} y={y} active={!!isSolved} />
-
-                        {/* Solving Visual Feedback */}
-                        {isSolved && (
-                            <Float speed={10} rotationIntensity={5} floatIntensity={2}>
-                                <mesh position={[x, y, 0]}>
-                                    <sphereGeometry args={[0.8, 32, 32]} />
-                                    <meshStandardMaterial
-                                        color="#fff"
-                                        emissive="#fff"
-                                        emissiveIntensity={10}
-                                        transparent
-                                        opacity={0.3}
-                                    />
-                                </mesh>
-                            </Float>
-                        )}
-                    </group>
-
+                    {/* Simple Pan/Zoom for exploration */}
                     <OrbitControls
-                        enablePan={true}
+                        enableRotate={false}
                         enableZoom={true}
-                        maxDistance={25}
-                        minDistance={5}
+                        minZoom={15}
+                        maxZoom={50}
                     />
                 </ClientOnlySuspense>
             </Canvas>
 
-            {/* Clear UI Labels */}
-            <div className="absolute top-6 left-6 space-y-2 pointer-events-none">
-                <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full ${isSolved ? 'bg-green-400 shadow-[0_0_15px_#4ade80]' : 'bg-red-500 animate-pulse'}`} />
-                    <span className="text-xs font-mono text-white tracking-[0.4em] uppercase font-black">
-                        Alignment_Matrix: {isSolved ? 'LOCKED' : 'SEARCHING'}
-                    </span>
+            {/* HTML Overlay for Legend */}
+            <div className="absolute top-4 left-4 p-3 bg-black/80 border border-white/20 rounded-lg pointer-events-none">
+                <div className="text-[10px] font-mono text-white/90 mb-2 uppercase tracking-widest font-bold">LEGEND</div>
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-3 h-1 bg-[#FF00FF]" />
+                    <span className="text-[10px] text-white">Eq 1 (Magenta)</span>
                 </div>
-                {!isSolved && (
-                    <div className="text-[10px] font-mono text-white/60 tracking-wider">
-                        Target Intersection Center...
-                    </div>
-                )}
-            </div>
-
-            {/* Status Feedback */}
-            <div className="absolute bottom-6 left-6 p-4 bg-black/60 border border-white/10 rounded-xl backdrop-blur-md">
-                <div className="grid grid-cols-2 gap-4 text-[10px] font-mono">
-                    <div className="space-y-1">
-                        <div className="text-[#ff2d7d] font-bold">EQA_STATUS</div>
-                        <div className="text-white">
-                            {Math.abs(visual.eq1.a * x + visual.eq1.b * y - visual.eq1.c) < 0.2 ? "✓ ALIGNED" : "× DRIFTING"}
-                        </div>
-                    </div>
-                    <div className="space-y-1">
-                        <div className="text-[#00e5ff] font-bold">EQB_STATUS</div>
-                        <div className="text-white">
-                            {Math.abs(visual.eq2.a * x + visual.eq2.b * y - visual.eq2.c) < 0.2 ? "✓ ALIGNED" : "× DRIFTING"}
-                        </div>
-                    </div>
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="w-3 h-1 bg-[#00FFFF]" />
+                    <span className="text-[10px] text-white">Eq 2 (Cyan)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                    <span className="text-[10px] text-white">Your Input</span>
                 </div>
             </div>
 
-            <div className="absolute bottom-6 right-6 text-right">
-                <div className="text-[14px] font-black text-white italic tracking-tighter">LINEAR_SYSTEMS_VISUALIZER</div>
-                <div className="text-[8px] font-mono text-white/40 uppercase tracking-[0.5em]">Nexus_Protocol // Geometric_Solver</div>
+            {/* Coordinates Display */}
+            <div className="absolute bottom-4 right-4 text-right pointer-events-none">
+                <div className="text-2xl font-mono font-bold text-white">
+                    ({inputX.toFixed(1)}, {inputY.toFixed(1)})
+                </div>
+                <div className="text-[10px] text-white/60 uppercase tracking-widest">CURRENT COORDINATES</div>
             </div>
         </div>
     );
 }
 
-// Simple internal client check for R3F
+// Internal wrapper to avoid React naming conflict
 function ClientOnlySuspense(props: { fallback: React.ReactNode, children: React.ReactNode }) {
     const [isClient, setIsClient] = useState(false);
     useEffect(() => setIsClient(true), []);
     if (!isClient) return <>{props.fallback}</>;
-    return <Suspense fallback={props.fallback}>{props.children}</Suspense>;
+    return <React.Suspense fallback={props.fallback}>{props.children}</React.Suspense>;
 }
