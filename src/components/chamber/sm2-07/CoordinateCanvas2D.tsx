@@ -116,9 +116,9 @@ export default function CoordinateCanvas2D({
           <polygon points={`${width - 10},${originY - 5} ${width},${originY} ${width - 10},${originY + 5}`} fill="#00e5ff" />
           <polygon points={`${originX - 5},10 ${originX},0 ${originX + 5},10`} fill="#00e5ff" />
 
-          {/* 轴标签 */}
-          <text x={width - 25} y={originY - 10} fill="#00e5ff" fontSize="16" fontWeight="bold">x</text>
-          <text x={originX + 10} y="20" fill="#00e5ff" fontSize="16" fontWeight="bold">y</text>
+          {/* 轴标签 - 移到更安全的位置避免切边 */}
+          <text x={width - 15} y={originY + 25} fill="#00e5ff" fontSize="14" fontWeight="black" textAnchor="end">X-AXIS</text>
+          <text x={originX + 15} y="15" fill="#00e5ff" fontSize="14" fontWeight="black">Y-AXIS</text>
 
           {/* 刻度 */}
           {Array.from({ length: 21 }).map((_, i) => {
@@ -126,15 +126,17 @@ export default function CoordinateCanvas2D({
             if (val === 0) return null;
             const [svgX, svgY] = toSVG(val, 0);
             const [svgX2, svgY2] = toSVG(0, val);
+            // 只有偶数显示数字，减少视觉混乱
+            const showLabel = val % 2 === 0;
             return (
               <g key={i}>
                 {/* X轴刻度 */}
-                <line x1={svgX} y1={originY - 5} x2={svgX} y2={originY + 5} stroke="#00e5ff" strokeWidth="1" />
-                <text x={svgX} y={originY + 20} fill="#00e5ff" fontSize="10" textAnchor="middle" opacity="0.6">{val}</text>
+                <line x1={svgX} y1={originY - 4} x2={svgX} y2={originY + 4} stroke="#00e5ff" strokeWidth="1" opacity={showLabel ? 0.8 : 0.3} />
+                {showLabel && <text x={svgX} y={originY + 22} fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.4" fontStyle="italic">{val}</text>}
 
                 {/* Y轴刻度 */}
-                <line x1={originX - 5} y1={svgY2} x2={originX + 5} y2={svgY2} stroke="#00e5ff" strokeWidth="1" />
-                <text x={originX - 15} y={svgY2 + 4} fill="#00e5ff" fontSize="10" textAnchor="end" opacity="0.6">{val}</text>
+                <line x1={originX - 4} y1={svgY2} x2={originX + 4} y2={svgY2} stroke="#00e5ff" strokeWidth="1" opacity={showLabel ? 0.8 : 0.3} />
+                {showLabel && <text x={originX - 12} y={svgY2 + 3} fill="#00e5ff" fontSize="9" textAnchor="end" opacity="0.4" fontStyle="italic">{val}</text>}
               </g>
             );
           })}
@@ -150,24 +152,35 @@ export default function CoordinateCanvas2D({
             {/* 直角标记 */}
             <rect x={svgX2 - 10} y={svgY1 - 10} width="10" height="10" fill="none" stroke="#ffd166" strokeWidth="1.5" />
 
-            {/* Δx 和 Δy 标签 */}
-            <text x={(svgX1 + svgX2) / 2} y={svgY1 + 25} fill="#ffd166" fontSize="14" fontWeight="bold" textAnchor="middle">
+            {/* Δx 和 Δy 标签 - 智能避让 */}
+            <text
+              x={(svgX1 + svgX2) / 2}
+              y={svgY1 + (y1 >= 0 ? 25 : -15)}
+              fill="#ffd166" fontSize="13" fontWeight="black" textAnchor="middle"
+            >
               Δx = {Math.abs(deltaX)}
             </text>
-            <text x={svgX2 + 35} y={(svgY1 + svgY2) / 2} fill="#ffd166" fontSize="14" fontWeight="bold" textAnchor="middle">
+            <text
+              x={svgX2 + (x2 >= 0 ? 15 : -15)}
+              y={(svgY1 + svgY2) / 2}
+              fill="#ffd166" fontSize="13" fontWeight="black"
+              textAnchor={x2 >= 0 ? "start" : "end"}
+            >
               Δy = {Math.abs(deltaY)}
             </text>
 
             {/* 距离线 */}
             <line x1={svgX1} y1={svgY1} x2={svgX2} y2={svgY2} stroke="#39ff14" strokeWidth="3" filter="url(#glow)" />
 
-            {/* 距离标签 */}
+            {/* 距离标签 - 偏移出主线 */}
             <text
-              x={(svgX1 + svgX2) / 2 - 30}
-              y={(svgY1 + svgY2) / 2 - 10}
+              x={(svgX1 + svgX2) / 2 - 20}
+              y={(svgY1 + svgY2) / 2 - 20}
               fill="#39ff14"
               fontSize="18"
-              fontWeight="bold"
+              fontWeight="black"
+              filter="url(#glow)"
+              textAnchor="end"
             >
               d = ?
             </text>
@@ -187,8 +200,12 @@ export default function CoordinateCanvas2D({
             <circle cx={svgMidX} cy={svgMidY} r="8" fill="#ff2d7d" filter="url(#glow)" />
             <circle cx={svgMidX} cy={svgMidY} r="12" fill="none" stroke="#ff2d7d" strokeWidth="2" opacity="0.5" />
 
-            {/* 中点标签 */}
-            <text x={svgMidX} y={svgMidY - 25} fill="#ff2d7d" fontSize="16" fontWeight="bold" textAnchor="middle">
+            {/* 中点标签 - 避开轴线 */}
+            <text
+              x={svgMidX}
+              y={svgMidY + (midY >= 0 ? -25 : 35)}
+              fill="#ff2d7d" fontSize="16" fontWeight="black" textAnchor="middle" filter="url(#glow)"
+            >
               M(x, y)
             </text>
 
@@ -219,11 +236,20 @@ export default function CoordinateCanvas2D({
               strokeWidth="2"
             />
 
-            {/* rise 和 run 标签 */}
-            <text x={(svgX1 + svgX2) / 2} y={svgY1 + 25} fill="#ffd166" fontSize="14" fontWeight="bold" textAnchor="middle">
+            {/* rise 和 run 标签 - 避让轴线 */}
+            <text
+              x={(svgX1 + svgX2) / 2}
+              y={svgY1 + (y1 >= 0 ? 25 : -15)}
+              fill="#ffd166" fontSize="13" fontWeight="black" textAnchor="middle"
+            >
               run = {deltaX}
             </text>
-            <text x={svgX2 + 35} y={(svgY1 + svgY2) / 2} fill="#ffd166" fontSize="14" fontWeight="bold" textAnchor="middle">
+            <text
+              x={svgX2 + (x2 >= 0 ? 15 : -15)}
+              y={(svgY1 + svgY2) / 2}
+              fill="#ffd166" fontSize="13" fontWeight="black"
+              textAnchor={x2 >= 0 ? "start" : "end"}
+            >
               rise = {deltaY}
             </text>
 
@@ -252,19 +278,29 @@ export default function CoordinateCanvas2D({
           </g>
         )}
 
-        {/* 点 A 和 B */}
+        {/* 点 A 和 B - 自适应偏移 */}
         <g>
           {/* 点 A */}
           <circle cx={svgX1} cy={svgY1} r="6" fill="#39ff14" filter="url(#glow)" />
           <circle cx={svgX1} cy={svgY1} r="10" fill="none" stroke="#39ff14" strokeWidth="2" opacity="0.5" />
-          <text x={svgX1} y={svgY1 - 20} fill="#39ff14" fontSize="16" fontWeight="bold" textAnchor="middle">
+          <text
+            x={svgX1 + (x1 >= 0 ? 15 : -15)}
+            y={svgY1 + (y1 >= 0 ? -20 : 30)}
+            fill="#39ff14" fontSize="15" fontWeight="black"
+            textAnchor={x1 >= 0 ? "start" : "end"}
+          >
             A({x1}, {y1})
           </text>
 
           {/* 点 B */}
           <circle cx={svgX2} cy={svgY2} r="6" fill="#a855f7" filter="url(#glow)" />
           <circle cx={svgX2} cy={svgY2} r="10" fill="none" stroke="#a855f7" strokeWidth="2" opacity="0.5" />
-          <text x={svgX2} y={svgY2 - 20} fill="#a855f7" fontSize="16" fontWeight="bold" textAnchor="middle">
+          <text
+            x={svgX2 + (x2 >= 0 ? 15 : -15)}
+            y={svgY2 + (y1 >= 0 ? -20 : 30)}
+            fill="#a855f7" fontSize="15" fontWeight="black"
+            textAnchor={x2 >= 0 ? "start" : "end"}
+          >
             B({x2}, {y2})
           </text>
         </g>
