@@ -274,7 +274,7 @@ function buildStagePool(
 
 export default function GM401Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage]?.gm4_01 || translations.EN.gm4_01;
+  const t = translations[currentLanguage || "EN"].gm4_01;
 
   const {
     difficulty,
@@ -339,9 +339,9 @@ export default function GM401Page() {
               {t?.scenario_title || "MISSION"}
             </div>
             <p className="text-sm text-white/80 font-mono max-w-2xl mx-auto leading-relaxed">
-              {stage === "BASICS" && (t?.scenarios?.basics || "")}
-              {stage === "OPERATIONS" && (t?.scenarios?.operations || "")}
-              {stage === "POLAR" && (t?.scenarios?.polar || "")}
+              {stage === "BASICS" && t?.scenarios?.basics}
+              {stage === "OPERATIONS" && t?.scenarios?.operations}
+              {stage === "POLAR" && t?.scenarios?.polar}
             </p>
           </div>
 
