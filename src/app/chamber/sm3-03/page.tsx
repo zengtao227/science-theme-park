@@ -67,7 +67,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
 
     if (d === "BASIC") {
       quests.push(
-        q("E-B1", "BASIC", "EXPONENTIAL", pBasic, "N_0=100,\\; d=2\\;h,\\; t=4\\;h", "N(t)", [{ id: "N", l: "N(4)", e: 400 }], "N(4)=400", { initialCount: 100, doublingTime: 2, time: 4 }),
+        q("E-B1", "BASIC", "EXPONENTIAL", pBasic, "N_0=100,\\; d=2\\;h,\\; t=4\\;h", "N(t)", [{ id: "N", l: "N(4)", e: 400 }], "N(4)=400", { initialCount: 100, doublingTime: 2, time: 4, scenarioKey: "exp_bac" }),
         q("E-B2", "BASIC", "EXPONENTIAL", pBasic, "N_0=10,\\; d=3\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N(6)", e: 40 }], "N(6)=40", { initialCount: 10, doublingTime: 3, time: 6 }),
         q("E-B3", "BASIC", "EXPONENTIAL", pBasic, "N_0=50,\\; d=1\\;h,\\; t=3\\;h", "N(t)", [{ id: "N", l: "N(3)", e: 400 }], "N(3)=400", { initialCount: 50, doublingTime: 1, time: 3 }),
         q("E-B4", "BASIC", "EXPONENTIAL", pBasic, "N_0=25,\\; d=2\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N(6)", e: 200 }], "N(6)=200", { initialCount: 25, doublingTime: 2, time: 6 }),
@@ -79,7 +79,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
     } else if (d === "CORE") {
       quests.push(
         q("E-C1", "CORE", "EXPONENTIAL", pBasic, "N_0=100,\\; d=2\\;h,\\; t=1\\;h", "N(t)", [{ id: "N", l: "N(1)", e: 141.4, p: "1 dec" }], "N(1) \\approx 141.4", { initialCount: 100, doublingTime: 2, time: 1 }),
-        q("E-C2", "CORE", "EXPONENTIAL", pBasic, "N_0=50,\\; d=4\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N(6)", e: 141.4 }], "50 \\cdot 2^{1.5} \\approx 141.4", { initialCount: 50, doublingTime: 4, time: 6 }),
+        q("E-C2", "CORE", "EXPONENTIAL", pBasic, "N_0=50,\\; d=4\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N(6)", e: 141.4 }], "50 \\cdot 2^{1.5} \\approx 141.4", { initialCount: 50, doublingTime: 4, time: 6, scenarioKey: "exp_social" }),
         q("E-C3", "CORE", "EXPONENTIAL", pBasic, "N_0=100,\\; d=3\\;h,\\; t=4.5\\;h", "N(t)", [{ id: "N", l: "N(4.5)", e: 282.8 }], "N \\approx 282.8", { initialCount: 100, doublingTime: 3, time: 4.5 }),
         q("E-C4", "CORE", "EXPONENTIAL", pBasic, "N_0=20,\\; d=2\\;h,\\; t=7\\;h", "N(t)", [{ id: "N", l: "N(7)", e: 226.3 }], "20 \\cdot 2^{3.5} \\approx 226.3", { initialCount: 20, doublingTime: 2, time: 7 }),
         q("E-C5", "CORE", "EXPONENTIAL", pBasic, "N_0=1000,\\; d=5\\;h,\\; t=2.5\\;h", "N(t)", [{ id: "N", l: "N(2.5)", e: 1414.2 }], "N \\approx 1414.2", { initialCount: 1000, doublingTime: 5, time: 2.5 }),
@@ -91,7 +91,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
       quests.push(
         q("E-A1", "ADVANCED", "EXPONENTIAL", pAdv, "N_0=100,\\; t=6\\;h,\\; d=2\\;h", "n", [{ id: "n", l: "n", e: 3 }], "n=t/d=3", { initialCount: 100, doublingTime: 2, time: 6 }),
         q("E-A2", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=400,\\; N_0=50", "n", [{ id: "n", l: "n", e: 3 }], "2^n=8 \\implies n=3", { initialCount: 50, doublingTime: 2, time: 6, finalCount: 400 }), // time inferred
-        q("E-A3", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=1000,\\; N_0=1000", "n", [{ id: "n", l: "n", e: 0 }], "n=0", { initialCount: 1000, doublingTime: 5, time: 0 }),
+        q("E-A3", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=1000,\\; N_0=1000", "n", [{ id: "n", l: "n", e: 0 }], "n=0", { initialCount: 1000, doublingTime: 5, time: 0, scenarioKey: "exp_virus" }),
         q("E-A4", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=1280,\\; N_0=10", "n", [{ id: "n", l: "n", e: 7 }], "2^7=128 \\implies n=7", { initialCount: 10, doublingTime: 2, time: 14 }),
         q("E-A5", "ADVANCED", "EXPONENTIAL", pAdv, "N_0=100,\\; N(t)=25", "n", [{ id: "n", l: "n", e: -2 }], "2^n=0.25 \\implies n=-2", { initialCount: 100, doublingTime: 2, time: -4 }),
         q("E-A6", "ADVANCED", "EXPONENTIAL", pAdv, "N_0=500,\\; N(t)=125", "n", [{ id: "n", l: "n", e: -2 }], "n=-2", { initialCount: 500, doublingTime: 3, time: -6 }),
@@ -104,7 +104,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
         q("E-E2", "ELITE", "EXPONENTIAL", pElite, "d=2\\;h", "k", [{ id: "k", l: "k", e: 0.35 }], "k=\\ln(2)/2 \\approx 0.35", { initialCount: 100, doublingTime: 2 }),
         q("E-E3", "ELITE", "EXPONENTIAL", pElite, "d=10\\;h", "k", [{ id: "k", l: "k", e: 0.07 }], "k \\approx 0.069", { initialCount: 100, doublingTime: 10 }),
         q("E-E4", "ELITE", "EXPONENTIAL", pElite, "N(t)=100e^{0.693t},\\; t=1", "N(1)", [{ id: "N", l: "N", e: 200 }], "e^{0.693} \\approx 2", { initialCount: 100, doublingTime: 1, time: 1 }),
-        q("E-E5", "ELITE", "EXPONENTIAL", pElite, "N(t)=N_0 e^{kt},\\; k=0.1", "d", [{ id: "d", l: "d", e: 6.9 }], "d=\\ln(2)/0.1 \\approx 6.9", { initialCount: 100, doublingTime: 6.9 }),
+        q("E-E5", "ELITE", "EXPONENTIAL", pElite, "N(t)=N_0 e^{kt},\\; k=0.1", "d", [{ id: "d", l: "d", e: 6.9 }], "d=\\ln(2)/0.1 \\approx 6.9", { initialCount: 100, doublingTime: 6.9, scenarioKey: "exp_moore" }),
         q("E-E6", "ELITE", "EXPONENTIAL", pElite, "N_0=50,\\; N(2)=200", "k", [{ id: "k", l: "k", e: 0.69 }], "4=e^{2k} \\implies k=\\ln(4)/2 \\approx 0.69", { initialCount: 50, doublingTime: 1 }),
         q("E-E7", "ELITE", "EXPONENTIAL", pElite, "2^{t/d} = e^{kt}", "kd", [{ id: "kd", l: "k \\cdot d", e: 0.69 }], "\\ln(2) \\approx 0.69", { initialCount: 1, doublingTime: 1 }),
         q("E-E8", "ELITE", "EXPONENTIAL", pElite, "\\text{Rate } 10\\% \\implies e^{0.1t}", "d", [{ id: "d", l: "d", e: 6.9 }], "d \\approx 6.9", { initialCount: 100, doublingTime: 6.9 })
@@ -127,7 +127,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
         q("L-B2", "BASIC", "LOGARITHM", pBasic, "N_0=10,\\; N=320,\\; d=1\\;h", "t", [{ id: "t", l: "t", e: 5, u: "h" }], "320/10=32=2^5 \\implies t=5", { initialCount: 10, finalCount: 320, doublingTime: 1, chartMode: "logarithm" }),
         q("L-B3", "BASIC", "LOGARITHM", pBasic, "N_0=50,\\; N=200,\\; d=0.5\\;h", "t", [{ id: "t", l: "t", e: 1, u: "h" }], "200/50=4=2^2 \\implies t=1", { initialCount: 50, finalCount: 200, doublingTime: 0.5, chartMode: "logarithm" }),
         q("L-B4", "BASIC", "LOGARITHM", pBasic, "N_0=1,\\; N=1024,\\; d=1\\;min", "t", [{ id: "t", l: "t", e: 10, u: "min" }], "2^{10}=1024", { initialCount: 1, finalCount: 1024, doublingTime: 1, chartMode: "logarithm" }),
-        q("L-B5", "BASIC", "LOGARITHM", pBasic, "N_0=1000,\\; N=8000,\\; d=10\\;h", "t", [{ id: "t", l: "t", e: 30, u: "h" }], "8=2^3 \\implies t=30", { initialCount: 1000, finalCount: 8000, doublingTime: 10, chartMode: "logarithm" }),
+        q("L-B5", "BASIC", "LOGARITHM", pBasic, "N_0=1000,\\; N=8000,\\; d=10\\;h", "t", [{ id: "t", l: "t", e: 30, u: "h" }], "8=2^3 \\implies t=30", { initialCount: 1000, finalCount: 8000, doublingTime: 10, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-B6", "BASIC", "LOGARITHM", pBasic, "N_0=64,\\; N=16,\\; d=2\\;h", "t", [{ id: "t", l: "t", e: -4, u: "h" }], "16/64=1/4=2^{-2} \\implies n=-2, t=-4", { initialCount: 64, finalCount: 16, doublingTime: 2, chartMode: "logarithm" }),
         q("L-B7", "BASIC", "LOGARITHM", pBasic, "N_0=25,\\; N=25,\\; d=5\\;h", "t", [{ id: "t", l: "t", e: 0, u: "h" }], "t=0", { initialCount: 25, finalCount: 25, doublingTime: 5, chartMode: "logarithm" }),
         q("L-B8", "BASIC", "LOGARITHM", pBasic, "N_0=12.5,\\; N=100,\\; d=4\\;h", "t", [{ id: "t", l: "t", e: 12, u: "h" }], "8=2^3 \\implies t=12", { initialCount: 12.5, finalCount: 100, doublingTime: 4, chartMode: "logarithm" })
@@ -138,7 +138,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
         q("L-C2", "CORE", "LOGARITHM", pCore, "\\log_2(128)", "v", [{ id: "v", l: "v", e: 7 }], "2^7=128", { initialCount: 1, finalCount: 128, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C3", "CORE", "LOGARITHM", pCore, "\\log_2(0.5)", "v", [{ id: "v", l: "v", e: -1 }], "2^{-1}=0.5", { initialCount: 1, finalCount: 0.5, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C4", "CORE", "LOGARITHM", pCore, "\\log_2(1/16)", "v", [{ id: "v", l: "v", e: -4 }], "2^{-4}=1/16", { initialCount: 16, finalCount: 1, doublingTime: 1, chartMode: "logarithm" }),
-        q("L-C5", "CORE", "LOGARITHM", pCore, "\\log_{10}(1000)", "v", [{ id: "v", l: "v", e: 3 }], "10^3=1000", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm" }), // Visual is binary but q works
+        q("L-C5", "CORE", "LOGARITHM", pCore, "\\log_{10}(1000)", "v", [{ id: "v", l: "v", e: 3 }], "10^3=1000", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_sound" }), // Visual is binary but q works
         q("L-C6", "CORE", "LOGARITHM", pCore, "\\log_{10}(0.01)", "v", [{ id: "v", l: "v", e: -2 }], "10^{-2}=0.01", { initialCount: 1, finalCount: 4, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C7", "CORE", "LOGARITHM", pCore, "\\log_2(\\sqrt{2})", "v", [{ id: "v", l: "v", e: 0.5 }], "2^{0.5}=\\sqrt{2}", { initialCount: 1, finalCount: 1.41, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C8", "CORE", "LOGARITHM", pCore, "\\log_3(27)", "v", [{ id: "v", l: "v", e: 3 }], "3^3=27", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm" })
@@ -158,12 +158,12 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
       quests.push(
         q("L-E1", "ELITE", "LOGARITHM", pElite, "\\log_2(x) + \\log_2(4) = 5", "x", [{ id: "x", l: "x", e: 8 }], "x=8", { initialCount: 1, doublingTime: 1 }),
         q("L-E2", "ELITE", "LOGARITHM", pElite, "\\log_2(x) = 3", "x", [{ id: "x", l: "x", e: 8 }], "x=8", { initialCount: 1, doublingTime: 1 }),
-        q("L-E3", "ELITE", "LOGARITHM", pElite, "\\log_x(16)=2", "x", [{ id: "x", l: "x", e: 4 }], "x=4", { initialCount: 1, doublingTime: 1 }),
+        q("L-E3", "ELITE", "LOGARITHM", pElite, "\\log_x(16)=2", "x", [{ id: "x", l: "x", e: 4 }], "x=4", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
         q("L-E4", "ELITE", "LOGARITHM", pElite, "\\ln(x)=0", "x", [{ id: "x", l: "x", e: 1 }], "x=1", { initialCount: 1, doublingTime: 1 }),
         q("L-E5", "ELITE", "LOGARITHM", pElite, "2\\log_2(x)=6", "x", [{ id: "x", l: "x", e: 8 }], "x=8", { initialCount: 1, doublingTime: 1 }),
         q("L-E6", "ELITE", "LOGARITHM", pElite, "\\log_2(x+2)=3", "x", [{ id: "x", l: "x", e: 6 }], "x=6", { initialCount: 1, doublingTime: 1 }),
         q("L-E7", "ELITE", "LOGARITHM", pElite, "e^{2x}=1", "x", [{ id: "x", l: "x", e: 0 }], "x=0", { initialCount: 1, doublingTime: 1 }),
-        q("L-E8", "ELITE", "LOGARITHM", pElite, "\\log_{10}(x)=-1", "x", [{ id: "x", l: "x", e: 0.1 }], "0.1", { initialCount: 1, doublingTime: 1 })
+        q("L-E8", "ELITE", "LOGARITHM", pElite, "\\log_{10}(x)=-1", "x", [{ id: "x", l: "x", e: 0.1 }], "0.1", { initialCount: 1, doublingTime: 1, scenarioKey: "log_ph" })
       );
     }
   }
@@ -183,14 +183,14 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
         q("A-B2", "BASIC", "APPLICATIONS", pHalf, "N_0=100,\\; h=2\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N", e: 12.5 }], "N=12.5", { initialCount: 100, doublingTime: 2, time: 6, chartMode: "halflife" }),
         q("A-B3", "BASIC", "APPLICATIONS", pHalf, "N_0=500,\\; h=10\\;min,\\; t=20\\;min", "N(t)", [{ id: "N", l: "N", e: 125 }], "N=125", { initialCount: 500, doublingTime: 10, time: 20, chartMode: "halflife" }),
         q("A-B4", "BASIC", "APPLICATIONS", pHalf, "N_0=64,\\; h=1\\;d,\\; t=3\\;d", "N(t)", [{ id: "N", l: "N", e: 8 }], "N=8", { initialCount: 64, doublingTime: 1, time: 3, chartMode: "halflife" }),
-        q("A-B5", "BASIC", "APPLICATIONS", pHalf, "N_0=200,\\; h=4\\;h,\\; t=2\\;h", "N(t)", [{ id: "N", l: "N", e: 141.4 }], "N \\approx 141.4", { initialCount: 200, doublingTime: 4, time: 2, chartMode: "halflife" }),
+        q("A-B5", "BASIC", "APPLICATIONS", pHalf, "N_0=200,\\; h=4\\;h,\\; t=2\\;h", "N(t)", [{ id: "N", l: "N", e: 141.4 }], "N \\approx 141.4", { initialCount: 200, doublingTime: 4, time: 2, chartMode: "halflife", scenarioKey: "app_med" }),
         q("A-B6", "BASIC", "APPLICATIONS", pHalf, "N_0=10,\\; h=100\\;y,\\; t=50\\;y", "N(t)", [{ id: "N", l: "N", e: 7.1 }], "N \\approx 7.1", { initialCount: 10, doublingTime: 100, time: 50, chartMode: "halflife" }),
         q("A-B7", "BASIC", "APPLICATIONS", pHalf, "N_0=100,\\; N(t)=25,\\; h=5\\;d", "t", [{ id: "t", l: "t", e: 10, u: "d" }], "t=10", { initialCount: 100, doublingTime: 5, finalCount: 25, chartMode: "halflife" }), // Inverse
         q("A-B8", "BASIC", "APPLICATIONS", pHalf, "N_0=80,\\; N(t)=10,\\; t=9\\;h", "h", [{ id: "h", l: "h", e: 3, u: "h" }], "h=3", { initialCount: 80, doublingTime: 3, time: 9, chartMode: "halflife" }) // Inverse h
       );
     } else if (d === "CORE") { // Compound Interest
       quests.push(
-        q("A-C1", "CORE", "APPLICATIONS", pComp, "P=1000,\\; r=5\\%,\\; t=10", "A", [{ id: "A", l: "A", e: 1629 }], "1.05^{10} \\approx 1.629", { initialCount: 1000, doublingTime: 14, time: 10, chartMode: "compound" }), // doubling time approx 70/5 = 14
+        q("A-C1", "CORE", "APPLICATIONS", pComp, "P=1000,\\; r=5\\%,\\; t=10", "A", [{ id: "A", l: "A", e: 1629 }], "1.05^{10} \\approx 1.629", { initialCount: 1000, doublingTime: 14, time: 10, chartMode: "compound", scenarioKey: "app_bank" }), // doubling time approx 70/5 = 14
         q("A-C2", "CORE", "APPLICATIONS", pComp, "P=100,\\; r=10\\%,\\; t=2", "A", [{ id: "A", l: "A", e: 121 }], "121", { initialCount: 100, doublingTime: 7.2, time: 2, chartMode: "compound" }),
         q("A-C3", "CORE", "APPLICATIONS", pComp, "P=500,\\; r=100\\%,\\; t=3", "A", [{ id: "A", l: "A", e: 4000 }], "2^3 \\cdot 500", { initialCount: 500, doublingTime: 1, time: 3, chartMode: "compound" }),
         q("A-C4", "CORE", "APPLICATIONS", pComp, "P=200,\\; r=20\\%,\\; t=5", "A", [{ id: "A", l: "A", e: 497.7 }], "497.7", { initialCount: 200, doublingTime: 3.8, time: 5, chartMode: "compound" }),
@@ -202,7 +202,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
     } else if (d === "ADVANCED") { // Growth Rates
       quests.push(
         q("A-A1", "ADVANCED", "APPLICATIONS", pRate, "P_0=100,\\; P=200,\\; t=10", "r\\%", [{ id: "r", l: "r", e: 7.2 }], "7.2\\%", { initialCount: 100, doublingTime: 10, time: 10, chartMode: "exponential" }),
-        q("A-A2", "ADVANCED", "APPLICATIONS", pRate, "P_0=1000,\\; P=2000,\\; t=7", "r\\%", [{ id: "r", l: "r", e: 10.4 }], "r \\approx 10\\%", { initialCount: 1000, doublingTime: 7, time: 7, chartMode: "exponential" }),
+        q("A-A2", "ADVANCED", "APPLICATIONS", pRate, "P_0=1000,\\; P=2000,\\; t=7", "r\\%", [{ id: "r", l: "r", e: 10.4 }], "r \\approx 10\\%", { initialCount: 1000, doublingTime: 7, time: 7, chartMode: "exponential", scenarioKey: "app_pop" }),
         q("A-A3", "ADVANCED", "APPLICATIONS", pRate, "N_0=50,\\; N=400,\\; t=6", "d", [{ id: "d", l: "d", e: 2 }], "d=2", { initialCount: 50, doublingTime: 2, time: 6 }),
         q("A-A4", "ADVANCED", "APPLICATIONS", pRate, "N_0=10,\\; N=1000,\\; t=3", "d", [{ id: "d", l: "d", e: 0.45 }], "d \\approx 0.45", { initialCount: 10, doublingTime: 0.45, time: 3 }),
         q("A-A5", "ADVANCED", "APPLICATIONS", pRate, "P_0=100,\\; r=5\\%", "t_{double}", [{ id: "t", l: "t", e: 14.2 }], "t \\approx 14", { initialCount: 100, doublingTime: 14.2 }),
@@ -216,7 +216,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
         q("A-E2", "ELITE", "APPLICATIONS", pPH, "[H^+]=10^{-7}", "pH", [{ id: "pH", l: "pH", e: 7 }], "pH=7", { initialCount: 1, doublingTime: 1, finalCount: 128, chartMode: "logarithm" }),
         q("A-E3", "ELITE", "APPLICATIONS", pPH, "pH=4", "[H^+]", [{ id: "H", l: "10^x", e: -4 }], "10^{-4}", { initialCount: 10000, doublingTime: 1, chartMode: "logarithm" }),
         q("A-E4", "ELITE", "APPLICATIONS", pPH, "[H^+]=0.01", "pH", [{ id: "pH", l: "pH", e: 2 }], "pH=2", { initialCount: 100, doublingTime: 1, chartMode: "logarithm" }),
-        q("A-E5", "ELITE", "APPLICATIONS", pPH, "\\text{Half-life } 5730y,\\; 12.5\\% \\text{ left}", "t", [{ id: "t", l: "t", e: 17190 }], "5730 \\cdot 3", { initialCount: 100, doublingTime: 5730, time: 17190, chartMode: "halflife" }),
+        q("A-E5", "ELITE", "APPLICATIONS", pPH, "\\text{Half-life } 5730y,\\; 12.5\\% \\text{ left}", "t", [{ id: "t", l: "t", e: 17190 }], "5730 \\cdot 3", { initialCount: 100, doublingTime: 5730, time: 17190, chartMode: "halflife", scenarioKey: "app_carbon" }),
         q("A-E6", "ELITE", "APPLICATIONS", pPH, "\\text{Half-life } 5730y,\\; 50\\% \\text{ left}", "t", [{ id: "t", l: "t", e: 5730 }], "5730", { initialCount: 100, doublingTime: 5730, time: 5730, chartMode: "halflife" }),
         q("A-E7", "ELITE", "APPLICATIONS", pPH, "N=N_0 e^{-0.1t},\\; t=10", "N/N_0", [{ id: "r", l: "ratio", e: 0.37 }], "e^{-1} \\approx 0.37", { initialCount: 1, doublingTime: 6.9, time: 10, chartMode: "halflife" }),
         q("A-E8", "ELITE", "APPLICATIONS", pPH, "\\log_{10}(I/I_0)=2", "I/I_0", [{ id: "r", l: "ratio", e: 100 }], "100", { initialCount: 1, doublingTime: 1, finalCount: 100, chartMode: "logarithm" })
@@ -357,6 +357,11 @@ export default function S303Page() {
             <div className="text-xs font-mono text-cyan-400 mb-2 uppercase tracking-widest opacity-60">
               {t.objective_title}
             </div>
+            {currentQuest?.scenarioKey && t.scenarios && (
+              <div className="text-sm font-medium text-emerald-300 mb-6 max-w-2xl mx-auto border-l-2 border-emerald-500/50 pl-4 py-2 text-left bg-emerald-900/10 rounded-r shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]">
+                {t.scenarios[currentQuest.scenarioKey]}
+              </div>
+            )}
             <h2 className="text-3xl font-black text-white tracking-tight">
               <InlineMath math={currentQuest?.promptLatex || ""} />
             </h2>
