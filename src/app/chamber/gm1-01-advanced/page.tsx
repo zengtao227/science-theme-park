@@ -329,6 +329,51 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(-10*2 + 20) }],
       correctLatex: "",
       hint: t.hints.take_first_derivative
+    },
+    {
+      id: "M_B3",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_1,
+      functionLatex: "s(t) = t^3 + 2t^2 + t",
+      question: t.questions.find_velocity,
+      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      expressionLatex: "s(t) = t^3 + 2t^2 + t, \\; t=2",
+      targetLatex: "v(2)",
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(3*4 + 4*2 + 1) }],
+      correctLatex: "",
+      hint: t.hints.take_first_derivative
+    },
+    {
+      id: "M_B4",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_2,
+      functionLatex: "h(t) = -4t^2 + 16t + 5",
+      question: t.questions.find_velocity,
+      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1",
+      expressionLatex: "h(t) = -4t^2 + 16t + 5, \\; t=1",
+      targetLatex: "v(1)",
+      slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-8*1 + 16) }],
+      correctLatex: "",
+      hint: t.hints.take_first_derivative
+    },
+    {
+      id: "M_B5",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_1,
+      functionLatex: "s(t) = 3t^2 + 4t",
+      question: t.questions.find_velocity,
+      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      expressionLatex: "s(t) = 3t^2 + 4t, \\; t=2",
+      targetLatex: "v(2)",
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(6*2 + 4) }],
+      correctLatex: "",
+      hint: t.hints.take_first_derivative
     }
   ];
 
@@ -360,6 +405,36 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       expressionLatex: "h(t) = -5t^2 + 20t + 2, \\; t=1",
       targetLatex: "v(1)",
       slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-10*1 + 20) }],
+      correctLatex: "",
+      hint: t.hints.take_first_derivative
+    },
+    {
+      id: "M_C3",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_1,
+      functionLatex: "s(t) = t^3 - 4t^2 + 6t",
+      question: t.questions.find_velocity,
+      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1.5",
+      expressionLatex: "s(t) = t^3 - 4t^2 + 6t, \\; t=1.5",
+      targetLatex: "v(1.5)",
+      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(3*1.5*1.5 - 8*1.5 + 6) }],
+      correctLatex: "",
+      hint: t.hints.take_first_derivative
+    },
+    {
+      id: "M_C4",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_2,
+      functionLatex: "h(t) = -3t^2 + 12t + 8",
+      question: t.questions.find_velocity,
+      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1.5",
+      expressionLatex: "h(t) = -3t^2 + 12t + 8, \\; t=1.5",
+      targetLatex: "v(1.5)",
+      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(-6*1.5 + 12) }],
       correctLatex: "",
       hint: t.hints.take_first_derivative
     }
@@ -395,6 +470,36 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: -10 }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
+    },
+    {
+      id: "M_A3",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_1,
+      functionLatex: "s(t) = t^3 + 3t^2 - 2t",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2",
+      expressionLatex: "s(t) = t^3 + 3t^2 - 2t, \\; t=2",
+      targetLatex: "a(2)",
+      slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: round2(6*2 + 6) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
+    },
+    {
+      id: "M_A4",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_2,
+      functionLatex: "h(t) = -4t^2 + 16t + 3",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=1.5",
+      expressionLatex: "h(t) = -4t^2 + 16t + 3, \\; t=1.5",
+      targetLatex: "a(1.5)",
+      slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: "0.00", expected: -8 }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
     }
   ];
 
@@ -428,13 +533,43 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       slots: [{ id: "acceleration", labelLatex: "a(0.5)", placeholder: "0.00", expected: -10 }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
+    },
+    {
+      id: "M_E3",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_1,
+      functionLatex: "s(t) = 3t^3 - 6t^2 + 4t",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2.5",
+      expressionLatex: "s(t) = 3t^3 - 6t^2 + 4t, \\; t=2.5",
+      targetLatex: "a(2.5)",
+      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: round2(18*2.5 - 12) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
+    },
+    {
+      id: "M_E4",
+      stage: "MODELING",
+      difficulty,
+      challenge: "MODELING" as Challenge,
+      scenario: t.scenarios.modeling_2,
+      functionLatex: "h(t) = -6t^2 + 18t + 10",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2.5",
+      expressionLatex: "h(t) = -6t^2 + 18t + 10, \\; t=2.5",
+      targetLatex: "a(2.5)",
+      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: -12 }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
     }
   ];
 
   if (difficulty === "BASIC") return basic;
-  if (difficulty === "CORE") return [...basic, ...core];
-  if (difficulty === "ADVANCED") return [...basic, ...core, ...advanced];
-  return [...basic, ...core, ...advanced, ...elite];
+  if (difficulty === "CORE") return core;
+  if (difficulty === "ADVANCED") return advanced;
+  return elite;
 }
 
 // Optimization problems
@@ -572,9 +707,9 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
   ];
 
   if (difficulty === "BASIC") return basic;
-  if (difficulty === "CORE") return [...basic, ...core];
-  if (difficulty === "ADVANCED") return [...basic, ...core, ...advanced];
-  return [...basic, ...core, ...advanced, ...elite];
+  if (difficulty === "CORE") return core;
+  if (difficulty === "ADVANCED") return advanced;
+  return elite;
 }
 
 // Analysis problems - increasing/decreasing, concavity
@@ -724,9 +859,9 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
   ];
 
   if (difficulty === "BASIC") return basic;
-  if (difficulty === "CORE") return [...basic, ...core];
-  if (difficulty === "ADVANCED") return [...basic, ...core, ...advanced];
-  return [...basic, ...core, ...advanced, ...elite];
+  if (difficulty === "CORE") return core;
+  if (difficulty === "ADVANCED") return advanced;
+  return elite;
 }
 
 function buildChallengePool(t: G101AdvT, difficulty: Difficulty, challenge: Challenge): G101AdvQuest[] {
