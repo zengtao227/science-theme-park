@@ -604,6 +604,36 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
       correctLatex: "",
       hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_B3",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_1,
+      functionLatex: "A(x) = x(8 - x)",
+      question: t.questions.find_critical_point,
+      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      expressionLatex: "A(x) = x(8 - x) = 8x - x^2",
+      targetLatex: "x",
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_B4",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_2,
+      functionLatex: "P(x) = -x^2 + 10x - 15",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      expressionLatex: "P(x) = -x^2 + 10x - 15",
+      targetLatex: "x",
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 5 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
     }
   ];
 
@@ -635,6 +665,36 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       expressionLatex: "P(x) = -2x^2 + 12x - 10",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 8 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_C3",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_1,
+      functionLatex: "A(x) = x(12 - x)",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      expressionLatex: "A(x) = x(12 - x) = 12x - x^2",
+      targetLatex: "A_{max}",
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 36 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_C4",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_2,
+      functionLatex: "P(x) = -x^2 + 8x - 12",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      expressionLatex: "P(x) = -x^2 + 8x - 12",
+      targetLatex: "P_{max}",
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
       correctLatex: "",
       hint: t.hints.set_derivative_zero
     }
@@ -670,6 +730,36 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
       correctLatex: "",
       hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_A3",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_1,
+      functionLatex: "A(x) = x(15 - 2x)",
+      question: t.questions.find_critical_point,
+      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      expressionLatex: "A(x) = x(15 - 2x) = 15x - 2x^2",
+      targetLatex: "x",
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3.75 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_A4",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_2,
+      functionLatex: "P(x) = -2x^2 + 16x - 20",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      expressionLatex: "P(x) = -2x^2 + 16x - 20",
+      targetLatex: "x",
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
     }
   ];
 
@@ -701,6 +791,36 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       expressionLatex: "P(x) = -x^2 + 8x - 12",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_E3",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_1,
+      functionLatex: "A(x) = x(20 - 4x)",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      expressionLatex: "A(x) = x(20 - 4x) = 20x - 4x^2",
+      targetLatex: "A_{max}",
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 25 }],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "O_E4",
+      stage: "OPTIMIZATION",
+      difficulty,
+      challenge: "OPTIMIZATION" as Challenge,
+      scenario: t.scenarios.optimization_2,
+      functionLatex: "P(x) = -2x^2 + 20x - 30",
+      question: t.questions.find_maximum,
+      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      expressionLatex: "P(x) = -2x^2 + 20x - 30",
+      targetLatex: "P_{max}",
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 20 }],
       correctLatex: "",
       hint: t.hints.set_derivative_zero
     }
@@ -747,6 +867,39 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       slots: [{ id: "second_derivative", labelLatex: "f''(1)", placeholder: "0.00", expected: round2(12*1) }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
+    },
+    {
+      id: "A_B3",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_1,
+      functionLatex: "f(x) = x^3 - 6x + 5",
+      question: t.questions.find_critical_points,
+      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      expressionLatex: "f(x) = x^3 - 6x + 5",
+      targetLatex: "x_1, x_2",
+      slots: [
+        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: -1.41 },
+        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 1.41 }
+      ],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "A_B4",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_2,
+      functionLatex: "f(x) = x^3 - 3x + 2",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=2",
+      expressionLatex: "f(x) = x^3 - 3x + 2, \\; x=2",
+      targetLatex: "f''(2)",
+      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(6*2) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
     }
   ];
 
@@ -781,6 +934,39 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       expressionLatex: "f(x) = 2x^3 - 6x + 1, \\; x=2",
       targetLatex: "f''(2)",
       slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
+    },
+    {
+      id: "A_C3",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_1,
+      functionLatex: "f(x) = x^3 - 9x^2 + 15x",
+      question: t.questions.find_critical_points,
+      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      expressionLatex: "f(x) = x^3 - 9x^2 + 15x",
+      targetLatex: "x_1, x_2",
+      slots: [
+        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 1 },
+        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 5 }
+      ],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "A_C4",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_2,
+      functionLatex: "f(x) = x^3 - 6x + 3",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1.5",
+      expressionLatex: "f(x) = x^3 - 6x + 3, \\; x=1.5",
+      targetLatex: "f''(1.5)",
+      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5) }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
     }
@@ -819,6 +1005,39 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5 - 6) }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
+    },
+    {
+      id: "A_A3",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_1,
+      functionLatex: "f(x) = x^3 - 12x^2 + 36x",
+      question: t.questions.find_critical_points,
+      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      expressionLatex: "f(x) = x^3 - 12x^2 + 36x",
+      targetLatex: "x_1, x_2",
+      slots: [
+        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 2 },
+        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 6 }
+      ],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "A_A4",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_2,
+      functionLatex: "f(x) = 2x^3 - 9x^2 + 12x",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=2",
+      expressionLatex: "f(x) = 2x^3 - 9x^2 + 12x, \\; x=2",
+      targetLatex: "f''(2)",
+      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2 - 18) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
     }
   ];
 
@@ -853,6 +1072,39 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       expressionLatex: "f(x) = x^3 - 3x^2 + 2x, \\; x=0.5",
       targetLatex: "f''(0.5)",
       slots: [{ id: "second_derivative", labelLatex: "f''(0.5)", placeholder: "0.00", expected: round2(6*0.5 - 6) }],
+      correctLatex: "",
+      hint: t.hints.take_second_derivative
+    },
+    {
+      id: "A_E3",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_1,
+      functionLatex: "f(x) = x^3 - 6x^2 + 12x",
+      question: t.questions.find_critical_points,
+      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      expressionLatex: "f(x) = x^3 - 6x^2 + 12x",
+      targetLatex: "x_1, x_2",
+      slots: [
+        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 2 },
+        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
+      ],
+      correctLatex: "",
+      hint: t.hints.set_derivative_zero
+    },
+    {
+      id: "A_E4",
+      stage: "ANALYSIS",
+      difficulty,
+      challenge: "ANALYSIS" as Challenge,
+      scenario: t.scenarios.analysis_2,
+      functionLatex: "f(x) = 3x^3 - 9x^2 + 6x",
+      question: t.questions.find_acceleration,
+      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1.5",
+      expressionLatex: "f(x) = 3x^3 - 9x^2 + 6x, \\; x=1.5",
+      targetLatex: "f''(1.5)",
+      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(18*1.5 - 18) }],
       correctLatex: "",
       hint: t.hints.take_second_derivative
     }
