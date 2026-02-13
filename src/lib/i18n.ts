@@ -1155,12 +1155,14 @@ export const translations: Record<string, any> = {
                 application: "APPLICATIONS",
                 power_rule: "POWER RULE",
                 product_rule: "PRODUCT RULE",
+                quotient_rule: "QUOTIENT RULE",
                 chain_rule: "CHAIN RULE",
                 intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
                 differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
                 application_prompt_latex: "\\text{Apply calculus to solve problems.}",
                 power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
                 product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
+                quotient_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using quotient rule.}",
                 chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
             },
             labels: {
@@ -1173,17 +1175,20 @@ export const translations: Record<string, any> = {
             formulas: {
                 power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
+                quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
                 power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = ax². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
                 product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
+                quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v². This tells investors whether the company is becoming more or less efficient over time.",
                 chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
             },
             canvas: {
                 title: "DERIVATIVE ROAD",
                 subtitle_power: "f(x) = ax²",
                 subtitle_product: "f(x) = x·sin(x)",
+                subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",
                 x_label: "x",
                 y_label: "f(x)",
@@ -3462,12 +3467,14 @@ export const translations: Record<string, any> = {
                 application: "应用题",
                 power_rule: "幂规则",
                 product_rule: "乘积规则",
+                quotient_rule: "商规则",
                 chain_rule: "链式法则",
                 intro_prompt_latex: "\\text{计算 }x^n\\text{ 的导数。}",
                 differentiation_prompt_latex: "\\text{应用微分规则计算。}",
                 application_prompt_latex: "\\text{应用微积分解决问题。}",
                 power_rule_prompt_latex: "\\text{在给定点计算 }f'(x)\\text{。}",
                 product_rule_prompt_latex: "\\text{使用乘积规则计算 }f'(x)\\text{。}",
+                quotient_rule_prompt_latex: "\\text{使用商规则计算 }f'(x)\\text{。}",
                 chain_rule_prompt_latex: "\\text{使用链式法则计算 }f'(x)\\text{。}"
             },
             labels: {
@@ -3480,17 +3487,20 @@ export const translations: Record<string, any> = {
             formulas: {
                 power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
+                quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
                 power_rule: "🚗 场景：汽车在山坡上加速 — 你驾驶一辆特斯拉爬上一座弯曲的山坡。道路高度遵循 h(x) = ax²。导数 h'(x) 告诉你道路在每个点的陡峭程度。如果你以错误的角度倾斜汽车，它会刮到地面或翻倒！计算正确的斜率（导数），使汽车底盘与路面完美对齐。这正是自动驾驶汽车实时计算地形角度的方式。",
                 product_rule: "🌊 场景：冲浪板在波浪上 — 一名冲浪者在由 h(x) = x·sin(x) 描述的波浪上冲浪。波浪高度取决于位置 (x) 和正弦波模式。为了保持平衡，冲浪者需要知道波浪在每个点的斜率。使用乘积规则：如果 f(x) = u(x)·v(x)，则 f'(x) = u'·v + u·v'。这告诉你波浪上升或下降的速度，帮助冲浪者调整姿势。",
+                quotient_rule: "📊 场景：股票市场效率比 — 一位金融分析师追踪公司的效率比：利润(x) / 成本(x)。随着市场条件变化（x = 月份时间），利润和成本都在变化。要预测效率是提高还是下降，你需要这个比率的导数。使用商规则：如果 f(x) = u(x)/v(x)，则 f'(x) = [u'·v - u·v'] / v²。这告诉投资者公司效率随时间是提高还是降低。",
                 chain_rule: "⚙️ 场景：自行车齿轮系统 — 你正在骑自行车爬山。踏板旋转产生链条运动：踏板角度 → 链条速度 → 车轮旋转。如果链条绕齿轮的速度快两倍（因子为 2），则 f(x) = sin(2x)。链式法则告诉你：如果外部函数改变，乘以内部函数的速率。这就是自行车码表如何从踏板旋转计算你的实际速度！"
             },
             canvas: {
                 title: "导数道路",
                 subtitle_power: "f(x) = ax²",
                 subtitle_product: "f(x) = x·sin(x)",
+                subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",
                 x_label: "x",
                 y_label: "f(x)",
@@ -6097,12 +6107,14 @@ export const translations: Record<string, any> = {
                 application: "ANWENDUNGEN",
                 power_rule: "POTENZREGEL",
                 product_rule: "PRODUKTREGEL",
+                quotient_rule: "QUOTIENTENREGEL",
                 chain_rule: "KETTENREGEL",
                 intro_prompt_latex: "\\text{Berechne die Ableitung von }x^n.",
                 differentiation_prompt_latex: "\\text{Wende die Ableitungsregeln an.}",
                 application_prompt_latex: "\\text{Wende Differentialrechnung an, um Probleme zu lösen.}",
                 power_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ am gegebenen Punkt.}",
                 product_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Produktregel.}",
+                quotient_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Quotientenregel.}",
                 chain_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Kettenregel.}"
             },
             labels: {
@@ -6115,17 +6127,20 @@ export const translations: Record<string, any> = {
             formulas: {
                 power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
+                quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
                 power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = ax². Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
                 product_rule: "🌊 SZENARIO: Surfbrett auf einer Welle — Ein Surfer reitet auf einer Welle, die durch h(x) = x·sin(x) beschrieben wird. Die Wellenhöhe hängt sowohl von der Position (x) als auch vom Sinuswellenmuster ab. Um das Gleichgewicht zu halten, muss der Surfer die Steigung der Welle an jedem Punkt kennen. Verwende die Produktregel: Wenn f(x) = u(x)·v(x), dann f'(x) = u'·v + u·v'. Dies sagt dir, wie schnell die Welle steigt oder fällt und hilft dem Surfer, seine Haltung anzupassen.",
+                quotient_rule: "📊 SZENARIO: Börsen-Effizienzquote — Ein Finanzanalyst verfolgt die Effizienzquote eines Unternehmens: Gewinn(x) / Kosten(x). Wenn sich die Marktbedingungen ändern (x = Zeit in Monaten), ändern sich sowohl Gewinn als auch Kosten. Um vorherzusagen, ob die Effizienz steigt oder sinkt, benötigst du die Ableitung dieses Verhältnisses. Verwende die Quotientenregel: Wenn f(x) = u(x)/v(x), dann f'(x) = [u'·v - u·v'] / v². Dies zeigt Investoren, ob das Unternehmen im Laufe der Zeit effizienter oder weniger effizient wird.",
                 chain_rule: "⚙️ SZENARIO: Fahrrad-Getriebesystem — Du fährst mit dem Fahrrad einen Berg hinauf. Die Pedaldrehung erzeugt eine Kettenbewegung: Pedalwinkel → Kettengeschwindigkeit → Radumdrehung. Wenn sich die Kette doppelt so schnell um das Zahnrad wickelt (Faktor 2), dann f(x) = sin(2x). Die Kettenregel sagt dir: Wenn sich die äußere Funktion ändert, multipliziere mit der Rate der inneren Funktion. So berechnen Fahrradcomputer deine tatsächliche Geschwindigkeit aus den Pedalumdrehungen!"
             },
             canvas: {
                 title: "ABLEITUNGS-STRASSE",
                 subtitle_power: "f(x) = ax²",
                 subtitle_product: "f(x) = x·sin(x)",
+                subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",
                 x_label: "x",
                 y_label: "f(x)",

@@ -6,7 +6,7 @@ import { OrbitControls, Text, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 interface DerivativeCanvasProps {
-  functionType: "power" | "product" | "chain";
+  functionType: "power" | "product" | "quotient" | "chain";
   xPosition?: number;
   derivative?: number;
   translations: {
@@ -39,20 +39,33 @@ const functions = {
   powerDerivative: (x: number) => x, // f'(x) = x
   product: (x: number) => x * Math.sin(x), // f(x) = x·sin(x)
   productDerivative: (x: number) => Math.sin(x) + x * Math.cos(x), // f'(x) = sin(x) + x·cos(x)
+  quotient: (x: number) => x / Math.sin(x), // f(x) = x/sin(x)
+  quotientDerivative: (x: number) => {
+    const sinX = Math.sin(x);
+    const cosX = Math.cos(x);
+    return (sinX - x * cosX) / (sinX * sinX); // f'(x) = [sin(x) - x·cos(x)] / sin²(x)
+  },
   chain: (x: number) => Math.sin(2 * x), // f(x) = sin(2x)
   chainDerivative: (x: number) => 2 * Math.cos(2 * x), // f'(x) = 2·cos(2x)
 };
 
 // Road curve (the function graph)
-function RoadCurve({ functionType }: { functionType: "power" | "product" | "chain" }) {
+function RoadCurve({ functionType }: { functionType: "power" | "product" | "quotient" | "chain" }) {
   const points: THREE.Vector3[] = [];
   const func = functionType === "power" ? functions.power : 
-                functionType === "product" ? functions.product : 
+                functionType === "product" ? functions.product :
+                functionType === "quotient" ? functions.quotient :
                 functions.chain;
   
   // Generate curve points
   for (let x = -5; x <= 5; x += 0.1) {
+    // Skip points where sin(x) is too close to 0 for quotient
+    if (functionType === "quotient" && Math.abs(Math.sin(x)) < 0.1) continue;
+    
     const y = func(x);
+    // Clamp y values for quotient to avoid extreme values
+    if (functionType === "quotient" && Math.abs(y) > 10) continue;
+    
     points.push(new THREE.Vector3(x, y, 0));
   }
   
@@ -83,7 +96,7 @@ function Car({
   xPosition,
   userDerivative,
 }: {
-  functionType: "power" | "product" | "chain";
+  functionType: "power" | "product" | "quotient" | "chain";
   xPosition: number;
   userDerivative: number;
 }) {
@@ -91,10 +104,12 @@ function Car({
   
   // Calculate actual function value and derivative
   const func = functionType === "power" ? functions.power : 
-                functionType === "product" ? functions.product : 
+                functionType === "product" ? functions.product :
+                functionType === "quotient" ? functions.quotient :
                 functions.chain;
   const derivFunc = functionType === "power" ? functions.powerDerivative : 
-                     functionType === "product" ? functions.productDerivative : 
+                     functionType === "product" ? functions.productDerivative :
+                     functionType === "quotient" ? functions.quotientDerivative :
                      functions.chainDerivative;
   
   const yPosition = func(xPosition);
@@ -266,7 +281,8 @@ export default function DerivativeCanvas({
 }: DerivativeCanvasProps) {
   // Calculate actual derivative for display
   const derivFunc = functionType === "power" ? functions.powerDerivative : 
-                     functionType === "product" ? functions.productDerivative : 
+                     functionType === "product" ? functions.productDerivative :
+                     functionType === "quotient" ? functions.quotientDerivative :
                      functions.chainDerivative;
   const actualDerivative = derivFunc(xPosition);
   const isCorrect = Math.abs(derivative - actualDerivative) < 0.2;

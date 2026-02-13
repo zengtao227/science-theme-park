@@ -9,12 +9,12 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
 
-type Stage = "POWER_RULE" | "PRODUCT_RULE" | "CHAIN_RULE";
+type Stage = "POWER_RULE" | "PRODUCT_RULE" | "QUOTIENT_RULE" | "CHAIN_RULE";
 type G101T = typeof translations.EN.gm1_01;
 
 interface G101Quest extends Quest {
   stage: Stage;
-  functionType: "power" | "product" | "chain";
+  functionType: "power" | "product" | "quotient" | "chain";
   xPosition: number;
   coefficient?: number;
   exponent?: number;
@@ -127,6 +127,41 @@ const chainDataElite = [
   { id: "C_E5", k: 5, x: 1.8 },
 ];
 
+// Quotient rule data: f(x) = u(x)/v(x) => f'(x) = [u'(x)·v(x) - u(x)·v'(x)] / [v(x)]²
+// Using f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin²(x)
+// Difficulty: varies by x position (avoid x where sin(x) ≈ 0)
+
+const quotientDataBasic = [
+  { id: "Q_B1", x: Math.PI / 2 }, // sin(x) = 1
+  { id: "Q_B2", x: Math.PI / 4 },
+  { id: "Q_B3", x: Math.PI / 3 },
+  { id: "Q_B4", x: 1 },
+];
+
+const quotientDataCore = [
+  { id: "Q_C1", x: Math.PI / 6 },
+  { id: "Q_C2", x: 2 * Math.PI / 3 },
+  { id: "Q_C3", x: 2 },
+  { id: "Q_C4", x: 2.5 },
+  { id: "Q_C5", x: 1.5 },
+];
+
+const quotientDataAdvanced = [
+  { id: "Q_A1", x: 5 * Math.PI / 6 },
+  { id: "Q_A2", x: 1.2 },
+  { id: "Q_A3", x: 2.3 },
+  { id: "Q_A4", x: 2.8 },
+  { id: "Q_A5", x: 0.8 },
+];
+
+const quotientDataElite = [
+  { id: "Q_E1", x: 1.1 },
+  { id: "Q_E2", x: 1.7 },
+  { id: "Q_E3", x: 2.2 },
+  { id: "Q_E4", x: 2.6 },
+  { id: "Q_E5", x: 0.9 },
+];
+
 function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Quest[] {
   if (stage === "POWER_RULE") {
     let dataSet;
@@ -202,6 +237,37 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
     });
   }
 
+  if (stage === "QUOTIENT_RULE") {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = quotientDataBasic; break;
+      case "CORE": dataSet = quotientDataCore; break;
+      case "ADVANCED": dataSet = quotientDataAdvanced; break;
+      case "ELITE": dataSet = quotientDataElite; break;
+      default: dataSet = quotientDataBasic;
+    }
+    
+    return dataSet.map((item) => {
+      // f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin²(x)
+      const sinX = Math.sin(item.x);
+      const cosX = Math.cos(item.x);
+      const derivative = round2((sinX - item.x * cosX) / (sinX * sinX));
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        functionType: "quotient" as const,
+        xPosition: item.x,
+        promptLatex: t.stages.quotient_rule_prompt_latex,
+        expressionLatex: `f(x)=\\frac{x}{\\sin(x)},\\; x=${round2(item.x)}`,
+        targetLatex: "f'(x)",
+        slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+        correctLatex: `f'(${round2(item.x)})=${derivative}`,
+      };
+    });
+  }
+
   // CHAIN_RULE
   let dataSet;
   switch (difficulty) {
@@ -266,6 +332,7 @@ export default function G101Page() {
       stages={[
         { id: "POWER_RULE", label: t.stages.power_rule },
         { id: "PRODUCT_RULE", label: t.stages.product_rule },
+        { id: "QUOTIENT_RULE", label: t.stages.quotient_rule },
         { id: "CHAIN_RULE", label: t.stages.chain_rule },
       ]}
       currentStage={stage}
@@ -298,7 +365,8 @@ export default function G101Page() {
             translations={{
               title: t.canvas.title,
               subtitle: stage === "POWER_RULE" ? t.canvas.subtitle_power : 
-                       stage === "PRODUCT_RULE" ? t.canvas.subtitle_product : 
+                       stage === "PRODUCT_RULE" ? t.canvas.subtitle_product :
+                       stage === "QUOTIENT_RULE" ? t.canvas.subtitle_quotient :
                        t.canvas.subtitle_chain,
               xLabel: t.canvas.x_label,
               yLabel: t.canvas.y_label,
@@ -334,6 +402,7 @@ export default function G101Page() {
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
             {stage === "POWER_RULE" && t.scenarios.power_rule}
             {stage === "PRODUCT_RULE" && t.scenarios.product_rule}
+            {stage === "QUOTIENT_RULE" && t.scenarios.quotient_rule}
             {stage === "CHAIN_RULE" && t.scenarios.chain_rule}
           </div>
         </div>
