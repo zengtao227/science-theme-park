@@ -54,6 +54,51 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 * Math.sin(1) - (1 + 1) * Math.cos(1)) / (Math.sin(1) * Math.sin(1))) }],
       correctLatex: "",
       hint: t.hints.use_quotient_rule
+    },
+    {
+      id: "C_B3",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_3,
+      functionLatex: "f(x) = (x^2 - x) \\cdot \\cos(x)",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      expressionLatex: "f(x) = (x^2 - x) \\cdot \\cos(x), \\; x=1",
+      targetLatex: "f'(1)",
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 - 1) * Math.cos(1) + (1*1 - 1) * (-Math.sin(1))) }],
+      correctLatex: "",
+      hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_B4",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_1,
+      functionLatex: "f(x) = (x^2 + 2x) \\cdot \\sin(x)",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      expressionLatex: "f(x) = (x^2 + 2x) \\cdot \\sin(x), \\; x=1",
+      targetLatex: "f'(1)",
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 + 2) * Math.sin(1) + (1 + 2) * Math.cos(1)) }],
+      correctLatex: "",
+      hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_B5",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_2,
+      functionLatex: "f(x) = \\frac{x^2}{\\sin(x)}",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      expressionLatex: "f(x) = \\frac{x^2}{\\sin(x)}, \\; x=2",
+      targetLatex: "f'(2)",
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 * Math.sin(2) - 4 * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
+      correctLatex: "",
+      hint: t.hints.use_quotient_rule
     }
   ];
 
@@ -85,6 +130,36 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       expressionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x), \\; x=1.5",
       targetLatex: "f'(1.5)",
       slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((4*1.5 + 3) * Math.sin(1.5) + (2*1.5*1.5 + 3*1.5) * Math.cos(1.5)) }],
+      correctLatex: "",
+      hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_C3",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_2,
+      functionLatex: "f(x) = \\frac{x^3}{\\sin(x)}",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1.5",
+      expressionLatex: "f(x) = \\frac{x^3}{\\sin(x)}, \\; x=1.5",
+      targetLatex: "f'(1.5)",
+      slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((3*1.5*1.5 * Math.sin(1.5) - 1.5*1.5*1.5 * Math.cos(1.5)) / (Math.sin(1.5) * Math.sin(1.5))) }],
+      correctLatex: "",
+      hint: t.hints.use_quotient_rule
+    },
+    {
+      id: "C_C4",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_3,
+      functionLatex: "f(x) = (x^2 + x) \\cdot \\cos(x)",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      expressionLatex: "f(x) = (x^2 + x) \\cdot \\cos(x), \\; x=2",
+      targetLatex: "f'(2)",
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 + 1) * Math.cos(2) + (4 + 2) * (-Math.sin(2))) }],
       correctLatex: "",
       hint: t.hints.use_product_rule
     }
@@ -120,6 +195,36 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       slots: [{ id: "derivative", labelLatex: "f'(0.5)", placeholder: "0.00", expected: round2((3*0.5*0.5 - 2) * Math.cos(0.5) + (0.5*0.5*0.5 - 2*0.5) * (-Math.sin(0.5))) }],
       correctLatex: "",
       hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_A3",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_1,
+      functionLatex: "f(x) = (3x^2 - x) \\cdot \\sin(x)",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1.2",
+      expressionLatex: "f(x) = (3x^2 - x) \\cdot \\sin(x), \\; x=1.2",
+      targetLatex: "f'(1.2)",
+      slots: [{ id: "derivative", labelLatex: "f'(1.2)", placeholder: "0.00", expected: round2((6*1.2 - 1) * Math.sin(1.2) + (3*1.2*1.2 - 1.2) * Math.cos(1.2)) }],
+      correctLatex: "",
+      hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_A4",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_2,
+      functionLatex: "f(x) = \\frac{2x^2 + 1}{\\cos(x)}",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      expressionLatex: "f(x) = \\frac{2x^2 + 1}{\\cos(x)}, \\; x=1",
+      targetLatex: "f'(1)",
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((4*1 * Math.cos(1) - (2*1 + 1) * (-Math.sin(1))) / (Math.cos(1) * Math.cos(1))) }],
+      correctLatex: "",
+      hint: t.hints.use_quotient_rule
     }
   ];
 
@@ -153,13 +258,43 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       slots: [{ id: "derivative", labelLatex: "f'(\\pi/4)", placeholder: "0.00", expected: round2((2*Math.PI/4 * Math.sin(Math.PI/4) - ((Math.PI/4)*(Math.PI/4) + 1) * Math.cos(Math.PI/4)) / (Math.sin(Math.PI/4) * Math.sin(Math.PI/4))) }],
       correctLatex: "",
       hint: t.hints.use_quotient_rule
+    },
+    {
+      id: "C_E3",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_3,
+      functionLatex: "f(x) = (x^3 + x^2) \\cdot \\cos(x)",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/3",
+      expressionLatex: "f(x) = (x^3 + x^2) \\cdot \\cos(x), \\; x=\\pi/3",
+      targetLatex: "f'(\\pi/3)",
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/3)", placeholder: "0.00", expected: round2((3*(Math.PI/3)*(Math.PI/3) + 2*Math.PI/3) * Math.cos(Math.PI/3) + ((Math.PI/3)*(Math.PI/3)*(Math.PI/3) + (Math.PI/3)*(Math.PI/3)) * (-Math.sin(Math.PI/3))) }],
+      correctLatex: "",
+      hint: t.hints.use_product_rule
+    },
+    {
+      id: "C_E4",
+      difficulty,
+      stage: "COMPOSITE",
+      challenge: "COMPOSITE" as Challenge,
+      scenario: t.scenarios.composite_2,
+      functionLatex: "f(x) = \\frac{x^3 - x}{\\sin(x)}",
+      question: t.questions.find_derivative,
+      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/6",
+      expressionLatex: "f(x) = \\frac{x^3 - x}{\\sin(x)}, \\; x=\\pi/6",
+      targetLatex: "f'(\\pi/6)",
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/6)", placeholder: "0.00", expected: round2(((3*(Math.PI/6)*(Math.PI/6) - 1) * Math.sin(Math.PI/6) - ((Math.PI/6)*(Math.PI/6)*(Math.PI/6) - Math.PI/6) * Math.cos(Math.PI/6)) / (Math.sin(Math.PI/6) * Math.sin(Math.PI/6))) }],
+      correctLatex: "",
+      hint: t.hints.use_quotient_rule
     }
   ];
 
   if (difficulty === "BASIC") return basic;
-  if (difficulty === "CORE") return [...basic, ...core];
-  if (difficulty === "ADVANCED") return [...basic, ...core, ...advanced];
-  return [...basic, ...core, ...advanced, ...elite];
+  if (difficulty === "CORE") return core;
+  if (difficulty === "ADVANCED") return advanced;
+  return elite;
 }
 
 // Modeling problems - real-world applications
