@@ -9,12 +9,12 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
 
-type Stage = "POWER_RULE" | "PRODUCT_RULE" | "QUOTIENT_RULE" | "CHAIN_RULE";
+type Stage = "POWER_RULE" | "FACTOR_RULE" | "SUM_RULE" | "PRODUCT_RULE" | "QUOTIENT_RULE" | "CHAIN_RULE";
 type G101T = typeof translations.EN.gm1_01;
 
 interface G101Quest extends Quest {
   stage: Stage;
-  functionType: "power" | "product" | "quotient" | "chain";
+  functionType: "power" | "factor" | "sum" | "product" | "quotient" | "chain";
   xPosition: number;
   coefficient?: number;
   exponent?: number;
@@ -22,42 +22,103 @@ interface G101Quest extends Quest {
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// Power rule data: f(x) = ax^n + bx + c => f'(x) = n·a·x^(n-1) + b
-// Difficulty progression:
-// BASIC: Simple power functions (ax^n)
-// CORE: Power functions with coefficients at specific points
-// ADVANCED: Polynomials with multiple terms (ax^n + bx)
-// ELITE: Complex polynomials (ax^n + bx + c) with non-integer results
-
+// Power rule data: f(x) = x^n => f'(x) = n·x^(n-1)
+// Pure power functions without coefficients (for learning the basic pattern)
 const powerDataBasic = [
   { id: "P_B1", a: 1, n: 2, b: 0, c: 0, x: 1 }, // f(x) = x²
   { id: "P_B2", a: 1, n: 2, b: 0, c: 0, x: 2 }, // f(x) = x²
   { id: "P_B3", a: 1, n: 3, b: 0, c: 0, x: 1 }, // f(x) = x³
-  { id: "P_B4", a: 2, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 2x²
+  { id: "P_B4", a: 1, n: 3, b: 0, c: 0, x: 2 }, // f(x) = x³
 ];
 
 const powerDataCore = [
-  { id: "P_C1", a: 2, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 2x²
-  { id: "P_C2", a: 3, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 3x²
-  { id: "P_C3", a: 1, n: 3, b: 0, c: 0, x: 2 }, // f(x) = x³
-  { id: "P_C4", a: 2, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 2x³
-  { id: "P_C5", a: 4, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 4x²
+  { id: "P_C1", a: 1, n: 4, b: 0, c: 0, x: 1 }, // f(x) = x⁴
+  { id: "P_C2", a: 1, n: 4, b: 0, c: 0, x: 2 }, // f(x) = x⁴
+  { id: "P_C3", a: 1, n: 5, b: 0, c: 0, x: 1 }, // f(x) = x⁵
+  { id: "P_C4", a: 1, n: 5, b: 0, c: 0, x: 2 }, // f(x) = x⁵
+  { id: "P_C5", a: 1, n: 2, b: 0, c: 0, x: 3 }, // f(x) = x²
 ];
 
 const powerDataAdvanced = [
-  { id: "P_A1", a: 2, n: 2, b: 3, c: 0, x: 1 }, // f(x) = 2x² + 3x
-  { id: "P_A2", a: 1, n: 2, b: 4, c: 0, x: 2 }, // f(x) = x² + 4x
-  { id: "P_A3", a: 3, n: 2, b: -2, c: 0, x: 1 }, // f(x) = 3x² - 2x
-  { id: "P_A4", a: 1, n: 3, b: 2, c: 0, x: 1 }, // f(x) = x³ + 2x
-  { id: "P_A5", a: 2, n: 3, b: -3, c: 0, x: 1 }, // f(x) = 2x³ - 3x
+  { id: "P_A1", a: 1, n: 6, b: 0, c: 0, x: 1 }, // f(x) = x⁶
+  { id: "P_A2", a: 1, n: 6, b: 0, c: 0, x: 2 }, // f(x) = x⁶
+  { id: "P_A3", a: 1, n: 7, b: 0, c: 0, x: 1 }, // f(x) = x⁷
+  { id: "P_A4", a: 1, n: 3, b: 0, c: 0, x: 3 }, // f(x) = x³
+  { id: "P_A5", a: 1, n: 4, b: 0, c: 0, x: 3 }, // f(x) = x⁴
 ];
 
 const powerDataElite = [
-  { id: "P_E1", a: 2, n: 2, b: 3, c: 1, x: 1.5 }, // f(x) = 2x² + 3x + 1
-  { id: "P_E2", a: 1, n: 2, b: -4, c: 2, x: 2.5 }, // f(x) = x² - 4x + 2
-  { id: "P_E3", a: 3, n: 2, b: 2, c: -1, x: 1.2 }, // f(x) = 3x² + 2x - 1
-  { id: "P_E4", a: 1, n: 3, b: -2, c: 3, x: 1.5 }, // f(x) = x³ - 2x + 3
-  { id: "P_E5", a: 2, n: 3, b: 3, c: -2, x: 0.8 }, // f(x) = 2x³ + 3x - 2
+  { id: "P_E1", a: 1, n: 8, b: 0, c: 0, x: 1.5 }, // f(x) = x⁸
+  { id: "P_E2", a: 1, n: 5, b: 0, c: 0, x: 2.5 }, // f(x) = x⁵
+  { id: "P_E3", a: 1, n: 6, b: 0, c: 0, x: 1.2 }, // f(x) = x⁶
+  { id: "P_E4", a: 1, n: 7, b: 0, c: 0, x: 1.8 }, // f(x) = x⁷
+  { id: "P_E5", a: 1, n: 4, b: 0, c: 0, x: 2.3 }, // f(x) = x⁴
+];
+
+// Factor rule data: f(x) = a·x^n => f'(x) = a·n·x^(n-1)
+// Focus on constant factor multiplication
+const factorDataBasic = [
+  { id: "F_B1", a: 2, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 2x²
+  { id: "F_B2", a: 3, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 3x²
+  { id: "F_B3", a: 2, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 2x³
+  { id: "F_B4", a: 4, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 4x²
+];
+
+const factorDataCore = [
+  { id: "F_C1", a: 2, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 2x²
+  { id: "F_C2", a: 3, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 3x²
+  { id: "F_C3", a: 5, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 5x²
+  { id: "F_C4", a: 2, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 2x³
+  { id: "F_C5", a: 3, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 3x³
+];
+
+const factorDataAdvanced = [
+  { id: "F_A1", a: 4, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 4x³
+  { id: "F_A2", a: 5, n: 2, b: 0, c: 0, x: 3 }, // f(x) = 5x²
+  { id: "F_A3", a: 6, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 6x²
+  { id: "F_A4", a: 3, n: 4, b: 0, c: 0, x: 1 }, // f(x) = 3x⁴
+  { id: "F_A5", a: 2, n: 4, b: 0, c: 0, x: 2 }, // f(x) = 2x⁴
+];
+
+const factorDataElite = [
+  { id: "F_E1", a: 4, n: 3, b: 0, c: 0, x: 1.5 }, // f(x) = 4x³
+  { id: "F_E2", a: 5, n: 4, b: 0, c: 0, x: 1.2 }, // f(x) = 5x⁴
+  { id: "F_E3", a: 3, n: 5, b: 0, c: 0, x: 1.5 }, // f(x) = 3x⁵
+  { id: "F_E4", a: 6, n: 3, b: 0, c: 0, x: 2.5 }, // f(x) = 6x³
+  { id: "F_E5", a: 7, n: 2, b: 0, c: 0, x: 1.8 }, // f(x) = 7x²
+];
+
+// Sum rule data: f(x) = g(x) + h(x) => f'(x) = g'(x) + h'(x)
+// Polynomials with multiple terms
+const sumDataBasic = [
+  { id: "S_B1", a: 1, n: 2, b: 1, c: 0, x: 1 }, // f(x) = x² + x
+  { id: "S_B2", a: 1, n: 2, b: 2, c: 0, x: 1 }, // f(x) = x² + 2x
+  { id: "S_B3", a: 1, n: 3, b: 1, c: 0, x: 1 }, // f(x) = x³ + x
+  { id: "S_B4", a: 1, n: 2, b: 3, c: 0, x: 1 }, // f(x) = x² + 3x
+];
+
+const sumDataCore = [
+  { id: "S_C1", a: 2, n: 2, b: 3, c: 0, x: 1 }, // f(x) = 2x² + 3x
+  { id: "S_C2", a: 1, n: 2, b: 4, c: 0, x: 2 }, // f(x) = x² + 4x
+  { id: "S_C3", a: 3, n: 2, b: 2, c: 0, x: 1 }, // f(x) = 3x² + 2x
+  { id: "S_C4", a: 1, n: 3, b: 2, c: 0, x: 1 }, // f(x) = x³ + 2x
+  { id: "S_C5", a: 2, n: 2, b: 1, c: 0, x: 2 }, // f(x) = 2x² + x
+];
+
+const sumDataAdvanced = [
+  { id: "S_A1", a: 2, n: 2, b: 3, c: 1, x: 1 }, // f(x) = 2x² + 3x + 1
+  { id: "S_A2", a: 1, n: 2, b: -4, c: 2, x: 2 }, // f(x) = x² - 4x + 2
+  { id: "S_A3", a: 3, n: 2, b: 2, c: -1, x: 1 }, // f(x) = 3x² + 2x - 1
+  { id: "S_A4", a: 1, n: 3, b: -2, c: 3, x: 1 }, // f(x) = x³ - 2x + 3
+  { id: "S_A5", a: 2, n: 3, b: 3, c: -2, x: 1 }, // f(x) = 2x³ + 3x - 2
+];
+
+const sumDataElite = [
+  { id: "S_E1", a: 2, n: 2, b: 3, c: 1, x: 1.5 }, // f(x) = 2x² + 3x + 1
+  { id: "S_E2", a: 1, n: 2, b: -4, c: 2, x: 2.5 }, // f(x) = x² - 4x + 2
+  { id: "S_E3", a: 3, n: 2, b: 2, c: -1, x: 1.2 }, // f(x) = 3x² + 2x - 1
+  { id: "S_E4", a: 1, n: 3, b: -2, c: 3, x: 1.5 }, // f(x) = x³ - 2x + 3
+  { id: "S_E5", a: 2, n: 3, b: 3, c: -2, x: 0.8 }, // f(x) = 2x³ + 3x - 2
 ];
 
 // Product rule data: f(x) = u(x)·v(x) => f'(x) = u'·v + u·v'
@@ -174,6 +235,72 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
     }
     
     return dataSet.map((item) => {
+      // f(x) = x^n => f'(x) = n·x^(n-1)
+      const derivative = round2(item.n * Math.pow(item.x, item.n - 1));
+      
+      let expr = `f(x)=x^{${item.n}},\\; x=${item.x}`;
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        functionType: "power" as const,
+        xPosition: item.x,
+        coefficient: item.a,
+        exponent: item.n,
+        promptLatex: t.stages.power_rule_prompt_latex,
+        expressionLatex: expr,
+        targetLatex: "f'(x)",
+        slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+        correctLatex: `f'(${item.x})=${derivative}`,
+      };
+    });
+  }
+
+  if (stage === "FACTOR_RULE") {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = factorDataBasic; break;
+      case "CORE": dataSet = factorDataCore; break;
+      case "ADVANCED": dataSet = factorDataAdvanced; break;
+      case "ELITE": dataSet = factorDataElite; break;
+      default: dataSet = factorDataBasic;
+    }
+    
+    return dataSet.map((item) => {
+      // f(x) = a·x^n => f'(x) = a·n·x^(n-1)
+      const derivative = round2(item.a * item.n * Math.pow(item.x, item.n - 1));
+      
+      let expr = `f(x)=${item.a}x^{${item.n}},\\; x=${item.x}`;
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        functionType: "factor" as const,
+        xPosition: item.x,
+        coefficient: item.a,
+        exponent: item.n,
+        promptLatex: t.stages.factor_rule_prompt_latex,
+        expressionLatex: expr,
+        targetLatex: "f'(x)",
+        slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+        correctLatex: `f'(${item.x})=${derivative}`,
+      };
+    });
+  }
+
+  if (stage === "SUM_RULE") {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = sumDataBasic; break;
+      case "CORE": dataSet = sumDataCore; break;
+      case "ADVANCED": dataSet = sumDataAdvanced; break;
+      case "ELITE": dataSet = sumDataElite; break;
+      default: dataSet = sumDataBasic;
+    }
+    
+    return dataSet.map((item) => {
       // f(x) = ax^n + bx + c => f'(x) = n·a·x^(n-1) + b
       const derivative = round2(item.n * item.a * Math.pow(item.x, item.n - 1) + item.b);
       
@@ -195,11 +322,11 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         id: item.id,
         difficulty,
         stage,
-        functionType: "power" as const,
+        functionType: "sum" as const,
         xPosition: item.x,
         coefficient: item.a,
         exponent: item.n,
-        promptLatex: t.stages.power_rule_prompt_latex,
+        promptLatex: t.stages.sum_rule_prompt_latex,
         expressionLatex: expr,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -331,6 +458,8 @@ export default function G101Page() {
       onDifficultyChange={handleDifficultyChange}
       stages={[
         { id: "POWER_RULE", label: t.stages.power_rule },
+        { id: "FACTOR_RULE", label: t.stages.factor_rule },
+        { id: "SUM_RULE", label: t.stages.sum_rule },
         { id: "PRODUCT_RULE", label: t.stages.product_rule },
         { id: "QUOTIENT_RULE", label: t.stages.quotient_rule },
         { id: "CHAIN_RULE", label: t.stages.chain_rule },
@@ -364,7 +493,9 @@ export default function G101Page() {
             derivative={parseFloat(inputs.derivative || "0")}
             translations={{
               title: t.canvas.title,
-              subtitle: stage === "POWER_RULE" ? t.canvas.subtitle_power : 
+              subtitle: stage === "POWER_RULE" ? t.canvas.subtitle_power :
+                       stage === "FACTOR_RULE" ? t.canvas.subtitle_factor :
+                       stage === "SUM_RULE" ? t.canvas.subtitle_sum :
                        stage === "PRODUCT_RULE" ? t.canvas.subtitle_product :
                        stage === "QUOTIENT_RULE" ? t.canvas.subtitle_quotient :
                        t.canvas.subtitle_chain,
@@ -401,6 +532,8 @@ export default function G101Page() {
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
             {stage === "POWER_RULE" && t.scenarios.power_rule}
+            {stage === "FACTOR_RULE" && t.scenarios.factor_rule}
+            {stage === "SUM_RULE" && t.scenarios.sum_rule}
             {stage === "PRODUCT_RULE" && t.scenarios.product_rule}
             {stage === "QUOTIENT_RULE" && t.scenarios.quotient_rule}
             {stage === "CHAIN_RULE" && t.scenarios.chain_rule}

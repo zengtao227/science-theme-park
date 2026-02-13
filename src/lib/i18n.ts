@@ -1154,6 +1154,8 @@ export const translations: Record<string, any> = {
                 differentiation: "DERIVATIVES",
                 application: "APPLICATIONS",
                 power_rule: "POWER RULE",
+                factor_rule: "FACTOR RULE",
+                sum_rule: "SUM RULE",
                 product_rule: "PRODUCT RULE",
                 quotient_rule: "QUOTIENT RULE",
                 chain_rule: "CHAIN RULE",
@@ -1161,6 +1163,8 @@ export const translations: Record<string, any> = {
                 differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
                 application_prompt_latex: "\\text{Apply calculus to solve problems.}",
                 power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
+                factor_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using factor rule.}",
+                sum_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using sum rule.}",
                 product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
                 quotient_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using quotient rule.}",
                 chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
@@ -1173,20 +1177,26 @@ export const translations: Record<string, any> = {
                 hints: "HINTS"
             },
             formulas: {
-                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
+                power_rule: "f'(x) = n\\cdot x^{n-1}",
+                factor_rule: "(a\\cdot f)' = a\\cdot f'",
+                sum_rule: "(f+g)' = f' + g'",
                 product_rule: "(uv)' = u'v + uv'",
                 quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
-                power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = ax². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
+                power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = x². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
+                factor_rule: "🏗️ SCENARIO: Construction Scaling — An architect designs a building with height h(x) = x². When the city requires all dimensions to be scaled by factor 3, the new height becomes H(x) = 3x². The derivative tells you how the scaled building's slope changes. Use the factor rule: if f(x) = a·g(x), then f'(x) = a·g'(x). The constant factor 3 stays outside the derivative, making calculations easier!",
+                sum_rule: "🌊 SCENARIO: Ocean Wave Superposition — Two ocean waves combine: wave A has height h₁(x) = x² and wave B has height h₂(x) = 3x. The total wave height is H(x) = x² + 3x. To predict how fast the combined wave rises, use the sum rule: (f + g)' = f' + g'. Calculate each wave's slope separately, then add them. This is how oceanographers predict tsunami wave behavior!",
                 product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
                 quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v². This tells investors whether the company is becoming more or less efficient over time.",
                 chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
             },
             canvas: {
                 title: "DERIVATIVE ROAD",
-                subtitle_power: "f(x) = ax²",
+                subtitle_power: "f(x) = x²",
+                subtitle_factor: "f(x) = ax²",
+                subtitle_sum: "f(x) = x² + x",
                 subtitle_product: "f(x) = x·sin(x)",
                 subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",
@@ -3466,6 +3476,8 @@ export const translations: Record<string, any> = {
                 differentiation: "微分规则",
                 application: "应用题",
                 power_rule: "幂规则",
+                factor_rule: "因子规则",
+                sum_rule: "和规则",
                 product_rule: "乘积规则",
                 quotient_rule: "商规则",
                 chain_rule: "链式法则",
@@ -3473,6 +3485,8 @@ export const translations: Record<string, any> = {
                 differentiation_prompt_latex: "\\text{应用微分规则计算。}",
                 application_prompt_latex: "\\text{应用微积分解决问题。}",
                 power_rule_prompt_latex: "\\text{在给定点计算 }f'(x)\\text{。}",
+                factor_rule_prompt_latex: "\\text{使用因子规则计算 }f'(x)\\text{。}",
+                sum_rule_prompt_latex: "\\text{使用和规则计算 }f'(x)\\text{。}",
                 product_rule_prompt_latex: "\\text{使用乘积规则计算 }f'(x)\\text{。}",
                 quotient_rule_prompt_latex: "\\text{使用商规则计算 }f'(x)\\text{。}",
                 chain_rule_prompt_latex: "\\text{使用链式法则计算 }f'(x)\\text{。}"
@@ -3485,20 +3499,26 @@ export const translations: Record<string, any> = {
                 hints: "提示"
             },
             formulas: {
-                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
+                power_rule: "f'(x) = n\\cdot x^{n-1}",
+                factor_rule: "(a\\cdot f)' = a\\cdot f'",
+                sum_rule: "(f+g)' = f' + g'",
                 product_rule: "(uv)' = u'v + uv'",
                 quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
-                power_rule: "🚗 场景：汽车在山坡上加速 — 你驾驶一辆特斯拉爬上一座弯曲的山坡。道路高度遵循 h(x) = ax²。导数 h'(x) 告诉你道路在每个点的陡峭程度。如果你以错误的角度倾斜汽车，它会刮到地面或翻倒！计算正确的斜率（导数），使汽车底盘与路面完美对齐。这正是自动驾驶汽车实时计算地形角度的方式。",
+                power_rule: "🚗 场景：汽车在山坡上加速 — 你驾驶一辆特斯拉爬上一座弯曲的山坡。道路高度遵循 h(x) = x²。导数 h'(x) 告诉你道路在每个点的陡峭程度。如果你以错误的角度倾斜汽车，它会刮到地面或翻倒！计算正确的斜率（导数），使汽车底盘与路面完美对齐。这正是自动驾驶汽车实时计算地形角度的方式。",
+                factor_rule: "🏗️ 场景：建筑缩放 — 一位建筑师设计了一座高度为 h(x) = x² 的建筑。当城市要求所有尺寸按因子 3 缩放时，新高度变为 H(x) = 3x²。导数告诉你缩放后建筑的斜率如何变化。使用因子规则：如果 f(x) = a·g(x)，则 f'(x) = a·g'(x)。常数因子 3 保持在导数外面，使计算更简单！",
+                sum_rule: "🌊 场景：海洋波浪叠加 — 两个海浪叠加：波浪 A 的高度为 h₁(x) = x²，波浪 B 的高度为 h₂(x) = 3x。总波浪高度为 H(x) = x² + 3x。要预测组合波浪上升的速度，使用和规则：(f + g)' = f' + g'。分别计算每个波浪的斜率，然后相加。这就是海洋学家预测海啸波浪行为的方式！",
                 product_rule: "🌊 场景：冲浪板在波浪上 — 一名冲浪者在由 h(x) = x·sin(x) 描述的波浪上冲浪。波浪高度取决于位置 (x) 和正弦波模式。为了保持平衡，冲浪者需要知道波浪在每个点的斜率。使用乘积规则：如果 f(x) = u(x)·v(x)，则 f'(x) = u'·v + u·v'。这告诉你波浪上升或下降的速度，帮助冲浪者调整姿势。",
                 quotient_rule: "📊 场景：股票市场效率比 — 一位金融分析师追踪公司的效率比：利润(x) / 成本(x)。随着市场条件变化（x = 月份时间），利润和成本都在变化。要预测效率是提高还是下降，你需要这个比率的导数。使用商规则：如果 f(x) = u(x)/v(x)，则 f'(x) = [u'·v - u·v'] / v²。这告诉投资者公司效率随时间是提高还是降低。",
                 chain_rule: "⚙️ 场景：自行车齿轮系统 — 你正在骑自行车爬山。踏板旋转产生链条运动：踏板角度 → 链条速度 → 车轮旋转。如果链条绕齿轮的速度快两倍（因子为 2），则 f(x) = sin(2x)。链式法则告诉你：如果外部函数改变，乘以内部函数的速率。这就是自行车码表如何从踏板旋转计算你的实际速度！"
             },
             canvas: {
                 title: "导数道路",
-                subtitle_power: "f(x) = ax²",
+                subtitle_power: "f(x) = x²",
+                subtitle_factor: "f(x) = ax²",
+                subtitle_sum: "f(x) = x² + x",
                 subtitle_product: "f(x) = x·sin(x)",
                 subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",
@@ -6106,6 +6126,8 @@ export const translations: Record<string, any> = {
                 differentiation: "ABLEITUNGEN",
                 application: "ANWENDUNGEN",
                 power_rule: "POTENZREGEL",
+                factor_rule: "FAKTORREGEL",
+                sum_rule: "SUMMENREGEL",
                 product_rule: "PRODUKTREGEL",
                 quotient_rule: "QUOTIENTENREGEL",
                 chain_rule: "KETTENREGEL",
@@ -6113,6 +6135,8 @@ export const translations: Record<string, any> = {
                 differentiation_prompt_latex: "\\text{Wende die Ableitungsregeln an.}",
                 application_prompt_latex: "\\text{Wende Differentialrechnung an, um Probleme zu lösen.}",
                 power_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ am gegebenen Punkt.}",
+                factor_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Faktorregel.}",
+                sum_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Summenregel.}",
                 product_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Produktregel.}",
                 quotient_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Quotientenregel.}",
                 chain_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Kettenregel.}"
@@ -6125,20 +6149,26 @@ export const translations: Record<string, any> = {
                 hints: "HINWEISE"
             },
             formulas: {
-                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
+                power_rule: "f'(x) = n\\cdot x^{n-1}",
+                factor_rule: "(a\\cdot f)' = a\\cdot f'",
+                sum_rule: "(f+g)' = f' + g'",
                 product_rule: "(uv)' = u'v + uv'",
                 quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
                 chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
             scenarios: {
-                power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = ax². Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
+                power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = x². Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
+                factor_rule: "🏗️ SZENARIO: Bauskalierung — Ein Architekt entwirft ein Gebäude mit Höhe h(x) = x². Wenn die Stadt verlangt, dass alle Dimensionen mit Faktor 3 skaliert werden, wird die neue Höhe H(x) = 3x². Die Ableitung sagt dir, wie sich die Steigung des skalierten Gebäudes ändert. Verwende die Faktorregel: Wenn f(x) = a·g(x), dann f'(x) = a·g'(x). Der konstante Faktor 3 bleibt außerhalb der Ableitung, was die Berechnungen vereinfacht!",
+                sum_rule: "🌊 SZENARIO: Ozeanwellen-Überlagerung — Zwei Ozeanwellen überlagern sich: Welle A hat Höhe h₁(x) = x² und Welle B hat Höhe h₂(x) = 3x. Die Gesamtwellenhöhe ist H(x) = x² + 3x. Um vorherzusagen, wie schnell die kombinierte Welle steigt, verwende die Summenregel: (f + g)' = f' + g'. Berechne die Steigung jeder Welle separat und addiere sie dann. So sagen Ozeanographen das Verhalten von Tsunami-Wellen voraus!",
                 product_rule: "🌊 SZENARIO: Surfbrett auf einer Welle — Ein Surfer reitet auf einer Welle, die durch h(x) = x·sin(x) beschrieben wird. Die Wellenhöhe hängt sowohl von der Position (x) als auch vom Sinuswellenmuster ab. Um das Gleichgewicht zu halten, muss der Surfer die Steigung der Welle an jedem Punkt kennen. Verwende die Produktregel: Wenn f(x) = u(x)·v(x), dann f'(x) = u'·v + u·v'. Dies sagt dir, wie schnell die Welle steigt oder fällt und hilft dem Surfer, seine Haltung anzupassen.",
                 quotient_rule: "📊 SZENARIO: Börsen-Effizienzquote — Ein Finanzanalyst verfolgt die Effizienzquote eines Unternehmens: Gewinn(x) / Kosten(x). Wenn sich die Marktbedingungen ändern (x = Zeit in Monaten), ändern sich sowohl Gewinn als auch Kosten. Um vorherzusagen, ob die Effizienz steigt oder sinkt, benötigst du die Ableitung dieses Verhältnisses. Verwende die Quotientenregel: Wenn f(x) = u(x)/v(x), dann f'(x) = [u'·v - u·v'] / v². Dies zeigt Investoren, ob das Unternehmen im Laufe der Zeit effizienter oder weniger effizient wird.",
                 chain_rule: "⚙️ SZENARIO: Fahrrad-Getriebesystem — Du fährst mit dem Fahrrad einen Berg hinauf. Die Pedaldrehung erzeugt eine Kettenbewegung: Pedalwinkel → Kettengeschwindigkeit → Radumdrehung. Wenn sich die Kette doppelt so schnell um das Zahnrad wickelt (Faktor 2), dann f(x) = sin(2x). Die Kettenregel sagt dir: Wenn sich die äußere Funktion ändert, multipliziere mit der Rate der inneren Funktion. So berechnen Fahrradcomputer deine tatsächliche Geschwindigkeit aus den Pedalumdrehungen!"
             },
             canvas: {
                 title: "ABLEITUNGS-STRASSE",
-                subtitle_power: "f(x) = ax²",
+                subtitle_power: "f(x) = x²",
+                subtitle_factor: "f(x) = ax²",
+                subtitle_sum: "f(x) = x² + x",
                 subtitle_product: "f(x) = x·sin(x)",
                 subtitle_quotient: "f(x) = x/sin(x)",
                 subtitle_chain: "f(x) = sin(2x)",

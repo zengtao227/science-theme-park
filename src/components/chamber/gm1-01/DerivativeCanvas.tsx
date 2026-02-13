@@ -6,7 +6,7 @@ import { OrbitControls, Text, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 interface DerivativeCanvasProps {
-  functionType: "power" | "product" | "quotient" | "chain";
+  functionType: "power" | "factor" | "sum" | "product" | "quotient" | "chain";
   xPosition?: number;
   derivative?: number;
   translations: {
@@ -35,8 +35,12 @@ const palette = {
 
 // Function definitions
 const functions = {
-  power: (x: number) => 0.5 * x * x, // f(x) = 0.5x²
-  powerDerivative: (x: number) => x, // f'(x) = x
+  power: (x: number) => x * x, // f(x) = x²
+  powerDerivative: (x: number) => 2 * x, // f'(x) = 2x
+  factor: (x: number) => 3 * x * x, // f(x) = 3x²
+  factorDerivative: (x: number) => 6 * x, // f'(x) = 6x
+  sum: (x: number) => x * x + x, // f(x) = x² + x
+  sumDerivative: (x: number) => 2 * x + 1, // f'(x) = 2x + 1
   product: (x: number) => x * Math.sin(x), // f(x) = x·sin(x)
   productDerivative: (x: number) => Math.sin(x) + x * Math.cos(x), // f'(x) = sin(x) + x·cos(x)
   quotient: (x: number) => x / Math.sin(x), // f(x) = x/sin(x)
@@ -50,9 +54,11 @@ const functions = {
 };
 
 // Road curve (the function graph)
-function RoadCurve({ functionType }: { functionType: "power" | "product" | "quotient" | "chain" }) {
+function RoadCurve({ functionType }: { functionType: "power" | "factor" | "sum" | "product" | "quotient" | "chain" }) {
   const points: THREE.Vector3[] = [];
-  const func = functionType === "power" ? functions.power : 
+  const func = functionType === "power" ? functions.power :
+                functionType === "factor" ? functions.factor :
+                functionType === "sum" ? functions.sum :
                 functionType === "product" ? functions.product :
                 functionType === "quotient" ? functions.quotient :
                 functions.chain;
@@ -96,18 +102,22 @@ function Car({
   xPosition,
   userDerivative,
 }: {
-  functionType: "power" | "product" | "quotient" | "chain";
+  functionType: "power" | "factor" | "sum" | "product" | "quotient" | "chain";
   xPosition: number;
   userDerivative: number;
 }) {
   const carRef = useRef<THREE.Group>(null);
   
   // Calculate actual function value and derivative
-  const func = functionType === "power" ? functions.power : 
+  const func = functionType === "power" ? functions.power :
+                functionType === "factor" ? functions.factor :
+                functionType === "sum" ? functions.sum :
                 functionType === "product" ? functions.product :
                 functionType === "quotient" ? functions.quotient :
                 functions.chain;
-  const derivFunc = functionType === "power" ? functions.powerDerivative : 
+  const derivFunc = functionType === "power" ? functions.powerDerivative :
+                     functionType === "factor" ? functions.factorDerivative :
+                     functionType === "sum" ? functions.sumDerivative :
                      functionType === "product" ? functions.productDerivative :
                      functionType === "quotient" ? functions.quotientDerivative :
                      functions.chainDerivative;
@@ -280,7 +290,9 @@ export default function DerivativeCanvas({
   translations,
 }: DerivativeCanvasProps) {
   // Calculate actual derivative for display
-  const derivFunc = functionType === "power" ? functions.powerDerivative : 
+  const derivFunc = functionType === "power" ? functions.powerDerivative :
+                     functionType === "factor" ? functions.factorDerivative :
+                     functionType === "sum" ? functions.sumDerivative :
                      functionType === "product" ? functions.productDerivative :
                      functionType === "quotient" ? functions.quotientDerivative :
                      functions.chainDerivative;
