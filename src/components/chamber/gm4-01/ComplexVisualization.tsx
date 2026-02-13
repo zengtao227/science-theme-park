@@ -495,7 +495,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
           <div className="text-white font-mono text-sm">
             <BlockMath math={`z_1 + z_2 = (${quest.z1.re} + ${quest.z2.re}) + (${quest.z1.im} + ${quest.z2.im})i`} />
             <div className="text-white/60 text-xs mt-2">
-              平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂
+              <InlineMath math="\\text{平行四边形法则：从原点到 } z_1\\text{，再从 } z_1 \\text{ 平移 } z_2" />
             </div>
           </div>
         </div>
@@ -510,7 +510,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
             <BlockMath math={`z_1 \\times z_2 = (a_1 + b_1 i)(a_2 + b_2 i)`} />
             <BlockMath math={`= (a_1 a_2 - b_1 b_2) + (a_1 b_2 + b_1 a_2)i`} />
             <div className="text-white/60 text-xs mt-2">
-              几何意义：模长相乘，角度相加
+              <InlineMath math="\\text{几何意义：模长相乘，角度相加}" />
             </div>
           </div>
         </div>
@@ -525,7 +525,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
             <BlockMath math={`z = r e^{i\\theta} = ${r.toFixed(3)} e^{i \\cdot ${thetaDeg}°}`} />
             <BlockMath math={`z^{${quest.power}} = r^{${quest.power}} e^{i \\cdot ${quest.power}\\theta} = ${Math.pow(r, quest.power).toFixed(3)} e^{i \\cdot ${(parseFloat(thetaDeg) * quest.power).toFixed(1)}°}`} />
             <div className="text-white/60 text-xs mt-2">
-              模长变为 r^n，角度变为 n·θ
+              <InlineMath math="\\text{模长变为 } r^n\\text{，角度变为 } n\\cdot\\theta" />
             </div>
           </div>
         </div>

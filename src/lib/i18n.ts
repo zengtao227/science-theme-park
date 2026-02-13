@@ -5105,6 +5105,55 @@ export const translations: Record<string, any> = {
         },
         gc3_02: {
             back: "返回枢纽",
+            title: "GC3.02 // 晶体宫殿",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            objective_title: "当前任务目标",
+            target_title: "晶体结构",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "匹配失败",
+            ready: "就绪",
+            monitor_title: "GC3.02_晶体监视器",
+            footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
+            labels: {
+                lattice_type: "晶格类型",
+                properties: "性质",
+                atoms_per_cell: "原子/晶胞",
+                coordination: "配位数",
+                packing: "堆积率",
+                tet_voids: "四面体空隙",
+                voids: "间隙空隙",
+                tetrahedral: "四面体",
+                octahedral: "八面体",
+                formulas: "公式",
+                show_voids: "显示间隙空隙",
+                slice_plane: "切片平面 (Y轴)",
+                reset_slice: "重置"
+            },
+            mission: {
+                title: "任务：固体物理",
+                description: "探索晶体结构和布拉维晶格。理解原子堆积和配位。"
+            },
+            stages: {
+                sc: "简单立方",
+                bcc: "体心立方",
+                fcc: "面心立方",
+                sc_desc: "研究简单立方晶格（配位数6）",
+                bcc_desc: "分析体心立方（配位数8）",
+                fcc_desc: "掌握面心立方（配位数12）",
+                sc_hint: "最低堆积效率（52%）",
+                bcc_hint: "中等堆积（68%），如Fe、Cr等金属",
+                fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
+            }
+        },
+        gm4_01: {
+            back: "返回枢纽",
             title: "GM4.01 // 复数地平线",
             difficulty: {
                 basic: "基础",
