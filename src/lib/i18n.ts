@@ -1359,6 +1359,112 @@ export const translations: Record<string, any> = {
                 binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability P(X=k) of exactly k successes using the binomial distribution formula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
                 conditional: "Basel Insurance Risk Assessment: Basler Versicherungen (Basel Insurance) needs to calculate conditional probabilities for risk assessment. Given P(A) = probability of an event occurring, P(B) = probability of a condition being met, and P(A∩B) = probability of both occurring, calculate P(A|B) = P(A∩B)/P(B). This conditional probability helps determine insurance premiums for Basel residents based on specific risk factors.",
                 mission: "Basel Integrated Probability Mission: You are consulting for multiple Basel companies - Novartis (pharmaceuticals), Swiss Lotto (lottery), and Basler Versicherungen (insurance). Each company presents a different probability problem: basic probability for quality control, binomial distribution for lottery analysis, or conditional probability for insurance risk. Apply the appropriate probability formula to solve each company's specific challenge and provide accurate probability calculations."
+            },
+            problems: {
+                // BASIC PROBABILITY - BASIC
+                single_die_one: "You roll a standard six-sided die once. What is the probability of rolling exactly a 1?\n\nGiven: 1 favorable outcome (rolling a 1), 6 total possible outcomes\nFind: P(E) = favorable / total",
+                single_die_even: "You roll a standard six-sided die once. What is the probability of rolling an even number (2, 4, or 6)?\n\nGiven: 2 favorable outcomes (2, 4, 6), 6 total possible outcomes\nFind: P(E) = favorable / total",
+                single_die_half: "You roll a standard six-sided die once. What is the probability of rolling a number greater than 3 (4, 5, or 6)?\n\nGiven: 3 favorable outcomes, 6 total possible outcomes\nFind: P(E) = favorable / total",
+                coin_heads: "You flip a fair coin once. What is the probability of getting heads?\n\nGiven: 1 favorable outcome (heads), 2 total possible outcomes\nFind: P(E) = favorable / total",
+                
+                // BASIC PROBABILITY - CORE
+                deck_one_suit: "You draw one card from a standard 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 hearts in the deck, 52 total cards\nFind: P(E) = favorable / total",
+                deck_red_cards: "You draw one card from a standard 52-card deck. What is the probability of drawing a red card (hearts or diamonds)?\n\nGiven: 26 red cards (13 hearts + 13 diamonds), 52 total cards\nFind: P(E) = favorable / total",
+                deck_aces: "You draw one card from a standard 52-card deck. What is the probability of drawing an ace?\n\nGiven: 4 aces in the deck, 52 total cards\nFind: P(E) = favorable / total",
+                deck_face_cards: "You draw one card from a standard 52-card deck. What is the probability of drawing a face card (Jack, Queen, or King)?\n\nGiven: 12 face cards (4 Jacks + 4 Queens + 4 Kings), 52 total cards\nFind: P(E) = favorable / total",
+                two_dice_sum_7: "You roll two standard six-sided dice. What is the probability that their sum equals 7?\n\nGiven: 6 favorable outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), 36 total possible outcomes\nFind: P(E) = favorable / total",
+                
+                // BASIC PROBABILITY - ADVANCED
+                quality_control_85: "Novartis Basel quality control: In a batch of 100 medication samples, 85 passed all safety tests. What is the probability that a randomly selected sample from this batch passes inspection?\n\nGiven: 85 samples passed, 100 total samples\nFind: P(E) = favorable / total\nSignificance: This determines batch approval for Swiss hospitals.",
+                quality_control_92: "Novartis Basel quality control: In a batch of 120 medication samples, 92 passed all safety tests. What is the probability that a randomly selected sample passes?\n\nGiven: 92 samples passed, 120 total samples\nFind: P(E) = favorable / total",
+                quality_control_78: "Novartis Basel quality control: In a batch of 90 medication samples, 78 passed all safety tests. What is the probability that a randomly selected sample passes?\n\nGiven: 78 samples passed, 90 total samples\nFind: P(E) = favorable / total",
+                quality_control_156: "Novartis Basel quality control: In a batch of 200 medication samples, 156 passed all safety tests. What is the probability that a randomly selected sample passes?\n\nGiven: 156 samples passed, 200 total samples\nFind: P(E) = favorable / total",
+                quality_control_234: "Novartis Basel quality control: In a batch of 300 medication samples, 234 passed all safety tests. What is the probability that a randomly selected sample passes?\n\nGiven: 234 samples passed, 300 total samples\nFind: P(E) = favorable / total",
+                
+                // BASIC PROBABILITY - ELITE
+                quality_control_427: "Novartis Basel large-scale quality control: In a production run of 500 medication samples, 427 passed all comprehensive safety and efficacy tests. Calculate the probability that a randomly selected sample from this production run passes all tests.\n\nGiven: 427 samples passed, 500 total samples\nFind: P(E) = favorable / total\nSignificance: This probability determines whether 50,000 units can be released to European markets.",
+                quality_control_683: "Novartis Basel large-scale quality control: In a production run of 800 medication samples, 683 passed all tests. Calculate P(E).\n\nGiven: 683 samples passed, 800 total samples\nFind: P(E) = favorable / total",
+                quality_control_891: "Novartis Basel large-scale quality control: In a production run of 1000 medication samples, 891 passed all tests. Calculate P(E).\n\nGiven: 891 samples passed, 1000 total samples\nFind: P(E) = favorable / total",
+                quality_control_1456: "Novartis Basel large-scale quality control: In a production run of 1600 medication samples, 1456 passed all tests. Calculate P(E).\n\nGiven: 1456 samples passed, 1600 total samples\nFind: P(E) = favorable / total",
+                quality_control_1789: "Novartis Basel large-scale quality control: In a production run of 2000 medication samples, 1789 passed all tests. Calculate P(E).\n\nGiven: 1789 samples passed, 2000 total samples\nFind: P(E) = favorable / total",
+                
+                // BINOMIAL - BASIC
+                coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5 (probability of heads)\nFind: P(X=2) using binomial formula\nFormula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
+                coin_4_3: "You flip a fair coin 4 times. What is the probability of getting exactly 3 heads?\n\nGiven: n=4 trials, k=3 successes, p=0.5\nFind: P(X=3)",
+                coin_5_2: "You flip a fair coin 5 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=5 trials, k=2 successes, p=0.5\nFind: P(X=2)",
+                coin_3_1: "You flip a fair coin 3 times. What is the probability of getting exactly 1 head?\n\nGiven: n=3 trials, k=1 success, p=0.5\nFind: P(X=1)",
+                
+                // BINOMIAL - CORE
+                lottery_6_4: "Swiss Lotto Basel: In a simplified lottery game, you play 6 independent draws, each with a 50% chance of winning. What is the probability of winning exactly 4 times?\n\nGiven: n=6 draws, k=4 wins, p=0.5 (win probability per draw)\nFind: P(X=4)\nSignificance: Helps lottery officials predict payout frequencies.",
+                lottery_8_5: "Swiss Lotto Basel: You play 8 independent lottery draws with 50% win probability each. What is the probability of winning exactly 5 times?\n\nGiven: n=8, k=5, p=0.5\nFind: P(X=5)",
+                lottery_5_3_biased: "Swiss Lotto Basel: You play 5 draws with a 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6\nFind: P(X=3)",
+                lottery_7_4: "Swiss Lotto Basel: You play 7 independent draws with 50% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=7, k=4, p=0.5\nFind: P(X=4)",
+                lottery_6_2_biased: "Swiss Lotto Basel: You play 6 draws with a 40% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.4\nFind: P(X=2)",
+                
+                // BINOMIAL - ADVANCED
+                lottery_10_6: "Swiss Lotto Basel: In a 10-draw lottery sequence with 50% win probability per draw, calculate the probability of winning exactly 6 times.\n\nGiven: n=10 draws, k=6 wins, p=0.5\nFind: P(X=6)\nNote: This requires calculating C(10,6) = 210 combinations.",
+                lottery_12_7: "Swiss Lotto Basel: In a 12-draw sequence with 50% win probability, calculate P(X=7).\n\nGiven: n=12, k=7, p=0.5\nFind: P(X=7)",
+                lottery_8_5_biased: "Swiss Lotto Basel: In an 8-draw sequence with 60% win probability per draw, calculate P(X=5).\n\nGiven: n=8, k=5, p=0.6\nFind: P(X=5)",
+                lottery_9_4_biased: "Swiss Lotto Basel: In a 9-draw sequence with 40% win probability per draw, calculate P(X=4).\n\nGiven: n=9, k=4, p=0.4\nFind: P(X=4)",
+                lottery_11_7_biased: "Swiss Lotto Basel: In an 11-draw sequence with 55% win probability per draw, calculate P(X=7).\n\nGiven: n=11, k=7, p=0.55\nFind: P(X=7)",
+                
+                // BINOMIAL - ELITE
+                lottery_15_9: "Swiss Lotto Basel advanced analysis: In a 15-draw lottery sequence with 55% win probability per draw, calculate the probability of winning exactly 9 times.\n\nGiven: n=15 draws, k=9 wins, p=0.55\nFind: P(X=9)\nNote: C(15,9) = 5005 combinations. This analysis helps set prize structures for Swiss players.",
+                lottery_18_11: "Swiss Lotto Basel: In an 18-draw sequence with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)",
+                lottery_20_12: "Swiss Lotto Basel: In a 20-draw sequence with 58% win probability, calculate P(X=12).\n\nGiven: n=20, k=12, p=0.58\nFind: P(X=12)",
+                lottery_16_8: "Swiss Lotto Basel: In a 16-draw sequence with 45% win probability, calculate P(X=8).\n\nGiven: n=16, k=8, p=0.45\nFind: P(X=8)",
+                lottery_14_9: "Swiss Lotto Basel: In a 14-draw sequence with 65% win probability, calculate P(X=9).\n\nGiven: n=14, k=9, p=0.65\nFind: P(X=9)",
+                
+                // CONDITIONAL - BASIC
+                insurance_basic_1: "Basler Versicherungen (Basel Insurance): For a simple insurance case, we know P(A) = 0.5 (probability of claim), P(B) = 0.6 (probability of risk factor present), and P(A∩B) = 0.3 (probability of both). Calculate P(A|B), the probability of a claim given the risk factor is present.\n\nGiven: P(A) = 0.5, P(B) = 0.6, P(A∩B) = 0.3\nFind: P(A|B) = P(A∩B) / P(B)\nSignificance: Determines insurance premiums for Basel residents.",
+                insurance_basic_2: "Basler Versicherungen: Given P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2, calculate P(A|B).\n\nGiven: P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_basic_3: "Basler Versicherungen: Given P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4, calculate P(A|B).\n\nGiven: P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_basic_4: "Basler Versicherungen: Given P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15, calculate P(A|B).\n\nGiven: P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15\nFind: P(A|B) = P(A∩B) / P(B)",
+                
+                // CONDITIONAL - CORE
+                insurance_core_1: "Basler Versicherungen risk assessment: For a moderate-complexity insurance case, P(A) = 0.45 (claim probability), P(B) = 0.55 (risk factor probability), P(A∩B) = 0.25. Calculate P(A|B).\n\nGiven: P(A) = 0.45, P(B) = 0.55, P(A∩B) = 0.25\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_core_2: "Basler Versicherungen: Given P(A) = 0.35, P(B) = 0.65, P(A∩B) = 0.22, calculate P(A|B).\n\nGiven: P(A) = 0.35, P(B) = 0.65, P(A∩B) = 0.22\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_core_3: "Basler Versicherungen: Given P(A) = 0.52, P(B) = 0.48, P(A∩B) = 0.28, calculate P(A|B).\n\nGiven: P(A) = 0.52, P(B) = 0.48, P(A∩B) = 0.28\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_core_4: "Basler Versicherungen: Given P(A) = 0.38, P(B) = 0.62, P(A∩B) = 0.24, calculate P(A|B).\n\nGiven: P(A) = 0.38, P(B) = 0.62, P(A∩B) = 0.24\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_core_5: "Basler Versicherungen: Given P(A) = 0.42, P(B) = 0.58, P(A∩B) = 0.26, calculate P(A|B).\n\nGiven: P(A) = 0.42, P(B) = 0.58, P(A∩B) = 0.26\nFind: P(A|B) = P(A∩B) / P(B)",
+                
+                // CONDITIONAL - ADVANCED
+                insurance_adv_1: "Basler Versicherungen advanced risk assessment: For a complex insurance portfolio, P(A) = 0.37 (claim probability), P(B) = 0.63 (risk factor probability), P(A∩B) = 0.21. Calculate the conditional probability P(A|B).\n\nGiven: P(A) = 0.37, P(B) = 0.63, P(A∩B) = 0.21\nFind: P(A|B) = P(A∩B) / P(B)\nNote: This involves more precise probability values requiring careful calculation.",
+                insurance_adv_2: "Basler Versicherungen: Given P(A) = 0.48, P(B) = 0.54, P(A∩B) = 0.29, calculate P(A|B).\n\nGiven: P(A) = 0.48, P(B) = 0.54, P(A∩B) = 0.29\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_adv_3: "Basler Versicherungen: Given P(A) = 0.41, P(B) = 0.67, P(A∩B) = 0.27, calculate P(A|B).\n\nGiven: P(A) = 0.41, P(B) = 0.67, P(A∩B) = 0.27\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_adv_4: "Basler Versicherungen: Given P(A) = 0.33, P(B) = 0.59, P(A∩B) = 0.19, calculate P(A|B).\n\nGiven: P(A) = 0.33, P(B) = 0.59, P(A∩B) = 0.19\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_adv_5: "Basler Versicherungen: Given P(A) = 0.46, P(B) = 0.51, P(A∩B) = 0.23, calculate P(A|B).\n\nGiven: P(A) = 0.46, P(B) = 0.51, P(A∩B) = 0.23\nFind: P(A|B) = P(A∩B) / P(B)",
+                
+                // CONDITIONAL - ELITE
+                insurance_elite_1: "Basler Versicherungen elite risk modeling: For a highly complex insurance portfolio with precise actuarial data, P(A) = 0.365 (claim probability), P(B) = 0.625 (risk factor probability), P(A∩B) = 0.215. Calculate P(A|B) with high precision.\n\nGiven: P(A) = 0.365, P(B) = 0.625, P(A∩B) = 0.215\nFind: P(A|B) = P(A∩B) / P(B)\nSignificance: This precise calculation determines premium structures for Basel's largest corporate insurance policies.",
+                insurance_elite_2: "Basler Versicherungen elite: Given P(A) = 0.475, P(B) = 0.535, P(A∩B) = 0.285, calculate P(A|B).\n\nGiven: P(A) = 0.475, P(B) = 0.535, P(A∩B) = 0.285\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_elite_3: "Basler Versicherungen elite: Given P(A) = 0.415, P(B) = 0.675, P(A∩B) = 0.265, calculate P(A|B).\n\nGiven: P(A) = 0.415, P(B) = 0.675, P(A∩B) = 0.265\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_elite_4: "Basler Versicherungen elite: Given P(A) = 0.335, P(B) = 0.595, P(A∩B) = 0.195, calculate P(A|B).\n\nGiven: P(A) = 0.335, P(B) = 0.595, P(A∩B) = 0.195\nFind: P(A|B) = P(A∩B) / P(B)",
+                insurance_elite_5: "Basler Versicherungen elite: Given P(A) = 0.455, P(B) = 0.515, P(A∩B) = 0.235, calculate P(A|B).\n\nGiven: P(A) = 0.455, P(B) = 0.515, P(A∩B) = 0.235\nFind: P(A|B) = P(A∩B) / P(B)",
+                
+                // MISSION - Mixed problems (reuse context keys from above stages)
+                mission_basic_1: "Novartis Mission: Roll a die once. What is the probability of rolling a 1?\n\nGiven: 1 favorable, 6 total\nFind: P(E)",
+                mission_basic_2: "Swiss Lotto Mission: Flip a coin 3 times. What is the probability of exactly 2 heads?\n\nGiven: n=3, k=2, p=0.5\nFind: P(X=2)",
+                mission_basic_3: "Insurance Mission: Given P(A)=0.5, P(B)=0.6, P(A∩B)=0.3, find P(A|B).\n\nGiven: P(A)=0.5, P(B)=0.6, P(A∩B)=0.3\nFind: P(A|B)",
+                mission_basic_4: "Novartis Mission: Roll a die. What is the probability of rolling an even number?\n\nGiven: 2 favorable (2,4,6), 6 total\nFind: P(E)",
+                
+                mission_core_1: "Novartis Mission: Draw a card from a 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 favorable, 52 total\nFind: P(E)",
+                mission_core_2: "Swiss Lotto Mission: Play 6 lottery draws with 50% win probability. What is P(X=4)?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4)",
+                mission_core_3: "Insurance Mission: Given P(A)=0.45, P(B)=0.55, P(A∩B)=0.25, find P(A|B).\n\nGiven: P(A)=0.45, P(B)=0.55, P(A∩B)=0.25\nFind: P(A|B)",
+                mission_core_4: "Novartis Mission: Draw a card. What is the probability of drawing a red card?\n\nGiven: 26 favorable, 52 total\nFind: P(E)",
+                mission_core_5: "Swiss Lotto Mission: Play 5 draws with 60% win probability. What is P(X=3)?\n\nGiven: n=5, k=3, p=0.6\nFind: P(X=3)",
+                
+                mission_adv_1: "Novartis Mission: In 100 samples, 85 passed. Calculate P(E).\n\nGiven: 85 favorable, 100 total\nFind: P(E)",
+                mission_adv_2: "Swiss Lotto Mission: In 10 draws with 50% win probability, calculate P(X=6).\n\nGiven: n=10, k=6, p=0.5\nFind: P(X=6)",
+                mission_adv_3: "Insurance Mission: Given P(A)=0.37, P(B)=0.63, P(A∩B)=0.21, find P(A|B).\n\nGiven: P(A)=0.37, P(B)=0.63, P(A∩B)=0.21\nFind: P(A|B)",
+                mission_adv_4: "Novartis Mission: In 120 samples, 92 passed. Calculate P(E).\n\nGiven: 92 favorable, 120 total\nFind: P(E)",
+                mission_adv_5: "Swiss Lotto Mission: In 8 draws with 60% win probability, calculate P(X=5).\n\nGiven: n=8, k=5, p=0.6\nFind: P(X=5)",
+                
+                mission_elite_1: "Novartis Mission: In 500 samples, 427 passed. Calculate P(E).\n\nGiven: 427 favorable, 500 total\nFind: P(E)",
+                mission_elite_2: "Swiss Lotto Mission: In 15 draws with 55% win probability, calculate P(X=9).\n\nGiven: n=15, k=9, p=0.55\nFind: P(X=9)",
+                mission_elite_3: "Insurance Mission: Given P(A)=0.365, P(B)=0.625, P(A∩B)=0.215, find P(A|B).\n\nGiven: P(A)=0.365, P(B)=0.625, P(A∩B)=0.215\nFind: P(A|B)",
+                mission_elite_4: "Novartis Mission: In 800 samples, 683 passed. Calculate P(E).\n\nGiven: 683 favorable, 800 total\nFind: P(E)",
+                mission_elite_5: "Swiss Lotto Mission: In 18 draws with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)"
             }
         },
         sm2_06: {
