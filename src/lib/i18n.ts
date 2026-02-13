@@ -103,41 +103,30 @@ export const translations: Record<string, any> = {
                     advanced: "ADVANCED",
                     elite: "ELITE"
                 },
-                objective_title: "Active Mission Objective",
-                target_title: "Complex Number",
                 next: "Execute Next Sequence",
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
                 monitor_title: "GM4.01_COMPLEX_MONITOR",
-                footer_left: "GM4.01_COMPLEX_HORIZON // NODE: ZURICH",
-                labels: {
-                    input: "INPUT",
-                    hints: "HINTS",
-                    original: "ORIGINAL (z)",
-                    result: "RESULT (z^n)",
-                    magnitude: "Magnitude",
-                    angle: "Angle",
-                    formulas: "FORMULAS",
-                    real_part: "REAL PART (a)",
-                    imaginary_part: "IMAGINARY PART (b)",
-                    power: "POWER (n)"
-                },
-                mission: {
-                    title: "MISSION: COMPLEX SPACE",
-                    description: "Explore the complex plane in 3D. Master Euler's formula and complex powers."
+                footer_left: "GM4.01_COMPLEX_HORIZON // NODE: BASEL",
+                scenario_title: "BASEL ENGINEERING MISSION",
+                scenarios: {
+                    basics: "Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.",
+                    operations: "Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.",
+                    polar: "Basel University Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network."
                 },
                 stages: {
                     basics: "BASICS",
-                    powers: "POWERS",
-                    euler: "EULER",
-                    basics_desc: "Understand complex numbers as 2D vectors",
-                    powers_desc: "Visualize z^n as rotation and scaling",
-                    euler_desc: "Master Euler's formula: e^(iθ) = cos(θ) + i·sin(θ)",
-                    basics_hint: "Complex numbers as 2D vectors in the plane",
-                    powers_hint: "z^n rotates by n·θ and scales by r^n",
-                    euler_hint: "e^(iθ) traces the unit circle"
+                    operations: "OPERATIONS",
+                    polar: "POLAR FORM",
+                    basics_prompt: "Calculate magnitude",
+                    basics_target: "Find |z|",
+                    operations_add: "Add complex numbers",
+                    operations_multiply: "Multiply complex numbers",
+                    operations_target: "Find real and imaginary parts",
+                    polar_prompt: "Calculate power using polar form",
+                    polar_target: "Find z^n in rectangular form"
                 }
             },
             gm5_01: {
@@ -5116,48 +5105,37 @@ export const translations: Record<string, any> = {
         },
         gc3_02: {
             back: "返回枢纽",
-            title: "G4.01 // 复数地平线",
+            title: "GM4.01 // 复数地平线",
             difficulty: {
                 basic: "基础",
                 core: "核心",
                 advanced: "进阶",
                 elite: "精英"
             },
-            objective_title: "当前任务目标",
-            target_title: "复数",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "G4.01_复数监视器",
-            footer_left: "G4.01_复数地平线 // 节点：苏黎世",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                original: "原始 (z)",
-                result: "结果 (z^n)",
-                magnitude: "模长",
-                angle: "角度",
-                formulas: "公式",
-                real_part: "实部 (a)",
-                imaginary_part: "虚部 (b)",
-                power: "幂次 (n)"
-            },
-            mission: {
-                title: "任务：复数空间",
-                description: "在 3D 空间中探索复平面。掌握欧拉公式和复数幂运算。"
+            monitor_title: "GM4.01_复数监视器",
+            footer_left: "GM4.01_复数地平线 // 节点：巴塞尔",
+            scenario_title: "巴塞尔工程任务",
+            scenarios: {
+                basics: "罗氏制药信号处理：您正在罗氏巴塞尔校准用于 MRI 信号处理的医学成像设备，该设备使用复数分析。每个复数 z = a + bi 表示一个具有实部（振幅）和虚部（相位）的信号。计算模长 |z| 以确定信号强度。准确的模长计算对于检测患者扫描中的组织异常至关重要。",
+                operations: "诺华量子化学模拟：您正在诺华巴塞尔使用复数算术运行分子轨道计算。波函数表示为复数，它们的相互作用需要在复平面中进行加法和乘法运算。计算复数运算的结果以预测分子行为。这些计算决定了药物结合效率。",
+                polar: "巴塞尔大学电气工程：您正在分析巴塞尔智能电网电力系统中的交流电路行为。在计算谐振频率时，复阻抗被提升到幂次。使用极坐标形式 (r·e^(iθ)) 高效计算 z^n。结果决定了巴塞尔可再生能源网络的最佳功率分配。"
             },
             stages: {
                 basics: "基础",
-                powers: "幂运算",
-                euler: "欧拉公式",
-                basics_desc: "理解复数作为二维向量",
-                powers_desc: "可视化 z^n 的旋转与缩放",
-                euler_desc: "掌握欧拉公式：e^(iθ) = cos(θ) + i·sin(θ)",
-                basics_hint: "复数作为平面上的二维向量",
-                powers_hint: "z^n 旋转 n·θ 并缩放 r^n",
-                euler_hint: "e^(iθ) 描绘单位圆"
+                operations: "运算",
+                polar: "极坐标形式",
+                basics_prompt: "计算模长",
+                basics_target: "求 |z|",
+                operations_add: "复数加法",
+                operations_multiply: "复数乘法",
+                operations_target: "求实部和虚部",
+                polar_prompt: "使用极坐标形式计算幂",
+                polar_target: "求 z^n 的直角坐标形式"
             }
         },
         gm5_01: {
@@ -7783,48 +7761,37 @@ export const translations: Record<string, any> = {
         },
         gm4_01: {
             back: "Zurück zum Nexus",
-            title: "G4.01 // KOMPLEXER HORIZONT",
+            title: "GM4.01 // KOMPLEXER HORIZONT",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
                 advanced: "ERWEITERT",
                 elite: "ELITE"
             },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Komplexe Zahl",
             next: "Nächste Sequenz ausführen",
             check: "Verifizieren",
             correct: "Verifiziert",
-            incorrect: "Fehlreaktion",
+            incorrect: "Fehlanpassung",
             ready: "Bereit",
-            monitor_title: "G4.01_KOMPLEX_MONITOR",
-            footer_left: "G4.01_KOMPLEXER_HORIZONT // KNOTEN: ZÜRICH",
-            labels: {
-                input: "EINGABE",
-                hints: "HINWEISE",
-                original: "ORIGINAL (z)",
-                result: "ERGEBNIS (z^n)",
-                magnitude: "Betrag",
-                angle: "Winkel",
-                formulas: "FORMELN",
-                real_part: "REALTEIL (a)",
-                imaginary_part: "IMAGINÄRTEIL (b)",
-                power: "POTENZ (n)"
-            },
-            mission: {
-                title: "MISSION: KOMPLEXER RAUM",
-                description: "Erkunden Sie die komplexe Ebene in 3D. Meistern Sie Eulers Formel und komplexe Potenzen."
+            monitor_title: "GM4.01_KOMPLEX_MONITOR",
+            footer_left: "GM4.01_KOMPLEXER_HORIZONT // KNOTEN: BASEL",
+            scenario_title: "BASEL INGENIEURSMISSION",
+            scenarios: {
+                basics: "Roche Pharma-Signalverarbeitung: Sie kalibrieren medizinische Bildgebungsgeräte bei Roche Basel, die komplexe Zahlenanalyse für die MRT-Signalverarbeitung verwenden. Jede komplexe Zahl z = a + bi repräsentiert ein Signal mit Realteil (Amplitude) und Imaginärteil (Phase). Berechnen Sie den Betrag |z|, um die Signalstärke zu bestimmen. Eine genaue Betragsberechnung ist entscheidend für die Erkennung von Gewebeanomalien in Patientenscans.",
+                operations: "Novartis Quantenchemie-Simulation: Sie führen Molekülorbitalberechnungen bei Novartis Basel mit komplexer Zahlenarithmetik durch. Wellenfunktionen werden als komplexe Zahlen dargestellt, und ihre Wechselwirkungen erfordern Addition und Multiplikation in der komplexen Ebene. Berechnen Sie das Ergebnis komplexer Operationen, um molekulares Verhalten vorherzusagen. Diese Berechnungen bestimmen die Arzneimittelbindungseffizienz.",
+                polar: "Universität Basel Elektrotechnik: Sie analysieren das Verhalten von Wechselstromkreisen in Energiesystemen für Basels Smart Grid. Komplexe Impedanzen werden potenziert, wenn Resonanzfrequenzen berechnet werden. Verwenden Sie die Polarform (r·e^(iθ)), um z^n effizient zu berechnen. Das Ergebnis bestimmt die optimale Stromverteilung im erneuerbaren Energienetz von Basel."
             },
             stages: {
                 basics: "GRUNDLAGEN",
-                powers: "POTENZEN",
-                euler: "EULER",
-                basics_desc: "Verstehen Sie komplexe Zahlen als 2D-Vektoren",
-                powers_desc: "Visualisieren Sie z^n als Rotation und Skalierung",
-                euler_desc: "Meistern Sie Eulers Formel: e^(iθ) = cos(θ) + i·sin(θ)",
-                basics_hint: "Komplexe Zahlen als 2D-Vektoren in der Ebene",
-                powers_hint: "z^n rotiert um n·θ und skaliert mit r^n",
-                euler_hint: "e^(iθ) zeichnet den Einheitskreis"
+                operations: "OPERATIONEN",
+                polar: "POLARFORM",
+                basics_prompt: "Betrag berechnen",
+                basics_target: "|z| finden",
+                operations_add: "Komplexe Zahlen addieren",
+                operations_multiply: "Komplexe Zahlen multiplizieren",
+                operations_target: "Real- und Imaginärteil finden",
+                polar_prompt: "Potenz mit Polarform berechnen",
+                polar_target: "z^n in kartesischer Form finden"
             }
         },
         gm5_01: {
