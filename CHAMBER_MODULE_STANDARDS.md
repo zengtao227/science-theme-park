@@ -2,8 +2,8 @@
 ## GM1.01 和 GM2.01 的设计要求总结
 
 **创建时间**: 2026-02-13  
-**最后更新**: 2026-02-13 (添加GM3.01经验教训)  
-**版本**: v2.0  
+**最后更新**: 2026-02-13 (添加 GM3.01 和 GM4.01 经验教训，增加标签定位要求)  
+**版本**: v3.1  
 **适用范围**: 所有 Gymnasium (高中) 数学/物理/化学模块
 
 ---
@@ -281,7 +281,70 @@ gm1_01: {
 }
 ```
 
-### 4.2 场景描述要求
+### 4.2 翻译完整性检查清单 ⚠️
+
+**⚠️ GM4.01 教训：必须确保所有语言的翻译都完整！**
+
+**每个模块必须检查**:
+1. ✅ **title**: 模块标题必须翻译
+2. ✅ **difficulty**: basic/core/advanced/elite 必须翻译
+3. ✅ **stages**: 所有阶段名称必须翻译
+4. ✅ **scenarios**: 所有场景描述必须翻译（最重要！）
+5. ✅ **所有提示文本**: check/next/correct/incorrect 等必须翻译
+
+**常见错误**:
+- ❌ 中文版本显示 "BASIC/CORE/ADVANCED/ELITE"（应该是"基础/核心/进阶/精英"）
+- ❌ 场景描述只有英文，没有中文和德文
+- ❌ 阶段名称没有翻译
+- ❌ i18n.ts 中的键位置错误（如 gm4_01 内容放在 gc3_02 下）
+
+**验证方法**:
+```bash
+# 1. 在浏览器中切换到中文
+# 2. 检查以下内容是否都是中文：
+#    - 模块标题
+#    - 难度级别（基础/核心/进阶/精英）
+#    - 阶段名称
+#    - 场景描述
+#    - 所有按钮和提示文本
+# 3. 重复检查德文版本
+```
+
+**i18n.ts 结构检查**:
+```typescript
+// 英文版本 (EN)
+export const translations = {
+  EN: {
+    // ...
+    gm4_01: {
+      title: "GM4.01 // COMPLEX HORIZON",
+      difficulty: { basic: "BASIC", core: "CORE", ... },
+      scenarios: { basics: "...", operations: "...", polar: "..." },
+      stages: { basics: "BASICS", operations: "OPERATIONS", ... }
+    }
+  },
+  CN: {
+    // ...
+    gm4_01: {  // ⚠️ 必须在正确的位置！
+      title: "GM4.01 // 复数地平线",
+      difficulty: { basic: "基础", core: "核心", ... },
+      scenarios: { basics: "罗氏制药...", operations: "诺华...", polar: "巴塞尔..." },
+      stages: { basics: "基础", operations: "运算", ... }
+    }
+  },
+  DE: {
+    // ...
+    gm4_01: {
+      title: "GM4.01 // KOMPLEXER HORIZONT",
+      difficulty: { basic: "BASIS", core: "KERN", ... },
+      scenarios: { basics: "Roche Pharma...", operations: "Novartis...", polar: "Universität Basel..." },
+      stages: { basics: "GRUNDLAGEN", operations: "OPERATIONEN", ... }
+    }
+  }
+}
+```
+
+### 4.3 场景描述要求
 
 **必须包含详细的场景描述** (scenarios)
 
@@ -374,7 +437,262 @@ and flight time estimation.
 - 3位数：font-size = min(0.3 × itemSize, 11px)
 - 添加 `overflow-hidden` 和 `leading-none` CSS 类
 
-### 5.2 3D 可视化标准
+### 5.2 LaTeX 公式渲染 ⚠️
+
+**⚠️ GM4.01 教训：所有数学公式必须使用 LaTeX 渲染！**
+
+**必须使用 react-katex**:
+```typescript
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
+
+// 行内公式
+<InlineMath math="z = a + bi" />
+
+// 块级公式
+<BlockMath math="|z|^2 = a^2 + b^2" />
+```
+
+**常见错误**:
+- ❌ 直接显示原始 LaTeX 代码：`z^{4}Find z^n`
+- ❌ 使用普通文本：`模长变为 r^n，角度变为 n·θ`
+- ❌ 混合使用：`z₁ + z₂`（应该用 LaTeX）
+
+**正确做法**:
+```typescript
+// ❌ 错误
+<div>z^{4}</div>
+<div>模长变为 r^n，角度变为 n·θ</div>
+
+// ✅ 正确
+<InlineMath math="z^{4}" />
+<InlineMath math="\text{模长变为 } r^n\text{，角度变为 } n\cdot\theta" />
+```
+
+**中文文本处理**:
+```typescript
+// 在 LaTeX 中包含中文文本
+<InlineMath math="\text{平行四边形法则：从原点到 } z_1\text{，再从 } z_1 \text{ 平移 } z_2" />
+```
+
+### 5.3 自动缩放和视图适配 ⚠️
+
+**⚠️ GM4.01 教训：可视化必须自动适配所有数据范围！**
+
+**问题**:
+- 固定的 scale 和 origin 导致大数值超出可视范围
+- 用户无法看到完整的图形
+- 无法缩放或平移
+
+**解决方案**:
+
+#### 5.3.1 动态计算边界
+```typescript
+const bounds = useMemo(() => {
+  const points: Array<{ re: number; im: number }> = [];
+  
+  // 收集所有需要显示的点
+  if (quest.z1) points.push(quest.z1);
+  if (quest.z2) points.push(quest.z2);
+  if (result) points.push(result);
+  
+  // 计算最小/最大值
+  const reValues = points.map(p => p.re);
+  const imValues = points.map(p => p.im);
+  
+  const minRe = Math.min(...reValues, 0);
+  const maxRe = Math.max(...reValues, 0);
+  const minIm = Math.min(...imValues, 0);
+  const maxIm = Math.max(...imValues, 0);
+  
+  // 添加 30% 边距
+  const reRange = maxRe - minRe;
+  const imRange = maxIm - minIm;
+  const padding = 0.3;
+  
+  return {
+    minRe: minRe - reRange * padding,
+    maxRe: maxRe + reRange * padding,
+    minIm: minIm - imRange * padding,
+    maxIm: maxIm + imRange * padding,
+  };
+}, [quest, result]);
+```
+
+#### 5.3.2 自动计算缩放比例
+```typescript
+const scale = useMemo(() => {
+  const reRange = bounds.maxRe - bounds.minRe;
+  const imRange = bounds.maxIm - bounds.minIm;
+  const maxRange = Math.max(reRange, imRange, 10); // 最小范围 10
+  return (canvasSize * 0.8) / maxRange;
+}, [bounds, canvasSize]);
+```
+
+#### 5.3.3 动态网格步长
+```typescript
+const gridStep = useMemo(() => {
+  const range = Math.max(bounds.maxRe - bounds.minRe, bounds.maxIm - bounds.minIm);
+  if (range > 50) return 10;
+  if (range > 20) return 5;
+  if (range > 10) return 2;
+  return 1;
+}, [bounds]);
+```
+
+#### 5.3.4 SVG viewBox
+```typescript
+<svg 
+  width={canvasSize} 
+  height={canvasSize} 
+  viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+  className="bg-black/50 rounded-xl border border-white/10"
+>
+```
+
+**效果**:
+- ✅ 小数值（z = 3 + 4i）：网格步长 = 1，放大显示
+- ✅ 大数值（z^5 = 100 + 200i）：网格步长 = 10，缩小显示
+- ✅ 所有内容始终可见，自动适配
+
+#### 5.3.5 增加边距以防止标签溢出
+
+**⚠️ GM4.01 教训：30% 边距不够，标签仍会超出视图！**
+
+```typescript
+// ❌ 错误：30% 边距不够
+const padding = 0.3;
+
+// ✅ 正确：50% 边距确保标签不会超出
+const padding = 0.5;
+```
+
+**原因**:
+- 标签需要额外的空间（通常 20-30 像素）
+- 标签位置在点的外侧（使用 getLabelOffset）
+- 30% 边距只考虑了点本身，没有考虑标签
+
+### 5.4 标签定位和重叠避免 ⚠️
+
+**⚠️ GM4.01 教训：标签绝对不能与向量线或坐标轴重叠！**
+
+**问题**:
+- 标签直接放在点的固定位置（如 +10, -10）
+- 导致标签与向量线重叠
+- 导致标签与坐标轴重叠
+- 用户体验极差，无法阅读
+
+**解决方案：智能标签定位**
+
+#### 5.4.1 实现 getLabelOffset 函数
+
+```typescript
+// 智能标签定位，避免与线和轴重叠
+const getLabelOffset = (re: number, im: number, labelType: 'point' | 'side' = 'point') => {
+  if (labelType === 'side') {
+    // 对于边标签（a, b），垂直于线偏移
+    if (Math.abs(im) < 0.5) {
+      // 水平线，垂直偏移
+      return { dx: 0, dy: re > 0 ? 20 : -20 };
+    } else {
+      // 垂直线，水平偏移
+      return { dx: im > 0 ? 25 : -25, dy: 0 };
+    }
+  }
+  
+  // 对于点标签，沿着远离原点的方向偏移
+  const angle = Math.atan2(im, re);
+  const distance = 25; // 像素
+  
+  // 调整角度以避免坐标轴
+  let adjustedAngle = angle;
+  const threshold = Math.PI / 12; // 15 度
+  
+  // 避免水平轴
+  if (Math.abs(angle) < threshold) {
+    adjustedAngle = threshold;
+  } else if (Math.abs(angle - Math.PI) < threshold) {
+    adjustedAngle = Math.PI - threshold;
+  } else if (Math.abs(angle + Math.PI) < threshold) {
+    adjustedAngle = -Math.PI + threshold;
+  }
+  
+  // 避免垂直轴
+  if (Math.abs(angle - Math.PI / 2) < threshold) {
+    adjustedAngle = Math.PI / 2 + threshold;
+  } else if (Math.abs(angle + Math.PI / 2) < threshold) {
+    adjustedAngle = -Math.PI / 2 - threshold;
+  }
+  
+  return {
+    dx: Math.cos(adjustedAngle) * distance,
+    dy: -Math.sin(adjustedAngle) * distance,
+  };
+};
+```
+
+#### 5.4.2 使用智能定位
+
+```typescript
+// ❌ 错误：固定偏移
+<text
+  x={toCanvas(quest.z1.re, quest.z1.im).x + 10}
+  y={toCanvas(quest.z1.re, quest.z1.im).y - 10}
+  fill="#00e5ff"
+>
+  z₁
+</text>
+
+// ✅ 正确：智能偏移
+{(() => {
+  const offset = getLabelOffset(quest.z1.re, quest.z1.im);
+  return (
+    <text
+      x={toCanvas(quest.z1.re, quest.z1.im).x + offset.dx}
+      y={toCanvas(quest.z1.re, quest.z1.im).y + offset.dy}
+      fill="#00e5ff"
+      fontSize="14"
+      fontWeight="bold"
+      textAnchor="middle"
+    >
+      z₁
+    </text>
+  );
+})()}
+```
+
+#### 5.4.3 标签定位原则
+
+**必须遵守**:
+1. ✅ 标签必须沿着远离原点的方向偏移
+2. ✅ 标签必须避开坐标轴（±15° 范围内）
+3. ✅ 边标签必须垂直于边偏移
+4. ✅ 使用 `textAnchor="middle"` 居中对齐
+5. ✅ 所有标签使用相同的偏移距离（25px）
+
+**禁止**:
+- ❌ 固定偏移（+10, -10）
+- ❌ 标签与向量线重叠
+- ❌ 标签与坐标轴重叠
+- ❌ 标签超出 SVG 边界
+
+#### 5.4.4 验证方法
+
+**测试场景**:
+1. 小数值（z = 2 + 3i）
+2. 大数值（z = 50 + 100i）
+3. 负数值（z = -5 - 8i）
+4. 接近坐标轴（z = 10 + 0.5i）
+5. 乘法运算（向量密集）
+
+**检查清单**:
+- [ ] 所有标签可见且不超出边界
+- [ ] 标签不与向量线重叠
+- [ ] 标签不与坐标轴重叠
+- [ ] 标签位置合理（在点的外侧）
+- [ ] 不同难度级别都正常显示
+
+### 5.5 3D 可视化标准
 
 **必须满足**:
 - ✅ 可视化必须直接展示当前题目的数据
@@ -390,7 +708,7 @@ and flight time estimation.
 - ✅ 标签偏移，避免与轴线重合
 - ✅ 从点到标签有连接线
 
-### 5.3 2D 可视化标准
+### 5.6 2D 函数可视化标准
 
 **必须满足**:
 - ✅ 函数图像必须实时更新
@@ -404,7 +722,7 @@ and flight time estimation.
 - ✅ 显示用户输入的导数值
 - ✅ 显示正确的导数值（验证后）
 
-### 5.4 信息显示
+### 5.7 信息显示
 
 **必须在可视化中显示**:
 - ✅ 题目的关键数据（坐标、向量、函数等）
@@ -622,7 +940,7 @@ function buildStagePool(
 
 ### 8.1 功能检查
 
-- [ ] 所有难度级别都有 4-5 个问题
+- [ ] 所有难度级别都有 **5 个问题**（不是 4 个！）
 - [ ] 难度选择是独立的（不累加）
 - [ ] 所有阶段都能正常切换
 - [ ] 输入验证正确
@@ -638,15 +956,39 @@ function buildStagePool(
 - [ ] 标签不与几何体重合
 - [ ] 坐标/数值正确显示
 - [ ] 支持 3D 旋转（如适用）
+- [ ] **所有数学公式使用 LaTeX 渲染**（不是原始文本！）
+- [ ] **图形自动缩放，所有内容可见**（不超出边界！）
 
-### 8.3 国际化检查
+### 8.3 国际化检查 ⚠️
 
-- [ ] 德语翻译完整
-- [ ] 英语翻译完整
-- [ ] 中文翻译完整
-- [ ] 场景描述详细（每个阶段）
-- [ ] 所有 LaTeX 公式正确
-- [ ] 语言切换正常
+**⚠️ 必须在浏览器中实际测试每种语言！**
+
+#### 8.3.1 中文检查
+- [ ] 切换到中文（🇨🇳 CN）
+- [ ] 模块标题是中文
+- [ ] 难度显示"基础/核心/进阶/精英"（不是 BASIC/CORE/ADVANCED/ELITE）
+- [ ] 阶段名称是中文
+- [ ] 场景描述是中文（最重要！）
+- [ ] 所有按钮和提示是中文
+- [ ] LaTeX 公式中的中文文本正确显示
+
+#### 8.3.2 德文检查
+- [ ] 切换到德文（🇩🇪 DE）
+- [ ] 模块标题是德文
+- [ ] 难度显示"BASIS/KERN/ERWEITERT/ELITE"
+- [ ] 阶段名称是德文
+- [ ] 场景描述是德文（最重要！）
+- [ ] 所有按钮和提示是德文
+
+#### 8.3.3 英文检查
+- [ ] 切换到英文（🇬🇧 EN）
+- [ ] 所有文本是英文
+- [ ] 场景描述详细完整
+
+#### 8.3.4 i18n.ts 结构检查
+- [ ] 每种语言的 gm*_01 section 在正确位置
+- [ ] 没有被其他模块覆盖
+- [ ] 所有必需的键都存在：title, difficulty, stages, scenarios
 
 ### 8.4 代码质量检查
 
@@ -656,6 +998,35 @@ function buildStagePool(
 - [ ] 使用 `ChamberLayout` 组件
 - [ ] 使用 `useQuestManager` hook
 - [ ] 所有文本来自 i18n
+- [ ] 所有数学公式使用 `InlineMath` 或 `BlockMath`
+
+### 8.5 浏览器测试检查 ⚠️
+
+**⚠️ 必须在实际浏览器中测试！**
+
+1. **清除缓存**
+   - 按 Ctrl+Shift+R (Windows) 或 Cmd+Shift+R (Mac)
+   - 或在开发者工具中选择"清除缓存并硬刷新"
+
+2. **测试每种语言**
+   - 切换到中文，检查所有文本
+   - 切换到德文，检查所有文本
+   - 切换到英文，检查所有文本
+
+3. **测试所有难度和阶段**
+   - 每个难度都有 5 题
+   - 每个阶段的可视化不同
+   - 所有公式正确渲染
+
+4. **测试可视化**
+   - 所有数据点都在可视范围内
+   - 可以看到完整的图形
+   - 标签清晰可读
+
+5. **测试不同数值范围**
+   - 小数值（如 z = 3 + 4i）
+   - 大数值（如 z^5 = 100 + 200i）
+   - 确保都能正确显示
 
 ---
 
@@ -815,27 +1186,250 @@ function buildStagePool(
 - ❌ 错误：修改后不测试就说完成
 - ✅ 正确：`npm run build` 通过后才算完成
 
-### 12.2 应用到其他模块
+---
 
-**在设计任何新模块时，问自己**：
-1. 难度递进是否体现在概念深度？（不是数量）
-2. 每个阶段的可视化是否不同？（不是相同）
-3. 每个题目是否包含所有数据？（不是模糊）
-4. 显示是否会溢出？（不超过 52 个元素）
-5. 是否测试过 build？（不是猜测）
+## 🎓 十三、GM4.01 经验教训总结
 
-### 12.3 GM4.01 改造计划
+### 13.1 核心教训
 
-**需要检查的问题**：
-1. 是否有 4-5 个问题/难度？
-2. 难度是否基于概念深度？
-3. 可视化是否帮助理解？
-4. 题目是否完整？
-5. 是否有详细的 Basel 场景？
+**1. 翻译必须完整且在正确位置**
+- ❌ 错误：中文版本显示 "BASIC/CORE/ADVANCED/ELITE"
+- ❌ 错误：gm4_01 的内容放在 gc3_02 的位置
+- ❌ 错误：场景描述只有英文，没有中文
+- ✅ 正确：每种语言都有完整的翻译，在正确的位置
+
+**2. 所有数学公式必须使用 LaTeX 渲染**
+- ❌ 错误：显示原始代码 `z^{4}Find z^n`
+- ❌ 错误：使用普通文本 `模长变为 r^n，角度变为 n·θ`
+- ✅ 正确：使用 `<InlineMath math="..." />` 渲染所有公式
+
+**3. 可视化必须自动缩放适配**
+- ❌ 错误：固定 scale，大数值超出可视范围
+- ❌ 错误：用户看不到完整图形，无法缩放
+- ✅ 正确：动态计算边界和 scale，自动适配所有数值范围
+- ✅ 正确：使用 50% 边距（不是 30%）确保标签不超出
+
+**4. 标签绝对不能与线和轴重叠**
+- ❌ 错误：固定偏移（+10, -10）导致标签与向量线重叠
+- ❌ 错误：标签与坐标轴重叠，无法阅读
+- ❌ 错误：乘法运算时向量密集，标签全部重叠
+- ✅ 正确：实现 `getLabelOffset()` 智能定位函数
+- ✅ 正确：标签沿着远离原点方向偏移，避开坐标轴（±15°）
+
+**5. 每个难度必须有 5 题**
+- ❌ 错误：只有 4 题
+- ✅ 正确：每个难度 5 题，总共 60 题（4 难度 × 3 阶段 × 5 题）
+
+**6. 必须在浏览器中实际测试**
+- ❌ 错误：只看代码就说完成，不在浏览器中测试
+- ❌ 错误：不测试每种语言
+- ✅ 正确：清除缓存，测试中文/德文/英文，确认所有文本正确
+
+### 13.2 翻译检查流程
+
+**步骤 1：检查 i18n.ts 结构**
+```bash
+# 确认每种语言的 gm*_01 section 在正确位置
+# EN: Line ~100
+# CN: Line ~5100  
+# DE: Line ~7700
+```
+
+**步骤 2：检查翻译完整性**
+- [ ] title 翻译
+- [ ] difficulty 翻译（basic/core/advanced/elite）
+- [ ] stages 翻译
+- [ ] scenarios 翻译（最重要！）
+- [ ] 所有按钮和提示翻译
+
+**步骤 3：浏览器测试**
+1. 清除缓存（Ctrl+Shift+R）
+2. 切换到中文，检查所有文本
+3. 切换到德文，检查所有文本
+4. 切换到英文，检查所有文本
+
+### 13.3 可视化自动缩放实现
+
+**必须实现的功能**:
+1. 动态计算所有点的边界
+2. 根据边界自动计算 scale
+3. 动态调整网格步长
+4. 添加 50% 边距确保标签不超出（不是 30%！）
+
+**代码模板**:
+```typescript
+// 1. 计算边界
+const bounds = useMemo(() => {
+  const points = [/* 收集所有点 */];
+  const reValues = points.map(p => p.re);
+  const imValues = points.map(p => p.im);
+  
+  const minRe = Math.min(...reValues, 0);
+  const maxRe = Math.max(...reValues, 0);
+  const minIm = Math.min(...imValues, 0);
+  const maxIm = Math.max(...imValues, 0);
+  
+  const padding = 0.5; // ⚠️ 50% 不是 30%！
+  const reRange = Math.max(maxRe - minRe, 2);
+  const imRange = Math.max(maxIm - minIm, 2);
+  
+  return {
+    minRe: minRe - reRange * padding,
+    maxRe: maxRe + reRange * padding,
+    minIm: minIm - imRange * padding,
+    maxIm: maxIm + imRange * padding,
+  };
+}, [points]);
+
+// 2. 计算 scale
+const scale = useMemo(() => {
+  const reRange = bounds.maxRe - bounds.minRe;
+  const imRange = bounds.maxIm - bounds.minIm;
+  const maxRange = Math.max(reRange, imRange, 10);
+  return (canvasSize * 0.8) / maxRange;
+}, [bounds]);
+
+// 3. 动态网格步长
+const gridStep = useMemo(() => {
+  const range = Math.max(bounds.maxRe - bounds.minRe, bounds.maxIm - bounds.minIm);
+  if (range > 50) return 10;
+  if (range > 20) return 5;
+  if (range > 10) return 2;
+  return 1;
+}, [bounds]);
+```
+
+### 13.4 标签智能定位实现
+
+**必须实现的功能**:
+1. 标签沿着远离原点的方向偏移
+2. 避开坐标轴（±15° 范围内）
+3. 边标签垂直于边偏移
+4. 所有标签使用统一的偏移距离
+
+**代码模板**:
+```typescript
+const getLabelOffset = (re: number, im: number, labelType: 'point' | 'side' = 'point') => {
+  if (labelType === 'side') {
+    // 边标签：垂直于线偏移
+    if (Math.abs(im) < 0.5) {
+      return { dx: 0, dy: re > 0 ? 20 : -20 };
+    } else {
+      return { dx: im > 0 ? 25 : -25, dy: 0 };
+    }
+  }
+  
+  // 点标签：沿着远离原点方向偏移
+  const angle = Math.atan2(im, re);
+  const distance = 25;
+  let adjustedAngle = angle;
+  const threshold = Math.PI / 12; // 15°
+  
+  // 避开水平轴
+  if (Math.abs(angle) < threshold) {
+    adjustedAngle = threshold;
+  } else if (Math.abs(angle - Math.PI) < threshold) {
+    adjustedAngle = Math.PI - threshold;
+  } else if (Math.abs(angle + Math.PI) < threshold) {
+    adjustedAngle = -Math.PI + threshold;
+  }
+  
+  // 避开垂直轴
+  if (Math.abs(angle - Math.PI / 2) < threshold) {
+    adjustedAngle = Math.PI / 2 + threshold;
+  } else if (Math.abs(angle + Math.PI / 2) < threshold) {
+    adjustedAngle = -Math.PI / 2 - threshold;
+  }
+  
+  return {
+    dx: Math.cos(adjustedAngle) * distance,
+    dy: -Math.sin(adjustedAngle) * distance,
+  };
+};
+
+// 使用智能定位
+{(() => {
+  const offset = getLabelOffset(quest.z1.re, quest.z1.im);
+  return (
+    <text
+      x={toCanvas(quest.z1.re, quest.z1.im).x + offset.dx}
+      y={toCanvas(quest.z1.re, quest.z1.im).y + offset.dy}
+      fill="#00e5ff"
+      fontSize="14"
+      fontWeight="bold"
+      textAnchor="middle"
+    >
+      z₁
+    </text>
+  );
+})()}
+```
+
+**测试场景**:
+- [ ] 小数值（z = 2 + 3i）
+- [ ] 大数值（z = 50 + 100i）
+- [ ] 负数值（z = -5 - 8i）
+- [ ] 接近坐标轴（z = 10 + 0.5i）
+- [ ] 乘法运算（向量密集）
+
+### 13.4 应用到其他模块
+
+**在修改任何模块时，必须检查**：
+1. 翻译是否完整？（中文/德文/英文）
+2. 翻译是否在正确位置？（不被其他模块覆盖）
+3. 数学公式是否使用 LaTeX？（不是原始文本）
+4. 可视化是否自动缩放？（不超出边界）
+5. 每个难度是否有 5 题？（不是 4 题）
+6. 是否在浏览器中测试过？（不是只看代码）
+
+---
+
+## 🎯 十四、模块修改完整流程
+
+### 14.1 修改前检查
+
+1. [ ] 阅读 CHAMBER_MODULE_STANDARDS.md
+2. [ ] 理解 GM3.01 和 GM4.01 的教训
+3. [ ] 确定要修改的内容
+
+### 14.2 修改过程
+
+1. [ ] 修改代码
+2. [ ] 添加/更新翻译（EN/CN/DE）
+3. [ ] 确保翻译在正确位置
+4. [ ] 使用 LaTeX 渲染所有公式
+5. [ ] 实现可视化自动缩放
+6. [ ] 确保每个难度 5 题
+
+### 14.3 测试验证
+
+1. [ ] `npm run build` 通过
+2. [ ] 清除浏览器缓存
+3. [ ] 测试中文版本（所有文本、公式、可视化）
+4. [ ] 测试德文版本（所有文本、公式、可视化）
+5. [ ] 测试英文版本（所有文本、公式、可视化）
+6. [ ] 测试不同数值范围（小数值、大数值）
+7. [ ] 测试所有难度和阶段
+
+### 14.4 提交前确认
+
+1. [ ] 所有测试通过
+2. [ ] 所有语言正确显示
+3. [ ] 所有公式正确渲染
+4. [ ] 所有图形完整可见
+5. [ ] 创建测试报告文档
+
+### 14.5 提交到 GitHub
+
+```bash
+git add -A
+git commit -m "fix: [模块名] - [修改内容]"
+git push
+```
 
 ---
 
 **文档维护**: 每次模块设计标准更新后更新本文档  
-**最后更新**: 2026-02-13 (完成 GM3.01 经验教训总结)  
-**下次更新**: GM4.01 改造完成后  
+**最后更新**: 2026-02-13 (添加 GM4.01 经验教训)  
+**下次更新**: 下一个模块改造完成后  
 **负责人**: Kiro AI

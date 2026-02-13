@@ -63,10 +63,10 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
     const minIm = Math.min(...imValues, 0);
     const maxIm = Math.max(...imValues, 0);
     
-    // Add padding (20%)
-    const reRange = maxRe - minRe;
-    const imRange = maxIm - minIm;
-    const padding = 0.3;
+    // Add MORE padding (50% instead of 30%) to ensure labels don't go outside
+    const reRange = Math.max(maxRe - minRe, 2);
+    const imRange = Math.max(maxIm - minIm, 2);
+    const padding = 0.5; // Increased from 0.3
     
     return {
       minRe: minRe - reRange * padding,
@@ -121,6 +121,49 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
     x: origin + re * scale,
     y: origin - im * scale, // flip Y axis
   });
+  
+  // Smart label positioning to avoid overlapping with lines and axes
+  const getLabelOffset = (re: number, im: number, labelType: 'point' | 'side' = 'point') => {
+    if (labelType === 'side') {
+      // For side labels (a, b), offset perpendicular to the line
+      if (Math.abs(im) < 0.5) {
+        // Horizontal line, offset vertically
+        return { dx: 0, dy: re > 0 ? 20 : -20 };
+      } else {
+        // Vertical line, offset horizontally
+        return { dx: im > 0 ? 25 : -25, dy: 0 };
+      }
+    }
+    
+    // For point labels, offset diagonally away from origin
+    const angle = Math.atan2(im, re);
+    const distance = 25; // pixels
+    
+    // Adjust angle to avoid axes
+    let adjustedAngle = angle;
+    const threshold = Math.PI / 12; // 15 degrees
+    
+    // Avoid horizontal axis
+    if (Math.abs(angle) < threshold) {
+      adjustedAngle = threshold;
+    } else if (Math.abs(angle - Math.PI) < threshold) {
+      adjustedAngle = Math.PI - threshold;
+    } else if (Math.abs(angle + Math.PI) < threshold) {
+      adjustedAngle = -Math.PI + threshold;
+    }
+    
+    // Avoid vertical axis
+    if (Math.abs(angle - Math.PI / 2) < threshold) {
+      adjustedAngle = Math.PI / 2 + threshold;
+    } else if (Math.abs(angle + Math.PI / 2) < threshold) {
+      adjustedAngle = -Math.PI / 2 - threshold;
+    }
+    
+    return {
+      dx: Math.cos(adjustedAngle) * distance,
+      dy: -Math.sin(adjustedAngle) * distance,
+    };
+  };
   
   // Calculate grid step size based on scale
   const gridStep = useMemo(() => {
@@ -214,34 +257,52 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             fill="#00e5ff"
           />
 
-          {/* Labels */}
-          <text
-            x={toCanvas(quest.z1.re / 2, -0.5).x}
-            y={toCanvas(quest.z1.re / 2, -0.5).y}
-            fill="#ff2d7d"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            a = {quest.z1.re}
-          </text>
-          <text
-            x={toCanvas(quest.z1.re + 0.5, quest.z1.im / 2).x}
-            y={toCanvas(quest.z1.re + 0.5, quest.z1.im / 2).y}
-            fill="#39ff14"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            b = {quest.z1.im}
-          </text>
-          <text
-            x={toCanvas(quest.z1.re / 2 - 0.5, quest.z1.im / 2 + 0.5).x}
-            y={toCanvas(quest.z1.re / 2 - 0.5, quest.z1.im / 2 + 0.5).y}
-            fill="#00e5ff"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            |z|
-          </text>
+          {/* Labels with smart positioning */}
+          {(() => {
+            const aOffset = getLabelOffset(quest.z1.re / 2, 0, 'side');
+            const bOffset = getLabelOffset(quest.z1.re, quest.z1.im / 2, 'side');
+            const zOffset = getLabelOffset(quest.z1.re, quest.z1.im);
+            
+            return (
+              <>
+                {/* a label */}
+                <text
+                  x={toCanvas(quest.z1.re / 2, 0).x + aOffset.dx}
+                  y={toCanvas(quest.z1.re / 2, 0).y + aOffset.dy}
+                  fill="#ff2d7d"
+                  fontSize="14"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                >
+                  a = {quest.z1.re}
+                </text>
+                
+                {/* b label */}
+                <text
+                  x={toCanvas(quest.z1.re, quest.z1.im / 2).x + bOffset.dx}
+                  y={toCanvas(quest.z1.re, quest.z1.im / 2).y + bOffset.dy}
+                  fill="#39ff14"
+                  fontSize="14"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                >
+                  b = {quest.z1.im}
+                </text>
+                
+                {/* |z| label */}
+                <text
+                  x={toCanvas(quest.z1.re / 2, quest.z1.im / 2).x + zOffset.dx}
+                  y={toCanvas(quest.z1.re / 2, quest.z1.im / 2).y + zOffset.dy}
+                  fill="#00e5ff"
+                  fontSize="14"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                >
+                  |z|
+                </text>
+              </>
+            );
+          })()}
         </g>
       )}
 
@@ -264,15 +325,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={5}
             fill="#00e5ff"
           />
-          <text
-            x={toCanvas(quest.z1.re, quest.z1.im).x + 10}
-            y={toCanvas(quest.z1.re, quest.z1.im).y - 10}
-            fill="#00e5ff"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            z₁
-          </text>
+          {(() => {
+            const offset = getLabelOffset(quest.z1.re, quest.z1.im);
+            return (
+              <text
+                x={toCanvas(quest.z1.re, quest.z1.im).x + offset.dx}
+                y={toCanvas(quest.z1.re, quest.z1.im).y + offset.dy}
+                fill="#00e5ff"
+                fontSize="14"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₁
+              </text>
+            );
+          })()}
 
           {/* z2 vector from origin */}
           <line
@@ -290,15 +357,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={5}
             fill="#39ff14"
           />
-          <text
-            x={toCanvas(quest.z2.re, quest.z2.im).x + 10}
-            y={toCanvas(quest.z2.re, quest.z2.im).y + 20}
-            fill="#39ff14"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            z₂
-          </text>
+          {(() => {
+            const offset = getLabelOffset(quest.z2.re, quest.z2.im);
+            return (
+              <text
+                x={toCanvas(quest.z2.re, quest.z2.im).x + offset.dx}
+                y={toCanvas(quest.z2.re, quest.z2.im).y + offset.dy}
+                fill="#39ff14"
+                fontSize="14"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₂
+              </text>
+            );
+          })()}
 
           {/* z2 vector from z1 (parallelogram) */}
           <line
@@ -328,15 +401,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={6}
             fill="#a855f7"
           />
-          <text
-            x={toCanvas(result.re, result.im).x + 10}
-            y={toCanvas(result.re, result.im).y}
-            fill="#a855f7"
-            fontSize="16"
-            fontWeight="bold"
-          >
-            z₁ + z₂
-          </text>
+          {(() => {
+            const offset = getLabelOffset(result.re, result.im);
+            return (
+              <text
+                x={toCanvas(result.re, result.im).x + offset.dx}
+                y={toCanvas(result.re, result.im).y + offset.dy}
+                fill="#a855f7"
+                fontSize="16"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₁ + z₂
+              </text>
+            );
+          })()}
         </g>
       )}
 
@@ -359,12 +438,27 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={5}
             fill="#00e5ff"
           />
+          {(() => {
+            const offset = getLabelOffset(quest.z1.re, quest.z1.im);
+            return (
+              <text
+                x={toCanvas(quest.z1.re, quest.z1.im).x + offset.dx}
+                y={toCanvas(quest.z1.re, quest.z1.im).y + offset.dy}
+                fill="#00e5ff"
+                fontSize="14"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₁
+              </text>
+            );
+          })()}
           
           {/* Arc showing angle of z1 */}
           {(() => {
             const r1 = Math.sqrt(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im);
             const theta1 = Math.atan2(quest.z1.im, quest.z1.re);
-            const arcRadius = 30;
+            const arcRadius = Math.min(r1 * scale * 0.4, 40);
             return (
               <path
                 d={`M ${origin + arcRadius} ${origin} A ${arcRadius} ${arcRadius} 0 ${theta1 > 0 ? 0 : 1} ${theta1 > 0 ? 0 : 1} ${origin + arcRadius * Math.cos(theta1)} ${origin - arcRadius * Math.sin(theta1)}`}
@@ -391,6 +485,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={5}
             fill="#39ff14"
           />
+          {(() => {
+            const offset = getLabelOffset(quest.z2.re, quest.z2.im);
+            return (
+              <text
+                x={toCanvas(quest.z2.re, quest.z2.im).x + offset.dx}
+                y={toCanvas(quest.z2.re, quest.z2.im).y + offset.dy}
+                fill="#39ff14"
+                fontSize="14"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₂
+              </text>
+            );
+          })()}
 
           {/* Result vector */}
           <line
@@ -408,15 +517,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={6}
             fill="#a855f7"
           />
-          <text
-            x={toCanvas(result.re, result.im).x + 10}
-            y={toCanvas(result.re, result.im).y}
-            fill="#a855f7"
-            fontSize="16"
-            fontWeight="bold"
-          >
-            z₁ × z₂
-          </text>
+          {(() => {
+            const offset = getLabelOffset(result.re, result.im);
+            return (
+              <text
+                x={toCanvas(result.re, result.im).x + offset.dx}
+                y={toCanvas(result.re, result.im).y + offset.dy}
+                fill="#a855f7"
+                fontSize="16"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z₁ × z₂
+              </text>
+            );
+          })()}
         </g>
       )}
 
@@ -439,15 +554,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={5}
             fill="#00e5ff"
           />
-          <text
-            x={toCanvas(quest.z1.re, quest.z1.im).x + 10}
-            y={toCanvas(quest.z1.re, quest.z1.im).y - 10}
-            fill="#00e5ff"
-            fontSize="14"
-            fontWeight="bold"
-          >
-            z
-          </text>
+          {(() => {
+            const offset = getLabelOffset(quest.z1.re, quest.z1.im);
+            return (
+              <text
+                x={toCanvas(quest.z1.re, quest.z1.im).x + offset.dx}
+                y={toCanvas(quest.z1.re, quest.z1.im).y + offset.dy}
+                fill="#00e5ff"
+                fontSize="14"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z
+              </text>
+            );
+          })()}
 
           {/* Arc showing rotation */}
           {(() => {
@@ -483,15 +604,21 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
             r={6}
             fill="#a855f7"
           />
-          <text
-            x={toCanvas(result.re, result.im).x + 10}
-            y={toCanvas(result.re, result.im).y + 20}
-            fill="#a855f7"
-            fontSize="16"
-            fontWeight="bold"
-          >
-            z^{quest.power}
-          </text>
+          {(() => {
+            const offset = getLabelOffset(result.re, result.im);
+            return (
+              <text
+                x={toCanvas(result.re, result.im).x + offset.dx}
+                y={toCanvas(result.re, result.im).y + offset.dy}
+                fill="#a855f7"
+                fontSize="16"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                z^{quest.power}
+              </text>
+            );
+          })()}
         </g>
       )}
 
