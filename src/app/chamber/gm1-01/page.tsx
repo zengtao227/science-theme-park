@@ -7,7 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import WaveCanvas from "@/components/chamber/gm1-01/WaveCanvas";
+import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
 
 type Stage = "POWER_RULE" | "PRODUCT_RULE" | "CHAIN_RULE";
 type G101T = typeof translations.EN.gm1_01;
@@ -185,10 +185,24 @@ export default function G101Page() {
       }}
       monitorContent={
         <div className="space-y-4">
-          <WaveCanvas
+          <DerivativeCanvas
             functionType={currentQuest?.functionType || "power"}
             xPosition={currentQuest?.xPosition || 2}
             derivative={parseFloat(inputs.derivative || "0")}
+            translations={{
+              title: t.canvas.title,
+              subtitle: stage === "POWER_RULE" ? t.canvas.subtitle_power : 
+                       stage === "PRODUCT_RULE" ? t.canvas.subtitle_product : 
+                       t.canvas.subtitle_chain,
+              xLabel: t.canvas.x_label,
+              yLabel: t.canvas.y_label,
+              slopeLabel: t.canvas.slope_label,
+              yourSlope: t.canvas.your_slope,
+              correctSlope: t.canvas.correct_slope,
+              status_chamber: t.canvas.status_chamber,
+              status_sim: t.canvas.status_sim,
+              status_mode: t.canvas.status_mode,
+            }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
@@ -208,6 +222,16 @@ export default function G101Page() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
           <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
         </div>
+        
+        {/* Scenario Description */}
+        <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
+          <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
+            {stage === "POWER_RULE" && t.scenarios.power_rule}
+            {stage === "PRODUCT_RULE" && t.scenarios.product_rule}
+            {stage === "CHAIN_RULE" && t.scenarios.chain_rule}
+          </div>
+        </div>
+
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">

@@ -1121,8 +1121,8 @@ export const translations: Record<string, any> = {
             current_point: "Current Point",
             slope_label: "Tangent Slope",
             mission: {
-                title: "Mission: The Flux Sentinel",
-                description: "The city of Basel, birth-place of Calculus legends, is shifting. Calibrate the Flux Sentinel to match the curve's instantaneous velocity. Precision is the only law."
+                title: "DERIVATIVE ROAD SIMULATOR",
+                description: "Master calculus by driving a car on mathematical curves. The derivative tells you the road's slope at each point. Match the car's angle to the road perfectly!"
             },
             spotlight: {
                 title: "Scientist Spotlight",
@@ -1147,8 +1147,8 @@ export const translations: Record<string, any> = {
             hints_title: "Formula Reference",
             monitor_title: "G1.01_VISUAL_MONITOR",
             status: "STATUS: OPERATIONAL",
-            footer_left: "G1.01_CALCULUS // NODE: ZURICH",
-            footer_right: "FLUX_CITY_SECTOR_7",
+            footer_left: "G1.01_CALCULUS // NODE: BASEL",
+            footer_right: "DERIVATIVE_SIMULATOR",
             stages: {
                 intro: "INTRO",
                 differentiation: "DERIVATIVES",
@@ -1159,9 +1159,9 @@ export const translations: Record<string, any> = {
                 intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
                 differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
                 application_prompt_latex: "\\text{Apply calculus to solve problems.}",
-                power_rule_prompt_latex: "\\text{Apply the power rule: }\\frac{d}{dx}x^n = nx^{n-1}.",
-                product_rule_prompt_latex: "\\text{Apply the product rule: }(uv)' = u'v + uv'.",
-                chain_rule_prompt_latex: "\\text{Apply the chain rule: }\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}."
+                power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
+                product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
+                chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
             },
             labels: {
                 secant_slope: "Secant Slope m",
@@ -1171,11 +1171,30 @@ export const translations: Record<string, any> = {
                 hints: "HINTS"
             },
             formulas: {
-                power_rule: "f'(x) = nx^{n-1}",
+                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
-                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
             },
-            integral_preview_title: "COMING SOON: INTEGRALRECHNUNG",
+            scenarios: {
+                power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = ax². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
+                product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
+                chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
+            },
+            canvas: {
+                title: "DERIVATIVE ROAD",
+                subtitle_power: "f(x) = ax²",
+                subtitle_product: "f(x) = x·sin(x)",
+                subtitle_chain: "f(x) = sin(2x)",
+                x_label: "x",
+                y_label: "f(x)",
+                slope_label: "ROAD SLOPE",
+                your_slope: "Your slope",
+                correct_slope: "Correct slope",
+                status_chamber: "CHAMBER",
+                status_sim: "DERIVATIVE_SIM: ACTIVE",
+                status_mode: "MODE"
+            },
+            integral_preview_title: "COMING SOON: INTEGRATION",
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
         },
@@ -3409,8 +3428,8 @@ export const translations: Record<string, any> = {
             current_point: "当前点",
             slope_label: "切线斜率",
             mission: {
-                title: "任务：流变哨兵",
-                description: "巴塞尔，微积分传奇的诞生之地，正在发生偏移。校准流变哨兵以匹配曲线的瞬时变化率。在这座城市，数学精确性就是唯一的法律。"
+                title: "导数道路模拟器",
+                description: "通过在数学曲线上驾驶汽车来掌握微积分。导数告诉你道路在每个点的斜率。让汽车的角度与道路完美匹配！"
             },
             spotlight: {
                 title: "科学家聚光灯",
@@ -3435,8 +3454,8 @@ export const translations: Record<string, any> = {
             hints_title: "公式参考",
             monitor_title: "G1.01_视觉监控",
             status: "状态: 运行中",
-            footer_left: "G1.01_微积分 // 节点: 苏黎世",
-            footer_right: "流量之城_第七区",
+            footer_left: "G1.01_微积分 // 节点: 巴塞尔",
+            footer_right: "导数模拟器",
             stages: {
                 intro: "微积分基础",
                 differentiation: "微分规则",
@@ -3447,9 +3466,9 @@ export const translations: Record<string, any> = {
                 intro_prompt_latex: "\\text{计算 }x^n\\text{ 的导数。}",
                 differentiation_prompt_latex: "\\text{应用微分规则计算。}",
                 application_prompt_latex: "\\text{应用微积分解决问题。}",
-                power_rule_prompt_latex: "\\text{应用幂规则：}\\frac{d}{dx}x^n = nx^{n-1}。",
-                product_rule_prompt_latex: "\\text{应用乘积规则：}(uv)' = u'v + uv'。",
-                chain_rule_prompt_latex: "\\text{应用链式法则：}\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}。"
+                power_rule_prompt_latex: "\\text{在给定点计算 }f'(x)\\text{。}",
+                product_rule_prompt_latex: "\\text{使用乘积规则计算 }f'(x)\\text{。}",
+                chain_rule_prompt_latex: "\\text{使用链式法则计算 }f'(x)\\text{。}"
             },
             labels: {
                 secant_slope: "割线斜率 m",
@@ -3459,9 +3478,28 @@ export const translations: Record<string, any> = {
                 hints: "提示"
             },
             formulas: {
-                power_rule: "f'(x) = nx^{n-1}",
+                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
-                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
+            },
+            scenarios: {
+                power_rule: "🚗 场景：汽车在山坡上加速 — 你驾驶一辆特斯拉爬上一座弯曲的山坡。道路高度遵循 h(x) = ax²。导数 h'(x) 告诉你道路在每个点的陡峭程度。如果你以错误的角度倾斜汽车，它会刮到地面或翻倒！计算正确的斜率（导数），使汽车底盘与路面完美对齐。这正是自动驾驶汽车实时计算地形角度的方式。",
+                product_rule: "🌊 场景：冲浪板在波浪上 — 一名冲浪者在由 h(x) = x·sin(x) 描述的波浪上冲浪。波浪高度取决于位置 (x) 和正弦波模式。为了保持平衡，冲浪者需要知道波浪在每个点的斜率。使用乘积规则：如果 f(x) = u(x)·v(x)，则 f'(x) = u'·v + u·v'。这告诉你波浪上升或下降的速度，帮助冲浪者调整姿势。",
+                chain_rule: "⚙️ 场景：自行车齿轮系统 — 你正在骑自行车爬山。踏板旋转产生链条运动：踏板角度 → 链条速度 → 车轮旋转。如果链条绕齿轮的速度快两倍（因子为 2），则 f(x) = sin(2x)。链式法则告诉你：如果外部函数改变，乘以内部函数的速率。这就是自行车码表如何从踏板旋转计算你的实际速度！"
+            },
+            canvas: {
+                title: "导数道路",
+                subtitle_power: "f(x) = ax²",
+                subtitle_product: "f(x) = x·sin(x)",
+                subtitle_chain: "f(x) = sin(2x)",
+                x_label: "x",
+                y_label: "f(x)",
+                slope_label: "道路斜率",
+                your_slope: "你的斜率",
+                correct_slope: "正确斜率",
+                status_chamber: "实验室",
+                status_sim: "导数模拟: 激活",
+                status_mode: "模式"
             },
             integral_preview_title: "即将解锁：积分学",
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
@@ -6025,8 +6063,8 @@ export const translations: Record<string, any> = {
             current_point: "Aktueller Punkt",
             slope_label: "Tangentensteigung",
             mission: {
-                title: "Mission: Der Flux-Wächter",
-                description: "Basel, die Geburtsstadt der Analysis-Legenden, gerät aus dem Gleichgewicht. Kalibrieren Sie den Flux-Wächter, um die Momentangeschwindigkeit der Kurve zu finden. Präzision ist das einzige Gesetz."
+                title: "ABLEITUNGS-STRASSEN-SIMULATOR",
+                description: "Meistere die Infinitesimalrechnung, indem du ein Auto auf mathematischen Kurven fährst. Die Ableitung sagt dir die Steigung der Straße an jedem Punkt. Passe den Winkel des Autos perfekt an die Straße an!"
             },
             spotlight: {
                 title: "Scientist Spotlight",
@@ -6051,8 +6089,8 @@ export const translations: Record<string, any> = {
             hints_title: "Formelreferenz",
             monitor_title: "G1.01_MONITOR",
             status: "STATUS: BETRIEBSBEREIT",
-            footer_left: "G1.01_INFINITESIMAL // KNOTEN: ZÜRICH",
-            footer_right: "FLUX_CITY_SEKTOR_7",
+            footer_left: "G1.01_INFINITESIMAL // KNOTEN: BASEL",
+            footer_right: "ABLEITUNGS_SIMULATOR",
             stages: {
                 intro: "INTRO",
                 differentiation: "ABLEITUNGEN",
@@ -6063,9 +6101,9 @@ export const translations: Record<string, any> = {
                 intro_prompt_latex: "\\text{Berechne die Ableitung von }x^n.",
                 differentiation_prompt_latex: "\\text{Wende die Ableitungsregeln an.}",
                 application_prompt_latex: "\\text{Wende Differentialrechnung an, um Probleme zu lösen.}",
-                power_rule_prompt_latex: "\\text{Wende die Potenzregel an: }\\frac{d}{dx}x^n = nx^{n-1}.",
-                product_rule_prompt_latex: "\\text{Wende die Produktregel an: }(uv)' = u'v + uv'.",
-                chain_rule_prompt_latex: "\\text{Wende die Kettenregel an: }\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}."
+                power_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ am gegebenen Punkt.}",
+                product_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Produktregel.}",
+                chain_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Kettenregel.}"
             },
             labels: {
                 secant_slope: "Sekantensteigung m",
@@ -6075,9 +6113,28 @@ export const translations: Record<string, any> = {
                 hints: "HINWEISE"
             },
             formulas: {
-                power_rule: "f'(x) = nx^{n-1}",
+                power_rule: "f'(x) = n\\cdot a\\cdot x^{n-1}",
                 product_rule: "(uv)' = u'v + uv'",
-                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\frac{du}{dx}"
+                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
+            },
+            scenarios: {
+                power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = ax². Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
+                product_rule: "🌊 SZENARIO: Surfbrett auf einer Welle — Ein Surfer reitet auf einer Welle, die durch h(x) = x·sin(x) beschrieben wird. Die Wellenhöhe hängt sowohl von der Position (x) als auch vom Sinuswellenmuster ab. Um das Gleichgewicht zu halten, muss der Surfer die Steigung der Welle an jedem Punkt kennen. Verwende die Produktregel: Wenn f(x) = u(x)·v(x), dann f'(x) = u'·v + u·v'. Dies sagt dir, wie schnell die Welle steigt oder fällt und hilft dem Surfer, seine Haltung anzupassen.",
+                chain_rule: "⚙️ SZENARIO: Fahrrad-Getriebesystem — Du fährst mit dem Fahrrad einen Berg hinauf. Die Pedaldrehung erzeugt eine Kettenbewegung: Pedalwinkel → Kettengeschwindigkeit → Radumdrehung. Wenn sich die Kette doppelt so schnell um das Zahnrad wickelt (Faktor 2), dann f(x) = sin(2x). Die Kettenregel sagt dir: Wenn sich die äußere Funktion ändert, multipliziere mit der Rate der inneren Funktion. So berechnen Fahrradcomputer deine tatsächliche Geschwindigkeit aus den Pedalumdrehungen!"
+            },
+            canvas: {
+                title: "ABLEITUNGS-STRASSE",
+                subtitle_power: "f(x) = ax²",
+                subtitle_product: "f(x) = x·sin(x)",
+                subtitle_chain: "f(x) = sin(2x)",
+                x_label: "x",
+                y_label: "f(x)",
+                slope_label: "STRASSENSTEIGUNG",
+                your_slope: "Deine Steigung",
+                correct_slope: "Korrekte Steigung",
+                status_chamber: "KAMMER",
+                status_sim: "ABLEITUNGS_SIM: AKTIV",
+                status_mode: "MODUS"
             },
             integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
