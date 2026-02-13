@@ -160,7 +160,7 @@ export default function DerivativeVisualization({
   const func = useMemo(() => parseFunction(functionLatex), [functionLatex]);
   
   return (
-    <div className="relative w-full h-[500px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="relative w-full h-[700px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [0, 0, 12], fov: 50 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         

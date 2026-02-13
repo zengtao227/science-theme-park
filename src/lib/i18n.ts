@@ -1223,6 +1223,12 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
             mission: {
                 title: "ADVANCED DERIVATIVE CHALLENGES",
                 description: "Master complex derivatives by combining multiple rules. Apply calculus to real-world problems."
@@ -1236,20 +1242,29 @@ export const translations: Record<string, any> = {
             scenarios: {
                 composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t² + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
                 composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t² + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
-                modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t³ - 3t² + 5t meters. Find the velocity v(t) = s'(t) and acceleration a(t) = v'(t) at t=3 seconds.",
-                optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from 100cm² cardboard. The box has square base (side x) and height h. Volume V = x²h. With constraint x² + 4xh = 100, find x that maximizes volume."
+                composite_3: "🌊 SCENARIO: Wave Interference — Two ocean waves combine: h(x) = (x³ - 2x)·cos(x). At x=1, find the rate of height change h'(1) to predict wave behavior. Use product rule with trigonometric functions!",
+                modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t³ - 3t² + 5t meters. Find the velocity v(t) = s'(t) at t=3 seconds to check if it's within speed limits.",
+                modeling_2: "🎈 SCENARIO: Balloon Launch — A weather balloon rises with height h(t) = -5t² + 20t + 2 meters. At t=2 seconds, calculate the velocity v(t) = h'(t) to ensure safe ascent rate.",
+                optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from rectangular cardboard. The area is A(x) = x(10-x). Find the value of x that maximizes the area for optimal material usage.",
+                optimization_2: "💰 SCENARIO: Profit Maximization — A Basel bakery's daily profit is P(x) = -2x² + 12x - 10 (in hundreds of CHF), where x is production hours. Find x that maximizes profit.",
+                analysis_1: "📊 SCENARIO: Market Analysis — A stock price follows f(x) = x³ - 3x² + 2. Find all critical points (where f'(x) = 0) to identify potential buy/sell moments.",
+                analysis_2: "🚀 SCENARIO: Rocket Trajectory — A rocket's height is f(x) = 2x³ - 6x + 1. At x=1, find the second derivative f''(1) to determine if the rocket is accelerating or decelerating."
             },
             questions: {
                 find_derivative: "Calculate the derivative at the given point",
                 find_velocity: "Calculate velocity v(t) = s'(t)",
                 find_acceleration: "Calculate acceleration a(t) = v'(t)",
-                find_maximum: "Find the value that maximizes the function"
+                find_maximum: "Find the value that maximizes the function",
+                find_critical_point: "Find the critical point (where derivative = 0)",
+                find_critical_points: "Find all critical points (where f'(x) = 0)"
             },
             hints: {
                 use_product_rule: "Use product rule: (uv)' = u'v + uv'. First find u' and v' separately.",
                 use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v². Remember to square the denominator!",
                 use_chain_rule: "Use chain rule: (f(g(x)))' = f'(g(x))·g'(x). Work from outside to inside.",
-                take_second_derivative: "First find f'(x), then differentiate again to get f''(x)."
+                take_first_derivative: "Take the first derivative: if s(t) is position, then v(t) = s'(t) is velocity.",
+                take_second_derivative: "First find f'(x), then differentiate again to get f''(x).",
+                set_derivative_zero: "Set f'(x) = 0 and solve for x. This gives critical points where function may have max/min."
             },
             function_label: "FUNCTION",
             question_label: "CHALLENGE",
@@ -3596,6 +3611,12 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
             mission: {
                 title: "高级导数挑战",
                 description: "通过组合多个规则掌握复杂导数。将微积分应用于实际问题。"
@@ -3609,20 +3630,29 @@ export const translations: Record<string, any> = {
             scenarios: {
                 composite_1: "🎢 场景：过山车设计 — 一位工程师设计过山车路段，高度遵循 h(t) = (2t² + 3t)·sin(t)。速度是导数 h'(t)。在 t=2 秒时，计算速度以确保乘客安全。这需要同时使用乘积规则和幂规则！",
                 composite_2: "📡 场景：信号处理 — 无线电信号的振幅为 A(t) = (t² + 1)/sin(t)。振幅变化率是 A'(t)。在 t=1 秒时，计算此速率以调整接收器。这需要商规则结合幂规则！",
-                modeling_1: "🚗 场景：汽车加速 — 一辆特斯拉从静止加速。其位置为 s(t) = 2t³ - 3t² + 5t 米。求 t=3 秒时的速度 v(t) = s'(t) 和加速度 a(t) = v'(t)。",
-                optimization_1: "📦 场景：盒子设计 — 一家公司用 100cm² 纸板制作盒子。盒子有正方形底（边长 x）和高度 h。体积 V = x²h。在约束 x² + 4xh = 100 下，找到使体积最大的 x。"
+                composite_3: "🌊 场景：波浪干涉 — 两个海浪叠加：h(x) = (x³ - 2x)·cos(x)。在 x=1 处，求高度变化率 h'(1) 以预测波浪行为。使用乘积规则结合三角函数！",
+                modeling_1: "🚗 场景：汽车加速 — 一辆特斯拉从静止加速。其位置为 s(t) = 2t³ - 3t² + 5t 米。求 t=3 秒时的速度 v(t) = s'(t)，检查是否在限速范围内。",
+                modeling_2: "🎈 场景：气球升空 — 气象气球上升，高度为 h(t) = -5t² + 20t + 2 米。在 t=2 秒时，计算速度 v(t) = h'(t) 以确保安全上升速率。",
+                optimization_1: "📦 场景：盒子设计 — 一家公司用矩形纸板制作盒子。面积为 A(x) = x(10-x)。找到使面积最大的 x 值，以优化材料使用。",
+                optimization_2: "💰 场景：利润最大化 — 巴塞尔一家面包店的日利润为 P(x) = -2x² + 12x - 10（单位：百瑞士法郎），其中 x 是生产小时数。找到使利润最大的 x。",
+                analysis_1: "📊 场景：市场分析 — 股票价格遵循 f(x) = x³ - 3x² + 2。找到所有临界点（f'(x) = 0），以识别潜在的买入/卖出时机。",
+                analysis_2: "🚀 场景：火箭轨迹 — 火箭高度为 f(x) = 2x³ - 6x + 1。在 x=1 处，求二阶导数 f''(1) 以确定火箭是加速还是减速。"
             },
             questions: {
                 find_derivative: "计算给定点的导数",
                 find_velocity: "计算速度 v(t) = s'(t)",
                 find_acceleration: "计算加速度 a(t) = v'(t)",
-                find_maximum: "找到使函数最大的值"
+                find_maximum: "找到使函数最大的值",
+                find_critical_point: "找到临界点（导数 = 0）",
+                find_critical_points: "找到所有临界点（f'(x) = 0）"
             },
             hints: {
                 use_product_rule: "使用乘积规则：(uv)' = u'v + uv'。先分别求 u' 和 v'。",
                 use_quotient_rule: "使用商规则：(u/v)' = (u'v - uv')/v²。记住分母要平方！",
                 use_chain_rule: "使用链式法则：(f(g(x)))' = f'(g(x))·g'(x)。从外到内计算。",
-                take_second_derivative: "先求 f'(x)，然后再次求导得到 f''(x)。"
+                take_first_derivative: "求一阶导数：如果 s(t) 是位置，则 v(t) = s'(t) 是速度。",
+                take_second_derivative: "先求 f'(x)，然后再次求导得到 f''(x)。",
+                set_derivative_zero: "令 f'(x) = 0 并求解 x。这给出函数可能有最大/最小值的临界点。"
             },
             function_label: "函数",
             question_label: "挑战",
@@ -6297,6 +6327,12 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
             mission: {
                 title: "FORTGESCHRITTENE ABLEITUNGS-HERAUSFORDERUNGEN",
                 description: "Meistere komplexe Ableitungen durch Kombination mehrerer Regeln. Wende Analysis auf reale Probleme an."
@@ -6310,20 +6346,29 @@ export const translations: Record<string, any> = {
             scenarios: {
                 composite_1: "🎢 SZENARIO: Achterbahn-Design — Ein Ingenieur entwirft einen Achterbahn-Abschnitt, bei dem die Höhe h(t) = (2t² + 3t)·sin(t) folgt. Die Geschwindigkeit ist die Ableitung h'(t). Berechne bei t=2 Sekunden die Geschwindigkeit, um die Sicherheit der Passagiere zu gewährleisten. Dies erfordert sowohl die Produktregel ALS AUCH die Potenzregel!",
                 composite_2: "📡 SZENARIO: Signalverarbeitung — Die Amplitude eines Funksignals ist A(t) = (t² + 1)/sin(t). Die Änderungsrate der Amplitude ist A'(t). Berechne bei t=1 Sekunde diese Rate, um den Empfänger anzupassen. Dies erfordert die Quotientenregel kombiniert mit der Potenzregel!",
-                modeling_1: "🚗 SZENARIO: Auto-Beschleunigung — Ein Tesla beschleunigt aus dem Stand. Seine Position ist s(t) = 2t³ - 3t² + 5t Meter. Finde die Geschwindigkeit v(t) = s'(t) und Beschleunigung a(t) = v'(t) bei t=3 Sekunden.",
-                optimization_1: "📦 SZENARIO: Karton-Design — Ein Unternehmen stellt Kartons aus 100cm² Pappe her. Der Karton hat eine quadratische Basis (Seite x) und Höhe h. Volumen V = x²h. Mit der Bedingung x² + 4xh = 100, finde x, das das Volumen maximiert."
+                composite_3: "🌊 SZENARIO: Welleninterferenz — Zwei Meereswellen überlagern sich: h(x) = (x³ - 2x)·cos(x). Bei x=1 finde die Änderungsrate der Höhe h'(1), um das Wellenverhalten vorherzusagen. Verwende die Produktregel mit trigonometrischen Funktionen!",
+                modeling_1: "🚗 SZENARIO: Auto-Beschleunigung — Ein Tesla beschleunigt aus dem Stand. Seine Position ist s(t) = 2t³ - 3t² + 5t Meter. Finde die Geschwindigkeit v(t) = s'(t) bei t=3 Sekunden, um zu prüfen, ob sie innerhalb der Geschwindigkeitsbegrenzung liegt.",
+                modeling_2: "🎈 SZENARIO: Ballon-Start — Ein Wetterballon steigt mit der Höhe h(t) = -5t² + 20t + 2 Meter. Bei t=2 Sekunden berechne die Geschwindigkeit v(t) = h'(t), um eine sichere Aufstiegsrate zu gewährleisten.",
+                optimization_1: "📦 SZENARIO: Karton-Design — Ein Unternehmen stellt Kartons aus rechteckiger Pappe her. Die Fläche ist A(x) = x(10-x). Finde den Wert von x, der die Fläche maximiert, um die Materialnutzung zu optimieren.",
+                optimization_2: "💰 SZENARIO: Gewinnmaximierung — Der Tagesgewinn einer Basler Bäckerei ist P(x) = -2x² + 12x - 10 (in Hundert CHF), wobei x die Produktionsstunden sind. Finde x, das den Gewinn maximiert.",
+                analysis_1: "📊 SZENARIO: Marktanalyse — Ein Aktienkurs folgt f(x) = x³ - 3x² + 2. Finde alle kritischen Punkte (wo f'(x) = 0), um potenzielle Kauf-/Verkaufsmomente zu identifizieren.",
+                analysis_2: "🚀 SZENARIO: Raketen-Flugbahn — Die Höhe einer Rakete ist f(x) = 2x³ - 6x + 1. Bei x=1 finde die zweite Ableitung f''(1), um zu bestimmen, ob die Rakete beschleunigt oder abbremst."
             },
             questions: {
                 find_derivative: "Berechne die Ableitung am gegebenen Punkt",
                 find_velocity: "Berechne Geschwindigkeit v(t) = s'(t)",
                 find_acceleration: "Berechne Beschleunigung a(t) = v'(t)",
-                find_maximum: "Finde den Wert, der die Funktion maximiert"
+                find_maximum: "Finde den Wert, der die Funktion maximiert",
+                find_critical_point: "Finde den kritischen Punkt (wo Ableitung = 0)",
+                find_critical_points: "Finde alle kritischen Punkte (wo f'(x) = 0)"
             },
             hints: {
                 use_product_rule: "Verwende Produktregel: (uv)' = u'v + uv'. Finde zuerst u' und v' separat.",
                 use_quotient_rule: "Verwende Quotientenregel: (u/v)' = (u'v - uv')/v². Denke daran, den Nenner zu quadrieren!",
                 use_chain_rule: "Verwende Kettenregel: (f(g(x)))' = f'(g(x))·g'(x). Arbeite von außen nach innen.",
-                take_second_derivative: "Finde zuerst f'(x), dann leite erneut ab, um f''(x) zu erhalten."
+                take_first_derivative: "Bilde die erste Ableitung: Wenn s(t) die Position ist, dann ist v(t) = s'(t) die Geschwindigkeit.",
+                take_second_derivative: "Finde zuerst f'(x), dann leite erneut ab, um f''(x) zu erhalten.",
+                set_derivative_zero: "Setze f'(x) = 0 und löse nach x auf. Dies ergibt kritische Punkte, wo die Funktion Max/Min haben kann."
             },
             function_label: "FUNKTION",
             question_label: "HERAUSFORDERUNG",
