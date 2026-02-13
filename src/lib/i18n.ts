@@ -890,6 +890,20 @@ export const translations: Record<string, any> = {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
                 logarithm: "t = d \\cdot \\log_2(N/N_0)",
                 applications: "N(t) = N_0 \\cdot e^{kt}"
+            },
+            scenarios: {
+                exp_bac: "SCENARIO: Bacteria in a petri dish double every set period.",
+                exp_social: "SCENARIO: A social media trend doubles its reach rapidly.",
+                exp_virus: "SCENARIO: An infection spreads through a population exponentially.",
+                exp_moore: "SCENARIO: Moore's Law predicts computing power doubles roughly every 2 years.",
+                log_invest: "SCENARIO: Calculating time required to double an investment.",
+                log_sound: "SCENARIO: Decibels are a logarithmic measure of sound intensity.",
+                log_ph: "SCENARIO: pH scale measures acidity logarithmically.",
+                log_security: "SCENARIO: Computational difficulty of cracking passwords increases logarithmically.",
+                app_med: "SCENARIO: Drug concentration in the body decays by half-life.",
+                app_bank: "SCENARIO: Savings grow via compound interest over time.",
+                app_pop: "SCENARIO: City population growing at a constant percentage rate.",
+                app_carbon: "SCENARIO: Carbon-14 dating estimates the age of ancient organic materials."
             }
         },
         sm2_03: {
@@ -3136,6 +3150,20 @@ export const translations: Record<string, any> = {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
                 logarithm: "t = d \\cdot \\log_2(N/N_0)",
                 applications: "N(t) = N_0 \\cdot e^{kt}"
+            },
+            scenarios: {
+                exp_bac: "场景：培养皿中的细菌每隔一定周期翻倍。",
+                exp_social: "场景：社交媒体趋势的传播范围迅速翻倍。",
+                exp_virus: "场景：传染病在人群中呈指数级传播。",
+                exp_moore: "场景：摩尔定律预测计算能力约每两年翻一番。",
+                log_invest: "场景：计算投资翻倍所需的时间。",
+                log_sound: "场景：分贝是声音强度的对数度量。",
+                log_ph: "场景：pH 值是对数刻度的酸碱度。",
+                log_security: "SCENARIO: 破解密码的计算难度呈对数增长。",
+                app_med: "场景：体内的药物浓度按半衰期衰减。",
+                app_bank: "场景：储蓄通过复利随时间增长。",
+                app_pop: "场景：城市人口按恒定百分比增长。",
+                app_carbon: "场景：碳-14 定年法估算古生物遗骸的年代。"
             }
         },
         sm2_03: {
@@ -5710,6 +5738,20 @@ export const translations: Record<string, any> = {
                 exponential: "N(t) = N_0 \\cdot 2^{t/d}",
                 logarithm: "t = d \\cdot \\log_2(N/N_0)",
                 applications: "N(t) = N_0 \\cdot e^{kt}"
+            },
+            scenarios: {
+                exp_bac: "SZENARIO: Bakterien in einer Petrischale verdoppeln sich in festen Perioden.",
+                exp_social: "SZENARIO: Ein Social-Media-Trend verdoppelt seine Reichweite rasant.",
+                exp_virus: "SZENARIO: Eine Infektion breitet sich exponentiell in der Bevölkerung aus.",
+                exp_moore: "SZENARIO: Moores Gesetz besagt, dass sich die Rechenleistung etwa alle 2 Jahre verdoppelt.",
+                log_invest: "SZENARIO: Berechnung der Zeit zur Verdoppelung einer Investition.",
+                log_sound: "SZENARIO: Dezibel sind ein logarithmisches Maß für die Schallintensität.",
+                log_ph: "SZENARIO: Der pH-Wert misst den Säuregrad logarithmisch.",
+                log_security: "SZENARIO: Die Rechenschwierigkeit beim Knacken von Passwörtern steigt logarithmisch.",
+                app_med: "SZENARIO: Die Wirkstoffkonzentration im Körper nimmt durch Halbwertszeit ab.",
+                app_bank: "SZENARIO: Ersparnisse wachsen durch Zinseszins im Laufe der Zeit.",
+                app_pop: "SZENARIO: Die Stadtbevölkerung wächst mit konstanter prozentualer Rate.",
+                app_carbon: "SZENARIO: Die C-14-Datierung schätzt das Alter antiker organischer Materialien."
             }
         },
         sm2_03: {

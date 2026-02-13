@@ -20,6 +20,7 @@ interface S303Quest extends Quest {
   time?: number;
   finalCount?: number;
   chartMode?: "exponential" | "logarithm" | "halflife" | "compound";
+  scenarioKey?: keyof S303T["scenarios"];
 }
 
 // Helper to create quests concisely
