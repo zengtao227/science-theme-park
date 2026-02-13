@@ -332,11 +332,11 @@ export const translations: Record<string, any> = {
                     resonance_hint: "Resonance occurs at specific E/V₀ ratios"
                 }
             },
-            s3_02_title: "S3.02 // TRIGONOMETRY TOWER",
+            s3_02_title: "SM3.02 // TRIGONOMETRY TOWER",
             s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
-            s2_07_title: "S2.07 // COORDINATE GEOMETRY",
+            s2_07_title: "SM2.07 // COORDINATE GEOMETRY",
             s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
-            s3_04_title: "S3.04 // LOGARITHMIC SCALES",
+            s3_04_title: "SM3.04 // LOGARITHMIC SCALES",
             s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
             sc1_01_title: "SC1.01 // MYSTERY LAB",
             sc1_01_subtitle: "Identify mysterious white powders through chemical tests.",
@@ -647,7 +647,7 @@ export const translations: Record<string, any> = {
         },
         sm2_02: {
             back: "Back to Nexus",
-            title: "S2.02 // PYTHAGORAS & ROOTS",
+            title: "SM2.02 // PYTHAGORAS & ROOTS",
             tabs: {
                 pythagoras: "PYTHAGORAS",
                 sqrt: "SQUARE ROOT",
@@ -669,8 +669,8 @@ export const translations: Record<string, any> = {
             ready: "Ready",
             yes: "YES",
             no: "NO",
-            monitor_title: "S2.02_VISUAL_MONITOR",
-            footer_left: "S2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
+            monitor_title: "SM2.02_VISUAL_MONITOR",
+            footer_left: "SM2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
             input_radical: "Answer as k√m",
             input_k: "k",
             input_m: "m",
@@ -712,7 +712,7 @@ export const translations: Record<string, any> = {
         },
         sm3_01: {
             back: "Back to Nexus",
-            title: "S3.01 // QUADRATIC EQUATIONS",
+            title: "SM3.01 // QUADRATIC EQUATIONS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -726,8 +726,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S3.01_MONITOR",
-            footer_left: "S3.01_QUADRATICS // NODE: ZURICH",
+            monitor_title: "SM3.01_MONITOR",
+            footer_left: "SM3.01_QUADRATICS // NODE: ZURICH",
             stages: {
                 terms: "TERMS",
                 factorize: "FACTORIZE",
@@ -776,7 +776,7 @@ export const translations: Record<string, any> = {
         },
         sm3_02: {
             back: "Back to Nexus",
-            title: "S3.02 // TRIG CIRCLE",
+            title: "SM3.02 // TRIG CIRCLE",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -790,8 +790,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S3.02_TRIG_MONITOR",
-            footer_left: "S3.02_TRIG_CIRCLE // NODE: BASEL",
+            monitor_title: "SM3.02_TRIG_MONITOR",
+            footer_left: "SM3.02_TRIG_CIRCLE // NODE: BASEL",
             labels: {
                 angle: "ANGLE (θ)",
                 values: "TRIGONOMETRIC VALUES",
@@ -824,7 +824,7 @@ export const translations: Record<string, any> = {
         },
         sm3_03: {
             back: "Back to Nexus",
-            title: "S3.03 // GROWTH & LOGS",
+            title: "SM3.03 // GROWTH & LOGS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -838,8 +838,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S3.03_GROWTH_MONITOR",
-            footer_left: "S3.03_EXPONENTIAL // NODE: BASEL",
+            monitor_title: "SM3.03_GROWTH_MONITOR",
+            footer_left: "SM3.03_EXPONENTIAL // NODE: BASEL",
             labels: {
                 input: "INPUT",
                 hints: "HINTS",
@@ -908,7 +908,7 @@ export const translations: Record<string, any> = {
         },
         sm2_03: {
             back: "Back to Nexus",
-            title: "S2.03 // LINE NAVIGATOR",
+            title: "SM2.03 // LINE NAVIGATOR",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -919,8 +919,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.03_LASER_MONITOR",
-            footer_left: "S2.03_LINE_NAVIGATOR // NODE: BASEL",
+            monitor_title: "SM2.03_LASER_MONITOR",
+            footer_left: "SM2.03_LINE_NAVIGATOR // NODE: BASEL",
             labels: {
                 input: "INPUT",
                 hints: "HINTS",
@@ -962,7 +962,7 @@ export const translations: Record<string, any> = {
         },
         sm2_04: {
             back: "Back to Nexus",
-            title: "S2.04 // SIMILARITY & SCALING",
+            title: "SM2.04 // SIMILARITY & SCALING",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -976,8 +976,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.04_MONITOR",
-            footer_left: "S2.04_SIMILARITY // NODE: BASEL",
+            monitor_title: "SM2.04_MONITOR",
+            footer_left: "SM2.04_SIMILARITY // NODE: BASEL",
             stages: {
                 scale_factor: "SCALE",
                 similar_triangles: "SIMILAR",
@@ -1014,7 +1014,7 @@ export const translations: Record<string, any> = {
         sm2_01: {
             back: "← Back to Nexus",
             back_short: "Back to Nexus",
-            title: "S2.01 // BINOMIAL FACTORY",
+            title: "SM2.01 // BINOMIAL FACTORY",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1100,14 +1100,14 @@ export const translations: Record<string, any> = {
                 status_operational: "STATUS: OPERATIONAL",
                 fps: "FPS",
                 latency: "LATENCY",
-                footer_left: "S2.01_ALGEBRA_SYNC // NODE: ZURICH",
+                footer_left: "SM2.01_ALGEBRA_SYNC // NODE: ZURICH",
                 verified: "Verified",
                 simulating: "Simulating",
             }
         },
         gm1_01: {
             back: "Back to Nexus",
-            title: "G1.01 // CALCULUS INTRO",
+            title: "GM1.01 // CALCULUS INTRO",
             tabs: {
                 explore: "EXPLORE",
                 slope: "SLOPE",
@@ -1281,7 +1281,7 @@ export const translations: Record<string, any> = {
         },
         gm2_01: {
             back: "Back to Nexus",
-            title: "G2.01 // VECTOR PILOT 3D",
+            title: "GM2.01 // VECTOR PILOT 3D",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1320,7 +1320,7 @@ export const translations: Record<string, any> = {
         },
         gm3_01: {
             back: "Back to Nexus",
-            title: "G3.01 // PROBABILITY VAULT",
+            title: "GM3.01 // PROBABILITY VAULT",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1476,7 +1476,7 @@ export const translations: Record<string, any> = {
         },
         sm2_06: {
             back: "Back to Nexus",
-            title: "S2.06 // LINEAR SYSTEMS",
+            title: "SM2.06 // LINEAR SYSTEMS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1490,8 +1490,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.06_MONITOR",
-            footer_left: "S2.06_LINEAR_SYSTEMS // NODE: BASEL",
+            monitor_title: "SM2.06_MONITOR",
+            footer_left: "SM2.06_LINEAR_SYSTEMS // NODE: BASEL",
             stages: {
                 substitution: "SUBSTITUTION",
                 elimination: "ELIMINATION",
@@ -1521,7 +1521,7 @@ export const translations: Record<string, any> = {
         },
         sm2_05: {
             back: "Back to Nexus",
-            title: "S2.05 // POWERS & ROOTS",
+            title: "SM2.05 // POWERS & ROOTS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1535,8 +1535,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.05_MONITOR",
-            footer_left: "S2.05_POWERS_ROOTS // NODE: BASEL",
+            monitor_title: "SM2.05_MONITOR",
+            footer_left: "SM2.05_POWERS_ROOTS // NODE: BASEL",
             stages: {
                 rules: "LAWS",
                 negative: "NEGATIVE",
@@ -1969,7 +1969,7 @@ export const translations: Record<string, any> = {
         },
         sm2_07: {
             back: "Back to Nexus",
-            title: "S2.07 // COORDINATE GEOMETRY",
+            title: "SM2.07 // COORDINATE GEOMETRY",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -1980,8 +1980,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S2.07_COORDINATE_MONITOR",
-            footer_left: "S2.07_COORD_GEOM // NODE: ZURICH",
+            monitor_title: "SM2.07_COORDINATE_MONITOR",
+            footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
             labels: {
                 input: "INPUT",
                 hints: "HINTS",
@@ -2052,7 +2052,7 @@ export const translations: Record<string, any> = {
         },
         sm3_04: {
             back: "Back to Nexus",
-            title: "S3.04 // LOGARITHMIC SCALES",
+            title: "SM3.04 // LOGARITHMIC SCALES",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -2063,8 +2063,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "S3.04_LOG_MONITOR",
-            footer_left: "S3.04_LOGARITHMS // NODE: BASEL",
+            monitor_title: "SM3.04_LOG_MONITOR",
+            footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
             labels: {
                 input: "INPUT",
                 hints: "HINTS",
@@ -2841,23 +2841,23 @@ export const translations: Record<string, any> = {
             gym_title: "高级中学 // 预科阶段",
             nexus: "核心枢纽",
             archive: "实验档案",
-            sm2_01_title: "S2.01 // 二项式工厂",
+            sm2_01_title: "SM2.01 // 二项式工厂",
             sm2_01_subtitle: "攻克第一和第二二项式公式。利用几何切割证明代数恒等式。",
-            sm2_02_title: "S2.02 // 勾股定律与开平方",
+            sm2_02_title: "SM2.02 // 勾股定律与开平方",
             sm2_02_subtitle: "围绕瑞士初中阶段难度梯度训练勾股定律与平方根。",
-            sm3_01_title: "S3.01 // 一元二次方程",
+            sm3_01_title: "SM3.01 // 一元二次方程",
             sm3_01_subtitle: "用因式分解、求根公式、配方法解一元二次方程，并设置难度梯度。",
-            sm3_03_title: "S3.03 // 指数与对数",
+            sm3_03_title: "SM3.03 // 指数与对数",
             sm3_03_subtitle: "通过细胞分裂模拟理解指数增长与对数刻度。",
-            sm3_02_title: "S3.02 // 三角函数阵列",
+            sm3_02_title: "SM3.02 // 三角函数阵列",
             sm3_02_subtitle: "通过波形反馈训练正弦、余弦和相位偏移。",
-            sm3_04_title: "S3.04 // 对数实验室",
+            sm3_04_title: "SM3.04 // 对数实验室",
             sm3_04_subtitle: "通过精密训练解码对数刻度和逆向增长。",
-            sm2_07_title: "S2.07 // 坐标侦察",
+            sm2_07_title: "SM2.07 // 坐标侦察",
             sm2_07_subtitle: "在巴塞尔网格中掌握坐标系、平移和绘图精度。",
-            sm2_03_title: "S2.03 // 直线与函数",
+            sm2_03_title: "SM2.03 // 直线与函数",
             sm2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
-            sm2_04_title: "S2.04 // 相似与比例",
+            sm2_04_title: "SM2.04 // 相似与比例",
             sm2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
             gm1_01_title: "G1.01 // 微积分初步",
             gm1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
@@ -2865,13 +2865,13 @@ export const translations: Record<string, any> = {
             gm2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
             gm3_01_title: "G3.01 // 概率金库",
             gm3_01_subtitle: "通过高尔顿钉板可视化二项分布。观察概率收敛到正态分布。",
-            sm2_06_title: "S2.06 // 二元一次方程组",
+            sm2_06_title: "SM2.06 // 二元一次方程组",
             sm2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
-            sm2_05_title: "S2.05 // 幂运算与根号",
+            sm2_05_title: "SM2.05 // 幂运算与根号",
             sm2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
-            sm1_01_title: "S1.01 // 面积与体积",
+            sm1_01_title: "SM1.01 // 面积与体积",
             sm1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
-            sm1_02_title: "S1.02 // 四维超几何",
+            sm1_02_title: "SM1.02 // 四维超几何",
             sm1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
             sp1_02_title: "SP1.02 // 牛顿定律",
             sp1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
@@ -2999,11 +2999,11 @@ export const translations: Record<string, any> = {
                     resonance_hint: "共振发生在特定 E/V₀ 比值"
                 }
             },
-            s3_02_title: "S3.02 // 三角函数之塔",
+            s3_02_title: "SM3.02 // 三角函数之塔",
             s3_02_subtitle: "通过单位圆可视化、波函数和三角形求解掌握正弦、余弦和正切。",
-            s2_07_title: "S2.07 // 坐标几何",
+            s2_07_title: "SM2.07 // 坐标几何",
             s2_07_subtitle: "掌握距离、中点和斜率计算。",
-            s3_04_title: "S3.04 // 对数刻度",
+            s3_04_title: "SM3.04 // 对数刻度",
             s3_04_subtitle: "掌握 pH 值、分贝和里氏震级的对数计算。",
             sc1_01_title: "SC1.01 // 神秘挑战",
             sc1_01_subtitle: "通过化学测试鉴定神秘白色粉末。",
@@ -3145,7 +3145,7 @@ export const translations: Record<string, any> = {
         },
         sm2_02: {
             back: "返回枢纽",
-            title: "S2.02 // 勾股定律与开平方",
+            title: "SM2.02 // 勾股定律与开平方",
             tabs: {
                 pythagoras: "勾股定律",
                 sqrt: "开平方",
@@ -3167,8 +3167,8 @@ export const translations: Record<string, any> = {
             ready: "就绪",
             yes: "是",
             no: "否",
-            monitor_title: "S2.02_视觉监控",
-            footer_left: "S2.02_勾股与开方 // 节点：苏黎世",
+            monitor_title: "SM2.02_视觉监控",
+            footer_left: "SM2.02_勾股与开方 // 节点：苏黎世",
             input_radical: "用 k√m 形式作答",
             input_k: "k",
             input_m: "m",
@@ -3210,7 +3210,7 @@ export const translations: Record<string, any> = {
         },
         sm3_01: {
             back: "返回枢纽",
-            title: "S3.01 // 一元二次方程",
+            title: "SM3.01 // 一元二次方程",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3224,8 +3224,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S3.01_监控",
-            footer_left: "S3.01_一元二次方程 // 节点：苏黎世",
+            monitor_title: "SM3.01_监控",
+            footer_left: "SM3.01_一元二次方程 // 节点：苏黎世",
             stages: {
                 terms: "合并同类项",
                 factorize: "因式分解",
@@ -3274,7 +3274,7 @@ export const translations: Record<string, any> = {
         },
         sm3_02: {
             back: "返回枢纽",
-            title: "S3.02 // 三角函数圆",
+            title: "SM3.02 // 三角函数圆",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3288,8 +3288,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S3.02_三角函数监控",
-            footer_left: "S3.02_三角函数圆 // 节点：巴塞尔",
+            monitor_title: "SM3.02_三角函数监控",
+            footer_left: "SM3.02_三角函数圆 // 节点：巴塞尔",
             labels: {
                 angle: "角度 (θ)",
                 values: "三角函数值",
@@ -3322,7 +3322,7 @@ export const translations: Record<string, any> = {
         },
         sm3_03: {
             back: "返回枢纽",
-            title: "S3.03 // 增长与对数",
+            title: "SM3.03 // 增长与对数",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3336,8 +3336,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S3.03_增长监控",
-            footer_left: "S3.03_指数函数 // 节点：巴塞尔",
+            monitor_title: "SM3.03_增长监控",
+            footer_left: "SM3.03_指数函数 // 节点：巴塞尔",
             labels: {
                 input: "输入",
                 hints: "提示",
@@ -3406,7 +3406,7 @@ export const translations: Record<string, any> = {
         },
         sm2_03: {
             back: "执行下一序列",
-            title: "S2.03 // 直线导航器",
+            title: "SM2.03 // 直线导航器",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -3417,8 +3417,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "S2.03_激光监视器",
-            footer_left: "S2.03_直线导航器 // 节点：巴塞尔",
+            monitor_title: "SM2.03_激光监视器",
+            footer_left: "SM2.03_直线导航器 // 节点：巴塞尔",
             labels: {
                 input: "输入",
                 hints: "提示",
@@ -3460,7 +3460,7 @@ export const translations: Record<string, any> = {
         },
         sm2_04: {
             back: "返回枢纽",
-            title: "S2.04 // 相似与比例",
+            title: "SM2.04 // 相似与比例",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3474,8 +3474,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S2.04_监控",
-            footer_left: "S2.04_相似形 // 节点：巴塞尔",
+            monitor_title: "SM2.04_监控",
+            footer_left: "SM2.04_相似形 // 节点：巴塞尔",
             stages: {
                 scale_factor: "缩放",
                 similar_triangles: "相似",
@@ -3512,7 +3512,7 @@ export const translations: Record<string, any> = {
         sm2_01: {
             back: "← 返回枢纽",
             back_short: "返回枢纽",
-            title: "S2.01 // 二项式工厂",
+            title: "SM2.01 // 二项式工厂",
             difficulty: {
                 basic: "初级",
                 core: "核心",
@@ -3598,7 +3598,7 @@ export const translations: Record<string, any> = {
                 status_operational: "状态：运行中",
                 fps: "帧率",
                 latency: "延迟",
-                footer_left: "S2.01_代数同步 // 节点：苏黎世工业区",
+                footer_left: "SM2.01_代数同步 // 节点：苏黎世工业区",
                 verified: "已验证",
                 simulating: "模拟中",
             }
@@ -3954,7 +3954,7 @@ export const translations: Record<string, any> = {
         },
         sm2_06: {
             back: "返回枢纽",
-            title: "S2.06 // 二元一次方程组",
+            title: "SM2.06 // 二元一次方程组",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3968,8 +3968,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S2.06_监控",
-            footer_left: "S2.06_二元一次方程组 // 节点：巴塞尔",
+            monitor_title: "SM2.06_监控",
+            footer_left: "SM2.06_二元一次方程组 // 节点：巴塞尔",
             stages: {
                 substitution: "代入法",
                 elimination: "加减法",
@@ -3999,7 +3999,7 @@ export const translations: Record<string, any> = {
         },
         sm2_05: {
             back: "返回枢纽",
-            title: "S2.05 // 幂运算与根号",
+            title: "SM2.05 // 幂运算与根号",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -4013,8 +4013,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S2.05_监控",
-            footer_left: "S2.05_幂与根号 // 节点：巴塞尔",
+            monitor_title: "SM2.05_监控",
+            footer_left: "SM2.05_幂与根号 // 节点：巴塞尔",
             stages: {
                 rules: "法则",
                 negative: "负指数",
@@ -4446,7 +4446,7 @@ export const translations: Record<string, any> = {
         },
         sm2_07: {
             back: "返回枢纽",
-            title: "S2.07 // 坐标几何",
+            title: "SM2.07 // 坐标几何",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -4457,8 +4457,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "S2.07_坐标监视器",
-            footer_left: "S2.07_坐标几何 // 节点：苏黎世",
+            monitor_title: "SM2.07_坐标监视器",
+            footer_left: "SM2.07_坐标几何 // 节点：苏黎世",
             labels: {
                 input: "输入",
                 hints: "提示",
@@ -4568,7 +4568,7 @@ export const translations: Record<string, any> = {
         },
         sm3_04: {
             back: "返回枢纽",
-            title: "S3.04 // 对数刻度",
+            title: "SM3.04 // 对数刻度",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -4579,8 +4579,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "S3.04_对数监视器",
-            footer_left: "S3.04_对数 // 节点：巴塞尔",
+            monitor_title: "SM3.04_对数监视器",
+            footer_left: "SM3.04_对数 // 节点：巴塞尔",
             labels: {
                 input: "输入",
                 hints: "提示",
@@ -5162,7 +5162,7 @@ export const translations: Record<string, any> = {
         },
         gm5_01: {
             back: "返回枢纽",
-            title: "G5.01 // 矩阵几何",
+            title: "GM5.01 // 矩阵几何",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -5176,8 +5176,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "G5.01_矩阵监视器",
-            footer_left: "G5.01_矩阵几何 // 节点：巴塞尔",
+            monitor_title: "GM5.01_矩阵监视器",
+            footer_left: "GM5.01_矩阵几何 // 节点：巴塞尔",
             labels: {
                 matrix: "矩阵 A",
                 properties: "属性",
@@ -5637,23 +5637,23 @@ export const translations: Record<string, any> = {
             gym_title: "GYMNASIUM // MATURITÄTSSTUFE",
             nexus: "Nexus",
             archive: "Archiv",
-            sm2_01_title: "S2.01 // BINOMISCHE FORMELN",
+            sm2_01_title: "SM2.01 // BINOMISCHE FORMELN",
             sm2_01_subtitle: "Meistere die 1. und 2. Binomische Formel durch geometrische Zerlegung.",
-            sm2_02_title: "S2.02 // PYTHAGORAS & WURZELN",
+            sm2_02_title: "SM2.02 // PYTHAGORAS & WURZELN",
             sm2_02_subtitle: "Übe Satz des Pythagoras und Quadratwurzeln mit sinnvollen Schwierigkeitsstufen.",
-            sm3_01_title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
+            sm3_01_title: "SM3.01 // QUADRATISCHE GLEICHUNGEN",
             sm3_01_subtitle: "Löse quadratische Gleichungen durch Faktorisieren, Formel und quadratische Ergänzung.",
-            sm3_02_title: "S3.02 // TRIGONOMETRIE-ARRAY",
+            sm3_02_title: "SM3.02 // TRIGONOMETRIE-ARRAY",
             sm3_02_subtitle: "Trainiere Sinus, Kosinus und Phasenverschiebungen mit Wellen-Feedback.",
-            sm3_03_title: "S3.03 // EXPONENTIELLES WACHSTUM",
+            sm3_03_title: "SM3.03 // EXPONENTIELLES WACHSTUM",
             sm3_03_subtitle: "Modelliere exponentielles und logarithmisches Wachstum mit Zellteilungssimulationen.",
-            sm3_04_title: "S3.04 // LOGARITHMUS-LABOR",
+            sm3_04_title: "SM3.04 // LOGARITHMUS-LABOR",
             sm3_04_subtitle: "Dekodiere Logarithmenskalen und inverses Wachstum mit Präzisionsübungen.",
-            sm2_07_title: "S2.07 // KOORDINATEN-RECON",
+            sm2_07_title: "SM2.07 // KOORDINATEN-RECON",
             sm2_07_subtitle: "Meistere Koordinatensysteme, Translationen und Zeichenpräzision im Basler Raster.",
-            sm2_03_title: "S2.03 // GERADEN & FUNKTIONEN",
+            sm2_03_title: "SM2.03 // GERADEN & FUNKTIONEN",
             sm2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
-            sm2_04_title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
+            sm2_04_title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
             sm2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
             gm1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
             gm1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
@@ -5661,13 +5661,13 @@ export const translations: Record<string, any> = {
             gm2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
             gm3_01_title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
             gm3_01_subtitle: "Visualisiere Binomialverteilung mit Galton-Brett. Beobachte Konvergenz zur Normalverteilung.",
-            sm2_06_title: "S2.06 // GLEICHUNGSSYSTEME",
+            sm2_06_title: "SM2.06 // GLEICHUNGSSYSTEME",
             sm2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
-            sm2_05_title: "S2.05 // POTENZEN & WURZELN",
+            sm2_05_title: "SM2.05 // POTENZEN & WURZELN",
             sm2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
-            sm1_01_title: "S1.01 // FLÄCHEN & VOLUMEN",
+            sm1_01_title: "SM1.01 // FLÄCHEN & VOLUMEN",
             sm1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-            sm1_02_title: "S1.02 // 4D HYPER-GEOMETRIE",
+            sm1_02_title: "SM1.02 // 4D HYPER-GEOMETRIE",
             sm1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
             sp1_02_title: "SP1.02 // NEWTONS GESETZE",
             sp1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
@@ -5795,13 +5795,13 @@ export const translations: Record<string, any> = {
                     resonance_hint: "Resonanz tritt bei bestimmten E/V₀-Verhältnissen auf"
                 }
             },
-            s3_02_title: "S3.02 // TRIGONOMETRIE-TURM",
+            s3_02_title: "SM3.02 // TRIGONOMETRIE-TURM",
             s3_02_subtitle: "Meistere Sinus, Kosinus und Tangens durch Einheitskreis-Visualisierung, Wellenfunktionen und Dreieckslösung.",
-            s2_07_title: "S2.07 // KOORDINATENGEOMETRIE",
+            s2_07_title: "SM2.07 // KOORDINATENGEOMETRIE",
             s2_07_subtitle: "Meistern Sie Entfernungs-, Mittelpunkt- und Steigungsberechnungen.",
-            s3_03_title: "S3.03 // WACHSTUM & LOGARITHMEN",
+            s3_03_title: "SM3.03 // WACHSTUM & LOGARITHMEN",
             s3_03_subtitle: "Modelliere exponentielles Wachstum und logarithmische Skalen mit Bakteriensimulationen.",
-            s3_04_title: "S3.04 // LOGARITHMISCHE SKALEN",
+            s3_04_title: "SM3.04 // LOGARITHMISCHE SKALEN",
             s3_04_subtitle: "Meistern Sie pH-Wert, Dezibel und Richterskala mit logarithmischen Berechnungen.",
             sc1_01_title: "SC1.01 // MYSTERY LAB",
             sc1_01_subtitle: "Identifizieren Sie mysteriöse weiße Pulver durch chemische Tests.",
@@ -5943,7 +5943,7 @@ export const translations: Record<string, any> = {
         },
         sm2_02: {
             back: "Zurück zum Nexus",
-            title: "S2.02 // PYTHAGORAS & WURZELN",
+            title: "SM2.02 // PYTHAGORAS & WURZELN",
             tabs: {
                 pythagoras: "PYTHAGORAS",
                 sqrt: "QUADRATWURZEL",
@@ -5965,8 +5965,8 @@ export const translations: Record<string, any> = {
             ready: "Bereit",
             yes: "JA",
             no: "NEIN",
-            monitor_title: "S2.02_VISUELLE_UEBERWACHUNG",
-            footer_left: "S2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
+            monitor_title: "SM2.02_VISUELLE_UEBERWACHUNG",
+            footer_left: "SM2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
             input_radical: "Antwort als k√m",
             input_k: "k",
             input_m: "m",
@@ -6008,7 +6008,7 @@ export const translations: Record<string, any> = {
         },
         sm3_01: {
             back: "Zurück zum Nexus",
-            title: "S3.01 // QUADRATISCHE GLEICHUNGEN",
+            title: "SM3.01 // QUADRATISCHE GLEICHUNGEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6022,8 +6022,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S3.01_MONITOR",
-            footer_left: "S3.01_QUADRATISCH // KNOTEN: ZÜRICH",
+            monitor_title: "SM3.01_MONITOR",
+            footer_left: "SM3.01_QUADRATISCH // KNOTEN: ZÜRICH",
             stages: {
                 terms: "TERME",
                 factorize: "FAKTORISIEREN",
@@ -6072,7 +6072,7 @@ export const translations: Record<string, any> = {
         },
         sm3_02: {
             back: "Zurück zum Nexus",
-            title: "S3.02 // TRIGONOMETRISCHER KREIS",
+            title: "SM3.02 // TRIGONOMETRISCHER KREIS",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6086,8 +6086,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S3.02_TRIG_MONITOR",
-            footer_left: "S3.02_TRIG_KREIS // KNOTEN: BASEL",
+            monitor_title: "SM3.02_TRIG_MONITOR",
+            footer_left: "SM3.02_TRIG_KREIS // KNOTEN: BASEL",
             labels: {
                 angle: "WINKEL (θ)",
                 values: "TRIGONOMETRISCHE WERTE",
@@ -6128,7 +6128,7 @@ export const translations: Record<string, any> = {
         },
         sm3_03: {
             back: "Zurück zum Nexus",
-            title: "S3.03 // WACHSTUM & LOGARITHMEN",
+            title: "SM3.03 // WACHSTUM & LOGARITHMEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6142,8 +6142,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S3.03_WACHSTUM_MONITOR",
-            footer_left: "S3.03_EXPONENTIAL // KNOTEN: BASEL",
+            monitor_title: "SM3.03_WACHSTUM_MONITOR",
+            footer_left: "SM3.03_EXPONENTIAL // KNOTEN: BASEL",
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
@@ -6212,7 +6212,7 @@ export const translations: Record<string, any> = {
         },
         sm2_03: {
             back: "Zurück zum Nexus",
-            title: "S2.03 // LINIEN-NAVIGATOR",
+            title: "SM2.03 // LINIEN-NAVIGATOR",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
             },
@@ -6223,8 +6223,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S2.03_LASER_MONITOR",
-            footer_left: "S2.03_LINIEN_NAVIGATOR // KNOTEN: BASEL",
+            monitor_title: "SM2.03_LASER_MONITOR",
+            footer_left: "SM2.03_LINIEN_NAVIGATOR // KNOTEN: BASEL",
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
@@ -6266,7 +6266,7 @@ export const translations: Record<string, any> = {
         },
         sm2_04: {
             back: "Zurück zum Nexus",
-            title: "S2.04 // ÄHNLICHKEIT & SKALIERUNG",
+            title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6280,8 +6280,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S2.04_MONITOR",
-            footer_left: "S2.04_AEHNLICHKEIT // KNOTEN: BASEL",
+            monitor_title: "SM2.04_MONITOR",
+            footer_left: "SM2.04_AEHNLICHKEIT // KNOTEN: BASEL",
             stages: {
                 scale_factor: "STRECKUNG",
                 similar_triangles: "ÄHNLICH",
@@ -6318,7 +6318,7 @@ export const translations: Record<string, any> = {
         sm2_01: {
             back: "← Zurück zum Nexus",
             back_short: "Zurück zum Nexus",
-            title: "S2.01 // BINOMISCHE FORMELN",
+            title: "SM2.01 // BINOMISCHE FORMELN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6404,7 +6404,7 @@ export const translations: Record<string, any> = {
                 status_operational: "STATUS: BETRIEBSBEREIT",
                 fps: "FPS",
                 latency: "LATENZ",
-                footer_left: "S2.01_ALGEBRA_SYNC // KNOTEN: ZÜRICH",
+                footer_left: "SM2.01_ALGEBRA_SYNC // KNOTEN: ZÜRICH",
                 verified: "Verifiziert",
                 simulating: "Simuliert",
             }
@@ -6790,7 +6790,7 @@ export const translations: Record<string, any> = {
         },
         sm2_06: {
             back: "Zurück zum Nexus",
-            title: "S2.06 // GLEICHUNGSSYSTEME",
+            title: "SM2.06 // GLEICHUNGSSYSTEME",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6804,8 +6804,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S2.06_MONITOR",
-            footer_left: "S2.06_GLEICHUNGSSYSTEME // KNOTEN: BASEL",
+            monitor_title: "SM2.06_MONITOR",
+            footer_left: "SM2.06_GLEICHUNGSSYSTEME // KNOTEN: BASEL",
             stages: {
                 substitution: "EINSETZUNGSVERFAHREN",
                 elimination: "ADDITIONSVERFAHREN",
@@ -6835,7 +6835,7 @@ export const translations: Record<string, any> = {
         },
         sm2_05: {
             back: "Zurück zum Nexus",
-            title: "S2.05 // POTENZEN & WURZELN",
+            title: "SM2.05 // POTENZEN & WURZELN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6849,8 +6849,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "S2.05_MONITOR",
-            footer_left: "S2.05_POTENZEN // KNOTEN: BASEL",
+            monitor_title: "SM2.05_MONITOR",
+            footer_left: "SM2.05_POTENZEN // KNOTEN: BASEL",
             stages: {
                 rules: "GESETZE",
                 negative: "NEGATIV",
@@ -7282,7 +7282,7 @@ export const translations: Record<string, any> = {
         },
         sm2_07: {
             back: "Zurück zum Nexus",
-            title: "S2.07 // KOORDINATENGEOMETRIE",
+            title: "SM2.07 // KOORDINATENGEOMETRIE",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
             },
@@ -7293,8 +7293,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "S2.07_KOORDINATEN_MONITOR",
-            footer_left: "S2.07_KOORD_GEOM // KNOTEN: ZÜRICH",
+            monitor_title: "SM2.07_KOORDINATEN_MONITOR",
+            footer_left: "SM2.07_KOORD_GEOM // KNOTEN: ZÜRICH",
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
@@ -7574,7 +7574,7 @@ export const translations: Record<string, any> = {
         },
         sm3_04: {
             back: "Zurück zum Nexus",
-            title: "S3.04 // LOGARITHMISCHE SKALEN",
+            title: "SM3.04 // LOGARITHMISCHE SKALEN",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
             },
@@ -7585,8 +7585,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "S3.04_LOG_MONITOR",
-            footer_left: "S3.04_LOGARITHMEN // KNOTEN: BASEL",
+            monitor_title: "SM3.04_LOG_MONITOR",
+            footer_left: "SM3.04_LOGARITHMEN // KNOTEN: BASEL",
             labels: {
                 input: "EINGABE",
                 hints: "HINWEISE",
@@ -7829,7 +7829,7 @@ export const translations: Record<string, any> = {
         },
         gm5_01: {
             back: "Zurück zum Nexus",
-            title: "G5.01 // MATRIXGEOMETRIE",
+            title: "GM5.01 // MATRIXGEOMETRIE",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -7843,8 +7843,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlanpassung",
             ready: "Bereit",
-            monitor_title: "G5.01_MATRIX_MONITOR",
-            footer_left: "G5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
+            monitor_title: "GM5.01_MATRIX_MONITOR",
+            footer_left: "GM5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
             labels: {
                 matrix: "MATRIX A",
                 properties: "EIGENSCHAFTEN",
