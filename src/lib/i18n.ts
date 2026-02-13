@@ -1255,6 +1255,13 @@ export const translations: Record<string, any> = {
             question_label: "CHALLENGE",
             hint_label: "STRATEGY",
             visualization_title: "FUNCTION GRAPH",
+            visualization: {
+                title: "FUNCTION VISUALIZATION",
+                x_label: "x",
+                y_label: "f(x)",
+                function_label: "FUNCTION",
+                point_label: "POINT"
+            },
             progress: "Progress"
         },
         gm2_01: {
@@ -3621,6 +3628,13 @@ export const translations: Record<string, any> = {
             question_label: "挑战",
             hint_label: "策略",
             visualization_title: "函数图形",
+            visualization: {
+                title: "函数可视化",
+                x_label: "x",
+                y_label: "f(x)",
+                function_label: "函数",
+                point_label: "点"
+            },
             progress: "进度"
         },
         gm2_01: {
@@ -6315,6 +6329,13 @@ export const translations: Record<string, any> = {
             question_label: "HERAUSFORDERUNG",
             hint_label: "STRATEGIE",
             visualization_title: "FUNKTIONSGRAPH",
+            visualization: {
+                title: "FUNKTIONSVISUALISIERUNG",
+                x_label: "x",
+                y_label: "f(x)",
+                function_label: "FUNKTION",
+                point_label: "PUNKT"
+            },
             progress: "Fortschritt"
         },
         gm2_01: {

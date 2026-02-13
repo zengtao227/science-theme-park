@@ -123,6 +123,13 @@ export default function G101AdvancedPage() {
           <DerivativeVisualization
             functionLatex={problem.functionLatex}
             xPosition={2}
+            translations={{
+              title: t.visualization.title,
+              xLabel: t.visualization.x_label,
+              yLabel: t.visualization.y_label,
+              functionLabel: t.visualization.function_label,
+              pointLabel: t.visualization.point_label,
+            }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t.visualization_title}
