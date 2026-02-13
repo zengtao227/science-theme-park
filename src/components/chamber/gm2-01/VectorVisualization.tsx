@@ -64,33 +64,21 @@ function Vector3DArrow({
     return pts;
   }, [start, end]);
   
-  // Arrow head
-  const arrowHead = useMemo(() => {
-    const headLength = Math.min(length * 0.2, 0.5);
-    const headWidth = headLength * 0.5;
+  // Arrow head with proper cone geometry
+  const arrowHeadGeometry = useMemo(() => {
+    const headLength = Math.min(length * 0.15, 0.4);
+    const headRadius = headLength * 0.4;
     
     const dir = new THREE.Vector3(...end).sub(new THREE.Vector3(...start)).normalize();
-    const perpendicular = new THREE.Vector3();
+    const arrowEnd = new THREE.Vector3(...end);
+    const coneBase = arrowEnd.clone().sub(dir.clone().multiplyScalar(headLength));
     
-    if (Math.abs(dir.y) < 0.9) {
-      perpendicular.set(0, 1, 0);
-    } else {
-      perpendicular.set(1, 0, 0);
-    }
+    // Calculate rotation to align cone with direction
+    const up = new THREE.Vector3(0, 1, 0);
+    const quaternion = new THREE.Quaternion();
+    quaternion.setFromUnitVectors(up, dir);
     
-    const side1 = new THREE.Vector3().crossVectors(dir, perpendicular).normalize();
-    const side2 = new THREE.Vector3().crossVectors(dir, side1).normalize();
-    
-    const base = new THREE.Vector3(...end).sub(dir.clone().multiplyScalar(headLength));
-    
-    return [
-      new THREE.Vector3(...end),
-      base.clone().add(side1.clone().multiplyScalar(headWidth)),
-      base.clone().add(side2.clone().multiplyScalar(headWidth)),
-      new THREE.Vector3(...end),
-      base.clone().add(side1.clone().multiplyScalar(-headWidth)),
-      base.clone().add(side2.clone().multiplyScalar(-headWidth)),
-    ];
+    return { position: coneBase, quaternion, headLength, headRadius };
   }, [end, start, length]);
   
   return (
@@ -98,8 +86,18 @@ function Vector3DArrow({
       {/* Vector line */}
       <Line points={points} color={color} lineWidth={3} />
       
-      {/* Arrow head */}
-      <Line points={arrowHead} color={color} lineWidth={2} />
+      {/* Arrow head - closed cone */}
+      <mesh 
+        position={arrowHeadGeometry.position} 
+        quaternion={arrowHeadGeometry.quaternion}
+      >
+        <coneGeometry args={[arrowHeadGeometry.headRadius, arrowHeadGeometry.headLength, 8]} />
+        <meshPhysicalMaterial 
+          color={color} 
+          emissive={color}
+          emissiveIntensity={0.3}
+        />
+      </mesh>
       
       {/* Label */}
       <Text
@@ -142,6 +140,16 @@ function Point3D({
         anchorY="bottom"
       >
         {label}
+      </Text>
+      {/* Coordinate label */}
+      <Text
+        position={[position[0], position[1] - 0.5, position[2]]}
+        fontSize={0.25}
+        color={color}
+        anchorX="center"
+        anchorY="top"
+      >
+        ({position[0].toFixed(1)}, {position[1].toFixed(1)}, {position[2].toFixed(1)})
       </Text>
     </group>
   );
@@ -297,10 +305,34 @@ export default function VectorVisualization({
         </Text>
       </Canvas>
       
-      {/* Info overlay */}
-      {showDotProduct && dotProduct !== null && (
-        <div className="absolute top-4 right-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3">
+      {/* Coordinate info overlay - top left */}
+      {(pointA || pointB) && (
+        <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
           <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider mb-2">
+            COORDINATES
+          </div>
+          {pointA && (
+            <div className="text-white font-mono text-sm">
+              <span className="text-cyan-400">A:</span> ({pointA[0]}, {pointA[1]}, {pointA[2]})
+            </div>
+          )}
+          {pointB && (
+            <div className="text-white font-mono text-sm">
+              <span className="text-pink-400">B:</span> ({pointB[0]}, {pointB[1]}, {pointB[2]})
+            </div>
+          )}
+          {vectorW && !pointA && (
+            <div className="text-white font-mono text-sm">
+              <span className="text-yellow-400">w:</span> ({vectorW[0]}, {vectorW[1]}, {vectorW[2]})
+            </div>
+          )}
+        </div>
+      )}
+      
+      {/* Dot product info overlay - top right */}
+      {showDotProduct && dotProduct !== null && (
+        <div className="absolute top-4 right-4 bg-black/80 border border-green-400/30 rounded-lg px-4 py-3">
+          <div className="text-[9px] text-green-400/60 uppercase tracking-wider mb-2">
             DOT PRODUCT
           </div>
           <div className="text-white font-mono text-xl">
