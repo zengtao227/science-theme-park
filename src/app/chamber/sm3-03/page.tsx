@@ -78,7 +78,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
       );
     } else if (d === "CORE") {
       quests.push(
-        q("E-C1", "CORE", "EXPONENTIAL", pBasic, "N_0=100,\\; d=2\\;h,\\; t=1\\;h", "N(t)", [{ id: "N", l: "N(1)", e: 141.4, p: "1 dec" }], "N(1) \\approx 141.4", { initialCount: 100, doublingTime: 2, time: 1 }),
+        q("E-C1", "CORE", "EXPONENTIAL", pBasic, "N_0=100,\\; d=2\\;h,\\; t=1\\;h", "N(t)", [{ id: "N", l: "N(1)", e: 141.4, p: "1 dec" }], "N(1) \\approx 141.4", { initialCount: 100, doublingTime: 2, time: 1, scenarioKey: "exp_bac" }),
         q("E-C2", "CORE", "EXPONENTIAL", pBasic, "N_0=50,\\; d=4\\;h,\\; t=6\\;h", "N(t)", [{ id: "N", l: "N(6)", e: 141.4 }], "50 \\cdot 2^{1.5} \\approx 141.4", { initialCount: 50, doublingTime: 4, time: 6, scenarioKey: "exp_social" }),
         q("E-C3", "CORE", "EXPONENTIAL", pBasic, "N_0=100,\\; d=3\\;h,\\; t=4.5\\;h", "N(t)", [{ id: "N", l: "N(4.5)", e: 282.8 }], "N \\approx 282.8", { initialCount: 100, doublingTime: 3, time: 4.5 }),
         q("E-C4", "CORE", "EXPONENTIAL", pBasic, "N_0=20,\\; d=2\\;h,\\; t=7\\;h", "N(t)", [{ id: "N", l: "N(7)", e: 226.3 }], "20 \\cdot 2^{3.5} \\approx 226.3", { initialCount: 20, doublingTime: 2, time: 7 }),
@@ -134,7 +134,7 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
       );
     } else if (d === "CORE") {
       quests.push(
-        q("L-C1", "CORE", "LOGARITHM", pCore, "\\log_2(64)", "v", [{ id: "v", l: "v", e: 6 }], "2^6=64", { initialCount: 1, finalCount: 64, doublingTime: 1, chartMode: "logarithm" }),
+        q("L-C1", "CORE", "LOGARITHM", pCore, "\\log_2(64)", "v", [{ id: "v", l: "v", e: 6 }], "2^6=64", { initialCount: 1, finalCount: 64, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-C2", "CORE", "LOGARITHM", pCore, "\\log_2(128)", "v", [{ id: "v", l: "v", e: 7 }], "2^7=128", { initialCount: 1, finalCount: 128, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C3", "CORE", "LOGARITHM", pCore, "\\log_2(0.5)", "v", [{ id: "v", l: "v", e: -1 }], "2^{-1}=0.5", { initialCount: 1, finalCount: 0.5, doublingTime: 1, chartMode: "logarithm" }),
         q("L-C4", "CORE", "LOGARITHM", pCore, "\\log_2(1/16)", "v", [{ id: "v", l: "v", e: -4 }], "2^{-4}=1/16", { initialCount: 16, finalCount: 1, doublingTime: 1, chartMode: "logarithm" }),
