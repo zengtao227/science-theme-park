@@ -5,6 +5,8 @@ import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ComplexVisualization from "@/components/chamber/gm4-01/ComplexVisualization";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 type Stage = "BASICS" | "OPERATIONS" | "POLAR";
 
@@ -38,6 +40,7 @@ const basicsDataBasic = [
   { id: "BB2", re: -2, im: 5 },
   { id: "BB3", re: 1, im: -3 },
   { id: "BB4", re: -4, im: -2 },
+  { id: "BB5", re: 5, im: 0 },
 ];
 
 const basicsDataCore = [
@@ -45,6 +48,7 @@ const basicsDataCore = [
   { id: "BC2", re: -8, im: 6 },
   { id: "BC3", re: 3, im: -4 },
   { id: "BC4", re: -7, im: -24 },
+  { id: "BC5", re: 9, im: 12 },
 ];
 
 const basicsDataAdvanced = [
@@ -52,6 +56,7 @@ const basicsDataAdvanced = [
   { id: "BA2", re: -1.5, im: 4.5 },
   { id: "BA3", re: 3.2, im: -2.4 },
   { id: "BA4", re: -5.5, im: -1.5 },
+  { id: "BA5", re: 4.5, im: 6.5 },
 ];
 
 const basicsDataElite = [
@@ -59,6 +64,7 @@ const basicsDataElite = [
   { id: "BE2", re: -0.8, im: 0.6 },
   { id: "BE3", re: 0.707, im: -0.707 },
   { id: "BE4", re: -0.6, im: -0.8 },
+  { id: "BE5", re: 0.866, im: 0.5 },
 ];
 
 // OPERATIONS Stage: Addition and multiplication
@@ -67,6 +73,7 @@ const operationsDataBasic = [
   { id: "OB2", z1: { re: 5, im: 2 }, z2: { re: -3, im: 1 }, op: "add" as const },
   { id: "OB3", z1: { re: -1, im: 4 }, z2: { re: 2, im: -2 }, op: "add" as const },
   { id: "OB4", z1: { re: 3, im: -1 }, z2: { re: -2, im: 3 }, op: "add" as const },
+  { id: "OB5", z1: { re: 4, im: 1 }, z2: { re: 1, im: -3 }, op: "add" as const },
 ];
 
 const operationsDataCore = [
@@ -74,6 +81,7 @@ const operationsDataCore = [
   { id: "OC2", z1: { re: 1, im: 2 }, z2: { re: 2, im: -1 }, op: "multiply" as const },
   { id: "OC3", z1: { re: -1, im: 1 }, z2: { re: 1, im: 1 }, op: "multiply" as const },
   { id: "OC4", z1: { re: 2, im: -1 }, z2: { re: 1, im: 2 }, op: "multiply" as const },
+  { id: "OC5", z1: { re: 3, im: 1 }, z2: { re: 1, im: -1 }, op: "multiply" as const },
 ];
 
 const operationsDataAdvanced = [
@@ -81,6 +89,7 @@ const operationsDataAdvanced = [
   { id: "OA2", z1: { re: -2.5, im: 1.5 }, z2: { re: 1.5, im: -2.5 }, op: "multiply" as const },
   { id: "OA3", z1: { re: 3.5, im: -1.5 }, z2: { re: 1.5, im: 2.5 }, op: "multiply" as const },
   { id: "OA4", z1: { re: -1.5, im: -2.5 }, z2: { re: 2.5, im: 1.5 }, op: "multiply" as const },
+  { id: "OA5", z1: { re: 2.5, im: 3.5 }, z2: { re: 1.5, im: -1.5 }, op: "multiply" as const },
 ];
 
 const operationsDataElite = [
@@ -88,6 +97,7 @@ const operationsDataElite = [
   { id: "OE2", z1: { re: -0.6, im: 0.8 }, z2: { re: 0.8, im: -0.6 }, op: "multiply" as const },
   { id: "OE3", z1: { re: 0.707, im: 0.707 }, z2: { re: 0.707, im: -0.707 }, op: "multiply" as const },
   { id: "OE4", z1: { re: -0.8, im: -0.6 }, z2: { re: 0.6, im: 0.8 }, op: "multiply" as const },
+  { id: "OE5", z1: { re: 0.866, im: 0.5 }, z2: { re: 0.5, im: 0.866 }, op: "multiply" as const },
 ];
 
 // POLAR Stage: Powers using polar form
@@ -96,6 +106,7 @@ const polarDataBasic = [
   { id: "PB2", re: 2, im: 0, power: 3 },
   { id: "PB3", re: 0, im: 2, power: 2 },
   { id: "PB4", re: -1, im: 1, power: 2 },
+  { id: "PB5", re: 1, im: -1, power: 2 },
 ];
 
 const polarDataCore = [
@@ -103,6 +114,7 @@ const polarDataCore = [
   { id: "PC2", re: 2, im: 2, power: 2 },
   { id: "PC3", re: -1, im: 1, power: 3 },
   { id: "PC4", re: 1, im: -1, power: 4 },
+  { id: "PC5", re: 2, im: 1, power: 2 },
 ];
 
 const polarDataAdvanced = [
@@ -110,6 +122,7 @@ const polarDataAdvanced = [
   { id: "PA2", re: 2.5, im: 1.5, power: 2 },
   { id: "PA3", re: -1.5, im: 2.5, power: 2 },
   { id: "PA4", re: 1.5, im: -2.5, power: 3 },
+  { id: "PA5", re: 2.5, im: 2.5, power: 2 },
 ];
 
 const polarDataElite = [
@@ -117,6 +130,7 @@ const polarDataElite = [
   { id: "PE2", re: 0.866, im: 0.5, power: 3 },
   { id: "PE3", re: -0.5, im: 0.866, power: 4 },
   { id: "PE4", re: 0.6, im: -0.8, power: 5 },
+  { id: "PE5", re: 0.8, im: 0.6, power: 4 },
 ];
 
 function buildStagePool(
@@ -336,10 +350,10 @@ export default function GM401Page() {
                 {currentQuest.promptLatex}
               </div>
               <div className="text-3xl text-white font-black">
-                {currentQuest.expressionLatex}
+                <InlineMath math={currentQuest.expressionLatex} />
               </div>
               <div className="text-sm text-white/60 font-mono">
-                {currentQuest.targetLatex}
+                <InlineMath math={currentQuest.targetLatex} />
               </div>
             </div>
 
