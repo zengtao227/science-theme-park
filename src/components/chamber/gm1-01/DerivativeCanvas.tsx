@@ -299,11 +299,11 @@ export default function DerivativeCanvas({
         {/* Car */}
         <Car functionType={functionType} xPosition={xPosition} userDerivative={derivative} />
         
-        {/* Title */}
-        <Text position={[0, 6, 0]} fontSize={0.4} color={palette.white}>
+        {/* Title - moved higher to avoid overlap */}
+        <Text position={[0, 7, 0]} fontSize={0.35} color={palette.white} anchorX="center" anchorY="middle">
           {translations.title}
         </Text>
-        <Text position={[0, 5.4, 0]} fontSize={0.25} color={palette.cyan}>
+        <Text position={[0, 6.3, 0]} fontSize={0.22} color={palette.cyan} anchorX="center" anchorY="middle">
           {translations.subtitle}
         </Text>
       </Canvas>

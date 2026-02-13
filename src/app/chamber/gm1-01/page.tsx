@@ -22,45 +22,139 @@ interface G101Quest extends Quest {
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// Power rule data: f(x) = ax^n => f'(x) = n·a·x^(n-1)
-const powerData = [
-  { id: "P1", a: 2, n: 2, x: 1 },
-  { id: "P2", a: 3, n: 2, x: 2 },
-  { id: "P3", a: 1, n: 3, x: 1 },
-  { id: "P4", a: 2, n: 3, x: 2 },
-  { id: "P5", a: 4, n: 2, x: 3 },
-  { id: "P6", a: 1, n: 4, x: 2 },
-  { id: "P7", a: 3, n: 3, x: 1 },
+// Power rule data: f(x) = ax^n + bx + c => f'(x) = n·a·x^(n-1) + b
+// Difficulty progression:
+// BASIC: Simple power functions (ax^n)
+// CORE: Power functions with coefficients at specific points
+// ADVANCED: Polynomials with multiple terms (ax^n + bx)
+// ELITE: Complex polynomials (ax^n + bx + c) with non-integer results
+
+const powerDataBasic = [
+  { id: "P_B1", a: 1, n: 2, b: 0, c: 0, x: 1 }, // f(x) = x²
+  { id: "P_B2", a: 1, n: 2, b: 0, c: 0, x: 2 }, // f(x) = x²
+  { id: "P_B3", a: 1, n: 3, b: 0, c: 0, x: 1 }, // f(x) = x³
+  { id: "P_B4", a: 2, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 2x²
+];
+
+const powerDataCore = [
+  { id: "P_C1", a: 2, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 2x²
+  { id: "P_C2", a: 3, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 3x²
+  { id: "P_C3", a: 1, n: 3, b: 0, c: 0, x: 2 }, // f(x) = x³
+  { id: "P_C4", a: 2, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 2x³
+  { id: "P_C5", a: 4, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 4x²
+];
+
+const powerDataAdvanced = [
+  { id: "P_A1", a: 2, n: 2, b: 3, c: 0, x: 1 }, // f(x) = 2x² + 3x
+  { id: "P_A2", a: 1, n: 2, b: 4, c: 0, x: 2 }, // f(x) = x² + 4x
+  { id: "P_A3", a: 3, n: 2, b: -2, c: 0, x: 1 }, // f(x) = 3x² - 2x
+  { id: "P_A4", a: 1, n: 3, b: 2, c: 0, x: 1 }, // f(x) = x³ + 2x
+  { id: "P_A5", a: 2, n: 3, b: -3, c: 0, x: 1 }, // f(x) = 2x³ - 3x
+];
+
+const powerDataElite = [
+  { id: "P_E1", a: 2, n: 2, b: 3, c: 1, x: 1.5 }, // f(x) = 2x² + 3x + 1
+  { id: "P_E2", a: 1, n: 2, b: -4, c: 2, x: 2.5 }, // f(x) = x² - 4x + 2
+  { id: "P_E3", a: 3, n: 2, b: 2, c: -1, x: 1.2 }, // f(x) = 3x² + 2x - 1
+  { id: "P_E4", a: 1, n: 3, b: -2, c: 3, x: 1.5 }, // f(x) = x³ - 2x + 3
+  { id: "P_E5", a: 2, n: 3, b: 3, c: -2, x: 0.8 }, // f(x) = 2x³ + 3x - 2
 ];
 
 // Product rule data: f(x) = u(x)·v(x) => f'(x) = u'·v + u·v'
 // Using f(x) = x·sin(x) => f'(x) = sin(x) + x·cos(x)
-const productData = [
-  { id: "PR1", x: 0 },
-  { id: "PR2", x: Math.PI / 4 },
-  { id: "PR3", x: Math.PI / 2 },
-  { id: "PR4", x: Math.PI },
-  { id: "PR5", x: 1 },
-  { id: "PR6", x: 2 },
-  { id: "PR7", x: 3 },
+// Difficulty: varies by x value complexity
+const productDataBasic = [
+  { id: "PR_B1", x: 0 },
+  { id: "PR_B2", x: Math.PI / 2 },
+  { id: "PR_B3", x: Math.PI },
+  { id: "PR_B4", x: 1 },
 ];
 
-// Chain rule data: f(x) = sin(2x) => f'(x) = 2·cos(2x)
-const chainData = [
-  { id: "C1", x: 0 },
-  { id: "C2", x: Math.PI / 4 },
-  { id: "C3", x: Math.PI / 2 },
-  { id: "C4", x: Math.PI },
-  { id: "C5", x: 1 },
-  { id: "C6", x: 2 },
-  { id: "C7", x: 3 },
+const productDataCore = [
+  { id: "PR_C1", x: Math.PI / 4 },
+  { id: "PR_C2", x: Math.PI / 3 },
+  { id: "PR_C3", x: 2 },
+  { id: "PR_C4", x: 3 },
+  { id: "PR_C5", x: 1.5 },
+];
+
+const productDataAdvanced = [
+  { id: "PR_A1", x: Math.PI / 6 },
+  { id: "PR_A2", x: 2 * Math.PI / 3 },
+  { id: "PR_A3", x: 2.5 },
+  { id: "PR_A4", x: 3.5 },
+  { id: "PR_A5", x: 0.5 },
+];
+
+const productDataElite = [
+  { id: "PR_E1", x: 1.2 },
+  { id: "PR_E2", x: 2.3 },
+  { id: "PR_E3", x: 3.7 },
+  { id: "PR_E4", x: 0.8 },
+  { id: "PR_E5", x: 4.2 },
+];
+
+// Chain rule data: f(x) = sin(kx) => f'(x) = k·cos(kx)
+// Difficulty: varies by k value and x position
+const chainDataBasic = [
+  { id: "C_B1", k: 2, x: 0 }, // f(x) = sin(2x)
+  { id: "C_B2", k: 2, x: Math.PI / 2 },
+  { id: "C_B3", k: 2, x: Math.PI },
+  { id: "C_B4", k: 2, x: 1 },
+];
+
+const chainDataCore = [
+  { id: "C_C1", k: 2, x: Math.PI / 4 },
+  { id: "C_C2", k: 3, x: 0 }, // f(x) = sin(3x)
+  { id: "C_C3", k: 3, x: Math.PI / 3 },
+  { id: "C_C4", k: 2, x: 2 },
+  { id: "C_C5", k: 3, x: 1 },
+];
+
+const chainDataAdvanced = [
+  { id: "C_A1", k: 3, x: Math.PI / 6 },
+  { id: "C_A2", k: 4, x: 0 }, // f(x) = sin(4x)
+  { id: "C_A3", k: 4, x: Math.PI / 4 },
+  { id: "C_A4", k: 3, x: 2 },
+  { id: "C_A5", k: 4, x: 1 },
+];
+
+const chainDataElite = [
+  { id: "C_E1", k: 4, x: Math.PI / 6 },
+  { id: "C_E2", k: 5, x: 0.5 }, // f(x) = sin(5x)
+  { id: "C_E3", k: 5, x: 1.2 },
+  { id: "C_E4", k: 4, x: 2.3 },
+  { id: "C_E5", k: 5, x: 1.8 },
 ];
 
 function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Quest[] {
   if (stage === "POWER_RULE") {
-    const all = powerData.map((item) => {
-      // f(x) = ax^n => f'(x) = n·a·x^(n-1)
-      const derivative = round2(item.n * item.a * Math.pow(item.x, item.n - 1));
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = powerDataBasic; break;
+      case "CORE": dataSet = powerDataCore; break;
+      case "ADVANCED": dataSet = powerDataAdvanced; break;
+      case "ELITE": dataSet = powerDataElite; break;
+      default: dataSet = powerDataBasic;
+    }
+    
+    return dataSet.map((item) => {
+      // f(x) = ax^n + bx + c => f'(x) = n·a·x^(n-1) + b
+      const derivative = round2(item.n * item.a * Math.pow(item.x, item.n - 1) + item.b);
+      
+      // Build expression string
+      let expr = `f(x)=`;
+      if (item.a !== 1 || item.n === 1) expr += `${item.a}`;
+      if (item.n > 1) expr += `x^{${item.n}}`;
+      else if (item.n === 1) expr += `x`;
+      
+      if (item.b !== 0) {
+        expr += item.b > 0 ? `+${item.b}x` : `${item.b}x`;
+      }
+      if (item.c !== 0) {
+        expr += item.c > 0 ? `+${item.c}` : `${item.c}`;
+      }
+      expr += `,\\; x=${item.x}`;
       
       return {
         id: item.id,
@@ -71,18 +165,25 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         coefficient: item.a,
         exponent: item.n,
         promptLatex: t.stages.power_rule_prompt_latex,
-        expressionLatex: `f(x)=${item.a}x^{${item.n}},\\; x=${item.x}`,
+        expressionLatex: expr,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
         correctLatex: `f'(${item.x})=${derivative}`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   if (stage === "PRODUCT_RULE") {
-    const all = productData.map((item) => {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = productDataBasic; break;
+      case "CORE": dataSet = productDataCore; break;
+      case "ADVANCED": dataSet = productDataAdvanced; break;
+      case "ELITE": dataSet = productDataElite; break;
+      default: dataSet = productDataBasic;
+    }
+    
+    return dataSet.map((item) => {
       // f(x) = x·sin(x) => f'(x) = sin(x) + x·cos(x)
       const derivative = round2(Math.sin(item.x) + item.x * Math.cos(item.x));
       
@@ -99,14 +200,21 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         correctLatex: `f'(${round2(item.x)})=${derivative}`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   // CHAIN_RULE
-  const all = chainData.map((item) => {
-    // f(x) = sin(2x) => f'(x) = 2·cos(2x)
-    const derivative = round2(2 * Math.cos(2 * item.x));
+  let dataSet;
+  switch (difficulty) {
+    case "BASIC": dataSet = chainDataBasic; break;
+    case "CORE": dataSet = chainDataCore; break;
+    case "ADVANCED": dataSet = chainDataAdvanced; break;
+    case "ELITE": dataSet = chainDataElite; break;
+    default: dataSet = chainDataBasic;
+  }
+  
+  return dataSet.map((item) => {
+    // f(x) = sin(kx) => f'(x) = k·cos(kx)
+    const derivative = round2(item.k * Math.cos(item.k * item.x));
     
     return {
       id: item.id,
@@ -115,14 +223,12 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
       functionType: "chain" as const,
       xPosition: item.x,
       promptLatex: t.stages.chain_rule_prompt_latex,
-      expressionLatex: `f(x)=\\sin(2x),\\; x=${round2(item.x)}`,
+      expressionLatex: `f(x)=\\sin(${item.k}x),\\; x=${round2(item.x)}`,
       targetLatex: "f'(x)",
       slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
       correctLatex: `f'(${round2(item.x)})=${derivative}`,
     };
   });
-  if (difficulty === "BASIC") return all.slice(0, 4);
-  return all;
 }
 
 export default function G101Page() {
