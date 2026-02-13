@@ -1311,6 +1311,11 @@ export const translations: Record<string, any> = {
             mission: {
                 title: "MISSION: RHINE AIRSPACE",
                 description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
+            },
+            scenarios: {
+                navigation: "Basel Drone Delivery Network: You are programming the navigation system for Basel's autonomous medical supply drones. The drones must calculate precise 3D vectors between hospital rooftops and delivery points across the city. Given coordinates A (departure helipad at Basel University Hospital) and B (arrival point at Claraspital), compute the displacement vector v and its magnitude. The magnitude represents the direct flight distance in meters. Accurate vector calculation is critical for battery management and flight time estimation.",
+                dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
+                mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
             }
         },
         gm3_01: {
@@ -3699,6 +3704,11 @@ export const translations: Record<string, any> = {
             mission: {
                 title: "任务：莱茵河空域",
                 description: "在莱茵河上空校准无人机航线。输入 3D 向量并用点积验证安全走廊。"
+            },
+            scenarios: {
+                navigation: "巴塞尔无人机配送网络：你正在为巴塞尔的自主医疗物资无人机编程导航系统。无人机必须计算医院屋顶和城市各处配送点之间的精确3D向量。给定坐标A（巴塞尔大学医院的起飞停机坪）和B（Claraspital的到达点），计算位移向量v及其模长。模长表示直线飞行距离（米）。准确的向量计算对电池管理和飞行时间估算至关重要。",
+                dot: "罗氏大厦太阳能板优化：巴塞尔的罗氏大厦正在其外墙安装可调节太阳能板。每块板的朝向用法向量v表示，正午时太阳方向为向量w。点积v·w决定板接收多少阳光——平行时最大（点积=|v||w|），垂直时为零。计算点积以确定最佳板角度。工程师用此来最大化全天能量捕获。",
+                mission: "莱茵河导航系统：巴塞尔港务局正在开发莱茵河自动驳船导航系统。货运驳船必须从点A（当前位置）行驶到点B（目的地码头）。河流水流用向量s表示。计算：(1) A到B的位移向量v，(2) 点积v·s以确定水流是助力还是阻力（正值=助力，负值=阻力，零=垂直），(3) 模长|v|表示直线距离。这些数据优化燃料消耗和到达时间预测。"
             }
         },
         gm3_01: {
@@ -6415,6 +6425,11 @@ export const translations: Record<string, any> = {
             mission: {
                 title: "MISSION: RHEIN-LUFTKORRIDOR",
                 description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
+            },
+            scenarios: {
+                navigation: "Basler Drohnen-Liefernetzwerk: Sie programmieren das Navigationssystem für Basels autonome Medikamenten-Lieferdrohnen. Die Drohnen müssen präzise 3D-Vektoren zwischen Krankenhausdächern und Lieferpunkten in der Stadt berechnen. Gegeben sind Koordinaten A (Abflug-Helipad am Universitätsspital Basel) und B (Ankunftspunkt am Claraspital), berechnen Sie den Verschiebungsvektor v und seinen Betrag. Der Betrag stellt die direkte Flugdistanz in Metern dar. Genaue Vektorberechnung ist kritisch für Batteriemanagement und Flugzeitschätzung.",
+                dot: "Solarplatten-Optimierung am Roche-Turm: Der Roche-Turm in Basel installiert verstellbare Solarpaneele an seiner Fassade. Die Ausrichtung jedes Paneels wird durch einen Normalenvektor v dargestellt, und die Sonnenrichtung mittags ist Vektor w. Das Skalarprodukt v·w bestimmt, wie viel Sonnenlicht das Paneel empfängt - maximal bei Parallelität (Skalarprodukt = |v||w|), null bei Orthogonalität. Berechnen Sie das Skalarprodukt, um den optimalen Paneel-Winkel zu bestimmen. Ingenieure nutzen dies zur Maximierung der Energieausbeute über den Tag.",
+                mission: "Rhein-Navigationssystem: Die Basler Hafenbehörde entwickelt ein automatisiertes Lastkahn-Navigationssystem für den Rhein. Ein Frachtlastkahn muss von Punkt A (aktuelle Position) zu Punkt B (Zieldock) fahren. Die Flussströmung wird durch Vektor s dargestellt. Berechnen Sie: (1) Verschiebungsvektor v von A nach B, (2) Skalarprodukt v·s um zu bestimmen, ob die Strömung hilft oder hindert (positiv = hilft, negativ = hindert, null = orthogonal), und (3) Betrag |v| für die direkte Distanz. Diese Daten optimieren Kraftstoffverbrauch und Ankunftszeitprognosen."
             }
         },
         gm3_01: {

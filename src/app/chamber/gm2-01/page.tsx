@@ -1,263 +1,356 @@
 "use client";
 
-import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
-import Link from "next/link";
-import dynamic from "next/dynamic";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useEffect } from "react";
+import { useAppStore } from "@/lib/store";
+import { translations } from "@/lib/i18n";
+import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import ChamberLayout from "@/components/layout/ChamberLayout";
+import VectorVisualization from "@/components/chamber/gm2-01/VectorVisualization";
 
-const VectorFieldCanvas = dynamic(() => import("@/components/chamber/gm2-01/VectorFieldCanvas"), {
-    ssr: false,
-});
+type Stage = "NAVIGATION" | "DOT" | "MISSION";
+type G201T = typeof translations.EN.gm2_01;
 
-export default function G2_01_VectorPilot() {
-    const { t } = useLanguage();
-    const [vectorA, setVectorA] = useState<[number, number, number]>([3, 2, 1]);
-    const [vectorB, setVectorB] = useState<[number, number, number]>([1, 3, 2]);
-    const [showDotProduct, setShowDotProduct] = useState(true);
-    const [showCrossProduct, setShowCrossProduct] = useState(true);
-    const [showProjection, setShowProjection] = useState(false);
+interface G201Quest extends Quest {
+  stage: Stage;
+  pointA?: [number, number, number];
+  pointB?: [number, number, number];
+  vectorV?: [number, number, number];
+  vectorW?: [number, number, number];
+  showDotProduct?: boolean;
+}
 
-    // Calculate vector operations
-    const dotProduct = vectorA[0] * vectorB[0] + vectorA[1] * vectorB[1] + vectorA[2] * vectorB[2];
-    const crossProduct: [number, number, number] = [
-        vectorA[1] * vectorB[2] - vectorA[2] * vectorB[1],
-        vectorA[2] * vectorB[0] - vectorA[0] * vectorB[2],
-        vectorA[0] * vectorB[1] - vectorA[1] * vectorB[0],
-    ];
+const round2 = (v: number) => Math.round(v * 100) / 100;
+
+// NAVIGATION stage: Calculate vector from points and magnitude
+const navigationDataBasic = [
+  { id: "N_B1", A: [0, 0, 0] as [number, number, number], B: [3, 0, 0] as [number, number, number] },
+  { id: "N_B2", A: [0, 0, 0] as [number, number, number], B: [0, 4, 0] as [number, number, number] },
+  { id: "N_B3", A: [0, 0, 0] as [number, number, number], B: [0, 0, 5] as [number, number, number] },
+  { id: "N_B4", A: [1, 1, 1] as [number, number, number], B: [4, 1, 1] as [number, number, number] },
+];
+
+const navigationDataCore = [
+  { id: "N_C1", A: [0, 0, 0] as [number, number, number], B: [3, 4, 0] as [number, number, number] },
+  { id: "N_C2", A: [1, 2, 0] as [number, number, number], B: [4, 6, 0] as [number, number, number] },
+  { id: "N_C3", A: [0, 0, 0] as [number, number, number], B: [2, 2, 2] as [number, number, number] },
+  { id: "N_C4", A: [1, 1, 1] as [number, number, number], B: [3, 4, 1] as [number, number, number] },
+  { id: "N_C5", A: [2, 1, 0] as [number, number, number], B: [5, 5, 0] as [number, number, number] },
+];
+
+const navigationDataAdvanced = [
+  { id: "N_A1", A: [1, 2, 3] as [number, number, number], B: [4, 6, 7] as [number, number, number] },
+  { id: "N_A2", A: [0, 0, 0] as [number, number, number], B: [3, 4, 5] as [number, number, number] },
+  { id: "N_A3", A: [2, 1, 3] as [number, number, number], B: [5, 5, 6] as [number, number, number] },
+  { id: "N_A4", A: [1, 1, 2] as [number, number, number], B: [4, 5, 6] as [number, number, number] },
+  { id: "N_A5", A: [0, 2, 1] as [number, number, number], B: [3, 6, 5] as [number, number, number] },
+];
+
+const navigationDataElite = [
+  { id: "N_E1", A: [1.5, 2.5, 3.5] as [number, number, number], B: [4.5, 6.5, 7.5] as [number, number, number] },
+  { id: "N_E2", A: [0.5, 1.5, 2.5] as [number, number, number], B: [3.5, 5.5, 7.5] as [number, number, number] },
+  { id: "N_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number] },
+  { id: "N_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number] },
+  { id: "N_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number] },
+];
+
+// DOT stage: Calculate dot product between two vectors
+const dotDataBasic = [
+  { id: "D_B1", v: [3, 0, 0] as [number, number, number], w: [2, 0, 0] as [number, number, number] },
+  { id: "D_B2", v: [0, 4, 0] as [number, number, number], w: [0, 3, 0] as [number, number, number] },
+  { id: "D_B3", v: [2, 0, 0] as [number, number, number], w: [0, 3, 0] as [number, number, number] },
+  { id: "D_B4", v: [1, 1, 0] as [number, number, number], w: [1, 1, 0] as [number, number, number] },
+];
+
+const dotDataCore = [
+  { id: "D_C1", v: [3, 4, 0] as [number, number, number], w: [2, 1, 0] as [number, number, number] },
+  { id: "D_C2", v: [2, 3, 0] as [number, number, number], w: [1, 2, 0] as [number, number, number] },
+  { id: "D_C3", v: [1, 2, 2] as [number, number, number], w: [2, 1, 1] as [number, number, number] },
+  { id: "D_C4", v: [3, 2, 1] as [number, number, number], w: [1, 3, 2] as [number, number, number] },
+  { id: "D_C5", v: [2, 2, 0] as [number, number, number], w: [3, 1, 0] as [number, number, number] },
+];
+
+const dotDataAdvanced = [
+  { id: "D_A1", v: [3, 4, 5] as [number, number, number], w: [2, 1, 3] as [number, number, number] },
+  { id: "D_A2", v: [2, 3, 4] as [number, number, number], w: [1, 2, 2] as [number, number, number] },
+  { id: "D_A3", v: [4, 3, 2] as [number, number, number], w: [1, 2, 3] as [number, number, number] },
+  { id: "D_A4", v: [3, 2, 5] as [number, number, number], w: [2, 3, 1] as [number, number, number] },
+  { id: "D_A5", v: [5, 1, 3] as [number, number, number], w: [1, 4, 2] as [number, number, number] },
+];
+
+const dotDataElite = [
+  { id: "D_E1", v: [3.5, 4.2, 5.1] as [number, number, number], w: [2.3, 1.8, 3.6] as [number, number, number] },
+  { id: "D_E2", v: [2.7, 3.9, 4.5] as [number, number, number], w: [1.5, 2.2, 2.8] as [number, number, number] },
+  { id: "D_E3", v: [4.1, 3.3, 2.7] as [number, number, number], w: [1.9, 2.5, 3.4] as [number, number, number] },
+  { id: "D_E4", v: [3.8, 2.6, 5.2] as [number, number, number], w: [2.1, 3.7, 1.4] as [number, number, number] },
+  { id: "D_E5", v: [5.3, 1.7, 3.9] as [number, number, number], w: [1.2, 4.6, 2.3] as [number, number, number] },
+];
+
+// MISSION stage: Combined operations
+const missionDataBasic = [
+  { id: "M_B1", A: [0, 0, 0] as [number, number, number], B: [3, 0, 0] as [number, number, number], s: [1, 0, 0] as [number, number, number] },
+  { id: "M_B2", A: [0, 0, 0] as [number, number, number], B: [0, 4, 0] as [number, number, number], s: [0, 1, 0] as [number, number, number] },
+  { id: "M_B3", A: [1, 1, 0] as [number, number, number], B: [4, 1, 0] as [number, number, number], s: [1, 0, 0] as [number, number, number] },
+  { id: "M_B4", A: [0, 0, 0] as [number, number, number], B: [2, 2, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
+];
+
+const missionDataCore = [
+  { id: "M_C1", A: [0, 0, 0] as [number, number, number], B: [3, 4, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
+  { id: "M_C2", A: [1, 2, 0] as [number, number, number], B: [4, 6, 0] as [number, number, number], s: [2, 1, 0] as [number, number, number] },
+  { id: "M_C3", A: [0, 0, 0] as [number, number, number], B: [2, 2, 2] as [number, number, number], s: [1, 1, 1] as [number, number, number] },
+  { id: "M_C4", A: [1, 1, 1] as [number, number, number], B: [3, 4, 1] as [number, number, number], s: [1, 2, 0] as [number, number, number] },
+  { id: "M_C5", A: [2, 1, 0] as [number, number, number], B: [5, 5, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
+];
+
+const missionDataAdvanced = [
+  { id: "M_A1", A: [1, 2, 3] as [number, number, number], B: [4, 6, 7] as [number, number, number], s: [1, 2, 1] as [number, number, number] },
+  { id: "M_A2", A: [0, 0, 0] as [number, number, number], B: [3, 4, 5] as [number, number, number], s: [2, 1, 2] as [number, number, number] },
+  { id: "M_A3", A: [2, 1, 3] as [number, number, number], B: [5, 5, 6] as [number, number, number], s: [1, 1, 1] as [number, number, number] },
+  { id: "M_A4", A: [1, 1, 2] as [number, number, number], B: [4, 5, 6] as [number, number, number], s: [2, 2, 1] as [number, number, number] },
+  { id: "M_A5", A: [0, 2, 1] as [number, number, number], B: [3, 6, 5] as [number, number, number], s: [1, 2, 2] as [number, number, number] },
+];
+
+const missionDataElite = [
+  { id: "M_E1", A: [1.5, 2.5, 3.5] as [number, number, number], B: [4.5, 6.5, 7.5] as [number, number, number], s: [1.2, 2.3, 1.5] as [number, number, number] },
+  { id: "M_E2", A: [0.5, 1.5, 2.5] as [number, number, number], B: [3.5, 5.5, 7.5] as [number, number, number], s: [2.1, 1.8, 2.4] as [number, number, number] },
+  { id: "M_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number], s: [1.5, 1.7, 1.9] as [number, number, number] },
+  { id: "M_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number], s: [2.2, 1.9, 1.3] as [number, number, number] },
+  { id: "M_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number], s: [1.8, 2.5, 2.1] as [number, number, number] },
+];
+
+function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Quest[] {
+  if (stage === "NAVIGATION") {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = navigationDataBasic; break;
+      case "CORE": dataSet = navigationDataCore; break;
+      case "ADVANCED": dataSet = navigationDataAdvanced; break;
+      case "ELITE": dataSet = navigationDataElite; break;
+      default: dataSet = navigationDataBasic;
+    }
     
-    const magnitudeA = Math.sqrt(vectorA[0] ** 2 + vectorA[1] ** 2 + vectorA[2] ** 2);
-    const magnitudeB = Math.sqrt(vectorB[0] ** 2 + vectorB[1] ** 2 + vectorB[2] ** 2);
-    const magnitudeCross = Math.sqrt(crossProduct[0] ** 2 + crossProduct[1] ** 2 + crossProduct[2] ** 2);
+    return dataSet.map((item) => {
+      const v = [item.B[0] - item.A[0], item.B[1] - item.A[1], item.B[2] - item.A[2]];
+      const magnitude = round2(Math.sqrt(v[0] ** 2 + v[1] ** 2 + v[2] ** 2));
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        pointA: item.A,
+        pointB: item.B,
+        promptLatex: t.stages.navigation_prompt_latex,
+        expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')})`,
+        targetLatex: "\\vec v,\\;|\\vec v|",
+        slots: [
+          { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
+          { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
+          { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
+          { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
+        ],
+        correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;|\\vec v|=${magnitude}`,
+      };
+    });
+  }
+
+  if (stage === "DOT") {
+    let dataSet;
+    switch (difficulty) {
+      case "BASIC": dataSet = dotDataBasic; break;
+      case "CORE": dataSet = dotDataCore; break;
+      case "ADVANCED": dataSet = dotDataAdvanced; break;
+      case "ELITE": dataSet = dotDataElite; break;
+      default: dataSet = dotDataBasic;
+    }
     
-    const angle = Math.acos(dotProduct / (magnitudeA * magnitudeB)) * 180 / Math.PI;
-    const projectionLength = dotProduct / magnitudeB;
+    return dataSet.map((item) => {
+      const dotProduct = round2(item.v[0] * item.w[0] + item.v[1] * item.w[1] + item.v[2] * item.w[2]);
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        vectorV: item.v,
+        vectorW: item.w,
+        showDotProduct: true,
+        promptLatex: t.stages.dot_prompt_latex,
+        expressionLatex: `\\vec v=(${item.v.join(',')}),\\;\\vec w=(${item.w.join(',')})`,
+        targetLatex: "\\vec v\\cdot\\vec w",
+        slots: [
+          { id: "dot", labelLatex: "\\vec v\\cdot\\vec w", placeholder: "dot product", expected: dotProduct },
+        ],
+        correctLatex: `\\vec v\\cdot\\vec w=${dotProduct}`,
+      };
+    });
+  }
 
-    return (
-        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
-            {/* Cyber grid background */}
-            <div className="fixed inset-0 opacity-10 pointer-events-none">
-                <div
-                    className="w-full h-full"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)
-                        `,
-                        backgroundSize: "50px 50px",
-                    }}
-                />
-            </div>
+  // MISSION stage
+  let dataSet;
+  switch (difficulty) {
+    case "BASIC": dataSet = missionDataBasic; break;
+    case "CORE": dataSet = missionDataCore; break;
+    case "ADVANCED": dataSet = missionDataAdvanced; break;
+    case "ELITE": dataSet = missionDataElite; break;
+    default: dataSet = missionDataBasic;
+  }
+  
+  return dataSet.map((item) => {
+    const v = [item.B[0] - item.A[0], item.B[1] - item.A[1], item.B[2] - item.A[2]];
+    const magnitude = round2(Math.sqrt(v[0] ** 2 + v[1] ** 2 + v[2] ** 2));
+    const dotProduct = round2(v[0] * item.s[0] + v[1] * item.s[1] + v[2] * item.s[2]);
+    
+    return {
+      id: item.id,
+      difficulty,
+      stage,
+      pointA: item.A,
+      pointB: item.B,
+      vectorW: item.s,
+      showDotProduct: true,
+      promptLatex: t.stages.mission_prompt_latex,
+      expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')}),\\;\\vec s=(${item.s.join(',')})`,
+      targetLatex: "\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|",
+      slots: [
+        { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
+        { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
+        { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
+        { id: "dot", labelLatex: "\\vec v\\cdot\\vec s", placeholder: "dot", expected: dotProduct },
+        { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
+      ],
+      correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;\\vec v\\cdot\\vec s=${dotProduct},\\;|\\vec v|=${magnitude}`,
+    };
+  });
+}
 
-            {/* Header */}
-            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
-                <div className="flex justify-between items-center mb-2">
-                    <h1 className="text-2xl font-bold text-cyan-400">
-                        {t("gm2_01.title")}
-                    </h1>
-                    <Link
-                        href="/"
-                        className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
-                    >
-                        {t("gm2_01.back")}
-                    </Link>
-                </div>
-                <div className="text-sm text-cyan-300/70">{t("gm2_01.footer_left")}</div>
-            </div>
+export default function G201Page() {
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = translations[currentLanguage].gm2_01;
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {/* Canvas */}
-                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
-                    <VectorFieldCanvas
-                        vectorA={vectorA}
-                        vectorB={vectorB}
-                        showDotProduct={showDotProduct}
-                        showCrossProduct={showCrossProduct}
-                        showProjection={showProjection}
-                    />
-                </div>
+  const {
+    difficulty,
+    stage,
+    inputs,
+    lastCheck,
+    currentQuest,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+  } = useQuestManager<G201Quest, Stage>({
+    buildPool: (d, s) => buildStagePool(t, d, s),
+    initialStage: "NAVIGATION",
+  });
 
-                {/* Control Panel */}
-                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
-                    <div className="border-b border-green-500 pb-2 mb-4">
-                        <h2 className="text-lg font-bold text-green-400">
-                            {t("gm2_01.monitor_title")}
-                        </h2>
-                    </div>
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("gm2-01", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
 
-                    {/* Vector A Controls */}
-                    <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">{t("gm2_01.labels.vector_a")}</div>
-                        <div className="space-y-2">
-                            <div>
-                                <label className="text-xs text-cyan-300">x:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorA[0]}
-                                    onChange={(e) => setVectorA([Number(e.target.value), vectorA[1], vectorA[2]])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-cyan-300">{vectorA[0].toFixed(1)}</div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-cyan-300">y:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorA[1]}
-                                    onChange={(e) => setVectorA([vectorA[0], Number(e.target.value), vectorA[2]])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-cyan-300">{vectorA[1].toFixed(1)}</div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-cyan-300">z:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorA[2]}
-                                    onChange={(e) => setVectorA([vectorA[0], vectorA[1], Number(e.target.value)])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-cyan-300">{vectorA[2].toFixed(1)}</div>
-                            </div>
-                        </div>
-                        <div className="text-center text-xs text-cyan-300/70">
-                            |A| = {magnitudeA.toFixed(3)}
-                        </div>
-                    </div>
-
-                    {/* Vector B Controls */}
-                    <div className="border border-pink-500 p-3 space-y-2">
-                        <div className="text-sm text-pink-400">{t("gm2_01.labels.vector_b")}</div>
-                        <div className="space-y-2">
-                            <div>
-                                <label className="text-xs text-pink-300">x:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorB[0]}
-                                    onChange={(e) => setVectorB([Number(e.target.value), vectorB[1], vectorB[2]])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-pink-300">{vectorB[0].toFixed(1)}</div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-pink-300">y:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorB[1]}
-                                    onChange={(e) => setVectorB([vectorB[0], Number(e.target.value), vectorB[2]])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-pink-300">{vectorB[1].toFixed(1)}</div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-pink-300">z:</label>
-                                <input
-                                    type="range"
-                                    min="-5"
-                                    max="5"
-                                    step="0.5"
-                                    value={vectorB[2]}
-                                    onChange={(e) => setVectorB([vectorB[0], vectorB[1], Number(e.target.value)])}
-                                    className="w-full"
-                                />
-                                <div className="text-center text-sm text-pink-300">{vectorB[2].toFixed(1)}</div>
-                            </div>
-                        </div>
-                        <div className="text-center text-xs text-pink-300/70">
-                            |B| = {magnitudeB.toFixed(3)}
-                        </div>
-                    </div>
-
-                    {/* Visualization Toggles */}
-                    <div className="space-y-2">
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={showDotProduct}
-                                onChange={(e) => setShowDotProduct(e.target.checked)}
-                                className="w-4 h-4"
-                            />
-                            <span className="text-cyan-400">{t("gm2_01.labels.show_dot_product")}</span>
-                        </label>
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={showCrossProduct}
-                                onChange={(e) => setShowCrossProduct(e.target.checked)}
-                                className="w-4 h-4"
-                            />
-                            <span className="text-green-400">{t("gm2_01.labels.show_cross_product")}</span>
-                        </label>
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={showProjection}
-                                onChange={(e) => setShowProjection(e.target.checked)}
-                                className="w-4 h-4"
-                            />
-                            <span className="text-yellow-400">{t("gm2_01.labels.show_projection")}</span>
-                        </label>
-                    </div>
-
-                    {/* Dot Product */}
-                    <div className="border border-cyan-500 p-3 space-y-2">
-                        <div className="text-sm text-cyan-400">{t("gm2_01.labels.dot_product")}</div>
-                        <div className="text-center text-2xl text-cyan-300 font-bold">
-                            {dotProduct.toFixed(3)}
-                        </div>
-                        <div className="text-xs space-y-1 text-cyan-300/80">
-                            <div>A·B = |A||B|cos(θ)</div>
-                            <div>θ = {angle.toFixed(1)}°</div>
-                            <div>Projection: {projectionLength.toFixed(3)}</div>
-                        </div>
-                    </div>
-
-                    {/* Cross Product */}
-                    <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">{t("gm2_01.labels.cross_product")}</div>
-                        <div className="text-center text-sm text-green-300 font-bold">
-                            ({crossProduct[0].toFixed(1)}, {crossProduct[1].toFixed(1)}, {crossProduct[2].toFixed(1)})
-                        </div>
-                        <div className="text-xs space-y-1 text-green-300/80">
-                            <div>|A×B| = {magnitudeCross.toFixed(3)}</div>
-                            <div>Area = |A||B|sin(θ)</div>
-                            <div>Area = {(magnitudeA * magnitudeB * Math.sin(angle * Math.PI / 180)).toFixed(3)}</div>
-                        </div>
-                    </div>
-
-                    {/* Formulas */}
-                    <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">{t("gm2_01.labels.formulas")}</div>
-                        <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>A·B = Aₓ Bₓ + Aᵧ Bᵧ + A_z B_z</div>
-                            <div>A×B = (AᵧB_z - A_zBᵧ, A_zBₓ - AₓB_z, AₓBᵧ - AᵧBₓ)</div>
-                            <div>|A| = √(Aₓ² + Aᵧ² + A_z²)</div>
-                        </div>
-                    </div>
-
-                    {/* Mission Info */}
-                    <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">{t("gm2_01.mission.title")}</div>
-                        <div className="text-xs text-amber-300/80">
-                            {t("gm2_01.mission.description")}
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <ChamberLayout
+      title={t.title}
+      moduleCode="GM2.01"
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={[
+        { id: "NAVIGATION", label: t.stages.navigation },
+        { id: "DOT", label: t.stages.dot },
+        { id: "MISSION", label: t.stages.mission },
+      ]}
+      currentStage={stage}
+      onStageChange={(s) => handleStageChange(s as Stage)}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
+      footerLeft={t.footer_left}
+      translations={{
+        back: t.back,
+        check: t.check,
+        next: t.next,
+        correct: t.correct,
+        incorrect: t.incorrect,
+        ready: t.ready,
+        monitor_title: t.monitor_title,
+        difficulty: {
+          basic: t.difficulty.basic,
+          core: t.difficulty.core,
+          advanced: t.difficulty.advanced,
+          elite: t.difficulty.elite,
+        },
+      }}
+      monitorContent={
+        <VectorVisualization
+          pointA={currentQuest?.pointA}
+          pointB={currentQuest?.pointB}
+          vectorV={currentQuest?.vectorV}
+          vectorW={currentQuest?.vectorW}
+          showDotProduct={currentQuest?.showDotProduct}
+          translations={{
+            title: t.monitor_title,
+            pointA: "Point A",
+            pointB: "Point B",
+            vectorV: "Vector v",
+            vectorW: stage === "MISSION" ? "Vector s" : "Vector w",
+          }}
+        />
+      }
+    >
+      <div className="space-y-10">
+        <div className="text-center space-y-2">
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
+          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
         </div>
-    );
+        
+        <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
+          <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
+            {stage === "NAVIGATION" && t.scenarios.navigation}
+            {stage === "DOT" && t.scenarios.dot}
+            {stage === "MISSION" && t.scenarios.mission}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+          <p className="text-3xl text-white font-black italic">
+            <InlineMath math={currentQuest?.promptLatex || ""} />
+          </p>
+        </div>
+        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            {currentQuest?.slots.map((slot) => (
+              <div key={slot.id} className="space-y-2">
+                <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
+                  <InlineMath math={slot.labelLatex} />
+                </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    value={inputs[slot.id] ?? ""}
+                    onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
+                    className="flex-1 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
+                    placeholder={slot.placeholder}
+                  />
+                  {slot.unit && (
+                    <div className="text-xl font-black text-white/80 min-w-[30px]">
+                      <InlineMath math={slot.unit} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-[10px] text-white/90 font-mono italic text-center">
+            {currentLanguage === 'DE'
+              ? "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
+              : currentLanguage === 'CN'
+                ? "提示：保留 2 位小数。"
+                : "Tip: Enter result rounded to 2 decimal places."
+            }
+          </div>
+        </div>
+      </div>
+    </ChamberLayout>
+  );
 }
