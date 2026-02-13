@@ -1322,7 +1322,10 @@ export const translations: Record<string, any> = {
             back: "Back to Nexus",
             title: "G3.01 // PROBABILITY VAULT",
             difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
             target_title: "Probability Matrix",
@@ -1334,39 +1337,28 @@ export const translations: Record<string, any> = {
             monitor_title: "G3.01_PROBABILITY_MONITOR",
             footer_left: "G3.01_PROBABILITY_VAULT // NODE: BASEL",
             stages: {
-                bernoulli: "BERNOULLI",
+                basic_prob: "BASIC PROBABILITY",
+                binomial: "BINOMIAL",
                 conditional: "CONDITIONAL",
-                distribution: "DISTRIBUTION",
-                uniform: "UNIFORM",
-                biased: "BIASED",
-                extreme: "EXTREME",
-                bernoulli_prompt_latex: "\\text{Calculate the probability P(k; n, p) for Bernoulli trials.}",
-                conditional_prompt_latex: "\\text{Determine the conditional probability P(A|B).}",
-                distribution_prompt_latex: "\\text{Predict the mean \\mu and variance \\sigma^2.}"
+                mission: "MISSION",
+                basic_prob_prompt_latex: "\\text{Calculate the probability }P(E).",
+                binomial_prompt_latex: "\\text{Calculate }P(X=k)\\text{ for binomial distribution.}",
+                conditional_prompt_latex: "\\text{Calculate the conditional probability }P(A|B).",
+                mission_prompt_latex: "\\text{Mission: Calculate the probability }P."
             },
             labels: {
                 input: "INPUT",
-                hints: "HINTS",
-                rows: "ROWS (n)",
-                ball_count: "BALL COUNT",
-                show_distribution: "Show Distribution"
-            },
-            normal: {
-                title: "NORMAL DISTRIBUTION",
-                mean: "Mean (μ):",
-                std_dev: "Std Dev (σ):",
-                variance: "Variance (σ²):"
-            },
-            binomial: {
-                title: "BINOMIAL DISTRIBUTION",
-                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
-                line_2: "μ = np",
-                line_3: "σ² = np(1-p)",
-                line_4: "p = 0.5 (fair coin)"
+                hints: "HINTS"
             },
             mission: {
-                title: "MISSION: GALTON BOARD",
-                description: "Observe the central limit theorem in action. Watch balls fall through pegs and form a normal distribution."
+                title: "MISSION: BASEL PROBABILITY LAB",
+                description: "Apply probability theory to real-world scenarios in Basel. Calculate probabilities for quality control, insurance, and lottery systems."
+            },
+            scenarios: {
+                basic_prob: "Basel Quality Control at Novartis: You are working in the quality control department at Novartis pharmaceutical manufacturing in Basel. Each batch of medication undergoes random sampling inspection. Given that a sample contains a certain number of favorable outcomes (passing quality tests) out of total samples, calculate the probability P(E) that a randomly selected item passes inspection. This probability determines whether the entire batch is approved for distribution to Swiss hospitals.",
+                binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability P(X=k) of exactly k successes using the binomial distribution formula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
+                conditional: "Basel Insurance Risk Assessment: Basler Versicherungen (Basel Insurance) needs to calculate conditional probabilities for risk assessment. Given P(A) = probability of an event occurring, P(B) = probability of a condition being met, and P(A∩B) = probability of both occurring, calculate P(A|B) = P(A∩B)/P(B). This conditional probability helps determine insurance premiums for Basel residents based on specific risk factors.",
+                mission: "Basel Integrated Probability Mission: You are consulting for multiple Basel companies - Novartis (pharmaceuticals), Swiss Lotto (lottery), and Basler Versicherungen (insurance). Each company presents a different probability problem: basic probability for quality control, binomial distribution for lottery analysis, or conditional probability for insurance risk. Apply the appropriate probability formula to solve each company's specific challenge and provide accurate probability calculations."
             }
         },
         sm2_06: {
@@ -3715,7 +3707,10 @@ export const translations: Record<string, any> = {
             back: "返回枢纽",
             title: "G3.01 // 概率金库",
             difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
             },
             objective_title: "当前任务目标",
             target_title: "概率矩阵",
@@ -3727,39 +3722,28 @@ export const translations: Record<string, any> = {
             monitor_title: "G3.01_概率监测器",
             footer_left: "G3.01_概率仓库 // 节点: 巴塞尔",
             stages: {
-                bernoulli: "伯努利试验",
+                basic_prob: "基础概率",
+                binomial: "二项分布",
                 conditional: "条件概率",
-                distribution: "概率分布",
-                uniform: "均匀分布",
-                biased: "偏移分布",
-                extreme: "极端分布",
-                bernoulli_prompt_latex: "\\text{计算伯努利试验的概率 P(k; n, p)。}",
-                conditional_prompt_latex: "\\text{确定条件概率 P(A|B)。}",
-                distribution_prompt_latex: "\\text{预测期望 \\mu 和方差 \\sigma^2。}"
+                mission: "任务",
+                basic_prob_prompt_latex: "\\text{计算概率 }P(E)\\text{。}",
+                binomial_prompt_latex: "\\text{计算二项分布的 }P(X=k)\\text{。}",
+                conditional_prompt_latex: "\\text{计算条件概率 }P(A|B)\\text{。}",
+                mission_prompt_latex: "\\text{任务：计算概率 }P\\text{。}"
             },
             labels: {
                 input: "输入",
-                hints: "提示",
-                rows: "行数 (n)",
-                ball_count: "小球数量",
-                show_distribution: "显示分布"
-            },
-            normal: {
-                title: "正态分布",
-                mean: "均值 (μ)：",
-                std_dev: "标准差 (σ)：",
-                variance: "方差 (σ²)："
-            },
-            binomial: {
-                title: "二项分布",
-                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
-                line_2: "μ = np",
-                line_3: "σ² = np(1-p)",
-                line_4: "p = 0.5（公平硬币）"
+                hints: "提示"
             },
             mission: {
-                title: "任务：高尔顿板",
-                description: "观察中心极限定理的实际运行。观察球体通过钉板形成正态分布。"
+                title: "任务：巴塞尔概率实验室",
+                description: "将概率论应用于巴塞尔的真实场景。计算质量控制、保险和彩票系统的概率。"
+            },
+            scenarios: {
+                basic_prob: "诺华巴塞尔质量控制：你在巴塞尔诺华制药的质量控制部门工作。每批药品都要进行随机抽样检验。给定样本中有一定数量的合格结果（通过质量测试）占总样本数，计算随机选择的物品通过检验的概率P(E)。这个概率决定了整批产品是否被批准分发到瑞士医院。",
+                binomial: "瑞士彩票系统分析：瑞士乐透从巴塞尔总部运营。在每次抽奖中，玩家选择的号码有固定概率p匹配。对于n次独立试验（彩票抽奖），使用二项分布公式计算恰好k次成功的概率P(X=k)：P(X=k) = C(n,k) × p^k × (1-p)^(n-k)。这帮助彩票官员预测支付频率并为瑞士玩家设置奖金结构。",
+                conditional: "巴塞尔保险风险评估：巴塞尔保险公司需要计算条件概率进行风险评估。给定P(A) = 事件发生的概率，P(B) = 条件满足的概率，P(A∩B) = 两者都发生的概率，计算P(A|B) = P(A∩B)/P(B)。这个条件概率帮助根据特定风险因素确定巴塞尔居民的保险费。",
+                mission: "巴塞尔综合概率任务：你正在为多家巴塞尔公司提供咨询——诺华（制药）、瑞士乐透（彩票）和巴塞尔保险公司（保险）。每家公司都提出不同的概率问题：质量控制的基础概率、彩票分析的二项分布或保险风险的条件概率。应用适当的概率公式解决每家公司的具体挑战，并提供准确的概率计算。"
             }
         },
         sm2_06: {
@@ -6436,7 +6420,10 @@ export const translations: Record<string, any> = {
             back: "Zurück zum Nexus",
             title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
             difficulty: {
-                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
             },
             objective_title: "Aktuelles Missionsziel",
             target_title: "Wahrscheinlichkeitsmatrix",
@@ -6448,39 +6435,28 @@ export const translations: Record<string, any> = {
             monitor_title: "G3.01_WAHRSCHEINLICHKEITSMONITOR",
             footer_left: "G3.01_WAHRSCHEINLICHKEITS-TRESOR // KNOTEN: BASEL",
             stages: {
-                bernoulli: "BERNOULLI",
+                basic_prob: "GRUNDWAHRSCHEINLICHKEIT",
+                binomial: "BINOMIAL",
                 conditional: "BEDINGT",
-                distribution: "VERTEILUNG",
-                uniform: "GLEICHMÄSSIG",
-                biased: "EINSEITIG",
-                extreme: "EXTREM",
-                bernoulli_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit P(k; n, p) für Bernoulli-Versuche.}",
-                conditional_prompt_latex: "\\text{Bestimme die bedingte Wahrscheinlichkeit P(A|B).}",
-                distribution_prompt_latex: "\\text{Berechne den Mittelwert \\mu und die Varianz \\sigma^2.}"
+                mission: "MISSION",
+                basic_prob_prompt_latex: "\\text{Berechne die Wahrscheinlichkeit }P(E)\\text{.}",
+                binomial_prompt_latex: "\\text{Berechne }P(X=k)\\text{ für Binomialverteilung.}",
+                conditional_prompt_latex: "\\text{Berechne die bedingte Wahrscheinlichkeit }P(A|B)\\text{.}",
+                mission_prompt_latex: "\\text{Mission: Berechne die Wahrscheinlichkeit }P\\text{.}"
             },
             labels: {
                 input: "EINGABE",
-                hints: "HINWEISE",
-                rows: "REIHEN (n)",
-                ball_count: "ANZAHL KUGELN",
-                show_distribution: "Verteilung anzeigen"
-            },
-            normal: {
-                title: "NORMALVERTEILUNG",
-                mean: "Mittelwert (μ):",
-                std_dev: "Standardabweichung (σ):",
-                variance: "Varianz (σ²):"
-            },
-            binomial: {
-                title: "BINOMIALVERTEILUNG",
-                line_1: "P(X=k) = C(n,k) × p^k × (1-p)^(n-k)",
-                line_2: "μ = np",
-                line_3: "σ² = np(1-p)",
-                line_4: "p = 0.5 (faire Münze)"
+                hints: "HINWEISE"
             },
             mission: {
-                title: "MISSION: GALTON-BRETT",
-                description: "Beobachten Sie den Zentralen Grenzwertsatz im Einsatz. Verfolgen Sie Kugeln, die durch Nägel fallen und eine Normalverteilung bilden."
+                title: "MISSION: BASLER WAHRSCHEINLICHKEITSLABOR",
+                description: "Wende Wahrscheinlichkeitstheorie auf reale Szenarien in Basel an. Berechne Wahrscheinlichkeiten für Qualitätskontrolle, Versicherung und Lotteriesysteme."
+            },
+            scenarios: {
+                basic_prob: "Qualitätskontrolle bei Novartis Basel: Sie arbeiten in der Qualitätskontrollabteilung der Novartis-Pharmaproduktion in Basel. Jede Charge von Medikamenten wird einer Stichprobenprüfung unterzogen. Gegeben ist, dass eine Stichprobe eine bestimmte Anzahl günstiger Ergebnisse (bestandene Qualitätstests) von der Gesamtzahl der Proben enthält, berechnen Sie die Wahrscheinlichkeit P(E), dass ein zufällig ausgewähltes Element die Inspektion besteht. Diese Wahrscheinlichkeit bestimmt, ob die gesamte Charge für die Verteilung an Schweizer Krankenhäuser freigegeben wird.",
+                binomial: "Schweizer Lotteriesystem-Analyse: Das Swiss Lotto wird von der Basler Zentrale aus betrieben. Bei jeder Ziehung wählen Spieler Zahlen mit einer festen Wahrscheinlichkeit p für eine Übereinstimmung. Für n unabhängige Versuche (Lottoziehungen) berechnen Sie die Wahrscheinlichkeit P(X=k) für genau k Erfolge mit der Binomialverteilungsformel: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). Dies hilft Lotteriebeamten, Auszahlungshäufigkeiten vorherzusagen und Preisstrukturen für Schweizer Spieler festzulegen.",
+                conditional: "Basler Versicherungs-Risikobewertung: Basler Versicherungen müssen bedingte Wahrscheinlichkeiten für die Risikobewertung berechnen. Gegeben P(A) = Wahrscheinlichkeit eines Ereignisses, P(B) = Wahrscheinlichkeit einer erfüllten Bedingung und P(A∩B) = Wahrscheinlichkeit beider Ereignisse, berechnen Sie P(A|B) = P(A∩B)/P(B). Diese bedingte Wahrscheinlichkeit hilft, Versicherungsprämien für Basler Einwohner basierend auf spezifischen Risikofaktoren zu bestimmen.",
+                mission: "Basler Integrierte Wahrscheinlichkeitsmission: Sie beraten mehrere Basler Unternehmen - Novartis (Pharma), Swiss Lotto (Lotterie) und Basler Versicherungen (Versicherung). Jedes Unternehmen präsentiert ein anderes Wahrscheinlichkeitsproblem: Grundwahrscheinlichkeit für Qualitätskontrolle, Binomialverteilung für Lotterieanalyse oder bedingte Wahrscheinlichkeit für Versicherungsrisiko. Wenden Sie die entsprechende Wahrscheinlichkeitsformel an, um die spezifische Herausforderung jedes Unternehmens zu lösen und genaue Wahrscheinlichkeitsberechnungen bereitzustellen."
             }
         },
         sm2_06: {
