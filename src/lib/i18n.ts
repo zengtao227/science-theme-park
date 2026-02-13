@@ -1,5 +1,7 @@
 import { useAppStore } from "@/lib/store";
 
+export type Language = "EN" | "CN" | "DE";
+
 export const translations: Record<string, any> = {
     EN: {
         protocol: {
@@ -127,6 +129,21 @@ export const translations: Record<string, any> = {
                     operations_target: "Find real and imaginary parts",
                     polar_prompt: "Calculate power using polar form",
                     polar_target: "Find z^n in rectangular form"
+                },
+                visualization: {
+                    pythagorean: "PYTHAGOREAN THEOREM",
+                    vector_addition: "VECTOR ADDITION",
+                    complex_multiplication: "COMPLEX MULTIPLICATION",
+                    polar_power: "POLAR FORM POWER",
+                    complex_data: "COMPLEX NUMBER DATA",
+                    magnitude: "Magnitude |z|",
+                    argument: "Argument arg(z)",
+                    power: "Power",
+                    verified: "VERIFIED",
+                    mismatch: "MISMATCH",
+                    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
+                    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
+                    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
                 }
             },
             gm5_01: {
@@ -5185,6 +5202,21 @@ export const translations: Record<string, any> = {
                 operations_target: "求实部和虚部",
                 polar_prompt: "使用极坐标形式计算幂",
                 polar_target: "求 z^n 的直角坐标形式"
+            },
+            visualization: {
+                pythagorean: "勾股定理",
+                vector_addition: "向量加法",
+                complex_multiplication: "复数乘法",
+                polar_power: "极坐标幂运算",
+                complex_data: "复数数据",
+                magnitude: "模长 |z|",
+                argument: "辐角 arg(z)",
+                power: "幂次",
+                verified: "验证成功",
+                mismatch: "答案错误",
+                geometric_meaning: "几何意义：模长相乘，角度相加",
+                polar_meaning: "模长变为 r^n，角度变为 n·θ",
+                parallelogram_rule: "平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂"
             }
         },
         gm5_01: {
@@ -7841,6 +7873,21 @@ export const translations: Record<string, any> = {
                 operations_target: "Real- und Imaginärteil finden",
                 polar_prompt: "Potenz mit Polarform berechnen",
                 polar_target: "z^n in kartesischer Form finden"
+            },
+            visualization: {
+                pythagorean: "SATZ DES PYTHAGORAS",
+                vector_addition: "VEKTORADDITION",
+                complex_multiplication: "KOMPLEXE MULTIPLIKATION",
+                polar_power: "POLARFORM POTENZ",
+                complex_data: "KOMPLEXE ZAHLENDATEN",
+                magnitude: "Betrag |z|",
+                argument: "Argument arg(z)",
+                power: "Potenz",
+                verified: "VERIFIZIERT",
+                mismatch: "FEHLANPASSUNG",
+                geometric_meaning: "Geometrische Bedeutung: Beträge multiplizieren, Winkel addieren",
+                polar_meaning: "Betrag wird r^n, Winkel wird n·θ",
+                parallelogram_rule: "Parallelogrammregel: vom Ursprung zu z₁, dann z₂ von z₁ verschieben"
             }
         },
         gm5_01: {

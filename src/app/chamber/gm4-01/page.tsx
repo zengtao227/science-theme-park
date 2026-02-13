@@ -328,6 +328,7 @@ export default function GM401Page() {
         <ComplexVisualization
           quest={currentQuest}
           checkStatus={lastCheck?.ok ? "correct" : lastCheck ? "incorrect" : null}
+          language={currentLanguage}
         />
       }
     >

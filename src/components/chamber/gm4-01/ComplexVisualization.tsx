@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { translations, Language } from "@/lib/i18n";
 
 interface ComplexQuest {
   z1?: { re: number; im: number };
@@ -15,10 +16,27 @@ interface ComplexQuest {
 interface ComplexVisualizationProps {
   quest: ComplexQuest | null;
   checkStatus: "correct" | "incorrect" | null;
+  language?: Language;
 }
 
-function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
+function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; language?: Language }) {
   const canvasSize = 500;
+  const safeLanguage = language || "EN";
+  const t = translations[safeLanguage]?.gm4_01?.visualization || {
+    pythagorean: "PYTHAGOREAN THEOREM",
+    vector_addition: "VECTOR ADDITION",
+    complex_multiplication: "COMPLEX MULTIPLICATION",
+    polar_power: "POLAR FORM POWER",
+    complex_data: "COMPLEX NUMBER DATA",
+    magnitude: "Magnitude |z|",
+    argument: "Argument arg(z)",
+    power: "Power",
+    verified: "VERIFIED",
+    mismatch: "MISMATCH",
+    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
+    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
+    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
+  };
   
   // Calculate bounds based on the complex numbers
   const bounds = useMemo(() => {
@@ -659,7 +677,8 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
   );
 }
 
-export default function ComplexVisualization({ quest, checkStatus }: ComplexVisualizationProps) {
+
+export default function ComplexVisualization({ quest, checkStatus, language = "EN" }: ComplexVisualizationProps) {
   if (!quest || !quest.z1) {
     return (
       <div className="w-full h-[600px] bg-black rounded-xl border border-white/10 flex items-center justify-center">
@@ -668,6 +687,22 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
     );
   }
 
+  const safeLanguage = language || "EN";
+  const t = translations[safeLanguage]?.gm4_01?.visualization || {
+    pythagorean: "PYTHAGOREAN THEOREM",
+    vector_addition: "VECTOR ADDITION",
+    complex_multiplication: "COMPLEX MULTIPLICATION",
+    polar_power: "POLAR FORM POWER",
+    complex_data: "COMPLEX NUMBER DATA",
+    magnitude: "Magnitude |z|",
+    argument: "Argument arg(z)",
+    power: "Power",
+    verified: "VERIFIED",
+    mismatch: "MISMATCH",
+    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
+    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
+    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
+  };
   const r = Math.sqrt(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im);
   const theta = Math.atan2(quest.z1.im, quest.z1.re);
   const thetaDeg = (theta * 180 / Math.PI).toFixed(1);
@@ -676,14 +711,14 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
     <div className="space-y-4">
       {/* 2D Complex Plane */}
       <div className="flex justify-center">
-        <ComplexPlane2D quest={quest} />
+        <ComplexPlane2D quest={quest} language={language} />
       </div>
 
       {/* Explanation based on operation */}
       {quest.operation === "polar" && (
         <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
           <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-            勾股定理 / PYTHAGOREAN THEOREM
+            {t.pythagorean}
           </div>
           <div className="text-white font-mono text-sm">
             <BlockMath math={`|z|^2 = a^2 + b^2 = ${quest.z1.re}^2 + ${quest.z1.im}^2 = ${(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im).toFixed(2)}`} />
@@ -695,12 +730,12 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
       {quest.operation === "add" && quest.z2 && (
         <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
           <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-            向量加法 / VECTOR ADDITION
+            {t.vector_addition}
           </div>
           <div className="text-white font-mono text-sm">
             <BlockMath math={`z_1 + z_2 = (${quest.z1.re} + ${quest.z2.re}) + (${quest.z1.im} + ${quest.z2.im})i`} />
             <div className="text-white/60 text-xs mt-2">
-              <InlineMath math="\\text{平行四边形法则：从原点到 } z_1\\text{，再从 } z_1 \\text{ 平移 } z_2" />
+              {t.parallelogram_rule}
             </div>
           </div>
         </div>
@@ -709,13 +744,13 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
       {quest.operation === "multiply" && quest.z2 && (
         <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
           <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-            复数乘法 / COMPLEX MULTIPLICATION
+            {t.complex_multiplication}
           </div>
           <div className="text-white font-mono text-sm">
             <BlockMath math={`z_1 \\times z_2 = (a_1 + b_1 i)(a_2 + b_2 i)`} />
             <BlockMath math={`= (a_1 a_2 - b_1 b_2) + (a_1 b_2 + b_1 a_2)i`} />
             <div className="text-white/60 text-xs mt-2">
-              <InlineMath math="\\text{几何意义：模长相乘，角度相加}" />
+              {t.geometric_meaning}
             </div>
           </div>
         </div>
@@ -724,13 +759,13 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
       {quest.operation === "power" && quest.power && (
         <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
           <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-            极坐标幂运算 / POLAR FORM POWER
+            {t.polar_power}
           </div>
           <div className="text-white font-mono text-sm">
             <BlockMath math={`z = r e^{i\\theta} = ${r.toFixed(3)} e^{i \\cdot ${thetaDeg}°}`} />
             <BlockMath math={`z^{${quest.power}} = r^{${quest.power}} e^{i \\cdot ${quest.power}\\theta} = ${Math.pow(r, quest.power).toFixed(3)} e^{i \\cdot ${(parseFloat(thetaDeg) * quest.power).toFixed(1)}°}`} />
             <div className="text-white/60 text-xs mt-2">
-              <InlineMath math="\\text{模长变为 } r^n\\text{，角度变为 } n\\cdot\\theta" />
+              {t.polar_meaning}
             </div>
           </div>
         </div>
@@ -739,7 +774,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
       {/* Data panel */}
       <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
         <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-          复数数据 / COMPLEX NUMBER DATA
+          {t.complex_data}
         </div>
         
         {quest.z1 && (
@@ -749,11 +784,11 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-white/60 font-mono">模长 |z|:</span>
+                <span className="text-white/60 font-mono">{t.magnitude}:</span>
                 <span className="text-neon-cyan font-black">{r.toFixed(3)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-white/60 font-mono">辐角 arg(z):</span>
+                <span className="text-white/60 font-mono">{t.argument}:</span>
                 <span className="text-neon-green font-black">{thetaDeg}°</span>
               </div>
             </div>
@@ -771,7 +806,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
         {quest.power && (
           <div className="pt-2 border-t border-white/10">
             <div className="text-sm text-white/60 font-mono">
-              幂次 Power: n = {quest.power}
+              {t.power}: n = {quest.power}
             </div>
           </div>
         )}
@@ -784,7 +819,7 @@ export default function ComplexVisualization({ quest, checkStatus }: ComplexVisu
             ? "border-neon-green bg-neon-green/10 text-neon-green"
             : "border-red-500 bg-red-500/10 text-red-500"
         }`}>
-          {checkStatus === "correct" ? "✓ 验证成功 VERIFIED" : "✗ 答案错误 MISMATCH"}
+          {checkStatus === "correct" ? `✓ ${t.verified}` : `✗ ${t.mismatch}`}
         </div>
       )}
     </div>
