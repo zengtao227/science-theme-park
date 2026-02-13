@@ -19,7 +19,71 @@ interface ComplexVisualizationProps {
 
 function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
   const canvasSize = 500;
-  const scale = 40; // pixels per unit
+  
+  // Calculate bounds based on the complex numbers
+  const bounds = useMemo(() => {
+    const points: Array<{ re: number; im: number }> = [];
+    
+    if (quest.z1) points.push(quest.z1);
+    if (quest.z2) points.push(quest.z2);
+    
+    // Calculate result
+    if (quest.z1) {
+      if (quest.operation === "add" && quest.z2) {
+        points.push({
+          re: quest.z1.re + quest.z2.re,
+          im: quest.z1.im + quest.z2.im,
+        });
+      } else if (quest.operation === "multiply" && quest.z2) {
+        points.push({
+          re: quest.z1.re * quest.z2.re - quest.z1.im * quest.z2.im,
+          im: quest.z1.re * quest.z2.im + quest.z1.im * quest.z2.re,
+        });
+      } else if (quest.operation === "power" && quest.power) {
+        const r = Math.sqrt(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im);
+        const theta = Math.atan2(quest.z1.im, quest.z1.re);
+        const newR = Math.pow(r, quest.power);
+        const newTheta = theta * quest.power;
+        points.push({
+          re: newR * Math.cos(newTheta),
+          im: newR * Math.sin(newTheta),
+        });
+      }
+    }
+    
+    if (points.length === 0) {
+      return { minRe: -5, maxRe: 5, minIm: -5, maxIm: 5 };
+    }
+    
+    const reValues = points.map(p => p.re);
+    const imValues = points.map(p => p.im);
+    
+    const minRe = Math.min(...reValues, 0);
+    const maxRe = Math.max(...reValues, 0);
+    const minIm = Math.min(...imValues, 0);
+    const maxIm = Math.max(...imValues, 0);
+    
+    // Add padding (20%)
+    const reRange = maxRe - minRe;
+    const imRange = maxIm - minIm;
+    const padding = 0.3;
+    
+    return {
+      minRe: minRe - reRange * padding,
+      maxRe: maxRe + reRange * padding,
+      minIm: minIm - imRange * padding,
+      maxIm: maxIm + imRange * padding,
+    };
+  }, [quest]);
+  
+  // Calculate scale to fit all points
+  const scale = useMemo(() => {
+    const reRange = bounds.maxRe - bounds.minRe;
+    const imRange = bounds.maxIm - bounds.minIm;
+    const maxRange = Math.max(reRange, imRange, 10); // minimum range of 10
+    return (canvasSize * 0.8) / maxRange;
+  }, [bounds, canvasSize]);
+  
   const origin = canvasSize / 2;
 
   const result = useMemo(() => {
@@ -57,17 +121,31 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
     x: origin + re * scale,
     y: origin - im * scale, // flip Y axis
   });
+  
+  // Calculate grid step size based on scale
+  const gridStep = useMemo(() => {
+    const range = Math.max(bounds.maxRe - bounds.minRe, bounds.maxIm - bounds.minIm);
+    if (range > 50) return 10;
+    if (range > 20) return 5;
+    if (range > 10) return 2;
+    return 1;
+  }, [bounds]);
 
   return (
-    <svg width={canvasSize} height={canvasSize} className="bg-black/50 rounded-xl border border-white/10">
+    <svg 
+      width={canvasSize} 
+      height={canvasSize} 
+      className="bg-black/50 rounded-xl border border-white/10"
+      viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+    >
       {/* Grid lines */}
-      {Array.from({ length: 21 }, (_, i) => i - 10).map((i) => (
+      {Array.from({ length: 41 }, (_, i) => (i - 20) * gridStep).map((i) => (
         <g key={`grid-${i}`}>
           {/* Vertical lines */}
           <line
-            x1={origin + i * scale}
+            x1={toCanvas(i, 0).x}
             y1={0}
-            x2={origin + i * scale}
+            x2={toCanvas(i, 0).x}
             y2={canvasSize}
             stroke={i === 0 ? "#ff2d7d" : "#00e5ff"}
             strokeWidth={i === 0 ? 2 : 0.5}
@@ -76,9 +154,9 @@ function ComplexPlane2D({ quest }: { quest: ComplexQuest }) {
           {/* Horizontal lines */}
           <line
             x1={0}
-            y1={origin + i * scale}
+            y1={toCanvas(0, i).y}
             x2={canvasSize}
-            y2={origin + i * scale}
+            y2={toCanvas(0, i).y}
             stroke={i === 0 ? "#39ff14" : "#00e5ff"}
             strokeWidth={i === 0 ? 2 : 0.5}
             opacity={i === 0 ? 0.5 : 0.1}
