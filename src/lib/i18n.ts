@@ -1213,6 +1213,50 @@ export const translations: Record<string, any> = {
             integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
             integral_preview_hint: "Unlock after mastering derivatives →"
         },
+        gm1_01_advanced: {
+            back: "Back to Nexus",
+            title: "GM1.01-ADV // ADVANCED CALCULUS",
+            monitor_title: "GM1.01_ADVANCED_MONITOR",
+            footer_left: "GM1.01_ADVANCED // NODE: BASEL",
+            check: "Verify",
+            next: "Next Challenge",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            mission: {
+                title: "ADVANCED DERIVATIVE CHALLENGES",
+                description: "Master complex derivatives by combining multiple rules. Apply calculus to real-world problems."
+            },
+            challenges: {
+                composite: "COMPOSITE",
+                modeling: "MODELING",
+                optimization: "OPTIMIZATION",
+                analysis: "ANALYSIS"
+            },
+            scenarios: {
+                composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t² + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
+                composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t² + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
+                modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t³ - 3t² + 5t meters. Find the velocity v(t) = s'(t) and acceleration a(t) = v'(t) at t=3 seconds.",
+                optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from 100cm² cardboard. The box has square base (side x) and height h. Volume V = x²h. With constraint x² + 4xh = 100, find x that maximizes volume."
+            },
+            questions: {
+                find_derivative: "Calculate the derivative at the given point",
+                find_velocity: "Calculate velocity v(t) = s'(t)",
+                find_acceleration: "Calculate acceleration a(t) = v'(t)",
+                find_maximum: "Find the value that maximizes the function"
+            },
+            hints: {
+                use_product_rule: "Use product rule: (uv)' = u'v + uv'. First find u' and v' separately.",
+                use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v². Remember to square the denominator!",
+                use_chain_rule: "Use chain rule: (f(g(x)))' = f'(g(x))·g'(x). Work from outside to inside.",
+                take_second_derivative: "First find f'(x), then differentiate again to get f''(x)."
+            },
+            function_label: "FUNCTION",
+            question_label: "CHALLENGE",
+            hint_label: "STRATEGY",
+            visualization_title: "FUNCTION GRAPH",
+            progress: "Progress"
+        },
         gm2_01: {
             back: "Back to Nexus",
             title: "G2.01 // VECTOR PILOT 3D",
@@ -3534,6 +3578,50 @@ export const translations: Record<string, any> = {
             integral_preview_title: "即将解锁：积分学",
             integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
             integral_preview_hint: "掌握导数后解锁 →"
+        },
+        gm1_01_advanced: {
+            back: "返回枢纽",
+            title: "GM1.01-进阶 // 高级微积分",
+            monitor_title: "GM1.01_进阶监控",
+            footer_left: "GM1.01_进阶 // 节点: 巴塞尔",
+            check: "验证",
+            next: "下一挑战",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            mission: {
+                title: "高级导数挑战",
+                description: "通过组合多个规则掌握复杂导数。将微积分应用于实际问题。"
+            },
+            challenges: {
+                composite: "综合函数",
+                modeling: "问题建模",
+                optimization: "优化问题",
+                analysis: "函数分析"
+            },
+            scenarios: {
+                composite_1: "🎢 场景：过山车设计 — 一位工程师设计过山车路段，高度遵循 h(t) = (2t² + 3t)·sin(t)。速度是导数 h'(t)。在 t=2 秒时，计算速度以确保乘客安全。这需要同时使用乘积规则和幂规则！",
+                composite_2: "📡 场景：信号处理 — 无线电信号的振幅为 A(t) = (t² + 1)/sin(t)。振幅变化率是 A'(t)。在 t=1 秒时，计算此速率以调整接收器。这需要商规则结合幂规则！",
+                modeling_1: "🚗 场景：汽车加速 — 一辆特斯拉从静止加速。其位置为 s(t) = 2t³ - 3t² + 5t 米。求 t=3 秒时的速度 v(t) = s'(t) 和加速度 a(t) = v'(t)。",
+                optimization_1: "📦 场景：盒子设计 — 一家公司用 100cm² 纸板制作盒子。盒子有正方形底（边长 x）和高度 h。体积 V = x²h。在约束 x² + 4xh = 100 下，找到使体积最大的 x。"
+            },
+            questions: {
+                find_derivative: "计算给定点的导数",
+                find_velocity: "计算速度 v(t) = s'(t)",
+                find_acceleration: "计算加速度 a(t) = v'(t)",
+                find_maximum: "找到使函数最大的值"
+            },
+            hints: {
+                use_product_rule: "使用乘积规则：(uv)' = u'v + uv'。先分别求 u' 和 v'。",
+                use_quotient_rule: "使用商规则：(u/v)' = (u'v - uv')/v²。记住分母要平方！",
+                use_chain_rule: "使用链式法则：(f(g(x)))' = f'(g(x))·g'(x)。从外到内计算。",
+                take_second_derivative: "先求 f'(x)，然后再次求导得到 f''(x)。"
+            },
+            function_label: "函数",
+            question_label: "挑战",
+            hint_label: "策略",
+            visualization_title: "函数图形",
+            progress: "进度"
         },
         gm2_01: {
             back: "返回枢纽",
@@ -6184,6 +6272,50 @@ export const translations: Record<string, any> = {
             integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
             integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
             integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
+        },
+        gm1_01_advanced: {
+            back: "Zurück zum Nexus",
+            title: "GM1.01-ADV // FORTGESCHRITTENE ANALYSIS",
+            monitor_title: "GM1.01_FORTGESCHRITTEN_MONITOR",
+            footer_left: "GM1.01_FORTGESCHRITTEN // KNOTEN: BASEL",
+            check: "Prüfen",
+            next: "Nächste Herausforderung",
+            correct: "Verifiziert",
+            incorrect: "Abweichung",
+            ready: "Bereit",
+            mission: {
+                title: "FORTGESCHRITTENE ABLEITUNGS-HERAUSFORDERUNGEN",
+                description: "Meistere komplexe Ableitungen durch Kombination mehrerer Regeln. Wende Analysis auf reale Probleme an."
+            },
+            challenges: {
+                composite: "ZUSAMMENGESETZT",
+                modeling: "MODELLIERUNG",
+                optimization: "OPTIMIERUNG",
+                analysis: "ANALYSE"
+            },
+            scenarios: {
+                composite_1: "🎢 SZENARIO: Achterbahn-Design — Ein Ingenieur entwirft einen Achterbahn-Abschnitt, bei dem die Höhe h(t) = (2t² + 3t)·sin(t) folgt. Die Geschwindigkeit ist die Ableitung h'(t). Berechne bei t=2 Sekunden die Geschwindigkeit, um die Sicherheit der Passagiere zu gewährleisten. Dies erfordert sowohl die Produktregel ALS AUCH die Potenzregel!",
+                composite_2: "📡 SZENARIO: Signalverarbeitung — Die Amplitude eines Funksignals ist A(t) = (t² + 1)/sin(t). Die Änderungsrate der Amplitude ist A'(t). Berechne bei t=1 Sekunde diese Rate, um den Empfänger anzupassen. Dies erfordert die Quotientenregel kombiniert mit der Potenzregel!",
+                modeling_1: "🚗 SZENARIO: Auto-Beschleunigung — Ein Tesla beschleunigt aus dem Stand. Seine Position ist s(t) = 2t³ - 3t² + 5t Meter. Finde die Geschwindigkeit v(t) = s'(t) und Beschleunigung a(t) = v'(t) bei t=3 Sekunden.",
+                optimization_1: "📦 SZENARIO: Karton-Design — Ein Unternehmen stellt Kartons aus 100cm² Pappe her. Der Karton hat eine quadratische Basis (Seite x) und Höhe h. Volumen V = x²h. Mit der Bedingung x² + 4xh = 100, finde x, das das Volumen maximiert."
+            },
+            questions: {
+                find_derivative: "Berechne die Ableitung am gegebenen Punkt",
+                find_velocity: "Berechne Geschwindigkeit v(t) = s'(t)",
+                find_acceleration: "Berechne Beschleunigung a(t) = v'(t)",
+                find_maximum: "Finde den Wert, der die Funktion maximiert"
+            },
+            hints: {
+                use_product_rule: "Verwende Produktregel: (uv)' = u'v + uv'. Finde zuerst u' und v' separat.",
+                use_quotient_rule: "Verwende Quotientenregel: (u/v)' = (u'v - uv')/v². Denke daran, den Nenner zu quadrieren!",
+                use_chain_rule: "Verwende Kettenregel: (f(g(x)))' = f'(g(x))·g'(x). Arbeite von außen nach innen.",
+                take_second_derivative: "Finde zuerst f'(x), dann leite erneut ab, um f''(x) zu erhalten."
+            },
+            function_label: "FUNKTION",
+            question_label: "HERAUSFORDERUNG",
+            hint_label: "STRATEGIE",
+            visualization_title: "FUNKTIONSGRAPH",
+            progress: "Fortschritt"
         },
         gm2_01: {
             back: "Zurück zum Nexus",
