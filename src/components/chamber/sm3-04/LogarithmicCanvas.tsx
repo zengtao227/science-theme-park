@@ -8,6 +8,20 @@ import * as THREE from "three";
 interface LogarithmicCanvasProps {
   stage: "PH" | "DECIBEL" | "RICHTER";
   value?: number;
+  translations: {
+    ph_title: string;
+    ph_formula: string;
+    decibel_title: string;
+    decibel_formula: string;
+    richter_title: string;
+    richter_formula: string;
+    ph_subtitle: string;
+    decibel_subtitle: string;
+    richter_subtitle: string;
+    status_chamber: string;
+    status_sim: string;
+    status_mode: string;
+  };
 }
 
 const palette = {
@@ -55,7 +69,7 @@ function PHScale({ value }: { value: number }) {
             {ph}
           </Text>
           <Text position={[1.2, 0, 0]} fontSize={0.2} color={palette.cyan}>
-            10^{-ph}
+            {`10^${-ph}`}
           </Text>
         </group>
       ))}
@@ -69,14 +83,6 @@ function PHScale({ value }: { value: number }) {
           emissiveIntensity={1}
         />
       </mesh>
-      
-      {/* Labels */}
-      <Text position={[0, 8, 0]} fontSize={0.4} color={palette.white}>
-        pH SCALE
-      </Text>
-      <Text position={[0, -8, 0]} fontSize={0.3} color={palette.cyan}>
-        pH = -log₁₀[H⁺]
-      </Text>
     </group>
   );
 }
@@ -135,14 +141,6 @@ function DecibelScale({ value }: { value: number }) {
           );
         })}
       </group>
-      
-      {/* Labels */}
-      <Text position={[0, 7, 0]} fontSize={0.4} color={palette.white}>
-        DECIBEL SCALE
-      </Text>
-      <Text position={[0, -7, 0]} fontSize={0.3} color={palette.purple}>
-        L = 10·log₁₀(I/I₀)
-      </Text>
     </group>
   );
 }
@@ -182,7 +180,7 @@ function RichterScale({ value }: { value: number }) {
             {mag}
           </Text>
           <Text position={[1.5, 0, 0]} fontSize={0.2} color={palette.pink}>
-            10^{mag}
+            {`10^${mag}`}
           </Text>
         </group>
       ))}
@@ -210,14 +208,6 @@ function RichterScale({ value }: { value: number }) {
           </mesh>
         ))}
       </group>
-      
-      {/* Labels */}
-      <Text position={[0, 6, 0]} fontSize={0.4} color={palette.white}>
-        RICHTER SCALE
-      </Text>
-      <Text position={[0, -6, 0]} fontSize={0.3} color={palette.pink}>
-        M = log₁₀(A)
-      </Text>
     </group>
   );
 }
@@ -225,7 +215,32 @@ function RichterScale({ value }: { value: number }) {
 export default function LogarithmicCanvas({
   stage = "PH",
   value = 7,
+  translations,
 }: LogarithmicCanvasProps) {
+  const getTitle = () => {
+    if (stage === "PH") return translations.ph_title;
+    if (stage === "DECIBEL") return translations.decibel_title;
+    return translations.richter_title;
+  };
+
+  const getSubtitle = () => {
+    if (stage === "PH") return translations.ph_subtitle;
+    if (stage === "DECIBEL") return translations.decibel_subtitle;
+    return translations.richter_subtitle;
+  };
+
+  const getFormula = () => {
+    if (stage === "PH") return translations.ph_formula;
+    if (stage === "DECIBEL") return translations.decibel_formula;
+    return translations.richter_formula;
+  };
+
+  const getValueDisplay = () => {
+    if (stage === "PH") return `pH = ${value.toFixed(1)}`;
+    if (stage === "DECIBEL") return `${value.toFixed(0)} dB`;
+    return `M ${value.toFixed(1)}`;
+  };
+
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [8, 0, 8], fov: 50 }} gl={{ antialias: true }}>
@@ -248,27 +263,35 @@ export default function LogarithmicCanvas({
         {stage === "PH" && <PHScale value={value} />}
         {stage === "DECIBEL" && <DecibelScale value={value} />}
         {stage === "RICHTER" && <RichterScale value={value} />}
+        
+        {/* Title and formula in 3D space */}
+        <Text position={[0, stage === "RICHTER" ? 6 : stage === "PH" ? 8 : 7, 0]} fontSize={0.4} color={palette.white}>
+          {getTitle()}
+        </Text>
+        <Text 
+          position={[0, stage === "RICHTER" ? -6 : stage === "PH" ? -8 : -7, 0]} 
+          fontSize={0.3} 
+          color={stage === "PH" ? palette.cyan : stage === "DECIBEL" ? palette.purple : palette.pink}
+        >
+          {getFormula()}
+        </Text>
       </Canvas>
       
       {/* Info panel */}
       <div className="absolute top-4 left-4 bg-black/70 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider">
-          {stage === "PH" && "pH Scale (Acidity)"}
-          {stage === "DECIBEL" && "Decibel Scale (Sound)"}
-          {stage === "RICHTER" && "Richter Scale (Earthquake)"}
+          {getTitle()} ({getSubtitle()})
         </div>
         <div className="text-[11px] font-mono text-white">
-          {stage === "PH" && `pH = ${value.toFixed(1)}`}
-          {stage === "DECIBEL" && `${value.toFixed(0)} dB`}
-          {stage === "RICHTER" && `Magnitude ${value.toFixed(1)}`}
+          {getValueDisplay()}
         </div>
       </div>
       
       {/* Status */}
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // S3.04<br />
-        LOG_SCALE_SIM: ACTIVE<br />
-        MODE: {stage}
+        {translations.status_chamber} // S3.04<br />
+        {translations.status_sim}<br />
+        {translations.status_mode}: {stage}
       </div>
     </div>
   );

@@ -18,47 +18,111 @@ interface S304Quest extends Quest {
   concentration?: number;
   intensity?: number;
   amplitude?: number;
+  scenarioKey?: keyof S304T["scenarios"];
 }
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// pH data
-const phData = [
-  { id: "P1", concentration: 1e-3 },
-  { id: "P2", concentration: 1e-5 },
-  { id: "P3", concentration: 1e-7 },
-  { id: "P4", concentration: 1e-9 },
-  { id: "P5", concentration: 1e-11 },
-  { id: "P6", concentration: 1e-2 },
-  { id: "P7", concentration: 1e-4 },
-];
+// pH data - redesigned with proper difficulty progression
+const phData = {
+  BASIC: [
+    // Simple powers of 10
+    { id: "P-B1", concentration: 1e-3, scenarioKey: "ph_basic" as const },
+    { id: "P-B2", concentration: 1e-5, scenarioKey: "ph_basic" as const },
+    { id: "P-B3", concentration: 1e-7, scenarioKey: "ph_basic" as const },
+    { id: "P-B4", concentration: 1e-9, scenarioKey: "ph_basic" as const },
+  ],
+  CORE: [
+    // Requires understanding neutral/acidic/basic
+    { id: "P-C1", concentration: 1e-8, scenarioKey: "ph_core" as const },
+    { id: "P-C2", concentration: 1e-2, scenarioKey: "ph_core" as const },
+    { id: "P-C3", concentration: 1e-11, scenarioKey: "ph_core" as const },
+    { id: "P-C4", concentration: 1e-4, scenarioKey: "ph_core" as const },
+  ],
+  ADVANCED: [
+    // Non-integer exponents
+    { id: "P-A1", concentration: 3.16e-5, scenarioKey: "ph_advanced" as const }, // pH ≈ 4.5
+    { id: "P-A2", concentration: 1.58e-7, scenarioKey: "ph_advanced" as const }, // pH ≈ 6.8
+    { id: "P-A3", concentration: 6.31e-3, scenarioKey: "ph_advanced" as const }, // pH ≈ 2.2
+    { id: "P-A4", concentration: 2.51e-10, scenarioKey: "ph_advanced" as const }, // pH ≈ 9.6
+  ],
+  ELITE: [
+    // Fractional exponents in scientific notation
+    { id: "P-E1", concentration: Math.pow(10, -4.5), scenarioKey: "ph_elite" as const }, // 10^-4.5
+    { id: "P-E2", concentration: Math.pow(10, -3.7), scenarioKey: "ph_elite" as const }, // 10^-3.7
+    { id: "P-E3", concentration: Math.pow(10, -8.3), scenarioKey: "ph_elite" as const }, // 10^-8.3
+    { id: "P-E4", concentration: Math.pow(10, -10.2), scenarioKey: "ph_elite" as const }, // 10^-10.2
+  ],
+};
 
-// Decibel data
-const decibelData = [
-  { id: "D1", intensity: 1e-10 }, // 20 dB
-  { id: "D2", intensity: 1e-8 },  // 40 dB
-  { id: "D3", intensity: 1e-6 },  // 60 dB
-  { id: "D4", intensity: 1e-4 },  // 80 dB
-  { id: "D5", intensity: 1e-2 },  // 100 dB
-  { id: "D6", intensity: 1 },     // 120 dB
-  { id: "D7", intensity: 1e-9 },  // 30 dB
-];
+// Decibel data - redesigned with proper difficulty progression
+const decibelData = {
+  BASIC: [
+    // Simple powers of 10
+    { id: "D-B1", intensity: 1e-10, scenarioKey: "decibel_basic" as const }, // 20 dB
+    { id: "D-B2", intensity: 1e-8, scenarioKey: "decibel_basic" as const },  // 40 dB
+    { id: "D-B3", intensity: 1e-6, scenarioKey: "decibel_basic" as const },  // 60 dB
+    { id: "D-B4", intensity: 1e-9, scenarioKey: "decibel_basic" as const },  // 30 dB
+  ],
+  CORE: [
+    // Understanding sound levels
+    { id: "D-C1", intensity: 1e-4, scenarioKey: "decibel_core" as const },  // 80 dB
+    { id: "D-C2", intensity: 1e-2, scenarioKey: "decibel_core" as const },  // 100 dB
+    { id: "D-C3", intensity: 1e-5, scenarioKey: "decibel_core" as const },  // 70 dB
+    { id: "D-C4", intensity: 1, scenarioKey: "decibel_core" as const },     // 120 dB
+  ],
+  ADVANCED: [
+    // Non-integer results
+    { id: "D-A1", intensity: 3.16e-7, scenarioKey: "decibel_advanced" as const }, // ≈ 55 dB
+    { id: "D-A2", intensity: 1.58e-5, scenarioKey: "decibel_advanced" as const }, // ≈ 72 dB
+    { id: "D-A3", intensity: 6.31e-3, scenarioKey: "decibel_advanced" as const }, // ≈ 98 dB
+    { id: "D-A4", intensity: 2.51e-9, scenarioKey: "decibel_advanced" as const }, // ≈ 34 dB
+  ],
+  ELITE: [
+    // Calculating decibel differences (requires subtraction)
+    { id: "D-E1", intensity: 1e-3, intensity2: 1e-6 as number | undefined, scenarioKey: "decibel_elite" as const }, // 90 - 60 = 30 dB reduction
+    { id: "D-E2", intensity: 1e-2, intensity2: 1e-5 as number | undefined, scenarioKey: "decibel_elite" as const }, // 100 - 70 = 30 dB reduction
+    { id: "D-E3", intensity: 1e-4, intensity2: 1e-8 as number | undefined, scenarioKey: "decibel_elite" as const }, // 80 - 40 = 40 dB reduction
+    { id: "D-E4", intensity: 1, intensity2: 1e-6 as number | undefined, scenarioKey: "decibel_elite" as const }, // 120 - 60 = 60 dB reduction
+  ],
+};
 
-// Richter data
-const richterData = [
-  { id: "R1", amplitude: 10 },
-  { id: "R2", amplitude: 100 },
-  { id: "R3", amplitude: 1000 },
-  { id: "R4", amplitude: 10000 },
-  { id: "R5", amplitude: 100000 },
-  { id: "R6", amplitude: 31.6 },
-  { id: "R7", amplitude: 316 },
-];
+// Richter data - redesigned with proper difficulty progression
+const richterData = {
+  BASIC: [
+    // Simple powers of 10
+    { id: "R-B1", amplitude: 10, scenarioKey: "richter_basic" as const },      // M = 1
+    { id: "R-B2", amplitude: 100, scenarioKey: "richter_basic" as const },     // M = 2
+    { id: "R-B3", amplitude: 1000, scenarioKey: "richter_basic" as const },    // M = 3
+    { id: "R-B4", amplitude: 10000, scenarioKey: "richter_basic" as const },   // M = 4
+  ],
+  CORE: [
+    // Understanding earthquake severity
+    { id: "R-C1", amplitude: 100000, scenarioKey: "richter_core" as const },   // M = 5
+    { id: "R-C2", amplitude: 1000000, scenarioKey: "richter_core" as const },  // M = 6
+    { id: "R-C3", amplitude: 10000000, scenarioKey: "richter_core" as const }, // M = 7
+    { id: "R-C4", amplitude: 316, scenarioKey: "richter_core" as const },      // M ≈ 2.5
+  ],
+  ADVANCED: [
+    // Non-integer magnitudes
+    { id: "R-A1", amplitude: 31600, scenarioKey: "richter_advanced" as const },  // M ≈ 4.5
+    { id: "R-A2", amplitude: 1000, scenarioKey: "richter_advanced" as const },   // M = 3.0
+    { id: "R-A3", amplitude: 158000, scenarioKey: "richter_advanced" as const }, // M ≈ 5.2
+    { id: "R-A4", amplitude: 501, scenarioKey: "richter_advanced" as const },    // M ≈ 2.7
+  ],
+  ELITE: [
+    // Understanding energy relationships (conceptual)
+    { id: "R-E1", amplitude: 100000, amplitude2: 1000 as number | undefined, scenarioKey: "richter_elite" as const }, // M 5.0 vs M 3.0
+    { id: "R-E2", amplitude: 10000000, amplitude2: 100000 as number | undefined, scenarioKey: "richter_elite" as const }, // M 7.0 vs M 5.0
+    { id: "R-E3", amplitude: 1000000, amplitude2: 10000 as number | undefined, scenarioKey: "richter_elite" as const }, // M 6.0 vs M 4.0
+    { id: "R-E4", amplitude: 1000000000, amplitude2: 1000000 as number | undefined, scenarioKey: "richter_elite" as const }, // M 9.0 vs M 6.0
+  ],
+};
 
 function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Quest[] {
   if (stage === "PH") {
-    const all = phData.map((item) => {
-      // pH = -log10([H+])
+    const data = phData[difficulty];
+    return data.map((item) => {
       const pH = round2(-Math.log10(item.concentration));
       
       return {
@@ -67,21 +131,43 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
         stage,
         concentration: item.concentration,
         value: pH,
+        scenarioKey: item.scenarioKey,
         promptLatex: t.stages.ph_prompt_latex,
-        expressionLatex: `[H^+]=${item.concentration.toExponential(0)}\\;M`,
+        expressionLatex: `[H^+]=${item.concentration.toExponential(2)}\\;M`,
         targetLatex: "pH",
         slots: [{ id: "pH", labelLatex: "pH", placeholder: "pH value", expected: pH }],
         correctLatex: `pH=${pH}`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   if (stage === "DECIBEL") {
-    const all = decibelData.map((item) => {
-      // L = 10 * log10(I/I0), where I0 = 1e-12 W/m²
+    const data = decibelData[difficulty];
+    return data.map((item) => {
       const I0 = 1e-12;
+      
+      // ELITE level: calculate decibel reduction
+      if (difficulty === "ELITE" && 'intensity2' in item && item.intensity2) {
+        const dB1 = round2(10 * Math.log10(item.intensity / I0));
+        const dB2 = round2(10 * Math.log10(item.intensity2 / I0));
+        const reduction = round2(dB1 - dB2);
+        
+        return {
+          id: item.id,
+          difficulty,
+          stage,
+          intensity: item.intensity,
+          value: reduction,
+          scenarioKey: item.scenarioKey,
+          promptLatex: "\\text{Calculate decibel reduction: }L_1 - L_2",
+          expressionLatex: `I_1=${item.intensity.toExponential(0)}\\;W/m^2,\\; I_2=${item.intensity2.toExponential(0)}\\;W/m^2`,
+          targetLatex: "\\Delta L",
+          slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: "dB reduction", expected: reduction, unit: "dB" }],
+          correctLatex: `\\Delta L=${reduction}\\;dB`,
+        };
+      }
+      
+      // BASIC/CORE/ADVANCED: calculate single decibel value
       const dB = round2(10 * Math.log10(item.intensity / I0));
       
       return {
@@ -90,6 +176,7 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
         stage,
         intensity: item.intensity,
         value: dB,
+        scenarioKey: item.scenarioKey,
         promptLatex: t.stages.decibel_prompt_latex,
         expressionLatex: `I=${item.intensity.toExponential(0)}\\;W/m^2,\\; I_0=10^{-12}\\;W/m^2`,
         targetLatex: "L",
@@ -97,13 +184,33 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
         correctLatex: `L=${dB}\\;dB`,
       };
     });
-    if (difficulty === "BASIC") return all.slice(0, 4);
-    return all;
   }
 
   // RICHTER
-  const all = richterData.map((item) => {
-    // M = log10(A)
+  const data = richterData[difficulty];
+  return data.map((item) => {
+    // ELITE level: compare two earthquakes (magnitude difference)
+    if (difficulty === "ELITE" && 'amplitude2' in item && item.amplitude2) {
+      const M1 = round2(Math.log10(item.amplitude));
+      const M2 = round2(Math.log10(item.amplitude2));
+      const diff = round2(M1 - M2);
+      
+      return {
+        id: item.id,
+        difficulty,
+        stage,
+        amplitude: item.amplitude,
+        value: diff,
+        scenarioKey: item.scenarioKey,
+        promptLatex: "\\text{Calculate magnitude difference: }M_1 - M_2",
+        expressionLatex: `A_1=${item.amplitude}\\;\\mu m,\\; A_2=${item.amplitude2}\\;\\mu m`,
+        targetLatex: "\\Delta M",
+        slots: [{ id: "M", labelLatex: "\\Delta M", placeholder: "magnitude diff", expected: diff }],
+        correctLatex: `\\Delta M=${diff}`,
+      };
+    }
+    
+    // BASIC/CORE/ADVANCED: calculate single magnitude
     const magnitude = round2(Math.log10(item.amplitude));
     
     return {
@@ -112,6 +219,7 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
       stage,
       amplitude: item.amplitude,
       value: magnitude,
+      scenarioKey: item.scenarioKey,
       promptLatex: t.stages.richter_prompt_latex,
       expressionLatex: `A=${item.amplitude}\\;\\mu m`,
       targetLatex: "M",
@@ -119,8 +227,6 @@ function buildStagePool(t: S304T, difficulty: Difficulty, stage: Stage): S304Que
       correctLatex: `M=${magnitude}`,
     };
   });
-  if (difficulty === "BASIC") return all.slice(0, 4);
-  return all;
 }
 
 export default function S304Page() {
@@ -186,6 +292,7 @@ export default function S304Page() {
           <LogarithmicCanvas
             stage={stage}
             value={currentQuest?.value || 7}
+            translations={t.canvas}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
@@ -205,6 +312,16 @@ export default function S304Page() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
           <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
         </div>
+        
+        {/* Scenario description */}
+        {currentQuest?.scenarioKey && t.scenarios && (
+          <div className="max-w-4xl mx-auto p-6 bg-emerald-950/20 border-2 border-emerald-500/30 rounded-xl">
+            <div className="text-sm font-medium text-emerald-300 leading-relaxed">
+              {t.scenarios[currentQuest.scenarioKey]}
+            </div>
+          </div>
+        )}
+        
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">

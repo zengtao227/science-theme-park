@@ -1864,20 +1864,48 @@ export const translations: Record<string, any> = {
             },
             mission: {
                 title: "LOGARITHMIC MEASUREMENT LAB",
-                description: "Novartis lab requires logarithmic scaling. Master pH scale, decibels, and Richter scale."
+                description: "Master three real-world logarithmic scales: pH (chemistry), decibels (sound), and Richter (earthquakes). Each scale compresses huge ranges into manageable numbers."
             },
             stages: {
                 ph: "pH SCALE",
                 decibel: "DECIBELS",
                 richter: "RICHTER",
-                ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log[H^+].",
-                decibel_prompt_latex: "\\text{Calculate decibels using }dB=10\\log(I/I_0).",
-                richter_prompt_latex: "\\text{Calculate Richter scale using }M=\\log(A/A_0)."
+                ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log_{10}[H^+].",
+                decibel_prompt_latex: "\\text{Calculate decibels using }L=10\\log_{10}(I/I_0).",
+                richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A)."
             },
             formulas: {
-                ph_scale: "pH = -\\log[H^+]",
-                decibel_scale: "dB = 10\\log(I/I_0)",
-                richter_scale: "M = \\log(A/A_0)"
+                ph: "pH = -\\log_{10}[H^+]",
+                decibel: "L = 10\\log_{10}(I/I_0)",
+                richter: "M = \\log_{10}(A)"
+            },
+            scenarios: {
+                ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H⁺] = 0.001 mol/L (which is 10⁻³ in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log₁₀[H⁺]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
+                ph_core: "🧪 SCENARIO: Swimming Pool Water Quality — You work part-time at the Zurich public pool. The health inspector requires daily pH testing. Today's water sample shows [H⁺] = 10⁻⁸ mol/L. You need to calculate the pH to verify it's in the safe range (7.2-7.8). If pH is too low (acidic), it irritates swimmers' eyes. If too high (basic), chlorine doesn't work properly. Your calculation determines whether the pool can open today!",
+                ph_advanced: "🧪 SCENARIO: Pharmaceutical Quality Control — You're an intern at Novartis in Basel. A new drug formulation must have precise pH control for stability. The lab measures [H⁺] = 3.16 × 10⁻⁵ mol/L. Calculate the pH to 2 decimal places. If pH drifts outside the target range (4.3-4.7), the entire batch (worth millions) must be discarded. Logarithmic precision matters in pharma!",
+                ph_elite: "🧪 SCENARIO: Environmental Acid Rain Study — ETH Zurich researchers are studying acid rain effects on Swiss forests. Rainwater samples show [H⁺] = 10⁻⁴·⁵ mol/L (note the fractional exponent!). Calculate the pH. Normal rain is pH 5.6, but acid rain can be pH 4.0 or lower. Each pH unit represents a 10× change in acidity, so pH 4 rain is 100× more acidic than pH 6 rain. Your calculation helps assess environmental damage.",
+                decibel_basic: "🔊 SCENARIO: School Library Noise Check — The librarian asks you to measure if the study area is quiet enough. You use a sound meter: the intensity is I = 10⁻¹⁰ W/m². The reference intensity (threshold of hearing) is I₀ = 10⁻¹² W/m². Calculate the sound level in decibels using L = 10·log₁₀(I/I₀). For reference: whisper = 30 dB, normal conversation = 60 dB, library should be under 40 dB.",
+                decibel_core: "🔊 SCENARIO: Concert Sound Engineer — You're setting up for a school rock concert in the auditorium. The sound system produces intensity I = 10⁻⁴ W/m² at the front row. Calculate the decibel level. Safety regulations require ear protection above 85 dB, and prolonged exposure above 100 dB causes hearing damage. Your calculation determines whether you need to reduce the volume or provide earplugs to the audience.",
+                decibel_advanced: "🔊 SCENARIO: Airport Noise Pollution Study — Zurich Airport is expanding, and residents complain about noise. You measure a jet taking off: I = 1 W/m² at 100 meters distance. Calculate the decibel level. City regulations limit airport noise to 65 dB during daytime. At 120 dB (jet engine), sound is painful. The logarithmic scale means 120 dB is not 'twice as loud' as 60 dB — it's 1,000,000 times more intense!",
+                decibel_elite: "🔊 SCENARIO: Acoustic Engineering Challenge — A Swiss concert hall is being designed. The architect needs to calculate sound absorption. If the original intensity is I₁ = 10⁻³ W/m² and after acoustic panels it drops to I₂ = 10⁻⁶ W/m², what's the decibel reduction? Calculate L₁ - L₂. This involves understanding that decibel differences represent intensity ratios: a 10 dB drop means 10× less intense, 20 dB drop means 100× less intense.",
+                richter_basic: "🌍 SCENARIO: Earthquake Monitoring Station — You volunteer at ETH Zurich's seismology lab. A small earthquake hits near Basel. The seismograph records ground motion amplitude A = 100 micrometers. Calculate the Richter magnitude using M = log₁₀(A). For reference: M < 2 is not felt, M 3-4 is minor, M 5-6 is moderate, M 7+ is major. Your calculation helps classify the earthquake severity.",
+                richter_core: "🌍 SCENARIO: Historical Earthquake Analysis — In 1356, Basel experienced Switzerland's strongest recorded earthquake. Modern analysis estimates the ground amplitude was A = 100,000 micrometers. Calculate the Richter magnitude. Compare this to the 2011 Japan earthquake (M 9.0) which had amplitude 1,000,000,000 micrometers. The logarithmic scale compresses this billion-fold range into manageable numbers (1 to 9).",
+                richter_advanced: "🌍 SCENARIO: Earthquake Early Warning System — Switzerland is developing an earthquake alert app. Two earthquakes occur: Earthquake A has amplitude 31,600 μm, Earthquake B has amplitude 1,000 μm. Calculate both magnitudes to 2 decimal places. The app needs to distinguish between 'minor tremor' (M < 4.0) and 'significant quake' (M ≥ 4.0) to decide whether to send emergency alerts to millions of phones.",
+                richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10² = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
+            },
+            canvas: {
+                ph_title: "pH SCALE",
+                ph_formula: "pH = -log₁₀[H⁺]",
+                decibel_title: "DECIBEL SCALE",
+                decibel_formula: "L = 10·log₁₀(I/I₀)",
+                richter_title: "RICHTER SCALE",
+                richter_formula: "M = log₁₀(A)",
+                ph_subtitle: "Acidity",
+                decibel_subtitle: "Sound",
+                richter_subtitle: "Earthquake",
+                status_chamber: "CHAMBER",
+                status_sim: "LOG_SCALE_SIM: ACTIVE",
+                status_mode: "MODE"
             }
         },
         sc3_01: {
@@ -4162,20 +4190,48 @@ export const translations: Record<string, any> = {
             },
             mission: {
                 title: "对数测量实验室",
-                description: "诺华实验室需要对数刻度。掌握 pH 值、分贝和里氏震级。"
+                description: "掌握三种真实世界的对数刻度：pH值（化学）、分贝（声音）、里氏震级（地震）。每种刻度都将巨大的范围压缩成可管理的数字。"
             },
             stages: {
                 ph: "pH 刻度",
                 decibel: "分贝",
                 richter: "里氏震级",
-                ph_prompt_latex: "\\text{使用 }pH=-\\log[H^+]\\text{ 计算 pH 值。}",
-                decibel_prompt_latex: "\\text{使用 }dB=10\\log(I/I_0)\\text{ 计算分贝。}",
-                richter_prompt_latex: "\\text{使用 }M=\\log(A/A_0)\\text{ 计算里氏震级。}"
+                ph_prompt_latex: "\\text{使用 }pH=-\\log_{10}[H^+]\\text{ 计算 pH 值。}",
+                decibel_prompt_latex: "\\text{使用 }L=10\\log_{10}(I/I_0)\\text{ 计算分贝。}",
+                richter_prompt_latex: "\\text{使用 }M=\\log_{10}(A)\\text{ 计算震级。}"
             },
             formulas: {
-                ph_scale: "pH = -\\log[H^+]",
-                decibel_scale: "dB = 10\\log(I/I_0)",
-                richter_scale: "M = \\log(A/A_0)"
+                ph: "pH = -\\log_{10}[H^+]",
+                decibel: "L = 10\\log_{10}(I/I_0)",
+                richter: "M = \\log_{10}(A)"
+            },
+            scenarios: {
+                ph_basic: "🧪 场景：学校化学实验室 — 化学老师给你一瓶透明液体让你测试。你用 pH 计测得氢离子浓度 [H⁺] = 0.001 mol/L（科学记数法是 10⁻³）。要正确报告酸度，你需要计算 pH 值。记住：pH = -log₁₀[H⁺]。pH 低于 7 是酸性，pH 7 是中性（纯水），高于 7 是碱性。这瓶液体原来是柠檬汁！",
+                ph_core: "🧪 场景：游泳池水质检测 — 你在苏黎世公共游泳池兼职。卫生检查员要求每天测试 pH 值。今天的水样显示 [H⁺] = 10⁻⁸ mol/L。你需要计算 pH 值来验证是否在安全范围内（7.2-7.8）。如果 pH 太低（酸性），会刺激游泳者的眼睛。如果太高（碱性），氯气消毒就不起作用。你的计算决定了游泳池今天能否开放！",
+                ph_advanced: "🧪 场景：制药质量控制 — 你是巴塞尔诺华制药的实习生。一种新药配方必须精确控制 pH 值以保持稳定性。实验室测得 [H⁺] = 3.16 × 10⁻⁵ mol/L。计算 pH 值并保留 2 位小数。如果 pH 值偏离目标范围（4.3-4.7），整批产品（价值数百万）都必须报废。对数精度在制药业至关重要！",
+                ph_elite: "🧪 场景：环境酸雨研究 — 苏黎世联邦理工学院的研究人员正在研究酸雨对瑞士森林的影响。雨水样本显示 [H⁺] = 10⁻⁴·⁵ mol/L（注意这个分数指数！）。计算 pH 值。正常雨水是 pH 5.6，但酸雨可以低至 pH 4.0 或更低。每个 pH 单位代表酸度的 10 倍变化，所以 pH 4 的雨比 pH 6 的雨酸性强 100 倍。你的计算有助于评估环境破坏程度。",
+                decibel_basic: "🔊 场景：学校图书馆噪音检查 — 图书管理员让你测量自习区是否足够安静。你用声音计测得：强度 I = 10⁻¹⁰ W/m²。参考强度（听觉阈值）是 I₀ = 10⁻¹² W/m²。使用 L = 10·log₁₀(I/I₀) 计算声音级别（分贝）。参考：耳语 = 30 分贝，正常对话 = 60 分贝，图书馆应低于 40 分贝。",
+                decibel_core: "🔊 场景：音乐会音响工程师 — 你正在为学校礼堂的摇滚音乐会调试音响。音响系统在前排产生的强度 I = 10⁻⁴ W/m²。计算分贝级别。安全法规要求 85 分贝以上需要听力保护，长时间暴露在 100 分贝以上会造成听力损伤。你的计算决定是否需要降低音量或向观众提供耳塞。",
+                decibel_advanced: "🔊 场景：机场噪音污染研究 — 苏黎世机场正在扩建，居民抱怨噪音。你测量一架起飞的喷气式飞机：在 100 米距离处 I = 1 W/m²。计算分贝级别。市政法规限制机场白天噪音不超过 65 分贝。在 120 分贝（喷气发动机）时，声音是痛苦的。对数刻度意味着 120 分贝不是 60 分贝的'两倍响'——它的强度是 1,000,000 倍！",
+                decibel_elite: "🔊 场景：声学工程挑战 — 正在设计一座瑞士音乐厅。建筑师需要计算吸音效果。如果原始强度是 I₁ = 10⁻³ W/m²，安装吸音板后降至 I₂ = 10⁻⁶ W/m²，分贝降低了多少？计算 L₁ - L₂。这涉及理解分贝差异代表强度比：降低 10 分贝意味着强度减少 10 倍，降低 20 分贝意味着强度减少 100 倍。",
+                richter_basic: "🌍 场景：地震监测站 — 你在苏黎世联邦理工学院的地震学实验室做志愿者。巴塞尔附近发生了一次小地震。地震仪记录的地面运动振幅 A = 100 微米。使用 M = log₁₀(A) 计算里氏震级。参考：M < 2 感觉不到，M 3-4 是轻微，M 5-6 是中等，M 7+ 是重大。你的计算有助于对地震严重程度进行分类。",
+                richter_core: "🌍 场景：历史地震分析 — 1356 年，巴塞尔经历了瑞士有记录以来最强的地震。现代分析估计地面振幅为 A = 100,000 微米。计算里氏震级。将其与 2011 年日本地震（M 9.0）进行比较，后者的振幅为 1,000,000,000 微米。对数刻度将这个十亿倍的范围压缩成可管理的数字（1 到 9）。",
+                richter_advanced: "🌍 场景：地震预警系统 — 瑞士正在开发地震警报应用。发生两次地震：地震 A 的振幅为 31,600 微米，地震 B 的振幅为 1,000 微米。计算两个震级并保留 2 位小数。应用需要区分'轻微震动'（M < 4.0）和'显著地震'（M ≥ 4.0），以决定是否向数百万手机发送紧急警报。",
+                richter_elite: "🌍 场景：地震能量比较 — 高级地震学：地震释放的能量每增加一个震级单位就增加 31.6 倍。如果地震 A 是 M 5.0，地震 B 是 M 7.0，B 释放的能量是 A 的多少倍？首先理解 M 7.0 意味着振幅是 M 5.0 的 100 倍（因为 10² = 100）。但能量按振幅的 1.5 次方缩放，所以能量比是 100^1.5 = 1,000 倍。这就是为什么 M 7 地震是灾难性的，而 M 5 只是'中等'。"
+            },
+            canvas: {
+                ph_title: "pH 刻度",
+                ph_formula: "pH = -log₁₀[H⁺]",
+                decibel_title: "分贝刻度",
+                decibel_formula: "L = 10·log₁₀(I/I₀)",
+                richter_title: "里氏震级",
+                richter_formula: "M = log₁₀(A)",
+                ph_subtitle: "酸碱度",
+                decibel_subtitle: "声音",
+                richter_subtitle: "地震",
+                status_chamber: "实验室",
+                status_sim: "对数刻度模拟：运行中",
+                status_mode: "模式"
             }
         },
         sc3_01: {
@@ -6920,20 +6976,48 @@ export const translations: Record<string, any> = {
             },
             mission: {
                 title: "LOGARITHMISCHES MESSLABOR",
-                description: "Novartis-Labor erfordert logarithmische Skalierung. Meistern Sie pH-Wert, Dezibel und Richterskala."
+                description: "Meistere drei reale logarithmische Skalen: pH-Wert (Chemie), Dezibel (Schall) und Richter (Erdbeben). Jede Skala komprimiert riesige Bereiche in handhabbare Zahlen."
             },
             stages: {
                 ph: "pH-SKALA",
                 decibel: "DEZIBEL",
                 richter: "RICHTER-SKALA",
-                ph_prompt_latex: "\\text{Berechnen Sie den pH-Wert mit }pH=-\\log[H^+].",
-                decibel_prompt_latex: "\\text{Berechnen Sie Dezibel mit }dB=10\\log(I/I_0).",
-                richter_prompt_latex: "\\text{Berechnen Sie die Richter-Skala mit }M=\\log(A/A_0)."
+                ph_prompt_latex: "\\text{Berechnen Sie den pH-Wert mit }pH=-\\log_{10}[H^+].",
+                decibel_prompt_latex: "\\text{Berechnen Sie Dezibel mit }L=10\\log_{10}(I/I_0).",
+                richter_prompt_latex: "\\text{Berechnen Sie die Magnitude mit }M=\\log_{10}(A)."
             },
             formulas: {
-                ph_scale: "pH = -\\log[H^+]",
-                decibel_scale: "dB = 10\\log(I/I_0)",
-                richter_scale: "M = \\log(A/A_0)"
+                ph: "pH = -\\log_{10}[H^+]",
+                decibel: "L = 10\\log_{10}(I/I_0)",
+                richter: "M = \\log_{10}(A)"
+            },
+            scenarios: {
+                ph_basic: "🧪 SZENARIO: Schulchemielabor — Dein Chemielehrer gibt dir eine klare Flüssigkeit zum Testen. Du verwendest ein pH-Meter und findest die Wasserstoffionenkonzentration [H⁺] = 0,001 mol/L (das ist 10⁻³ in wissenschaftlicher Notation). Um die Säure richtig zu melden, musst du den pH-Wert berechnen. Denk daran: pH = -log₁₀[H⁺]. Ein pH unter 7 ist sauer, pH 7 ist neutral (reines Wasser), und über 7 ist basisch. Diese Flüssigkeit ist Zitronensaft!",
+                ph_core: "🧪 SZENARIO: Schwimmbad-Wasserqualität — Du arbeitest Teilzeit im Zürcher Hallenbad. Der Gesundheitsinspektor verlangt tägliche pH-Tests. Die heutige Wasserprobe zeigt [H⁺] = 10⁻⁸ mol/L. Du musst den pH-Wert berechnen, um zu überprüfen, ob er im sicheren Bereich liegt (7,2-7,8). Wenn der pH zu niedrig ist (sauer), reizt es die Augen der Schwimmer. Wenn zu hoch (basisch), funktioniert Chlor nicht richtig. Deine Berechnung bestimmt, ob das Bad heute öffnen kann!",
+                ph_advanced: "🧪 SZENARIO: Pharmazeutische Qualitätskontrolle — Du bist Praktikant bei Novartis in Basel. Eine neue Arzneimittelformulierung muss eine präzise pH-Kontrolle für Stabilität haben. Das Labor misst [H⁺] = 3,16 × 10⁻⁵ mol/L. Berechne den pH-Wert auf 2 Dezimalstellen. Wenn der pH außerhalb des Zielbereichs (4,3-4,7) driftet, muss die gesamte Charge (Millionen wert) entsorgt werden. Logarithmische Präzision ist in der Pharmazie entscheidend!",
+                ph_elite: "🧪 SZENARIO: Umwelt-Saurer-Regen-Studie — ETH-Zürich-Forscher untersuchen die Auswirkungen von saurem Regen auf Schweizer Wälder. Regenwasserproben zeigen [H⁺] = 10⁻⁴·⁵ mol/L (beachte den Bruchexponenten!). Berechne den pH-Wert. Normaler Regen ist pH 5,6, aber saurer Regen kann pH 4,0 oder niedriger sein. Jede pH-Einheit repräsentiert eine 10-fache Änderung der Säure, also ist pH 4 Regen 100× saurer als pH 6 Regen. Deine Berechnung hilft, Umweltschäden zu bewerten.",
+                decibel_basic: "🔊 SZENARIO: Schulbibliothek Lärmcheck — Der Bibliothekar bittet dich zu messen, ob der Lernbereich ruhig genug ist. Du verwendest ein Schallmessgerät: die Intensität ist I = 10⁻¹⁰ W/m². Die Referenzintensität (Hörschwelle) ist I₀ = 10⁻¹² W/m². Berechne den Schallpegel in Dezibel mit L = 10·log₁₀(I/I₀). Zur Referenz: Flüstern = 30 dB, normale Konversation = 60 dB, Bibliothek sollte unter 40 dB sein.",
+                decibel_core: "🔊 SZENARIO: Konzert-Tontechniker — Du richtest ein Schulrockkonzert in der Aula ein. Das Soundsystem erzeugt eine Intensität I = 10⁻⁴ W/m² in der ersten Reihe. Berechne den Dezibelpegel. Sicherheitsvorschriften erfordern Gehörschutz über 85 dB, und längere Exposition über 100 dB verursacht Hörschäden. Deine Berechnung bestimmt, ob du die Lautstärke reduzieren oder dem Publikum Ohrstöpsel geben musst.",
+                decibel_advanced: "🔊 SZENARIO: Flughafen-Lärmverschmutzungsstudie — Der Flughafen Zürich expandiert, und Anwohner beschweren sich über Lärm. Du misst ein startendes Flugzeug: I = 1 W/m² in 100 Metern Entfernung. Berechne den Dezibelpegel. Stadtvorschriften begrenzen Flughafenlärm auf 65 dB tagsüber. Bei 120 dB (Düsentriebwerk) ist Schall schmerzhaft. Die logarithmische Skala bedeutet, dass 120 dB nicht 'doppelt so laut' wie 60 dB ist — es ist 1.000.000-mal intensiver!",
+                decibel_elite: "🔊 SZENARIO: Akustik-Engineering-Herausforderung — Ein Schweizer Konzertsaal wird entworfen. Der Architekt muss die Schallabsorption berechnen. Wenn die ursprüngliche Intensität I₁ = 10⁻³ W/m² ist und nach Akustikpaneelen auf I₂ = 10⁻⁶ W/m² sinkt, wie groß ist die Dezibelreduktion? Berechne L₁ - L₂. Dies beinhaltet das Verständnis, dass Dezibeldifferenzen Intensitätsverhältnisse darstellen: ein 10 dB Abfall bedeutet 10× weniger intensiv, 20 dB Abfall bedeutet 100× weniger intensiv.",
+                richter_basic: "🌍 SZENARIO: Erdbebenüberwachungsstation — Du bist Freiwilliger im Seismologielabor der ETH Zürich. Ein kleines Erdbeben trifft in der Nähe von Basel. Das Seismograph zeichnet eine Bodenbewegungsamplitude A = 100 Mikrometer auf. Berechne die Richtermagnitude mit M = log₁₀(A). Zur Referenz: M < 2 wird nicht gefühlt, M 3-4 ist gering, M 5-6 ist moderat, M 7+ ist schwer. Deine Berechnung hilft, die Erdbebenschwere zu klassifizieren.",
+                richter_core: "🌍 SZENARIO: Historische Erdbebenanalyse — 1356 erlebte Basel das stärkste aufgezeichnete Erdbeben der Schweiz. Moderne Analysen schätzen die Bodenamplitude auf A = 100.000 Mikrometer. Berechne die Richtermagnitude. Vergleiche dies mit dem Erdbeben in Japan 2011 (M 9,0), das eine Amplitude von 1.000.000.000 Mikrometern hatte. Die logarithmische Skala komprimiert diesen milliardenfachen Bereich in handhabbare Zahlen (1 bis 9).",
+                richter_advanced: "🌍 SZENARIO: Erdbeben-Frühwarnsystem — Die Schweiz entwickelt eine Erdbeben-Warn-App. Zwei Erdbeben treten auf: Erdbeben A hat Amplitude 31.600 μm, Erdbeben B hat Amplitude 1.000 μm. Berechne beide Magnituden auf 2 Dezimalstellen. Die App muss zwischen 'leichtem Beben' (M < 4,0) und 'signifikantem Beben' (M ≥ 4,0) unterscheiden, um zu entscheiden, ob Notfallwarnungen an Millionen von Telefonen gesendet werden.",
+                richter_elite: "🌍 SZENARIO: Seismischer Energievergleich — Fortgeschrittene Seismologie: Die von einem Erdbeben freigesetzte Energie steigt um das 31,6-fache für jede Magnitudeneinheit. Wenn Erdbeben A M 5,0 ist und Erdbeben B M 7,0 ist, wie viel mehr Energie setzt B frei? Verstehe zuerst, dass M 7,0 bedeutet, dass die Amplitude 100× größer ist als M 5,0 (weil 10² = 100). Aber Energie skaliert als Amplitude^1,5, also ist das Energieverhältnis 100^1,5 = 1.000×. Deshalb sind M 7 Beben katastrophal, während M 5 nur 'moderat' sind."
+            },
+            canvas: {
+                ph_title: "pH-SKALA",
+                ph_formula: "pH = -log₁₀[H⁺]",
+                decibel_title: "DEZIBEL-SKALA",
+                decibel_formula: "L = 10·log₁₀(I/I₀)",
+                richter_title: "RICHTER-SKALA",
+                richter_formula: "M = log₁₀(A)",
+                ph_subtitle: "Säuregrad",
+                decibel_subtitle: "Schall",
+                richter_subtitle: "Erdbeben",
+                status_chamber: "LABOR",
+                status_sim: "LOG_SKALA_SIM: AKTIV",
+                status_mode: "MODUS"
             }
         },
         sc3_01: {
