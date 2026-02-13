@@ -43,11 +43,13 @@ function PHScale({ value }: { value: number }) {
     barRef.current.scale.y = pulse;
   });
   
-  // pH scale from 0 to 14
+  // pH scale from 0 to 14, scaled down to fit better
   const logPosition = value; // 0-14
+  const scaleHeight = 10; // Reduced from 14 to 10
+  const scaleFactor = scaleHeight / 14;
   
   return (
-    <group>
+    <group scale={[1, scaleFactor, 1]}>
       {/* pH scale bar */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[0.5, 14, 0.2]} />
@@ -58,8 +60,8 @@ function PHScale({ value }: { value: number }) {
         />
       </mesh>
       
-      {/* pH markers */}
-      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((ph) => (
+      {/* pH markers - show every 2 units for clarity */}
+      {[0, 2, 4, 6, 7, 8, 10, 12, 14].map((ph) => (
         <group key={ph} position={[0, ph - 7, 0]}>
           <mesh>
             <boxGeometry args={[0.7, 0.1, 0.1]} />
@@ -68,9 +70,11 @@ function PHScale({ value }: { value: number }) {
           <Text position={[-1.2, 0, 0]} fontSize={0.3} color={palette.white}>
             {ph}
           </Text>
-          <Text position={[1.2, 0, 0]} fontSize={0.2} color={palette.cyan}>
-            {`10^${-ph}`}
-          </Text>
+          {ph % 2 === 0 && (
+            <Text position={[1.2, 0, 0]} fontSize={0.18} color={palette.cyan}>
+              {`10^-${ph}`}
+            </Text>
+          )}
         </group>
       ))}
       
@@ -98,9 +102,10 @@ function DecibelScale({ value }: { value: number }) {
   
   // dB = 10 * log10(I/I0)
   const intensity = Math.pow(10, value / 10); // relative to I0
+  const scaleHeight = 10; // Reduced from 12 to 10
   
   return (
-    <group>
+    <group scale={[1, scaleHeight / 12, 1]}>
       {/* dB scale */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.3, 0.3, 12, 32]} />
@@ -111,14 +116,14 @@ function DecibelScale({ value }: { value: number }) {
         />
       </mesh>
       
-      {/* dB markers */}
+      {/* dB markers - show every 20 dB for clarity */}
       {[0, 20, 40, 60, 80, 100, 120].map((db, i) => (
         <group key={db} position={[0, (i - 3) * 2, 0]}>
           <mesh>
             <torusGeometry args={[0.5, 0.05, 8, 32]} />
             <meshBasicMaterial color={palette.white} />
           </mesh>
-          <Text position={[1, 0, 0]} fontSize={0.3} color={palette.white}>
+          <Text position={[1, 0, 0]} fontSize={0.28} color={palette.white}>
             {db} dB
           </Text>
         </group>
@@ -155,10 +160,10 @@ function RichterScale({ value }: { value: number }) {
     quakeRef.current.position.x = shake;
   });
   
-  // Amplitude is 10^magnitude
+  const scaleHeight = 8; // Reduced from 10 to 8
   
   return (
-    <group>
+    <group scale={[1, scaleHeight / 10, 1]}>
       {/* Richter scale */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[0.5, 10, 0.2]} />
@@ -179,7 +184,7 @@ function RichterScale({ value }: { value: number }) {
           <Text position={[-1.2, 0, 0]} fontSize={0.3} color={palette.white}>
             {mag}
           </Text>
-          <Text position={[1.5, 0, 0]} fontSize={0.2} color={palette.pink}>
+          <Text position={[1.5, 0, 0]} fontSize={0.18} color={palette.pink}>
             {`10^${mag}`}
           </Text>
         </group>
@@ -242,8 +247,8 @@ export default function LogarithmicCanvas({
   };
 
   return (
-    <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [8, 0, 8], fov: 50 }} gl={{ antialias: true }}>
+    <div className="relative w-full h-[700px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+      <Canvas camera={{ position: [10, 0, 10], fov: 45 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}
@@ -254,8 +259,8 @@ export default function LogarithmicCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={6}
-          maxDistance={15}
+          minDistance={8}
+          maxDistance={18}
           autoRotate={false}
         />
         
@@ -263,27 +268,18 @@ export default function LogarithmicCanvas({
         {stage === "PH" && <PHScale value={value} />}
         {stage === "DECIBEL" && <DecibelScale value={value} />}
         {stage === "RICHTER" && <RichterScale value={value} />}
-        
-        {/* Title and formula in 3D space */}
-        <Text position={[0, stage === "RICHTER" ? 6 : stage === "PH" ? 8 : 7, 0]} fontSize={0.4} color={palette.white}>
-          {getTitle()}
-        </Text>
-        <Text 
-          position={[0, stage === "RICHTER" ? -6 : stage === "PH" ? -8 : -7, 0]} 
-          fontSize={0.3} 
-          color={stage === "PH" ? palette.cyan : stage === "DECIBEL" ? palette.purple : palette.pink}
-        >
-          {getFormula()}
-        </Text>
       </Canvas>
       
       {/* Info panel */}
-      <div className="absolute top-4 left-4 bg-black/70 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
+      <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider">
           {getTitle()} ({getSubtitle()})
         </div>
         <div className="text-[11px] font-mono text-white">
           {getValueDisplay()}
+        </div>
+        <div className="text-[10px] font-mono text-cyan-300/80">
+          {getFormula()}
         </div>
       </div>
       
