@@ -339,9 +339,9 @@ export default function GM401Page() {
               {t?.scenario_title || "MISSION"}
             </div>
             <p className="text-sm text-white/80 font-mono max-w-2xl mx-auto leading-relaxed">
-              {stage === "BASICS" && (t?.scenarios?.basics || "Calculate complex number magnitudes")}
-              {stage === "OPERATIONS" && (t?.scenarios?.operations || "Perform complex number operations")}
-              {stage === "POLAR" && (t?.scenarios?.polar || "Calculate powers using polar form")}
+              {stage === "BASICS" && (t?.scenarios?.basics || "")}
+              {stage === "OPERATIONS" && (t?.scenarios?.operations || "")}
+              {stage === "POLAR" && (t?.scenarios?.polar || "")}
             </p>
           </div>
 
