@@ -54,6 +54,23 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
   const rows = Math.ceil(total / cols);
   const itemSize = Math.min(60, 500 / Math.max(cols, rows));
   
+  // Calculate font size based on item size and number length
+  const getFontSize = (num: number, size: number) => {
+    const numStr = num.toString();
+    const numLength = numStr.length;
+    
+    if (numLength === 1) {
+      // Single digit: use larger font
+      return Math.min(size * 0.5, 18);
+    } else if (numLength === 2) {
+      // Two digits: use medium font
+      return Math.min(size * 0.4, 14);
+    } else {
+      // Three or more digits: use smaller font
+      return Math.min(size * 0.3, 11);
+    }
+  };
+  
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-4 font-mono">
@@ -66,22 +83,32 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
           gridTemplateColumns: `repeat(${cols}, ${itemSize}px)`,
         }}
       >
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center justify-center rounded-lg border-2 transition-all"
-            style={{
-              width: `${itemSize}px`,
-              height: `${itemSize}px`,
-              backgroundColor: item.isFavorable ? palette.green + '40' : palette.white + '10',
-              borderColor: item.isFavorable ? palette.green : palette.white + '40',
-            }}
-          >
-            <span className="text-lg font-bold" style={{ color: item.isFavorable ? palette.green : palette.white + '60' }}>
-              {item.id + 1}
-            </span>
-          </div>
-        ))}
+        {items.map((item) => {
+          const fontSize = getFontSize(item.id + 1, itemSize);
+          
+          return (
+            <div
+              key={item.id}
+              className="flex items-center justify-center rounded-lg border-2 transition-all overflow-hidden"
+              style={{
+                width: `${itemSize}px`,
+                height: `${itemSize}px`,
+                backgroundColor: item.isFavorable ? palette.green + '40' : palette.white + '10',
+                borderColor: item.isFavorable ? palette.green : palette.white + '40',
+              }}
+            >
+              <span 
+                className="font-bold leading-none"
+                style={{ 
+                  color: item.isFavorable ? palette.green : palette.white + '60',
+                  fontSize: `${fontSize}px`,
+                }}
+              >
+                {item.id + 1}
+              </span>
+            </div>
+          );
+        })}
       </div>
       
       <div className="space-y-2 text-center">
