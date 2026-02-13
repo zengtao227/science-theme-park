@@ -38,100 +38,112 @@ const binomial = (n: number, k: number): number => {
   return result;
 };
 
-// BASIC_PROB: Simple probability P(E) = favorable / total
+// BASIC_PROB: Progressive conceptual difficulty
+// BASIC: Direct sample space (6-10 items, directly visible)
 const basicProbDataBasic = [
   { id: "BP_B1", favorable: 1, total: 6, context: "single_die_one" },
-  { id: "BP_B2", favorable: 2, total: 6, context: "single_die_even" },
-  { id: "BP_B3", favorable: 3, total: 6, context: "single_die_half" },
-  { id: "BP_B4", favorable: 1, total: 2, context: "coin_heads" },
+  { id: "BP_B2", favorable: 3, total: 6, context: "single_die_odd" },
+  { id: "BP_B3", favorable: 1, total: 2, context: "coin_heads" },
+  { id: "BP_B4", favorable: 2, total: 8, context: "spinner_8_sections" },
 ];
 
+// CORE: Understanding combinations and "equally likely" (need to count combinations)
 const basicProbDataCore = [
-  { id: "BP_C1", favorable: 13, total: 52, context: "deck_one_suit" },
-  { id: "BP_C2", favorable: 26, total: 52, context: "deck_red_cards" },
-  { id: "BP_C3", favorable: 4, total: 52, context: "deck_aces" },
-  { id: "BP_C4", favorable: 12, total: 52, context: "deck_face_cards" },
-  { id: "BP_C5", favorable: 6, total: 36, context: "two_dice_sum_7" },
+  { id: "BP_C1", favorable: 6, total: 36, context: "two_dice_sum_7" },
+  { id: "BP_C2", favorable: 3, total: 36, context: "two_dice_sum_10" },
+  { id: "BP_C3", favorable: 11, total: 36, context: "two_dice_sum_gt_7" },
+  { id: "BP_C4", favorable: 13, total: 52, context: "deck_one_suit" },
+  { id: "BP_C5", favorable: 16, total: 52, context: "deck_honors" },
 ];
 
+// ADVANCED: Conditional probability (implicit) - sample space changes with condition
 const basicProbDataAdvanced = [
-  { id: "BP_A1", favorable: 85, total: 100, context: "quality_control_85" },
-  { id: "BP_A2", favorable: 92, total: 120, context: "quality_control_92" },
-  { id: "BP_A3", favorable: 78, total: 90, context: "quality_control_78" },
-  { id: "BP_A4", favorable: 156, total: 200, context: "quality_control_156" },
-  { id: "BP_A5", favorable: 234, total: 300, context: "quality_control_234" },
+  { id: "BP_A1", favorable: 2, total: 3, context: "die_even_given_gt3" },
+  { id: "BP_A2", favorable: 2, total: 6, context: "die_multiple_of_3" },
+  { id: "BP_A3", favorable: 3, total: 13, context: "card_face_given_spade" },
+  { id: "BP_A4", favorable: 12, total: 40, context: "card_not_face_not_ace" },
+  { id: "BP_A5", favorable: 4, total: 12, context: "card_king_given_face" },
 ];
 
+// ELITE: Compound events - need to decompose into multiple events
 const basicProbDataElite = [
-  { id: "BP_E1", favorable: 427, total: 500, context: "quality_control_427" },
-  { id: "BP_E2", favorable: 683, total: 800, context: "quality_control_683" },
-  { id: "BP_E3", favorable: 891, total: 1000, context: "quality_control_891" },
-  { id: "BP_E4", favorable: 1456, total: 1600, context: "quality_control_1456" },
-  { id: "BP_E5", favorable: 1789, total: 2000, context: "quality_control_1789" },
+  { id: "BP_E1", favorable: 11, total: 36, context: "at_least_one_six_two_dice" },
+  { id: "BP_E2", favorable: 30, total: 36, context: "sum_not_2_or_12" },
+  { id: "BP_E3", favorable: 26, total: 36, context: "at_least_one_even" },
+  { id: "BP_E4", favorable: 16, total: 52, context: "card_ace_or_king" },
+  { id: "BP_E5", favorable: 32, total: 52, context: "card_red_or_face" },
 ];
 
-// BINOMIAL: P(X=k) = C(n,k) * p^k * (1-p)^(n-k)
+// BINOMIAL: Progressive conceptual difficulty
+// BASIC: Understanding basic binomial concept (small n, p=0.5)
 const binomialDataBasic = [
   { id: "BIN_B1", n: 3, k: 2, p: 0.5, context: "coin_3_2" },
-  { id: "BIN_B2", n: 4, k: 3, p: 0.5, context: "coin_4_3" },
-  { id: "BIN_B3", n: 5, k: 2, p: 0.5, context: "coin_5_2" },
-  { id: "BIN_B4", n: 3, k: 1, p: 0.5, context: "coin_3_1" },
+  { id: "BIN_B2", n: 4, k: 2, p: 0.5, context: "coin_4_2" },
+  { id: "BIN_B3", n: 3, k: 3, p: 0.5, context: "coin_3_all" },
+  { id: "BIN_B4", n: 4, k: 0, p: 0.5, context: "coin_4_none" },
 ];
 
+// CORE: Understanding binomial coefficient C(n,k) meaning
 const binomialDataCore = [
-  { id: "BIN_C1", n: 6, k: 4, p: 0.5, context: "lottery_6_4" },
-  { id: "BIN_C2", n: 8, k: 5, p: 0.5, context: "lottery_8_5" },
-  { id: "BIN_C3", n: 5, k: 3, p: 0.6, context: "lottery_5_3_biased" },
-  { id: "BIN_C4", n: 7, k: 4, p: 0.5, context: "lottery_7_4" },
-  { id: "BIN_C5", n: 6, k: 2, p: 0.4, context: "lottery_6_2_biased" },
+  { id: "BIN_C1", n: 5, k: 3, p: 0.5, context: "lottery_5_3" },
+  { id: "BIN_C2", n: 6, k: 3, p: 0.5, context: "lottery_6_3" },
+  { id: "BIN_C3", n: 5, k: 2, p: 0.5, context: "lottery_5_2" },
+  { id: "BIN_C4", n: 6, k: 4, p: 0.5, context: "lottery_6_4" },
+  { id: "BIN_C5", n: 7, k: 3, p: 0.5, context: "lottery_7_3" },
 ];
 
+// ADVANCED: Asymmetric probability (p ≠ 0.5) and understanding skewed distribution
 const binomialDataAdvanced = [
-  { id: "BIN_A1", n: 10, k: 6, p: 0.5, context: "lottery_10_6" },
-  { id: "BIN_A2", n: 12, k: 7, p: 0.5, context: "lottery_12_7" },
-  { id: "BIN_A3", n: 8, k: 5, p: 0.6, context: "lottery_8_5_biased" },
-  { id: "BIN_A4", n: 9, k: 4, p: 0.4, context: "lottery_9_4_biased" },
-  { id: "BIN_A5", n: 11, k: 7, p: 0.55, context: "lottery_11_7_biased" },
+  { id: "BIN_A1", n: 5, k: 3, p: 0.6, context: "lottery_5_3_biased" },
+  { id: "BIN_A2", n: 6, k: 2, p: 0.3, context: "lottery_6_2_low" },
+  { id: "BIN_A3", n: 8, k: 6, p: 0.7, context: "lottery_8_6_high" },
+  { id: "BIN_A4", n: 7, k: 4, p: 0.6, context: "lottery_7_4_biased" },
+  { id: "BIN_A5", n: 10, k: 7, p: 0.65, context: "lottery_10_7_biased" },
 ];
 
+// ELITE: Cumulative probability and inverse problems
 const binomialDataElite = [
-  { id: "BIN_E1", n: 15, k: 9, p: 0.55, context: "lottery_15_9" },
-  { id: "BIN_E2", n: 18, k: 11, p: 0.6, context: "lottery_18_11" },
-  { id: "BIN_E3", n: 20, k: 12, p: 0.58, context: "lottery_20_12" },
-  { id: "BIN_E4", n: 16, k: 8, p: 0.45, context: "lottery_16_8" },
-  { id: "BIN_E5", n: 14, k: 9, p: 0.65, context: "lottery_14_9" },
+  { id: "BIN_E1", n: 5, k: 3, p: 0.6, context: "at_least_3_of_5", cumulative: true },
+  { id: "BIN_E2", n: 6, k: 4, p: 0.5, context: "at_most_4_of_6", cumulative: true },
+  { id: "BIN_E3", n: 8, k: 5, p: 0.6, context: "more_than_half", cumulative: true },
+  { id: "BIN_E4", n: 10, k: 7, p: 0.7, context: "at_least_7_of_10", cumulative: true },
+  { id: "BIN_E5", n: 12, k: 8, p: 0.6, context: "at_least_8_of_12", cumulative: true },
 ];
 
-// CONDITIONAL: P(A|B) = P(A∩B) / P(B)
+// CONDITIONAL: Progressive conceptual difficulty
+// BASIC: Understanding P(A|B) = P(A∩B) / P(B) formula
 const conditionalDataBasic = [
   { id: "COND_B1", eventA: 0.5, eventB: 0.6, eventAB: 0.3, context: "insurance_basic_1" },
   { id: "COND_B2", eventA: 0.4, eventB: 0.5, eventAB: 0.2, context: "insurance_basic_2" },
-  { id: "COND_B3", eventA: 0.6, eventB: 0.7, eventAB: 0.4, context: "insurance_basic_3" },
-  { id: "COND_B4", eventA: 0.3, eventB: 0.4, eventAB: 0.15, context: "insurance_basic_4" },
+  { id: "COND_B3", eventA: 0.6, eventB: 0.8, eventAB: 0.5, context: "insurance_basic_3" },
+  { id: "COND_B4", eventA: 0.3, eventB: 0.6, eventAB: 0.2, context: "insurance_basic_4" },
 ];
 
+// CORE: Extracting condition from problem description
 const conditionalDataCore = [
-  { id: "COND_C1", eventA: 0.45, eventB: 0.55, eventAB: 0.25, context: "insurance_core_1" },
-  { id: "COND_C2", eventA: 0.35, eventB: 0.65, eventAB: 0.22, context: "insurance_core_2" },
-  { id: "COND_C3", eventA: 0.52, eventB: 0.48, eventAB: 0.28, context: "insurance_core_3" },
-  { id: "COND_C4", eventA: 0.38, eventB: 0.62, eventAB: 0.24, context: "insurance_core_4" },
-  { id: "COND_C5", eventA: 0.42, eventB: 0.58, eventAB: 0.26, context: "insurance_core_5" },
+  { id: "COND_C1", eventA: 0.25, eventB: 0.5, eventAB: 0.25, context: "card_heart_given_red" },
+  { id: "COND_C2", eventA: 0.33, eventB: 0.5, eventAB: 0.17, context: "die_six_given_even" },
+  { id: "COND_C3", eventA: 0.23, eventB: 0.5, eventAB: 0.08, context: "card_face_given_red" },
+  { id: "COND_C4", eventA: 0.17, eventB: 0.67, eventAB: 0.17, context: "die_one_given_odd" },
+  { id: "COND_C5", eventA: 0.31, eventB: 0.62, eventAB: 0.23, context: "card_spade_given_black" },
 ];
 
+// ADVANCED: Bayesian thinking - P(A|B) vs P(B|A)
 const conditionalDataAdvanced = [
-  { id: "COND_A1", eventA: 0.37, eventB: 0.63, eventAB: 0.21, context: "insurance_adv_1" },
-  { id: "COND_A2", eventA: 0.48, eventB: 0.54, eventAB: 0.29, context: "insurance_adv_2" },
-  { id: "COND_A3", eventA: 0.41, eventB: 0.67, eventAB: 0.27, context: "insurance_adv_3" },
-  { id: "COND_A4", eventA: 0.33, eventB: 0.59, eventAB: 0.19, context: "insurance_adv_4" },
-  { id: "COND_A5", eventA: 0.46, eventB: 0.51, eventAB: 0.23, context: "insurance_adv_5" },
+  { id: "COND_A1", eventA: 0.01, eventB: 0.05, eventAB: 0.009, context: "disease_test_positive" },
+  { id: "COND_A2", eventA: 0.02, eventB: 0.08, eventAB: 0.016, context: "disease_test_positive_2" },
+  { id: "COND_A3", eventA: 0.15, eventB: 0.3, eventAB: 0.12, context: "quality_defect_given_batch" },
+  { id: "COND_A4", eventA: 0.05, eventB: 0.2, eventAB: 0.04, context: "fraud_given_alert" },
+  { id: "COND_A5", eventA: 0.1, eventB: 0.25, eventAB: 0.08, context: "accident_given_weather" },
 ];
 
+// ELITE: Multiple conditions and independence testing
 const conditionalDataElite = [
-  { id: "COND_E1", eventA: 0.365, eventB: 0.625, eventAB: 0.215, context: "insurance_elite_1" },
-  { id: "COND_E2", eventA: 0.475, eventB: 0.535, eventAB: 0.285, context: "insurance_elite_2" },
-  { id: "COND_E3", eventA: 0.415, eventB: 0.675, eventAB: 0.265, context: "insurance_elite_3" },
-  { id: "COND_E4", eventA: 0.335, eventB: 0.595, eventAB: 0.195, context: "insurance_elite_4" },
-  { id: "COND_E5", eventA: 0.455, eventB: 0.515, eventAB: 0.235, context: "insurance_elite_5" },
+  { id: "COND_E1", eventA: 0.4, eventB: 0.5, eventAB: 0.2, context: "independence_test_1" },
+  { id: "COND_E2", eventA: 0.3, eventB: 0.6, eventAB: 0.18, context: "independence_test_2" },
+  { id: "COND_E3", eventA: 0.25, eventB: 0.4, eventAB: 0.15, context: "multiple_condition_1" },
+  { id: "COND_E4", eventA: 0.35, eventB: 0.7, eventAB: 0.245, context: "independence_test_3" },
+  { id: "COND_E5", eventA: 0.2, eventB: 0.5, eventAB: 0.12, context: "multiple_condition_2" },
 ];
 
 // MISSION: Mixed problems
