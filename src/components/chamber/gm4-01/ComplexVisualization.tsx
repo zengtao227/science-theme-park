@@ -145,21 +145,21 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
     if (labelType === 'side') {
       // For side labels (a, b), offset perpendicular to the line
       if (Math.abs(im) < 0.5) {
-        // Horizontal line, offset vertically
-        return { dx: 0, dy: re > 0 ? 20 : -20 };
+        // Horizontal line, offset vertically MORE
+        return { dx: 0, dy: re > 0 ? 35 : -35 };
       } else {
-        // Vertical line, offset horizontally
-        return { dx: im > 0 ? 25 : -25, dy: 0 };
+        // Vertical line, offset horizontally MORE
+        return { dx: im > 0 ? 40 : -40, dy: 0 };
       }
     }
     
     // For point labels, offset diagonally away from origin
     const angle = Math.atan2(im, re);
-    const distance = 25; // pixels
+    const distance = 40; // INCREASED from 25 to 40 pixels
     
-    // Adjust angle to avoid axes
+    // Adjust angle to avoid axes - INCREASED threshold
     let adjustedAngle = angle;
-    const threshold = Math.PI / 12; // 15 degrees
+    const threshold = Math.PI / 8; // INCREASED from 15 to 22.5 degrees
     
     // Avoid horizontal axis
     if (Math.abs(angle) < threshold) {
@@ -624,6 +624,11 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
           />
           {(() => {
             const offset = getLabelOffset(result.re, result.im);
+            const powerText = quest.power === 2 ? "z²" : 
+                             quest.power === 3 ? "z³" : 
+                             quest.power === 4 ? "z⁴" : 
+                             quest.power === 5 ? "z⁵" : 
+                             `z^${quest.power}`;
             return (
               <text
                 x={toCanvas(result.re, result.im).x + offset.dx}
@@ -633,7 +638,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z^{quest.power}
+                {powerText}
               </text>
             );
           })()}
