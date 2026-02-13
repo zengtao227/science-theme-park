@@ -56,6 +56,15 @@ function Vector3DArrow({
     ] as [number, number, number];
   }, [start, end]);
   
+  // Offset label position to avoid overlapping with vector line
+  const labelOffset = useMemo(() => {
+    return [
+      midpoint[0] + 0.5,  // Offset to the side
+      midpoint[1] + 0.5,  // Offset upward
+      midpoint[2] + 0.3   // Offset forward
+    ] as [number, number, number];
+  }, [midpoint]);
+  
   // Create arrow geometry
   const points = useMemo(() => {
     const pts = [];
@@ -99,13 +108,13 @@ function Vector3DArrow({
         />
       </mesh>
       
-      {/* Label */}
+      {/* Label - offset from vector line */}
       <Text
-        position={midpoint}
+        position={labelOffset}
         fontSize={0.4}
         color={color}
-        anchorX="center"
-        anchorY="bottom"
+        anchorX="left"
+        anchorY="middle"
       >
         {label}
       </Text>
@@ -122,6 +131,24 @@ function Point3D({
   color: string; 
   label: string;
 }) {
+  // Offset label position to avoid overlapping with axes and vectors
+  // Place label diagonally offset from the point
+  const labelOffset = useMemo(() => {
+    return [
+      position[0] + 0.8,  // Offset to the right
+      position[1] + 0.6,  // Offset upward
+      position[2] + 0.5   // Offset forward
+    ] as [number, number, number];
+  }, [position]);
+  
+  const coordLabelOffset = useMemo(() => {
+    return [
+      position[0] + 0.8,  // Same horizontal offset
+      position[1] - 0.3,  // Below the point label
+      position[2] + 0.5   // Same depth offset
+    ] as [number, number, number];
+  }, [position]);
+  
   return (
     <group>
       <mesh position={position}>
@@ -132,25 +159,37 @@ function Point3D({
           emissiveIntensity={0.5}
         />
       </mesh>
+      {/* Point label - offset diagonally */}
       <Text
-        position={[position[0], position[1] + 0.5, position[2]]}
+        position={labelOffset}
         fontSize={0.35}
         color={color}
-        anchorX="center"
-        anchorY="bottom"
+        anchorX="left"
+        anchorY="middle"
       >
         {label}
       </Text>
-      {/* Coordinate label */}
+      {/* Coordinate label - offset diagonally below point label */}
       <Text
-        position={[position[0], position[1] - 0.5, position[2]]}
-        fontSize={0.25}
+        position={coordLabelOffset}
+        fontSize={0.22}
         color={color}
-        anchorX="center"
-        anchorY="top"
+        anchorX="left"
+        anchorY="middle"
       >
         ({position[0].toFixed(1)}, {position[1].toFixed(1)}, {position[2].toFixed(1)})
       </Text>
+      {/* Connection line from point to label */}
+      <Line
+        points={[
+          new THREE.Vector3(...position),
+          new THREE.Vector3(...labelOffset)
+        ]}
+        color={color}
+        lineWidth={1}
+        transparent
+        opacity={0.3}
+      />
     </group>
   );
 }
