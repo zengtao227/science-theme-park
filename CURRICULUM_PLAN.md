@@ -108,7 +108,7 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 
 ### 🚧 Critical Next Steps
 - **Ongoing (Mission 71-72) - 极限 "血肉" (Phase 2 Upgrade)**:
-  - **Antigravity**: Completed **SM1.06**, **SP1.05**, **SB1.01**, **SB1.01-M**, **SB2.01**, **GB3.01**.
+  - **Antigravity**: Completed **SM1.04**, **SM1.06**, **SP1.05**, **SC2.02**, **SB1.01**, **SB1.01-M**, **SB2.01**, **GB3.01**.
   - **Kiro**: Completed **SM1.05**, **SC2.01**.
 - **Upcoming**:
   - 开始向 Phase 4 (Biology Integration) 迈进。
