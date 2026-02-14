@@ -601,8 +601,6 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
             gm5_01_title: "GM5.01 // MATRIX TRANSFORM",
             gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
-            gms1_01_title: "GMS1.01 // FRACTAL EXPLORER",
-            gms1_01_subtitle: "Explore fractals and self-similarity patterns in mathematics.",
             gp5_02_title: "GP5.02 // RELATIVITY LAB",
             gp5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
             gp5_03_title: "GP5.03 // PARTICLE COLLIDER",
@@ -2727,36 +2725,6 @@ export const translations: Record<string, any> = {
                 description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
             }
         },
-        gms1_01: {
-            title: "GMS1.01 // COMPLEX FRACTAL",
-            back: "Back to Nexus",
-            footer_left: "GMS1.01_FRACTAL_EXPLORER // NODE: BASEL",
-            monitor_title: "GMS1.01_FRACTAL_MONITOR",
-            labels: {
-                max_iterations: "MAX ITERATIONS",
-                zoom: "ZOOM",
-                zoom_value: "{value}x",
-                center_x: "CENTER X",
-                center_y: "CENTER Y",
-                color_scheme: "COLOR SCHEME",
-                scheme: {
-                    classic: "CLASSIC",
-                    fire: "FIRE",
-                    ice: "ICE",
-                    rainbow: "RAINBOW"
-                }
-            },
-            mandelbrot: {
-                title: "MANDELBROT SET",
-                line_1: "z₀ = 0",
-                line_2: "z_{n+1} = z_n² + c",
-                line_3: "|z_n| < 2 for all n"
-            },
-            mission: {
-                title: "MISSION: MANDELBROT SET",
-                description: "Explore the Mandelbrot set with GPU-accelerated rendering. Zoom into infinite complexity and discover self-similar patterns."
-            }
-        },
         sp1_08: {
             title: "SP1.08 // OPTICS BENCH",
             back: "Back to Nexus",
@@ -3099,8 +3067,6 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "在 3D 空间可视化复平面与欧拉公式。",
             gm5_01_title: "GM5.01 // 矩阵变形器",
             gm5_01_subtitle: "在 3D 空间中体验线性变换与特征向量。",
-            gms1_01_title: "GMS1.01 // 分形探索者",
-            gms1_01_subtitle: "探索数学中的分形与自相似模式。",
             gp5_02_title: "GP5.02 // 相对论实验室",
             gp5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
             gp5_03_title: "GP5.03 // 粒子对撞机",
@@ -5577,36 +5543,6 @@ export const translations: Record<string, any> = {
                 description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
             }
         },
-        gms1_01: {
-            title: "GS1.01 // 复杂分形",
-            back: "返回 Nexus",
-            footer_left: "GS1.01_分形探索器 // 节点: BASEL",
-            monitor_title: "GS1.01_分形监测器",
-            labels: {
-                max_iterations: "最大迭代次数",
-                zoom: "缩放",
-                zoom_value: "{value}x",
-                center_x: "中心 X",
-                center_y: "中心 Y",
-                color_scheme: "配色方案",
-                scheme: {
-                    classic: "经典",
-                    fire: "火焰",
-                    ice: "冰霜",
-                    rainbow: "彩虹"
-                }
-            },
-            mandelbrot: {
-                title: "曼德勃罗集",
-                line_1: "z₀ = 0",
-                line_2: "z_{n+1} = z_n² + c",
-                line_3: "|z_n| < 2 对所有 n"
-            },
-            mission: {
-                title: "任务：曼德布罗特集",
-                description: "使用GPU加速渲染探索曼德布罗特集。深入无限复杂的图案并发现自相似结构。"
-            }
-        },
         sp1_08: {
             title: "SP1.08 // 光学工作台",
             back: "返回 Nexus",
@@ -5951,8 +5887,6 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
             gm5_01_title: "GM5.01 // MATRIX-TRANSFORMATION",
             gm5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
-            gms1_01_title: "GMS1.01 // FRAKTAL-ERFORSCHER",
-            gms1_01_subtitle: "Erkunden Sie Fraktale und Selbstähnlichkeitsmuster in der Mathematik.",
             gp5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
             gp5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
             gp5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
