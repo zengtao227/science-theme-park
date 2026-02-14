@@ -34,7 +34,8 @@ export default function SP104Page() {
                 { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
                 { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
                 { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
-                { effort: 60, load: 240, effortArm: 4, loadArm: 1 }
+                { effort: 60, load: 240, effortArm: 4, loadArm: 1 },
+                { effort: 75, load: 225, effortArm: 3, loadArm: 1 }
             ];
 
             levers.forEach((lever, idx) => {
@@ -59,7 +60,8 @@ export default function SP104Page() {
                 { load: 400, strands: 4, effort: 100 },
                 { load: 600, strands: 3, effort: 200 },
                 { load: 300, strands: 2, effort: 150 },
-                { load: 500, strands: 5, effort: 100 }
+                { load: 500, strands: 5, effort: 100 },
+                { load: 800, strands: 4, effort: 200 }
             ];
 
             pulleys.forEach((pulley, idx) => {
@@ -84,7 +86,8 @@ export default function SP104Page() {
                 { load: 500, height: 2, length: 10, effort: 100 },
                 { load: 600, height: 3, length: 12, effort: 150 },
                 { load: 400, height: 1, length: 8, effort: 50 },
-                { load: 800, height: 4, length: 16, effort: 200 }
+                { load: 800, height: 4, length: 16, effort: 200 },
+                { load: 1000, height: 5, length: 20, effort: 250 }
             ];
 
             planes.forEach((plane, idx) => {

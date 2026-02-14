@@ -108,1209 +108,60 @@ export const translations: Record<string, any> = {
             gm2_01_title: "GM2.01 // VECTOR PILOT 3D",
             gm2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
             gm3_01_title: "GM3.01 // PROBABILITY VAULT",
-            gm4_01: {
-                back: "Back to Nexus",
-                title: "GM4.01 // COMPLEX HORIZON",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GM4.01_COMPLEX_MONITOR",
-                footer_left: "GM4.01_COMPLEX_HORIZON // NODE: BASEL",
-                scenario_title: "BASEL ENGINEERING MISSION",
-                scenarios: {
-                    basics: "Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.",
-                    operations: "Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.",
-                    polar: "Basel University Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network."
-                },
-                stages: {
-                    basics: "BASICS",
-                    operations: "OPERATIONS",
-                    polar: "POLAR FORM",
-                    basics_prompt: "Calculate magnitude",
-                    basics_target: "Find |z|",
-                    operations_add: "Add complex numbers",
-                    operations_multiply: "Multiply complex numbers",
-                    operations_target: "Find real and imaginary parts",
-                    polar_prompt: "Calculate power using polar form",
-                    polar_target: "Find z^n in rectangular form"
-                },
-                visualization: {
-                    pythagorean: "PYTHAGOREAN THEOREM",
-                    vector_addition: "VECTOR ADDITION",
-                    complex_multiplication: "COMPLEX MULTIPLICATION",
-                    polar_power: "POLAR FORM POWER",
-                    complex_data: "COMPLEX NUMBER DATA",
-                    magnitude: "Magnitude |z|",
-                    argument: "Argument arg(z)",
-                    power: "Power",
-                    verified: "VERIFIED",
-                    mismatch: "MISMATCH",
-                    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
-                    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
-                    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
-                }
-            },
-            em2_01: {
-                back: "Back to Nexus",
-                title: "EM2.01 // MATRIX GEOMETRY",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Transformation Matrix",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "EM2.01_MATRIX_MONITOR",
-                footer_left: "EM2.01_MATRIX_GEOMETRY // NODE: BASEL",
-                labels: {
-                    matrix: "MATRIX A",
-                    properties: "PROPERTIES",
-                    determinant: "Determinant",
-                    volume_scale: "Volume Scale",
-                    formulas: "FORMULAS",
-                    angle: "ROTATION ANGLE (θ)",
-                    scale_x: "SCALE X-AXIS",
-                    scale_y: "SCALE Y-AXIS",
-                    scale_z: "SCALE Z-AXIS",
-                    shear_xy: "SHEAR X BY Y",
-                    shear_xz: "SHEAR X BY Z",
-                    matrix_title: "MATRIX A",
-                    det_value: "det(A) = {value}",
-                    show_eigenvectors: "Show Eigenvectors",
-                    show_grid: "Show Grid",
-                    animate: "Animate"
-                },
-                presets: {
-                    title: "PRESETS",
-                    scale: "Scale",
-                    rotate: "Rotate 90°",
-                    shear: "Shear",
-                    reflect: "Reflect"
-                },
-                linear: {
-                    title: "LINEAR ALGEBRA",
-                    line_1: "Ax = λx (eigenvalue equation)",
-                    line_2: "det(A - λI) = 0",
-                    line_3: "T(v) = Av"
-                },
-                mission: {
-                    title: "MISSION: LINEAR TRANSFORMATIONS",
-                    description: "Visualize linear algebra in 3D space. Explore matrix transformations, eigenvectors, and geometric intuition."
-                },
-                stages: {
-                    basic_transforms: "TRANSFORMS",
-                    determinant: "DETERMINANT",
-                    composition: "COMPOSITION"
-                },
-                scenario_title: "BASEL ENGINEERING MISSION",
-                scenarios: {
-                    basic_transforms: "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.",
-                    determinant: "Novartis Crystal Structure: You are analyzing drug crystal unit cell structures at Novartis Basel. The determinant represents lattice volume change. det(A)=0 indicates crystal structure collapse, det(A)<0 indicates chirality inversion. Accurate determinant calculation is crucial for predicting drug bioactivity.",
-                    composition: "University of Basel Robotics: You are programming a robotic arm at Basel University robotics lab. Each joint's motion is represented by a transformation matrix. Composite transformation AB means executing joint A's motion first, then joint B's motion. Matrix multiplication order determines the robot arm's final position."
-                },
-                explanation_label: "EXPLANATION"
-            },
-            gm3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
-            sp1_01_title: "SP1.01 // MEASUREMENT & UNITS",
-            sp1_01_subtitle: "Master SI units, unit conversions, and measurement precision with Basel lab instruments.",
-            sp1_02_title: "SP1.02 // NEWTON'S LAWS",
-            sp1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
-            sp2_01_title: "SP2.01 // THERMODYNAMICS",
-            sp2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
-            sp2_02_title: "SP2.02 // CIRCUIT SANDBOX",
-            sp2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
-            sp2_03_title: "SP2.03 // MOTOR LAB",
-            sp2_03_subtitle: "Electromagnetism and motor principles.",
-            sp3_01_title: "SP3.01 // GEOMETRICAL OPTICS",
-            sp3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
-            sp1_03_title: "SP1.03 // ENERGY & POWER",
-            sp1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
-            sp1_04_title: "SP1.04 // SIMPLE MACHINES",
-            sp1_04_subtitle: "Master levers, pulleys, and inclined planes with Basel construction site scenarios.",
-            sp3_02_title: "SP3.02 // WAVE OPTICS",
-            sp3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
-            sp1_05_title: "SP1.05 // THE RHINE FERRY",
-            sp1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
-            sp1_06_title: "SP1.06 // THE SWISS PENDULUM",
-            sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
-            sp1_08_title: "SP1.08 // OPTICS LAB",
-            sp1_08_subtitle: "Explore light, lenses, and optical phenomena.",
-            sp4_01_title: "SP3.03 // WAVE BASICS",
-            sp4_01_subtitle: "Wave properties and sound phenomena.",
-            gp5_01_title: "GP1.01 // THE ATOMIC CORE",
-            gp5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
-            gp5_02: {
-                back: "Back to Nexus",
-                title: "GP1.02 // RELATIVITY LAB",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Lorentz Transformation",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GP1.02_RELATIVITY_MONITOR",
-                footer_left: "GP1.02_RELATIVITY_LAB // NODE: CERN",
-                labels: {
-                    velocity: "VELOCITY",
-                    lorentz_factor: "Lorentz Factor (γ)",
-                    time_dilation: "TIME DILATION",
-                    proper_time: "Proper Time (Δt₀)",
-                    dilated_time: "Dilated Time (Δt)",
-                    length_contraction: "LENGTH CONTRACTION",
-                    rest_length: "Rest Length (L₀)",
-                    contracted_length: "Contracted Length (L)",
-                    doppler_effect: "RELATIVISTIC DOPPLER",
-                    doppler_factor: "Doppler Factor",
-                    shift_type: "Shift Type",
-                    red_shift: "Red Shift",
-                    blue_shift: "Blue Shift",
-                    particle_velocity: "PARTICLE VELOCITY (v/c)",
-                    formulas: "FORMULAS"
-                },
-                mission: {
-                    title: "MISSION: SPECIAL RELATIVITY",
-                    description: "Explore Einstein's special relativity at CERN. Observe time dilation and length contraction."
-                },
-                stages: {
-                    time_dilation: "TIME DILATION",
-                    length_contraction: "LENGTH CONTRACTION",
-                    doppler: "DOPPLER EFFECT",
-                    time_dilation_desc: "Observe photon clocks at relativistic speeds",
-                    length_contraction_desc: "Measure particle length contraction",
-                    doppler_desc: "Analyze relativistic Doppler shift",
-                    time_dilation_hint: "Moving clocks run slower: Δt = γΔt₀",
-                    length_contraction_hint: "Moving objects contract: L = L₀/γ",
-                    doppler_hint: "Light shifts red (receding) or blue (approaching)"
-                }
-            },
-            gp1_04: {
-                back: "Back to Nexus",
-                title: "GP1.04 // QUANTUM TUNNEL",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Wave Function",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GP1.04_QUANTUM_MONITOR",
-                footer_left: "GP1.04_QUANTUM_TUNNEL // NODE: CERN",
-                labels: {
-                    particle_energy: "PARTICLE ENERGY (E)",
-                    barrier_height: "BARRIER HEIGHT (V₀)",
-                    barrier_width: "BARRIER WIDTH (a)",
-                    transmission: "TRANSMISSION COEFFICIENT",
-                    wave_function: "WAVE FUNCTION",
-                    probability_density: "PROBABILITY DENSITY |ψ|²",
-                    incident: "Incident",
-                    reflected: "Reflected",
-                    transmitted: "Transmitted",
-                    formulas: "FORMULAS",
-                    energy_ev: "Energy (eV)",
-                    barrier_ev: "Barrier (eV)",
-                    width_nm: "Width (nm)"
-                },
-                mission: {
-                    title: "MISSION: QUANTUM TUNNELING",
-                    description: "Explore quantum tunneling through potential barriers. Observe wave function behavior."
-                },
-                stages: {
-                    classical: "CLASSICAL LIMIT",
-                    tunneling: "QUANTUM TUNNELING",
-                    resonance: "RESONANCE",
-                    classical_desc: "Particle energy below barrier (E < V₀)",
-                    tunneling_desc: "Observe tunneling probability",
-                    resonance_desc: "Find resonance conditions (T ≈ 1)",
-                    classical_hint: "Classical physics: T = 0 when E < V₀",
-                    tunneling_hint: "Quantum mechanics: T > 0 even when E < V₀",
-                    resonance_hint: "Resonance occurs at specific E/V₀ ratios"
-                }
-            },
-            s3_02_title: "SM3.02 // TRIGONOMETRY TOWER",
-            s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
-            s2_07_title: "SM2.07 // COORDINATE GEOMETRY",
-            s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
-            s3_04_title: "SM3.04 // LOGARITHMIC SCALES",
-            s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
-            sc1_01_title: "SC1.01 // MYSTERY LAB",
-            sc1_01_subtitle: "Identify mysterious white powders through chemical tests.",
-            sc1_02_title: "SC1.02 // MOLE MASTER",
-            sc1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
-            sc1_03_title: "SC1.03 // ATOMS FORGE",
-            sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
-            sc1_04_subtitle: "Build atoms and discover the periodic table. Master electron configuration.",
-            gsc2_01: {
-                back: "Back to Nexus",
-                title: "GC2.01 // CARBON KINGDOM",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Molecular Structure",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC2.01_ORGANIC_MONITOR",
-                footer_left: "GC2.01_CARBON_KINGDOM // NODE: BASEL",
-                labels: {
-                    input: "INPUT",
-                    hints: "HINTS",
-                    formula: "MOLECULAR FORMULA",
-                    iupac_name: "IUPAC NAME",
-                    composition: "COMPOSITION",
-                    molecular_mass: "Molecular Mass",
-                    molecule_info: "MOLECULE INFO",
-                    select_molecule: "SELECT MOLECULE",
-                    rotation_speed: "ROTATION SPEED",
-                    rotation_speed_value: "{value}x",
-                    show_bonds: "Show Bonds",
-                    show_hydrogens: "Show Hydrogens",
-                    atom_colors: "ATOM COLORS",
-                    atom_carbon: "Carbon (C)",
-                    atom_hydrogen: "Hydrogen (H)",
-                    atom_oxygen: "Oxygen (O)",
-                    atom_nitrogen: "Nitrogen (N)",
-                    bond_types: "BOND TYPES",
-                    bond_single: "Single Bond: C-C",
-                    bond_double: "Double Bond: C=C",
-                    bond_triple: "Triple Bond: C≡C"
-                },
-                molecules: {
-                    methane: "Methane",
-                    ethane: "Ethane",
-                    benzene: "Benzene",
-                    glucose: "Glucose",
-                    alanine: "Alanine"
-                },
-                types: {
-                    alkane: "Alkane",
-                    aromatic: "Aromatic",
-                    carbohydrate: "Carbohydrate",
-                    amino_acid: "Amino Acid"
-                },
-                mission: {
-                    title: "MISSION: ORGANIC CHEMISTRY",
-                    description: "Explore organic molecules in 3D. Study ball-and-stick models, chemical bonds, and molecular geometry."
-                },
-                stages: {
-                    alkanes: "ALKANES",
-                    alcohols: "ALCOHOLS",
-                    custom: "CUSTOM",
-                    alkanes_desc: "Build alkane chains (C-C-C)",
-                    alcohols_desc: "Add hydroxyl groups (C-OH)",
-                    custom_desc: "Free synthesis mode"
-                },
-                hints: {
-                    select_atom: "Click an atom to select it",
-                    add_atom: "Click atom tool to add new atom",
-                    bonds: "Atoms connect based on valence rules",
-                    delete: "Use DELETE to remove selected atom"
-                }
-            },
-            gsc1_01: {
-                back: "Back to Nexus",
-                title: "GC1.01 // REDOX TITAN",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Galvanic Cell",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC1.01_REDOX_MONITOR",
-                footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
-                labels: {
-                    cell_potential: "CELL POTENTIAL",
-                    zn_concentration: "Zn²⁺ CONCENTRATION",
-                    cu_concentration: "Cu²⁺ CONCENTRATION",
-                    temperature: "TEMPERATURE",
-                    show_electrons: "Show Electron Flow",
-                    show_ions: "Show Ion Migration",
-                    reaction_quotient: "REACTION QUOTIENT (Q)",
-                    half_reactions: "HALF-REACTIONS",
-                    anode: "ANODE",
-                    cathode: "CATHODE",
-                    nernst_equation: "NERNST EQUATION"
-                },
-                mission: {
-                    title: "MISSION: ELECTROCHEMISTRY",
-                    description: "Build a galvanic cell and master the Nernst equation. Observe electron flow and ion migration in real-time."
-                },
-                stages: {
-                    build: "BUILD CELL",
-                    measure: "MEASURE POTENTIAL",
-                    analyze: "ANALYZE REACTIONS",
-                    build_desc: "Construct Zn-Cu galvanic cell",
-                    measure_desc: "Calculate cell potential with Nernst equation",
-                    analyze_desc: "Observe redox reactions and electron flow",
-                    build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
-                    measure_hint: "E = E° - (RT/nF)ln(Q)",
-                    analyze_hint: "Salt bridge maintains electrical neutrality"
-                }
-            },
-            gc3_01: {
-                back: "Back to Nexus",
-                title: "GC3.01 // EQUILIBRIUM MASTER",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Chemical Equilibrium",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC3.01_EQUILIBRIUM_MONITOR",
-                footer_left: "GC3.01_EQUILIBRIUM_MASTER // NODE: BASEL",
-                labels: {
-                    reaction: "REVERSIBLE REACTION",
-                    particle_count: "PARTICLE COUNT",
-                    conditions: "CONDITIONS",
-                    temperature: "Temperature",
-                    pressure: "Pressure",
-                    concentration: "[A]",
-                    principle: "LE CHATELIER'S PRINCIPLE",
-                    principle_1: "• Add reactant → shifts right (more products)",
-                    principle_2: "• Increase pressure → shifts to fewer molecules",
-                    principle_3: "• Increase temperature → shifts endothermic direction",
-                    add_reactant: "ADD REACTANT A",
-                    system_temperature: "SYSTEM TEMPERATURE",
-                    system_pressure: "SYSTEM PRESSURE"
-                },
-                mission: {
-                    title: "MISSION: CHEMICAL EQUILIBRIUM",
-                    description: "Master Le Chatelier's Principle. Observe how systems respond to stress."
-                },
-                stages: {
-                    concentration: "CONCENTRATION",
-                    temperature: "TEMPERATURE",
-                    pressure: "PRESSURE",
-                    concentration_desc: "Add reactant A and watch equilibrium shift",
-                    temperature_desc: "Increase temperature and observe particle speed",
-                    pressure_desc: "Change pressure and see volume effects",
-                    concentration_hint: "Higher [A] shifts equilibrium right → more C and D",
-                    temperature_hint: "Higher temperature increases particle kinetic energy",
-                    pressure_hint: "Higher pressure decreases container volume"
-                }
-            },
-            gc3_02: {
-                back: "Back to Nexus",
-                title: "GC3.02 // CRYSTAL PALACE",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                objective_title: "Active Mission Objective",
-                target_title: "Crystal Structure",
-                next: "Execute Next Sequence",
-                check: "Verify",
-                correct: "Verified",
-                incorrect: "Mismatch",
-                ready: "Ready",
-                monitor_title: "GC3.02_CRYSTAL_MONITOR",
-                footer_left: "GC3.02_CRYSTAL_PALACE // NODE: BASEL",
-                labels: {
-                    lattice_type: "LATTICE TYPE",
-                    properties: "PROPERTIES",
-                    atoms_per_cell: "Atoms/Cell",
-                    coordination: "Coordination",
-                    packing: "Packing",
-                    tet_voids: "Tet. Voids",
-                    voids: "INTERSTITIAL VOIDS",
-                    tetrahedral: "Tetrahedral",
-                    octahedral: "Octahedral",
-                    formulas: "FORMULAS",
-                    show_voids: "Show Interstitial Voids",
-                    slice_plane: "SLICE PLANE (Y-AXIS)",
-                    reset_slice: "Reset"
-                },
-                mission: {
-                    title: "MISSION: SOLID STATE PHYSICS",
-                    description: "Explore crystal structures and Bravais lattices. Understand atomic packing and coordination."
-                },
-                stages: {
-                    sc: "SIMPLE CUBIC",
-                    bcc: "BODY-CENTERED",
-                    fcc: "FACE-CENTERED",
-                    sc_desc: "Study simple cubic lattice (6 coordination)",
-                    bcc_desc: "Analyze body-centered cubic (8 coordination)",
-                    fcc_desc: "Master face-centered cubic (12 coordination)",
-                    sc_hint: "Lowest packing efficiency (52%)",
-                    bcc_hint: "Moderate packing (68%), metals like Fe, Cr",
-                    fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
-                }
-            },
-            sc1_03_subtitle: "Build isotopes and understand atomic orbitals in 3D.",
-            sc2_01_title: "SC2.01 // REACTION KINETICS",
-            sc2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
-            sc2_02_title: "SC2.02 // pH SENTINEL",
-            sc2_02_subtitle: "Master pH curves and titration with real-time feedback.",
-            sc2_03_title: "SC2.03 // AERO LAB",
-            sc2_03_subtitle: "Explore ideal gas laws with particle simulations. Master PV=nRT.",
-            sc2_04_title: "SC2.04 // SOLUBILITY LAB",
-            sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
-            sc3_01_title: "SC3.01 // MOLECULE CANVAS",
-            sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
-            sc3_02_title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
-            sc3_02_subtitle: "Master hydrocarbons, functional groups, and isomers with 2D/3D molecular visualization.",
-            sc3_03_title: "SC3.03 // ORGANIC REACTIONS",
-            sc3_03_subtitle: "Explore combustion, substitution, and addition reactions with mechanism animations.",
-            gc1_01_title: "GC1.01 // REDOX TITAN",
-            gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
-            gc2_01_title: "GC2.01 // CARBON KINGDOM",
-            gc2_01_subtitle: "Assemble pharmaceutical molecules with 3D models.",
-            gc3_01_title: "GC3.01 // MOLECULAR ARCHITECT",
-            gc3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
-            gc3_02_title: "GC3.02 // CRYSTAL PALACE",
-            gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
-            sb1_01_title: "SB1.01 // CELL FACTORY",
-            sb1_01_subtitle: "Explore cell structure and organelles.",
-            sb1_01_met_title: "SB1.01 // METABOLIC PATHWAYS",
-            sb1_01_met_subtitle: "Cellular metabolism and energy production.",
-            sb1_02_title: "SB1.02 // PHOTOSYNTHESIS LAB",
-            sb1_02_subtitle: "Master photosynthesis equation, limiting factors, and chloroplast structure.",
-            sb2_01_title: "SB2.01 // MENDEL'S GARDEN",
-            sb2_01_subtitle: "Genetics and Punnett squares.",
-            sb2_02_title: "SB2.02 // HUMAN BODY SYSTEMS",
-            sb2_02_subtitle: "Explore digestive, circulatory, and respiratory systems with interactive anatomy.",
-            sb3_01_title: "SB3.01 // ECOSYSTEM DYNAMICS",
-            sb3_01_subtitle: "Master food chains, energy flow, and biogeochemical cycles in the Rhine ecosystem.",
-            gb3_01_title: "GB3.01 // DNA FORGE",
-            gb3_01_subtitle: "Molecular biology and DNA replication.",
-            gm4_01_title: "GM4.01 // COMPLEX HORIZON",
-            gm4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
-            gm5_01_title: "EM2.01 // MATRIX TRANSFORM",
-            gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
-            gp5_02_title: "GP1.02 // RELATIVITY LAB",
-            gp5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
-            gp1_03_title: "GP5.03 // PARTICLE COLLIDER",
-            gp1_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
-            gp1_04_title: "GP1.04 // QUANTUM TUNNEL",
-            gp1_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
-            coming_soon: "Simulation sequence not yet initialized.",
-            engine_line: "Physical Law Simulation Engine // v2.1",
-            initiate_simulation: "Initiate Simulation",
-            locked_level_required: "LOCKED // LEVEL {level} REQUIRED",
-            engine_status_label: "Engine Status",
-            engine_status_value: "R3F PHYSICS ENGINE ACTIVE",
-            nodes_label: "Nodes",
-            nodes_value: "GENEVA // ZURICH // SHANGHAI",
-            search_label: "Filter Modules",
-            search_placeholder: "Search by code or name",
-            filter_tags_label: "Discipline Tags",
-            filter_clear: "Reset Filters",
-            filter_empty: "No modules match the current filters.",
-            filter_tags: {
-                physics: "Physics",
-                math: "Math",
-                chemistry: "Chemistry",
-                biology: "Biology",
-                socratic: "Socratic"
-            },
-            completed_badge: "COMPLETED",
         },
-        profile: {
-            title: "Scientist Profile",
-            subtitle: "Operator dossier // performance matrix",
-            radar_title: "Cognitive Spectrum",
-            stats_title: "Mission Stats",
-            timeline_title: "Learning Timeline",
-            timeline_empty: "No mission history recorded.",
-            timeline_accuracy: "Accuracy",
-            stats: {
-                completed_modules: "Modules Completed",
-                avg_accuracy: "Average Accuracy",
-                total_runs: "Total Runs",
-                experiment_index: "Experiment Index"
-            },
-            metrics: {
-                logic: "Logic",
-                intuition: "Intuition",
-                rigor: "Rigor",
-                experiment: "Experiment"
-            }
-        },
-        sm2_02: {
+        gm4_01: {
             back: "Back to Nexus",
-            title: "SM2.02 // PYTHAGORAS & ROOTS",
-            tabs: {
-                pythagoras: "PYTHAGORAS",
-                sqrt: "SQUARE ROOT",
-                explorer: "EXPLORER LAB",
-                quest_mode: "QUEST MODES"
-            },
+            title: "GM4.01 // COMPLEX HORIZON",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
                 advanced: "ADVANCED",
                 elite: "ELITE"
             },
-            objective_title: "Active Mission Objective",
-            target_title: "Target",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            yes: "YES",
-            no: "NO",
-            monitor_title: "SM2.02_VISUAL_MONITOR",
-            footer_left: "SM2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
-            input_radical: "Answer as k√m",
-            input_k: "k",
-            input_m: "m",
-            input_number: "Answer",
-            pythagoras: {
-                solve_hyp: " Fire rescue: Find the ladder length",
-                solve_leg: " Mountain climb: Find the vertical height",
-                check_right: "📐 Engineering check: Is this a right triangle?",
-                distance: "🚁 Drone delivery: Calculate flight distance",
-                elite_space: " CERN lab: Find the space diagonal",
-                explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
-                fluid_title: "Fluid Volume Conservation",
-                fluid_desc: "Tilt to see A² + B² flow into C². This visualizes area conservation: the geometry sum remains constant."
-            },
-            sqrt: {
-                perfect: "Perfect squares",
-                simplify: "Simplify radicals",
-                estimate: "Estimate"
-            },
-            mission: {
-                title: "MISSION",
-                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
-                cern_title: "CERN CALIBRATION ARRAY",
-                cern_desc: "Calibrate a 16:9 observation array. Height=9s, Width=16s. Find the diagonal.",
-                roof_title: "GRINDELWALD SNOW ROOF",
-                roof_desc: "Design the snow roof brace with half-span 6m and height 6m.",
-                ladder_title: "LUCERNE LADDER DOCK",
-                ladder_desc: "A ladder is 5m from the wall and reaches 12m high. Find the ladder length.",
-                grid_title: "BASEL GRID DISTANCE",
-                grid_desc: "Compute the distance between two navigation nodes on the Basel grid.",
-                chain_title: "CERN TRANSFER TUNNEL",
-                chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
-            },
-            mental: {
-                title: "MENTAL",
-                triples: "Pythagorean Triples",
-                chain: "Segment Chain"
-            }
-        },
-        sm3_01: {
-            back: "Back to Nexus",
-            title: "SM3.01 // QUADRATIC EQUATIONS",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Target Equation",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM3.01_MONITOR",
-            footer_left: "SM3.01_QUADRATICS // NODE: ZURICH",
-            stages: {
-                terms: "TERMS",
-                factorize: "FACTORIZE",
-                fractions: "FRACTIONS",
-                equations: "EQUATIONS",
-                terms_prompt_latex: "\\text{Simplify the expression (combine like terms).}",
-                factor_prompt_latex: "\\text{Factorize the expression (show a product form).}",
-                fractions_prompt_latex: "\\text{Simplify the fraction.}",
-                equations_prompt_latex: "\\text{Solve the equation step by step.}"
-            },
-            modes: {
-                factor: "FACTOR",
-                formula: "FORMULA",
-                complete_square: "COMPLETE SQUARE",
-                factor_prompt: "Factorize first: find A,B so that (x+A)(x+B)=0.",
-                formula_prompt: "Solve with the quadratic formula.",
-                complete_square_prompt: "Convert to vertex form and identify (h,k)."
-            },
-            labels: {
-                input: "INPUT",
-                numerator: "NUMERATOR",
-                denominator: "DENOMINATOR",
-                hints: "HINTS",
-                roots: "Solutions x₁, x₂",
-                vertex: "Vertex (h,k)",
-                factor: "Factoring",
-                factor_slots: "Build factors (A,B)",
-                formula: "Quadratic Formula",
-                complete_square: "Completing the Square",
-                elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}",
-                fraction_hint: "Tip: Enter result as an integer or fraction (e.g. 4/3)."
-            },
-            hints: {
-                identities: {
-                    trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
-                    diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
-                },
-                rules: {
-                    factor_common_latex: "\\text{Factor out the common factor.}",
-                    cancel_common_latex: "\\text{Factor numerator/denominator, then cancel the common factor.}",
-                    simplify_both_sides_latex: "\\text{Simplify both sides step by step.}",
-                    square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
-                    zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
-                }
-            }
-        },
-        sm3_02: {
-            back: "Back to Nexus",
-            title: "SM3.02 // TRIG CIRCLE",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Trigonometric Values",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM3.02_TRIG_MONITOR",
-            footer_left: "SM3.02_TRIG_CIRCLE // NODE: BASEL",
-            labels: {
-                angle: "ANGLE (θ)",
-                values: "TRIGONOMETRIC VALUES",
-                display: "DISPLAY OPTIONS",
-                show_waves: "Show Wave Functions",
-                formulas: "FORMULAS",
-                special_angles: "SPECIAL ANGLES",
-                exact_value: "EXACT VALUE",
-                decimal_value: "DECIMAL",
-                quadrant: "QUADRANT"
-            },
-            mission: {
-                title: "MISSION: UNIT CIRCLE",
-                description: "Master the unit circle and trigonometric functions. Understand sin, cos, and tan relationships."
-            },
-            stages: {
-                unit_circle: "UNIT CIRCLE",
-                projections: "PROJECTIONS",
-                waves: "WAVE FUNCTIONS",
-                unit_circle_desc: "Explore the unit circle and angle rotation",
-                projections_desc: "Understand sine and cosine as projections",
-                waves_desc: "Visualize sine and cosine as wave functions",
-                unit_circle_hint: "Point on circle: (cos θ, sin θ)",
-                projections_hint: "sin = y-projection, cos = x-projection",
-                waves_hint: "Sine and cosine create periodic waves",
-                unit_circle_prompt_latex: "\\text{Determine the quadrant or sign.}",
-                projections_prompt_latex: "\\text{Calculate the exact trigonometric value.}",
-                waves_prompt_latex: "\\text{Find the amplitude or period.}"
-            }
-        },
-        sm3_03: {
-            back: "Back to Nexus",
-            title: "SM3.03 // GROWTH & LOGS",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Exponential Growth",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM3.03_GROWTH_MONITOR",
-            footer_left: "SM3.03_EXPONENTIAL // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                population: "Population (N)",
-                time: "Time (t)",
-                doubling_time: "Doubling Time (d)",
-                initial: "Initial Count (N₀)",
-                formula_ref: "FORMULA REFERENCE",
-                parameters: "CURRENT PARAMETERS",
-                growth_rate: "Growth Rate (k)",
-                half_life: "Half-life",
-                principal: "Principal (P)",
-                rate: "Interest Rate (r)"
-            },
-            hints: {
-                exp_rule1: "Each doubling multiplies the population by 2",
-                exp_rule2: "After n doublings: N = N₀ × 2ⁿ",
-                log_rule1: "log₂(2ⁿ) = n",
-                log_rule2: "Change of base: logₐ(x) = ln(x)/ln(a)",
-                app_rule1: "Half-life: N(t) = N₀ × (½)^(t/h)",
-                app_rule2: "Compound interest: A = P(1+r)^t"
-            },
-            input_tip: "Tip: Enter result as integer or rounded to 1 decimal place.",
-            mission: {
-                title: "BACTERIAL GROWTH LAB",
-                description: "Novartis biolab requires exponential growth modeling. Calculate bacterial populations and logarithmic scales."
-            },
-            stages: {
-                exponential: "EXPONENTIAL",
-                logarithm: "LOGARITHM",
-                applications: "APPLICATIONS",
-                exponential_prompt_latex: "\\text{Calculate population using }N(t)=N_0\\cdot 2^{t/d}.",
-                logarithm_prompt_latex: "\\text{Solve for time using logarithms.}",
-                applications_prompt_latex: "\\text{Apply exponential models to real scenarios.}",
-                exp_basic_prompt: "\\text{Calculate the population at time } t.",
-                exp_advanced_prompt: "\\text{Find the number of doublings.}",
-                exp_elite_prompt: "\\text{Find the continuous growth rate } k.",
-                log_basic_prompt: "\\text{Solve for time using } t = d \\cdot \\log_2(N/N_0).",
-                log_core_prompt: "\\text{Evaluate the logarithm.}",
-                log_advanced_prompt: "\\text{Use the change of base formula.}",
-                log_elite_prompt: "\\text{Solve the logarithmic equation.}",
-                app_half_prompt: "\\text{Calculate remaining quantity after half-life decay.}",
-                app_compound_prompt: "\\text{Calculate compound interest: } A=P(1+r)^t.",
-                app_rate_prompt: "\\text{Find the growth rate from data.}",
-                app_ph_prompt: "\\text{Calculate pH from hydrogen ion concentration.}"
-            },
-            formulas: {
-                exponential: "N(t) = N_0 \\cdot 2^{t/d}",
-                logarithm: "t = d \\cdot \\log_2(N/N_0)",
-                applications: "N(t) = N_0 \\cdot e^{kt}"
-            },
+            monitor_title: "GM4.01_COMPLEX_MONITOR",
+            footer_left: "GM4.01_COMPLEX_HORIZON // NODE: BASEL",
+            scenario_title: "BASEL ENGINEERING MISSION",
             scenarios: {
-                exp_bac: "🦠 SCENARIO: Novartis Lab Bacterial Culture — A research team at Novartis in Basel is studying bacterial growth. They place 100 bacteria in a petri dish at 8:00 AM. Under optimal conditions, the bacteria population doubles every 20 minutes. The lab needs to predict when the population will reach 10,000 to harvest samples at the right moment. Your task: calculate the population at any given time using exponential growth.",
-                exp_social: "📱 SCENARIO: TikTok Challenge Goes Viral — Your friend posts a dance challenge video at noon. Initially, 50 people watch it. Every hour, each viewer shares it with 2 friends who haven't seen it yet (doubling effect). By evening, the view count explodes exponentially. The school principal wants to know: at what time will 10,000 students have seen it? This models real viral spread on social media.",
-                exp_virus: "🦠 SCENARIO: School Flu Outbreak Modeling — It's Monday morning. 3 students in your school of 1,200 have the flu. Health authorities know that without intervention, each infected person spreads the flu to 2 others every 2 days (doubling time = 2 days). The school nurse needs to predict: how many will be sick by Friday? When will 100 students be infected? This helps decide whether to close the school.",
-                exp_moore: "💻 SCENARIO: Smartphone Performance Prediction — In 2000, your dad's Nokia phone had 4 MB of RAM. According to Moore's Law, computing power doubles roughly every 2 years. Your current iPhone has 8 GB (8,000 MB) of RAM. Question: how many 'doublings' occurred between 2000 and 2024? Can you verify Moore's Law held true? This exponential growth drives all modern technology.",
-                log_invest: "💰 SCENARIO: Your Pocket Money Investment Plan — You saved 1,000 CHF from birthday gifts. Your parents offer a deal: they'll act as your 'bank' and pay 8% annual interest, compounded yearly (meaning each year, you earn interest on your previous interest too). You want to buy a gaming PC that costs 2,000 CHF. Question: how many years until your money doubles? Use logarithms to solve: t = log₂(2000/1000) / log₂(1.08). This is how real investment planning works!",
-                log_sound: "🔊 SCENARIO: School Concert Sound Check — The music teacher is setting up for the school concert. A whisper measures 30 dB, normal conversation is 60 dB, and a rock concert is 120 dB. But here's the trick: the decibel scale is logarithmic! 60 dB isn't 'twice as loud' as 30 dB — it's actually 1,000 times more intense (because 10^(60/10) / 10^(30/10) = 1,000). Your task: if the current sound level is 80 dB and the safe limit is 85 dB, how many times more intense can the sound get before it's unsafe?",
-                log_ph: "🧪 SCENARIO: Chemistry Lab pH Testing — In chemistry class, you're testing the pH of different liquids. Lemon juice has pH 2, water has pH 7, and soap has pH 12. Your teacher explains: pH is a logarithmic scale measuring hydrogen ion concentration [H⁺]. pH = -log₁₀[H⁺]. This means pH 2 is 100,000 times more acidic than pH 7 (not just '5 units more')! Question: if a solution has [H⁺] = 0.001 mol/L, what's its pH? Is it acidic or basic?",
-                log_security: "🔐 SCENARIO: Password Cracking Time — Your IT teacher explains password security. A 4-digit PIN (0000-9999) has 10,000 combinations. A hacker's computer can try 1,000 passwords per second, so it takes 10 seconds to crack. But if you use an 8-character password with letters and numbers (62 options per character), there are 62^8 = 218 trillion combinations! At 1 billion tries per second, it takes 218,000 seconds (2.5 days). Question: how many characters needed for 1 year of protection? Use logarithms to solve: n = log₆₂(seconds × tries_per_second).",
-                app_med: "💊 SCENARIO: Medicine Dosage Timing — Your doctor prescribes a painkiller. You take 400 mg at 8:00 AM. The drug has a half-life of 6 hours, meaning every 6 hours, half of it is eliminated from your body. At 2:00 PM (6 hours later), 200 mg remains. At 8:00 PM, 100 mg remains. The doctor says the drug stops working below 50 mg. Question: at what time can you safely take the next dose? Use the formula: N(t) = N₀ × (1/2)^(t/6).",
-                app_bank: "🏦 SCENARIO: Comparing Savings Accounts — You have 5,000 CHF to save for university. Bank A offers 3% simple interest (you earn 150 CHF per year, always). Bank B offers 3% compound interest (each year, you earn interest on your interest too). After 10 years: Bank A gives you 5,000 + 10×150 = 6,500 CHF. Bank B gives you 5,000 × (1.03)^10 = 6,720 CHF. Question: after how many years does Bank B give you 1,000 CHF more than Bank A? Use exponential equations to solve!",
-                app_pop: "🏙️ SCENARIO: Zurich Population Growth — In 2000, Zurich had 340,000 residents. The city grows at 1.2% per year (exponential growth). By 2020, the population reached 420,000. Urban planners need to predict: when will Zurich reach 500,000? This determines when to build new schools, trams, and housing. Use the formula: P(t) = P₀ × (1.012)^t. Solve for t when P(t) = 500,000.",
-                app_carbon: "🦴 SCENARIO: Archaeological Dating — Archaeologists find a wooden tool in a Swiss cave. All living things contain Carbon-14 (¹⁴C), which decays with a half-life of 5,730 years. When the tree died, it stopped absorbing new ¹⁴C. By measuring how much ¹⁴C remains, scientists can calculate the age. If the tool has 25% of the original ¹⁴C, how old is it? Use: 0.25 = (1/2)^(t/5730). Solve for t using logarithms. This is how we know the age of ancient artifacts!"
-            }
-        },
-        sm2_03: {
-            back: "Back to Nexus",
-            title: "SM2.03 // LINE NAVIGATOR",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Target Intercept",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM2.03_LASER_MONITOR",
-            footer_left: "SM2.03_LINE_NAVIGATOR // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                emitter: "Emitter",
-                target: "Target",
-                slope: "Cost per km (m)",
-                intercept: "Base fare (c)"
-            },
-            prompts: {
-                level1: "Calculate the ticket price for the given destination",
-                level2: "Find the distance where two fare plans cost the same",
-                level3: "Find the threshold distance where Plan A becomes cheaper"
-            },
-            hints: {
-                level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
-                level2: "Two fare plans have different m and c. Find the intersection point — that's where they cost the same!",
-                level3: "Design the slope and intercept so your plan is cheapest beyond a certain distance.",
-                drag: "Adjust the slider to change the slope (cost/km) and intercept (base fare)."
-            },
-            ui: {
-                current_function: "Fare Formula",
-                reflections: "Fare Plans",
-                target_position: "Destination (km)",
-                hit_badge: "FARE MATCHED",
-                chamber: "STATION",
-                laser_sim: "FARE_CALC",
-                level: "LEVEL",
-                hits: "Matches"
-            },
-            mission: {
-                title: "SWISS RAILWAY FARE CALCULATOR",
-                description: "Model railway ticket prices as linear functions. Slope = cost per km, intercept = base fare. Find the break-even point between fare plans!"
+                basics: "Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.",
+                operations: "Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.",
+                polar: "Basel University Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network."
             },
             stages: {
-                level1: "LEVEL 1",
-                level2: "LEVEL 2",
-                level3: "LEVEL 3"
-            }
-        },
-        sm2_04: {
-            back: "Back to Nexus",
-            title: "SM2.04 // SIMILARITY & SCALING",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
+                basics: "BASICS",
+                operations: "OPERATIONS",
+                polar: "POLAR FORM",
+                basics_prompt: "Calculate magnitude",
+                basics_target: "Find |z|",
+                operations_add: "Add complex numbers",
+                operations_multiply: "Multiply complex numbers",
+                operations_target: "Find real and imaginary parts",
+                polar_prompt: "Calculate power using polar form",
+                polar_target: "Find z^n in rectangular form"
             },
-            objective_title: "Active Mission Objective",
-            target_title: "Target",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM2.04_MONITOR",
-            footer_left: "SM2.04_SIMILARITY // NODE: BASEL",
-            stages: {
-                scale_factor: "SCALE",
-                similar_triangles: "SIMILAR",
-                application: "APPLY",
-                stages_prompt_latex: "Use proportionality to find the missing value."
-            },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS"
-            },
-            hints: {
-                rules: {
-                    proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
-                    scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
-                    cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
-                }
-            },
-            mission: {
-                title: "MISSION: SHADOW MEASURE",
-                protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
-                tower_title: "ZURICH CLOCK TOWER",
-                description: "In Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
-                ring_title: "LUCERNE OBSERVATION RING",
-                ring_desc: "In Lucerne, a concentric sensor ring is cut by a chord touching the inner circle. Find the ring width.",
-                labels: {
-                    tower: "Clock Tower",
-                    tower_shadow: "Tower Shadow",
-                    stick: "Stick (1.5m)",
-                    stick_shadow: "Stick Shadow",
-                    calculate_height: "Calculate Tower Height"
-                }
-            }
-        },
-        sm2_01: {
-            back: "← Back to Nexus",
-            back_short: "Back to Nexus",
-            title: "SM2.01 // BINOMIAL FACTORY",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            mode_1: "1st Formula: (a+b)²",
-            mode_2: "2nd Formula: (a-b)²",
-            param_a: "Parameter a",
-            param_b: "Parameter b",
-            lock: "LOCK PARAMETERS",
-            unlock: "UNLOCK PARAMETERS",
-            instruction_setup: "Adjust sliders to define lengths a and b.",
-            instruction_solve: "Drag and snap areas to fill the target $(a+b)²$.",
-            solve_success: "IDENTITY PROVED",
-            solve_fail: "AREA MISMATCH",
-            terms: {
-                a2: "a²",
-                b2: "b²",
-                ab: "ab",
-                target_plus: "(a+b)²",
-                target_minus: "(a-b)²",
-            },
-            scenarios: {
-                architect_title: "Scenario A: Garden Extension",
-                architect_desc: "Your lakeside garden (a×a) is being extended by b meters on each side. Calculate the new total area.",
-                architect_context: "You own a square garden plot by Lake Zurich with side length 'a' meters. The city allows you to extend it by 'b' meters on two sides. To buy the right amount of soil and seeds, you need to know the new total area. Notice: the total area is NOT simply a² + b² — the two rectangular strips and the corner square matter!",
-                scrapper_title: "Scenario B: Tile Factory",
-                scrapper_desc: "A factory produced tiles in three shapes. Reassemble them into a perfect square.",
-                scrapper_context: "A Swiss tile factory produces three types of tiles: one large square (a²), two rectangular strips (a×b each), and one small square (b²). Your job is to verify that these four pieces can be perfectly assembled into a single large square of side (a+b). This proves the binomial identity geometrically.",
-                speedster_title: "Scenario C: Mental Math Sprint",
-                speedster_desc: "Compute large squares instantly by splitting them into (round + offset)².",
-                speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)² = a² + 2ab + b² = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
-                voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a² - b².",
-                architect_mission: "Task: Calculate the expanded garden area using (a+b)² = a² + 2ab + b².",
-                scrapper_mission: "Task: Identify a and b from the expanded form and reconstruct the perfect square.",
-                speedster_mission: "Task: Break the number into (round ± offset) and use binomial expansion to compute instantly.",
-                voyager_mission: "Task: Use the difference of squares formula to find the area difference.",
-                elite_mission: "Task: Factor the complex polynomial into binomial product form."
-            },
-            speedster_hint: "Use binomial expansion (a±b)² to simplify calculation",
-            elite_tips_title: "TIPS: Binomial Isolation Strategy",
-            elite_tips_target: "Target format:",
-            scrapper_step01: "STEP 01: Isolate root (a)",
-            active_objective: "Active Mission Objective",
-            target_expression: "Target Identity Expression",
-            params_config: "00 // Parameters Configuration",
-            units: "UNITS",
-            tabs: {
-                explore: "EXPLORE",
-                architect: "GARDEN",
-                scrapper: "TILE LAB",
-                speedster: "SPRINT",
-                voyager: "VOYAGER",
-                elite: "ELITE"
-            },
-            ui: {
-                part_1_a2: "Part 1 (a²)",
-                part_2_2ab: "Part 2 (2ab)",
-                part_3_b2: "Part 3 (b²)",
-                identify_root_a: "Identify Root a",
-                identify_root_b: "Identify Root b",
-                elite_step_1: "Step 1: Isolate Binomial Square",
-                elite_step_2: "Step 2: Balance Equation",
-                execute_next_sequence: "Next Question",
-                continue_operation: "Continue Practice",
-                logic_lattice_title: "Logic Lattice // Decomposition",
-                logic_architect_step_1: "STEP_01: Distribute outer terms",
-                logic_architect_step_2: "STEP_02: Expand partial segments",
-                logic_scrapper_step_1: "STEP_01: Isolate root (a)",
-                logic_scrapper_step_2: "STEP_02: Verify linear (2ab)",
-                logic_voyager_axiom_title: "AXIOM: Conjugate Dualism",
-                logic_voyager_axiom_body: "Product of (A+B)(A-B) eliminates linear cross-terms (±AB).",
-                logic_voyager_derivation_title: "DERIVATION:",
-                link_established: "LINK_ESTABLISHED",
-                axiomatic_constraints_title: "Axiomatic Constraints",
-                constraints_architect: "The corner 'b²' is the offset required to complete the major quadratic square. Its value is critical for blueprint precision.",
-                constraints_scrapper: "Factoring decomposes global entropy back into ordered symbolic structures. Root isolation is the primary objective.",
-                constraints_speedster: "Mental approximation relies on binary base decomposition. Shift the problem into a (Base+N)² framework.",
-                constraints_elite: "Advanced Refactoring handles multi-dimensional coefficients where C is a composite scaling factor.",
-                constraints_voyager: "Identity symmetry requires strict sign adherence. The difference represents the net loss of area in 1D projection.",
-                visual_reference_position: "Visual_Reference_Position [FIX_REF.01]",
-                status_operational: "STATUS: OPERATIONAL",
-                fps: "FPS",
-                latency: "LATENCY",
-                footer_left: "SM2.01_ALGEBRA_SYNC // NODE: ZURICH",
-                verified: "Verified",
-                simulating: "Simulating",
-            }
-        },
-        gm1_01: {
-            back: "Back to Nexus",
-            title: "GM1.01 // CALCULUS INTRO",
-            tabs: {
-                explore: "EXPLORE",
-                slope: "SLOPE",
-                tangent: "TANGENT",
-                rate: "RATE",
-                elite: "ELITE"
-            },
-            explore_title: "00 // Interactive Exploration",
-            explore_instruction: "Drag the point P along the parabola y = x² and observe how the tangent line changes. The slope m represents the instantaneous rate of change.",
-            explore_hint: "Drag point P in the visual monitor →",
-            current_point: "Current Point",
-            slope_label: "Tangent Slope",
-            mission: {
-                title: "DERIVATIVE ROAD SIMULATOR",
-                description: "Master calculus by driving a car on mathematical curves. The derivative tells you the road's slope at each point. Match the car's angle to the road perfectly!"
-            },
-            spotlight: {
-                title: "Scientist Spotlight",
-                euler_name: "Leonhard Euler",
-                euler_bio: "Basel-born master of analysis. Euler gave calculus its modern symbols and showed how motion, curves, and series can be governed by elegant laws.",
-                bernoulli_name: "Johann Bernoulli",
-                bernoulli_bio: "The Bernoulli dynasty forged calculus through challenge and rivalry. Johann advanced differential methods that map acceleration to form."
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Target",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            hints_title: "Formula Reference",
-            monitor_title: "GM1.01_VISUAL_MONITOR",
-            status: "STATUS: OPERATIONAL",
-            footer_left: "GM1.01_CALCULUS // NODE: BASEL",
-            footer_right: "DERIVATIVE_SIMULATOR",
-            stages: {
-                intro: "INTRO",
-                differentiation: "DERIVATIVES",
-                application: "APPLICATIONS",
-                power_rule: "POWER RULE",
-                factor_rule: "FACTOR RULE",
-                sum_rule: "SUM RULE",
-                product_rule: "PRODUCT RULE",
-                quotient_rule: "QUOTIENT RULE",
-                chain_rule: "CHAIN RULE",
-                intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
-                differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
-                application_prompt_latex: "\\text{Apply calculus to solve problems.}",
-                power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
-                factor_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using factor rule.}",
-                sum_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using sum rule.}",
-                product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
-                quotient_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using quotient rule.}",
-                chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
-            },
-            labels: {
-                secant_slope: "Secant Slope m",
-                tangent_slope: "Tangent Slope m",
-                velocity: "Velocity v",
-                x_coordinate: "x-coordinate",
-                hints: "HINTS"
-            },
-            formulas: {
-                power_rule: "f'(x) = n\\cdot x^{n-1}",
-                factor_rule: "(a\\cdot f)' = a\\cdot f'",
-                sum_rule: "(f+g)' = f' + g'",
-                product_rule: "(uv)' = u'v + uv'",
-                quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
-                chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
-            },
-            scenarios: {
-                power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = x². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
-                factor_rule: "🏗️ SCENARIO: Construction Scaling — An architect designs a building with height h(x) = x². When the city requires all dimensions to be scaled by factor 3, the new height becomes H(x) = 3x². The derivative tells you how the scaled building's slope changes. Use the factor rule: if f(x) = a·g(x), then f'(x) = a·g'(x). The constant factor 3 stays outside the derivative, making calculations easier!",
-                sum_rule: "🌊 SCENARIO: Ocean Wave Superposition — Two ocean waves combine: wave A has height h₁(x) = x² and wave B has height h₂(x) = 3x. The total wave height is H(x) = x² + 3x. To predict how fast the combined wave rises, use the sum rule: (f + g)' = f' + g'. Calculate each wave's slope separately, then add them. This is how oceanographers predict tsunami wave behavior!",
-                product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
-                quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v². This tells investors whether the company is becoming more or less efficient over time.",
-                chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
-            },
-            canvas: {
-                title: "DERIVATIVE ROAD",
-                subtitle_power: "f(x) = x²",
-                subtitle_factor: "f(x) = ax²",
-                subtitle_sum: "f(x) = x² + x",
-                subtitle_product: "f(x) = x·sin(x)",
-                subtitle_quotient: "f(x) = x/sin(x)",
-                subtitle_chain: "f(x) = sin(2x)",
-                x_label: "x",
-                y_label: "f(x)",
-                slope_label: "ROAD SLOPE",
-                your_slope: "Your slope",
-                correct_slope: "Correct slope",
-                status_chamber: "CHAMBER",
-                status_sim: "DERIVATIVE_SIM: ACTIVE",
-                status_mode: "MODE"
-            },
-            integral_preview_title: "COMING SOON: INTEGRATION",
-            integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
-            integral_preview_hint: "Unlock after mastering derivatives →"
-        },
-        gm1_01_advanced: {
-            back: "Back to Nexus",
-            title: "GM1.01-ADV // ADVANCED CALCULUS",
-            monitor_title: "GM1.01_ADVANCED_MONITOR",
-            footer_left: "GM1.01_ADVANCED // NODE: BASEL",
-            check: "Verify",
-            next: "Next Challenge",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            mission: {
-                title: "ADVANCED DERIVATIVE CHALLENGES",
-                description: "Master complex derivatives by combining multiple rules. Apply calculus to real-world problems."
-            },
-            challenges: {
-                composite: "COMPOSITE",
-                modeling: "MODELING",
-                optimization: "OPTIMIZATION",
-                analysis: "ANALYSIS"
-            },
-            scenarios: {
-                composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t² + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
-                composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t² + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
-                composite_3: "🌊 SCENARIO: Wave Interference — Two ocean waves combine: h(x) = (x³ - 2x)·cos(x). At x=1, find the rate of height change h'(1) to predict wave behavior. Use product rule with trigonometric functions!",
-                modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t³ - 3t² + 5t meters. Find the velocity v(t) = s'(t) at t=3 seconds to check if it's within speed limits.",
-                modeling_2: "🎈 SCENARIO: Balloon Launch — A weather balloon rises with height h(t) = -5t² + 20t + 2 meters. At t=2 seconds, calculate the velocity v(t) = h'(t) to ensure safe ascent rate.",
-                optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from rectangular cardboard. The area is A(x) = x(10-x). Find the value of x that maximizes the area for optimal material usage.",
-                optimization_2: "💰 SCENARIO: Profit Maximization — A Basel bakery's daily profit is P(x) = -2x² + 12x - 10 (in hundreds of CHF), where x is production hours. Find x that maximizes profit.",
-                analysis_1: "📊 SCENARIO: Market Analysis — A stock price follows f(x) = x³ - 3x² + 2. Find all critical points (where f'(x) = 0) to identify potential buy/sell moments.",
-                analysis_2: "🚀 SCENARIO: Rocket Trajectory — A rocket's height is f(x) = 2x³ - 6x + 1. At x=1, find the second derivative f''(1) to determine if the rocket is accelerating or decelerating."
-            },
-            questions: {
-                find_derivative: "Calculate the derivative at the given point",
-                find_velocity: "Calculate velocity v(t) = s'(t)",
-                find_acceleration: "Calculate acceleration a(t) = v'(t)",
-                find_maximum: "Find the value that maximizes the function",
-                find_critical_point: "Find the critical point (where derivative = 0)",
-                find_critical_points: "Find all critical points (where f'(x) = 0)"
-            },
-            hints: {
-                use_product_rule: "Use product rule: (uv)' = u'v + uv'. First find u' and v' separately.",
-                use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v². Remember to square the denominator!",
-                use_chain_rule: "Use chain rule: (f(g(x)))' = f'(g(x))·g'(x). Work from outside to inside.",
-                take_first_derivative: "Take the first derivative: if s(t) is position, then v(t) = s'(t) is velocity.",
-                take_second_derivative: "First find f'(x), then differentiate again to get f''(x).",
-                set_derivative_zero: "Set f'(x) = 0 and solve for x. This gives critical points where function may have max/min."
-            },
-            function_label: "FUNCTION",
-            question_label: "CHALLENGE",
-            hint_label: "STRATEGY",
-            visualization_title: "FUNCTION GRAPH",
             visualization: {
-                title: "FUNCTION VISUALIZATION",
-                x_label: "x",
-                y_label: "f(x)",
-                function_label: "FUNCTION",
-                point_label: "POINT"
-            },
-            progress: "Progress"
+                pythagorean: "PYTHAGOREAN THEOREM",
+                vector_addition: "VECTOR ADDITION",
+                complex_multiplication: "COMPLEX MULTIPLICATION",
+                polar_power: "POLAR FORM POWER",
+                complex_data: "COMPLEX NUMBER DATA",
+                magnitude: "Magnitude |z|",
+                argument: "Argument arg(z)",
+                power: "Power",
+                verified: "VERIFIED",
+                mismatch: "MISMATCH",
+                geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
+                polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
+                parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
+            }
         },
-        gm2_01: {
+        em2_01: {
             back: "Back to Nexus",
-            title: "GM2.01 // VECTOR PILOT 3D",
+            title: "EM2.01 // MATRIX GEOMETRY",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1318,38 +169,96 @@ export const translations: Record<string, any> = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "Vector HUD",
+            target_title: "Transformation Matrix",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "GM2.01_VECTOR_HUD",
-            footer_left: "GM2.01_VECTOR_PILOT // NODE: BASEL",
-            stages: {
-                navigation: "NAVIGATION",
-                dot: "DOT PRODUCT",
-                mission: "MISSION",
-                navigation_prompt_latex: "\\text{Compute }\\vec v\\text{ from A to B and its magnitude.}",
-                dot_prompt_latex: "\\text{Compute }\\vec v\\text{ and }\\vec v\\cdot\\vec w.",
-                mission_prompt_latex: "\\text{Mission: compute }\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|."
-            },
+            monitor_title: "EM2.01_MATRIX_MONITOR",
+            footer_left: "EM2.01_MATRIX_GEOMETRY // NODE: BASEL",
             labels: {
-                input: "INPUT"
+                matrix: "MATRIX A",
+                properties: "PROPERTIES",
+                determinant: "Determinant",
+                volume_scale: "Volume Scale",
+                formulas: "FORMULAS",
+                angle: "ROTATION ANGLE (θ)",
+                scale_x: "SCALE X-AXIS",
+                scale_y: "SCALE Y-AXIS",
+                scale_z: "SCALE Z-AXIS",
+                shear_xy: "SHEAR X BY Y",
+                shear_xz: "SHEAR X BY Z",
+                matrix_title: "MATRIX A",
+                det_value: "det(A) = {value}",
+                show_eigenvectors: "Show Eigenvectors",
+                show_grid: "Show Grid",
+                animate: "Animate"
+            },
+            presets: {
+                title: "PRESETS",
+                scale: "Scale",
+                rotate: "Rotate 90°",
+                shear: "Shear",
+                reflect: "Reflect"
+            },
+            linear: {
+                title: "LINEAR ALGEBRA",
+                line_1: "Ax = λx (eigenvalue equation)",
+                line_2: "det(A - λI) = 0",
+                line_3: "T(v) = Av"
             },
             mission: {
-                title: "MISSION: RHINE AIRSPACE",
-                description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
+                title: "MISSION: LINEAR TRANSFORMATIONS",
+                description: "Visualize linear algebra in 3D space. Explore matrix transformations, eigenvectors, and geometric intuition."
             },
+            stages: {
+                basic_transforms: "TRANSFORMS",
+                determinant: "DETERMINANT",
+                composition: "COMPOSITION"
+            },
+            scenario_title: "BASEL ENGINEERING MISSION",
             scenarios: {
-                navigation: "Basel Drone Delivery Network: You are programming the navigation system for Basel's autonomous medical supply drones. The drones must calculate precise 3D vectors between hospital rooftops and delivery points across the city. Given coordinates A (departure helipad at Basel University Hospital) and B (arrival point at Claraspital), compute the displacement vector v and its magnitude. The magnitude represents the direct flight distance in meters. Accurate vector calculation is critical for battery management and flight time estimation.",
-                dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
-                mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
-            }
+                basic_transforms: "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.",
+                determinant: "Novartis Crystal Structure: You are analyzing drug crystal unit cell structures at Novartis Basel. The determinant represents lattice volume change. det(A)=0 indicates crystal structure collapse, det(A)<0 indicates chirality inversion. Accurate determinant calculation is crucial for predicting drug bioactivity.",
+                composition: "University of Basel Robotics: You are programming a robotic arm at Basel University robotics lab. Each joint's motion is represented by a transformation matrix. Composite transformation AB means executing joint A's motion first, then joint B's motion. Matrix multiplication order determines the robot arm's final position."
+            },
+            explanation_label: "EXPLANATION"
         },
-        gm3_01: {
+        gm3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
+        sp1_01_title: "SP1.01 // MEASUREMENT & UNITS",
+        sp1_01_subtitle: "Master SI units, unit conversions, and measurement precision with Basel lab instruments.",
+        sp1_02_title: "SP1.02 // NEWTON'S LAWS",
+        sp1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
+        sp2_01_title: "SP2.01 // THERMODYNAMICS",
+        sp2_01_subtitle: "Track heat transfer with Q=mcΔT and Q=mL across phase transitions.",
+        sp2_02_title: "SP2.02 // CIRCUIT SANDBOX",
+        sp2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
+        sp2_03_title: "SP2.03 // MOTOR LAB",
+        sp2_03_subtitle: "Electromagnetism and motor principles.",
+        sp3_01_title: "SP3.01 // GEOMETRICAL OPTICS",
+        sp3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
+        sp1_03_title: "SP1.03 // ENERGY & POWER",
+        sp1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
+        sp1_04_title: "SP1.04 // SIMPLE MACHINES",
+        sp1_04_subtitle: "Master levers, pulleys, and inclined planes with Basel construction site scenarios.",
+        sp3_02_title: "SP3.02 // WAVE OPTICS",
+        sp3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
+        sp1_05_title: "SP1.05 // THE RHINE FERRY",
+        sp1_05_subtitle: "Master the Basel Gierseilfähri. Navigating the Rhine using only current and cables.",
+        sp1_06_title: "SP1.06 // THE SWISS PENDULUM",
+        sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
+        sp1_07_title: "SP1.07 // ARCIMEDES' DOCK",
+        sp1_07_subtitle: "Explore pressure, buoyancy, and hydraulics in the Basel Rhine harbor.",
+        sp1_08_title: "SP1.08 // OPTICS LAB",
+        sp1_08_subtitle: "Explore light, lenses, and optical phenomena.",
+        sp4_01_title: "SP3.03 // WAVE BASICS",
+        sp4_01_subtitle: "Wave properties and sound phenomena.",
+        gp5_01_title: "GP1.01 // THE ATOMIC CORE",
+        gp5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
+        gp5_02: {
             back: "Back to Nexus",
-            title: "GM3.01 // PROBABILITY VAULT",
+            title: "GP1.02 // RELATIVITY LAB",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1357,155 +266,50 @@ export const translations: Record<string, any> = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "Probability Matrix",
+            target_title: "Lorentz Transformation",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "GM3.01_PROBABILITY_MONITOR",
-            footer_left: "GM3.01_PROBABILITY_VAULT // NODE: BASEL",
-            stages: {
-                basic_prob: "BASIC PROBABILITY",
-                binomial: "BINOMIAL",
-                conditional: "CONDITIONAL",
-                mission: "MISSION",
-                basic_prob_prompt_latex: "\\text{Calculate the probability }P(E).",
-                binomial_prompt_latex: "\\text{Calculate }P(X=k)\\text{ for binomial distribution.}",
-                conditional_prompt_latex: "\\text{Calculate the conditional probability }P(A|B).",
-                mission_prompt_latex: "\\text{Mission: Calculate the probability }P."
-            },
+            monitor_title: "GP1.02_RELATIVITY_MONITOR",
+            footer_left: "GP1.02_RELATIVITY_LAB // NODE: CERN",
             labels: {
-                input: "INPUT",
-                hints: "HINTS"
+                velocity: "VELOCITY",
+                lorentz_factor: "Lorentz Factor (γ)",
+                time_dilation: "TIME DILATION",
+                proper_time: "Proper Time (Δt₀)",
+                dilated_time: "Dilated Time (Δt)",
+                length_contraction: "LENGTH CONTRACTION",
+                rest_length: "Rest Length (L₀)",
+                contracted_length: "Contracted Length (L)",
+                doppler_effect: "RELATIVISTIC DOPPLER",
+                doppler_factor: "Doppler Factor",
+                shift_type: "Shift Type",
+                red_shift: "Red Shift",
+                blue_shift: "Blue Shift",
+                particle_velocity: "PARTICLE VELOCITY (v/c)",
+                formulas: "FORMULAS"
             },
             mission: {
-                title: "MISSION: BASEL PROBABILITY LAB",
-                description: "Apply probability theory to real-world scenarios in Basel. Calculate probabilities for quality control, insurance, and lottery systems."
+                title: "MISSION: SPECIAL RELATIVITY",
+                description: "Explore Einstein's special relativity at CERN. Observe time dilation and length contraction."
             },
-            scenarios: {
-                basic_prob: "Basel Quality Control at Novartis: You are working in the quality control department at Novartis pharmaceutical manufacturing in Basel. Each batch of medication undergoes random sampling inspection. Given that a sample contains a certain number of favorable outcomes (passing quality tests) out of total samples, calculate the probability P(E) that a randomly selected item passes inspection. This probability determines whether the entire batch is approved for distribution to Swiss hospitals.",
-                binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability P(X=k) of exactly k successes using the binomial distribution formula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
-                conditional: "Basel Insurance Risk Assessment: Basler Versicherungen (Basel Insurance) needs to calculate conditional probabilities for risk assessment. Given P(A) = probability of an event occurring, P(B) = probability of a condition being met, and P(A∩B) = probability of both occurring, calculate P(A|B) = P(A∩B)/P(B). This conditional probability helps determine insurance premiums for Basel residents based on specific risk factors.",
-                mission: "Basel Integrated Probability Mission: You are consulting for multiple Basel companies - Novartis (pharmaceuticals), Swiss Lotto (lottery), and Basler Versicherungen (insurance). Each company presents a different probability problem: basic probability for quality control, binomial distribution for lottery analysis, or conditional probability for insurance risk. Apply the appropriate probability formula to solve each company's specific challenge and provide accurate probability calculations."
-            },
-            problems: {
-                // BASIC PROBABILITY - BASIC
-                // BASIC_PROB - BASIC: Direct sample space
-                single_die_one: "You roll a standard six-sided die once. What is the probability of rolling exactly a 1?\n\nGiven: 1 favorable outcome, 6 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation of sample space",
-                single_die_odd: "You roll a standard six-sided die once. What is the probability of rolling an odd number (1, 3, or 5)?\n\nGiven: 3 favorable outcomes (1, 3, 5), 6 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
-                coin_heads: "You flip a fair coin once. What is the probability of getting heads?\n\nGiven: 1 favorable outcome (heads), 2 total outcomes\nFind: P(E) = favorable / total\nConcept: Simplest sample space",
-                spinner_8_sections: "You spin a wheel divided into 8 equal sections numbered 1-8. What is the probability of landing on section 3?\n\nGiven: 1 favorable outcome, 8 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
-
-                // BASIC_PROB - CORE: Understanding combinations
-                two_dice_sum_7: "You roll two standard dice. What is the probability that their sum equals 7?\n\nGiven: 6 favorable outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Understanding that (1,6) and (6,1) are different outcomes",
-                two_dice_sum_10: "You roll two standard dice. What is the probability that their sum equals 10?\n\nGiven: 3 favorable outcomes (4+6, 5+5, 6+4), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting combinations correctly",
-                two_dice_sum_gt_7: "You roll two standard dice. What is the probability that their sum is greater than 7?\n\nGiven: 15 favorable outcomes (sum of 8,9,10,11,12), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting multiple favorable outcomes",
-                deck_one_suit: "You draw one card from a standard 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 hearts, 52 total cards\nFind: P(E) = favorable / total\nConcept: Understanding suit structure",
-                deck_honors: "You draw one card from a standard 52-card deck. What is the probability of drawing an honor card (A, K, Q, or J)?\n\nGiven: 16 honor cards (4 of each rank), 52 total cards\nFind: P(E) = favorable / total\nConcept: Counting across all suits",
-
-                // BASIC_PROB - ADVANCED: Conditional probability (implicit)
-                die_even_given_gt3: "You roll a die and observe that the result is greater than 3. What is the probability that it's an even number?\n\nGiven: Among outcomes {4,5,6}, two are even {4,6}\nFind: P(even | >3) = 2/3\nConcept: The condition '>3' changes the sample space from 6 to 3 outcomes",
-                die_multiple_of_3: "You roll a standard die. What is the probability of rolling a multiple of 3?\n\nGiven: 2 favorable outcomes (3, 6), 6 total outcomes\nFind: P(E) = 2/6\nConcept: Identifying favorable outcomes with a condition",
-                card_face_given_spade: "You draw a card and it's a spade. What is the probability it's a face card (J, Q, K)?\n\nGiven: Among 13 spades, 3 are face cards\nFind: P(face | spade) = 3/13\nConcept: Conditional probability within a suit",
-                card_not_face_not_ace: "You draw a card from a standard deck. What is the probability it's neither a face card nor an ace?\n\nGiven: 52 total - 12 face cards - 4 aces = 36 favorable, 52 total\nFind: P(E) = 36/52\nConcept: Using complement to count",
-                card_king_given_face: "You draw a card and it's a face card. What is the probability it's a King?\n\nGiven: Among 12 face cards (J,Q,K of 4 suits), 4 are Kings\nFind: P(King | face) = 4/12\nConcept: Conditional probability within face cards",
-                // BASIC_PROB - ELITE: Compound events
-                at_least_one_six_two_dice: "You roll two dice. What is the probability that at least one shows a 6?\n\nGiven: Use complement - P(at least one 6) = 1 - P(no 6)\nP(no 6) = (5/6) × (5/6) = 25/36\nFind: P(E) = 1 - 25/36 = 11/36\nConcept: Using complement for 'at least one'",
-                sum_not_2_or_12: "You roll two dice. What is the probability that the sum is neither 2 nor 12?\n\nGiven: P(sum=2) = 1/36, P(sum=12) = 1/36\nFavorable = 36 - 1 - 1 = 34\nFind: P(E) = 34/36\nConcept: Using complement for 'neither...nor'",
-                at_least_one_even: "You roll two dice. What is the probability that at least one shows an even number?\n\nGiven: P(both odd) = (3/6) × (3/6) = 9/36\nFind: P(at least one even) = 1 - 9/36 = 27/36\nConcept: Complement strategy",
-                card_ace_or_king: "You draw one card. What is the probability it's an Ace OR a King?\n\nGiven: 4 Aces + 4 Kings = 8 favorable, 52 total\nFind: P(A or K) = 8/52\nConcept: Addition principle for mutually exclusive events",
-                card_red_or_face: "You draw one card. What is the probability it's red OR a face card?\n\nGiven: 26 red + 12 face - 6 (red face) = 32 favorable\nFind: P(red or face) = 32/52\nConcept: Addition principle with overlap (inclusion-exclusion)",
-
-                // BASIC PROBABILITY - ELITE
-                quality_control_427: "Novartis Basel large-scale quality control: In a production run of 500 medication samples, 427 passed all comprehensive safety and efficacy tests. Calculate the probability that a randomly selected sample from this production run passes all tests.\n\nGiven: 427 samples passed, 500 total samples\nFind: P(E) = favorable / total\nSignificance: This probability determines whether 50,000 units can be released to European markets.",
-                quality_control_683: "Novartis Basel large-scale quality control: In a production run of 800 medication samples, 683 passed all tests. Calculate P(E).\n\nGiven: 683 samples passed, 800 total samples\nFind: P(E) = favorable / total",
-                quality_control_891: "Novartis Basel large-scale quality control: In a production run of 1000 medication samples, 891 passed all tests. Calculate P(E).\n\nGiven: 891 samples passed, 1000 total samples\nFind: P(E) = favorable / total",
-                quality_control_1456: "Novartis Basel large-scale quality control: In a production run of 1600 medication samples, 1456 passed all tests. Calculate P(E).\n\nGiven: 1456 samples passed, 1600 total samples\nFind: P(E) = favorable / total",
-                quality_control_1789: "Novartis Basel large-scale quality control: In a production run of 2000 medication samples, 1789 passed all tests. Calculate P(E).\n\nGiven: 1789 samples passed, 2000 total samples\nFind: P(E) = favorable / total",
-
-                // BINOMIAL - BASIC: Understanding basic concept
-                coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(3,2) × 0.5² × 0.5¹\nConcept: Understanding 'exactly k successes'",
-                coin_4_2: "You flip a fair coin 4 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=4 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(4,2) × 0.5² × 0.5²\nConcept: Basic binomial calculation",
-                coin_3_all: "You flip a fair coin 3 times. What is the probability of getting all heads?\n\nGiven: n=3 trials, k=3 successes, p=0.5\nFind: P(X=3) = C(3,3) × 0.5³ × 0.5⁰\nConcept: Understanding C(n,n) = 1",
-                coin_4_none: "You flip a fair coin 4 times. What is the probability of getting no heads (all tails)?\n\nGiven: n=4 trials, k=0 successes, p=0.5\nFind: P(X=0) = C(4,0) × 0.5⁰ × 0.5⁴\nConcept: Understanding C(n,0) = 1",
-
-                // BINOMIAL - CORE: Understanding C(n,k) meaning
-                lottery_5_3: "Swiss Lotto: You play 5 lottery draws with 50% win probability each. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.5\nFind: P(X=3) = C(5,3) × 0.5³ × 0.5²\nConcept: C(5,3) = 10 represents the 10 different ways to choose which 3 draws you win",
-                lottery_6_3: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=6, k=3, p=0.5\nFind: P(X=3), where C(6,3) = 20\nConcept: Understanding why we multiply by C(n,k)",
-                lottery_5_2: "Swiss Lotto: You play 5 draws with 50% win probability. What is the probability of winning exactly 2 times?\n\nGiven: n=5, k=2, p=0.5\nFind: P(X=2), where C(5,2) = 10\nConcept: Binomial coefficient represents arrangements",
-                lottery_6_4: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4), where C(6,4) = 15\nConcept: Counting favorable arrangements",
-                lottery_7_3: "Swiss Lotto: You play 7 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=7, k=3, p=0.5\nFind: P(X=3), where C(7,3) = 35\nConcept: Larger n means more arrangements",
-
-                // BINOMIAL - ADVANCED: Asymmetric probability (p ≠ 0.5)
-                lottery_5_3_biased: "Swiss Lotto: You play 5 draws with 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6 (biased probability)\nFind: P(X=3) = C(5,3) × 0.6³ × 0.4²\nConcept: Distribution is skewed when p ≠ 0.5",
-                lottery_6_2_low: "Swiss Lotto: You play 6 draws with only 30% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.3 (low probability)\nFind: P(X=2) = C(6,2) × 0.3² × 0.7⁴\nConcept: Low p means distribution skewed left",
-                lottery_8_6_high: "Swiss Lotto: You play 8 draws with 70% win probability per draw. What is the probability of winning exactly 6 times?\n\nGiven: n=8, k=6, p=0.7 (high probability)\nFind: P(X=6) = C(8,6) × 0.7⁶ × 0.3²\nConcept: High p means distribution skewed right",
-                lottery_7_4_biased: "Swiss Lotto: You play 7 draws with 60% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=7, k=4, p=0.6\nFind: P(X=4)\nConcept: Understanding asymmetric distributions",
-                lottery_10_7_biased: "Swiss Lotto: You play 10 draws with 65% win probability. What is the probability of winning exactly 7 times?\n\nGiven: n=10, k=7, p=0.65\nFind: P(X=7)\nConcept: Calculating with non-standard probabilities",
-
-                // BINOMIAL - ELITE: Cumulative probability
-                at_least_3_of_5: "Swiss Lotto: You play 5 draws with 60% win probability. What is the probability of winning AT LEAST 3 times?\n\nGiven: n=5, k≥3, p=0.6\nFind: P(X≥3) = P(X=3) + P(X=4) + P(X=5)\nConcept: Cumulative probability - sum multiple outcomes",
-                at_most_4_of_6: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning AT MOST 4 times?\n\nGiven: n=6, k≤4, p=0.5\nFind: P(X≤4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)\nConcept: Or use 1 - P(X>4) = 1 - P(X=5) - P(X=6)",
-                more_than_half: "Swiss Lotto: You play 8 draws with 60% win probability. What is the probability of winning MORE THAN HALF the time?\n\nGiven: n=8, k>4, p=0.6\nFind: P(X>4) = P(X=5) + P(X=6) + P(X=7) + P(X=8)\nConcept: Understanding 'more than half' means k≥5",
-                at_least_7_of_10: "Swiss Lotto: You play 10 draws with 70% win probability. What is the probability of winning AT LEAST 7 times?\n\nGiven: n=10, k≥7, p=0.7\nFind: P(X≥7) = P(X=7) + P(X=8) + P(X=9) + P(X=10)\nConcept: Cumulative probability with high p",
-                at_least_8_of_12: "Swiss Lotto: You play 12 draws with 60% win probability. What is the probability of winning AT LEAST 8 times?\n\nGiven: n=12, k≥8, p=0.6\nFind: P(X≥8) = sum from k=8 to 12\nConcept: Multiple terms in cumulative probability",
-
-                // CONDITIONAL - BASIC
-                insurance_basic_1: "Basler Versicherungen (Basel Insurance): For a simple insurance case, we know P(A) = 0.5 (probability of claim), P(B) = 0.6 (probability of risk factor present), and P(A∩B) = 0.3 (probability of both). Calculate P(A|B), the probability of a claim given the risk factor is present.\n\nGiven: P(A) = 0.5, P(B) = 0.6, P(A∩B) = 0.3\nFind: P(A|B) = P(A∩B) / P(B)\nSignificance: Determines insurance premiums for Basel residents.",
-                insurance_basic_2: "Basler Versicherungen: Given P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2, calculate P(A|B).\n\nGiven: P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2\nFind: P(A|B) = P(A∩B) / P(B)",
-                insurance_basic_3: "Basler Versicherungen: Given P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4, calculate P(A|B).\n\nGiven: P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4\nFind: P(A|B) = P(A∩B) / P(B)",
-                insurance_basic_4: "Basler Versicherungen: Given P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15, calculate P(A|B).\n\nGiven: P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15\nFind: P(A|B) = P(A∩B) / P(B)",
-
-                // CONDITIONAL - CORE: Extracting condition from description
-                card_heart_given_red: "You draw a card and observe it's red. What is the probability it's a heart?\n\nGiven: P(heart) = 13/52, P(red) = 26/52, P(heart AND red) = 13/52\nFind: P(heart|red) = (13/52) / (26/52) = 13/26 = 0.5\nConcept: Identifying condition from description",
-                die_six_given_even: "You roll a die and observe it's even. What is the probability it's a 6?\n\nGiven: P(6) = 1/6, P(even) = 3/6, P(6 AND even) = 1/6\nFind: P(6|even) = (1/6) / (3/6) = 1/3\nConcept: Condition changes sample space",
-                card_face_given_red: "You draw a card and it's red. What is the probability it's a face card?\n\nGiven: P(face) = 12/52, P(red) = 26/52, P(face AND red) = 6/52\nFind: P(face|red) = 6/26\nConcept: Extracting probabilities from card structure",
-                die_one_given_odd: "You roll a die and it's odd. What is the probability it's a 1?\n\nGiven: P(1) = 1/6, P(odd) = 3/6, P(1 AND odd) = 1/6\nFind: P(1|odd) = (1/6) / (3/6) = 1/3\nConcept: Understanding conditional sample space",
-                card_spade_given_black: "You draw a card and it's black. What is the probability it's a spade?\n\nGiven: P(spade) = 13/52, P(black) = 26/52, P(spade AND black) = 13/52\nFind: P(spade|black) = 13/26 = 0.5\nConcept: Symmetry in conditional probability",
-
-                // CONDITIONAL - ADVANCED: Bayesian thinking
-                disease_test_positive: "A disease affects 1% of the population. A test is 90% accurate (detects disease when present). If you test positive, what's the probability you actually have the disease?\n\nGiven: P(disease) = 0.01, P(positive|disease) = 0.9, P(positive|no disease) = 0.1\nP(positive) = 0.01×0.9 + 0.99×0.1 = 0.108\nFind: P(disease|positive) = (0.01×0.9) / 0.108 = 0.083\nConcept: P(A|B) ≠ P(B|A) - Bayesian reversal",
-                disease_test_positive_2: "A rare disease affects 2% of population. Test is 80% accurate. If positive, what's P(disease)?\n\nGiven: P(disease) = 0.02, P(+|disease) = 0.8\nFind: P(disease|+) using Bayes' theorem\nConcept: Understanding false positives",
-                quality_defect_given_batch: "15% of products are defective. A batch test detects 80% of defects. If batch fails, what's P(defective)?\n\nGiven: P(defect) = 0.15, P(fail|defect) = 0.8\nFind: P(defect|fail)\nConcept: Bayesian inference in quality control",
-                fraud_given_alert: "5% of transactions are fraudulent. Alert system catches 80% of fraud. If alert triggers, what's P(fraud)?\n\nGiven: P(fraud) = 0.05, P(alert|fraud) = 0.8\nFind: P(fraud|alert)\nConcept: Understanding alarm reliability",
-                accident_given_weather: "10% of days have accidents. 80% of accident days have bad weather. If bad weather, what's P(accident)?\n\nGiven: P(accident) = 0.1, P(bad weather|accident) = 0.8\nFind: P(accident|bad weather)\nConcept: Reversing conditional probability",
-
-                // CONDITIONAL - ELITE: Independence testing
-                independence_test_1: "Events A and B have P(A)=0.4, P(B)=0.5, P(A∩B)=0.2. Are A and B independent?\n\nGiven: P(A)=0.4, P(B)=0.5, P(A∩B)=0.2\nTest: If independent, P(A∩B) should equal P(A)×P(B) = 0.4×0.5 = 0.2 ✓\nFind: P(A|B) = 0.2/0.5 = 0.4 = P(A) ✓\nConcept: A and B are INDEPENDENT",
-                independence_test_2: "Events A and B have P(A)=0.3, P(B)=0.6, P(A∩B)=0.18. Are they independent?\n\nGiven: P(A)=0.3, P(B)=0.6, P(A∩B)=0.18\nTest: P(A)×P(B) = 0.3×0.6 = 0.18 ✓\nFind: P(A|B) = 0.18/0.6 = 0.3 = P(A) ✓\nConcept: Testing independence",
-                multiple_condition_1: "P(A)=0.25, P(B)=0.4, P(A∩B)=0.15. Find P(A|B) and determine if independent.\n\nGiven: P(A)=0.25, P(B)=0.4, P(A∩B)=0.15\nFind: P(A|B) = 0.15/0.4 = 0.375\nTest: P(A|B) = 0.375 ≠ P(A) = 0.25\nConcept: NOT independent - condition changes probability",
-                independence_test_3: "P(A)=0.35, P(B)=0.7, P(A∩B)=0.245. Are A and B independent?\n\nGiven: P(A)=0.35, P(B)=0.7, P(A∩B)=0.245\nTest: P(A)×P(B) = 0.35×0.7 = 0.245 ✓\nFind: P(A|B) = 0.245/0.7 = 0.35 = P(A) ✓\nConcept: Independence verification",
-                multiple_condition_2: "P(A)=0.2, P(B)=0.5, P(A∩B)=0.12. Find P(A|B) and test independence.\n\nGiven: P(A)=0.2, P(B)=0.5, P(A∩B)=0.12\nFind: P(A|B) = 0.12/0.5 = 0.24\nTest: P(A|B) = 0.24 ≠ P(A) = 0.2\nConcept: NOT independent",
-
-                // MISSION - Mixed problems (reuse context keys from above stages)
-                mission_basic_1: "Novartis Mission: Roll a die once. What is the probability of rolling a 1?\n\nGiven: 1 favorable, 6 total\nFind: P(E)",
-                mission_basic_2: "Swiss Lotto Mission: Flip a coin 3 times. What is the probability of exactly 2 heads?\n\nGiven: n=3, k=2, p=0.5\nFind: P(X=2)",
-                mission_basic_3: "Insurance Mission: Given P(A)=0.5, P(B)=0.6, P(A∩B)=0.3, find P(A|B).\n\nGiven: P(A)=0.5, P(B)=0.6, P(A∩B)=0.3\nFind: P(A|B)",
-                mission_basic_4: "Novartis Mission: Roll a die. What is the probability of rolling an even number?\n\nGiven: 2 favorable (2,4,6), 6 total\nFind: P(E)",
-
-                mission_core_1: "Novartis Mission: Draw a card from a 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 favorable, 52 total\nFind: P(E)",
-                mission_core_2: "Swiss Lotto Mission: Play 6 lottery draws with 50% win probability. What is P(X=4)?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4)",
-                mission_core_3: "Insurance Mission: Given P(A)=0.45, P(B)=0.55, P(A∩B)=0.25, find P(A|B).\n\nGiven: P(A)=0.45, P(B)=0.55, P(A∩B)=0.25\nFind: P(A|B)",
-                mission_core_4: "Novartis Mission: Draw a card. What is the probability of drawing a red card?\n\nGiven: 26 favorable, 52 total\nFind: P(E)",
-                mission_core_5: "Swiss Lotto Mission: Play 5 draws with 60% win probability. What is P(X=3)?\n\nGiven: n=5, k=3, p=0.6\nFind: P(X=3)",
-
-                mission_adv_1: "Novartis Mission: In 100 samples, 85 passed. Calculate P(E).\n\nGiven: 85 favorable, 100 total\nFind: P(E)",
-                mission_adv_2: "Swiss Lotto Mission: In 10 draws with 50% win probability, calculate P(X=6).\n\nGiven: n=10, k=6, p=0.5\nFind: P(X=6)",
-                mission_adv_3: "Insurance Mission: Given P(A)=0.37, P(B)=0.63, P(A∩B)=0.21, find P(A|B).\n\nGiven: P(A)=0.37, P(B)=0.63, P(A∩B)=0.21\nFind: P(A|B)",
-                mission_adv_4: "Novartis Mission: In 120 samples, 92 passed. Calculate P(E).\n\nGiven: 92 favorable, 120 total\nFind: P(E)",
-                mission_adv_5: "Swiss Lotto Mission: In 8 draws with 60% win probability, calculate P(X=5).\n\nGiven: n=8, k=5, p=0.6\nFind: P(X=5)",
-
-                mission_elite_1: "Novartis Mission: In 500 samples, 427 passed. Calculate P(E).\n\nGiven: 427 favorable, 500 total\nFind: P(E)",
-                mission_elite_2: "Swiss Lotto Mission: In 15 draws with 55% win probability, calculate P(X=9).\n\nGiven: n=15, k=9, p=0.55\nFind: P(X=9)",
-                mission_elite_3: "Insurance Mission: Given P(A)=0.365, P(B)=0.625, P(A∩B)=0.215, find P(A|B).\n\nGiven: P(A)=0.365, P(B)=0.625, P(A∩B)=0.215\nFind: P(A|B)",
-                mission_elite_4: "Novartis Mission: In 800 samples, 683 passed. Calculate P(E).\n\nGiven: 683 favorable, 800 total\nFind: P(E)",
-                mission_elite_5: "Swiss Lotto Mission: In 18 draws with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)"
+            stages: {
+                time_dilation: "TIME DILATION",
+                length_contraction: "LENGTH CONTRACTION",
+                doppler: "DOPPLER EFFECT",
+                time_dilation_desc: "Observe photon clocks at relativistic speeds",
+                length_contraction_desc: "Measure particle length contraction",
+                doppler_desc: "Analyze relativistic Doppler shift",
+                time_dilation_hint: "Moving clocks run slower: Δt = γΔt₀",
+                length_contraction_hint: "Moving objects contract: L = L₀/γ",
+                doppler_hint: "Light shifts red (receding) or blue (approaching)"
             }
         },
-        sm2_06: {
+        gp1_04: {
             back: "Back to Nexus",
-            title: "SM2.06 // LINEAR SYSTEMS",
+            title: "GP1.04 // QUANTUM TUNNEL",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1513,1124 +317,66 @@ export const translations: Record<string, any> = {
                 elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "System of Equations",
+            target_title: "Wave Function",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SM2.06_MONITOR",
-            footer_left: "SM2.06_LINEAR_SYSTEMS // NODE: BASEL",
-            stages: {
-                substitution: "SUBSTITUTION",
-                elimination: "ELIMINATION",
-                mission: "MISSION",
-                substitution_prompt_latex: "\\text{Solve by substitution method.}",
-                elimination_prompt_latex: "\\text{Solve by elimination (addition/subtraction).}",
-                mission_prompt_latex: "\\text{Translate and solve the word problem.}"
-            },
+            monitor_title: "GP1.04_QUANTUM_MONITOR",
+            footer_left: "GP1.04_QUANTUM_TUNNEL // NODE: CERN",
             labels: {
-                input: "INPUT",
-                hints: "HINTS"
-            },
-            hints: {
-                rules: {
-                    substitution_latex: "\\text{Substitute one equation into the other.}",
-                    elimination_add_latex: "\\text{Add equations to eliminate a variable.}",
-                    elimination_sub_latex: "\\text{Subtract equations to eliminate a variable.}",
-                    elimination_multiply_latex: "\\text{Multiply one equation to match coefficients, then eliminate.}"
-                }
+                particle_energy: "PARTICLE ENERGY (E)",
+                barrier_height: "BARRIER HEIGHT (V₀)",
+                barrier_width: "BARRIER WIDTH (a)",
+                transmission: "TRANSMISSION COEFFICIENT",
+                wave_function: "WAVE FUNCTION",
+                probability_density: "PROBABILITY DENSITY |ψ|²",
+                incident: "Incident",
+                reflected: "Reflected",
+                transmitted: "Transmitted",
+                formulas: "FORMULAS",
+                energy_ev: "Energy (eV)",
+                barrier_ev: "Barrier (eV)",
+                width_nm: "Width (nm)"
             },
             mission: {
-                apples: "Apples",
-                oranges: "Oranges",
-                adult: "Adults",
-                child: "Children"
+                title: "MISSION: QUANTUM TUNNELING",
+                description: "Explore quantum tunneling through potential barriers. Observe wave function behavior."
+            },
+            stages: {
+                classical: "CLASSICAL LIMIT",
+                tunneling: "QUANTUM TUNNELING",
+                resonance: "RESONANCE",
+                classical_desc: "Particle energy below barrier (E < V₀)",
+                tunneling_desc: "Observe tunneling probability",
+                resonance_desc: "Find resonance conditions (T ≈ 1)",
+                classical_hint: "Classical physics: T = 0 when E < V₀",
+                tunneling_hint: "Quantum mechanics: T > 0 even when E < V₀",
+                resonance_hint: "Resonance occurs at specific E/V₀ ratios"
             }
         },
-        sm2_05: {
+        s3_02_title: "SM3.02 // TRIGONOMETRY TOWER",
+        s3_02_subtitle: "Master sine, cosine, and tangent through unit circle visualization, wave functions, and triangle solving.",
+        s2_07_title: "SM2.07 // COORDINATE GEOMETRY",
+        s2_07_subtitle: "Master distance, midpoint, and slope calculations.",
+        s3_04_title: "SM3.04 // LOGARITHMIC SCALES",
+        s3_04_subtitle: "Master pH scale, decibels, and Richter scale with logarithmic calculations.",
+        sc1_01_title: "SC1.01 // MYSTERY LAB",
+        sc1_01_subtitle: "Identify mysterious white powders through chemical tests.",
+        sc1_02_title: "SC1.02 // MOLE MASTER",
+        sc1_02_subtitle: "Run Novartis-grade stoichiometry: molar mass, ratios, and yields.",
+        sc1_03_title: "SC1.03 // ATOMS FORGE",
+        sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
+        sc1_04_subtitle: "Build atoms and discover the periodic table. Master electron configuration.",
+        gsc2_01: {
             back: "Back to Nexus",
-            title: "SM2.05 // POWERS & ROOTS",
+            title: "GC2.01 // CARBON KINGDOM",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
                 advanced: "ADVANCED",
                 elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Operation",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM2.05_MONITOR",
-            footer_left: "SM2.05_POWERS_ROOTS // NODE: BASEL",
-            stages: {
-                rules: "LAWS",
-                negative: "NEGATIVE",
-                scientific: "SCI-NOTATION",
-                rules_prompt_latex: "\\text{Apply power laws to simplify.}",
-                negative_prompt_latex: "\\text{Simplify terms with negative exponents (find n in the denominator).}",
-                scientific_prompt_latex: "\\text{Convert to or calculate in scientific notation.}"
-            },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS"
-            }
-        },
-        sm1_01: {
-            back: "Back to Nexus",
-            title: "SM1.01 // AREAS & VOLUMES",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Geometry Task",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM1.01_MONITOR",
-            footer_left: "SM1.01_GEOMETRY // NODE: BASEL",
-            stages: {
-                areas: "AREAS",
-                volumes: "VOLUMES",
-                complex: "COMPLEX",
-                areas_prompt_latex: "\\text{Read the scenario and calculate the required area.}",
-                volumes_prompt_latex: "\\text{Read the scenario and calculate the required volume.}"
-            },
-
-            mission: {
-                title: "MISSION: RHINE FLOOD GATE",
-                protocol: "Nexus Protocol // Node Geneva",
-                description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid.",
-                cube_title: "CERN CUBE VAULT",
-                cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
-            },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                length: "Length",
-                width: "Width",
-                height: "Height",
-                base: "Base",
-                radius: "Radius",
-                side: "Side",
-                area: "Area",
-                volume: "Volume",
-                calculate_area: "Calculate the area.",
-                calculate_volume: "Calculate the volume.",
-            },
-            quests: {
-                ski: "An Alpine ski slope needs new snow. The slope is rectangular.",
-                sail: "The Zurich Sailing Club needs custom canvas. The sail is triangular.",
-                gate: "A Rhine flood gate cross-section is trapezoidal.",
-                cheese: "A circular mold for Gruyère cheese factory.",
-                attic: "A Swiss chalet attic is a cubic space, needing an air purifier.",
-                crate: "CERN lab needs a storage box for precision instruments.",
-                pylon: "St. Moritz ski cable pylons are cylindrical.",
-
-                // Structural Templates
-                rect_core: "The width is ${w}, and the length is ${diff} more than the width.",
-                rect_advanced: "The length is ${l}, and the width is exactly half of the length.",
-                rect_elite: "The total perimeter is ${p}, and the length is ${ratio} times the width.",
-                tri_elite: "An isosceles right-angled sail with a hypotenuse of ${c}.",
-                circle_elite: "The total circumference of the mold is ${c}.",
-                cube_elite: "The total surface area of the cubic space is ${sa}.",
-                prism_elite: "The base is a square with perimeter ${p}, and the height is ${h}.",
-                cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
-            }
-        },
-        em1_01: {
-            back: "Back to Nexus",
-            title: "EM1.01 // THALES TOWER",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Tower Height",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "EM1.01_THALES_MONITOR",
-            footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
-            stages: {
-                measure: "MEASURE",
-                measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
-            },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                readings: "READINGS",
-                pole_height: "Pole Height (h)",
-                pole_shadow: "Pole Shadow (l)",
-                tower_shadow: "Tower Shadow (L)",
-                sun_angle: "Sun Angle",
-                solve_height: "Solve Tower Height (H)",
-                height_placeholder: "height in meters",
-                hint_ratio: "Hint: h/H = l/L"
-            },
-            mission: {
-                title: "MISSION: BASEL CATHEDRAL SURVEY",
-                description: "Measure the tower height using Thales' theorem and shadow ratios."
-            }
-        },
-        sp2_03: {
-            back: "Back to Nexus",
-            title: "SP2.03 // MOTOR LAB",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Motor Assembly",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP2.03_MOTOR_MONITOR",
-            footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                current: "CURRENT SWITCH",
-                current_on: "SWITCH ON",
-                current_off: "SWITCH OFF",
-                polarity: "MAGNET POLARITY",
-                direction: "ROTATION DIRECTION",
-                direction_cw: "CLOCKWISE",
-                direction_ccw: "COUNTER-CLOCKWISE",
-                direction_stop: "STOPPED",
-                speed: "ROTATION SPEED",
-                readout: "READOUT"
-            },
-            mission: {
-                title: "MISSION: BASEL MOTOR WORKSHOP",
-                description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
-            },
-            stages: {
-                assemble: "ASSEMBLE",
-                power: "POWER",
-                reverse: "REVERSE",
-                assemble_desc: "Place magnets and coil",
-                power_desc: "Close the circuit and observe rotation",
-                reverse_desc: "Swap poles to reverse direction",
-                assemble_hint: "Start with the switch open and align the magnets",
-                power_hint: "Close the circuit to energize the coil",
-                reverse_hint: "Swap N/S to reverse rotation"
-            }
-        },
-        sc1_02: {
-            back: "Back to Nexus",
-            title: "C1.02 // MOLE MASTER",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Stoichiometry Console",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "C1.02_SCALE",
-            footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
-            stages: {
-                molar_mass: "MOLAR MASS",
-                stoichiometry: "REACTION RATIO",
-                yield: "YIELD",
-                molar_mass_prompt_latex: "\\text{Calculate the molar mass of the compound.}",
-                stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
-                yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
-            },
-            labels: {
-                input: "INPUT",
-                scale: "SCALE READOUT"
-            },
-            mission: {
-                title: "MISSION: NOVARTIS SYNTHESIS BAY",
-                description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
-            }
-        },
-        sc2_01: {
-            back: "Back to Nexus",
-            title: "C2.01 // CHEMICAL KINETICS",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Kinetics Data",
-            scenario_title: "BASEL SCENARIO",
-            answer_title: "YOUR ANSWER",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "C2.01_KINETICS_MONITOR",
-            footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
-            stages: {
-                arrhenius: "ARRHENIUS",
-                concentration: "RATE LAW",
-                collision: "HALF-LIFE",
-                arrhenius_prompt_latex: "\\text{Calculate the rate constant }k\\text{ using the Arrhenius equation.}",
-                concentration_prompt_latex: "\\text{Calculate the reaction rate based on concentration changes.}",
-                collision_prompt_latex: "\\text{Determine the fraction of effective collisions.}"
-            },
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                volume: "Titrant Volume",
-                ph: "pH"
-            },
-            mission: {
-                title: "MISSION: CHEMICAL KINETICS LAB",
-                description: "Study reaction rates in the Basel lab. Master the Arrhenius equation and collision theory."
-            },
-            formulas: {
-                arrhenius: "k = Ae^{-E_a/RT}",
-                concentration: "\\text{rate} = -\\frac{\\Delta[A]}{\\Delta t}",
-                collision: "f = e^{-E_a/RT}"
-            },
-            scenarios: {
-                arrhenius: "Novartis Kinetics Lab: Study how temperature and activation energy affect reaction rates. The Arrhenius equation k = A·exp(-Ea/RT) describes the temperature dependence of rate constants. Higher temperatures increase molecular kinetic energy, leading to more successful collisions.",
-                rate_law: "Roche Pharmaceutical Research: Determine reaction orders and rate laws from experimental data. The rate law expresses how reaction rate depends on reactant concentrations. Understanding rate laws is crucial for optimizing drug synthesis and predicting reaction behavior.",
-                half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t₁/₂ = ln(2)/k."
-            },
-            problems: {
-                arr_temp_300_ea_50: "Novartis reactor at T=300K, activation energy Ea=50 kJ/mol. Calculate relative rate constant k.",
-                arr_temp_350_ea_40: "Temperature increased to 350K, Ea=40 kJ/mol. Find k (relative units).",
-                arr_temp_400_ea_60: "High-temperature reaction: T=400K, Ea=60 kJ/mol. Calculate k.",
-                arr_temp_320_ea_45: "Moderate conditions: T=320K, Ea=45 kJ/mol. Determine k.",
-                arr_temp_280_ea_55: "Low-temperature synthesis: T=280K, Ea=55 kJ/mol. Find k.",
-                arr_double_temp: "Temperature doubles from 300K to 600K. By what factor does k increase? (Ea=50 kJ/mol)",
-                arr_ea_effect: "Catalyst lowers Ea from 80 to 40 kJ/mol at 300K. Find k ratio.",
-                arr_ln_form: "Use logarithmic form: ln(k) = ln(A) - Ea/RT. Calculate ln(k) for Ea=50 kJ/mol, T=300K.",
-                arr_activation: "Two rate constants differ by factor of 10 over 50K temperature range. Find Ea.",
-                arr_catalyst: "Catalyst reduces Ea by 20 kJ/mol (from 80 to 60). Calculate k ratio at 300K.",
-                arr_two_temps: "Measure k at 300K and 350K. Use ln(k₂/k₁) = -Ea/R(1/T₂ - 1/T₁) to find Ea=52 kJ/mol.",
-                arr_plot: "Arrhenius plot has slope -7800 K. Calculate Ea (slope = -Ea/R).",
-                arr_frequency: "Given k=1.5×10⁻⁹, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
-                arr_temp_for_k: "Target rate constant k=10⁶ s⁻¹, Ea=60 kJ/mol. What temperature is needed?",
-                arr_enzyme: "Enzyme-catalyzed reaction: Ea=40 kJ/mol, body temperature T=310K. Calculate k.",
-                arr_complex: "Two-step mechanism: Ea1=50, Ea2=30 kJ/mol. Overall Ea=40 kJ/mol. Find k at 300K.",
-                arr_pressure: "Pressure effect: activation volume ΔV‡=-10 cm³/mol. Calculate k ratio.",
-                arr_quantum: "Quantum tunneling correction factor κ=2.5. Find effective k.",
-                arr_isotope: "Kinetic isotope effect: H vs D substitution. Calculate kH/kD for Ea=50 kJ/mol.",
-                arr_transition: "Transition state theory: k=10⁶ s⁻¹ at 300K. Calculate ΔG‡.",
-                rl_first_order: "First-order reaction: rate = k[A]. Given [A]=2.0 M, k=0.5 s⁻¹, find rate.",
-                rl_second_order: "Second-order: rate = k[A]². [A]=1.5 M, k=0.4 M⁻¹s⁻¹. Calculate rate.",
-                rl_zero_order: "Zero-order reaction: rate = k (independent of [A]). k=0.8 M/s. Find rate.",
-                rl_concentration: "First-order reaction: [A] doubles. By what factor does rate increase?",
-                rl_initial: "Initial rate method: [A]₀=1.0 M, k=0.6 s⁻¹. Calculate initial rate.",
-                rl_mixed: "Mixed order: rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M⁻²s⁻¹. Find rate.",
-                rl_order: "Doubling [A] quadruples rate. What is the reaction order n?",
-                rl_integrated: "Integrated first-order: [A]t = [A]₀·e⁻ᵏᵗ. [A]₀=1 M, k=0.1 s⁻¹, t=10 s. Find [A].",
-                rl_time: "First-order half-life: t₁/₂ = ln(2)/k. Given k=0.05 s⁻¹, find t₁/₂.",
-                rl_constant: "From rate=2 M/s and [A]=4 M (first-order), determine k.",
-                rl_complex_order: "Fractional order: rate = k[A]^1.5[B]^0.5. [A]=4, [B]=9, k=0.2. Find rate.",
-                rl_mechanism: "Multi-step: overall rate = k₁k₂/(k₁+k₂). k₁=0.5, k₂=0.3. Calculate rate.",
-                rl_steady_state: "Steady-state approximation: [I]ss = k₁[A]/k₂. k₁=0.5, k₂=0.2. Find [I].",
-                rl_pre_equilibrium: "Pre-equilibrium: Keq = kf/kr. kf=0.8, kr=0.2. Calculate Keq.",
-                rl_inhibition: "Competitive inhibition: rate reduced by factor (1+[I]/KI). [I]=2, KI=1. Find rate factor.",
-                rl_oscillating: "Belousov-Zhabotinsky oscillating reaction. Maximum [A] in cycle.",
-                rl_autocatalytic: "Autocatalytic: A+B→2B. Inflection point at t=15s for [A]₀=0.1 M.",
-                rl_chain: "Chain reaction: chain length ν = kp/kt. kp/kt=100. Find ν.",
-                rl_photochemical: "Photochemical quantum yield Φ = molecules reacted / photons absorbed = 0.8.",
-                rl_enzyme_complex: "Michaelis-Menten: V = Vmax[S]/(KM+[S]). KM=1, [S]=5. Find V/Vmax.",
-                hl_first_order: "First-order half-life: t₁/₂ = ln(2)/k = 0.693/k. k=0.1 s⁻¹. Find t₁/₂.",
-                hl_second_order: "Second-order: t₁/₂ = 1/(k[A]₀). k=0.5 M⁻¹s⁻¹, [A]₀=2 M. Calculate t₁/₂.",
-                hl_zero_order: "Zero-order: t₁/₂ = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Find t₁/₂.",
-                hl_remaining: "After 2 half-lives, what fraction remains? [A]₀=8 M → [A]=?",
-                hl_time: "75% decay means 2 half-lives. If t₁/₂=10s, total time = 20s.",
-                hl_find_k: "From t₁/₂=5s (first-order), calculate k = ln(2)/t₁/₂.",
-                hl_fraction: "After 3 half-lives: fraction = (1/2)³ = 1/8 = 0.125.",
-                hl_radioactive: "Radioactive decay: N = N₀(1/2)^(t/t₁/₂). N₀=1000, t=20s, t₁/₂=10s. Find N.",
-                hl_drug: "Drug elimination: [D]₀=100 mg/L, t₁/₂=4h, t=12h (3 half-lives). [D]=12.5 mg/L.",
-                hl_compare: "Compare two reactions: kA=0.2, kB=0.4. Ratio of half-lives = kB/kA = 2.",
-                hl_consecutive: "Consecutive A→B→C: maximum [B] at tmax = ln(k₁/k₂)/(k₁-k₂). k₁=0.5, k₂=0.2.",
-                hl_parallel: "Parallel paths: koverall = k₁+k₂. k₁=0.3, k₂=0.2, t₁/₂ = ln(2)/0.5.",
-                hl_reversible: "Reversible: [A]eq = [A]₀·kr/(kf+kr). kf=0.5, kr=0.1.",
-                hl_temperature: "t₁/₂ decreases with temperature. At 350K vs 300K with Ea=50 kJ/mol.",
-                hl_enzyme: "Enzyme turnover: kcat=100 s⁻¹. t₁/₂ = ln(2)/kcat = 0.007s.",
-                hl_isotope_dating: "Carbon-14 dating: N/N₀=0.25 = (1/2)². Age = 2×5730 = 11460 years.",
-                hl_branching: "Branching decay: α and β paths. kα/kβ=2, so fα = 2/3 = 0.67.",
-                hl_secular: "Secular equilibrium: parent t₁/₂ >> daughter t₁/₂. Activity ratio → 1.",
-                hl_transient: "Transient equilibrium: tmax when daughter activity peaks. t₁/₂,1=10, t₁/₂,2=2.",
-                hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
-            }
-        },
-        sp1_03: {
-            back: "Back to Nexus",
-            title: "P1.03 // ENERGY & POWER",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Turbine Output",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P1.03_TURBINE_MONITOR",
-            footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
-            stages: {
-                potential: "POTENTIAL",
-                kinetic: "KINETIC",
-                power: "POWER",
-                potential_prompt_latex: "\\text{Compute gravitational potential energy }E_p=mgh.",
-                kinetic_prompt_latex: "\\text{Compute kinetic energy }E_k=\\frac{1}{2}mv^2.",
-                power_prompt_latex: "\\text{Compute power }P=\\frac{W}{t}\\text{ (apply efficiency if given).}"
-            },
-            labels: {
-                input: "INPUT",
-                formula: "FORMULA"
-            },
-            formulas: {
-                potential: "E_p=mgh",
-                kinetic: "E_k=\\frac{1}{2}mv^2",
-                power: "P=\\frac{W}{t}"
-            },
-            mission: {
-                title: "MISSION: RHINE HYDRO PLANT",
-                description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
-            }
-        },
-        sp1_04: {
-            back: "Back to Nexus",
-            title: "P1.04 // TIME DILATION SIMULATOR",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Spacetime HUD",
-            next: "Execute Next Sequence",
-            check: "Engage Warp",
-            correct: "Identity Confirmed",
-            incorrect: "Drift Detected",
-            ready: "Ready",
-            monitor_title: "P1.04_RELATIVITY_CORE",
-            footer_left: "P1.04_RELATIVITY // NODE: BASEL",
-            labels: {
-                velocity: "Velocity (v/c)",
-                gamma: "Lorentz Factor (γ)",
-                length: "Contraction (L)",
-                time: "Dilation (t)"
-            },
-            mission: {
-                title: "MISSION: EINSTEIN'S LABORATORY",
-                description: "Observe the warping of spacetime. As velocity approaches the speed of light, length contracts and time dilates."
-            },
-            stages: {
-                contraction: "LENGTH CONTRACTION",
-                dilation: "TIME DILATION",
-                spacetime: "SPACETIME GRID",
-                contraction_prompt_latex: "\\text{Calculate the contracted length } L = L_0/\\gamma.",
-                dilation_prompt_latex: "\\text{Calculate the dilated time } t = t_0 \\cdot \\gamma.",
-                spacetime_prompt_latex: "\\text{Analyze the Lorentz factor } \\gamma \\text{ for given } v/c."
-            }
-        },
-        sp1_05: {
-            back: "Back to Nexus",
-            title: "SP1.05 // THE RHINE FERRY",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP1.05_FERRY_MONITOR",
-            footer_left: "SP1.05_RHINE_FERRY // NODE: BASEL",
-            stages: {
-                composition: "VECTOR COMPOSITION",
-                drift: "DRIFT ANALYSIS",
-                navigation: "PRECISION NAVIGATION"
-            },
-            labels: {
-                river_speed: "River Speed (v_r)",
-                ferry_speed: "Ferry Speed (v_f)",
-                cable_angle: "Cable Angle (θ)",
-                resultant_speed: "Resultant Speed (v_net)",
-                drift_speed: "Drift Speed",
-                angle: "Angle"
-            },
-            mission: {
-                title: "RHINE CROSSING MISSION",
-                description: "Navigate the Basel Rhine ferry. Adjust cable angle and ferry speed to compensate for river current."
-            }
-        },
-        sp2_01: {
-            back: "Back to Nexus",
-            title: "P2.01 // THERMAL DYNAMICS",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Heat Transfer",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P2.01_THERMAL_MONITOR",
-            footer_left: "P2.01_THERMODYNAMICS // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                heat: "Heat Energy (Q)",
-                temperature: "Temperature Change (ΔT)",
-                mass: "Mass (m)",
-                specific_heat: "Specific Heat (c)"
-            },
-            mission: {
-                title: "THERMAL REACTOR CONTROL",
-                description: "Novartis thermal reactor requires precise heat calculations. Master heat capacity and phase transitions."
-            },
-            stages: {
-                heat_capacity: "HEAT CAPACITY",
-                phase_change: "PHASE CHANGE",
-                mixed: "MIXED PROBLEMS",
-                heat_capacity_prompt_latex: "\\text{Calculate heat transfer using }Q=mc\\Delta T.",
-                phase_change_prompt_latex: "\\text{Calculate latent heat using }Q=mL.",
-                mixed_prompt_latex: "\\text{Combine heat capacity and phase change calculations.}"
-            },
-            formulas: {
-                heat_capacity: "Q = mc\\Delta T",
-                phase_change: "Q = mL",
-                mixed: "Q_{\\text{total}} = Q_1 + Q_2"
-            }
-        },
-        sp3_02: {
-            back: "Back to Nexus",
-            title: "P3.02 // WAVE OPTICS",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Wave Properties",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P3.02_OPTICAL_MONITOR",
-            footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                wavelength: "Wavelength (λ)",
-                slit_separation: "Slit Separation (d)",
-                slit_width: "Slit Width (a)",
-                angle: "Angle (θ)",
-                intensity: "Intensity (I)",
-                order: "Order (m)"
-            },
-            mission: {
-                title: "OPTICAL RESONANCE LAB",
-                description: "Novartis optical lab involves wave properties. Master interference, diffraction and polarization."
-            },
-            stages: {
-                interference: "INTERFERENCE",
-                diffraction: "DIFFRACTION",
-                polarization: "POLARIZATION",
-                interference_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the double-slit equation.}",
-                diffraction_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the single-slit equation.}",
-                polarization_prompt_latex: "\\text{Calculate the intensity }I\\text{ using Malus' law.}"
-            },
-            formulas: {
-                interference: "d \\sin \\theta = m \\lambda",
-                diffraction: "a \\sin \\theta = m \\lambda",
-                polarization: "I = I_0 \\cos^2 \\theta"
-            }
-        },
-        sm1_02_new: {
-            back: "Back to Nexus",
-            title: "EM1.01 // ALGEBRA QUEST",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            modes: {
-                containers: "CONTAINERS",
-                sorting: "SORTING",
-                machine: "MACHINE"
-            },
-            labels: {
-                variable: "Variable",
-                value: "Value",
-                expression: "Expression",
-                simplify: "Simplify",
-                evaluate: "Evaluate",
-                input: "Input",
-                output: "Output"
-            },
-            stages: {
-                variables: "VARIABLES",
-                terms: "TERMS",
-                substitution: "SUBSTITUTION",
-                vars_prompt: "Identify the value inside the container.",
-                terms_prompt: "Combine like terms to simplify the expression.",
-                sub_prompt: "Evaluate the expression for the given value."
-            },
-            scenarios: {
-                variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
-                terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
-                substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
-            }
-        },
-        sm2_07: {
-            back: "Back to Nexus",
-            title: "SM2.07 // COORDINATE GEOMETRY",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Precision Mapping",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM2.07_COORDINATE_MONITOR",
-            footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                distance: "Distance (d)",
-                midpoint: "Midpoint (M)",
-                slope: "Slope (m)"
-            },
-            mission: {
-                title: "ZURICH NODE MAPPING",
-                description: "Zurich coordinate mapping requires precision geometry. Calculate distance, midpoint and slope between city nodes."
-            },
-            stages: {
-                distance: "DISTANCE",
-                midpoint: "MIDPOINT",
-                slope: "SLOPE",
-                distance_prompt_latex: "\\text{Calculate the distance }d\\text{ between points A and B.}",
-                midpoint_prompt_latex: "\\text{Calculate the midpoint coordinates }M(x,y).",
-                slope_prompt_latex: "\\text{Calculate the slope }m\\text{ of the line passing through A and B.}"
-            },
-            formulas: {
-                distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
-                midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
-                slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
-            }
-        },
-        sm1_03_new: {
-            back: "Back to Nexus",
-            title: "SM1.03 // BELOW ZERO",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM1.03_INTEGER_MONITOR",
-            footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
-            basel_scenario: "BASEL WINTER SCENARIO",
-            scenario_title: "PROBLEM CONTEXT",
-            calculate_title: "CALCULATE",
-            answer_title: "YOUR ANSWER",
-            solution_title: "SOLUTION",
-            stages: {
-                number_line: "NUMBER LINE",
-                rationals: "RATIONALS",
-                quadrants: "QUADRANTS"
-            },
-            scenarios: {
-                number_line: "Basel Winter Temperatures: You are monitoring temperatures at EuroAirport Basel during winter. Temperatures often drop below zero. Understanding negative numbers is essential for reading thermometers and comparing temperatures. The number line helps visualize integers and their relationships.",
-                rationals: "Rhine River Water Levels: The Rhine River 'Pegel' (water level gauge) at Basel shows water depth. Normal level is +5m. During drought, it drops. Divers measure depth below surface as negative values. Rational numbers (fractions and decimals) give precise measurements.",
-                quadrants: "Basel City Grid Navigation: Map Basel landmarks on a coordinate grid. Grossbasel (Q1: +,+), Kleinbasel (Q2: -,+), Klybeck (Q3: -,-), St. Alban (Q4: +,-). Understanding quadrants helps navigate the city and locate positions precisely."
-            },
-            problems: {
-                nl_identify_neg3: "Locate -3 on the number line.",
-                nl_identify_5: "Locate 5 on the number line.",
-                nl_temp_neg2: "Temperature is -2°C. Mark this on the thermometer.",
-                nl_depth_neg4: "A diver is 4 meters below the surface. Mark -4m.",
-                nl_identify_0: "Locate zero (the origin) on the number line.",
-                nl_compare_neg5_neg2: "Which is colder: -5°C or -2°C?",
-                nl_compare_neg3_1: "Which is smaller: -3 or 1?",
-                nl_order_three: "Order these numbers: -4, 0, 3. What is the middle value?",
-                nl_rhine_level: "Rhine level drops from +5m to -3m. What is the new level?",
-                nl_temp_drop: "Temperature drops from 2°C by 7 degrees. What is the final temperature?",
-                nl_distance_abs: "What is the distance between -5 and 2 on the number line?",
-                nl_abs_value: "What is the absolute value of -8?",
-                nl_distance_neg_neg: "What is the distance between -7 and -3?",
-                nl_midpoint: "What is the midpoint between -6 and 4?",
-                nl_temp_range: "Temperature ranges from -8°C to 5°C. What is the range?",
-                nl_operation_add: "Calculate: -5 + 3",
-                nl_operation_sub: "Calculate: -3 - 4",
-                nl_operation_mult: "Calculate: -4 × 2",
-                nl_multi_step: "Calculate: -6 + 8 - 5",
-                nl_complex_op: "Calculate: (-2 + 5) - (3 - 7)",
-                r_place_half: "Locate 0.5 on the number line.",
-                r_place_neg_half: "Locate -0.5 on the number line.",
-                r_place_1_5: "Locate 1.5 on the number line.",
-                r_place_neg2_5: "Locate -2.5 on the number line.",
-                r_fraction_third: "Convert 1/3 to decimal (round to 2 places).",
-                r_compare_fractions: "Which is larger: -1/2 or -1/3?",
-                r_compare_decimals: "Which is smaller: -0.75 or -0.5?",
-                r_order_mixed: "Order: -1.5, -0.5, 0.5. What is the smallest?",
-                r_add_decimals: "Calculate: 0.5 + 0.25",
-                r_sub_decimals: "Calculate: 1.5 - 2.25",
-                r_compare_neg_decimals: "Which is colder: -0.75°C or -0.8°C?",
-                r_fraction_to_decimal: "Convert -3/4 to decimal.",
-                r_mult_decimals: "Calculate: 0.5 × 1.5",
-                r_div_decimals: "Calculate: 1.5 ÷ 0.5",
-                r_mixed_operations: "Calculate: 0.5 + 1.25 - 0.75",
-                r_order_complex: "Order from smallest: -1.5, -3/2, 0, 1.2. What is the first?",
-                r_fraction_operations: "Calculate: 1/2 + 1/4 (as decimal)",
-                r_neg_fraction_ops: "Calculate: -1/2 - 1/4 (as decimal)",
-                r_complex_decimal: "Calculate: (0.5 - 1.25) × 2",
-                r_repeating_decimal: "Convert 2/3 to decimal (round to 2 places).",
-                q_identify_point: "What is the x-coordinate of point (2, 3)?",
-                q_identify_y: "What is the y-coordinate of point (3, 4)?",
-                q_plot_positive: "Plot point (1, 2). What is x?",
-                q_origin: "What is the x-coordinate at the origin?",
-                q_axis_point: "Point (3, 0) is on which axis? What is y?",
-                q_quadrant_2: "Point (-2, 5) is in which quadrant?",
-                q_quadrant_3: "Point (-3, -4) is in which quadrant?",
-                q_quadrant_4: "Point (4, -2) is in which quadrant?",
-                q_basel_landmarks: "Kleinbasel is at (-3, 2). What is x?",
-                q_distance_horizontal: "Distance between (2, 0) and (5, 0)?",
-                q_reflect_x_axis: "Reflect (3, 4) across x-axis. What is y'?",
-                q_reflect_y_axis: "Reflect (5, 2) across y-axis. What is x'?",
-                q_reflect_origin: "Reflect (3, 4) across origin. What is x'?",
-                q_translate: "Translate (2, 3) by (4, 0). What is x'?",
-                q_midpoint_2d: "Midpoint between (2, 3) and (6, 3). What is x?",
-                q_distance_vertical: "Distance between (0, 5) and (0, -3)?",
-                q_perimeter_rectangle: "Rectangle with corners at (0,0) and (4,3). Perimeter?",
-                q_area_rectangle: "Rectangle with corners at (0,0) and (4,3). Area?",
-                q_diagonal_distance: "Horizontal distance from (2, 3) to (6, 5)?",
-                q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
-            }
-        },
-        sm1_04_new: {
-            back: "Back to Nexus",
-            title: "SM1.04 // EQUATION BALANCE",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM1.04_EQUATION_MONITOR",
-            footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
-            basel_scenario: "BASEL EQUATION SCENARIO",
-            scenario_title: "PROBLEM CONTEXT",
-            solve_title: "SOLVE THE EQUATION",
-            answer_title: "YOUR ANSWER",
-            solution_title: "SOLUTION",
-            stages: {
-                balance: "BALANCE",
-                solve: "SOLVE",
-                transform: "TRANSFORM",
-                applications: "APPLICATIONS"
-            },
-            scenarios: {
-                balance: "Understanding Equation Balance: Like a scale, equations must stay balanced. Whatever you do to one side, you must do to the other. This fundamental principle is the key to solving all equations.",
-                solve: "Solving Linear Equations: Use inverse operations to isolate the variable. Add/subtract to move constants, multiply/divide to remove coefficients. Each step brings you closer to finding x.",
-                transform: "Transforming Equations: Master the art of moving terms across the equals sign. Combine like terms, expand parentheses, and simplify fractions. Transform complex equations into simple ones.",
-                applications: "Basel Real-World Problems: Apply equations to solve real problems in Basel. Calculate bus ticket prices, Rhine ferry times, Novartis lab measurements, and Roche pharmaceutical concentrations."
-            },
-            problems: {
-                bal_add_both: "Add 2 to both sides of x + 3 = 7",
-                bal_subtract_both: "Subtract 5 from both sides of x + 5 = 8",
-                bal_multiply_both: "Multiply both sides by 2",
-                bal_divide_both: "Divide both sides by 2",
-                bal_simple_check: "Solve by moving the constant",
-                bal_two_steps: "First subtract 3, then divide by 2",
-                bal_negative_result: "Result will be negative",
-                bal_fraction_coeff: "First subtract 2, then multiply by 3",
-                bal_both_sides_x: "Move x terms to one side",
-                bal_distribute: "First expand the parentheses",
-                bal_complex_both: "Variables on both sides",
-                bal_fractions: "Find common denominator",
-                bal_parentheses_both: "Expand both sides first",
-                bal_decimal_coeff: "Work with decimals",
-                bal_negative_coeff: "Negative coefficient",
-                bal_nested_parens: "Simplify inner parentheses first",
-                bal_three_fractions: "Three fractions with different denominators",
-                bal_complex_distribute: "Multiple distribution steps",
-                bal_reciprocal: "Reciprocal fractions",
-                bal_proportion: "Proportion equation",
-                sol_one_step_add: "One-step: subtract 3",
-                sol_one_step_sub: "One-step: add 5",
-                sol_one_step_mult: "One-step: divide by 3",
-                sol_one_step_div: "One-step: multiply by 4",
-                sol_negative_simple: "Result is negative",
-                sol_two_step_1: "Two steps: subtract then divide",
-                sol_two_step_2: "Two steps: add then multiply",
-                sol_negative_coeff: "Negative coefficient",
-                sol_fraction_result: "Answer is a fraction",
-                sol_decimal_coeff: "Decimal coefficient",
-                sol_combine_like: "Combine like terms first",
-                sol_distribute_simple: "Distribute then solve",
-                sol_x_both_sides: "Variables on both sides",
-                sol_fraction_both: "Add fractions",
-                sol_negative_both: "Negative terms on both sides",
-                sol_complex_distribute: "Complex distribution",
-                sol_nested_parens: "Nested parentheses",
-                sol_three_terms: "Three fraction terms",
-                sol_decimal_complex: "Decimal with parentheses",
-                sol_proportion_eq: "Proportion equation",
-                tra_move_constant: "Move constant to right side",
-                tra_move_variable: "Move variable term",
-                tra_isolate_x: "Isolate x by dividing",
-                tra_two_moves: "Two transformation steps",
-                tra_negative_move: "Moving negative term",
-                tra_collect_terms: "Collect like terms",
-                tra_move_both: "Move terms from both sides",
-                tra_expand_first: "Expand before moving",
-                tra_fraction_clear: "Clear fraction first",
-                tra_negative_coeff: "Handle negative coefficient",
-                tra_multi_step: "Multiple transformation steps",
-                tra_both_expand: "Expand both sides",
-                tra_fractions_lcd: "Find LCD for fractions",
-                tra_decimal_expand: "Expand decimal expression",
-                tra_complex_collect: "Complex term collection",
-                tra_nested_complex: "Nested parentheses transformation",
-                tra_three_fractions: "Three fractions to combine",
-                tra_double_expand: "Double expansion",
-                tra_proportion_cross: "Cross multiplication",
-                tra_mixed_complex: "Mixed fractions and decimals",
-                app_bus_ticket: "Basel BVB bus: Adult ticket costs x CHF. Child ticket is 2 CHF less. If adult ticket is 5 CHF, find x.",
-                app_rhine_time: "Rhine Ferry: Crossing takes 2x minutes. Round trip is 10 minutes. Find x.",
-                app_age_simple: "Age problem: In 5 years, you'll be 12. How old are you now?",
-                app_distance_simple: "Basel to Zurich: Half the distance is 6 km. Find total distance.",
-                app_price_discount: "Roche cafeteria: After 10 CHF discount, meal costs 40 CHF. Original price?",
-                app_tram_tickets: "Basel tram: 3 adult tickets at x CHF each, plus 2 child tickets at 2 CHF each, total 13 CHF. Find x.",
-                app_novartis_samples: "Novartis lab: 5 boxes with x samples each, plus 10 extra samples, total 60. Find x.",
-                app_age_sum: "Father and son: Son is x years old, father is 30 years older. Together they are 50. Find son's age.",
-                app_rectangle_perimeter: "Basel park: Rectangular garden, length 8m, width x m, perimeter 28m. Find width.",
-                app_speed_distance: "Basel to Liestal: Travel 2 hours at x km/h, distance 80 km. Find speed.",
-                app_roche_concentration: "Roche lab: Mix 50ml of x% solution with 100ml of 30% solution to get 150ml of 40% solution. Find x.",
-                app_consecutive_numbers: "Three consecutive numbers sum to 48. Find the first number.",
-                app_work_rate: "Basel construction: Worker A finishes in x hours, Worker B in 6 hours. Together they finish in 2 hours. Find x.",
-                app_mixture_problem: "Novartis: Mix x liters of 20% solution with 10 liters of 50% solution to get 30% solution. Find x.",
-                app_investment_interest: "Basel bank: Invest x CHF at 5% interest. After 1 year, total is 2100 CHF. Find x.",
-                app_train_meeting: "Basel-Zurich trains: Train A at 80 km/h, Train B at 100 km/h, 360 km apart. When do they meet?",
-                app_age_ratio: "Age ratio: In 5 years, your age to your brother's age will be 2:3. You're x years old now. Find x.",
-                app_compound_mixture: "Roche: Add x liters of pure acid to 20 liters of 30% acid to get 50% solution. Find x.",
-                app_boat_current: "Rhine boat: 30 km downstream and back takes 5 hours. Current is 2 km/h. Find boat speed in still water.",
-                app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
-            }
-        },
-        sm1_05_new: {
-            back: "Back to Nexus",
-            title: "SM1.05 // RATIO LAB",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM1.05_RATIO_MONITOR",
-            footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
-            stages: {
-                recipes: "RECIPES",
-                percent: "PERCENT",
-                mixtures: "MIXTURES"
-            },
-            labels: {
-                ratio: "Ratio",
-                proportion: "Proportion",
-                percentage: "Percentage",
-                concentration: "Concentration",
-                solute: "Solute",
-                solvent: "Solvent"
-            }
-        },
-        sm2_08: {
-            back: "Back to Nexus",
-            title: "SM2.08 // PROBABILITY BASICS",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM2.08_PROBABILITY_MONITOR",
-            footer_left: "SM2.08_PROBABILITY // NODE: BASEL",
-            formula_title: "PROBABILITY FORMULA",
-            scenario_title: "PROBLEM",
-            basel_scenario: "BASEL LIFE SCENARIO",
-            calculate_title: "CALCULATE",
-            answer_title: "YOUR ANSWER",
-            solution_title: "SOLUTION",
-            stages: {
-                basic_prob: "BASIC PROBABILITY",
-                lottery: "LOTTERY & GAMES",
-                combined: "COMBINED EVENTS",
-                data_stats: "DATA STATISTICS"
-            },
-            scenarios: {
-                bus_punctuality: "Basel Public Transport: You take the #8 bus to school every day.",
-                weather_basel: "Basel Weather Station: Meteorological data for decision making.",
-                school_cafeteria: "School Cafeteria: Weekly menu planning.",
-                exam_results: "Class Performance: Exam results analysis.",
-                dice_game: "Probability Game: Understanding fair dice.",
-                card_game: "Card Game: Standard 52-card deck.",
-                dice_advanced: "Advanced Dice: Prime numbers and special outcomes.",
-                school_raffle: "School Charity Raffle: Supporting local community.",
-                fasnacht_game: "Basel Fasnacht Carnival: Game booth at the festival.",
-                swiss_lotto_simple: "Swiss Lotto Simplified: Understanding lottery odds (6 choose 3).",
-                dice_win_condition: "Carnival Dice Game: Win on sum of 7 or 11.",
-                two_buses: "Daily Commute: Morning and evening bus reliability.",
-                fc_basel: "FC Basel Matches: Home and away game predictions.",
-                novartis_qc: "Novartis Quality Control: Pharmaceutical sample testing.",
-                three_events: "Multiple Coin Flips: Understanding combinations.",
-                temperature: "Basel Weather: Weekly temperature tracking.",
-                test_scores: "Class Grades: Statistical analysis of exam results.",
-                pocket_money: "Personal Finance: Monthly spending breakdown.",
-                data_comparison: "Data Analysis: Comparing mean and median.",
-                tram_punctuality: "Basel Tram System: Tram #3 reliability.",
-                coin_flip: "Coin Flip: Basic probability experiment.",
-                dice_two: "Two Dice: Understanding combined outcomes.",
-                two_coins: "Two Coins: Independent events.",
-                three_buses: "Three Bus Lines: Multiple independent events.",
-                four_buses: "Four Bus Lines: Extended probability chains.",
-                complex_event: "Complex Probability: Advanced scenarios.",
-            },
-            problems: {
-                bus_ontime_16_20: "In the past 20 days, the bus arrived on time 16 times. What is the probability it arrives on time tomorrow?",
-                bus_ontime_18_20: "In the past 20 days, the bus arrived on time 18 times. What is the probability it arrives on time tomorrow?",
-                weather_rain_12_30: "Basel weather station recorded rain on 12 out of 30 days. What is the probability of rain this weekend?",
-                weather_sunny_21_30: "Basel weather station recorded sunny weather on 21 out of 30 days. What is the probability of sunny weather tomorrow?",
-                dice_roll_3: "Roll a standard die. What is the probability of rolling exactly a 3?",
-                coin_heads: "Flip a fair coin once. What is the probability of getting heads?",
-                cafeteria_pizza: "The school cafeteria serves pizza 3 days out of 5 each week. If you randomly go to the cafeteria, what is the probability of getting pizza?",
-                exam_pass: "In a class of 100 students, 85 passed the exam. What is the probability a randomly selected student passed?",
-                tram_ontime_17_20: "Tram #3 arrived on time 17 out of 20 days. What is the probability it arrives on time today?",
-                dice_greater_4: "Roll a die. What is the probability of rolling a number greater than 4?",
-                dice_even: "Roll a standard die. What is the probability of rolling an even number (2, 4, or 6)?",
-                card_heart: "Draw one card from a standard 52-card deck. What is the probability of drawing a heart?",
-                card_red: "Draw one card from a standard deck. What is the probability of drawing a red card?",
-                two_dice_sum_8: "Roll two dice. What is the probability the sum equals 8?",
-                card_face: "Draw one card. What is the probability of drawing a face card (J, Q, or K)?",
-                dice_prime: "Roll a die. What is the probability of rolling a prime number (2, 3, or 5)?",
-                two_dice_sum_10: "Roll two dice. What is the probability the sum equals 10?",
-                card_ace_or_king: "Draw one card. What is the probability of drawing an Ace or King?",
-                two_dice_doubles: "Roll two dice. What is the probability of rolling doubles (same number on both)?",
-                card_spade_face: "Draw one card. What is the probability of drawing a spade face card?",
-                school_raffle_win: "The school sold 100 raffle tickets for charity. You bought 3 tickets. What is the probability you win?",
-                school_raffle_5_tickets: "The school sold 100 raffle tickets. You bought 5 tickets. What is the probability you win?",
-                coin_two_heads: "Flip two coins. What is the probability both are heads?",
-                dice_not_six: "Roll a die. What is the probability of NOT rolling a 6?",
-                school_raffle_2_tickets: "The school sold 50 raffle tickets. You bought 2 tickets. What is the probability you win?",
-                dice_sum_7: "Roll two dice at the Basel Fasnacht game booth. What is the probability the sum equals 7?",
-                dice_sum_9: "Roll two dice. What is the probability the sum equals 9?",
-                coin_three_all_heads: "Flip three coins. What is the probability all three are heads?",
-                dice_sum_6: "Roll two dice. What is the probability the sum equals 6?",
-                card_two_red: "Draw two cards without replacement. What is the probability both are red?",
-                lotto_simple: "Simplified Swiss Lotto: Choose 3 numbers from 6. There are 20 possible combinations. What is your winning probability?",
-                lotto_4_from_8: "Simplified lottery: Choose 4 numbers from 8. There are 70 combinations. What is your winning probability?",
-                dice_sum_less_5: "Roll two dice. What is the probability the sum is less than 5?",
-                coin_four_at_least_3_heads: "Flip four coins. What is the probability of getting at least 3 heads?",
-                card_three_hearts: "Draw three cards without replacement. What is the probability all three are hearts?",
-                dice_sum_7_or_11: "Carnival game: Roll two dice. You win if the sum is 7 OR 11. What is the probability of winning?",
-                dice_sum_2_3_12: "Carnival game: Roll two dice. You lose if the sum is 2, 3, or 12. What is the probability of losing?",
-                lotto_5_from_10: "Lottery: Choose 5 numbers from 10. There are 252 combinations. What is your winning probability?",
-                coin_five_exactly_2_heads: "Flip five coins. What is the probability of getting exactly 2 heads?",
-                card_poker_pair: "Draw 5 cards. What is the probability of getting at least one pair? (Simplified: approximately 42.3%)",
-                two_buses_ontime: "Morning bus #8 has 80% on-time rate. Evening bus #15 has 70% on-time rate. What is the probability both are on time?",
-                two_coins_both_heads: "Flip two coins. What is the probability both are heads?",
-                two_dice_both_even: "Roll two dice. What is the probability both show even numbers?",
-                two_days_both_sunny: "Basel has 70% sunny days. What is the probability both today and tomorrow are sunny?",
-                two_students_both_pass: "Two students take an exam with 85% pass rate. What is the probability both pass?",
-                fc_basel_wins: "FC Basel has 60% home win rate and 30% away win rate. What is the probability they win both matches this week?",
-                three_buses_all_ontime: "Three buses have on-time rates of 80%, 75%, and 90%. What is the probability all three are on time?",
-                three_days_all_sunny: "Basel has 70% sunny days. What is the probability the next 3 days are all sunny?",
-                three_dice_all_six: "Roll three dice. What is the probability all three show 6?",
-                fc_basel_at_least_one_win: "FC Basel has 60% home win rate and 30% away win rate. What is the probability they win at least one match?",
-                quality_all_pass: "Novartis quality control: Each sample has 95% pass rate. If you test 5 samples, what is the probability all 5 pass?",
-                quality_at_least_4_pass: "Novartis: 5 samples, 95% pass rate each. What is the probability at least 4 pass?",
-                four_buses_all_ontime: "Four buses each have 80% on-time rate. What is the probability all four are on time?",
-                week_no_rain: "Basel has 40% rain probability daily. What is the probability of no rain for 7 consecutive days?",
-                five_students_all_pass: "Five students take an exam with 85% pass rate. What is the probability all five pass?",
-                three_coins_two_heads: "Flip three coins. What is the probability of getting exactly 2 heads?",
-                four_coins_exactly_3_heads: "Flip four coins. What is the probability of getting exactly 3 heads?",
-                quality_exactly_4_pass: "Novartis: 5 samples, 95% pass rate each. What is the probability exactly 4 pass?",
-                five_coins_at_least_4_heads: "Flip five coins. What is the probability of getting at least 4 heads?",
-                birthday_paradox_simple: "Two people: What is the probability they share the same birthday? (Ignore leap years)",
-                avg_temperature: "Basel temperatures this week: 18°C, 22°C, 20°C, 19°C, 21°C, 23°C, 20°C. Calculate the average temperature.",
-                simple_average_5: "Test scores: 80, 85, 90, 75, 95. Calculate the average.",
-                simple_sum: "Monthly spending: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What is the total?",
-                avg_temperature_5_days: "Temperatures: 15°C, 18°C, 20°C, 17°C, 20°C. Calculate the average.",
-                median_5_values: "Data set: 10, 12, 15, 18, 20. Find the median value.",
-                class_average: "Class test scores: 85, 72, 90, 68, 78, 82, 75, 88, 70, 92. Calculate the class average.",
-                spending_analysis: "Monthly spending: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What percentage is spent on food?",
-                median_even_count: "Test scores: 70, 75, 80, 85. Find the median.",
-                range_calculation: "Weekly temperatures: 15°C, 18°C, 20°C, 17°C, 23°C. Calculate the range (max - min).",
-                percentage_transport: "Monthly budget CHF 100: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What percentage is transport?",
-                weighted_average: "Two tests: Test 1 (weight 2): 80 points, Test 2 (weight 3): 90 points. Calculate weighted average.",
-                median_vs_mean: "Data set: 10, 12, 15, 18, 20. Find the median value.",
-                mode_calculation: "Test scores: 80, 85, 85, 90, 85, 75. Find the mode (most frequent value).",
-                budget_remaining: "Monthly budget CHF 100. Spent: Food CHF 40, Transport CHF 25, Entertainment CHF 20. How much remains?",
-                quartile_calculation: "Temperatures: 15°C, 17°C, 18°C, 20°C, 23°C. Find Q1 (25th percentile).",
-                standard_deviation_simple: "Data: 10, 15, 20. Mean = 15. Calculate variance: average of squared deviations.",
-                outlier_effect: "Data: 10, 12, 15, 18, 100. Calculate the mean. Notice how the outlier (100) affects it.",
-                interquartile_range: "Data: 10, 15, 20, 25, 30. Q1=15, Q3=25. Calculate IQR = Q3 - Q1.",
-                percentage_change: "Last month: CHF 100. This month: CHF 120. Calculate percentage change.",
-                correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?",
-            }
-        },
-        gp5_01: {
-            back: "Back to Nexus",
-            title: "P5.01 // THE ATOMIC CORE",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Isotope / Decay",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "P5.01_NUCLEAR_MONITOR",
-            footer_left: "P5.01_MODERN_PHYSICS // NODE: BASEL",
-            labels: {
-                input: "INPUT PARAMETERS",
-                hints: "HINTS",
-                balancing: "NUCLEAR EQUATION",
-                mass: "Mass Number (A)",
-                atomic: "Atomic Number (Z)"
-            },
-            mission: {
-                title: "STABILIZE THE CORE",
-                description: "Novartis Innovation District needs a stable isotope. Balance the nuclear equation by identifying the correct decay particles."
-            },
-            stages: {
-                alpha: "ALPHA DECAY",
-                beta: "BETA DECAY",
-                gamma: "GAMMA EMISSION",
-                fission: "NUCLEAR FISSION",
-                alpha_decay: "ALPHA DECAY",
-                beta_decay: "BETA DECAY",
-                gamma_decay: "GAMMA EMISSION",
-                alpha_decay_prompt_latex: "\\text{Balance the Alpha decay (\\alpha) equation.}",
-                beta_decay_prompt_latex: "\\text{Balance the Beta decay (\\beta^-) equation.}",
-                gamma_decay_prompt_latex: "\\text{Identify the Gamma emission (\\gamma) state.}",
-                fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
-            }
-        },
-        sm3_04: {
-            back: "Back to Nexus",
-            title: "SM3.04 // LOGARITHMIC SCALES",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Logarithmic Measurement",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SM3.04_LOG_MONITOR",
-            footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                ph: "pH Value",
-                decibel: "Decibels (dB)",
-                richter: "Richter Scale"
-            },
-            mission: {
-                title: "LOGARITHMIC MEASUREMENT LAB",
-                description: "Master three real-world logarithmic scales: pH (chemistry), decibels (sound), and Richter (earthquakes). Each scale compresses huge ranges into manageable numbers."
-            },
-            stages: {
-                ph: "pH SCALE",
-                decibel: "DECIBELS",
-                richter: "RICHTER",
-                ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log_{10}[H^+].",
-                decibel_prompt_latex: "\\text{Calculate decibels using }L=10\\log_{10}(I/I_0).",
-                richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A)."
-            },
-            formulas: {
-                ph: "pH = -\\log_{10}[H^+]",
-                decibel: "L = 10\\log_{10}(I/I_0)",
-                richter: "M = \\log_{10}(A)"
-            },
-            scenarios: {
-                ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H⁺] = 0.001 mol/L (which is 10⁻³ in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log₁₀[H⁺]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
-                ph_core: "🧪 SCENARIO: Swimming Pool Water Quality — You work part-time at the Basel public pool. The health inspector requires daily pH testing. Today's water sample shows [H⁺] = 10⁻⁸ mol/L. You need to calculate the pH to verify it's in the safe range (7.2-7.8). If pH is too low (acidic), it irritates swimmers' eyes. If too high (basic), chlorine doesn't work properly. Your calculation determines whether the pool can open today!",
-                ph_advanced: "🧪 SCENARIO: Pharmaceutical Quality Control — You're an intern at Roche in Basel. A new drug formulation must have precise pH control for stability. The lab measures [H⁺] = 3.16 × 10⁻⁵ mol/L. Calculate the pH to 2 decimal places. If pH drifts outside the target range (4.3-4.7), the entire batch (worth millions) must be discarded. Logarithmic precision matters in pharma!",
-                ph_elite: "🧪 SCENARIO: Environmental Acid Rain Study — University of Basel researchers are studying acid rain effects on Swiss forests. Rainwater samples show [H⁺] = 10⁻⁴·⁵ mol/L (note the fractional exponent!). Calculate the pH. Normal rain is pH 5.6, but acid rain can be pH 4.0 or lower. Each pH unit represents a 10× change in acidity, so pH 4 rain is 100× more acidic than pH 6 rain. Your calculation helps assess environmental damage.",
-                decibel_basic: "🔊 SCENARIO: School Library Noise Check — The librarian asks you to measure if the study area is quiet enough. You use a sound meter: the intensity is I = 10⁻¹⁰ W/m². The reference intensity (threshold of hearing) is I₀ = 10⁻¹² W/m². Calculate the sound level in decibels using L = 10·log₁₀(I/I₀). For reference: whisper = 30 dB, normal conversation = 60 dB, library should be under 40 dB.",
-                decibel_core: "🔊 SCENARIO: Concert Sound Engineer — You're setting up for a school rock concert in the auditorium. The sound system produces intensity I = 10⁻⁴ W/m² at the front row. Calculate the decibel level. Safety regulations require ear protection above 85 dB, and prolonged exposure above 100 dB causes hearing damage. Your calculation determines whether you need to reduce the volume or provide earplugs to the audience.",
-                decibel_advanced: "🔊 SCENARIO: Airport Noise Pollution Study — Basel-Mulhouse Airport is expanding, and residents complain about noise. You measure a jet taking off: I = 1 W/m² at 100 meters distance. Calculate the decibel level. City regulations limit airport noise to 65 dB during daytime. At 120 dB (jet engine), sound is painful. The logarithmic scale means 120 dB is not 'twice as loud' as 60 dB — it's 1,000,000 times more intense!",
-                decibel_elite: "🔊 SCENARIO: Acoustic Engineering Challenge — A Basel concert hall is being designed. The architect needs to calculate sound absorption. If the original intensity is I₁ = 10⁻³ W/m² and after acoustic panels it drops to I₂ = 10⁻⁶ W/m², what's the decibel reduction? Calculate L₁ - L₂. This involves understanding that decibel differences represent intensity ratios: a 10 dB drop means 10× less intense, 20 dB drop means 100× less intense.",
-                richter_basic: "🌍 SCENARIO: Earthquake Monitoring Station — You volunteer at University of Basel's seismology lab. A small earthquake hits near Basel. The seismograph records ground motion amplitude A = 100 micrometers. Calculate the Richter magnitude using M = log₁₀(A). For reference: M < 2 is not felt, M 3-4 is minor, M 5-6 is moderate, M 7+ is major. Your calculation helps classify the earthquake severity.",
-                richter_core: "🌍 SCENARIO: Historical Earthquake Analysis — In 1356, Basel experienced Switzerland's strongest recorded earthquake. Modern analysis estimates the ground amplitude was A = 100,000 micrometers. Calculate the Richter magnitude. Compare this to the 2011 Japan earthquake (M 9.0) which had amplitude 1,000,000,000 micrometers. The logarithmic scale compresses this billion-fold range into manageable numbers (1 to 9).",
-                richter_advanced: "🌍 SCENARIO: Earthquake Early Warning System — Switzerland is developing an earthquake alert app. Two earthquakes occur: Earthquake A has amplitude 31,600 μm, Earthquake B has amplitude 1,000 μm. Calculate both magnitudes to 2 decimal places. The app needs to distinguish between 'minor tremor' (M < 4.0) and 'significant quake' (M ≥ 4.0) to decide whether to send emergency alerts to millions of phones.",
-                richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10² = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
-            },
-            canvas: {
-                ph_title: "pH SCALE",
-                ph_formula: "pH = -log₁₀[H⁺]",
-                decibel_title: "DECIBEL SCALE",
-                decibel_formula: "L = 10·log₁₀(I/I₀)",
-                richter_title: "RICHTER SCALE",
-                richter_formula: "M = log₁₀(A)",
-                ph_subtitle: "Acidity",
-                decibel_subtitle: "Sound",
-                richter_subtitle: "Earthquake",
-                status_chamber: "CHAMBER",
-                status_sim: "LOG_SCALE_SIM: ACTIVE",
-                status_mode: "MODE"
-            }
-        },
-        sc3_01: {
-            back: "Back to Nexus",
-            title: "C3.01 // MOLECULAR ARCHITECT",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
             target_title: "Molecular Structure",
@@ -2639,961 +385,3279 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "C3.01_MOLECULE_MONITOR",
-            footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
+            monitor_title: "GC2.01_ORGANIC_MONITOR",
+            footer_left: "GC2.01_CARBON_KINGDOM // NODE: BASEL",
             labels: {
                 input: "INPUT",
                 hints: "HINTS",
-                atom: "Atom",
-                bond: "Bond",
-                snap: "Snap",
-                grid: "Grid"
+                formula: "MOLECULAR FORMULA",
+                iupac_name: "IUPAC NAME",
+                composition: "COMPOSITION",
+                molecular_mass: "Molecular Mass",
+                molecule_info: "MOLECULE INFO",
+                select_molecule: "SELECT MOLECULE",
+                rotation_speed: "ROTATION SPEED",
+                rotation_speed_value: "{value}x",
+                show_bonds: "Show Bonds",
+                show_hydrogens: "Show Hydrogens",
+                atom_colors: "ATOM COLORS",
+                atom_carbon: "Carbon (C)",
+                atom_hydrogen: "Hydrogen (H)",
+                atom_oxygen: "Oxygen (O)",
+                atom_nitrogen: "Nitrogen (N)",
+                bond_types: "BOND TYPES",
+                bond_single: "Single Bond: C-C",
+                bond_double: "Double Bond: C=C",
+                bond_triple: "Triple Bond: C≡C"
             },
-            mission: {
-                title: "MOLECULAR ASSEMBLY LAB",
-                description: "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."
-            },
-            stages: {
-                aspirin: "ASPIRIN",
-                caffeine: "CAFFEINE"
-            }
-        },
-        sp1_06: {
-            back: "Back to Nexus",
-            title: "SP1.06 // THE SWISS PENDULUM",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Oscillation Data",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP1.06_PENDULUM_MONITOR",
-            footer_left: "SP1.06_PENDULUM // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                period: "Period (T)",
-                length: "Length (L)",
-                gravity: "Gravity (g)",
-                frequency: "Frequency (f)"
-            },
-            mission: {
-                title: "THE CLOCKMAKER'S SECRET",
-                description: "Calibrate the mechanical master clock of Basel. Master the physics of simple harmonic motion and energy conservation."
-            },
-            stages: {
-                period: "PERIOD",
-                gravity: "GRAVITY",
-                energy: "ENERGY"
-            }
-        },
-        sp2_02: {
-            back: "Back to Nexus",
-            title: "SP2.02 // CIRCUIT SANDBOX 2.0",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Circuit Analysis",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP2.02_CIRCUIT_MONITOR",
-            footer_left: "SP2.02_CIRCUIT_SANDBOX // NODE: BASEL",
-            labels: {
-                multimeter: "MULTIMETER",
-                oscilloscope: "OSCILLOSCOPE",
-                resistance: "RESISTANCE",
-                capacitance: "CAPACITANCE",
-                inductance: "INDUCTANCE",
-                voltage: "VOLTAGE",
-                analysis: "CIRCUIT ANALYSIS",
-                damping: "DAMPING TYPE",
-                formulas: "RLC FORMULAS",
-                reset: "RESET"
-            },
-            mission: {
-                title: "MISSION: RLC TRANSIENT ANALYSIS",
-                description: "Build and analyze RLC circuits. Use the multimeter to measure voltage and current. Observe transient responses on the oscilloscope."
-            },
-            stages: {
-                build: "BUILD CIRCUIT",
-                measure: "MEASURE VALUES",
-                analyze: "ANALYZE RESPONSE",
-                build_desc: "Connect resistors, capacitors, and inductors",
-                measure_desc: "Use multimeter to measure voltage and current",
-                analyze_desc: "Observe oscilloscope waveforms",
-                build_hint: "Click components to select them",
-                measure_hint: "Select 2 points to measure voltage drop",
-                analyze_hint: "Watch for overdamped, underdamped, or critically damped responses"
-            }
-        },
-        sp4_01: {
-            back: "Back to Nexus",
-            title: "SP3.03 // WAVE BASICS",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Wave Parameters",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP3.03_WAVE_MONITOR",
-            footer_left: "SP3.03_WAVE_BASICS // NODE: RHINE",
-            labels: {
-                wave_type: "WAVE TYPE",
-                transverse: "TRANSVERSE",
-                longitudinal: "LONGITUDINAL",
-                amplitude: "AMPLITUDE",
-                frequency: "FREQUENCY",
-                wave_speed: "WAVE SPEED",
-                wavelength: "WAVELENGTH",
-                period: "PERIOD",
-                angular_freq: "ANGULAR FREQUENCY",
-                calculated: "CALCULATED VALUES",
-                show_particles: "Show Particle Motion",
-                formulas: "FORMULAS"
-            },
-            mission: {
-                title: "MISSION: RHINE WAVE ANALYSIS",
-                description: "Study mechanical waves on the Rhine River. Master wave parameters: amplitude, frequency, wavelength, and period."
-            },
-            stages: {
-                transverse: "TRANSVERSE WAVES",
-                longitudinal: "LONGITUDINAL WAVES",
-                parameters: "WAVE PARAMETERS",
-                transverse_desc: "Observe perpendicular particle motion",
-                longitudinal_desc: "Study compression and rarefaction",
-                parameters_desc: "Calculate wavelength, period, and speed",
-                transverse_hint: "Particles oscillate perpendicular to wave direction",
-                longitudinal_hint: "Particles oscillate parallel to wave direction",
-                parameters_hint: "v = λf, T = 1/f, ω = 2πf"
-            }
-        },
-        sb1_01: {
-            back: "Back to Nexus",
-            title: "SB1.01 // CELL FACTORY",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Cell Analysis",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SB1.01_CELL_MONITOR",
-            footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
-            stages: {
-                identification: "IDENTIFICATION",
-                function: "FUNCTION",
-                organelles: "ORGANELLES"
-            },
-            labels: {
-                cutaway_view: "Cutaway View",
-                selected: "SELECTED ORGANELLE",
-                instructions: "INSTRUCTIONS",
-                nucleus: "Nucleus",
-                mitochondria: "Mitochondria",
-                chloroplast: "Chloroplast",
-                ribosome: "Ribosome",
-                golgi: "Golgi Apparatus",
-                er: "Endoplasmic Reticulum",
-                membrane: "Cell Membrane",
-                vacuole: "Vacuole"
-            },
-            mission: {
-                title: "MISSION: CELL EXPLORATION",
-                description: "Explore the animal cell structure. Identify organelles and understand their functions in the cellular economy."
-            },
-            prompts: {
-                id_prompt: "Identify the organelle highlighted in the 3D view.",
-                id_target: "Highlighted: ?",
-                fn_prompt: "Which organelle is responsible for: {func}?",
-                fn_target: "Function: {func}",
-                hint_name: "It is the {name}",
-                hint_start: "The answer starts with {char}"
-            },
-            organelles: {
-                nucleus: {
-                    name: "Nucleus",
-                    func: "Control Center / DNA Storage",
-                    details: "Contains DNA and controls all cell activities. The 'brain' of the cell."
-                },
-                mitochondria: {
-                    name: "Mitochondria",
-                    func: "ATP Energy Production (Powerhouse)",
-                    details: "Produces ATP through cellular respiration. Converts glucose into energy."
-                },
-                ribosome: {
-                    name: "Ribosome",
-                    func: "Protein Synthesis",
-                    details: "Synthesizes proteins by reading mRNA sequences."
-                },
-                golgi: {
-                    name: "Golgi Apparatus",
-                    func: "Packaging & Transport",
-                    details: "Modifies, packages, and transports proteins to their destinations."
-                },
-                er: {
-                    name: "Endoplasmic Reticulum",
-                    func: "Synthesis Network (ER)",
-                    details: "Rough ER: protein synthesis. Smooth ER: lipid synthesis and detoxification."
-                }
-            }
-        },
-        sb1_01_metabolic: {
-            back: "Back to Nexus",
-            title: "SB1.01 // METABOLIC ENGINE",
-            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-            objective_title: "Active Mission Objective",
-            target_title: "Metabolic Status",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Homeostasis Stable",
-            incorrect: "Metabolic Crisis",
-            ready: "Ready",
-            monitor_title: "SB1.01_METABOLIC_MONITOR",
-            footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
-            stages: {
-                osmosis: "OSMOSIS",
-                respiration: "RESPIRATION",
-                homeostasis: "HOMEOSTASIS"
-            },
-            labels: {
-                osmolarity: "External Osmolarity",
-                atp_flow: "Show ATP Flow",
-                hypertonic: "Hypertonic",
-                isotonic: "Isotonic",
-                hypotonic: "Hypotonic",
-                status: "Osmotic Status",
-                respiration_formula: "Respiration Formula",
+            molecules: {
+                methane: "Methane",
+                ethane: "Ethane",
+                benzene: "Benzene",
                 glucose: "Glucose",
-                oxygen: "Oxygen",
-                atp: "ATP Energy"
+                alanine: "Alanine"
             },
-            prompts: {
-                osmosis_prompt: "The cell is in a {status} environment. What happens to the water?",
-                respiration_prompt: "Complete the respiration reactant: C₆H₁₂O₆ + 6{reactant} → ...",
-                product_prompt: "What is the primary energy product of respiration?",
-                homeostasis_target: "Balance the environment to achieve Isotonic state.",
-                hint_hyper: "High salt outside! Water leaves the cell.",
-                hint_hypo: "Low salt outside! Water rushes in.",
-                hint_oxy: "We breathe this in to burn glucose."
-            }
-        },
-        sb2_01: {
-            back: "Back to Nexus",
-            title: "SB2.01 // MENDEL'S GARDEN",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Genetic Cross",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SB2.01_GENETICS_MONITOR",
-            footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
-            stages: {
-                monohybrid: "MONOHYBRID CROSS",
-                probability: "PROBABILITY",
-                dihybrid: "DIHYBRID CROSS"
-            },
-            labels: {
-                parent: "Parent",
-                offspring: "Offspring",
-                punnett_square: "PUNNETT SQUARE",
-                stats: "OFFSPRING STATISTICS",
-                genotype_ratio: "Genotype Ratio",
-                phenotype_ratio: "Phenotype Ratio",
-                purple_flowers: "Purple Flowers",
-                white_flowers: "White Flowers",
-                genetics_basics: "GENETICS BASICS",
-                genotype_phenotype: "GENOTYPE VS PHENOTYPE",
-                dominance: "DOMINANCE RULES",
-                mendels_laws: "MENDEL'S LAWS",
-                instructions: "INSTRUCTIONS"
-            },
-            concepts: {
-                allele: "Allele: A version of a gene",
-                dominant: "R (Dominant): Purple flower",
-                recessive: "r (Recessive): White flower",
-                genotype: "Genotype: Genetic makeup (RR, Rr, rr)",
-                phenotype: "Phenotype: Observable trait (Purple/White)",
-                homozygous_dom: "RR → Purple (Homozygous Dominant)",
-                heterozygous: "Rr → Purple (Heterozygous)",
-                homozygous_rec: "rr → White (Homozygous Recessive)",
-                law_segregation: "Law of Segregation: Each parent contributes one allele",
-                law_assortment: "Law of Independent Assortment: Alleles separate independently"
+            types: {
+                alkane: "Alkane",
+                aromatic: "Aromatic",
+                carbohydrate: "Carbohydrate",
+                amino_acid: "Amino Acid"
             },
             mission: {
-                title: "MISSION: MENDELIAN GENETICS",
-                description: "Master Mendel's laws of inheritance. Predict offspring ratios using Punnett Squares."
+                title: "MISSION: ORGANIC CHEMISTRY",
+                description: "Explore organic molecules in 3D. Study ball-and-stick models, chemical bonds, and molecular geometry."
             },
-            prompts: {
-                monohybrid_ratio: "Cross {p1} \\times {p2}. What is the phenotypic ratio of Purple to White?",
-                monohybrid_percent: "Cross {p1} \\times {p2}. What percentage of offspring will be Purple?",
-                prob_genotype: "Cross {p1} \\times {p2}. What is the probability of a {genotype} offspring?",
-                ratio_target: "\\text{Ratio } P:W = ?",
-                percent_target: "\\text{Purple Percentage}",
-                prob_target: "P({genotype}) = ?",
-                hint_square: "Check the Punnett Square.",
-                hint_all_rr: "All offspring are Rr.",
-                hint_count: "{count} out of 4 squares."
-            }
-        },
-        gb3_01: {
-            back: "Back to Nexus",
-            title: "GB3.01 // DNA FORGE",
-            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-            objective_title: "Active Mission Objective",
-            target_title: "DNA Structure",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "GB3.01_DNA_MONITOR",
-            footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
-            stages: {
-                pairing: "BASE PAIRING",
-                bonds: "HYDROGEN BONDS",
-                sequence: "SEQUENCING"
-            },
-            labels: {
-                rotation: "ROTATION",
-                auto_rotate: "Auto Rotate",
-                show_bonds: "Show Hydrogen Bonds",
-                highlight_pair: "HIGHLIGHT BASE PAIR",
-                pairing_rules: "BASE PAIRING RULES",
-                bases: "NUCLEOTIDE BASES",
-                structure: "DNA STRUCTURE",
-                adenine: "Adenine",
-                thymine: "Thymine",
-                cytosine: "Cytosine",
-                guanine: "Guanine"
-            },
-            concepts: {
-                helix: "Double helix: Two antiparallel strands",
-                backbone: "Backbone: Sugar-phosphate groups",
-                at_pair: "A ↔ T: Two hydrogen bonds",
-                gc_pair: "C ↔ G: Three hydrogen bonds",
-                polarity: "Polarity: 5' to 3' orientation",
-                complementary: "Rule: Chargaff's base pairing"
-            },
-            mission: {
-                title: "MISSION: DNA ARCHITECTURE",
-                description: "Master the structural principles of the DNA double helix. Verify base pairing rules and hydrogen bond stability."
-            },
-            prompts: {
-                pairing_prompt: "Identify the complementary base for {base}.",
-                bonds_prompt: "How many hydrogen bonds connect {b1} and {b2}?",
-                seq_prompt: "Provide the complementary sequence for: {seq}",
-                pairing_target: "Complement of {base}",
-                bonds_target: "H-Bonds: ?",
-                seq_target: "Complementary Stream",
-                hint_at: "A pairs with T via 2 bonds.",
-                hint_gc: "G pairs with C via 3 bonds."
-            }
-        },
-        sc1_01: {
-            back: "Back to Nexus",
-            title: "C1.01 // MYSTERY LAB",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Substance Analysis",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "C1.01_LAB_MONITOR",
-            footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                substance: "Substance",
-                tool: "Test Tool",
-                observation: "Observation"
-            },
-            mission: {
-                title: "POWDER IDENTIFICATION",
-                description: "Identify mysterious white powders using classical chemical tests. Master qualitative analysis."
-            },
-            stages: {
-                identify: "IDENTIFY",
-                properties: "PROPERTIES",
-                reactions: "REACTIONS"
-            }
-        },
-        sc1_03: {
-            back: "Back to Nexus",
-            title: "SC1.03 // ATOMS FORGE",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Atomic Structure",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SC1.03_ATOM_MONITOR",
-            footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
-            labels: {
-                input: "INPUT",
-                hints: "HINTS",
-                properties: "PROPERTIES",
-                element: "Element",
-                atomic_number: "Atomic Number (Z)",
-                mass_number: "Mass Number (A)",
-                charge: "Charge",
-                periodic_table: "PERIODIC TABLE",
-                protons: "PROTONS (p⁺)",
-                neutrons: "NEUTRONEN (n⁰)",
-                electrons: "ELEKTRONEN (e⁻)"
-            },
-            mission: {
-                title: "MISSION: CYBER FORGE",
-                description: "Build atoms from subatomic particles. Master the Bohr model and periodic table."
-            },
-            stages: {
-                build: "BUILD",
-                elements: "ELEMENTS",
-                isotopes: "ISOTOPES",
-                build_desc: "Free mode: Build any atom configuration",
-                elements_desc: "Explore the first 20 elements of the periodic table",
-                isotopes_desc: "Study isotopes: same protons, different neutrons"
-            }
-        },
-        sc2_02: {
-            back: "Back to Nexus",
-            title: "SC2.02 // pH SENTINEL",
-            difficulty: {
-                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Titration Analysis",
-            next: "Next Analysis",
-            check: "Verify",
-            correct: "Titration Accurate",
-            incorrect: "Invalid pH reading",
-            ready: "Ready",
-            monitor_title: "SC2.02_TITRATION_MONITOR",
-            footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
-            stages: {
-                curves: "PH CURVES",
-                equivalence: "EQUIVALENCE",
-                indicators: "INDICATORS"
-            },
-            labels: {
-                initial_ph: "Initial pH",
-                added_vol: "Added Volume (mL)",
-                eq_point: "Equivalence Point",
-                indicator: "Indicator",
-                strong_acid: "Strong Acid",
-                weak_acid: "Weak Acid",
-                formula: "Titration Formula"
-            },
-            prompts: {
-                curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
-                find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
-                select_indicator: "Weak acid + Strong base. Choose indicator: Phenol(1), MethylO(2).",
-                weak_ph_calc: "At half-equivalence (pH = pKa). If pKa is 4.75, what is the pH?",
-                eq_ph_guess: "Equivalence pH of Strong/Strong? (<7=1, 7=2, >7=3).",
-                conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
-            }
-        },
-        sc2_03: {
-            back: "Back to Nexus",
-            title: "SC2.03 // AERO LAB",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Gas Properties",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SC2.03_GAS_MONITOR",
-            footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
-            labels: {
-                pressure: "PRESSURE",
-                state_variables: "STATE VARIABLES",
-                volume: "VOLUME (V)",
-                temperature: "TEMPERATURE (T)",
-                moles: "MOLES (n)",
-                formulas: "FORMULAS"
-            },
-            mission: {
-                title: "MISSION: IDEAL GAS LAWS",
-                description: "Explore the relationship between pressure, volume, and temperature in ideal gases."
-            },
-            stages: {
-                boyle: "BOYLE'S LAW",
-                charles: "CHARLES' LAW",
-                combined: "COMBINED GAS LAW",
-                boyle_desc: "Observe inverse relationship: P ∝ 1/V",
-                charles_desc: "Observe direct relationship: V ∝ T",
-                combined_desc: "Master the combined gas law",
-                boyle_hint: "Boyle's Law: Decrease volume → Increase pressure",
-                charles_hint: "Charles' Law: Increase temperature → Increase volume",
-                combined_hint: "Combined: All three variables interact"
-            }
-        },
-        sc1_03_orbitals: {
-            back: "Back to Nexus",
-            title: "SC1.03 // ATOMS FORGE",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Atomic Orbitals",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SC1.03_ORBITAL_MONITOR",
-            footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
-            labels: {
-                selected_element: "SELECTED ELEMENT",
-                orbital_type: "ORBITAL TYPE",
-                show_transition: "Show Electron Transition",
-                periodic_table: "PERIODIC TABLE (Z=1-20)",
-                orbital_shapes: "ORBITAL SHAPES",
-                quantum_numbers: "QUANTUM NUMBERS"
-            },
-            mission: {
-                title: "MISSION: QUANTUM MECHANICS",
-                description: "Explore electron orbitals and probability clouds. Visualize s, p, and d orbitals in 3D space."
-            },
-            stages: {
-                s_orbital: "S ORBITALS",
-                p_orbital: "P ORBITALS",
-                d_orbital: "D ORBITALS",
-                s_desc: "Spherical probability distribution",
-                p_desc: "Dumbbell-shaped orbitals (px, py, pz)",
-                d_desc: "Cloverleaf-shaped orbitals",
-                s_hint: "s orbitals: l=0, spherically symmetric",
-                p_hint: "p orbitals: l=1, three orientations",
-                d_hint: "d orbitals: l=2, five orientations"
-            }
-        },
-        sc1_04: {
-            back: "Back to Nexus",
-            title: "SC1.04 // PERIODIC PUZZLE",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Atom Structure",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SC1.04_ATOM_MONITOR",
-            footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
-            labels: {
-                element_info: "ELEMENT INFO",
-                formulas: "FORMULAS",
-                protons: "PROTONS",
-                neutrons: "NEUTRONS",
-                electrons: "ELECTRONS",
-                select_element: "SELECT ELEMENT"
-            },
-            mission: {
-                title: "MISSION: PERIODIC TABLE",
-                description: "Build atoms and discover the periodic table. Master electron configuration."
-            },
-            stages: {
-                build: "BUILD ATOM",
-                periodic: "PERIODIC TABLE",
-                groups: "ELEMENT GROUPS",
-                build_desc: "Build atoms by adding protons, neutrons, and electrons",
-                periodic_desc: "Explore the first 20 elements",
-                groups_desc: "Understand element groups and periods",
-                build_hint: "Proton number determines the element",
-                periodic_hint: "Elements are arranged by atomic number",
-                groups_hint: "Same group = same valence electrons"
-            }
-        },
-        sc2_04: {
-            back: "Back to Nexus",
-            title: "SC2.04 // SOLUBILITY LAB",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "Solution Status",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SC2.04_SOLUBILITY_MONITOR",
-            footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
-            labels: {
-                solubility: "SOLUBILITY",
-                saturated: "SATURATED - Precipitate forming",
-                unsaturated: "UNSATURATED - Can dissolve more",
-                solution_data: "SOLUTION DATA",
-                temperature: "TEMPERATURE (°C)",
-                solute_amount: "SOLUTE AMOUNT (g)",
-                formulas: "FORMULAS"
-            },
-            mission: {
-                title: "MISSION: SOLUBILITY",
-                description: "Explore solubility and temperature relationships. Observe crystallization."
-            },
-            stages: {
-                dissolve: "DISSOLVE",
-                saturate: "SATURATE",
-                crystallize: "CRYSTALLIZE",
-                dissolve_desc: "Dissolve solute in water",
-                saturate_desc: "Reach saturation point",
-                crystallize_desc: "Cool solution to crystallize",
-                dissolve_hint: "Most salts dissolve better at higher temperatures",
-                saturate_hint: "Saturation: maximum amount dissolved",
-                crystallize_hint: "Cooling causes excess solute to crystallize"
-            }
-        },
-        gp1_03: {
-            back: "Back to Nexus",
-            title: "GP5.03 // PARTICLE COLLIDER",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            objective_title: "Active Mission Objective",
-            target_title: "LHC ATLAS DETECTOR",
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "GP5.03_LHC_MONITOR",
-            footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
-            labels: {
-                beam_energy: "BEAM ENERGY",
-                relativistic_effects: "RELATIVISTIC EFFECTS",
-                formulas: "FORMULAS",
-                magnetic_field: "Enable Magnetic Field (Bending Magnets)",
-                colliding: "COLLIDING...",
-                initiate_collision: "INITIATE COLLISION"
-            },
-            mission: {
-                title: "MISSION: PARTICLE PHYSICS",
-                description: "Explore particle collisions at CERN's Large Hadron Collider. Discover the Higgs boson."
-            },
-            stages: {
-                acceleration: "ACCELERATION",
-                collision: "COLLISION",
-                detection: "DETECTION",
-                acceleration_desc: "Accelerate protons to near light speed",
-                collision_desc: "Collide proton beams at 13 TeV",
-                detection_desc: "Detect particle jets and tracks",
-                acceleration_hint: "Protons reach 99.9999991% speed of light",
-                collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
-                detection_hint: "Magnetic field bends charged particle tracks"
-            }
-        },
-        gp5_02: {
-            title: "GP1.02 // RELATIVITY LAB",
-            back: "Back to Nexus",
-            footer_left: "GP1.02_RELATIVITY_LAB // NODE: RHINE",
-            monitor_title: "GP1.02_RELATIVITY_MONITOR",
-            labels: {
-                lorentz_factor_title: "LORENTZ FACTOR",
-                velocity_label: "VELOCITY (v/c)",
-                velocity_value: "{value}% c",
-                gamma_value: "γ = {value}",
-                toggle_doppler: "Show Doppler Effect",
-                toggle_contraction: "Show Length Contraction"
-            },
-            effects: {
-                title: "RELATIVISTIC EFFECTS",
-                time_dilation_label: "Time Dilation:",
-                time_dilation_value: "Δt' = {value}Δt",
-                length_contraction_label: "Length Contraction:",
-                length_contraction_value: "L' = {value}L"
-            },
-            formulas: {
-                title: "FORMULAS",
-                gamma: "γ = 1/√(1 - v²/c²)",
-                time: "Δt' = γΔt",
-                length: "L' = L/γ",
-                energy: "E = γmc²"
-            },
-            mission: {
-                title: "MISSION: SPECIAL RELATIVITY",
-                description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
-            }
-        },
-        sp1_08: {
-            title: "SP1.08 // OPTICS BENCH",
-            back: "Back to Nexus",
-            footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
-            monitor_title: "SP1.08_OPTICS_MONITOR",
-            labels: {
-                show_prism: "Show Prism Dispersion",
-                medium_1: "MEDIUM 1 (n₁)",
-                medium_2: "MEDIUM 2 (n₂)",
-                incident_angle: "INCIDENT ANGLE (θ₁)",
-                refraction_title: "REFRACTION",
-                refracted_angle: "Refracted Angle (θ₂):",
-                critical_angle: "Critical Angle:",
-                total_internal_reflection: "TOTAL INTERNAL REFLECTION",
-                na: "N/A",
-                angle_value: "{value}°"
-            },
-            snell: {
-                title: "SNELL'S LAW",
-                line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
-                line_2: "θ_c = arcsin(n₂/n₁)",
-                line_3: "v = c/n"
-            },
-            mission: {
-                title: "MISSION: RAY OPTICS",
-                description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
-            }
-        },
-        sb1_02: {
-            back: "Return to Nexus",
-            title: "SB1.02 // PHOTOSYNTHESIS LAB",
-            stages: {
-                equation: "REACTION EQUATION",
-                limiting_factors: "LIMITING FACTORS",
-                chloroplast: "CHLOROPLAST"
-            },
-            labels: {
-                light: "Light Intensity",
-                co2: "CO2 Level",
-                temp: "Temperature",
-                glucose: "Glucose Production"
-            }
-        },
-        sb2_02: {
-            back: "Return to Nexus",
-            title: "SB2.02 // HUMAN BODY SYSTEMS",
-            stages: {
-                digestion: "DIGESTION",
-                circulation: "CIRCULATION",
-                respiration: "RESPIRATION"
-            },
-            labels: {
-                heart_rate: "Heart Rate",
-                o2_sat: "O2 Saturation",
-                enzyme: "Enzyme Activity"
-            }
-        },
-        sb3_01: {
-            back: "Return to Nexus",
-            title: "SB3.01 // ECOSYSTEM DYNAMICS",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
-            footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
-            objective_title: "Active Mission Objective",
-            stages: {
-                food_chains: "FOOD CHAINS",
-                energy_flow: "ENERGY FLOW",
-                cycles: "BIOGEOCHEMICAL CYCLES"
-            },
-            labels: {
-                ecosystem_display: "Ecosystem Display",
-                input_terminal: "Input Terminal",
-                trophic_level: "Trophic Level",
-                show_energy: "Show Energy Flow",
-                ecology_score: "Ecology Score"
-            },
-            prompts: {
-                food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
-                energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
-                cycle_process: "In the {cycle} cycle, what is produced by {process}?",
-                hint_trophic: "Only 10% of energy transfers to the next trophic level",
-                hint_10percent: "Use the 10% rule: multiply by 0.1",
-                hint_cycle: "Think about the inputs and outputs of this process"
-            },
-            feedback: {
-                correct: "Ecosystem balance maintained!",
-                incorrect: "Ecosystem disrupted. Review the relationships."
-            }
-        },
-        sp1_04: {
-            back: "Return to Nexus",
-            title: "SP1.04 // SIMPLE MACHINES",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            next: "Execute Next Sequence",
-            check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
-            ready: "Ready",
-            monitor_title: "SP1.04_MECHANICS_MONITOR",
-            footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
-            objective_title: "Active Mission Objective",
-            stages: {
-                levers: "LEVERS",
-                pulleys: "PULLEYS",
-                inclined_planes: "INCLINED PLANES"
-            },
-            labels: {
-                machine_display: "Machine Display",
-                input_terminal: "Input Terminal",
-                force_ratio: "Force Ratio (MA)",
-                show_forces: "Show Forces",
-                mechanics_score: "Mechanics Score"
-            },
-            prompts: {
-                lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
-                pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
-                inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
-                hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",
-                hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
-                hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"
-            },
-            feedback: {
-                correct: "Mechanical advantage calculated correctly!",
-                incorrect: "Check your mechanical advantage calculation."
-            }
-        },
-        sc1_05: {
-            back: "Back to Nexus",
-            title: "SC1.05 // BONDING BRIDGE",
-            check: "Verify",
-            next: "Next",
-            correct: "Bond Verified",
-            incorrect: "Bond Failed",
-            ready: "Ready",
-            monitor_title: "SC1.05_BOND_LAB",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            stages: {
-                ionic: "IONIC",
-                covalent: "COVALENT",
-                lewis: "LEWIS"
-            },
-            labels: {
-                na_cl: "Na + Cl -> NaCl",
-                h2: "H + H -> H2",
-                co2: "C + 2O -> CO2"
-            }
-        },
-        sc3_02: {
-            back: "Return to Nexus",
-            title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
             stages: {
                 alkanes: "ALKANES",
-                functional_groups: "FUNCTIONAL GROUPS",
-                isomers: "ISOMERS"
+                alcohols: "ALCOHOLS",
+                custom: "CUSTOM",
+                alkanes_desc: "Build alkane chains (C-C-C)",
+                alcohols_desc: "Add hydroxyl groups (C-OH)",
+                custom_desc: "Free synthesis mode"
             },
-            labels: {
-                carbon_chain: "Carbon Chain",
-                hydroxyl: "Hydroxyl Group",
-                double_bond: "Double Bond"
+            hints: {
+                select_atom: "Click an atom to select it",
+                add_atom: "Click atom tool to add new atom",
+                bonds: "Atoms connect based on valence rules",
+                delete: "Use DELETE to remove selected atom"
             }
         },
-        sc3_03: {
-            back: "Return to Nexus",
-            title: "SC3.03 // ORGANIC REACTIONS",
+        gsc1_01: {
+            back: "Back to Nexus",
+            title: "GC1.01 // REDOX TITAN",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
                 advanced: "ADVANCED",
                 elite: "ELITE"
             },
+            objective_title: "Active Mission Objective",
+            target_title: "Galvanic Cell",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SC3.03_REACTION_MONITOR",
-            footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
-            objective_title: "Active Mission Objective",
-            stages: {
-                combustion: "COMBUSTION",
-                substitution: "SUBSTITUTION",
-                addition: "ADDITION"
-            },
+            monitor_title: "GC1.01_REDOX_MONITOR",
+            footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
             labels: {
-                reaction_display: "Reaction Display",
-                input_terminal: "Input Terminal",
-                animation_speed: "Animation Speed",
-                show_mechanism: "Show Mechanism",
-                chemistry_score: "Chemistry Score"
+                cell_potential: "CELL POTENTIAL",
+                zn_concentration: "Zn²⁺ CONCENTRATION",
+                cu_concentration: "Cu²⁺ CONCENTRATION",
+                temperature: "TEMPERATURE",
+                show_electrons: "Show Electron Flow",
+                show_ions: "Show Ion Migration",
+                reaction_quotient: "REACTION QUOTIENT (Q)",
+                half_reactions: "HALF-REACTIONS",
+                anode: "ANODE",
+                cathode: "CATHODE",
+                nernst_equation: "NERNST EQUATION"
             },
-            prompts: {
-                combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
-                substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
-                addition: "When {alkene} reacts with {reagent}, what is the product?",
-                hint_combustion: "Count carbon atoms in the reactant",
-                hint_substitution: "One H atom is replaced by a halogen atom",
-                hint_addition: "The double bond opens and adds the reagent"
+            mission: {
+                title: "MISSION: ELECTROCHEMISTRY",
+                description: "Build a galvanic cell and master the Nernst equation. Observe electron flow and ion migration in real-time."
             },
-            feedback: {
-                correct: "Reaction mechanism understood!",
-                incorrect: "Review the reaction mechanism."
+            stages: {
+                build: "BUILD CELL",
+                measure: "MEASURE POTENTIAL",
+                analyze: "ANALYZE REACTIONS",
+                build_desc: "Construct Zn-Cu galvanic cell",
+                measure_desc: "Calculate cell potential with Nernst equation",
+                analyze_desc: "Observe redox reactions and electron flow",
+                build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
+                measure_hint: "E = E° - (RT/nF)ln(Q)",
+                analyze_hint: "Salt bridge maintains electrical neutrality"
             }
+        },
+        gc3_01: {
+            back: "Back to Nexus",
+            title: "GC3.01 // EQUILIBRIUM MASTER",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Chemical Equilibrium",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "GC3.01_EQUILIBRIUM_MONITOR",
+            footer_left: "GC3.01_EQUILIBRIUM_MASTER // NODE: BASEL",
+            labels: {
+                reaction: "REVERSIBLE REACTION",
+                particle_count: "PARTICLE COUNT",
+                conditions: "CONDITIONS",
+                temperature: "Temperature",
+                pressure: "Pressure",
+                concentration: "[A]",
+                principle: "LE CHATELIER'S PRINCIPLE",
+                principle_1: "• Add reactant → shifts right (more products)",
+                principle_2: "• Increase pressure → shifts to fewer molecules",
+                principle_3: "• Increase temperature → shifts endothermic direction",
+                add_reactant: "ADD REACTANT A",
+                system_temperature: "SYSTEM TEMPERATURE",
+                system_pressure: "SYSTEM PRESSURE"
+            },
+            mission: {
+                title: "MISSION: CHEMICAL EQUILIBRIUM",
+                description: "Master Le Chatelier's Principle. Observe how systems respond to stress."
+            },
+            stages: {
+                concentration: "CONCENTRATION",
+                temperature: "TEMPERATURE",
+                pressure: "PRESSURE",
+                concentration_desc: "Add reactant A and watch equilibrium shift",
+                temperature_desc: "Increase temperature and observe particle speed",
+                pressure_desc: "Change pressure and see volume effects",
+                concentration_hint: "Higher [A] shifts equilibrium right → more C and D",
+                temperature_hint: "Higher temperature increases particle kinetic energy",
+                pressure_hint: "Higher pressure decreases container volume"
+            }
+        },
+        gc3_02: {
+            back: "Back to Nexus",
+            title: "GC3.02 // CRYSTAL PALACE",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            objective_title: "Active Mission Objective",
+            target_title: "Crystal Structure",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "GC3.02_CRYSTAL_MONITOR",
+            footer_left: "GC3.02_CRYSTAL_PALACE // NODE: BASEL",
+            labels: {
+                lattice_type: "LATTICE TYPE",
+                properties: "PROPERTIES",
+                atoms_per_cell: "Atoms/Cell",
+                coordination: "Coordination",
+                packing: "Packing",
+                tet_voids: "Tet. Voids",
+                voids: "INTERSTITIAL VOIDS",
+                tetrahedral: "Tetrahedral",
+                octahedral: "Octahedral",
+                formulas: "FORMULAS",
+                show_voids: "Show Interstitial Voids",
+                slice_plane: "SLICE PLANE (Y-AXIS)",
+                reset_slice: "Reset"
+            },
+            mission: {
+                title: "MISSION: SOLID STATE PHYSICS",
+                description: "Explore crystal structures and Bravais lattices. Understand atomic packing and coordination."
+            },
+            stages: {
+                sc: "SIMPLE CUBIC",
+                bcc: "BODY-CENTERED",
+                fcc: "FACE-CENTERED",
+                sc_desc: "Study simple cubic lattice (6 coordination)",
+                bcc_desc: "Analyze body-centered cubic (8 coordination)",
+                fcc_desc: "Master face-centered cubic (12 coordination)",
+                sc_hint: "Lowest packing efficiency (52%)",
+                bcc_hint: "Moderate packing (68%), metals like Fe, Cr",
+                fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
+            }
+        },
+        sc1_03_subtitle: "Build isotopes and understand atomic orbitals in 3D.",
+        sc2_01_title: "SC2.01 // REACTION KINETICS",
+        sc2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
+        sc2_02_title: "SC2.02 // pH SENTINEL",
+        sc2_02_subtitle: "Master pH curves and titration with real-time feedback.",
+        sc2_03_title: "SC2.03 // AERO LAB",
+        sc2_03_subtitle: "Explore ideal gas laws with particle simulations. Master PV=nRT.",
+        sc2_04_title: "SC2.04 // SOLUBILITY LAB",
+        sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
+        sc3_01_title: "SC3.01 // MOLECULE CANVAS",
+        sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
+        sc3_02_title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
+        sc3_02_subtitle: "Master hydrocarbons, functional groups, and isomers with 2D/3D molecular visualization.",
+        sc3_03_title: "SC3.03 // ORGANIC REACTIONS",
+        sc3_03_subtitle: "Explore combustion, substitution, and addition reactions with mechanism animations.",
+        gc1_01_title: "GC1.01 // REDOX TITAN",
+        gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
+        gc2_01_title: "GC2.01 // CARBON KINGDOM",
+        gc2_01_subtitle: "Assemble pharmaceutical molecules with 3D models.",
+        gc3_01_title: "GC3.01 // MOLECULAR ARCHITECT",
+        gc3_01_subtitle: "Assemble pharmaceutical molecules with 3D ball-and-stick models.",
+        gc3_02_title: "GC3.02 // CRYSTAL PALACE",
+        gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
+        sb1_01_title: "SB1.01 // CELL FACTORY",
+        sb1_01_subtitle: "Explore cell structure and organelles.",
+        sb1_01_met_title: "SB1.01 // METABOLIC PATHWAYS",
+        sb1_01_met_subtitle: "Cellular metabolism and energy production.",
+        sb1_02_title: "SB1.02 // PHOTOSYNTHESIS LAB",
+        sb1_02_subtitle: "Master photosynthesis equation, limiting factors, and chloroplast structure.",
+        sb1_03_title: "SB1.03 // REPLICATION HUB",
+        sb1_03_subtitle: "Master mitosis and meiosis mechanics. The bridge to genetics.",
+        sb2_01_title: "SB2.01 // MENDEL'S GARDEN",
+        sb2_01_subtitle: "Genetics and Punnett squares.",
+        sb2_02_title: "SB2.02 // HUMAN BODY SYSTEMS",
+        sb2_02_subtitle: "Explore digestive, circulatory, and respiratory systems with interactive anatomy.",
+        sb3_01_title: "SB3.01 // ECOSYSTEM DYNAMICS",
+        sb3_01_subtitle: "Master food chains, energy flow, and biogeochemical cycles in the Rhine ecosystem.",
+        gb3_01_title: "GB3.01 // DNA FORGE",
+        gb3_01_subtitle: "Molecular biology and DNA replication.",
+        gm4_01_title: "GM4.01 // COMPLEX HORIZON",
+        gm4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
+        gm5_01_title: "EM2.01 // MATRIX TRANSFORM",
+        gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
+        gp5_02_title: "GP1.02 // RELATIVITY LAB",
+        gp5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
+        gp1_03_title: "GP5.03 // PARTICLE COLLIDER",
+        gp1_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
+        gp1_04_title: "GP1.04 // QUANTUM TUNNEL",
+        gp1_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
+        coming_soon: "Simulation sequence not yet initialized.",
+        engine_line: "Physical Law Simulation Engine // v2.1",
+        initiate_simulation: "Initiate Simulation",
+        locked_level_required: "LOCKED // LEVEL {level} REQUIRED",
+        engine_status_label: "Engine Status",
+        engine_status_value: "R3F PHYSICS ENGINE ACTIVE",
+        nodes_label: "Nodes",
+        nodes_value: "GENEVA // ZURICH // SHANGHAI",
+        search_label: "Filter Modules",
+        search_placeholder: "Search by code or name",
+        filter_tags_label: "Discipline Tags",
+        filter_clear: "Reset Filters",
+        filter_empty: "No modules match the current filters.",
+        filter_tags: {
+            physics: "Physics",
+            math: "Math",
+            chemistry: "Chemistry",
+            biology: "Biology",
+            socratic: "Socratic"
+        },
+        completed_badge: "COMPLETED",
+        },
+        profile: {
+        title: "Scientist Profile",
+        subtitle: "Operator dossier // performance matrix",
+        radar_title: "Cognitive Spectrum",
+        stats_title: "Mission Stats",
+        timeline_title: "Learning Timeline",
+        timeline_empty: "No mission history recorded.",
+        timeline_accuracy: "Accuracy",
+        stats: {
+            completed_modules: "Modules Completed",
+            avg_accuracy: "Average Accuracy",
+            total_runs: "Total Runs",
+            experiment_index: "Experiment Index"
+        },
+        metrics: {
+            logic: "Logic",
+            intuition: "Intuition",
+            rigor: "Rigor",
+            experiment: "Experiment"
+        }
+        },
+        sm2_02: {
+        back: "Back to Nexus",
+        title: "SM2.02 // PYTHAGORAS & ROOTS",
+        tabs: {
+            pythagoras: "PYTHAGORAS",
+            sqrt: "SQUARE ROOT",
+            explorer: "EXPLORER LAB",
+            quest_mode: "QUEST MODES"
+        },
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        yes: "YES",
+        no: "NO",
+        monitor_title: "SM2.02_VISUAL_MONITOR",
+        footer_left: "SM2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
+        input_radical: "Answer as k√m",
+        input_k: "k",
+        input_m: "m",
+        input_number: "Answer",
+        pythagoras: {
+            solve_hyp: " Fire rescue: Find the ladder length",
+            solve_leg: " Mountain climb: Find the vertical height",
+            check_right: "📐 Engineering check: Is this a right triangle?",
+            distance: "🚁 Drone delivery: Calculate flight distance",
+            elite_space: " CERN lab: Find the space diagonal",
+            explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
+            fluid_title: "Fluid Volume Conservation",
+            fluid_desc: "Tilt to see A² + B² flow into C². This visualizes area conservation: the geometry sum remains constant."
+        },
+        sqrt: {
+            perfect: "Perfect squares",
+            simplify: "Simplify radicals",
+            estimate: "Estimate"
+        },
+        mission: {
+            title: "MISSION",
+            protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+            cern_title: "CERN CALIBRATION ARRAY",
+            cern_desc: "Calibrate a 16:9 observation array. Height=9s, Width=16s. Find the diagonal.",
+            roof_title: "GRINDELWALD SNOW ROOF",
+            roof_desc: "Design the snow roof brace with half-span 6m and height 6m.",
+            ladder_title: "LUCERNE LADDER DOCK",
+            ladder_desc: "A ladder is 5m from the wall and reaches 12m high. Find the ladder length.",
+            grid_title: "BASEL GRID DISTANCE",
+            grid_desc: "Compute the distance between two navigation nodes on the Basel grid.",
+            chain_title: "CERN TRANSFER TUNNEL",
+            chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
+        },
+        mental: {
+            title: "MENTAL",
+            triples: "Pythagorean Triples",
+            chain: "Segment Chain"
+        }
+        },
+        sm3_01: {
+        back: "Back to Nexus",
+        title: "SM3.01 // QUADRATIC EQUATIONS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target Equation",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM3.01_MONITOR",
+        footer_left: "SM3.01_QUADRATICS // NODE: ZURICH",
+        stages: {
+            terms: "TERMS",
+            factorize: "FACTORIZE",
+            fractions: "FRACTIONS",
+            equations: "EQUATIONS",
+            terms_prompt_latex: "\\text{Simplify the expression (combine like terms).}",
+            factor_prompt_latex: "\\text{Factorize the expression (show a product form).}",
+            fractions_prompt_latex: "\\text{Simplify the fraction.}",
+            equations_prompt_latex: "\\text{Solve the equation step by step.}"
+        },
+        modes: {
+            factor: "FACTOR",
+            formula: "FORMULA",
+            complete_square: "COMPLETE SQUARE",
+            factor_prompt: "Factorize first: find A,B so that (x+A)(x+B)=0.",
+            formula_prompt: "Solve with the quadratic formula.",
+            complete_square_prompt: "Convert to vertex form and identify (h,k)."
+        },
+        labels: {
+            input: "INPUT",
+            numerator: "NUMERATOR",
+            denominator: "DENOMINATOR",
+            hints: "HINTS",
+            roots: "Solutions x₁, x₂",
+            vertex: "Vertex (h,k)",
+            factor: "Factoring",
+            factor_slots: "Build factors (A,B)",
+            formula: "Quadratic Formula",
+            complete_square: "Completing the Square",
+            elite_hint_latex: "Hint: \\; x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}",
+            fraction_hint: "Tip: Enter result as an integer or fraction (e.g. 4/3)."
+        },
+        hints: {
+            identities: {
+                trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
+                diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+            },
+            rules: {
+                factor_common_latex: "\\text{Factor out the common factor.}",
+                cancel_common_latex: "\\text{Factor numerator/denominator, then cancel the common factor.}",
+                simplify_both_sides_latex: "\\text{Simplify both sides step by step.}",
+                square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
+                zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
+            }
+        }
+        },
+        sm3_02: {
+        back: "Back to Nexus",
+        title: "SM3.02 // TRIG CIRCLE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Trigonometric Values",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM3.02_TRIG_MONITOR",
+        footer_left: "SM3.02_TRIG_CIRCLE // NODE: BASEL",
+        labels: {
+            angle: "ANGLE (θ)",
+            values: "TRIGONOMETRIC VALUES",
+            display: "DISPLAY OPTIONS",
+            show_waves: "Show Wave Functions",
+            formulas: "FORMULAS",
+            special_angles: "SPECIAL ANGLES",
+            exact_value: "EXACT VALUE",
+            decimal_value: "DECIMAL",
+            quadrant: "QUADRANT"
+        },
+        mission: {
+            title: "MISSION: UNIT CIRCLE",
+            description: "Master the unit circle and trigonometric functions. Understand sin, cos, and tan relationships."
+        },
+        stages: {
+            unit_circle: "UNIT CIRCLE",
+            projections: "PROJECTIONS",
+            waves: "WAVE FUNCTIONS",
+            unit_circle_desc: "Explore the unit circle and angle rotation",
+            projections_desc: "Understand sine and cosine as projections",
+            waves_desc: "Visualize sine and cosine as wave functions",
+            unit_circle_hint: "Point on circle: (cos θ, sin θ)",
+            projections_hint: "sin = y-projection, cos = x-projection",
+            waves_hint: "Sine and cosine create periodic waves",
+            unit_circle_prompt_latex: "\\text{Determine the quadrant or sign.}",
+            projections_prompt_latex: "\\text{Calculate the exact trigonometric value.}",
+            waves_prompt_latex: "\\text{Find the amplitude or period.}"
+        }
+        },
+        sm3_03: {
+        back: "Back to Nexus",
+        title: "SM3.03 // GROWTH & LOGS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Exponential Growth",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM3.03_GROWTH_MONITOR",
+        footer_left: "SM3.03_EXPONENTIAL // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            population: "Population (N)",
+            time: "Time (t)",
+            doubling_time: "Doubling Time (d)",
+            initial: "Initial Count (N₀)",
+            formula_ref: "FORMULA REFERENCE",
+            parameters: "CURRENT PARAMETERS",
+            growth_rate: "Growth Rate (k)",
+            half_life: "Half-life",
+            principal: "Principal (P)",
+            rate: "Interest Rate (r)"
+        },
+        hints: {
+            exp_rule1: "Each doubling multiplies the population by 2",
+            exp_rule2: "After n doublings: N = N₀ × 2ⁿ",
+            log_rule1: "log₂(2ⁿ) = n",
+            log_rule2: "Change of base: logₐ(x) = ln(x)/ln(a)",
+            app_rule1: "Half-life: N(t) = N₀ × (½)^(t/h)",
+            app_rule2: "Compound interest: A = P(1+r)^t"
+        },
+        input_tip: "Tip: Enter result as integer or rounded to 1 decimal place.",
+        mission: {
+            title: "BACTERIAL GROWTH LAB",
+            description: "Novartis biolab requires exponential growth modeling. Calculate bacterial populations and logarithmic scales."
+        },
+        stages: {
+            exponential: "EXPONENTIAL",
+            logarithm: "LOGARITHM",
+            applications: "APPLICATIONS",
+            exponential_prompt_latex: "\\text{Calculate population using }N(t)=N_0\\cdot 2^{t/d}.",
+            logarithm_prompt_latex: "\\text{Solve for time using logarithms.}",
+            applications_prompt_latex: "\\text{Apply exponential models to real scenarios.}",
+            exp_basic_prompt: "\\text{Calculate the population at time } t.",
+            exp_advanced_prompt: "\\text{Find the number of doublings.}",
+            exp_elite_prompt: "\\text{Find the continuous growth rate } k.",
+            log_basic_prompt: "\\text{Solve for time using } t = d \\cdot \\log_2(N/N_0).",
+            log_core_prompt: "\\text{Evaluate the logarithm.}",
+            log_advanced_prompt: "\\text{Use the change of base formula.}",
+            log_elite_prompt: "\\text{Solve the logarithmic equation.}",
+            app_half_prompt: "\\text{Calculate remaining quantity after half-life decay.}",
+            app_compound_prompt: "\\text{Calculate compound interest: } A=P(1+r)^t.",
+            app_rate_prompt: "\\text{Find the growth rate from data.}",
+            app_ph_prompt: "\\text{Calculate pH from hydrogen ion concentration.}"
+        },
+        formulas: {
+            exponential: "N(t) = N_0 \\cdot 2^{t/d}",
+            logarithm: "t = d \\cdot \\log_2(N/N_0)",
+            applications: "N(t) = N_0 \\cdot e^{kt}"
+        },
+        scenarios: {
+            exp_bac: "🦠 SCENARIO: Novartis Lab Bacterial Culture — A research team at Novartis in Basel is studying bacterial growth. They place 100 bacteria in a petri dish at 8:00 AM. Under optimal conditions, the bacteria population doubles every 20 minutes. The lab needs to predict when the population will reach 10,000 to harvest samples at the right moment. Your task: calculate the population at any given time using exponential growth.",
+            exp_social: "📱 SCENARIO: TikTok Challenge Goes Viral — Your friend posts a dance challenge video at noon. Initially, 50 people watch it. Every hour, each viewer shares it with 2 friends who haven't seen it yet (doubling effect). By evening, the view count explodes exponentially. The school principal wants to know: at what time will 10,000 students have seen it? This models real viral spread on social media.",
+            exp_virus: "🦠 SCENARIO: School Flu Outbreak Modeling — It's Monday morning. 3 students in your school of 1,200 have the flu. Health authorities know that without intervention, each infected person spreads the flu to 2 others every 2 days (doubling time = 2 days). The school nurse needs to predict: how many will be sick by Friday? When will 100 students be infected? This helps decide whether to close the school.",
+            exp_moore: "💻 SCENARIO: Smartphone Performance Prediction — In 2000, your dad's Nokia phone had 4 MB of RAM. According to Moore's Law, computing power doubles roughly every 2 years. Your current iPhone has 8 GB (8,000 MB) of RAM. Question: how many 'doublings' occurred between 2000 and 2024? Can you verify Moore's Law held true? This exponential growth drives all modern technology.",
+            log_invest: "💰 SCENARIO: Your Pocket Money Investment Plan — You saved 1,000 CHF from birthday gifts. Your parents offer a deal: they'll act as your 'bank' and pay 8% annual interest, compounded yearly (meaning each year, you earn interest on your previous interest too). You want to buy a gaming PC that costs 2,000 CHF. Question: how many years until your money doubles? Use logarithms to solve: t = log₂(2000/1000) / log₂(1.08). This is how real investment planning works!",
+            log_sound: "🔊 SCENARIO: School Concert Sound Check — The music teacher is setting up for the school concert. A whisper measures 30 dB, normal conversation is 60 dB, and a rock concert is 120 dB. But here's the trick: the decibel scale is logarithmic! 60 dB isn't 'twice as loud' as 30 dB — it's actually 1,000 times more intense (because 10^(60/10) / 10^(30/10) = 1,000). Your task: if the current sound level is 80 dB and the safe limit is 85 dB, how many times more intense can the sound get before it's unsafe?",
+            log_ph: "🧪 SCENARIO: Chemistry Lab pH Testing — In chemistry class, you're testing the pH of different liquids. Lemon juice has pH 2, water has pH 7, and soap has pH 12. Your teacher explains: pH is a logarithmic scale measuring hydrogen ion concentration [H⁺]. pH = -log₁₀[H⁺]. This means pH 2 is 100,000 times more acidic than pH 7 (not just '5 units more')! Question: if a solution has [H⁺] = 0.001 mol/L, what's its pH? Is it acidic or basic?",
+            log_security: "🔐 SCENARIO: Password Cracking Time — Your IT teacher explains password security. A 4-digit PIN (0000-9999) has 10,000 combinations. A hacker's computer can try 1,000 passwords per second, so it takes 10 seconds to crack. But if you use an 8-character password with letters and numbers (62 options per character), there are 62^8 = 218 trillion combinations! At 1 billion tries per second, it takes 218,000 seconds (2.5 days). Question: how many characters needed for 1 year of protection? Use logarithms to solve: n = log₆₂(seconds × tries_per_second).",
+            app_med: "💊 SCENARIO: Medicine Dosage Timing — Your doctor prescribes a painkiller. You take 400 mg at 8:00 AM. The drug has a half-life of 6 hours, meaning every 6 hours, half of it is eliminated from your body. At 2:00 PM (6 hours later), 200 mg remains. At 8:00 PM, 100 mg remains. The doctor says the drug stops working below 50 mg. Question: at what time can you safely take the next dose? Use the formula: N(t) = N₀ × (1/2)^(t/6).",
+            app_bank: "🏦 SCENARIO: Comparing Savings Accounts — You have 5,000 CHF to save for university. Bank A offers 3% simple interest (you earn 150 CHF per year, always). Bank B offers 3% compound interest (each year, you earn interest on your interest too). After 10 years: Bank A gives you 5,000 + 10×150 = 6,500 CHF. Bank B gives you 5,000 × (1.03)^10 = 6,720 CHF. Question: after how many years does Bank B give you 1,000 CHF more than Bank A? Use exponential equations to solve!",
+            app_pop: "🏙️ SCENARIO: Zurich Population Growth — In 2000, Zurich had 340,000 residents. The city grows at 1.2% per year (exponential growth). By 2020, the population reached 420,000. Urban planners need to predict: when will Zurich reach 500,000? This determines when to build new schools, trams, and housing. Use the formula: P(t) = P₀ × (1.012)^t. Solve for t when P(t) = 500,000.",
+            app_carbon: "🦴 SCENARIO: Archaeological Dating — Archaeologists find a wooden tool in a Swiss cave. All living things contain Carbon-14 (¹⁴C), which decays with a half-life of 5,730 years. When the tree died, it stopped absorbing new ¹⁴C. By measuring how much ¹⁴C remains, scientists can calculate the age. If the tool has 25% of the original ¹⁴C, how old is it? Use: 0.25 = (1/2)^(t/5730). Solve for t using logarithms. This is how we know the age of ancient artifacts!"
+        }
+        },
+        sm2_03: {
+        back: "Back to Nexus",
+        title: "SM2.03 // LINE NAVIGATOR",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target Intercept",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.03_LASER_MONITOR",
+        footer_left: "SM2.03_LINE_NAVIGATOR // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            emitter: "Emitter",
+            target: "Target",
+            slope: "Cost per km (m)",
+            intercept: "Base fare (c)"
+        },
+        prompts: {
+            level1: "Calculate the ticket price for the given destination",
+            level2: "Find the distance where two fare plans cost the same",
+            level3: "Find the threshold distance where Plan A becomes cheaper"
+        },
+        hints: {
+            level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
+            level2: "Two fare plans have different m and c. Find the intersection point — that's where they cost the same!",
+            level3: "Design the slope and intercept so your plan is cheapest beyond a certain distance.",
+            drag: "Adjust the slider to change the slope (cost/km) and intercept (base fare)."
+        },
+        ui: {
+            current_function: "Fare Formula",
+            reflections: "Fare Plans",
+            target_position: "Destination (km)",
+            hit_badge: "FARE MATCHED",
+            chamber: "STATION",
+            laser_sim: "FARE_CALC",
+            level: "LEVEL",
+            hits: "Matches"
+        },
+        mission: {
+            title: "SWISS RAILWAY FARE CALCULATOR",
+            description: "Model railway ticket prices as linear functions. Slope = cost per km, intercept = base fare. Find the break-even point between fare plans!"
+        },
+        stages: {
+            level1: "LEVEL 1",
+            level2: "LEVEL 2",
+            level3: "LEVEL 3"
+        }
+        },
+        sm2_04: {
+        back: "Back to Nexus",
+        title: "SM2.04 // SIMILARITY & SCALING",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.04_MONITOR",
+        footer_left: "SM2.04_SIMILARITY // NODE: BASEL",
+        stages: {
+            scale_factor: "SCALE",
+            similar_triangles: "SIMILAR",
+            application: "APPLY",
+            stages_prompt_latex: "Use proportionality to find the missing value."
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS"
+        },
+        hints: {
+            rules: {
+                proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
+                scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
+                cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
+            }
+        },
+        mission: {
+            title: "MISSION: SHADOW MEASURE",
+            protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
+            tower_title: "ZURICH CLOCK TOWER",
+            description: "In Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
+            ring_title: "LUCERNE OBSERVATION RING",
+            ring_desc: "In Lucerne, a concentric sensor ring is cut by a chord touching the inner circle. Find the ring width.",
+            labels: {
+                tower: "Clock Tower",
+                tower_shadow: "Tower Shadow",
+                stick: "Stick (1.5m)",
+                stick_shadow: "Stick Shadow",
+                calculate_height: "Calculate Tower Height"
+            }
+        }
+        },
+        sm2_01: {
+        back: "← Back to Nexus",
+        back_short: "Back to Nexus",
+        title: "SM2.01 // BINOMIAL FACTORY",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        mode_1: "1st Formula: (a+b)²",
+        mode_2: "2nd Formula: (a-b)²",
+        param_a: "Parameter a",
+        param_b: "Parameter b",
+        lock: "LOCK PARAMETERS",
+        unlock: "UNLOCK PARAMETERS",
+        instruction_setup: "Adjust sliders to define lengths a and b.",
+        instruction_solve: "Drag and snap areas to fill the target $(a+b)²$.",
+        solve_success: "IDENTITY PROVED",
+        solve_fail: "AREA MISMATCH",
+        terms: {
+            a2: "a²",
+            b2: "b²",
+            ab: "ab",
+            target_plus: "(a+b)²",
+            target_minus: "(a-b)²",
+        },
+        scenarios: {
+            architect_title: "Scenario A: Garden Extension",
+            architect_desc: "Your lakeside garden (a×a) is being extended by b meters on each side. Calculate the new total area.",
+            architect_context: "You own a square garden plot by Lake Zurich with side length 'a' meters. The city allows you to extend it by 'b' meters on two sides. To buy the right amount of soil and seeds, you need to know the new total area. Notice: the total area is NOT simply a² + b² — the two rectangular strips and the corner square matter!",
+            scrapper_title: "Scenario B: Tile Factory",
+            scrapper_desc: "A factory produced tiles in three shapes. Reassemble them into a perfect square.",
+            scrapper_context: "A Swiss tile factory produces three types of tiles: one large square (a²), two rectangular strips (a×b each), and one small square (b²). Your job is to verify that these four pieces can be perfectly assembled into a single large square of side (a+b). This proves the binomial identity geometrically.",
+            speedster_title: "Scenario C: Mental Math Sprint",
+            speedster_desc: "Compute large squares instantly by splitting them into (round + offset)².",
+            speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)² = a² + 2ab + b² = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
+            voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a² - b².",
+            architect_mission: "Task: Calculate the expanded garden area using (a+b)² = a² + 2ab + b².",
+            scrapper_mission: "Task: Identify a and b from the expanded form and reconstruct the perfect square.",
+            speedster_mission: "Task: Break the number into (round ± offset) and use binomial expansion to compute instantly.",
+            voyager_mission: "Task: Use the difference of squares formula to find the area difference.",
+            elite_mission: "Task: Factor the complex polynomial into binomial product form."
+        },
+        speedster_hint: "Use binomial expansion (a±b)² to simplify calculation",
+        elite_tips_title: "TIPS: Binomial Isolation Strategy",
+        elite_tips_target: "Target format:",
+        scrapper_step01: "STEP 01: Isolate root (a)",
+        active_objective: "Active Mission Objective",
+        target_expression: "Target Identity Expression",
+        params_config: "00 // Parameters Configuration",
+        units: "UNITS",
+        tabs: {
+            explore: "EXPLORE",
+            architect: "GARDEN",
+            scrapper: "TILE LAB",
+            speedster: "SPRINT",
+            voyager: "VOYAGER",
+            elite: "ELITE"
+        },
+        ui: {
+            part_1_a2: "Part 1 (a²)",
+            part_2_2ab: "Part 2 (2ab)",
+            part_3_b2: "Part 3 (b²)",
+            identify_root_a: "Identify Root a",
+            identify_root_b: "Identify Root b",
+            elite_step_1: "Step 1: Isolate Binomial Square",
+            elite_step_2: "Step 2: Balance Equation",
+            execute_next_sequence: "Next Question",
+            continue_operation: "Continue Practice",
+            logic_lattice_title: "Logic Lattice // Decomposition",
+            logic_architect_step_1: "STEP_01: Distribute outer terms",
+            logic_architect_step_2: "STEP_02: Expand partial segments",
+            logic_scrapper_step_1: "STEP_01: Isolate root (a)",
+            logic_scrapper_step_2: "STEP_02: Verify linear (2ab)",
+            logic_voyager_axiom_title: "AXIOM: Conjugate Dualism",
+            logic_voyager_axiom_body: "Product of (A+B)(A-B) eliminates linear cross-terms (±AB).",
+            logic_voyager_derivation_title: "DERIVATION:",
+            link_established: "LINK_ESTABLISHED",
+            axiomatic_constraints_title: "Axiomatic Constraints",
+            constraints_architect: "The corner 'b²' is the offset required to complete the major quadratic square. Its value is critical for blueprint precision.",
+            constraints_scrapper: "Factoring decomposes global entropy back into ordered symbolic structures. Root isolation is the primary objective.",
+            constraints_speedster: "Mental approximation relies on binary base decomposition. Shift the problem into a (Base+N)² framework.",
+            constraints_elite: "Advanced Refactoring handles multi-dimensional coefficients where C is a composite scaling factor.",
+            constraints_voyager: "Identity symmetry requires strict sign adherence. The difference represents the net loss of area in 1D projection.",
+            visual_reference_position: "Visual_Reference_Position [FIX_REF.01]",
+            status_operational: "STATUS: OPERATIONAL",
+            fps: "FPS",
+            latency: "LATENCY",
+            footer_left: "SM2.01_ALGEBRA_SYNC // NODE: ZURICH",
+            verified: "Verified",
+            simulating: "Simulating",
+        }
+        },
+        gm1_01: {
+        back: "Back to Nexus",
+        title: "GM1.01 // CALCULUS INTRO",
+        tabs: {
+            explore: "EXPLORE",
+            slope: "SLOPE",
+            tangent: "TANGENT",
+            rate: "RATE",
+            elite: "ELITE"
+        },
+        explore_title: "00 // Interactive Exploration",
+        explore_instruction: "Drag the point P along the parabola y = x² and observe how the tangent line changes. The slope m represents the instantaneous rate of change.",
+        explore_hint: "Drag point P in the visual monitor →",
+        current_point: "Current Point",
+        slope_label: "Tangent Slope",
+        mission: {
+            title: "DERIVATIVE ROAD SIMULATOR",
+            description: "Master calculus by driving a car on mathematical curves. The derivative tells you the road's slope at each point. Match the car's angle to the road perfectly!"
+        },
+        spotlight: {
+            title: "Scientist Spotlight",
+            euler_name: "Leonhard Euler",
+            euler_bio: "Basel-born master of analysis. Euler gave calculus its modern symbols and showed how motion, curves, and series can be governed by elegant laws.",
+            bernoulli_name: "Johann Bernoulli",
+            bernoulli_bio: "The Bernoulli dynasty forged calculus through challenge and rivalry. Johann advanced differential methods that map acceleration to form."
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        hints_title: "Formula Reference",
+        monitor_title: "GM1.01_VISUAL_MONITOR",
+        status: "STATUS: OPERATIONAL",
+        footer_left: "GM1.01_CALCULUS // NODE: BASEL",
+        footer_right: "DERIVATIVE_SIMULATOR",
+        stages: {
+            intro: "INTRO",
+            differentiation: "DERIVATIVES",
+            application: "APPLICATIONS",
+            power_rule: "POWER RULE",
+            factor_rule: "FACTOR RULE",
+            sum_rule: "SUM RULE",
+            product_rule: "PRODUCT RULE",
+            quotient_rule: "QUOTIENT RULE",
+            chain_rule: "CHAIN RULE",
+            intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
+            differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
+            application_prompt_latex: "\\text{Apply calculus to solve problems.}",
+            power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
+            factor_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using factor rule.}",
+            sum_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using sum rule.}",
+            product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
+            quotient_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using quotient rule.}",
+            chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
+        },
+        labels: {
+            secant_slope: "Secant Slope m",
+            tangent_slope: "Tangent Slope m",
+            velocity: "Velocity v",
+            x_coordinate: "x-coordinate",
+            hints: "HINTS"
+        },
+        formulas: {
+            power_rule: "f'(x) = n\\cdot x^{n-1}",
+            factor_rule: "(a\\cdot f)' = a\\cdot f'",
+            sum_rule: "(f+g)' = f' + g'",
+            product_rule: "(uv)' = u'v + uv'",
+            quotient_rule: "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}",
+            chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
+        },
+        scenarios: {
+            power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = x². The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
+            factor_rule: "🏗️ SCENARIO: Construction Scaling — An architect designs a building with height h(x) = x². When the city requires all dimensions to be scaled by factor 3, the new height becomes H(x) = 3x². The derivative tells you how the scaled building's slope changes. Use the factor rule: if f(x) = a·g(x), then f'(x) = a·g'(x). The constant factor 3 stays outside the derivative, making calculations easier!",
+            sum_rule: "🌊 SCENARIO: Ocean Wave Superposition — Two ocean waves combine: wave A has height h₁(x) = x² and wave B has height h₂(x) = 3x. The total wave height is H(x) = x² + 3x. To predict how fast the combined wave rises, use the sum rule: (f + g)' = f' + g'. Calculate each wave's slope separately, then add them. This is how oceanographers predict tsunami wave behavior!",
+            product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
+            quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v². This tells investors whether the company is becoming more or less efficient over time.",
+            chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
+        },
+        canvas: {
+            title: "DERIVATIVE ROAD",
+            subtitle_power: "f(x) = x²",
+            subtitle_factor: "f(x) = ax²",
+            subtitle_sum: "f(x) = x² + x",
+            subtitle_product: "f(x) = x·sin(x)",
+            subtitle_quotient: "f(x) = x/sin(x)",
+            subtitle_chain: "f(x) = sin(2x)",
+            x_label: "x",
+            y_label: "f(x)",
+            slope_label: "ROAD SLOPE",
+            your_slope: "Your slope",
+            correct_slope: "Correct slope",
+            status_chamber: "CHAMBER",
+            status_sim: "DERIVATIVE_SIM: ACTIVE",
+            status_mode: "MODE"
+        },
+        integral_preview_title: "COMING SOON: INTEGRATION",
+        integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
+        integral_preview_hint: "Unlock after mastering derivatives →"
+        },
+        gm1_01_advanced: {
+        back: "Back to Nexus",
+        title: "GM1.01-ADV // ADVANCED CALCULUS",
+        monitor_title: "GM1.01_ADVANCED_MONITOR",
+        footer_left: "GM1.01_ADVANCED // NODE: BASEL",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        mission: {
+            title: "ADVANCED DERIVATIVE CHALLENGES",
+            description: "Master complex derivatives by combining multiple rules. Apply calculus to real-world problems."
+        },
+        challenges: {
+            composite: "COMPOSITE",
+            modeling: "MODELING",
+            optimization: "OPTIMIZATION",
+            analysis: "ANALYSIS"
+        },
+        scenarios: {
+            composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t² + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
+            composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t² + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
+            composite_3: "🌊 SCENARIO: Wave Interference — Two ocean waves combine: h(x) = (x³ - 2x)·cos(x). At x=1, find the rate of height change h'(1) to predict wave behavior. Use product rule with trigonometric functions!",
+            modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t³ - 3t² + 5t meters. Find the velocity v(t) = s'(t) at t=3 seconds to check if it's within speed limits.",
+            modeling_2: "🎈 SCENARIO: Balloon Launch — A weather balloon rises with height h(t) = -5t² + 20t + 2 meters. At t=2 seconds, calculate the velocity v(t) = h'(t) to ensure safe ascent rate.",
+            optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from rectangular cardboard. The area is A(x) = x(10-x). Find the value of x that maximizes the area for optimal material usage.",
+            optimization_2: "💰 SCENARIO: Profit Maximization — A Basel bakery's daily profit is P(x) = -2x² + 12x - 10 (in hundreds of CHF), where x is production hours. Find x that maximizes profit.",
+            analysis_1: "📊 SCENARIO: Market Analysis — A stock price follows f(x) = x³ - 3x² + 2. Find all critical points (where f'(x) = 0) to identify potential buy/sell moments.",
+            analysis_2: "🚀 SCENARIO: Rocket Trajectory — A rocket's height is f(x) = 2x³ - 6x + 1. At x=1, find the second derivative f''(1) to determine if the rocket is accelerating or decelerating."
+        },
+        questions: {
+            find_derivative: "Calculate the derivative at the given point",
+            find_velocity: "Calculate velocity v(t) = s'(t)",
+            find_acceleration: "Calculate acceleration a(t) = v'(t)",
+            find_maximum: "Find the value that maximizes the function",
+            find_critical_point: "Find the critical point (where derivative = 0)",
+            find_critical_points: "Find all critical points (where f'(x) = 0)"
+        },
+        hints: {
+            use_product_rule: "Use product rule: (uv)' = u'v + uv'. First find u' and v' separately.",
+            use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v². Remember to square the denominator!",
+            use_chain_rule: "Use chain rule: (f(g(x)))' = f'(g(x))·g'(x). Work from outside to inside.",
+            take_first_derivative: "Take the first derivative: if s(t) is position, then v(t) = s'(t) is velocity.",
+            take_second_derivative: "First find f'(x), then differentiate again to get f''(x).",
+            set_derivative_zero: "Set f'(x) = 0 and solve for x. This gives critical points where function may have max/min."
+        },
+        function_label: "FUNCTION",
+        question_label: "CHALLENGE",
+        hint_label: "STRATEGY",
+        visualization_title: "FUNCTION GRAPH",
+        visualization: {
+            title: "FUNCTION VISUALIZATION",
+            x_label: "x",
+            y_label: "f(x)",
+            function_label: "FUNCTION",
+            point_label: "POINT"
+        },
+        progress: "Progress"
+        },
+        gm2_01: {
+        back: "Back to Nexus",
+        title: "GM2.01 // VECTOR PILOT 3D",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Vector HUD",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GM2.01_VECTOR_HUD",
+        footer_left: "GM2.01_VECTOR_PILOT // NODE: BASEL",
+        stages: {
+            navigation: "NAVIGATION",
+            dot: "DOT PRODUCT",
+            mission: "MISSION",
+            navigation_prompt_latex: "\\text{Compute }\\vec v\\text{ from A to B and its magnitude.}",
+            dot_prompt_latex: "\\text{Compute }\\vec v\\text{ and }\\vec v\\cdot\\vec w.",
+            mission_prompt_latex: "\\text{Mission: compute }\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|."
+        },
+        labels: {
+            input: "INPUT"
+        },
+        mission: {
+            title: "MISSION: RHINE AIRSPACE",
+            description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
+        },
+        scenarios: {
+            navigation: "Basel Drone Delivery Network: You are programming the navigation system for Basel's autonomous medical supply drones. The drones must calculate precise 3D vectors between hospital rooftops and delivery points across the city. Given coordinates A (departure helipad at Basel University Hospital) and B (arrival point at Claraspital), compute the displacement vector v and its magnitude. The magnitude represents the direct flight distance in meters. Accurate vector calculation is critical for battery management and flight time estimation.",
+            dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
+            mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
+        }
+        },
+        gm3_01: {
+        back: "Back to Nexus",
+        title: "GM3.01 // PROBABILITY VAULT",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Probability Matrix",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GM3.01_PROBABILITY_MONITOR",
+        footer_left: "GM3.01_PROBABILITY_VAULT // NODE: BASEL",
+        stages: {
+            basic_prob: "BASIC PROBABILITY",
+            binomial: "BINOMIAL",
+            conditional: "CONDITIONAL",
+            mission: "MISSION",
+            basic_prob_prompt_latex: "\\text{Calculate the probability }P(E).",
+            binomial_prompt_latex: "\\text{Calculate }P(X=k)\\text{ for binomial distribution.}",
+            conditional_prompt_latex: "\\text{Calculate the conditional probability }P(A|B).",
+            mission_prompt_latex: "\\text{Mission: Calculate the probability }P."
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS"
+        },
+        mission: {
+            title: "MISSION: BASEL PROBABILITY LAB",
+            description: "Apply probability theory to real-world scenarios in Basel. Calculate probabilities for quality control, insurance, and lottery systems."
+        },
+        scenarios: {
+            basic_prob: "Basel Quality Control at Novartis: You are working in the quality control department at Novartis pharmaceutical manufacturing in Basel. Each batch of medication undergoes random sampling inspection. Given that a sample contains a certain number of favorable outcomes (passing quality tests) out of total samples, calculate the probability P(E) that a randomly selected item passes inspection. This probability determines whether the entire batch is approved for distribution to Swiss hospitals.",
+            binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability P(X=k) of exactly k successes using the binomial distribution formula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
+            conditional: "Basel Insurance Risk Assessment: Basler Versicherungen (Basel Insurance) needs to calculate conditional probabilities for risk assessment. Given P(A) = probability of an event occurring, P(B) = probability of a condition being met, and P(A∩B) = probability of both occurring, calculate P(A|B) = P(A∩B)/P(B). This conditional probability helps determine insurance premiums for Basel residents based on specific risk factors.",
+            mission: "Basel Integrated Probability Mission: You are consulting for multiple Basel companies - Novartis (pharmaceuticals), Swiss Lotto (lottery), and Basler Versicherungen (insurance). Each company presents a different probability problem: basic probability for quality control, binomial distribution for lottery analysis, or conditional probability for insurance risk. Apply the appropriate probability formula to solve each company's specific challenge and provide accurate probability calculations."
+        },
+        problems: {
+            // BASIC PROBABILITY - BASIC
+            // BASIC_PROB - BASIC: Direct sample space
+            single_die_one: "You roll a standard six-sided die once. What is the probability of rolling exactly a 1?\n\nGiven: 1 favorable outcome, 6 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation of sample space",
+            single_die_odd: "You roll a standard six-sided die once. What is the probability of rolling an odd number (1, 3, or 5)?\n\nGiven: 3 favorable outcomes (1, 3, 5), 6 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
+            coin_heads: "You flip a fair coin once. What is the probability of getting heads?\n\nGiven: 1 favorable outcome (heads), 2 total outcomes\nFind: P(E) = favorable / total\nConcept: Simplest sample space",
+            spinner_8_sections: "You spin a wheel divided into 8 equal sections numbered 1-8. What is the probability of landing on section 3?\n\nGiven: 1 favorable outcome, 8 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
+
+            // BASIC_PROB - CORE: Understanding combinations
+            two_dice_sum_7: "You roll two standard dice. What is the probability that their sum equals 7?\n\nGiven: 6 favorable outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Understanding that (1,6) and (6,1) are different outcomes",
+            two_dice_sum_10: "You roll two standard dice. What is the probability that their sum equals 10?\n\nGiven: 3 favorable outcomes (4+6, 5+5, 6+4), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting combinations correctly",
+            two_dice_sum_gt_7: "You roll two standard dice. What is the probability that their sum is greater than 7?\n\nGiven: 15 favorable outcomes (sum of 8,9,10,11,12), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting multiple favorable outcomes",
+            deck_one_suit: "You draw one card from a standard 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 hearts, 52 total cards\nFind: P(E) = favorable / total\nConcept: Understanding suit structure",
+            deck_honors: "You draw one card from a standard 52-card deck. What is the probability of drawing an honor card (A, K, Q, or J)?\n\nGiven: 16 honor cards (4 of each rank), 52 total cards\nFind: P(E) = favorable / total\nConcept: Counting across all suits",
+
+            // BASIC_PROB - ADVANCED: Conditional probability (implicit)
+            die_even_given_gt3: "You roll a die and observe that the result is greater than 3. What is the probability that it's an even number?\n\nGiven: Among outcomes {4,5,6}, two are even {4,6}\nFind: P(even | >3) = 2/3\nConcept: The condition '>3' changes the sample space from 6 to 3 outcomes",
+            die_multiple_of_3: "You roll a standard die. What is the probability of rolling a multiple of 3?\n\nGiven: 2 favorable outcomes (3, 6), 6 total outcomes\nFind: P(E) = 2/6\nConcept: Identifying favorable outcomes with a condition",
+            card_face_given_spade: "You draw a card and it's a spade. What is the probability it's a face card (J, Q, K)?\n\nGiven: Among 13 spades, 3 are face cards\nFind: P(face | spade) = 3/13\nConcept: Conditional probability within a suit",
+            card_not_face_not_ace: "You draw a card from a standard deck. What is the probability it's neither a face card nor an ace?\n\nGiven: 52 total - 12 face cards - 4 aces = 36 favorable, 52 total\nFind: P(E) = 36/52\nConcept: Using complement to count",
+            card_king_given_face: "You draw a card and it's a face card. What is the probability it's a King?\n\nGiven: Among 12 face cards (J,Q,K of 4 suits), 4 are Kings\nFind: P(King | face) = 4/12\nConcept: Conditional probability within face cards",
+            // BASIC_PROB - ELITE: Compound events
+            at_least_one_six_two_dice: "You roll two dice. What is the probability that at least one shows a 6?\n\nGiven: Use complement - P(at least one 6) = 1 - P(no 6)\nP(no 6) = (5/6) × (5/6) = 25/36\nFind: P(E) = 1 - 25/36 = 11/36\nConcept: Using complement for 'at least one'",
+            sum_not_2_or_12: "You roll two dice. What is the probability that the sum is neither 2 nor 12?\n\nGiven: P(sum=2) = 1/36, P(sum=12) = 1/36\nFavorable = 36 - 1 - 1 = 34\nFind: P(E) = 34/36\nConcept: Using complement for 'neither...nor'",
+            at_least_one_even: "You roll two dice. What is the probability that at least one shows an even number?\n\nGiven: P(both odd) = (3/6) × (3/6) = 9/36\nFind: P(at least one even) = 1 - 9/36 = 27/36\nConcept: Complement strategy",
+            card_ace_or_king: "You draw one card. What is the probability it's an Ace OR a King?\n\nGiven: 4 Aces + 4 Kings = 8 favorable, 52 total\nFind: P(A or K) = 8/52\nConcept: Addition principle for mutually exclusive events",
+            card_red_or_face: "You draw one card. What is the probability it's red OR a face card?\n\nGiven: 26 red + 12 face - 6 (red face) = 32 favorable\nFind: P(red or face) = 32/52\nConcept: Addition principle with overlap (inclusion-exclusion)",
+
+            // BASIC PROBABILITY - ELITE
+            quality_control_427: "Novartis Basel large-scale quality control: In a production run of 500 medication samples, 427 passed all comprehensive safety and efficacy tests. Calculate the probability that a randomly selected sample from this production run passes all tests.\n\nGiven: 427 samples passed, 500 total samples\nFind: P(E) = favorable / total\nSignificance: This probability determines whether 50,000 units can be released to European markets.",
+            quality_control_683: "Novartis Basel large-scale quality control: In a production run of 800 medication samples, 683 passed all tests. Calculate P(E).\n\nGiven: 683 samples passed, 800 total samples\nFind: P(E) = favorable / total",
+            quality_control_891: "Novartis Basel large-scale quality control: In a production run of 1000 medication samples, 891 passed all tests. Calculate P(E).\n\nGiven: 891 samples passed, 1000 total samples\nFind: P(E) = favorable / total",
+            quality_control_1456: "Novartis Basel large-scale quality control: In a production run of 1600 medication samples, 1456 passed all tests. Calculate P(E).\n\nGiven: 1456 samples passed, 1600 total samples\nFind: P(E) = favorable / total",
+            quality_control_1789: "Novartis Basel large-scale quality control: In a production run of 2000 medication samples, 1789 passed all tests. Calculate P(E).\n\nGiven: 1789 samples passed, 2000 total samples\nFind: P(E) = favorable / total",
+
+            // BINOMIAL - BASIC: Understanding basic concept
+            coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(3,2) × 0.5² × 0.5¹\nConcept: Understanding 'exactly k successes'",
+            coin_4_2: "You flip a fair coin 4 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=4 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(4,2) × 0.5² × 0.5²\nConcept: Basic binomial calculation",
+            coin_3_all: "You flip a fair coin 3 times. What is the probability of getting all heads?\n\nGiven: n=3 trials, k=3 successes, p=0.5\nFind: P(X=3) = C(3,3) × 0.5³ × 0.5⁰\nConcept: Understanding C(n,n) = 1",
+            coin_4_none: "You flip a fair coin 4 times. What is the probability of getting no heads (all tails)?\n\nGiven: n=4 trials, k=0 successes, p=0.5\nFind: P(X=0) = C(4,0) × 0.5⁰ × 0.5⁴\nConcept: Understanding C(n,0) = 1",
+
+            // BINOMIAL - CORE: Understanding C(n,k) meaning
+            lottery_5_3: "Swiss Lotto: You play 5 lottery draws with 50% win probability each. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.5\nFind: P(X=3) = C(5,3) × 0.5³ × 0.5²\nConcept: C(5,3) = 10 represents the 10 different ways to choose which 3 draws you win",
+            lottery_6_3: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=6, k=3, p=0.5\nFind: P(X=3), where C(6,3) = 20\nConcept: Understanding why we multiply by C(n,k)",
+            lottery_5_2: "Swiss Lotto: You play 5 draws with 50% win probability. What is the probability of winning exactly 2 times?\n\nGiven: n=5, k=2, p=0.5\nFind: P(X=2), where C(5,2) = 10\nConcept: Binomial coefficient represents arrangements",
+            lottery_6_4: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4), where C(6,4) = 15\nConcept: Counting favorable arrangements",
+            lottery_7_3: "Swiss Lotto: You play 7 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=7, k=3, p=0.5\nFind: P(X=3), where C(7,3) = 35\nConcept: Larger n means more arrangements",
+
+            // BINOMIAL - ADVANCED: Asymmetric probability (p ≠ 0.5)
+            lottery_5_3_biased: "Swiss Lotto: You play 5 draws with 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6 (biased probability)\nFind: P(X=3) = C(5,3) × 0.6³ × 0.4²\nConcept: Distribution is skewed when p ≠ 0.5",
+            lottery_6_2_low: "Swiss Lotto: You play 6 draws with only 30% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.3 (low probability)\nFind: P(X=2) = C(6,2) × 0.3² × 0.7⁴\nConcept: Low p means distribution skewed left",
+            lottery_8_6_high: "Swiss Lotto: You play 8 draws with 70% win probability per draw. What is the probability of winning exactly 6 times?\n\nGiven: n=8, k=6, p=0.7 (high probability)\nFind: P(X=6) = C(8,6) × 0.7⁶ × 0.3²\nConcept: High p means distribution skewed right",
+            lottery_7_4_biased: "Swiss Lotto: You play 7 draws with 60% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=7, k=4, p=0.6\nFind: P(X=4)\nConcept: Understanding asymmetric distributions",
+            lottery_10_7_biased: "Swiss Lotto: You play 10 draws with 65% win probability. What is the probability of winning exactly 7 times?\n\nGiven: n=10, k=7, p=0.65\nFind: P(X=7)\nConcept: Calculating with non-standard probabilities",
+
+            // BINOMIAL - ELITE: Cumulative probability
+            at_least_3_of_5: "Swiss Lotto: You play 5 draws with 60% win probability. What is the probability of winning AT LEAST 3 times?\n\nGiven: n=5, k≥3, p=0.6\nFind: P(X≥3) = P(X=3) + P(X=4) + P(X=5)\nConcept: Cumulative probability - sum multiple outcomes",
+            at_most_4_of_6: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning AT MOST 4 times?\n\nGiven: n=6, k≤4, p=0.5\nFind: P(X≤4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)\nConcept: Or use 1 - P(X>4) = 1 - P(X=5) - P(X=6)",
+            more_than_half: "Swiss Lotto: You play 8 draws with 60% win probability. What is the probability of winning MORE THAN HALF the time?\n\nGiven: n=8, k>4, p=0.6\nFind: P(X>4) = P(X=5) + P(X=6) + P(X=7) + P(X=8)\nConcept: Understanding 'more than half' means k≥5",
+            at_least_7_of_10: "Swiss Lotto: You play 10 draws with 70% win probability. What is the probability of winning AT LEAST 7 times?\n\nGiven: n=10, k≥7, p=0.7\nFind: P(X≥7) = P(X=7) + P(X=8) + P(X=9) + P(X=10)\nConcept: Cumulative probability with high p",
+            at_least_8_of_12: "Swiss Lotto: You play 12 draws with 60% win probability. What is the probability of winning AT LEAST 8 times?\n\nGiven: n=12, k≥8, p=0.6\nFind: P(X≥8) = sum from k=8 to 12\nConcept: Multiple terms in cumulative probability",
+
+            // CONDITIONAL - BASIC
+            insurance_basic_1: "Basler Versicherungen (Basel Insurance): For a simple insurance case, we know P(A) = 0.5 (probability of claim), P(B) = 0.6 (probability of risk factor present), and P(A∩B) = 0.3 (probability of both). Calculate P(A|B), the probability of a claim given the risk factor is present.\n\nGiven: P(A) = 0.5, P(B) = 0.6, P(A∩B) = 0.3\nFind: P(A|B) = P(A∩B) / P(B)\nSignificance: Determines insurance premiums for Basel residents.",
+            insurance_basic_2: "Basler Versicherungen: Given P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2, calculate P(A|B).\n\nGiven: P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2\nFind: P(A|B) = P(A∩B) / P(B)",
+            insurance_basic_3: "Basler Versicherungen: Given P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4, calculate P(A|B).\n\nGiven: P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4\nFind: P(A|B) = P(A∩B) / P(B)",
+            insurance_basic_4: "Basler Versicherungen: Given P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15, calculate P(A|B).\n\nGiven: P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15\nFind: P(A|B) = P(A∩B) / P(B)",
+
+            // CONDITIONAL - CORE: Extracting condition from description
+            card_heart_given_red: "You draw a card and observe it's red. What is the probability it's a heart?\n\nGiven: P(heart) = 13/52, P(red) = 26/52, P(heart AND red) = 13/52\nFind: P(heart|red) = (13/52) / (26/52) = 13/26 = 0.5\nConcept: Identifying condition from description",
+            die_six_given_even: "You roll a die and observe it's even. What is the probability it's a 6?\n\nGiven: P(6) = 1/6, P(even) = 3/6, P(6 AND even) = 1/6\nFind: P(6|even) = (1/6) / (3/6) = 1/3\nConcept: Condition changes sample space",
+            card_face_given_red: "You draw a card and it's red. What is the probability it's a face card?\n\nGiven: P(face) = 12/52, P(red) = 26/52, P(face AND red) = 6/52\nFind: P(face|red) = 6/26\nConcept: Extracting probabilities from card structure",
+            die_one_given_odd: "You roll a die and it's odd. What is the probability it's a 1?\n\nGiven: P(1) = 1/6, P(odd) = 3/6, P(1 AND odd) = 1/6\nFind: P(1|odd) = (1/6) / (3/6) = 1/3\nConcept: Understanding conditional sample space",
+            card_spade_given_black: "You draw a card and it's black. What is the probability it's a spade?\n\nGiven: P(spade) = 13/52, P(black) = 26/52, P(spade AND black) = 13/52\nFind: P(spade|black) = 13/26 = 0.5\nConcept: Symmetry in conditional probability",
+
+            // CONDITIONAL - ADVANCED: Bayesian thinking
+            disease_test_positive: "A disease affects 1% of the population. A test is 90% accurate (detects disease when present). If you test positive, what's the probability you actually have the disease?\n\nGiven: P(disease) = 0.01, P(positive|disease) = 0.9, P(positive|no disease) = 0.1\nP(positive) = 0.01×0.9 + 0.99×0.1 = 0.108\nFind: P(disease|positive) = (0.01×0.9) / 0.108 = 0.083\nConcept: P(A|B) ≠ P(B|A) - Bayesian reversal",
+            disease_test_positive_2: "A rare disease affects 2% of population. Test is 80% accurate. If positive, what's P(disease)?\n\nGiven: P(disease) = 0.02, P(+|disease) = 0.8\nFind: P(disease|+) using Bayes' theorem\nConcept: Understanding false positives",
+            quality_defect_given_batch: "15% of products are defective. A batch test detects 80% of defects. If batch fails, what's P(defective)?\n\nGiven: P(defect) = 0.15, P(fail|defect) = 0.8\nFind: P(defect|fail)\nConcept: Bayesian inference in quality control",
+            fraud_given_alert: "5% of transactions are fraudulent. Alert system catches 80% of fraud. If alert triggers, what's P(fraud)?\n\nGiven: P(fraud) = 0.05, P(alert|fraud) = 0.8\nFind: P(fraud|alert)\nConcept: Understanding alarm reliability",
+            accident_given_weather: "10% of days have accidents. 80% of accident days have bad weather. If bad weather, what's P(accident)?\n\nGiven: P(accident) = 0.1, P(bad weather|accident) = 0.8\nFind: P(accident|bad weather)\nConcept: Reversing conditional probability",
+
+            // CONDITIONAL - ELITE: Independence testing
+            independence_test_1: "Events A and B have P(A)=0.4, P(B)=0.5, P(A∩B)=0.2. Are A and B independent?\n\nGiven: P(A)=0.4, P(B)=0.5, P(A∩B)=0.2\nTest: If independent, P(A∩B) should equal P(A)×P(B) = 0.4×0.5 = 0.2 ✓\nFind: P(A|B) = 0.2/0.5 = 0.4 = P(A) ✓\nConcept: A and B are INDEPENDENT",
+            independence_test_2: "Events A and B have P(A)=0.3, P(B)=0.6, P(A∩B)=0.18. Are they independent?\n\nGiven: P(A)=0.3, P(B)=0.6, P(A∩B)=0.18\nTest: P(A)×P(B) = 0.3×0.6 = 0.18 ✓\nFind: P(A|B) = 0.18/0.6 = 0.3 = P(A) ✓\nConcept: Testing independence",
+            multiple_condition_1: "P(A)=0.25, P(B)=0.4, P(A∩B)=0.15. Find P(A|B) and determine if independent.\n\nGiven: P(A)=0.25, P(B)=0.4, P(A∩B)=0.15\nFind: P(A|B) = 0.15/0.4 = 0.375\nTest: P(A|B) = 0.375 ≠ P(A) = 0.25\nConcept: NOT independent - condition changes probability",
+            independence_test_3: "P(A)=0.35, P(B)=0.7, P(A∩B)=0.245. Are A and B independent?\n\nGiven: P(A)=0.35, P(B)=0.7, P(A∩B)=0.245\nTest: P(A)×P(B) = 0.35×0.7 = 0.245 ✓\nFind: P(A|B) = 0.245/0.7 = 0.35 = P(A) ✓\nConcept: Independence verification",
+            multiple_condition_2: "P(A)=0.2, P(B)=0.5, P(A∩B)=0.12. Find P(A|B) and test independence.\n\nGiven: P(A)=0.2, P(B)=0.5, P(A∩B)=0.12\nFind: P(A|B) = 0.12/0.5 = 0.24\nTest: P(A|B) = 0.24 ≠ P(A) = 0.2\nConcept: NOT independent",
+
+            // MISSION - Mixed problems (reuse context keys from above stages)
+            mission_basic_1: "Novartis Mission: Roll a die once. What is the probability of rolling a 1?\n\nGiven: 1 favorable, 6 total\nFind: P(E)",
+            mission_basic_2: "Swiss Lotto Mission: Flip a coin 3 times. What is the probability of exactly 2 heads?\n\nGiven: n=3, k=2, p=0.5\nFind: P(X=2)",
+            mission_basic_3: "Insurance Mission: Given P(A)=0.5, P(B)=0.6, P(A∩B)=0.3, find P(A|B).\n\nGiven: P(A)=0.5, P(B)=0.6, P(A∩B)=0.3\nFind: P(A|B)",
+            mission_basic_4: "Novartis Mission: Roll a die. What is the probability of rolling an even number?\n\nGiven: 2 favorable (2,4,6), 6 total\nFind: P(E)",
+
+            mission_core_1: "Novartis Mission: Draw a card from a 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 favorable, 52 total\nFind: P(E)",
+            mission_core_2: "Swiss Lotto Mission: Play 6 lottery draws with 50% win probability. What is P(X=4)?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4)",
+            mission_core_3: "Insurance Mission: Given P(A)=0.45, P(B)=0.55, P(A∩B)=0.25, find P(A|B).\n\nGiven: P(A)=0.45, P(B)=0.55, P(A∩B)=0.25\nFind: P(A|B)",
+            mission_core_4: "Novartis Mission: Draw a card. What is the probability of drawing a red card?\n\nGiven: 26 favorable, 52 total\nFind: P(E)",
+            mission_core_5: "Swiss Lotto Mission: Play 5 draws with 60% win probability. What is P(X=3)?\n\nGiven: n=5, k=3, p=0.6\nFind: P(X=3)",
+
+            mission_adv_1: "Novartis Mission: In 100 samples, 85 passed. Calculate P(E).\n\nGiven: 85 favorable, 100 total\nFind: P(E)",
+            mission_adv_2: "Swiss Lotto Mission: In 10 draws with 50% win probability, calculate P(X=6).\n\nGiven: n=10, k=6, p=0.5\nFind: P(X=6)",
+            mission_adv_3: "Insurance Mission: Given P(A)=0.37, P(B)=0.63, P(A∩B)=0.21, find P(A|B).\n\nGiven: P(A)=0.37, P(B)=0.63, P(A∩B)=0.21\nFind: P(A|B)",
+            mission_adv_4: "Novartis Mission: In 120 samples, 92 passed. Calculate P(E).\n\nGiven: 92 favorable, 120 total\nFind: P(E)",
+            mission_adv_5: "Swiss Lotto Mission: In 8 draws with 60% win probability, calculate P(X=5).\n\nGiven: n=8, k=5, p=0.6\nFind: P(X=5)",
+
+            mission_elite_1: "Novartis Mission: In 500 samples, 427 passed. Calculate P(E).\n\nGiven: 427 favorable, 500 total\nFind: P(E)",
+            mission_elite_2: "Swiss Lotto Mission: In 15 draws with 55% win probability, calculate P(X=9).\n\nGiven: n=15, k=9, p=0.55\nFind: P(X=9)",
+            mission_elite_3: "Insurance Mission: Given P(A)=0.365, P(B)=0.625, P(A∩B)=0.215, find P(A|B).\n\nGiven: P(A)=0.365, P(B)=0.625, P(A∩B)=0.215\nFind: P(A|B)",
+            mission_elite_4: "Novartis Mission: In 800 samples, 683 passed. Calculate P(E).\n\nGiven: 683 favorable, 800 total\nFind: P(E)",
+            mission_elite_5: "Swiss Lotto Mission: In 18 draws with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)"
+        }
+        },
+        sm2_06: {
+        back: "Back to Nexus",
+        title: "SM2.06 // LINEAR SYSTEMS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "System of Equations",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.06_MONITOR",
+        footer_left: "SM2.06_LINEAR_SYSTEMS // NODE: BASEL",
+        stages: {
+            substitution: "SUBSTITUTION",
+            elimination: "ELIMINATION",
+            mission: "MISSION",
+            substitution_prompt_latex: "\\text{Solve by substitution method.}",
+            elimination_prompt_latex: "\\text{Solve by elimination (addition/subtraction).}",
+            mission_prompt_latex: "\\text{Translate and solve the word problem.}"
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS"
+        },
+        hints: {
+            rules: {
+                substitution_latex: "\\text{Substitute one equation into the other.}",
+                elimination_add_latex: "\\text{Add equations to eliminate a variable.}",
+                elimination_sub_latex: "\\text{Subtract equations to eliminate a variable.}",
+                elimination_multiply_latex: "\\text{Multiply one equation to match coefficients, then eliminate.}"
+            }
+        },
+        mission: {
+            apples: "Apples",
+            oranges: "Oranges",
+            adult: "Adults",
+            child: "Children"
+        }
+        },
+        sm2_05: {
+        back: "Back to Nexus",
+        title: "SM2.05 // POWERS & ROOTS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Operation",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.05_MONITOR",
+        footer_left: "SM2.05_POWERS_ROOTS // NODE: BASEL",
+        stages: {
+            rules: "LAWS",
+            negative: "NEGATIVE",
+            scientific: "SCI-NOTATION",
+            rules_prompt_latex: "\\text{Apply power laws to simplify.}",
+            negative_prompt_latex: "\\text{Simplify terms with negative exponents (find n in the denominator).}",
+            scientific_prompt_latex: "\\text{Convert to or calculate in scientific notation.}"
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS"
+        }
+        },
+        sm1_01: {
+        back: "Back to Nexus",
+        title: "SM1.01 // AREAS & VOLUMES",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Geometry Task",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.01_MONITOR",
+        footer_left: "SM1.01_GEOMETRY // NODE: BASEL",
+        stages: {
+            areas: "AREAS",
+            volumes: "VOLUMES",
+            complex: "COMPLEX",
+            areas_prompt_latex: "\\text{Read the scenario and calculate the required area.}",
+            volumes_prompt_latex: "\\text{Read the scenario and calculate the required volume.}"
+        },
+
+        mission: {
+            title: "MISSION: RHINE FLOOD GATE",
+            protocol: "Nexus Protocol // Node Geneva",
+            description: "In Basel, engineers model a Rhine flood gate cross-section as a trapezoid.",
+            cube_title: "CERN CUBE VAULT",
+            cube_desc: "In CERN, identify the space diagonal of a cubic vault and compute its length."
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            length: "Length",
+            width: "Width",
+            height: "Height",
+            base: "Base",
+            radius: "Radius",
+            side: "Side",
+            area: "Area",
+            volume: "Volume",
+            calculate_area: "Calculate the area.",
+            calculate_volume: "Calculate the volume.",
+        },
+        quests: {
+            ski: "An Alpine ski slope needs new snow. The slope is rectangular.",
+            sail: "The Zurich Sailing Club needs custom canvas. The sail is triangular.",
+            gate: "A Rhine flood gate cross-section is trapezoidal.",
+            cheese: "A circular mold for Gruyère cheese factory.",
+            attic: "A Swiss chalet attic is a cubic space, needing an air purifier.",
+            crate: "CERN lab needs a storage box for precision instruments.",
+            pylon: "St. Moritz ski cable pylons are cylindrical.",
+
+            // Structural Templates
+            rect_core: "The width is ${w}, and the length is ${diff} more than the width.",
+            rect_advanced: "The length is ${l}, and the width is exactly half of the length.",
+            rect_elite: "The total perimeter is ${p}, and the length is ${ratio} times the width.",
+            tri_elite: "An isosceles right-angled sail with a hypotenuse of ${c}.",
+            circle_elite: "The total circumference of the mold is ${c}.",
+            cube_elite: "The total surface area of the cubic space is ${sa}.",
+            prism_elite: "The base is a square with perimeter ${p}, and the height is ${h}.",
+            cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
+        }
+        },
+        em1_01: {
+        back: "Back to Nexus",
+        title: "EM1.01 // THALES TOWER",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Tower Height",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "EM1.01_THALES_MONITOR",
+        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
+        stages: {
+            measure: "MEASURE",
+            measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            readings: "READINGS",
+            pole_height: "Pole Height (h)",
+            pole_shadow: "Pole Shadow (l)",
+            tower_shadow: "Tower Shadow (L)",
+            sun_angle: "Sun Angle",
+            solve_height: "Solve Tower Height (H)",
+            height_placeholder: "height in meters",
+            hint_ratio: "Hint: h/H = l/L"
+        },
+        mission: {
+            title: "MISSION: BASEL CATHEDRAL SURVEY",
+            description: "Measure the tower height using Thales' theorem and shadow ratios."
+        }
+        },
+        sp2_03: {
+        back: "Back to Nexus",
+        title: "SP2.03 // MOTOR LAB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Motor Assembly",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.03_MOTOR_MONITOR",
+        footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            current: "CURRENT SWITCH",
+            current_on: "SWITCH ON",
+            current_off: "SWITCH OFF",
+            polarity: "MAGNET POLARITY",
+            direction: "ROTATION DIRECTION",
+            direction_cw: "CLOCKWISE",
+            direction_ccw: "COUNTER-CLOCKWISE",
+            direction_stop: "STOPPED",
+            speed: "ROTATION SPEED",
+            readout: "READOUT"
+        },
+        mission: {
+            title: "MISSION: BASEL MOTOR WORKSHOP",
+            description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
+        },
+        stages: {
+            assemble: "ASSEMBLE",
+            power: "POWER",
+            reverse: "REVERSE",
+            assemble_desc: "Place magnets and coil",
+            power_desc: "Close the circuit and observe rotation",
+            reverse_desc: "Swap poles to reverse direction",
+            assemble_hint: "Start with the switch open and align the magnets",
+            power_hint: "Close the circuit to energize the coil",
+            reverse_hint: "Swap N/S to reverse rotation"
+        }
+        },
+        sc1_02: {
+        back: "Back to Nexus",
+        title: "C1.02 // MOLE MASTER",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Stoichiometry Console",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C1.02_SCALE",
+        footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
+        stages: {
+            molar_mass: "MOLAR MASS",
+            stoichiometry: "REACTION RATIO",
+            yield: "YIELD",
+            molar_mass_prompt_latex: "\\text{Calculate the molar mass of the compound.}",
+            stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
+            yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
+        },
+        labels: {
+            input: "INPUT",
+            scale: "SCALE READOUT"
+        },
+        mission: {
+            title: "MISSION: NOVARTIS SYNTHESIS BAY",
+            description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
+        }
+        },
+        sc2_01: {
+        back: "Back to Nexus",
+        title: "C2.01 // CHEMICAL KINETICS",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Kinetics Data",
+        scenario_title: "BASEL SCENARIO",
+        answer_title: "YOUR ANSWER",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C2.01_KINETICS_MONITOR",
+        footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
+        stages: {
+            arrhenius: "ARRHENIUS",
+            concentration: "RATE LAW",
+            collision: "HALF-LIFE",
+            arrhenius_prompt_latex: "\\text{Calculate the rate constant }k\\text{ using the Arrhenius equation.}",
+            concentration_prompt_latex: "\\text{Calculate the reaction rate based on concentration changes.}",
+            collision_prompt_latex: "\\text{Determine the fraction of effective collisions.}"
+        },
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            volume: "Titrant Volume",
+            ph: "pH"
+        },
+        mission: {
+            title: "MISSION: CHEMICAL KINETICS LAB",
+            description: "Study reaction rates in the Basel lab. Master the Arrhenius equation and collision theory."
+        },
+        formulas: {
+            arrhenius: "k = Ae^{-E_a/RT}",
+            concentration: "\\text{rate} = -\\frac{\\Delta[A]}{\\Delta t}",
+            collision: "f = e^{-E_a/RT}"
+        },
+        scenarios: {
+            arrhenius: "Novartis Kinetics Lab: Study how temperature and activation energy affect reaction rates. The Arrhenius equation k = A·exp(-Ea/RT) describes the temperature dependence of rate constants. Higher temperatures increase molecular kinetic energy, leading to more successful collisions.",
+            rate_law: "Roche Pharmaceutical Research: Determine reaction orders and rate laws from experimental data. The rate law expresses how reaction rate depends on reactant concentrations. Understanding rate laws is crucial for optimizing drug synthesis and predicting reaction behavior.",
+            half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t₁/₂ = ln(2)/k."
+        },
+        problems: {
+            arr_temp_300_ea_50: "Novartis reactor at T=300K, activation energy Ea=50 kJ/mol. Calculate relative rate constant k.",
+            arr_temp_350_ea_40: "Temperature increased to 350K, Ea=40 kJ/mol. Find k (relative units).",
+            arr_temp_400_ea_60: "High-temperature reaction: T=400K, Ea=60 kJ/mol. Calculate k.",
+            arr_temp_320_ea_45: "Moderate conditions: T=320K, Ea=45 kJ/mol. Determine k.",
+            arr_temp_280_ea_55: "Low-temperature synthesis: T=280K, Ea=55 kJ/mol. Find k.",
+            arr_double_temp: "Temperature doubles from 300K to 600K. By what factor does k increase? (Ea=50 kJ/mol)",
+            arr_ea_effect: "Catalyst lowers Ea from 80 to 40 kJ/mol at 300K. Find k ratio.",
+            arr_ln_form: "Use logarithmic form: ln(k) = ln(A) - Ea/RT. Calculate ln(k) for Ea=50 kJ/mol, T=300K.",
+            arr_activation: "Two rate constants differ by factor of 10 over 50K temperature range. Find Ea.",
+            arr_catalyst: "Catalyst reduces Ea by 20 kJ/mol (from 80 to 60). Calculate k ratio at 300K.",
+            arr_two_temps: "Measure k at 300K and 350K. Use ln(k₂/k₁) = -Ea/R(1/T₂ - 1/T₁) to find Ea=52 kJ/mol.",
+            arr_plot: "Arrhenius plot has slope -7800 K. Calculate Ea (slope = -Ea/R).",
+            arr_frequency: "Given k=1.5×10⁻⁹, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
+            arr_temp_for_k: "Target rate constant k=10⁶ s⁻¹, Ea=60 kJ/mol. What temperature is needed?",
+            arr_enzyme: "Enzyme-catalyzed reaction: Ea=40 kJ/mol, body temperature T=310K. Calculate k.",
+            arr_complex: "Two-step mechanism: Ea1=50, Ea2=30 kJ/mol. Overall Ea=40 kJ/mol. Find k at 300K.",
+            arr_pressure: "Pressure effect: activation volume ΔV‡=-10 cm³/mol. Calculate k ratio.",
+            arr_quantum: "Quantum tunneling correction factor κ=2.5. Find effective k.",
+            arr_isotope: "Kinetic isotope effect: H vs D substitution. Calculate kH/kD for Ea=50 kJ/mol.",
+            arr_transition: "Transition state theory: k=10⁶ s⁻¹ at 300K. Calculate ΔG‡.",
+            rl_first_order: "First-order reaction: rate = k[A]. Given [A]=2.0 M, k=0.5 s⁻¹, find rate.",
+            rl_second_order: "Second-order: rate = k[A]². [A]=1.5 M, k=0.4 M⁻¹s⁻¹. Calculate rate.",
+            rl_zero_order: "Zero-order reaction: rate = k (independent of [A]). k=0.8 M/s. Find rate.",
+            rl_concentration: "First-order reaction: [A] doubles. By what factor does rate increase?",
+            rl_initial: "Initial rate method: [A]₀=1.0 M, k=0.6 s⁻¹. Calculate initial rate.",
+            rl_mixed: "Mixed order: rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M⁻²s⁻¹. Find rate.",
+            rl_order: "Doubling [A] quadruples rate. What is the reaction order n?",
+            rl_integrated: "Integrated first-order: [A]t = [A]₀·e⁻ᵏᵗ. [A]₀=1 M, k=0.1 s⁻¹, t=10 s. Find [A].",
+            rl_time: "First-order half-life: t₁/₂ = ln(2)/k. Given k=0.05 s⁻¹, find t₁/₂.",
+            rl_constant: "From rate=2 M/s and [A]=4 M (first-order), determine k.",
+            rl_complex_order: "Fractional order: rate = k[A]^1.5[B]^0.5. [A]=4, [B]=9, k=0.2. Find rate.",
+            rl_mechanism: "Multi-step: overall rate = k₁k₂/(k₁+k₂). k₁=0.5, k₂=0.3. Calculate rate.",
+            rl_steady_state: "Steady-state approximation: [I]ss = k₁[A]/k₂. k₁=0.5, k₂=0.2. Find [I].",
+            rl_pre_equilibrium: "Pre-equilibrium: Keq = kf/kr. kf=0.8, kr=0.2. Calculate Keq.",
+            rl_inhibition: "Competitive inhibition: rate reduced by factor (1+[I]/KI). [I]=2, KI=1. Find rate factor.",
+            rl_oscillating: "Belousov-Zhabotinsky oscillating reaction. Maximum [A] in cycle.",
+            rl_autocatalytic: "Autocatalytic: A+B→2B. Inflection point at t=15s for [A]₀=0.1 M.",
+            rl_chain: "Chain reaction: chain length ν = kp/kt. kp/kt=100. Find ν.",
+            rl_photochemical: "Photochemical quantum yield Φ = molecules reacted / photons absorbed = 0.8.",
+            rl_enzyme_complex: "Michaelis-Menten: V = Vmax[S]/(KM+[S]). KM=1, [S]=5. Find V/Vmax.",
+            hl_first_order: "First-order half-life: t₁/₂ = ln(2)/k = 0.693/k. k=0.1 s⁻¹. Find t₁/₂.",
+            hl_second_order: "Second-order: t₁/₂ = 1/(k[A]₀). k=0.5 M⁻¹s⁻¹, [A]₀=2 M. Calculate t₁/₂.",
+            hl_zero_order: "Zero-order: t₁/₂ = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Find t₁/₂.",
+            hl_remaining: "After 2 half-lives, what fraction remains? [A]₀=8 M → [A]=?",
+            hl_time: "75% decay means 2 half-lives. If t₁/₂=10s, total time = 20s.",
+            hl_find_k: "From t₁/₂=5s (first-order), calculate k = ln(2)/t₁/₂.",
+            hl_fraction: "After 3 half-lives: fraction = (1/2)³ = 1/8 = 0.125.",
+            hl_radioactive: "Radioactive decay: N = N₀(1/2)^(t/t₁/₂). N₀=1000, t=20s, t₁/₂=10s. Find N.",
+            hl_drug: "Drug elimination: [D]₀=100 mg/L, t₁/₂=4h, t=12h (3 half-lives). [D]=12.5 mg/L.",
+            hl_compare: "Compare two reactions: kA=0.2, kB=0.4. Ratio of half-lives = kB/kA = 2.",
+            hl_consecutive: "Consecutive A→B→C: maximum [B] at tmax = ln(k₁/k₂)/(k₁-k₂). k₁=0.5, k₂=0.2.",
+            hl_parallel: "Parallel paths: koverall = k₁+k₂. k₁=0.3, k₂=0.2, t₁/₂ = ln(2)/0.5.",
+            hl_reversible: "Reversible: [A]eq = [A]₀·kr/(kf+kr). kf=0.5, kr=0.1.",
+            hl_temperature: "t₁/₂ decreases with temperature. At 350K vs 300K with Ea=50 kJ/mol.",
+            hl_enzyme: "Enzyme turnover: kcat=100 s⁻¹. t₁/₂ = ln(2)/kcat = 0.007s.",
+            hl_isotope_dating: "Carbon-14 dating: N/N₀=0.25 = (1/2)². Age = 2×5730 = 11460 years.",
+            hl_branching: "Branching decay: α and β paths. kα/kβ=2, so fα = 2/3 = 0.67.",
+            hl_secular: "Secular equilibrium: parent t₁/₂ >> daughter t₁/₂. Activity ratio → 1.",
+            hl_transient: "Transient equilibrium: tmax when daughter activity peaks. t₁/₂,1=10, t₁/₂,2=2.",
+            hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
+        }
+        },
+        sp1_03: {
+        back: "Back to Nexus",
+        title: "P1.03 // ENERGY & POWER",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Turbine Output",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P1.03_TURBINE_MONITOR",
+        footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
+        stages: {
+            potential: "POTENTIAL",
+            kinetic: "KINETIC",
+            power: "POWER",
+            potential_prompt_latex: "\\text{Compute gravitational potential energy }E_p=mgh.",
+            kinetic_prompt_latex: "\\text{Compute kinetic energy }E_k=\\frac{1}{2}mv^2.",
+            power_prompt_latex: "\\text{Compute power }P=\\frac{W}{t}\\text{ (apply efficiency if given).}"
+        },
+        labels: {
+            input: "INPUT",
+            formula: "FORMULA"
+        },
+        formulas: {
+            potential: "E_p=mgh",
+            kinetic: "E_k=\\frac{1}{2}mv^2",
+            power: "P=\\frac{W}{t}"
+        },
+        mission: {
+            title: "MISSION: RHINE HYDRO PLANT",
+            description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
+        }
+        },
+        sp1_07: {
+        back: "Return to Nexus",
+        title: "SP1.07 // PRESSURE & BUOYANCY",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.07_FLUID_MONITOR",
+        footer_left: "SP1.07_FLUID_MECHANICS // NODE: RHINE",
+        objective_title: "Active Mission Objective",
+        stages: {
+            pressure: "PRESSURE",
+            buoyancy: "BUOYANCY",
+            hydraulics: "HYDRAULICS"
+        },
+        labels: {
+            physics_display: "Physics Display",
+            input_terminal: "Input Terminal",
+            depth: "Depth",
+            density: "Object Density",
+            force: "Piston Force",
+            fluid_mastery: "Fluid Mastery"
+        },
+        prompts: {
+            pressure_depth: "A swimmer dives to {depth} m depth in the Rhine. Calculate total pressure (P₀=100000 Pa, ρ=1000 kg/m³, g=10 m/s²).",
+            buoyant_force: "An object with volume {volume} m³ is submerged in water. Calculate the buoyant force (ρ_water=1000 kg/m³, g=10 m/s²).",
+            hydraulic_force: "A hydraulic lift has input force {f1} N on area {a1} m². Output area is {a2} m². Calculate output force.",
+            hint_pressure: "Use P = P₀ + ρgh",
+            hint_archimedes: "Use F_b = ρ_water × V × g",
+            hint_pascal: "Use Pascal's principle: F₁/A₁ = F₂/A₂"
+        },
+        scenarios: {
+            rhine_swimming: "Rhine River Swimming: Divers explore the Rhine riverbed near Basel's Mittlere Brücke. Water pressure increases with depth, affecting equipment and safety protocols.",
+            rhine_boat: "Rhine Cargo Transport: Barges navigate the Rhine carrying goods between Basel and Rotterdam. Understanding buoyancy is critical for load calculations and vessel stability.",
+            hydraulic_lift: "Basel Construction Site: Hydraulic lifts at Basel's construction sites use Pascal's principle to lift heavy building materials with minimal input force."
+        },
+        feedback: {
+            correct: "Fluid mechanics mastered!",
+            incorrect: "Review the fluid mechanics principles."
+        }
+        },
+        sp1_05: {
+        back: "Back to Nexus",
+        title: "SP1.05 // THE RHINE FERRY",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.05_FERRY_MONITOR",
+        footer_left: "SP1.05_RHINE_FERRY // NODE: BASEL",
+        stages: {
+            composition: "VECTOR COMPOSITION",
+            drift: "DRIFT ANALYSIS",
+            navigation: "PRECISION NAVIGATION"
+        },
+        labels: {
+            river_speed: "River Speed (v_r)",
+            ferry_speed: "Ferry Speed (v_f)",
+            cable_angle: "Cable Angle (θ)",
+            resultant_speed: "Resultant Speed (v_net)",
+            drift_speed: "Drift Speed",
+            angle: "Angle"
+        },
+        mission: {
+            title: "RHINE CROSSING MISSION",
+            description: "Navigate the Basel Rhine ferry. Adjust cable angle and ferry speed to compensate for river current."
+        }
+        },
+        sp2_01: {
+        back: "Back to Nexus",
+        title: "SP2.01 // HEAT & TEMPERATURE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.01_THERMAL_MONITOR",
+        footer_left: "SP2.01_THERMODYNAMICS // NODE: BASEL",
+        stages: {
+            heat_transfer: "HEAT TRANSFER",
+            specific_heat: "SPECIFIC HEAT",
+            phase_changes: "PHASE CHANGES"
+        },
+        labels: {
+            thermal_display: "Thermal Display",
+            input_terminal: "Input Terminal",
+            temperature: "Temperature",
+            show_particles: "Show Particles",
+            thermal_score: "Thermal Score"
+        },
+        prompts: {
+            heat_transfer: "Calculate heat transfer rate using {method} method.",
+            specific_heat: "A {mass} kg sample is heated by {deltaT}°C. Calculate energy required (c=4186 J/kg·K for water).",
+            phase_change: "Calculate energy for {phase} of {mass} kg of water.",
+            hint_heat: "Use appropriate heat transfer equation for the method",
+            hint_specific: "Use Q = mcΔT where c is specific heat capacity",
+            hint_phase: "Use Q = mL where L is latent heat"
+        },
+        scenarios: {
+            conduction: "Novartis Thermal Reactor: Heat conducts through metal reactor walls at Basel's pharmaceutical facilities. Thermal conductivity determines heat transfer rate.",
+            convection: "Rhine River Cooling: Convection currents in the Rhine transfer heat from Basel's industrial facilities. Water circulation provides efficient cooling.",
+            radiation: "Solar Heating in Basel: Thermal radiation from the sun heats Basel's buildings. Stefan-Boltzmann law describes radiative heat transfer.",
+            water_heating: "Basel District Heating: Basel's district heating system uses specific heat capacity of water to transport thermal energy efficiently throughout the city.",
+            melting: "Ice Melting on Rhine: Phase change from ice to water requires latent heat of fusion. Temperature remains constant during melting at 0°C.",
+            boiling: "Steam Generation at Basel: Boiling water to steam at 100°C requires latent heat of vaporization. Steam carries more energy than hot water."
+        },
+        feedback: {
+            correct: "Thermodynamics mastered!",
+            incorrect: "Review the heat transfer principles."
+        }
+        },
+        sp3_02: {
+        back: "Back to Nexus",
+        title: "P3.02 // WAVE OPTICS",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Wave Properties",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P3.02_OPTICAL_MONITOR",
+        footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            wavelength: "Wavelength (λ)",
+            slit_separation: "Slit Separation (d)",
+            slit_width: "Slit Width (a)",
+            angle: "Angle (θ)",
+            intensity: "Intensity (I)",
+            order: "Order (m)"
+        },
+        mission: {
+            title: "OPTICAL RESONANCE LAB",
+            description: "Novartis optical lab involves wave properties. Master interference, diffraction and polarization."
+        },
+        stages: {
+            interference: "INTERFERENCE",
+            diffraction: "DIFFRACTION",
+            polarization: "POLARIZATION",
+            interference_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the double-slit equation.}",
+            diffraction_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the single-slit equation.}",
+            polarization_prompt_latex: "\\text{Calculate the intensity }I\\text{ using Malus' law.}"
+        },
+        formulas: {
+            interference: "d \\sin \\theta = m \\lambda",
+            diffraction: "a \\sin \\theta = m \\lambda",
+            polarization: "I = I_0 \\cos^2 \\theta"
+        }
+        },
+        sm1_02_new: {
+        back: "Back to Nexus",
+        title: "EM1.01 // ALGEBRA QUEST",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        modes: {
+            containers: "CONTAINERS",
+            sorting: "SORTING",
+            machine: "MACHINE"
+        },
+        labels: {
+            variable: "Variable",
+            value: "Value",
+            expression: "Expression",
+            simplify: "Simplify",
+            evaluate: "Evaluate",
+            input: "Input",
+            output: "Output"
+        },
+        stages: {
+            variables: "VARIABLES",
+            terms: "TERMS",
+            substitution: "SUBSTITUTION",
+            vars_prompt: "Identify the value inside the container.",
+            terms_prompt: "Combine like terms to simplify the expression.",
+            sub_prompt: "Evaluate the expression for the given value."
+        },
+        scenarios: {
+            variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
+            terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
+            substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
+        }
+        },
+        sm2_07: {
+        back: "Back to Nexus",
+        title: "SM2.07 // COORDINATE GEOMETRY",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Precision Mapping",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.07_COORDINATE_MONITOR",
+        footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            distance: "Distance (d)",
+            midpoint: "Midpoint (M)",
+            slope: "Slope (m)"
+        },
+        mission: {
+            title: "ZURICH NODE MAPPING",
+            description: "Zurich coordinate mapping requires precision geometry. Calculate distance, midpoint and slope between city nodes."
+        },
+        stages: {
+            distance: "DISTANCE",
+            midpoint: "MIDPOINT",
+            slope: "SLOPE",
+            distance_prompt_latex: "\\text{Calculate the distance }d\\text{ between points A and B.}",
+            midpoint_prompt_latex: "\\text{Calculate the midpoint coordinates }M(x,y).",
+            slope_prompt_latex: "\\text{Calculate the slope }m\\text{ of the line passing through A and B.}"
+        },
+        formulas: {
+            distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+            midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+            slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+        }
+        },
+        sm1_03_new: {
+        back: "Back to Nexus",
+        title: "SM1.03 // BELOW ZERO",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.03_INTEGER_MONITOR",
+        footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
+        basel_scenario: "BASEL WINTER SCENARIO",
+        scenario_title: "PROBLEM CONTEXT",
+        calculate_title: "CALCULATE",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
+            number_line: "NUMBER LINE",
+            rationals: "RATIONALS",
+            quadrants: "QUADRANTS"
+        },
+        scenarios: {
+            number_line: "Basel Winter Temperatures: You are monitoring temperatures at EuroAirport Basel during winter. Temperatures often drop below zero. Understanding negative numbers is essential for reading thermometers and comparing temperatures. The number line helps visualize integers and their relationships.",
+            rationals: "Rhine River Water Levels: The Rhine River 'Pegel' (water level gauge) at Basel shows water depth. Normal level is +5m. During drought, it drops. Divers measure depth below surface as negative values. Rational numbers (fractions and decimals) give precise measurements.",
+            quadrants: "Basel City Grid Navigation: Map Basel landmarks on a coordinate grid. Grossbasel (Q1: +,+), Kleinbasel (Q2: -,+), Klybeck (Q3: -,-), St. Alban (Q4: +,-). Understanding quadrants helps navigate the city and locate positions precisely."
+        },
+        problems: {
+            nl_identify_neg3: "Locate -3 on the number line.",
+            nl_identify_5: "Locate 5 on the number line.",
+            nl_temp_neg2: "Temperature is -2°C. Mark this on the thermometer.",
+            nl_depth_neg4: "A diver is 4 meters below the surface. Mark -4m.",
+            nl_identify_0: "Locate zero (the origin) on the number line.",
+            nl_compare_neg5_neg2: "Which is colder: -5°C or -2°C?",
+            nl_compare_neg3_1: "Which is smaller: -3 or 1?",
+            nl_order_three: "Order these numbers: -4, 0, 3. What is the middle value?",
+            nl_rhine_level: "Rhine level drops from +5m to -3m. What is the new level?",
+            nl_temp_drop: "Temperature drops from 2°C by 7 degrees. What is the final temperature?",
+            nl_distance_abs: "What is the distance between -5 and 2 on the number line?",
+            nl_abs_value: "What is the absolute value of -8?",
+            nl_distance_neg_neg: "What is the distance between -7 and -3?",
+            nl_midpoint: "What is the midpoint between -6 and 4?",
+            nl_temp_range: "Temperature ranges from -8°C to 5°C. What is the range?",
+            nl_operation_add: "Calculate: -5 + 3",
+            nl_operation_sub: "Calculate: -3 - 4",
+            nl_operation_mult: "Calculate: -4 × 2",
+            nl_multi_step: "Calculate: -6 + 8 - 5",
+            nl_complex_op: "Calculate: (-2 + 5) - (3 - 7)",
+            r_place_half: "Locate 0.5 on the number line.",
+            r_place_neg_half: "Locate -0.5 on the number line.",
+            r_place_1_5: "Locate 1.5 on the number line.",
+            r_place_neg2_5: "Locate -2.5 on the number line.",
+            r_fraction_third: "Convert 1/3 to decimal (round to 2 places).",
+            r_compare_fractions: "Which is larger: -1/2 or -1/3?",
+            r_compare_decimals: "Which is smaller: -0.75 or -0.5?",
+            r_order_mixed: "Order: -1.5, -0.5, 0.5. What is the smallest?",
+            r_add_decimals: "Calculate: 0.5 + 0.25",
+            r_sub_decimals: "Calculate: 1.5 - 2.25",
+            r_compare_neg_decimals: "Which is colder: -0.75°C or -0.8°C?",
+            r_fraction_to_decimal: "Convert -3/4 to decimal.",
+            r_mult_decimals: "Calculate: 0.5 × 1.5",
+            r_div_decimals: "Calculate: 1.5 ÷ 0.5",
+            r_mixed_operations: "Calculate: 0.5 + 1.25 - 0.75",
+            r_order_complex: "Order from smallest: -1.5, -3/2, 0, 1.2. What is the first?",
+            r_fraction_operations: "Calculate: 1/2 + 1/4 (as decimal)",
+            r_neg_fraction_ops: "Calculate: -1/2 - 1/4 (as decimal)",
+            r_complex_decimal: "Calculate: (0.5 - 1.25) × 2",
+            r_repeating_decimal: "Convert 2/3 to decimal (round to 2 places).",
+            q_identify_point: "What is the x-coordinate of point (2, 3)?",
+            q_identify_y: "What is the y-coordinate of point (3, 4)?",
+            q_plot_positive: "Plot point (1, 2). What is x?",
+            q_origin: "What is the x-coordinate at the origin?",
+            q_axis_point: "Point (3, 0) is on which axis? What is y?",
+            q_quadrant_2: "Point (-2, 5) is in which quadrant?",
+            q_quadrant_3: "Point (-3, -4) is in which quadrant?",
+            q_quadrant_4: "Point (4, -2) is in which quadrant?",
+            q_basel_landmarks: "Kleinbasel is at (-3, 2). What is x?",
+            q_distance_horizontal: "Distance between (2, 0) and (5, 0)?",
+            q_reflect_x_axis: "Reflect (3, 4) across x-axis. What is y'?",
+            q_reflect_y_axis: "Reflect (5, 2) across y-axis. What is x'?",
+            q_reflect_origin: "Reflect (3, 4) across origin. What is x'?",
+            q_translate: "Translate (2, 3) by (4, 0). What is x'?",
+            q_midpoint_2d: "Midpoint between (2, 3) and (6, 3). What is x?",
+            q_distance_vertical: "Distance between (0, 5) and (0, -3)?",
+            q_perimeter_rectangle: "Rectangle with corners at (0,0) and (4,3). Perimeter?",
+            q_area_rectangle: "Rectangle with corners at (0,0) and (4,3). Area?",
+            q_diagonal_distance: "Horizontal distance from (2, 3) to (6, 5)?",
+            q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
+        }
+        },
+        sm1_04_new: {
+        back: "Back to Nexus",
+        title: "SM1.04 // EQUATION BALANCE",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.04_EQUATION_MONITOR",
+        footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
+        basel_scenario: "BASEL EQUATION SCENARIO",
+        scenario_title: "PROBLEM CONTEXT",
+        solve_title: "SOLVE THE EQUATION",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
+            balance: "BALANCE",
+            solve: "SOLVE",
+            transform: "TRANSFORM",
+            applications: "APPLICATIONS"
+        },
+        scenarios: {
+            balance: "Understanding Equation Balance: Like a scale, equations must stay balanced. Whatever you do to one side, you must do to the other. This fundamental principle is the key to solving all equations.",
+            solve: "Solving Linear Equations: Use inverse operations to isolate the variable. Add/subtract to move constants, multiply/divide to remove coefficients. Each step brings you closer to finding x.",
+            transform: "Transforming Equations: Master the art of moving terms across the equals sign. Combine like terms, expand parentheses, and simplify fractions. Transform complex equations into simple ones.",
+            applications: "Basel Real-World Problems: Apply equations to solve real problems in Basel. Calculate bus ticket prices, Rhine ferry times, Novartis lab measurements, and Roche pharmaceutical concentrations."
+        },
+        problems: {
+            bal_add_both: "Add 2 to both sides of x + 3 = 7",
+            bal_subtract_both: "Subtract 5 from both sides of x + 5 = 8",
+            bal_multiply_both: "Multiply both sides by 2",
+            bal_divide_both: "Divide both sides by 2",
+            bal_simple_check: "Solve by moving the constant",
+            bal_two_steps: "First subtract 3, then divide by 2",
+            bal_negative_result: "Result will be negative",
+            bal_fraction_coeff: "First subtract 2, then multiply by 3",
+            bal_both_sides_x: "Move x terms to one side",
+            bal_distribute: "First expand the parentheses",
+            bal_complex_both: "Variables on both sides",
+            bal_fractions: "Find common denominator",
+            bal_parentheses_both: "Expand both sides first",
+            bal_decimal_coeff: "Work with decimals",
+            bal_negative_coeff: "Negative coefficient",
+            bal_nested_parens: "Simplify inner parentheses first",
+            bal_three_fractions: "Three fractions with different denominators",
+            bal_complex_distribute: "Multiple distribution steps",
+            bal_reciprocal: "Reciprocal fractions",
+            bal_proportion: "Proportion equation",
+            sol_one_step_add: "One-step: subtract 3",
+            sol_one_step_sub: "One-step: add 5",
+            sol_one_step_mult: "One-step: divide by 3",
+            sol_one_step_div: "One-step: multiply by 4",
+            sol_negative_simple: "Result is negative",
+            sol_two_step_1: "Two steps: subtract then divide",
+            sol_two_step_2: "Two steps: add then multiply",
+            sol_negative_coeff: "Negative coefficient",
+            sol_fraction_result: "Answer is a fraction",
+            sol_decimal_coeff: "Decimal coefficient",
+            sol_combine_like: "Combine like terms first",
+            sol_distribute_simple: "Distribute then solve",
+            sol_x_both_sides: "Variables on both sides",
+            sol_fraction_both: "Add fractions",
+            sol_negative_both: "Negative terms on both sides",
+            sol_complex_distribute: "Complex distribution",
+            sol_nested_parens: "Nested parentheses",
+            sol_three_terms: "Three fraction terms",
+            sol_decimal_complex: "Decimal with parentheses",
+            sol_proportion_eq: "Proportion equation",
+            tra_move_constant: "Move constant to right side",
+            tra_move_variable: "Move variable term",
+            tra_isolate_x: "Isolate x by dividing",
+            tra_two_moves: "Two transformation steps",
+            tra_negative_move: "Moving negative term",
+            tra_collect_terms: "Collect like terms",
+            tra_move_both: "Move terms from both sides",
+            tra_expand_first: "Expand before moving",
+            tra_fraction_clear: "Clear fraction first",
+            tra_negative_coeff: "Handle negative coefficient",
+            tra_multi_step: "Multiple transformation steps",
+            tra_both_expand: "Expand both sides",
+            tra_fractions_lcd: "Find LCD for fractions",
+            tra_decimal_expand: "Expand decimal expression",
+            tra_complex_collect: "Complex term collection",
+            tra_nested_complex: "Nested parentheses transformation",
+            tra_three_fractions: "Three fractions to combine",
+            tra_double_expand: "Double expansion",
+            tra_proportion_cross: "Cross multiplication",
+            tra_mixed_complex: "Mixed fractions and decimals",
+            app_bus_ticket: "Basel BVB bus: Adult ticket costs x CHF. Child ticket is 2 CHF less. If adult ticket is 5 CHF, find x.",
+            app_rhine_time: "Rhine Ferry: Crossing takes 2x minutes. Round trip is 10 minutes. Find x.",
+            app_age_simple: "Age problem: In 5 years, you'll be 12. How old are you now?",
+            app_distance_simple: "Basel to Zurich: Half the distance is 6 km. Find total distance.",
+            app_price_discount: "Roche cafeteria: After 10 CHF discount, meal costs 40 CHF. Original price?",
+            app_tram_tickets: "Basel tram: 3 adult tickets at x CHF each, plus 2 child tickets at 2 CHF each, total 13 CHF. Find x.",
+            app_novartis_samples: "Novartis lab: 5 boxes with x samples each, plus 10 extra samples, total 60. Find x.",
+            app_age_sum: "Father and son: Son is x years old, father is 30 years older. Together they are 50. Find son's age.",
+            app_rectangle_perimeter: "Basel park: Rectangular garden, length 8m, width x m, perimeter 28m. Find width.",
+            app_speed_distance: "Basel to Liestal: Travel 2 hours at x km/h, distance 80 km. Find speed.",
+            app_roche_concentration: "Roche lab: Mix 50ml of x% solution with 100ml of 30% solution to get 150ml of 40% solution. Find x.",
+            app_consecutive_numbers: "Three consecutive numbers sum to 48. Find the first number.",
+            app_work_rate: "Basel construction: Worker A finishes in x hours, Worker B in 6 hours. Together they finish in 2 hours. Find x.",
+            app_mixture_problem: "Novartis: Mix x liters of 20% solution with 10 liters of 50% solution to get 30% solution. Find x.",
+            app_investment_interest: "Basel bank: Invest x CHF at 5% interest. After 1 year, total is 2100 CHF. Find x.",
+            app_train_meeting: "Basel-Zurich trains: Train A at 80 km/h, Train B at 100 km/h, 360 km apart. When do they meet?",
+            app_age_ratio: "Age ratio: In 5 years, your age to your brother's age will be 2:3. You're x years old now. Find x.",
+            app_compound_mixture: "Roche: Add x liters of pure acid to 20 liters of 30% acid to get 50% solution. Find x.",
+            app_boat_current: "Rhine boat: 30 km downstream and back takes 5 hours. Current is 2 km/h. Find boat speed in still water.",
+            app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
+        }
+        },
+        sm1_05_new: {
+        back: "Back to Nexus",
+        title: "SM1.05 // RATIO LAB",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.05_RATIO_MONITOR",
+        footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
+        stages: {
+            recipes: "RECIPES",
+            percent: "PERCENT",
+            mixtures: "MIXTURES"
+        },
+        labels: {
+            ratio: "Ratio",
+            proportion: "Proportion",
+            percentage: "Percentage",
+            concentration: "Concentration",
+            solute: "Solute",
+            solvent: "Solvent"
+        }
+        },
+        sm2_08: {
+        back: "Back to Nexus",
+        title: "SM2.08 // PROBABILITY BASICS",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.08_PROBABILITY_MONITOR",
+        footer_left: "SM2.08_PROBABILITY // NODE: BASEL",
+        formula_title: "PROBABILITY FORMULA",
+        scenario_title: "PROBLEM",
+        basel_scenario: "BASEL LIFE SCENARIO",
+        calculate_title: "CALCULATE",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
+            basic_prob: "BASIC PROBABILITY",
+            lottery: "LOTTERY & GAMES",
+            combined: "COMBINED EVENTS",
+            data_stats: "DATA STATISTICS"
+        },
+        scenarios: {
+            bus_punctuality: "Basel Public Transport: You take the #8 bus to school every day.",
+            weather_basel: "Basel Weather Station: Meteorological data for decision making.",
+            school_cafeteria: "School Cafeteria: Weekly menu planning.",
+            exam_results: "Class Performance: Exam results analysis.",
+            dice_game: "Probability Game: Understanding fair dice.",
+            card_game: "Card Game: Standard 52-card deck.",
+            dice_advanced: "Advanced Dice: Prime numbers and special outcomes.",
+            school_raffle: "School Charity Raffle: Supporting local community.",
+            fasnacht_game: "Basel Fasnacht Carnival: Game booth at the festival.",
+            swiss_lotto_simple: "Swiss Lotto Simplified: Understanding lottery odds (6 choose 3).",
+            dice_win_condition: "Carnival Dice Game: Win on sum of 7 or 11.",
+            two_buses: "Daily Commute: Morning and evening bus reliability.",
+            fc_basel: "FC Basel Matches: Home and away game predictions.",
+            novartis_qc: "Novartis Quality Control: Pharmaceutical sample testing.",
+            three_events: "Multiple Coin Flips: Understanding combinations.",
+            temperature: "Basel Weather: Weekly temperature tracking.",
+            test_scores: "Class Grades: Statistical analysis of exam results.",
+            pocket_money: "Personal Finance: Monthly spending breakdown.",
+            data_comparison: "Data Analysis: Comparing mean and median.",
+            tram_punctuality: "Basel Tram System: Tram #3 reliability.",
+            coin_flip: "Coin Flip: Basic probability experiment.",
+            dice_two: "Two Dice: Understanding combined outcomes.",
+            two_coins: "Two Coins: Independent events.",
+            three_buses: "Three Bus Lines: Multiple independent events.",
+            four_buses: "Four Bus Lines: Extended probability chains.",
+            complex_event: "Complex Probability: Advanced scenarios.",
+        },
+        problems: {
+            bus_ontime_16_20: "In the past 20 days, the bus arrived on time 16 times. What is the probability it arrives on time tomorrow?",
+            bus_ontime_18_20: "In the past 20 days, the bus arrived on time 18 times. What is the probability it arrives on time tomorrow?",
+            weather_rain_12_30: "Basel weather station recorded rain on 12 out of 30 days. What is the probability of rain this weekend?",
+            weather_sunny_21_30: "Basel weather station recorded sunny weather on 21 out of 30 days. What is the probability of sunny weather tomorrow?",
+            dice_roll_3: "Roll a standard die. What is the probability of rolling exactly a 3?",
+            coin_heads: "Flip a fair coin once. What is the probability of getting heads?",
+            cafeteria_pizza: "The school cafeteria serves pizza 3 days out of 5 each week. If you randomly go to the cafeteria, what is the probability of getting pizza?",
+            exam_pass: "In a class of 100 students, 85 passed the exam. What is the probability a randomly selected student passed?",
+            tram_ontime_17_20: "Tram #3 arrived on time 17 out of 20 days. What is the probability it arrives on time today?",
+            dice_greater_4: "Roll a die. What is the probability of rolling a number greater than 4?",
+            dice_even: "Roll a standard die. What is the probability of rolling an even number (2, 4, or 6)?",
+            card_heart: "Draw one card from a standard 52-card deck. What is the probability of drawing a heart?",
+            card_red: "Draw one card from a standard deck. What is the probability of drawing a red card?",
+            two_dice_sum_8: "Roll two dice. What is the probability the sum equals 8?",
+            card_face: "Draw one card. What is the probability of drawing a face card (J, Q, or K)?",
+            dice_prime: "Roll a die. What is the probability of rolling a prime number (2, 3, or 5)?",
+            two_dice_sum_10: "Roll two dice. What is the probability the sum equals 10?",
+            card_ace_or_king: "Draw one card. What is the probability of drawing an Ace or King?",
+            two_dice_doubles: "Roll two dice. What is the probability of rolling doubles (same number on both)?",
+            card_spade_face: "Draw one card. What is the probability of drawing a spade face card?",
+            school_raffle_win: "The school sold 100 raffle tickets for charity. You bought 3 tickets. What is the probability you win?",
+            school_raffle_5_tickets: "The school sold 100 raffle tickets. You bought 5 tickets. What is the probability you win?",
+            coin_two_heads: "Flip two coins. What is the probability both are heads?",
+            dice_not_six: "Roll a die. What is the probability of NOT rolling a 6?",
+            school_raffle_2_tickets: "The school sold 50 raffle tickets. You bought 2 tickets. What is the probability you win?",
+            dice_sum_7: "Roll two dice at the Basel Fasnacht game booth. What is the probability the sum equals 7?",
+            dice_sum_9: "Roll two dice. What is the probability the sum equals 9?",
+            coin_three_all_heads: "Flip three coins. What is the probability all three are heads?",
+            dice_sum_6: "Roll two dice. What is the probability the sum equals 6?",
+            card_two_red: "Draw two cards without replacement. What is the probability both are red?",
+            lotto_simple: "Simplified Swiss Lotto: Choose 3 numbers from 6. There are 20 possible combinations. What is your winning probability?",
+            lotto_4_from_8: "Simplified lottery: Choose 4 numbers from 8. There are 70 combinations. What is your winning probability?",
+            dice_sum_less_5: "Roll two dice. What is the probability the sum is less than 5?",
+            coin_four_at_least_3_heads: "Flip four coins. What is the probability of getting at least 3 heads?",
+            card_three_hearts: "Draw three cards without replacement. What is the probability all three are hearts?",
+            dice_sum_7_or_11: "Carnival game: Roll two dice. You win if the sum is 7 OR 11. What is the probability of winning?",
+            dice_sum_2_3_12: "Carnival game: Roll two dice. You lose if the sum is 2, 3, or 12. What is the probability of losing?",
+            lotto_5_from_10: "Lottery: Choose 5 numbers from 10. There are 252 combinations. What is your winning probability?",
+            coin_five_exactly_2_heads: "Flip five coins. What is the probability of getting exactly 2 heads?",
+            card_poker_pair: "Draw 5 cards. What is the probability of getting at least one pair? (Simplified: approximately 42.3%)",
+            two_buses_ontime: "Morning bus #8 has 80% on-time rate. Evening bus #15 has 70% on-time rate. What is the probability both are on time?",
+            two_coins_both_heads: "Flip two coins. What is the probability both are heads?",
+            two_dice_both_even: "Roll two dice. What is the probability both show even numbers?",
+            two_days_both_sunny: "Basel has 70% sunny days. What is the probability both today and tomorrow are sunny?",
+            two_students_both_pass: "Two students take an exam with 85% pass rate. What is the probability both pass?",
+            fc_basel_wins: "FC Basel has 60% home win rate and 30% away win rate. What is the probability they win both matches this week?",
+            three_buses_all_ontime: "Three buses have on-time rates of 80%, 75%, and 90%. What is the probability all three are on time?",
+            three_days_all_sunny: "Basel has 70% sunny days. What is the probability the next 3 days are all sunny?",
+            three_dice_all_six: "Roll three dice. What is the probability all three show 6?",
+            fc_basel_at_least_one_win: "FC Basel has 60% home win rate and 30% away win rate. What is the probability they win at least one match?",
+            quality_all_pass: "Novartis quality control: Each sample has 95% pass rate. If you test 5 samples, what is the probability all 5 pass?",
+            quality_at_least_4_pass: "Novartis: 5 samples, 95% pass rate each. What is the probability at least 4 pass?",
+            four_buses_all_ontime: "Four buses each have 80% on-time rate. What is the probability all four are on time?",
+            week_no_rain: "Basel has 40% rain probability daily. What is the probability of no rain for 7 consecutive days?",
+            five_students_all_pass: "Five students take an exam with 85% pass rate. What is the probability all five pass?",
+            three_coins_two_heads: "Flip three coins. What is the probability of getting exactly 2 heads?",
+            four_coins_exactly_3_heads: "Flip four coins. What is the probability of getting exactly 3 heads?",
+            quality_exactly_4_pass: "Novartis: 5 samples, 95% pass rate each. What is the probability exactly 4 pass?",
+            five_coins_at_least_4_heads: "Flip five coins. What is the probability of getting at least 4 heads?",
+            birthday_paradox_simple: "Two people: What is the probability they share the same birthday? (Ignore leap years)",
+            avg_temperature: "Basel temperatures this week: 18°C, 22°C, 20°C, 19°C, 21°C, 23°C, 20°C. Calculate the average temperature.",
+            simple_average_5: "Test scores: 80, 85, 90, 75, 95. Calculate the average.",
+            simple_sum: "Monthly spending: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What is the total?",
+            avg_temperature_5_days: "Temperatures: 15°C, 18°C, 20°C, 17°C, 20°C. Calculate the average.",
+            median_5_values: "Data set: 10, 12, 15, 18, 20. Find the median value.",
+            class_average: "Class test scores: 85, 72, 90, 68, 78, 82, 75, 88, 70, 92. Calculate the class average.",
+            spending_analysis: "Monthly spending: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What percentage is spent on food?",
+            median_even_count: "Test scores: 70, 75, 80, 85. Find the median.",
+            range_calculation: "Weekly temperatures: 15°C, 18°C, 20°C, 17°C, 23°C. Calculate the range (max - min).",
+            percentage_transport: "Monthly budget CHF 100: Food CHF 40, Transport CHF 25, Entertainment CHF 20, Savings CHF 15. What percentage is transport?",
+            weighted_average: "Two tests: Test 1 (weight 2): 80 points, Test 2 (weight 3): 90 points. Calculate weighted average.",
+            median_vs_mean: "Data set: 10, 12, 15, 18, 20. Find the median value.",
+            mode_calculation: "Test scores: 80, 85, 85, 90, 85, 75. Find the mode (most frequent value).",
+            budget_remaining: "Monthly budget CHF 100. Spent: Food CHF 40, Transport CHF 25, Entertainment CHF 20. How much remains?",
+            quartile_calculation: "Temperatures: 15°C, 17°C, 18°C, 20°C, 23°C. Find Q1 (25th percentile).",
+            standard_deviation_simple: "Data: 10, 15, 20. Mean = 15. Calculate variance: average of squared deviations.",
+            outlier_effect: "Data: 10, 12, 15, 18, 100. Calculate the mean. Notice how the outlier (100) affects it.",
+            interquartile_range: "Data: 10, 15, 20, 25, 30. Q1=15, Q3=25. Calculate IQR = Q3 - Q1.",
+            percentage_change: "Last month: CHF 100. This month: CHF 120. Calculate percentage change.",
+            correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?",
+        }
+        },
+        gp5_01: {
+        back: "Back to Nexus",
+        title: "P5.01 // THE ATOMIC CORE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Isotope / Decay",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P5.01_NUCLEAR_MONITOR",
+        footer_left: "P5.01_MODERN_PHYSICS // NODE: BASEL",
+        labels: {
+            input: "INPUT PARAMETERS",
+            hints: "HINTS",
+            balancing: "NUCLEAR EQUATION",
+            mass: "Mass Number (A)",
+            atomic: "Atomic Number (Z)"
+        },
+        mission: {
+            title: "STABILIZE THE CORE",
+            description: "Novartis Innovation District needs a stable isotope. Balance the nuclear equation by identifying the correct decay particles."
+        },
+        stages: {
+            alpha: "ALPHA DECAY",
+            beta: "BETA DECAY",
+            gamma: "GAMMA EMISSION",
+            fission: "NUCLEAR FISSION",
+            alpha_decay: "ALPHA DECAY",
+            beta_decay: "BETA DECAY",
+            gamma_decay: "GAMMA EMISSION",
+            alpha_decay_prompt_latex: "\\text{Balance the Alpha decay (\\alpha) equation.}",
+            beta_decay_prompt_latex: "\\text{Balance the Beta decay (\\beta^-) equation.}",
+            gamma_decay_prompt_latex: "\\text{Identify the Gamma emission (\\gamma) state.}",
+            fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
+        }
+        },
+        sm3_04: {
+        back: "Back to Nexus",
+        title: "SM3.04 // LOGARITHMIC SCALES",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Logarithmic Measurement",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM3.04_LOG_MONITOR",
+        footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            ph: "pH Value",
+            decibel: "Decibels (dB)",
+            richter: "Richter Scale"
+        },
+        mission: {
+            title: "LOGARITHMIC MEASUREMENT LAB",
+            description: "Master three real-world logarithmic scales: pH (chemistry), decibels (sound), and Richter (earthquakes). Each scale compresses huge ranges into manageable numbers."
+        },
+        stages: {
+            ph: "pH SCALE",
+            decibel: "DECIBELS",
+            richter: "RICHTER",
+            ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log_{10}[H^+].",
+            decibel_prompt_latex: "\\text{Calculate decibels using }L=10\\log_{10}(I/I_0).",
+            richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A)."
+        },
+        formulas: {
+            ph: "pH = -\\log_{10}[H^+]",
+            decibel: "L = 10\\log_{10}(I/I_0)",
+            richter: "M = \\log_{10}(A)"
+        },
+        scenarios: {
+            ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H⁺] = 0.001 mol/L (which is 10⁻³ in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log₁₀[H⁺]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
+            ph_core: "🧪 SCENARIO: Swimming Pool Water Quality — You work part-time at the Basel public pool. The health inspector requires daily pH testing. Today's water sample shows [H⁺] = 10⁻⁸ mol/L. You need to calculate the pH to verify it's in the safe range (7.2-7.8). If pH is too low (acidic), it irritates swimmers' eyes. If too high (basic), chlorine doesn't work properly. Your calculation determines whether the pool can open today!",
+            ph_advanced: "🧪 SCENARIO: Pharmaceutical Quality Control — You're an intern at Roche in Basel. A new drug formulation must have precise pH control for stability. The lab measures [H⁺] = 3.16 × 10⁻⁵ mol/L. Calculate the pH to 2 decimal places. If pH drifts outside the target range (4.3-4.7), the entire batch (worth millions) must be discarded. Logarithmic precision matters in pharma!",
+            ph_elite: "🧪 SCENARIO: Environmental Acid Rain Study — University of Basel researchers are studying acid rain effects on Swiss forests. Rainwater samples show [H⁺] = 10⁻⁴·⁵ mol/L (note the fractional exponent!). Calculate the pH. Normal rain is pH 5.6, but acid rain can be pH 4.0 or lower. Each pH unit represents a 10× change in acidity, so pH 4 rain is 100× more acidic than pH 6 rain. Your calculation helps assess environmental damage.",
+            decibel_basic: "🔊 SCENARIO: School Library Noise Check — The librarian asks you to measure if the study area is quiet enough. You use a sound meter: the intensity is I = 10⁻¹⁰ W/m². The reference intensity (threshold of hearing) is I₀ = 10⁻¹² W/m². Calculate the sound level in decibels using L = 10·log₁₀(I/I₀). For reference: whisper = 30 dB, normal conversation = 60 dB, library should be under 40 dB.",
+            decibel_core: "🔊 SCENARIO: Concert Sound Engineer — You're setting up for a school rock concert in the auditorium. The sound system produces intensity I = 10⁻⁴ W/m² at the front row. Calculate the decibel level. Safety regulations require ear protection above 85 dB, and prolonged exposure above 100 dB causes hearing damage. Your calculation determines whether you need to reduce the volume or provide earplugs to the audience.",
+            decibel_advanced: "🔊 SCENARIO: Airport Noise Pollution Study — Basel-Mulhouse Airport is expanding, and residents complain about noise. You measure a jet taking off: I = 1 W/m² at 100 meters distance. Calculate the decibel level. City regulations limit airport noise to 65 dB during daytime. At 120 dB (jet engine), sound is painful. The logarithmic scale means 120 dB is not 'twice as loud' as 60 dB — it's 1,000,000 times more intense!",
+            decibel_elite: "🔊 SCENARIO: Acoustic Engineering Challenge — A Basel concert hall is being designed. The architect needs to calculate sound absorption. If the original intensity is I₁ = 10⁻³ W/m² and after acoustic panels it drops to I₂ = 10⁻⁶ W/m², what's the decibel reduction? Calculate L₁ - L₂. This involves understanding that decibel differences represent intensity ratios: a 10 dB drop means 10× less intense, 20 dB drop means 100× less intense.",
+            richter_basic: "🌍 SCENARIO: Earthquake Monitoring Station — You volunteer at University of Basel's seismology lab. A small earthquake hits near Basel. The seismograph records ground motion amplitude A = 100 micrometers. Calculate the Richter magnitude using M = log₁₀(A). For reference: M < 2 is not felt, M 3-4 is minor, M 5-6 is moderate, M 7+ is major. Your calculation helps classify the earthquake severity.",
+            richter_core: "🌍 SCENARIO: Historical Earthquake Analysis — In 1356, Basel experienced Switzerland's strongest recorded earthquake. Modern analysis estimates the ground amplitude was A = 100,000 micrometers. Calculate the Richter magnitude. Compare this to the 2011 Japan earthquake (M 9.0) which had amplitude 1,000,000,000 micrometers. The logarithmic scale compresses this billion-fold range into manageable numbers (1 to 9).",
+            richter_advanced: "🌍 SCENARIO: Earthquake Early Warning System — Switzerland is developing an earthquake alert app. Two earthquakes occur: Earthquake A has amplitude 31,600 μm, Earthquake B has amplitude 1,000 μm. Calculate both magnitudes to 2 decimal places. The app needs to distinguish between 'minor tremor' (M < 4.0) and 'significant quake' (M ≥ 4.0) to decide whether to send emergency alerts to millions of phones.",
+            richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10² = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
+        },
+        canvas: {
+            ph_title: "pH SCALE",
+            ph_formula: "pH = -log₁₀[H⁺]",
+            decibel_title: "DECIBEL SCALE",
+            decibel_formula: "L = 10·log₁₀(I/I₀)",
+            richter_title: "RICHTER SCALE",
+            richter_formula: "M = log₁₀(A)",
+            ph_subtitle: "Acidity",
+            decibel_subtitle: "Sound",
+            richter_subtitle: "Earthquake",
+            status_chamber: "CHAMBER",
+            status_sim: "LOG_SCALE_SIM: ACTIVE",
+            status_mode: "MODE"
+        }
+        },
+        sc3_01: {
+        back: "Back to Nexus",
+        title: "C3.01 // MOLECULAR ARCHITECT",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Molecular Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C3.01_MOLECULE_MONITOR",
+        footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            atom: "Atom",
+            bond: "Bond",
+            snap: "Snap",
+            grid: "Grid"
+        },
+        mission: {
+            title: "MOLECULAR ASSEMBLY LAB",
+            description: "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."
+        },
+        stages: {
+            aspirin: "ASPIRIN",
+            caffeine: "CAFFEINE"
+        }
+        },
+        sp1_06: {
+        back: "Back to Nexus",
+        title: "SP1.06 // THE SWISS PENDULUM",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Oscillation Data",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.06_PENDULUM_MONITOR",
+        footer_left: "SP1.06_PENDULUM // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            period: "Period (T)",
+            length: "Length (L)",
+            gravity: "Gravity (g)",
+            frequency: "Frequency (f)"
+        },
+        mission: {
+            title: "THE CLOCKMAKER'S SECRET",
+            description: "Calibrate the mechanical master clock of Basel. Master the physics of simple harmonic motion and energy conservation."
+        },
+        stages: {
+            period: "PERIOD",
+            gravity: "GRAVITY",
+            energy: "ENERGY"
+        }
+        },
+        sp2_02: {
+        back: "Back to Nexus",
+        title: "SP2.02 // CIRCUIT SANDBOX 2.0",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Circuit Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.02_CIRCUIT_MONITOR",
+        footer_left: "SP2.02_CIRCUIT_SANDBOX // NODE: BASEL",
+        labels: {
+            multimeter: "MULTIMETER",
+            oscilloscope: "OSCILLOSCOPE",
+            resistance: "RESISTANCE",
+            capacitance: "CAPACITANCE",
+            inductance: "INDUCTANCE",
+            voltage: "VOLTAGE",
+            analysis: "CIRCUIT ANALYSIS",
+            damping: "DAMPING TYPE",
+            formulas: "RLC FORMULAS",
+            reset: "RESET"
+        },
+        mission: {
+            title: "MISSION: RLC TRANSIENT ANALYSIS",
+            description: "Build and analyze RLC circuits. Use the multimeter to measure voltage and current. Observe transient responses on the oscilloscope."
+        },
+        stages: {
+            build: "BUILD CIRCUIT",
+            measure: "MEASURE VALUES",
+            analyze: "ANALYZE RESPONSE",
+            build_desc: "Connect resistors, capacitors, and inductors",
+            measure_desc: "Use multimeter to measure voltage and current",
+            analyze_desc: "Observe oscilloscope waveforms",
+            build_hint: "Click components to select them",
+            measure_hint: "Select 2 points to measure voltage drop",
+            analyze_hint: "Watch for overdamped, underdamped, or critically damped responses"
+        }
+        },
+        sp4_01: {
+        back: "Back to Nexus",
+        title: "SP3.03 // WAVE BASICS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Wave Parameters",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP3.03_WAVE_MONITOR",
+        footer_left: "SP3.03_WAVE_BASICS // NODE: RHINE",
+        labels: {
+            wave_type: "WAVE TYPE",
+            transverse: "TRANSVERSE",
+            longitudinal: "LONGITUDINAL",
+            amplitude: "AMPLITUDE",
+            frequency: "FREQUENCY",
+            wave_speed: "WAVE SPEED",
+            wavelength: "WAVELENGTH",
+            period: "PERIOD",
+            angular_freq: "ANGULAR FREQUENCY",
+            calculated: "CALCULATED VALUES",
+            show_particles: "Show Particle Motion",
+            formulas: "FORMULAS"
+        },
+        mission: {
+            title: "MISSION: RHINE WAVE ANALYSIS",
+            description: "Study mechanical waves on the Rhine River. Master wave parameters: amplitude, frequency, wavelength, and period."
+        },
+        stages: {
+            transverse: "TRANSVERSE WAVES",
+            longitudinal: "LONGITUDINAL WAVES",
+            parameters: "WAVE PARAMETERS",
+            transverse_desc: "Observe perpendicular particle motion",
+            longitudinal_desc: "Study compression and rarefaction",
+            parameters_desc: "Calculate wavelength, period, and speed",
+            transverse_hint: "Particles oscillate perpendicular to wave direction",
+            longitudinal_hint: "Particles oscillate parallel to wave direction",
+            parameters_hint: "v = λf, T = 1/f, ω = 2πf"
+        }
+        },
+        sb1_01: {
+        back: "Back to Nexus",
+        title: "SB1.01 // CELL FACTORY",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Cell Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB1.01_CELL_MONITOR",
+        footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
+        stages: {
+            identification: "IDENTIFICATION",
+            function: "FUNCTION",
+            organelles: "ORGANELLES"
+        },
+        labels: {
+            cutaway_view: "Cutaway View",
+            selected: "SELECTED ORGANELLE",
+            instructions: "INSTRUCTIONS",
+            nucleus: "Nucleus",
+            mitochondria: "Mitochondria",
+            chloroplast: "Chloroplast",
+            ribosome: "Ribosome",
+            golgi: "Golgi Apparatus",
+            er: "Endoplasmic Reticulum",
+            membrane: "Cell Membrane",
+            vacuole: "Vacuole"
+        },
+        mission: {
+            title: "MISSION: CELL EXPLORATION",
+            description: "Explore the animal cell structure. Identify organelles and understand their functions in the cellular economy."
+        },
+        prompts: {
+            id_prompt: "Identify the organelle highlighted in the 3D view.",
+            id_target: "Highlighted: ?",
+            fn_prompt: "Which organelle is responsible for: {func}?",
+            fn_target: "Function: {func}",
+            hint_name: "It is the {name}",
+            hint_start: "The answer starts with {char}"
+        },
+        organelles: {
+            nucleus: {
+                name: "Nucleus",
+                func: "Control Center / DNA Storage",
+                details: "Contains DNA and controls all cell activities. The 'brain' of the cell."
+            },
+            mitochondria: {
+                name: "Mitochondria",
+                func: "ATP Energy Production (Powerhouse)",
+                details: "Produces ATP through cellular respiration. Converts glucose into energy."
+            },
+            ribosome: {
+                name: "Ribosome",
+                func: "Protein Synthesis",
+                details: "Synthesizes proteins by reading mRNA sequences."
+            },
+            golgi: {
+                name: "Golgi Apparatus",
+                func: "Packaging & Transport",
+                details: "Modifies, packages, and transports proteins to their destinations."
+            },
+            er: {
+                name: "Endoplasmic Reticulum",
+                func: "Synthesis Network (ER)",
+                details: "Rough ER: protein synthesis. Smooth ER: lipid synthesis and detoxification."
+            }
+        }
+        },
+        sb1_01_metabolic: {
+        back: "Back to Nexus",
+        title: "SB1.01 // METABOLIC ENGINE",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        target_title: "Metabolic Status",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Homeostasis Stable",
+        incorrect: "Metabolic Crisis",
+        ready: "Ready",
+        monitor_title: "SB1.01_METABOLIC_MONITOR",
+        footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
+        stages: {
+            osmosis: "OSMOSIS",
+            respiration: "RESPIRATION",
+            homeostasis: "HOMEOSTASIS"
+        },
+        labels: {
+            osmolarity: "External Osmolarity",
+            atp_flow: "Show ATP Flow",
+            hypertonic: "Hypertonic",
+            isotonic: "Isotonic",
+            hypotonic: "Hypotonic",
+            status: "Osmotic Status",
+            respiration_formula: "Respiration Formula",
+            glucose: "Glucose",
+            oxygen: "Oxygen",
+            atp: "ATP Energy"
+        },
+        prompts: {
+            osmosis_prompt: "The cell is in a {status} environment. What happens to the water?",
+            respiration_prompt: "Complete the respiration reactant: C₆H₁₂O₆ + 6{reactant} → ...",
+            product_prompt: "What is the primary energy product of respiration?",
+            homeostasis_target: "Balance the environment to achieve Isotonic state.",
+            hint_hyper: "High salt outside! Water leaves the cell.",
+            hint_hypo: "Low salt outside! Water rushes in.",
+            hint_oxy: "We breathe this in to burn glucose."
+        }
+        },
+        sb2_01: {
+        back: "Back to Nexus",
+        title: "SB2.01 // MENDEL'S GARDEN",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Genetic Cross",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB2.01_GENETICS_MONITOR",
+        footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
+        stages: {
+            monohybrid: "MONOHYBRID CROSS",
+            probability: "PROBABILITY",
+            dihybrid: "DIHYBRID CROSS"
+        },
+        labels: {
+            parent: "Parent",
+            offspring: "Offspring",
+            punnett_square: "PUNNETT SQUARE",
+            stats: "OFFSPRING STATISTICS",
+            genotype_ratio: "Genotype Ratio",
+            phenotype_ratio: "Phenotype Ratio",
+            purple_flowers: "Purple Flowers",
+            white_flowers: "White Flowers",
+            genetics_basics: "GENETICS BASICS",
+            genotype_phenotype: "GENOTYPE VS PHENOTYPE",
+            dominance: "DOMINANCE RULES",
+            mendels_laws: "MENDEL'S LAWS",
+            instructions: "INSTRUCTIONS"
+        },
+        concepts: {
+            allele: "Allele: A version of a gene",
+            dominant: "R (Dominant): Purple flower",
+            recessive: "r (Recessive): White flower",
+            genotype: "Genotype: Genetic makeup (RR, Rr, rr)",
+            phenotype: "Phenotype: Observable trait (Purple/White)",
+            homozygous_dom: "RR → Purple (Homozygous Dominant)",
+            heterozygous: "Rr → Purple (Heterozygous)",
+            homozygous_rec: "rr → White (Homozygous Recessive)",
+            law_segregation: "Law of Segregation: Each parent contributes one allele",
+            law_assortment: "Law of Independent Assortment: Alleles separate independently"
+        },
+        mission: {
+            title: "MISSION: MENDELIAN GENETICS",
+            description: "Master Mendel's laws of inheritance. Predict offspring ratios using Punnett Squares."
+        },
+        prompts: {
+            monohybrid_ratio: "Cross {p1} \\times {p2}. What is the phenotypic ratio of Purple to White?",
+            monohybrid_percent: "Cross {p1} \\times {p2}. What percentage of offspring will be Purple?",
+            prob_genotype: "Cross {p1} \\times {p2}. What is the probability of a {genotype} offspring?",
+            ratio_target: "\\text{Ratio } P:W = ?",
+            percent_target: "\\text{Purple Percentage}",
+            prob_target: "P({genotype}) = ?",
+            hint_square: "Check the Punnett Square.",
+            hint_all_rr: "All offspring are Rr.",
+            hint_count: "{count} out of 4 squares."
+        }
+        },
+        gb3_01: {
+        back: "Back to Nexus",
+        title: "GB3.01 // DNA FORGE",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        target_title: "DNA Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GB3.01_DNA_MONITOR",
+        footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
+        stages: {
+            pairing: "BASE PAIRING",
+            bonds: "HYDROGEN BONDS",
+            sequence: "SEQUENCING"
+        },
+        labels: {
+            rotation: "ROTATION",
+            auto_rotate: "Auto Rotate",
+            show_bonds: "Show Hydrogen Bonds",
+            highlight_pair: "HIGHLIGHT BASE PAIR",
+            pairing_rules: "BASE PAIRING RULES",
+            bases: "NUCLEOTIDE BASES",
+            structure: "DNA STRUCTURE",
+            adenine: "Adenine",
+            thymine: "Thymine",
+            cytosine: "Cytosine",
+            guanine: "Guanine"
+        },
+        concepts: {
+            helix: "Double helix: Two antiparallel strands",
+            backbone: "Backbone: Sugar-phosphate groups",
+            at_pair: "A ↔ T: Two hydrogen bonds",
+            gc_pair: "C ↔ G: Three hydrogen bonds",
+            polarity: "Polarity: 5' to 3' orientation",
+            complementary: "Rule: Chargaff's base pairing"
+        },
+        mission: {
+            title: "MISSION: DNA ARCHITECTURE",
+            description: "Master the structural principles of the DNA double helix. Verify base pairing rules and hydrogen bond stability."
+        },
+        prompts: {
+            pairing_prompt: "Identify the complementary base for {base}.",
+            bonds_prompt: "How many hydrogen bonds connect {b1} and {b2}?",
+            seq_prompt: "Provide the complementary sequence for: {seq}",
+            pairing_target: "Complement of {base}",
+            bonds_target: "H-Bonds: ?",
+            seq_target: "Complementary Stream",
+            hint_at: "A pairs with T via 2 bonds.",
+            hint_gc: "G pairs with C via 3 bonds."
+        }
+        },
+        sc1_01: {
+        back: "Back to Nexus",
+        title: "C1.01 // MYSTERY LAB",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Substance Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C1.01_LAB_MONITOR",
+        footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            substance: "Substance",
+            tool: "Test Tool",
+            observation: "Observation"
+        },
+        mission: {
+            title: "POWDER IDENTIFICATION",
+            description: "Identify mysterious white powders using classical chemical tests. Master qualitative analysis."
+        },
+        stages: {
+            identify: "IDENTIFY",
+            properties: "PROPERTIES",
+            reactions: "REACTIONS"
+        }
+        },
+        sc1_03: {
+        back: "Back to Nexus",
+        title: "SC1.03 // ATOMS FORGE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Atomic Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.03_ATOM_MONITOR",
+        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+        labels: {
+            input: "INPUT",
+            hints: "HINTS",
+            properties: "PROPERTIES",
+            element: "Element",
+            atomic_number: "Atomic Number (Z)",
+            mass_number: "Mass Number (A)",
+            charge: "Charge",
+            periodic_table: "PERIODIC TABLE",
+            protons: "PROTONS (p⁺)",
+            neutrons: "NEUTRONEN (n⁰)",
+            electrons: "ELEKTRONEN (e⁻)"
+        },
+        mission: {
+            title: "MISSION: CYBER FORGE",
+            description: "Build atoms from subatomic particles. Master the Bohr model and periodic table."
+        },
+        stages: {
+            build: "BUILD",
+            elements: "ELEMENTS",
+            isotopes: "ISOTOPES",
+            build_desc: "Free mode: Build any atom configuration",
+            elements_desc: "Explore the first 20 elements of the periodic table",
+            isotopes_desc: "Study isotopes: same protons, different neutrons"
+        }
+        },
+        sc2_02: {
+        back: "Back to Nexus",
+        title: "SC2.02 // pH SENTINEL",
+        difficulty: {
+            basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Titration Analysis",
+        next: "Next Analysis",
+        check: "Verify",
+        correct: "Titration Accurate",
+        incorrect: "Invalid pH reading",
+        ready: "Ready",
+        monitor_title: "SC2.02_TITRATION_MONITOR",
+        footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
+        stages: {
+            curves: "PH CURVES",
+            equivalence: "EQUIVALENCE",
+            indicators: "INDICATORS"
+        },
+        labels: {
+            initial_ph: "Initial pH",
+            added_vol: "Added Volume (mL)",
+            eq_point: "Equivalence Point",
+            indicator: "Indicator",
+            strong_acid: "Strong Acid",
+            weak_acid: "Weak Acid",
+            formula: "Titration Formula"
+        },
+        prompts: {
+            curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
+            find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
+            select_indicator: "Weak acid + Strong base. Choose indicator: Phenol(1), MethylO(2).",
+            weak_ph_calc: "At half-equivalence (pH = pKa). If pKa is 4.75, what is the pH?",
+            eq_ph_guess: "Equivalence pH of Strong/Strong? (<7=1, 7=2, >7=3).",
+            conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
+        }
+        },
+        sc2_03: {
+        back: "Back to Nexus",
+        title: "SC2.03 // AERO LAB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Gas Properties",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC2.03_GAS_MONITOR",
+        footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
+        labels: {
+            pressure: "PRESSURE",
+            state_variables: "STATE VARIABLES",
+            volume: "VOLUME (V)",
+            temperature: "TEMPERATURE (T)",
+            moles: "MOLES (n)",
+            formulas: "FORMULAS"
+        },
+        mission: {
+            title: "MISSION: IDEAL GAS LAWS",
+            description: "Explore the relationship between pressure, volume, and temperature in ideal gases."
+        },
+        stages: {
+            boyle: "BOYLE'S LAW",
+            charles: "CHARLES' LAW",
+            combined: "COMBINED GAS LAW",
+            boyle_desc: "Observe inverse relationship: P ∝ 1/V",
+            charles_desc: "Observe direct relationship: V ∝ T",
+            combined_desc: "Master the combined gas law",
+            boyle_hint: "Boyle's Law: Decrease volume → Increase pressure",
+            charles_hint: "Charles' Law: Increase temperature → Increase volume",
+            combined_hint: "Combined: All three variables interact"
+        }
+        },
+        sc1_03_orbitals: {
+        back: "Back to Nexus",
+        title: "SC1.03 // ATOMS FORGE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Atomic Orbitals",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.03_ORBITAL_MONITOR",
+        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+        labels: {
+            selected_element: "SELECTED ELEMENT",
+            orbital_type: "ORBITAL TYPE",
+            show_transition: "Show Electron Transition",
+            periodic_table: "PERIODIC TABLE (Z=1-20)",
+            orbital_shapes: "ORBITAL SHAPES",
+            quantum_numbers: "QUANTUM NUMBERS"
+        },
+        mission: {
+            title: "MISSION: QUANTUM MECHANICS",
+            description: "Explore electron orbitals and probability clouds. Visualize s, p, and d orbitals in 3D space."
+        },
+        stages: {
+            s_orbital: "S ORBITALS",
+            p_orbital: "P ORBITALS",
+            d_orbital: "D ORBITALS",
+            s_desc: "Spherical probability distribution",
+            p_desc: "Dumbbell-shaped orbitals (px, py, pz)",
+            d_desc: "Cloverleaf-shaped orbitals",
+            s_hint: "s orbitals: l=0, spherically symmetric",
+            p_hint: "p orbitals: l=1, three orientations",
+            d_hint: "d orbitals: l=2, five orientations"
+        }
+        },
+        sc1_04: {
+        back: "Back to Nexus",
+        title: "SC1.04 // PERIODIC PUZZLE",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Atom Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.04_ATOM_MONITOR",
+        footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
+        labels: {
+            element_info: "ELEMENT INFO",
+            formulas: "FORMULAS",
+            protons: "PROTONS",
+            neutrons: "NEUTRONS",
+            electrons: "ELECTRONS",
+            select_element: "SELECT ELEMENT"
+        },
+        mission: {
+            title: "MISSION: PERIODIC TABLE",
+            description: "Build atoms and discover the periodic table. Master electron configuration."
+        },
+        stages: {
+            build: "BUILD ATOM",
+            periodic: "PERIODIC TABLE",
+            groups: "ELEMENT GROUPS",
+            build_desc: "Build atoms by adding protons, neutrons, and electrons",
+            periodic_desc: "Explore the first 20 elements",
+            groups_desc: "Understand element groups and periods",
+            build_hint: "Proton number determines the element",
+            periodic_hint: "Elements are arranged by atomic number",
+            groups_hint: "Same group = same valence electrons"
+        }
+        },
+        sc2_04: {
+        back: "Back to Nexus",
+        title: "SC2.04 // SOLUBILITY LAB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Solution Status",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC2.04_SOLUBILITY_MONITOR",
+        footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
+        labels: {
+            solubility: "SOLUBILITY",
+            saturated: "SATURATED - Precipitate forming",
+            unsaturated: "UNSATURATED - Can dissolve more",
+            solution_data: "SOLUTION DATA",
+            temperature: "TEMPERATURE (°C)",
+            solute_amount: "SOLUTE AMOUNT (g)",
+            formulas: "FORMULAS"
+        },
+        mission: {
+            title: "MISSION: SOLUBILITY",
+            description: "Explore solubility and temperature relationships. Observe crystallization."
+        },
+        stages: {
+            dissolve: "DISSOLVE",
+            saturate: "SATURATE",
+            crystallize: "CRYSTALLIZE",
+            dissolve_desc: "Dissolve solute in water",
+            saturate_desc: "Reach saturation point",
+            crystallize_desc: "Cool solution to crystallize",
+            dissolve_hint: "Most salts dissolve better at higher temperatures",
+            saturate_hint: "Saturation: maximum amount dissolved",
+            crystallize_hint: "Cooling causes excess solute to crystallize"
+        }
+        },
+        gp1_03: {
+        back: "Back to Nexus",
+        title: "GP5.03 // PARTICLE COLLIDER",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "LHC ATLAS DETECTOR",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GP5.03_LHC_MONITOR",
+        footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
+        labels: {
+            beam_energy: "BEAM ENERGY",
+            relativistic_effects: "RELATIVISTIC EFFECTS",
+            formulas: "FORMULAS",
+            magnetic_field: "Enable Magnetic Field (Bending Magnets)",
+            colliding: "COLLIDING...",
+            initiate_collision: "INITIATE COLLISION"
+        },
+        mission: {
+            title: "MISSION: PARTICLE PHYSICS",
+            description: "Explore particle collisions at CERN's Large Hadron Collider. Discover the Higgs boson."
+        },
+        stages: {
+            acceleration: "ACCELERATION",
+            collision: "COLLISION",
+            detection: "DETECTION",
+            acceleration_desc: "Accelerate protons to near light speed",
+            collision_desc: "Collide proton beams at 13 TeV",
+            detection_desc: "Detect particle jets and tracks",
+            acceleration_hint: "Protons reach 99.9999991% speed of light",
+            collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
+            detection_hint: "Magnetic field bends charged particle tracks"
+        }
+        },
+        gp5_02: {
+        title: "GP1.02 // RELATIVITY LAB",
+        back: "Back to Nexus",
+        footer_left: "GP1.02_RELATIVITY_LAB // NODE: RHINE",
+        monitor_title: "GP1.02_RELATIVITY_MONITOR",
+        labels: {
+            lorentz_factor_title: "LORENTZ FACTOR",
+            velocity_label: "VELOCITY (v/c)",
+            velocity_value: "{value}% c",
+            gamma_value: "γ = {value}",
+            toggle_doppler: "Show Doppler Effect",
+            toggle_contraction: "Show Length Contraction"
+        },
+        effects: {
+            title: "RELATIVISTIC EFFECTS",
+            time_dilation_label: "Time Dilation:",
+            time_dilation_value: "Δt' = {value}Δt",
+            length_contraction_label: "Length Contraction:",
+            length_contraction_value: "L' = {value}L"
+        },
+        formulas: {
+            title: "FORMULAS",
+            gamma: "γ = 1/√(1 - v²/c²)",
+            time: "Δt' = γΔt",
+            length: "L' = L/γ",
+            energy: "E = γmc²"
+        },
+        mission: {
+            title: "MISSION: SPECIAL RELATIVITY",
+            description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
+        }
+        },
+        sp1_08: {
+        title: "SP1.08 // OPTICS BENCH",
+        back: "Back to Nexus",
+        footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
+        monitor_title: "SP1.08_OPTICS_MONITOR",
+        labels: {
+            show_prism: "Show Prism Dispersion",
+            medium_1: "MEDIUM 1 (n₁)",
+            medium_2: "MEDIUM 2 (n₂)",
+            incident_angle: "INCIDENT ANGLE (θ₁)",
+            refraction_title: "REFRACTION",
+            refracted_angle: "Refracted Angle (θ₂):",
+            critical_angle: "Critical Angle:",
+            total_internal_reflection: "TOTAL INTERNAL REFLECTION",
+            na: "N/A",
+            angle_value: "{value}°"
+        },
+        snell: {
+            title: "SNELL'S LAW",
+            line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
+            line_2: "θ_c = arcsin(n₂/n₁)",
+            line_3: "v = c/n"
+        },
+        mission: {
+            title: "MISSION: RAY OPTICS",
+            description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
+        }
+        },
+        sb1_02: {
+        back: "Return to Nexus",
+        title: "SB1.02 // PHOTOSYNTHESIS LAB",
+        stages: {
+            equation: "REACTION EQUATION",
+            limiting_factors: "LIMITING FACTORS",
+            chloroplast: "CHLOROPLAST"
+        },
+        labels: {
+            light: "Light Intensity",
+            co2: "CO2 Level",
+            temp: "Temperature",
+            glucose: "Glucose Production"
+        }
+        },
+        sb2_02: {
+        back: "Return to Nexus",
+        title: "SB2.02 // HUMAN BODY SYSTEMS",
+        stages: {
+            digestion: "DIGESTION",
+            circulation: "CIRCULATION",
+            respiration: "RESPIRATION"
+        },
+        labels: {
+            heart_rate: "Heart Rate",
+            o2_sat: "O2 Saturation",
+            enzyme: "Enzyme Activity"
+        }
+        },
+        sb3_01: {
+        back: "Return to Nexus",
+        title: "SB3.01 // ECOSYSTEM DYNAMICS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
+        footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
+        objective_title: "Active Mission Objective",
+        stages: {
+            food_chains: "FOOD CHAINS",
+            energy_flow: "ENERGY FLOW",
+            cycles: "BIOGEOCHEMICAL CYCLES"
+        },
+        labels: {
+            ecosystem_display: "Ecosystem Display",
+            input_terminal: "Input Terminal",
+            trophic_level: "Trophic Level",
+            show_energy: "Show Energy Flow",
+            ecology_score: "Ecology Score"
+        },
+        prompts: {
+            food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
+            energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
+            cycle_process: "In the {cycle} cycle, what is produced by {process}?",
+            hint_trophic: "Only 10% of energy transfers to the next trophic level",
+            hint_10percent: "Use the 10% rule: multiply by 0.1",
+            hint_cycle: "Think about the inputs and outputs of this process"
+        },
+        scenarios: {
+            rhine_river: "Rhine River Ecosystem: The Rhine supports diverse aquatic life from algae to predatory birds. Food chains begin with phytoplankton and progress through zooplankton, fish, and apex predators.",
+            energy_pyramid: "Energy Flow in Basel Wetlands: Basel's wetland reserves demonstrate energy pyramids. Only 10% of energy transfers between trophic levels, limiting food chain length.",
+            carbon_cycle: "Carbon Cycle at Rhine Delta: Photosynthesis and respiration drive carbon cycling in Rhine ecosystems. Plants absorb CO₂, animals release it through respiration.",
+            nitrogen_cycle: "Nitrogen Fixation in Basel Soil: Bacteria in Basel's agricultural soils convert atmospheric N₂ into usable NH₃ for plants through nitrogen fixation.",
+            water_cycle: "Rhine Water Cycle: Evaporation from the Rhine, condensation in clouds, and precipitation complete the water cycle that sustains Basel's ecosystems."
+        },
+        feedback: {
+            correct: "Ecosystem balance maintained!",
+            incorrect: "Ecosystem disrupted. Review the relationships."
+        }
+        },
+        sp1_04: {
+        back: "Return to Nexus",
+        title: "SP1.04 // SIMPLE MACHINES",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.04_MECHANICS_MONITOR",
+        footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        stages: {
+            levers: "LEVERS",
+            pulleys: "PULLEYS",
+            inclined_planes: "INCLINED PLANES"
+        },
+        labels: {
+            machine_display: "Machine Display",
+            input_terminal: "Input Terminal",
+            force_ratio: "Force Ratio (MA)",
+            show_forces: "Show Forces",
+            mechanics_score: "Mechanics Score"
+        },
+        prompts: {
+            lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
+            pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
+            inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
+            hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",
+            hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
+            hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"
+        },
+        scenarios: {
+            basel_construction: "Basel Construction Site: Workers at Basel's Roche Tower construction site use levers, pulleys, and ramps to move heavy materials efficiently. Simple machines reduce the force needed.",
+            lever_crowbar: "Crowbar at Basel Renovation: Renovating Basel's historic buildings requires careful use of levers. A crowbar with long effort arm provides mechanical advantage to lift heavy stones.",
+            pulley_crane: "Construction Crane Pulley: Basel's construction cranes use multiple pulley strands to lift steel beams. Each additional strand reduces the required input force.",
+            ramp_loading: "Loading Ramp at Basel Port: Rhine port workers use inclined planes to load cargo onto barges. Longer ramps require less force but more distance.",
+            compound_machine: "Compound Machines in Basel: Real construction equipment combines levers, pulleys, and inclined planes to achieve high mechanical advantage for heavy lifting tasks."
+        },
+        feedback: {
+            correct: "Mechanical advantage calculated correctly!",
+            incorrect: "Check your mechanical advantage calculation."
+        }
+        },
+        sb1_03: {
+        back: "Back to Nexus",
+        title: "SB1.03 // CELL DIVISION",
+        check: "Verify",
+        next: "Next Phase",
+        correct: "Phase Clear",
+        incorrect: "Misaligned",
+        ready: "Ready",
+        monitor_title: "SB1.03_REPLICATION_HUB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            mitosis: "MITOSIS",
+            meiosis_i: "MEIOSIS I",
+            meiosis_ii: "MEIOSIS II"
+        }
+        },
+        sc1_05: {
+        back: "Back to Nexus",
+        title: "SC1.05 // BONDING BRIDGE",
+        check: "Verify",
+        next: "Next",
+        correct: "Bond Verified",
+        incorrect: "Bond Failed",
+        ready: "Ready",
+        monitor_title: "SC1.05_BOND_LAB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            ionic: "IONIC",
+            covalent: "COVALENT",
+            lewis: "LEWIS"
+        },
+        labels: {
+            na_cl: "Na + Cl -> NaCl",
+            h2: "H + H -> H2",
+            co2: "C + 2O -> CO2"
+        }
+        },
+        sc3_02: {
+        back: "Return to Nexus",
+        title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
+        stages: {
+            alkanes: "ALKANES",
+            functional_groups: "FUNCTIONAL GROUPS",
+            isomers: "ISOMERS"
+        },
+        labels: {
+            carbon_chain: "Carbon Chain",
+            hydroxyl: "Hydroxyl Group",
+            double_bond: "Double Bond"
+        }
+        },
+        sc3_03: {
+        back: "Return to Nexus",
+        title: "SC3.03 // ORGANIC REACTIONS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC3.03_REACTION_MONITOR",
+        footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        stages: {
+            combustion: "COMBUSTION",
+            substitution: "SUBSTITUTION",
+            addition: "ADDITION"
+        },
+        labels: {
+            reaction_display: "Reaction Display",
+            input_terminal: "Input Terminal",
+            animation_speed: "Animation Speed",
+            show_mechanism: "Show Mechanism",
+            chemistry_score: "Chemistry Score"
+        },
+        prompts: {
+            combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
+            substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
+            addition: "When {alkene} reacts with {reagent}, what is the product?",
+            hint_combustion: "Count carbon atoms in the reactant",
+            hint_substitution: "One H atom is replaced by a halogen atom",
+            hint_addition: "The double bond opens and adds the reagent"
+        },
+        scenarios: {
+            novartis_combustion: "Novartis Energy Lab: Combustion reactions power Basel's pharmaceutical facilities. Complete combustion of organic fuels produces CO₂ and H₂O with maximum energy release.",
+            basel_chemical_plant: "Basel Chemical Synthesis: Substitution reactions at Basel's chemical plants use UV light to replace hydrogen atoms with halogens, creating valuable pharmaceutical intermediates.",
+            polymer_production: "Polymer Production in Basel: Addition reactions convert alkenes into polymers at Basel's chemical facilities. Double bonds open to form long polymer chains.",
+            free_radical_mechanism: "Free Radical Chemistry: UV light initiates free radical mechanisms in substitution reactions. Radicals propagate through chain reactions until termination.",
+            reaction_control: "Reaction Control at Novartis: Controlling reaction conditions (light, temperature, catalysts) determines product selectivity and yield in organic synthesis."
+        },
+        feedback: {
+            correct: "Reaction mechanism understood!",
+            incorrect: "Review the reaction mechanism."
+        }
         }
     },
     CN: {
@@ -3721,6 +3785,8 @@ export const translations: Record<string, any> = {
             sp1_05_subtitle: "掌握巴塞尔 Gierseilfähri 渡轮机制。仅利用水流和缆索横渡莱茵河。",
             sp1_06_title: "SP1.06 // 瑞士钟摆",
             sp1_06_subtitle: "时间的力学：与巴塞尔钟表匠一起探索周期、频率和引力。",
+            sp1_07_title: "SP1.07 // 阿基米德船坞",
+            sp1_07_subtitle: "在巴塞尔莱茵河港口探索压强、浮力和液压系统。",
             sp1_08_title: "SP1.08 // 光学实验室",
             sp1_08_subtitle: "探索光、透镜和光学现象。",
             sp2_03_title: "SP2.03 // 电机实验室",
@@ -3920,6 +3986,9 @@ export const translations: Record<string, any> = {
             sb1_01_met_subtitle: "细胞代谢与能量产生。",
             sb1_02_title: "SB1.02 // 光合作用实验室",
             sb1_02_subtitle: "掌握光合作用方程式、限制因子和叶绿体结构。",
+            sb1_02_subtitle: "掌握光合作用方程式、限制因子和叶绿体结构。",
+            sb1_03_title: "SB1.03 // 复制中心",
+            sb1_03_subtitle: "掌握有丝分裂和减数分裂机制。通往遗传学的桥梁。",
             sb2_01_title: "SB2.01 // 孟德尔花园",
             sb2_01_subtitle: "遗传学与庞尼特方格。",
             sb2_02_title: "SB2.02 // 人体系统",
@@ -5202,1949 +5271,1967 @@ export const translations: Record<string, any> = {
                 description: "将莱茵河水能转化为清洁电力。追踪能量转化与涡轮功率。"
             }
         },
-        sp1_04: {
+        sp1_07: {
             back: "返回枢纽",
-            title: "P1.04 // 时间膨胀模拟器",
+            title: "SP1.07 // 压力与浮力",
             difficulty: {
                 basic: "基础",
                 core: "核心",
                 advanced: "进阶",
                 elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "时空控制台",
-            next: "执行下一序列",
-            check: "开启推进",
-            correct: "物理解析一致",
-            incorrect: "时空偏航",
-            ready: "就绪",
-            monitor_title: "P1.04_相对论核心",
-            footer_left: "P1.04_相对论 // 节点：巴塞尔",
-            labels: {
-                velocity: "速度 (v/c)",
-                gamma: "洛伦兹因子 (γ)",
-                length: "长度收缩 (L)",
-                time: "时间膨胀 (t)"
-            },
-            mission: {
-                title: "任务：爱因斯坦实验室",
-                description: "观察时空的扭曲。当物体接近光速时，长度会发生收缩，时间会发生膨胀。"
-            },
-            stages: {
-                contraction: "长度收缩",
-                dilation: "时间膨胀",
-                spacetime: "时空网格",
-                contraction_prompt_latex: "\\text{计算收缩后的长度 } L = L_0/\\gamma。",
-                dilation_prompt_latex: "\\text{计算膨胀后的时间 } t = t_0 \\cdot \\gamma。",
-                spacetime_prompt_latex: "\\text{分析给定速度下的洛伦兹因子 } \\gamma。"
-            }
-        },
-        sp1_05: {
-            back: "返回枢纽",
-            title: "SP1.05 // 莱茵河渡轮",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "SP1.05_渡轮监视器",
-            footer_left: "SP1.05_莱茵河渡轮 // 节点：巴塞尔",
-            stages: {
-                composition: "矢量合成",
-                drift: "偏航分析",
-                navigation: "精准航行"
-            },
-            labels: {
-                river_speed: "河流速度 (v_r)",
-                ferry_speed: "渡轮速度 (v_f)",
-                cable_angle: "缆索角度 (θ)",
-                resultant_speed: "合速度 (v_net)",
-                drift_speed: "偏航速度",
-                angle: "角度"
-            },
-            mission: {
-                title: "莱茵河横渡任务",
-                description: "驾驶巴塞尔莱茵河渡轮。调整缆索角度和渡轮速度以补偿河水流速。"
-            }
-        },
-        sp2_01: {
-            back: "返回枢纽",
-            title: "P2.01 // 热力学",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
+            monitor_title: "SP1.07_流体监控",
+            footer_left: "SP1.07_流体力学 // 节点：莱茵河",
             objective_title: "当前任务目标",
-            target_title: "热量传递",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "P2.01_热力学监视器",
-            footer_left: "P2.01_热力学 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                heat: "热能 (Q)",
-                temperature: "温度变化 (ΔT)",
-                mass: "质量 (m)",
-                specific_heat: "比热容 (c)"
-            },
-            mission: {
-                title: "热反应堆控制",
-                description: "诺华热反应堆需要精确的热量计算。掌握热容量和相变。"
-            },
             stages: {
-                heat_capacity: "热容量",
-                phase_change: "相变",
-                mixed: "混合问题",
-                heat_capacity_prompt_latex: "\\text{使用 }Q=mc\\Delta T\\text{ 计算热量传递。}",
-                phase_change_prompt_latex: "\\text{使用 }Q=mL\\text{ 计算潜热。}",
-                mixed_prompt_latex: "\\text{结合热容量和相变计算。}"
-            },
-            formulas: {
-                heat_capacity: "Q = mc\\Delta T",
-                phase_change: "Q = mL",
-                mixed: "Q_{\\text{总}} = Q_1 + Q_2"
-            }
-        },
-        sp3_02: {
-            back: "返回枢纽",
-            title: "P3.02 // 波动光学",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "波动特性",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "P3.02_光学监视器",
-            footer_left: "P3.02_波动光学 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                wavelength: "波长 (λ)",
-                slit_separation: "缝间距 (d)",
-                slit_width: "缝宽 (a)",
-                angle: "角度 (θ)",
-                intensity: "光强 (I)",
-                order: "阶数 (m)"
-            },
-            mission: {
-                title: "光学共振实验室",
-                description: "诺华光学实验室涉及波动特性。掌握干涉、衍射和偏振。"
-            },
-            stages: {
-                interference: "干涉",
-                diffraction: "衍射",
-                polarization: "偏振",
-                interference_prompt_latex: "\\text{使用双缝公式计算角度 }\\theta\\text{。}",
-                diffraction_prompt_latex: "\\text{使用单缝公式计算角度 }\\theta\\text{。}",
-                polarization_prompt_latex: "\\text{使用马吕斯定律计算光强 }I\\text{。}"
-            },
-            formulas: {
-                interference: "d \\sin \\theta = m \\lambda",
-                diffraction: "a \\sin \\theta = m \\lambda",
-                polarization: "I = I_0 \\cos^2 \\theta"
-            }
-        },
-        sm1_02_new: {
-            back: "返回 Nexus",
-            title: "EM1.01 // 代数探险",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            modes: {
-                containers: "容器",
-                sorting: "分类",
-                machine: "机器"
-            },
-            labels: {
-                variable: "变量",
-                value: "数值",
-                expression: "表达式",
-                simplify: "化简",
-                evaluate: "求值",
-                input: "输入",
-                output: "输出"
-            },
-            stages: {
-                variables: "变量概念",
-                terms: "同类项",
-                substitution: "代入法",
-                vars_prompt: "识别容器内的数值。",
-                terms_prompt: "合并同类项以化简表达式。",
-                sub_prompt: "将给定的值代入表达式并计算结果。"
-            },
-            scenarios: {
-                variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
-                terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
-                substitution: "BVB电车售票机：你正在测试售票机的逻辑。将区域值（x）代入价格公式，计算正确的法郎（CHF）票价。"
-            }
-        },
-        sm2_07: {
-            back: "返回枢纽",
-            title: "SM2.07 // 坐标几何",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "精密测绘",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SM2.07_坐标监视器",
-            footer_left: "SM2.07_坐标几何 // 节点：苏黎世",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                distance: "距离 (d)",
-                midpoint: "中点 (M)",
-                slope: "斜率 (m)"
-            },
-            mission: {
-                title: "苏黎世节点测绘",
-                description: "苏黎世坐标测绘需要精密几何计算。计算城市节点间的距离、中点和斜率。"
-            },
-            stages: {
-                distance: "距离",
-                midpoint: "中点",
-                slope: "斜率",
-                distance_prompt_latex: "\\text{计算点 A 和 B 之间的距离 }d\\text{。}",
-                midpoint_prompt_latex: "\\text{计算中点坐标 }M(x,y)\\text{。}",
-                slope_prompt_latex: "\\text{计算通过 A 和 B 的直线的斜率 }m\\text{。}"
-            },
-            formulas: {
-                distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
-                midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
-                slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
-            }
-        },
-        sm1_03_new: {
-            back: "返回枢纽",
-            title: "SM1.03 // 零度以下",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SM1.03_整数监视器",
-            footer_left: "SM1.03_零度以下 // 节点：巴塞尔",
-            basel_scenario: "巴塞尔冬季场景",
-            scenario_title: "问题背景",
-            calculate_title: "计算",
-            answer_title: "你的答案",
-            solution_title: "解答",
-            stages: {
-                number_line: "数轴",
-                rationals: "有理数",
-                quadrants: "象限"
-            },
-            scenarios: {
-                number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
-                rationals: "莱茵河水位：巴塞尔莱茵河的水位计显示水深。正常水位是+5米。干旱时会下降。潜水员将水面以下的深度测量为负值。有理数（分数和小数）提供精确测量。",
-                quadrants: "巴塞尔城市网格导航：在坐标网格上标记巴塞尔地标。大巴塞尔（Q1：+,+）、小巴塞尔（Q2：-,+）、克莱贝克（Q3：-,-）、圣阿尔班（Q4：+,-）。理解象限有助于导航城市和精确定位。"
-            },
-            problems: {
-                nl_identify_neg3: "在数轴上定位-3。",
-                nl_identify_5: "在数轴上定位5。",
-                nl_temp_neg2: "温度是-2°C。在温度计上标记。",
-                nl_depth_neg4: "潜水员在水面下4米。标记-4m。",
-                nl_identify_0: "在数轴上定位零（原点）。",
-                nl_compare_neg5_neg2: "哪个更冷：-5°C还是-2°C？",
-                nl_compare_neg3_1: "哪个更小：-3还是1？",
-                nl_order_three: "排序这些数字：-4, 0, 3。中间值是什么？",
-                nl_rhine_level: "莱茵河水位从+5m降到-3m。新水位是多少？",
-                nl_temp_drop: "温度从2°C下降7度。最终温度是多少？",
-                nl_distance_abs: "数轴上-5和2之间的距离是多少？",
-                nl_abs_value: "-8的绝对值是多少？",
-                nl_distance_neg_neg: "-7和-3之间的距离是多少？",
-                nl_midpoint: "-6和4之间的中点是什么？",
-                nl_temp_range: "温度范围从-8°C到5°C。范围是多少？",
-                nl_operation_add: "计算：-5 + 3",
-                nl_operation_sub: "计算：-3 - 4",
-                nl_operation_mult: "计算：-4 × 2",
-                nl_multi_step: "计算：-6 + 8 - 5",
-                nl_complex_op: "计算：(-2 + 5) - (3 - 7)",
-                r_place_half: "在数轴上定位0.5。",
-                r_place_neg_half: "在数轴上定位-0.5。",
-                r_place_1_5: "在数轴上定位1.5。",
-                r_place_neg2_5: "在数轴上定位-2.5。",
-                r_fraction_third: "将1/3转换为小数（保留2位）。",
-                r_compare_fractions: "哪个更大：-1/2还是-1/3？",
-                r_compare_decimals: "哪个更小：-0.75还是-0.5？",
-                r_order_mixed: "排序：-1.5, -0.5, 0.5。最小的是什么？",
-                r_add_decimals: "计算：0.5 + 0.25",
-                r_sub_decimals: "计算：1.5 - 2.25",
-                r_compare_neg_decimals: "哪个更冷：-0.75°C还是-0.8°C？",
-                r_fraction_to_decimal: "将-3/4转换为小数。",
-                r_mult_decimals: "计算：0.5 × 1.5",
-                r_div_decimals: "计算：1.5 ÷ 0.5",
-                r_mixed_operations: "计算：0.5 + 1.25 - 0.75",
-                r_order_complex: "从小到大排序：-1.5, -3/2, 0, 1.2。第一个是什么？",
-                r_fraction_operations: "计算：1/2 + 1/4（小数形式）",
-                r_neg_fraction_ops: "计算：-1/2 - 1/4（小数形式）",
-                r_complex_decimal: "计算：(0.5 - 1.25) × 2",
-                r_repeating_decimal: "将2/3转换为小数（保留2位）。",
-                q_identify_point: "点(2, 3)的x坐标是什么？",
-                q_identify_y: "点(3, 4)的y坐标是什么？",
-                q_plot_positive: "绘制点(1, 2)。x是什么？",
-                q_origin: "原点的x坐标是什么？",
-                q_axis_point: "点(3, 0)在哪个轴上？y是什么？",
-                q_quadrant_2: "点(-2, 5)在哪个象限？",
-                q_quadrant_3: "点(-3, -4)在哪个象限？",
-                q_quadrant_4: "点(4, -2)在哪个象限？",
-                q_basel_landmarks: "小巴塞尔在(-3, 2)。x是什么？",
-                q_distance_horizontal: "(2, 0)和(5, 0)之间的距离？",
-                q_reflect_x_axis: "将(3, 4)关于x轴反射。y'是什么？",
-                q_reflect_y_axis: "将(5, 2)关于y轴反射。x'是什么？",
-                q_reflect_origin: "将(3, 4)关于原点反射。x'是什么？",
-                q_translate: "将(2, 3)平移(4, 0)。x'是什么？",
-                q_midpoint_2d: "(2, 3)和(6, 3)之间的中点。x是什么？",
-                q_distance_vertical: "(0, 5)和(0, -3)之间的距离？",
-                q_perimeter_rectangle: "顶点在(0,0)和(4,3)的矩形。周长？",
-                q_area_rectangle: "顶点在(0,0)和(4,3)的矩形。面积？",
-                q_diagonal_distance: "从(2, 3)到(6, 5)的水平距离？",
-                q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
-            }
-        },
-        sm1_04_new: {
-            back: "返回枢纽",
-            title: "SM1.04 // 等式平衡",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SM1.04_等式监视器",
-            footer_left: "SM1.04_等式平衡 // 节点：巴塞尔",
-            basel_scenario: "巴塞尔等式场景",
-            scenario_title: "问题背景",
-            solve_title: "求解等式",
-            answer_title: "你的答案",
-            solution_title: "解答",
-            stages: {
-                balance: "平衡",
-                solve: "求解",
-                transform: "转换",
-                applications: "应用"
-            },
-            scenarios: {
-                balance: "理解等式平衡：就像天平一样，等式必须保持平衡。无论对一边做什么，都必须对另一边做同样的操作。这个基本原则是解所有等式的关键。",
-                solve: "解一元一次方程：使用逆运算来孤立变量。加/减以移动常数，乘/除以移除系数。每一步都让你离找到x更近一步。",
-                transform: "等式变换：掌握将项移过等号的艺术。合并同类项，展开括号，并简化分数。将复杂的等式转换为简单的等式。",
-                applications: "巴塞尔现实问题：应用等式解决巴塞尔的实际问题。计算公交车票价、莱茵河渡轮时间、诺华实验室测量数据和罗氏药物浓度。"
-            },
-            problems: {
-                bal_add_both: "在 x + 3 = 7 的两边同时加 2",
-                bal_subtract_both: "在 x + 5 = 8 的两边同时减 5",
-                bal_multiply_both: "两边同时乘以 2",
-                bal_divide_both: "两边同时除以 2",
-                bal_simple_check: "通过移动常数求解",
-                bal_two_steps: "先减去 3，再除以 2",
-                bal_negative_result: "结果将是负数",
-                bal_fraction_coeff: "先减去 2，再乘以 3",
-                bal_both_sides_x: "将 x 项移到一边",
-                bal_distribute: "先展开括号",
-                bal_complex_both: "两边都有变量",
-                bal_fractions: "找到公分母",
-                bal_parentheses_both: "先展开两边的括号",
-                bal_decimal_coeff: "使用小数运算",
-                bal_negative_coeff: "负系数",
-                bal_nested_parens: "先简化最内层的括号",
-                bal_three_fractions: "三个不同分母的分数",
-                bal_complex_distribute: "多步分配",
-                bal_reciprocal: "倒数分数",
-                bal_proportion: "比例等式",
-                sol_one_step_add: "一步：减去 3",
-                sol_one_step_sub: "一步：加上 5",
-                sol_one_step_mult: "一步：除以 3",
-                sol_one_step_div: "一步：乘以 4",
-                sol_negative_simple: "结果是负数",
-                sol_two_step_1: "两步：先减后除",
-                sol_two_step_2: "两步：先加后乘",
-                sol_negative_coeff: "负系数",
-                sol_fraction_result: "答案是分数",
-                sol_decimal_coeff: "小数系数",
-                sol_combine_like: "先合并同类项",
-                sol_distribute_simple: "先分配再求解",
-                sol_x_both_sides: "两边都有变量",
-                sol_fraction_both: "加分数",
-                sol_negative_both: "两边都有负项",
-                sol_complex_distribute: "复杂分配",
-                sol_nested_parens: "嵌套括号",
-                sol_three_terms: "三个分数项",
-                sol_decimal_complex: "带括号的小数",
-                sol_proportion_eq: "比例等式",
-                tra_move_constant: "将常数移到右边",
-                tra_move_variable: "移动变量项",
-                tra_isolate_x: "通过除法孤立 x",
-                tra_two_moves: "两步变换",
-                tra_negative_move: "移动负项",
-                tra_collect_terms: "收集同类项",
-                tra_move_both: "从两边移动项",
-                tra_expand_first: "先展开再移动",
-                tra_fraction_clear: "先清除分数",
-                tra_negative_coeff: "处理负系数",
-                tra_multi_step: "多步变换",
-                tra_both_expand: "展开两边",
-                tra_fractions_lcd: "找分数的最小公分母",
-                tra_decimal_expand: "展开小数表达式",
-                tra_complex_collect: "复杂项收集",
-                tra_nested_complex: "嵌套括号变换",
-                tra_three_fractions: "合并三个分数",
-                tra_double_expand: "双重展开",
-                tra_proportion_cross: "交叉相乘",
-                tra_mixed_complex: "混合分数和小数",
-                app_bus_ticket: "巴塞尔 BVB 公交：成人票价 x 瑞郎。儿童票便宜 2 瑞郎。如果成人票是 5 瑞郎，求 x。",
-                app_rhine_time: "莱茵河渡轮：单程需要 2x 分钟。往返需要 10 分钟。求 x。",
-                app_age_simple: "年龄问题：5 年后，你将 12 岁。你现在多大？",
-                app_distance_simple: "巴塞尔到苏黎世：一半距离是 6 公里。求总距离。",
-                app_price_discount: "罗氏食堂：打折 10 瑞郎后，餐费 40 瑞郎。原价是多少？",
-                app_tram_tickets: "巴塞尔有轨电车：3 张成人票每张 x 瑞郎，加 2 张儿童票每张 2 瑞郎，总共 13 瑞郎。求 x。",
-                app_novartis_samples: "诺华实验室：5 个盒子每个有 x 个样本，加 10 个额外样本，总共 60 个。求 x。",
-                app_age_sum: "父子：儿子 x 岁，父亲大 30 岁。他们年龄总和是 50。求儿子年龄。",
-                app_rectangle_perimeter: "巴塞尔公园：矩形花园，长 8 米，宽 x 米，周长 28 米。求宽度。",
-                app_speed_distance: "巴塞尔到利斯塔尔：以 x 公里/小时行驶 2 小时，距离 80 公里。求速度。",
-                app_roche_concentration: "罗氏实验室：将 50 毫升 x% 溶液与 100 毫升 30% 溶液混合，得到 150 毫升 40% 溶液。求 x。",
-                app_consecutive_numbers: "三个连续数字之和为 48。求第一个数字。",
-                app_work_rate: "巴塞尔建筑：工人 A 需要 x 小时完成，工人 B 需要 6 小时。一起工作 2 小时完成。求 x。",
-                app_mixture_problem: "诺华：将 x 升 20% 溶液与 10 升 50% 溶液混合，得到 30% 溶液。求 x。",
-                app_investment_interest: "巴塞尔银行：投资 x 瑞郎，年利率 5%。一年后总额 2100 瑞郎。求 x。",
-                app_train_meeting: "巴塞尔-苏黎世列车：列车 A 时速 80 公里，列车 B 时速 100 公里，相距 360 公里。何时相遇？",
-                app_age_ratio: "年龄比：5 年后，你和弟弟的年龄比是 2:3。你现在 x 岁。求 x。",
-                app_compound_mixture: "罗氏：向 20 升 30% 酸溶液中加入 x 升纯酸，得到 50% 溶液。求 x。",
-                app_boat_current: "莱茵河船：顺流 30 公里再逆流返回需要 5 小时。水流速度 2 公里/小时。求静水中船速。",
-                app_profit_loss: "巴塞尔商店：以 20% 利润或 10% 亏损出售，差价 60 瑞郎。求成本价。"
-            }
-        },
-        sm1_05_new: {
-            back: "返回枢纽",
-            title: "SM1.05 // 比例实验室",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SM1.05_比例监视器",
-            footer_left: "SM1.05_比例实验室 // 节点：巴塞尔",
-            stages: {
-                recipes: "配方",
-                percent: "百分比",
-                mixtures: "混合物"
-            },
-            labels: {
-                ratio: "比例",
-                proportion: "比例关系",
-                percentage: "百分比",
-                concentration: "浓度",
-                solute: "溶质",
-                solvent: "溶剂"
-            }
-        },
-        sm2_08: {
-            back: "返回枢纽",
-            title: "SM2.08 // 概率基础",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SM2.08_概率监视器",
-            footer_left: "SM2.08_概率统计 // 节点：巴塞尔",
-            formula_title: "概率公式",
-            scenario_title: "问题",
-            basel_scenario: "巴塞尔生活场景",
-            calculate_title: "计算",
-            answer_title: "你的答案",
-            solution_title: "解答",
-            stages: {
-                basic_prob: "基础概率",
-                lottery: "彩票与游戏",
-                combined: "组合事件",
-                data_stats: "数据统计"
-            },
-            scenarios: {
-                bus_punctuality: "巴塞尔公共交通：你每天乘坐8路公交车上学。",
-                weather_basel: "巴塞尔气象站：用于决策的气象数据。",
-                school_cafeteria: "学校食堂：每周菜单规划。",
-                exam_results: "班级表现：考试成绩分析。",
-                dice_game: "概率游戏：理解公平骰子。",
-                card_game: "纸牌游戏：标准52张扑克牌。",
-                dice_advanced: "高级骰子：质数和特殊结果。",
-                school_raffle: "学校慈善抽奖：支持本地社区。",
-                fasnacht_game: "巴塞尔狂欢节：节日游戏摊位。",
-                swiss_lotto_simple: "瑞士乐透简化版：理解彩票赔率（6选3）。",
-                dice_win_condition: "狂欢节骰子游戏：和为7或11获胜。",
-                two_buses: "日常通勤：早晚公交可靠性。",
-                fc_basel: "巴塞尔足球俱乐部：主客场比赛预测。",
-                novartis_qc: "诺华质量控制：药品样本检测。",
-                three_events: "多次抛硬币：理解组合。",
-                temperature: "巴塞尔天气：每周温度追踪。",
-                test_scores: "班级成绩：考试结果统计分析。",
-                pocket_money: "个人理财：每月支出明细。",
-                data_comparison: "数据分析：比较平均值和中位数。",
-                tram_punctuality: "巴塞尔有轨电车系统：3路电车可靠性。",
-                coin_flip: "抛硬币：基础概率实验。",
-                dice_two: "两个骰子：理解组合结果。",
-                two_coins: "两枚硬币：独立事件。",
-                three_buses: "三条公交线路：多个独立事件。",
-                four_buses: "四条公交线路：扩展概率链。",
-                complex_event: "复杂概率：高级场景。",
-            },
-            problems: {
-                bus_ontime_16_20: "过去20天中，公交车准时到达16次。明天准时到达的概率是多少？",
-                bus_ontime_18_20: "过去20天中，公交车准时到达18次。明天准时到达的概率是多少？",
-                weather_rain_12_30: "巴塞尔气象站记录30天中有12天下雨。本周末下雨的概率是多少？",
-                weather_sunny_21_30: "巴塞尔气象站记录30天中有21天晴天。明天晴天的概率是多少？",
-                dice_roll_3: "掷一个标准骰子。掷出3的概率是多少？",
-                coin_heads: "抛一次公平硬币。得到正面的概率是多少？",
-                cafeteria_pizza: "学校食堂每周5天中有3天供应披萨。如果你随机去食堂，吃到披萨的概率是多少？",
-                exam_pass: "一个100人的班级中，85人通过了考试。随机选一个学生，他通过的概率是多少？",
-                tram_ontime_17_20: "3路电车20天中有17天准时到达。今天准时到达的概率是多少？",
-                dice_greater_4: "掷骰子。掷出大于4的数字的概率是多少？",
-                dice_even: "掷一个标准骰子。掷出偶数（2、4或6）的概率是多少？",
-                card_heart: "从标准52张扑克牌中抽一张。抽到红心的概率是多少？",
-                card_red: "从标准牌组中抽一张牌。抽到红色牌的概率是多少？",
-                two_dice_sum_8: "掷两个骰子。和为8的概率是多少？",
-                card_face: "抽一张牌。抽到人头牌（J、Q或K）的概率是多少？",
-                dice_prime: "掷骰子。掷出质数（2、3或5）的概率是多少？",
-                two_dice_sum_10: "掷两个骰子。和为10的概率是多少？",
-                card_ace_or_king: "抽一张牌。抽到A或K的概率是多少？",
-                two_dice_doubles: "掷两个骰子。掷出相同数字的概率是多少？",
-                card_spade_face: "抽一张牌。抽到黑桃人头牌的概率是多少？",
-                school_raffle_win: "学校为慈善活动售出100张彩票。你买了3张。你中奖的概率是多少？",
-                school_raffle_5_tickets: "学校售出100张彩票。你买了5张。你中奖的概率是多少？",
-                coin_two_heads: "抛两枚硬币。两个都是正面的概率是多少？",
-                dice_not_six: "掷骰子。不掷出6的概率是多少？",
-                school_raffle_2_tickets: "学校售出50张彩票。你买了2张。你中奖的概率是多少？",
-                dice_sum_7: "在巴塞尔狂欢节游戏摊位掷两个骰子。和为7的概率是多少？",
-                dice_sum_9: "掷两个骰子。和为9的概率是多少？",
-                coin_three_all_heads: "抛三枚硬币。三个都是正面的概率是多少？",
-                dice_sum_6: "掷两个骰子。和为6的概率是多少？",
-                card_two_red: "不放回地抽两张牌。两张都是红色的概率是多少？",
-                lotto_simple: "简化版瑞士乐透：从6个数字中选3个。共有20种可能组合。你的中奖概率是多少？",
-                lotto_4_from_8: "简化彩票：从8个数字中选4个。共有70种组合。你的中奖概率是多少？",
-                dice_sum_less_5: "掷两个骰子。和小于5的概率是多少？",
-                coin_four_at_least_3_heads: "抛四枚硬币。至少3个正面的概率是多少？",
-                card_three_hearts: "不放回地抽三张牌。三张都是红心的概率是多少？",
-                dice_sum_7_or_11: "狂欢节游戏：掷两个骰子。和为7或11获胜。获胜概率是多少？",
-                dice_sum_2_3_12: "狂欢节游戏：掷两个骰子。和为2、3或12输。输的概率是多少？",
-                lotto_5_from_10: "彩票：从10个数字中选5个。共有252种组合。你的中奖概率是多少？",
-                coin_five_exactly_2_heads: "抛五枚硬币。恰好2个正面的概率是多少？",
-                card_poker_pair: "抽5张牌。至少有一对的概率是多少？（简化：约42.3%）",
-                two_buses_ontime: "早上8路公交准点率80%。晚上15路公交准点率70%。两趟都准点的概率是多少？",
-                two_coins_both_heads: "抛两枚硬币。两个都是正面的概率是多少？",
-                two_dice_both_even: "掷两个骰子。两个都是偶数的概率是多少？",
-                two_days_both_sunny: "巴塞尔晴天概率70%。今天和明天都晴天的概率是多少？",
-                two_students_both_pass: "两个学生参加考试，通过率85%。两人都通过的概率是多少？",
-                fc_basel_wins: "巴塞尔足球俱乐部主场胜率60%，客场胜率30%。本周两场都赢的概率是多少？",
-                three_buses_all_ontime: "三条公交线路准点率分别为80%、75%和90%。三条都准点的概率是多少？",
-                three_days_all_sunny: "巴塞尔晴天概率70%。未来3天都晴天的概率是多少？",
-                three_dice_all_six: "掷三个骰子。三个都是6的概率是多少？",
-                fc_basel_at_least_one_win: "巴塞尔足球俱乐部主场胜率60%，客场胜率30%。至少赢一场的概率是多少？",
-                quality_all_pass: "诺华质量控制：每个样本合格率95%。如果检测5个样本，全部合格的概率是多少？",
-                quality_at_least_4_pass: "诺华：5个样本，每个合格率95%。至少4个合格的概率是多少？",
-                four_buses_all_ontime: "四条公交线路每条准点率80%。四条都准点的概率是多少？",
-                week_no_rain: "巴塞尔每天下雨概率40%。连续7天不下雨的概率是多少？",
-                five_students_all_pass: "五个学生参加考试，通过率85%。五人都通过的概率是多少？",
-                three_coins_two_heads: "抛三枚硬币。恰好2个正面的概率是多少？",
-                four_coins_exactly_3_heads: "抛四枚硬币。恰好3个正面的概率是多少？",
-                quality_exactly_4_pass: "诺华：5个样本，每个合格率95%。恰好4个合格的概率是多少？",
-                five_coins_at_least_4_heads: "抛五枚硬币。至少4个正面的概率是多少？",
-                birthday_paradox_simple: "两个人：他们生日相同的概率是多少？（忽略闰年）",
-                avg_temperature: "巴塞尔本周气温：18°C、22°C、20°C、19°C、21°C、23°C、20°C。计算平均温度。",
-                simple_average_5: "考试成绩：80、85、90、75、95。计算平均分。",
-                simple_sum: "每月支出：食物40瑞郎、交通25瑞郎、娱乐20瑞郎、储蓄15瑞郎。总共多少？",
-                avg_temperature_5_days: "气温：15°C、18°C、20°C、17°C、20°C。计算平均温度。",
-                median_5_values: "数据集：10、12、15、18、20。找出中位数。",
-                class_average: "班级考试成绩：85、72、90、68、78、82、75、88、70、92。计算班级平均分。",
-                spending_analysis: "每月支出：食物40瑞郎、交通25瑞郎、娱乐20瑞郎、储蓄15瑞郎。食物支出占百分之几？",
-                median_even_count: "考试成绩：70、75、80、85。找出中位数。",
-                range_calculation: "每周气温：15°C、18°C、20°C、17°C、23°C。计算极差（最大值-最小值）。",
-                percentage_transport: "每月预算100瑞郎：食物40、交通25、娱乐20、储蓄15。交通占百分之几？",
-                weighted_average: "两次考试：考试1（权重2）：80分，考试2（权重3）：90分。计算加权平均分。",
-                median_vs_mean: "数据集：10、12、15、18、20。找出中位数。",
-                mode_calculation: "考试成绩：80、85、85、90、85、75。找出众数（最常见的值）。",
-                budget_remaining: "每月预算100瑞郎。已花费：食物40、交通25、娱乐20。还剩多少？",
-                quartile_calculation: "气温：15°C、17°C、18°C、20°C、23°C。找出Q1（第25百分位数）。",
-                standard_deviation_simple: "数据：10、15、20。平均值=15。计算方差：平方偏差的平均值。",
-                outlier_effect: "数据：10、12、15、18、100。计算平均值。注意异常值（100）如何影响它。",
-                interquartile_range: "数据：10、15、20、25、30。Q1=15，Q3=25。计算IQR = Q3 - Q1。",
-                percentage_change: "上个月：100瑞郎。这个月：120瑞郎。计算百分比变化。",
-                correlation_direction: "随着学习时间增加，考试成绩提高。相关性是正（1）还是负（-1）？",
-            }
-        },
-        gp5_01: {
-            back: "返回枢纽",
-            title: "P5.01 // 原子核核心",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "同位素 / 衰变",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "P5.01_核物理监视器",
-            footer_left: "P5.01_现代物理 // 节点：巴塞尔",
-            labels: {
-                input: "输入参数",
-                hints: "提示",
-                balancing: "核反应方程式",
-                mass: "质量数 (A)",
-                atomic: "原子序数 (Z)"
-            },
-            mission: {
-                title: "稳定核心",
-                description: "诺华创新区需要一种稳定的同位素。通过识别正确的衰变粒子来平衡核反应方程式。"
-            },
-            stages: {
-                alpha: "α 衰变",
-                beta: "β 衰变",
-                gamma: "γ 放射",
-                fission: "核裂变",
-                alpha_decay: "α 衰变",
-                beta_decay: "β 衰变",
-                gamma_decay: "γ 放射",
-                alpha_decay_prompt_latex: "\\text{平衡 α 衰变方程式。}",
-                beta_decay_prompt_latex: "\\text{平衡 β 衰变方程式。}",
-                gamma_decay_prompt_latex: "\\text{识别 γ 放射状态。}",
-                fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
-            }
-        },
-        gp5_02: {
-            back: "返回枢纽",
-            title: "P5.02 // 相对论实验室",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "相对论效应",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "P5.02_相对论监视器",
-            footer_left: "P5.02_狭义相对论 // 节点：CERN",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                velocity: "速度 (v/c)",
-                gamma: "洛伦兹因子 (γ)",
-                length: "收缩长度",
-                time: "膨胀时间"
-            },
-            mission: {
-                title: "爱因斯坦实验室",
-                description: "在 CERN，通过计算接近光速时的相对论效应来校准粒子加速器。"
-            },
-            stages: {
-                lorentz: "洛伦兹因子",
-                contraction: "长度收缩",
-                dilation: "时间膨胀",
-                lorentz_prompt_latex: "\\text{计算速度 }v\\text{ 下的洛伦兹因子 }\\gamma\\text{。}",
-                contraction_prompt_latex: "\\text{计算收缩长度 }L=L_0/\\gamma\\text{。}",
-                dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
-            }
-        },
-        sm3_04: {
-            back: "返回枢纽",
-            title: "SM3.04 // 对数刻度",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "对数测量",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SM3.04_对数监视器",
-            footer_left: "SM3.04_对数 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                ph: "pH 值",
-                decibel: "分贝 (dB)",
-                richter: "里氏震级"
-            },
-            mission: {
-                title: "对数测量实验室",
-                description: "掌握三种真实世界的对数刻度：pH值（化学）、分贝（声音）、里氏震级（地震）。每种刻度都将巨大的范围压缩成可管理的数字。"
-            },
-            stages: {
-                ph: "pH 刻度",
-                decibel: "分贝",
-                richter: "里氏震级",
-                ph_prompt_latex: "\\text{使用 }pH=-\\log_{10}[H^+]\\text{ 计算 pH 值。}",
-                decibel_prompt_latex: "\\text{使用 }L=10\\log_{10}(I/I_0)\\text{ 计算分贝。}",
-                richter_prompt_latex: "\\text{使用 }M=\\log_{10}(A)\\text{ 计算震级。}"
-            },
-            formulas: {
-                ph: "pH = -\\log_{10}[H^+]",
-                decibel: "L = 10\\log_{10}(I/I_0)",
-                richter: "M = \\log_{10}(A)"
-            },
-            scenarios: {
-                ph_basic: "🧪 场景：学校化学实验室 — 化学老师给你一瓶透明液体让你测试。你用 pH 计测得氢离子浓度 [H⁺] = 0.001 mol/L（科学记数法是 10⁻³）。要正确报告酸度，你需要计算 pH 值。记住：pH = -log₁₀[H⁺]。pH 低于 7 是酸性，pH 7 是中性（纯水），高于 7 是碱性。这瓶液体原来是柠檬汁！",
-                ph_core: "🧪 场景：游泳池水质检测 — 你在巴塞尔公共游泳池兼职。卫生检查员要求每天测试 pH 值。今天的水样显示 [H⁺] = 10⁻⁸ mol/L。你需要计算 pH 值来验证是否在安全范围内（7.2-7.8）。如果 pH 太低（酸性），会刺激游泳者的眼睛。如果太高（碱性），氯气消毒就不起作用。你的计算决定了游泳池今天能否开放！",
-                ph_advanced: "🧪 场景：制药质量控制 — 你是巴塞尔诺华制药的实习生。一种新药配方必须精确控制 pH 值以保持稳定性。实验室测得 [H⁺] = 3.16 × 10⁻⁵ mol/L。计算 pH 值并保留 2 位小数。如果 pH 值偏离目标范围（4.3-4.7），整批产品（价值数百万）都必须报废。对数精度在制药业至关重要！",
-                ph_elite: "🧪 场景：环境酸雨研究 — 巴塞尔大学的研究人员正在研究酸雨对瑞士森林的影响。雨水样本显示 [H⁺] = 10⁻⁴·⁵ mol/L（注意这个分数指数！）。计算 pH 值。正常雨水是 pH 5.6，但酸雨可以低至 pH 4.0 或更低。每个 pH 单位代表酸度的 10 倍变化，所以 pH 4 的雨比 pH 6 的雨酸性强 100 倍。你的计算有助于评估环境破坏程度。",
-                decibel_basic: "🔊 场景：学校图书馆噪音检查 — 图书管理员让你测量自习区是否足够安静。你用声音计测得：强度 I = 10⁻¹⁰ W/m²。参考强度（听觉阈值）是 I₀ = 10⁻¹² W/m²。使用 L = 10·log₁₀(I/I₀) 计算声音级别（分贝）。参考：耳语 = 30 分贝，正常对话 = 60 分贝，图书馆应低于 40 分贝。",
-                decibel_core: "🔊 场景：音乐会音响工程师 — 你正在为学校礼堂的摇滚音乐会调试音响。音响系统在前排产生的强度 I = 10⁻⁴ W/m²。计算分贝级别。安全法规要求 85 分贝以上需要听力保护，长时间暴露在 100 分贝以上会造成听力损伤。你的计算决定是否需要降低音量或向观众提供耳塞。",
-                decibel_advanced: "🔊 场景：机场噪音污染研究 — 巴塞尔-米卢斯机场正在扩建，居民抱怨噪音。你测量一架起飞的喷气式飞机：在 100 米距离处 I = 1 W/m²。计算分贝级别。市政法规限制机场白天噪音不超过 65 分贝。在 120 分贝（喷气发动机）时，声音是痛苦的。对数刻度意味着 120 分贝不是 60 分贝的'两倍响'——它的强度是 1,000,000 倍！",
-                decibel_elite: "🔊 场景：声学工程挑战 — 正在设计一座巴塞尔音乐厅。建筑师需要计算吸音效果。如果原始强度是 I₁ = 10⁻³ W/m²，安装吸音板后降至 I₂ = 10⁻⁶ W/m²，分贝降低了多少？计算 L₁ - L₂。这涉及理解分贝差异代表强度比：降低 10 分贝意味着强度减少 10 倍，降低 20 分贝意味着强度减少 100 倍。",
-                richter_basic: "🌍 场景：地震监测站 — 你在巴塞尔大学的地震学实验室做志愿者。巴塞尔附近发生了一次小地震。地震仪记录的地面运动振幅 A = 100 微米。使用 M = log₁₀(A) 计算里氏震级。参考：M < 2 感觉不到，M 3-4 是轻微，M 5-6 是中等，M 7+ 是重大。你的计算有助于对地震严重程度进行分类。",
-                richter_core: "🌍 场景：历史地震分析 — 1356 年，巴塞尔经历了瑞士有记录以来最强的地震。现代分析估计地面振幅为 A = 100,000 微米。计算里氏震级。将其与 2011 年日本地震（M 9.0）进行比较，后者的振幅为 1,000,000,000 微米。对数刻度将这个十亿倍的范围压缩成可管理的数字（1 到 9）。",
-                richter_advanced: "🌍 场景：地震预警系统 — 瑞士正在开发地震警报应用。发生两次地震：地震 A 的振幅为 31,600 微米，地震 B 的振幅为 1,000 微米。计算两个震级并保留 2 位小数。应用需要区分'轻微震动'（M < 4.0）和'显著地震'（M ≥ 4.0），以决定是否向数百万手机发送紧急警报。",
-                richter_elite: "🌍 场景：地震能量比较 — 高级地震学：地震释放的能量每增加一个震级单位就增加 31.6 倍。如果地震 A 是 M 5.0，地震 B 是 M 7.0，B 释放的能量是 A 的多少倍？首先理解 M 7.0 意味着振幅是 M 5.0 的 100 倍（因为 10² = 100）。但能量按振幅的 1.5 次方缩放，所以能量比是 100^1.5 = 1,000 倍。这就是为什么 M 7 地震是灾难性的，而 M 5 只是'中等'。"
-            },
-            canvas: {
-                ph_title: "pH 刻度",
-                ph_formula: "pH = -log₁₀[H⁺]",
-                decibel_title: "分贝刻度",
-                decibel_formula: "L = 10·log₁₀(I/I₀)",
-                richter_title: "里氏震级",
-                richter_formula: "M = log₁₀(A)",
-                ph_subtitle: "酸碱度",
-                decibel_subtitle: "声音",
-                richter_subtitle: "地震",
-                status_chamber: "实验室",
-                status_sim: "对数刻度模拟：运行中",
-                status_mode: "模式"
-            }
-        },
-        sc3_01: {
-            back: "返回枢纽",
-            title: "C3.01 // 分子建筑师",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "分子结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "C3.01_分子监视器",
-            footer_left: "C3.01_分子建筑师 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                atom: "原子",
-                bond: "化学键",
-                snap: "吸附",
-                grid: "网格"
-            },
-            mission: {
-                title: "分子组装实验室",
-                description: "使用球棍模型组装药物分子。旋转并观察 3D 结构。"
-            },
-            stages: {
-                aspirin: "阿司匹林",
-                caffeine: "咖啡因"
-            }
-        },
-        sp1_06: {
-            back: "返回枢纽",
-            title: "SP1.06 // 瑞士钟摆",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "振荡数据",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "验证通过",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SP1.06_钟摆监控器",
-            footer_left: "SP1.06_钟摆力学 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                period: "周期 (T)",
-                length: "长度 (L)",
-                gravity: "重力加速度 (g)",
-                frequency: "频率 (f)"
-            },
-            mission: {
-                title: "钟表匠的秘密",
-                description: "校准巴塞尔的机械主钟。掌握简谐运动和能量守恒的物理学。"
-            },
-            stages: {
-                period: "周期",
-                gravity: "重力",
-                energy: "能量"
-            }
-        },
-        sp2_02: {
-            back: "返回枢纽",
-            title: "SP2.02 // 电路沙盒 2.0",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "电路分析",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SP2.02_电路监视器",
-            footer_left: "SP2.02_电路沙盒 // 节点：巴塞尔",
-            labels: {
-                multimeter: "万用表",
-                oscilloscope: "示波器",
-                resistance: "电阻",
-                capacitance: "电容",
-                inductance: "电感",
-                voltage: "电压",
-                analysis: "电路分析",
-                damping: "阻尼类型",
-                formulas: "RLC 公式",
-                reset: "重置"
-            },
-            mission: {
-                title: "任务：RLC 瞬态分析",
-                description: "构建和分析 RLC 电路。使用万用表测量电压和电流。在示波器上观察瞬态响应。"
-            },
-            stages: {
-                build: "构建电路",
-                measure: "测量数值",
-                analyze: "分析响应",
-                build_desc: "连接电阻、电容和电感",
-                measure_desc: "使用万用表测量电压和电流",
-                analyze_desc: "观察示波器波形",
-                build_hint: "点击组件以选择它们",
-                measure_hint: "选择 2 个点以测量电压降",
-                analyze_hint: "观察过阻尼、欠阻尼或临界阻尼响应"
-            }
-        },
-        sp4_01: {
-            back: "返回枢纽",
-            title: "SP3.03 // 波动基础",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "波动参数",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SP3.03_波动监视器",
-            footer_left: "SP3.03_波动基础 // 节点：莱茵河",
-            labels: {
-                wave_type: "波动类型",
-                transverse: "横波",
-                longitudinal: "纵波",
-                amplitude: "振幅",
-                frequency: "频率",
-                wave_speed: "波速",
-                wavelength: "波长",
-                period: "周期",
-                angular_freq: "角频率",
-                calculated: "计算值",
-                show_particles: "显示粒子运动",
-                formulas: "公式"
-            },
-            mission: {
-                title: "任务：莱茵河波动分析",
-                description: "研究莱茵河上的机械波。掌握波动参数：振幅、频率、波长和周期。"
-            },
-            stages: {
-                transverse: "横波",
-                longitudinal: "纵波",
-                parameters: "波动参数",
-                transverse_desc: "观察垂直粒子运动",
-                longitudinal_desc: "研究压缩和稀疏",
-                parameters_desc: "计算波长、周期和速度",
-                transverse_hint: "粒子垂直于波传播方向振动",
-                longitudinal_hint: "粒子平行于波传播方向振动",
-                parameters_hint: "v = λf, T = 1/f, ω = 2πf"
-            }
-        },
-        sb1_01: {
-            back: "返回枢纽",
-            title: "SB1.01 // 细胞工厂",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "细胞分析",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SB1.01_细胞监视器",
-            footer_left: "SB1.01_细胞工厂 // 节点：巴塞尔",
-            stages: {
-                identification: "结构识别",
-                function: "功能匹配",
-                organelles: "细胞器详解"
-            },
-            labels: {
-                cutaway_view: "切面视图",
-                selected: "选定细胞器",
-                instructions: "操作说明",
-                nucleus: "细胞核",
-                mitochondria: "线粒体",
-                chloroplast: "叶绿体",
-                ribosome: "核糖体",
-                golgi: "高尔基体",
-                er: "内质网",
-                membrane: "细胞膜",
-                vacuole: "液泡"
-            },
-            mission: {
-                title: "任务：细胞探索",
-                description: "探索真核细胞结构。识别细胞器并理解它们在细胞生命活动中的作用。"
-            },
-            prompts: {
-                id_prompt: "识别3D视图中高亮显示的细胞器。",
-                id_target: "高亮部分: ?",
-                fn_prompt: "哪个细胞器负责: {func}?",
-                fn_target: "功能: {func}",
-                hint_name: "它是 {name}",
-                hint_start: "答案以 {char} 开头"
-            },
-            organelles: {
-                nucleus: {
-                    name: "细胞核",
-                    func: "控制中心 / DNA 存储",
-                    details: "包含 DNA 并控制所有细胞活动。细胞的“大脑”。"
-                },
-                mitochondria: {
-                    name: "线粒体",
-                    func: "ATP 能量产生 (动力源)",
-                    details: "通过细胞呼吸产生 ATP。将葡萄糖转化为能量。"
-                },
-                ribosome: {
-                    name: "核糖体",
-                    func: "蛋白质合成",
-                    details: "通过读取 mRNA 序列合成蛋白质。"
-                },
-                golgi: {
-                    name: "高尔基体",
-                    func: "包装与运输",
-                    details: "修改、包装并将蛋白质运输到目的地。"
-                },
-                er: {
-                    name: "内质网",
-                    func: "合成网络 (ER)",
-                    details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
-                }
-            }
-        },
-        sb1_01_metabolic: {
-            back: "返回枢纽",
-            title: "SB1.01 // 代谢引擎",
-            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
-            objective_title: "当前任务目标",
-            target_title: "代谢状态",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "稳态正常",
-            incorrect: "代谢危机",
-            ready: "就绪",
-            monitor_title: "SB1.01_代谢监视器",
-            footer_left: "SB1.01_细胞生物学 // 节点：巴赛尔",
-            stages: {
-                osmosis: "渗透作用",
-                respiration: "细胞呼吸",
-                homeostasis: "内稳态"
-            },
-            labels: {
-                osmolarity: "外部渗透压",
-                atp_flow: "显示 ATP 流",
-                hypertonic: "高渗",
-                isotonic: "等渗",
-                hypotonic: "低渗",
-                status: "渗透状态",
-                respiration_formula: "呼吸作用公式",
-                glucose: "葡萄糖",
-                oxygen: "氧气",
-                atp: "ATP 能量"
-            },
-            prompts: {
-                osmosis_prompt: "细胞处于{status}环境中。水分会如何移动？",
-                respiration_prompt: "完成呼吸作用反应物：C₆H₁₂O₆ + 6{reactant} → ...",
-                product_prompt: "呼吸作用的主要能量产物是什么？",
-                homeostasis_target: "调节环境以达到等渗状态。",
-                hint_hyper: "外部盐分高！水分离开细胞。",
-                hint_hypo: "外部盐分低！水分涌入细胞。",
-                hint_oxy: "我们吸入它来氧化葡萄糖。"
-            }
-        },
-        sb2_01: {
-            back: "返回枢纽",
-            title: "SB2.01 // 孟德尔花园",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "遗传杂交",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SB2.01_遗传学监视器",
-            footer_left: "SB2.01_孟德尔花园 // 节点：巴塞尔",
-            stages: {
-                monohybrid: "单性状杂交",
-                probability: "概率计算",
-                dihybrid: "双性状杂交"
-            },
-            labels: {
-                parent: "亲本",
-                offspring: "子代",
-                punnett_square: "普瑞特方格",
-                stats: "子代统计",
-                genotype_ratio: "基因型比例",
-                phenotype_ratio: "表现型比例",
-                purple_flowers: "紫色花",
-                white_flowers: "白色花",
-                genetics_basics: "遗传学基础",
-                genotype_phenotype: "基因型与表现型",
-                dominance: "显性规则",
-                mendels_laws: "孟德尔定律",
-                instructions: "操作说明"
-            },
-            concepts: {
-                allele: "等位基因：基因的一种版本",
-                dominant: "R (显性)：紫色花",
-                recessive: "r (隐性)：白色花",
-                genotype: "基因型：遗传组成 (RR, Rr, rr)",
-                phenotype: "表现型：可观察性状 (紫色/白色)",
-                homozygous_dom: "RR → 紫色 (纯合显性)",
-                heterozygous: "Rr → 紫色 (杂合)",
-                homozygous_rec: "rr → 白色 (纯合隐性)",
-                law_segregation: "分离定律：每个亲本贡献一个等位基因",
-                law_assortment: "自由组合定律：在配子形成过程中，等位基因独立分离"
-            },
-            mission: {
-                title: "任务：孟德尔遗传学",
-                description: "掌握孟德尔遗传定律。使用普瑞特方格预测子代比例。"
-            },
-            prompts: {
-                monohybrid_ratio: "杂交 {p1} \\times {p2}。紫色对白色的表现型比例是多少？",
-                monohybrid_percent: "杂交 {p1} \\times {p2}。紫色子代的百分比是多少？",
-                prob_genotype: "杂交 {p1} \\times {p2}。出现 {genotype} 子代的概率是多少？",
-                ratio_target: "\\text{比例 } P:W = ?",
-                percent_target: "\\text{紫色百分比}",
-                prob_target: "P({genotype}) = ?",
-                hint_square: "检查普瑞特方格。",
-                hint_all_rr: "所有子代均为 Rr。",
-                hint_count: "4个方格中的 {count} 个。"
-            }
-        },
-        gb3_01: {
-            back: "返回枢纽",
-            title: "GB3.01 // DNA 熔炉",
-            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
-            objective_title: "当前任务目标",
-            target_title: "DNA 结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GB3.01_DNA_监视器",
-            footer_left: "GB3.01_DNA_熔炉 // 节点：巴赛尔",
-            stages: {
-                pairing: "碱基配对",
-                bonds: "氢键计算",
-                sequence: "序列合成"
-            },
-            labels: {
-                rotation: "旋转控制",
-                auto_rotate: "自动旋转",
-                show_bonds: "显示氢键",
-                highlight_pair: "高亮碱基对",
-                pairing_rules: "碱基配对规则",
-                bases: "核苷酸碱基",
-                structure: "DNA 结构详解",
-                adenine: "腺嘌呤",
-                thymine: "胸腺嘧啶",
-                cytosine: "胞嘧啶",
-                guanine: "鸟嘌呤"
-            },
-            concepts: {
-                helix: "双螺旋：两条反向平行的脱氧核糖核酸链",
-                backbone: "骨架：由糖和磷酸基团交替连接而成",
-                at_pair: "A ↔ T: 通过两个氢键连接",
-                gc_pair: "C ↔ G: 通过三个氢键连接",
-                polarity: "极性：5' 到 3' 的定向性",
-                complementary: "法则：查加夫碱基互补配对原则"
-            },
-            mission: {
-                title: "任务：DNA 架构分析",
-                description: "掌握 DNA 双螺旋的结构原理。验证碱基配对规则与氢键的稳定性。"
-            },
-            prompts: {
-                pairing_prompt: "识别 {base} 的互补碱基。",
-                bonds_prompt: "{b1} 与 {b2} 之间由多少个氢键连接？",
-                seq_prompt: "推导该序列的互补序列: {seq}",
-                pairing_target: "{base} 的互补碱基",
-                bonds_target: "氢键数量: ?",
-                seq_target: "互补序列流",
-                hint_at: "A 与 T 配对，产生 2 个氢键。",
-                hint_gc: "G 与 C 配对，产生 3 个氢键。"
-            }
-        },
-        sc1_01: {
-            back: "返回枢纽",
-            title: "C1.01 // 神秘实验室",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "物质分析",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "验证通过",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "C1.01_实验室监控器",
-            footer_left: "C1.01_神秘实验室 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                substance: "物质",
-                tool: "测试工具",
-                observation: "观察结果"
-            },
-            mission: {
-                title: "粉末鉴定任务",
-                description: "利用经典化学测试鉴定神秘白色粉末。掌握定性分析方法。"
-            },
-            stages: {
-                identify: "鉴定",
-                properties: "性质",
-                reactions: "反应"
-            }
-        },
-        sc1_03: {
-            back: "返回枢纽",
-            title: "SC1.03 // 原子熔炉",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "原子结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SC1.03_原子监视器",
-            footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                properties: "属性",
-                element: "元素",
-                atomic_number: "原子序数 (Z)",
-                mass_number: "质量数 (A)",
-                charge: "电荷",
-                periodic_table: "元素周期表",
-                protons: "质子 (p⁺)",
-                neutrons: "中子 (n⁰)",
-                electrons: "电子 (e⁻)"
-            },
-            mission: {
-                title: "任务：赛博熔炉",
-                description: "从亚原子粒子构建原子。掌握波尔模型和元素周期表。"
-            },
-            stages: {
-                build: "构建",
-                elements: "元素",
-                isotopes: "同位素",
-                build_desc: "自由模式：构建任意原子配置",
-                elements_desc: "探索元素周期表前 20 号元素",
-                isotopes_desc: "研究同位素：相同质子数，不同中子数"
-            }
-        },
-        gsc2_01: {
-            back: "返回枢纽",
-            title: "GC2.01 // 碳世界",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "分子结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC2.01_有机监测器",
-            footer_left: "GC2.01_碳世界 // 节点：巴塞尔",
-            labels: {
-                input: "输入",
-                hints: "提示",
-                formula: "分子式",
-                iupac_name: "IUPAC 命名",
-                composition: "组成",
-                molecular_mass: "分子质量",
-                molecule_info: "分子信息",
-                select_molecule: "选择分子",
-                rotation_speed: "旋转速度",
-                rotation_speed_value: "{value}x",
-                show_bonds: "显示化学键",
-                show_hydrogens: "显示氢原子",
-                atom_colors: "原子颜色",
-                atom_carbon: "碳 (C)",
-                atom_hydrogen: "氢 (H)",
-                atom_oxygen: "氧 (O)",
-                atom_nitrogen: "氮 (N)",
-                bond_types: "键类型",
-                bond_single: "单键：C-C",
-                bond_double: "双键：C=C",
-                bond_triple: "三键：C≡C"
-            },
-            molecules: {
-                methane: "甲烷",
-                ethane: "乙烷",
-                benzene: "苯",
-                glucose: "葡萄糖",
-                alanine: "丙氨酸"
-            },
-            types: {
-                alkane: "烷烃",
-                aromatic: "芳香族",
-                carbohydrate: "碳水化合物",
-                amino_acid: "氨基酸"
-            },
-            mission: {
-                title: "任务：有机化学",
-                description: "在三维空间中探索有机分子。研究球棍模型、化学键和分子几何结构。"
-            },
-            stages: {
-                alkanes: "烷烃",
-                alcohols: "醇类",
-                custom: "自定义",
-                alkanes_desc: "构建烷烃链 (C-C-C)",
-                alcohols_desc: "添加羟基 (C-OH)",
-                custom_desc: "自由合成模式"
-            },
-            hints: {
-                select_atom: "点击原子以选择它",
-                add_atom: "点击原子工具添加新原子",
-                bonds: "原子根据化合价规则连接",
-                delete: "使用 DELETE 删除选中的原子"
-            }
-        },
-        gsc1_01: {
-            back: "返回枢纽",
-            title: "GC1.01 // 氧化还原巨人",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "原电池",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC1.01_氧化还原监视器",
-            footer_left: "GC1.01_氧化还原巨人 // 节点：巴塞尔",
-            labels: {
-                cell_potential: "电池电势",
-                zn_concentration: "Zn²⁺ 浓度",
-                cu_concentration: "Cu²⁺ 浓度",
-                temperature: "温度",
-                show_electrons: "显示电子流动",
-                show_ions: "显示离子迁移",
-                reaction_quotient: "反应商 (Q)",
-                half_reactions: "半反应",
-                anode: "阳极",
-                cathode: "阴极",
-                nernst_equation: "能斯特方程"
-            },
-            mission: {
-                title: "任务：电化学",
-                description: "构建原电池并掌握能斯特方程。实时观察电子流动和离子迁移。"
-            },
-            stages: {
-                build: "构建电池",
-                measure: "测量电势",
-                analyze: "分析反应",
-                build_desc: "构建 Zn-Cu 原电池",
-                measure_desc: "使用能斯特方程计算电池电势",
-                analyze_desc: "观察氧化还原反应和电子流动",
-                build_hint: "Zn 在阳极被氧化，Cu²⁺ 在阴极被还原",
-                measure_hint: "E = E° - (RT/nF)ln(Q)",
-                analyze_hint: "盐桥维持电中性"
-            }
-        },
-        gc3_01: {
-            back: "返回枢纽",
-            title: "GC3.01 // 平衡大师",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "化学平衡",
-            next: "执行下一步",
-            check: "验证",
-            correct: "正确",
-            incorrect: "错误",
-            ready: "准备就绪",
-            monitor_title: "GC3.01_平衡监视器",
-            footer_left: "GC3.01_平衡大师 // 节点: 巴塞尔",
-            labels: {
-                reaction: "可逆反应",
-                particle_count: "粒子计数",
-                conditions: "条件",
-                temperature: "温度",
-                pressure: "压强",
-                concentration: "[A]",
-                principle: "勒夏特列原理",
-                principle_1: "• 增加反应物 → 平衡右移（更多产物）",
-                principle_2: "• 增加压强 → 平衡向分子数少的方向移动",
-                principle_3: "• 升高温度 → 平衡向吸热方向移动",
-                add_reactant: "添加反应物 A",
-                system_temperature: "系统温度",
-                system_pressure: "系统压强"
-            },
-            mission: {
-                title: "任务: 化学平衡",
-                description: "掌握勒夏特列原理。观察系统如何响应外界条件变化。"
-            },
-            stages: {
-                concentration: "浓度",
-                temperature: "温度",
-                pressure: "压强",
-                concentration_desc: "添加反应物 A 并观察平衡移动",
-                temperature_desc: "升高温度并观察粒子速度",
-                pressure_desc: "改变压强并观察体积效应",
-                concentration_hint: "增加 [A] 使平衡右移 → 更多 C 和 D",
-                temperature_hint: "温度升高增加粒子动能",
-                pressure_hint: "压强增大使容器体积减小"
-            }
-        },
-        gc3_02: {
-            back: "返回枢纽",
-            title: "GC3.02 // 晶体宫殿",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "晶体结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC3.02_晶体监视器",
-            footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
-            labels: {
-                lattice_type: "晶格类型",
-                properties: "性质",
-                atoms_per_cell: "原子/晶胞",
-                coordination: "配位数",
-                packing: "堆积率",
-                tet_voids: "四面体空隙",
-                voids: "间隙空隙",
-                tetrahedral: "四面体",
-                octahedral: "八面体",
-                formulas: "公式",
-                show_voids: "显示间隙空隙",
-                slice_plane: "切片平面 (Y轴)",
-                reset_slice: "重置"
-            },
-            mission: {
-                title: "任务：固体物理",
-                description: "探索晶体结构和布拉维晶格。理解原子堆积和配位。"
-            },
-            stages: {
-                sc: "简单立方",
-                bcc: "体心立方",
-                fcc: "面心立方",
-                sc_desc: "研究简单立方晶格（配位数6）",
-                bcc_desc: "分析体心立方（配位数8）",
-                fcc_desc: "掌握面心立方（配位数12）",
-                sc_hint: "最低堆积效率（52%）",
-                bcc_hint: "中等堆积（68%），如Fe、Cr等金属",
-                fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
-            }
-        },
-        gm4_01: {
-            back: "返回枢纽",
-            title: "GM4.01 // 复数地平线",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GM4.01_复数监视器",
-            footer_left: "GM4.01_复数地平线 // 节点：巴塞尔",
-            scenario_title: "巴塞尔工程任务",
-            scenarios: {
-                basics: "罗氏制药信号处理：您正在罗氏巴塞尔校准用于 MRI 信号处理的医学成像设备，该设备使用复数分析。每个复数 z = a + bi 表示一个具有实部（振幅）和虚部（相位）的信号。计算模长 |z| 以确定信号强度。准确的模长计算对于检测患者扫描中的组织异常至关重要。",
-                operations: "诺华量子化学模拟：您正在诺华巴塞尔使用复数算术运行分子轨道计算。波函数表示为复数，它们的相互作用需要在复平面中进行加法和乘法运算。计算复数运算的结果以预测分子行为。这些计算决定了药物结合效率。",
-                polar: "巴塞尔大学电气工程：您正在分析巴塞尔智能电网电力系统中的交流电路行为。在计算谐振频率时，复阻抗被提升到幂次。使用极坐标形式 (r·e^(iθ)) 高效计算 z^n。结果决定了巴塞尔可再生能源网络的最佳功率分配。"
-            },
-            stages: {
-                basics: "基础",
-                operations: "运算",
-                polar: "极坐标形式",
-                basics_prompt: "计算模长",
-                basics_target: "求 |z|",
-                operations_add: "复数加法",
-                operations_multiply: "复数乘法",
-                operations_target: "求实部和虚部",
-                polar_prompt: "使用极坐标形式计算幂",
-                polar_target: "求 z^n 的直角坐标形式"
-            },
-            visualization: {
-                pythagorean: "勾股定理",
-                vector_addition: "向量加法",
-                complex_multiplication: "复数乘法",
-                polar_power: "极坐标幂运算",
-                complex_data: "复数数据",
-                magnitude: "模长 |z|",
-                argument: "辐角 arg(z)",
-                power: "幂次",
-                verified: "验证成功",
-                mismatch: "答案错误",
-                geometric_meaning: "几何意义：模长相乘，角度相加",
-                polar_meaning: "模长变为 r^n，角度变为 n·θ",
-                parallelogram_rule: "平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂"
-            }
-        },
-        em2_01: {
-            back: "返回枢纽",
-            title: "EM2.01 // 矩阵几何",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "变换矩阵",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "EM2.01_矩阵监视器",
-            footer_left: "EM2.01_矩阵几何 // 节点：巴塞尔",
-            labels: {
-                matrix: "矩阵 A",
-                properties: "属性",
-                determinant: "行列式",
-                volume_scale: "体积缩放",
-                formulas: "公式",
-                angle: "旋转角度 (θ)",
-                scale_x: "X轴缩放",
-                scale_y: "Y轴缩放",
-                scale_z: "Z轴缩放",
-                shear_xy: "Y对X的切变",
-                shear_xz: "Z对X的切变",
-                matrix_title: "矩阵 A",
-                det_value: "det(A) = {value}",
-                show_eigenvectors: "显示特征向量",
-                show_grid: "显示网格",
-                animate: "动画"
-            },
-            presets: {
-                title: "预设",
-                scale: "缩放",
-                rotate: "旋转 90°",
-                shear: "切变",
-                reflect: "镜像"
-            },
-            linear: {
-                title: "线性代数",
-                line_1: "Ax = λx（特征值方程）",
-                line_2: "det(A - λI) = 0",
-                line_3: "T(v) = Av"
-            },
-            mission: {
-                title: "任务：线性变换",
-                description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
-            },
-            stages: {
-                basic_transforms: "基础变换",
-                determinant: "行列式",
-                composition: "复合变换"
-            },
-            scenario_title: "巴塞尔工程任务",
-            scenarios: {
-                basic_transforms: "罗氏制药分子分析：您在罗氏巴塞尔的计算化学部门工作，使用线性变换分析蛋白质分子的对称性。每个矩阵代表一个对称操作（旋转、反射、缩放）。识别变换类型对于预测分子的光学性质至关重要。",
-                determinant: "诺华晶体结构：您在诺华巴塞尔分析药物晶体的单元格结构。行列式表示晶格的体积变化。det(A)=0 表示晶体结构坍缩，det(A)<0 表示手性反转。准确计算行列式对于预测药物的生物活性至关重要。",
-                composition: "巴塞尔大学机器人学：您在巴塞尔大学机器人实验室编程机械臂。每个关节的运动由一个变换矩阵表示。复合变换 AB 表示先执行关节A的运动，再执行关节B的运动。矩阵乘法的顺序决定了机械臂的最终位置。"
-            },
-            explanation_label: "解释"
-        },
-        sc2_02: {
-            back: "返回枢纽",
-            title: "SC2.02 // pH 哨兵",
-            difficulty: {
-                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "滴定分析",
-            next: "下一次分析",
-            check: "验证",
-            correct: "滴定准确",
-            incorrect: "pH 读取错误",
-            ready: "就绪",
-            monitor_title: "SC2.02_滴定监控",
-            footer_left: "SC2.02_PH_哨兵 // 节点: 巴塞尔",
-            stages: {
-                curves: "PH 曲线",
-                equivalence: "等当点",
-                indicators: "指示剂"
-            },
-            labels: {
-                initial_ph: "初始 pH",
-                added_vol: "加入体积 (mL)",
-                eq_point: "等当点",
-                indicator: "指示剂",
-                strong_acid: "强酸",
-                weak_acid: "弱酸",
-                formula: "滴定公式"
-            },
-            prompts: {
-                curve_type: "初始 pH 为 {ph}。识别酸类型 (强酸=1, 弱酸=2)。",
-                find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M。求等当点体积 Vb。",
-                select_indicator: "弱酸 + 强碱。选择指示剂：酚酞(1), 甲基橙(2)。",
-                weak_ph_calc: "在半等当点 (pH = pKa)。如果 pKa 为 4.75，pH 是多少？",
-                eq_ph_guess: "强酸/强碱等当点 pH？ (<7=1, 7=2, >7=3)。",
-                conc_calc: "20mL 未知酸被 10mL 0.2M NaOH 中和。求 Ca。"
-            }
-        },
-        sc2_03: {
-            back: "返回枢纽",
-            title: "SC2.03 // 气体实验室",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "气体性质",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SC2.03_气体监视器",
-            footer_left: "SC2.03_气体实验室 // 节点：巴塞尔",
-            labels: {
                 pressure: "压力",
-                state_variables: "状态变量",
-                volume: "体积 (V)",
-                temperature: "温度 (T)",
-                moles: "摩尔数 (n)",
-                formulas: "公式"
-            },
-            mission: {
-                title: "任务：理想气体定律",
-                description: "探索理想气体中压力、体积和温度之间的关系。"
-            },
-            stages: {
-                boyle: "波义耳定律",
-                charles: "查理定律",
-                combined: "组合气体定律",
-                boyle_desc: "观察反比关系：P ∝ 1/V",
-                charles_desc: "观察正比关系：V ∝ T",
-                combined_desc: "掌握组合气体定律",
-                boyle_hint: "波义耳定律：减小体积 → 增大压力",
-                charles_hint: "查理定律：升高温度 → 增大体积",
-                combined_hint: "组合定律：三个变量相互作用"
-            }
-        },
-        sc1_03_orbitals: {
-            back: "返回枢纽",
-            title: "SC1.03 // 原子熔炉",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "原子轨道",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SC1.03_轨道监视器",
-            footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
-            labels: {
-                selected_element: "选定元素",
-                orbital_type: "轨道类型",
-                show_transition: "显示电子跃迁",
-                periodic_table: "元素周期表 (Z=1-20)",
-                orbital_shapes: "轨道形状",
-                quantum_numbers: "量子数"
-            },
-            mission: {
-                title: "任务：量子力学",
-                description: "探索电子轨道和概率云。在 3D 空间中可视化 s、p 和 d 轨道。"
-            },
-            stages: {
-                s_orbital: "S 轨道",
-                p_orbital: "P 轨道",
-                d_orbital: "D 轨道",
-                s_desc: "球形概率分布",
-                p_desc: "哑铃形轨道 (px, py, pz)",
-                d_desc: "四叶草形轨道",
-                s_hint: "s 轨道：l=0，球对称",
-                p_hint: "p 轨道：l=1，三个方向",
-                d_hint: "d 轨道：l=2，五个方向"
-            }
-        },
-        sc1_04: {
-            back: "返回枢纽",
-            title: "SC1.04 // 元素周期拼图",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "原子结构",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SC1.04_原子监视器",
-            footer_left: "SC1.04_元素周期拼图 // 节点：巴塞尔",
-            labels: {
-                element_info: "元素信息",
-                formulas: "公式",
-                protons: "质子",
-                neutrons: "中子",
-                electrons: "电子",
-                select_element: "选择元素"
-            },
-            mission: {
-                title: "任务：元素周期表",
-                description: "构建原子并发现元素周期表。掌握电子排布。"
-            },
-            stages: {
-                build: "构建原子",
-                periodic: "元素周期表",
-                groups: "元素族",
-                build_desc: "通过添加质子、中子和电子来构建原子",
-                periodic_desc: "探索前 20 个元素",
-                groups_desc: "理解元素族和周期",
-                build_hint: "质子数决定元素种类",
-                periodic_hint: "元素按原子序数排列",
-                groups_hint: "同族元素 = 相同价电子数"
-            }
-        },
-        sc2_04: {
-            back: "返回枢纽",
-            title: "SC2.04 // 溶解度实验室",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "溶液状态",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "SC2.04_溶解度监视器",
-            footer_left: "SC2.04_溶解度实验室 // 节点：巴塞尔",
-            labels: {
-                solubility: "溶解度",
-                saturated: "饱和 - 正在形成沉淀",
-                unsaturated: "未饱和 - 可继续溶解",
-                solution_data: "溶液数据",
-                temperature: "温度 (°C)",
-                solute_amount: "溶质量 (g)",
-                formulas: "公式"
-            },
-            mission: {
-                title: "任务：溶解度",
-                description: "探索溶解度与温度的关系。观察结晶过程。"
-            },
-            stages: {
-                dissolve: "溶解",
-                saturate: "饱和",
-                crystallize: "结晶",
-                dissolve_desc: "将溶质溶解在水中",
-                saturate_desc: "达到饱和点",
-                crystallize_desc: "冷却溶液使其结晶",
-                dissolve_hint: "大多数盐在高温下溶解度更高",
-                saturate_hint: "饱和：溶解的最大量",
-                crystallize_hint: "冷却导致过量溶质结晶"
-            }
-        },
-        gp1_03: {
-            back: "返回枢纽",
-            title: "GP5.03 // 粒子对撞机",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "LHC ATLAS 探测器",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GP5.03_LHC_监视器",
-            footer_left: "GP5.03_粒子对撞机 // 节点：CERN",
-            labels: {
-                beam_energy: "束流能量",
-                relativistic_effects: "相对论效应",
-                formulas: "公式",
-                magnetic_field: "启用磁场（弯曲磁铁）",
-                colliding: "对撞中...",
-                initiate_collision: "启动对撞"
-            },
-            mission: {
-                title: "任务：粒子物理",
-                description: "探索 CERN 大型强子对撞机的粒子碰撞。发现希格斯玻色子。"
-            },
-            stages: {
-                acceleration: "加速",
-                collision: "对撞",
-                detection: "探测",
-                acceleration_desc: "将质子加速到接近光速",
-                collision_desc: "在 13 TeV 下对撞质子束",
-                detection_desc: "探测粒子喷注和径迹",
-                acceleration_hint: "质子达到光速的 99.9999991%",
-                collision_hint: "对撞能量：13 TeV = 13,000 GeV",
-                detection_hint: "磁场使带电粒子径迹弯曲"
-            }
-        },
-        ggp5_02: {
-            title: "GP1.02 // 相对论实验室",
-            back: "返回 Nexus",
-            footer_left: "GP1.02_相对论实验室 // 节点: RHINE",
-            monitor_title: "GP1.02_相对论监测器",
-            labels: {
-                lorentz_factor_title: "洛伦兹因子",
-                velocity_label: "速度 (v/c)",
-                velocity_value: "{value}% c",
-                gamma_value: "γ = {value}",
-                toggle_doppler: "显示多普勒效应",
-                toggle_contraction: "显示长度收缩"
-            },
-            effects: {
-                title: "相对论效应",
-                time_dilation_label: "时间膨胀：",
-                time_dilation_value: "Δt' = {value}Δt",
-                length_contraction_label: "长度收缩：",
-                length_contraction_value: "L' = {value}L"
-            },
-            formulas: {
-                title: "公式",
-                gamma: "γ = 1/√(1 - v²/c²)",
-                time: "Δt' = γΔt",
-                length: "L' = L/γ",
-                energy: "E = γmc²"
-            },
-            mission: {
-                title: "任务：狭义相对论",
-                description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
-            }
-        },
-        sp1_08: {
-            title: "SP1.08 // 光学工作台",
-            back: "返回 Nexus",
-            footer_left: "SP1.08_光学工作台 // 节点: BASEL",
-            monitor_title: "SP1.08_光学监测器",
-            labels: {
-                show_prism: "显示棱镜色散",
-                medium_1: "介质 1 (n₁)",
-                medium_2: "介质 2 (n₂)",
-                incident_angle: "入射角 (θ₁)",
-                refraction_title: "折射",
-                refracted_angle: "折射角 (θ₂)：",
-                critical_angle: "临界角：",
-                total_internal_reflection: "全内反射",
-                na: "无",
-                angle_value: "{value}°"
-            },
-            snell: {
-                title: "斯涅尔定律",
-                line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
-                line_2: "θ_c = arcsin(n₂/n₁)",
-                line_3: "v = c/n"
-            },
-            mission: {
-                title: "任务：几何光学",
-                description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
-            }
-        },
-        sp1_01: {
-            back: "返回枢纽",
-            title: "SP1.01 // 测量与单位",
-            check: "验证",
-            next: "下一步",
-            correct: "测量验证",
-            incorrect: "测量错误",
-            ready: "就绪",
-            monitor_title: "SP1.01_测量实验室",
-            footer_left: "SP1.01_测量 // 节点: 巴塞尔",
-            objective_title: "测量目标",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            stages: {
-                si_units: "SI单位",
-                conversion: "换算",
-                precision: "精度"
-            },
-            tools: {
-                ruler: "尺子",
-                scale: "天平",
-                timer: "计时器"
+                buoyancy: "浮力",
+                hydraulics: "液压"
             },
             labels: {
-                precision: "测量精度",
-                measurement_display: "测量显示",
-                input_terminal: "终端输入 [测量节点]"
-            },
-            prompts: {
-                si_unit: "{measurement} 的 SI 单位是什么？",
-                convert: "将 {value} {from} 转换为 {to}",
-                sigfigs: "{value} 有几位有效数字？",
-                hint_si: "SI 单位是 {name}",
-                hint_factor: "乘以 {factor}",
-                hint_sigfigs: "计算所有非零数字和它们中间的零"
-            },
-            feedback: {
-                correct: "测量精度确认。",
-                incorrect: "检测到校准错误。"
-            }
-        },
-        sp1_04: {
-            back: "返回枢纽",
-            title: "SP1.04 // 简单机械",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "SP1.04_力学监控",
-            footer_left: "SP1.04_简单机械 // 节点: 巴塞尔",
-            objective_title: "当前任务目标",
-            stages: {
-                levers: "杠杆",
-                pulleys: "滑轮",
-                inclined_planes: "斜面"
-            },
-            labels: {
-                machine_display: "机械显示",
+                physics_display: "物理显示",
                 input_terminal: "输入终端",
-                force_ratio: "力比 (MA)",
-                show_forces: "显示力",
-                mechanics_score: "力学分数"
+                depth: "深度",
+                density: "物体密度",
+                force: "活塞力",
+                fluid_mastery: "流体掌握度"
             },
             prompts: {
-                lever: "一个杠杆举起 {load} N 的负载。如果力臂是 {effortArm} m，阻力臂是 {loadArm} m，需要多少努力力？",
-                pulley: "一个滑轮系统用 {strands} 根支撑绳举起 {load} N 的负载。需要多少努力力？",
-                inclined_plane: "一个斜面将 {load} N 的负载举到 {height} m 高度，斜面长度为 {length} m。需要多少努力力？",
-                hint_lever: "使用 MA = 力臂 / 阻力臂，然后 F_effort = F_load / MA",
-                hint_pulley: "使用 MA = 绳子数量，然后 F_effort = F_load / MA",
-                hint_inclined: "使用 MA = 长度 / 高度，然后 F_effort = F_load / MA"
+                pressure_depth: "潜水员在莱茵河中潜至 {depth} 米深度。计算总压力（P₀=100000 Pa，ρ=1000 kg/m³，g=10 m/s²）。",
+                buoyant_force: "体积为 {volume} m³ 的物体浸没在水中。计算浮力（ρ_water=1000 kg/m³，g=10 m/s²）。",
+                hydraulic_force: "液压升降机输入力 {f1} N，作用面积 {a1} m²。输出面积为 {a2} m²。计算输出力。",
+                hint_pressure: "使用 P = P₀ + ρgh",
+                hint_archimedes: "使用 F_b = ρ_water × V × g",
+                hint_pascal: "使用帕斯卡原理：F₁/A₁ = F₂/A₂"
+            },
+            scenarios: {
+                rhine_swimming: "莱茵河游泳：潜水员在巴塞尔中桥附近探索莱茵河床。水压随深度增加，影响设备和安全协议。",
+                rhine_boat: "莱茵河货运：驳船在莱茵河上运输货物，往返于巴塞尔和鹿特丹之间。理解浮力对于载重计算和船只稳定性至关重要。",
+                hydraulic_lift: "巴塞尔建筑工地：巴塞尔建筑工地的液压升降机利用帕斯卡原理，用最小的输入力举起重型建筑材料。"
             },
             feedback: {
-                correct: "机械优势计算正确！",
-                incorrect: "检查你的机械优势计算。"
+                correct: "流体力学已掌握！",
+                incorrect: "请复习流体力学原理。"
             }
+        },
+    },
+    sp1_05: {
+        back: "返回枢纽",
+        title: "SP1.05 // 莱茵河渡轮",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SP1.05_渡轮监视器",
+        footer_left: "SP1.05_莱茵河渡轮 // 节点：巴塞尔",
+        stages: {
+            composition: "矢量合成",
+            drift: "偏航分析",
+            navigation: "精准航行"
+        },
+        labels: {
+            river_speed: "河流速度 (v_r)",
+            ferry_speed: "渡轮速度 (v_f)",
+            cable_angle: "缆索角度 (θ)",
+            resultant_speed: "合速度 (v_net)",
+            drift_speed: "偏航速度",
+            angle: "角度"
+        },
+        mission: {
+            title: "莱茵河横渡任务",
+            description: "驾驶巴塞尔莱茵河渡轮。调整缆索角度和渡轮速度以补偿河水流速。"
+        }
+    },
+    sp2_01: {
+        back: "返回枢纽",
+        title: "P2.01 // 热力学",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "热量传递",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "P2.01_热力学监视器",
+        footer_left: "P2.01_热力学 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            heat: "热能 (Q)",
+            temperature: "温度变化 (ΔT)",
+            mass: "质量 (m)",
+            specific_heat: "比热容 (c)"
+        },
+        mission: {
+            title: "热反应堆控制",
+            description: "诺华热反应堆需要精确的热量计算。掌握热容量和相变。"
+        },
+        stages: {
+            heat_capacity: "热容量",
+            phase_change: "相变",
+            mixed: "混合问题",
+            heat_capacity_prompt_latex: "\\text{使用 }Q=mc\\Delta T\\text{ 计算热量传递。}",
+            phase_change_prompt_latex: "\\text{使用 }Q=mL\\text{ 计算潜热。}",
+            mixed_prompt_latex: "\\text{结合热容量和相变计算。}"
+        },
+        formulas: {
+            heat_capacity: "Q = mc\\Delta T",
+            phase_change: "Q = mL",
+            mixed: "Q_{\\text{总}} = Q_1 + Q_2"
+        }
+    },
+    sp3_02: {
+        back: "返回枢纽",
+        title: "P3.02 // 波动光学",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "波动特性",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "P3.02_光学监视器",
+        footer_left: "P3.02_波动光学 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            wavelength: "波长 (λ)",
+            slit_separation: "缝间距 (d)",
+            slit_width: "缝宽 (a)",
+            angle: "角度 (θ)",
+            intensity: "光强 (I)",
+            order: "阶数 (m)"
+        },
+        mission: {
+            title: "光学共振实验室",
+            description: "诺华光学实验室涉及波动特性。掌握干涉、衍射和偏振。"
+        },
+        stages: {
+            interference: "干涉",
+            diffraction: "衍射",
+            polarization: "偏振",
+            interference_prompt_latex: "\\text{使用双缝公式计算角度 }\\theta\\text{。}",
+            diffraction_prompt_latex: "\\text{使用单缝公式计算角度 }\\theta\\text{。}",
+            polarization_prompt_latex: "\\text{使用马吕斯定律计算光强 }I\\text{。}"
+        },
+        formulas: {
+            interference: "d \\sin \\theta = m \\lambda",
+            diffraction: "a \\sin \\theta = m \\lambda",
+            polarization: "I = I_0 \\cos^2 \\theta"
+        }
+    },
+    sm1_02_new: {
+        back: "返回 Nexus",
+        title: "EM1.01 // 代数探险",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        modes: {
+            containers: "容器",
+            sorting: "分类",
+            machine: "机器"
+        },
+        labels: {
+            variable: "变量",
+            value: "数值",
+            expression: "表达式",
+            simplify: "化简",
+            evaluate: "求值",
+            input: "输入",
+            output: "输出"
+        },
+        stages: {
+            variables: "变量概念",
+            terms: "同类项",
+            substitution: "代入法",
+            vars_prompt: "识别容器内的数值。",
+            terms_prompt: "合并同类项以化简表达式。",
+            sub_prompt: "将给定的值代入表达式并计算结果。"
+        },
+        scenarios: {
+            variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
+            terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
+            substitution: "BVB电车售票机：你正在测试售票机的逻辑。将区域值（x）代入价格公式，计算正确的法郎（CHF）票价。"
+        }
+    },
+    sm2_07: {
+        back: "返回枢纽",
+        title: "SM2.07 // 坐标几何",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "精密测绘",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SM2.07_坐标监视器",
+        footer_left: "SM2.07_坐标几何 // 节点：苏黎世",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            distance: "距离 (d)",
+            midpoint: "中点 (M)",
+            slope: "斜率 (m)"
+        },
+        mission: {
+            title: "苏黎世节点测绘",
+            description: "苏黎世坐标测绘需要精密几何计算。计算城市节点间的距离、中点和斜率。"
+        },
+        stages: {
+            distance: "距离",
+            midpoint: "中点",
+            slope: "斜率",
+            distance_prompt_latex: "\\text{计算点 A 和 B 之间的距离 }d\\text{。}",
+            midpoint_prompt_latex: "\\text{计算中点坐标 }M(x,y)\\text{。}",
+            slope_prompt_latex: "\\text{计算通过 A 和 B 的直线的斜率 }m\\text{。}"
+        },
+        formulas: {
+            distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+            midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+            slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+        }
+    },
+    sm1_03_new: {
+        back: "返回枢纽",
+        title: "SM1.03 // 零度以下",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SM1.03_整数监视器",
+        footer_left: "SM1.03_零度以下 // 节点：巴塞尔",
+        basel_scenario: "巴塞尔冬季场景",
+        scenario_title: "问题背景",
+        calculate_title: "计算",
+        answer_title: "你的答案",
+        solution_title: "解答",
+        stages: {
+            number_line: "数轴",
+            rationals: "有理数",
+            quadrants: "象限"
+        },
+        scenarios: {
+            number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
+            rationals: "莱茵河水位：巴塞尔莱茵河的水位计显示水深。正常水位是+5米。干旱时会下降。潜水员将水面以下的深度测量为负值。有理数（分数和小数）提供精确测量。",
+            quadrants: "巴塞尔城市网格导航：在坐标网格上标记巴塞尔地标。大巴塞尔（Q1：+,+）、小巴塞尔（Q2：-,+）、克莱贝克（Q3：-,-）、圣阿尔班（Q4：+,-）。理解象限有助于导航城市和精确定位。"
+        },
+        problems: {
+            nl_identify_neg3: "在数轴上定位-3。",
+            nl_identify_5: "在数轴上定位5。",
+            nl_temp_neg2: "温度是-2°C。在温度计上标记。",
+            nl_depth_neg4: "潜水员在水面下4米。标记-4m。",
+            nl_identify_0: "在数轴上定位零（原点）。",
+            nl_compare_neg5_neg2: "哪个更冷：-5°C还是-2°C？",
+            nl_compare_neg3_1: "哪个更小：-3还是1？",
+            nl_order_three: "排序这些数字：-4, 0, 3。中间值是什么？",
+            nl_rhine_level: "莱茵河水位从+5m降到-3m。新水位是多少？",
+            nl_temp_drop: "温度从2°C下降7度。最终温度是多少？",
+            nl_distance_abs: "数轴上-5和2之间的距离是多少？",
+            nl_abs_value: "-8的绝对值是多少？",
+            nl_distance_neg_neg: "-7和-3之间的距离是多少？",
+            nl_midpoint: "-6和4之间的中点是什么？",
+            nl_temp_range: "温度范围从-8°C到5°C。范围是多少？",
+            nl_operation_add: "计算：-5 + 3",
+            nl_operation_sub: "计算：-3 - 4",
+            nl_operation_mult: "计算：-4 × 2",
+            nl_multi_step: "计算：-6 + 8 - 5",
+            nl_complex_op: "计算：(-2 + 5) - (3 - 7)",
+            r_place_half: "在数轴上定位0.5。",
+            r_place_neg_half: "在数轴上定位-0.5。",
+            r_place_1_5: "在数轴上定位1.5。",
+            r_place_neg2_5: "在数轴上定位-2.5。",
+            r_fraction_third: "将1/3转换为小数（保留2位）。",
+            r_compare_fractions: "哪个更大：-1/2还是-1/3？",
+            r_compare_decimals: "哪个更小：-0.75还是-0.5？",
+            r_order_mixed: "排序：-1.5, -0.5, 0.5。最小的是什么？",
+            r_add_decimals: "计算：0.5 + 0.25",
+            r_sub_decimals: "计算：1.5 - 2.25",
+            r_compare_neg_decimals: "哪个更冷：-0.75°C还是-0.8°C？",
+            r_fraction_to_decimal: "将-3/4转换为小数。",
+            r_mult_decimals: "计算：0.5 × 1.5",
+            r_div_decimals: "计算：1.5 ÷ 0.5",
+            r_mixed_operations: "计算：0.5 + 1.25 - 0.75",
+            r_order_complex: "从小到大排序：-1.5, -3/2, 0, 1.2。第一个是什么？",
+            r_fraction_operations: "计算：1/2 + 1/4（小数形式）",
+            r_neg_fraction_ops: "计算：-1/2 - 1/4（小数形式）",
+            r_complex_decimal: "计算：(0.5 - 1.25) × 2",
+            r_repeating_decimal: "将2/3转换为小数（保留2位）。",
+            q_identify_point: "点(2, 3)的x坐标是什么？",
+            q_identify_y: "点(3, 4)的y坐标是什么？",
+            q_plot_positive: "绘制点(1, 2)。x是什么？",
+            q_origin: "原点的x坐标是什么？",
+            q_axis_point: "点(3, 0)在哪个轴上？y是什么？",
+            q_quadrant_2: "点(-2, 5)在哪个象限？",
+            q_quadrant_3: "点(-3, -4)在哪个象限？",
+            q_quadrant_4: "点(4, -2)在哪个象限？",
+            q_basel_landmarks: "小巴塞尔在(-3, 2)。x是什么？",
+            q_distance_horizontal: "(2, 0)和(5, 0)之间的距离？",
+            q_reflect_x_axis: "将(3, 4)关于x轴反射。y'是什么？",
+            q_reflect_y_axis: "将(5, 2)关于y轴反射。x'是什么？",
+            q_reflect_origin: "将(3, 4)关于原点反射。x'是什么？",
+            q_translate: "将(2, 3)平移(4, 0)。x'是什么？",
+            q_midpoint_2d: "(2, 3)和(6, 3)之间的中点。x是什么？",
+            q_distance_vertical: "(0, 5)和(0, -3)之间的距离？",
+            q_perimeter_rectangle: "顶点在(0,0)和(4,3)的矩形。周长？",
+            q_area_rectangle: "顶点在(0,0)和(4,3)的矩形。面积？",
+            q_diagonal_distance: "从(2, 3)到(6, 5)的水平距离？",
+            q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
+        }
+    },
+    sm1_04_new: {
+        back: "返回枢纽",
+        title: "SM1.04 // 等式平衡",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SM1.04_等式监视器",
+        footer_left: "SM1.04_等式平衡 // 节点：巴塞尔",
+        basel_scenario: "巴塞尔等式场景",
+        scenario_title: "问题背景",
+        solve_title: "求解等式",
+        answer_title: "你的答案",
+        solution_title: "解答",
+        stages: {
+            balance: "平衡",
+            solve: "求解",
+            transform: "转换",
+            applications: "应用"
+        },
+        scenarios: {
+            balance: "理解等式平衡：就像天平一样，等式必须保持平衡。无论对一边做什么，都必须对另一边做同样的操作。这个基本原则是解所有等式的关键。",
+            solve: "解一元一次方程：使用逆运算来孤立变量。加/减以移动常数，乘/除以移除系数。每一步都让你离找到x更近一步。",
+            transform: "等式变换：掌握将项移过等号的艺术。合并同类项，展开括号，并简化分数。将复杂的等式转换为简单的等式。",
+            applications: "巴塞尔现实问题：应用等式解决巴塞尔的实际问题。计算公交车票价、莱茵河渡轮时间、诺华实验室测量数据和罗氏药物浓度。"
+        },
+        problems: {
+            bal_add_both: "在 x + 3 = 7 的两边同时加 2",
+            bal_subtract_both: "在 x + 5 = 8 的两边同时减 5",
+            bal_multiply_both: "两边同时乘以 2",
+            bal_divide_both: "两边同时除以 2",
+            bal_simple_check: "通过移动常数求解",
+            bal_two_steps: "先减去 3，再除以 2",
+            bal_negative_result: "结果将是负数",
+            bal_fraction_coeff: "先减去 2，再乘以 3",
+            bal_both_sides_x: "将 x 项移到一边",
+            bal_distribute: "先展开括号",
+            bal_complex_both: "两边都有变量",
+            bal_fractions: "找到公分母",
+            bal_parentheses_both: "先展开两边的括号",
+            bal_decimal_coeff: "使用小数运算",
+            bal_negative_coeff: "负系数",
+            bal_nested_parens: "先简化最内层的括号",
+            bal_three_fractions: "三个不同分母的分数",
+            bal_complex_distribute: "多步分配",
+            bal_reciprocal: "倒数分数",
+            bal_proportion: "比例等式",
+            sol_one_step_add: "一步：减去 3",
+            sol_one_step_sub: "一步：加上 5",
+            sol_one_step_mult: "一步：除以 3",
+            sol_one_step_div: "一步：乘以 4",
+            sol_negative_simple: "结果是负数",
+            sol_two_step_1: "两步：先减后除",
+            sol_two_step_2: "两步：先加后乘",
+            sol_negative_coeff: "负系数",
+            sol_fraction_result: "答案是分数",
+            sol_decimal_coeff: "小数系数",
+            sol_combine_like: "先合并同类项",
+            sol_distribute_simple: "先分配再求解",
+            sol_x_both_sides: "两边都有变量",
+            sol_fraction_both: "加分数",
+            sol_negative_both: "两边都有负项",
+            sol_complex_distribute: "复杂分配",
+            sol_nested_parens: "嵌套括号",
+            sol_three_terms: "三个分数项",
+            sol_decimal_complex: "带括号的小数",
+            sol_proportion_eq: "比例等式",
+            tra_move_constant: "将常数移到右边",
+            tra_move_variable: "移动变量项",
+            tra_isolate_x: "通过除法孤立 x",
+            tra_two_moves: "两步变换",
+            tra_negative_move: "移动负项",
+            tra_collect_terms: "收集同类项",
+            tra_move_both: "从两边移动项",
+            tra_expand_first: "先展开再移动",
+            tra_fraction_clear: "先清除分数",
+            tra_negative_coeff: "处理负系数",
+            tra_multi_step: "多步变换",
+            tra_both_expand: "展开两边",
+            tra_fractions_lcd: "找分数的最小公分母",
+            tra_decimal_expand: "展开小数表达式",
+            tra_complex_collect: "复杂项收集",
+            tra_nested_complex: "嵌套括号变换",
+            tra_three_fractions: "合并三个分数",
+            tra_double_expand: "双重展开",
+            tra_proportion_cross: "交叉相乘",
+            tra_mixed_complex: "混合分数和小数",
+            app_bus_ticket: "巴塞尔 BVB 公交：成人票价 x 瑞郎。儿童票便宜 2 瑞郎。如果成人票是 5 瑞郎，求 x。",
+            app_rhine_time: "莱茵河渡轮：单程需要 2x 分钟。往返需要 10 分钟。求 x。",
+            app_age_simple: "年龄问题：5 年后，你将 12 岁。你现在多大？",
+            app_distance_simple: "巴塞尔到苏黎世：一半距离是 6 公里。求总距离。",
+            app_price_discount: "罗氏食堂：打折 10 瑞郎后，餐费 40 瑞郎。原价是多少？",
+            app_tram_tickets: "巴塞尔有轨电车：3 张成人票每张 x 瑞郎，加 2 张儿童票每张 2 瑞郎，总共 13 瑞郎。求 x。",
+            app_novartis_samples: "诺华实验室：5 个盒子每个有 x 个样本，加 10 个额外样本，总共 60 个。求 x。",
+            app_age_sum: "父子：儿子 x 岁，父亲大 30 岁。他们年龄总和是 50。求儿子年龄。",
+            app_rectangle_perimeter: "巴塞尔公园：矩形花园，长 8 米，宽 x 米，周长 28 米。求宽度。",
+            app_speed_distance: "巴塞尔到利斯塔尔：以 x 公里/小时行驶 2 小时，距离 80 公里。求速度。",
+            app_roche_concentration: "罗氏实验室：将 50 毫升 x% 溶液与 100 毫升 30% 溶液混合，得到 150 毫升 40% 溶液。求 x。",
+            app_consecutive_numbers: "三个连续数字之和为 48。求第一个数字。",
+            app_work_rate: "巴塞尔建筑：工人 A 需要 x 小时完成，工人 B 需要 6 小时。一起工作 2 小时完成。求 x。",
+            app_mixture_problem: "诺华：将 x 升 20% 溶液与 10 升 50% 溶液混合，得到 30% 溶液。求 x。",
+            app_investment_interest: "巴塞尔银行：投资 x 瑞郎，年利率 5%。一年后总额 2100 瑞郎。求 x。",
+            app_train_meeting: "巴塞尔-苏黎世列车：列车 A 时速 80 公里，列车 B 时速 100 公里，相距 360 公里。何时相遇？",
+            app_age_ratio: "年龄比：5 年后，你和弟弟的年龄比是 2:3。你现在 x 岁。求 x。",
+            app_compound_mixture: "罗氏：向 20 升 30% 酸溶液中加入 x 升纯酸，得到 50% 溶液。求 x。",
+            app_boat_current: "莱茵河船：顺流 30 公里再逆流返回需要 5 小时。水流速度 2 公里/小时。求静水中船速。",
+            app_profit_loss: "巴塞尔商店：以 20% 利润或 10% 亏损出售，差价 60 瑞郎。求成本价。"
+        }
+    },
+    sm1_05_new: {
+        back: "返回枢纽",
+        title: "SM1.05 // 比例实验室",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SM1.05_比例监视器",
+        footer_left: "SM1.05_比例实验室 // 节点：巴塞尔",
+        stages: {
+            recipes: "配方",
+            percent: "百分比",
+            mixtures: "混合物"
+        },
+        labels: {
+            ratio: "比例",
+            proportion: "比例关系",
+            percentage: "百分比",
+            concentration: "浓度",
+            solute: "溶质",
+            solvent: "溶剂"
+        }
+    },
+    sm2_08: {
+        back: "返回枢纽",
+        title: "SM2.08 // 概率基础",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SM2.08_概率监视器",
+        footer_left: "SM2.08_概率统计 // 节点：巴塞尔",
+        formula_title: "概率公式",
+        scenario_title: "问题",
+        basel_scenario: "巴塞尔生活场景",
+        calculate_title: "计算",
+        answer_title: "你的答案",
+        solution_title: "解答",
+        stages: {
+            basic_prob: "基础概率",
+            lottery: "彩票与游戏",
+            combined: "组合事件",
+            data_stats: "数据统计"
+        },
+        scenarios: {
+            bus_punctuality: "巴塞尔公共交通：你每天乘坐8路公交车上学。",
+            weather_basel: "巴塞尔气象站：用于决策的气象数据。",
+            school_cafeteria: "学校食堂：每周菜单规划。",
+            exam_results: "班级表现：考试成绩分析。",
+            dice_game: "概率游戏：理解公平骰子。",
+            card_game: "纸牌游戏：标准52张扑克牌。",
+            dice_advanced: "高级骰子：质数和特殊结果。",
+            school_raffle: "学校慈善抽奖：支持本地社区。",
+            fasnacht_game: "巴塞尔狂欢节：节日游戏摊位。",
+            swiss_lotto_simple: "瑞士乐透简化版：理解彩票赔率（6选3）。",
+            dice_win_condition: "狂欢节骰子游戏：和为7或11获胜。",
+            two_buses: "日常通勤：早晚公交可靠性。",
+            fc_basel: "巴塞尔足球俱乐部：主客场比赛预测。",
+            novartis_qc: "诺华质量控制：药品样本检测。",
+            three_events: "多次抛硬币：理解组合。",
+            temperature: "巴塞尔天气：每周温度追踪。",
+            test_scores: "班级成绩：考试结果统计分析。",
+            pocket_money: "个人理财：每月支出明细。",
+            data_comparison: "数据分析：比较平均值和中位数。",
+            tram_punctuality: "巴塞尔有轨电车系统：3路电车可靠性。",
+            coin_flip: "抛硬币：基础概率实验。",
+            dice_two: "两个骰子：理解组合结果。",
+            two_coins: "两枚硬币：独立事件。",
+            three_buses: "三条公交线路：多个独立事件。",
+            four_buses: "四条公交线路：扩展概率链。",
+            complex_event: "复杂概率：高级场景。",
+        },
+        problems: {
+            bus_ontime_16_20: "过去20天中，公交车准时到达16次。明天准时到达的概率是多少？",
+            bus_ontime_18_20: "过去20天中，公交车准时到达18次。明天准时到达的概率是多少？",
+            weather_rain_12_30: "巴塞尔气象站记录30天中有12天下雨。本周末下雨的概率是多少？",
+            weather_sunny_21_30: "巴塞尔气象站记录30天中有21天晴天。明天晴天的概率是多少？",
+            dice_roll_3: "掷一个标准骰子。掷出3的概率是多少？",
+            coin_heads: "抛一次公平硬币。得到正面的概率是多少？",
+            cafeteria_pizza: "学校食堂每周5天中有3天供应披萨。如果你随机去食堂，吃到披萨的概率是多少？",
+            exam_pass: "一个100人的班级中，85人通过了考试。随机选一个学生，他通过的概率是多少？",
+            tram_ontime_17_20: "3路电车20天中有17天准时到达。今天准时到达的概率是多少？",
+            dice_greater_4: "掷骰子。掷出大于4的数字的概率是多少？",
+            dice_even: "掷一个标准骰子。掷出偶数（2、4或6）的概率是多少？",
+            card_heart: "从标准52张扑克牌中抽一张。抽到红心的概率是多少？",
+            card_red: "从标准牌组中抽一张牌。抽到红色牌的概率是多少？",
+            two_dice_sum_8: "掷两个骰子。和为8的概率是多少？",
+            card_face: "抽一张牌。抽到人头牌（J、Q或K）的概率是多少？",
+            dice_prime: "掷骰子。掷出质数（2、3或5）的概率是多少？",
+            two_dice_sum_10: "掷两个骰子。和为10的概率是多少？",
+            card_ace_or_king: "抽一张牌。抽到A或K的概率是多少？",
+            two_dice_doubles: "掷两个骰子。掷出相同数字的概率是多少？",
+            card_spade_face: "抽一张牌。抽到黑桃人头牌的概率是多少？",
+            school_raffle_win: "学校为慈善活动售出100张彩票。你买了3张。你中奖的概率是多少？",
+            school_raffle_5_tickets: "学校售出100张彩票。你买了5张。你中奖的概率是多少？",
+            coin_two_heads: "抛两枚硬币。两个都是正面的概率是多少？",
+            dice_not_six: "掷骰子。不掷出6的概率是多少？",
+            school_raffle_2_tickets: "学校售出50张彩票。你买了2张。你中奖的概率是多少？",
+            dice_sum_7: "在巴塞尔狂欢节游戏摊位掷两个骰子。和为7的概率是多少？",
+            dice_sum_9: "掷两个骰子。和为9的概率是多少？",
+            coin_three_all_heads: "抛三枚硬币。三个都是正面的概率是多少？",
+            dice_sum_6: "掷两个骰子。和为6的概率是多少？",
+            card_two_red: "不放回地抽两张牌。两张都是红色的概率是多少？",
+            lotto_simple: "简化版瑞士乐透：从6个数字中选3个。共有20种可能组合。你的中奖概率是多少？",
+            lotto_4_from_8: "简化彩票：从8个数字中选4个。共有70种组合。你的中奖概率是多少？",
+            dice_sum_less_5: "掷两个骰子。和小于5的概率是多少？",
+            coin_four_at_least_3_heads: "抛四枚硬币。至少3个正面的概率是多少？",
+            card_three_hearts: "不放回地抽三张牌。三张都是红心的概率是多少？",
+            dice_sum_7_or_11: "狂欢节游戏：掷两个骰子。和为7或11获胜。获胜概率是多少？",
+            dice_sum_2_3_12: "狂欢节游戏：掷两个骰子。和为2、3或12输。输的概率是多少？",
+            lotto_5_from_10: "彩票：从10个数字中选5个。共有252种组合。你的中奖概率是多少？",
+            coin_five_exactly_2_heads: "抛五枚硬币。恰好2个正面的概率是多少？",
+            card_poker_pair: "抽5张牌。至少有一对的概率是多少？（简化：约42.3%）",
+            two_buses_ontime: "早上8路公交准点率80%。晚上15路公交准点率70%。两趟都准点的概率是多少？",
+            two_coins_both_heads: "抛两枚硬币。两个都是正面的概率是多少？",
+            two_dice_both_even: "掷两个骰子。两个都是偶数的概率是多少？",
+            two_days_both_sunny: "巴塞尔晴天概率70%。今天和明天都晴天的概率是多少？",
+            two_students_both_pass: "两个学生参加考试，通过率85%。两人都通过的概率是多少？",
+            fc_basel_wins: "巴塞尔足球俱乐部主场胜率60%，客场胜率30%。本周两场都赢的概率是多少？",
+            three_buses_all_ontime: "三条公交线路准点率分别为80%、75%和90%。三条都准点的概率是多少？",
+            three_days_all_sunny: "巴塞尔晴天概率70%。未来3天都晴天的概率是多少？",
+            three_dice_all_six: "掷三个骰子。三个都是6的概率是多少？",
+            fc_basel_at_least_one_win: "巴塞尔足球俱乐部主场胜率60%，客场胜率30%。至少赢一场的概率是多少？",
+            quality_all_pass: "诺华质量控制：每个样本合格率95%。如果检测5个样本，全部合格的概率是多少？",
+            quality_at_least_4_pass: "诺华：5个样本，每个合格率95%。至少4个合格的概率是多少？",
+            four_buses_all_ontime: "四条公交线路每条准点率80%。四条都准点的概率是多少？",
+            week_no_rain: "巴塞尔每天下雨概率40%。连续7天不下雨的概率是多少？",
+            five_students_all_pass: "五个学生参加考试，通过率85%。五人都通过的概率是多少？",
+            three_coins_two_heads: "抛三枚硬币。恰好2个正面的概率是多少？",
+            four_coins_exactly_3_heads: "抛四枚硬币。恰好3个正面的概率是多少？",
+            quality_exactly_4_pass: "诺华：5个样本，每个合格率95%。恰好4个合格的概率是多少？",
+            five_coins_at_least_4_heads: "抛五枚硬币。至少4个正面的概率是多少？",
+            birthday_paradox_simple: "两个人：他们生日相同的概率是多少？（忽略闰年）",
+            avg_temperature: "巴塞尔本周气温：18°C、22°C、20°C、19°C、21°C、23°C、20°C。计算平均温度。",
+            simple_average_5: "考试成绩：80、85、90、75、95。计算平均分。",
+            simple_sum: "每月支出：食物40瑞郎、交通25瑞郎、娱乐20瑞郎、储蓄15瑞郎。总共多少？",
+            avg_temperature_5_days: "气温：15°C、18°C、20°C、17°C、20°C。计算平均温度。",
+            median_5_values: "数据集：10、12、15、18、20。找出中位数。",
+            class_average: "班级考试成绩：85、72、90、68、78、82、75、88、70、92。计算班级平均分。",
+            spending_analysis: "每月支出：食物40瑞郎、交通25瑞郎、娱乐20瑞郎、储蓄15瑞郎。食物支出占百分之几？",
+            median_even_count: "考试成绩：70、75、80、85。找出中位数。",
+            range_calculation: "每周气温：15°C、18°C、20°C、17°C、23°C。计算极差（最大值-最小值）。",
+            percentage_transport: "每月预算100瑞郎：食物40、交通25、娱乐20、储蓄15。交通占百分之几？",
+            weighted_average: "两次考试：考试1（权重2）：80分，考试2（权重3）：90分。计算加权平均分。",
+            median_vs_mean: "数据集：10、12、15、18、20。找出中位数。",
+            mode_calculation: "考试成绩：80、85、85、90、85、75。找出众数（最常见的值）。",
+            budget_remaining: "每月预算100瑞郎。已花费：食物40、交通25、娱乐20。还剩多少？",
+            quartile_calculation: "气温：15°C、17°C、18°C、20°C、23°C。找出Q1（第25百分位数）。",
+            standard_deviation_simple: "数据：10、15、20。平均值=15。计算方差：平方偏差的平均值。",
+            outlier_effect: "数据：10、12、15、18、100。计算平均值。注意异常值（100）如何影响它。",
+            interquartile_range: "数据：10、15、20、25、30。Q1=15，Q3=25。计算IQR = Q3 - Q1。",
+            percentage_change: "上个月：100瑞郎。这个月：120瑞郎。计算百分比变化。",
+            correlation_direction: "随着学习时间增加，考试成绩提高。相关性是正（1）还是负（-1）？",
+        }
+    },
+    gp5_01: {
+        back: "返回枢纽",
+        title: "P5.01 // 原子核核心",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "同位素 / 衰变",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "P5.01_核物理监视器",
+        footer_left: "P5.01_现代物理 // 节点：巴塞尔",
+        labels: {
+            input: "输入参数",
+            hints: "提示",
+            balancing: "核反应方程式",
+            mass: "质量数 (A)",
+            atomic: "原子序数 (Z)"
+        },
+        mission: {
+            title: "稳定核心",
+            description: "诺华创新区需要一种稳定的同位素。通过识别正确的衰变粒子来平衡核反应方程式。"
+        },
+        stages: {
+            alpha: "α 衰变",
+            beta: "β 衰变",
+            gamma: "γ 放射",
+            fission: "核裂变",
+            alpha_decay: "α 衰变",
+            beta_decay: "β 衰变",
+            gamma_decay: "γ 放射",
+            alpha_decay_prompt_latex: "\\text{平衡 α 衰变方程式。}",
+            beta_decay_prompt_latex: "\\text{平衡 β 衰变方程式。}",
+            gamma_decay_prompt_latex: "\\text{识别 γ 放射状态。}",
+            fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
+        }
+    },
+    gp5_02: {
+        back: "返回枢纽",
+        title: "P5.02 // 相对论实验室",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "相对论效应",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "P5.02_相对论监视器",
+        footer_left: "P5.02_狭义相对论 // 节点：CERN",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            velocity: "速度 (v/c)",
+            gamma: "洛伦兹因子 (γ)",
+            length: "收缩长度",
+            time: "膨胀时间"
+        },
+        mission: {
+            title: "爱因斯坦实验室",
+            description: "在 CERN，通过计算接近光速时的相对论效应来校准粒子加速器。"
+        },
+        stages: {
+            lorentz: "洛伦兹因子",
+            contraction: "长度收缩",
+            dilation: "时间膨胀",
+            lorentz_prompt_latex: "\\text{计算速度 }v\\text{ 下的洛伦兹因子 }\\gamma\\text{。}",
+            contraction_prompt_latex: "\\text{计算收缩长度 }L=L_0/\\gamma\\text{。}",
+            dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
+        }
+    },
+    sm3_04: {
+        back: "返回枢纽",
+        title: "SM3.04 // 对数刻度",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "对数测量",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SM3.04_对数监视器",
+        footer_left: "SM3.04_对数 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            ph: "pH 值",
+            decibel: "分贝 (dB)",
+            richter: "里氏震级"
+        },
+        mission: {
+            title: "对数测量实验室",
+            description: "掌握三种真实世界的对数刻度：pH值（化学）、分贝（声音）、里氏震级（地震）。每种刻度都将巨大的范围压缩成可管理的数字。"
+        },
+        stages: {
+            ph: "pH 刻度",
+            decibel: "分贝",
+            richter: "里氏震级",
+            ph_prompt_latex: "\\text{使用 }pH=-\\log_{10}[H^+]\\text{ 计算 pH 值。}",
+            decibel_prompt_latex: "\\text{使用 }L=10\\log_{10}(I/I_0)\\text{ 计算分贝。}",
+            richter_prompt_latex: "\\text{使用 }M=\\log_{10}(A)\\text{ 计算震级。}"
+        },
+        formulas: {
+            ph: "pH = -\\log_{10}[H^+]",
+            decibel: "L = 10\\log_{10}(I/I_0)",
+            richter: "M = \\log_{10}(A)"
+        },
+        scenarios: {
+            ph_basic: "🧪 场景：学校化学实验室 — 化学老师给你一瓶透明液体让你测试。你用 pH 计测得氢离子浓度 [H⁺] = 0.001 mol/L（科学记数法是 10⁻³）。要正确报告酸度，你需要计算 pH 值。记住：pH = -log₁₀[H⁺]。pH 低于 7 是酸性，pH 7 是中性（纯水），高于 7 是碱性。这瓶液体原来是柠檬汁！",
+            ph_core: "🧪 场景：游泳池水质检测 — 你在巴塞尔公共游泳池兼职。卫生检查员要求每天测试 pH 值。今天的水样显示 [H⁺] = 10⁻⁸ mol/L。你需要计算 pH 值来验证是否在安全范围内（7.2-7.8）。如果 pH 太低（酸性），会刺激游泳者的眼睛。如果太高（碱性），氯气消毒就不起作用。你的计算决定了游泳池今天能否开放！",
+            ph_advanced: "🧪 场景：制药质量控制 — 你是巴塞尔诺华制药的实习生。一种新药配方必须精确控制 pH 值以保持稳定性。实验室测得 [H⁺] = 3.16 × 10⁻⁵ mol/L。计算 pH 值并保留 2 位小数。如果 pH 值偏离目标范围（4.3-4.7），整批产品（价值数百万）都必须报废。对数精度在制药业至关重要！",
+            ph_elite: "🧪 场景：环境酸雨研究 — 巴塞尔大学的研究人员正在研究酸雨对瑞士森林的影响。雨水样本显示 [H⁺] = 10⁻⁴·⁵ mol/L（注意这个分数指数！）。计算 pH 值。正常雨水是 pH 5.6，但酸雨可以低至 pH 4.0 或更低。每个 pH 单位代表酸度的 10 倍变化，所以 pH 4 的雨比 pH 6 的雨酸性强 100 倍。你的计算有助于评估环境破坏程度。",
+            decibel_basic: "🔊 场景：学校图书馆噪音检查 — 图书管理员让你测量自习区是否足够安静。你用声音计测得：强度 I = 10⁻¹⁰ W/m²。参考强度（听觉阈值）是 I₀ = 10⁻¹² W/m²。使用 L = 10·log₁₀(I/I₀) 计算声音级别（分贝）。参考：耳语 = 30 分贝，正常对话 = 60 分贝，图书馆应低于 40 分贝。",
+            decibel_core: "🔊 场景：音乐会音响工程师 — 你正在为学校礼堂的摇滚音乐会调试音响。音响系统在前排产生的强度 I = 10⁻⁴ W/m²。计算分贝级别。安全法规要求 85 分贝以上需要听力保护，长时间暴露在 100 分贝以上会造成听力损伤。你的计算决定是否需要降低音量或向观众提供耳塞。",
+            decibel_advanced: "🔊 场景：机场噪音污染研究 — 巴塞尔-米卢斯机场正在扩建，居民抱怨噪音。你测量一架起飞的喷气式飞机：在 100 米距离处 I = 1 W/m²。计算分贝级别。市政法规限制机场白天噪音不超过 65 分贝。在 120 分贝（喷气发动机）时，声音是痛苦的。对数刻度意味着 120 分贝不是 60 分贝的'两倍响'——它的强度是 1,000,000 倍！",
+            decibel_elite: "🔊 场景：声学工程挑战 — 正在设计一座巴塞尔音乐厅。建筑师需要计算吸音效果。如果原始强度是 I₁ = 10⁻³ W/m²，安装吸音板后降至 I₂ = 10⁻⁶ W/m²，分贝降低了多少？计算 L₁ - L₂。这涉及理解分贝差异代表强度比：降低 10 分贝意味着强度减少 10 倍，降低 20 分贝意味着强度减少 100 倍。",
+            richter_basic: "🌍 场景：地震监测站 — 你在巴塞尔大学的地震学实验室做志愿者。巴塞尔附近发生了一次小地震。地震仪记录的地面运动振幅 A = 100 微米。使用 M = log₁₀(A) 计算里氏震级。参考：M < 2 感觉不到，M 3-4 是轻微，M 5-6 是中等，M 7+ 是重大。你的计算有助于对地震严重程度进行分类。",
+            richter_core: "🌍 场景：历史地震分析 — 1356 年，巴塞尔经历了瑞士有记录以来最强的地震。现代分析估计地面振幅为 A = 100,000 微米。计算里氏震级。将其与 2011 年日本地震（M 9.0）进行比较，后者的振幅为 1,000,000,000 微米。对数刻度将这个十亿倍的范围压缩成可管理的数字（1 到 9）。",
+            richter_advanced: "🌍 场景：地震预警系统 — 瑞士正在开发地震警报应用。发生两次地震：地震 A 的振幅为 31,600 微米，地震 B 的振幅为 1,000 微米。计算两个震级并保留 2 位小数。应用需要区分'轻微震动'（M < 4.0）和'显著地震'（M ≥ 4.0），以决定是否向数百万手机发送紧急警报。",
+            richter_elite: "🌍 场景：地震能量比较 — 高级地震学：地震释放的能量每增加一个震级单位就增加 31.6 倍。如果地震 A 是 M 5.0，地震 B 是 M 7.0，B 释放的能量是 A 的多少倍？首先理解 M 7.0 意味着振幅是 M 5.0 的 100 倍（因为 10² = 100）。但能量按振幅的 1.5 次方缩放，所以能量比是 100^1.5 = 1,000 倍。这就是为什么 M 7 地震是灾难性的，而 M 5 只是'中等'。"
+        },
+        canvas: {
+            ph_title: "pH 刻度",
+            ph_formula: "pH = -log₁₀[H⁺]",
+            decibel_title: "分贝刻度",
+            decibel_formula: "L = 10·log₁₀(I/I₀)",
+            richter_title: "里氏震级",
+            richter_formula: "M = log₁₀(A)",
+            ph_subtitle: "酸碱度",
+            decibel_subtitle: "声音",
+            richter_subtitle: "地震",
+            status_chamber: "实验室",
+            status_sim: "对数刻度模拟：运行中",
+            status_mode: "模式"
+        }
+    },
+    sc3_01: {
+        back: "返回枢纽",
+        title: "C3.01 // 分子建筑师",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "分子结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "C3.01_分子监视器",
+        footer_left: "C3.01_分子建筑师 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            atom: "原子",
+            bond: "化学键",
+            snap: "吸附",
+            grid: "网格"
+        },
+        mission: {
+            title: "分子组装实验室",
+            description: "使用球棍模型组装药物分子。旋转并观察 3D 结构。"
+        },
+        stages: {
+            aspirin: "阿司匹林",
+            caffeine: "咖啡因"
+        }
+    },
+    sp1_06: {
+        back: "返回枢纽",
+        title: "SP1.06 // 瑞士钟摆",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "振荡数据",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "验证通过",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SP1.06_钟摆监控器",
+        footer_left: "SP1.06_钟摆力学 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            period: "周期 (T)",
+            length: "长度 (L)",
+            gravity: "重力加速度 (g)",
+            frequency: "频率 (f)"
+        },
+        mission: {
+            title: "钟表匠的秘密",
+            description: "校准巴塞尔的机械主钟。掌握简谐运动和能量守恒的物理学。"
+        },
+        stages: {
+            period: "周期",
+            gravity: "重力",
+            energy: "能量"
+        }
+    },
+    sp2_02: {
+        back: "返回枢纽",
+        title: "SP2.02 // 电路沙盒 2.0",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "电路分析",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SP2.02_电路监视器",
+        footer_left: "SP2.02_电路沙盒 // 节点：巴塞尔",
+        labels: {
+            multimeter: "万用表",
+            oscilloscope: "示波器",
+            resistance: "电阻",
+            capacitance: "电容",
+            inductance: "电感",
+            voltage: "电压",
+            analysis: "电路分析",
+            damping: "阻尼类型",
+            formulas: "RLC 公式",
+            reset: "重置"
+        },
+        mission: {
+            title: "任务：RLC 瞬态分析",
+            description: "构建和分析 RLC 电路。使用万用表测量电压和电流。在示波器上观察瞬态响应。"
+        },
+        stages: {
+            build: "构建电路",
+            measure: "测量数值",
+            analyze: "分析响应",
+            build_desc: "连接电阻、电容和电感",
+            measure_desc: "使用万用表测量电压和电流",
+            analyze_desc: "观察示波器波形",
+            build_hint: "点击组件以选择它们",
+            measure_hint: "选择 2 个点以测量电压降",
+            analyze_hint: "观察过阻尼、欠阻尼或临界阻尼响应"
+        }
+    },
+    sp4_01: {
+        back: "返回枢纽",
+        title: "SP3.03 // 波动基础",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "波动参数",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SP3.03_波动监视器",
+        footer_left: "SP3.03_波动基础 // 节点：莱茵河",
+        labels: {
+            wave_type: "波动类型",
+            transverse: "横波",
+            longitudinal: "纵波",
+            amplitude: "振幅",
+            frequency: "频率",
+            wave_speed: "波速",
+            wavelength: "波长",
+            period: "周期",
+            angular_freq: "角频率",
+            calculated: "计算值",
+            show_particles: "显示粒子运动",
+            formulas: "公式"
+        },
+        mission: {
+            title: "任务：莱茵河波动分析",
+            description: "研究莱茵河上的机械波。掌握波动参数：振幅、频率、波长和周期。"
+        },
+        stages: {
+            transverse: "横波",
+            longitudinal: "纵波",
+            parameters: "波动参数",
+            transverse_desc: "观察垂直粒子运动",
+            longitudinal_desc: "研究压缩和稀疏",
+            parameters_desc: "计算波长、周期和速度",
+            transverse_hint: "粒子垂直于波传播方向振动",
+            longitudinal_hint: "粒子平行于波传播方向振动",
+            parameters_hint: "v = λf, T = 1/f, ω = 2πf"
+        }
+    },
+    sb1_01: {
+        back: "返回枢纽",
+        title: "SB1.01 // 细胞工厂",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "细胞分析",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SB1.01_细胞监视器",
+        footer_left: "SB1.01_细胞工厂 // 节点：巴塞尔",
+        stages: {
+            identification: "结构识别",
+            function: "功能匹配",
+            organelles: "细胞器详解"
+        },
+        labels: {
+            cutaway_view: "切面视图",
+            selected: "选定细胞器",
+            instructions: "操作说明",
+            nucleus: "细胞核",
+            mitochondria: "线粒体",
+            chloroplast: "叶绿体",
+            ribosome: "核糖体",
+            golgi: "高尔基体",
+            er: "内质网",
+            membrane: "细胞膜",
+            vacuole: "液泡"
+        },
+        mission: {
+            title: "任务：细胞探索",
+            description: "探索真核细胞结构。识别细胞器并理解它们在细胞生命活动中的作用。"
+        },
+        prompts: {
+            id_prompt: "识别3D视图中高亮显示的细胞器。",
+            id_target: "高亮部分: ?",
+            fn_prompt: "哪个细胞器负责: {func}?",
+            fn_target: "功能: {func}",
+            hint_name: "它是 {name}",
+            hint_start: "答案以 {char} 开头"
+        },
+        organelles: {
+            nucleus: {
+                name: "细胞核",
+                func: "控制中心 / DNA 存储",
+                details: "包含 DNA 并控制所有细胞活动。细胞的“大脑”。"
+            },
+            mitochondria: {
+                name: "线粒体",
+                func: "ATP 能量产生 (动力源)",
+                details: "通过细胞呼吸产生 ATP。将葡萄糖转化为能量。"
+            },
+            ribosome: {
+                name: "核糖体",
+                func: "蛋白质合成",
+                details: "通过读取 mRNA 序列合成蛋白质。"
+            },
+            golgi: {
+                name: "高尔基体",
+                func: "包装与运输",
+                details: "修改、包装并将蛋白质运输到目的地。"
+            },
+            er: {
+                name: "内质网",
+                func: "合成网络 (ER)",
+                details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
+            }
+        }
+    },
+    sb1_01_metabolic: {
+        back: "返回枢纽",
+        title: "SB1.01 // 代谢引擎",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "当前任务目标",
+        target_title: "代谢状态",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "稳态正常",
+        incorrect: "代谢危机",
+        ready: "就绪",
+        monitor_title: "SB1.01_代谢监视器",
+        footer_left: "SB1.01_细胞生物学 // 节点：巴赛尔",
+        stages: {
+            osmosis: "渗透作用",
+            respiration: "细胞呼吸",
+            homeostasis: "内稳态"
+        },
+        labels: {
+            osmolarity: "外部渗透压",
+            atp_flow: "显示 ATP 流",
+            hypertonic: "高渗",
+            isotonic: "等渗",
+            hypotonic: "低渗",
+            status: "渗透状态",
+            respiration_formula: "呼吸作用公式",
+            glucose: "葡萄糖",
+            oxygen: "氧气",
+            atp: "ATP 能量"
+        },
+        prompts: {
+            osmosis_prompt: "细胞处于{status}环境中。水分会如何移动？",
+            respiration_prompt: "完成呼吸作用反应物：C₆H₁₂O₆ + 6{reactant} → ...",
+            product_prompt: "呼吸作用的主要能量产物是什么？",
+            homeostasis_target: "调节环境以达到等渗状态。",
+            hint_hyper: "外部盐分高！水分离开细胞。",
+            hint_hypo: "外部盐分低！水分涌入细胞。",
+            hint_oxy: "我们吸入它来氧化葡萄糖。"
+        }
+    },
+    sb2_01: {
+        back: "返回枢纽",
+        title: "SB2.01 // 孟德尔花园",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "遗传杂交",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SB2.01_遗传学监视器",
+        footer_left: "SB2.01_孟德尔花园 // 节点：巴塞尔",
+        stages: {
+            monohybrid: "单性状杂交",
+            probability: "概率计算",
+            dihybrid: "双性状杂交"
+        },
+        labels: {
+            parent: "亲本",
+            offspring: "子代",
+            punnett_square: "普瑞特方格",
+            stats: "子代统计",
+            genotype_ratio: "基因型比例",
+            phenotype_ratio: "表现型比例",
+            purple_flowers: "紫色花",
+            white_flowers: "白色花",
+            genetics_basics: "遗传学基础",
+            genotype_phenotype: "基因型与表现型",
+            dominance: "显性规则",
+            mendels_laws: "孟德尔定律",
+            instructions: "操作说明"
+        },
+        concepts: {
+            allele: "等位基因：基因的一种版本",
+            dominant: "R (显性)：紫色花",
+            recessive: "r (隐性)：白色花",
+            genotype: "基因型：遗传组成 (RR, Rr, rr)",
+            phenotype: "表现型：可观察性状 (紫色/白色)",
+            homozygous_dom: "RR → 紫色 (纯合显性)",
+            heterozygous: "Rr → 紫色 (杂合)",
+            homozygous_rec: "rr → 白色 (纯合隐性)",
+            law_segregation: "分离定律：每个亲本贡献一个等位基因",
+            law_assortment: "自由组合定律：在配子形成过程中，等位基因独立分离"
+        },
+        mission: {
+            title: "任务：孟德尔遗传学",
+            description: "掌握孟德尔遗传定律。使用普瑞特方格预测子代比例。"
+        },
+        prompts: {
+            monohybrid_ratio: "杂交 {p1} \\times {p2}。紫色对白色的表现型比例是多少？",
+            monohybrid_percent: "杂交 {p1} \\times {p2}。紫色子代的百分比是多少？",
+            prob_genotype: "杂交 {p1} \\times {p2}。出现 {genotype} 子代的概率是多少？",
+            ratio_target: "\\text{比例 } P:W = ?",
+            percent_target: "\\text{紫色百分比}",
+            prob_target: "P({genotype}) = ?",
+            hint_square: "检查普瑞特方格。",
+            hint_all_rr: "所有子代均为 Rr。",
+            hint_count: "4个方格中的 {count} 个。"
+        }
+    },
+    gb3_01: {
+        back: "返回枢纽",
+        title: "GB3.01 // DNA 熔炉",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "当前任务目标",
+        target_title: "DNA 结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GB3.01_DNA_监视器",
+        footer_left: "GB3.01_DNA_熔炉 // 节点：巴赛尔",
+        stages: {
+            pairing: "碱基配对",
+            bonds: "氢键计算",
+            sequence: "序列合成"
+        },
+        labels: {
+            rotation: "旋转控制",
+            auto_rotate: "自动旋转",
+            show_bonds: "显示氢键",
+            highlight_pair: "高亮碱基对",
+            pairing_rules: "碱基配对规则",
+            bases: "核苷酸碱基",
+            structure: "DNA 结构详解",
+            adenine: "腺嘌呤",
+            thymine: "胸腺嘧啶",
+            cytosine: "胞嘧啶",
+            guanine: "鸟嘌呤"
+        },
+        concepts: {
+            helix: "双螺旋：两条反向平行的脱氧核糖核酸链",
+            backbone: "骨架：由糖和磷酸基团交替连接而成",
+            at_pair: "A ↔ T: 通过两个氢键连接",
+            gc_pair: "C ↔ G: 通过三个氢键连接",
+            polarity: "极性：5' 到 3' 的定向性",
+            complementary: "法则：查加夫碱基互补配对原则"
+        },
+        mission: {
+            title: "任务：DNA 架构分析",
+            description: "掌握 DNA 双螺旋的结构原理。验证碱基配对规则与氢键的稳定性。"
+        },
+        prompts: {
+            pairing_prompt: "识别 {base} 的互补碱基。",
+            bonds_prompt: "{b1} 与 {b2} 之间由多少个氢键连接？",
+            seq_prompt: "推导该序列的互补序列: {seq}",
+            pairing_target: "{base} 的互补碱基",
+            bonds_target: "氢键数量: ?",
+            seq_target: "互补序列流",
+            hint_at: "A 与 T 配对，产生 2 个氢键。",
+            hint_gc: "G 与 C 配对，产生 3 个氢键。"
+        }
+    },
+    sc1_01: {
+        back: "返回枢纽",
+        title: "C1.01 // 神秘实验室",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "物质分析",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "验证通过",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "C1.01_实验室监控器",
+        footer_left: "C1.01_神秘实验室 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            substance: "物质",
+            tool: "测试工具",
+            observation: "观察结果"
+        },
+        mission: {
+            title: "粉末鉴定任务",
+            description: "利用经典化学测试鉴定神秘白色粉末。掌握定性分析方法。"
+        },
+        stages: {
+            identify: "鉴定",
+            properties: "性质",
+            reactions: "反应"
+        }
+    },
+    sc1_03: {
+        back: "返回枢纽",
+        title: "SC1.03 // 原子熔炉",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "原子结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC1.03_原子监视器",
+        footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            properties: "属性",
+            element: "元素",
+            atomic_number: "原子序数 (Z)",
+            mass_number: "质量数 (A)",
+            charge: "电荷",
+            periodic_table: "元素周期表",
+            protons: "质子 (p⁺)",
+            neutrons: "中子 (n⁰)",
+            electrons: "电子 (e⁻)"
+        },
+        mission: {
+            title: "任务：赛博熔炉",
+            description: "从亚原子粒子构建原子。掌握波尔模型和元素周期表。"
+        },
+        stages: {
+            build: "构建",
+            elements: "元素",
+            isotopes: "同位素",
+            build_desc: "自由模式：构建任意原子配置",
+            elements_desc: "探索元素周期表前 20 号元素",
+            isotopes_desc: "研究同位素：相同质子数，不同中子数"
+        }
+    },
+    gsc2_01: {
+        back: "返回枢纽",
+        title: "GC2.01 // 碳世界",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "分子结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GC2.01_有机监测器",
+        footer_left: "GC2.01_碳世界 // 节点：巴塞尔",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            formula: "分子式",
+            iupac_name: "IUPAC 命名",
+            composition: "组成",
+            molecular_mass: "分子质量",
+            molecule_info: "分子信息",
+            select_molecule: "选择分子",
+            rotation_speed: "旋转速度",
+            rotation_speed_value: "{value}x",
+            show_bonds: "显示化学键",
+            show_hydrogens: "显示氢原子",
+            atom_colors: "原子颜色",
+            atom_carbon: "碳 (C)",
+            atom_hydrogen: "氢 (H)",
+            atom_oxygen: "氧 (O)",
+            atom_nitrogen: "氮 (N)",
+            bond_types: "键类型",
+            bond_single: "单键：C-C",
+            bond_double: "双键：C=C",
+            bond_triple: "三键：C≡C"
+        },
+        molecules: {
+            methane: "甲烷",
+            ethane: "乙烷",
+            benzene: "苯",
+            glucose: "葡萄糖",
+            alanine: "丙氨酸"
+        },
+        types: {
+            alkane: "烷烃",
+            aromatic: "芳香族",
+            carbohydrate: "碳水化合物",
+            amino_acid: "氨基酸"
+        },
+        mission: {
+            title: "任务：有机化学",
+            description: "在三维空间中探索有机分子。研究球棍模型、化学键和分子几何结构。"
+        },
+        stages: {
+            alkanes: "烷烃",
+            alcohols: "醇类",
+            custom: "自定义",
+            alkanes_desc: "构建烷烃链 (C-C-C)",
+            alcohols_desc: "添加羟基 (C-OH)",
+            custom_desc: "自由合成模式"
+        },
+        hints: {
+            select_atom: "点击原子以选择它",
+            add_atom: "点击原子工具添加新原子",
+            bonds: "原子根据化合价规则连接",
+            delete: "使用 DELETE 删除选中的原子"
+        }
+    },
+    gsc1_01: {
+        back: "返回枢纽",
+        title: "GC1.01 // 氧化还原巨人",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "原电池",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GC1.01_氧化还原监视器",
+        footer_left: "GC1.01_氧化还原巨人 // 节点：巴塞尔",
+        labels: {
+            cell_potential: "电池电势",
+            zn_concentration: "Zn²⁺ 浓度",
+            cu_concentration: "Cu²⁺ 浓度",
+            temperature: "温度",
+            show_electrons: "显示电子流动",
+            show_ions: "显示离子迁移",
+            reaction_quotient: "反应商 (Q)",
+            half_reactions: "半反应",
+            anode: "阳极",
+            cathode: "阴极",
+            nernst_equation: "能斯特方程"
+        },
+        mission: {
+            title: "任务：电化学",
+            description: "构建原电池并掌握能斯特方程。实时观察电子流动和离子迁移。"
+        },
+        stages: {
+            build: "构建电池",
+            measure: "测量电势",
+            analyze: "分析反应",
+            build_desc: "构建 Zn-Cu 原电池",
+            measure_desc: "使用能斯特方程计算电池电势",
+            analyze_desc: "观察氧化还原反应和电子流动",
+            build_hint: "Zn 在阳极被氧化，Cu²⁺ 在阴极被还原",
+            measure_hint: "E = E° - (RT/nF)ln(Q)",
+            analyze_hint: "盐桥维持电中性"
+        }
+    },
+    gc3_01: {
+        back: "返回枢纽",
+        title: "GC3.01 // 平衡大师",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "化学平衡",
+        next: "执行下一步",
+        check: "验证",
+        correct: "正确",
+        incorrect: "错误",
+        ready: "准备就绪",
+        monitor_title: "GC3.01_平衡监视器",
+        footer_left: "GC3.01_平衡大师 // 节点: 巴塞尔",
+        labels: {
+            reaction: "可逆反应",
+            particle_count: "粒子计数",
+            conditions: "条件",
+            temperature: "温度",
+            pressure: "压强",
+            concentration: "[A]",
+            principle: "勒夏特列原理",
+            principle_1: "• 增加反应物 → 平衡右移（更多产物）",
+            principle_2: "• 增加压强 → 平衡向分子数少的方向移动",
+            principle_3: "• 升高温度 → 平衡向吸热方向移动",
+            add_reactant: "添加反应物 A",
+            system_temperature: "系统温度",
+            system_pressure: "系统压强"
+        },
+        mission: {
+            title: "任务: 化学平衡",
+            description: "掌握勒夏特列原理。观察系统如何响应外界条件变化。"
+        },
+        stages: {
+            concentration: "浓度",
+            temperature: "温度",
+            pressure: "压强",
+            concentration_desc: "添加反应物 A 并观察平衡移动",
+            temperature_desc: "升高温度并观察粒子速度",
+            pressure_desc: "改变压强并观察体积效应",
+            concentration_hint: "增加 [A] 使平衡右移 → 更多 C 和 D",
+            temperature_hint: "温度升高增加粒子动能",
+            pressure_hint: "压强增大使容器体积减小"
+        }
+    },
+    gc3_02: {
+        back: "返回枢纽",
+        title: "GC3.02 // 晶体宫殿",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "晶体结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GC3.02_晶体监视器",
+        footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
+        labels: {
+            lattice_type: "晶格类型",
+            properties: "性质",
+            atoms_per_cell: "原子/晶胞",
+            coordination: "配位数",
+            packing: "堆积率",
+            tet_voids: "四面体空隙",
+            voids: "间隙空隙",
+            tetrahedral: "四面体",
+            octahedral: "八面体",
+            formulas: "公式",
+            show_voids: "显示间隙空隙",
+            slice_plane: "切片平面 (Y轴)",
+            reset_slice: "重置"
+        },
+        mission: {
+            title: "任务：固体物理",
+            description: "探索晶体结构和布拉维晶格。理解原子堆积和配位。"
+        },
+        stages: {
+            sc: "简单立方",
+            bcc: "体心立方",
+            fcc: "面心立方",
+            sc_desc: "研究简单立方晶格（配位数6）",
+            bcc_desc: "分析体心立方（配位数8）",
+            fcc_desc: "掌握面心立方（配位数12）",
+            sc_hint: "最低堆积效率（52%）",
+            bcc_hint: "中等堆积（68%），如Fe、Cr等金属",
+            fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
+        }
+    },
+    gm4_01: {
+        back: "返回枢纽",
+        title: "GM4.01 // 复数地平线",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GM4.01_复数监视器",
+        footer_left: "GM4.01_复数地平线 // 节点：巴塞尔",
+        scenario_title: "巴塞尔工程任务",
+        scenarios: {
+            basics: "罗氏制药信号处理：您正在罗氏巴塞尔校准用于 MRI 信号处理的医学成像设备，该设备使用复数分析。每个复数 z = a + bi 表示一个具有实部（振幅）和虚部（相位）的信号。计算模长 |z| 以确定信号强度。准确的模长计算对于检测患者扫描中的组织异常至关重要。",
+            operations: "诺华量子化学模拟：您正在诺华巴塞尔使用复数算术运行分子轨道计算。波函数表示为复数，它们的相互作用需要在复平面中进行加法和乘法运算。计算复数运算的结果以预测分子行为。这些计算决定了药物结合效率。",
+            polar: "巴塞尔大学电气工程：您正在分析巴塞尔智能电网电力系统中的交流电路行为。在计算谐振频率时，复阻抗被提升到幂次。使用极坐标形式 (r·e^(iθ)) 高效计算 z^n。结果决定了巴塞尔可再生能源网络的最佳功率分配。"
+        },
+        stages: {
+            basics: "基础",
+            operations: "运算",
+            polar: "极坐标形式",
+            basics_prompt: "计算模长",
+            basics_target: "求 |z|",
+            operations_add: "复数加法",
+            operations_multiply: "复数乘法",
+            operations_target: "求实部和虚部",
+            polar_prompt: "使用极坐标形式计算幂",
+            polar_target: "求 z^n 的直角坐标形式"
+        },
+        visualization: {
+            pythagorean: "勾股定理",
+            vector_addition: "向量加法",
+            complex_multiplication: "复数乘法",
+            polar_power: "极坐标幂运算",
+            complex_data: "复数数据",
+            magnitude: "模长 |z|",
+            argument: "辐角 arg(z)",
+            power: "幂次",
+            verified: "验证成功",
+            mismatch: "答案错误",
+            geometric_meaning: "几何意义：模长相乘，角度相加",
+            polar_meaning: "模长变为 r^n，角度变为 n·θ",
+            parallelogram_rule: "平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂"
+        }
+    },
+    em2_01: {
+        back: "返回枢纽",
+        title: "EM2.01 // 矩阵几何",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "变换矩阵",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "EM2.01_矩阵监视器",
+        footer_left: "EM2.01_矩阵几何 // 节点：巴塞尔",
+        labels: {
+            matrix: "矩阵 A",
+            properties: "属性",
+            determinant: "行列式",
+            volume_scale: "体积缩放",
+            formulas: "公式",
+            angle: "旋转角度 (θ)",
+            scale_x: "X轴缩放",
+            scale_y: "Y轴缩放",
+            scale_z: "Z轴缩放",
+            shear_xy: "Y对X的切变",
+            shear_xz: "Z对X的切变",
+            matrix_title: "矩阵 A",
+            det_value: "det(A) = {value}",
+            show_eigenvectors: "显示特征向量",
+            show_grid: "显示网格",
+            animate: "动画"
+        },
+        presets: {
+            title: "预设",
+            scale: "缩放",
+            rotate: "旋转 90°",
+            shear: "切变",
+            reflect: "镜像"
+        },
+        linear: {
+            title: "线性代数",
+            line_1: "Ax = λx（特征值方程）",
+            line_2: "det(A - λI) = 0",
+            line_3: "T(v) = Av"
+        },
+        mission: {
+            title: "任务：线性变换",
+            description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
+        },
+        stages: {
+            basic_transforms: "基础变换",
+            determinant: "行列式",
+            composition: "复合变换"
+        },
+        scenario_title: "巴塞尔工程任务",
+        scenarios: {
+            basic_transforms: "罗氏制药分子分析：您在罗氏巴塞尔的计算化学部门工作，使用线性变换分析蛋白质分子的对称性。每个矩阵代表一个对称操作（旋转、反射、缩放）。识别变换类型对于预测分子的光学性质至关重要。",
+            determinant: "诺华晶体结构：您在诺华巴塞尔分析药物晶体的单元格结构。行列式表示晶格的体积变化。det(A)=0 表示晶体结构坍缩，det(A)<0 表示手性反转。准确计算行列式对于预测药物的生物活性至关重要。",
+            composition: "巴塞尔大学机器人学：您在巴塞尔大学机器人实验室编程机械臂。每个关节的运动由一个变换矩阵表示。复合变换 AB 表示先执行关节A的运动，再执行关节B的运动。矩阵乘法的顺序决定了机械臂的最终位置。"
+        },
+        explanation_label: "解释"
+    },
+    sc2_02: {
+        back: "返回枢纽",
+        title: "SC2.02 // pH 哨兵",
+        difficulty: {
+            basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "滴定分析",
+        next: "下一次分析",
+        check: "验证",
+        correct: "滴定准确",
+        incorrect: "pH 读取错误",
+        ready: "就绪",
+        monitor_title: "SC2.02_滴定监控",
+        footer_left: "SC2.02_PH_哨兵 // 节点: 巴塞尔",
+        stages: {
+            curves: "PH 曲线",
+            equivalence: "等当点",
+            indicators: "指示剂"
+        },
+        labels: {
+            initial_ph: "初始 pH",
+            added_vol: "加入体积 (mL)",
+            eq_point: "等当点",
+            indicator: "指示剂",
+            strong_acid: "强酸",
+            weak_acid: "弱酸",
+            formula: "滴定公式"
+        },
+        prompts: {
+            curve_type: "初始 pH 为 {ph}。识别酸类型 (强酸=1, 弱酸=2)。",
+            find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M。求等当点体积 Vb。",
+            select_indicator: "弱酸 + 强碱。选择指示剂：酚酞(1), 甲基橙(2)。",
+            weak_ph_calc: "在半等当点 (pH = pKa)。如果 pKa 为 4.75，pH 是多少？",
+            eq_ph_guess: "强酸/强碱等当点 pH？ (<7=1, 7=2, >7=3)。",
+            conc_calc: "20mL 未知酸被 10mL 0.2M NaOH 中和。求 Ca。"
+        }
+    },
+    sc2_03: {
+        back: "返回枢纽",
+        title: "SC2.03 // 气体实验室",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "气体性质",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC2.03_气体监视器",
+        footer_left: "SC2.03_气体实验室 // 节点：巴塞尔",
+        labels: {
+            pressure: "压力",
+            state_variables: "状态变量",
+            volume: "体积 (V)",
+            temperature: "温度 (T)",
+            moles: "摩尔数 (n)",
+            formulas: "公式"
+        },
+        mission: {
+            title: "任务：理想气体定律",
+            description: "探索理想气体中压力、体积和温度之间的关系。"
+        },
+        stages: {
+            boyle: "波义耳定律",
+            charles: "查理定律",
+            combined: "组合气体定律",
+            boyle_desc: "观察反比关系：P ∝ 1/V",
+            charles_desc: "观察正比关系：V ∝ T",
+            combined_desc: "掌握组合气体定律",
+            boyle_hint: "波义耳定律：减小体积 → 增大压力",
+            charles_hint: "查理定律：升高温度 → 增大体积",
+            combined_hint: "组合定律：三个变量相互作用"
+        }
+    },
+    sc1_03_orbitals: {
+        back: "返回枢纽",
+        title: "SC1.03 // 原子熔炉",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "原子轨道",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC1.03_轨道监视器",
+        footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
+        labels: {
+            selected_element: "选定元素",
+            orbital_type: "轨道类型",
+            show_transition: "显示电子跃迁",
+            periodic_table: "元素周期表 (Z=1-20)",
+            orbital_shapes: "轨道形状",
+            quantum_numbers: "量子数"
+        },
+        mission: {
+            title: "任务：量子力学",
+            description: "探索电子轨道和概率云。在 3D 空间中可视化 s、p 和 d 轨道。"
+        },
+        stages: {
+            s_orbital: "S 轨道",
+            p_orbital: "P 轨道",
+            d_orbital: "D 轨道",
+            s_desc: "球形概率分布",
+            p_desc: "哑铃形轨道 (px, py, pz)",
+            d_desc: "四叶草形轨道",
+            s_hint: "s 轨道：l=0，球对称",
+            p_hint: "p 轨道：l=1，三个方向",
+            d_hint: "d 轨道：l=2，五个方向"
+        }
+    },
+    sc1_04: {
+        back: "返回枢纽",
+        title: "SC1.04 // 元素周期拼图",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "原子结构",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC1.04_原子监视器",
+        footer_left: "SC1.04_元素周期拼图 // 节点：巴塞尔",
+        labels: {
+            element_info: "元素信息",
+            formulas: "公式",
+            protons: "质子",
+            neutrons: "中子",
+            electrons: "电子",
+            select_element: "选择元素"
+        },
+        mission: {
+            title: "任务：元素周期表",
+            description: "构建原子并发现元素周期表。掌握电子排布。"
+        },
+        stages: {
+            build: "构建原子",
+            periodic: "元素周期表",
+            groups: "元素族",
+            build_desc: "通过添加质子、中子和电子来构建原子",
+            periodic_desc: "探索前 20 个元素",
+            groups_desc: "理解元素族和周期",
+            build_hint: "质子数决定元素种类",
+            periodic_hint: "元素按原子序数排列",
+            groups_hint: "同族元素 = 相同价电子数"
+        }
+    },
+    sc2_04: {
+        back: "返回枢纽",
+        title: "SC2.04 // 溶解度实验室",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "溶液状态",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC2.04_溶解度监视器",
+        footer_left: "SC2.04_溶解度实验室 // 节点：巴塞尔",
+        labels: {
+            solubility: "溶解度",
+            saturated: "饱和 - 正在形成沉淀",
+            unsaturated: "未饱和 - 可继续溶解",
+            solution_data: "溶液数据",
+            temperature: "温度 (°C)",
+            solute_amount: "溶质量 (g)",
+            formulas: "公式"
+        },
+        mission: {
+            title: "任务：溶解度",
+            description: "探索溶解度与温度的关系。观察结晶过程。"
+        },
+        stages: {
+            dissolve: "溶解",
+            saturate: "饱和",
+            crystallize: "结晶",
+            dissolve_desc: "将溶质溶解在水中",
+            saturate_desc: "达到饱和点",
+            crystallize_desc: "冷却溶液使其结晶",
+            dissolve_hint: "大多数盐在高温下溶解度更高",
+            saturate_hint: "饱和：溶解的最大量",
+            crystallize_hint: "冷却导致过量溶质结晶"
+        }
+    },
+    gp1_03: {
+        back: "返回枢纽",
+        title: "GP5.03 // 粒子对撞机",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "LHC ATLAS 探测器",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GP5.03_LHC_监视器",
+        footer_left: "GP5.03_粒子对撞机 // 节点：CERN",
+        labels: {
+            beam_energy: "束流能量",
+            relativistic_effects: "相对论效应",
+            formulas: "公式",
+            magnetic_field: "启用磁场（弯曲磁铁）",
+            colliding: "对撞中...",
+            initiate_collision: "启动对撞"
+        },
+        mission: {
+            title: "任务：粒子物理",
+            description: "探索 CERN 大型强子对撞机的粒子碰撞。发现希格斯玻色子。"
+        },
+        stages: {
+            acceleration: "加速",
+            collision: "对撞",
+            detection: "探测",
+            acceleration_desc: "将质子加速到接近光速",
+            collision_desc: "在 13 TeV 下对撞质子束",
+            detection_desc: "探测粒子喷注和径迹",
+            acceleration_hint: "质子达到光速的 99.9999991%",
+            collision_hint: "对撞能量：13 TeV = 13,000 GeV",
+            detection_hint: "磁场使带电粒子径迹弯曲"
+        }
+    },
+    ggp5_02: {
+        title: "GP1.02 // 相对论实验室",
+        back: "返回 Nexus",
+        footer_left: "GP1.02_相对论实验室 // 节点: RHINE",
+        monitor_title: "GP1.02_相对论监测器",
+        labels: {
+            lorentz_factor_title: "洛伦兹因子",
+            velocity_label: "速度 (v/c)",
+            velocity_value: "{value}% c",
+            gamma_value: "γ = {value}",
+            toggle_doppler: "显示多普勒效应",
+            toggle_contraction: "显示长度收缩"
+        },
+        effects: {
+            title: "相对论效应",
+            time_dilation_label: "时间膨胀：",
+            time_dilation_value: "Δt' = {value}Δt",
+            length_contraction_label: "长度收缩：",
+            length_contraction_value: "L' = {value}L"
+        },
+        formulas: {
+            title: "公式",
+            gamma: "γ = 1/√(1 - v²/c²)",
+            time: "Δt' = γΔt",
+            length: "L' = L/γ",
+            energy: "E = γmc²"
+        },
+        mission: {
+            title: "任务：狭义相对论",
+            description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
+        }
+    },
+    sp1_08: {
+        title: "SP1.08 // 光学工作台",
+        back: "返回 Nexus",
+        footer_left: "SP1.08_光学工作台 // 节点: BASEL",
+        monitor_title: "SP1.08_光学监测器",
+        labels: {
+            show_prism: "显示棱镜色散",
+            medium_1: "介质 1 (n₁)",
+            medium_2: "介质 2 (n₂)",
+            incident_angle: "入射角 (θ₁)",
+            refraction_title: "折射",
+            refracted_angle: "折射角 (θ₂)：",
+            critical_angle: "临界角：",
+            total_internal_reflection: "全内反射",
+            na: "无",
+            angle_value: "{value}°"
+        },
+        snell: {
+            title: "斯涅尔定律",
+            line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
+            line_2: "θ_c = arcsin(n₂/n₁)",
+            line_3: "v = c/n"
+        },
+        mission: {
+            title: "任务：几何光学",
+            description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
+        }
+    },
+    sp1_01: {
+        back: "返回枢纽",
+        title: "SP1.01 // 测量与单位",
+        check: "验证",
+        next: "下一步",
+        correct: "测量验证",
+        incorrect: "测量错误",
+        ready: "就绪",
+        monitor_title: "SP1.01_测量实验室",
+        footer_left: "SP1.01_测量 // 节点: 巴塞尔",
+        objective_title: "测量目标",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            si_units: "SI单位",
+            conversion: "换算",
+            precision: "精度"
+        },
+        tools: {
+            ruler: "尺子",
+            scale: "天平",
+            timer: "计时器"
+        },
+        labels: {
+            precision: "测量精度",
+            measurement_display: "测量显示",
+            input_terminal: "终端输入 [测量节点]"
+        },
+        prompts: {
+            si_unit: "{measurement} 的 SI 单位是什么？",
+            convert: "将 {value} {from} 转换为 {to}",
+            sigfigs: "{value} 有几位有效数字？",
+            hint_si: "SI 单位是 {name}",
+            hint_factor: "乘以 {factor}",
+            hint_sigfigs: "计算所有非零数字和它们中间的零"
+        },
+        feedback: {
+            correct: "测量精度确认。",
+            incorrect: "检测到校准错误。"
+        }
+    },
+    sp1_04: {
+        back: "返回枢纽",
+        title: "SP1.04 // 简单机械",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SP1.04_力学监控",
+        footer_left: "SP1.04_简单机械 // 节点: 巴塞尔",
+        objective_title: "当前任务目标",
+        stages: {
+            levers: "杠杆",
+            pulleys: "滑轮",
+            inclined_planes: "斜面"
+        },
+        labels: {
+            machine_display: "机械显示",
+            input_terminal: "输入终端",
+            force_ratio: "力比 (MA)",
+            show_forces: "显示力",
+            mechanics_score: "力学分数"
+        },
+        prompts: {
+            lever: "一个杠杆举起 {load} N 的负载。如果力臂是 {effortArm} m，阻力臂是 {loadArm} m，需要多少努力力？",
+            pulley: "一个滑轮系统用 {strands} 根支撑绳举起 {load} N 的负载。需要多少努力力？",
+            inclined_plane: "一个斜面将 {load} N 的负载举到 {height} m 高度，斜面长度为 {length} m。需要多少努力力？",
+            hint_lever: "使用 MA = 力臂 / 阻力臂，然后 F_effort = F_load / MA",
+            hint_pulley: "使用 MA = 绳子数量，然后 F_effort = F_load / MA",
+            hint_inclined: "使用 MA = 长度 / 高度，然后 F_effort = F_load / MA"
+        },
+        scenarios: {
+            basel_construction: "巴塞尔建筑工地：巴塞尔罗氏塔建筑工地的工人使用杠杆、滑轮和斜坡高效移动重型材料。简单机械减少所需力量。",
+            lever_crowbar: "巴塞尔翻新撬棍：翻新巴塞尔历史建筑需要小心使用杠杆。长力臂的撬棍提供机械优势来举起重石。",
+            pulley_crane: "建筑起重机滑轮：巴塞尔建筑起重机使用多根滑轮绳来举起钢梁。每增加一根绳子就减少所需输入力。",
+            ramp_loading: "巴塞尔港口装载坡道：莱茵河港口工人使用斜面将货物装载到驳船上。更长的坡道需要更少的力但更多的距离。",
+            compound_machine: "巴塞尔复合机械：真实的建筑设备结合杠杆、滑轮和斜面，实现高机械优势以完成重型起重任务。"
+        },
+        feedback: {
+            correct: "机械优势计算正确！",
+            incorrect: "检查你的机械优势计算。"
         }
     },
     sb1_02: {
@@ -7212,6 +7299,13 @@ export const translations: Record<string, any> = {
             hint_trophic: "只有10%的能量传递到下一个营养级",
             hint_10percent: "使用10%规则：乘以0.1",
             hint_cycle: "思考这个过程的输入和输出"
+        },
+        scenarios: {
+            rhine_river: "莱茵河生态系统：莱茵河支持从藻类到捕食鸟类的多样化水生生物。食物链从浮游植物开始，经过浮游动物、鱼类到顶级捕食者。",
+            energy_pyramid: "巴塞尔湿地能量流动：巴塞尔湿地保护区展示能量金字塔。营养级之间只有10%的能量传递，限制了食物链长度。",
+            carbon_cycle: "莱茵河三角洲碳循环：光合作用和呼吸作用驱动莱茵河生态系统的碳循环。植物吸收CO₂，动物通过呼吸释放CO₂。",
+            nitrogen_cycle: "巴塞尔土壤固氮：巴塞尔农业土壤中的细菌通过固氮作用将大气中的N₂转化为植物可用的NH₃。",
+            water_cycle: "莱茵河水循环：莱茵河的蒸发、云中的凝结和降水完成了维持巴塞尔生态系统的水循环。"
         },
         feedback: {
             correct: "生态系统平衡维持！",
@@ -7294,6 +7388,13 @@ export const translations: Record<string, any> = {
             hint_combustion: "计算反应物中的碳原子数",
             hint_substitution: "一个 H 原子被卤素原子取代",
             hint_addition: "双键打开并加成试剂"
+        },
+        scenarios: {
+            novartis_combustion: "诺华能源实验室：燃烧反应为巴塞尔制药设施提供动力。有机燃料的完全燃烧产生CO₂和H₂O，释放最大能量。",
+            basel_chemical_plant: "巴塞尔化学合成：巴塞尔化工厂的取代反应使用紫外光将氢原子替换为卤素，创造有价值的药物中间体。",
+            polymer_production: "巴塞尔聚合物生产：巴塞尔化工设施的加成反应将烯烃转化为聚合物。双键打开形成长聚合物链。",
+            free_radical_mechanism: "自由基化学：紫外光在取代反应中引发自由基机理。自由基通过链式反应传播直到终止。",
+            reaction_control: "诺华反应控制：控制反应条件（光、温度、催化剂）决定有机合成中的产物选择性和产率。"
         },
         feedback: {
             correct: "反应机理理解正确！",
@@ -8991,45 +9092,55 @@ export const translations: Record<string, any> = {
                 description: "Wandeln Sie die Energie des Rheins in sauberen Strom um. Verfolgen Sie die Energieübertragung und Turbinenleistung."
             }
         },
-        sp1_04: {
+        sp1_07: {
             back: "Zurück zum Nexus",
-            title: "P1.04 // ZEITDILATATIONSSIMULATOR",
+            title: "SP1.07 // DRUCK & AUFTRIEB",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
                 advanced: "FORTGESCHRITTEN",
                 elite: "ELITE"
             },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Raumzeit-HUD",
             next: "Nächste Sequenz ausführen",
-            check: "Warp aktivieren",
-            correct: "Identität verifiziert",
-            incorrect: "Drift erkannt",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlanpassung",
             ready: "Bereit",
-            monitor_title: "P1.04_RELATIVITAET_KERN",
-            footer_left: "P1.04_RELATIVITAET // KNOTEN: BASEL",
-            labels: {
-                velocity: "Geschwindigkeit (v/c)",
-                gamma: "Lorentz-Faktor (γ)",
-                length: "Kontraktion (L)",
-                time: "Dilatation (t)"
-            },
-            mission: {
-                title: "MISSION: EINSTEINS LABORATORIUM",
-                description: "Beobachte die Krümmung der Raumzeit. Wenn sich die Geschwindigkeit der Lichtgeschwindigkeit nähert, verkürzt sich die Länge und die Zeit dehnt sich aus."
-            },
+            monitor_title: "SP1.07_FLUID_MONITOR",
+            footer_left: "SP1.07_FLUIDMECHANIK // KNOTEN: RHEIN",
+            objective_title: "Aktuelles Missionsziel",
             stages: {
-                contraction: "LÄNGENKONTRAKTION",
-                dilation: "ZEITDILATATION",
-                spacetime: "RAUMZEIT-GITTER",
-                contraction_prompt_latex: "\\text{Berechne die kontrahierte Länge } L = L_0/\\gamma.",
-                dilation_prompt_latex: "\\text{Berechne die dilatierte Zeit } t = t_0 \\cdot \\gamma.",
-                spacetime_prompt_latex: "\\text{Analysiere den Lorentz-Faktor } \\gamma \\text{ für gegebenes } v/c."
+                pressure: "DRUCK",
+                buoyancy: "AUFTRIEB",
+                hydraulics: "HYDRAULIK"
+            },
+            labels: {
+                physics_display: "Physik-Anzeige",
+                input_terminal: "Eingabeterminal",
+                depth: "Tiefe",
+                density: "Objektdichte",
+                force: "Kolbenkraft",
+                fluid_mastery: "Fluidbeherrschung"
+            },
+            prompts: {
+                pressure_depth: "Ein Taucher taucht auf {depth} m Tiefe im Rhein. Berechnen Sie den Gesamtdruck (P₀=100000 Pa, ρ=1000 kg/m³, g=10 m/s²).",
+                buoyant_force: "Ein Objekt mit Volumen {volume} m³ ist in Wasser eingetaucht. Berechnen Sie die Auftriebskraft (ρ_Wasser=1000 kg/m³, g=10 m/s²).",
+                hydraulic_force: "Ein Hydraulikheber hat Eingangskraft {f1} N auf Fläche {a1} m². Ausgangsfläche ist {a2} m². Berechnen Sie die Ausgangskraft.",
+                hint_pressure: "Verwenden Sie P = P₀ + ρgh",
+                hint_archimedes: "Verwenden Sie F_b = ρ_Wasser × V × g",
+                hint_pascal: "Verwenden Sie das Pascal'sche Prinzip: F₁/A₁ = F₂/A₂"
+            },
+            scenarios: {
+                rhine_swimming: "Rheinschwimmen: Taucher erkunden das Rheinbett nahe der Basler Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe und beeinflusst Ausrüstung und Sicherheitsprotokolle.",
+                rhine_boat: "Rheinfrachttransport: Lastkähne navigieren den Rhein und transportieren Waren zwischen Basel und Rotterdam. Das Verständnis des Auftriebs ist entscheidend für Lastberechnungen und Schiffsstabilität.",
+                hydraulic_lift: "Basler Baustelle: Hydraulikheber auf Basler Baustellen nutzen das Pascal'sche Prinzip, um schwere Baumaterialien mit minimaler Eingangskraft zu heben."
+            },
+            feedback: {
+                correct: "Fluidmechanik gemeistert!",
+                incorrect: "Überprüfen Sie die Prinzipien der Fluidmechanik."
             }
         },
-        sp1_05: {
-            back: "Zurück zum Nexus",
+        sp1_04: {
             title: "SP1.05 // DIE RHEINFÄHRE",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
@@ -10835,34 +10946,44 @@ export const translations: Record<string, any> = {
                 bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
                 fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
             },
-            sb1_02: {
-                back: "Zurück zum Nexus",
-                title: "SB1.02 // PHOTOSYNTHESE-LABOR",
-                stages: {
-                    equation: "REAKTIONSGLEICHUNG",
-                    limiting_factors: "BEGRENZENDE FAKTOREN",
-                    chloroplast: "CHLOROPLAST"
-                },
-                labels: {
-                    light: "Lichtintensität",
-                    co2: "CO2-Gehalt",
-                    temp: "Temperatur",
-                    glucose: "Glucoseproduktion"
-                }
+        },
+        sb1_02: {
+            back: "Zurück zum Nexus",
+            title: "SB1.02 // PHOTOSYNTHESE-LABOR",
+            stages: {
+                equation: "REAKTIONSGLEICHUNG",
+                limiting_factors: "BEGRENZENDE FAKTOREN",
+                chloroplast: "CHLOROPLAST"
             },
-            sb2_02: {
-                back: "Zurück zum Nexus",
-                title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
-                stages: {
-                    digestion: "VERDAUUNG",
-                    circulation: "KREISLAUF",
-                    respiration: "ATMUNG"
-                },
-                labels: {
-                    heart_rate: "Herzfrequenz",
-                    o2_sat: "O2-Sättigung",
-                    enzyme: "Enzymaktivität"
-                }
+            labels: {
+                light: "Lichtintensität",
+                co2: "CO2-Gehalt",
+                temp: "Temperatur",
+                glucose: "Glucoseproduktion"
+            }
+        },
+        sb2_02: {
+            back: "Zurück zum Nexus",
+            title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
+            stages: {
+                digestion: "VERDAUUNG",
+                circulation: "KREISLAUF",
+                respiration: "ATMUNG"
+            },
+            labels: {
+                heart_rate: "Herzfrequenz",
+                o2_sat: "O2-Sättigung",
+                enzyme: "Enzymaktivität"
+            }
+        },
+        sb3_01: {
+            back: "Zurück zum Nexus",
+            title: "SB3.01 // ÖKOSYSTEM-DYNAMIK",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
             },
             sb3_01: {
                 back: "Zurück zum Nexus",
@@ -10948,6 +11069,27 @@ export const translations: Record<string, any> = {
                     incorrect: "Überprüfen Sie Ihre Berechnung des mechanischen Vorteils."
                 }
             },
+            sb1_03: {
+                back: "Zurück zum Nexus",
+                title: "SB1.03 // ZELLTEILUNG",
+                check: "Prüfen",
+                next: "Nächste Phase",
+                correct: "Phase Abgeschlossen",
+                incorrect: "Fehlausrichtung",
+                ready: "Bereit",
+                monitor_title: "SB1.03_REPLIKATIONSZENTRUM",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                stages: {
+                    mitosis: "MITOSE",
+                    meiosis_i: "MEIOSE I",
+                    meiosis_ii: "MEIOSE II"
+                }
+            },
             sc1_05: {
                 back: "Zurück zum Nexus",
                 title: "SC1.05 // CHEMISCHE BINDUNGEN",
@@ -11030,29 +11172,29 @@ export const translations: Record<string, any> = {
                     incorrect: "Überprüfen Sie den Reaktionsmechanismus."
                 }
             }
-        },
+        }
     }
 };
 
 export function useLanguage() {
     const { currentLanguage, setLanguage } = useAppStore();
     const t = (path: string) => {
-        const segments = path.split(".");
-        let node: unknown = translations[currentLanguage];
-        for (const segment of segments) {
-            if (!node || typeof node !== "object") {
-                return path;
-            }
-            const record = node as Record<string, unknown>;
-            if (!(segment in record)) {
-                return path;
-            }
-            node = record[segment];
+    const segments = path.split(".");
+    let node: unknown = translations[currentLanguage];
+    for (const segment of segments) {
+        if (!node || typeof node !== "object") {
+            return path;
         }
-        return typeof node === "string" ? node : path;
-    };
+        const record = node as Record<string, unknown>;
+        if (!(segment in record)) {
+            return path;
+        }
+        node = record[segment];
+    }
+    return typeof node === "string" ? node : path;
+};
 
-    return { t, currentLanguage, setLanguage };
+return { t, currentLanguage, setLanguage };
 }
 
 export interface Translations {

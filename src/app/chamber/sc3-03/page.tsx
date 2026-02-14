@@ -34,7 +34,8 @@ export default function SC303Page() {
                 { reactant: "CH_4", o2: 2, co2: 1, h2o: 2 },
                 { reactant: "C_2H_6", o2: 3.5, co2: 2, h2o: 3 },
                 { reactant: "C_3H_8", o2: 5, co2: 3, h2o: 4 },
-                { reactant: "C_2H_5OH", o2: 3, co2: 2, h2o: 3 }
+                { reactant: "C_2H_5OH", o2: 3, co2: 2, h2o: 3 },
+                { reactant: "C_4H_{10}", o2: 6.5, co2: 4, h2o: 5 }
             ];
 
             combustions.forEach((comb, idx) => {
@@ -59,7 +60,8 @@ export default function SC303Page() {
                 { alkane: "CH_4", halogen: "Cl_2", product: "CH_3Cl", byproduct: "HCl" },
                 { alkane: "C_2H_6", halogen: "Br_2", product: "C_2H_5Br", byproduct: "HBr" },
                 { alkane: "C_3H_8", halogen: "Cl_2", product: "C_3H_7Cl", byproduct: "HCl" },
-                { alkane: "CH_4", halogen: "Br_2", product: "CH_3Br", byproduct: "HBr" }
+                { alkane: "CH_4", halogen: "Br_2", product: "CH_3Br", byproduct: "HBr" },
+                { alkane: "C_4H_{10}", halogen: "Cl_2", product: "C_4H_9Cl", byproduct: "HCl" }
             ];
 
             substitutions.forEach((sub, idx) => {
@@ -84,7 +86,8 @@ export default function SC303Page() {
                 { alkene: "C_2H_4", reagent: "H_2", product: "C_2H_6" },
                 { alkene: "C_2H_4", reagent: "Br_2", product: "C_2H_4Br_2" },
                 { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8" },
-                { alkene: "C_3H_6", reagent: "Cl_2", product: "C_3H_6Cl_2" }
+                { alkene: "C_3H_6", reagent: "Cl_2", product: "C_3H_6Cl_2" },
+                { alkene: "C_4H_8", reagent: "H_2", product: "C_4H_{10}" }
             ];
 
             additions.forEach((add, idx) => {

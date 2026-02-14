@@ -119,7 +119,7 @@ export default function OrganicMoleculeCanvas({ molecule, show3D, stage, transla
             // Bonds with 3D effect
             draw3DBond(ctx, centerX, centerY, centerX, centerY - 50, "solid");
             draw3DBond(ctx, centerX, centerY, centerX + 45, centerY + 15, "wedge");
-            draw3DBond(ctx, centerX, centerX - 45, centerY + 15, "dash");
+            draw3DBond(ctx, centerX, centerY, centerX - 45, centerY + 15, "dash");
             draw3DBond(ctx, centerX, centerY, centerX, centerY + 40, "solid");
         } else if (mol === "ethane") {
             // C2H6 - staggered conformation

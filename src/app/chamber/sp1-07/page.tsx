@@ -35,7 +35,8 @@ export default function SP107Page() {
                 { depth: 10, pressure: "200000", unit: "Pa" },
                 { depth: 5, pressure: "150000", unit: "Pa" },
                 { depth: 20, pressure: "300000", unit: "Pa" },
-                { depth: 15, pressure: "250000", unit: "Pa" }
+                { depth: 15, pressure: "250000", unit: "Pa" },
+                { depth: 8, pressure: "180000", unit: "Pa" }
             ];
 
             scenarios.forEach((s, idx) => {
@@ -60,7 +61,8 @@ export default function SP107Page() {
                 { volume: 0.001, density: 800, buoyant: "10", floats: "yes" },
                 { volume: 0.002, density: 1200, buoyant: "20", floats: "no" },
                 { volume: 0.0015, density: 900, buoyant: "15", floats: "yes" },
-                { volume: 0.0008, density: 1100, buoyant: "8", floats: "no" }
+                { volume: 0.0008, density: 1100, buoyant: "8", floats: "no" },
+                { volume: 0.0012, density: 950, buoyant: "12", floats: "yes" }
             ];
 
             objects.forEach((obj, idx) => {
@@ -85,7 +87,8 @@ export default function SP107Page() {
                 { f1: 100, a1: 0.01, a2: 0.1, f2: "1000" },
                 { f1: 50, a1: 0.005, a2: 0.05, f2: "500" },
                 { f1: 200, a1: 0.02, a2: 0.2, f2: "2000" },
-                { f1: 150, a1: 0.015, a2: 0.15, f2: "1500" }
+                { f1: 150, a1: 0.015, a2: 0.15, f2: "1500" },
+                { f1: 80, a1: 0.008, a2: 0.08, f2: "800" }
             ];
 
             hydraulics.forEach((h, idx) => {

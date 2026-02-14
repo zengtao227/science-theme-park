@@ -34,7 +34,8 @@ export default function SB301Page() {
                 { producer: "algae", consumer1: "zooplankton", consumer2: "fish", predator: "bird" },
                 { producer: "grass", consumer1: "grasshopper", consumer2: "frog", predator: "snake" },
                 { producer: "phytoplankton", consumer1: "krill", consumer2: "fish", predator: "seal" },
-                { producer: "plants", consumer1: "rabbit", consumer2: "fox", predator: "eagle" }
+                { producer: "plants", consumer1: "rabbit", consumer2: "fox", predator: "eagle" },
+                { producer: "seaweed", consumer1: "snail", consumer2: "crab", predator: "octopus" }
             ];
 
             chains.forEach((chain, idx) => {
@@ -59,7 +60,8 @@ export default function SB301Page() {
                 { level: "producer", energy: "10000", next: "1000", efficiency: "10" },
                 { level: "primary", energy: "1000", next: "100", efficiency: "10" },
                 { level: "secondary", energy: "100", next: "10", efficiency: "10" },
-                { level: "tertiary", energy: "10", next: "1", efficiency: "10" }
+                { level: "tertiary", energy: "10", next: "1", efficiency: "10" },
+                { level: "producer", energy: "5000", next: "500", efficiency: "10" }
             ];
 
             transfers.forEach((t_data, idx) => {
@@ -84,7 +86,8 @@ export default function SB301Page() {
                 { cycle: "carbon", process: "photosynthesis", input: "co2", output: "glucose" },
                 { cycle: "carbon", process: "respiration", input: "glucose", output: "co2" },
                 { cycle: "nitrogen", process: "fixation", input: "n2", output: "nh3" },
-                { cycle: "water", process: "evaporation", input: "liquid", output: "vapor" }
+                { cycle: "water", process: "evaporation", input: "liquid", output: "vapor" },
+                { cycle: "nitrogen", process: "nitrification", input: "nh3", output: "no3" }
             ];
 
             cycles.forEach((c, idx) => {
