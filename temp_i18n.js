@@ -1,8 +1,8 @@
-import { useAppStore } from "@/lib/store";
+// import { useAppStore } from "@/lib/store";
 
-export type Language = "EN" | "CN" | "DE";
+// export type Language = "EN" | "CN" | "DE";
 
-export const translations: Record<string, any> = {
+const translations = {
     EN: {
         protocol: {
             system_name: "SYSTEM PROTOCOL v2.1",
@@ -11307,3 +11307,4 @@ export interface Translations {
         // Block removed - will be re-inserted in correct location
 
 
+module.exports = translations;
