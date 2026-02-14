@@ -130,7 +130,7 @@ export const useAppStore = create<AppState>()(
             achievements.time_traveler = { unlocked: true, timestamp: entry.timestamp };
             unlocked.push('time_traveler');
           }
-          if (!achievements.calculus_god.unlocked && entry.moduleCode === 'G1.01' && entry.score >= 1) {
+          if (!achievements.calculus_god.unlocked && entry.moduleCode === 'GM1.01' && entry.score >= 1) {
             achievements.calculus_god = { unlocked: true, timestamp: entry.timestamp };
             unlocked.push('calculus_god');
           }

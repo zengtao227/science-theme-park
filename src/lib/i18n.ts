@@ -52,7 +52,7 @@ export const translations: Record<string, any> = {
                 },
                 calculus_god: {
                     title: "Calculus God",
-                    description: "Reach 100% accuracy in G1.01."
+                    description: "Reach 100% accuracy in GM1.01."
                 }
             }
         },
@@ -1150,9 +1150,9 @@ export const translations: Record<string, any> = {
                 elite: "ELITE"
             },
             hints_title: "Formula Reference",
-            monitor_title: "G1.01_VISUAL_MONITOR",
+            monitor_title: "GM1.01_VISUAL_MONITOR",
             status: "STATUS: OPERATIONAL",
-            footer_left: "G1.01_CALCULUS // NODE: BASEL",
+            footer_left: "GM1.01_CALCULUS // NODE: BASEL",
             footer_right: "DERIVATIVE_SIMULATOR",
             stages: {
                 intro: "INTRO",
@@ -1300,8 +1300,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "G2.01_VECTOR_HUD",
-            footer_left: "G2.01_VECTOR_PILOT // NODE: BASEL",
+            monitor_title: "GM2.01_VECTOR_HUD",
+            footer_left: "GM2.01_VECTOR_PILOT // NODE: BASEL",
             stages: {
                 navigation: "NAVIGATION",
                 dot: "DOT PRODUCT",
@@ -1339,8 +1339,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "G3.01_PROBABILITY_MONITOR",
-            footer_left: "G3.01_PROBABILITY_VAULT // NODE: BASEL",
+            monitor_title: "GM3.01_PROBABILITY_MONITOR",
+            footer_left: "GM3.01_PROBABILITY_VAULT // NODE: BASEL",
             stages: {
                 basic_prob: "BASIC PROBABILITY",
                 binomial: "BINOMIAL",
@@ -2803,7 +2803,7 @@ export const translations: Record<string, any> = {
                 },
                 calculus_god: {
                     title: "微积分之神",
-                    description: "在 G1.01 达到 100% 正确率。"
+                    description: "在 GM1.01 达到 100% 正确率。"
                 }
             }
         },
@@ -2834,11 +2834,11 @@ export const translations: Record<string, any> = {
             sm2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
             sm2_04_title: "SM2.04 // 相似与比例",
             sm2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
-            gm1_01_title: "G1.01 // 微积分初步",
+            gm1_01_title: "GM1.01 // 微积分初步",
             gm1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
-            gm2_01_title: "G2.01 // 矢量飞行员 3D",
+            gm2_01_title: "GM2.01 // 矢量飞行员 3D",
             gm2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
-            gm3_01_title: "G3.01 // 概率金库",
+            gm3_01_title: "GM3.01 // 概率金库",
             gm3_01_subtitle: "通过高尔顿钉板可视化二项分布。观察概率收敛到正态分布。",
             sm2_06_title: "SM2.06 // 二元一次方程组",
             sm2_06_subtitle: "掌握代入消元法和加减消元法求解二元一次方程组。",
@@ -3578,7 +3578,7 @@ export const translations: Record<string, any> = {
         },
         gm1_01: {
             back: "返回枢纽",
-            title: "G1.01 // 微积分初步",
+            title: "GM1.01 // 微积分初步",
             tabs: {
                 explore: "探索",
                 slope: "斜率",
@@ -3616,9 +3616,9 @@ export const translations: Record<string, any> = {
                 elite: "精英"
             },
             hints_title: "公式参考",
-            monitor_title: "G1.01_视觉监控",
+            monitor_title: "GM1.01_视觉监控",
             status: "状态: 运行中",
-            footer_left: "G1.01_微积分 // 节点: 巴塞尔",
+            footer_left: "GM1.01_微积分 // 节点: 巴塞尔",
             footer_right: "导数模拟器",
             stages: {
                 intro: "微积分基础",
@@ -3752,7 +3752,7 @@ export const translations: Record<string, any> = {
         },
         gm2_01: {
             back: "返回枢纽",
-            title: "G2.01 // 矢量飞行员 3D",
+            title: "GM2.01 // 矢量飞行员 3D",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3766,8 +3766,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "G2.01_向量监控",
-            footer_left: "G2.01_矢量飞行 // 节点：巴塞尔",
+            monitor_title: "GM2.01_向量监控",
+            footer_left: "GM2.01_矢量飞行 // 节点：巴塞尔",
             stages: {
                 navigation: "导航",
                 dot: "点积",
@@ -3791,7 +3791,7 @@ export const translations: Record<string, any> = {
         },
         gm3_01: {
             back: "返回枢纽",
-            title: "G3.01 // 概率金库",
+            title: "GM3.01 // 概率金库",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -3805,8 +3805,8 @@ export const translations: Record<string, any> = {
             correct: "验证通过",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "G3.01_概率监测器",
-            footer_left: "G3.01_概率仓库 // 节点: 巴塞尔",
+            monitor_title: "GM3.01_概率监测器",
+            footer_left: "GM3.01_概率仓库 // 节点: 巴塞尔",
             stages: {
                 basic_prob: "基础概率",
                 binomial: "二项分布",
@@ -5621,7 +5621,7 @@ export const translations: Record<string, any> = {
                 },
                 calculus_god: {
                     title: "Analysis-Gott",
-                    description: "Erreiche 100% Genauigkeit in G1.01."
+                    description: "Erreiche 100% Genauigkeit in GM1.01."
                 }
             }
         },
@@ -5652,11 +5652,11 @@ export const translations: Record<string, any> = {
             sm2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
             sm2_04_title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
             sm2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
-            gm1_01_title: "G1.01 // INFINITESIMALRECHNUNG",
+            gm1_01_title: "GM1.01 // INFINITESIMALRECHNUNG",
             gm1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
-            gm2_01_title: "G2.01 // VEKTOR-PILOT 3D",
+            gm2_01_title: "GM2.01 // VEKTOR-PILOT 3D",
             gm2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
-            gm3_01_title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
+            gm3_01_title: "GM3.01 // WAHRSCHEINLICHKEITS-TRESOR",
             gm3_01_subtitle: "Visualisiere Binomialverteilung mit Galton-Brett. Beobachte Konvergenz zur Normalverteilung.",
             sm2_06_title: "SM2.06 // GLEICHUNGSSYSTEME",
             sm2_06_subtitle: "Meistere das Einsetzungs- und Additionsverfahren zur Lösung linearer Gleichungssysteme.",
@@ -6406,7 +6406,7 @@ export const translations: Record<string, any> = {
         },
         gm1_01: {
             back: "Zurück zum Nexus",
-            title: "G1.01 // INFINITESIMALRECHNUNG",
+            title: "GM1.01 // INFINITESIMALRECHNUNG",
             tabs: {
                 explore: "ENTDECKEN",
                 slope: "STEIGUNG",
@@ -6444,9 +6444,9 @@ export const translations: Record<string, any> = {
                 elite: "ELITE"
             },
             hints_title: "Formelreferenz",
-            monitor_title: "G1.01_MONITOR",
+            monitor_title: "GM1.01_MONITOR",
             status: "STATUS: BETRIEBSBEREIT",
-            footer_left: "G1.01_INFINITESIMAL // KNOTEN: BASEL",
+            footer_left: "GM1.01_INFINITESIMAL // KNOTEN: BASEL",
             footer_right: "ABLEITUNGS_SIMULATOR",
             stages: {
                 intro: "INTRO",
@@ -6580,7 +6580,7 @@ export const translations: Record<string, any> = {
         },
         gm2_01: {
             back: "Zurück zum Nexus",
-            title: "G2.01 // VEKTOR-PILOT 3D",
+            title: "GM2.01 // VEKTOR-PILOT 3D",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6594,8 +6594,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "G2.01_VEKTOR_MONITOR",
-            footer_left: "G2.01_VEKTOR_PILOT // KNOTEN: BASEL",
+            monitor_title: "GM2.01_VEKTOR_MONITOR",
+            footer_left: "GM2.01_VEKTOR_PILOT // KNOTEN: BASEL",
             stages: {
                 navigation: "NAVIGATION",
                 dot: "SKALARPRODUKT",
@@ -6619,7 +6619,7 @@ export const translations: Record<string, any> = {
         },
         gm3_01: {
             back: "Zurück zum Nexus",
-            title: "G3.01 // WAHRSCHEINLICHKEITS-TRESOR",
+            title: "GM3.01 // WAHRSCHEINLICHKEITS-TRESOR",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -6633,8 +6633,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlermeldung",
             ready: "Bereit",
-            monitor_title: "G3.01_WAHRSCHEINLICHKEITSMONITOR",
-            footer_left: "G3.01_WAHRSCHEINLICHKEITS-TRESOR // KNOTEN: BASEL",
+            monitor_title: "GM3.01_WAHRSCHEINLICHKEITSMONITOR",
+            footer_left: "GM3.01_WAHRSCHEINLICHKEITS-TRESOR // KNOTEN: BASEL",
             stages: {
                 basic_prob: "GRUNDWAHRSCHEINLICHKEIT",
                 binomial: "BINOMIAL",
