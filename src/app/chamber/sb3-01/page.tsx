@@ -6,99 +6,99 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import SimpleMachineCanvas from "@/components/chamber/sp1-04/SimpleMachineCanvas";
+import EcosystemCanvas from "@/components/chamber/sb3-01/EcosystemCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
+type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES";
 
-interface SP104Quest extends Quest {
+interface SB301Quest extends Quest {
     stage: Stage;
-    machineType?: string;
+    ecosystem?: string;
 }
 
-type SP104T = typeof translations.EN.sp1_04;
+type SB301T = typeof translations.EN.sb3_01;
 
-export default function SP104Page() {
+export default function SB301Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_04 || translations.EN.sp1_04) as SP104T;
-    const [forceRatio, setForceRatio] = useState(2);
-    const [showForces, setShowForces] = useState(true);
+    const t = (translations[currentLanguage]?.sb3_01 || translations.EN.sb3_01) as SB301T;
+    const [selectedLevel, setSelectedLevel] = useState<number>(1);
+    const [showEnergyFlow, setShowEnergyFlow] = useState(true);
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP104Quest[] => {
-        const quests: SP104Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB301Quest[] => {
+        const quests: SB301Quest[] = [];
 
-        if (stage === "LEVERS") {
-            // Lever mechanical advantage problems
-            const levers = [
-                { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
-                { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
-                { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
-                { effort: 60, load: 240, effortArm: 4, loadArm: 1 }
+        if (stage === "FOOD_CHAINS") {
+            // Food chain relationships
+            const chains = [
+                { producer: "algae", consumer1: "zooplankton", consumer2: "fish", predator: "bird" },
+                { producer: "grass", consumer1: "grasshopper", consumer2: "frog", predator: "snake" },
+                { producer: "phytoplankton", consumer1: "krill", consumer2: "fish", predator: "seal" },
+                { producer: "plants", consumer1: "rabbit", consumer2: "fox", predator: "eagle" }
             ];
 
-            levers.forEach((lever, idx) => {
+            chains.forEach((chain, idx) => {
                 quests.push({
-                    id: `LEVER-${idx}`,
+                    id: `CHAIN-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "lever",
-                    promptLatex: `\\text{${t.prompts.lever.replace('{load}', lever.load.toString()).replace('{effortArm}', lever.effortArm.toString()).replace('{loadArm}', lever.loadArm.toString())}}`,
-                    expressionLatex: `\\text{MA} = \\frac{d_e}{d_l} = \\frac{${lever.effortArm}}{${lever.loadArm}}`,
-                    targetLatex: lever.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                    correctLatex: `${lever.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_lever}}`]
+                    ecosystem: "rhine_river",
+                    promptLatex: `\\text{${t.prompts.food_chain.replace('{producer}', chain.producer).replace('{consumer}', chain.consumer1)}}`,
+                    expressionLatex: `\\text{${chain.producer}} \\rightarrow \\text{${chain.consumer1}} \\rightarrow \\text{?}`,
+                    targetLatex: chain.consumer2.replace(" ", "_"),
+                    slots: [{ id: "ans", labelLatex: "\\text{Next Level}", placeholder: "...", expected: chain.consumer2.replace(" ", "_") }],
+                    correctLatex: chain.consumer2,
+                    hintLatex: [`\\text{${t.prompts.hint_trophic}}`]
                 });
             });
         }
 
-        if (stage === "PULLEYS") {
-            // Pulley system problems
-            const pulleys = [
-                { load: 400, strands: 4, effort: 100 },
-                { load: 600, strands: 3, effort: 200 },
-                { load: 300, strands: 2, effort: 150 },
-                { load: 500, strands: 5, effort: 100 }
+        if (stage === "ENERGY_FLOW") {
+            // Energy transfer efficiency
+            const transfers = [
+                { level: "producer", energy: "10000", next: "1000", efficiency: "10" },
+                { level: "primary", energy: "1000", next: "100", efficiency: "10" },
+                { level: "secondary", energy: "100", next: "10", efficiency: "10" },
+                { level: "tertiary", energy: "10", next: "1", efficiency: "10" }
             ];
 
-            pulleys.forEach((pulley, idx) => {
+            transfers.forEach((t_data, idx) => {
                 quests.push({
-                    id: `PULLEY-${idx}`,
+                    id: `ENERGY-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "pulley",
-                    promptLatex: `\\text{${t.prompts.pulley.replace('{load}', pulley.load.toString()).replace('{strands}', pulley.strands.toString())}}`,
-                    expressionLatex: `F_e = \\frac{F_l}{n} = \\frac{${pulley.load}}{${pulley.strands}}`,
-                    targetLatex: pulley.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                    correctLatex: `${pulley.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_pulley}}`]
+                    ecosystem: "energy_pyramid",
+                    promptLatex: `\\text{${t.prompts.energy_transfer.replace('{energy}', t_data.energy).replace('{level}', t_data.level)}}`,
+                    expressionLatex: `${t_data.energy}\\,\\text{kJ} \\times 0.1 = \\text{?}\\,\\text{kJ}`,
+                    targetLatex: t_data.next,
+                    slots: [{ id: "ans", labelLatex: "\\text{Energy (kJ)}", placeholder: "...", expected: t_data.next }],
+                    correctLatex: `${t_data.next}\\,\\text{kJ}`,
+                    hintLatex: [`\\text{${t.prompts.hint_10percent}}`]
                 });
             });
         }
 
-        if (stage === "INCLINED_PLANES") {
-            // Inclined plane problems
-            const planes = [
-                { load: 500, height: 2, length: 10, effort: 100 },
-                { load: 600, height: 3, length: 12, effort: 150 },
-                { load: 400, height: 1, length: 8, effort: 50 },
-                { load: 800, height: 4, length: 16, effort: 200 }
+        if (stage === "CYCLES") {
+            // Biogeochemical cycles
+            const cycles = [
+                { cycle: "carbon", process: "photosynthesis", input: "co2", output: "glucose" },
+                { cycle: "carbon", process: "respiration", input: "glucose", output: "co2" },
+                { cycle: "nitrogen", process: "fixation", input: "n2", output: "nh3" },
+                { cycle: "water", process: "evaporation", input: "liquid", output: "vapor" }
             ];
 
-            planes.forEach((plane, idx) => {
+            cycles.forEach((c, idx) => {
                 quests.push({
-                    id: `PLANE-${idx}`,
+                    id: `CYCLE-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "inclined_plane",
-                    promptLatex: `\\text{${t.prompts.inclined_plane.replace('{load}', plane.load.toString()).replace('{height}', plane.height.toString()).replace('{length}', plane.length.toString())}}`,
-                    expressionLatex: `F_e = F_l \\times \\frac{h}{l} = ${plane.load} \\times \\frac{${plane.height}}{${plane.length}}`,
-                    targetLatex: plane.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                    correctLatex: `${plane.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_inclined}}`]
+                    ecosystem: `${c.cycle}_cycle`,
+                    promptLatex: `\\text{${t.prompts.cycle_process.replace('{cycle}', c.cycle).replace('{process}', c.process)}}`,
+                    expressionLatex: `\\text{${c.input}} \\xrightarrow{\\text{${c.process}}} \\text{?}`,
+                    targetLatex: c.output,
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: c.output }],
+                    correctLatex: c.output.toUpperCase(),
+                    hintLatex: [`\\text{${t.prompts.hint_cycle}}`]
                 });
             });
         }
@@ -121,28 +121,28 @@ export default function SP104Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SP104Quest, Stage>({
+    } = useQuestManager<SB301Quest, Stage>({
         buildPool,
-        initialStage: "LEVERS",
+        initialStage: "FOOD_CHAINS",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SP1.04", stage);
+            completeStage("SB3.01", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "LEVERS", label: t.stages.levers },
-        { id: "PULLEYS", label: t.stages.pulleys },
-        { id: "INCLINED_PLANES", label: t.stages.inclined_planes },
+        { id: "FOOD_CHAINS", label: t.stages.food_chains },
+        { id: "ENERGY_FLOW", label: t.stages.energy_flow },
+        { id: "CYCLES", label: t.stages.cycles },
     ], [t]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
-            moduleCode="SP1.04"
+            moduleCode="SB3.01"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -171,38 +171,38 @@ export default function SP104Page() {
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <SimpleMachineCanvas
+                        <EcosystemCanvas
                             stage={stage}
-                            forceRatio={forceRatio}
-                            showForces={showForces}
+                            selectedLevel={selectedLevel}
+                            showEnergyFlow={showEnergyFlow}
                             translations={t}
                         />
                     </div>
 
                     {/* Controls */}
                     <div className="grid grid-cols-1 gap-2">
-                        {stage === "LEVERS" && (
+                        {stage === "ENERGY_FLOW" && (
                             <div className="space-y-1">
-                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.force_ratio}</label>
+                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.trophic_level}</label>
                                 <div className="flex items-center gap-3">
                                     <input
                                         type="range"
                                         min="1"
-                                        max="5"
-                                        value={forceRatio}
-                                        onChange={(e) => setForceRatio(Number(e.target.value))}
+                                        max="4"
+                                        value={selectedLevel}
+                                        onChange={(e) => setSelectedLevel(Number(e.target.value))}
                                         className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
                                     />
-                                    <span className="text-[10px] font-mono text-white/60 w-16 text-right">MA = {forceRatio}</span>
+                                    <span className="text-[10px] font-mono text-white/60 w-16 text-right">Level {selectedLevel}</span>
                                 </div>
                             </div>
                         )}
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_forces}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_energy}</span>
                             <input
                                 type="checkbox"
-                                checked={showForces}
-                                onChange={(e) => setShowForces(e.target.checked)}
+                                checked={showEnergyFlow}
+                                onChange={(e) => setShowEnergyFlow(e.target.checked)}
                                 className="w-4 h-4 rounded border-white/20 bg-black text-neon-green focus:ring-neon-green/50"
                             />
                         </label>
@@ -210,7 +210,7 @@ export default function SP104Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.mechanics_score}</span>
+                            <span>{t.labels.ecology_score}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -245,7 +245,7 @@ export default function SP104Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.machine_display}
+                                    {t.labels.ecosystem_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -266,11 +266,11 @@ export default function SP104Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">MECH_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-green/30 font-mono">ECO_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}

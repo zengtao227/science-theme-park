@@ -6,99 +6,100 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import SimpleMachineCanvas from "@/components/chamber/sp1-04/SimpleMachineCanvas";
+import PressureBuoyancyCanvas from "@/components/chamber/sp1-07/PressureBuoyancyCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
+type Stage = "PRESSURE" | "BUOYANCY" | "HYDRAULICS";
 
-interface SP104Quest extends Quest {
+interface SP107Quest extends Quest {
     stage: Stage;
-    machineType?: string;
+    scenario?: string;
 }
 
-type SP104T = typeof translations.EN.sp1_04;
+type SP107T = typeof translations.EN.sp1_07;
 
-export default function SP104Page() {
+export default function SP107Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_04 || translations.EN.sp1_04) as SP104T;
-    const [forceRatio, setForceRatio] = useState(2);
-    const [showForces, setShowForces] = useState(true);
+    const t = (translations[currentLanguage]?.sp1_07 || translations.EN.sp1_07) as SP107T;
+    const [depth, setDepth] = useState(5);
+    const [objectDensity, setObjectDensity] = useState(800);
+    const [pistonForce, setPistonForce] = useState(100);
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP104Quest[] => {
-        const quests: SP104Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP107Quest[] => {
+        const quests: SP107Quest[] = [];
 
-        if (stage === "LEVERS") {
-            // Lever mechanical advantage problems
-            const levers = [
-                { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
-                { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
-                { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
-                { effort: 60, load: 240, effortArm: 4, loadArm: 1 }
+        if (stage === "PRESSURE") {
+            // Pressure calculations
+            const scenarios = [
+                { depth: 10, pressure: "200000", unit: "Pa" },
+                { depth: 5, pressure: "150000", unit: "Pa" },
+                { depth: 20, pressure: "300000", unit: "Pa" },
+                { depth: 15, pressure: "250000", unit: "Pa" }
             ];
 
-            levers.forEach((lever, idx) => {
+            scenarios.forEach((s, idx) => {
                 quests.push({
-                    id: `LEVER-${idx}`,
+                    id: `PRESS-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "lever",
-                    promptLatex: `\\text{${t.prompts.lever.replace('{load}', lever.load.toString()).replace('{effortArm}', lever.effortArm.toString()).replace('{loadArm}', lever.loadArm.toString())}}`,
-                    expressionLatex: `\\text{MA} = \\frac{d_e}{d_l} = \\frac{${lever.effortArm}}{${lever.loadArm}}`,
-                    targetLatex: lever.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                    correctLatex: `${lever.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_lever}}`]
+                    scenario: "rhine_swimming",
+                    promptLatex: `\\text{${t.prompts.pressure_depth.replace('{depth}', s.depth.toString())}}`,
+                    expressionLatex: `P = P_0 + \\rho g h = \\text{?}`,
+                    targetLatex: s.pressure,
+                    slots: [{ id: "ans", labelLatex: "P\\,(\\text{Pa})", placeholder: "...", expected: s.pressure }],
+                    correctLatex: `${s.pressure}\\,\\text{Pa}`,
+                    hintLatex: [`\\text{${t.prompts.hint_pressure}}`]
                 });
             });
         }
 
-        if (stage === "PULLEYS") {
-            // Pulley system problems
-            const pulleys = [
-                { load: 400, strands: 4, effort: 100 },
-                { load: 600, strands: 3, effort: 200 },
-                { load: 300, strands: 2, effort: 150 },
-                { load: 500, strands: 5, effort: 100 }
+        if (stage === "BUOYANCY") {
+            // Buoyancy and Archimedes
+            const objects = [
+                { volume: 0.001, density: 800, buoyant: "10", floats: "yes" },
+                { volume: 0.002, density: 1200, buoyant: "20", floats: "no" },
+                { volume: 0.0015, density: 900, buoyant: "15", floats: "yes" },
+                { volume: 0.0008, density: 1100, buoyant: "8", floats: "no" }
             ];
 
-            pulleys.forEach((pulley, idx) => {
+            objects.forEach((obj, idx) => {
                 quests.push({
-                    id: `PULLEY-${idx}`,
+                    id: `BUOY-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "pulley",
-                    promptLatex: `\\text{${t.prompts.pulley.replace('{load}', pulley.load.toString()).replace('{strands}', pulley.strands.toString())}}`,
-                    expressionLatex: `F_e = \\frac{F_l}{n} = \\frac{${pulley.load}}{${pulley.strands}}`,
-                    targetLatex: pulley.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                    correctLatex: `${pulley.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_pulley}}`]
+                    scenario: "rhine_boat",
+                    promptLatex: `\\text{${t.prompts.buoyant_force.replace('{volume}', obj.volume.toString())}}`,
+                    expressionLatex: `F_b = \\rho_{water} V g = \\text{?}`,
+                    targetLatex: obj.buoyant,
+                    slots: [{ id: "ans", labelLatex: "F_b\\,(\\text{N})", placeholder: "...", expected: obj.buoyant }],
+                    correctLatex: `${obj.buoyant}\\,\\text{N}`,
+                    hintLatex: [`\\text{${t.prompts.hint_archimedes}}`]
                 });
             });
         }
 
-        if (stage === "INCLINED_PLANES") {
-            // Inclined plane problems
-            const planes = [
-                { load: 500, height: 2, length: 10, effort: 100 },
-                { load: 600, height: 3, length: 12, effort: 150 },
-                { load: 400, height: 1, length: 8, effort: 50 },
-                { load: 800, height: 4, length: 16, effort: 200 }
+        if (stage === "HYDRAULICS") {
+            // Pascal's principle
+            const hydraulics = [
+                { f1: 100, a1: 0.01, a2: 0.1, f2: "1000" },
+                { f1: 50, a1: 0.005, a2: 0.05, f2: "500" },
+                { f1: 200, a1: 0.02, a2: 0.2, f2: "2000" },
+                { f1: 150, a1: 0.015, a2: 0.15, f2: "1500" }
             ];
 
-            planes.forEach((plane, idx) => {
+            hydraulics.forEach((h, idx) => {
                 quests.push({
-                    id: `PLANE-${idx}`,
+                    id: `HYD-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "inclined_plane",
-                    promptLatex: `\\text{${t.prompts.inclined_plane.replace('{load}', plane.load.toString()).replace('{height}', plane.height.toString()).replace('{length}', plane.length.toString())}}`,
-                    expressionLatex: `F_e = F_l \\times \\frac{h}{l} = ${plane.load} \\times \\frac{${plane.height}}{${plane.length}}`,
-                    targetLatex: plane.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                    correctLatex: `${plane.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_inclined}}`]
+                    scenario: "hydraulic_lift",
+                    promptLatex: `\\text{${t.prompts.hydraulic_force.replace('{f1}', h.f1.toString()).replace('{a1}', h.a1.toString()).replace('{a2}', h.a2.toString())}}`,
+                    expressionLatex: `\\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\Rightarrow F_2 = \\text{?}`,
+                    targetLatex: h.f2,
+                    slots: [{ id: "ans", labelLatex: "F_2\\,(\\text{N})", placeholder: "...", expected: h.f2 }],
+                    correctLatex: `${h.f2}\\,\\text{N}`,
+                    hintLatex: [`\\text{${t.prompts.hint_pascal}}`]
                 });
             });
         }
@@ -121,28 +122,28 @@ export default function SP104Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SP104Quest, Stage>({
+    } = useQuestManager<SP107Quest, Stage>({
         buildPool,
-        initialStage: "LEVERS",
+        initialStage: "PRESSURE",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SP1.04", stage);
+            completeStage("SP1.07", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "LEVERS", label: t.stages.levers },
-        { id: "PULLEYS", label: t.stages.pulleys },
-        { id: "INCLINED_PLANES", label: t.stages.inclined_planes },
+        { id: "PRESSURE", label: t.stages.pressure },
+        { id: "BUOYANCY", label: t.stages.buoyancy },
+        { id: "HYDRAULICS", label: t.stages.hydraulics },
     ], [t]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
-            moduleCode="SP1.04"
+            moduleCode="SP1.07"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -171,46 +172,72 @@ export default function SP104Page() {
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <SimpleMachineCanvas
+                        <PressureBuoyancyCanvas
                             stage={stage}
-                            forceRatio={forceRatio}
-                            showForces={showForces}
+                            depth={depth}
+                            objectDensity={objectDensity}
+                            pistonForce={pistonForce}
                             translations={t}
                         />
                     </div>
 
                     {/* Controls */}
-                    <div className="grid grid-cols-1 gap-2">
-                        {stage === "LEVERS" && (
+                    <div className="grid grid-cols-1 gap-3">
+                        {stage === "PRESSURE" && (
                             <div className="space-y-1">
-                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.force_ratio}</label>
+                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.depth}</label>
                                 <div className="flex items-center gap-3">
                                     <input
                                         type="range"
-                                        min="1"
-                                        max="5"
-                                        value={forceRatio}
-                                        onChange={(e) => setForceRatio(Number(e.target.value))}
-                                        className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
+                                        min="0"
+                                        max="20"
+                                        value={depth}
+                                        onChange={(e) => setDepth(Number(e.target.value))}
+                                        className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-cyan"
                                     />
-                                    <span className="text-[10px] font-mono text-white/60 w-16 text-right">MA = {forceRatio}</span>
+                                    <span className="text-[10px] font-mono text-white/60 w-10 text-right">{depth}m</span>
                                 </div>
                             </div>
                         )}
-                        <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_forces}</span>
-                            <input
-                                type="checkbox"
-                                checked={showForces}
-                                onChange={(e) => setShowForces(e.target.checked)}
-                                className="w-4 h-4 rounded border-white/20 bg-black text-neon-green focus:ring-neon-green/50"
-                            />
-                        </label>
+                        {stage === "BUOYANCY" && (
+                            <div className="space-y-1">
+                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.density}</label>
+                                <div className="flex items-center gap-3">
+                                    <input
+                                        type="range"
+                                        min="500"
+                                        max="1500"
+                                        step="100"
+                                        value={objectDensity}
+                                        onChange={(e) => setObjectDensity(Number(e.target.value))}
+                                        className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
+                                    />
+                                    <span className="text-[10px] font-mono text-white/60 w-16 text-right">{objectDensity}kg/m³</span>
+                                </div>
+                            </div>
+                        )}
+                        {stage === "HYDRAULICS" && (
+                            <div className="space-y-1">
+                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.force}</label>
+                                <div className="flex items-center gap-3">
+                                    <input
+                                        type="range"
+                                        min="50"
+                                        max="200"
+                                        step="10"
+                                        value={pistonForce}
+                                        onChange={(e) => setPistonForce(Number(e.target.value))}
+                                        className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-purple"
+                                    />
+                                    <span className="text-[10px] font-mono text-white/60 w-12 text-right">{pistonForce}N</span>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.mechanics_score}</span>
+                            <span>{t.labels.fluid_mastery}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -219,7 +246,7 @@ export default function SP104Page() {
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${
                                         i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
+                                            ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
                                             : "bg-transparent"
                                     }`}
                                 />
@@ -233,7 +260,7 @@ export default function SP104Page() {
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
-                            <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
                                 {t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
@@ -242,10 +269,10 @@ export default function SP104Page() {
                         </div>
 
                         <div className="flex justify-center">
-                            <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
-                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.machine_display}
+                                    {t.labels.physics_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -254,10 +281,10 @@ export default function SP104Page() {
                         </div>
 
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-green/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-green/30" />
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
                                     {t.labels.input_terminal}
                                 </div>
 
@@ -266,11 +293,11 @@ export default function SP104Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">MECH_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-cyan/30 font-mono">FLUID_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -278,7 +305,7 @@ export default function SP104Page() {
                                                         if (e.key === 'Enter') verify();
                                                     }}
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-green/0 group-focus-within:bg-neon-green/20 transition-all blur-sm" />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
                                             </div>
                                         </div>
                                     ))}

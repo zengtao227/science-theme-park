@@ -14,10 +14,10 @@ We are currently in a critical phase of filling theoretical gaps to support adva
 
 | Priority | Code | Module Title | Subject | Rationale (Basel Curriculum Link) |
 |:---:|:---:|:---|:---:|:---|
-| **1** | **SC1.05** | **Bonding Bridge** | 🧪 Chem | **CRITICAL**. Prerequisite for Organic Chem (GC2.01). Explains *how* atoms connect (Ionic vs Covalent). |
-| **2** | **SB1.03** | **Cell Division** | 🧬 Bio | **CRITICAL**. Prerequisite for Genetics (SB2.01). Mitosis/Meiosis mechanics are missing between Cell & Mendel. |
-| **3** | **SP1.01** | **Measurement & Units** | ⚛️ Phys | **FOUNDATION**. SI Units, precision, and error analysis. The basis of all experimental science (Gymnasium goal). |
-| **4** | **SC3.02** | **Organic Basics** | 🧪 Chem | **LOCAL CONTEXT**. Introduction to Carbon chemistry, essential for the Basel crypto-pharma theme. |
+| **1** | **SC1.05** | **Bonding Bridge** | 🧪 Chem | **DONE** (Skeleton). Ionic/Covalent/Lewis stages implemented & verified. |
+| **2** | **SB1.03** | **Cell Division** | 🧬 Bio | **NEXT**. Prerequisite for Genetics (SB2.01). Mitosis/Meiosis mechanics are missing between Cell & Mendel. |
+| **3** | **SP1.01** | **Measurement & Units** | ⚛️ Phys | **DONE** (Kiro). SI Units, precision, and error analysis. The basis of all experimental science (Gymnasium goal). |
+| **4** | **SC3.02** | **Organic Basics** | 🧪 Chem | **DONE** (Kiro). Introduction to Carbon chemistry, essential for the Basel crypto-pharma theme. |
 
 ### 🗓️ Next Up (Phase 2 - Core Expansion & Visuals)
 *Focus: completing the standard Sek I curriculum coverage.*
@@ -25,8 +25,8 @@ We are currently in a critical phase of filling theoretical gaps to support adva
 | Priority | Code | Module Title | Subject | Rationale |
 |:---:|:---:|:---|:---:|:---|
 | **5** | **SP1.08** | **Motion Master** | ⚛️ Phys | **GAP**. Kinematics (s-t, v-t graphs). Essential for understanding Newton's Laws deeply. |
-| **6** | **SB1.02** | **Photosynthesis** | 🧬 Bio | **CORE**. Energy transformation in biological systems. Links to SC2.01 (Kinetics/Energy). |
-| **7** | **SB2.02** | **Human Body** | 🧬 Bio | **CORE**. Systems biology (Digestion/Circulation). High student interest topic. |
+| **6** | **SB1.02** | **Photosynthesis** | 🧬 Bio | **DONE** (Kiro). Energy transformation in biological systems. Links to SC2.01 (Kinetics/Energy). |
+| **7** | **SB2.02** | **Human Body** | 🧬 Bio | **DONE** (Kiro). Systems biology (Digestion/Circulation). High student interest topic. |
 | **8** | **SM1.07** | **Data Detective** | 📐 Math | **GAP**. Descriptive statistics (Boxplots, Histograms) as required by Lehrplan 21. |
 
 ---
@@ -50,7 +50,7 @@ We are currently in a critical phase of filling theoretical gaps to support adva
 
 | Code | Module Title | Status | Notes |
 |:---:|:---|:---:|:---|
-| **SP1.01** | **Measurement & Units** | 🚀 **NEXT** | **Foundations:** SI System, Prefixes, Accuracy. |
+| **SP1.01** | **Measurement & Units** | ✅ Done | **Foundations:** SI System, Prefixes, Accuracy. |
 | **SP1.02** | Newton's Laws | ✅ Done | Forces & Motion. |
 | **SP1.03** | Energy & Power | ✅ Done | Work & Conservation. |
 | **SP1.05** | The Rhine Ferry | ✅ Done | Vectors & Relative Motion (Basel context). |
@@ -67,9 +67,9 @@ We are currently in a critical phase of filling theoretical gaps to support adva
 | Code | Module Title | Status | Notes |
 |:---:|:---|:---:|:---|
 | **SC1.01-04** | *Existing Intro* | ✅ Done | Mystery Lab, Moles, Atoms, Periodic Table. |
-| **SC1.05** | **Bonding Bridge** | 🚀 **NEXT** | **Structure:** Ionic vs Covalent, Lewis Structures. |
+| **SC1.05** | **Bonding Bridge** | � **WIP** | **Structure:** Ionic vs Covalent, Lewis Structures. |
 | **SC2.01-04** | *Existing Physical Chem* | ✅ Done | Kinetics, pH, Gases, Solubility. |
-| **SC3.02** | **Organic Basics** | 🚀 **NEXT** | **Organic:** Alkanes, Alkenes, Functional Groups. |
+| **SC3.02** | **Organic Basics** | ✅ Done | **Organic:** Alkanes, Alkenes, Functional Groups. |
 | **GC1-4** | *Gymnasium Modules* | ✅ Done/Plan | Redox, Advanced Organic, Equilibrium. |
 
 ### 🧬 Biology: The Life Science Nexus
@@ -79,9 +79,9 @@ We are currently in a critical phase of filling theoretical gaps to support adva
 |:---:|:---|:---:|:---|
 | **SB1.01** | Cell Factory | ✅ Done | Organelles & Structure. |
 | **SB1.03** | **Cell Division** | 🚀 **NEXT** | **Process:** Mitosis & Meiosis (The missing link to Genetics). |
-| **SB1.02** | **Photosynthesis** | 📋 Planned | Plant physiology & Energy. |
+| **SB1.02** | **Photosynthesis** | ✅ Done | Plant physiology & Energy. |
 | **SB2.01** | Mendel's Garden | ✅ Done | Genetics & Heredity. |
-| **SB2.02** | **Human Body** | 📋 Planned | Organ Systems. |
+| **SB2.02** | **Human Body** | ✅ Done | Organ Systems. |
 | **SB3.01** | **Ecosystem Dynamics** | 📋 **NEW** | **Ecology:** Food webs, Carbon cycle, Population dynamics. |
 | **GB1-4** | *Gymnasium Modules* | Planned | Evolution, Neurobio, DNA, Biotech. |
 

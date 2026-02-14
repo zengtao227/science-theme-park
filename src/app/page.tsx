@@ -107,6 +107,7 @@ export default function Home() {
     { code: "SP1.04", title: t.home.sp1_04_title, desc: t.home.sp1_04_subtitle, color: "neon-cyan", href: "/chamber/sp1-04", tags: ["physics"] },
     { code: "SP1.05", title: t.home.sp1_05_title, desc: t.home.sp1_05_subtitle, color: "neon-cyan", href: "/chamber/sp1-05", tags: ["physics"] },
     { code: "SP1.06", title: t.home.sp1_06_title, desc: t.home.sp1_06_subtitle, color: "neon-amber", href: "/chamber/sp1-06", tags: ["physics"] },
+    { code: "SP1.07", title: t.home.sp1_07_title, desc: t.home.sp1_07_subtitle, color: "neon-cyan", href: "/chamber/sp1-07", tags: ["physics"] },
     { code: "SP1.08", title: t.home.sp1_08_title, desc: t.home.sp1_08_subtitle, color: "neon-purple", href: "/chamber/sp1-08", tags: ["physics"] },
     { code: "SP2.01", title: t.home.sp2_01_title, desc: t.home.sp2_01_subtitle, color: "neon-amber", href: "/chamber/sp2-01", tags: ["physics"] },
     { code: "SP2.02", title: t.home.sp2_02_title, desc: t.home.sp2_02_subtitle, color: "neon-cyan", href: "/chamber/sp2-02", tags: ["physics"] },
@@ -130,6 +131,8 @@ export default function Home() {
     { code: "SC2.03", title: t.home.sc2_03_title, desc: t.home.sc2_03_subtitle, color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
     { code: "SC2.04", title: t.home.sc2_04_title, desc: t.home.sc2_04_subtitle, color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
     { code: "SC3.01", title: t.home.sc3_01_title, desc: t.home.sc3_01_subtitle, color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
+    { code: "SC3.02", title: t.home.sc3_02_title, desc: t.home.sc3_02_subtitle, color: "neon-purple", href: "/chamber/sc3-02", tags: ["chemistry"] },
+    { code: "SC3.03", title: t.home.sc3_03_title, desc: t.home.sc3_03_subtitle, color: "neon-purple", href: "/chamber/sc3-03", tags: ["chemistry"] },
     { code: "GC1.01", title: t.home.gc1_01_title, desc: t.home.gc1_01_subtitle, color: "neon-amber", href: "/chamber/gc1-01", tags: ["chemistry"] },
     { code: "GC2.01", title: t.home.gc2_01_title, desc: t.home.gc2_01_subtitle, color: "neon-green", href: "/chamber/gc2-01", tags: ["chemistry"] },
     { code: "GC3.01", title: t.home.gc3_01_title, desc: t.home.gc3_01_subtitle, color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
@@ -146,6 +149,8 @@ export default function Home() {
     { code: "SB1.01-M", title: t.home.sb1_01_met_title, desc: t.home.sb1_01_met_subtitle, color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
     { code: "SB1.02", title: t.home.sb1_02_title, desc: t.home.sb1_02_subtitle, color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
     { code: "SB2.01", title: t.home.sb2_01_title, desc: t.home.sb2_01_subtitle, color: "neon-purple", href: "/chamber/sb2-01", tags: ["biology"] },
+    { code: "SB2.02", title: t.home.sb2_02_title, desc: t.home.sb2_02_subtitle, color: "neon-cyan", href: "/chamber/sb2-02", tags: ["biology"] },
+    { code: "SB3.01", title: t.home.sb3_01_title, desc: t.home.sb3_01_subtitle, color: "neon-green", href: "/chamber/sb3-01", tags: ["biology"] },
     { code: "GB3.01", title: t.home.gb3_01_title, desc: t.home.gb3_01_subtitle, color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
   ]), [t]);
 

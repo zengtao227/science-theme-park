@@ -6,99 +6,100 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import SimpleMachineCanvas from "@/components/chamber/sp1-04/SimpleMachineCanvas";
+import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
+type Stage = "HYDROCARBONS" | "FUNCTIONAL_GROUPS" | "ISOMERS";
 
-interface SP104Quest extends Quest {
+interface SC302Quest extends Quest {
     stage: Stage;
-    machineType?: string;
+    molecule?: string;
+    formula?: string;
 }
 
-type SP104T = typeof translations.EN.sp1_04;
+type SC302T = typeof translations.EN.sc3_02;
 
-export default function SP104Page() {
+export default function SC302Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_04 || translations.EN.sp1_04) as SP104T;
-    const [forceRatio, setForceRatio] = useState(2);
-    const [showForces, setShowForces] = useState(true);
+    const t = (translations[currentLanguage]?.sc3_02 || translations.EN.sc3_02) as SC302T;
+    const [selectedMolecule, setSelectedMolecule] = useState<string>("methane");
+    const [show3D, setShow3D] = useState(true);
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP104Quest[] => {
-        const quests: SP104Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC302Quest[] => {
+        const quests: SC302Quest[] = [];
 
-        if (stage === "LEVERS") {
-            // Lever mechanical advantage problems
-            const levers = [
-                { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
-                { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
-                { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
-                { effort: 60, load: 240, effortArm: 4, loadArm: 1 }
+        if (stage === "HYDROCARBONS") {
+            const hydrocarbons = [
+                { name: "methane", formula: "CH4", carbons: "1" },
+                { name: "ethane", formula: "C2H6", carbons: "2" },
+                { name: "propane", formula: "C3H8", carbons: "3" },
+                { name: "butane", formula: "C4H10", carbons: "4" },
+                { name: "ethene", formula: "C2H4", carbons: "2" }
             ];
 
-            levers.forEach((lever, idx) => {
+            hydrocarbons.forEach((hc, idx) => {
                 quests.push({
-                    id: `LEVER-${idx}`,
+                    id: `HC-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "lever",
-                    promptLatex: `\\text{${t.prompts.lever.replace('{load}', lever.load.toString()).replace('{effortArm}', lever.effortArm.toString()).replace('{loadArm}', lever.loadArm.toString())}}`,
-                    expressionLatex: `\\text{MA} = \\frac{d_e}{d_l} = \\frac{${lever.effortArm}}{${lever.loadArm}}`,
-                    targetLatex: lever.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                    correctLatex: `${lever.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_lever}}`]
+                    molecule: hc.name,
+                    formula: hc.formula,
+                    promptLatex: `\\text{${t.prompts.name_formula.replace('{name}', hc.name)}}`,
+                    expressionLatex: `\\text{${hc.name}} \\rightarrow \\text{?}`,
+                    targetLatex: hc.formula.toLowerCase().replace(/(\d+)/g, '_$1'),
+                    slots: [{ id: "ans", labelLatex: "\\text{Formula}", placeholder: "CxHy", expected: hc.formula.toLowerCase() }],
+                    correctLatex: hc.formula,
+                    hintLatex: [`\\text{${t.prompts.hint_carbons.replace('{count}', hc.carbons)}}`]
                 });
             });
         }
 
-        if (stage === "PULLEYS") {
-            // Pulley system problems
-            const pulleys = [
-                { load: 400, strands: 4, effort: 100 },
-                { load: 600, strands: 3, effort: 200 },
-                { load: 300, strands: 2, effort: 150 },
-                { load: 500, strands: 5, effort: 100 }
+        if (stage === "FUNCTIONAL_GROUPS") {
+            const groups = [
+                { name: "alcohol", group: "OH", example: "ethanol" },
+                { name: "aldehyde", group: "CHO", example: "methanal" },
+                { name: "ketone", group: "CO", example: "propanone" },
+                { name: "carboxylic acid", group: "COOH", example: "ethanoic acid" },
+                { name: "amine", group: "NH2", example: "methylamine" }
             ];
 
-            pulleys.forEach((pulley, idx) => {
+            groups.forEach((g, idx) => {
                 quests.push({
-                    id: `PULLEY-${idx}`,
+                    id: `FG-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "pulley",
-                    promptLatex: `\\text{${t.prompts.pulley.replace('{load}', pulley.load.toString()).replace('{strands}', pulley.strands.toString())}}`,
-                    expressionLatex: `F_e = \\frac{F_l}{n} = \\frac{${pulley.load}}{${pulley.strands}}`,
-                    targetLatex: pulley.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                    correctLatex: `${pulley.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_pulley}}`]
+                    molecule: g.example,
+                    promptLatex: `\\text{${t.prompts.functional_group.replace('{name}', g.name)}}`,
+                    expressionLatex: `\\text{${g.name}} \\rightarrow \\text{?}`,
+                    targetLatex: g.group.toLowerCase(),
+                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: g.group.toLowerCase() }],
+                    correctLatex: g.group,
+                    hintLatex: [`\\text{${t.prompts.hint_group.replace('{example}', g.example)}}`]
                 });
             });
         }
 
-        if (stage === "INCLINED_PLANES") {
-            // Inclined plane problems
-            const planes = [
-                { load: 500, height: 2, length: 10, effort: 100 },
-                { load: 600, height: 3, length: 12, effort: 150 },
-                { load: 400, height: 1, length: 8, effort: 50 },
-                { load: 800, height: 4, length: 16, effort: 200 }
+        if (stage === "ISOMERS") {
+            const isomers = [
+                { formula: "C4H10", count: "2", type: "structural" },
+                { formula: "C5H12", count: "3", type: "structural" },
+                { formula: "C2H6O", count: "2", type: "functional" },
+                { formula: "C3H6", count: "2", type: "geometric" }
             ];
 
-            planes.forEach((plane, idx) => {
+            isomers.forEach((iso, idx) => {
                 quests.push({
-                    id: `PLANE-${idx}`,
+                    id: `ISO-${idx}`,
                     difficulty,
                     stage,
-                    machineType: "inclined_plane",
-                    promptLatex: `\\text{${t.prompts.inclined_plane.replace('{load}', plane.load.toString()).replace('{height}', plane.height.toString()).replace('{length}', plane.length.toString())}}`,
-                    expressionLatex: `F_e = F_l \\times \\frac{h}{l} = ${plane.load} \\times \\frac{${plane.height}}{${plane.length}}`,
-                    targetLatex: plane.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                    correctLatex: `${plane.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_inclined}}`]
+                    formula: iso.formula,
+                    promptLatex: `\\text{${t.prompts.isomer_count.replace('{formula}', iso.formula)}}`,
+                    expressionLatex: `${iso.formula} \\rightarrow \\text{? isomers}`,
+                    targetLatex: iso.count,
+                    slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "...", expected: iso.count }],
+                    correctLatex: iso.count,
+                    hintLatex: [`\\text{${t.prompts.hint_isomer.replace('{type}', iso.type)}}`]
                 });
             });
         }
@@ -121,28 +122,35 @@ export default function SP104Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SP104Quest, Stage>({
+    } = useQuestManager<SC302Quest, Stage>({
         buildPool,
-        initialStage: "LEVERS",
+        initialStage: "HYDROCARBONS",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SP1.04", stage);
+            completeStage("SC3.02", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "LEVERS", label: t.stages.levers },
-        { id: "PULLEYS", label: t.stages.pulleys },
-        { id: "INCLINED_PLANES", label: t.stages.inclined_planes },
+        { id: "HYDROCARBONS", label: t.stages.hydrocarbons },
+        { id: "FUNCTIONAL_GROUPS", label: t.stages.functional_groups },
+        { id: "ISOMERS", label: t.stages.isomers },
     ], [t]);
+
+    // Sync molecule with quest
+    useEffect(() => {
+        if (currentQuest?.molecule) {
+            setSelectedMolecule(currentQuest.molecule);
+        }
+    }, [currentQuest]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
-            moduleCode="SP1.04"
+            moduleCode="SC3.02"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -171,46 +179,30 @@ export default function SP104Page() {
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <SimpleMachineCanvas
+                        <OrganicMoleculeCanvas
+                            molecule={selectedMolecule}
+                            show3D={show3D}
                             stage={stage}
-                            forceRatio={forceRatio}
-                            showForces={showForces}
                             translations={t}
                         />
                     </div>
 
-                    {/* Controls */}
+                    {/* View Controls */}
                     <div className="grid grid-cols-1 gap-2">
-                        {stage === "LEVERS" && (
-                            <div className="space-y-1">
-                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.force_ratio}</label>
-                                <div className="flex items-center gap-3">
-                                    <input
-                                        type="range"
-                                        min="1"
-                                        max="5"
-                                        value={forceRatio}
-                                        onChange={(e) => setForceRatio(Number(e.target.value))}
-                                        className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
-                                    />
-                                    <span className="text-[10px] font-mono text-white/60 w-16 text-right">MA = {forceRatio}</span>
-                                </div>
-                            </div>
-                        )}
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_forces}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.view_3d}</span>
                             <input
                                 type="checkbox"
-                                checked={showForces}
-                                onChange={(e) => setShowForces(e.target.checked)}
-                                className="w-4 h-4 rounded border-white/20 bg-black text-neon-green focus:ring-neon-green/50"
+                                checked={show3D}
+                                onChange={(e) => setShow3D(e.target.checked)}
+                                className="w-4 h-4 rounded border-white/20 bg-black text-neon-purple focus:ring-neon-purple/50"
                             />
                         </label>
                     </div>
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.mechanics_score}</span>
+                            <span>{t.labels.organic_mastery}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -219,7 +211,7 @@ export default function SP104Page() {
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${
                                         i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
+                                            ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
                                             : "bg-transparent"
                                     }`}
                                 />
@@ -233,7 +225,7 @@ export default function SP104Page() {
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
-                            <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
+                            <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black italic">
                                 {t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
@@ -242,10 +234,10 @@ export default function SP104Page() {
                         </div>
 
                         <div className="flex justify-center">
-                            <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
-                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-purple/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(255,0,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-purple/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.machine_display}
+                                    {t.labels.molecule_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -254,10 +246,10 @@ export default function SP104Page() {
                         </div>
 
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-green/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-purple/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-green/30" />
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-purple/30" />
                                     {t.labels.input_terminal}
                                 </div>
 
@@ -266,11 +258,11 @@ export default function SP104Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">MECH_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-purple/30 font-mono">ORG_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-purple/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -278,7 +270,7 @@ export default function SP104Page() {
                                                         if (e.key === 'Enter') verify();
                                                     }}
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-green/0 group-focus-within:bg-neon-green/20 transition-all blur-sm" />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-purple/0 group-focus-within:bg-neon-purple/20 transition-all blur-sm" />
                                             </div>
                                         </div>
                                     ))}

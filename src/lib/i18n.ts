@@ -239,8 +239,8 @@ export const translations: Record<string, any> = {
             sp3_01_subtitle: "Visualize light through Rhine water. Ray tracing, reflection, and lenses.",
             sp1_03_title: "SP1.03 // ENERGY & POWER",
             sp1_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
-            sp1_04_title: "SP1.04 // TIME DILATION",
-            sp1_04_subtitle: "Observe relativistic effects: length contraction and time dilation at light speed.",
+            sp1_04_title: "SP1.04 // SIMPLE MACHINES",
+            sp1_04_subtitle: "Master levers, pulleys, and inclined planes with Basel construction site scenarios.",
             sp3_02_title: "SP3.02 // WAVE OPTICS",
             sp3_02_subtitle: "Explore interference, diffraction, and polarization phenomena.",
             sp1_05_title: "SP1.05 // THE RHINE FERRY",
@@ -595,6 +595,10 @@ export const translations: Record<string, any> = {
             sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
             sc3_01_title: "SC3.01 // MOLECULE CANVAS",
             sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
+            sc3_02_title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
+            sc3_02_subtitle: "Master hydrocarbons, functional groups, and isomers with 2D/3D molecular visualization.",
+            sc3_03_title: "SC3.03 // ORGANIC REACTIONS",
+            sc3_03_subtitle: "Explore combustion, substitution, and addition reactions with mechanism animations.",
             gc1_01_title: "GC1.01 // REDOX TITAN",
             gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
             gc2_01_title: "GC2.01 // CARBON KINGDOM",
@@ -611,6 +615,10 @@ export const translations: Record<string, any> = {
             sb1_02_subtitle: "Master photosynthesis equation, limiting factors, and chloroplast structure.",
             sb2_01_title: "SB2.01 // MENDEL'S GARDEN",
             sb2_01_subtitle: "Genetics and Punnett squares.",
+            sb2_02_title: "SB2.02 // HUMAN BODY SYSTEMS",
+            sb2_02_subtitle: "Explore digestive, circulatory, and respiratory systems with interactive anatomy.",
+            sb3_01_title: "SB3.01 // ECOSYSTEM DYNAMICS",
+            sb3_01_subtitle: "Master food chains, energy flow, and biogeochemical cycles in the Rhine ecosystem.",
             gb3_01_title: "GB3.01 // DNA FORGE",
             gb3_01_subtitle: "Molecular biology and DNA replication.",
             gm4_01_title: "GM4.01 // COMPLEX HORIZON",
@@ -3391,6 +3399,201 @@ export const translations: Record<string, any> = {
                 title: "MISSION: RAY OPTICS",
                 description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
             }
+        },
+        sb1_02: {
+            back: "Return to Nexus",
+            title: "SB1.02 // PHOTOSYNTHESIS LAB",
+            stages: {
+                equation: "REACTION EQUATION",
+                limiting_factors: "LIMITING FACTORS",
+                chloroplast: "CHLOROPLAST"
+            },
+            labels: {
+                light: "Light Intensity",
+                co2: "CO2 Level",
+                temp: "Temperature",
+                glucose: "Glucose Production"
+            }
+        },
+        sb2_02: {
+            back: "Return to Nexus",
+            title: "SB2.02 // HUMAN BODY SYSTEMS",
+            stages: {
+                digestion: "DIGESTION",
+                circulation: "CIRCULATION",
+                respiration: "RESPIRATION"
+            },
+            labels: {
+                heart_rate: "Heart Rate",
+                o2_sat: "O2 Saturation",
+                enzyme: "Enzyme Activity"
+            }
+        },
+        sb3_01: {
+            back: "Return to Nexus",
+            title: "SB3.01 // ECOSYSTEM DYNAMICS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
+            footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
+            objective_title: "Active Mission Objective",
+            stages: {
+                food_chains: "FOOD CHAINS",
+                energy_flow: "ENERGY FLOW",
+                cycles: "BIOGEOCHEMICAL CYCLES"
+            },
+            labels: {
+                ecosystem_display: "Ecosystem Display",
+                input_terminal: "Input Terminal",
+                trophic_level: "Trophic Level",
+                show_energy: "Show Energy Flow",
+                ecology_score: "Ecology Score"
+            },
+            prompts: {
+                food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
+                energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
+                cycle_process: "In the {cycle} cycle, what is produced by {process}?",
+                hint_trophic: "Only 10% of energy transfers to the next trophic level",
+                hint_10percent: "Use the 10% rule: multiply by 0.1",
+                hint_cycle: "Think about the inputs and outputs of this process"
+            },
+            feedback: {
+                correct: "Ecosystem balance maintained!",
+                incorrect: "Ecosystem disrupted. Review the relationships."
+            }
+        },
+        sp1_04: {
+            back: "Return to Nexus",
+            title: "SP1.04 // SIMPLE MACHINES",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SP1.04_MECHANICS_MONITOR",
+            footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
+            objective_title: "Active Mission Objective",
+            stages: {
+                levers: "LEVERS",
+                pulleys: "PULLEYS",
+                inclined_planes: "INCLINED PLANES"
+            },
+            labels: {
+                machine_display: "Machine Display",
+                input_terminal: "Input Terminal",
+                force_ratio: "Force Ratio (MA)",
+                show_forces: "Show Forces",
+                mechanics_score: "Mechanics Score"
+            },
+            prompts: {
+                lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
+                pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
+                inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
+                hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",
+                hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
+                hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"
+            },
+            feedback: {
+                correct: "Mechanical advantage calculated correctly!",
+                incorrect: "Check your mechanical advantage calculation."
+            }
+        },
+        sc1_05: {
+            back: "Back to Nexus",
+            title: "SC1.05 // BONDING BRIDGE",
+            check: "Verify",
+            next: "Next",
+            correct: "Bond Verified",
+            incorrect: "Bond Failed",
+            ready: "Ready",
+            monitor_title: "SC1.05_BOND_LAB",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            stages: {
+                ionic: "IONIC",
+                covalent: "COVALENT",
+                lewis: "LEWIS"
+            },
+            labels: {
+                na_cl: "Na + Cl -> NaCl",
+                h2: "H + H -> H2",
+                co2: "C + 2O -> CO2"
+            }
+        },
+        sc3_02: {
+            back: "Return to Nexus",
+            title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
+            stages: {
+                alkanes: "ALKANES",
+                functional_groups: "FUNCTIONAL GROUPS",
+                isomers: "ISOMERS"
+            },
+            labels: {
+                carbon_chain: "Carbon Chain",
+                hydroxyl: "Hydroxyl Group",
+                double_bond: "Double Bond"
+            }
+        },
+        sc3_03: {
+            back: "Return to Nexus",
+            title: "SC3.03 // ORGANIC REACTIONS",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SC3.03_REACTION_MONITOR",
+            footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
+            objective_title: "Active Mission Objective",
+            stages: {
+                combustion: "COMBUSTION",
+                substitution: "SUBSTITUTION",
+                addition: "ADDITION"
+            },
+            labels: {
+                reaction_display: "Reaction Display",
+                input_terminal: "Input Terminal",
+                animation_speed: "Animation Speed",
+                show_mechanism: "Show Mechanism",
+                chemistry_score: "Chemistry Score"
+            },
+            prompts: {
+                combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
+                substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
+                addition: "When {alkene} reacts with {reagent}, what is the product?",
+                hint_combustion: "Count carbon atoms in the reactant",
+                hint_substitution: "One H atom is replaced by a halogen atom",
+                hint_addition: "The double bond opens and adds the reagent"
+            },
+            feedback: {
+                correct: "Reaction mechanism understood!",
+                incorrect: "Review the reaction mechanism."
+            }
         }
     },
     CN: {
@@ -3510,8 +3713,8 @@ export const translations: Record<string, any> = {
             sp3_01_subtitle: "追踪光线路径：反射、折射与透镜成像原理。",
             sp1_03_title: "SP1.03 // 能量与功率",
             sp1_03_subtitle: "模拟莱茵河水力发电：势能、动能与功率输出。",
-            sp1_04_title: "SP1.04 // 时间膨胀模拟",
-            sp1_04_subtitle: "观察相对论效应：光速下的长度收缩与时间膨胀。",
+            sp1_04_title: "SP1.04 // 简单机械",
+            sp1_04_subtitle: "通过巴塞尔建筑工地场景掌握杠杆、滑轮和斜面。",
             sp3_02_title: "SP3.02 // 波动光学",
             sp3_02_subtitle: "探索干涉、衍射和偏振现象。",
             sp1_05_title: "SP1.05 // 莱茵河渡轮",
@@ -3650,6 +3853,10 @@ export const translations: Record<string, any> = {
             sc2_04_subtitle: "探索溶解度曲线与结晶过程。掌握饱和平衡。",
             sc3_01_title: "SC3.01 // 分子画布",
             sc3_01_subtitle: "在 3D 空间中构建和可视化分子结构。",
+            sc3_02_title: "SC3.02 // 有机化学基础",
+            sc3_02_subtitle: "通过2D/3D分子可视化掌握烃类、官能团和同分异构体。",
+            sc3_03_title: "SC3.03 // 有机化学反应",
+            sc3_03_subtitle: "通过机理动画探索燃烧、取代和加成反应。",
             gc1_01_title: "GC1.01 // 氧化还原巨神",
             gc1_01_subtitle: "掌握电化学电池与氧化还原电位。",
             gsc1_01: {
@@ -3715,6 +3922,10 @@ export const translations: Record<string, any> = {
             sb1_02_subtitle: "掌握光合作用方程式、限制因子和叶绿体结构。",
             sb2_01_title: "SB2.01 // 孟德尔花园",
             sb2_01_subtitle: "遗传学与庞尼特方格。",
+            sb2_02_title: "SB2.02 // 人体系统",
+            sb2_02_subtitle: "通过交互式解剖学探索消化、循环和呼吸系统。",
+            sb3_01_title: "SB3.01 // 生态系统动力学",
+            sb3_01_subtitle: "掌握莱茵河生态系统中的食物链、能量流动和生物地球化学循环。",
             gb3_01_title: "GB3.01 // DNA 锻造厂",
             gb3_01_subtitle: "分子生物学与 DNA 复制。",
             gm4_01_title: "GM4.01 // 复数地平线",
@@ -6847,6 +7058,246 @@ export const translations: Record<string, any> = {
                 title: "任务：几何光学",
                 description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
             }
+        },
+        sp1_01: {
+            back: "返回枢纽",
+            title: "SP1.01 // 测量与单位",
+            check: "验证",
+            next: "下一步",
+            correct: "测量验证",
+            incorrect: "测量错误",
+            ready: "就绪",
+            monitor_title: "SP1.01_测量实验室",
+            footer_left: "SP1.01_测量 // 节点: 巴塞尔",
+            objective_title: "测量目标",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            stages: {
+                si_units: "SI单位",
+                conversion: "换算",
+                precision: "精度"
+            },
+            tools: {
+                ruler: "尺子",
+                scale: "天平",
+                timer: "计时器"
+            },
+            labels: {
+                precision: "测量精度",
+                measurement_display: "测量显示",
+                input_terminal: "终端输入 [测量节点]"
+            },
+            prompts: {
+                si_unit: "{measurement} 的 SI 单位是什么？",
+                convert: "将 {value} {from} 转换为 {to}",
+                sigfigs: "{value} 有几位有效数字？",
+                hint_si: "SI 单位是 {name}",
+                hint_factor: "乘以 {factor}",
+                hint_sigfigs: "计算所有非零数字和它们中间的零"
+            },
+            feedback: {
+                correct: "测量精度确认。",
+                incorrect: "检测到校准错误。"
+            }
+        },
+        sp1_04: {
+            back: "返回枢纽",
+            title: "SP1.04 // 简单机械",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "SP1.04_力学监控",
+            footer_left: "SP1.04_简单机械 // 节点: 巴塞尔",
+            objective_title: "当前任务目标",
+            stages: {
+                levers: "杠杆",
+                pulleys: "滑轮",
+                inclined_planes: "斜面"
+            },
+            labels: {
+                machine_display: "机械显示",
+                input_terminal: "输入终端",
+                force_ratio: "力比 (MA)",
+                show_forces: "显示力",
+                mechanics_score: "力学分数"
+            },
+            prompts: {
+                lever: "一个杠杆举起 {load} N 的负载。如果力臂是 {effortArm} m，阻力臂是 {loadArm} m，需要多少努力力？",
+                pulley: "一个滑轮系统用 {strands} 根支撑绳举起 {load} N 的负载。需要多少努力力？",
+                inclined_plane: "一个斜面将 {load} N 的负载举到 {height} m 高度，斜面长度为 {length} m。需要多少努力力？",
+                hint_lever: "使用 MA = 力臂 / 阻力臂，然后 F_effort = F_load / MA",
+                hint_pulley: "使用 MA = 绳子数量，然后 F_effort = F_load / MA",
+                hint_inclined: "使用 MA = 长度 / 高度，然后 F_effort = F_load / MA"
+            },
+            feedback: {
+                correct: "机械优势计算正确！",
+                incorrect: "检查你的机械优势计算。"
+            }
+        }
+    },
+    sb1_02: {
+        back: "返回枢纽",
+        title: "SB1.02 // 光合作用实验室",
+        stages: {
+            equation: "反应方程式",
+            limiting_factors: "限制因子",
+            chloroplast: "叶绿体"
+        },
+        labels: {
+            light: "光照强度",
+            co2: "CO2水平",
+            temp: "温度",
+            glucose: "葡萄糖产量"
+        }
+    },
+    sb2_02: {
+        back: "返回枢纽",
+        title: "SB2.02 // 人体系统",
+        stages: {
+            digestion: "消化系统",
+            circulation: "循环系统",
+            respiration: "呼吸系统"
+        },
+        labels: {
+            heart_rate: "心率",
+            o2_sat: "血氧饱和度",
+            enzyme: "酶活性"
+        }
+    },
+    sb3_01: {
+        back: "返回枢纽",
+        title: "SB3.01 // 生态系统动力学",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SB3.01_生态系统监控",
+        footer_left: "SB3.01_生态系统动力学 // 节点: 莱茵河",
+        objective_title: "当前任务目标",
+        stages: {
+            food_chains: "食物链",
+            energy_flow: "能量流动",
+            cycles: "生物地球化学循环"
+        },
+        labels: {
+            ecosystem_display: "生态系统显示",
+            input_terminal: "输入终端",
+            trophic_level: "营养级",
+            show_energy: "显示能量流动",
+            ecology_score: "生态学分数"
+        },
+        prompts: {
+            food_chain: "在莱茵河生态系统中，{producer} 被 {consumer} 吃掉。下一级是什么？",
+            energy_transfer: "如果 {level} 消费者有 {energy} kJ 的能量，有多少能量传递到下一级？",
+            cycle_process: "在 {cycle} 循环中，{process} 产生什么？",
+            hint_trophic: "只有10%的能量传递到下一个营养级",
+            hint_10percent: "使用10%规则：乘以0.1",
+            hint_cycle: "思考这个过程的输入和输出"
+        },
+        feedback: {
+            correct: "生态系统平衡维持！",
+            incorrect: "生态系统被破坏。请复习关系。"
+        }
+    },
+    sc1_05: {
+        back: "返回中心实验室",
+        title: "SC1.05 // 化学键桥",
+        check: "验证",
+        next: "下一步",
+        correct: "键合验证",
+        incorrect: "键合失败",
+        ready: "就绪",
+        monitor_title: "SC1.05_键合实验室",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            ionic: "离子键",
+            covalent: "共价键",
+            lewis: "路易斯结构"
+        },
+        labels: {
+            na_cl: "Na + Cl -> NaCl",
+            h2: "H + H -> H2",
+            co2: "C + 2O -> CO2"
+        }
+    },
+    sc3_02: {
+        back: "返回枢纽",
+        title: "SC3.02 // 有机化学基础",
+        stages: {
+            alkanes: "烷烃",
+            functional_groups: "官能团",
+            isomers: "同分异构体"
+        },
+        labels: {
+            carbon_chain: "碳链",
+            hydroxyl: "羟基",
+            double_bond: "双键"
+        }
+    },
+    sc3_03: {
+        back: "返回枢纽",
+        title: "SC3.03 // 有机化学反应",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SC3.03_反应监控",
+        footer_left: "SC3.03_有机化学反应 // 节点: 巴塞尔",
+        objective_title: "当前任务目标",
+        stages: {
+            combustion: "燃烧反应",
+            substitution: "取代反应",
+            addition: "加成反应"
+        },
+        labels: {
+            reaction_display: "反应显示",
+            input_terminal: "输入终端",
+            animation_speed: "动画速度",
+            show_mechanism: "显示机理",
+            chemistry_score: "化学分数"
+        },
+        prompts: {
+            combustion: "{reactant} 的完全燃烧产生 CO₂ 和 H₂O。产生多少个 CO₂ 分子？",
+            substitution: "当 {alkane} 在紫外光下与 {halogen} 反应时，主要产物是什么？",
+            addition: "当 {alkene} 与 {reagent} 反应时，产物是什么？",
+            hint_combustion: "计算反应物中的碳原子数",
+            hint_substitution: "一个 H 原子被卤素原子取代",
+            hint_addition: "双键打开并加成试剂"
+        },
+        feedback: {
+            correct: "反应机理理解正确！",
+            incorrect: "复习反应机理。"
         }
     },
     DE: {
@@ -6966,8 +7417,8 @@ export const translations: Record<string, any> = {
             sp3_01_subtitle: "Visualisiere Licht durch Rheinwasser. Strahlengang, Reflexion und Linsen.",
             sp1_03_title: "SP1.03 // ENERGIE & LEISTUNG",
             sp1_03_subtitle: "Modelliere die Rheinhydropower mit potenzieller, kinetischer Energie und Leistung.",
-            sp1_04_title: "SP1.04 // ZEITDILATATION",
-            sp1_04_subtitle: "Beobachte relativistische Effekte: Längenkontraktion und Zeitdilatation bei Lichtgeschwindigkeit.",
+            sp1_04_title: "SP1.04 // EINFACHE MASCHINEN",
+            sp1_04_subtitle: "Meistere Hebel, Flaschenzüge und schiefe Ebenen mit Basler Baustellen-Szenarien.",
             sp3_02_title: "SP3.02 // WELLENOPTIK",
             sp3_02_subtitle: "Untersuchen Sie Interferenz-, Beugungs- und Polarisationsphänomene.",
             sp1_05_title: "SP1.05 // DIE RHEINFÄHRE",
@@ -7031,6 +7482,51 @@ export const translations: Record<string, any> = {
                     time_dilation_hint: "Bewegte Uhren gehen langsamer: Δt = γΔt₀",
                     length_contraction_hint: "Bewegte Objekte kontrahieren: L = L₀/γ",
                     doppler_hint: "Licht verschiebt sich rot (entfernend) oder blau (nähernd)"
+                }
+            },
+            sp1_01: {
+                back: "Zurück zum Nexus",
+                title: "SP1.01 // MESSUNG & EINHEITEN",
+                check: "Prüfen",
+                next: "Weiter",
+                correct: "Messung Verifiziert",
+                incorrect: "Messfehler",
+                ready: "Bereit",
+                monitor_title: "SP1.01_MESSLABOR",
+                footer_left: "SP1.01_MESSUNG // KNOTEN: BASEL",
+                objective_title: "Messziel",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                stages: {
+                    si_units: "SI-EINHEITEN",
+                    conversion: "UMRECHNUNG",
+                    precision: "PRÄZISION"
+                },
+                tools: {
+                    ruler: "LINEAL",
+                    scale: "WAAGE",
+                    timer: "TIMER"
+                },
+                labels: {
+                    precision: "Messpräzision",
+                    measurement_display: "Messanzeige",
+                    input_terminal: "Terminaleingabe [Messknoten]"
+                },
+                prompts: {
+                    si_unit: "Was ist die SI-Einheit für {measurement}?",
+                    convert: "Wandle {value} {from} in {to} um",
+                    sigfigs: "Wie viele signifikante Stellen in {value}?",
+                    hint_si: "Die SI-Einheit ist {name}",
+                    hint_factor: "Multiplizieren mit {factor}",
+                    hint_sigfigs: "Alle Ziffern außer führenden Nullen zählen"
+                },
+                feedback: {
+                    correct: "Messpräzision bestätigt.",
+                    incorrect: "Kalibrierungsfehler erkannt."
                 }
             },
             gp1_04: {
@@ -7108,6 +7604,10 @@ export const translations: Record<string, any> = {
             sc2_04_subtitle: "Erkunden Sie Löslichkeitskurven und Kristallisation. Meistern Sie Sättigungsgleichgewicht.",
             sc3_01_title: "SC3.01 // MOLEKÜL-LEINWAND",
             sc3_01_subtitle: "Bauen und visualisieren Sie Molekülstrukturen im 3D-Raum.",
+            sc3_02_title: "SC3.02 // GRUNDLAGEN DER ORGANISCHEN CHEMIE",
+            sc3_02_subtitle: "Meistern Sie Kohlenwasserstoffe, funktionelle Gruppen und Isomere mit 2D/3D-Molekülvisualisierung.",
+            sc3_03_title: "SC3.03 // ORGANISCHE REAKTIONEN",
+            sc3_03_subtitle: "Erkunden Sie Verbrennungs-, Substitutions- und Additionsreaktionen mit Mechanismus-Animationen.",
             gc1_01_title: "GC1.01 // REDOX-TITAN",
             gc1_01_subtitle: "Meistern Sie elektrochemische Zellen und Redoxpotentiale.",
             gsc1_01: {
@@ -7173,6 +7673,10 @@ export const translations: Record<string, any> = {
             sb1_02_subtitle: "Meistere Photosynthese-Gleichung, limitierende Faktoren und Chloroplastenstruktur.",
             sb2_01_title: "SB2.01 // MENDELS GARTEN",
             sb2_01_subtitle: "Genetik und Punnett-Quadrate.",
+            sb2_02_title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
+            sb2_02_subtitle: "Erkunde Verdauungs-, Kreislauf- und Atmungssysteme mit interaktiver Anatomie.",
+            sb3_01_title: "SB3.01 // ÖKOSYSTEM-DYNAMIK",
+            sb3_01_subtitle: "Meistere Nahrungsketten, Energiefluss und biogeochemische Kreisläufe im Rhein-Ökosystem.",
             gb3_01_title: "GB3.01 // DNA-SCHMIEDE",
             gb3_01_subtitle: "Molekularbiologie und DNA-Replikation.",
             gm4_01_title: "GM4.01 // KOMPLEXER HORIZONT",
@@ -10330,6 +10834,201 @@ export const translations: Record<string, any> = {
                 sc_hint: "Niedrigste Packungseffizienz (52%)",
                 bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
                 fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
+            },
+            sb1_02: {
+                back: "Zurück zum Nexus",
+                title: "SB1.02 // PHOTOSYNTHESE-LABOR",
+                stages: {
+                    equation: "REAKTIONSGLEICHUNG",
+                    limiting_factors: "BEGRENZENDE FAKTOREN",
+                    chloroplast: "CHLOROPLAST"
+                },
+                labels: {
+                    light: "Lichtintensität",
+                    co2: "CO2-Gehalt",
+                    temp: "Temperatur",
+                    glucose: "Glucoseproduktion"
+                }
+            },
+            sb2_02: {
+                back: "Zurück zum Nexus",
+                title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
+                stages: {
+                    digestion: "VERDAUUNG",
+                    circulation: "KREISLAUF",
+                    respiration: "ATMUNG"
+                },
+                labels: {
+                    heart_rate: "Herzfrequenz",
+                    o2_sat: "O2-Sättigung",
+                    enzyme: "Enzymaktivität"
+                }
+            },
+            sb3_01: {
+                back: "Zurück zum Nexus",
+                title: "SB3.01 // ÖKOSYSTEM-DYNAMIK",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "SB3.01_ÖKOSYSTEM_MONITOR",
+                footer_left: "SB3.01_ÖKOSYSTEM_DYNAMIK // KNOTEN: RHEIN",
+                objective_title: "Aktuelles Missionsziel",
+                stages: {
+                    food_chains: "NAHRUNGSKETTEN",
+                    energy_flow: "ENERGIEFLUSS",
+                    cycles: "BIOGEOCHEMISCHE KREISLÄUFE"
+                },
+                labels: {
+                    ecosystem_display: "Ökosystem-Anzeige",
+                    input_terminal: "Eingabeterminal",
+                    trophic_level: "Trophische Ebene",
+                    show_energy: "Energiefluss anzeigen",
+                    ecology_score: "Ökologie-Punktzahl"
+                },
+                prompts: {
+                    food_chain: "Im Rhein-Ökosystem wird {producer} von {consumer} gefressen. Was kommt als Nächstes?",
+                    energy_transfer: "Wenn {level}-Konsumenten {energy} kJ Energie haben, wie viel erreicht die nächste Ebene?",
+                    cycle_process: "Im {cycle}-Kreislauf, was wird durch {process} produziert?",
+                    hint_trophic: "Nur 10% der Energie werden auf die nächste trophische Ebene übertragen",
+                    hint_10percent: "Verwenden Sie die 10%-Regel: mit 0,1 multiplizieren",
+                    hint_cycle: "Denken Sie an die Ein- und Ausgänge dieses Prozesses"
+                },
+                feedback: {
+                    correct: "Ökosystem-Gleichgewicht aufrechterhalten!",
+                    incorrect: "Ökosystem gestört. Überprüfen Sie die Beziehungen."
+                }
+            },
+            sp1_04: {
+                back: "Zurück zum Nexus",
+                title: "SP1.04 // EINFACHE MASCHINEN",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "SP1.04_MECHANIK_MONITOR",
+                footer_left: "SP1.04_EINFACHE_MASCHINEN // KNOTEN: BASEL",
+                objective_title: "Aktuelles Missionsziel",
+                stages: {
+                    levers: "HEBEL",
+                    pulleys: "FLASCHENZÜGE",
+                    inclined_planes: "SCHIEFE EBENEN"
+                },
+                labels: {
+                    machine_display: "Maschinenanzeige",
+                    input_terminal: "Eingabeterminal",
+                    force_ratio: "Kraftverhältnis (MA)",
+                    show_forces: "Kräfte anzeigen",
+                    mechanics_score: "Mechanik-Punktzahl"
+                },
+                prompts: {
+                    lever: "Ein Hebel hebt eine Last von {load} N. Wenn der Kraftarm {effortArm} m und der Lastarm {loadArm} m beträgt, welche Kraftaufwand wird benötigt?",
+                    pulley: "Ein Flaschenzugsystem hebt eine Last von {load} N mit {strands} tragenden Seilen. Welche Kraftaufwand wird benötigt?",
+                    inclined_plane: "Eine schiefe Ebene hebt eine Last von {load} N auf eine Höhe von {height} m über eine Länge von {length} m. Welche Kraftaufwand wird benötigt?",
+                    hint_lever: "Verwenden Sie MA = Kraftarm / Lastarm, dann F_Aufwand = F_Last / MA",
+                    hint_pulley: "Verwenden Sie MA = Anzahl der Seile, dann F_Aufwand = F_Last / MA",
+                    hint_inclined: "Verwenden Sie MA = Länge / Höhe, dann F_Aufwand = F_Last / MA"
+                },
+                feedback: {
+                    correct: "Mechanischer Vorteil korrekt berechnet!",
+                    incorrect: "Überprüfen Sie Ihre Berechnung des mechanischen Vorteils."
+                }
+            },
+            sc1_05: {
+                back: "Zurück zum Nexus",
+                title: "SC1.05 // CHEMISCHE BINDUNGEN",
+                check: "Prüfen",
+                next: "Weiter",
+                correct: "Bindung Verifiziert",
+                incorrect: "Bindungsfehler",
+                ready: "Bereit",
+                monitor_title: "SC1.05_BINDUNGSLABOR",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                stages: {
+                    ionic: "IONISCH",
+                    covalent: "KOVALENT",
+                    lewis: "LEWIS"
+                },
+                labels: {
+                    na_cl: "Na + Cl -> NaCl",
+                    h2: "H + H -> H2",
+                    co2: "C + 2O -> CO2"
+                }
+            },
+            sc3_02: {
+                back: "Zurück zum Nexus",
+                title: "SC3.02 // GRUNDLAGEN DER ORGANISCHEN CHEMIE",
+                stages: {
+                    alkanes: "ALKANE",
+                    functional_groups: "FUNKTIONELLE GRUPPEN",
+                    isomers: "ISOMERE"
+                },
+                labels: {
+                    carbon_chain: "Kohlenstoffkette",
+                    hydroxyl: "Hydroxylgruppe",
+                    double_bond: "Doppelbindung"
+                }
+            },
+            sc3_03: {
+                back: "Zurück zum Nexus",
+                title: "SC3.03 // ORGANISCHE REAKTIONEN",
+                difficulty: {
+                    basic: "BASIS",
+                    core: "KERN",
+                    advanced: "FORTGESCHRITTEN",
+                    elite: "ELITE"
+                },
+                next: "Nächste Sequenz ausführen",
+                check: "Prüfen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "SC3.03_REAKTIONS_MONITOR",
+                footer_left: "SC3.03_ORGANISCHE_REAKTIONEN // KNOTEN: BASEL",
+                objective_title: "Aktuelles Missionsziel",
+                stages: {
+                    combustion: "VERBRENNUNG",
+                    substitution: "SUBSTITUTION",
+                    addition: "ADDITION"
+                },
+                labels: {
+                    reaction_display: "Reaktionsanzeige",
+                    input_terminal: "Eingabeterminal",
+                    animation_speed: "Animationsgeschwindigkeit",
+                    show_mechanism: "Mechanismus anzeigen",
+                    chemistry_score: "Chemie-Punktzahl"
+                },
+                prompts: {
+                    combustion: "Vollständige Verbrennung von {reactant} erzeugt CO₂ und H₂O. Wie viele CO₂-Moleküle?",
+                    substitution: "Wenn {alkane} unter UV-Licht mit {halogen} reagiert, was ist das Hauptprodukt?",
+                    addition: "Wenn {alkene} mit {reagent} reagiert, was ist das Produkt?",
+                    hint_combustion: "Zählen Sie die Kohlenstoffatome im Reaktanten",
+                    hint_substitution: "Ein H-Atom wird durch ein Halogenatom ersetzt",
+                    hint_addition: "Die Doppelbindung öffnet sich und addiert das Reagenz"
+                },
+                feedback: {
+                    correct: "Reaktionsmechanismus verstanden!",
+                    incorrect: "Überprüfen Sie den Reaktionsmechanismus."
+                }
             }
         },
     }
@@ -10362,102 +11061,6 @@ export interface Translations {
     CN: typeof translations.CN;
 }
 
-        sp1_01: {
-            back: "Back to Nexus",
-            title: "SP1.01 // MEASUREMENT & UNITS",
-            check: "Verify",
-            next: "Next",
-            correct: "Measurement Verified",
-            incorrect: "Measurement Error",
-            ready: "Ready",
-            monitor_title: "SP1.01_MEASUREMENT_LAB",
-            footer_left: "SP1.01_MEASUREMENT // NODE: BASEL",
-            objective_title: "Measurement Objective",
-            difficulty: {
-                basic: "BASIC",
-                core: "CORE",
-                advanced: "ADVANCED",
-                elite: "ELITE"
-            },
-            stages: {
-                si_units: "SI UNITS",
-                conversion: "CONVERSION",
-                precision: "PRECISION"
-            },
-            tools: {
-                ruler: "RULER",
-                scale: "SCALE",
-                timer: "TIMER"
-            },
-            labels: {
-                precision: "Measurement Precision",
-                measurement_display: "Measurement Display",
-                input_terminal: "Terminal Input [Measurement-Node]"
-            },
-            prompts: {
-                si_unit: "What is the SI unit for {measurement}?",
-                convert: "Convert {value} {from} to {to}",
-                sigfigs: "How many significant figures in {value}?",
-                hint_si: "The SI unit is {name}",
-                hint_factor: "Multiply by {factor}",
-                hint_sigfigs: "Count all non-zero digits and zeros between them"
-            },
-            feedback: {
-                correct: "Measurement precision confirmed.",
-                incorrect: "Calibration error detected."
-            }
-        },
-    },
-    CN: {
-        protocol: {
-            system_name: "系统协议 v2.1",
-            warning_text: "警告：世界不会围绕你转...除非你理解规则。",
-            hold_instruction: "进入授权门",
-            hold_button: "[ 访问枢纽 ]",
-            secure_connection: "安全连接已建立",
-        },
-        common: {
-            history_title: "实验历史",
-            history_toggle: "历史",
-            history_empty: "尚无验证运行。",
-            history_accuracy: "准确度",
-            history_stage: "阶段",
-            history_difficulty: "难度",
-            history_time: "时间戳",
-            history_speed: "速度",
-            history_rigor: "严谨度",
-            history_best: "最佳",
-            mastery_title: "STEM 掌握度",
-            mastery_conceptual: "概念",
-            mastery_speed: "速度",
-            mastery_rigor: "严谨",
-            mastery_decay: "衰减",
-            achievements_title: "成就",
-            achievement_unlocked: "成就解锁",
-            achievements: {
-                first_light: {
-                    title: "第一道光",
-                    description: "完成你的第一个光学实验。"
-                },
-                first_launch: {
-                    title: "首次发射",
-                    description: "完成任何实验。"
-                },
-                mole_master: {
-                    title: "摩尔大师",
-                    description: "在 C1.02 中达到 100% 准确度。"
-                },
-                molecular_architect: {
-                    title: "分子建筑师",
-                    description: "完成 C3.01。"
-                },
-                time_traveler: {
-                    title: "时间旅行者",
-                    description: "完成 P1.04 时间膨胀任务。"
-                },
-                calculus_god: {
-                    title: "微积分之神",
-                    description: "在 GM1.01 中达到 100% 准确度。"
-                }
-            }
-        },
+// Block removed - will be re-inserted in correct location
+
+
