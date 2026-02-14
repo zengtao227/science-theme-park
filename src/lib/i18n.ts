@@ -200,16 +200,17 @@ export const translations: Record<string, any> = {
                     description: "Visualize linear algebra in 3D space. Explore matrix transformations, eigenvectors, and geometric intuition."
                 },
                 stages: {
-                    rotation: "ROTATION",
-                    scale: "SCALE",
-                    shear: "SHEAR",
-                    rotation_desc: "Rotate the unit cube around the Z-axis",
-                    scale_desc: "Scale the cube along each axis independently",
-                    shear_desc: "Shear the cube to create parallelograms",
-                    rotation_hint: "Rotation preserves distances and angles",
-                    scale_hint: "Determinant = sx × sy × sz",
-                    shear_hint: "Shear preserves volume (det = 1)"
-                }
+                    basic_transforms: "TRANSFORMS",
+                    determinant: "DETERMINANT",
+                    composition: "COMPOSITION"
+                },
+                scenario_title: "BASEL ENGINEERING MISSION",
+                scenarios: {
+                    basic_transforms: "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.",
+                    determinant: "Novartis Crystal Structure: You are analyzing drug crystal unit cell structures at Novartis Basel. The determinant represents lattice volume change. det(A)=0 indicates crystal structure collapse, det(A)<0 indicates chirality inversion. Accurate determinant calculation is crucial for predicting drug bioactivity.",
+                    composition: "University of Basel Robotics: You are programming a robotic arm at Basel University robotics lab. Each joint's motion is represented by a transformation matrix. Composite transformation AB means executing joint A's motion first, then joint B's motion. Matrix multiplication order determines the robot arm's final position."
+                },
+                explanation_label: "EXPLANATION"
             },
             gm3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
             sp1_02_title: "SP1.02 // NEWTON'S LAWS",
@@ -5273,16 +5274,17 @@ export const translations: Record<string, any> = {
                 description: "在三维空间中可视化线性代数。探索矩阵变换、特征向量和几何直觉。"
             },
             stages: {
-                rotation: "旋转",
-                scale: "缩放",
-                shear: "切变",
-                rotation_desc: "绕Z轴旋转单位立方体",
-                scale_desc: "沿各轴独立缩放立方体",
-                shear_desc: "切变立方体形成平行四边形",
-                rotation_hint: "旋转保持距离和角度",
-                scale_hint: "行列式 = sx × sy × sz",
-                shear_hint: "切变保持体积 (det = 1)"
-            }
+                basic_transforms: "基础变换",
+                determinant: "行列式",
+                composition: "复合变换"
+            },
+            scenario_title: "巴塞尔工程任务",
+            scenarios: {
+                basic_transforms: "罗氏制药分子分析：您在罗氏巴塞尔的计算化学部门工作，使用线性变换分析蛋白质分子的对称性。每个矩阵代表一个对称操作（旋转、反射、缩放）。识别变换类型对于预测分子的光学性质至关重要。",
+                determinant: "诺华晶体结构：您在诺华巴塞尔分析药物晶体的单元格结构。行列式表示晶格的体积变化。det(A)=0 表示晶体结构坍缩，det(A)<0 表示手性反转。准确计算行列式对于预测药物的生物活性至关重要。",
+                composition: "巴塞尔大学机器人学：您在巴塞尔大学机器人实验室编程机械臂。每个关节的运动由一个变换矩阵表示。复合变换 AB 表示先执行关节A的运动，再执行关节B的运动。矩阵乘法的顺序决定了机械臂的最终位置。"
+            },
+            explanation_label: "解释"
         },
         sc2_02: {
             back: "返回枢纽",
@@ -7944,16 +7946,17 @@ export const translations: Record<string, any> = {
                 description: "Visualisieren Sie lineare Algebra im 3D-Raum. Erkunden Sie Matrixtransformationen, Eigenvektoren und geometrische Intuition."
             },
             stages: {
-                rotation: "ROTATION",
-                scale: "SKALIERUNG",
-                shear: "SCHERUNG",
-                rotation_desc: "Drehen Sie den Einheitswürfel um die Z-Achse",
-                scale_desc: "Skalieren Sie den Würfel entlang jeder Achse unabhängig",
-                shear_desc: "Scheren Sie den Würfel, um Parallelogramme zu erstellen",
-                rotation_hint: "Rotation erhält Abstände und Winkel",
-                scale_hint: "Determinante = sx × sy × sz",
-                shear_hint: "Scherung erhält Volumen (det = 1)"
-            }
+                basic_transforms: "TRANSFORMATIONEN",
+                determinant: "DETERMINANTE",
+                composition: "KOMPOSITION"
+            },
+            scenario_title: "BASLER INGENIEURSMISSION",
+            scenarios: {
+                basic_transforms: "Roche Pharma-Molekülanalyse: Sie arbeiten in der Abteilung für Computerchemie von Roche Basel und verwenden lineare Transformationen zur Analyse der Symmetrie von Proteinmolekülen. Jede Matrix repräsentiert eine Symmetrieoperation (Rotation, Reflexion, Skalierung). Die Identifizierung von Transformationstypen ist entscheidend für die Vorhersage molekularer optischer Eigenschaften.",
+                determinant: "Novartis Kristallstruktur: Sie analysieren Arzneimittelkristall-Einheitszellstrukturen bei Novartis Basel. Die Determinante repräsentiert die Gittervolumenänderung. det(A)=0 zeigt einen Kristallstrukturkollaps an, det(A)<0 zeigt eine Chiralitätsinversion an. Eine genaue Determinantenberechnung ist entscheidend für die Vorhersage der Bioaktivität von Arzneimitteln.",
+                composition: "Universität Basel Robotik: Sie programmieren einen Roboterarm im Robotiklabor der Universität Basel. Die Bewegung jedes Gelenks wird durch eine Transformationsmatrix dargestellt. Die zusammengesetzte Transformation AB bedeutet, zuerst die Bewegung von Gelenk A auszuführen, dann die Bewegung von Gelenk B. Die Reihenfolge der Matrixmultiplikation bestimmt die endgültige Position des Roboterarms."
+            },
+            explanation_label: "ERKLÄRUNG"
         },
         sc2_02: {
             back: "Zurück zum Nexus",
