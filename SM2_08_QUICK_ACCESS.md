@@ -2,9 +2,23 @@
 
 ## 完成状态 ✅
 
-**任务**: 将每个难度级别扩展到至少5个题目
+**任务**: 将每个难度级别扩展到至少5个题目，并添加到首页
 **状态**: 已完成
 **日期**: 2026-02-14
+
+## 首页显示 ✅
+
+SM2.08现在已经显示在首页的数学板块中：
+- **位置**: Mathematics Sector
+- **颜色**: neon-purple (紫色霓虹)
+- **标签**: math
+- **链接**: /chamber/sm2-08
+- **可见性**: ✅ 在 https://science-park-alpha.vercel.app 上可见
+
+### 翻译
+- 🇬🇧 EN: "SM2.08 // PROBABILITY BASICS" - "Master probability fundamentals through Basel life scenarios and simple gambling education."
+- 🇨🇳 CN: "SM2.08 // 概率基础" - "通过巴塞尔生活场景和简单博彩教育掌握概率基础。"
+- 🇩🇪 DE: "SM2.08 // WAHRSCHEINLICHKEIT GRUNDLAGEN" - "Meistere Wahrscheinlichkeitsgrundlagen durch Basler Lebensszenarien und einfache Glücksspielbildung."
 
 ## 题目数量统计
 
@@ -72,9 +86,12 @@
 ## GitHub状态
 
 ```
-✓ Committed: 99ff839
+✓ Committed: 3d90aec (homepage + translations)
+✓ Committed: 99ff839 (question expansion)
+✓ Committed: 9f82ad5 (summary document)
 ✓ Pushed to main
 ✓ All changes deployed
+✓ Visible on https://science-park-alpha.vercel.app
 ```
 
 ## 题目设计原则
