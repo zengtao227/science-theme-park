@@ -101,9 +101,13 @@ function BasePair({ index, base, rotation, showBonds, highlighted }: {
 
             {highlighted && (
                 <Html position={[0, y, 0]} center>
-                    <div className="bg-black/90 border border-cyan-400 px-3 py-2 rounded text-cyan-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">{base} - {complementary}</div>
-                        <div className="text-xs">
+                    <div className="bg-black/95 backdrop-blur-md border border-cyan-400/50 px-4 py-3 rounded-xl text-cyan-200 text-sm whitespace-nowrap shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                        <div className="font-black tracking-tighter text-base flex items-center gap-2">
+                            <span style={{ color: getBaseColor(base) }}>{base}</span>
+                            <span className="text-white/40">⟷</span>
+                            <span style={{ color: getBaseColor(complementary) }}>{complementary}</span>
+                        </div>
+                        <div className="text-[10px] uppercase tracking-widest text-white/40 mt-1 font-bold">
                             {base === "A" || base === "T" ? "2 Hydrogen Bonds" : "3 Hydrogen Bonds"}
                         </div>
                     </div>

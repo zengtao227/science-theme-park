@@ -10,10 +10,12 @@ interface CellCanvasProps {
     selectedOrganelle: string | null;
     onSelectOrganelle: (id: string | null) => void;
     showCutaway: boolean;
+    translations: any;
 }
 
-function Nucleus({ selected, onClick }: { selected: boolean; onClick: () => void }) {
+function Nucleus({ selected, onClick, translations }: { selected: boolean; onClick: () => void; translations: any }) {
     const meshRef = useRef<THREE.Mesh>(null);
+    const data = translations.organelles.nucleus;
 
     useFrame(() => {
         if (meshRef.current) {
@@ -35,8 +37,8 @@ function Nucleus({ selected, onClick }: { selected: boolean; onClick: () => void
             {selected && (
                 <Html position={[0, 1.8, 0]} center>
                     <div className="bg-purple-900/90 border border-purple-400 px-3 py-2 rounded text-purple-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">NUCLEUS</div>
-                        <div className="text-xs">DNA Storage & Control Center</div>
+                        <div className="font-bold uppercase">{data.name}</div>
+                        <div className="text-xs">{data.func}</div>
                     </div>
                 </Html>
             )}
@@ -44,8 +46,9 @@ function Nucleus({ selected, onClick }: { selected: boolean; onClick: () => void
     );
 }
 
-function Mitochondria({ position, selected, onClick }: { position: [number, number, number]; selected: boolean; onClick: () => void }) {
+function Mitochondria({ position, selected, onClick, translations }: { position: [number, number, number]; selected: boolean; onClick: () => void; translations: any }) {
     const meshRef = useRef<THREE.Mesh>(null);
+    const data = translations.organelles.mitochondria;
 
     useFrame(() => {
         if (meshRef.current) {
@@ -66,8 +69,8 @@ function Mitochondria({ position, selected, onClick }: { position: [number, numb
             {selected && (
                 <Html position={[0, 0.8, 0]} center>
                     <div className="bg-pink-900/90 border border-pink-400 px-3 py-2 rounded text-pink-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">MITOCHONDRIA</div>
-                        <div className="text-xs">ATP Energy Production</div>
+                        <div className="font-bold uppercase">{data.name}</div>
+                        <div className="text-xs">{data.func}</div>
                     </div>
                 </Html>
             )}
@@ -75,7 +78,8 @@ function Mitochondria({ position, selected, onClick }: { position: [number, numb
     );
 }
 
-function Ribosome({ position, selected, onClick }: { position: [number, number, number]; selected: boolean; onClick: () => void }) {
+function Ribosome({ position, selected, onClick, translations }: { position: [number, number, number]; selected: boolean; onClick: () => void; translations: any }) {
+    const data = translations.organelles.ribosome;
     return (
         <mesh position={position} onClick={onClick}>
             <sphereGeometry args={[0.15, 16, 16]} />
@@ -89,8 +93,8 @@ function Ribosome({ position, selected, onClick }: { position: [number, number, 
             {selected && (
                 <Html position={[0, 0.4, 0]} center>
                     <div className="bg-green-900/90 border border-green-400 px-3 py-2 rounded text-green-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">RIBOSOME</div>
-                        <div className="text-xs">Protein Synthesis</div>
+                        <div className="font-bold uppercase">{data.name}</div>
+                        <div className="text-xs">{data.func}</div>
                     </div>
                 </Html>
             )}
@@ -98,7 +102,8 @@ function Ribosome({ position, selected, onClick }: { position: [number, number, 
     );
 }
 
-function GolgiApparatus({ selected, onClick }: { selected: boolean; onClick: () => void }) {
+function GolgiApparatus({ selected, onClick, translations }: { selected: boolean; onClick: () => void; translations: any }) {
+    const data = translations.organelles.golgi;
     return (
         <mesh position={[1.5, -0.5, 1]} onClick={onClick}>
             <boxGeometry args={[0.8, 0.3, 0.6]} />
@@ -112,8 +117,8 @@ function GolgiApparatus({ selected, onClick }: { selected: boolean; onClick: () 
             {selected && (
                 <Html position={[0, 0.6, 0]} center>
                     <div className="bg-amber-900/90 border border-amber-400 px-3 py-2 rounded text-amber-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">GOLGI APPARATUS</div>
-                        <div className="text-xs">Protein Packaging & Transport</div>
+                        <div className="font-bold uppercase">{data.name}</div>
+                        <div className="text-xs">{data.func}</div>
                     </div>
                 </Html>
             )}
@@ -121,7 +126,8 @@ function GolgiApparatus({ selected, onClick }: { selected: boolean; onClick: () 
     );
 }
 
-function EndoplasmicReticulum({ selected, onClick }: { selected: boolean; onClick: () => void }) {
+function EndoplasmicReticulum({ selected, onClick, translations }: { selected: boolean; onClick: () => void; translations: any }) {
+    const data = translations.organelles.er;
     return (
         <mesh position={[-1.5, 0.5, 1]} onClick={onClick}>
             <torusGeometry args={[0.5, 0.15, 16, 32]} />
@@ -135,8 +141,8 @@ function EndoplasmicReticulum({ selected, onClick }: { selected: boolean; onClic
             {selected && (
                 <Html position={[0, 0.8, 0]} center>
                     <div className="bg-cyan-900/90 border border-cyan-400 px-3 py-2 rounded text-cyan-200 text-sm whitespace-nowrap">
-                        <div className="font-bold">ENDOPLASMIC RETICULUM</div>
-                        <div className="text-xs">Protein & Lipid Synthesis</div>
+                        <div className="font-bold uppercase">{data.name}</div>
+                        <div className="text-xs">{data.func}</div>
                     </div>
                 </Html>
             )}
@@ -175,43 +181,51 @@ function Scene({ selectedOrganelle, onSelectOrganelle, showCutaway }: CellCanvas
             <Nucleus
                 selected={selectedOrganelle === "nucleus"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "nucleus" ? null : "nucleus")}
+                translations={translations}
             />
 
             <Mitochondria
                 position={[2, 0.5, 0.5]}
                 selected={selectedOrganelle === "mitochondria1"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "mitochondria1" ? null : "mitochondria1")}
+                translations={translations}
             />
             <Mitochondria
                 position={[-2, -0.5, -0.5]}
                 selected={selectedOrganelle === "mitochondria2"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "mitochondria2" ? null : "mitochondria2")}
+                translations={translations}
             />
 
             <Ribosome
                 position={[1, 1, 1]}
                 selected={selectedOrganelle === "ribosome1"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "ribosome1" ? null : "ribosome1")}
+                translations={translations}
             />
             <Ribosome
                 position={[-1, 1, -1]}
                 selected={selectedOrganelle === "ribosome2"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "ribosome2" ? null : "ribosome2")}
+                translations={translations}
             />
             <Ribosome
                 position={[1, -1, -1]}
                 selected={selectedOrganelle === "ribosome3"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "ribosome3" ? null : "ribosome3")}
+                translations={translations}
             />
 
             <GolgiApparatus
                 selected={selectedOrganelle === "golgi"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "golgi" ? null : "golgi")}
+                translations={translations}
             />
 
             <EndoplasmicReticulum
                 selected={selectedOrganelle === "er"}
                 onClick={() => onSelectOrganelle(selectedOrganelle === "er" ? null : "er")}
+                translations={translations}
             />
 
             <OrbitControls enablePan={true} enableZoom={true} />

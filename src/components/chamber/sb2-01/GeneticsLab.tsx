@@ -8,9 +8,10 @@ interface GeneticsLabProps {
     parent2: Genotype;
     onParent1Change: (genotype: Genotype) => void;
     onParent2Change: (genotype: Genotype) => void;
+    translations: any;
 }
 
-function PunnettSquare({ parent1, parent2 }: { parent1: Genotype; parent2: Genotype }) {
+function PunnettSquare({ parent1, parent2, translations }: { parent1: Genotype; parent2: Genotype; translations: any }) {
     const parent1Alleles: [Allele, Allele] = [parent1[0] as Allele, parent1[1] as Allele];
     const parent2Alleles: [Allele, Allele] = [parent2[0] as Allele, parent2[1] as Allele];
 
@@ -38,8 +39,8 @@ function PunnettSquare({ parent1, parent2 }: { parent1: Genotype; parent2: Genot
 
     const getPhenotype = (genotype: Genotype) => {
         const normalized = normalizeGenotype(genotype);
-        if (normalized === "RR" || normalized === "Rr") return "Purple";
-        return "White";
+        if (normalized === "RR" || normalized === "Rr") return translations.labels.purple_flowers.split(' ')[0];
+        return translations.labels.white_flowers.split(' ')[0];
     };
 
     return (
@@ -84,12 +85,12 @@ function PunnettSquare({ parent1, parent2 }: { parent1: Genotype; parent2: Genot
             </div>
 
             {/* Statistics */}
-            <OffspringStats offspring={offspring.flat()} />
+            <OffspringStats offspring={offspring.flat()} translations={translations} />
         </div>
     );
 }
 
-function OffspringStats({ offspring }: { offspring: Genotype[] }) {
+function OffspringStats({ offspring, translations }: { offspring: Genotype[]; translations: any }) {
     const normalizeGenotype = (g: Genotype): Genotype => {
         if (g === "rR") return "Rr";
         return g;
@@ -111,10 +112,10 @@ function OffspringStats({ offspring }: { offspring: Genotype[] }) {
 
     return (
         <div className="border border-amber-500 p-3 space-y-2">
-            <div className="text-sm text-amber-400 font-bold">OFFSPRING STATISTICS</div>
+            <div className="text-sm text-amber-400 font-bold uppercase">{translations.labels.stats}</div>
 
             <div className="space-y-1 text-xs">
-                <div className="text-cyan-300">Genotype Ratio:</div>
+                <div className="text-cyan-300 capitalize">{translations.labels.genotype_ratio}:</div>
                 <div className="flex justify-between text-cyan-200">
                     <span>RR: {counts.RR}/4 ({(counts.RR / 4) * 100}%)</span>
                 </div>
@@ -127,19 +128,19 @@ function OffspringStats({ offspring }: { offspring: Genotype[] }) {
             </div>
 
             <div className="border-t border-amber-500/50 pt-2 space-y-1 text-xs">
-                <div className="text-purple-300">Phenotype Ratio:</div>
+                <div className="text-purple-300 capitalize">{translations.labels.phenotype_ratio}:</div>
                 <div className="flex justify-between text-purple-200">
-                    <span>Purple Flowers: {purpleCount}/4 ({purplePercent}%)</span>
+                    <span>{translations.labels.purple_flowers}: {purpleCount}/4 ({purplePercent}%)</span>
                 </div>
                 <div className="flex justify-between text-pink-200">
-                    <span>White Flowers: {whiteCount}/4 ({whitePercent}%)</span>
+                    <span>{translations.labels.white_flowers}: {whiteCount}/4 ({whitePercent}%)</span>
                 </div>
             </div>
         </div>
     );
 }
 
-function PeaPlant({ genotype, label }: { genotype: Genotype; label: string }) {
+function PeaPlant({ genotype, label, translations }: { genotype: Genotype; label: string; translations: any }) {
     const normalizeGenotype = (g: Genotype): Genotype => {
         if (g === "rR") return "Rr";
         return g;
@@ -161,37 +162,35 @@ function PeaPlant({ genotype, label }: { genotype: Genotype; label: string }) {
 
                 {/* Flower */}
                 <div
-                    className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full ${
-                        isPurple ? "bg-purple-500" : "bg-pink-200"
-                    } border-2 ${isPurple ? "border-purple-700" : "border-pink-400"}`}
+                    className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full ${isPurple ? "bg-purple-500" : "bg-pink-200"
+                        } border-2 ${isPurple ? "border-purple-700" : "border-pink-400"}`}
                 ></div>
             </div>
             <div className="text-sm font-bold text-cyan-300">{normalized}</div>
-            <div className="text-xs text-white">{isPurple ? "Purple" : "White"}</div>
+            <div className="text-xs text-white">{isPurple ? translations.labels.purple_flowers.split(' ')[0] : translations.labels.white_flowers.split(' ')[0]}</div>
         </div>
     );
 }
 
-export default function GeneticsLab({ parent1, parent2, onParent1Change, onParent2Change }: GeneticsLabProps) {
+export default function GeneticsLab({ parent1, parent2, onParent1Change, onParent2Change, translations }: GeneticsLabProps) {
     const genotypes: Genotype[] = ["RR", "Rr", "rr"];
 
     return (
         <div className="space-y-6">
             {/* Parent Selection */}
             <div className="grid grid-cols-2 gap-4">
-                <div className="border border-purple-500 p-4 bg-purple-900/20 space-y-3">
-                    <div className="text-sm text-purple-400 font-bold">PARENT 1</div>
-                    <PeaPlant genotype={parent1} label="Parent 1" />
+                <div className="border border-purple-500 p-4 bg-purple-900/20 space-y-3 text-center">
+                    <div className="text-sm text-purple-400 font-bold uppercase">{translations.labels.parent} 1</div>
+                    <PeaPlant genotype={parent1} label={`${translations.labels.parent} 1`} translations={translations} />
                     <div className="space-y-2">
                         {genotypes.map((g) => (
                             <button
                                 key={g}
                                 onClick={() => onParent1Change(g)}
-                                className={`w-full px-3 py-2 border transition-colors ${
-                                    parent1 === g
+                                className={`w-full px-3 py-2 border transition-colors ${parent1 === g
                                         ? "border-purple-400 bg-purple-500/30 text-purple-200"
                                         : "border-gray-600 text-white hover:border-purple-500/50"
-                                }`}
+                                    }`}
                             >
                                 {g}
                             </button>
@@ -199,19 +198,18 @@ export default function GeneticsLab({ parent1, parent2, onParent1Change, onParen
                     </div>
                 </div>
 
-                <div className="border border-cyan-500 p-4 bg-cyan-900/20 space-y-3">
-                    <div className="text-sm text-cyan-400 font-bold">PARENT 2</div>
-                    <PeaPlant genotype={parent2} label="Parent 2" />
+                <div className="border border-cyan-500 p-4 bg-cyan-900/20 space-y-3 text-center">
+                    <div className="text-sm text-cyan-400 font-bold uppercase">{translations.labels.parent} 2</div>
+                    <PeaPlant genotype={parent2} label={`${translations.labels.parent} 2`} translations={translations} />
                     <div className="space-y-2">
                         {genotypes.map((g) => (
                             <button
                                 key={g}
                                 onClick={() => onParent2Change(g)}
-                                className={`w-full px-3 py-2 border transition-colors ${
-                                    parent2 === g
+                                className={`w-full px-3 py-2 border transition-colors ${parent2 === g
                                         ? "border-cyan-400 bg-cyan-500/30 text-cyan-200"
                                         : "border-gray-600 text-white hover:border-cyan-500/50"
-                                }`}
+                                    }`}
                             >
                                 {g}
                             </button>
@@ -222,8 +220,8 @@ export default function GeneticsLab({ parent1, parent2, onParent1Change, onParen
 
             {/* Punnett Square */}
             <div className="border border-green-500 p-4 bg-green-900/20 space-y-3">
-                <div className="text-sm text-green-400 font-bold">PUNNETT SQUARE</div>
-                <PunnettSquare parent1={parent1} parent2={parent2} />
+                <div className="text-sm text-green-400 font-bold uppercase">{translations.labels.punnett_square}</div>
+                <PunnettSquare parent1={parent1} parent2={parent2} translations={translations} />
             </div>
         </div>
     );

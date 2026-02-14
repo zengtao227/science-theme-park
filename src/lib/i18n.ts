@@ -2776,9 +2776,11 @@ export const translations: Record<string, any> = {
         sb1_01: {
             back: "Back to Nexus",
             title: "SB1.01 // CELL FACTORY",
-            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
             objective_title: "Active Mission Objective",
-            target_title: "Cell Structure",
+            target_title: "Cell Analysis",
             next: "Execute Next Sequence",
             check: "Verify",
             correct: "Verified",
@@ -2794,7 +2796,6 @@ export const translations: Record<string, any> = {
             labels: {
                 cutaway_view: "Cutaway View",
                 selected: "SELECTED ORGANELLE",
-                organelles: "ORGANELLES",
                 instructions: "INSTRUCTIONS",
                 nucleus: "Nucleus",
                 mitochondria: "Mitochondria",
@@ -2808,12 +2809,49 @@ export const translations: Record<string, any> = {
             mission: {
                 title: "MISSION: CELL EXPLORATION",
                 description: "Explore the animal cell structure. Identify organelles and understand their functions in the cellular economy."
+            },
+            prompts: {
+                id_prompt: "Identify the organelle highlighted in the 3D view.",
+                id_target: "Highlighted: ?",
+                fn_prompt: "Which organelle is responsible for: {func}?",
+                fn_target: "Function: {func}",
+                hint_name: "It is the {name}",
+                hint_start: "The answer starts with {char}"
+            },
+            organelles: {
+                nucleus: {
+                    name: "Nucleus",
+                    func: "Control Center / DNA Storage",
+                    details: "Contains DNA and controls all cell activities. The 'brain' of the cell."
+                },
+                mitochondria: {
+                    name: "Mitochondria",
+                    func: "ATP Energy Production (Powerhouse)",
+                    details: "Produces ATP through cellular respiration. Converts glucose into energy."
+                },
+                ribosome: {
+                    name: "Ribosome",
+                    func: "Protein Synthesis",
+                    details: "Synthesizes proteins by reading mRNA sequences."
+                },
+                golgi: {
+                    name: "Golgi Apparatus",
+                    func: "Packaging & Transport",
+                    details: "Modifies, packages, and transports proteins to their destinations."
+                },
+                er: {
+                    name: "Endoplasmic Reticulum",
+                    func: "Synthesis Network (ER)",
+                    details: "Rough ER: protein synthesis. Smooth ER: lipid synthesis and detoxification."
+                }
             }
         },
         sb2_01: {
             back: "Back to Nexus",
             title: "SB2.01 // MENDEL'S GARDEN",
-            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
             objective_title: "Active Mission Objective",
             target_title: "Genetic Cross",
             next: "Execute Next Sequence",
@@ -2829,20 +2867,46 @@ export const translations: Record<string, any> = {
                 dihybrid: "DIHYBRID CROSS"
             },
             labels: {
-                punnett: "Punnett Square",
+                parent: "Parent",
+                offspring: "Offspring",
+                punnett_square: "PUNNETT SQUARE",
+                stats: "OFFSPRING STATISTICS",
                 genotype_ratio: "Genotype Ratio",
                 phenotype_ratio: "Phenotype Ratio",
-                parent1: "Parent 1 Genotype",
-                parent2: "Parent 2 Genotype",
+                purple_flowers: "Purple Flowers",
+                white_flowers: "White Flowers",
                 genetics_basics: "GENETICS BASICS",
                 genotype_phenotype: "GENOTYPE VS PHENOTYPE",
                 dominance: "DOMINANCE RULES",
                 mendels_laws: "MENDEL'S LAWS",
                 instructions: "INSTRUCTIONS"
             },
+            concepts: {
+                allele: "Allele: A version of a gene",
+                dominant: "R (Dominant): Purple flower",
+                recessive: "r (Recessive): White flower",
+                genotype: "Genotype: Genetic makeup (RR, Rr, rr)",
+                phenotype: "Phenotype: Observable trait (Purple/White)",
+                homozygous_dom: "RR → Purple (Homozygous Dominant)",
+                heterozygous: "Rr → Purple (Heterozygous)",
+                homozygous_rec: "rr → White (Homozygous Recessive)",
+                law_segregation: "Law of Segregation: Each parent contributes one allele",
+                law_assortment: "Law of Independent Assortment: Alleles separate independently"
+            },
             mission: {
                 title: "MISSION: MENDELIAN GENETICS",
-                description: "Master Mendel's laws of inheritance. Predict offspring ratios and probabilities using Punnett Squares."
+                description: "Master Mendel's laws of inheritance. Predict offspring ratios using Punnett Squares."
+            },
+            prompts: {
+                monohybrid_ratio: "Cross {p1} \\times {p2}. What is the phenotypic ratio of Purple to White?",
+                monohybrid_percent: "Cross {p1} \\times {p2}. What percentage of offspring will be Purple?",
+                prob_genotype: "Cross {p1} \\times {p2}. What is the probability of a {genotype} offspring?",
+                ratio_target: "\\text{Ratio } P:W = ?",
+                percent_target: "\\text{Purple Percentage}",
+                prob_target: "P({genotype}) = ?",
+                hint_square: "Check the Punnett Square.",
+                hint_all_rr: "All offspring are Rr.",
+                hint_count: "{count} out of 4 squares."
             }
         },
         gb3_01: {
@@ -2858,6 +2922,11 @@ export const translations: Record<string, any> = {
             ready: "Ready",
             monitor_title: "GB3.01_DNA_MONITOR",
             footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
+            stages: {
+                pairing: "BASE PAIRING",
+                bonds: "HYDROGEN BONDS",
+                sequence: "SEQUENCING"
+            },
             labels: {
                 rotation: "ROTATION",
                 auto_rotate: "Auto Rotate",
@@ -2865,11 +2934,33 @@ export const translations: Record<string, any> = {
                 highlight_pair: "HIGHLIGHT BASE PAIR",
                 pairing_rules: "BASE PAIRING RULES",
                 bases: "NUCLEOTIDE BASES",
-                structure: "DNA STRUCTURE"
+                structure: "DNA STRUCTURE",
+                adenine: "Adenine",
+                thymine: "Thymine",
+                cytosine: "Cytosine",
+                guanine: "Guanine"
+            },
+            concepts: {
+                helix: "Double helix: Two antiparallel strands",
+                backbone: "Backbone: Sugar-phosphate groups",
+                at_pair: "A ↔ T: Two hydrogen bonds",
+                gc_pair: "C ↔ G: Three hydrogen bonds",
+                polarity: "Polarity: 5' to 3' orientation",
+                complementary: "Rule: Chargaff's base pairing"
             },
             mission: {
-                title: "MISSION: DNA DOUBLE HELIX",
-                description: "Explore DNA structure. Master complementary base pairing and hydrogen bonding."
+                title: "MISSION: DNA ARCHITECTURE",
+                description: "Master the structural principles of the DNA double helix. Verify base pairing rules and hydrogen bond stability."
+            },
+            prompts: {
+                pairing_prompt: "Identify the complementary base for {base}.",
+                bonds_prompt: "How many hydrogen bonds connect {b1} and {b2}?",
+                seq_prompt: "Provide the complementary sequence for: {seq}",
+                pairing_target: "Complement of {base}",
+                bonds_target: "H-Bonds: ?",
+                seq_target: "Complementary Stream",
+                hint_at: "A pairs with T via 2 bonds.",
+                hint_gc: "G pairs with C via 3 bonds."
             }
         },
         sc1_01: {
@@ -5854,19 +5945,46 @@ export const translations: Record<string, any> = {
             incorrect: "匹配失败",
             ready: "就绪",
             monitor_title: "GB3.01_DNA_监视器",
-            footer_left: "GB3.01_DNA_熔炉 // 节点：巴塞尔",
+            footer_left: "GB3.01_DNA_熔炉 // 节点：巴赛尔",
+            stages: {
+                pairing: "碱基配对",
+                bonds: "氢键计算",
+                sequence: "序列合成"
+            },
             labels: {
-                rotation: "旋转",
+                rotation: "旋转控制",
                 auto_rotate: "自动旋转",
                 show_bonds: "显示氢键",
                 highlight_pair: "高亮碱基对",
                 pairing_rules: "碱基配对规则",
                 bases: "核苷酸碱基",
-                structure: "DNA 结构"
+                structure: "DNA 结构详解",
+                adenine: "腺嘌呤",
+                thymine: "胸腺嘧啶",
+                cytosine: "胞嘧啶",
+                guanine: "鸟嘌呤"
+            },
+            concepts: {
+                helix: "双螺旋：两条反向平行的脱氧核糖核酸链",
+                backbone: "骨架：由糖和磷酸基团交替连接而成",
+                at_pair: "A ↔ T: 通过两个氢键连接",
+                gc_pair: "C ↔ G: 通过三个氢键连接",
+                polarity: "极性：5' 到 3' 的定向性",
+                complementary: "法则：查加夫碱基互补配对原则"
             },
             mission: {
-                title: "任务：DNA 双螺旋",
-                description: "探索 DNA 结构。掌握互补碱基配对和氢键。"
+                title: "任务：DNA 架构分析",
+                description: "掌握 DNA 双螺旋的结构原理。验证碱基配对规则与氢键的稳定性。"
+            },
+            prompts: {
+                pairing_prompt: "识别 {base} 的互补碱基。",
+                bonds_prompt: "{b1} 与 {b2} 之间由多少个氢键连接？",
+                seq_prompt: "推导该序列的互补序列: {seq}",
+                pairing_target: "{base} 的互补碱基",
+                bonds_target: "氢键数量: ?",
+                seq_target: "互补序列流",
+                hint_at: "A 与 T 配对，产生 2 个氢键。",
+                hint_gc: "G 与 C 配对，产生 3 个氢键。"
             }
         },
         sc1_01: {
@@ -9014,22 +9132,35 @@ export const translations: Record<string, any> = {
             difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
             objective_title: "Aktuelles Missionsziel",
             target_title: "Zellstruktur",
-            next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
             correct: "Verifiziert",
-            incorrect: "Abweichung",
+            incorrect: "Fehlersignal",
             ready: "Bereit",
             monitor_title: "SB1.01_ZELL_MONITOR",
-            footer_left: "SB1.01_ZELLFABRIK // KNOTEN: BASEL",
+            footer_left: "SB1.01_ZELLBIOLOGIE // KNOTEN: BASEL",
+            stages: {
+                identification: "IDENTIFIKATION",
+                function: "FUNKTION",
+                organelles: "ORGANELLE"
+            },
             labels: {
                 cutaway_view: "Schnittansicht",
                 selected: "AUSGEWÄHLTE ORGANELLE",
-                organelles: "ORGANELLEN",
-                instructions: "ANWEISUNGEN"
+                organelles: "ORGANELLE",
+                instructions: "ANWEISUNGEN",
+                nucleus: "Zellkern",
+                mitochondria: "Mitochondrien",
+                chloroplast: "Chloroplast",
+                ribosome: "Ribosomen",
+                golgi: "Golgi-Apparat",
+                er: "Endoplasmatisches Retikulum",
+                membrane: "Zellmembran",
+                vacuole: "Vakuole"
             },
             mission: {
-                title: "MISSION: ZELLERKUNDUNG",
-                description: "Erkunden Sie die tierische Zellstruktur. Identifizieren Sie Organellen und verstehen Sie ihre Funktionen."
+                title: "MISSION: ZELL-EXPLORATION",
+                description: "Erforsche die Struktur eukaryotischer Zellen. Identifiziere Organellen und verstehe ihre Funktionen in der Zelle."
             }
         },
         sb2_01: {
@@ -9038,23 +9169,33 @@ export const translations: Record<string, any> = {
             difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
             objective_title: "Aktuelles Missionsziel",
             target_title: "Genetische Kreuzung",
-            next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
             correct: "Verifiziert",
-            incorrect: "Abweichung",
+            incorrect: "Fehlersignal",
             ready: "Bereit",
             monitor_title: "SB2.01_GENETIK_MONITOR",
-            footer_left: "SB2.01_MENDELS_GARTEN // KNOTEN: BASEL",
+            footer_left: "SB2.01_GENETIK // KNOTEN: BASEL",
+            stages: {
+                monohybrid: "MONOHYBRIDE KREUZUNG",
+                probability: "WAHRSCHEINLICHKEIT",
+                dihybrid: "DIHYBRIDE KREUZUNG"
+            },
             labels: {
-                genetics_basics: "GENETIK-GRUNDLAGEN",
+                punnett: "Punnett-Quadrat",
+                genotype_ratio: "Genotyp-Verhältnis",
+                phenotype_ratio: "Phänotyp-Verhältnis",
+                parent1: "Elternteil 1 Genotyp",
+                parent2: "Elternteil 2 Genotyp",
+                genetics_basics: "GENETIK-BASICS",
                 genotype_phenotype: "GENOTYP VS PHÄNOTYP",
                 dominance: "DOMINANZREGELN",
-                mendels_laws: "MENDELS GESETZE",
+                mendels_laws: "MENDELSCHE REGELN",
                 instructions: "ANWEISUNGEN"
             },
             mission: {
                 title: "MISSION: MENDELSCHE GENETIK",
-                description: "Meistern Sie Mendels Vererbungsgesetze. Sagen Sie Nachkommenverhältnisse mit Punnett-Quadraten voraus."
+                description: "Meistere die Mendelsche Vererbungslehre. Sage Nachkommen-Verhältnisse mithilfe von Punnett-Quadraten voraus."
             }
         },
         gb3_01: {
@@ -9063,25 +9204,52 @@ export const translations: Record<string, any> = {
             difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
             objective_title: "Aktuelles Missionsziel",
             target_title: "DNA-Struktur",
-            next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
             correct: "Verifiziert",
-            incorrect: "Abweichung",
+            incorrect: "Fehlersignal",
             ready: "Bereit",
             monitor_title: "GB3.01_DNA_MONITOR",
             footer_left: "GB3.01_DNA_SCHMIEDE // KNOTEN: BASEL",
+            stages: {
+                pairing: "BASENPAARUNG",
+                bonds: "WASSERSTOFFBRÜCKEN",
+                sequence: "SEQUENZIERUNG"
+            },
             labels: {
                 rotation: "ROTATION",
-                auto_rotate: "Automatische Rotation",
-                show_bonds: "Wasserstoffbrücken anzeigen",
+                auto_rotate: "Auto-Rotation",
+                show_bonds: "H-Brücken anzeigen",
                 highlight_pair: "BASENPAAR HERVORHEBEN",
-                pairing_rules: "BASENPAARUNGSREGELN",
+                pairing_rules: "PAARUNGSREGELN",
                 bases: "NUKLEOTIDBASEN",
-                structure: "DNA-STRUKTUR"
+                structure: "DNA-STRUKTUR",
+                adenine: "Adenin",
+                thymine: "Thymin",
+                cytosine: "Cytosin",
+                guanine: "Guanin"
+            },
+            concepts: {
+                helix: "Doppelhelix: Zwei antiparallele Stränge",
+                backbone: "Rückgrat: Zucker-Phosphat-Einheiten",
+                at_pair: "A ↔ T: Zwei Wasserstoffbrücken",
+                gc_pair: "C ↔ G: Drei Wasserstoffbrücken",
+                polarity: "Polarität: 5' nach 3' Orientierung",
+                complementary: "Prinzip: Chargaff-Regel der Basenpaarung"
             },
             mission: {
-                title: "MISSION: DNA-DOPPELHELIX",
-                description: "Erkunden Sie die DNA-Struktur. Meistern Sie komplementäre Basenpaarung und Wasserstoffbrückenbindung."
+                title: "MISSION: DNA-ARCHITEKTUR",
+                description: "Meistere die Strukturprinzipien der DNA-Doppelhelix. Verifiziere Basenpaarungsregeln und H-Brücken-Stabilität."
+            },
+            prompts: {
+                pairing_prompt: "Bestimmen Sie die komplementäre Base für {base}.",
+                bonds_prompt: "Wie viele Wasserstoffbrücken verbinden {b1} und {b2}?",
+                seq_prompt: "Erstellen Sie die komplementäre Sequenz für: {seq}",
+                pairing_target: "Komplement von {base}",
+                bonds_target: "H-Brücken: ?",
+                seq_target: "Komplementär-Stream",
+                hint_at: "A paart mit T über 2 Brücken.",
+                hint_gc: "G paart mit C über 3 Brücken."
             }
         },
         sm3_04: {
