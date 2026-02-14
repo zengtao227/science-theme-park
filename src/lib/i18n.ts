@@ -3083,48 +3083,38 @@ export const translations: Record<string, any> = {
             back: "Back to Nexus",
             title: "SC2.02 // pH SENTINEL",
             difficulty: {
-                core: "CORE"
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
             objective_title: "Active Mission Objective",
-            target_title: "Titration Curve",
-            next: "Reset",
+            target_title: "Titration Analysis",
+            next: "Next Analysis",
             check: "Verify",
-            correct: "Verified",
-            incorrect: "Mismatch",
+            correct: "Titration Accurate",
+            incorrect: "Invalid pH reading",
             ready: "Ready",
             monitor_title: "SC2.02_TITRATION_MONITOR",
             footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
-            start: "Start Titration",
-            pause: "Pause Flow",
-            reset: "Reset Run",
-            labels: {
-                current_ph: "CURRENT pH",
-                equivalence: "Equivalence Point",
-                indicators: "Indicators",
-                solution_config: "Solution Configuration",
-                acid_molarity: "Acid Molarity",
-                base_molarity: "Base Molarity",
-                acid_volume: "Acid Volume",
-                added_volume: "Added Volume",
-                flow_rate: "Flow Rate",
-                flow_control: "Flow Control"
-            },
-            indicators: {
-                phenolphthalein: "Phenolphthalein",
-                phenolphthalein_low: "Colorless",
-                phenolphthalein_mid: "Transition",
-                phenolphthalein_high: "Pink",
-                methyl_orange: "Methyl Orange",
-                methyl_orange_low: "Red",
-                methyl_orange_mid: "Orange",
-                methyl_orange_high: "Yellow"
-            },
-            mission: {
-                title: "MISSION: TITRATION SENTINEL",
-                description: "Calibrate the pH curve in real time. Control flow rate and track the indicator shift."
-            },
             stages: {
-                titration: "TITRATION"
+                curves: "PH CURVES",
+                equivalence: "EQUIVALENCE",
+                indicators: "INDICATORS"
+            },
+            labels: {
+                initial_ph: "Initial pH",
+                added_vol: "Added Volume (mL)",
+                eq_point: "Equivalence Point",
+                indicator: "Indicator",
+                strong_acid: "Strong Acid",
+                weak_acid: "Weak Acid",
+                formula: "Titration Formula"
+            },
+            prompts: {
+                curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
+                find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
+                select_indicator: "Weak acid + Strong base. Choose indicator: Phenol(1), MethylO(2).",
+                weak_ph_calc: "At half-equivalence (pH = pKa). If pKa is 4.75, what is the pH?",
+                eq_ph_guess: "Equivalence pH of Strong/Strong? (<7=1, 7=2, >7=3).",
+                conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
             }
         },
         sc2_03: {
@@ -6545,48 +6535,38 @@ export const translations: Record<string, any> = {
             back: "返回枢纽",
             title: "SC2.02 // pH 哨兵",
             difficulty: {
-                core: "核心"
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
             objective_title: "当前任务目标",
-            target_title: "滴定曲线",
-            next: "重置",
+            target_title: "滴定分析",
+            next: "下一次分析",
             check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
+            correct: "滴定准确",
+            incorrect: "pH 读取错误",
             ready: "就绪",
-            monitor_title: "SC2.02_滴定监视器",
-            footer_left: "SC2.02_pH哨兵 // 节点：巴塞尔",
-            start: "开始滴定",
-            pause: "暂停流速",
-            reset: "重置实验",
-            labels: {
-                current_ph: "当前 pH",
-                equivalence: "当量点",
-                indicators: "指示剂",
-                solution_config: "溶液配置",
-                acid_molarity: "酸浓度",
-                base_molarity: "碱浓度",
-                acid_volume: "酸体积",
-                added_volume: "已加入体积",
-                flow_rate: "流速",
-                flow_control: "流速控制"
-            },
-            indicators: {
-                phenolphthalein: "酚酞",
-                phenolphthalein_low: "无色",
-                phenolphthalein_mid: "过渡",
-                phenolphthalein_high: "粉红",
-                methyl_orange: "甲基橙",
-                methyl_orange_low: "红色",
-                methyl_orange_mid: "橙色",
-                methyl_orange_high: "黄色"
-            },
-            mission: {
-                title: "任务：滴定哨兵",
-                description: "实时校准 pH 曲线。控制流速并观察指示剂变化。"
-            },
+            monitor_title: "SC2.02_滴定监控",
+            footer_left: "SC2.02_PH_哨兵 // 节点: 巴塞尔",
             stages: {
-                titration: "滴定"
+                curves: "PH 曲线",
+                equivalence: "等当点",
+                indicators: "指示剂"
+            },
+            labels: {
+                initial_ph: "初始 pH",
+                added_vol: "加入体积 (mL)",
+                eq_point: "等当点",
+                indicator: "指示剂",
+                strong_acid: "强酸",
+                weak_acid: "弱酸",
+                formula: "滴定公式"
+            },
+            prompts: {
+                curve_type: "初始 pH 为 {ph}。识别酸类型 (强酸=1, 弱酸=2)。",
+                find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M。求等当点体积 Vb。",
+                select_indicator: "弱酸 + 强碱。选择指示剂：酚酞(1), 甲基橙(2)。",
+                weak_ph_calc: "在半等当点 (pH = pKa)。如果 pKa 为 4.75，pH 是多少？",
+                eq_ph_guess: "强酸/强碱等当点 pH？ (<7=1, 7=2, >7=3)。",
+                conc_calc: "20mL 未知酸被 10mL 0.2M NaOH 中和。求 Ca。"
             }
         },
         sc2_03: {
@@ -9827,50 +9807,40 @@ export const translations: Record<string, any> = {
         },
         sc2_02: {
             back: "Zurück zum Nexus",
-            title: "SC2.02 // pH-WÄCHTER",
+            title: "SC2.02 // pH SENTINEL",
             difficulty: {
-                core: "KERN"
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
             },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Titrationskurve",
-            next: "Zurücksetzen",
+            objective_title: "Aktives Missionsziel",
+            target_title: "Titrationsanalyse",
+            next: "Nächste Analyse",
             check: "Prüfen",
-            correct: "Verifiziert",
-            incorrect: "Abweichung",
+            correct: "Titration akkurat",
+            incorrect: "pH-Wert fehlerhaft",
             ready: "Bereit",
-            monitor_title: "SC2.02_TITRATION_MONITOR",
-            footer_left: "SC2.02_PH_WAECHTER // KNOTEN: BASEL",
-            start: "Titration starten",
-            pause: "Fluss pausieren",
-            reset: "Lauf zurücksetzen",
-            labels: {
-                current_ph: "Aktueller pH",
-                equivalence: "Äquivalenzpunkt",
-                indicators: "Indikatoren",
-                solution_config: "Lösungs-Konfiguration",
-                acid_molarity: "Säure-Molarität",
-                base_molarity: "Base-Molarität",
-                acid_volume: "Säurevolumen",
-                added_volume: "Zugegebenes Volumen",
-                flow_rate: "Flussrate",
-                flow_control: "Flusssteuerung"
-            },
-            indicators: {
-                phenolphthalein: "Phenolphthalein",
-                phenolphthalein_low: "Farblos",
-                phenolphthalein_mid: "Übergang",
-                phenolphthalein_high: "Pink",
-                methyl_orange: "Methylorange",
-                methyl_orange_low: "Rot",
-                methyl_orange_mid: "Orange",
-                methyl_orange_high: "Gelb"
-            },
-            mission: {
-                title: "MISSION: TITRATIONSSENTINEL",
-                description: "Kalibrieren Sie die pH-Kurve in Echtzeit. Steuern Sie die Flussrate und verfolgen Sie den Indikatorwechsel."
-            },
+            monitor_title: "SC2.02_TITRATIONS_MONITOR",
+            footer_left: "SC2.02_PH_SENTINEL // KNOTEN: BASEL",
             stages: {
-                titration: "TITRATION"
+                curves: "PH-KURVEN",
+                equivalence: "ÄQUIVALENZ",
+                indicators: "INDIKATOREN"
+            },
+            labels: {
+                initial_ph: "Initialer pH",
+                added_vol: "Volumen (mL)",
+                eq_point: "Äquivalenzpunkt",
+                indicator: "Indikator",
+                strong_acid: "Starke Säure",
+                weak_acid: "Schwache Säure",
+                formula: "Titrationsformel"
+            },
+            prompts: {
+                curve_type: "Der pH-Wert ist {ph}. Säuretyp? (Stark=1, Schwach=2).",
+                find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M. Finde Vb am Äquivalenzpunkt.",
+                select_indicator: "Schwache Säure + Starke Base. Indikator? Phenol(1), MethylO(2).",
+                weak_ph_calc: "Am Halbäquivalenzpunkt (pH = pKa). Wenn pKa = 4.75, pH?",
+                eq_ph_guess: "Äquivalenz-pH bei Stark/Stark? (<7=1, 7=2, >7=3).",
+                conc_calc: "20mL Säure werden durch 10mL 0.2M NaOH neutralisiert. Finde Ca."
             }
         },
         sc2_03: {
