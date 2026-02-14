@@ -8183,36 +8183,6 @@ export const translations: Record<string, any> = {
                 description: "Untersuchen Sie Effekte der speziellen Relativität. Beobachten Sie Zeitdilatation, Längenkontraktion und Dopplereffekt bei relativistischen Geschwindigkeiten."
             }
         },
-        gms1_01: {
-            title: "GS1.01 // Komplexes Fraktal",
-            back: "Zurück zum Nexus",
-            footer_left: "GS1.01_FRAKTAL-ERKUNDE // KNOTEN: BASEL",
-            monitor_title: "GS1.01_FRAKTALMONITOR",
-            labels: {
-                max_iterations: "MAX. ITERATIONEN",
-                zoom: "ZOOM",
-                zoom_value: "{value}x",
-                center_x: "ZENTRUM X",
-                center_y: "ZENTRUM Y",
-                color_scheme: "FARBSCHEMA",
-                scheme: {
-                    classic: "KLASSISCH",
-                    fire: "FEUER",
-                    ice: "EIS",
-                    rainbow: "REGENBOGEN"
-                }
-            },
-            mandelbrot: {
-                title: "MANDELBROT-MENGE",
-                line_1: "z₀ = 0",
-                line_2: "z_{n+1} = z_n² + c",
-                line_3: "|z_n| < 2 für alle n"
-            },
-            mission: {
-                title: "MISSION: Mandelbrot-Menge",
-                description: "Untersuchen Sie die Mandelbrot-Menge mit GPU-beschleunigter Darstellung. Vergrößern Sie in unendliche Komplexität und entdecken Sie selbstähnliche Muster."
-            }
-        },
         sp1_08: {
             title: "SP1.08 // Optisches Labor",
             back: "Zurück zum Nexus",

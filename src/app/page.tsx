@@ -94,7 +94,6 @@ export default function Home() {
     { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
     { code: "GM4.01", title: t.home.gm4_01_title, desc: t.home.gm4_01_subtitle, color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
     { code: "GM5.01", title: t.home.gm5_01_title, desc: t.home.gm5_01_subtitle, color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
-    { code: "GMS1.01", title: t.home.gms1_01_title, desc: t.home.gms1_01_subtitle, color: "neon-green", href: "/chamber/gms1-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
