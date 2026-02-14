@@ -307,10 +307,23 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                   b = {quest.z1.im}
                 </text>
                 
-                {/* |z| label */}
+                {/* |z| label - positioned perpendicular to vector to avoid overlap */}
                 <text
-                  x={toCanvas(quest.z1.re / 2, quest.z1.im / 2).x + zOffset.dx}
-                  y={toCanvas(quest.z1.re / 2, quest.z1.im / 2).y + zOffset.dy}
+                  x={(() => {
+                    const midpoint = toCanvas(quest.z1.re / 2, quest.z1.im / 2);
+                    // Calculate perpendicular offset (rotate 90 degrees)
+                    const vectorAngle = Math.atan2(quest.z1.im, quest.z1.re);
+                    const perpAngle = vectorAngle + Math.PI / 2;
+                    const perpDistance = 30; // Distance perpendicular to vector
+                    return midpoint.x + Math.cos(perpAngle) * perpDistance;
+                  })()}
+                  y={(() => {
+                    const midpoint = toCanvas(quest.z1.re / 2, quest.z1.im / 2);
+                    const vectorAngle = Math.atan2(quest.z1.im, quest.z1.re);
+                    const perpAngle = vectorAngle + Math.PI / 2;
+                    const perpDistance = 30;
+                    return midpoint.y - Math.sin(perpAngle) * perpDistance; // Negative because canvas Y is flipped
+                  })()}
                   fill="#00e5ff"
                   fontSize="14"
                   fontWeight="bold"
