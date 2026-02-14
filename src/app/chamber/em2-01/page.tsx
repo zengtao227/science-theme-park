@@ -4,7 +4,7 @@ import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
-import MatrixVisualization2D from "@/components/chamber/gm5-01/MatrixVisualization2D";
+import MatrixVisualization2D from "@/components/chamber/em2-01/MatrixVisualization2D";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
@@ -186,7 +186,7 @@ function buildMatrixPool(t: any, difficulty: Difficulty, stage: Stage): MatrixQu
 
 export default function GM5_01_MatrixGeometry() {
   const { currentLanguage } = useAppStore();
-  const t = (translations[currentLanguage] as any)?.gm5_01;
+  const t = (translations[currentLanguage] as any)?.em2_01;
 
   const {
     difficulty,
@@ -229,7 +229,7 @@ export default function GM5_01_MatrixGeometry() {
   return (
     <ChamberLayout
       title={t?.title || "GM5.01 // MATRIX GEOMETRY"}
-      moduleCode="GM5.01"
+      moduleCode="EM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[

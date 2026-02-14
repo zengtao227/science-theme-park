@@ -6,109 +6,107 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import PhotosynthesisCanvas from "@/components/chamber/sb1-02/PhotosynthesisCanvas";
+import MeasurementCanvas from "@/components/chamber/sp1-01/MeasurementCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "EQUATION" | "FACTORS" | "CHLOROPLAST";
+type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
 
-interface SB102Quest extends Quest {
+interface SP101Quest extends Quest {
     stage: Stage;
-    factor?: string;
-    structure?: string;
+    value?: number;
+    fromUnit?: string;
+    toUnit?: string;
+    measurement?: string;
 }
 
-type SB102T = typeof translations.EN.sb1_02;
+type SP101T = typeof translations.EN.sp1_01;
 
-export default function SB102Page() {
+export default function SP101Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb1_02 || translations.EN.sb1_02) as SB102T;
-    const [lightIntensity, setLightIntensity] = useState(50);
-    const [co2Level, setCo2Level] = useState(50);
-    const [temperature, setTemperature] = useState(25);
+    const t = (translations[currentLanguage]?.sp1_01 || translations.EN.sp1_01) as SP101T;
+    const [selectedTool, setSelectedTool] = useState<string>("ruler");
+    const [measurementValue, setMeasurementValue] = useState<number>(0);
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB102Quest[] => {
-        const quests: SB102Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP101Quest[] => {
+        const quests: SP101Quest[] = [];
 
-        if (stage === "EQUATION") {
-            // Photosynthesis equation components
-            quests.push(
-                {
-                    id: "EQ-1", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.reactant}}`,
-                    expressionLatex: `6CO_2 + 6H_2O + \\text{light} \\rightarrow C_6H_{12}O_6 + \\text{?}`,
-                    targetLatex: "o2",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "o2" }],
-                    correctLatex: "6O_2",
-                    hintLatex: [`\\text{${t.prompts.hint_oxygen}}`]
-                },
-                {
-                    id: "EQ-2", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.glucose}}`,
-                    expressionLatex: `6CO_2 + 6H_2O \\rightarrow \\text{?} + 6O_2`,
-                    targetLatex: "glucose",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "glucose" }],
-                    correctLatex: "C_6H_{12}O_6",
-                    hintLatex: [`\\text{${t.prompts.hint_glucose}}`]
-                },
-                {
-                    id: "EQ-3", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.water_count}}`,
-                    expressionLatex: `6CO_2 + \\text{?}H_2O \\rightarrow C_6H_{12}O_6 + 6O_2`,
-                    targetLatex: "6",
-                    slots: [{ id: "ans", labelLatex: "\\text{Coefficient}", placeholder: "...", expected: "6" }],
-                    correctLatex: "6",
-                    hintLatex: [`\\text{${t.prompts.hint_balance}}`]
-                }
-            );
-        }
-
-        if (stage === "FACTORS") {
-            // Limiting factors
-            const factors = [
-                { factor: "light", effect: "increase", answer: "increase" },
-                { factor: "co2", effect: "decrease", answer: "decrease" },
-                { factor: "temperature", effect: "optimal", answer: "optimal" },
-                { factor: "water", effect: "increase", answer: "increase" }
+        if (stage === "SI_UNITS") {
+            // Basic SI unit identification
+            const units = [
+                { measurement: "length", unit: "m", name: "meter" },
+                { measurement: "mass", unit: "kg", name: "kilogram" },
+                { measurement: "time", unit: "s", name: "second" },
+                { measurement: "temperature", unit: "K", name: "kelvin" },
+                { measurement: "current", unit: "A", name: "ampere" }
             ];
 
-            factors.forEach((f, idx) => {
+            units.forEach((u, idx) => {
                 quests.push({
-                    id: `FACT-${idx}`,
+                    id: `SI-${idx}`,
                     difficulty,
                     stage,
-                    factor: f.factor,
-                    promptLatex: `\\text{${t.prompts.factor_effect.replace('{factor}', f.factor).replace('{effect}', f.effect)}}`,
-                    expressionLatex: `\\text{${f.factor}} \\uparrow \\rightarrow \\text{rate } \\text{?}`,
-                    targetLatex: f.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "increase/decrease/optimal", expected: f.answer }],
-                    correctLatex: f.answer,
-                    hintLatex: [`\\text{${t.prompts.hint_factor}}`]
+                    measurement: u.measurement,
+                    promptLatex: `\\text{${t.prompts.si_unit.replace('{measurement}', u.measurement)}}`,
+                    expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
+                    targetLatex: u.unit,
+                    slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
+                    correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
+                    hintLatex: [`\\text{${t.prompts.hint_si.replace('{name}', u.name)}}`]
                 });
             });
         }
 
-        if (stage === "CHLOROPLAST") {
-            // Chloroplast structures
-            const structures = [
-                { name: "thylakoid", function: "light reactions" },
-                { name: "stroma", function: "calvin cycle" },
-                { name: "grana", function: "stacked thylakoids" },
-                { name: "chlorophyll", function: "light absorption" }
+        if (stage === "CONVERSION") {
+            // Unit conversions
+            const conversions = [
+                { value: 1000, from: "m", to: "km", factor: 0.001, answer: "1" },
+                { value: 5, from: "km", to: "m", factor: 1000, answer: "5000" },
+                { value: 100, from: "cm", to: "m", factor: 0.01, answer: "1" },
+                { value: 2.5, from: "kg", to: "g", factor: 1000, answer: "2500" },
+                { value: 3600, from: "s", to: "h", factor: 1/3600, answer: "1" }
             ];
 
-            structures.forEach((s, idx) => {
+            conversions.forEach((c, idx) => {
+                const result = (c.value * c.factor).toString();
                 quests.push({
-                    id: `STRUCT-${idx}`,
+                    id: `CONV-${idx}`,
                     difficulty,
                     stage,
-                    structure: s.name,
-                    promptLatex: `\\text{${t.prompts.structure_function.replace('{function}', s.function)}}`,
-                    expressionLatex: `\\text{${s.function}} \\rightarrow \\text{?}`,
-                    targetLatex: s.name,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: s.name }],
-                    correctLatex: s.name,
-                    hintLatex: [`\\text{${t.prompts.hint_structure.replace('{name}', s.name)}}`]
+                    value: c.value,
+                    fromUnit: c.from,
+                    toUnit: c.to,
+                    promptLatex: `\\text{${t.prompts.convert.replace('{value}', c.value.toString()).replace('{from}', c.from).replace('{to}', c.to)}}`,
+                    expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                    targetLatex: result,
+                    slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
+                    correctLatex: `${result}\\,\\text{${c.to}}`,
+                    hintLatex: [`\\text{${t.prompts.hint_factor.replace('{factor}', c.factor.toString())}}`]
+                });
+            });
+        }
+
+        if (stage === "PRECISION") {
+            // Significant figures and precision
+            const precision = [
+                { value: "12.5", sigfigs: "3", measurement: "length" },
+                { value: "0.0045", sigfigs: "2", measurement: "mass" },
+                { value: "100", sigfigs: "1", measurement: "time" },
+                { value: "3.14", sigfigs: "3", measurement: "distance" },
+                { value: "0.500", sigfigs: "3", measurement: "volume" }
+            ];
+
+            precision.forEach((p, idx) => {
+                quests.push({
+                    id: `PREC-${idx}`,
+                    difficulty,
+                    stage,
+                    promptLatex: `\\text{${t.prompts.sigfigs.replace('{value}', p.value)}}`,
+                    expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
+                    targetLatex: p.sigfigs,
+                    slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
+                    correctLatex: `${p.sigfigs}\\text{ significant figures}`,
+                    hintLatex: [`\\text{${t.prompts.hint_sigfigs}}`]
                 });
             });
         }
@@ -131,28 +129,28 @@ export default function SB102Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SB102Quest, Stage>({
+    } = useQuestManager<SP101Quest, Stage>({
         buildPool,
-        initialStage: "EQUATION",
+        initialStage: "SI_UNITS",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SB1.02", stage);
+            completeStage("SP1.01", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "EQUATION", label: t.stages.equation },
-        { id: "FACTORS", label: t.stages.factors },
-        { id: "CHLOROPLAST", label: t.stages.chloroplast },
+        { id: "SI_UNITS", label: t.stages.si_units },
+        { id: "CONVERSION", label: t.stages.conversion },
+        { id: "PRECISION", label: t.stages.precision },
     ], [t]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
-            moduleCode="SB1.02"
+            moduleCode="SP1.01"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -181,64 +179,34 @@ export default function SB102Page() {
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <PhotosynthesisCanvas
-                            lightIntensity={lightIntensity}
-                            co2Level={co2Level}
-                            temperature={temperature}
+                        <MeasurementCanvas
+                            tool={selectedTool}
+                            value={measurementValue}
                             stage={stage}
                             translations={t}
                         />
                     </div>
 
-                    {/* Environmental Controls */}
-                    <div className="grid grid-cols-1 gap-3">
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.light}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={lightIntensity}
-                                    onChange={(e) => setLightIntensity(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-10 text-right">{lightIntensity}%</span>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.co2}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={co2Level}
-                                    onChange={(e) => setCo2Level(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-cyan"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-10 text-right">{co2Level}%</span>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.temp}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="50"
-                                    value={temperature}
-                                    onChange={(e) => setTemperature(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-amber"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-12 text-right">{temperature}°C</span>
-                            </div>
-                        </div>
+                    {/* Tool Selection */}
+                    <div className="grid grid-cols-3 gap-2">
+                        {["ruler", "scale", "timer"].map((tool) => (
+                            <button
+                                key={tool}
+                                onClick={() => setSelectedTool(tool)}
+                                className={`p-2 text-[9px] uppercase tracking-widest font-bold rounded border transition-all ${
+                                    selectedTool === tool
+                                        ? "bg-neon-green/20 border-neon-green text-neon-green"
+                                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
+                                }`}
+                            >
+                                {t.tools[tool as keyof typeof t.tools]}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.efficiency}</span>
+                            <span>{t.labels.precision}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -273,7 +241,7 @@ export default function SB102Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.reaction_display}
+                                    {t.labels.measurement_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -294,11 +262,11 @@ export default function SB102Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">PHOTO_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-green/30 font-mono">MEAS_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}

@@ -1,1189 +1,636 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import EquationBalance from "@/components/chamber/sm1-05/EquationBalance";
+import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "BALANCE" | "SOLVE" | "TRANSFORM" | "APPLICATIONS";
-type EquationQuest = Quest & { 
-  stage: Stage; 
-  context?: string; 
-  scenario?: string;
-  equation?: string;
-  leftSide?: number;
-  rightSide?: number;
-  operation?: string;
-};
+type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
 
-export default function SM105Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
-  const t = locale.sm1_05 || translations.EN.sm1_05;
+interface S106Quest extends Quest {
+    stage: Stage;
+    visualMode: "RECIPES" | "PERCENT" | "MIXTURES";
+    visualData: any;
+}
 
-  const buildStagePool = useCallback((t: typeof translations.EN.sm1_05, difficulty: Difficulty, stage: Stage): EquationQuest[] => {
-    const pools: Record<Stage, Record<Difficulty, EquationQuest[]>> = {
-      BALANCE: {
-        BASIC: [
-          {
-            id: "BAL_B1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_add_both,
-            promptLatex: "x + 3 = 7",
-            expressionLatex: "x + 3 + 2 = 7 + 2",
-            targetLatex: "x",
-            equation: "x + 3 = 7",
-            operation: "+2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "BAL_B2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_subtract_both,
-            promptLatex: "x + 5 = 8",
-            expressionLatex: "x + 5 - 5 = 8 - 5",
-            targetLatex: "x",
-            equation: "x + 5 = 8",
-            operation: "-5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-          {
-            id: "BAL_B3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_multiply_both,
-            promptLatex: "\\frac{x}{2} = 4",
-            expressionLatex: "\\frac{x}{2} \\times 2 = 4 \\times 2",
-            targetLatex: "x",
-            equation: "x/2 = 4",
-            operation: "×2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-          {
-            id: "BAL_B4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_divide_both,
-            promptLatex: "2x = 10",
-            expressionLatex: "\\frac{2x}{2} = \\frac{10}{2}",
-            targetLatex: "x",
-            equation: "2x = 10",
-            operation: "÷2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "BAL_B5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_simple_check,
-            promptLatex: "x + 2 = 6",
-            expressionLatex: "x = 6 - 2",
-            targetLatex: "x",
-            equation: "x + 2 = 6",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-        ],
-        CORE: [
-          {
-            id: "BAL_C1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_two_steps,
-            promptLatex: "2x + 3 = 11",
-            expressionLatex: "2x = 11 - 3, \\quad x = \\frac{8}{2}",
-            targetLatex: "x",
-            equation: "2x + 3 = 11",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "BAL_C2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_negative_result,
-            promptLatex: "x + 7 = 3",
-            expressionLatex: "x = 3 - 7",
-            targetLatex: "x",
-            equation: "x + 7 = 3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -4, unit: "" }],
-            correctLatex: "x = -4",
-          },
-          {
-            id: "BAL_C3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_fraction_coeff,
-            promptLatex: "\\frac{x}{3} + 2 = 5",
-            expressionLatex: "\\frac{x}{3} = 3, \\quad x = 9",
-            targetLatex: "x",
-            equation: "x/3 + 2 = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 9, unit: "" }],
-            correctLatex: "x = 9",
-          },
-          {
-            id: "BAL_C4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_both_sides_x,
-            promptLatex: "x + 5 = 2x",
-            expressionLatex: "5 = 2x - x",
-            targetLatex: "x",
-            equation: "x + 5 = 2x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "BAL_C5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_distribute,
-            promptLatex: "3(x + 2) = 15",
-            expressionLatex: "3x + 6 = 15, \\quad 3x = 9",
-            targetLatex: "x",
-            equation: "3(x + 2) = 15",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-        ],
-        ADVANCED: [
-          {
-            id: "BAL_A1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_complex_both,
-            promptLatex: "2x + 3 = x + 7",
-            expressionLatex: "2x - x = 7 - 3",
-            targetLatex: "x",
-            equation: "2x + 3 = x + 7",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "BAL_A2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_fractions,
-            promptLatex: "\\frac{x}{2} + \\frac{x}{3} = 5",
-            expressionLatex: "\\frac{3x + 2x}{6} = 5, \\quad 5x = 30",
-            targetLatex: "x",
-            equation: "x/2 + x/3 = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
-            correctLatex: "x = 6",
-          },
-          {
-            id: "BAL_A3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_parentheses_both,
-            promptLatex: "2(x + 1) = 3(x - 2)",
-            expressionLatex: "2x + 2 = 3x - 6, \\quad x = 8",
-            targetLatex: "x",
-            equation: "2(x + 1) = 3(x - 2)",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-          {
-            id: "BAL_A4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_decimal_coeff,
-            promptLatex: "0.5x + 1.5 = 3",
-            expressionLatex: "0.5x = 1.5, \\quad x = 3",
-            targetLatex: "x",
-            equation: "0.5x + 1.5 = 3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-          {
-            id: "BAL_A5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_negative_coeff,
-            promptLatex: "-2x + 5 = -3",
-            expressionLatex: "-2x = -8, \\quad x = 4",
-            targetLatex: "x",
-            equation: "-2x + 5 = -3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-        ],
-        ELITE: [
-          {
-            id: "BAL_E1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_nested_parens,
-            promptLatex: "2(3x - (x + 1)) = 10",
-            expressionLatex: "2(2x - 1) = 10, \\quad 4x - 2 = 10",
-            targetLatex: "x",
-            equation: "2(3x - (x + 1)) = 10",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-          {
-            id: "BAL_E2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_three_fractions,
-            promptLatex: "\\frac{x}{2} - \\frac{x}{3} + \\frac{x}{6} = 2",
-            expressionLatex: "\\frac{3x - 2x + x}{6} = 2, \\quad 2x = 12",
-            targetLatex: "x",
-            equation: "x/2 - x/3 + x/6 = 2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
-            correctLatex: "x = 6",
-          },
-          {
-            id: "BAL_E3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_complex_distribute,
-            promptLatex: "3(2x - 1) - 2(x + 3) = 5",
-            expressionLatex: "6x - 3 - 2x - 6 = 5, \\quad 4x = 14",
-            targetLatex: "x",
-            equation: "3(2x - 1) - 2(x + 3) = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 3.5, unit: "" }],
-            correctLatex: "x = 3.5",
-          },
-          {
-            id: "BAL_E4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_reciprocal,
-            promptLatex: "\\frac{1}{x} + \\frac{1}{2x} = \\frac{3}{4}",
-            expressionLatex: "\\frac{2 + 1}{2x} = \\frac{3}{4}, \\quad x = 2",
-            targetLatex: "x",
-            equation: "1/x + 1/(2x) = 3/4",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "" }],
-            correctLatex: "x = 2",
-          },
-          {
-            id: "BAL_E5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.balance,
-            context: t.problems.bal_proportion,
-            promptLatex: "\\frac{x + 1}{x - 1} = 2",
-            expressionLatex: "x + 1 = 2(x - 1), \\quad x = 3",
-            targetLatex: "x",
-            equation: "(x + 1)/(x - 1) = 2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-        ],
-      },
-      SOLVE: {
-        BASIC: [
-          {
-            id: "SOL_B1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_one_step_add,
-            promptLatex: "x + 3 = 7",
-            expressionLatex: "x = 7 - 3",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_B2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_one_step_sub,
-            promptLatex: "x - 5 = 2",
-            expressionLatex: "x = 2 + 5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7, unit: "" }],
-            correctLatex: "x = 7",
-          },
-          {
-            id: "SOL_B3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_one_step_mult,
-            promptLatex: "3x = 12",
-            expressionLatex: "x = \\frac{12}{3}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_B4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_one_step_div,
-            promptLatex: "\\frac{x}{4} = 3",
-            expressionLatex: "x = 3 \\times 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 12, unit: "" }],
-            correctLatex: "x = 12",
-          },
-          {
-            id: "SOL_B5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_negative_simple,
-            promptLatex: "x + 8 = 3",
-            expressionLatex: "x = 3 - 8",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -5, unit: "" }],
-            correctLatex: "x = -5",
-          },
-        ],
-        CORE: [
-          {
-            id: "SOL_C1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_two_step_1,
-            promptLatex: "2x + 5 = 13",
-            expressionLatex: "2x = 8, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_C2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_two_step_2,
-            promptLatex: "\\frac{x}{3} - 2 = 4",
-            expressionLatex: "\\frac{x}{3} = 6, \\quad x = 18",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 18, unit: "" }],
-            correctLatex: "x = 18",
-          },
-          {
-            id: "SOL_C3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_negative_coeff,
-            promptLatex: "-3x = 15",
-            expressionLatex: "x = \\frac{15}{-3}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -5, unit: "" }],
-            correctLatex: "x = -5",
-          },
-          {
-            id: "SOL_C4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_fraction_result,
-            promptLatex: "2x + 1 = 4",
-            expressionLatex: "2x = 3, \\quad x = 1.5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 1.5, unit: "" }],
-            correctLatex: "x = 1.5",
-          },
-          {
-            id: "SOL_C5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_decimal_coeff,
-            promptLatex: "0.5x = 4",
-            expressionLatex: "x = \\frac{4}{0.5}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-        ],
-        ADVANCED: [
-          {
-            id: "SOL_A1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_combine_like,
-            promptLatex: "3x + 2x - 4 = 11",
-            expressionLatex: "5x = 15, \\quad x = 3",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-          {
-            id: "SOL_A2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_distribute_simple,
-            promptLatex: "2(x + 3) = 14",
-            expressionLatex: "2x + 6 = 14, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_A3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_x_both_sides,
-            promptLatex: "5x - 2 = 3x + 6",
-            expressionLatex: "2x = 8, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_A4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_fraction_both,
-            promptLatex: "\\frac{x}{2} + \\frac{x}{4} = 6",
-            expressionLatex: "\\frac{3x}{4} = 6, \\quad x = 8",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-          {
-            id: "SOL_A5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_negative_both,
-            promptLatex: "-2x + 3 = -x - 5",
-            expressionLatex: "-x = -8, \\quad x = 8",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-        ],
-        ELITE: [
-          {
-            id: "SOL_E1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_complex_distribute,
-            promptLatex: "3(2x - 1) = 2(x + 5)",
-            expressionLatex: "6x - 3 = 2x + 10, \\quad x = 3.25",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.xx", expected: 3.25, unit: "" }],
-            correctLatex: "x = 3.25",
-          },
-          {
-            id: "SOL_E2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_nested_parens,
-            promptLatex: "2(x - (3 - x)) = 10",
-            expressionLatex: "2(2x - 3) = 10, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "SOL_E3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_three_terms,
-            promptLatex: "\\frac{x}{2} + \\frac{x}{3} - \\frac{x}{6} = 4",
-            expressionLatex: "\\frac{2x}{3} = 4, \\quad x = 6",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
-            correctLatex: "x = 6",
-          },
-          {
-            id: "SOL_E4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_decimal_complex,
-            promptLatex: "0.3x + 0.5(x - 2) = 2.6",
-            expressionLatex: "0.8x - 1 = 2.6, \\quad x = 4.5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 4.5, unit: "" }],
-            correctLatex: "x = 4.5",
-          },
-          {
-            id: "SOL_E5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.solve,
-            context: t.problems.sol_proportion_eq,
-            promptLatex: "\\frac{x - 2}{3} = \\frac{x + 1}{5}",
-            expressionLatex: "5(x - 2) = 3(x + 1), \\quad x = 6.5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 6.5, unit: "" }],
-            correctLatex: "x = 6.5",
-          },
-        ],
-      },
-      TRANSFORM: {
-        BASIC: [
-          {
-            id: "TRA_B1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_move_constant,
-            promptLatex: "x + 7 = 12",
-            expressionLatex: "x = 12 - 7",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "TRA_B2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_move_variable,
-            promptLatex: "2x = x + 5",
-            expressionLatex: "2x - x = 5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "TRA_B3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_isolate_x,
-            promptLatex: "3x = 15",
-            expressionLatex: "x = \\frac{15}{3}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "TRA_B4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_two_moves,
-            promptLatex: "2x + 3 = 11",
-            expressionLatex: "2x = 8, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "TRA_B5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_negative_move,
-            promptLatex: "x - 6 = -2",
-            expressionLatex: "x = -2 + 6",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-        ],
-        CORE: [
-          {
-            id: "TRA_C1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_collect_terms,
-            promptLatex: "3x + 2x = 20",
-            expressionLatex: "5x = 20, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "TRA_C2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_move_both,
-            promptLatex: "4x + 3 = 2x + 11",
-            expressionLatex: "4x - 2x = 11 - 3",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "TRA_C3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_expand_first,
-            promptLatex: "2(x + 3) = 14",
-            expressionLatex: "2x + 6 = 14, \\quad x = 4",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-          {
-            id: "TRA_C4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_fraction_clear,
-            promptLatex: "\\frac{x}{3} + 2 = 5",
-            expressionLatex: "\\frac{x}{3} = 3, \\quad x = 9",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 9, unit: "" }],
-            correctLatex: "x = 9",
-          },
-          {
-            id: "TRA_C5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_negative_coeff,
-            promptLatex: "-2x + 5 = 1",
-            expressionLatex: "-2x = -4, \\quad x = 2",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "" }],
-            correctLatex: "x = 2",
-          },
-        ],
-        ADVANCED: [
-          {
-            id: "TRA_A1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_multi_step,
-            promptLatex: "3(x - 2) + 2x = 19",
-            expressionLatex: "3x - 6 + 2x = 19, \\quad 5x = 25",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "TRA_A2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_both_expand,
-            promptLatex: "2(x + 1) = 3(x - 2)",
-            expressionLatex: "2x + 2 = 3x - 6, \\quad x = 8",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
-            correctLatex: "x = 8",
-          },
-          {
-            id: "TRA_A3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_fractions_lcd,
-            promptLatex: "\\frac{x}{2} + \\frac{x}{3} = 10",
-            expressionLatex: "\\frac{5x}{6} = 10, \\quad x = 12",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "" }],
-            correctLatex: "x = 12",
-          },
-          {
-            id: "TRA_A4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_decimal_expand,
-            promptLatex: "0.5(x + 4) = 3.5",
-            expressionLatex: "0.5x + 2 = 3.5, \\quad x = 3",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
-            correctLatex: "x = 3",
-          },
-          {
-            id: "TRA_A5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_complex_collect,
-            promptLatex: "5x - 2(x - 3) = 18",
-            expressionLatex: "5x - 2x + 6 = 18, \\quad 3x = 12",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
-            correctLatex: "x = 4",
-          },
-        ],
-        ELITE: [
-          {
-            id: "TRA_E1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_nested_complex,
-            promptLatex: "3(2x - (x + 1)) = 15",
-            expressionLatex: "3(x - 1) = 15, \\quad x = 6",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
-            correctLatex: "x = 6",
-          },
-          {
-            id: "TRA_E2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_three_fractions,
-            promptLatex: "\\frac{x}{2} - \\frac{x}{3} + \\frac{x}{4} = 5",
-            expressionLatex: "\\frac{5x}{12} = 5, \\quad x = 12",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "" }],
-            correctLatex: "x = 12",
-          },
-          {
-            id: "TRA_E3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_double_expand,
-            promptLatex: "2(3x - 1) - 3(x + 2) = 7",
-            expressionLatex: "6x - 2 - 3x - 6 = 7, \\quad 3x = 15",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
-            correctLatex: "x = 5",
-          },
-          {
-            id: "TRA_E4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_proportion_cross,
-            promptLatex: "\\frac{2x + 1}{3} = \\frac{x - 2}{2}",
-            expressionLatex: "2(2x + 1) = 3(x - 2), \\quad x = -8",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -8, unit: "" }],
-            correctLatex: "x = -8",
-          },
-          {
-            id: "TRA_E5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.transform,
-            context: t.problems.tra_mixed_complex,
-            promptLatex: "0.5(4x - 2) + \\frac{x}{3} = 7",
-            expressionLatex: "2x - 1 + \\frac{x}{3} = 7, \\quad x = 3.6",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 3.6, unit: "" }],
-            correctLatex: "x = 3.6",
-          },
-        ],
-      },
-      APPLICATIONS: {
-        BASIC: [
-          {
-            id: "APP_B1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_bus_ticket,
-            promptLatex: "\\text{Ticket price}",
-            expressionLatex: "x + 2 = 5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "CHF" }],
-            correctLatex: "x = 3 \\text{ CHF}",
-          },
-          {
-            id: "APP_B2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_rhine_time,
-            promptLatex: "\\text{Ferry time}",
-            expressionLatex: "2x = 10",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "min" }],
-            correctLatex: "x = 5 \\text{ min}",
-          },
-          {
-            id: "APP_B3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_age_simple,
-            promptLatex: "\\text{Age}",
-            expressionLatex: "x + 5 = 12",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7, unit: "years" }],
-            correctLatex: "x = 7 \\text{ years}",
-          },
-          {
-            id: "APP_B4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_distance_simple,
-            promptLatex: "\\text{Distance}",
-            expressionLatex: "\\frac{x}{2} = 6",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "km" }],
-            correctLatex: "x = 12 \\text{ km}",
-          },
-          {
-            id: "APP_B5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_price_discount,
-            promptLatex: "\\text{Original price}",
-            expressionLatex: "x - 10 = 40",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 50, unit: "CHF" }],
-            correctLatex: "x = 50 \\text{ CHF}",
-          },
-        ],
-        CORE: [
-          {
-            id: "APP_C1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_tram_tickets,
-            promptLatex: "\\text{Adult tickets}",
-            expressionLatex: "3x + 2 \\times 2 = 13",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "CHF" }],
-            correctLatex: "x = 3 \\text{ CHF}",
-          },
-          {
-            id: "APP_C2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_novartis_samples,
-            promptLatex: "\\text{Samples per box}",
-            expressionLatex: "5x + 10 = 60",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "" }],
-            correctLatex: "x = 10 \\text{ samples}",
-          },
-          {
-            id: "APP_C3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_age_sum,
-            promptLatex: "\\text{Son's age}",
-            expressionLatex: "x + (x + 30) = 50",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "years" }],
-            correctLatex: "x = 10 \\text{ years}",
-          },
-          {
-            id: "APP_C4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_rectangle_perimeter,
-            promptLatex: "\\text{Width}",
-            expressionLatex: "2(x + 8) = 28",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "m" }],
-            correctLatex: "x = 6 \\text{ m}",
-          },
-          {
-            id: "APP_C5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_speed_distance,
-            promptLatex: "\\text{Speed}",
-            expressionLatex: "2x = 80",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 40, unit: "km/h" }],
-            correctLatex: "x = 40 \\text{ km/h}",
-          },
-        ],
-        ADVANCED: [
-          {
-            id: "APP_A1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_roche_concentration,
-            promptLatex: "\\text{Original concentration}",
-            expressionLatex: "0.5x + 0.3 \\times 100 = 0.4 \\times 150",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 60, unit: "%" }],
-            correctLatex: "x = 60\\%",
-          },
-          {
-            id: "APP_A2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_consecutive_numbers,
-            promptLatex: "\\text{First number}",
-            expressionLatex: "x + (x + 1) + (x + 2) = 48",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 15, unit: "" }],
-            correctLatex: "x = 15",
-          },
-          {
-            id: "APP_A3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_work_rate,
-            promptLatex: "\\text{Hours for worker A}",
-            expressionLatex: "\\frac{1}{x} + \\frac{1}{6} = \\frac{1}{2}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "hours" }],
-            correctLatex: "x = 3 \\text{ hours}",
-          },
-          {
-            id: "APP_A4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_mixture_problem,
-            promptLatex: "\\text{Liters of 20% solution}",
-            expressionLatex: "0.2x + 0.5 \\times 10 = 0.3(x + 10)",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 20, unit: "L" }],
-            correctLatex: "x = 20 \\text{ L}",
-          },
-          {
-            id: "APP_A5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_investment_interest,
-            promptLatex: "\\text{Principal amount}",
-            expressionLatex: "x + 0.05x = 2100",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xxxx", expected: 2000, unit: "CHF" }],
-            correctLatex: "x = 2000 \\text{ CHF}",
-          },
-        ],
-        ELITE: [
-          {
-            id: "APP_E1",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_train_meeting,
-            promptLatex: "\\text{Time to meet}",
-            expressionLatex: "80x + 100x = 360",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "hours" }],
-            correctLatex: "x = 2 \\text{ hours}",
-          },
-          {
-            id: "APP_E2",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_age_ratio,
-            promptLatex: "\\text{Current age}",
-            expressionLatex: "\\frac{x + 5}{2x + 5} = \\frac{2}{3}",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "years" }],
-            correctLatex: "x = 10 \\text{ years}",
-          },
-          {
-            id: "APP_E3",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_compound_mixture,
-            promptLatex: "\\text{Amount of pure acid}",
-            expressionLatex: "x + 0.3 \\times 20 = 0.5(x + 20)",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "L" }],
-            correctLatex: "x = 12 \\text{ L}",
-          },
-          {
-            id: "APP_E4",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_boat_current,
-            promptLatex: "\\text{Boat speed in still water}",
-            expressionLatex: "\\frac{30}{x + 2} + \\frac{30}{x - 2} = 5",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "km/h" }],
-            correctLatex: "x = 10 \\text{ km/h}",
-          },
-          {
-            id: "APP_E5",
-            difficulty,
-            stage,
-            scenario: t.scenarios.applications,
-            context: t.problems.app_profit_loss,
-            promptLatex: "\\text{Cost price}",
-            expressionLatex: "1.2x - 0.9x = 60",
-            targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xxx", expected: 200, unit: "CHF" }],
-            correctLatex: "x = 200 \\text{ CHF}",
-          },
-        ],
-      },
-    };
+type S106T = typeof translations.EN.sm1_05;
 
-    return pools[stage][difficulty] || [];
-  }, []);
+export default function SM106Page() {
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = (translations[currentLanguage]?.sm1_05 || translations.EN.sm1_05) as S106T;
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(t, difficulty, stage), [t, buildStagePool]);
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): S106Quest[] => {
+        const isBasic = difficulty === "BASIC";
+        const isCore = difficulty === "CORE";
+        const isAdv = difficulty === "ADVANCED";
+        const isElite = difficulty === "ELITE";
 
-  const {
-    currentQuest: quest,
-    stage,
-    inputs,
-    setInputs,
-    lastCheck,
-    verify,
-    next,
-    handleStageChange,
-    difficulty,
-    handleDifficultyChange,
-  } = useQuestManager<EquationQuest, Stage>({
-    buildPool,
-    initialStage: "BALANCE",
-    tolerance: 0.01,
-  });
+        const quests: S106Quest[] = [];
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm1-05", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
+        // --- STAGE 1: RECIPES ---
+        if (stage === "RECIPES") {
+            if (isBasic) {
+                quests.push(
+                    {
+                        id: "R-B1", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Recipe: 2 eggs for 4 people. How many for 8 people?}",
+                        expressionLatex: "2 \\to 4, ? \\to 8", targetLatex: "4",
+                        visualData: { ingredient: "eggs", baseAmount: 2, targetAmount: 4 },
+                        slots: [{ id: "ans", labelLatex: "Eggs", placeholder: "?", expected: 4 }],
+                        correctLatex: "4", hintLatex: ["Double the people, double the eggs."]
+                    },
+                    {
+                        id: "R-B2", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Recipe: 1 cup flour per cake. Needs for 3 cakes?}",
+                        expressionLatex: "1 \\times 3", targetLatex: "3",
+                        visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 3 },
+                        slots: [{ id: "ans", labelLatex: "Cups", placeholder: "?", expected: 3 }],
+                        correctLatex: "3", hintLatex: ["Multiply by 3."]
+                    },
+                    {
+                        id: "R-B3", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{3 apples cost 2 CHF. Cost of 6 apples?}",
+                        expressionLatex: "3 \\to 2, 6 \\to ?", targetLatex: "4",
+                        visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 6 },
+                        slots: [{ id: "ans", labelLatex: "Cost", placeholder: "?", expected: 4 }],
+                        correctLatex: "4", hintLatex: ["Double the quantity, double the cost."]
+                    },
+                    {
+                        id: "R-B4", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Ratio 1:2. If there are 5 of A, how many B?}",
+                        expressionLatex: "1:2 \\implies 5:?", targetLatex: "10",
+                        visualData: { ingredient: "cocoa", baseAmount: 5, targetAmount: 10 },
+                        slots: [{ id: "ans", labelLatex: "B", placeholder: "?", expected: 10 }],
+                        correctLatex: "10", hintLatex: ["Multiply by 2."]
+                    },
+                    {
+                        id: "R-B5", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Half batch: 4 eggs usually. How many now?}",
+                        expressionLatex: "4 \\div 2", targetLatex: "2",
+                        visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 2 },
+                        slots: [{ id: "ans", labelLatex: "Eggs", placeholder: "?", expected: 2 }],
+                        correctLatex: "2", hintLatex: ["Divide by 2."]
+                    }
+                );
+            } else if (isCore) {
+                quests.push(
+                    {
+                        id: "R-C1", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Ratio 2:3. If A=4, what is B?}",
+                        expressionLatex: "2:3 = 4:x", targetLatex: "6",
+                        visualData: { ingredient: "milk", baseAmount: 4, targetAmount: 6 },
+                        slots: [{ id: "ans", labelLatex: "B", placeholder: "?", expected: 6 }],
+                        correctLatex: "6", hintLatex: ["Scale factor is 2."]
+                    },
+                    {
+                        id: "R-C2", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Scale 1:5. Map distance 3cm. Real distance?}",
+                        expressionLatex: "1:5 \\implies 3:?", targetLatex: "15",
+                        visualData: { ingredient: "flour", baseAmount: 3, targetAmount: 15 },
+                        slots: [{ id: "ans", labelLatex: "Dist", placeholder: "?", expected: 15 }],
+                        correctLatex: "15", hintLatex: ["Multiply by 5."]
+                    },
+                    {
+                        id: "R-C3", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Recipe: 200g sugar for 4 people. For 6 people?}",
+                        expressionLatex: "\\frac{200}{4} \\times 6", targetLatex: "300",
+                        visualData: { ingredient: "sugar", baseAmount: 4, targetAmount: 6 },
+                        slots: [{ id: "ans", labelLatex: "Sugar", placeholder: "?", expected: 300 }],
+                        correctLatex: "300", hintLatex: ["50g per person."]
+                    },
+                    {
+                        id: "R-C4", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Simplify ratio 4:6}",
+                        expressionLatex: "4:6 = ?:3", targetLatex: "2",
+                        visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 },
+                        slots: [{ id: "ans", labelLatex: "A", placeholder: "?", expected: 2 }],
+                        correctLatex: "2", hintLatex: ["Divide both by 2."]
+                    },
+                    {
+                        id: "R-C5", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{A car travels 60km in 1 hour. In 3 hours?}",
+                        expressionLatex: "60 \\times 3", targetLatex: "180",
+                        visualData: { ingredient: "cocoa", baseAmount: 1, targetAmount: 3 },
+                        slots: [{ id: "ans", labelLatex: "km", placeholder: "?", expected: 180 }],
+                        correctLatex: "180", hintLatex: ["Speed is constant."]
+                    }
+                );
+            } else if (isAdv) {
+                quests.push(
+                    {
+                        id: "R-A1", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Ratio 2:5. If total is 14, find parts.}",
+                        expressionLatex: "2x+5x=14", targetLatex: "A=4, B=10",
+                        visualData: { ingredient: "milk", baseAmount: 2, targetAmount: 5 },
+                        slots: [{ id: "a", labelLatex: "A", placeholder: "#", expected: 4 }, { id: "b", labelLatex: "B", placeholder: "#", expected: 10 }],
+                        correctLatex: "4, 10", hintLatex: ["7 parts total. Each part is 2."]
+                    },
+                    {
+                        id: "R-A2", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{1.5kg for 5 people. How much for 3?}",
+                        expressionLatex: "\\frac{1.5}{5} \\times 3", targetLatex: "0.9",
+                        visualData: { ingredient: "flour", baseAmount: 5, targetAmount: 3 },
+                        slots: [{ id: "ans", labelLatex: "kg", placeholder: "?", expected: 0.9 }],
+                        correctLatex: "0.9", hintLatex: ["0.3kg per person."]
+                    },
+                    {
+                        id: "R-A3", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Scale factor 2.5. Original 4. New?}",
+                        expressionLatex: "4 \\times 2.5", targetLatex: "10",
+                        visualData: { ingredient: "sugar", baseAmount: 4, targetAmount: 10 },
+                        slots: [{ id: "ans", labelLatex: "New", placeholder: "?", expected: 10 }],
+                        correctLatex: "10", hintLatex: ["4 * 2 + 4 * 0.5"]
+                    },
+                    {
+                        id: "R-A4", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{A:B = 3:4. B:C = 4:5. Find A:C}",
+                        expressionLatex: "3:5", targetLatex: "3:5",
+                        visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 5 },
+                        slots: [{ id: "a", labelLatex: "A", placeholder: "#", expected: 3 }, { id: "c", labelLatex: "C", placeholder: "#", expected: 5 }],
+                        correctLatex: "3:5", hintLatex: ["B matches in both ratios."]
+                    },
+                    {
+                        id: "R-A5", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Gear Ratio 3:1. Input spins 9 times. Output?}",
+                        expressionLatex: "9 \\div 3", targetLatex: "3",
+                        visualData: { ingredient: "cocoa", baseAmount: 9, targetAmount: 3 },
+                        slots: [{ id: "ans", labelLatex: "Spins", placeholder: "?", expected: 3 }],
+                        correctLatex: "3", hintLatex: ["Output is slower."]
+                    }
+                );
+            } else {
+                // Elite
+                quests.push(
+                    {
+                        id: "R-E1", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{A:B = 2:3. B:C = 6:5. Find A:B:C}",
+                        expressionLatex: "4:6:5", targetLatex: "4:6:5",
+                        visualData: { ingredient: "milk", baseAmount: 4, targetAmount: 5 },
+                        slots: [{ id: "a", labelLatex: "A", placeholder: "#", expected: 4 }, { id: "b", labelLatex: "B", placeholder: "#", expected: 6 }, { id: "c", labelLatex: "C", placeholder: "#", expected: 5 }],
+                        correctLatex: "4:6:5", hintLatex: ["Multiply A:B by 2 to match B."]
+                    },
+                    {
+                        id: "R-E2", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Map 1:25000. 4cm on map is ?km}",
+                        expressionLatex: "4 \\times 25000", targetLatex: "1",
+                        visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 1 },
+                        slots: [{ id: "ans", labelLatex: "km", placeholder: "?", expected: 1 }],
+                        correctLatex: "1", hintLatex: ["100,000cm = 1km."]
+                    },
+                    {
+                        id: "R-E3", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Total 360. Ratio 2:3:4. Find largest share}",
+                        expressionLatex: "\\frac{4}{9} \\times 360", targetLatex: "160",
+                        visualData: { ingredient: "sugar", baseAmount: 2, targetAmount: 4 },
+                        slots: [{ id: "ans", labelLatex: "Share", placeholder: "?", expected: 160 }],
+                        correctLatex: "160", hintLatex: ["Total parts = 9. 360/9 = 40."]
+                    },
+                    {
+                        id: "R-E4", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Inverse proportion. 4 workers take 6h. 3 workers take?}",
+                        expressionLatex: "4 \\times 6 = 24h \\text{ total}", targetLatex: "8",
+                        visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 },
+                        slots: [{ id: "ans", labelLatex: "Hours", placeholder: "?", expected: 8 }],
+                        correctLatex: "8", hintLatex: ["Constant product."]
+                    },
+                    {
+                        id: "R-E5", difficulty, stage, visualMode: "RECIPES",
+                        promptLatex: "\\text{Pumps A, B fill tank in 6h. A alone in 10h. B alone?}",
+                        expressionLatex: "\\frac{1}{6} - \\frac{1}{10}", targetLatex: "15",
+                        visualData: { ingredient: "cocoa", baseAmount: 6, targetAmount: 10 },
+                        slots: [{ id: "ans", labelLatex: "Hours", placeholder: "?", expected: 15 }],
+                        correctLatex: "15", hintLatex: ["Subtract rates."]
+                    }
+                );
+            }
+        }
 
-  return (
-    <ChamberLayout
-      title={t.title}
-      moduleCode="SM1.05"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BALANCE", label: t.stages.balance },
-        { id: "SOLVE", label: t.stages.solve },
-        { id: "TRANSFORM", label: t.stages.transform },
-        { id: "APPLICATIONS", label: t.stages.applications },
-      ]}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
-      footerLeft={t.footer_left}
-      translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
-        difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
-        },
-      }}
-      monitorContent={
-        <div className="space-y-4">
-          <EquationBalance 
-            stage={stage} 
-            quest={quest}
-            language={currentLanguage as "EN" | "CN" | "DE"} 
-          />
-        </div>
-      }
-    >
-      <div className="space-y-8">
-        {quest?.scenario && (
-          <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
-              {t.basel_scenario}
+        // --- STAGE 2: PERCENT ---
+        if (stage === "PERCENT") {
+            if (isBasic) {
+                quests.push(
+                    {
+                        id: "P-B1", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{What is } 50\\% \\text{ of } 100?",
+                        expressionLatex: "0.5 \\times 100", targetLatex: "50",
+                        visualData: { percentage: 50, totalValue: 100 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 50 }],
+                        correctLatex: "50", hintLatex: ["Half of 100."]
+                    },
+                    {
+                        id: "P-B2", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{What is } 25\\% \\text{ of } 100?",
+                        expressionLatex: "0.25 \\times 100", targetLatex: "25",
+                        visualData: { percentage: 25, totalValue: 100 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 25 }],
+                        correctLatex: "25", hintLatex: ["Quarter of 100."]
+                    },
+                    {
+                        id: "P-B3", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Convert } \\frac{1}{2} \\text{ to } \\%",
+                        expressionLatex: "1 \\div 2", targetLatex: "50",
+                        visualData: { percentage: 50, totalValue: 100 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 50 }],
+                        correctLatex: "50", hintLatex: ["Half is 50 percent."]
+                    },
+                    {
+                        id: "P-B4", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{What is } 10\\% \\text{ of } 200?",
+                        expressionLatex: "0.1 \\times 200", targetLatex: "20",
+                        visualData: { percentage: 10, totalValue: 200, partValue: 20 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 20 }],
+                        correctLatex: "20", hintLatex: ["Move decimal one left."]
+                    },
+                    {
+                        id: "P-B5", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Convert } 0.75 \\text{ to } \\%",
+                        expressionLatex: "0.75 \\times 100", targetLatex: "75",
+                        visualData: { percentage: 75, totalValue: 100 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 75 }],
+                        correctLatex: "75", hintLatex: ["Multiply by 100."]
+                    }
+                );
+            } else if (isCore) {
+                quests.push(
+                    {
+                        id: "P-C1", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{What is } 20\\% \\text{ of } 50?",
+                        expressionLatex: "0.2 \\times 50", targetLatex: "10",
+                        visualData: { percentage: 20, totalValue: 50, partValue: 10 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 10 }],
+                        correctLatex: "10", hintLatex: ["10% is 5. Double it."]
+                    },
+                    {
+                        id: "P-C2", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{30 is what } \\% \\text{ of } 60?",
+                        expressionLatex: "30/60", targetLatex: "50",
+                        visualData: { percentage: 50, totalValue: 60, partValue: 30 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 50 }],
+                        correctLatex: "50", hintLatex: ["It is half."]
+                    },
+                    {
+                        id: "P-C3", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Find } 15\\% \\text{ of } 200",
+                        expressionLatex: "30", targetLatex: "30",
+                        visualData: { percentage: 15, totalValue: 200, partValue: 30 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 30 }],
+                        correctLatex: "30", hintLatex: ["10% is 20, 5% is 10."]
+                    },
+                    {
+                        id: "P-C4", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Simplify } \\frac{8}{20} \\text{ to } \\%",
+                        expressionLatex: "40", targetLatex: "40",
+                        visualData: { percentage: 40, totalValue: 50, partValue: 20 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 40 }],
+                        correctLatex: "40", hintLatex: ["Multiply denominator to 100."]
+                    },
+                    {
+                        id: "P-C5", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Increase 50 by } 10\\%",
+                        expressionLatex: "50 + 5", targetLatex: "55",
+                        visualData: { percentage: 10, totalValue: 50, partValue: 5 },
+                        slots: [{ id: "ans", labelLatex: "New Value", placeholder: "?", expected: 55 }],
+                        correctLatex: "55", hintLatex: ["Find 10% first."]
+                    }
+                );
+            } else if (isAdv) {
+                quests.push(
+                    {
+                        id: "P-A1", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Decrease 80 by } 15\\%",
+                        expressionLatex: "15\\% = 12", targetLatex: "68",
+                        visualData: { percentage: 15, totalValue: 80, partValue: 12 },
+                        slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 68 }],
+                        correctLatex: "68", hintLatex: ["80 - 12"]
+                    },
+                    {
+                        id: "P-A2", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Price is 120 CHF. 20\\% Discount.}",
+                        expressionLatex: "120 \\times 0.8", targetLatex: "96",
+                        visualData: { percentage: 80, totalValue: 120, partValue: 96 },
+                        slots: [{ id: "ans", labelLatex: "Price", placeholder: "?", expected: 96 }],
+                        correctLatex: "96", hintLatex: ["Discount is 24."]
+                    },
+                    {
+                        id: "P-A3", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Find } 12.5\\% \\text{ of } 80",
+                        expressionLatex: "1/8 \\times 80", targetLatex: "10",
+                        visualData: { percentage: 12.5, totalValue: 80, partValue: 10 },
+                        slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 10 }],
+                        correctLatex: "10", hintLatex: ["1/8th."]
+                    },
+                    {
+                        id: "P-A4", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{35 is } 70\\% \\text{ of what?}",
+                        expressionLatex: "35 / 0.7", targetLatex: "50",
+                        visualData: { percentage: 70, totalValue: 50, partValue: 35 },
+                        slots: [{ id: "ans", labelLatex: "Total", placeholder: "?", expected: 50 }],
+                        correctLatex: "50", hintLatex: ["Divide part by percent."]
+                    },
+                    {
+                        id: "P-A5", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Increase 200 by } 2.5\\%",
+                        expressionLatex: "200 + 5", targetLatex: "205",
+                        visualData: { percentage: 2.5, totalValue: 200, partValue: 5 },
+                        slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 205 }],
+                        correctLatex: "205", hintLatex: ["1% is 2."]
+                    }
+                );
+            } else {
+                // Elite
+                quests.push(
+                    {
+                        id: "P-E1", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Price after +20\\% tax is 144. Original price?}",
+                        expressionLatex: "120 \\times 1.2 = 144", targetLatex: "120",
+                        visualData: { percentage: 120, totalValue: 120, partValue: 144 },
+                        slots: [{ id: "ans", labelLatex: "Orig", placeholder: "?", expected: 120 }],
+                        correctLatex: "120", hintLatex: ["Divide by 1.2."]
+                    },
+                    {
+                        id: "P-E2", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Compound Interest: 1000 at 10\\% for 2 years (simple comp).}",
+                        expressionLatex: "1000 \\times 1.1 \\times 1.1", targetLatex: "1210",
+                        visualData: { percentage: 10, totalValue: 1000, partValue: 1210 },
+                        slots: [{ id: "ans", labelLatex: "Final", placeholder: "?", expected: 1210 }],
+                        correctLatex: "1210", hintLatex: ["1100 after 1 year."]
+                    },
+                    {
+                        id: "P-E3", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Stock drops 20\\% then rises 25\\%. Net change?}",
+                        expressionLatex: "100 \\times 0.8 \\times 1.25 = 100", targetLatex: "0",
+                        visualData: { percentage: 0, totalValue: 100, partValue: 100 },
+                        slots: [{ id: "ans", labelLatex: "% Change", placeholder: "?", expected: 0 }],
+                        correctLatex: "0", hintLatex: ["It breaks even."]
+                    },
+                    {
+                        id: "P-E4", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{What \\% of 1 hour is 2 mins 24 secs?}",
+                        expressionLatex: "144s / 3600s", targetLatex: "4",
+                        visualData: { percentage: 4, totalValue: 3600, partValue: 144 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 4 }],
+                        correctLatex: "4", hintLatex: ["Convert all to seconds."]
+                    },
+                    {
+                        id: "P-E5", difficulty, stage, visualMode: "PERCENT",
+                        promptLatex: "\\text{Population 5000 increases to 6000. % Increase?}",
+                        expressionLatex: "1000/5000", targetLatex: "20",
+                        visualData: { percentage: 20, totalValue: 5000, partValue: 6000 },
+                        slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }],
+                        correctLatex: "20", hintLatex: ["Difference / Original"]
+                    }
+                );
+            }
+        }
+
+        // --- STAGE 3: MIXTURES ---
+        if (stage === "MIXTURES") {
+            if (isBasic) {
+                quests.push(
+                    { id: "M-B1", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{20ml Syrup + 80ml Water. Concentration?}", expressionLatex: "\\frac{20}{100}", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }], correctLatex: "20", hintLatex: ["Total volume 100ml."] },
+                    { id: "M-B2", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{10g Salt in 90g Water. %?}", expressionLatex: "\\frac{10}{100}", targetLatex: "10", visualData: { solute: 10, solvent: 90, hideResult: true, soluteColor: "#f4f4f5", solventColor: "#3b82f6" }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 10 }], correctLatex: "10", hintLatex: ["Total mass 100g."] },
+                    { id: "M-B3", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{50ml Juice + 50ml Water. %?}", expressionLatex: "\\frac{50}{100}", targetLatex: "50", visualData: { solute: 50, solvent: 50, hideResult: true, soluteColor: "#eab308" }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 50 }], correctLatex: "50", hintLatex: ["Half and half."] },
+                    { id: "M-B4", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{30ml Red + 70ml Blue. % Red?}", expressionLatex: "\\frac{30}{100}", targetLatex: "30", visualData: { solute: 30, solvent: 70, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 30 }], correctLatex: "30", hintLatex: ["30 out of 100."] },
+                    { id: "M-B5", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{0ml Solute + 100ml Water. %?}", expressionLatex: "0", targetLatex: "0", visualData: { solute: 0, solvent: 100, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 0 }], correctLatex: "0", hintLatex: ["Pure solvent."] }
+                );
+            } else if (isCore) {
+                quests.push(
+                    { id: "M-C1", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{25g Solute in 75g Solvent. %?}", expressionLatex: "\\frac{25}{100}", targetLatex: "25", visualData: { solute: 25, solvent: 75, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 25 }], correctLatex: "25", hintLatex: ["Total 100g."] },
+                    { id: "M-C2", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{20ml in 180ml Water. %?}", expressionLatex: "\\frac{20}{200}", targetLatex: "10", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 10 }], correctLatex: "10", hintLatex: ["Total 200ml."] },
+                    { id: "M-C3", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{40ml in 160ml Water. %?}", expressionLatex: "\\frac{40}{200}", targetLatex: "20", visualData: { solute: 40, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }], correctLatex: "20", hintLatex: ["Double the percent calculation."] },
+                    { id: "M-C4", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Total 500ml. 10\\% is Solute. Solute Volume?}", expressionLatex: "50", targetLatex: "50", visualData: { solute: 50, solvent: 450, hideResult: false }, slots: [{ id: "ans", labelLatex: "ml", placeholder: "?", expected: 50 }], correctLatex: "50", hintLatex: ["500 * 0.1"] },
+                    { id: "M-C5", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Total 200g. 5\\% Concentration. Solute Mass?}", expressionLatex: "10", targetLatex: "10", visualData: { solute: 10, solvent: 190, hideResult: false }, slots: [{ id: "ans", labelLatex: "g", placeholder: "?", expected: 10 }], correctLatex: "10", hintLatex: ["200 * 0.05"] }
+                );
+            } else if (isAdv) {
+                quests.push(
+                    { id: "M-A1", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Add 10g Salt to 40g Water. %?}", expressionLatex: "10/50", targetLatex: "20", visualData: { solute: 10, solvent: 40, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }], correctLatex: "20", hintLatex: ["Total 50g."] },
+                    { id: "M-A2", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Add 50ml to 150ml. %?}", expressionLatex: "50/200", targetLatex: "25", visualData: { solute: 50, solvent: 150, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 25 }], correctLatex: "25", hintLatex: ["Quarter."] },
+                    { id: "M-A3", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Dilute 100ml (50\\%) with 100ml Water. New %?}", expressionLatex: "50g / 200ml", targetLatex: "25", visualData: { solute: 50, solvent: 150, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 25 }], correctLatex: "25", hintLatex: ["Volume doubles, concentration halves."] },
+                    { id: "M-A4", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Need 10\\% solution. Have 20g solute. How much water?}", expressionLatex: "20/Total=0.1", targetLatex: "180", visualData: { solute: 20, solvent: 180, hideResult: false }, slots: [{ id: "ans", labelLatex: "Water", placeholder: "?", expected: 180 }], correctLatex: "180", hintLatex: ["Total must be 200. 200-20=180."] },
+                    { id: "M-A5", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Mix 100g (10\\%) and 100g (20\\%). New %?}", expressionLatex: "15", targetLatex: "15", visualData: { solute: 30, solvent: 170, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 15 }], correctLatex: "15", hintLatex: ["Average of 10 and 20."] }
+                );
+            } else {
+                // Elite
+                quests.push(
+                    { id: "M-E1", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Mix 200g (10\\%) and 300g (20\\%). New %?}", expressionLatex: "(20+60)/500", targetLatex: "16", visualData: { solute: 80, solvent: 420, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 16 }], correctLatex: "16", hintLatex: ["Total solute 80g. Total mass 500g."] },
+                    { id: "M-E2", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Evaporate 100g water from 200g (10\\%) solution. New %?}", expressionLatex: "20/100", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }], correctLatex: "20", hintLatex: ["Solute stays 20g. Total becomes 100g."] },
+                    { id: "M-E3", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{How much water to add to 50g (40\\%) to get 10\\%?}", expressionLatex: "20/X = 0.1", targetLatex: "150", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: "Add", placeholder: "?", expected: 150 }], correctLatex: "150", hintLatex: ["Solute 20g. Need total 200g. Current 50g."] },
+                    { id: "M-E4", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Mix X g (0\\%) with 100g (20\\%) to get 10\\%}", expressionLatex: "20/(100+X)=0.1", targetLatex: "100", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: "Add", placeholder: "?", expected: 100 }], correctLatex: "100", hintLatex: ["Dilute by half."] },
+                    { id: "M-E5", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{Concentration C=20\\%. Add 50g solute to 200g. New C%?}", expressionLatex: "(40+50)/250", targetLatex: "36", visualData: { solute: 90, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 36 }], correctLatex: "36", hintLatex: ["Orig solute 40g. New solute 90g. Total 250g."] }
+                );
+            }
+        }
+
+        return quests;
+    }, []);
+
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+    const {
+        currentQuest,
+        difficulty,
+        stage,
+        lastCheck,
+        inputs,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+        getHint,
+        currentStageStats,
+    } = useQuestManager<S106Quest, Stage>({
+        buildPool,
+        initialStage: "RECIPES",
+    });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("sm1-05", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
+    const stagesProps = useMemo(() => [
+        { id: "RECIPES", label: t.stages.recipes },
+        { id: "PERCENT", label: t.stages.percent },
+        { id: "MIXTURES", label: t.stages.mixtures },
+    ], [t]);
+
+    const hint = getHint();
+
+    return (
+        <ChamberLayout
+            moduleCode="SM1.05"
+            title={t.title}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={stagesProps}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
+            }}
+            monitorContent={
+                <div className="flex flex-col h-full gap-4">
+                    <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
+                        {currentQuest ? (
+                            <RatioCanvas
+                                mode={currentQuest.visualMode}
+                                quest={currentQuest}
+                                language={currentLanguage}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-center h-full text-white/50 italic">
+                                Initializing laboratory...
+                            </div>
+                        )}
+                    </div>
+                    <div className="mt-auto pt-4 border-t border-white/5">
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
+                            <span>Sequence Progress</span>
+                            <span>{currentStageStats?.correct % 6} / 5</span>
+                        </div>
+                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
+                                        }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            }
+        >
+            <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {currentQuest && (
+                    <div className="space-y-12">
+                        <div className="text-center space-y-6">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
+                                Laboratory Objective
+                            </h3>
+                            <div className="text-4xl text-white font-black leading-tight">
+                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-center">
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
+                                <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
+                                    Mathematical Expression
+                                </span>
+                                <div className="text-5xl text-white font-black">
+                                    <InlineMath math={currentQuest.expressionLatex} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="space-y-8">
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
+                                    Data Input Terminals
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+                                    {currentQuest.slots.map((slot: any) => (
+                                        <div key={slot.id} className="w-full max-w-xs space-y-3">
+                                            <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
+                                                <InlineMath>{slot.labelLatex}</InlineMath>
+                                                <span className="text-neon-cyan/30 font-mono">NODE_{slot.id.toUpperCase()}</span>
+                                            </div>
+                                            <div className="relative group">
+                                                <input
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    placeholder={slot.placeholder}
+                                                    value={inputs[slot.id] || ""}
+                                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter') verify();
+                                                    }}
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <AnimatePresence mode="wait">
+                                    {lastCheck && (
+                                        <motion.div
+                                            key={lastCheck.ok ? "correct" : "incorrect"}
+                                            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
+                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-5">
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
+                                                    {lastCheck.ok ? "✓" : "✗"}
+                                                </div>
+                                                <div>
+                                                    <div className="font-black text-lg tracking-widest uppercase italic">
+                                                        {lastCheck.ok ? "Verification Successful" : "Data Mismatch"}
+                                                    </div>
+                                                    <div className="text-sm font-medium opacity-70">
+                                                        {lastCheck.ok ? "Identity confirmed. Proceeding to next node." : "Please recalibrate input parameters."}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {!lastCheck.ok && hint && (
+                                                <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <div className="text-white font-bold">
+                                                        <InlineMath>{hint}</InlineMath>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {lastCheck.ok && (
+                                                <button
+                                                    onClick={next}
+                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
+                                                >
+                                                    Execute Next Sequence
+                                                </button>
+                                            )}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-            <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
-          </div>
-        )}
-
-        {quest?.context && (
-          <div className="p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
-              {t.scenario_title}
-            </div>
-            <p className="text-white/80 leading-relaxed">{quest.context}</p>
-          </div>
-        )}
-
-        <div className="text-center space-y-4">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t.solve_title}
-          </div>
-          <div className="text-3xl text-white font-black">
-            <InlineMath math={quest?.promptLatex || ""} />
-          </div>
-        </div>
-
-        {quest?.expressionLatex && (
-          <div className="text-center p-4 bg-white/5 border border-white/10 rounded-xl">
-            <BlockMath math={quest.expressionLatex} />
-          </div>
-        )}
-
-        <div className="max-w-md mx-auto space-y-4">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white font-black text-center">
-            {t.answer_title}
-          </div>
-          {quest?.slots.map((slot) => (
-            <div key={slot.id} className="space-y-2">
-              <label className="text-sm text-white/70 font-mono">
-                <InlineMath math={slot.labelLatex} />
-              </label>
-              <input
-                value={inputs[slot.id] ?? ""}
-                onChange={(e) => setInputs((prev) => ({ ...prev, [slot.id]: e.target.value }))}
-                className="w-full bg-black border-2 border-cyan-500/50 p-4 text-center outline-none focus:border-cyan-400 placeholder:text-white/40 font-black text-2xl text-white rounded-lg"
-                placeholder={slot.placeholder}
-              />
-            </div>
-          ))}
-        </div>
-
-        {lastCheck?.ok && quest?.correctLatex && (
-          <div className="text-center p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
-            <div className="text-green-400 font-black mb-2">{t.solution_title}</div>
-            <BlockMath math={quest.correctLatex} />
-          </div>
-        )}
-      </div>
-    </ChamberLayout>
-  );
+        </ChamberLayout>
+    );
 }

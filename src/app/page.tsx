@@ -77,10 +77,10 @@ export default function Home() {
 
   const mathModules = useMemo(() => ([
     { code: "SM1.01", title: t.home.sm1_01_title, desc: t.home.sm1_01_subtitle, color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
-    { code: "SM1.03", title: t.home.sm1_03_title, desc: t.home.sm1_03_subtitle, color: "neon-purple", href: "/chamber/sm1-03", tags: ["math"] },
-    { code: "SM1.04", title: t.home.sm1_04_title, desc: t.home.sm1_04_subtitle, color: "neon-cyan", href: "/chamber/sm1-04", tags: ["math"] },
-    { code: "SM1.05", title: t.home.sm1_05_title, desc: t.home.sm1_05_subtitle, color: "neon-green", href: "/chamber/sm1-05", tags: ["math"] },
-    { code: "SM1.06", title: t.home.sm1_06_title, desc: t.home.sm1_06_subtitle, color: "neon-cyan", href: "/chamber/sm1-06", tags: ["math"] },
+    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle, color: "neon-purple", href: "/chamber/sm1-02", tags: ["math"] },
+    { code: "SM1.03", title: t.home.sm1_03_title, desc: t.home.sm1_03_subtitle, color: "neon-cyan", href: "/chamber/sm1-03", tags: ["math"] },
+    { code: "SM1.04", title: t.home.sm1_04_title, desc: t.home.sm1_04_subtitle, color: "neon-green", href: "/chamber/sm1-04", tags: ["math"] },
+    { code: "SM1.05", title: t.home.sm1_05_title, desc: t.home.sm1_05_subtitle, color: "neon-cyan", href: "/chamber/sm1-05", tags: ["math"] },
     { code: "SM2.01", title: t.home.sm2_01_title, desc: t.home.sm2_01_subtitle, color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
     { code: "SM2.02", title: t.home.sm2_02_title, desc: t.home.sm2_02_subtitle, color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
     { code: "SM2.03", title: t.home.sm2_03_title, desc: t.home.sm2_03_subtitle, color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
@@ -98,10 +98,10 @@ export default function Home() {
     { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
     { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
     { code: "GM4.01", title: t.home.gm4_01_title, desc: t.home.gm4_01_subtitle, color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
-    { code: "GM5.01", title: t.home.gm5_01_title, desc: t.home.gm5_01_subtitle, color: "neon-amber", href: "/chamber/gm5-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
+    { code: "SP1.01", title: t.home.sp1_01_title, desc: t.home.sp1_01_subtitle, color: "neon-green", href: "/chamber/sp1-01", tags: ["physics"] },
     { code: "SP1.02", title: t.home.sp1_02_title, desc: t.home.sp1_02_subtitle, color: "neon-purple", href: "/chamber/sp1-02", tags: ["physics"] },
     { code: "SP1.03", title: t.home.sp1_03_title, desc: t.home.sp1_03_subtitle, color: "neon-green", href: "/chamber/sp1-03", tags: ["physics"] },
     { code: "SP1.04", title: t.home.sp1_04_title, desc: t.home.sp1_04_subtitle, color: "neon-cyan", href: "/chamber/sp1-04", tags: ["physics"] },
@@ -137,12 +137,14 @@ export default function Home() {
   ]), [t]);
 
   const enrichmentModules = useMemo(() => ([
-    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle + " (Advanced/Enrichment)", color: "neon-purple", href: "/chamber/sm1-02", tags: ["math", "enrichment"] },
+    { code: "EM1.01", title: t.home.em1_01_title, desc: t.home.em1_01_subtitle + " (Advanced Geometry)", color: "neon-purple", href: "/chamber/em1-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM2.01", title: t.home.em2_01_title, desc: t.home.em2_01_subtitle + " (Matura Preparation)", color: "neon-amber", href: "/chamber/em2-01", tags: ["math", "enrichment", "advanced"] },
   ]), [t]);
 
   const biologyModules = useMemo(() => ([
     { code: "SB1.01", title: t.home.sb1_01_title, desc: t.home.sb1_01_subtitle, color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
-    { code: "SB1.01-MET", title: t.home.sb1_01_met_title, desc: t.home.sb1_01_met_subtitle, color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
+    { code: "SB1.01-M", title: t.home.sb1_01_met_title, desc: t.home.sb1_01_met_subtitle, color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
+    { code: "SB1.02", title: t.home.sb1_02_title, desc: t.home.sb1_02_subtitle, color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
     { code: "SB2.01", title: t.home.sb2_01_title, desc: t.home.sb2_01_subtitle, color: "neon-purple", href: "/chamber/sb2-01", tags: ["biology"] },
     { code: "GB3.01", title: t.home.gb3_01_title, desc: t.home.gb3_01_subtitle, color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
   ]), [t]);

@@ -67,15 +67,15 @@ export const translations: Record<string, any> = {
             archive: "Archives",
             sm1_01_title: "SM1.01 // AREAS & VOLUMES",
             sm1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
-            sm1_02_title: "SM1.02 // 4D HYPER-GEOMETRY",
+            sm1_02_title: "EM1.01 // 4D HYPER-GEOMETRY",
             sm1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
-            sm1_03_title: "SM1.03 // ALGEBRA QUEST",
+            sm1_03_title: "EM1.01 // ALGEBRA QUEST",
             sm1_03_subtitle: "Master variables, simplifying terms, and substitution with visual algebra tiles.",
-            sm1_04_title: "SM1.04 // BELOW ZERO",
+            sm1_04_title: "SM1.03 // BELOW ZERO",
             sm1_04_subtitle: "Master integers, number lines, rational numbers, and 2D coordinates with Basel winter scenarios.",
-            sm1_05_title: "SM1.05 // EQUATION BALANCE",
+            sm1_05_title: "SM1.04 // EQUATION BALANCE",
             sm1_05_subtitle: "Solve linear equations using balance models, transformations, and Basel real-world applications.",
-            sm1_06_title: "SM1.06 // RATIO LAB",
+            sm1_06_title: "SM1.05 // RATIO LAB",
             sm1_06_subtitle: "Master proportions, percentages, and mixtures with interactive Basel lab scenarios.",
 
 
@@ -158,9 +158,9 @@ export const translations: Record<string, any> = {
                     parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
                 }
             },
-            gm5_01: {
+            em2_01: {
                 back: "Back to Nexus",
-                title: "GM5.01 // MATRIX GEOMETRY",
+                title: "EM2.01 // MATRIX GEOMETRY",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -174,8 +174,8 @@ export const translations: Record<string, any> = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "GM5.01_MATRIX_MONITOR",
-                footer_left: "GM5.01_MATRIX_GEOMETRY // NODE: BASEL",
+                monitor_title: "EM2.01_MATRIX_MONITOR",
+                footer_left: "EM2.01_MATRIX_GEOMETRY // NODE: BASEL",
                 labels: {
                     matrix: "MATRIX A",
                     properties: "PROPERTIES",
@@ -225,6 +225,8 @@ export const translations: Record<string, any> = {
                 explanation_label: "EXPLANATION"
             },
             gm3_01_subtitle: "Visualize binomial distribution with Galton Board. Watch probability converge to normal distribution.",
+            sp1_01_title: "SP1.01 // MEASUREMENT & UNITS",
+            sp1_01_subtitle: "Master SI units, unit conversions, and measurement precision with Basel lab instruments.",
             sp1_02_title: "SP1.02 // NEWTON'S LAWS",
             sp1_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
             sp2_01_title: "SP2.01 // THERMODYNAMICS",
@@ -605,13 +607,15 @@ export const translations: Record<string, any> = {
             sb1_01_subtitle: "Explore cell structure and organelles.",
             sb1_01_met_title: "SB1.01 // METABOLIC PATHWAYS",
             sb1_01_met_subtitle: "Cellular metabolism and energy production.",
+            sb1_02_title: "SB1.02 // PHOTOSYNTHESIS LAB",
+            sb1_02_subtitle: "Master photosynthesis equation, limiting factors, and chloroplast structure.",
             sb2_01_title: "SB2.01 // MENDEL'S GARDEN",
             sb2_01_subtitle: "Genetics and Punnett squares.",
             gb3_01_title: "GB3.01 // DNA FORGE",
             gb3_01_subtitle: "Molecular biology and DNA replication.",
             gm4_01_title: "GM4.01 // COMPLEX HORIZON",
             gm4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
-            gm5_01_title: "GM5.01 // MATRIX TRANSFORM",
+            gm5_01_title: "EM2.01 // MATRIX TRANSFORM",
             gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
             gp5_02_title: "GP1.02 // RELATIVITY LAB",
             gp5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
@@ -1634,9 +1638,9 @@ export const translations: Record<string, any> = {
                 cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
             }
         },
-        sm1_02: {
+        em1_01: {
             back: "Back to Nexus",
-            title: "SM1.02 // THALES TOWER",
+            title: "EM1.01 // THALES TOWER",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -1650,8 +1654,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SM1.02_THALES_MONITOR",
-            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "EM1.01_THALES_MONITOR",
+            footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -2059,9 +2063,9 @@ export const translations: Record<string, any> = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        sm1_03: {
+        sm1_02_new: {
             back: "Back to Nexus",
-            title: "SM1.03 // ALGEBRA QUEST",
+            title: "EM1.01 // ALGEBRA QUEST",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -2136,9 +2140,9 @@ export const translations: Record<string, any> = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        sm1_04: {
+        sm1_03_new: {
             back: "Back to Nexus",
-            title: "SM1.04 // BELOW ZERO",
+            title: "SM1.03 // BELOW ZERO",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -2147,8 +2151,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SM1.04_INTEGER_MONITOR",
-            footer_left: "SM1.04_BELOW_ZERO // NODE: BASEL",
+            monitor_title: "SM1.03_INTEGER_MONITOR",
+            footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
             basel_scenario: "BASEL WINTER SCENARIO",
             scenario_title: "PROBLEM CONTEXT",
             calculate_title: "CALCULATE",
@@ -2227,9 +2231,9 @@ export const translations: Record<string, any> = {
                 q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
             }
         },
-        sm1_05: {
+        sm1_04_new: {
             back: "Back to Nexus",
-            title: "SM1.05 // EQUATION BALANCE",
+            title: "SM1.04 // EQUATION BALANCE",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -2238,8 +2242,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SM1.05_EQUATION_MONITOR",
-            footer_left: "SM1.05_EQUATION_BALANCE // NODE: BASEL",
+            monitor_title: "SM1.04_EQUATION_MONITOR",
+            footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
             basel_scenario: "BASEL EQUATION SCENARIO",
             scenario_title: "PROBLEM CONTEXT",
             solve_title: "SOLVE THE EQUATION",
@@ -2340,9 +2344,9 @@ export const translations: Record<string, any> = {
                 app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
             }
         },
-        sm1_06: {
+        sm1_05_new: {
             back: "Back to Nexus",
-            title: "SM1.06 // RATIO LAB",
+            title: "SM1.05 // RATIO LAB",
             difficulty: {
                 basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
             },
@@ -2351,8 +2355,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SM1.06_RATIO_MONITOR",
-            footer_left: "SM1.06_RATIO_LAB // NODE: BASEL",
+            monitor_title: "SM1.05_RATIO_MONITOR",
+            footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
             stages: {
                 recipes: "RECIPES",
                 percent: "PERCENT",
@@ -3483,17 +3487,19 @@ export const translations: Record<string, any> = {
             sm2_05_subtitle: "系统训练幂运算法则、负指数以及科学计数法。",
             sm1_01_title: "SM1.01 // 面积与体积",
             sm1_01_subtitle: "计算梯形面积以及棱柱和圆柱的体积。",
-            sm1_02_title: "SM1.02 // 四维超几何",
+            sm1_02_title: "EM1.01 // 四维超几何",
             sm1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
-            sm1_03_title: "SM1.03 // 代数探险",
+            sm1_03_title: "EM1.01 // 代数探险",
             sm1_03_subtitle: "通过可视化代数积木掌握变量、同类项化简和代入求值。",
-            sm1_04_title: "SM1.04 // 零度以下",
+            sm1_04_title: "SM1.03 // 零度以下",
             sm1_04_subtitle: "通过巴塞尔冬季场景掌握整数、数轴、有理数和二维坐标。",
-            sm1_05_title: "SM1.05 // 方程平衡",
+            sm1_05_title: "SM1.04 // 方程平衡",
             sm1_05_subtitle: "使用天平模型、变换和巴塞尔实际应用解一元一次方程。",
-            sm1_06_title: "SM1.06 // 比例实验室",
+            sm1_06_title: "SM1.05 // 比例实验室",
             sm1_06_subtitle: "通过互动的巴塞尔实验室场景掌握比例、百分比和混合物。",
 
+            sp1_01_title: "SP1.01 // 测量与单位",
+            sp1_01_subtitle: "通过巴塞尔实验室仪器掌握国际单位制、单位换算和测量精度。",
             sp1_02_title: "SP1.02 // 牛顿定律",
             sp1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
             sp2_01_title: "SP2.01 // 热力学",
@@ -3705,13 +3711,15 @@ export const translations: Record<string, any> = {
             sb1_01_subtitle: "探索细胞结构与细胞器。",
             sb1_01_met_title: "SB1.01 // 代谢途径",
             sb1_01_met_subtitle: "细胞代谢与能量产生。",
+            sb1_02_title: "SB1.02 // 光合作用实验室",
+            sb1_02_subtitle: "掌握光合作用方程式、限制因子和叶绿体结构。",
             sb2_01_title: "SB2.01 // 孟德尔花园",
             sb2_01_subtitle: "遗传学与庞尼特方格。",
             gb3_01_title: "GB3.01 // DNA 锻造厂",
             gb3_01_subtitle: "分子生物学与 DNA 复制。",
             gm4_01_title: "GM4.01 // 复数地平线",
             gm4_01_subtitle: "在 3D 空间可视化复平面与欧拉公式。",
-            gm5_01_title: "GM5.01 // 矩阵变形器",
+            gm5_01_title: "EM2.01 // 矩阵变形器",
             gm5_01_subtitle: "在 3D 空间中体验线性变换与特征向量。",
             gp5_02_title: "GP1.02 // 相对论实验室",
             gp5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
@@ -4713,9 +4721,9 @@ export const translations: Record<string, any> = {
                 cyl_elite: "侧面积为 ${la}，半径为 ${r}。"
             }
         },
-        sm1_02: {
+        em1_01: {
             back: "返回枢纽",
-            title: "SM1.02 // THALES TOWER",
+            title: "EM1.01 // THALES TOWER",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -4729,8 +4737,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "SM1.02_THALES_MONITOR",
-            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "EM1.01_THALES_MONITOR",
+            footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -5138,9 +5146,9 @@ export const translations: Record<string, any> = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        sm1_03: {
+        sm1_02_new: {
             back: "返回 Nexus",
-            title: "SM1.03 // 代数探险",
+            title: "EM1.01 // 代数探险",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -5215,9 +5223,9 @@ export const translations: Record<string, any> = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        sm1_04: {
+        sm1_03_new: {
             back: "返回枢纽",
-            title: "SM1.04 // 零度以下",
+            title: "SM1.03 // 零度以下",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -5226,8 +5234,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "SM1.04_整数监视器",
-            footer_left: "SM1.04_零度以下 // 节点：巴塞尔",
+            monitor_title: "SM1.03_整数监视器",
+            footer_left: "SM1.03_零度以下 // 节点：巴塞尔",
             basel_scenario: "巴塞尔冬季场景",
             scenario_title: "问题背景",
             calculate_title: "计算",
@@ -5306,9 +5314,9 @@ export const translations: Record<string, any> = {
                 q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
             }
         },
-        sm1_05: {
+        sm1_04_new: {
             back: "返回枢纽",
-            title: "SM1.05 // 等式平衡",
+            title: "SM1.04 // 等式平衡",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -5317,8 +5325,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "SM1.05_等式监视器",
-            footer_left: "SM1.05_等式平衡 // 节点：巴塞尔",
+            monitor_title: "SM1.04_等式监视器",
+            footer_left: "SM1.04_等式平衡 // 节点：巴塞尔",
             basel_scenario: "巴塞尔等式场景",
             scenario_title: "问题背景",
             solve_title: "求解等式",
@@ -5419,9 +5427,9 @@ export const translations: Record<string, any> = {
                 app_profit_loss: "巴塞尔商店：以 20% 利润或 10% 亏损出售，差价 60 瑞郎。求成本价。"
             }
         },
-        sm1_06: {
+        sm1_05_new: {
             back: "返回枢纽",
-            title: "SM1.06 // 比例实验室",
+            title: "SM1.05 // 比例实验室",
             difficulty: {
                 basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
             },
@@ -5430,8 +5438,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "不匹配",
             ready: "就绪",
-            monitor_title: "SM1.06_比例监视器",
-            footer_left: "SM1.06_比例实验室 // 节点：巴塞尔",
+            monitor_title: "SM1.05_比例监视器",
+            footer_left: "SM1.05_比例实验室 // 节点：巴塞尔",
             stages: {
                 recipes: "配方",
                 percent: "百分比",
@@ -6465,9 +6473,9 @@ export const translations: Record<string, any> = {
                 parallelogram_rule: "平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂"
             }
         },
-        gm5_01: {
+        em2_01: {
             back: "返回枢纽",
-            title: "GM5.01 // 矩阵几何",
+            title: "EM2.01 // 矩阵几何",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -6481,8 +6489,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "GM5.01_矩阵监视器",
-            footer_left: "GM5.01_矩阵几何 // 节点：巴塞尔",
+            monitor_title: "EM2.01_矩阵监视器",
+            footer_left: "EM2.01_矩阵几何 // 节点：巴塞尔",
             labels: {
                 matrix: "矩阵 A",
                 properties: "属性",
@@ -6935,17 +6943,19 @@ export const translations: Record<string, any> = {
             sm2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
             sm1_01_title: "SM1.01 // FLÄCHEN & VOLUMEN",
             sm1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-            sm1_02_title: "SM1.02 // 4D HYPER-GEOMETRIE",
+            sm1_02_title: "EM1.01 // 4D HYPER-GEOMETRIE",
             sm1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
-            sm1_03_title: "SM1.03 // ALGEBRA QUEST",
+            sm1_03_title: "EM1.01 // ALGEBRA QUEST",
             sm1_03_subtitle: "Meistere Variablen, Termvereinfachung und Einsetzen mit visuellen algebraischen Kacheln.",
-            sm1_04_title: "SM1.04 // UNTER NULL",
+            sm1_04_title: "SM1.03 // UNTER NULL",
             sm1_04_subtitle: "Meistere ganze Zahlen, Zahlengeraden, rationale Zahlen und 2D-Koordinaten mit Basler Winterszenarien.",
-            sm1_05_title: "SM1.05 // GLEICHUNGSWAAGE",
+            sm1_05_title: "SM1.04 // GLEICHUNGSWAAGE",
             sm1_05_subtitle: "Löse lineare Gleichungen mit Waagemodellen, Transformationen und Basler Anwendungen.",
-            sm1_06_title: "SM1.06 // PROPORTIONS-LABOR",
+            sm1_06_title: "SM1.05 // PROPORTIONS-LABOR",
             sm1_06_subtitle: "Meistere Proportionen, Prozentsätze und Mischungen mit interaktiven Basler Laborszenarien.",
 
+            sp1_01_title: "SP1.01 // MESSUNG & EINHEITEN",
+            sp1_01_subtitle: "Meistere SI-Einheiten, Einheitenumrechnung und Messpräzision mit Basler Laborinstrumenten.",
             sp1_02_title: "SP1.02 // NEWTONS GESETZE",
             sp1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
             sp2_01_title: "SP2.01 // THERMODYNAMIK",
@@ -7159,13 +7169,15 @@ export const translations: Record<string, any> = {
             sb1_01_subtitle: "Erkunden Sie Zellstruktur und Organellen.",
             sb1_01_met_title: "SB1.01 // STOFFWECHSELWEGE",
             sb1_01_met_subtitle: "Zellstoffwechsel und Energieproduktion.",
+            sb1_02_title: "SB1.02 // PHOTOSYNTHESE-LABOR",
+            sb1_02_subtitle: "Meistere Photosynthese-Gleichung, limitierende Faktoren und Chloroplastenstruktur.",
             sb2_01_title: "SB2.01 // MENDELS GARTEN",
             sb2_01_subtitle: "Genetik und Punnett-Quadrate.",
             gb3_01_title: "GB3.01 // DNA-SCHMIEDE",
             gb3_01_subtitle: "Molekularbiologie und DNA-Replikation.",
             gm4_01_title: "GM4.01 // KOMPLEXER HORIZONT",
             gm4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
-            gm5_01_title: "GM5.01 // MATRIX-TRANSFORMATION",
+            gm5_01_title: "EM2.01 // MATRIX-TRANSFORMATION",
             gm5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
             gp5_02_title: "GP1.02 // RELATIVITÄTSLABOR",
             gp5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
@@ -8205,9 +8217,9 @@ export const translations: Record<string, any> = {
                 cyl_elite: "Die Mantelfläche beträgt ${la}, der Radius ist ${r}."
             }
         },
-        sm1_02: {
+        em1_01: {
             back: "Zurück zum Nexus",
-            title: "SM1.02 // THALES TOWER",
+            title: "EM1.01 // THALES TOWER",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -8221,8 +8233,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "SM1.02_THALES_MONITOR",
-            footer_left: "SM1.02_THALES_TOWER // NODE: BASEL",
+            monitor_title: "EM1.01_THALES_MONITOR",
+            footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
             stages: {
                 measure: "MEASURE",
                 measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
@@ -8630,9 +8642,9 @@ export const translations: Record<string, any> = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
-        sm1_03: {
+        sm1_02_new: {
             back: "Zurück zum Nexus",
-            title: "SM1.03 // ALGEBRA QUEST",
+            title: "EM1.01 // ALGEBRA QUEST",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -8707,9 +8719,9 @@ export const translations: Record<string, any> = {
                 slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
             }
         },
-        sm1_04: {
+        sm1_03_new: {
             back: "Zurück zum Nexus",
-            title: "SM1.04 // UNTER NULL",
+            title: "SM1.03 // UNTER NULL",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
             },
@@ -8718,8 +8730,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "SM1.04_GANZZAHL_MONITOR",
-            footer_left: "SM1.04_UNTER_NULL // KNOTEN: BASEL",
+            monitor_title: "SM1.03_GANZZAHL_MONITOR",
+            footer_left: "SM1.03_UNTER_NULL // KNOTEN: BASEL",
             basel_scenario: "BASLER WINTERSZENARIO",
             scenario_title: "PROBLEMKONTEXT",
             calculate_title: "BERECHNEN",
@@ -8798,9 +8810,9 @@ export const translations: Record<string, any> = {
                 q_complex_translation: "Start bei (2, 3), bewege rechts 3, links 1. Finales x?"
             }
         },
-        sm1_05: {
+        sm1_04_new: {
             back: "Zurück zum Nexus",
-            title: "SM1.05 // GLEICHUNGSWAAGE",
+            title: "SM1.04 // GLEICHUNGSWAAGE",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
             },
@@ -8809,8 +8821,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "SM1.05_GLEICHUNGS_MONITOR",
-            footer_left: "SM1.05_GLEICHUNGSWAAGE // KNOTEN: BASEL",
+            monitor_title: "SM1.04_GLEICHUNGS_MONITOR",
+            footer_left: "SM1.04_GLEICHUNGSWAAGE // KNOTEN: BASEL",
             basel_scenario: "BASLER GLEICHUNGSSZENARIO",
             scenario_title: "PROBLEMKONTEXT",
             solve_title: "GLEICHUNG LÖSEN",
@@ -8911,9 +8923,9 @@ export const translations: Record<string, any> = {
                 app_profit_loss: "Basel Geschäft: Verkauf mit 20% Gewinn oder 10% Verlust, Differenz ist 60 CHF. Finde Einkaufspreis."
             }
         },
-        sm1_06: {
+        sm1_05_new: {
             back: "Zurück zum Nexus",
-            title: "SM1.06 // PROPORTIONS-LABOR",
+            title: "SM1.05 // PROPORTIONS-LABOR",
             difficulty: {
                 basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
             },
@@ -8922,8 +8934,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlreaktion",
             ready: "Bereit",
-            monitor_title: "SM1.06_PROPORTION_MONITOR",
-            footer_left: "SM1.06_PROPORTIONS_LABOR // KNOTEN: BASEL",
+            monitor_title: "SM1.05_PROPORTION_MONITOR",
+            footer_left: "SM1.05_PROPORTIONS_LABOR // KNOTEN: BASEL",
             stages: {
                 recipes: "REZEPTE",
                 percent: "PROZENT",
@@ -9739,9 +9751,9 @@ export const translations: Record<string, any> = {
                 parallelogram_rule: "Parallelogrammregel: vom Ursprung zu z₁, dann z₂ von z₁ verschieben"
             }
         },
-        gm5_01: {
+        em2_01: {
             back: "Zurück zum Nexus",
-            title: "GM5.01 // MATRIXGEOMETRIE",
+            title: "EM2.01 // MATRIXGEOMETRIE",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -9755,8 +9767,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Fehlanpassung",
             ready: "Bereit",
-            monitor_title: "GM5.01_MATRIX_MONITOR",
-            footer_left: "GM5.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
+            monitor_title: "EM2.01_MATRIX_MONITOR",
+            footer_left: "EM2.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
             labels: {
                 matrix: "MATRIX A",
                 properties: "EIGENSCHAFTEN",
@@ -10349,3 +10361,103 @@ export interface Translations {
     DE: typeof translations.DE;
     CN: typeof translations.CN;
 }
+
+        sp1_01: {
+            back: "Back to Nexus",
+            title: "SP1.01 // MEASUREMENT & UNITS",
+            check: "Verify",
+            next: "Next",
+            correct: "Measurement Verified",
+            incorrect: "Measurement Error",
+            ready: "Ready",
+            monitor_title: "SP1.01_MEASUREMENT_LAB",
+            footer_left: "SP1.01_MEASUREMENT // NODE: BASEL",
+            objective_title: "Measurement Objective",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            stages: {
+                si_units: "SI UNITS",
+                conversion: "CONVERSION",
+                precision: "PRECISION"
+            },
+            tools: {
+                ruler: "RULER",
+                scale: "SCALE",
+                timer: "TIMER"
+            },
+            labels: {
+                precision: "Measurement Precision",
+                measurement_display: "Measurement Display",
+                input_terminal: "Terminal Input [Measurement-Node]"
+            },
+            prompts: {
+                si_unit: "What is the SI unit for {measurement}?",
+                convert: "Convert {value} {from} to {to}",
+                sigfigs: "How many significant figures in {value}?",
+                hint_si: "The SI unit is {name}",
+                hint_factor: "Multiply by {factor}",
+                hint_sigfigs: "Count all non-zero digits and zeros between them"
+            },
+            feedback: {
+                correct: "Measurement precision confirmed.",
+                incorrect: "Calibration error detected."
+            }
+        },
+    },
+    CN: {
+        protocol: {
+            system_name: "系统协议 v2.1",
+            warning_text: "警告：世界不会围绕你转...除非你理解规则。",
+            hold_instruction: "进入授权门",
+            hold_button: "[ 访问枢纽 ]",
+            secure_connection: "安全连接已建立",
+        },
+        common: {
+            history_title: "实验历史",
+            history_toggle: "历史",
+            history_empty: "尚无验证运行。",
+            history_accuracy: "准确度",
+            history_stage: "阶段",
+            history_difficulty: "难度",
+            history_time: "时间戳",
+            history_speed: "速度",
+            history_rigor: "严谨度",
+            history_best: "最佳",
+            mastery_title: "STEM 掌握度",
+            mastery_conceptual: "概念",
+            mastery_speed: "速度",
+            mastery_rigor: "严谨",
+            mastery_decay: "衰减",
+            achievements_title: "成就",
+            achievement_unlocked: "成就解锁",
+            achievements: {
+                first_light: {
+                    title: "第一道光",
+                    description: "完成你的第一个光学实验。"
+                },
+                first_launch: {
+                    title: "首次发射",
+                    description: "完成任何实验。"
+                },
+                mole_master: {
+                    title: "摩尔大师",
+                    description: "在 C1.02 中达到 100% 准确度。"
+                },
+                molecular_architect: {
+                    title: "分子建筑师",
+                    description: "完成 C3.01。"
+                },
+                time_traveler: {
+                    title: "时间旅行者",
+                    description: "完成 P1.04 时间膨胀任务。"
+                },
+                calculus_god: {
+                    title: "微积分之神",
+                    description: "在 GM1.01 中达到 100% 准确度。"
+                }
+            }
+        },

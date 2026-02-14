@@ -6,109 +6,103 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import PhotosynthesisCanvas from "@/components/chamber/sb1-02/PhotosynthesisCanvas";
+import BodySystemCanvas from "@/components/chamber/sb2-02/BodySystemCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "EQUATION" | "FACTORS" | "CHLOROPLAST";
+type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
-interface SB102Quest extends Quest {
+interface SB202Quest extends Quest {
     stage: Stage;
-    factor?: string;
-    structure?: string;
+    organ?: string;
+    system?: string;
 }
 
-type SB102T = typeof translations.EN.sb1_02;
+type SB202T = typeof translations.EN.sb2_02;
 
-export default function SB102Page() {
+export default function SB202Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb1_02 || translations.EN.sb1_02) as SB102T;
-    const [lightIntensity, setLightIntensity] = useState(50);
-    const [co2Level, setCo2Level] = useState(50);
-    const [temperature, setTemperature] = useState(25);
+    const t = (translations[currentLanguage]?.sb2_02 || translations.EN.sb2_02) as SB202T;
+    const [selectedSystem, setSelectedSystem] = useState<string>("digestive");
+    const [highlightedOrgan, setHighlightedOrgan] = useState<string | null>(null);
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB102Quest[] => {
-        const quests: SB102Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB202Quest[] => {
+        const quests: SB202Quest[] = [];
 
-        if (stage === "EQUATION") {
-            // Photosynthesis equation components
-            quests.push(
-                {
-                    id: "EQ-1", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.reactant}}`,
-                    expressionLatex: `6CO_2 + 6H_2O + \\text{light} \\rightarrow C_6H_{12}O_6 + \\text{?}`,
-                    targetLatex: "o2",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "o2" }],
-                    correctLatex: "6O_2",
-                    hintLatex: [`\\text{${t.prompts.hint_oxygen}}`]
-                },
-                {
-                    id: "EQ-2", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.glucose}}`,
-                    expressionLatex: `6CO_2 + 6H_2O \\rightarrow \\text{?} + 6O_2`,
-                    targetLatex: "glucose",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "glucose" }],
-                    correctLatex: "C_6H_{12}O_6",
-                    hintLatex: [`\\text{${t.prompts.hint_glucose}}`]
-                },
-                {
-                    id: "EQ-3", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.water_count}}`,
-                    expressionLatex: `6CO_2 + \\text{?}H_2O \\rightarrow C_6H_{12}O_6 + 6O_2`,
-                    targetLatex: "6",
-                    slots: [{ id: "ans", labelLatex: "\\text{Coefficient}", placeholder: "...", expected: "6" }],
-                    correctLatex: "6",
-                    hintLatex: [`\\text{${t.prompts.hint_balance}}`]
-                }
-            );
-        }
-
-        if (stage === "FACTORS") {
-            // Limiting factors
-            const factors = [
-                { factor: "light", effect: "increase", answer: "increase" },
-                { factor: "co2", effect: "decrease", answer: "decrease" },
-                { factor: "temperature", effect: "optimal", answer: "optimal" },
-                { factor: "water", effect: "increase", answer: "increase" }
+        if (stage === "DIGESTIVE") {
+            const organs = [
+                { name: "mouth", function: "mechanical breakdown" },
+                { name: "stomach", function: "acid digestion" },
+                { name: "small intestine", function: "nutrient absorption" },
+                { name: "liver", function: "bile production" },
+                { name: "pancreas", function: "enzyme secretion" }
             ];
 
-            factors.forEach((f, idx) => {
+            organs.forEach((org, idx) => {
                 quests.push({
-                    id: `FACT-${idx}`,
+                    id: `DIG-${idx}`,
                     difficulty,
                     stage,
-                    factor: f.factor,
-                    promptLatex: `\\text{${t.prompts.factor_effect.replace('{factor}', f.factor).replace('{effect}', f.effect)}}`,
-                    expressionLatex: `\\text{${f.factor}} \\uparrow \\rightarrow \\text{rate } \\text{?}`,
-                    targetLatex: f.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "increase/decrease/optimal", expected: f.answer }],
-                    correctLatex: f.answer,
-                    hintLatex: [`\\text{${t.prompts.hint_factor}}`]
+                    organ: org.name,
+                    system: "digestive",
+                    promptLatex: `\\text{${t.prompts.organ_function.replace('{function}', org.function)}}`,
+                    expressionLatex: `\\text{${org.function}} \\rightarrow \\text{?}`,
+                    targetLatex: org.name.replace(" ", "_"),
+                    slots: [{ id: "ans", labelLatex: "\\text{Organ}", placeholder: "...", expected: org.name.replace(" ", "_") }],
+                    correctLatex: org.name,
+                    hintLatex: [`\\text{${t.prompts.hint_organ.replace('{name}', org.name)}}`]
                 });
             });
         }
 
-        if (stage === "CHLOROPLAST") {
-            // Chloroplast structures
-            const structures = [
-                { name: "thylakoid", function: "light reactions" },
-                { name: "stroma", function: "calvin cycle" },
-                { name: "grana", function: "stacked thylakoids" },
-                { name: "chlorophyll", function: "light absorption" }
+        if (stage === "CIRCULATORY") {
+            const components = [
+                { name: "heart", function: "pump blood", answer: "heart" },
+                { name: "arteries", function: "carry oxygenated blood", answer: "arteries" },
+                { name: "veins", function: "return deoxygenated blood", answer: "veins" },
+                { name: "capillaries", function: "gas exchange", answer: "capillaries" },
+                { name: "red blood cells", function: "oxygen transport", answer: "red_blood_cells" }
             ];
 
-            structures.forEach((s, idx) => {
+            components.forEach((comp, idx) => {
                 quests.push({
-                    id: `STRUCT-${idx}`,
+                    id: `CIRC-${idx}`,
                     difficulty,
                     stage,
-                    structure: s.name,
-                    promptLatex: `\\text{${t.prompts.structure_function.replace('{function}', s.function)}}`,
-                    expressionLatex: `\\text{${s.function}} \\rightarrow \\text{?}`,
-                    targetLatex: s.name,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: s.name }],
-                    correctLatex: s.name,
-                    hintLatex: [`\\text{${t.prompts.hint_structure.replace('{name}', s.name)}}`]
+                    organ: comp.name,
+                    system: "circulatory",
+                    promptLatex: `\\text{${t.prompts.component_function.replace('{function}', comp.function)}}`,
+                    expressionLatex: `\\text{${comp.function}} \\rightarrow \\text{?}`,
+                    targetLatex: comp.answer,
+                    slots: [{ id: "ans", labelLatex: "\\text{Component}", placeholder: "...", expected: comp.answer }],
+                    correctLatex: comp.name,
+                    hintLatex: [`\\text{${t.prompts.hint_component.replace('{name}', comp.name)}}`]
+                });
+            });
+        }
+
+        if (stage === "RESPIRATORY") {
+            const structures = [
+                { name: "trachea", function: "air passage" },
+                { name: "bronchi", function: "branch to lungs" },
+                { name: "alveoli", function: "gas exchange" },
+                { name: "diaphragm", function: "breathing muscle" },
+                { name: "lungs", function: "oxygen intake" }
+            ];
+
+            structures.forEach((struct, idx) => {
+                quests.push({
+                    id: `RESP-${idx}`,
+                    difficulty,
+                    stage,
+                    organ: struct.name,
+                    system: "respiratory",
+                    promptLatex: `\\text{${t.prompts.structure_function.replace('{function}', struct.function)}}`,
+                    expressionLatex: `\\text{${struct.function}} \\rightarrow \\text{?}`,
+                    targetLatex: struct.name,
+                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: struct.name }],
+                    correctLatex: struct.name,
+                    hintLatex: [`\\text{${t.prompts.hint_structure.replace('{name}', struct.name)}}`]
                 });
             });
         }
@@ -131,28 +125,40 @@ export default function SB102Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SB102Quest, Stage>({
+    } = useQuestManager<SB202Quest, Stage>({
         buildPool,
-        initialStage: "EQUATION",
+        initialStage: "DIGESTIVE",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SB1.02", stage);
+            completeStage("SB2.02", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "EQUATION", label: t.stages.equation },
-        { id: "FACTORS", label: t.stages.factors },
-        { id: "CHLOROPLAST", label: t.stages.chloroplast },
+        { id: "DIGESTIVE", label: t.stages.digestive },
+        { id: "CIRCULATORY", label: t.stages.circulatory },
+        { id: "RESPIRATORY", label: t.stages.respiratory },
     ], [t]);
+
+    // Sync visualization with quest
+    useEffect(() => {
+        if (currentQuest) {
+            if (currentQuest.system) {
+                setSelectedSystem(currentQuest.system);
+            }
+            if (currentQuest.organ) {
+                setHighlightedOrgan(currentQuest.organ);
+            }
+        }
+    }, [currentQuest]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
-            moduleCode="SB1.02"
+            moduleCode="SB2.02"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -181,64 +187,33 @@ export default function SB102Page() {
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <PhotosynthesisCanvas
-                            lightIntensity={lightIntensity}
-                            co2Level={co2Level}
-                            temperature={temperature}
-                            stage={stage}
+                        <BodySystemCanvas
+                            system={selectedSystem}
+                            highlightedOrgan={highlightedOrgan}
                             translations={t}
                         />
                     </div>
 
-                    {/* Environmental Controls */}
-                    <div className="grid grid-cols-1 gap-3">
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.light}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={lightIntensity}
-                                    onChange={(e) => setLightIntensity(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-10 text-right">{lightIntensity}%</span>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.co2}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={co2Level}
-                                    onChange={(e) => setCo2Level(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-cyan"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-10 text-right">{co2Level}%</span>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.temp}</label>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="50"
-                                    value={temperature}
-                                    onChange={(e) => setTemperature(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-amber"
-                                />
-                                <span className="text-[10px] font-mono text-white/60 w-12 text-right">{temperature}°C</span>
-                            </div>
-                        </div>
+                    {/* System Selection */}
+                    <div className="grid grid-cols-3 gap-2">
+                        {["digestive", "circulatory", "respiratory"].map((sys) => (
+                            <button
+                                key={sys}
+                                onClick={() => setSelectedSystem(sys)}
+                                className={`p-2 text-[9px] uppercase tracking-widest font-bold rounded border transition-all ${
+                                    selectedSystem === sys
+                                        ? "bg-neon-cyan/20 border-neon-cyan text-neon-cyan"
+                                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
+                                }`}
+                            >
+                                {t.systems[sys as keyof typeof t.systems]}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.efficiency}</span>
+                            <span>{t.labels.anatomy_score}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -247,7 +222,7 @@ export default function SB102Page() {
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${
                                         i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
+                                            ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
                                             : "bg-transparent"
                                     }`}
                                 />
@@ -261,7 +236,7 @@ export default function SB102Page() {
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
-                            <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
                                 {t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
@@ -270,10 +245,10 @@ export default function SB102Page() {
                         </div>
 
                         <div className="flex justify-center">
-                            <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
-                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.reaction_display}
+                                    {t.labels.anatomy_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -282,10 +257,10 @@ export default function SB102Page() {
                         </div>
 
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-green/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-green/30" />
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
                                     {t.labels.input_terminal}
                                 </div>
 
@@ -294,11 +269,11 @@ export default function SB102Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">PHOTO_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-cyan/30 font-mono">ANAT_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -306,7 +281,7 @@ export default function SB102Page() {
                                                         if (e.key === 'Enter') verify();
                                                     }}
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-green/0 group-focus-within:bg-neon-green/20 transition-all blur-sm" />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
                                             </div>
                                         </div>
                                     ))}
