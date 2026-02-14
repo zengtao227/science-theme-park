@@ -62,10 +62,10 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
       determinant: "Determinant",
       area: "Area",
       basisVectors: "Basis Vectors",
-      areaExpanded: "Area EXPANDED",
-      areaCompressed: "Area COMPRESSED",
-      orientationReversed: "ORIENTATION REVERSED",
-      collapsedToLine: "COLLAPSED TO LINE",
+      areaExpanded: "Area expanded (det > 1)",
+      areaCompressed: "Area compressed (0 < det < 1)",
+      orientationReversed: "Orientation reversed (det < 0)",
+      collapsedToLine: "Collapsed to line (det ≈ 0)",
     },
     CN: {
       transformationMatrix: "变换矩阵",
@@ -74,22 +74,22 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
       determinant: "行列式",
       area: "面积",
       basisVectors: "基向量",
-      areaExpanded: "面积扩大",
-      areaCompressed: "面积压缩",
-      orientationReversed: "方向翻转",
-      collapsedToLine: "坍缩为直线",
+      areaExpanded: "面积扩大 (det > 1)",
+      areaCompressed: "面积压缩 (0 < det < 1)",
+      orientationReversed: "方向反转 (det < 0)",
+      collapsedToLine: "塌缩为线 (det ≈ 0)",
     },
     DE: {
-      transformationMatrix: "TRANSFORMATIONS MATRIX",
+      transformationMatrix: "TRANSFORMATIONSMATRIX",
       unitSquare: "Einheitsquadrat",
       transformed: "Transformiert",
       determinant: "Determinante",
       area: "Fläche",
       basisVectors: "Basisvektoren",
-      areaExpanded: "Fläche ERWEITERT",
-      areaCompressed: "Fläche KOMPRIMIERT",
-      orientationReversed: "ORIENTIERUNG UMGEKEHRT",
-      collapsedToLine: "ZUSAMMENBRUCH ZU LINIE",
+      areaExpanded: "Fläche erweitert (det > 1)",
+      areaCompressed: "Fläche komprimiert (0 < det < 1)",
+      orientationReversed: "Orientierung umgekehrt (det < 0)",
+      collapsedToLine: "Zu Linie kollabiert (det ≈ 0)",
     },
   };
   
@@ -158,7 +158,7 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
     <div className="w-full h-full bg-black/90 p-4 space-y-4">
       {/* Matrix display */}
       <div className="text-center">
-        <div className="text-sm text-cyan-400 mb-2">TRANSFORMATION MATRIX</div>
+        <div className="text-sm text-cyan-400 mb-2">{t.transformationMatrix}</div>
         <div className="inline-block bg-black/50 border border-cyan-500 p-3">
           <BlockMath math={`A = \\begin{bmatrix} ${matrix[0][0]} & ${matrix[0][1]} \\\\ ${matrix[1][0]} & ${matrix[1][1]} \\end{bmatrix}`} />
         </div>
@@ -280,10 +280,10 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
       {stage === "DETERMINANT" && (
         <div className="border border-yellow-500 p-3 bg-black/50 text-center">
           <div className="text-yellow-400 text-sm">
-            {det > 1 && "Area EXPANDED"}
-            {det > 0 && det < 1 && "Area COMPRESSED"}
-            {det < 0 && "ORIENTATION REVERSED"}
-            {Math.abs(det) < 0.01 && "COLLAPSED TO LINE"}
+            {det > 1 && t.areaExpanded}
+            {det > 0 && det < 1 && t.areaCompressed}
+            {det < 0 && t.orientationReversed}
+            {Math.abs(det) < 0.01 && t.collapsedToLine}
           </div>
         </div>
       )}
