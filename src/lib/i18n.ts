@@ -69,6 +69,46 @@ export const translations: Record<string, any> = {
             sm1_01_subtitle: "Calculate areas of trapezoids and volumes of prisms and cylinders.",
             sm1_02_title: "SM1.02 // 4D HYPER-GEOMETRY",
             sm1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
+            sm1_03_title: "SM1.03 // ALGEBRA QUEST",
+            sm1_03_subtitle: "Master variables, simplifying terms, and substitution with visual algebra tiles.",
+            sm1_03: {
+                back: "Back to Nexus",
+                title: "SM1.03 // ALGEBRA QUEST",
+                difficulty: {
+                    basic: "BASIC",
+                    core: "CORE",
+                    advanced: "ADVANCED",
+                    elite: "ELITE"
+                },
+                modes: {
+                    containers: "CONTAINERS",
+                    sorting: "SORTING",
+                    machine: "MACHINE"
+                },
+                labels: {
+                    variable: "Variable",
+                    value: "Value",
+                    expression: "Expression",
+                    simplify: "Simplify",
+                    evaluate: "Evaluate",
+                    input: "Input",
+                    output: "Output"
+                },
+                stages: {
+                    variables: "VARIABLES",
+                    terms: "TERMS",
+                    substitution: "SUBSTITUTION",
+                    vars_prompt: "Identify the value inside the container.",
+                    terms_prompt: "Combine like terms to simplify the expression.",
+                    sub_prompt: "Evaluate the expression for the given value."
+                },
+                scenarios: {
+                    variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
+                    terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
+                    substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
+                }
+            },
+
             sm2_01_title: "SM2.01 // BINOMIAL FACTORY",
             sm2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
             sm2_02_title: "SM2.02 // PYTHAGORAS & ROOTS",
@@ -83,6 +123,8 @@ export const translations: Record<string, any> = {
             sm2_06_subtitle: "Master substitution and elimination methods for solving systems of two linear equations.",
             sm2_07_title: "SM2.07 // COORDINATE RECON",
             sm2_07_subtitle: "Coordinate planes, translations, and plotting precision in the Basel grid.",
+            sm2_08_title: "SM2.08 // PROBABILITY BASICS",
+            sm2_08_subtitle: "Master probability fundamentals through Basel life scenarios and simple gambling education.",
             sm3_01_title: "SM3.01 // QUADRATIC EQUATIONS",
             sm3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
             sm3_02_title: "SM3.02 // TRIGONOMETRY ARRAY",
@@ -1372,14 +1414,14 @@ export const translations: Record<string, any> = {
                 single_die_odd: "You roll a standard six-sided die once. What is the probability of rolling an odd number (1, 3, or 5)?\n\nGiven: 3 favorable outcomes (1, 3, 5), 6 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
                 coin_heads: "You flip a fair coin once. What is the probability of getting heads?\n\nGiven: 1 favorable outcome (heads), 2 total outcomes\nFind: P(E) = favorable / total\nConcept: Simplest sample space",
                 spinner_8_sections: "You spin a wheel divided into 8 equal sections numbered 1-8. What is the probability of landing on section 3?\n\nGiven: 1 favorable outcome, 8 total outcomes\nFind: P(E) = favorable / total\nConcept: Direct observation",
-                
+
                 // BASIC_PROB - CORE: Understanding combinations
                 two_dice_sum_7: "You roll two standard dice. What is the probability that their sum equals 7?\n\nGiven: 6 favorable outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Understanding that (1,6) and (6,1) are different outcomes",
                 two_dice_sum_10: "You roll two standard dice. What is the probability that their sum equals 10?\n\nGiven: 3 favorable outcomes (4+6, 5+5, 6+4), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting combinations correctly",
                 two_dice_sum_gt_7: "You roll two standard dice. What is the probability that their sum is greater than 7?\n\nGiven: 15 favorable outcomes (sum of 8,9,10,11,12), 36 total outcomes\nFind: P(E) = favorable / total\nConcept: Counting multiple favorable outcomes",
                 deck_one_suit: "You draw one card from a standard 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 hearts, 52 total cards\nFind: P(E) = favorable / total\nConcept: Understanding suit structure",
                 deck_honors: "You draw one card from a standard 52-card deck. What is the probability of drawing an honor card (A, K, Q, or J)?\n\nGiven: 16 honor cards (4 of each rank), 52 total cards\nFind: P(E) = favorable / total\nConcept: Counting across all suits",
-                
+
                 // BASIC_PROB - ADVANCED: Conditional probability (implicit)
                 die_even_given_gt3: "You roll a die and observe that the result is greater than 3. What is the probability that it's an even number?\n\nGiven: Among outcomes {4,5,6}, two are even {4,6}\nFind: P(even | >3) = 2/3\nConcept: The condition '>3' changes the sample space from 6 to 3 outcomes",
                 die_multiple_of_3: "You roll a standard die. What is the probability of rolling a multiple of 3?\n\nGiven: 2 favorable outcomes (3, 6), 6 total outcomes\nFind: P(E) = 2/6\nConcept: Identifying favorable outcomes with a condition",
@@ -1392,86 +1434,86 @@ export const translations: Record<string, any> = {
                 at_least_one_even: "You roll two dice. What is the probability that at least one shows an even number?\n\nGiven: P(both odd) = (3/6) × (3/6) = 9/36\nFind: P(at least one even) = 1 - 9/36 = 27/36\nConcept: Complement strategy",
                 card_ace_or_king: "You draw one card. What is the probability it's an Ace OR a King?\n\nGiven: 4 Aces + 4 Kings = 8 favorable, 52 total\nFind: P(A or K) = 8/52\nConcept: Addition principle for mutually exclusive events",
                 card_red_or_face: "You draw one card. What is the probability it's red OR a face card?\n\nGiven: 26 red + 12 face - 6 (red face) = 32 favorable\nFind: P(red or face) = 32/52\nConcept: Addition principle with overlap (inclusion-exclusion)",
-                
+
                 // BASIC PROBABILITY - ELITE
                 quality_control_427: "Novartis Basel large-scale quality control: In a production run of 500 medication samples, 427 passed all comprehensive safety and efficacy tests. Calculate the probability that a randomly selected sample from this production run passes all tests.\n\nGiven: 427 samples passed, 500 total samples\nFind: P(E) = favorable / total\nSignificance: This probability determines whether 50,000 units can be released to European markets.",
                 quality_control_683: "Novartis Basel large-scale quality control: In a production run of 800 medication samples, 683 passed all tests. Calculate P(E).\n\nGiven: 683 samples passed, 800 total samples\nFind: P(E) = favorable / total",
                 quality_control_891: "Novartis Basel large-scale quality control: In a production run of 1000 medication samples, 891 passed all tests. Calculate P(E).\n\nGiven: 891 samples passed, 1000 total samples\nFind: P(E) = favorable / total",
                 quality_control_1456: "Novartis Basel large-scale quality control: In a production run of 1600 medication samples, 1456 passed all tests. Calculate P(E).\n\nGiven: 1456 samples passed, 1600 total samples\nFind: P(E) = favorable / total",
                 quality_control_1789: "Novartis Basel large-scale quality control: In a production run of 2000 medication samples, 1789 passed all tests. Calculate P(E).\n\nGiven: 1789 samples passed, 2000 total samples\nFind: P(E) = favorable / total",
-                
+
                 // BINOMIAL - BASIC: Understanding basic concept
                 coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(3,2) × 0.5² × 0.5¹\nConcept: Understanding 'exactly k successes'",
                 coin_4_2: "You flip a fair coin 4 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=4 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(4,2) × 0.5² × 0.5²\nConcept: Basic binomial calculation",
                 coin_3_all: "You flip a fair coin 3 times. What is the probability of getting all heads?\n\nGiven: n=3 trials, k=3 successes, p=0.5\nFind: P(X=3) = C(3,3) × 0.5³ × 0.5⁰\nConcept: Understanding C(n,n) = 1",
                 coin_4_none: "You flip a fair coin 4 times. What is the probability of getting no heads (all tails)?\n\nGiven: n=4 trials, k=0 successes, p=0.5\nFind: P(X=0) = C(4,0) × 0.5⁰ × 0.5⁴\nConcept: Understanding C(n,0) = 1",
-                
+
                 // BINOMIAL - CORE: Understanding C(n,k) meaning
                 lottery_5_3: "Swiss Lotto: You play 5 lottery draws with 50% win probability each. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.5\nFind: P(X=3) = C(5,3) × 0.5³ × 0.5²\nConcept: C(5,3) = 10 represents the 10 different ways to choose which 3 draws you win",
                 lottery_6_3: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=6, k=3, p=0.5\nFind: P(X=3), where C(6,3) = 20\nConcept: Understanding why we multiply by C(n,k)",
                 lottery_5_2: "Swiss Lotto: You play 5 draws with 50% win probability. What is the probability of winning exactly 2 times?\n\nGiven: n=5, k=2, p=0.5\nFind: P(X=2), where C(5,2) = 10\nConcept: Binomial coefficient represents arrangements",
                 lottery_6_4: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4), where C(6,4) = 15\nConcept: Counting favorable arrangements",
                 lottery_7_3: "Swiss Lotto: You play 7 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=7, k=3, p=0.5\nFind: P(X=3), where C(7,3) = 35\nConcept: Larger n means more arrangements",
-                
+
                 // BINOMIAL - ADVANCED: Asymmetric probability (p ≠ 0.5)
                 lottery_5_3_biased: "Swiss Lotto: You play 5 draws with 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6 (biased probability)\nFind: P(X=3) = C(5,3) × 0.6³ × 0.4²\nConcept: Distribution is skewed when p ≠ 0.5",
                 lottery_6_2_low: "Swiss Lotto: You play 6 draws with only 30% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.3 (low probability)\nFind: P(X=2) = C(6,2) × 0.3² × 0.7⁴\nConcept: Low p means distribution skewed left",
                 lottery_8_6_high: "Swiss Lotto: You play 8 draws with 70% win probability per draw. What is the probability of winning exactly 6 times?\n\nGiven: n=8, k=6, p=0.7 (high probability)\nFind: P(X=6) = C(8,6) × 0.7⁶ × 0.3²\nConcept: High p means distribution skewed right",
                 lottery_7_4_biased: "Swiss Lotto: You play 7 draws with 60% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=7, k=4, p=0.6\nFind: P(X=4)\nConcept: Understanding asymmetric distributions",
                 lottery_10_7_biased: "Swiss Lotto: You play 10 draws with 65% win probability. What is the probability of winning exactly 7 times?\n\nGiven: n=10, k=7, p=0.65\nFind: P(X=7)\nConcept: Calculating with non-standard probabilities",
-                
+
                 // BINOMIAL - ELITE: Cumulative probability
                 at_least_3_of_5: "Swiss Lotto: You play 5 draws with 60% win probability. What is the probability of winning AT LEAST 3 times?\n\nGiven: n=5, k≥3, p=0.6\nFind: P(X≥3) = P(X=3) + P(X=4) + P(X=5)\nConcept: Cumulative probability - sum multiple outcomes",
                 at_most_4_of_6: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning AT MOST 4 times?\n\nGiven: n=6, k≤4, p=0.5\nFind: P(X≤4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)\nConcept: Or use 1 - P(X>4) = 1 - P(X=5) - P(X=6)",
                 more_than_half: "Swiss Lotto: You play 8 draws with 60% win probability. What is the probability of winning MORE THAN HALF the time?\n\nGiven: n=8, k>4, p=0.6\nFind: P(X>4) = P(X=5) + P(X=6) + P(X=7) + P(X=8)\nConcept: Understanding 'more than half' means k≥5",
                 at_least_7_of_10: "Swiss Lotto: You play 10 draws with 70% win probability. What is the probability of winning AT LEAST 7 times?\n\nGiven: n=10, k≥7, p=0.7\nFind: P(X≥7) = P(X=7) + P(X=8) + P(X=9) + P(X=10)\nConcept: Cumulative probability with high p",
                 at_least_8_of_12: "Swiss Lotto: You play 12 draws with 60% win probability. What is the probability of winning AT LEAST 8 times?\n\nGiven: n=12, k≥8, p=0.6\nFind: P(X≥8) = sum from k=8 to 12\nConcept: Multiple terms in cumulative probability",
-                
+
                 // CONDITIONAL - BASIC
                 insurance_basic_1: "Basler Versicherungen (Basel Insurance): For a simple insurance case, we know P(A) = 0.5 (probability of claim), P(B) = 0.6 (probability of risk factor present), and P(A∩B) = 0.3 (probability of both). Calculate P(A|B), the probability of a claim given the risk factor is present.\n\nGiven: P(A) = 0.5, P(B) = 0.6, P(A∩B) = 0.3\nFind: P(A|B) = P(A∩B) / P(B)\nSignificance: Determines insurance premiums for Basel residents.",
                 insurance_basic_2: "Basler Versicherungen: Given P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2, calculate P(A|B).\n\nGiven: P(A) = 0.4, P(B) = 0.5, P(A∩B) = 0.2\nFind: P(A|B) = P(A∩B) / P(B)",
                 insurance_basic_3: "Basler Versicherungen: Given P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4, calculate P(A|B).\n\nGiven: P(A) = 0.6, P(B) = 0.7, P(A∩B) = 0.4\nFind: P(A|B) = P(A∩B) / P(B)",
                 insurance_basic_4: "Basler Versicherungen: Given P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15, calculate P(A|B).\n\nGiven: P(A) = 0.3, P(B) = 0.4, P(A∩B) = 0.15\nFind: P(A|B) = P(A∩B) / P(B)",
-                
+
                 // CONDITIONAL - CORE: Extracting condition from description
                 card_heart_given_red: "You draw a card and observe it's red. What is the probability it's a heart?\n\nGiven: P(heart) = 13/52, P(red) = 26/52, P(heart AND red) = 13/52\nFind: P(heart|red) = (13/52) / (26/52) = 13/26 = 0.5\nConcept: Identifying condition from description",
                 die_six_given_even: "You roll a die and observe it's even. What is the probability it's a 6?\n\nGiven: P(6) = 1/6, P(even) = 3/6, P(6 AND even) = 1/6\nFind: P(6|even) = (1/6) / (3/6) = 1/3\nConcept: Condition changes sample space",
                 card_face_given_red: "You draw a card and it's red. What is the probability it's a face card?\n\nGiven: P(face) = 12/52, P(red) = 26/52, P(face AND red) = 6/52\nFind: P(face|red) = 6/26\nConcept: Extracting probabilities from card structure",
                 die_one_given_odd: "You roll a die and it's odd. What is the probability it's a 1?\n\nGiven: P(1) = 1/6, P(odd) = 3/6, P(1 AND odd) = 1/6\nFind: P(1|odd) = (1/6) / (3/6) = 1/3\nConcept: Understanding conditional sample space",
                 card_spade_given_black: "You draw a card and it's black. What is the probability it's a spade?\n\nGiven: P(spade) = 13/52, P(black) = 26/52, P(spade AND black) = 13/52\nFind: P(spade|black) = 13/26 = 0.5\nConcept: Symmetry in conditional probability",
-                
+
                 // CONDITIONAL - ADVANCED: Bayesian thinking
                 disease_test_positive: "A disease affects 1% of the population. A test is 90% accurate (detects disease when present). If you test positive, what's the probability you actually have the disease?\n\nGiven: P(disease) = 0.01, P(positive|disease) = 0.9, P(positive|no disease) = 0.1\nP(positive) = 0.01×0.9 + 0.99×0.1 = 0.108\nFind: P(disease|positive) = (0.01×0.9) / 0.108 = 0.083\nConcept: P(A|B) ≠ P(B|A) - Bayesian reversal",
                 disease_test_positive_2: "A rare disease affects 2% of population. Test is 80% accurate. If positive, what's P(disease)?\n\nGiven: P(disease) = 0.02, P(+|disease) = 0.8\nFind: P(disease|+) using Bayes' theorem\nConcept: Understanding false positives",
                 quality_defect_given_batch: "15% of products are defective. A batch test detects 80% of defects. If batch fails, what's P(defective)?\n\nGiven: P(defect) = 0.15, P(fail|defect) = 0.8\nFind: P(defect|fail)\nConcept: Bayesian inference in quality control",
                 fraud_given_alert: "5% of transactions are fraudulent. Alert system catches 80% of fraud. If alert triggers, what's P(fraud)?\n\nGiven: P(fraud) = 0.05, P(alert|fraud) = 0.8\nFind: P(fraud|alert)\nConcept: Understanding alarm reliability",
                 accident_given_weather: "10% of days have accidents. 80% of accident days have bad weather. If bad weather, what's P(accident)?\n\nGiven: P(accident) = 0.1, P(bad weather|accident) = 0.8\nFind: P(accident|bad weather)\nConcept: Reversing conditional probability",
-                
+
                 // CONDITIONAL - ELITE: Independence testing
                 independence_test_1: "Events A and B have P(A)=0.4, P(B)=0.5, P(A∩B)=0.2. Are A and B independent?\n\nGiven: P(A)=0.4, P(B)=0.5, P(A∩B)=0.2\nTest: If independent, P(A∩B) should equal P(A)×P(B) = 0.4×0.5 = 0.2 ✓\nFind: P(A|B) = 0.2/0.5 = 0.4 = P(A) ✓\nConcept: A and B are INDEPENDENT",
                 independence_test_2: "Events A and B have P(A)=0.3, P(B)=0.6, P(A∩B)=0.18. Are they independent?\n\nGiven: P(A)=0.3, P(B)=0.6, P(A∩B)=0.18\nTest: P(A)×P(B) = 0.3×0.6 = 0.18 ✓\nFind: P(A|B) = 0.18/0.6 = 0.3 = P(A) ✓\nConcept: Testing independence",
                 multiple_condition_1: "P(A)=0.25, P(B)=0.4, P(A∩B)=0.15. Find P(A|B) and determine if independent.\n\nGiven: P(A)=0.25, P(B)=0.4, P(A∩B)=0.15\nFind: P(A|B) = 0.15/0.4 = 0.375\nTest: P(A|B) = 0.375 ≠ P(A) = 0.25\nConcept: NOT independent - condition changes probability",
                 independence_test_3: "P(A)=0.35, P(B)=0.7, P(A∩B)=0.245. Are A and B independent?\n\nGiven: P(A)=0.35, P(B)=0.7, P(A∩B)=0.245\nTest: P(A)×P(B) = 0.35×0.7 = 0.245 ✓\nFind: P(A|B) = 0.245/0.7 = 0.35 = P(A) ✓\nConcept: Independence verification",
                 multiple_condition_2: "P(A)=0.2, P(B)=0.5, P(A∩B)=0.12. Find P(A|B) and test independence.\n\nGiven: P(A)=0.2, P(B)=0.5, P(A∩B)=0.12\nFind: P(A|B) = 0.12/0.5 = 0.24\nTest: P(A|B) = 0.24 ≠ P(A) = 0.2\nConcept: NOT independent",
-                
+
                 // MISSION - Mixed problems (reuse context keys from above stages)
                 mission_basic_1: "Novartis Mission: Roll a die once. What is the probability of rolling a 1?\n\nGiven: 1 favorable, 6 total\nFind: P(E)",
                 mission_basic_2: "Swiss Lotto Mission: Flip a coin 3 times. What is the probability of exactly 2 heads?\n\nGiven: n=3, k=2, p=0.5\nFind: P(X=2)",
                 mission_basic_3: "Insurance Mission: Given P(A)=0.5, P(B)=0.6, P(A∩B)=0.3, find P(A|B).\n\nGiven: P(A)=0.5, P(B)=0.6, P(A∩B)=0.3\nFind: P(A|B)",
                 mission_basic_4: "Novartis Mission: Roll a die. What is the probability of rolling an even number?\n\nGiven: 2 favorable (2,4,6), 6 total\nFind: P(E)",
-                
+
                 mission_core_1: "Novartis Mission: Draw a card from a 52-card deck. What is the probability of drawing a heart?\n\nGiven: 13 favorable, 52 total\nFind: P(E)",
                 mission_core_2: "Swiss Lotto Mission: Play 6 lottery draws with 50% win probability. What is P(X=4)?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4)",
                 mission_core_3: "Insurance Mission: Given P(A)=0.45, P(B)=0.55, P(A∩B)=0.25, find P(A|B).\n\nGiven: P(A)=0.45, P(B)=0.55, P(A∩B)=0.25\nFind: P(A|B)",
                 mission_core_4: "Novartis Mission: Draw a card. What is the probability of drawing a red card?\n\nGiven: 26 favorable, 52 total\nFind: P(E)",
                 mission_core_5: "Swiss Lotto Mission: Play 5 draws with 60% win probability. What is P(X=3)?\n\nGiven: n=5, k=3, p=0.6\nFind: P(X=3)",
-                
+
                 mission_adv_1: "Novartis Mission: In 100 samples, 85 passed. Calculate P(E).\n\nGiven: 85 favorable, 100 total\nFind: P(E)",
                 mission_adv_2: "Swiss Lotto Mission: In 10 draws with 50% win probability, calculate P(X=6).\n\nGiven: n=10, k=6, p=0.5\nFind: P(X=6)",
                 mission_adv_3: "Insurance Mission: Given P(A)=0.37, P(B)=0.63, P(A∩B)=0.21, find P(A|B).\n\nGiven: P(A)=0.37, P(B)=0.63, P(A∩B)=0.21\nFind: P(A|B)",
                 mission_adv_4: "Novartis Mission: In 120 samples, 92 passed. Calculate P(E).\n\nGiven: 92 favorable, 120 total\nFind: P(E)",
                 mission_adv_5: "Swiss Lotto Mission: In 8 draws with 60% win probability, calculate P(X=5).\n\nGiven: n=8, k=5, p=0.6\nFind: P(X=5)",
-                
+
                 mission_elite_1: "Novartis Mission: In 500 samples, 427 passed. Calculate P(E).\n\nGiven: 427 favorable, 500 total\nFind: P(E)",
                 mission_elite_2: "Swiss Lotto Mission: In 15 draws with 55% win probability, calculate P(X=9).\n\nGiven: n=15, k=9, p=0.55\nFind: P(X=9)",
                 mission_elite_3: "Insurance Mission: Given P(A)=0.365, P(B)=0.625, P(A∩B)=0.215, find P(A|B).\n\nGiven: P(A)=0.365, P(B)=0.625, P(A∩B)=0.215\nFind: P(A|B)",
@@ -2966,6 +3008,8 @@ export const translations: Record<string, any> = {
             sm3_04_subtitle: "通过精密训练解码对数刻度和逆向增长。",
             sm2_07_title: "SM2.07 // 坐标侦察",
             sm2_07_subtitle: "在巴塞尔网格中掌握坐标系、平移和绘图精度。",
+            sm2_08_title: "SM2.08 // 概率基础",
+            sm2_08_subtitle: "通过巴塞尔生活场景和简单博彩教育掌握概率基础。",
             sm2_03_title: "SM2.03 // 直线与函数",
             sm2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
             sm2_04_title: "SM2.04 // 相似与比例",
@@ -3973,21 +4017,21 @@ export const translations: Record<string, any> = {
                 single_die_odd: "掷一次标准六面骰子，掷出奇数（1、3或5）的概率是多少？\n\n已知：3个有利结果（1,3,5），6个总结果\n求：P(E) = 有利结果 / 总结果\n概念：直接观察",
                 coin_heads: "抛一次公平硬币，得到正面的概率是多少？\n\n已知：1个有利结果（正面），2个总结果\n求：P(E) = 有利结果 / 总结果\n概念：最简单的样本空间",
                 spinner_8_sections: "你转动一个被分成8个相等部分（编号1-8）的转盘。落在第3部分的概率是多少？\n\n已知：1个有利结果，8个总结果\n求：P(E) = 有利结果 / 总结果\n概念：直接观察",
-                
+
                 // BASIC_PROB - CORE: 理解组合
                 two_dice_sum_7: "掷两个标准骰子，和为7的概率是多少？\n\n已知：6个有利结果（1+6, 2+5, 3+4, 4+3, 5+2, 6+1），36个总结果\n求：P(E) = 有利结果 / 总结果\n概念：理解(1,6)和(6,1)是不同的结果",
                 two_dice_sum_10: "掷两个标准骰子，和为10的概率是多少？\n\n已知：3个有利结果（4+6, 5+5, 6+4），36个总结果\n求：P(E) = 有利结果 / 总结果\n概念：正确计数组合",
                 two_dice_sum_gt_7: "掷两个标准骰子，和大于7的概率是多少？\n\n已知：15个有利结果（和为8,9,10,11,12），36个总结果\n求：P(E) = 有利结果 / 总结果\n概念：计数多个有利结果",
                 deck_one_suit: "从标准52张牌中抽一张，抽到红心的概率是多少？\n\n已知：13张红心，52张总牌\n求：P(E) = 有利结果 / 总结果\n概念：理解花色结构",
                 deck_honors: "从标准52张牌中抽一张，抽到荣誉牌（A、K、Q或J）的概率是多少？\n\n已知：16张荣誉牌（每个等级4张），52张总牌\n求：P(E) = 有利结果 / 总结果\n概念：跨所有花色计数",
-                
+
                 // BASIC_PROB - ADVANCED: 条件概率（隐含）
                 die_even_given_gt3: "你掷骰子并观察到结果大于3。它是偶数的概率是多少？\n\n已知：在结果{4,5,6}中，两个是偶数{4,6}\n求：P(偶数 | >3) = 2/3\n概念：条件'>3'将样本空间从6个结果改变为3个结果",
                 die_multiple_of_3: "你掷一个标准骰子。掷出3的倍数的概率是多少？\n\n已知：2个有利结果（3, 6），6个总结果\n求：P(E) = 2/6\n概念：识别带条件的有利结果",
                 card_face_given_spade: "你抽一张牌，它是黑桃。它是人头牌（J、Q、K）的概率是多少？\n\n已知：在13张黑桃中，3张是人头牌\n求：P(人头牌 | 黑桃) = 3/13\n概念：花色内的条件概率",
                 card_not_face_not_ace: "你从标准牌组中抽一张牌。它既不是人头牌也不是A的概率是多少？\n\n已知：52张总牌 - 12张人头牌 - 4张A = 36个有利结果，52张总牌\n求：P(E) = 36/52\n概念：使用补集计数",
                 card_king_given_face: "你抽一张牌，它是人头牌。它是K的概率是多少？\n\n已知：在12张人头牌（4种花色的J,Q,K）中，4张是K\n求：P(K | 人头牌) = 4/12\n概念：人头牌内的条件概率",
-                
+
                 // BASIC_PROB - ELITE: 复合事件
                 at_least_one_six_two_dice: "你掷两个骰子。至少有一个显示6的概率是多少？\n\n已知：使用补集 - P(至少一个6) = 1 - P(没有6)\nP(没有6) = (5/6) × (5/6) = 25/36\n求：P(E) = 1 - 25/36 = 11/36\n概念：对'至少一个'使用补集",
                 sum_not_2_or_12: "你掷两个骰子。和既不是2也不是12的概率是多少？\n\n已知：P(和=2) = 1/36，P(和=12) = 1/36\n有利结果 = 36 - 1 - 1 = 34\n求：P(E) = 34/36\n概念：对'既不...也不'使用补集",
@@ -4006,40 +4050,40 @@ export const translations: Record<string, any> = {
                 coin_4_2: "抛4次公平硬币，恰好2次正面的概率是多少？\n\n已知：n=4次试验，k=2次成功，p=0.5\n求：P(X=2) = C(4,2) × 0.5² × 0.5²\n概念：基本二项分布计算",
                 coin_3_all: "抛3次公平硬币，全部正面的概率是多少？\n\n已知：n=3次试验，k=3次成功，p=0.5\n求：P(X=3) = C(3,3) × 0.5³ × 0.5⁰\n概念：理解C(n,n) = 1",
                 coin_4_none: "抛4次公平硬币，没有正面（全部反面）的概率是多少？\n\n已知：n=4次试验，k=0次成功，p=0.5\n求：P(X=0) = C(4,0) × 0.5⁰ × 0.5⁴\n概念：理解C(n,0) = 1",
-                
+
                 // BINOMIAL - CORE: 理解C(n,k)的意义
                 lottery_5_3: "瑞士乐透：你玩5次抽奖，每次中奖概率50%。恰好中3次的概率是多少？\n\n已知：n=5，k=3，p=0.5\n求：P(X=3) = C(5,3) × 0.5³ × 0.5²\n概念：C(5,3) = 10 表示选择哪3次抽奖中奖的10种不同方式",
                 lottery_6_3: "瑞士乐透：你玩6次抽奖，中奖概率50%。恰好中3次的概率是多少？\n\n已知：n=6，k=3，p=0.5\n求：P(X=3)，其中C(6,3) = 20\n概念：理解为什么要乘以C(n,k)",
                 lottery_5_2: "瑞士乐透：你玩5次抽奖，中奖概率50%。恰好中2次的概率是多少？\n\n已知：n=5，k=2，p=0.5\n求：P(X=2)，其中C(5,2) = 10\n概念：二项系数表示排列",
                 lottery_7_3: "瑞士乐透：你玩7次抽奖，中奖概率50%。恰好中3次的概率是多少？\n\n已知：n=7，k=3，p=0.5\n求：P(X=3)，其中C(7,3) = 35\n概念：更大的n意味着更多排列",
-                
+
                 // BINOMIAL - ADVANCED: 非对称概率（p ≠ 0.5）
                 lottery_6_2_low: "瑞士乐透：你玩6次抽奖，每次中奖概率仅30%。恰好中2次的概率是多少？\n\n已知：n=6，k=2，p=0.3（低概率）\n求：P(X=2) = C(6,2) × 0.3² × 0.7⁴\n概念：低p意味着分布左偏",
                 lottery_8_6_high: "瑞士乐透：你玩8次抽奖，每次中奖概率70%。恰好中6次的概率是多少？\n\n已知：n=8，k=6，p=0.7（高概率）\n求：P(X=6) = C(8,6) × 0.7⁶ × 0.3²\n概念：高p意味着分布右偏",
                 lottery_7_4_biased: "瑞士乐透：你玩7次抽奖，中奖概率60%。恰好中4次的概率是多少？\n\n已知：n=7，k=4，p=0.6\n求：P(X=4)\n概念：理解非对称分布",
                 lottery_10_7_biased: "瑞士乐透：你玩10次抽奖，中奖概率65%。恰好中7次的概率是多少？\n\n已知：n=10，k=7，p=0.65\n求：P(X=7)\n概念：使用非标准概率计算",
-                
+
                 // BINOMIAL - ELITE: 累积概率
                 at_least_3_of_5: "瑞士乐透：你玩5次抽奖，中奖概率60%。至少中3次的概率是多少？\n\n已知：n=5，k≥3，p=0.6\n求：P(X≥3) = P(X=3) + P(X=4) + P(X=5)\n概念：累积概率 - 多个结果相加",
                 at_most_4_of_6: "瑞士乐透：你玩6次抽奖，中奖概率50%。至多中4次的概率是多少？\n\n已知：n=6，k≤4，p=0.5\n求：P(X≤4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)\n概念：或使用 1 - P(X>4) = 1 - P(X=5) - P(X=6)",
                 more_than_half: "瑞士乐透：你玩8次抽奖，中奖概率60%。超过一半时间中奖的概率是多少？\n\n已知：n=8，k>4，p=0.6\n求：P(X>4) = P(X=5) + P(X=6) + P(X=7) + P(X=8)\n概念：理解'超过一半'意味着k≥5",
                 at_least_7_of_10: "瑞士乐透：你玩10次抽奖，中奖概率70%。至少中7次的概率是多少？\n\n已知：n=10，k≥7，p=0.7\n求：P(X≥7) = P(X=7) + P(X=8) + P(X=9) + P(X=10)\n概念：高p的累积概率",
                 at_least_8_of_12: "瑞士乐透：你玩12次抽奖，中奖概率60%。至少中8次的概率是多少？\n\n已知：n=12，k≥8，p=0.6\n求：P(X≥8) = 从k=8到12的总和\n概念：累积概率中的多项",
-                
+
                 // CONDITIONAL - CORE: 从描述中提取条件
                 card_heart_given_red: "你抽一张牌并观察到它是红色的。它是红心的概率是多少？\n\n已知：P(红心) = 13/52，P(红色) = 26/52，P(红心且红色) = 13/52\n求：P(红心|红色) = (13/52) / (26/52) = 13/26 = 0.5\n概念：从描述中识别条件",
                 die_six_given_even: "你掷骰子并观察到它是偶数。它是6的概率是多少？\n\n已知：P(6) = 1/6，P(偶数) = 3/6，P(6且偶数) = 1/6\n求：P(6|偶数) = (1/6) / (3/6) = 1/3\n概念：条件改变样本空间",
                 card_face_given_red: "你抽一张牌，它是红色的。它是人头牌的概率是多少？\n\n已知：P(人头牌) = 12/52，P(红色) = 26/52，P(人头牌且红色) = 6/52\n求：P(人头牌|红色) = 6/26\n概念：从牌的结构中提取概率",
                 die_one_given_odd: "你掷骰子，它是奇数。它是1的概率是多少？\n\n已知：P(1) = 1/6，P(奇数) = 3/6，P(1且奇数) = 1/6\n求：P(1|奇数) = (1/6) / (3/6) = 1/3\n概念：理解条件样本空间",
                 card_spade_given_black: "你抽一张牌，它是黑色的。它是黑桃的概率是多少？\n\n已知：P(黑桃) = 13/52，P(黑色) = 26/52，P(黑桃且黑色) = 13/52\n求：P(黑桃|黑色) = 13/26 = 0.5\n概念：条件概率中的对称性",
-                
+
                 // CONDITIONAL - ADVANCED: 贝叶斯思维
                 disease_test_positive: "一种疾病影响1%的人口。测试准确率为90%（在疾病存在时检测到）。如果你测试阳性，你实际患病的概率是多少？\n\n已知：P(疾病) = 0.01，P(阳性|疾病) = 0.9，P(阳性|无疾病) = 0.1\nP(阳性) = 0.01×0.9 + 0.99×0.1 = 0.108\n求：P(疾病|阳性) = (0.01×0.9) / 0.108 = 0.083\n概念：P(A|B) ≠ P(B|A) - 贝叶斯反转",
                 disease_test_positive_2: "一种罕见疾病影响2%的人口。测试准确率为80%。如果阳性，P(疾病)是多少？\n\n已知：P(疾病) = 0.02，P(+|疾病) = 0.8\n求：使用贝叶斯定理求P(疾病|+)\n概念：理解假阳性",
                 quality_defect_given_batch: "15%的产品有缺陷。批次测试检测到80%的缺陷。如果批次失败，P(缺陷)是多少？\n\n已知：P(缺陷) = 0.15，P(失败|缺陷) = 0.8\n求：P(缺陷|失败)\n概念：质量控制中的贝叶斯推断",
                 fraud_given_alert: "5%的交易是欺诈性的。警报系统捕获80%的欺诈。如果警报触发，P(欺诈)是多少？\n\n已知：P(欺诈) = 0.05，P(警报|欺诈) = 0.8\n求：P(欺诈|警报)\n概念：理解警报可靠性",
                 accident_given_weather: "10%的日子发生事故。80%的事故日有恶劣天气。如果恶劣天气，P(事故)是多少？\n\n已知：P(事故) = 0.1，P(恶劣天气|事故) = 0.8\n求：P(事故|恶劣天气)\n概念：反转条件概率",
-                
+
                 // CONDITIONAL - ELITE: 独立性测试
                 independence_test_1: "事件A和B有P(A)=0.4，P(B)=0.5，P(A∩B)=0.2。A和B独立吗？\n\n已知：P(A)=0.4，P(B)=0.5，P(A∩B)=0.2\n测试：如果独立，P(A∩B)应等于P(A)×P(B) = 0.4×0.5 = 0.2 ✓\n求：P(A|B) = 0.2/0.5 = 0.4 = P(A) ✓\n概念：A和B是独立的",
                 independence_test_2: "事件A和B有P(A)=0.3，P(B)=0.6，P(A∩B)=0.18。它们独立吗？\n\n已知：P(A)=0.3，P(B)=0.6，P(A∩B)=0.18\n测试：P(A)×P(B) = 0.3×0.6 = 0.18 ✓\n求：P(A|B) = 0.18/0.6 = 0.3 = P(A) ✓\n概念：测试独立性",
@@ -5920,6 +5964,8 @@ export const translations: Record<string, any> = {
             sm3_04_subtitle: "Dekodiere Logarithmenskalen und inverses Wachstum mit Präzisionsübungen.",
             sm2_07_title: "SM2.07 // KOORDINATEN-RECON",
             sm2_07_subtitle: "Meistere Koordinatensysteme, Translationen und Zeichenpräzision im Basler Raster.",
+            sm2_08_title: "SM2.08 // WAHRSCHEINLICHKEIT GRUNDLAGEN",
+            sm2_08_subtitle: "Meistere Wahrscheinlichkeitsgrundlagen durch Basler Lebensszenarien und einfache Glücksspielbildung.",
             sm2_03_title: "SM2.03 // GERADEN & FUNKTIONEN",
             sm2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
             sm2_04_title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
@@ -6998,45 +7044,45 @@ export const translations: Record<string, any> = {
                 mission_core_3: "Versicherung Mission: Gegeben P(A)=0.45, P(B)=0.55, P(A∩B)=0.25, finden Sie P(A|B).\n\nGegeben: P(A)=0.45, P(B)=0.55, P(A∩B)=0.25\nFinden: P(A|B)",
                 mission_core_4: "Novartis Mission: Ziehen Sie eine Karte, Wahrscheinlichkeit für rot?\n\nGegeben: 26 günstig, 52 gesamt\nFinden: P(E)",
                 mission_core_5: "Swiss Lotto Mission: 5 Ziehungen, 60% Gewinnchance, P(X=3)?\n\nGegeben: n=5, k=3, p=0.6\nFinden: P(X=3)",
-                
+
                 // BINOMIAL - BASIC: Grundkonzept verstehen
                 coin_4_2: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal Kopf zu erhalten?\n\nGegeben: n=4 Versuche, k=2 Erfolge, p=0.5\nGesucht: P(X=2) = C(4,2) × 0.5² × 0.5²\nKonzept: Grundlegende Binomialverteilung",
                 coin_3_all: "Sie werfen eine faire Münze 3 Mal. Wie hoch ist die Wahrscheinlichkeit, nur Kopf zu erhalten?\n\nGegeben: n=3 Versuche, k=3 Erfolge, p=0.5\nGesucht: P(X=3) = C(3,3) × 0.5³ × 0.5⁰\nKonzept: Verstehen dass C(n,n) = 1",
                 coin_4_none: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, keinen Kopf zu erhalten (nur Zahl)?\n\nGegeben: n=4 Versuche, k=0 Erfolge, p=0.5\nGesucht: P(X=0) = C(4,0) × 0.5⁰ × 0.5⁴\nKonzept: Verstehen dass C(n,0) = 1",
-                
+
                 // BINOMIAL - CORE: C(n,k) Bedeutung verstehen
                 lottery_5_3: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 50% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=5, k=3, p=0.5\nGesucht: P(X=3) = C(5,3) × 0.5³ × 0.5²\nKonzept: C(5,3) = 10 repräsentiert die 10 verschiedenen Möglichkeiten, welche 3 Ziehungen Sie gewinnen",
                 lottery_6_3: "Schweizer Lotto: Sie spielen 6 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=6, k=3, p=0.5\nGesucht: P(X=3), wobei C(6,3) = 20\nKonzept: Verstehen warum wir mit C(n,k) multiplizieren",
                 lottery_5_2: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal zu gewinnen?\n\nGegeben: n=5, k=2, p=0.5\nGesucht: P(X=2), wobei C(5,2) = 10\nKonzept: Binomialkoeffizient repräsentiert Anordnungen",
                 lottery_7_3: "Schweizer Lotto: Sie spielen 7 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=7, k=3, p=0.5\nGesucht: P(X=3), wobei C(7,3) = 35\nKonzept: Größeres n bedeutet mehr Anordnungen",
-                
+
                 // BINOMIAL - ADVANCED: Asymmetrische Wahrscheinlichkeit (p ≠ 0.5)
                 lottery_6_2_low: "Schweizer Lotto: Sie spielen 6 Ziehungen mit nur 30% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal zu gewinnen?\n\nGegeben: n=6, k=2, p=0.3 (niedrige Wahrscheinlichkeit)\nGesucht: P(X=2) = C(6,2) × 0.3² × 0.7⁴\nKonzept: Niedriges p bedeutet linksschief verteilte Verteilung",
                 lottery_8_6_high: "Schweizer Lotto: Sie spielen 8 Ziehungen mit 70% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 6 Mal zu gewinnen?\n\nGegeben: n=8, k=6, p=0.7 (hohe Wahrscheinlichkeit)\nGesucht: P(X=6) = C(8,6) × 0.7⁶ × 0.3²\nKonzept: Hohes p bedeutet rechtsschief verteilte Verteilung",
                 lottery_7_4_biased: "Schweizer Lotto: Sie spielen 7 Ziehungen mit 60% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 4 Mal zu gewinnen?\n\nGegeben: n=7, k=4, p=0.6\nGesucht: P(X=4)\nKonzept: Asymmetrische Verteilungen verstehen",
                 lottery_10_7_biased: "Schweizer Lotto: Sie spielen 10 Ziehungen mit 65% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 7 Mal zu gewinnen?\n\nGegeben: n=10, k=7, p=0.65\nGesucht: P(X=7)\nKonzept: Berechnung mit nicht-standardisierten Wahrscheinlichkeiten",
-                
+
                 // BINOMIAL - ELITE: Kumulative Wahrscheinlichkeit
                 at_least_3_of_5: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 60% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, mindestens 3 Mal zu gewinnen?\n\nGegeben: n=5, k≥3, p=0.6\nGesucht: P(X≥3) = P(X=3) + P(X=4) + P(X=5)\nKonzept: Kumulative Wahrscheinlichkeit - mehrere Ergebnisse addieren",
                 at_most_4_of_6: "Schweizer Lotto: Sie spielen 6 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, höchstens 4 Mal zu gewinnen?\n\nGegeben: n=6, k≤4, p=0.5\nGesucht: P(X≤4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)\nKonzept: Oder verwenden Sie 1 - P(X>4) = 1 - P(X=5) - P(X=6)",
                 more_than_half: "Schweizer Lotto: Sie spielen 8 Ziehungen mit 60% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, mehr als die Hälfte der Zeit zu gewinnen?\n\nGegeben: n=8, k>4, p=0.6\nGesucht: P(X>4) = P(X=5) + P(X=6) + P(X=7) + P(X=8)\nKonzept: Verstehen dass 'mehr als die Hälfte' k≥5 bedeutet",
                 at_least_7_of_10: "Schweizer Lotto: Sie spielen 10 Ziehungen mit 70% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, mindestens 7 Mal zu gewinnen?\n\nGegeben: n=10, k≥7, p=0.7\nGesucht: P(X≥7) = P(X=7) + P(X=8) + P(X=9) + P(X=10)\nKonzept: Kumulative Wahrscheinlichkeit mit hohem p",
                 at_least_8_of_12: "Schweizer Lotto: Sie spielen 12 Ziehungen mit 60% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, mindestens 8 Mal zu gewinnen?\n\nGegeben: n=12, k≥8, p=0.6\nGesucht: P(X≥8) = Summe von k=8 bis 12\nKonzept: Mehrere Terme in kumulativer Wahrscheinlichkeit",
-                
+
                 // CONDITIONAL - CORE: Bedingung aus Beschreibung extrahieren
                 card_heart_given_red: "Sie ziehen eine Karte und beobachten, dass sie rot ist. Wie hoch ist die Wahrscheinlichkeit, dass es Herz ist?\n\nGegeben: P(Herz) = 13/52, P(rot) = 26/52, P(Herz UND rot) = 13/52\nGesucht: P(Herz|rot) = (13/52) / (26/52) = 13/26 = 0.5\nKonzept: Bedingung aus Beschreibung identifizieren",
                 die_six_given_even: "Sie würfeln und beobachten, dass die Zahl gerade ist. Wie hoch ist die Wahrscheinlichkeit, dass es eine 6 ist?\n\nGegeben: P(6) = 1/6, P(gerade) = 3/6, P(6 UND gerade) = 1/6\nGesucht: P(6|gerade) = (1/6) / (3/6) = 1/3\nKonzept: Bedingung ändert Stichprobenraum",
                 card_face_given_red: "Sie ziehen eine Karte und sie ist rot. Wie hoch ist die Wahrscheinlichkeit, dass es eine Bildkarte ist?\n\nGegeben: P(Bild) = 12/52, P(rot) = 26/52, P(Bild UND rot) = 6/52\nGesucht: P(Bild|rot) = 6/26\nKonzept: Wahrscheinlichkeiten aus Kartenstruktur extrahieren",
                 die_one_given_odd: "Sie würfeln und die Zahl ist ungerade. Wie hoch ist die Wahrscheinlichkeit, dass es eine 1 ist?\n\nGegeben: P(1) = 1/6, P(ungerade) = 3/6, P(1 UND ungerade) = 1/6\nGesucht: P(1|ungerade) = (1/6) / (3/6) = 1/3\nKonzept: Bedingten Stichprobenraum verstehen",
                 card_spade_given_black: "Sie ziehen eine Karte und sie ist schwarz. Wie hoch ist die Wahrscheinlichkeit, dass es Pik ist?\n\nGegeben: P(Pik) = 13/52, P(schwarz) = 26/52, P(Pik UND schwarz) = 13/52\nGesucht: P(Pik|schwarz) = 13/26 = 0.5\nKonzept: Symmetrie in bedingter Wahrscheinlichkeit",
-                
+
                 // CONDITIONAL - ADVANCED: Bayesianisches Denken
                 disease_test_positive: "Eine Krankheit betrifft 1% der Bevölkerung. Ein Test ist zu 90% genau (erkennt Krankheit wenn vorhanden). Wenn Sie positiv testen, wie hoch ist die Wahrscheinlichkeit, dass Sie tatsächlich krank sind?\n\nGegeben: P(Krankheit) = 0.01, P(positiv|Krankheit) = 0.9, P(positiv|keine Krankheit) = 0.1\nP(positiv) = 0.01×0.9 + 0.99×0.1 = 0.108\nGesucht: P(Krankheit|positiv) = (0.01×0.9) / 0.108 = 0.083\nKonzept: P(A|B) ≠ P(B|A) - Bayesianische Umkehrung",
                 disease_test_positive_2: "Eine seltene Krankheit betrifft 2% der Bevölkerung. Test ist zu 80% genau. Wenn positiv, was ist P(Krankheit)?\n\nGegeben: P(Krankheit) = 0.02, P(+|Krankheit) = 0.8\nGesucht: P(Krankheit|+) mit Bayes-Theorem\nKonzept: Falsch-positive verstehen",
                 quality_defect_given_batch: "15% der Produkte sind defekt. Chargentest erkennt 80% der Defekte. Wenn Charge fehlschlägt, was ist P(defekt)?\n\nGegeben: P(defekt) = 0.15, P(Fehler|defekt) = 0.8\nGesucht: P(defekt|Fehler)\nKonzept: Bayesianische Inferenz in Qualitätskontrolle",
                 fraud_given_alert: "5% der Transaktionen sind betrügerisch. Alarmsystem erfasst 80% des Betrugs. Wenn Alarm ausgelöst wird, was ist P(Betrug)?\n\nGegeben: P(Betrug) = 0.05, P(Alarm|Betrug) = 0.8\nGesucht: P(Betrug|Alarm)\nKonzept: Alarmzuverlässigkeit verstehen",
                 accident_given_weather: "An 10% der Tage gibt es Unfälle. 80% der Unfalltage haben schlechtes Wetter. Bei schlechtem Wetter, was ist P(Unfall)?\n\nGegeben: P(Unfall) = 0.1, P(schlechtes Wetter|Unfall) = 0.8\nGesucht: P(Unfall|schlechtes Wetter)\nKonzept: Bedingte Wahrscheinlichkeit umkehren",
-                
+
                 // CONDITIONAL - ELITE: Unabhängigkeitstest
                 independence_test_1: "Ereignisse A und B haben P(A)=0.4, P(B)=0.5, P(A∩B)=0.2. Sind A und B unabhängig?\n\nGegeben: P(A)=0.4, P(B)=0.5, P(A∩B)=0.2\nTest: Wenn unabhängig, sollte P(A∩B) gleich P(A)×P(B) = 0.4×0.5 = 0.2 ✓\nGesucht: P(A|B) = 0.2/0.5 = 0.4 = P(A) ✓\nKonzept: A und B sind UNABHÄNGIG",
                 independence_test_2: "Ereignisse A und B haben P(A)=0.3, P(B)=0.6, P(A∩B)=0.18. Sind sie unabhängig?\n\nGegeben: P(A)=0.3, P(B)=0.6, P(A∩B)=0.18\nTest: P(A)×P(B) = 0.3×0.6 = 0.18 ✓\nGesucht: P(A|B) = 0.18/0.6 = 0.3 = P(A) ✓\nKonzept: Unabhängigkeit testen",
