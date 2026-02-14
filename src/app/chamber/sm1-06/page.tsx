@@ -20,8 +20,9 @@ interface S106Quest extends Quest {
 type S106T = typeof translations.en.sm1_06;
 
 export default function SM106Page() {
-    const language = useAppStore((state) => state.language);
-    const t = translations[language.toLowerCase() as "en" | "cn" | "de"].sm1_06;
+    const { currentLanguage, completeStage } = useAppStore();
+    const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
+    const t = locale.sm1_06 || translations.EN.sm1_06;
 
     const buildStagePool = useCallback((t: S106T, difficulty: Difficulty, stage: Stage): S106Quest[] => {
         const isBasic = difficulty === "BASIC";
@@ -431,7 +432,7 @@ export default function SM106Page() {
     }, []);
 
     return (
-        <ChamberLayout moduleCode="SM1.06" title={t?.title || "Ratio Lab"} color="from-neon-cyan to-blue-600">
+        <ChamberLayout moduleCode="SM1.06" title={t?.title || "Ratio Lab"}>
             {/* 
         This is a temporary fallback for the translations object until i18n is updated.
         We're just ensuring the page renders even if `t` is undefined. 
@@ -443,7 +444,7 @@ export default function SM106Page() {
                     difficulty: { basic: "Basic", core: "Core", advanced: "Advanced", elite: "Elite" }
                 }}
                 buildStagePool={buildStagePool}
-                language={language}
+                language={currentLanguage}
             />
         </ChamberLayout>
     );
@@ -483,8 +484,8 @@ function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildS
                             key={d}
                             onClick={() => handleDifficultyChange(d)}
                             className={`px-3 py-1 text-xs rounded-full border transition-all ${difficulty === d
-                                    ? "bg-neon-cyan text-black border-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.5)]"
-                                    : "text-white/50 border-white/20 hover:border-white/40"
+                                ? "bg-neon-cyan text-black border-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.5)]"
+                                : "text-white/50 border-white/20 hover:border-white/40"
                                 }`}
                         >
                             {d}
@@ -573,8 +574,8 @@ function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildS
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 className={`mt-6 p-4 rounded-xl border flex items-center justify-between ${isCorrect
-                                        ? 'bg-green-500/10 border-green-500/50 text-green-400'
-                                        : 'bg-red-500/10 border-red-500/50 text-red-400'
+                                    ? 'bg-green-500/10 border-green-500/50 text-green-400'
+                                    : 'bg-red-500/10 border-red-500/50 text-red-400'
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
@@ -598,7 +599,7 @@ function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildS
                         {Array.from({ length: 5 }).map((_, i) => (
                             <div
                                 key={i}
-                                className={`flex-1 transition-all duration-1000 ${i < (currentStageStats.correct % 6) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
+                                className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
                                     }`}
                             />
                         ))}
