@@ -113,11 +113,11 @@ export default function Home() {
     { code: "SP2.03", title: t.home.sp2_03_title, desc: t.home.sp2_03_subtitle, color: "neon-green", href: "/chamber/sp2-03", tags: ["physics"] },
     { code: "SP3.01", title: t.home.sp3_01_title, desc: t.home.sp3_01_subtitle, color: "neon-purple", href: "/chamber/sp3-01", tags: ["physics"] },
     { code: "SP3.02", title: t.home.sp3_02_title, desc: t.home.sp3_02_subtitle, color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
-    { code: "SP4.01", title: t.home.sp4_01_title, desc: t.home.sp4_01_subtitle, color: "neon-amber", href: "/chamber/sp4-01", tags: ["physics"] },
-    { code: "GP5.01", title: t.home.gp5_01_title, desc: t.home.gp5_01_subtitle, color: "neon-cyan", href: "/chamber/gp5-01", tags: ["physics"] },
-    { code: "GP5.02", title: t.home.gp5_02_title, desc: t.home.gp5_02_subtitle, color: "neon-purple", href: "/chamber/gp5-02", tags: ["physics"] },
-    { code: "GP5.03", title: t.home.gp5_03_title, desc: t.home.gp5_03_subtitle, color: "neon-amber", href: "/chamber/gp5-03", tags: ["physics"] },
-    { code: "GP5.04", title: t.home.gp5_04_title, desc: t.home.gp5_04_subtitle, color: "neon-purple", href: "/chamber/gp5-04", tags: ["physics"] },
+    { code: "SP3.03", title: t.home.sp3_03_title, desc: t.home.sp3_03_subtitle, color: "neon-amber", href: "/chamber/sp3-03", tags: ["physics"] },
+    { code: "GP1.01", title: t.home.gp1_01_title, desc: t.home.gp1_01_subtitle, color: "neon-cyan", href: "/chamber/gp1-01", tags: ["physics"] },
+    { code: "GP1.02", title: t.home.gp1_02_title, desc: t.home.gp1_02_subtitle, color: "neon-purple", href: "/chamber/gp1-02", tags: ["physics"] },
+    { code: "GP1.03", title: t.home.gp1_03_title, desc: t.home.gp1_03_subtitle, color: "neon-amber", href: "/chamber/gp1-03", tags: ["physics"] },
+    { code: "GP1.04", title: t.home.gp1_04_title, desc: t.home.gp1_04_subtitle, color: "neon-purple", href: "/chamber/gp1-04", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([

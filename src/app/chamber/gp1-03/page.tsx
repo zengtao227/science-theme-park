@@ -6,13 +6,13 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import ColliderCanvas from "@/components/chamber/gp5-03/ColliderCanvas";
+import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
 
 type Stage = "acceleration" | "collision" | "detection";
 
-export default function P503Page() {
+export default function P103Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].gp5_03 || translations.EN.gp5_03;
+  const t = translations[currentLanguage].gp1_03 || translations.EN.gp1_03;
 
   const [stage, setStage] = useState<Stage>("acceleration");
   const [energy, setEnergy] = useState(7); // TeV
@@ -47,8 +47,8 @@ export default function P503Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "GP5.03 // PARTICLE COLLIDER"}
-      moduleCode="GP5.03"
+      title={t?.title || "GP1.03 // PARTICLE COLLIDER"}
+      moduleCode="GP1.03"
       difficulty="ELITE"
       onDifficultyChange={() => {}}
       stages={[
@@ -61,7 +61,7 @@ export default function P503Page() {
       onVerify={() => {}}
       onNext={() => {}}
       checkStatus={null}
-      footerLeft={t?.footer_left || "GP5.03_PARTICLE_COLLIDER // NODE: CERN"}
+      footerLeft={t?.footer_left || "GP1.03_PARTICLE_COLLIDER // NODE: CERN"}
       translations={{
         back: t?.back || "Back to Nexus",
         check: t?.check || "Verify",
@@ -69,7 +69,7 @@ export default function P503Page() {
         correct: t?.correct || "Verified",
         incorrect: t?.incorrect || "Mismatch",
         ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GP5.03_LHC_MONITOR",
+        monitor_title: t?.monitor_title || "GP1.03_LHC_MONITOR",
         difficulty: {
           basic: "BASIC",
           core: "CORE",

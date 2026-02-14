@@ -34,11 +34,12 @@
 | **SP2.02** | **Circuit Sandbox 2.0** | ✅ Production | RLC Transient Analysis | Sek |
 | **SP2.03** | Motor Lab (Electromagnetism) | ✅ Production | Electromagnetism & Motors | Sek |
 | **SP3.01** | Geometrical Optics | ✅ Production | Light & Lenses | Sek |
-| **SP4.01** | Wave Basics | ✅ Production | Waves & Sound | Sek |
-| **GP5.01** | The Atomic Core | ✅ Production | Nuclear Physics | Gym |
-| **GP5.02** | Relativity Lab | ✅ Production | Special Relativity | Gym |
-| **GP5.03** | Particle Collider | ✅ Production | Particle Physics | Gym |
-| **GP5.04** | Quantum Tunnel | ✅ Production | Quantum Mechanics | Gym |
+| **SP3.02** | (TBD) | 🚧 Planning | TBD | Sek |
+| **SP3.03** | Wave Basics | ✅ Production | Waves & Sound | Sek |
+| **GP1.01** | The Atomic Core | ✅ Production | Nuclear Physics | Gym |
+| **GP1.02** | Relativity Lab | ✅ Production | Special Relativity | Gym |
+| **GP1.03** | Particle Collider | ✅ Production | Particle Physics | Gym |
+| **GP1.04** | Quantum Tunnel | ✅ Production | Quantum Mechanics | Gym |
 
 ---
 

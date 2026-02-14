@@ -247,13 +247,13 @@ export const translations: Record<string, any> = {
             sp1_06_subtitle: "The mechanics of time: Explore period, frequency and gravity with the Basel clockmaker.",
             sp1_08_title: "SP1.08 // OPTICS LAB",
             sp1_08_subtitle: "Explore light, lenses, and optical phenomena.",
-            sp4_01_title: "SP4.01 // WAVE BASICS",
+            sp4_01_title: "SP3.03 // WAVE BASICS",
             sp4_01_subtitle: "Wave properties and sound phenomena.",
-            gp5_01_title: "GP5.01 // THE ATOMIC CORE",
+            gp5_01_title: "GP1.01 // THE ATOMIC CORE",
             gp5_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
             gp5_02: {
                 back: "Back to Nexus",
-                title: "GP5.02 // RELATIVITY LAB",
+                title: "GP1.02 // RELATIVITY LAB",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -267,8 +267,8 @@ export const translations: Record<string, any> = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "GP5.02_RELATIVITY_MONITOR",
-                footer_left: "GP5.02_RELATIVITY_LAB // NODE: CERN",
+                monitor_title: "GP1.02_RELATIVITY_MONITOR",
+                footer_left: "GP1.02_RELATIVITY_LAB // NODE: CERN",
                 labels: {
                     velocity: "VELOCITY",
                     lorentz_factor: "Lorentz Factor (γ)",
@@ -302,9 +302,9 @@ export const translations: Record<string, any> = {
                     doppler_hint: "Light shifts red (receding) or blue (approaching)"
                 }
             },
-            gp5_04: {
+            gp1_04: {
                 back: "Back to Nexus",
-                title: "GP5.04 // QUANTUM TUNNEL",
+                title: "GP1.04 // QUANTUM TUNNEL",
                 difficulty: {
                     basic: "BASIC",
                     core: "CORE",
@@ -318,8 +318,8 @@ export const translations: Record<string, any> = {
                 correct: "Verified",
                 incorrect: "Mismatch",
                 ready: "Ready",
-                monitor_title: "GP5.04_QUANTUM_MONITOR",
-                footer_left: "GP5.04_QUANTUM_TUNNEL // NODE: CERN",
+                monitor_title: "GP1.04_QUANTUM_MONITOR",
+                footer_left: "GP1.04_QUANTUM_TUNNEL // NODE: CERN",
                 labels: {
                     particle_energy: "PARTICLE ENERGY (E)",
                     barrier_height: "BARRIER HEIGHT (V₀)",
@@ -613,12 +613,12 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "Visualize the complex plane and Euler's formula in 3D space.",
             gm5_01_title: "GM5.01 // MATRIX TRANSFORM",
             gm5_01_subtitle: "Linear transformations and eigenvectors in 3D.",
-            gp5_02_title: "GP5.02 // RELATIVITY LAB",
+            gp5_02_title: "GP1.02 // RELATIVITY LAB",
             gp5_02_subtitle: "Calculate Lorentz factor, length contraction, and time dilation at CERN.",
-            gp5_03_title: "GP5.03 // PARTICLE COLLIDER",
-            gp5_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
-            gp5_04_title: "GP5.04 // QUANTUM TUNNEL",
-            gp5_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
+            gp1_03_title: "GP5.03 // PARTICLE COLLIDER",
+            gp1_03_subtitle: "Simulate CERN's LHC. Collide protons at 13 TeV and discover the Higgs boson.",
+            gp1_04_title: "GP1.04 // QUANTUM TUNNEL",
+            gp1_04_subtitle: "Visualize quantum tunneling through potential barriers with wave functions.",
             coming_soon: "Simulation sequence not yet initialized.",
             engine_line: "Physical Law Simulation Engine // v2.1",
             initiate_simulation: "Initiate Simulation",
@@ -2727,7 +2727,7 @@ export const translations: Record<string, any> = {
         },
         sp4_01: {
             back: "Back to Nexus",
-            title: "SP4.01 // WAVE BASICS",
+            title: "SP3.03 // WAVE BASICS",
             difficulty: {
                 basic: "BASIC",
                 core: "CORE",
@@ -2741,8 +2741,8 @@ export const translations: Record<string, any> = {
             correct: "Verified",
             incorrect: "Mismatch",
             ready: "Ready",
-            monitor_title: "SP4.01_WAVE_MONITOR",
-            footer_left: "SP4.01_WAVE_BASICS // NODE: RHINE",
+            monitor_title: "SP3.03_WAVE_MONITOR",
+            footer_left: "SP3.03_WAVE_BASICS // NODE: RHINE",
             labels: {
                 wave_type: "WAVE TYPE",
                 transverse: "TRANSVERSE",
@@ -3286,7 +3286,7 @@ export const translations: Record<string, any> = {
                 crystallize_hint: "Cooling causes excess solute to crystallize"
             }
         },
-        gp5_03: {
+        gp1_03: {
             back: "Back to Nexus",
             title: "GP5.03 // PARTICLE COLLIDER",
             difficulty: {
@@ -3329,10 +3329,10 @@ export const translations: Record<string, any> = {
             }
         },
         gp5_02: {
-            title: "GP5.02 // RELATIVITY LAB",
+            title: "GP1.02 // RELATIVITY LAB",
             back: "Back to Nexus",
-            footer_left: "GP5.02_RELATIVITY_LAB // NODE: RHINE",
-            monitor_title: "GP5.02_RELATIVITY_MONITOR",
+            footer_left: "GP1.02_RELATIVITY_LAB // NODE: RHINE",
+            monitor_title: "GP1.02_RELATIVITY_MONITOR",
             labels: {
                 lorentz_factor_title: "LORENTZ FACTOR",
                 velocity_label: "VELOCITY (v/c)",
@@ -3516,13 +3516,13 @@ export const translations: Record<string, any> = {
             sp1_08_subtitle: "探索光、透镜和光学现象。",
             sp2_03_title: "SP2.03 // 电机实验室",
             sp2_03_subtitle: "电磁学与电机原理。",
-            sp4_01_title: "SP4.01 // 波动基础",
+            sp4_01_title: "SP3.03 // 波动基础",
             sp4_01_subtitle: "波的性质与声音现象。",
-            gp5_01_title: "GP5.01 // 原子核核心",
+            gp5_01_title: "GP1.01 // 原子核核心",
             gp5_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
             gp5_02: {
                 back: "返回枢纽",
-                title: "GP5.02 // 相对论实验室",
+                title: "GP1.02 // 相对论实验室",
                 difficulty: {
                     basic: "基础",
                     core: "核心",
@@ -3536,8 +3536,8 @@ export const translations: Record<string, any> = {
                 correct: "已验证",
                 incorrect: "匹配失败",
                 ready: "就绪",
-                monitor_title: "GP5.02_相对论监视器",
-                footer_left: "GP5.02_相对论实验室 // 节点：CERN",
+                monitor_title: "GP1.02_相对论监视器",
+                footer_left: "GP1.02_相对论实验室 // 节点：CERN",
                 labels: {
                     velocity: "速度",
                     lorentz_factor: "洛伦兹因子 (γ)",
@@ -3571,9 +3571,9 @@ export const translations: Record<string, any> = {
                     doppler_hint: "光向红移（远离）或蓝移（接近）"
                 }
             },
-            gp5_04: {
+            gp1_04: {
                 back: "返回枢纽",
-                title: "GP5.04 // 量子隧穿",
+                title: "GP1.04 // 量子隧穿",
                 difficulty: {
                     basic: "基础",
                     core: "核心",
@@ -3587,8 +3587,8 @@ export const translations: Record<string, any> = {
                 correct: "已验证",
                 incorrect: "匹配失败",
                 ready: "就绪",
-                monitor_title: "GP5.04_量子监视器",
-                footer_left: "GP5.04_量子隧穿 // 节点：CERN",
+                monitor_title: "GP1.04_量子监视器",
+                footer_left: "GP1.04_量子隧穿 // 节点：CERN",
                 labels: {
                     particle_energy: "粒子能量 (E)",
                     barrier_height: "势垒高度 (V₀)",
@@ -3713,12 +3713,12 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "在 3D 空间可视化复平面与欧拉公式。",
             gm5_01_title: "GM5.01 // 矩阵变形器",
             gm5_01_subtitle: "在 3D 空间中体验线性变换与特征向量。",
-            gp5_02_title: "GP5.02 // 相对论实验室",
+            gp5_02_title: "GP1.02 // 相对论实验室",
             gp5_02_subtitle: "在 CERN 计算洛伦兹因子、长度收缩和时间膨胀。",
-            gp5_03_title: "GP5.03 // 粒子对撞机",
-            gp5_03_subtitle: "模拟 CERN 的 LHC。在 13 TeV 下对撞质子并发现希格斯玻色子。",
-            gp5_04_title: "GP5.04 // 量子隧穿",
-            gp5_04_subtitle: "用波函数可视化量子隧穿通过势垒。",
+            gp1_03_title: "GP5.03 // 粒子对撞机",
+            gp1_03_subtitle: "模拟 CERN 的 LHC。在 13 TeV 下对撞质子并发现希格斯玻色子。",
+            gp1_04_title: "GP1.04 // 量子隧穿",
+            gp1_04_subtitle: "用波函数可视化量子隧穿通过势垒。",
             coming_soon: "模拟序列尚未初始化。",
             engine_line: "物理规律仿真引擎 // v2.1",
             initiate_simulation: "启动模拟",
@@ -5845,7 +5845,7 @@ export const translations: Record<string, any> = {
         },
         sp4_01: {
             back: "返回枢纽",
-            title: "SP4.01 // 波动基础",
+            title: "SP3.03 // 波动基础",
             difficulty: {
                 basic: "基础",
                 core: "核心",
@@ -5859,8 +5859,8 @@ export const translations: Record<string, any> = {
             correct: "已验证",
             incorrect: "匹配失败",
             ready: "就绪",
-            monitor_title: "SP4.01_波动监视器",
-            footer_left: "SP4.01_波动基础 // 节点：莱茵河",
+            monitor_title: "SP3.03_波动监视器",
+            footer_left: "SP3.03_波动基础 // 节点：莱茵河",
             labels: {
                 wave_type: "波动类型",
                 transverse: "横波",
@@ -6738,7 +6738,7 @@ export const translations: Record<string, any> = {
                 crystallize_hint: "冷却导致过量溶质结晶"
             }
         },
-        gp5_03: {
+        gp1_03: {
             back: "返回枢纽",
             title: "GP5.03 // 粒子对撞机",
             difficulty: {
@@ -6781,10 +6781,10 @@ export const translations: Record<string, any> = {
             }
         },
         ggp5_02: {
-            title: "GP5.02 // 相对论实验室",
+            title: "GP1.02 // 相对论实验室",
             back: "返回 Nexus",
-            footer_left: "GP5.02_相对论实验室 // 节点: RHINE",
-            monitor_title: "GP5.02_相对论监测器",
+            footer_left: "GP1.02_相对论实验室 // 节点: RHINE",
+            monitor_title: "GP1.02_相对论监测器",
             labels: {
                 lorentz_factor_title: "洛伦兹因子",
                 velocity_label: "速度 (v/c)",
@@ -6968,13 +6968,13 @@ export const translations: Record<string, any> = {
             sp1_08_subtitle: "Erkunde Licht, Linsen und optische Phänomene.",
             sp2_03_title: "SP2.03 // MOTORLABOR",
             sp2_03_subtitle: "Elektromagnetismus und Motorprinzipien.",
-            sp4_01_title: "SP4.01 // WELLENGRUNDLAGEN",
+            sp4_01_title: "SP3.03 // WELLENGRUNDLAGEN",
             sp4_01_subtitle: "Welleneigenschaften und Schallphänomene.",
-            gp5_01_title: "GP5.01 // DER ATOMKERN",
+            gp5_01_title: "GP1.01 // DER ATOMKERN",
             gp5_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
             gp5_02: {
                 back: "Zurück zum Nexus",
-                title: "GP5.02 // RELATIVITÄTSLABOR",
+                title: "GP1.02 // RELATIVITÄTSLABOR",
                 difficulty: {
                     basic: "BASIS",
                     core: "KERN",
@@ -6988,8 +6988,8 @@ export const translations: Record<string, any> = {
                 correct: "Verifiziert",
                 incorrect: "Fehlanpassung",
                 ready: "Bereit",
-                monitor_title: "GP5.02_RELATIVITAETS_MONITOR",
-                footer_left: "GP5.02_RELATIVITAETSLABOR // KNOTEN: CERN",
+                monitor_title: "GP1.02_RELATIVITAETS_MONITOR",
+                footer_left: "GP1.02_RELATIVITAETSLABOR // KNOTEN: CERN",
                 labels: {
                     velocity: "GESCHWINDIGKEIT",
                     lorentz_factor: "Lorentz-Faktor (γ)",
@@ -7023,9 +7023,9 @@ export const translations: Record<string, any> = {
                     doppler_hint: "Licht verschiebt sich rot (entfernend) oder blau (nähernd)"
                 }
             },
-            gp5_04: {
+            gp1_04: {
                 back: "Zurück zum Nexus",
-                title: "GP5.04 // QUANTENTUNNEL",
+                title: "GP1.04 // QUANTENTUNNEL",
                 difficulty: {
                     basic: "BASIS",
                     core: "KERN",
@@ -7039,8 +7039,8 @@ export const translations: Record<string, any> = {
                 correct: "Verifiziert",
                 incorrect: "Fehlanpassung",
                 ready: "Bereit",
-                monitor_title: "GP5.04_QUANTEN_MONITOR",
-                footer_left: "GP5.04_QUANTENTUNNEL // KNOTEN: CERN",
+                monitor_title: "GP1.04_QUANTEN_MONITOR",
+                footer_left: "GP1.04_QUANTENTUNNEL // KNOTEN: CERN",
                 labels: {
                     particle_energy: "TEILCHENENERGIE (E)",
                     barrier_height: "BARRIERENHÖHE (V₀)",
@@ -7167,12 +7167,12 @@ export const translations: Record<string, any> = {
             gm4_01_subtitle: "Visualisieren Sie die komplexe Ebene und die Eulersche Formel im 3D-Raum.",
             gm5_01_title: "GM5.01 // MATRIX-TRANSFORMATION",
             gm5_01_subtitle: "Lineare Transformationen und Eigenvektoren abgebildet auf das Basler Gitter.",
-            gp5_02_title: "GP5.02 // RELATIVITÄTSLABOR",
+            gp5_02_title: "GP1.02 // RELATIVITÄTSLABOR",
             gp5_02_subtitle: "Berechnen Sie Lorentz-Faktor, Längenkontraktion und Zeitdilatation bei CERN.",
-            gp5_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
-            gp5_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
-            gp5_04_title: "GP5.04 // QUANTENTUNNEL",
-            gp5_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
+            gp1_03_title: "GP5.03 // TEILCHENBESCHLEUNIGER",
+            gp1_03_subtitle: "Simulieren Sie CERNs LHC. Kollidieren Sie Protonen bei 13 TeV und entdecken Sie das Higgs-Boson.",
+            gp1_04_title: "GP1.04 // QUANTENTUNNEL",
+            gp1_04_subtitle: "Visualisieren Sie Quantentunneln durch Potentialbarrieren mit Wellenfunktionen.",
             coming_soon: "Simulationssequenz noch nicht initialisiert.",
             engine_line: "Physikalisches Gesetzes-Simulationssystem // v2.1",
             initiate_simulation: "Simulation starten",
@@ -9204,7 +9204,7 @@ export const translations: Record<string, any> = {
         },
         sp4_01: {
             back: "Zurück zum Nexus",
-            title: "SP4.01 // WELLENGRUNDLAGEN",
+            title: "SP3.03 // WELLENGRUNDLAGEN",
             difficulty: {
                 basic: "BASIS",
                 core: "KERN",
@@ -9218,8 +9218,8 @@ export const translations: Record<string, any> = {
             correct: "Verifiziert",
             incorrect: "Abweichung",
             ready: "Bereit",
-            monitor_title: "SP4.01_WELLEN_MONITOR",
-            footer_left: "SP4.01_WELLENGRUNDLAGEN // KNOTEN: RHEIN",
+            monitor_title: "SP3.03_WELLEN_MONITOR",
+            footer_left: "SP3.03_WELLENGRUNDLAGEN // KNOTEN: RHEIN",
             labels: {
                 wave_type: "WELLENTYP",
                 transverse: "TRANSVERSAL",
@@ -10012,7 +10012,7 @@ export const translations: Record<string, any> = {
                 crystallize_hint: "Abkühlung führt zur Kristallisation überschüssigen Stoffes"
             }
         },
-        gp5_03: {
+        gp1_03: {
             back: "Zurück zum Nexus",
             title: "GP5.03 // TEILCHENBESCHLEUNIGER",
             difficulty: {
@@ -10055,10 +10055,10 @@ export const translations: Record<string, any> = {
             }
         },
         ggp5_02: {
-            title: "GP5.02 // Relativitätslabor",
+            title: "GP1.02 // Relativitätslabor",
             back: "Zurück zum Nexus",
-            footer_left: "GP5.02_RELATIVITÄTSLABOR // KNOTEN: RHINE",
-            monitor_title: "GP5.02_RELATIVITÄTSMONITOR",
+            footer_left: "GP1.02_RELATIVITÄTSLABOR // KNOTEN: RHINE",
+            monitor_title: "GP1.02_RELATIVITÄTSMONITOR",
             labels: {
                 lorentz_factor_title: "LORENTZ-FAKTOR",
                 velocity_label: "GESCHWINDIGKEIT (v/c)",

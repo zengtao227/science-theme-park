@@ -6,14 +6,14 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import TunnellingCanvas from "@/components/chamber/gp5-04/TunnellingCanvas";
+import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
 import { calculateTransmissionCoefficient } from "@/lib/physics";
 
 type Stage = "classical" | "tunneling" | "resonance";
 
-export default function P504Page() {
+export default function P104Page() {
   const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].gp5_04 || translations.EN.gp5_04;
+  const t = translations[currentLanguage].gp1_04 || translations.EN.gp1_04;
 
   const [stage, setStage] = useState<Stage>("classical");
   const [particleEnergy, setParticleEnergy] = useState(3); // eV
@@ -43,8 +43,8 @@ export default function P504Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "GP5.04 // QUANTUM TUNNEL"}
-      moduleCode="GP5.04"
+      title={t?.title || "GP1.04 // QUANTUM TUNNEL"}
+      moduleCode="GP1.04"
       difficulty="ELITE"
       onDifficultyChange={() => {}}
       stages={[
@@ -57,7 +57,7 @@ export default function P504Page() {
       onVerify={() => {}}
       onNext={() => {}}
       checkStatus={null}
-      footerLeft={t?.footer_left || "GP5.04_QUANTUM_TUNNEL // NODE: CERN"}
+      footerLeft={t?.footer_left || "GP1.04_QUANTUM_TUNNEL // NODE: CERN"}
       translations={{
         back: t?.back || "Back to Nexus",
         check: t?.check || "Verify",
@@ -65,7 +65,7 @@ export default function P504Page() {
         correct: t?.correct || "Verified",
         incorrect: t?.incorrect || "Mismatch",
         ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GP5.04_QUANTUM_MONITOR",
+        monitor_title: t?.monitor_title || "GP1.04_QUANTUM_MONITOR",
         difficulty: {
           basic: "BASIC",
           core: "CORE",

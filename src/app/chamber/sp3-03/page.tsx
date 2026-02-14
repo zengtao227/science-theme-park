@@ -5,11 +5,11 @@ import { useLanguage } from "@/lib/i18n";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-const WaveCanvas = dynamic(() => import("@/components/chamber/sp4-01/WaveCanvas"), {
+const WaveCanvas = dynamic(() => import("@/components/chamber/sp3-03/WaveCanvas"), {
     ssr: false,
 });
 
-export default function SP4_01_WaveBasics() {
+export default function SP3_03_WaveBasics() {
     const { t } = useLanguage();
     const [amplitude, setAmplitude] = useState(1.0);
     const [frequency, setFrequency] = useState(0.5);
@@ -41,16 +41,16 @@ export default function SP4_01_WaveBasics() {
             <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
                 <div className="flex justify-between items-center mb-2">
                     <h1 className="text-2xl font-bold text-cyan-400">
-                        {t("sp4_01.title")}
+                        {t("sp3_03.title")}
                     </h1>
                     <Link
                         href="/"
                         className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
                     >
-                        {t("sp4_01.back")}
+                        {t("sp3_03.back")}
                     </Link>
                 </div>
-                <div className="text-sm text-cyan-300/70">{t("sp4_01.footer_left")}</div>
+                <div className="text-sm text-cyan-300/70">{t("sp3_03.footer_left")}</div>
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -69,13 +69,13 @@ export default function SP4_01_WaveBasics() {
                 <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
                     <div className="border-b border-green-500 pb-2 mb-4">
                         <h2 className="text-lg font-bold text-green-400">
-                            {t("sp4_01.monitor_title")}
+                            {t("sp3_03.monitor_title")}
                         </h2>
                     </div>
 
                     {/* Wave Type Selection */}
                     <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">{t("sp4_01.labels.wave_type")}</label>
+                        <label className="text-sm text-cyan-400">{t("sp3_03.labels.wave_type")}</label>
                         <div className="flex gap-2">
                             <button
                                 onClick={() => setWaveType("transverse")}
@@ -85,7 +85,7 @@ export default function SP4_01_WaveBasics() {
                                         : "border-gray-600 text-white hover:border-cyan-500/50"
                                 }`}
                             >
-                                {t("sp4_01.labels.transverse")}
+                                {t("sp3_03.labels.transverse")}
                             </button>
                             <button
                                 onClick={() => setWaveType("longitudinal")}
@@ -95,7 +95,7 @@ export default function SP4_01_WaveBasics() {
                                         : "border-gray-600 text-white hover:border-green-500/50"
                                 }`}
                             >
-                                {t("sp4_01.labels.longitudinal")}
+                                {t("sp3_03.labels.longitudinal")}
                             </button>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ export default function SP4_01_WaveBasics() {
                     {/* Amplitude Control */}
                     <div className="space-y-2">
                         <label className="text-sm text-yellow-400">
-                            {t("sp4_01.labels.amplitude")} (A)
+                            {t("sp3_03.labels.amplitude")} (A)
                         </label>
                         <input
                             type="range"
@@ -120,7 +120,7 @@ export default function SP4_01_WaveBasics() {
                     {/* Frequency Control */}
                     <div className="space-y-2">
                         <label className="text-sm text-purple-400">
-                            {t("sp4_01.labels.frequency")} (f)
+                            {t("sp3_03.labels.frequency")} (f)
                         </label>
                         <input
                             type="range"
@@ -137,7 +137,7 @@ export default function SP4_01_WaveBasics() {
                     {/* Wave Speed Control */}
                     <div className="space-y-2">
                         <label className="text-sm text-pink-400">
-                            {t("sp4_01.labels.wave_speed")} (v)
+                            {t("sp3_03.labels.wave_speed")} (v)
                         </label>
                         <input
                             type="range"
@@ -160,24 +160,24 @@ export default function SP4_01_WaveBasics() {
                                 onChange={(e) => setShowParticles(e.target.checked)}
                                 className="w-4 h-4"
                             />
-                            <span className="text-cyan-400">{t("sp4_01.labels.show_particles")}</span>
+                            <span className="text-cyan-400">{t("sp3_03.labels.show_particles")}</span>
                         </label>
                     )}
 
                     {/* Calculated Values */}
                     <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">{t("sp4_01.labels.calculated")}</div>
+                        <div className="text-sm text-green-400">{t("sp3_03.labels.calculated")}</div>
                         <div className="space-y-1 text-sm">
                             <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp4_01.labels.wavelength")} (λ):</span>
+                                <span className="text-cyan-300">{t("sp3_03.labels.wavelength")} (λ):</span>
                                 <span className="text-cyan-200 font-bold">{wavelength.toFixed(2)} m</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp4_01.labels.period")} (T):</span>
+                                <span className="text-cyan-300">{t("sp3_03.labels.period")} (T):</span>
                                 <span className="text-cyan-200 font-bold">{period.toFixed(2)} s</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp4_01.labels.angular_freq")} (ω):</span>
+                                <span className="text-cyan-300">{t("sp3_03.labels.angular_freq")} (ω):</span>
                                 <span className="text-cyan-200 font-bold">{omega.toFixed(2)} rad/s</span>
                             </div>
                         </div>
@@ -185,7 +185,7 @@ export default function SP4_01_WaveBasics() {
 
                     {/* Formulas */}
                     <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">{t("sp4_01.labels.formulas")}</div>
+                        <div className="text-sm text-purple-400">{t("sp3_03.labels.formulas")}</div>
                         <div className="text-xs space-y-1 text-purple-300/80">
                             <div>y = A·sin(kx - ωt + φ)</div>
                             <div>v = λ·f</div>
@@ -197,9 +197,9 @@ export default function SP4_01_WaveBasics() {
 
                     {/* Mission Info */}
                     <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">{t("sp4_01.mission.title")}</div>
+                        <div className="text-sm text-amber-400">{t("sp3_03.mission.title")}</div>
                         <div className="text-xs text-amber-300/80">
-                            {t("sp4_01.mission.description")}
+                            {t("sp3_03.mission.description")}
                         </div>
                     </div>
                 </div>
