@@ -79,6 +79,7 @@ export default function Home() {
     { code: "SM1.01", title: t.home.sm1_01_title, desc: t.home.sm1_01_subtitle, color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
     { code: "SM1.03", title: t.home.sm1_03_title, desc: t.home.sm1_03_subtitle, color: "neon-purple", href: "/chamber/sm1-03", tags: ["math"] },
     { code: "SM1.04", title: t.home.sm1_04_title, desc: t.home.sm1_04_subtitle, color: "neon-cyan", href: "/chamber/sm1-04", tags: ["math"] },
+    { code: "SM1.05", title: t.home.sm1_05_title, desc: t.home.sm1_05_subtitle, color: "neon-green", href: "/chamber/sm1-05", tags: ["math"] },
     { code: "SM2.01", title: t.home.sm2_01_title, desc: t.home.sm2_01_subtitle, color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
     { code: "SM2.02", title: t.home.sm2_02_title, desc: t.home.sm2_02_subtitle, color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
     { code: "SM2.03", title: t.home.sm2_03_title, desc: t.home.sm2_03_subtitle, color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },

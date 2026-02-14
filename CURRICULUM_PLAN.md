@@ -8,9 +8,9 @@
 | **SM1.01** | Geometry: Areas & Volumes | ✅ Production | Sek |
 | **SM1.02** | Thales Theorem (Similarity) | ✅ Production | Sek |
 | **SM1.03** | Algebra Quest: Variables & Terms | ✅ Production | Sek |
-| **SM1.04** | Below Zero: Integers & Coordinates | 🤖 In Progress (Kiro) | Sek |
-| **SM1.05** | **Equation Balance** | 📅 Planned | Linear Equations Intro | Sek |
-| **SM1.06** | **Ratio Lab** | 📅 Planned | Proportionality & % | Sek |
+| **SM1.04** | Below Zero: Integers & Coordinates | ✅ Production | Sek |
+| **SM1.05** | **Equation Balance** | 🤖 In Progress (Kiro) | Linear Equations Intro | Sek |
+| **SM1.06** | **Ratio Lab** | 🤖 In Progress (Antigravity) | Proportionality & % | Sek |
 | **SM2.01** | Binomial Formulas | ✅ Production | Sek |
 | **SM2.02** | Pythagoras Theorem | ✅ Production | Sek |
 | **SM2.03** | Linear Functions | ✅ Production | Sek |
@@ -107,8 +107,9 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 2. **Contextual Learning**: Sek = Basel City Life; Gym = CERN/Pharma Research.
 
 ### 🚧 Critical Next Steps
-- **Ongoing (Mission 65-68) - 极限 "血肉" (Phase 2)**:
-  - **Kiro**: 负责 **SM1.04 Below Zero**, **GP5.02 Relativity**, **SC2.03 Aero**, **SP1.08 Optics**.
+- **Ongoing (Mission 69-70) - 极限 "血肉" (Phase 2)**:
+  - **Antigravity**: 负责 **SM1.06 Ratio Lab**.
+  - **Kiro**: 负责 **SM1.05 Equation Balance**.
   - **Trae**: 负责 **SC2.01 Kinetics**, **SM2.01 Binomials**, **SP1.04 Rhine Ferry**, **SM2.02 Pythagoras**.
 - **Upcoming**:
   - 开始向 Phase 3 (Skin: 美化与特效) 过渡。
