@@ -178,18 +178,6 @@ export default function SC201Page() {
 
   const isCorrect = lastCheck?.ok || null;
 
-  const handleAnswer = useCallback((slotId: string, value: number) => {
-    setInputs((prev: Record<string, string>) => ({ ...prev, [slotId]: value.toString() }));
-  }, [setInputs]);
-
-  const handleNext = useCallback(() => {
-    if (isCorrect) {
-      next();
-    } else {
-      verify();
-    }
-  }, [isCorrect, next, verify]);
-
   useEffect(() => {
     if (isCorrect && currentQuest) {
       completeStage("sc2-01", currentStage);
@@ -211,11 +199,27 @@ export default function SC201Page() {
       ]}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      translations={t}
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Visualization */}
-        <div className="border border-cyan-500/30 bg-black/20 p-4 rounded">
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
+      footerLeft={t?.footer_left || "SC2.01_KINETICS"}
+      translations={{
+        back: t?.back || "Back",
+        check: t?.check || "Verify",
+        next: t?.next || "Next",
+        correct: t?.correct || "Correct",
+        incorrect: t?.incorrect || "Incorrect",
+        ready: t?.ready || "Ready",
+        monitor_title: t?.monitor_title || "KINETICS MONITOR",
+        difficulty: {
+          basic: t?.difficulty?.basic || "BASIC",
+          core: t?.difficulty?.core || "CORE",
+          advanced: t?.difficulty?.advanced || "ADVANCED",
+          elite: t?.difficulty?.elite || "ELITE",
+        },
+      }}
+      monitorContent={
+        <div className="space-y-4">
           <div className="aspect-video w-full">
             <KineticsCanvas
               temperature={quest?.temperature || 300}
@@ -223,86 +227,78 @@ export default function SC201Page() {
               showCollisions={true}
             />
           </div>
+          <div className="text-xs text-cyan-300/60 space-y-1">
+            <div>Temperature: {quest?.temperature || 300} K</div>
+            <div>Activation Energy: {quest?.activationEnergy || 50} kJ/mol</div>
+          </div>
         </div>
-
-        {/* Quest Panel */}
-        <div className="space-y-4">
-          {/* Scenario */}
-          {quest?.scenario && (
-            <div className="border border-purple-500/30 bg-purple-950/10 p-4 rounded">
-              <div className="text-sm text-purple-400 mb-2">{t?.scenario_title || "SCENARIO"}</div>
-              <div className="text-xs text-purple-300/80">{quest.scenario}</div>
+      }
+    >
+      <div className="space-y-8">
+        {/* Scenario */}
+        {quest?.scenario && (
+          <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
+              {t?.scenario_title || "BASEL SCENARIO"}
             </div>
-          )}
+            <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
+          </div>
+        )}
 
-          {/* Problem */}
-          {quest?.context && (
-            <div className="border border-cyan-500/30 bg-cyan-950/10 p-4 rounded">
-              <div className="text-sm text-cyan-400 mb-2">{t?.objective_title || "PROBLEM"}</div>
-              <div className="text-sm text-cyan-300">{quest.context}</div>
+        {/* Problem Context */}
+        {quest?.context && (
+          <div className="p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
+              {t?.objective_title || "PROBLEM"}
             </div>
-          )}
+            <p className="text-white/80 leading-relaxed">{quest.context}</p>
+          </div>
+        )}
 
-          {/* Formula */}
+        {/* Formula Display */}
+        <div className="text-center space-y-4">
+          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+            FORMULA
+          </div>
           {quest?.promptLatex && (
-            <div className="border border-amber-500/30 bg-amber-950/10 p-4 rounded">
-              <div className="text-sm text-amber-400 mb-2">FORMULA</div>
+            <div className="text-2xl text-white font-black">
               <BlockMath math={quest.promptLatex} />
             </div>
           )}
+        </div>
 
-          {/* Expression */}
-          {quest?.expressionLatex && (
-            <div className="border border-green-500/30 bg-green-950/10 p-4 rounded">
-              <div className="text-sm text-green-400 mb-2">GIVEN</div>
+        {/* Given Data */}
+        {quest?.expressionLatex && (
+          <div className="p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-green-400 font-black mb-3">
+              GIVEN
+            </div>
+            <div className="text-center">
               <BlockMath math={quest.expressionLatex} />
             </div>
-          )}
-
-          {/* Input */}
-          <div className="border border-blue-500/30 bg-blue-950/10 p-4 rounded space-y-3">
-            <div className="text-sm text-blue-400">{t?.answer_title || "YOUR ANSWER"}</div>
-            {quest?.slots.map((slot) => (
-              <div key={slot.id} className="space-y-2">
-                <label className="text-xs text-blue-300">
-                  <InlineMath math={slot.labelLatex} />
-                  {slot.unit && ` (${slot.unit})`}
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  placeholder={slot.placeholder}
-                  value={userAnswer[slot.id] || ""}
-                  onChange={(e) => handleAnswer(slot.id, parseFloat(e.target.value) || 0)}
-                  className="w-full px-3 py-2 bg-black/50 border border-blue-500/50 rounded text-blue-100 focus:border-blue-400 focus:outline-none"
-                />
-              </div>
-            ))}
           </div>
+        )}
 
-          {/* Actions */}
-          <div className="flex gap-3">
-            <button
-              onClick={handleNext}
-              className="flex-1 px-4 py-2 bg-cyan-500/20 border border-cyan-500 text-cyan-300 rounded hover:bg-cyan-500/30 transition-colors"
-            >
-              {isCorrect ? (t?.next || "NEXT") : (t?.check || "VERIFY")}
-            </button>
+        {/* Input Fields */}
+        <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-xl space-y-4">
+          <div className="text-[10px] uppercase tracking-[0.4em] text-blue-400 font-black mb-3">
+            {t?.answer_title || "YOUR ANSWER"}
           </div>
-
-          {/* Feedback */}
-          {isCorrect !== null && (
-            <div className={`border p-3 rounded ${isCorrect ? "border-green-500/50 bg-green-950/20" : "border-red-500/50 bg-red-950/20"}`}>
-              <div className={`text-sm ${isCorrect ? "text-green-400" : "text-red-400"}`}>
-                {isCorrect ? (t?.correct || "VERIFIED") : (t?.incorrect || "INCORRECT")}
-              </div>
-              {isCorrect && quest?.correctLatex && (
-                <div className="mt-2 text-xs text-green-300/80">
-                  <InlineMath math={quest.correctLatex} />
-                </div>
-              )}
+          {quest?.slots.map((slot) => (
+            <div key={slot.id} className="space-y-2">
+              <label className="text-sm text-blue-300 font-medium">
+                <InlineMath math={slot.labelLatex} />
+                {slot.unit && ` (${slot.unit})`}
+              </label>
+              <input
+                type="text"
+                placeholder={slot.placeholder}
+                value={userAnswer[slot.id] || ""}
+                onChange={(e) => setInputs((prev: Record<string, string>) => ({ ...prev, [slot.id]: e.target.value }))}
+                className="w-full px-4 py-3 bg-black/50 border border-blue-500/50 rounded-lg text-blue-100 text-lg font-mono focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+              />
             </div>
-          )}
+          ))}
         </div>
       </div>
     </ChamberLayout>
