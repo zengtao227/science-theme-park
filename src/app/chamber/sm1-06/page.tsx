@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -8,6 +8,7 @@ import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-06/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
 
@@ -17,14 +18,13 @@ interface S106Quest extends Quest {
     visualData: any;
 }
 
-type S106T = typeof translations.en.sm1_06;
+type S106T = typeof translations.EN.sm1_06;
 
 export default function SM106Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
-    const t = locale.sm1_06 || translations.EN.sm1_06;
+    const t = (translations[currentLanguage]?.sm1_06 || translations.EN.sm1_06) as S106T;
 
-    const buildStagePool = useCallback((t: S106T, difficulty: Difficulty, stage: Stage): S106Quest[] => {
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): S106Quest[] => {
         const isBasic = difficulty === "BASIC";
         const isCore = difficulty === "CORE";
         const isAdv = difficulty === "ADVANCED";
@@ -40,7 +40,7 @@ export default function SM106Page() {
                         id: "R-B1", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: "\\text{Recipe: 2 eggs for 4 people. How many for 8 people?}",
                         expressionLatex: "2 \\to 4, ? \\to 8", targetLatex: "4",
-                        visualData: { ingredient: "eggs", baseAmount: 2, targetAmount: 4 }, // Visual is simpler than prompt logic
+                        visualData: { ingredient: "eggs", baseAmount: 2, targetAmount: 4 },
                         slots: [{ id: "ans", labelLatex: "Eggs", placeholder: "?", expected: 4 }],
                         correctLatex: "4", hintLatex: ["Double the people, double the eggs."]
                     },
@@ -56,7 +56,7 @@ export default function SM106Page() {
                         id: "R-B3", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: "\\text{3 apples cost 2 CHF. Cost of 6 apples?}",
                         expressionLatex: "3 \\to 2, 6 \\to ?", targetLatex: "4",
-                        visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 6 }, // reusing egg icon as generic item
+                        visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: "Cost", placeholder: "?", expected: 4 }],
                         correctLatex: "4", hintLatex: ["Double the quantity, double the cost."]
                     },
@@ -194,7 +194,7 @@ export default function SM106Page() {
                         id: "R-E4", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: "\\text{Inverse proportion. 4 workers take 6h. 3 workers take?}",
                         expressionLatex: "4 \\times 6 = 24h \\text{ total}", targetLatex: "8",
-                        visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 }, // visuals abstract
+                        visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: "Hours", placeholder: "?", expected: 8 }],
                         correctLatex: "8", hintLatex: ["Constant product."]
                     },
@@ -390,8 +390,6 @@ export default function SM106Page() {
 
         // --- STAGE 3: MIXTURES ---
         if (stage === "MIXTURES") {
-            // Problem: Given Solute + Solvent, find concentration %
-            // Or variations
             if (isBasic) {
                 quests.push(
                     { id: "M-B1", difficulty, stage, visualMode: "MIXTURES", promptLatex: "\\text{20ml Syrup + 80ml Water. Concentration?}", expressionLatex: "\\frac{20}{100}", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 20 }], correctLatex: "20", hintLatex: ["Total volume 100ml."] },
@@ -431,27 +429,8 @@ export default function SM106Page() {
         return quests;
     }, []);
 
-    return (
-        <ChamberLayout moduleCode="SM1.06" title={t?.title || "Ratio Lab"}>
-            {/* 
-        This is a temporary fallback for the translations object until i18n is updated.
-        We're just ensuring the page renders even if `t` is undefined. 
-      */}
-            <QuestManagerWrapper
-                t={t || {
-                    title: "Ratio Lab",
-                    stages: { recipes: "Recipes", percent: "Percent", mixtures: "Mixtures" },
-                    difficulty: { basic: "Basic", core: "Core", advanced: "Advanced", elite: "Elite" }
-                }}
-                buildStagePool={buildStagePool}
-                language={currentLanguage}
-            />
-        </ChamberLayout>
-    );
-}
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
-// Separate component to safely use the hook
-function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildStagePool: any, language: any }) {
     const {
         currentQuest,
         difficulty,
@@ -466,146 +445,192 @@ function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildS
         getHint,
         currentStageStats,
     } = useQuestManager<S106Quest, Stage>({
-        buildPool: (diff, stg) => buildStagePool(t, diff, stg),
+        buildPool,
         initialStage: "RECIPES",
     });
 
-    const isCorrect = lastCheck?.ok;
-    const feedbackMessage = lastCheck ? (isCorrect ? "Correct!" : "Try again!") : "";
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("sm1-06", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
+    const stagesProps = useMemo(() => [
+        { id: "RECIPES", label: t.stages.recipes },
+        { id: "PERCENT", label: t.stages.percent },
+        { id: "MIXTURES", label: t.stages.mixtures },
+    ], [t]);
+
     const hint = getHint();
 
     return (
-        <div className="flex flex-col h-full">
-            {/* Header / Stats */}
-            <div className="flex justify-between items-center mb-4 px-2">
-                <div className="flex gap-2">
-                    {(["BASIC", "CORE", "ADVANCED", "ELITE"] as Difficulty[]).map((d) => (
-                        <button
-                            key={d}
-                            onClick={() => handleDifficultyChange(d)}
-                            className={`px-3 py-1 text-xs rounded-full border transition-all ${difficulty === d
-                                ? "bg-neon-cyan text-black border-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.5)]"
-                                : "text-white/50 border-white/20 hover:border-white/40"
-                                }`}
-                        >
-                            {d}
-                        </button>
-                    ))}
+        <ChamberLayout
+            moduleCode="SM1.06"
+            title={t.title}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={stagesProps}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
+            }}
+            monitorContent={
+                <div className="flex flex-col h-full gap-4">
+                    <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
+                        {currentQuest ? (
+                            <RatioCanvas
+                                mode={currentQuest.visualMode}
+                                quest={currentQuest}
+                                language={currentLanguage}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-center h-full text-white/50 italic">
+                                Initializing laboratory...
+                            </div>
+                        )}
+                    </div>
+                    <div className="mt-auto pt-4 border-t border-white/5">
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
+                            <span>Sequence Progress</span>
+                            <span>{currentStageStats?.correct % 6} / 5</span>
+                        </div>
+                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
+                                        }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div className="flex gap-4 items-center">
-                    {(["RECIPES", "PERCENT", "MIXTURES"] as Stage[]).map((s) => (
-                        <button
-                            key={s}
-                            onClick={() => handleStageChange(s)}
-                            className={`text-sm tracking-widest transition-all ${stage === s ? "text-neon-cyan font-bold" : "text-white/30 hover:text-white/60"
-                                }`}
-                        >
-                            {s}
-                        </button>
-                    ))}
-                </div>
-            </div>
+            }
+        >
+            <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {currentQuest && (
+                    <div className="space-y-12">
+                        <div className="text-center space-y-6">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
+                                Laboratory Objective
+                            </h3>
+                            <div className="text-4xl text-white font-black leading-tight">
+                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                            </div>
+                        </div>
 
-            <div className="flex-1 bg-gray-900/.5 rounded-xl border border-white/10 overflow-hidden relative min-h-[400px]">
-                {currentQuest ? (
-                    <RatioCanvas
-                        mode={currentQuest.visualMode}
-                        quest={currentQuest}
-                        language={language}
-                    />
-                ) : (
-                    <div className="flex items-center justify-center h-full text-white/50 italic">
-                        Initializing laboratory...
+                        <div className="flex justify-center">
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
+                                <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
+                                    Mathematical Expression
+                                </span>
+                                <div className="text-5xl text-white font-black">
+                                    <InlineMath math={currentQuest.expressionLatex} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="space-y-8">
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
+                                    Data Input Terminals
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+                                    {currentQuest.slots.map((slot: any) => (
+                                        <div key={slot.id} className="w-full max-w-xs space-y-3">
+                                            <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
+                                                <InlineMath>{slot.labelLatex}</InlineMath>
+                                                <span className="text-neon-cyan/30 font-mono">NODE_{slot.id.toUpperCase()}</span>
+                                            </div>
+                                            <div className="relative group">
+                                                <input
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    placeholder={slot.placeholder}
+                                                    value={inputs[slot.id] || ""}
+                                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter') verify();
+                                                    }}
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <AnimatePresence mode="wait">
+                                    {lastCheck && (
+                                        <motion.div
+                                            key={lastCheck.ok ? "correct" : "incorrect"}
+                                            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
+                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-5">
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
+                                                    {lastCheck.ok ? "✓" : "✗"}
+                                                </div>
+                                                <div>
+                                                    <div className="font-black text-lg tracking-widest uppercase italic">
+                                                        {lastCheck.ok ? "Verification Successful" : "Data Mismatch"}
+                                                    </div>
+                                                    <div className="text-sm font-medium opacity-70">
+                                                        {lastCheck.ok ? "Identity confirmed. Proceeding to next node." : "Please recalibrate input parameters."}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {!lastCheck.ok && hint && (
+                                                <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <div className="text-white font-bold">
+                                                        <InlineMath>{hint}</InlineMath>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {lastCheck.ok && (
+                                                <button
+                                                    onClick={next}
+                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
+                                                >
+                                                    Execute Next Sequence
+                                                </button>
+                                            )}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
-
-            {/* Controls */}
-            {currentQuest && (
-                <div className="mt-6 p-6 bg-black/40 rounded-xl border border-white/10 shadow-2xl backdrop-blur-sm">
-                    <div className="text-center mb-6">
-                        <BlockMath>{currentQuest.promptLatex}</BlockMath>
-                    </div>
-
-                    <div className="flex flex-wrap gap-6 items-center justify-center">
-                        {currentQuest.slots.map((slot: any) => (
-                            <div key={slot.id} className="flex flex-col gap-2">
-                                <label className="text-xs text-neon-cyan uppercase tracking-wider font-bold">
-                                    <InlineMath>{slot.labelLatex}</InlineMath>
-                                </label>
-                                <div className="flex items-center bg-white/5 rounded-lg border border-white/20 focus-within:border-neon-cyan/50 transition-all px-4 py-3">
-                                    <input
-                                        className="bg-transparent text-white font-mono text-xl w-32 outline-none text-center"
-                                        placeholder={slot.placeholder}
-                                        value={inputs[slot.id] || ""}
-                                        onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') verify();
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-
-                        <div className="flex gap-3">
-                            <button
-                                className="px-8 py-3 bg-neon-cyan/10 hover:bg-neon-cyan/30 text-neon-cyan border border-neon-cyan rounded-xl transition-all font-black tracking-widest uppercase"
-                                onClick={verify}
-                            >
-                                VERIFY
-                            </button>
-                            {isCorrect && (
-                                <button
-                                    className="px-8 py-3 bg-white text-black rounded-xl transition-all font-black tracking-widest uppercase hover:scale-105 active:scale-95"
-                                    onClick={next}
-                                >
-                                    NEXT
-                                </button>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Feedback */}
-                    <AnimatePresence mode="wait">
-                        {lastCheck && (
-                            <motion.div
-                                key={isCorrect ? "correct" : "incorrect"}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                className={`mt-6 p-4 rounded-xl border flex items-center justify-between ${isCorrect
-                                    ? 'bg-green-500/10 border-green-500/50 text-green-400'
-                                    : 'bg-red-500/10 border-red-500/50 text-red-400'
-                                    }`}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <span className="text-2xl">{isCorrect ? "✓" : "✗"}</span>
-                                    <div>
-                                        <div className="font-bold">{isCorrect ? "IDENTITY VERIFIED" : "MISMATCH DETECTED"}</div>
-                                        <div className="text-sm opacity-80">{feedbackMessage}</div>
-                                    </div>
-                                </div>
-                                {!isCorrect && hint && (
-                                    <div className="text-sm font-mono bg-black/30 px-3 py-1 rounded border border-white/10">
-                                        Hint: <InlineMath>{hint}</InlineMath>
-                                    </div>
-                                )}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-                    {/* Progress */}
-                    <div className="mt-8 flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
-                                    }`}
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
-        </div>
+        </ChamberLayout>
     );
 }

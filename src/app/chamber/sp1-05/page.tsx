@@ -1,183 +1,313 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
+import { useEffect, useCallback, useMemo } from "react";
+import { BlockMath, InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useAppStore } from "@/lib/store";
+import { translations } from "@/lib/i18n";
+import ChamberLayout from "@/components/layout/ChamberLayout";
+import FerryCanvas from "@/components/chamber/sp1-05/FerryCanvas";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
-const FerryCanvas = dynamic(() => import("@/components/chamber/sp1-05/FerryCanvas"), {
-    ssr: false,
-});
+type Stage = "COMPOSITION" | "DRIFT" | "NAVIGATION";
 
-export default function SP1_05_RhineFerry() {
-    const [riverSpeed, setRiverSpeed] = useState(2.0); // m/s
-    const [cableAngle, setCableAngle] = useState(30); // degrees
-    const [ferrySpeed, setFerrySpeed] = useState(3.0); // m/s
+interface SP105Quest extends Quest {
+    stage: Stage;
+    vRiver: number;
+    vFerry: number;
+    theta: number; // degrees
+}
 
-    // Calculate resultant velocity
-    const angleRad = (cableAngle * Math.PI) / 180;
-    const vFerryX = Math.sin(angleRad) * ferrySpeed;
-    const vFerryZ = Math.cos(angleRad) * ferrySpeed;
-    const vResultantX = vFerryX;
-    const vResultantZ = vFerryZ + riverSpeed;
-    const resultantSpeed = Math.sqrt(vResultantX ** 2 + vResultantZ ** 2);
-    const resultantAngle = (Math.atan2(vResultantX, vResultantZ) * 180) / Math.PI;
+type SP105T = typeof translations.EN.sp1_05;
 
-    // Calculate drift
-    const drift = Math.abs(vResultantZ - vFerryZ);
+export default function SP105Page() {
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = (translations[currentLanguage]?.sp1_05 || translations.EN.sp1_05) as SP105T;
+
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP105Quest[] => {
+        const isBasic = difficulty === "BASIC";
+        const isCore = difficulty === "CORE";
+        const isAdv = difficulty === "ADVANCED";
+        const isElite = difficulty === "ELITE";
+
+        const quests: SP105Quest[] = [];
+
+        if (stage === "COMPOSITION") {
+            // Focus on basic vector addition: V_net_z = V_ferry_z + V_river
+            if (isBasic) {
+                quests.push(
+                    {
+                        id: "C-B1", difficulty, stage, vRiver: 1.0, vFerry: 2.0, theta: 0,
+                        promptLatex: "\\text{Ferry moves at } 2m/s \\text{ north. River flows } 1m/s \\text{ north. Net speed?}",
+                        expressionLatex: "v_{net} = v_f + v_r", targetLatex: "3.0",
+                        slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 3.0 }],
+                        correctLatex: "3.0", hintLatex: ["Add the velocities."]
+                    },
+                    {
+                        id: "C-B2", difficulty, stage, vRiver: 1.5, vFerry: 1.5, theta: 180,
+                        promptLatex: "\\text{Ferry moves at } 1.5m/s \\text{ south against } 1.5m/s \\text{ current. Net speed?}",
+                        expressionLatex: "v_{net} = v_r - v_f", targetLatex: "0.0",
+                        slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 0.0 }],
+                        correctLatex: "0.0", hintLatex: ["They cancel out."]
+                    }
+                );
+            } else {
+                quests.push(
+                    {
+                        id: "C-C1", difficulty, stage, vRiver: 2.0, vFerry: 4.0, theta: 60,
+                        promptLatex: "\\text{Calculate the longitudinal velocity component } v_{net,z}.",
+                        expressionLatex: "v_{net,z} = v_f \\cos(60^\\circ) + v_r", targetLatex: "4.0",
+                        slots: [{ id: "ans", labelLatex: "v_{net,z}", placeholder: "m/s", expected: 4.0 }],
+                        correctLatex: "4.0", hintLatex: ["\\cos(60^\\circ) = 0.5"]
+                    }
+                );
+            }
+        }
+
+        if (stage === "DRIFT") {
+            // Focus on neutralizing drift: V_net_z = 0
+            quests.push(
+                {
+                    id: "D-C1", difficulty, stage, vRiver: 1.5, vFerry: 3.0, theta: 120,
+                    promptLatex: "\\text{Find the angle } \\theta \\text{ to achieve zero longitudinal drift if } v_r=1.5, v_f=3.0.",
+                    expressionLatex: "3.0 \\cos(\\theta) + 1.5 = 0", targetLatex: "120",
+                    slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 120 }],
+                    correctLatex: "120", hintLatex: ["\\cos(\\theta) = -0.5"]
+                }
+            );
+        }
+
+        if (stage === "NAVIGATION") {
+            // Comprehensive path finding
+            quests.push(
+                {
+                    id: "N-A1", difficulty, stage, vRiver: 1.2, vFerry: 2.4, theta: 120,
+                    promptLatex: "\\text{If crossing a 20m wide river with } v_{net,x} \\text{, how long to reach the bank?}",
+                    expressionLatex: "t = \\frac{20}{v_{f} \\sin(120^\\circ)}", targetLatex: "9.62",
+                    slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 9.62 }],
+                    correctLatex: "9.62", hintLatex: ["v_x = v_f \\sin(120^\\circ)"]
+                }
+            );
+        }
+
+        // Fill remaining slots with procedural variants if needed
+        return quests;
+    }, []);
+
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+    const {
+        currentQuest,
+        difficulty,
+        stage,
+        lastCheck,
+        inputs,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+        getHint,
+        currentStageStats,
+    } = useQuestManager<SP105Quest, Stage>({
+        buildPool,
+        initialStage: "COMPOSITION",
+    });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("sp1-05", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
+    const stagesProps = useMemo(() => [
+        { id: "COMPOSITION", label: t.stages.composition },
+        { id: "DRIFT", label: t.stages.drift },
+        { id: "NAVIGATION", label: t.stages.navigation },
+    ], [t]);
+
+    const hint = getHint();
 
     return (
-        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
-            {/* Cyber grid background */}
-            <div className="fixed inset-0 opacity-10 pointer-events-none">
-                <div
-                    className="w-full h-full"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(#00e5ff 1px, transparent 1px),
-                            linear-gradient(90deg, #00e5ff 1px, transparent 1px)
-                        `,
-                        backgroundSize: "50px 50px",
-                    }}
-                />
-            </div>
-
-            {/* Header */}
-            <div className="relative z-10 flex justify-between items-center mb-6 border-b border-cyan-500 pb-4">
-                <Link
-                    href="/"
-                    className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500 hover:text-black transition-colors"
-                >
-                    Back to Nexus
-                </Link>
-                <h1 className="text-2xl font-bold text-cyan-400 tracking-wider">
-                    SP1.05 // RHINE FERRY
-                </h1>
-                <div className="w-32" />
-            </div>
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Canvas */}
-                <div className="lg:col-span-2 border border-cyan-500 p-4 bg-black/50">
-                    <div className="aspect-video w-full">
-                        <FerryCanvas
-                            riverSpeed={riverSpeed}
-                            cableAngle={cableAngle}
-                            ferrySpeed={ferrySpeed}
-                        />
+        <ChamberLayout
+            moduleCode="SP1.05"
+            title={t.title}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={stagesProps}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
+            }}
+            monitorContent={
+                <div className="flex flex-col h-full gap-4">
+                    <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
+                        {currentQuest ? (
+                            <FerryCanvas
+                                riverSpeed={currentQuest.vRiver}
+                                cableAngle={currentQuest.theta}
+                                ferrySpeed={currentQuest.vFerry}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-center h-full text-white/50 italic font-mono">
+                                COMPILING_VECTORS...
+                            </div>
+                        )}
                     </div>
-                </div>
-
-                {/* Control Panel */}
-                <div className="space-y-4">
-                    <div className="border border-cyan-500 p-4 bg-black/50">
-                        <div className="text-sm text-cyan-400 mb-4">SP1.05_FERRY_MONITOR</div>
-
-                        <div className="space-y-4">
-                            {/* River Speed */}
-                            <div>
-                                <label className="block text-xs text-cyan-300 mb-2">
-                                    River Current (v_river): {riverSpeed.toFixed(1)} m/s
-                                </label>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="5"
-                                    step="0.1"
-                                    value={riverSpeed}
-                                    onChange={(e) => setRiverSpeed(parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                            </div>
-
-                            {/* Cable Angle */}
-                            <div>
-                                <label className="block text-xs text-cyan-300 mb-2">
-                                    Cable Angle (θ): {cableAngle}°
-                                </label>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="90"
-                                    step="1"
-                                    value={cableAngle}
-                                    onChange={(e) => setCableAngle(parseInt(e.target.value))}
-                                    className="w-full"
-                                />
-                            </div>
-
-                            {/* Ferry Speed */}
-                            <div>
-                                <label className="block text-xs text-cyan-300 mb-2">
-                                    Ferry Speed (v_ferry): {ferrySpeed.toFixed(1)} m/s
-                                </label>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="6"
-                                    step="0.1"
-                                    value={ferrySpeed}
-                                    onChange={(e) => setFerrySpeed(parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                            </div>
+                    {/* HUD Overlay */}
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t.labels.river_speed}</div>
+                            <div className="text-sm font-mono text-neon-cyan">{currentQuest?.vRiver.toFixed(2)} m/s</div>
+                        </div>
+                        <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t.labels.cable_angle}</div>
+                            <div className="text-sm font-mono text-neon-cyan">{currentQuest?.theta.toFixed(1)}°</div>
                         </div>
                     </div>
-
-                    {/* Vector Analysis */}
-                    <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">VECTOR ANALYSIS</div>
-                        <div className="space-y-1 text-xs">
-                            <div className="flex justify-between">
-                                <span className="text-purple-300">Ferry X-component:</span>
-                                <span className="text-purple-200 font-bold">{vFerryX.toFixed(2)} m/s</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-purple-300">Ferry Z-component:</span>
-                                <span className="text-purple-200 font-bold">{vFerryZ.toFixed(2)} m/s</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-purple-300">Resultant Speed:</span>
-                                <span className="text-purple-200 font-bold">{resultantSpeed.toFixed(2)} m/s</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-purple-300">Resultant Angle:</span>
-                                <span className="text-purple-200 font-bold">{resultantAngle.toFixed(1)}°</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-purple-300">Drift:</span>
-                                <span className="text-purple-200 font-bold">{drift.toFixed(2)} m/s</span>
-                            </div>
+                    <div className="mt-auto pt-4 border-t border-white/5">
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
+                            <span>Vector Stability</span>
+                            <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
-                    </div>
-
-                    {/* Formulas */}
-                    <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">VECTOR ADDITION</div>
-                        <div className="text-xs space-y-1 text-amber-300/80">
-                            <div>v⃗_resultant = v⃗_ferry + v⃗_river</div>
-                            <div>v_x = v_ferry × sin(θ)</div>
-                            <div>v_z = v_ferry × cos(θ) + v_river</div>
-                            <div>|v⃗| = √(v_x² + v_z²)</div>
-                        </div>
-                    </div>
-
-                    {/* Mission */}
-                    <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">MISSION: RHINE CROSSING</div>
-                        <div className="text-xs text-green-300/80">
-                            Navigate the Basel Rhine ferry across the river current. Adjust the cable angle and ferry speed to compensate for river drift. Master vector addition in real-world navigation.
+                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
+                                        }`}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+        >
+            <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {currentQuest && (
+                    <div className="space-y-12">
+                        <div className="text-center space-y-6">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
+                                Mission Objective
+                            </h3>
+                            <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
+                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                            </div>
+                        </div>
 
-            {/* Footer */}
-            <div className="fixed bottom-0 left-0 right-0 border-t border-cyan-500 bg-black/90 p-4 text-xs">
-                <div className="flex justify-between items-center">
-                    <div className="text-cyan-400">SP1.05_RHINE_FERRY // NODE: BASEL</div>
-                    <div className="text-cyan-300">VECTOR_NAVIGATION: ACTIVE</div>
-                </div>
+                        <div className="flex justify-center">
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
+                                <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
+                                    Vector Geometry
+                                </span>
+                                <div className="text-4xl text-white font-black">
+                                    <InlineMath math={currentQuest.expressionLatex} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="space-y-8">
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
+                                    Terminal Input [Node Alpha]
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-8 justify-items-center">
+                                    {currentQuest.slots.map((slot: any) => (
+                                        <div key={slot.id} className="w-full max-w-md space-y-3">
+                                            <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
+                                                <InlineMath>{slot.labelLatex}</InlineMath>
+                                                <span className="text-neon-cyan/30 font-mono">PARM_0x{slot.id.toUpperCase()}</span>
+                                            </div>
+                                            <div className="relative group">
+                                                <input
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    placeholder={slot.placeholder}
+                                                    value={inputs[slot.id] || ""}
+                                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter') verify();
+                                                    }}
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <AnimatePresence mode="wait">
+                                    {lastCheck && (
+                                        <motion.div
+                                            key={lastCheck.ok ? "correct" : "incorrect"}
+                                            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
+                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-5">
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
+                                                    {lastCheck.ok ? "✓" : "✗"}
+                                                </div>
+                                                <div>
+                                                    <div className="font-black text-lg tracking-widest uppercase italic">
+                                                        {lastCheck.ok ? "Calculation Valid" : "Vector Mismatch"}
+                                                    </div>
+                                                    <div className="text-sm font-medium opacity-70">
+                                                        {lastCheck.ok ? "Physics confirmed. Proceeding to next objective." : "Recalculate vector components."}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {!lastCheck.ok && hint && (
+                                                <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <div className="text-white font-bold">
+                                                        <InlineMath>{hint}</InlineMath>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {lastCheck.ok && (
+                                                <button
+                                                    onClick={next}
+                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
+                                                >
+                                                    Next Mission
+                                                </button>
+                                            )}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-        </div>
+        </ChamberLayout>
     );
 }

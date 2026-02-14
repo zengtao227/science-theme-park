@@ -10,7 +10,7 @@
 | **SM1.03** | Algebra Quest: Variables & Terms | ✅ Production | Sek |
 | **SM1.04** | Below Zero: Integers & Coordinates | ✅ Production | Sek |
 | **SM1.05** | **Equation Balance** | 🤖 In Progress (Kiro) | Linear Equations Intro | Sek |
-| **SM1.06** | **Ratio Lab** | 🤖 In Progress (Antigravity) | Proportionality & % | Sek |
+| **SM1.06** | **Ratio Lab** | ✅ Production | Proportionality & % | Sek |
 | **SM2.01** | Binomial Formulas | ✅ Production | Sek |
 | **SM2.02** | Pythagoras Theorem | ✅ Production | Sek |
 | **SM2.03** | Linear Functions | ✅ Production | Sek |
@@ -29,7 +29,7 @@
 |:---:|:---|:---:|:---|:---:|
 | **SP1.02** | Newton's Laws (Mechanics) | ✅ Production | Mechanics & Forces | Sek |
 | **SP1.03** | Energy & Power | ✅ Production | Work, Energy, Power | Sek |
-| **SP1.05** | **The Rhine Ferry** | 🚧 In Progress | Current & Cable Navigation | Sek |
+| **SP1.05** | **The Rhine Ferry** | ✅ Production | Current & Cable Navigation | Sek |
 | **SP1.06** | **Swiss Pendulum** | ✅ Production | Gravity & Period | Sek |
 | **SP2.02** | **Circuit Sandbox 2.0** | ✅ Production | RLC Transient Analysis | Sek |
 | **SP2.03** | Motor Lab (Electromagnetism) | ✅ Production | Electromagnetism & Motors | Sek |
@@ -45,7 +45,7 @@
 ## 🗺️ The "Basilea 2026" Nexus: Expansion Roadmap
 
 ### 🧪 Chemistry: The Pharma Hub (Novartis/Roche)
-We are expanding the Chemistry track to bridge the gap between basic substances and complex pharma synthesis.
+Expanding the Chemistry track to bridge the gap between basic substances and complex pharma synthesis.
 
 | Code | Mission Title | Status | Learning Goal | Grade |
 |:---:|:---|:---:|:---|:---:|
@@ -53,7 +53,7 @@ We are expanding the Chemistry track to bridge the gap between basic substances 
 | **SC1.02** | **Mole Master** | ✅ Production | Stoichiometry & Yield | Sek |
 | **SC1.03** | **Atoms Forge** | ✅ Production | Atomic Orbitals (3D) | Sek |
 | **SC1.04** | **Periodic Puzzle** | ✅ Production | Periodic Table & Config | Sek |
-| **SC2.01** | **Kinetics Crash** | 🚧 In Progress | Arrhenius & Collision | Sek |
+| **SC2.01** | **Kinetics Crash** | 🤖 In Progress (Kiro) | Arrhenius & Collision | Sek |
 | **SC2.02** | **pH Sentinel** | ✅ Production | pH Curves & Titration | Sek |
 | **SC2.03** | **Aero Lab** | ✅ Production | Ideal Gas Laws (PV=nRT) | Sek |
 | **SC2.04** | **Solubility Lab** | ✅ Production | Solutions & Crystallization | Sek |
@@ -62,15 +62,14 @@ We are expanding the Chemistry track to bridge the gap between basic substances 
 | **GC3.01** | **Equilibrium Master** | ✅ Production | Le Chatelier's Principle | Gym |
 | **GC3.02** | **Crystal Palace** | ✅ Production | Solid State & Lattices | Gym |
 
-### ⌛ Future Expansion: Biology & Life Sciences
-> **Status**: DEFERRED (Planned for Phase 4)
-*Wait for core Math/Physics/Chemistry skeletons to reach Flesh stage.*
+### 🧬 Biology: The Life Science Nexus
+Biology modules are in Phase 1 (Skeleton) but need upgrade to Phase 2 (Flesh).
 
 | Code | Mission Title | Status | Learning Goal | Grade |
 |:---:|:---|:---:|:---|:---:|
-| **SB1.01** | **Cell Factory** | ⏸️ Deferred | Cell Structure & Organelles | Sek |
-| **SB2.01** | **Mendel's Garden** | ⏸️ Deferred | Genetics & Punnett Squares | Sek |
-| **GB3.01** | **DNA Forge** | ⏸️ Deferred | Molecular Biology & Replication | Gym |
+| **SB1.01** | **Cell Factory** | 🚧 In Progress (Skeleton) | Cell Structure & Organelles | Sek |
+| **SB2.01** | **Mendel's Garden** | 🚧 In Progress (Skeleton) | Genetics & Punnett Squares | Sek |
+| **GB3.01** | **DNA Forge** | 🚧 In Progress (Skeleton) | Molecular Biology & Replication | Gym |
 
 ### 🧭 New Naming Convention
 - **SM** / **GM**: Mathematics (Sek Math / Gym Math)
@@ -93,12 +92,12 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 **Phase 2: The Flesh (血肉)**
 - **Goal**: Educational Depth & Logic Saturation.
 - **Definition**: The module teaches something effectively.
-- **Action**: Add "Expert Guidance" content, physics constraints (e.g., collisions, realistic values), step-by-step experiment flows, and bilingual translations (i18n).
+- **Action**: Add "Expert Guidance" content, Quest pools, i18n, and standard `ChamberLayout`.
 
 **Phase 3: The Skin (皮肤)**
 - **Goal**: UI Polish, Gamification & Performance.
 - **Definition**: The module feels like a premium app.
-- **Action**: Add texture shaders, particle effects (InstancedMesh), sound effects, animations, VR support, and mobile optimization.
+- **Action**: Add shaders, particle effects, sound, and mobile optimization.
 
 > **Rule**: Never jump to Phase 3 before Phase 2 is complete. Never start Phase 2 before Phase 1 is stable.
 
@@ -107,13 +106,12 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 2. **Contextual Learning**: Sek = Basel City Life; Gym = CERN/Pharma Research.
 
 ### 🚧 Critical Next Steps
-- **Ongoing (Mission 69-70) - 极限 "血肉" (Phase 2)**:
-  - **Antigravity**: 负责 **SM1.06 Ratio Lab**.
-  - **Kiro**: 负责 **SM1.05 Equation Balance**.
-  - **Trae**: 负责 **SC2.01 Kinetics**, **SM2.01 Binomials**, **SP1.04 Rhine Ferry**, **SM2.02 Pythagoras**.
+- **Ongoing (Mission 71-72) - 极限 "血肉" (Phase 2 Upgrade)**:
+  - **Antigravity**: Completed **SM1.06 Ratio Lab** & **SP1.05 Rhine Ferry**.
+  - **Kiro**: 负责 **SM1.05 Equation Balance** & **SC2.01 Kinetics Crash**.
 - **Upcoming**:
-  - 开始向 Phase 3 (Skin: 美化与特效) 过渡。
-  - 整合所有独立 Canvas 到对应的展厅布局中。
+  - 开始向 Phase 4 (Biology Integration) 迈进。
+  - 启动 Phase 3 (Skin) 全局 UI 统一化。
 
 ---
-*Generated by Antigravity (Enhanced by DeepSeek-V3) - 2026-02-06*
+*Generated by Antigravity - 2026-02-14*
