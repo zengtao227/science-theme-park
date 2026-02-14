@@ -56,25 +56,40 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
   
   const translations = {
     EN: {
+      transformationMatrix: "TRANSFORMATION MATRIX",
       unitSquare: "Unit Square",
       transformed: "Transformed",
       determinant: "Determinant",
       area: "Area",
       basisVectors: "Basis Vectors",
+      areaExpanded: "Area EXPANDED",
+      areaCompressed: "Area COMPRESSED",
+      orientationReversed: "ORIENTATION REVERSED",
+      collapsedToLine: "COLLAPSED TO LINE",
     },
     CN: {
+      transformationMatrix: "变换矩阵",
       unitSquare: "单位正方形",
       transformed: "变换后",
       determinant: "行列式",
       area: "面积",
       basisVectors: "基向量",
+      areaExpanded: "面积扩大",
+      areaCompressed: "面积压缩",
+      orientationReversed: "方向翻转",
+      collapsedToLine: "坍缩为直线",
     },
     DE: {
+      transformationMatrix: "TRANSFORMATIONS MATRIX",
       unitSquare: "Einheitsquadrat",
       transformed: "Transformiert",
       determinant: "Determinante",
       area: "Fläche",
       basisVectors: "Basisvektoren",
+      areaExpanded: "Fläche ERWEITERT",
+      areaCompressed: "Fläche KOMPRIMIERT",
+      orientationReversed: "ORIENTIERUNG UMGEKEHRT",
+      collapsedToLine: "ZUSAMMENBRUCH ZU LINIE",
     },
   };
   
