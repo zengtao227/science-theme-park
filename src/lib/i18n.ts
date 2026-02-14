@@ -5783,15 +5783,28 @@ export const translations: Record<string, any> = {
             ready: "就绪",
             monitor_title: "SB1.01_细胞监视器",
             footer_left: "SB1.01_细胞工厂 // 节点：巴塞尔",
+            stages: {
+                identification: "结构识别",
+                function: "功能匹配",
+                organelles: "细胞器详解"
+            },
             labels: {
                 cutaway_view: "切面视图",
                 selected: "选中的细胞器",
                 organelles: "细胞器",
-                instructions: "操作说明"
+                instructions: "操作说明",
+                nucleus: "细胞核",
+                mitochondria: "线粒体",
+                chloroplast: "叶绿体",
+                ribosome: "核糖体",
+                golgi: "高尔基体",
+                er: "内质网",
+                membrane: "细胞膜",
+                vacuole: "液泡"
             },
             mission: {
                 title: "任务：细胞探索",
-                description: "探索动物细胞结构。识别细胞器并理解其功能。"
+                description: "探索真核细胞结构。识别细胞器并理解它们在细胞生命活动中的作用。"
             }
         },
         sb2_01: {
@@ -5807,7 +5820,17 @@ export const translations: Record<string, any> = {
             ready: "就绪",
             monitor_title: "SB2.01_遗传学监视器",
             footer_left: "SB2.01_孟德尔花园 // 节点：巴塞尔",
+            stages: {
+                monohybrid: "单性状杂交",
+                probability: "概率计算",
+                dihybrid: "双性状杂交"
+            },
             labels: {
+                punnett: "普瑞特方格",
+                genotype_ratio: "基因型比例",
+                phenotype_ratio: "表现型比例",
+                parent1: "亲代 1 基因型",
+                parent2: "亲代 2 基因型",
                 genetics_basics: "遗传学基础",
                 genotype_phenotype: "基因型与表现型",
                 dominance: "显性规则",
@@ -5816,7 +5839,7 @@ export const translations: Record<string, any> = {
             },
             mission: {
                 title: "任务：孟德尔遗传学",
-                description: "掌握孟德尔遗传定律。使用普瑞特方格预测子代比例。"
+                description: "掌握孟德尔遗传定律。使用普瑞特方阵预测子代的基因型和表现型比例。"
             }
         },
         gb3_01: {
