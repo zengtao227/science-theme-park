@@ -2846,6 +2846,46 @@ export const translations: Record<string, any> = {
                 }
             }
         },
+        sb1_01_metabolic: {
+            back: "Back to Nexus",
+            title: "SB1.01 // METABOLIC ENGINE",
+            difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+            objective_title: "Active Mission Objective",
+            target_title: "Metabolic Status",
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Homeostasis Stable",
+            incorrect: "Metabolic Crisis",
+            ready: "Ready",
+            monitor_title: "SB1.01_METABOLIC_MONITOR",
+            footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
+            stages: {
+                osmosis: "OSMOSIS",
+                respiration: "RESPIRATION",
+                homeostasis: "HOMEOSTASIS"
+            },
+            labels: {
+                osmolarity: "External Osmolarity",
+                atp_flow: "Show ATP Flow",
+                hypertonic: "Hypertonic",
+                isotonic: "Isotonic",
+                hypotonic: "Hypotonic",
+                status: "Osmotic Status",
+                respiration_formula: "Respiration Formula",
+                glucose: "Glucose",
+                oxygen: "Oxygen",
+                atp: "ATP Energy"
+            },
+            prompts: {
+                osmosis_prompt: "The cell is in a {status} environment. What happens to the water?",
+                respiration_prompt: "Complete the respiration reactant: C₆H₁₂O₆ + 6{reactant} → ...",
+                product_prompt: "What is the primary energy product of respiration?",
+                homeostasis_target: "Balance the environment to achieve Isotonic state.",
+                hint_hyper: "High salt outside! Water leaves the cell.",
+                hint_hypo: "Low salt outside! Water rushes in.",
+                hint_oxy: "We breathe this in to burn glucose."
+            }
+        },
         sb2_01: {
             back: "Back to Nexus",
             title: "SB2.01 // MENDEL'S GARDEN",
@@ -5932,6 +5972,46 @@ export const translations: Record<string, any> = {
                     func: "合成网络 (ER)",
                     details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
                 }
+            }
+        },
+        sb1_01_metabolic: {
+            back: "返回枢纽",
+            title: "SB1.01 // 代谢引擎",
+            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            objective_title: "当前任务目标",
+            target_title: "代谢状态",
+            next: "执行下一序列",
+            check: "验证",
+            correct: "稳态正常",
+            incorrect: "代谢危机",
+            ready: "就绪",
+            monitor_title: "SB1.01_代谢监视器",
+            footer_left: "SB1.01_细胞生物学 // 节点：巴赛尔",
+            stages: {
+                osmosis: "渗透作用",
+                respiration: "细胞呼吸",
+                homeostasis: "内稳态"
+            },
+            labels: {
+                osmolarity: "外部渗透压",
+                atp_flow: "显示 ATP 流",
+                hypertonic: "高渗",
+                isotonic: "等渗",
+                hypotonic: "低渗",
+                status: "渗透状态",
+                respiration_formula: "呼吸作用公式",
+                glucose: "葡萄糖",
+                oxygen: "氧气",
+                atp: "ATP 能量"
+            },
+            prompts: {
+                osmosis_prompt: "细胞处于{status}环境中。水分会如何移动？",
+                respiration_prompt: "完成呼吸作用反应物：C₆H₁₂O₆ + 6{reactant} → ...",
+                product_prompt: "呼吸作用的主要能量产物是什么？",
+                homeostasis_target: "调节环境以达到等渗状态。",
+                hint_hyper: "外部盐分高！水分离开细胞。",
+                hint_hypo: "外部盐分低！水分涌入细胞。",
+                hint_oxy: "我们吸入它来氧化葡萄糖。"
             }
         },
         sb2_01: {
@@ -9261,6 +9341,46 @@ export const translations: Record<string, any> = {
                     func: "Synthesenetzwerk (ER)",
                     details: "Raues ER: Proteinsynthese. Glattes ER: Lipidsynthese und Entgiftung."
                 }
+            }
+        },
+        sb1_01_metabolic: {
+            back: "Zurück zum Nexus",
+            title: "SB1.01 // STOFFWECHSEL-ENGINE",
+            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            objective_title: "Aktuelles Missionsziel",
+            target_title: "Stoffwechselstatus",
+            next: "Nächste Sequenz",
+            check: "Überprüfen",
+            correct: "Homöostase stabil",
+            incorrect: "Stoffwechselkrise",
+            ready: "Bereit",
+            monitor_title: "SB1.01_METABOLIC_MONITOR",
+            footer_left: "SB1.01_ZELLBIOLOGIE // KNOTEN: BASEL",
+            stages: {
+                osmosis: "OSMOSE",
+                respiration: "ZELLATMUNG",
+                homeostasis: "HOMÖOSTASE"
+            },
+            labels: {
+                osmolarity: "Externe Osmolarität",
+                atp_flow: "ATP-Fluss anzeigen",
+                hypertonic: "Hypertonisch",
+                isotonic: "Isotonisch",
+                hypotonic: "Hypotonisch",
+                status: "Osmotischer Status",
+                respiration_formula: "Atmungsformel",
+                glucose: "Glukose",
+                oxygen: "Sauerstoff",
+                atp: "ATP-Energie"
+            },
+            prompts: {
+                osmosis_prompt: "Die Zelle befindet sich in einer {status} Umgebung. Was passiert mit dem Wasser?",
+                respiration_prompt: "Vervollständigen Sie den Reaktanten: C₆H₁₂O₆ + 6{reactant} → ...",
+                product_prompt: "Was ist das primäre Energieprodukt der Zellatmung?",
+                homeostasis_target: "Gleichen Sie die Umgebung aus, um den isotonischen Zustand zu erreichen.",
+                hint_hyper: "Hoher Salzgehalt außen! Wasser verlässt die Zelle.",
+                hint_hypo: "Niedriger Salzgehalt außen! Wasser strömt ein.",
+                hint_oxy: "Wir atmen dies ein, um Glukose zu verbrennen."
             }
         },
         sb2_01: {

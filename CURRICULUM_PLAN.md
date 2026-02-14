@@ -9,7 +9,7 @@
 | **SM1.02** | Thales Theorem (Similarity) | ✅ Production | Sek |
 | **SM1.03** | Algebra Quest: Variables & Terms | ✅ Production | Sek |
 | **SM1.04** | Below Zero: Integers & Coordinates | ✅ Production | Sek |
-| **SM1.05** | **Equation Balance** | 🤖 In Progress (Kiro) | Linear Equations Intro | Sek |
+| **SM1.05** | **Equation Balance** | ✅ Production | Linear Equations Intro | Sek |
 | **SM1.06** | **Ratio Lab** | ✅ Production | Proportionality & % | Sek |
 | **SM2.01** | Binomial Formulas | ✅ Production | Sek |
 | **SM2.02** | Pythagoras Theorem | ✅ Production | Sek |
@@ -53,7 +53,7 @@ Expanding the Chemistry track to bridge the gap between basic substances and com
 | **SC1.02** | **Mole Master** | ✅ Production | Stoichiometry & Yield | Sek |
 | **SC1.03** | **Atoms Forge** | ✅ Production | Atomic Orbitals (3D) | Sek |
 | **SC1.04** | **Periodic Puzzle** | ✅ Production | Periodic Table & Config | Sek |
-| **SC2.01** | **Kinetics Crash** | 🤖 In Progress (Kiro) | Arrhenius & Collision | Sek |
+| **SC2.01** | **Kinetics Crash** | ✅ Production | Arrhenius & Collision | Sek |
 | **SC2.02** | **pH Sentinel** | ✅ Production | pH Curves & Titration | Sek |
 | **SC2.03** | **Aero Lab** | ✅ Production | Ideal Gas Laws (PV=nRT) | Sek |
 | **SC2.04** | **Solubility Lab** | ✅ Production | Solutions & Crystallization | Sek |
@@ -68,6 +68,7 @@ Biology modules are in Phase 1 (Skeleton) but need upgrade to Phase 2 (Flesh).
 | Code | Mission Title | Status | Learning Goal | Grade |
 |:---:|:---|:---:|:---|:---:|
 | **SB1.01** | **Cell Factory** | ✅ Production | Cell Structure & Organelles | Sek |
+| **SB1.01-M**| **Metabolic Engine** | ✅ Production | Cellular Respiration & Osmosis | Sek |
 | **SB2.01** | **Mendel's Garden** | ✅ Production | Genetics & Punnett Squares | Sek |
 | **GB3.01** | **DNA Forge** | ✅ Production | Molecular Biology & Replication | Gym |
 
@@ -107,8 +108,8 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 
 ### 🚧 Critical Next Steps
 - **Ongoing (Mission 71-72) - 极限 "血肉" (Phase 2 Upgrade)**:
-  - **Antigravity**: Completed **SM1.06**, **SP1.05**, **SB1.01**, **SB2.01**, **GB3.01**.
-  - **Kiro**: 负责 **SM1.05 Equation Balance** & **SC2.01 Kinetics Crash**.
+  - **Antigravity**: Completed **SM1.06**, **SP1.05**, **SB1.01**, **SB1.01-M**, **SB2.01**, **GB3.01**.
+  - **Kiro**: Completed **SM1.05**, **SC2.01**.
 - **Upcoming**:
   - 开始向 Phase 4 (Biology Integration) 迈进。
   - 启动 Phase 3 (Skin) 全局 UI 统一化。
