@@ -5,19 +5,19 @@
 ### 📐 Mathematics (Basel Standard)
 | Code | Module Title | Status | Grade |
 |:---:|:---|:---:|:---:|
-| **S1.01** | Geometry: Areas & Volumes | ✅ Production | Sek |
-| **S1.02** | Thales Theorem (Similarity) | ✅ Production | Sek |
-| **S2.01** | Binomial Formulas | ✅ Production | Sek |
-| **S2.02** | Pythagoras Theorem | ✅ Production | Sek |
-| **S2.03** | Linear Functions | ✅ Production | Sek |
-| **S3.01** | Quadratics (p-q formula) | ✅ Production | Sek |
-| **S3.02** | Trig Circle | ✅ Production | Sek |
-| **S3.03** | Exponential Growth | ✅ Production | Sek |
-| **G1.01** | Calculus (Derivatives) | ✅ Production | Gym |
-| **G2.01** | Vector Geometry 3D | ✅ Production | Gym |
-| **G3.01** | Probability Vault | ✅ Production | Gym |
-| **G4.01** | Complex Numbers (z-plane) | ✅ Production | Gym |
-| **G5.01** | Matrix Geometry | ✅ Production | Gym |
+| **SM1.01** | Geometry: Areas & Volumes | ✅ Production | Sek |
+| **SM1.02** | Thales Theorem (Similarity) | ✅ Production | Sek |
+| **SM2.01** | Binomial Formulas | ✅ Production | Sek |
+| **SM2.02** | Pythagoras Theorem | ✅ Production | Sek |
+| **SM2.03** | Linear Functions | ✅ Production | Sek |
+| **SM3.01** | Quadratics (p-q formula) | ✅ Production | Sek |
+| **SM3.02** | Trig Circle | ✅ Production | Sek |
+| **SM3.03** | Exponential Growth | ✅ Production | Sek |
+| **GM1.01** | Calculus (Derivatives) | ✅ Production | Gym |
+| **GM2.01** | Vector Geometry 3D | ✅ Production | Gym |
+| **GM3.01** | Probability Vault | ✅ Production | Gym |
+| **GM4.01** | Complex Numbers (z-plane) | ✅ Production | Gym |
+| **GM5.01** | Matrix Geometry | ✅ Production | Gym |
 
 ### ⚛️ Physics (Swiss KLT)
 | Code | Module Title | Status | Learning Goal | Grade |
@@ -68,7 +68,7 @@ We are expanding the Chemistry track to bridge the gap between basic substances 
 | **GB3.01** | **DNA Forge** | ⏸️ Deferred | Molecular Biology & Replication | Gym |
 
 ### 🧭 New Naming Convention
-- **S** / **G**: Mathematics (Sekundarschule / Gymnasium)
+- **SM** / **GM**: Mathematics (Sek Math / Gym Math)
 - **SP** / **GP**: Physics (Sek Physics / Gym Physics)
 - **SC** / **GC**: Chemistry (Sek Chemistry / Gym Chemistry)
 - **SB** / **GB**: Biology (Sek Biology / Gym Biology)
@@ -103,8 +103,8 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 
 ### 🚧 Critical Next Steps
 - **Ongoing (Mission 65-68) - 极限 "血肉" (Phase 2)**:
-  - **Kiro**: 负责 **GP5.02 Relativity**, **GS1.01 Fractal**, **SC2.03 Aero**, **SP1.08 Optics**.
-  - **Trae**: 负责 **SC2.01 Kinetics**, **S2.01 Binomials**, **SP1.04 Rhine Ferry**, **S2.02 Pythagoras**.
+  - **Kiro**: 负责 **GP5.02 Relativity**, **SC2.03 Aero**, **SP1.08 Optics**.
+  - **Trae**: 负责 **SC2.01 Kinetics**, **SM2.01 Binomials**, **SP1.04 Rhine Ferry**, **SM2.02 Pythagoras**.
 - **Upcoming**:
   - 开始向 Phase 3 (Skin: 美化与特效) 过渡。
   - 整合所有独立 Canvas 到对应的展厅布局中。
