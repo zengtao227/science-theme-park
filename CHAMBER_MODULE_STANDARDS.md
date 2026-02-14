@@ -344,37 +344,268 @@ export const translations = {
 }
 ```
 
-### 4.3 场景描述要求
+### 4.3 场景描述要求 ⚠️
+
+**⚠️ 关键原则：场景必须具体、详细、贴近学生生活！**
+
+**目标学生群体**:
+- 初中生（Sekundarschule，7-9年级，13-15岁）
+- 高中生（Gymnasium，10-12年级，16-18岁）
+
+**为什么需要详细场景**:
+- ✅ 帮助学生理解"为什么要学这个"
+- ✅ 连接抽象概念与现实应用
+- ✅ 提高学习动机和参与度
+- ✅ 让知识变得有意义和可记忆
+
+#### 4.3.1 场景描述的必要元素
+
+**每个场景必须包含**:
+
+1. **具体的人物/角色**
+   - ✅ 正确："你是巴塞尔大学医院的医疗无人机导航系统程序员"
+   - ❌ 错误："计算向量"
+
+2. **具体的地点**
+   - ✅ 正确："在巴塞尔罗氏大厦的太阳能板安装项目中"
+   - ❌ 错误："在某个地方"
+
+3. **具体的情境和任务**
+   - ✅ 正确："无人机必须从A点（巴塞尔大学医院停机坪）飞到B点（Claraspital），需要计算精确的3D位移向量"
+   - ❌ 错误："从A点到B点"
+
+4. **具体的数值和单位**
+   - ✅ 正确："在100个样本中，有85个通过了质量测试"
+   - ❌ 错误："计算概率"
+
+5. **现实意义/为什么重要**
+   - ✅ 正确："这个概率决定了整批10,000个单位的药品是否能被批准供应给瑞士医院"
+   - ❌ 错误："这很重要"
+
+6. **与学生生活的连接**
+   - ✅ 正确："就像你用手机导航时，GPS需要计算你到目的地的直线距离"
+   - ❌ 错误：没有任何连接
+
+#### 4.3.2 场景长度要求
+
+**最少长度**: 3-5句话（80-150字）
+
+**推荐长度**: 5-8句话（150-250字）
+
+**结构建议**:
+1. 第一句：设定角色和地点
+2. 第二句：描述具体情境
+3. 第三句：说明任务和目标
+4. 第四句：给出具体数据
+5. 第五句：解释现实意义
+6. （可选）第六句：与学生生活的连接
+
+#### 4.3.3 场景示例对比
+
+**❌ 错误示例（太简单）**:
+```
+场景：诺华质量控制
+题目：计算概率 P(E)
+
+问题：
+- 没有具体人物
+- 没有具体情境
+- 没有数据
+- 学生不知道为什么要算这个
+```
+
+**✅ 正确示例（详细具体）**:
+```
+场景：巴塞尔诺华制药质量控制实验室
+
+你是诺华巴塞尔工厂的质量控制工程师。今天你需要检查一批新生产的
+100个药品样本。根据严格的安全测试，其中85个样本通过了所有质量
+检查（包括成分纯度、剂量准确性和无菌测试）。
+
+你的任务是计算从这批样本中随机抽取一个样本通过检查的概率P(E)。
+这个概率非常重要，因为它决定了整批10,000个单位的药品是否能被
+批准供应给瑞士各大医院。如果P(E) ≥ 0.85，整批药品可以发货；
+如果P(E) < 0.85，整批必须重新检查。
+
+已知：85个有利结果（通过测试），100个总样本
+求：P(E) = ?
+
+提示：这就像你在学校考试中，如果班上30个同学中有25个及格，
+那么随机选一个同学及格的概率是多少？
+```
+
+#### 4.3.4 不同学科的场景设计要点
+
+**物理模块（SP/GP系列）**:
+- 使用巴塞尔的实际地标（罗氏大厦、莱茵河、大学医院）
+- 连接到日常科技（手机、无人机、太阳能板）
+- 强调工程应用（建筑、交通、能源）
+
+**示例**:
+```
+巴塞尔无人机配送网络：你正在为巴塞尔的自动医疗物资配送无人机
+编程导航系统。无人机必须在城市上空的医院屋顶之间计算精确的3D
+向量路径。给定坐标A（巴塞尔大学医院停机坪，坐标(100, 50, 120)米）
+和B（Claraspital到达点，坐标(300, 200, 150)米），计算位移向量v
+和其模长|v|。模长代表直线飞行距离（米）。精确的向量计算对于电池
+管理和飞行时间估算至关重要。
+```
+
+**生物模块（SB/GB系列）**:
+- 使用莱茵河生态系统
+- 连接到健康和医学
+- 强调环境保护
+
+**示例**:
+```
+莱茵河生态系统研究：你是巴塞尔大学生态学研究小组的成员，正在
+研究莱茵河的食物链。在河流中，浮游植物（生产者）被浮游动物吃掉，
+浮游动物被小鱼吃掉，小鱼被大鱼吃掉，大鱼被鸟类捕食。
+
+你的任务是追踪能量流动。如果浮游植物通过光合作用产生了10,000 kJ
+的能量，根据"10%法则"（每个营养级只有10%的能量传递到下一级），
+计算有多少能量到达浮游动物这一级。
+
+这个研究帮助我们理解为什么食物链不能太长，以及为什么保护生产者
+（植物）对整个生态系统如此重要。
+```
+
+**化学模块（SC/GC系列）**:
+- 使用诺华/罗氏制药场景
+- 连接到药品和材料
+- 强调实验安全
+
+**示例**:
+```
+诺华有机合成实验室：你在诺华巴塞尔研发中心的有机化学实验室工作。
+今天的任务是合成一种新的药物中间体。你需要让甲烷（CH₄）与氯气
+（Cl₂）在紫外光照射下发生取代反应。
+
+在这个反应中，甲烷分子中的一个氢原子（H）会被氯原子（Cl）取代，
+生成氯甲烷（CH₃Cl）和氯化氢（HCl）。这是一个自由基反应，紫外光
+提供能量打断Cl-Cl键，产生氯自由基，然后氯自由基攻击甲烷。
+
+你的任务是预测主要产物。这个反应是制药工业中常用的基础反应，
+用于修饰分子结构，创造新的药物化合物。
+
+反应条件：CH₄ + Cl₂ → ? + HCl（紫外光照射）
+```
+
+**数学模块（SM/GM系列）**:
+- 使用巴塞尔城市规划、金融、统计
+- 连接到实际计算问题
+- 强调逻辑思维
+
+**示例**:
+```
+巴塞尔城市交通规划：巴塞尔市政府正在优化公交线路。你是交通规划
+团队的数据分析师。根据过去6个月的数据，3号电车线路每天平均运送
+12,000名乘客，标准差为800人。
+
+市政府想知道：在95%的置信水平下，明天的乘客数量会在什么范围内？
+这个预测对于决定需要安排多少辆电车、多少司机非常重要。如果预测
+太低，会导致电车过度拥挤；如果预测太高，会浪费资源。
+
+已知：μ = 12,000人，σ = 800人，置信水平 = 95%
+求：置信区间 [a, b] = ?
+
+提示：这就像你预测明天学校食堂会有多少人吃午餐，需要准备多少食物。
+```
+
+#### 4.3.5 场景设计检查清单
+
+**在提交模块前，检查每个场景**:
+
+- [ ] 有具体的人物/角色吗？
+- [ ] 有具体的地点（巴塞尔相关）吗？
+- [ ] 有详细的情境描述吗？
+- [ ] 有具体的数值和单位吗？
+- [ ] 解释了为什么这个计算重要吗？
+- [ ] 与学生生活有连接吗？
+- [ ] 长度至少3-5句话（80-150字）吗？
+- [ ] 三种语言（EN/CN/DE）都有完整翻译吗？
+
+#### 4.3.6 场景的教育价值
+
+**好的场景能够**:
+- 回答"我为什么要学这个？"
+- 展示知识的实际应用
+- 激发学生的好奇心
+- 帮助记忆（故事比公式更容易记住）
+- 培养问题解决能力
+- 连接不同学科（跨学科学习）
+
+**避免的错误**:
+- ❌ 只有一句话的"场景"
+- ❌ 抽象的、不具体的描述
+- ❌ 没有数据的"计算题"
+- ❌ 与学生生活完全脱节
+- ❌ 只有英文，没有中文和德文翻译
+
+### 4.4 场景描述在代码中的实现
 
 **必须包含详细的场景描述** (scenarios)
 
 **要求**:
-- ✅ 必须是完整的故事背景
+- ✅ 必须是完整的故事背景（3-5句话）
 - ✅ 必须包含具体的人物/地点/情境
 - ✅ 必须包含具体的数字和单位
 - ✅ 必须解释现实世界的意义
 - ❌ 禁止：抽象的一句话描述
 
-**示例** (GM2.01 NAVIGATION):
-```
-Basel Drone Delivery Network: You are programming the navigation 
-system for Basel's autonomous medical supply drones. The drones 
-must calculate precise 3D vectors between hospital rooftops and 
-delivery points across the city. Given coordinates A (departure 
-helipad at Basel University Hospital) and B (arrival point at 
-Claraspital), compute the displacement vector v and its magnitude. 
-The magnitude represents the direct flight distance in meters. 
-Accurate vector calculation is critical for battery management 
-and flight time estimation.
+**在i18n.ts中的结构**:
+```typescript
+gm2_01: {
+  // ... 其他翻译 ...
+  scenarios: {
+    navigation: `Basel Drone Delivery Network: You are programming 
+      the navigation system for Basel's autonomous medical supply drones. 
+      The drones must calculate precise 3D vectors between hospital rooftops 
+      and delivery points across the city. Given coordinates A (departure 
+      helipad at Basel University Hospital at (100, 50, 120) meters) and 
+      B (arrival point at Claraspital at (300, 200, 150) meters), compute 
+      the displacement vector v and its magnitude |v|. The magnitude 
+      represents the direct flight distance in meters. Accurate vector 
+      calculation is critical for battery management and flight time 
+      estimation. This is like using GPS on your phone to find the 
+      straight-line distance to your destination.`,
+    
+    dot: `Roche Tower Solar Panel Optimization: You are an engineer at 
+      Roche Tower in Basel, installing adjustable solar panels on the 
+      building's facade. Each panel's orientation is represented by a 
+      normal vector v, and the sun's direction at noon is vector w. 
+      The dot product v·w determines how much sunlight the panel receives - 
+      maximum when parallel (dot product = |v||w|), zero when perpendicular. 
+      Calculate the dot product to determine the optimal panel angle. 
+      Engineers use this to maximize energy capture throughout the day, 
+      reducing the building's carbon footprint and energy costs.`,
+    
+    mission: `Rhine Navigation System: Basel Port Authority is developing 
+      an automated barge navigation system for the Rhine River. A cargo 
+      barge must travel from point A (current position at (50, 100, 0) meters) 
+      to point B (destination dock at (200, 300, 0) meters). The river 
+      current is represented by vector s = (10, 5, 0) m/s. Calculate: 
+      (1) displacement vector v from A to B, (2) dot product v·s to 
+      determine if the current helps or hinders (positive = helps, 
+      negative = hinders, zero = perpendicular), and (3) magnitude |v| 
+      for the direct distance. This data optimizes fuel consumption and 
+      arrival time predictions for the 1,000+ barges that use Basel's 
+      port annually.`
+  }
+}
 ```
 
 **反例** (不够详细):
-```
-❌ "Calculate the vector between two points."
-❌ "Use vectors for navigation."
+```typescript
+// ❌ 错误：太简单
+scenarios: {
+  navigation: "Calculate the vector between two points.",
+  dot: "Use vectors for navigation.",
+  mission: "Solve the vector problem."
+}
 ```
 
-### 4.3 城市和公司名称
+### 4.5 城市和公司名称
 
 **地点**: 使用 **Basel (巴塞尔)**，不用 Zurich
 - Basel University Hospital (巴塞尔大学医院)
