@@ -75,6 +75,8 @@ export const translations: Record<string, any> = {
             sm1_04_subtitle: "Master integers, number lines, rational numbers, and 2D coordinates with Basel winter scenarios.",
             sm1_05_title: "SM1.05 // EQUATION BALANCE",
             sm1_05_subtitle: "Solve linear equations using balance models, transformations, and Basel real-world applications.",
+            sm1_06_title: "SM1.06 // RATIO LAB",
+            sm1_06_subtitle: "Master proportions, percentages, and mixtures with interactive Basel lab scenarios.",
 
 
             sm2_01_title: "SM2.01 // BINOMIAL FACTORY",
@@ -2263,6 +2265,33 @@ export const translations: Record<string, any> = {
                 app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
             }
         },
+        sm1_06: {
+            back: "Back to Nexus",
+            title: "SM1.06 // RATIO LAB",
+            difficulty: {
+                basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
+            },
+            next: "Execute Next Sequence",
+            check: "Verify",
+            correct: "Verified",
+            incorrect: "Mismatch",
+            ready: "Ready",
+            monitor_title: "SM1.06_RATIO_MONITOR",
+            footer_left: "SM1.06_RATIO_LAB // NODE: BASEL",
+            stages: {
+                recipes: "RECIPES",
+                percent: "PERCENT",
+                mixtures: "MIXTURES"
+            },
+            labels: {
+                ratio: "Ratio",
+                proportion: "Proportion",
+                percentage: "Percentage",
+                concentration: "Concentration",
+                solute: "Solute",
+                solvent: "Solvent"
+            }
+        },
         sm2_08: {
             back: "Back to Nexus",
             title: "SM2.08 // PROBABILITY BASICS",
@@ -3243,6 +3272,8 @@ export const translations: Record<string, any> = {
             sm1_04_subtitle: "通过巴塞尔冬季场景掌握整数、数轴、有理数和二维坐标。",
             sm1_05_title: "SM1.05 // 方程平衡",
             sm1_05_subtitle: "使用天平模型、变换和巴塞尔实际应用解一元一次方程。",
+            sm1_06_title: "SM1.06 // 比例实验室",
+            sm1_06_subtitle: "通过互动的巴塞尔实验室场景掌握比例、百分比和混合物。",
 
             sp1_02_title: "SP1.02 // 牛顿定律",
             sp1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
@@ -4981,6 +5012,83 @@ export const translations: Record<string, any> = {
                 q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
             }
         },
+        sm1_05: {
+            back: "返回枢纽",
+            title: "SM1.05 // 等式平衡",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "SM1.05_等式监视器",
+            footer_left: "SM1.05_等式平衡 // 节点：巴塞尔",
+            basel_scenario: "巴塞尔等式场景",
+            scenario_title: "问题背景",
+            solve_title: "求解等式",
+            answer_title: "你的答案",
+            solution_title: "解答",
+            stages: {
+                balance: "平衡",
+                solve: "求解",
+                transform: "转换",
+                applications: "应用"
+            },
+            scenarios: {
+                balance: "理解等式平衡：就像天平一样，等式必须保持平衡。无论对一边做什么，都必须对另一边做同样的操作。这个基本原则是解所有等式的关键。",
+                solve: "解一元一次方程：使用逆运算来孤立变量。加/减以移动常数，乘/除以移除系数。每一步都让你离找到x更近一步。",
+                transform: "等式变换：掌握将项移过等号的艺术。合并同类项，展开括号，并简化分数。将复杂的等式转换为简单的等式。",
+                applications: "巴塞尔现实问题：应用等式解决巴塞尔的实际问题。计算公交车票价、莱茵河渡轮时间、诺华实验室测量数据和罗氏药物浓度。"
+            },
+            problems: {
+                bal_add_both: "在 x + 3 = 7 的两边同时加 2",
+                bal_subtract_both: "在 x + 5 = 8 的两边同时减 5",
+                bal_multiply_both: "两边同时乘以 2",
+                bal_divide_both: "两边同时除以 2",
+                bal_simple_check: "通过移动常数求解",
+                bal_two_steps: "先减去 3，再除以 2",
+                bal_negative_result: "结果将是负数",
+                bal_fraction_coeff: "先减去 2，再乘以 3",
+                bal_both_sides_x: "将 x 项移到一边",
+                bal_distribute: "先展开括号",
+                bal_complex_both: "两边都有变量",
+                bal_fractions: "找到公分母",
+                bal_parentheses_both: "先展开两边的括号",
+                bal_decimal_coeff: "使用小数运算",
+                bal_negative_coeff: "负系数",
+                bal_nested_parens: "先简化最内层的括号",
+                bal_three_fractions: "三个不同分母的分数"
+            }
+        },
+        sm1_06: {
+            back: "返回枢纽",
+            title: "SM1.06 // 比例实验室",
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
+            next: "执行下一序列",
+            check: "验证",
+            correct: "已验证",
+            incorrect: "不匹配",
+            ready: "就绪",
+            monitor_title: "SM1.06_比例监视器",
+            footer_left: "SM1.06_比例实验室 // 节点：巴塞尔",
+            stages: {
+                recipes: "配方",
+                percent: "百分比",
+                mixtures: "混合物"
+            },
+            labels: {
+                ratio: "比例",
+                proportion: "比例关系",
+                percentage: "百分比",
+                concentration: "浓度",
+                solute: "溶质",
+                solvent: "溶剂"
+            }
+        },
         sm2_08: {
             back: "返回枢纽",
             title: "SM2.08 // 概率基础",
@@ -6334,6 +6442,8 @@ export const translations: Record<string, any> = {
             sm1_04_subtitle: "Meistere ganze Zahlen, Zahlengeraden, rationale Zahlen und 2D-Koordinaten mit Basler Winterszenarien.",
             sm1_05_title: "SM1.05 // GLEICHUNGSWAAGE",
             sm1_05_subtitle: "Löse lineare Gleichungen mit Waagemodellen, Transformationen und Basler Anwendungen.",
+            sm1_06_title: "SM1.06 // PROPORTIONS-LABOR",
+            sm1_06_subtitle: "Meistere Proportionen, Prozentsätze und Mischungen mit interaktiven Basler Laborszenarien.",
 
             sp1_02_title: "SP1.02 // NEWTONS GESETZE",
             sp1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
@@ -8110,6 +8220,83 @@ export const translations: Record<string, any> = {
                 q_area_rectangle: "Rechteck mit Ecken bei (0,0) und (4,3). Fläche?",
                 q_diagonal_distance: "Horizontale Entfernung von (2, 3) bis (6, 5)?",
                 q_complex_translation: "Start bei (2, 3), bewege rechts 3, links 1. Finales x?"
+            }
+        },
+        sm1_05: {
+            back: "Zurück zum Nexus",
+            title: "SM1.05 // GLEICHUNGSWAAGE",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "SM1.05_GLEICHUNGS_MONITOR",
+            footer_left: "SM1.05_GLEICHUNGSWAAGE // KNOTEN: BASEL",
+            basel_scenario: "BASLER GLEICHUNGSSZENARIO",
+            scenario_title: "PROBLEMKONTEXT",
+            solve_title: "GLEICHUNG LÖSEN",
+            answer_title: "IHRE ANTWORT",
+            solution_title: "LÖSUNG",
+            stages: {
+                balance: "WAAGE",
+                solve: "LÖSEN",
+                transform: "TRANSFORMIEREN",
+                applications: "ANWENDUNGEN"
+            },
+            scenarios: {
+                balance: "Gleichungswaage verstehen: Wie eine Waage müssen Gleichungen im Gleichgewicht bleiben. Was Sie auf der einen Seite tun, müssen Sie auch auf der anderen tun. Dieses Grundprinzip ist der Schlüssel zum Lösen aller Gleichungen.",
+                solve: "Lineare Gleichungen lösen: Verwenden Sie Umkehroperationen, um die Variable zu isolieren. Addieren/Subtrahieren, um Konstanten zu verschieben, Multiplizieren/Dividieren, um Koeffizienten zu entfernen. Jeder Schritt bringt Sie der Lösung von x näher.",
+                transform: "Gleichungen transformieren: Meistern Sie die Kunst, Therme über das Gleichheitszeichen zu verschieben. Fassen Sie gleiche Terme zusammen, lösen Sie Klammern auf und vereinfachen Sie Brüche. Transformieren Sie komplexe Gleichungen in einfache.",
+                applications: "Basler Praxisprobleme: Wenden Sie Gleichungen an, um reale Probleme in Basel zu lösen. Berechnen Sie Busticketpreise, Rheinpegel-Zeiten, Novartis-Labormessungen und Roche-Pharma-Konzentrationen."
+            },
+            problems: {
+                bal_add_both: "Addiere 2 auf beiden Seiten von x + 3 = 7",
+                bal_subtract_both: "Subtrahiere 5 von beiden Seiten von x + 5 = 8",
+                bal_multiply_both: "Multipliziere beide Seiten mit 2",
+                bal_divide_both: "Dividiere beide Seiten durch 2",
+                bal_simple_check: "Lösen durch Verschieben der Konstante",
+                bal_two_steps: "Zuerst 3 subtrahieren, dann durch 2 dividieren",
+                bal_negative_result: "Das Ergebnis wird negativ sein",
+                bal_fraction_coeff: "Zuerst 2 subtrahieren, dann mit 3 multiplizieren",
+                bal_both_sides_x: "x-Terme auf eine Seite verschieben",
+                bal_distribute: "Zuerst Klammern auflösen",
+                bal_complex_both: "Variablen auf beiden Seiten",
+                bal_fractions: "Gemeinsamen Nenner finden",
+                bal_parentheses_both: "Klammern auf beiden Seiten zuerst auflösen",
+                bal_decimal_coeff: "Mit Dezimalzahlen arbeiten",
+                bal_negative_coeff: "Negativer Koeffizient",
+                bal_nested_parens: "Innere Klammern zuerst vereinfachen",
+                bal_three_fractions: "Drei Brüche mit unterschiedlichen Nennern"
+            }
+        },
+        sm1_06: {
+            back: "Zurück zum Nexus",
+            title: "SM1.06 // PROPORTIONS-LABOR",
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
+            },
+            next: "Nächste Sequenz ausführen",
+            check: "Verifizieren",
+            correct: "Verifiziert",
+            incorrect: "Fehlreaktion",
+            ready: "Bereit",
+            monitor_title: "SM1.06_PROPORTION_MONITOR",
+            footer_left: "SM1.06_PROPORTIONS_LABOR // KNOTEN: BASEL",
+            stages: {
+                recipes: "REZEPTE",
+                percent: "PROZENT",
+                mixtures: "MISCHUNGEN"
+            },
+            labels: {
+                ratio: "Verhältnis",
+                proportion: "Proportion",
+                percentage: "Prozentsatz",
+                concentration: "Konzentration",
+                solute: "Gelöster Stoff",
+                solvent: "Lösungsmittel"
             }
         },
         sm2_08: {

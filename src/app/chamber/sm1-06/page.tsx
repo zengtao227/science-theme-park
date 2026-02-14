@@ -453,31 +453,59 @@ export default function SM106Page() {
 function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildStagePool: any, language: any }) {
     const {
         currentQuest,
-        completedQuests,
-        totalQuests,
-        handleAnswer,
-        nextStage,
         difficulty,
         stage,
-        feedback,
-        stats,
-        isStageComplete,
-    } = useQuestManager<Stage, S106Quest>(
-        {
-            VISUAL_STAGES: ["RECIPES", "PERCENT", "MIXTURES"],
-            buildStagePool: buildStagePool,
-            t: t as any,
-        },
-        language
-    );
+        lastCheck,
+        inputs,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+        getHint,
+        currentStageStats,
+    } = useQuestManager<S106Quest, Stage>({
+        buildPool: (diff, stg) => buildStagePool(t, diff, stg),
+        initialStage: "RECIPES",
+    });
 
-    const checkAnswer = (values: Record<string, any>) => {
-        handleAnswer(values);
-    };
+    const isCorrect = lastCheck?.ok;
+    const feedbackMessage = lastCheck ? (isCorrect ? "Correct!" : "Try again!") : "";
+    const hint = getHint();
 
     return (
         <div className="flex flex-col h-full">
-            <div className="flex-1 bg-gray-900/.5 rounded-xl border border-white/10 overflow-hidden relative">
+            {/* Header / Stats */}
+            <div className="flex justify-between items-center mb-4 px-2">
+                <div className="flex gap-2">
+                    {(["BASIC", "CORE", "ADVANCED", "ELITE"] as Difficulty[]).map((d) => (
+                        <button
+                            key={d}
+                            onClick={() => handleDifficultyChange(d)}
+                            className={`px-3 py-1 text-xs rounded-full border transition-all ${difficulty === d
+                                    ? "bg-neon-cyan text-black border-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.5)]"
+                                    : "text-white/50 border-white/20 hover:border-white/40"
+                                }`}
+                        >
+                            {d}
+                        </button>
+                    ))}
+                </div>
+                <div className="flex gap-4 items-center">
+                    {(["RECIPES", "PERCENT", "MIXTURES"] as Stage[]).map((s) => (
+                        <button
+                            key={s}
+                            onClick={() => handleStageChange(s)}
+                            className={`text-sm tracking-widest transition-all ${stage === s ? "text-neon-cyan font-bold" : "text-white/30 hover:text-white/60"
+                                }`}
+                        >
+                            {s}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex-1 bg-gray-900/.5 rounded-xl border border-white/10 overflow-hidden relative min-h-[400px]">
                 {currentQuest ? (
                     <RatioCanvas
                         mode={currentQuest.visualMode}
@@ -485,62 +513,96 @@ function QuestManagerWrapper({ t, buildStagePool, language }: { t: S106T, buildS
                         language={language}
                     />
                 ) : (
-                    <div className="flex items-center justify-center h-full text-white/50">
-                        Select a difficulty to begin
+                    <div className="flex items-center justify-center h-full text-white/50 italic">
+                        Initializing laboratory...
                     </div>
                 )}
             </div>
 
             {/* Controls */}
             {currentQuest && (
-                <div className="mt-6 p-6 bg-black/40 rounded-xl border border-white/10">
-                    <h2 className="text-xl text-white mb-4 font-light">
+                <div className="mt-6 p-6 bg-black/40 rounded-xl border border-white/10 shadow-2xl backdrop-blur-sm">
+                    <div className="text-center mb-6">
                         <BlockMath>{currentQuest.promptLatex}</BlockMath>
-                    </h2>
+                    </div>
 
-                    <div className="flex gap-4 items-end">
+                    <div className="flex flex-wrap gap-6 items-center justify-center">
                         {currentQuest.slots.map((slot: any) => (
                             <div key={slot.id} className="flex flex-col gap-2">
-                                <label className="text-xs text-neon-cyan uppercase tracking-wider">{slot.labelLatex}</label>
-                                <div className="flex items-center bg-white/5 rounded-lg border border-white/20 px-3 py-2">
+                                <label className="text-xs text-neon-cyan uppercase tracking-wider font-bold">
+                                    <InlineMath>{slot.labelLatex}</InlineMath>
+                                </label>
+                                <div className="flex items-center bg-white/5 rounded-lg border border-white/20 focus-within:border-neon-cyan/50 transition-all px-4 py-3">
                                     <input
-                                        className="bg-transparent text-white font-mono text-lg w-24 outline-none text-center"
+                                        className="bg-transparent text-white font-mono text-xl w-32 outline-none text-center"
                                         placeholder={slot.placeholder}
+                                        value={inputs[slot.id] || ""}
+                                        onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
                                         onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
-                                                checkAnswer({ [slot.id]: parseFloat(e.currentTarget.value) });
-                                            }
+                                            if (e.key === 'Enter') verify();
                                         }}
                                     />
                                 </div>
                             </div>
                         ))}
-                        <button
-                            className="px-6 py-2 bg-neon-cyan/20 hover:bg-neon-cyan/40 text-neon-cyan border border-neon-cyan rounded-lg transition-colors"
-                            onClick={() => {
-                                // Assuming single input for now from the text inputs above
-                                // In a real app we'd bind state, but here we let the onKeyDown handle it or this button specific logic
-                                // For simplicity of this artifact, we rely on users typing and hitting enter in the input fields above
-                            }}
-                        >
-                            CHECK
-                        </button>
+
+                        <div className="flex gap-3">
+                            <button
+                                className="px-8 py-3 bg-neon-cyan/10 hover:bg-neon-cyan/30 text-neon-cyan border border-neon-cyan rounded-xl transition-all font-black tracking-widest uppercase"
+                                onClick={verify}
+                            >
+                                VERIFY
+                            </button>
+                            {isCorrect && (
+                                <button
+                                    className="px-8 py-3 bg-white text-black rounded-xl transition-all font-black tracking-widest uppercase hover:scale-105 active:scale-95"
+                                    onClick={next}
+                                >
+                                    NEXT
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     {/* Feedback */}
-                    <AnimatePresence>
-                        {feedback && (
+                    <AnimatePresence mode="wait">
+                        {lastCheck && (
                             <motion.div
-                                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                                className={`mt-4 p-3 rounded-lg ${feedback.isCorrect ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}`}
+                                key={isCorrect ? "correct" : "incorrect"}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                className={`mt-6 p-4 rounded-xl border flex items-center justify-between ${isCorrect
+                                        ? 'bg-green-500/10 border-green-500/50 text-green-400'
+                                        : 'bg-red-500/10 border-red-500/50 text-red-400'
+                                    }`}
                             >
-                                {feedback.message}
-                                {!feedback.isCorrect && feedback.hint && (
-                                    <div className="text-xs mt-1 opacity-70">Hint: <InlineMath>{feedback.hint}</InlineMath></div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-2xl">{isCorrect ? "✓" : "✗"}</span>
+                                    <div>
+                                        <div className="font-bold">{isCorrect ? "IDENTITY VERIFIED" : "MISMATCH DETECTED"}</div>
+                                        <div className="text-sm opacity-80">{feedbackMessage}</div>
+                                    </div>
+                                </div>
+                                {!isCorrect && hint && (
+                                    <div className="text-sm font-mono bg-black/30 px-3 py-1 rounded border border-white/10">
+                                        Hint: <InlineMath>{hint}</InlineMath>
+                                    </div>
                                 )}
                             </motion.div>
                         )}
                     </AnimatePresence>
+
+                    {/* Progress */}
+                    <div className="mt-8 flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                            <div
+                                key={i}
+                                className={`flex-1 transition-all duration-1000 ${i < (currentStageStats.correct % 6) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
+                                    }`}
+                            />
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
