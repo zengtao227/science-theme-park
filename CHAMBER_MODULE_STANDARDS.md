@@ -262,7 +262,7 @@ ELITE: 复合事件 (需要分解)
 **所有文本必须在 `src/lib/i18n.ts` 中定义**:
 ```typescript
 gm1_01: {
-  title: "G1.01 // DERIVATIVE CHAMBER",
+  title: "GM1.01 // DERIVATIVE CHAMBER",
   difficulty: {
     basic: "BASIC",
     core: "CORE",

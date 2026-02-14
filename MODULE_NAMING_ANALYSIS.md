@@ -9,14 +9,13 @@
 ### 问题1: 命名不一致
 
 **Gymnasium数学模块的命名混乱**:
-- ✅ 有些用 `G` 前缀: G1.01, G2.01, G3.01, G4.01, G5.01
 - ✅ 有些用 `GM` 前缀: GM1.01, GM2.01, GM3.01, GM4.01, GM5.01
-- ❓ 还有 `GMS` 前缀: GMS1.01
+- ❓ 还有 `GMS` 前缀: GMS1.01 (已删除)
 
 **实际情况**:
 - 在代码中: 文件夹名都是 `gm1-01`, `gm2-01` 等 (用GM)
-- 在i18n中: 有些显示为 `G1.01`, 有些显示为 `GM1.01`
-- 在CURRICULUM_PLAN中: 显示为 `G1.01`, `G2.01` 等
+- 在i18n中: 统一显示为 `GM1.01`, `GM2.01` 等
+- 在CURRICULUM_PLAN中: 统一显示为 `GM1.01`, `GM2.01` 等
 
 ---
 
@@ -85,11 +84,11 @@
 **实施**:
 ```
 当前              →  统一后
-G1.01            →  GM1.01 (Calculus)
-G2.01            →  GM2.01 (Vectors)
-G3.01            →  GM3.01 (Probability)
-G4.01            →  GM4.01 (Complex Numbers)
-G5.01            →  GM5.01 (Matrix Geometry)
+GM1.01           →  GM1.01 (Calculus) ✅
+GM2.01           →  GM2.01 (Vectors) ✅
+GM3.01           →  GM3.01 (Probability) ✅
+GM4.01           →  GM4.01 (Complex Numbers) ✅
+GM5.01           →  GM5.01 (Matrix Geometry) ✅
 GMS1.01          →  GM6.01 (Fractal Explorer) 或删除
 ```
 
@@ -150,12 +149,12 @@ GMS1.01          →  GM6.01 (Fractal Explorer) 或删除
 
 ## 📋 统一命名实施清单
 
-### 第一步: 更新i18n翻译
-- [ ] 将所有 `G1.01` 改为 `GM1.01`
-- [ ] 将所有 `G2.01` 改为 `GM2.01`
-- [ ] 将所有 `G3.01` 改为 `GM3.01`
-- [ ] 将所有 `G4.01` 改为 `GM4.01`
-- [ ] 将所有 `G5.01` 改为 `GM5.01`
+### 第一步: 更新i18n翻译 ✅ 已完成
+- [x] 将所有 `G1.01` 改为 `GM1.01`
+- [x] 将所有 `G2.01` 改为 `GM2.01`
+- [x] 将所有 `G3.01` 改为 `GM3.01`
+- [x] 将所有 `G4.01` 改为 `GM4.01`
+- [x] 将所有 `G5.01` 改为 `GM5.01`
 
 ### 第二步: 更新CURRICULUM_PLAN.md
 - [ ] 统一使用GM前缀
