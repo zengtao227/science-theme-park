@@ -71,43 +71,7 @@ export const translations: Record<string, any> = {
             sm1_02_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
             sm1_03_title: "SM1.03 // ALGEBRA QUEST",
             sm1_03_subtitle: "Master variables, simplifying terms, and substitution with visual algebra tiles.",
-            sm1_03: {
-                back: "Back to Nexus",
-                title: "SM1.03 // ALGEBRA QUEST",
-                difficulty: {
-                    basic: "BASIC",
-                    core: "CORE",
-                    advanced: "ADVANCED",
-                    elite: "ELITE"
-                },
-                modes: {
-                    containers: "CONTAINERS",
-                    sorting: "SORTING",
-                    machine: "MACHINE"
-                },
-                labels: {
-                    variable: "Variable",
-                    value: "Value",
-                    expression: "Expression",
-                    simplify: "Simplify",
-                    evaluate: "Evaluate",
-                    input: "Input",
-                    output: "Output"
-                },
-                stages: {
-                    variables: "VARIABLES",
-                    terms: "TERMS",
-                    substitution: "SUBSTITUTION",
-                    vars_prompt: "Identify the value inside the container.",
-                    terms_prompt: "Combine like terms to simplify the expression.",
-                    sub_prompt: "Evaluate the expression for the given value."
-                },
-                scenarios: {
-                    variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
-                    terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
-                    substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
-                }
-            },
+
 
             sm2_01_title: "SM2.01 // BINOMIAL FACTORY",
             sm2_01_subtitle: "Master the 1st and 2nd Binomial Formulas. Use geometric dissection to prove algebraic identities.",
@@ -2014,6 +1978,43 @@ export const translations: Record<string, any> = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
+        sm1_03: {
+            back: "Back to Nexus",
+            title: "SM1.03 // ALGEBRA QUEST",
+            difficulty: {
+                basic: "BASIC",
+                core: "CORE",
+                advanced: "ADVANCED",
+                elite: "ELITE"
+            },
+            modes: {
+                containers: "CONTAINERS",
+                sorting: "SORTING",
+                machine: "MACHINE"
+            },
+            labels: {
+                variable: "Variable",
+                value: "Value",
+                expression: "Expression",
+                simplify: "Simplify",
+                evaluate: "Evaluate",
+                input: "Input",
+                output: "Output"
+            },
+            stages: {
+                variables: "VARIABLES",
+                terms: "TERMS",
+                substitution: "SUBSTITUTION",
+                vars_prompt: "Identify the value inside the container.",
+                terms_prompt: "Combine like terms to simplify the expression.",
+                sub_prompt: "Evaluate the expression for the given value."
+            },
+            scenarios: {
+                variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
+                terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
+                substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
+            }
+        },
         sm2_07: {
             back: "Back to Nexus",
             title: "SM2.07 // COORDINATE GEOMETRY",
@@ -3030,43 +3031,7 @@ export const translations: Record<string, any> = {
             sm1_02_subtitle: "探索超立方体：四维投影、旋转矩阵和超立方体展开。",
             sm1_03_title: "SM1.03 // 代数探险",
             sm1_03_subtitle: "通过可视化代数积木掌握变量、同类项化简和代入求值。",
-            sm1_03: {
-                back: "返回 Nexus",
-                title: "SM1.03 // 代数探险",
-                difficulty: {
-                    basic: "基础",
-                    core: "核心",
-                    advanced: "进阶",
-                    elite: "精英"
-                },
-                modes: {
-                    containers: "容器",
-                    sorting: "分类",
-                    machine: "机器"
-                },
-                labels: {
-                    variable: "变量",
-                    value: "数值",
-                    expression: "表达式",
-                    simplify: "化简",
-                    evaluate: "求值",
-                    input: "输入",
-                    output: "输出"
-                },
-                stages: {
-                    variables: "变量概念",
-                    terms: "同类项",
-                    substitution: "代入法",
-                    vars_prompt: "识别容器内的数值。",
-                    terms_prompt: "合并同类项以化简表达式。",
-                    sub_prompt: "将给定的值代入表达式并计算结果。"
-                },
-                scenarios: {
-                    variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
-                    terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
-                    substitution: "BVB电车售票机：你正在测试售票机的逻辑。将区域值（x）代入价格公式，计算正确的法郎（CHF）票价。"
-                }
-            },
+
             sp1_02_title: "SP1.02 // 牛顿定律",
             sp1_02_subtitle: "探索摩擦力、加速度与碰撞动力学，理解机械运动的核心法则。",
             sp2_01_title: "SP2.01 // 热力学",
@@ -4636,6 +4601,43 @@ export const translations: Record<string, any> = {
                 polarization: "I = I_0 \\cos^2 \\theta"
             }
         },
+        sm1_03: {
+            back: "返回 Nexus",
+            title: "SM1.03 // 代数探险",
+            difficulty: {
+                basic: "基础",
+                core: "核心",
+                advanced: "进阶",
+                elite: "精英"
+            },
+            modes: {
+                containers: "容器",
+                sorting: "分类",
+                machine: "机器"
+            },
+            labels: {
+                variable: "变量",
+                value: "数值",
+                expression: "表达式",
+                simplify: "化简",
+                evaluate: "求值",
+                input: "输入",
+                output: "输出"
+            },
+            stages: {
+                variables: "变量概念",
+                terms: "同类项",
+                substitution: "代入法",
+                vars_prompt: "识别容器内的数值。",
+                terms_prompt: "合并同类项以化简表达式。",
+                sub_prompt: "将给定的值代入表达式并计算结果。"
+            },
+            scenarios: {
+                variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
+                terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
+                substitution: "BVB电车售票机：你正在测试售票机的逻辑。将区域值（x）代入价格公式，计算正确的法郎（CHF）票价。"
+            }
+        },
         sm2_07: {
             back: "返回枢纽",
             title: "SM2.07 // 坐标几何",
@@ -6025,43 +6027,7 @@ export const translations: Record<string, any> = {
             sm1_02_subtitle: "Erkunde den Tesserakt: 4D-Projektion, Rotationsmatrizen und Hyperwürfel-Entfaltung.",
             sm1_03_title: "SM1.03 // ALGEBRA QUEST",
             sm1_03_subtitle: "Meistere Variablen, Termvereinfachung und Einsetzen mit visuellen algebraischen Kacheln.",
-            sm1_03: {
-                back: "Zurück zum Nexus",
-                title: "SM1.03 // ALGEBRA QUEST",
-                difficulty: {
-                    basic: "BASIS",
-                    core: "KERN",
-                    advanced: "FORTGESCHRITTEN",
-                    elite: "ELITE"
-                },
-                modes: {
-                    containers: "CONTAINER",
-                    sorting: "SORTIEREN",
-                    machine: "MASCHINE"
-                },
-                labels: {
-                    variable: "Variable",
-                    value: "Wert",
-                    expression: "Ausdruck",
-                    simplify: "Vereinfachen",
-                    evaluate: "Auswerten",
-                    input: "Eingabe",
-                    output: "Ausgabe"
-                },
-                stages: {
-                    variables: "VARIABLEN",
-                    terms: "TERME",
-                    substitution: "EINSETZEN",
-                    vars_prompt: "Identifiziere den Wert im Container.",
-                    terms_prompt: "Fasse gleichartige Terme zusammen, um den Ausdruck zu vereinfachen.",
-                    sub_prompt: "Werte den Ausdruck für den gegebenen Wert aus."
-                },
-                scenarios: {
-                    variables: "Basler Rhybadhüsli Schliessfach: Du verwaltest Schliessfächer im berühmten Rheinbad. Jedes Fach (Variable 'x') enthält einen bestimmten Wert. Verstehe, dass 'x' nur ein Platzhalter ist.",
-                    terms: "Marktplatz Obststand: Du sortierst Lieferungen auf dem Basler Markt. Äpfel und Birnen kann man nicht mischen. Gruppiere gleiche Artikel: 3 Äpfel + 2 Äpfel = 5 Äpfel.",
-                    substitution: "BVB Ticketautomat: Du testest die Logik des Ticketautomaten. Setze einen Zonenwert (x) in die Preisformel ein, um den korrekten Fahrpreis in CHF zu berechnen."
-                }
-            },
+
             sp1_02_title: "SP1.02 // NEWTONS GESETZE",
             sp1_02_subtitle: "Mechanik in Basel: Erforsche Reibung, Beschleunigung und Kollisionsdynamik.",
             sp2_01_title: "SP2.01 // THERMODYNAMIK",
@@ -7669,6 +7635,43 @@ export const translations: Record<string, any> = {
                 interference: "d \\sin \\theta = m \\lambda",
                 diffraction: "a \\sin \\theta = m \\lambda",
                 polarization: "I = I_0 \\cos^2 \\theta"
+            }
+        },
+        sm1_03: {
+            back: "Zurück zum Nexus",
+            title: "SM1.03 // ALGEBRA QUEST",
+            difficulty: {
+                basic: "BASIS",
+                core: "KERN",
+                advanced: "FORTGESCHRITTEN",
+                elite: "ELITE"
+            },
+            modes: {
+                containers: "CONTAINER",
+                sorting: "SORTIEREN",
+                machine: "MASCHINE"
+            },
+            labels: {
+                variable: "Variable",
+                value: "Wert",
+                expression: "Ausdruck",
+                simplify: "Vereinfachen",
+                evaluate: "Auswerten",
+                input: "Eingabe",
+                output: "Ausgabe"
+            },
+            stages: {
+                variables: "VARIABLEN",
+                terms: "TERME",
+                substitution: "EINSETZEN",
+                vars_prompt: "Identifiziere den Wert im Container.",
+                terms_prompt: "Fasse gleichartige Terme zusammen, um den Ausdruck zu vereinfachen.",
+                sub_prompt: "Werte den Ausdruck für den gegebenen Wert aus."
+            },
+            scenarios: {
+                variables: "Basler Rhybadhüsli Schliessfach: Du verwaltest Schliessfächer im berühmten Rheinbad. Jedes Fach (Variable 'x') enthält einen bestimmten Wert. Verstehe, dass 'x' nur ein Platzhalter ist.",
+                terms: "Marktplatz Obststand: Du sortierst Lieferungen auf dem Basler Markt. Äpfel und Birnen kann man nicht mischen. Gruppiere gleiche Artikel: 3 Äpfel + 2 Äpfel = 5 Äpfel.",
+                substitution: "BVB Ticketautomat: Du testest die Logik des Ticketautomaten. Setze einen Zonenwert (x) in die Preisformel ein, um den korrekten Fahrpreis in CHF zu berechnen."
             }
         },
         sm2_07: {
