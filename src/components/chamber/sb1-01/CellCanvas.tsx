@@ -169,7 +169,7 @@ function CellMembrane({ showCutaway }: { showCutaway: boolean }) {
     );
 }
 
-function Scene({ selectedOrganelle, onSelectOrganelle, showCutaway }: CellCanvasProps) {
+function Scene({ selectedOrganelle, onSelectOrganelle, showCutaway, translations }: CellCanvasProps) {
     return (
         <>
             <ambientLight intensity={0.4} />

@@ -5864,9 +5864,11 @@ export const translations: Record<string, any> = {
         sb1_01: {
             back: "返回枢纽",
             title: "SB1.01 // 细胞工厂",
-            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
             objective_title: "当前任务目标",
-            target_title: "细胞结构",
+            target_title: "细胞分析",
             next: "执行下一序列",
             check: "验证",
             correct: "已验证",
@@ -5881,8 +5883,7 @@ export const translations: Record<string, any> = {
             },
             labels: {
                 cutaway_view: "切面视图",
-                selected: "选中的细胞器",
-                organelles: "细胞器",
+                selected: "选定细胞器",
                 instructions: "操作说明",
                 nucleus: "细胞核",
                 mitochondria: "线粒体",
@@ -5896,12 +5897,49 @@ export const translations: Record<string, any> = {
             mission: {
                 title: "任务：细胞探索",
                 description: "探索真核细胞结构。识别细胞器并理解它们在细胞生命活动中的作用。"
+            },
+            prompts: {
+                id_prompt: "识别3D视图中高亮显示的细胞器。",
+                id_target: "高亮部分: ?",
+                fn_prompt: "哪个细胞器负责: {func}?",
+                fn_target: "功能: {func}",
+                hint_name: "它是 {name}",
+                hint_start: "答案以 {char} 开头"
+            },
+            organelles: {
+                nucleus: {
+                    name: "细胞核",
+                    func: "控制中心 / DNA 存储",
+                    details: "包含 DNA 并控制所有细胞活动。细胞的“大脑”。"
+                },
+                mitochondria: {
+                    name: "线粒体",
+                    func: "ATP 能量产生 (动力源)",
+                    details: "通过细胞呼吸产生 ATP。将葡萄糖转化为能量。"
+                },
+                ribosome: {
+                    name: "核糖体",
+                    func: "蛋白质合成",
+                    details: "通过读取 mRNA 序列合成蛋白质。"
+                },
+                golgi: {
+                    name: "高尔基体",
+                    func: "包装与运输",
+                    details: "修改、包装并将蛋白质运输到目的地。"
+                },
+                er: {
+                    name: "内质网",
+                    func: "合成网络 (ER)",
+                    details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
+                }
             }
         },
         sb2_01: {
             back: "返回枢纽",
             title: "SB2.01 // 孟德尔花园",
-            difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+            difficulty: {
+                basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
+            },
             objective_title: "当前任务目标",
             target_title: "遗传杂交",
             next: "执行下一序列",
@@ -5917,20 +5955,46 @@ export const translations: Record<string, any> = {
                 dihybrid: "双性状杂交"
             },
             labels: {
-                punnett: "普瑞特方格",
+                parent: "亲本",
+                offspring: "子代",
+                punnett_square: "普瑞特方格",
+                stats: "子代统计",
                 genotype_ratio: "基因型比例",
                 phenotype_ratio: "表现型比例",
-                parent1: "亲代 1 基因型",
-                parent2: "亲代 2 基因型",
+                purple_flowers: "紫色花",
+                white_flowers: "白色花",
                 genetics_basics: "遗传学基础",
                 genotype_phenotype: "基因型与表现型",
                 dominance: "显性规则",
                 mendels_laws: "孟德尔定律",
                 instructions: "操作说明"
             },
+            concepts: {
+                allele: "等位基因：基因的一种版本",
+                dominant: "R (显性)：紫色花",
+                recessive: "r (隐性)：白色花",
+                genotype: "基因型：遗传组成 (RR, Rr, rr)",
+                phenotype: "表现型：可观察性状 (紫色/白色)",
+                homozygous_dom: "RR → 紫色 (纯合显性)",
+                heterozygous: "Rr → 紫色 (杂合)",
+                homozygous_rec: "rr → 白色 (纯合隐性)",
+                law_segregation: "分离定律：每个亲本贡献一个等位基因",
+                law_assortment: "自由组合定律：在配子形成过程中，等位基因独立分离"
+            },
             mission: {
                 title: "任务：孟德尔遗传学",
-                description: "掌握孟德尔遗传定律。使用普瑞特方阵预测子代的基因型和表现型比例。"
+                description: "掌握孟德尔遗传定律。使用普瑞特方格预测子代比例。"
+            },
+            prompts: {
+                monohybrid_ratio: "杂交 {p1} \\times {p2}。紫色对白色的表现型比例是多少？",
+                monohybrid_percent: "杂交 {p1} \\times {p2}。紫色子代的百分比是多少？",
+                prob_genotype: "杂交 {p1} \\times {p2}。出现 {genotype} 子代的概率是多少？",
+                ratio_target: "\\text{比例 } P:W = ?",
+                percent_target: "\\text{紫色百分比}",
+                prob_target: "P({genotype}) = ?",
+                hint_square: "检查普瑞特方格。",
+                hint_all_rr: "所有子代均为 Rr。",
+                hint_count: "4个方格中的 {count} 个。"
             }
         },
         gb3_01: {
@@ -9129,73 +9193,137 @@ export const translations: Record<string, any> = {
         sb1_01: {
             back: "Zurück zum Nexus",
             title: "SB1.01 // ZELLFABRIK",
-            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
             objective_title: "Aktuelles Missionsziel",
-            target_title: "Zellstruktur",
-            next: "Nächste Sequenz",
-            check: "Überprüfen",
+            target_title: "Zellanalyse",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
             correct: "Verifiziert",
-            incorrect: "Fehlersignal",
+            incorrect: "Abweichung",
             ready: "Bereit",
             monitor_title: "SB1.01_ZELL_MONITOR",
-            footer_left: "SB1.01_ZELLBIOLOGIE // KNOTEN: BASEL",
+            footer_left: "SB1.01_ZELLFABRIK // KNOTEN: BASEL",
             stages: {
-                identification: "IDENTIFIKATION",
+                identification: "IDENTIFIZIERUNG",
                 function: "FUNKTION",
-                organelles: "ORGANELLE"
+                organelles: "ORGANELLEN"
             },
             labels: {
                 cutaway_view: "Schnittansicht",
-                selected: "AUSGEWÄHLTE ORGANELLE",
-                organelles: "ORGANELLE",
+                selected: "AUSGEWÄHLTES ORGANELL",
                 instructions: "ANWEISUNGEN",
                 nucleus: "Zellkern",
                 mitochondria: "Mitochondrien",
                 chloroplast: "Chloroplast",
-                ribosome: "Ribosomen",
+                ribosome: "Ribosom",
                 golgi: "Golgi-Apparat",
                 er: "Endoplasmatisches Retikulum",
-                membrane: "Zellmembran",
+                membrane: "Zellmembrane",
                 vacuole: "Vakuole"
             },
             mission: {
-                title: "MISSION: ZELL-EXPLORATION",
-                description: "Erforsche die Struktur eukaryotischer Zellen. Identifiziere Organellen und verstehe ihre Funktionen in der Zelle."
+                title: "MISSION: ZELLERKUNDUNG",
+                description: "Erkunden Sie die tierische Zellstruktur. Identifizieren Sie Organellen und verstehen Sie ihre Funktionen in der Zellökonomie."
+            },
+            prompts: {
+                id_prompt: "Identifizieren Sie das in der 3D-Ansicht markierte Organell.",
+                id_target: "Markiert: ?",
+                fn_prompt: "Welches Organell ist verantwortlich für: {func}?",
+                fn_target: "Funktion: {func}",
+                hint_name: "Es ist der/die {name}",
+                hint_start: "Die Antwort beginnt mit {char}"
+            },
+            organelles: {
+                nucleus: {
+                    name: "Zellkern",
+                    func: "Kontrollzentrum / DNA-Speicher",
+                    details: "Enthält DNA und steuert alle Zellaktivitäten. Das 'Gehirn' der Zelle."
+                },
+                mitochondria: {
+                    name: "Mitochondrien",
+                    func: "ATP-Energieproduktion (Kraftwerk)",
+                    details: "Produziert ATP durch Zellatmung. Wandelt Glukose in Energie um."
+                },
+                ribosome: {
+                    name: "Ribosom",
+                    func: "Proteinsynthese",
+                    details: "Synthetisiert Proteine durch Lesen von mRNA-Sequenzen."
+                },
+                golgi: {
+                    name: "Golgi-Apparat",
+                    func: "Verpackung & Transport",
+                    details: "Modifiziert, verpackt und transportiert Proteine zu ihren Zielen."
+                },
+                er: {
+                    name: "Endoplasmatisches Retikulum",
+                    func: "Synthesenetzwerk (ER)",
+                    details: "Raues ER: Proteinsynthese. Glattes ER: Lipidsynthese und Entgiftung."
+                }
             }
         },
         sb2_01: {
             back: "Zurück zum Nexus",
             title: "SB2.01 // MENDELS GARTEN",
-            difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+            difficulty: {
+                basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            },
             objective_title: "Aktuelles Missionsziel",
             target_title: "Genetische Kreuzung",
-            next: "Nächste Sequenz",
-            check: "Überprüfen",
+            next: "Nächste Sequenz ausführen",
+            check: "Prüfen",
             correct: "Verifiziert",
-            incorrect: "Fehlersignal",
+            incorrect: "Abweichung",
             ready: "Bereit",
             monitor_title: "SB2.01_GENETIK_MONITOR",
-            footer_left: "SB2.01_GENETIK // KNOTEN: BASEL",
+            footer_left: "SB2.01_MENDELS_GARTEN // KNOTEN: BASEL",
             stages: {
                 monohybrid: "MONOHYBRIDE KREUZUNG",
                 probability: "WAHRSCHEINLICHKEIT",
                 dihybrid: "DIHYBRIDE KREUZUNG"
             },
             labels: {
-                punnett: "Punnett-Quadrat",
+                parent: "Elternteil",
+                offspring: "Nachkomme",
+                punnett_square: "PUNNETT-QUADRAT",
+                stats: "NACHKOMMEN-STATISTIK",
                 genotype_ratio: "Genotyp-Verhältnis",
                 phenotype_ratio: "Phänotyp-Verhältnis",
-                parent1: "Elternteil 1 Genotyp",
-                parent2: "Elternteil 2 Genotyp",
-                genetics_basics: "GENETIK-BASICS",
+                purple_flowers: "Purpurne Blüten",
+                white_flowers: "Weiße Blüten",
+                genetics_basics: "GENETIK-GRUNDLAGEN",
                 genotype_phenotype: "GENOTYP VS PHÄNOTYP",
                 dominance: "DOMINANZREGELN",
-                mendels_laws: "MENDELSCHE REGELN",
+                mendels_laws: "MENDELS GESETZE",
                 instructions: "ANWEISUNGEN"
+            },
+            concepts: {
+                allele: "Allel: Eine Version eines Gens",
+                dominant: "R (Dominant): Purpurne Blüte",
+                recessive: "r (Rezessiv): Weiße Blüte",
+                genotype: "Genotyp: Genetische Ausstattung (RR, Rr, rr)",
+                phenotype: "Phänotyp: Beobachtbares Merkmal (Purpur/Weiß)",
+                homozygous_dom: "RR → Purpur (Homozygot dominant)",
+                heterozygous: "Rr → Purpur (Heterozygot)",
+                homozygous_rec: "rr → Weiß (Homozygot rezessiv)",
+                law_segregation: "Segregationsgesetz: Jedes Elternteil trägt ein Allel bei",
+                law_assortment: "Unabhängigkeitsgesetz: Allele trennen sich unabhängig voneinander"
             },
             mission: {
                 title: "MISSION: MENDELSCHE GENETIK",
-                description: "Meistere die Mendelsche Vererbungslehre. Sage Nachkommen-Verhältnisse mithilfe von Punnett-Quadraten voraus."
+                description: "Meistern Sie Mendels Vererbungsgesetze. Sagen Sie Nachkommenverhältnisse mit Punnett-Quadraten voraus."
+            },
+            prompts: {
+                monohybrid_ratio: "Kreuzen Sie {p1} \\times {p2}. Wie ist das phänotypische Verhältnis von Purpur zu Weiß?",
+                monohybrid_percent: "Kreuzen Sie {p1} \\times {p2}. Wie viel Prozent der Nachkommen werden purpurrot sein?",
+                prob_genotype: "Kreuzen Sie {p1} \\times {p2}. Wie hoch ist die Wahrscheinlichkeit eines {genotype} Nachkommen?",
+                ratio_target: "\\text{Verhältnis } P:W = ?",
+                percent_target: "\\text{Purpur-Prozentsatz}",
+                prob_target: "P({genotype}) = ?",
+                hint_square: "Überprüfen Sie das Punnett-Quadrat.",
+                hint_all_rr: "Alle Nachkommen sind Rr.",
+                hint_count: "{count} von 4 Quadraten."
             }
         },
         gb3_01: {
