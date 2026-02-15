@@ -3474,43 +3474,16 @@ export const translations: Record<string, any> = {
     sb1_02: {
     back: "Return to Nexus",
     title: "SB1.02 // PHOTOSYNTHESIS LAB",
-    difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-    check: "Verify",
-    next: "Execute Next Sequence",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SB1.02_PHOTOSYNTHESIS_MONITOR",
-    footer_left: "SB1.02_PHOTOSYNTHESIS_LAB // NODE: BASEL",
-    objective_title: "Active Mission Objective",
     stages: {
         equation: "REACTION EQUATION",
-        factors: "LIMITING FACTORS",
+        limiting_factors: "LIMITING FACTORS",
         chloroplast: "CHLOROPLAST"
     },
     labels: {
         light: "Light Intensity",
         co2: "CO2 Level",
         temp: "Temperature",
-        efficiency: "Efficiency",
-        reaction_display: "Reaction Display",
-        input_terminal: "Input Terminal"
-    },
-    prompts: {
-        reactant: "Complete the equation: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6{O₂}. What is the missing reactant count?",
-        hint_oxygen: "Count the oxygen atoms on both sides of the equation",
-        glucose: "How many glucose molecules are produced from {co2} CO₂ molecules?",
-        hint_glucose: "The ratio of CO₂ to glucose is 6:1",
-        water_count: "How many water molecules are needed to produce {glucose} glucose molecules?",
-        hint_balance: "Balance the equation: 6 water molecules per glucose molecule",
-        factor_effect: "If {factor} decreases by half, what happens to the rate of photosynthesis?",
-        hint_factor: "Each factor independently limits the maximum rate",
-        structure_function: "Which structure in the chloroplast is responsible for {process}?",
-        hint_structure: "Light reactions occur in the thylakoid membranes; the Calvin cycle occurs in the stroma"
-    },
-    feedback: {
-        correct: "Photosynthesis equation balanced!",
-        incorrect: "Review the photosynthesis reaction."
+        glucose: "Glucose Production"
     }
     },
     sb2_02: {
@@ -7375,43 +7348,16 @@ CN: {
     sb1_02: {
         back: "返回枢纽",
         title: "SB1.02 // 光合作用实验室",
-        difficulty: { basic: "基础", core: "核心", advanced: "高级", elite: "精英" },
-        check: "验证",
-        next: "执行下一序列",
-        correct: "已验证",
-        incorrect: "不匹配",
-        ready: "准备就绪",
-        monitor_title: "SB1.02_光合作用_监测器",
-        footer_left: "SB1.02_光合作用实验室 // 节点：巴塞尔",
-        objective_title: "当前任务目标",
         stages: {
             equation: "反应方程式",
-            factors: "限制因子",
+            limiting_factors: "限制因子",
             chloroplast: "叶绿体"
         },
         labels: {
             light: "光照强度",
             co2: "CO2水平",
             temp: "温度",
-            efficiency: "效率",
-            reaction_display: "反应显示",
-            input_terminal: "输入终端"
-        },
-        prompts: {
-            reactant: "完成方程式：6CO₂ + 6H₂O + 光能 → C₆H₁₂O₆ + 6{O₂}。缺少的反应物数量是多少？",
-            hint_oxygen: "计算方程式两边的氧原子数",
-            glucose: "{co2}个CO₂分子能产生多少个葡萄糖分子？",
-            hint_glucose: "CO₂与葡萄糖的比例为6:1",
-            water_count: "生产{glucose}个葡萄糖分子需要多少个水分子？",
-            hint_balance: "平衡方程式：每个葡萄糖分子需要6个水分子",
-            factor_effect: "如果{factor}减少一半，光合速率会怎样变化？",
-            hint_factor: "每个因素都独立限制最大速率",
-            structure_function: "叶绿体中哪个结构负责{process}？",
-            hint_structure: "光反应在类囊体膜中进行；卡尔文循环在基质中进行"
-        },
-        feedback: {
-            correct: "光合作用方程式平衡！",
-            incorrect: "请复习光合作用反应。"
+            glucose: "葡萄糖产量"
         }
     },
     sb2_02: {
@@ -11155,43 +11101,16 @@ DE: {
         sb1_02: {
                 back: "Zurück zum Nexus",
                 title: "SB1.02 // PHOTOSYNTHESE-LABOR",
-                difficulty: { basic: "GRUNDLAGEN", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
-                check: "Prüfen",
-                next: "Nächste Sequenz ausführen",
-                correct: "Verifiziert",
-                incorrect: "Fehlanpassung",
-                ready: "Bereit",
-                monitor_title: "SB1.02_PHOTOSYNTHESE_MONITOR",
-                footer_left: "SB1.02_PHOTOSYNTHESE_LABOR // KNOTEN: BASEL",
-                objective_title: "Aktives Missionsziel",
                 stages: {
                     equation: "REAKTIONSGLEICHUNG",
-                    factors: "BEGRENZENDE FAKTOREN",
+                    limiting_factors: "BEGRENZENDE FAKTOREN",
                     chloroplast: "CHLOROPLAST"
                 },
                 labels: {
                     light: "Lichtintensität",
                     co2: "CO2-Gehalt",
                     temp: "Temperatur",
-                    efficiency: "Effizienz",
-                    reaction_display: "Reaktionsanzeige",
-                    input_terminal: "Eingabeterminal"
-                },
-                prompts: {
-                    reactant: "Vervollständigen Sie die Gleichung: 6CO₂ + 6H₂O + Licht → C₆H₁₂O₆ + 6{O₂}. Wie viele fehlende Reaktanten?",
-                    hint_oxygen: "Zählen Sie die Sauerstoffatome auf beiden Seiten der Gleichung",
-                    glucose: "Wie viele Glucosemoleküle werden aus {co2} CO₂-Molekülen produziert?",
-                    hint_glucose: "Das Verhältnis von CO₂ zu Glucose beträgt 6:1",
-                    water_count: "Wie viele Wassermoleküle werden benötigt, um {glucose} Glucosemoleküle zu produzieren?",
-                    hint_balance: "Gleichung ausbalancieren: 6 Wassermoleküle pro Glucosemolekül",
-                    factor_effect: "Wenn {factor} um die Hälfte sinkt, was passiert mit der Photosyntheserate?",
-                    hint_factor: "Jeder Faktor begrenzt unabhängig die maximale Rate",
-                    structure_function: "Welche Struktur im Chloroplasten ist für {process} verantwortlich?",
-                    hint_structure: "Lichtreaktionen finden in den Thylakoidmembranen statt; der Calvin-Zyklus im Stroma"
-                },
-                feedback: {
-                    correct: "Photosynthese-Gleichung ausbalanciert!",
-                    incorrect: "Überprüfen Sie die Photosynthese-Reaktion."
+                    glucose: "Glucoseproduktion"
                 }
             },
         sb2_02: {
