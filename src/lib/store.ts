@@ -82,7 +82,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       hasAcceptedProtocol: false,
-      currentLanguage: 'EN',
+      currentLanguage: 'DE',
       progress: {},
       history: [],
       achievements: {
