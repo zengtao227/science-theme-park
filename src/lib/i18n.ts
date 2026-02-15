@@ -3735,8 +3735,8 @@ export const translations: Record<string, any> = {
         correct: "Reaction mechanism understood!",
         incorrect: "Review the reaction mechanism."
     }
-    },
-    CN: {
+},
+CN: {
         protocol: {
             system_name: "系统协议 v2.1",
             warning_text: "警告：世界不按你的意图转动……除非你真正理解规则。",
@@ -7512,8 +7512,7 @@ export const translations: Record<string, any> = {
             incorrect: "复习反应机理。"
         }
     },
-    },
-    DE: {
+DE: {
         protocol: {
             system_name: "SYSTEMPROTOKOLL v2.1",
             warning_text: "WARNUNG: Die Welt dreht sich nicht um dich... außer du verstehst die Regeln.",
@@ -11322,6 +11321,7 @@ export const translations: Record<string, any> = {
                     }
                 }
         }
+    }
 };
 
 export function useLanguage() {
