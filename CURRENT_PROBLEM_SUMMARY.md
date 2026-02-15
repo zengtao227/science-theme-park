@@ -1,44 +1,120 @@
 # i18n.ts 当前问题总结
 
-**更新时间**: 2026-02-15 (最新修复)
+**更新时间**: 2026-02-15 (最新状态)
 
 ## 📊 当前状态
 
-### ✅ 最近完成的修复 (Commit: 223366d)
+### ✅ 已成功修复的问题
 
-#### 1. 修复了括号平衡问题
-- **EN section (line 3739)**: 删除了 sc3_03 模块 feedback 后面多余的 `},`
-  - 原来: `} \n },` (两个闭括号)
-  - 修改为: `}`
-  
-- **CN section (line 7515)**: 删除了 sc3_03 模块 feedback 后面多余的 `},`
-  - 原来: `} \n },` (两个闭括号)
-  - 修改为: `}`
+#### 1. 括号平衡问题 (Commit: 223366d)
+- 修复了 EN, CN, DE 三个 section 的括号平衡
+- 所有语法错误已解决
 
-- **DE section (line 11323)**: 添加了缺失的闭括号
-  - 原来: `} \n };` (缺少一个闭括号)
-  - 修改为: `} \n } \n };`
+#### 2. sb1_02 缺失字段 (Commit: 7122e1b, 6dd00f4)
+- 添加了完整的 prompts 对象
+- 添加了 difficulty, feedback, labels 等字段
+- sb1-02 页面构建成功
 
-#### 2. 验证结果
-- ✅ 括号完全平衡 (Python 脚本验证 depth = 0)
-- ✅ TypeScript 语法错误已解决
-- ✅ 文件可以成功编译
+#### 3. 首页 filter_tags 问题 (Commit: 229ad7f)
+- 修复了 EN 版本 home 对象过早关闭的问题
+- 将 filter_tags 等字段移到 home 对象内部
+- 首页构建成功
 
-### ❌ 当前运行时错误
+### ❌ 当前错误
 
 **构建错误**:
 ```
-Error occurred prerendering page "/chamber/em1-01"
-TypeError: Cannot read properties of undefined (reading 'stages')
+Error occurred prerendering page "/chamber/sb2-02"
+TypeError: Cannot read properties of undefined (reading 'organ_function')
 ```
 
-**错误位置**: `/chamber/em1-01` 页面在 SSR (服务器端渲染) 时
+**错误位置**: `src/app/chamber/sb2-02/page.tsx`
 
 **错误详情**:
-- 页面代码: `src/app/chamber/em1-01/page.tsx`
-- 第 17 行: `const t = locale.em1_01;`
-- 第 38 行: `promptLatex: t.stages.measure_prompt_latex,`
-- 错误提示: `t` 是 undefined，所以无法读取 `t.stages`
+- 页面代码第 48 行: `t.prompts.organ_function.replace('{function}', org.function)`
+- sb2_02 模块缺少完整的字段定义
+
+## 🔍 问题分析
+
+### sb2_02 当前状态
+
+在 i18n.ts 中，sb2_02 只有最基本的字段：
+```typescript
+sb2_02: {
+    back: "Return to Nexus",
+    title: "SB2.02 // HUMAN BODY SYSTEMS",
+    stages: {
+        digestion: "DIGESTION",
+        circulation: "CIRCULATION",
+        respiration: "RESPIRATION"
+    },
+    labels: {
+        heart_rate: "Heart Rate",
+        o2_sat: "O2 Saturation",
+        enzyme: "Enzyme Activity"
+    }
+}
+```
+
+### 页面需要的完整字段
+
+根据 `src/app/chamber/sb2-02/page.tsx` 分析，需要以下字段：
+
+#### 1. 基础字段
+- `difficulty`: { basic, core, advanced, elite }
+- `check`, `next`, `correct`, `incorrect`, `ready`
+- `monitor_title`, `footer_left`, `objective_title`
+
+#### 2. stages 字段（需要修正）
+- 当前: `digestion`, `circulation`, `respiration`
+- 应该是: `digestive`, `circulatory`, `respiratory`
+
+#### 3. labels 字段
+- `anatomy_score`: "Anatomy Score"
+- `anatomy_display`: "Anatomy Display"
+- `input_terminal`: "Input Terminal"
+
+#### 4. systems 字段（新增）
+```typescript
+systems: {
+    digestive: "Digestive System",
+    circulatory: "Circulatory System",
+    respiratory: "Respiratory System"
+}
+```
+
+#### 5. prompts 字段（新增）
+```typescript
+prompts: {
+    organ_function: "Which organ is responsible for {function}?",
+    hint_organ: "The {name} performs this function",
+    component_function: "Which component is responsible for {function}?",
+    hint_component: "The {name} performs this function",
+    structure_function: "Which structure is responsible for {function}?",
+    hint_structure: "The {name} performs this function"
+}
+```
+
+#### 6. feedback 字段（新增）
+```typescript
+feedback: {
+    correct: "Anatomy knowledge verified!",
+    incorrect: "Review the body system structure."
+}
+```
+
+### 需要修复的三个语言版本
+- EN: line ~3500
+- CN: line ~7400
+- DE: line ~11200
+
+## 📋 建议给其他 AI 的修复方案
+
+1. 找到 EN/CN/DE 三个版本的 sb2_02 定义
+2. 为每个版本添加完整的字段（参考上面的结构）
+3. 修正 stages 的键名（digestion → digestive 等）
+4. 验证括号平衡
+5. 测试构建
 
 ## 🔍 问题分析
 
