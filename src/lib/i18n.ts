@@ -3646,18 +3646,45 @@ export const translations: Record<string, any> = {
     }
     },
     sc3_02: {
-    back: "Return to Nexus",
-    title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
-    stages: {
-        alkanes: "ALKANES",
-        functional_groups: "FUNCTIONAL GROUPS",
-        isomers: "ISOMERS"
-    },
-    labels: {
-        carbon_chain: "Carbon Chain",
-        hydroxyl: "Hydroxyl Group",
-        double_bond: "Double Bond"
-    }
+        back: "Return to Nexus",
+        title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
+        check: "Verify",
+        next: "Next",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC3.02_ORGANIC_MONITOR",
+        footer_left: "SC3.02_ORGANIC_BASICS // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            hydrocarbons: "HYDROCARBONS",
+            functional_groups: "FUNCTIONAL GROUPS",
+            isomers: "ISOMERS"
+        },
+        labels: {
+            molecule_display: "Molecule Display",
+            input_terminal: "Input Terminal",
+            view_3d: "3D View",
+            organic_mastery: "Organic Mastery"
+        },
+        prompts: {
+            name_formula: "What is the molecular formula for {name}?",
+            functional_group: "What is the functional group in {name}?",
+            isomer_count: "How many isomers does {formula} have?",
+            hint_carbons: "This molecule has {count} carbon atoms",
+            hint_group: "Look for the characteristic group in {example}",
+            hint_isomer: "Consider {type} isomers"
+        },
+        feedback: {
+            correct: "Organic structure understood!",
+            incorrect: "Review the molecular structure."
+        }
     },
     sc3_03: {
     back: "Return to Nexus",
