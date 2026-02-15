@@ -216,7 +216,8 @@ export const enMath = {
           },
           integral_preview_title: "COMING SOON: INTEGRATION",
           integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
-          integral_preview_hint: "Unlock after mastering derivatives →"
+          integral_preview_hint: "Unlock after mastering derivatives →",
+          input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
       },
   gm1_01_advanced: {
           back: "Back to Nexus",
@@ -478,7 +479,8 @@ export const enMath = {
               mission_elite_3: "Insurance Mission: Given P(A)=0.365, P(B)=0.625, P(A∩B)=0.215, find P(A|B).\n\nGiven: P(A)=0.365, P(B)=0.625, P(A∩B)=0.215\nFind: P(A|B)",
               mission_elite_4: "Novartis Mission: In 800 samples, 683 passed. Calculate P(E).\n\nGiven: 683 favorable, 800 total\nFind: P(E)",
               mission_elite_5: "Swiss Lotto Mission: In 18 draws with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)"
-          }
+          },
+          input_tip_4dp: "Tip: Enter result rounded to 4 decimal places."
       },
   gm4_01: {
               back: "Back to Nexus",
@@ -906,6 +908,8 @@ export const enMath = {
               speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)² = a² + 2ab + b² = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
               voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a² - b².",
               architect_mission: "Task: Calculate the expanded garden area using (a+b)² = a² + 2ab + b².",
+              architect_advanced_prompt: "Term Identification & Factoring Practice",
+              architect_elite_prompt: "Two-Variable Factoring Challenge",
               scrapper_mission: "Task: Identify a and b from the expanded form and reconstruct the perfect square.",
               speedster_mission: "Task: Break the number into (round ± offset) and use binomial expansion to compute instantly.",
               voyager_mission: "Task: Use the difference of squares formula to find the area difference.",
@@ -1271,7 +1275,8 @@ export const enMath = {
           dist_rev_x: "Distance d=${d}. Find x for B(x,5) (x>1).",
           mid_rev: "M is midpoint. Find B(x,y).",
           collinear: "Points A, B, C are collinear. Find ${target}."
-      }
+      },
+      input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
       },
   sm2_08: {
       back: "Back to Nexus",

@@ -460,7 +460,7 @@ export default function G301Page() {
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
             {currentLanguage === 'DE'
-              ? "Tipp: Gib das Resultat auf 4 Dezimalstellen gerundet an."
+              ? t.input_tip_4dp
               : currentLanguage === 'CN'
                 ? "提示：保留 4 位小数。"
                 : "Tip: Enter result rounded to 4 decimal places."

@@ -569,7 +569,8 @@ export const dePhysics = {
                       interference: "d \\sin \\theta = m \\lambda",
                       diffraction: "a \\sin \\theta = m \\lambda",
                       polarization: "I = I_0 \\cos^2 \\theta"
-                  }
+                  },
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
               },
   sp4_01: {
                   back: "Zurück zum Nexus",

@@ -637,6 +637,7 @@ export const enPhysics = {
       ready: "Ready",
       monitor_title: "P3.02_OPTICAL_MONITOR",
       footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
+      input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
       labels: {
           input: "INPUT",
           hints: "HINTS",

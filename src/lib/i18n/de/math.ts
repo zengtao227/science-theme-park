@@ -216,7 +216,8 @@ export const deMath = {
                   },
                   integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
                   integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
-                  integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →"
+                  integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →",
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
               },
   gm1_01_advanced: {
                   back: "Zurück zum Nexus",
@@ -322,7 +323,8 @@ export const deMath = {
                       navigation: "Basler Drohnen-Liefernetzwerk: Sie programmieren das Navigationssystem für Basels autonome Medikamenten-Lieferdrohnen. Die Drohnen müssen präzise 3D-Vektoren zwischen Krankenhausdächern und Lieferpunkten in der Stadt berechnen. Gegeben sind Koordinaten A (Abflug-Helipad am Universitätsspital Basel) und B (Ankunftspunkt am Claraspital), berechnen Sie den Verschiebungsvektor v und seinen Betrag. Der Betrag stellt die direkte Flugdistanz in Metern dar. Genaue Vektorberechnung ist kritisch für Batteriemanagement und Flugzeitschätzung.",
                       dot: "Solarplatten-Optimierung am Roche-Turm: Der Roche-Turm in Basel installiert verstellbare Solarpaneele an seiner Fassade. Die Ausrichtung jedes Paneels wird durch einen Normalenvektor v dargestellt, und die Sonnenrichtung mittags ist Vektor w. Das Skalarprodukt v·w bestimmt, wie viel Sonnenlicht das Paneel empfängt - maximal bei Parallelität (Skalarprodukt = |v||w|), null bei Orthogonalität. Berechnen Sie das Skalarprodukt, um den optimalen Paneel-Winkel zu bestimmen. Ingenieure nutzen dies zur Maximierung der Energieausbeute über den Tag.",
                       mission: "Rhein-Navigationssystem: Die Basler Hafenbehörde entwickelt ein automatisiertes Lastkahn-Navigationssystem für den Rhein. Ein Frachtlastkahn muss von Punkt A (aktuelle Position) zu Punkt B (Zieldock) fahren. Die Flussströmung wird durch Vektor s dargestellt. Berechnen Sie: (1) Verschiebungsvektor v von A nach B, (2) Skalarprodukt v·s um zu bestimmen, ob die Strömung hilft oder hindert (positiv = hilft, negativ = hindert, null = orthogonal), und (3) Betrag |v| für die direkte Distanz. Diese Daten optimieren Kraftstoffverbrauch und Ankunftszeitprognosen."
-                  }
+                  },
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
               },
   gm3_01: {
                   back: "Zurück zum Nexus",
@@ -366,6 +368,7 @@ export const deMath = {
                       conditional: "Basler Versicherungs-Risikobewertung: Basler Versicherungen müssen bedingte Wahrscheinlichkeiten für die Risikobewertung berechnen. Gegeben P(A) = Wahrscheinlichkeit eines Ereignisses, P(B) = Wahrscheinlichkeit einer erfüllten Bedingung und P(A∩B) = Wahrscheinlichkeit beider Ereignisse, berechnen Sie P(A|B) = P(A∩B)/P(B). Diese bedingte Wahrscheinlichkeit hilft, Versicherungsprämien für Basler Einwohner basierend auf spezifischen Risikofaktoren zu bestimmen.",
                       mission: "Basler Integrierte Wahrscheinlichkeitsmission: Sie beraten mehrere Basler Unternehmen - Novartis (Pharma), Swiss Lotto (Lotterie) und Basler Versicherungen (Versicherung). Jedes Unternehmen präsentiert ein anderes Wahrscheinlichkeitsproblem: Grundwahrscheinlichkeit für Qualitätskontrolle, Binomialverteilung für Lotterieanalyse oder bedingte Wahrscheinlichkeit für Versicherungsrisiko. Wenden Sie die entsprechende Wahrscheinlichkeitsformel an, um die spezifische Herausforderung jedes Unternehmens zu lösen und genaue Wahrscheinlichkeitsberechnungen bereitzustellen."
                   },
+                  input_tip_4dp: "Tipp: Gib das Resultat auf 4 Dezimalstellen gerundet an.",
                   problems: {
                       single_die_one: "Sie würfeln einen Standard-Sechsseiter einmal. Wie hoch ist die Wahrscheinlichkeit, eine 1 zu würfeln?\n\nGegeben: 1 günstiges Ergebnis, 6 Gesamtergebnisse\nFinden: P(E)",
                       single_die_even: "Sie würfeln einmal. Wie hoch ist die Wahrscheinlichkeit, eine gerade Zahl zu würfeln?\n\nGegeben: 3 günstige Ergebnisse (2,4,6), 6 Gesamtergebnisse\nFinden: P(E)",
@@ -645,7 +648,7 @@ export const deMath = {
                       substitution: "BVB Ticketautomat: Du testest die Logik des Ticketautomaten. Setze einen Zonenwert (x) in die Preisformel ein, um den korrekten Fahrpreis in CHF zu berechnen."
                   }
               },
-  sm1_03_new: {
+  sm1_03: {
                   back: "Zurück zum Nexus",
                   title: "SM1.03 // UNTER NULL",
                   difficulty: {
@@ -736,7 +739,7 @@ export const deMath = {
                       q_complex_translation: "Start bei (2, 3), bewege rechts 3, links 1. Finales x?"
                   }
               },
-  sm1_04_new: {
+  sm1_04: {
                   back: "Zurück zum Nexus",
                   title: "SM1.04 // GLEICHUNGSWAAGE",
                   difficulty: {
@@ -915,6 +918,8 @@ export const deMath = {
                       speedster_context: "Im Schweizer Mathe-Olympiad musst du Zahlen wie 103 oder 47 im Kopf quadrieren. Der Trick: 103 = (100+3), dann (a+b)² = 10000 + 600 + 9 = 10609.",
                       voyager_context: "Zwei quadratische Felder teilen eine gemeinsame Grenze. Eines hat die Seitenlänge a, das andere b.",
                       architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit (a+b)² = a² + 2ab + b².",
+                      architect_advanced_prompt: "Termidentifikation & Faktorisierungsübung",
+                      architect_elite_prompt: "Zweivariablen-Faktorisierungsherausforderung",
                       scrapper_mission: "Aufgabe: Identifiziere a und b aus der expandierten Form und rekonstruiere das Quadrat.",
                       speedster_mission: "Aufgabe: Zerlege die Zahl in (Runde ± Rest) und nutze die binomische Formel.",
                       voyager_mission: "Aufgabe: Nutze die dritte binomische Formel zur Flächendifferenz.",
@@ -1280,7 +1285,8 @@ export const deMath = {
                       dist_rev_x: "Abstand d=${d}. Finde x für B(x,5) (x>1).",
                       mid_rev: "M ist der Mittelpunkt. Finde B(x,y).",
                       collinear: "Punkte A, B, C sind kollinear. Finde ${target}."
-                  }
+                  },
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
               },
   sm2_08: {
                   back: "Zurück zum Nexus",

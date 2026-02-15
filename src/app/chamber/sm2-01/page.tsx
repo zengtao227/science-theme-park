@@ -110,7 +110,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         const vb = (i % 10) + 2;
         return {
           id: `ARCH_A_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb, isFactor: true,
-          formula: `x² + ${2 * vb}x + ${vb ** 2}`, promptLatex: `项识别与因式分解练习`,
+          formula: `x² + ${2 * vb}x + ${vb ** 2}`, promptLatex: t.scenarios.architect_advanced_prompt,
           expressionLatex: `x² + ${2 * vb}x + ${vb ** 2}`,
           targetLatex: `(x)² + 2(x)(${vb}) + (${vb})²`,
           slots: [
@@ -125,7 +125,7 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
         const ca = (i % 4) + 2; const vb = (i % 6) + 3; const aTerm = `${ca}x`; const bTerm = `${vb}y`;
         return {
           id: `ARCH_E_${i}`, difficulty, stage, type: "EXPAND", ca, vb, isFactor: true,
-          formula: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`, promptLatex: `双变量因式分解挑战`,
+          formula: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`, promptLatex: t.scenarios.architect_elite_prompt,
           expressionLatex: `${ca ** 2}x² + ${2 * ca * vb}xy + ${vb ** 2}y²`,
           targetLatex: `(${aTerm})² + 2(${aTerm})(${bTerm}) + (${bTerm})²`,
           slots: [

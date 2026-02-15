@@ -622,7 +622,8 @@ export const cnPhysics = {
               interference: "d \\sin \\theta = m \\lambda",
               diffraction: "a \\sin \\theta = m \\lambda",
               polarization: "I = I_0 \\cos^2 \\theta"
-          }
+          },
+          input_tip_2dp: "提示：保留 2 位小数。"
       },
   sp4_01: {
           back: "返回枢纽",
