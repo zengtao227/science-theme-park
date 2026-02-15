@@ -1591,7 +1591,9 @@ export const cnMath = {
               richter: "里氏震级",
               ph_prompt_latex: "\\text{使用 }pH=-\\log_{10}[H^+]\\text{ 计算 pH 值。}",
               decibel_prompt_latex: "\\text{使用 }L=10\\log_{10}(I/I_0)\\text{ 计算分贝。}",
-              richter_prompt_latex: "\\text{使用 }M=\\log_{10}(A)\\text{ 计算震级。}"
+              richter_prompt_latex: "\\text{使用 }M=\\log_{10}(A)\\text{ 计算震级。}",
+              decibel_reduction: "计算分贝降低值：L_1 - L_2",
+              magnitude_difference: "计算震级差异：M_1 - M_2"
           },
           formulas: {
               ph: "pH = -\\log_{10}[H^+]",

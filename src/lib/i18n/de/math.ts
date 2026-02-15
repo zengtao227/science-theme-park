@@ -1629,7 +1629,9 @@ export const deMath = {
                       richter: "RICHTER-SKALA",
                       ph_prompt_latex: "\\text{Berechnen Sie den pH-Wert mit }pH=-\\log_{10}[H^+].",
                       decibel_prompt_latex: "\\text{Berechnen Sie Dezibel mit }L=10\\log_{10}(I/I_0).",
-                      richter_prompt_latex: "\\text{Berechnen Sie die Magnitude mit }M=\\log_{10}(A)."
+                      richter_prompt_latex: "\\text{Berechnen Sie die Magnitude mit }M=\\log_{10}(A).",
+                      decibel_reduction: "Berechnen Sie die Dezibel-Reduktion: L_1 - L_2",
+                      magnitude_difference: "Berechnen Sie den Magnitudenunterschied: M_1 - M_2"
                   },
                   formulas: {
                       ph: "pH = -\\log_{10}[H^+]",

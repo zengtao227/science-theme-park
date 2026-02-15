@@ -1612,7 +1612,9 @@ export const enMath = {
           richter: "RICHTER",
           ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log_{10}[H^+].",
           decibel_prompt_latex: "\\text{Calculate decibels using }L=10\\log_{10}(I/I_0).",
-          richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A)."
+          richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A).",
+          decibel_reduction: "Calculate decibel reduction: L_1 - L_2",
+          magnitude_difference: "Calculate magnitude difference: M_1 - M_2"
       },
       formulas: {
           ph: "pH = -\\log_{10}[H^+]",
