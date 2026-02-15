@@ -657,8 +657,7 @@ export const translations: Record<string, any> = {
             socratic: "Socratic"
         },
         completed_badge: "COMPLETED"
-    },
-    profile: {
+        profile: {
         title: "Scientist Profile",
         subtitle: "Operator dossier // performance matrix",
         radar_title: "Cognitive Spectrum",
@@ -678,8 +677,7 @@ export const translations: Record<string, any> = {
             rigor: "Rigor",
             experiment: "Experiment"
         }
-    },
-    sm2_02: {
+        sm2_02: {
         back: "Back to Nexus",
         title: "SM2.02 // PYTHAGORAS & ROOTS",
         tabs: {
@@ -743,8 +741,7 @@ export const translations: Record<string, any> = {
             triples: "Pythagorean Triples",
             chain: "Segment Chain"
         }
-    },
-    sm3_01: {
+        sm3_01: {
         back: "Back to Nexus",
         title: "SM3.01 // QUADRATIC EQUATIONS",
         difficulty: {
@@ -807,8 +804,7 @@ export const translations: Record<string, any> = {
                 zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
             }
         }
-    },
-    sm3_02: {
+        sm3_02: {
         back: "Back to Nexus",
         title: "SM3.02 // TRIG CIRCLE",
         difficulty: {
@@ -855,8 +851,7 @@ export const translations: Record<string, any> = {
             projections_prompt_latex: "\\text{Calculate the exact trigonometric value.}",
             waves_prompt_latex: "\\text{Find the amplitude or period.}"
         }
-    },
-    sm3_03: {
+        sm3_03: {
         back: "Back to Nexus",
         title: "SM3.03 // GROWTH & LOGS",
         difficulty: {
@@ -939,8 +934,7 @@ export const translations: Record<string, any> = {
             app_pop: "🏙️ SCENARIO: Zurich Population Growth — In 2000, Zurich had 340,000 residents. The city grows at 1.2% per year (exponential growth). By 2020, the population reached 420,000. Urban planners need to predict: when will Zurich reach 500,000? This determines when to build new schools, trams, and housing. Use the formula: P(t) = P₀ × (1.012)^t. Solve for t when P(t) = 500,000.",
             app_carbon: "🦴 SCENARIO: Archaeological Dating — Archaeologists find a wooden tool in a Swiss cave. All living things contain Carbon-14 (¹⁴C), which decays with a half-life of 5,730 years. When the tree died, it stopped absorbing new ¹⁴C. By measuring how much ¹⁴C remains, scientists can calculate the age. If the tool has 25% of the original ¹⁴C, how old is it? Use: 0.25 = (1/2)^(t/5730). Solve for t using logarithms. This is how we know the age of ancient artifacts!"
         }
-    },
-    sm2_03: {
+        sm2_03: {
         back: "Back to Nexus",
         title: "SM2.03 // LINE NAVIGATOR",
         difficulty: {
@@ -993,8 +987,7 @@ export const translations: Record<string, any> = {
             level2: "LEVEL 2",
             level3: "LEVEL 3"
         }
-    },
-    sm2_04: {
+        sm2_04: {
         back: "Back to Nexus",
         title: "SM2.04 // SIMILARITY & SCALING",
         difficulty: {
@@ -1044,8 +1037,7 @@ export const translations: Record<string, any> = {
                 calculate_height: "Calculate Tower Height"
             }
         }
-    },
-    sm2_01: {
+        sm2_01: {
         back: "← Back to Nexus",
         back_short: "Back to Nexus",
         title: "SM2.01 // BINOMIAL FACTORY",
@@ -1138,8 +1130,7 @@ export const translations: Record<string, any> = {
             verified: "Verified",
             simulating: "Simulating",
         }
-    },
-    gm1_01: {
+        gm1_01: {
         back: "Back to Nexus",
         title: "GM1.01 // CALCULUS INTRO",
         tabs: {
@@ -1246,8 +1237,7 @@ export const translations: Record<string, any> = {
         integral_preview_title: "COMING SOON: INTEGRATION",
         integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
         integral_preview_hint: "Unlock after mastering derivatives →"
-    },
-    gm1_01_advanced: {
+        gm1_01_advanced: {
         back: "Back to Nexus",
         title: "GM1.01-ADV // ADVANCED CALCULUS",
         monitor_title: "GM1.01_ADVANCED_MONITOR",
@@ -1312,8 +1302,7 @@ export const translations: Record<string, any> = {
             point_label: "POINT"
         },
         progress: "Progress"
-    },
-    gm2_01: {
+        gm2_01: {
         back: "Back to Nexus",
         title: "GM2.01 // VECTOR PILOT 3D",
         difficulty: {
@@ -1351,8 +1340,7 @@ export const translations: Record<string, any> = {
             dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
             mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
         }
-    },
-    gm3_01: {
+        gm3_01: {
         back: "Back to Nexus",
         title: "GM3.01 // PROBABILITY VAULT",
         difficulty: {
@@ -1507,8 +1495,7 @@ export const translations: Record<string, any> = {
             mission_elite_4: "Novartis Mission: In 800 samples, 683 passed. Calculate P(E).\n\nGiven: 683 favorable, 800 total\nFind: P(E)",
             mission_elite_5: "Swiss Lotto Mission: In 18 draws with 60% win probability, calculate P(X=11).\n\nGiven: n=18, k=11, p=0.6\nFind: P(X=11)"
         }
-    },
-    sm2_06: {
+        sm2_06: {
         back: "Back to Nexus",
         title: "SM2.06 // LINEAR SYSTEMS",
         difficulty: {
@@ -1552,8 +1539,7 @@ export const translations: Record<string, any> = {
             adult: "Adults",
             child: "Children"
         }
-    },
-    sm2_05: {
+        sm2_05: {
         back: "Back to Nexus",
         title: "SM2.05 // POWERS & ROOTS",
         difficulty: {
@@ -1583,8 +1569,7 @@ export const translations: Record<string, any> = {
             input: "INPUT",
             hints: "HINTS"
         }
-    },
-    sm1_01: {
+        sm1_01: {
         back: "Back to Nexus",
         title: "SM1.01 // AREAS & VOLUMES",
         difficulty: {
@@ -1650,8 +1635,7 @@ export const translations: Record<string, any> = {
             prism_elite: "The base is a square with perimeter ${p}, and the height is ${h}.",
             cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
         },
-    },
-    em1_01: {
+        em1_01: {
         back: "Back to Nexus",
         title: "EM1.01 // THALES TOWER",
         difficulty: {
@@ -1689,26 +1673,24 @@ export const translations: Record<string, any> = {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         }
-    },
-    sp2_03: {
-    back: "Back to Nexus",
-    title: "SP2.03 // MOTOR LAB",
-    difficulty: {
+        sp2_03: {
+        back: "Back to Nexus",
+        title: "SP2.03 // MOTOR LAB",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Motor Assembly",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP2.03_MOTOR_MONITOR",
-    footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Motor Assembly",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.03_MOTOR_MONITOR",
+        footer_left: "SP2.03_MOTOR_LAB // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         current: "CURRENT SWITCH",
@@ -1721,12 +1703,10 @@ export const translations: Record<string, any> = {
         direction_stop: "STOPPED",
         speed: "ROTATION SPEED",
         readout: "READOUT"
-    },
-    mission: {
+        mission: {
         title: "MISSION: BASEL MOTOR WORKSHOP",
         description: "Assemble a DC motor. Control magnetic polarity and current to drive rotation."
-    },
-    stages: {
+        stages: {
         assemble: "ASSEMBLE",
         power: "POWER",
         reverse: "REVERSE",
@@ -1737,88 +1717,77 @@ export const translations: Record<string, any> = {
         power_hint: "Close the circuit to energize the coil",
         reverse_hint: "Swap N/S to reverse rotation"
     }
-    },
-    sc1_02: {
-    back: "Back to Nexus",
-    title: "C1.02 // MOLE MASTER",
-    difficulty: {
+        sc1_02: {
+        back: "Back to Nexus",
+        title: "C1.02 // MOLE MASTER",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Stoichiometry Console",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "C1.02_SCALE",
-    footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Stoichiometry Console",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C1.02_SCALE",
+        footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
+        stages: {
         molar_mass: "MOLAR MASS",
         stoichiometry: "REACTION RATIO",
         yield: "YIELD",
         molar_mass_prompt_latex: "\\text{Calculate the molar mass of the compound.}",
         stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
         yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
-    },
-    labels: {
+        labels: {
         input: "INPUT",
         scale: "SCALE READOUT"
-    },
-    mission: {
+        mission: {
         title: "MISSION: NOVARTIS SYNTHESIS BAY",
         description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
     }
-    },
-    sc2_01: {
-    back: "Back to Nexus",
-    title: "C2.01 // CHEMICAL KINETICS",
-    difficulty: {
+        sc2_01: {
+        back: "Back to Nexus",
+        title: "C2.01 // CHEMICAL KINETICS",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Kinetics Data",
-    scenario_title: "BASEL SCENARIO",
-    answer_title: "YOUR ANSWER",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "C2.01_KINETICS_MONITOR",
-    footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Kinetics Data",
+        scenario_title: "BASEL SCENARIO",
+        answer_title: "YOUR ANSWER",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C2.01_KINETICS_MONITOR",
+        footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
+        stages: {
         arrhenius: "ARRHENIUS",
         concentration: "RATE LAW",
         collision: "HALF-LIFE",
         arrhenius_prompt_latex: "\\text{Calculate the rate constant }k\\text{ using the Arrhenius equation.}",
         concentration_prompt_latex: "\\text{Calculate the reaction rate based on concentration changes.}",
         collision_prompt_latex: "\\text{Determine the fraction of effective collisions.}"
-    },
-    labels: {
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         volume: "Titrant Volume",
         ph: "pH"
-    },
-    mission: {
+        mission: {
         title: "MISSION: CHEMICAL KINETICS LAB",
         description: "Study reaction rates in the Basel lab. Master the Arrhenius equation and collision theory."
-    },
-    formulas: {
+        formulas: {
         arrhenius: "k = Ae^{-E_a/RT}",
         concentration: "\\text{rate} = -\\frac{\\Delta[A]}{\\Delta t}",
         collision: "f = e^{-E_a/RT}"
-    },
-    scenarios: {
+        scenarios: {
         arrhenius: "Novartis Kinetics Lab: Study how temperature and activation energy affect reaction rates. The Arrhenius equation k = A·exp(-Ea/RT) describes the temperature dependence of rate constants. Higher temperatures increase molecular kinetic energy, leading to more successful collisions.",
         rate_law: "Roche Pharmaceutical Research: Determine reaction orders and rate laws from experimental data. The rate law expresses how reaction rate depends on reactant concentrations. Understanding rate laws is crucial for optimizing drug synthesis and predicting reaction behavior.",
         half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t₁/₂ = ln(2)/k."
-    },
-    problems: {
+        problems: {
         arr_temp_300_ea_50: "Novartis reactor at T=300K, activation energy Ea=50 kJ/mol. Calculate relative rate constant k.",
         arr_temp_350_ea_40: "Temperature increased to 350K, Ea=40 kJ/mol. Find k (relative units).",
         arr_temp_400_ea_60: "High-temperature reaction: T=400K, Ea=60 kJ/mol. Calculate k.",
@@ -1880,8 +1849,7 @@ export const translations: Record<string, any> = {
         hl_transient: "Transient equilibrium: tmax when daughter activity peaks. t₁/₂,1=10, t₁/₂,2=2.",
         hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
     }
-    },
-    sp1_01: {
+        sp1_01: {
         back: "Back to Nexus",
         title: "SP1.01 // MEASUREMENT & UNITS",
         check: "Verify",
@@ -1925,192 +1893,169 @@ export const translations: Record<string, any> = {
             correct: "Measurement precision confirmed.",
             incorrect: "Calibration error detected."
         }
-    },
-    sp1_03: {
-    back: "Back to Nexus",
-    title: "P1.03 // ENERGY & POWER",
-    difficulty: {
+        sp1_03: {
+        back: "Back to Nexus",
+        title: "P1.03 // ENERGY & POWER",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Turbine Output",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "P1.03_TURBINE_MONITOR",
-    footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Turbine Output",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P1.03_TURBINE_MONITOR",
+        footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
+        stages: {
         potential: "POTENTIAL",
         kinetic: "KINETIC",
         power: "POWER",
         potential_prompt_latex: "\\text{Compute gravitational potential energy }E_p=mgh.",
         kinetic_prompt_latex: "\\text{Compute kinetic energy }E_k=\\frac{1}{2}mv^2.",
         power_prompt_latex: "\\text{Compute power }P=\\frac{W}{t}\\text{ (apply efficiency if given).}"
-    },
-    labels: {
+        labels: {
         input: "INPUT",
         formula: "FORMULA"
-    },
-    formulas: {
+        formulas: {
         potential: "E_p=mgh",
         kinetic: "E_k=\\frac{1}{2}mv^2",
         power: "P=\\frac{W}{t}"
-    },
-    mission: {
+        mission: {
         title: "MISSION: RHINE HYDRO PLANT",
         description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
     }
-    },
-    sp1_07: {
-    back: "Return to Nexus",
-    title: "SP1.07 // PRESSURE & BUOYANCY",
-    difficulty: {
+        sp1_07: {
+        back: "Return to Nexus",
+        title: "SP1.07 // PRESSURE & BUOYANCY",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP1.07_FLUID_MONITOR",
-    footer_left: "SP1.07_FLUID_MECHANICS // NODE: RHINE",
-    objective_title: "Active Mission Objective",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.07_FLUID_MONITOR",
+        footer_left: "SP1.07_FLUID_MECHANICS // NODE: RHINE",
+        objective_title: "Active Mission Objective",
+        stages: {
         pressure: "PRESSURE",
         buoyancy: "BUOYANCY",
         hydraulics: "HYDRAULICS"
-    },
-    labels: {
+        labels: {
         physics_display: "Physics Display",
         input_terminal: "Input Terminal",
         depth: "Depth",
         density: "Object Density",
         force: "Piston Force",
         fluid_mastery: "Fluid Mastery"
-    },
-    prompts: {
+        prompts: {
         pressure_depth: "A swimmer dives to {depth} m depth in the Rhine. Calculate total pressure (P₀=100000 Pa, ρ=1000 kg/m³, g=10 m/s²).",
         buoyant_force: "An object with volume {volume} m³ is submerged in water. Calculate the buoyant force (ρ_water=1000 kg/m³, g=10 m/s²).",
         hydraulic_force: "A hydraulic lift has input force {f1} N on area {a1} m². Output area is {a2} m². Calculate output force.",
         hint_pressure: "Use P = P₀ + ρgh",
         hint_archimedes: "Use F_b = ρ_water × V × g",
         hint_pascal: "Use Pascal's principle: F₁/A₁ = F₂/A₂"
-    },
-    scenarios: {
+        scenarios: {
         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine riverbed near Basel's Mittlere Brücke. Water pressure increases with depth, affecting equipment and safety protocols.",
         rhine_boat: "Rhine Cargo Transport: Barges navigate the Rhine carrying goods between Basel and Rotterdam. Understanding buoyancy is critical for load calculations and vessel stability.",
         hydraulic_lift: "Basel Construction Site: Hydraulic lifts at Basel's construction sites use Pascal's principle to lift heavy building materials with minimal input force."
-    },
-    feedback: {
+        feedback: {
         correct: "Fluid mechanics mastered!",
         incorrect: "Review the fluid mechanics principles."
     }
-    },
-    sp1_05: {
-    back: "Back to Nexus",
-    title: "SP1.05 // THE RHINE FERRY",
-    difficulty: {
+        sp1_05: {
+        back: "Back to Nexus",
+        title: "SP1.05 // THE RHINE FERRY",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP1.05_FERRY_MONITOR",
-    footer_left: "SP1.05_RHINE_FERRY // NODE: BASEL",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.05_FERRY_MONITOR",
+        footer_left: "SP1.05_RHINE_FERRY // NODE: BASEL",
+        stages: {
         composition: "VECTOR COMPOSITION",
         drift: "DRIFT ANALYSIS",
         navigation: "PRECISION NAVIGATION"
-    },
-    labels: {
+        labels: {
         river_speed: "River Speed (v_r)",
         ferry_speed: "Ferry Speed (v_f)",
         cable_angle: "Cable Angle (θ)",
         resultant_speed: "Resultant Speed (v_net)",
         drift_speed: "Drift Speed",
         angle: "Angle"
-    },
-    mission: {
+        mission: {
         title: "RHINE CROSSING MISSION",
         description: "Navigate the Basel Rhine ferry. Adjust cable angle and ferry speed to compensate for river current."
     }
-    },
-    sp2_01: {
-    back: "Back to Nexus",
-    title: "SP2.01 // HEAT & TEMPERATURE",
-    difficulty: {
+        sp2_01: {
+        back: "Back to Nexus",
+        title: "SP2.01 // HEAT & TEMPERATURE",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP2.01_THERMAL_MONITOR",
-    footer_left: "SP2.01_THERMODYNAMICS // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.01_THERMAL_MONITOR",
+        footer_left: "SP2.01_THERMODYNAMICS // NODE: BASEL",
+        stages: {
         heat_transfer: "HEAT TRANSFER",
         specific_heat: "SPECIFIC HEAT",
         phase_changes: "PHASE CHANGES"
-    },
-    labels: {
+        labels: {
         thermal_display: "Thermal Display",
         input_terminal: "Input Terminal",
         temperature: "Temperature",
         show_particles: "Show Particles",
         thermal_score: "Thermal Score"
-    },
-    prompts: {
+        prompts: {
         heat_transfer: "Calculate heat transfer rate using {method} method.",
         specific_heat: "A {mass} kg sample is heated by {deltaT}°C. Calculate energy required (c=4186 J/kg·K for water).",
         phase_change: "Calculate energy for {phase} of {mass} kg of water.",
         hint_heat: "Use appropriate heat transfer equation for the method",
         hint_specific: "Use Q = mcΔT where c is specific heat capacity",
         hint_phase: "Use Q = mL where L is latent heat"
-    },
-    scenarios: {
+        scenarios: {
         conduction: "Novartis Thermal Reactor: Heat conducts through metal reactor walls at Basel's pharmaceutical facilities. Thermal conductivity determines heat transfer rate.",
         convection: "Rhine River Cooling: Convection currents in the Rhine transfer heat from Basel's industrial facilities. Water circulation provides efficient cooling.",
         radiation: "Solar Heating in Basel: Thermal radiation from the sun heats Basel's buildings. Stefan-Boltzmann law describes radiative heat transfer.",
         water_heating: "Basel District Heating: Basel's district heating system uses specific heat capacity of water to transport thermal energy efficiently throughout the city.",
         melting: "Ice Melting on Rhine: Phase change from ice to water requires latent heat of fusion. Temperature remains constant during melting at 0°C.",
         boiling: "Steam Generation at Basel: Boiling water to steam at 100°C requires latent heat of vaporization. Steam carries more energy than hot water."
-    },
-    feedback: {
+        feedback: {
         correct: "Thermodynamics mastered!",
         incorrect: "Review the heat transfer principles."
     }
-    },
-    sp3_02: {
-    back: "Back to Nexus",
-    title: "P3.02 // WAVE OPTICS",
-    difficulty: {
+        sp3_02: {
+        back: "Back to Nexus",
+        title: "P3.02 // WAVE OPTICS",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Wave Properties",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "P3.02_OPTICAL_MONITOR",
-    footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Wave Properties",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P3.02_OPTICAL_MONITOR",
+        footer_left: "P3.02_WAVE_OPTICS // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         wavelength: "Wavelength (λ)",
@@ -2119,40 +2064,34 @@ export const translations: Record<string, any> = {
         angle: "Angle (θ)",
         intensity: "Intensity (I)",
         order: "Order (m)"
-    },
-    mission: {
+        mission: {
         title: "OPTICAL RESONANCE LAB",
         description: "Novartis optical lab involves wave properties. Master interference, diffraction and polarization."
-    },
-    stages: {
+        stages: {
         interference: "INTERFERENCE",
         diffraction: "DIFFRACTION",
         polarization: "POLARIZATION",
         interference_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the double-slit equation.}",
         diffraction_prompt_latex: "\\text{Calculate the angle }\\theta\\text{ using the single-slit equation.}",
         polarization_prompt_latex: "\\text{Calculate the intensity }I\\text{ using Malus' law.}"
-    },
-    formulas: {
+        formulas: {
         interference: "d \\sin \\theta = m \\lambda",
         diffraction: "a \\sin \\theta = m \\lambda",
         polarization: "I = I_0 \\cos^2 \\theta"
     }
-    },
-    sm1_02: {
-    back: "Back to Nexus",
-    title: "EM1.01 // ALGEBRA QUEST",
-    difficulty: {
+        sm1_02: {
+        back: "Back to Nexus",
+        title: "EM1.01 // ALGEBRA QUEST",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    modes: {
+        modes: {
         containers: "CONTAINERS",
         sorting: "SORTING",
         machine: "MACHINE"
-    },
-    labels: {
+        labels: {
         variable: "Variable",
         value: "Value",
         expression: "Expression",
@@ -2160,90 +2099,79 @@ export const translations: Record<string, any> = {
         evaluate: "Evaluate",
         input: "Input",
         output: "Output"
-    },
-    stages: {
+        stages: {
         variables: "VARIABLES",
         terms: "TERMS",
         substitution: "SUBSTITUTION",
         vars_prompt: "Identify the value inside the container.",
         terms_prompt: "Combine like terms to simplify the expression.",
         sub_prompt: "Evaluate the expression for the given value."
-    },
-    scenarios: {
+        scenarios: {
         variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
         terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
         substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
     }
-    },
-    sm2_07: {
-    back: "Back to Nexus",
-    title: "SM2.07 // COORDINATE GEOMETRY",
-    difficulty: {
+        sm2_07: {
+        back: "Back to Nexus",
+        title: "SM2.07 // COORDINATE GEOMETRY",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Precision Mapping",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM2.07_COORDINATE_MONITOR",
-    footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Precision Mapping",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.07_COORDINATE_MONITOR",
+        footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         distance: "Distance (d)",
         midpoint: "Midpoint (M)",
         slope: "Slope (m)"
-    },
-    mission: {
+        mission: {
         title: "ZURICH NODE MAPPING",
         description: "Zurich coordinate mapping requires precision geometry. Calculate distance, midpoint and slope between city nodes."
-    },
-    stages: {
+        stages: {
         distance: "DISTANCE",
         midpoint: "MIDPOINT",
         slope: "SLOPE",
         distance_prompt_latex: "\\text{Calculate the distance }d\\text{ between points A and B.}",
         midpoint_prompt_latex: "\\text{Calculate the midpoint coordinates }M(x,y).",
         slope_prompt_latex: "\\text{Calculate the slope }m\\text{ of the line passing through A and B.}"
-    },
-    formulas: {
+        formulas: {
         distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
         midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
         slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
     }
-    },
-    sm1_03: {
-    back: "Back to Nexus",
-    title: "SM1.03 // BELOW ZERO",
-    difficulty: {
+        sm1_03: {
+        back: "Back to Nexus",
+        title: "SM1.03 // BELOW ZERO",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM1.03_INTEGER_MONITOR",
-    footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
-    basel_scenario: "BASEL WINTER SCENARIO",
-    scenario_title: "PROBLEM CONTEXT",
-    calculate_title: "CALCULATE",
-    answer_title: "YOUR ANSWER",
-    solution_title: "SOLUTION",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.03_INTEGER_MONITOR",
+        footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
+        basel_scenario: "BASEL WINTER SCENARIO",
+        scenario_title: "PROBLEM CONTEXT",
+        calculate_title: "CALCULATE",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
         number_line: "NUMBER LINE",
         rationals: "RATIONALS",
         quadrants: "QUADRANTS"
-    },
-    scenarios: {
+        scenarios: {
         number_line: "Basel Winter Temperatures: You are monitoring temperatures at EuroAirport Basel during winter. Temperatures often drop below zero. Understanding negative numbers is essential for reading thermometers and comparing temperatures. The number line helps visualize integers and their relationships.",
         rationals: "Rhine River Water Levels: The Rhine River 'Pegel' (water level gauge) at Basel shows water depth. Normal level is +5m. During drought, it drops. Divers measure depth below surface as negative values. Rational numbers (fractions and decimals) give precise measurements.",
         quadrants: "Basel City Grid Navigation: Map Basel landmarks on a coordinate grid. Grossbasel (Q1: +,+), Kleinbasel (Q2: -,+), Klybeck (Q3: -,-), St. Alban (Q4: +,-). Understanding quadrants helps navigate the city and locate positions precisely."
-    },
-    problems: {
+        problems: {
         nl_identify_neg3: "Locate -3 on the number line.",
         nl_identify_5: "Locate 5 on the number line.",
         nl_temp_neg2: "Temperature is -2°C. Mark this on the thermometer.",
@@ -2305,38 +2233,34 @@ export const translations: Record<string, any> = {
         q_diagonal_distance: "Horizontal distance from (2, 3) to (6, 5)?",
         q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
     }
-    },
-    sm1_04: {
-    back: "Back to Nexus",
-    title: "SM1.04 // EQUATION BALANCE",
-    difficulty: {
+        sm1_04: {
+        back: "Back to Nexus",
+        title: "SM1.04 // EQUATION BALANCE",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM1.04_EQUATION_MONITOR",
-    footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
-    basel_scenario: "BASEL EQUATION SCENARIO",
-    scenario_title: "PROBLEM CONTEXT",
-    solve_title: "SOLVE THE EQUATION",
-    answer_title: "YOUR ANSWER",
-    solution_title: "SOLUTION",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.04_EQUATION_MONITOR",
+        footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
+        basel_scenario: "BASEL EQUATION SCENARIO",
+        scenario_title: "PROBLEM CONTEXT",
+        solve_title: "SOLVE THE EQUATION",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
         balance: "BALANCE",
         solve: "SOLVE",
         transform: "TRANSFORM",
         applications: "APPLICATIONS"
-    },
-    scenarios: {
+        scenarios: {
         balance: "Understanding Equation Balance: Like a scale, equations must stay balanced. Whatever you do to one side, you must do to the other. This fundamental principle is the key to solving all equations.",
         solve: "Solving Linear Equations: Use inverse operations to isolate the variable. Add/subtract to move constants, multiply/divide to remove coefficients. Each step brings you closer to finding x.",
         transform: "Transforming Equations: Master the art of moving terms across the equals sign. Combine like terms, expand parentheses, and simplify fractions. Transform complex equations into simple ones.",
         applications: "Basel Real-World Problems: Apply equations to solve real problems in Basel. Calculate bus ticket prices, Rhine ferry times, Novartis lab measurements, and Roche pharmaceutical concentrations."
-    },
-    problems: {
+        problems: {
         bal_add_both: "Add 2 to both sides of x + 3 = 7",
         bal_subtract_both: "Subtract 5 from both sides of x + 5 = 8",
         bal_multiply_both: "Multiply both sides by 2",
@@ -2418,26 +2342,23 @@ export const translations: Record<string, any> = {
         app_boat_current: "Rhine boat: 30 km downstream and back takes 5 hours. Current is 2 km/h. Find boat speed in still water.",
         app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
     }
-    },
-    sm1_05: {
-    back: "Back to Nexus",
-    title: "SM1.05 // RATIO LAB",
-    difficulty: {
+        sm1_05: {
+        back: "Back to Nexus",
+        title: "SM1.05 // RATIO LAB",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM1.05_RATIO_MONITOR",
-    footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM1.05_RATIO_MONITOR",
+        footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
+        stages: {
         recipes: "RECIPES",
         percent: "PERCENT",
         mixtures: "MIXTURES"
-    },
-    labels: {
+        labels: {
         ratio: "Ratio",
         proportion: "Proportion",
         percentage: "Percentage",
@@ -2445,33 +2366,30 @@ export const translations: Record<string, any> = {
         solute: "Solute",
         solvent: "Solvent"
     }
-    },
-    sm2_08: {
-    back: "Back to Nexus",
-    title: "SM2.08 // PROBABILITY BASICS",
-    difficulty: {
+        sm2_08: {
+        back: "Back to Nexus",
+        title: "SM2.08 // PROBABILITY BASICS",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM2.08_PROBABILITY_MONITOR",
-    footer_left: "SM2.08_PROBABILITY // NODE: BASEL",
-    formula_title: "PROBABILITY FORMULA",
-    scenario_title: "PROBLEM",
-    basel_scenario: "BASEL LIFE SCENARIO",
-    calculate_title: "CALCULATE",
-    answer_title: "YOUR ANSWER",
-    solution_title: "SOLUTION",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.08_PROBABILITY_MONITOR",
+        footer_left: "SM2.08_PROBABILITY // NODE: BASEL",
+        formula_title: "PROBABILITY FORMULA",
+        scenario_title: "PROBLEM",
+        basel_scenario: "BASEL LIFE SCENARIO",
+        calculate_title: "CALCULATE",
+        answer_title: "YOUR ANSWER",
+        solution_title: "SOLUTION",
+        stages: {
         basic_prob: "BASIC PROBABILITY",
         lottery: "LOTTERY & GAMES",
         combined: "COMBINED EVENTS",
         data_stats: "DATA STATISTICS"
-    },
-    scenarios: {
+        scenarios: {
         bus_punctuality: "Basel Public Transport: You take the #8 bus to school every day.",
         weather_basel: "Basel Weather Station: Meteorological data for decision making.",
         school_cafeteria: "School Cafeteria: Weekly menu planning.",
@@ -2498,8 +2416,7 @@ export const translations: Record<string, any> = {
         three_buses: "Three Bus Lines: Multiple independent events.",
         four_buses: "Four Bus Lines: Extended probability chains.",
         complex_event: "Complex Probability: Advanced scenarios.",
-    },
-    problems: {
+        problems: {
         bus_ontime_16_20: "In the past 20 days, the bus arrived on time 16 times. What is the probability it arrives on time tomorrow?",
         bus_ontime_18_20: "In the past 20 days, the bus arrived on time 18 times. What is the probability it arrives on time tomorrow?",
         weather_rain_12_30: "Basel weather station recorded rain on 12 out of 30 days. What is the probability of rain this weekend?",
@@ -2581,37 +2498,33 @@ export const translations: Record<string, any> = {
         percentage_change: "Last month: CHF 100. This month: CHF 120. Calculate percentage change.",
         correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?",
     }
-    },
-    gp5_01: {
-    back: "Back to Nexus",
-    title: "P5.01 // THE ATOMIC CORE",
-    difficulty: {
+        gp5_01: {
+        back: "Back to Nexus",
+        title: "P5.01 // THE ATOMIC CORE",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Isotope / Decay",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "P5.01_NUCLEAR_MONITOR",
-    footer_left: "P5.01_MODERN_PHYSICS // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Isotope / Decay",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "P5.01_NUCLEAR_MONITOR",
+        footer_left: "P5.01_MODERN_PHYSICS // NODE: BASEL",
+        labels: {
         input: "INPUT PARAMETERS",
         hints: "HINTS",
         balancing: "NUCLEAR EQUATION",
         mass: "Mass Number (A)",
         atomic: "Atomic Number (Z)"
-    },
-    mission: {
+        mission: {
         title: "STABILIZE THE CORE",
         description: "Novartis Innovation District needs a stable isotope. Balance the nuclear equation by identifying the correct decay particles."
-    },
-    stages: {
+        stages: {
         alpha: "ALPHA DECAY",
         beta: "BETA DECAY",
         gamma: "GAMMA EMISSION",
@@ -2624,47 +2537,41 @@ export const translations: Record<string, any> = {
         gamma_decay_prompt_latex: "\\text{Identify the Gamma emission (\\gamma) state.}",
         fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
     }
-    },
-    sm3_04: {
-    back: "Back to Nexus",
-    title: "SM3.04 // LOGARITHMIC SCALES",
-    difficulty: {
+        sm3_04: {
+        back: "Back to Nexus",
+        title: "SM3.04 // LOGARITHMIC SCALES",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Logarithmic Measurement",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SM3.04_LOG_MONITOR",
-    footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Logarithmic Measurement",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM3.04_LOG_MONITOR",
+        footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         ph: "pH Value",
         decibel: "Decibels (dB)",
         richter: "Richter Scale"
-    },
-    mission: {
+        mission: {
         title: "LOGARITHMIC MEASUREMENT LAB",
         description: "Master three real-world logarithmic scales: pH (chemistry), decibels (sound), and Richter (earthquakes). Each scale compresses huge ranges into manageable numbers."
-    },
-    stages: {
+        stages: {
         ph: "pH SCALE",
         decibel: "DECIBELS",
         richter: "RICHTER",
         ph_prompt_latex: "\\text{Calculate pH using }pH=-\\log_{10}[H^+].",
         decibel_prompt_latex: "\\text{Calculate decibels using }L=10\\log_{10}(I/I_0).",
         richter_prompt_latex: "\\text{Calculate magnitude using }M=\\log_{10}(A)."
-    },
-    formulas: {
+        formulas: {
         ph: "pH = -\\log_{10}[H^+]",
         decibel: "L = 10\\log_{10}(I/I_0)",
         richter: "M = \\log_{10}(A)"
-    },
-    scenarios: {
+        scenarios: {
         ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H⁺] = 0.001 mol/L (which is 10⁻³ in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log₁₀[H⁺]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
         ph_core: "🧪 SCENARIO: Swimming Pool Water Quality — You work part-time at the Basel public pool. The health inspector requires daily pH testing. Today's water sample shows [H⁺] = 10⁻⁸ mol/L. You need to calculate the pH to verify it's in the safe range (7.2-7.8). If pH is too low (acidic), it irritates swimmers' eyes. If too high (basic), chlorine doesn't work properly. Your calculation determines whether the pool can open today!",
         ph_advanced: "🧪 SCENARIO: Pharmaceutical Quality Control — You're an intern at Roche in Basel. A new drug formulation must have precise pH control for stability. The lab measures [H⁺] = 3.16 × 10⁻⁵ mol/L. Calculate the pH to 2 decimal places. If pH drifts outside the target range (4.3-4.7), the entire batch (worth millions) must be discarded. Logarithmic precision matters in pharma!",
@@ -2677,8 +2584,7 @@ export const translations: Record<string, any> = {
         richter_core: "🌍 SCENARIO: Historical Earthquake Analysis — In 1356, Basel experienced Switzerland's strongest recorded earthquake. Modern analysis estimates the ground amplitude was A = 100,000 micrometers. Calculate the Richter magnitude. Compare this to the 2011 Japan earthquake (M 9.0) which had amplitude 1,000,000,000 micrometers. The logarithmic scale compresses this billion-fold range into manageable numbers (1 to 9).",
         richter_advanced: "🌍 SCENARIO: Earthquake Early Warning System — Switzerland is developing an earthquake alert app. Two earthquakes occur: Earthquake A has amplitude 31,600 μm, Earthquake B has amplitude 1,000 μm. Calculate both magnitudes to 2 decimal places. The app needs to distinguish between 'minor tremor' (M < 4.0) and 'significant quake' (M ≥ 4.0) to decide whether to send emergency alerts to millions of phones.",
         richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10² = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
-    },
-    canvas: {
+        canvas: {
         ph_title: "pH SCALE",
         ph_formula: "pH = -log₁₀[H⁺]",
         decibel_title: "DECIBEL SCALE",
@@ -2692,91 +2598,81 @@ export const translations: Record<string, any> = {
         status_sim: "LOG_SCALE_SIM: ACTIVE",
         status_mode: "MODE"
     }
-    },
-    sc3_01: {
-    back: "Back to Nexus",
-    title: "C3.01 // MOLECULAR ARCHITECT",
-    difficulty: {
+        sc3_01: {
+        back: "Back to Nexus",
+        title: "C3.01 // MOLECULAR ARCHITECT",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Molecular Structure",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "C3.01_MOLECULE_MONITOR",
-    footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Molecular Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C3.01_MOLECULE_MONITOR",
+        footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         atom: "Atom",
         bond: "Bond",
         snap: "Snap",
         grid: "Grid"
-    },
-    mission: {
+        mission: {
         title: "MOLECULAR ASSEMBLY LAB",
         description: "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."
-    },
-    stages: {
+        stages: {
         aspirin: "ASPIRIN",
         caffeine: "CAFFEINE"
     }
-    },
-    sp1_06: {
-    back: "Back to Nexus",
-    title: "SP1.06 // THE SWISS PENDULUM",
-    difficulty: {
+        sp1_06: {
+        back: "Back to Nexus",
+        title: "SP1.06 // THE SWISS PENDULUM",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Oscillation Data",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP1.06_PENDULUM_MONITOR",
-    footer_left: "SP1.06_PENDULUM // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Oscillation Data",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.06_PENDULUM_MONITOR",
+        footer_left: "SP1.06_PENDULUM // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         period: "Period (T)",
         length: "Length (L)",
         gravity: "Gravity (g)",
         frequency: "Frequency (f)"
-    },
-    mission: {
+        mission: {
         title: "THE CLOCKMAKER'S SECRET",
         description: "Calibrate the mechanical master clock of Basel. Master the physics of simple harmonic motion and energy conservation."
-    },
-    stages: {
+        stages: {
         period: "PERIOD",
         gravity: "GRAVITY",
         energy: "ENERGY"
     }
-    },
-    sp2_02: {
-    back: "Back to Nexus",
-    title: "SP2.02 // CIRCUIT SANDBOX 2.0",
-    difficulty: {
+        sp2_02: {
+        back: "Back to Nexus",
+        title: "SP2.02 // CIRCUIT SANDBOX 2.0",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Circuit Analysis",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP2.02_CIRCUIT_MONITOR",
-    footer_left: "SP2.02_CIRCUIT_SANDBOX // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Circuit Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP2.02_CIRCUIT_MONITOR",
+        footer_left: "SP2.02_CIRCUIT_SANDBOX // NODE: BASEL",
+        labels: {
         multimeter: "MULTIMETER",
         oscilloscope: "OSCILLOSCOPE",
         resistance: "RESISTANCE",
@@ -2787,12 +2683,10 @@ export const translations: Record<string, any> = {
         damping: "DAMPING TYPE",
         formulas: "RLC FORMULAS",
         reset: "RESET"
-    },
-    mission: {
+        mission: {
         title: "MISSION: RLC TRANSIENT ANALYSIS",
         description: "Build and analyze RLC circuits. Use the multimeter to measure voltage and current. Observe transient responses on the oscilloscope."
-    },
-    stages: {
+        stages: {
         build: "BUILD CIRCUIT",
         measure: "MEASURE VALUES",
         analyze: "ANALYZE RESPONSE",
@@ -2803,26 +2697,24 @@ export const translations: Record<string, any> = {
         measure_hint: "Select 2 points to measure voltage drop",
         analyze_hint: "Watch for overdamped, underdamped, or critically damped responses"
     }
-    },
-    sp4_01: {
-    back: "Back to Nexus",
-    title: "SP3.03 // WAVE BASICS",
-    difficulty: {
+        sp4_01: {
+        back: "Back to Nexus",
+        title: "SP3.03 // WAVE BASICS",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Wave Parameters",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP3.03_WAVE_MONITOR",
-    footer_left: "SP3.03_WAVE_BASICS // NODE: RHINE",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Wave Parameters",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP3.03_WAVE_MONITOR",
+        footer_left: "SP3.03_WAVE_BASICS // NODE: RHINE",
+        labels: {
         wave_type: "WAVE TYPE",
         transverse: "TRANSVERSE",
         longitudinal: "LONGITUDINAL",
@@ -2835,12 +2727,10 @@ export const translations: Record<string, any> = {
         calculated: "CALCULATED VALUES",
         show_particles: "Show Particle Motion",
         formulas: "FORMULAS"
-    },
-    mission: {
+        mission: {
         title: "MISSION: RHINE WAVE ANALYSIS",
         description: "Study mechanical waves on the Rhine River. Master wave parameters: amplitude, frequency, wavelength, and period."
-    },
-    stages: {
+        stages: {
         transverse: "TRANSVERSE WAVES",
         longitudinal: "LONGITUDINAL WAVES",
         parameters: "WAVE PARAMETERS",
@@ -2851,28 +2741,25 @@ export const translations: Record<string, any> = {
         longitudinal_hint: "Particles oscillate parallel to wave direction",
         parameters_hint: "v = λf, T = 1/f, ω = 2πf"
     }
-    },
-    sb1_01: {
-    back: "Back to Nexus",
-    title: "SB1.01 // CELL FACTORY",
-    difficulty: {
+        sb1_01: {
+        back: "Back to Nexus",
+        title: "SB1.01 // CELL FACTORY",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Cell Analysis",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SB1.01_CELL_MONITOR",
-    footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Cell Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB1.01_CELL_MONITOR",
+        footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
+        stages: {
         identification: "IDENTIFICATION",
         function: "FUNCTION",
         organelles: "ORGANELLES"
-    },
-    labels: {
+        labels: {
         cutaway_view: "Cutaway View",
         selected: "SELECTED ORGANELLE",
         instructions: "INSTRUCTIONS",
@@ -2884,20 +2771,17 @@ export const translations: Record<string, any> = {
         er: "Endoplasmic Reticulum",
         membrane: "Cell Membrane",
         vacuole: "Vacuole"
-    },
-    mission: {
+        mission: {
         title: "MISSION: CELL EXPLORATION",
         description: "Explore the animal cell structure. Identify organelles and understand their functions in the cellular economy."
-    },
-    prompts: {
+        prompts: {
         id_prompt: "Identify the organelle highlighted in the 3D view.",
         id_target: "Highlighted: ?",
         fn_prompt: "Which organelle is responsible for: {func}?",
         fn_target: "Function: {func}",
         hint_name: "It is the {name}",
         hint_start: "The answer starts with {char}"
-    },
-    organelles: {
+        organelles: {
         nucleus: {
             name: "Nucleus",
             func: "Control Center / DNA Storage",
@@ -2924,26 +2808,24 @@ export const translations: Record<string, any> = {
             details: "Rough ER: protein synthesis. Smooth ER: lipid synthesis and detoxification."
         }
     }
-    },
-    sb1_01_metabolic: {
-    back: "Back to Nexus",
-    title: "SB1.01 // METABOLIC ENGINE",
-    difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-    objective_title: "Active Mission Objective",
-    target_title: "Metabolic Status",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Homeostasis Stable",
-    incorrect: "Metabolic Crisis",
-    ready: "Ready",
-    monitor_title: "SB1.01_METABOLIC_MONITOR",
-    footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
-    stages: {
+        sb1_01_metabolic: {
+        back: "Back to Nexus",
+        title: "SB1.01 // METABOLIC ENGINE",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        target_title: "Metabolic Status",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Homeostasis Stable",
+        incorrect: "Metabolic Crisis",
+        ready: "Ready",
+        monitor_title: "SB1.01_METABOLIC_MONITOR",
+        footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
+        stages: {
         osmosis: "OSMOSIS",
         respiration: "RESPIRATION",
         homeostasis: "HOMEOSTASIS"
-    },
-    labels: {
+        labels: {
         osmolarity: "External Osmolarity",
         atp_flow: "Show ATP Flow",
         hypertonic: "Hypertonic",
@@ -2954,8 +2836,7 @@ export const translations: Record<string, any> = {
         glucose: "Glucose",
         oxygen: "Oxygen",
         atp: "ATP Energy"
-    },
-    prompts: {
+        prompts: {
         osmosis_prompt: "The cell is in a {status} environment. What happens to the water?",
         respiration_prompt: "Complete the respiration reactant: C₆H₁₂O₆ + 6{reactant} → ...",
         product_prompt: "What is the primary energy product of respiration?",
@@ -2964,28 +2845,25 @@ export const translations: Record<string, any> = {
         hint_hypo: "Low salt outside! Water rushes in.",
         hint_oxy: "We breathe this in to burn glucose."
     }
-    },
-    sb2_01: {
-    back: "Back to Nexus",
-    title: "SB2.01 // MENDEL'S GARDEN",
-    difficulty: {
+        sb2_01: {
+        back: "Back to Nexus",
+        title: "SB2.01 // MENDEL'S GARDEN",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Genetic Cross",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SB2.01_GENETICS_MONITOR",
-    footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Genetic Cross",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB2.01_GENETICS_MONITOR",
+        footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
+        stages: {
         monohybrid: "MONOHYBRID CROSS",
         probability: "PROBABILITY",
         dihybrid: "DIHYBRID CROSS"
-    },
-    labels: {
+        labels: {
         parent: "Parent",
         offspring: "Offspring",
         punnett_square: "PUNNETT SQUARE",
@@ -2999,8 +2877,7 @@ export const translations: Record<string, any> = {
         dominance: "DOMINANCE RULES",
         mendels_laws: "MENDEL'S LAWS",
         instructions: "INSTRUCTIONS"
-    },
-    concepts: {
+        concepts: {
         allele: "Allele: A version of a gene",
         dominant: "R (Dominant): Purple flower",
         recessive: "r (Recessive): White flower",
@@ -3011,12 +2888,10 @@ export const translations: Record<string, any> = {
         homozygous_rec: "rr → White (Homozygous Recessive)",
         law_segregation: "Law of Segregation: Each parent contributes one allele",
         law_assortment: "Law of Independent Assortment: Alleles separate independently"
-    },
-    mission: {
+        mission: {
         title: "MISSION: MENDELIAN GENETICS",
         description: "Master Mendel's laws of inheritance. Predict offspring ratios using Punnett Squares."
-    },
-    prompts: {
+        prompts: {
         monohybrid_ratio: "Cross {p1} \\times {p2}. What is the phenotypic ratio of Purple to White?",
         monohybrid_percent: "Cross {p1} \\times {p2}. What percentage of offspring will be Purple?",
         prob_genotype: "Cross {p1} \\times {p2}. What is the probability of a {genotype} offspring?",
@@ -3027,63 +2902,56 @@ export const translations: Record<string, any> = {
         hint_all_rr: "All offspring are Rr.",
         hint_count: "{count} out of 4 squares."
     }
-    },
-    gb1_01: {
-    back: "Back to Nexus",
-    title: "GB1.01 // EVOLUTION LAB",
-    difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-    objective_title: "Active Mission Objective",
-    monitor_title: "Evolution Monitor",
-    stages: {
+        gb1_01: {
+        back: "Back to Nexus",
+        title: "GB1.01 // EVOLUTION LAB",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        monitor_title: "Evolution Monitor",
+        stages: {
         natural_selection: "NATURAL SELECTION",
         speciation: "SPECIATION",
         evidence: "EVIDENCE"
-    },
-    labels: {
+        labels: {
         generation: "Generation",
         selection_pressure: "Selection Pressure",
         evolution_score: "Evolution Score",
         evolution_display: "Evolution Display",
         input_terminal: "Input Terminal"
-    },
-    prompts: {
+        prompts: {
         natural_selection: "In a population of {initial} finches, {survival} survive drought. Calculate fitness.",
         speciation: "After {generations} generations with mutation rate {rate}, calculate genetic divergence.",
         evidence: "A fossil is {age} years old. With C-14 half-life {halflife} years, find remaining fraction.",
         hint_fitness: "Fitness = Survivors / Initial Population",
         hint_divergence: "Divergence = Generations × Mutation Rate",
         hint_halflife: "Remaining = (0.5)^(age/half-life)"
-    },
-    feedback: {
+        feedback: {
         correct: "Natural selection confirmed!",
         incorrect: "Evolution needs more time..."
-    },
-    check: "Verify",
-    next: "Next Generation",
-    correct: "Correct",
-    incorrect: "Incorrect",
-    ready: "Ready",
-    footer_left: "GB1.01 // EVOLUTION LAB"
-    },
-    gb3_01: {
-    back: "Back to Nexus",
-    title: "GB3.01 // DNA FORGE",
-    difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
-    objective_title: "Active Mission Objective",
-    target_title: "DNA Structure",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "GB3.01_DNA_MONITOR",
-    footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
-    stages: {
+        check: "Verify",
+        next: "Next Generation",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        ready: "Ready",
+        footer_left: "GB1.01 // EVOLUTION LAB"
+        gb3_01: {
+        back: "Back to Nexus",
+        title: "GB3.01 // DNA FORGE",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        target_title: "DNA Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GB3.01_DNA_MONITOR",
+        footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
+        stages: {
         pairing: "BASE PAIRING",
         bonds: "HYDROGEN BONDS",
         sequence: "SEQUENCING"
-    },
-    labels: {
+        labels: {
         rotation: "ROTATION",
         auto_rotate: "Auto Rotate",
         show_bonds: "Show Hydrogen Bonds",
@@ -3095,20 +2963,17 @@ export const translations: Record<string, any> = {
         thymine: "Thymine",
         cytosine: "Cytosine",
         guanine: "Guanine"
-    },
-    concepts: {
+        concepts: {
         helix: "Double helix: Two antiparallel strands",
         backbone: "Backbone: Sugar-phosphate groups",
         at_pair: "A ↔ T: Two hydrogen bonds",
         gc_pair: "C ↔ G: Three hydrogen bonds",
         polarity: "Polarity: 5' to 3' orientation",
         complementary: "Rule: Chargaff's base pairing"
-    },
-    mission: {
+        mission: {
         title: "MISSION: DNA ARCHITECTURE",
         description: "Master the structural principles of the DNA double helix. Verify base pairing rules and hydrogen bond stability."
-    },
-    prompts: {
+        prompts: {
         pairing_prompt: "Identify the complementary base for {base}.",
         bonds_prompt: "How many hydrogen bonds connect {b1} and {b2}?",
         seq_prompt: "Provide the complementary sequence for: {seq}",
@@ -3118,58 +2983,52 @@ export const translations: Record<string, any> = {
         hint_at: "A pairs with T via 2 bonds.",
         hint_gc: "G pairs with C via 3 bonds."
     }
-    },
-    sc1_01: {
-    back: "Back to Nexus",
-    title: "C1.01 // MYSTERY LAB",
-    difficulty: {
+        sc1_01: {
+        back: "Back to Nexus",
+        title: "C1.01 // MYSTERY LAB",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Substance Analysis",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "C1.01_LAB_MONITOR",
-    footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Substance Analysis",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "C1.01_LAB_MONITOR",
+        footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         substance: "Substance",
         tool: "Test Tool",
         observation: "Observation"
-    },
-    mission: {
+        mission: {
         title: "POWDER IDENTIFICATION",
         description: "Identify mysterious white powders using classical chemical tests. Master qualitative analysis."
-    },
-    stages: {
+        stages: {
         identify: "IDENTIFY",
         properties: "PROPERTIES",
         reactions: "REACTIONS"
     }
-    },
-    sc1_03: {
-    back: "Back to Nexus",
-    title: "SC1.03 // ATOMS FORGE",
-    difficulty: {
+        sc1_03: {
+        back: "Back to Nexus",
+        title: "SC1.03 // ATOMS FORGE",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Atomic Structure",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC1.03_ATOM_MONITOR",
-    footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Atomic Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.03_ATOM_MONITOR",
+        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+        labels: {
         input: "INPUT",
         hints: "HINTS",
         properties: "PROPERTIES",
@@ -3181,12 +3040,10 @@ export const translations: Record<string, any> = {
         protons: "PROTONS (p⁺)",
         neutrons: "NEUTRONEN (n⁰)",
         electrons: "ELEKTRONEN (e⁻)"
-    },
-    mission: {
+        mission: {
         title: "MISSION: CYBER FORGE",
         description: "Build atoms from subatomic particles. Master the Bohr model and periodic table."
-    },
-    stages: {
+        stages: {
         build: "BUILD",
         elements: "ELEMENTS",
         isotopes: "ISOTOPES",
@@ -3194,28 +3051,25 @@ export const translations: Record<string, any> = {
         elements_desc: "Explore the first 20 elements of the periodic table",
         isotopes_desc: "Study isotopes: same protons, different neutrons"
     }
-    },
-    sc2_02: {
-    back: "Back to Nexus",
-    title: "SC2.02 // pH SENTINEL",
-    difficulty: {
+        sc2_02: {
+        back: "Back to Nexus",
+        title: "SC2.02 // pH SENTINEL",
+        difficulty: {
         basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Titration Analysis",
-    next: "Next Analysis",
-    check: "Verify",
-    correct: "Titration Accurate",
-    incorrect: "Invalid pH reading",
-    ready: "Ready",
-    monitor_title: "SC2.02_TITRATION_MONITOR",
-    footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
-    stages: {
+        objective_title: "Active Mission Objective",
+        target_title: "Titration Analysis",
+        next: "Next Analysis",
+        check: "Verify",
+        correct: "Titration Accurate",
+        incorrect: "Invalid pH reading",
+        ready: "Ready",
+        monitor_title: "SC2.02_TITRATION_MONITOR",
+        footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
+        stages: {
         curves: "PH CURVES",
         equivalence: "EQUIVALENCE",
         indicators: "INDICATORS"
-    },
-    labels: {
+        labels: {
         initial_ph: "Initial pH",
         added_vol: "Added Volume (mL)",
         eq_point: "Equivalence Point",
@@ -3223,8 +3077,7 @@ export const translations: Record<string, any> = {
         strong_acid: "Strong Acid",
         weak_acid: "Weak Acid",
         formula: "Titration Formula"
-    },
-    prompts: {
+        prompts: {
         curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
         find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
         select_indicator: "Weak acid + Strong base. Choose indicator: Phenol(1), MethylO(2).",
@@ -3232,38 +3085,34 @@ export const translations: Record<string, any> = {
         eq_ph_guess: "Equivalence pH of Strong/Strong? (<7=1, 7=2, >7=3).",
         conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
     }
-    },
-    sc2_03: {
-    back: "Back to Nexus",
-    title: "SC2.03 // AERO LAB",
-    difficulty: {
+        sc2_03: {
+        back: "Back to Nexus",
+        title: "SC2.03 // AERO LAB",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Gas Properties",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC2.03_GAS_MONITOR",
-    footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Gas Properties",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC2.03_GAS_MONITOR",
+        footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
+        labels: {
         pressure: "PRESSURE",
         state_variables: "STATE VARIABLES",
         volume: "VOLUME (V)",
         temperature: "TEMPERATURE (T)",
         moles: "MOLES (n)",
         formulas: "FORMULAS"
-    },
-    mission: {
+        mission: {
         title: "MISSION: IDEAL GAS LAWS",
         description: "Explore the relationship between pressure, volume, and temperature in ideal gases."
-    },
-    stages: {
+        stages: {
         boyle: "BOYLE'S LAW",
         charles: "CHARLES' LAW",
         combined: "COMBINED GAS LAW",
@@ -3274,38 +3123,34 @@ export const translations: Record<string, any> = {
         charles_hint: "Charles' Law: Increase temperature → Increase volume",
         combined_hint: "Combined: All three variables interact"
     }
-    },
-    sc1_03_orbitals: {
-    back: "Back to Nexus",
-    title: "SC1.03 // ATOMS FORGE",
-    difficulty: {
+        sc1_03_orbitals: {
+        back: "Back to Nexus",
+        title: "SC1.03 // ATOMS FORGE",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Atomic Orbitals",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC1.03_ORBITAL_MONITOR",
-    footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Atomic Orbitals",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.03_ORBITAL_MONITOR",
+        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
+        labels: {
         selected_element: "SELECTED ELEMENT",
         orbital_type: "ORBITAL TYPE",
         show_transition: "Show Electron Transition",
         periodic_table: "PERIODIC TABLE (Z=1-20)",
         orbital_shapes: "ORBITAL SHAPES",
         quantum_numbers: "QUANTUM NUMBERS"
-    },
-    mission: {
+        mission: {
         title: "MISSION: QUANTUM MECHANICS",
         description: "Explore electron orbitals and probability clouds. Visualize s, p, and d orbitals in 3D space."
-    },
-    stages: {
+        stages: {
         s_orbital: "S ORBITALS",
         p_orbital: "P ORBITALS",
         d_orbital: "D ORBITALS",
@@ -3316,38 +3161,34 @@ export const translations: Record<string, any> = {
         p_hint: "p orbitals: l=1, three orientations",
         d_hint: "d orbitals: l=2, five orientations"
     }
-    },
-    sc1_04: {
-    back: "Back to Nexus",
-    title: "SC1.04 // PERIODIC PUZZLE",
-    difficulty: {
+        sc1_04: {
+        back: "Back to Nexus",
+        title: "SC1.04 // PERIODIC PUZZLE",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Atom Structure",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC1.04_ATOM_MONITOR",
-    footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Atom Structure",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.04_ATOM_MONITOR",
+        footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
+        labels: {
         element_info: "ELEMENT INFO",
         formulas: "FORMULAS",
         protons: "PROTONS",
         neutrons: "NEUTRONS",
         electrons: "ELECTRONS",
         select_element: "SELECT ELEMENT"
-    },
-    mission: {
+        mission: {
         title: "MISSION: PERIODIC TABLE",
         description: "Build atoms and discover the periodic table. Master electron configuration."
-    },
-    stages: {
+        stages: {
         build: "BUILD ATOM",
         periodic: "PERIODIC TABLE",
         groups: "ELEMENT GROUPS",
@@ -3358,26 +3199,24 @@ export const translations: Record<string, any> = {
         periodic_hint: "Elements are arranged by atomic number",
         groups_hint: "Same group = same valence electrons"
     }
-    },
-    sc2_04: {
-    back: "Back to Nexus",
-    title: "SC2.04 // SOLUBILITY LAB",
-    difficulty: {
+        sc2_04: {
+        back: "Back to Nexus",
+        title: "SC2.04 // SOLUBILITY LAB",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "Solution Status",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC2.04_SOLUBILITY_MONITOR",
-    footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "Solution Status",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC2.04_SOLUBILITY_MONITOR",
+        footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
+        labels: {
         solubility: "SOLUBILITY",
         saturated: "SATURATED - Precipitate forming",
         unsaturated: "UNSATURATED - Can dissolve more",
@@ -3385,12 +3224,10 @@ export const translations: Record<string, any> = {
         temperature: "TEMPERATURE (°C)",
         solute_amount: "SOLUTE AMOUNT (g)",
         formulas: "FORMULAS"
-    },
-    mission: {
+        mission: {
         title: "MISSION: SOLUBILITY",
         description: "Explore solubility and temperature relationships. Observe crystallization."
-    },
-    stages: {
+        stages: {
         dissolve: "DISSOLVE",
         saturate: "SATURATE",
         crystallize: "CRYSTALLIZE",
@@ -3401,38 +3238,34 @@ export const translations: Record<string, any> = {
         saturate_hint: "Saturation: maximum amount dissolved",
         crystallize_hint: "Cooling causes excess solute to crystallize"
     }
-    },
-    gp1_03: {
-    back: "Back to Nexus",
-    title: "GP5.03 // PARTICLE COLLIDER",
-    difficulty: {
+        gp1_03: {
+        back: "Back to Nexus",
+        title: "GP5.03 // PARTICLE COLLIDER",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    objective_title: "Active Mission Objective",
-    target_title: "LHC ATLAS DETECTOR",
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "GP5.03_LHC_MONITOR",
-    footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
-    labels: {
+        objective_title: "Active Mission Objective",
+        target_title: "LHC ATLAS DETECTOR",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GP5.03_LHC_MONITOR",
+        footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
+        labels: {
         beam_energy: "BEAM ENERGY",
         relativistic_effects: "RELATIVISTIC EFFECTS",
         formulas: "FORMULAS",
         magnetic_field: "Enable Magnetic Field (Bending Magnets)",
         colliding: "COLLIDING...",
         initiate_collision: "INITIATE COLLISION"
-    },
-    mission: {
+        mission: {
         title: "MISSION: PARTICLE PHYSICS",
         description: "Explore particle collisions at CERN's Large Hadron Collider. Discover the Higgs boson."
-    },
-    stages: {
+        stages: {
         acceleration: "ACCELERATION",
         collision: "COLLISION",
         detection: "DETECTION",
@@ -3443,13 +3276,12 @@ export const translations: Record<string, any> = {
         collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
         detection_hint: "Magnetic field bends charged particle tracks"
     }
-    },
-    sp1_08: {
-    title: "SP1.08 // OPTICS BENCH",
-    back: "Back to Nexus",
-    footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
-    monitor_title: "SP1.08_OPTICS_MONITOR",
-    labels: {
+        sp1_08: {
+        title: "SP1.08 // OPTICS BENCH",
+        back: "Back to Nexus",
+        footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
+        monitor_title: "SP1.08_OPTICS_MONITOR",
+        labels: {
         show_prism: "Show Prism Dispersion",
         medium_1: "MEDIUM 1 (n₁)",
         medium_2: "MEDIUM 2 (n₂)",
@@ -3460,193 +3292,169 @@ export const translations: Record<string, any> = {
         total_internal_reflection: "TOTAL INTERNAL REFLECTION",
         na: "N/A",
         angle_value: "{value}°"
-    },
-    snell: {
+        snell: {
         title: "SNELL'S LAW",
         line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
         line_2: "θ_c = arcsin(n₂/n₁)",
         line_3: "v = c/n"
-    },
-    mission: {
+        mission: {
         title: "MISSION: RAY OPTICS",
         description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
     }
-    },
-    sb1_02: {
-    back: "Return to Nexus",
-    title: "SB1.02 // PHOTOSYNTHESIS LAB",
-    stages: {
+        sb1_02: {
+        back: "Return to Nexus",
+        title: "SB1.02 // PHOTOSYNTHESIS LAB",
+        stages: {
         equation: "REACTION EQUATION",
         limiting_factors: "LIMITING FACTORS",
         chloroplast: "CHLOROPLAST"
-    },
-    labels: {
+        labels: {
         light: "Light Intensity",
         co2: "CO2 Level",
         temp: "Temperature",
         glucose: "Glucose Production"
     }
-    },
-    sb2_02: {
-    back: "Return to Nexus",
-    title: "SB2.02 // HUMAN BODY SYSTEMS",
-    stages: {
+        sb2_02: {
+        back: "Return to Nexus",
+        title: "SB2.02 // HUMAN BODY SYSTEMS",
+        stages: {
         digestion: "DIGESTION",
         circulation: "CIRCULATION",
         respiration: "RESPIRATION"
-    },
-    labels: {
+        labels: {
         heart_rate: "Heart Rate",
         o2_sat: "O2 Saturation",
         enzyme: "Enzyme Activity"
     }
-    },
-    sb3_01: {
-    back: "Return to Nexus",
-    title: "SB3.01 // ECOSYSTEM DYNAMICS",
-    difficulty: {
+        sb3_01: {
+        back: "Return to Nexus",
+        title: "SB3.01 // ECOSYSTEM DYNAMICS",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
-    footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
-    objective_title: "Active Mission Objective",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
+        footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
+        objective_title: "Active Mission Objective",
+        stages: {
         food_chains: "FOOD CHAINS",
         energy_flow: "ENERGY FLOW",
         cycles: "BIOGEOCHEMICAL CYCLES"
-    },
-    labels: {
+        labels: {
         ecosystem_display: "Ecosystem Display",
         input_terminal: "Input Terminal",
         trophic_level: "Trophic Level",
         show_energy: "Show Energy Flow",
         ecology_score: "Ecology Score"
-    },
-    prompts: {
+        prompts: {
         food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
         energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
         cycle_process: "In the {cycle} cycle, what is produced by {process}?",
         hint_trophic: "Only 10% of energy transfers to the next trophic level",
         hint_10percent: "Use the 10% rule: multiply by 0.1",
         hint_cycle: "Think about the inputs and outputs of this process"
-    },
-    scenarios: {
+        scenarios: {
         rhine_river: "Rhine River Ecosystem: The Rhine supports diverse aquatic life from algae to predatory birds. Food chains begin with phytoplankton and progress through zooplankton, fish, and apex predators.",
         energy_pyramid: "Energy Flow in Basel Wetlands: Basel's wetland reserves demonstrate energy pyramids. Only 10% of energy transfers between trophic levels, limiting food chain length.",
         carbon_cycle: "Carbon Cycle at Rhine Delta: Photosynthesis and respiration drive carbon cycling in Rhine ecosystems. Plants absorb CO₂, animals release it through respiration.",
         nitrogen_cycle: "Nitrogen Fixation in Basel Soil: Bacteria in Basel's agricultural soils convert atmospheric N₂ into usable NH₃ for plants through nitrogen fixation.",
         water_cycle: "Rhine Water Cycle: Evaporation from the Rhine, condensation in clouds, and precipitation complete the water cycle that sustains Basel's ecosystems."
-    },
-    feedback: {
+        feedback: {
         correct: "Ecosystem balance maintained!",
         incorrect: "Ecosystem disrupted. Review the relationships."
     }
-    },
-    sp1_04: {
-    back: "Return to Nexus",
-    title: "SP1.04 // SIMPLE MACHINES",
-    difficulty: {
+        sp1_04: {
+        back: "Return to Nexus",
+        title: "SP1.04 // SIMPLE MACHINES",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SP1.04_MECHANICS_MONITOR",
-    footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
-    objective_title: "Active Mission Objective",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SP1.04_MECHANICS_MONITOR",
+        footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        stages: {
         levers: "LEVERS",
         pulleys: "PULLEYS",
         inclined_planes: "INCLINED PLANES"
-    },
-    labels: {
+        labels: {
         machine_display: "Machine Display",
         input_terminal: "Input Terminal",
         force_ratio: "Force Ratio (MA)",
         show_forces: "Show Forces",
         mechanics_score: "Mechanics Score"
-    },
-    prompts: {
+        prompts: {
         lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
         pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
         inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
         hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",
         hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
         hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"
-    },
-    scenarios: {
+        scenarios: {
         basel_construction: "Basel Construction Site: Workers at Basel's Roche Tower construction site use levers, pulleys, and ramps to move heavy materials efficiently. Simple machines reduce the force needed.",
         lever_crowbar: "Crowbar at Basel Renovation: Renovating Basel's historic buildings requires careful use of levers. A crowbar with long effort arm provides mechanical advantage to lift heavy stones.",
         pulley_crane: "Construction Crane Pulley: Basel's construction cranes use multiple pulley strands to lift steel beams. Each additional strand reduces the required input force.",
         ramp_loading: "Loading Ramp at Basel Port: Rhine port workers use inclined planes to load cargo onto barges. Longer ramps require less force but more distance.",
         compound_machine: "Compound Machines in Basel: Real construction equipment combines levers, pulleys, and inclined planes to achieve high mechanical advantage for heavy lifting tasks."
-    },
-    feedback: {
+        feedback: {
         correct: "Mechanical advantage calculated correctly!",
         incorrect: "Check your mechanical advantage calculation."
     }
-    },
-    sb1_03: {
-    back: "Back to Nexus",
-    title: "SB1.03 // CELL DIVISION",
-    check: "Verify",
-    next: "Next Phase",
-    correct: "Phase Clear",
-    incorrect: "Misaligned",
-    ready: "Ready",
-    monitor_title: "SB1.03_REPLICATION_HUB",
-    difficulty: {
+        sb1_03: {
+        back: "Back to Nexus",
+        title: "SB1.03 // CELL DIVISION",
+        check: "Verify",
+        next: "Next Phase",
+        correct: "Phase Clear",
+        incorrect: "Misaligned",
+        ready: "Ready",
+        monitor_title: "SB1.03_REPLICATION_HUB",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    stages: {
+        stages: {
         mitosis: "MITOSIS",
         meiosis_i: "MEIOSIS I",
         meiosis_ii: "MEIOSIS II"
     }
-    },
-    sc1_05: {
-    back: "Back to Nexus",
-    title: "SC1.05 // BONDING BRIDGE",
-    check: "Verify",
-    next: "Next",
-    correct: "Bond Verified",
-    incorrect: "Bond Failed",
-    ready: "Ready",
-    monitor_title: "SC1.05_BOND_LAB",
-    difficulty: {
+        sc1_05: {
+        back: "Back to Nexus",
+        title: "SC1.05 // BONDING BRIDGE",
+        check: "Verify",
+        next: "Next",
+        correct: "Bond Verified",
+        incorrect: "Bond Failed",
+        ready: "Ready",
+        monitor_title: "SC1.05_BOND_LAB",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    stages: {
+        stages: {
         ionic: "IONIC",
         covalent: "COVALENT",
         lewis: "LEWIS"
-    },
-    labels: {
+        labels: {
         na_cl: "Na + Cl -> NaCl",
         h2: "H + H -> H2",
         co2: "C + 2O -> CO2"
     }
-    },
-    sc3_02: {
+        sc3_02: {
         back: "Return to Nexus",
         title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
         check: "Verify",
@@ -3686,52 +3494,46 @@ export const translations: Record<string, any> = {
             correct: "Organic structure understood!",
             incorrect: "Review the molecular structure."
         }
-    },
-    sc3_03: {
-    back: "Return to Nexus",
-    title: "SC3.03 // ORGANIC REACTIONS",
-    difficulty: {
+        sc3_03: {
+        back: "Return to Nexus",
+        title: "SC3.03 // ORGANIC REACTIONS",
+        difficulty: {
         basic: "BASIC",
         core: "CORE",
         advanced: "ADVANCED",
         elite: "ELITE"
-    },
-    next: "Execute Next Sequence",
-    check: "Verify",
-    correct: "Verified",
-    incorrect: "Mismatch",
-    ready: "Ready",
-    monitor_title: "SC3.03_REACTION_MONITOR",
-    footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
-    objective_title: "Active Mission Objective",
-    stages: {
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC3.03_REACTION_MONITOR",
+        footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        stages: {
         combustion: "COMBUSTION",
         substitution: "SUBSTITUTION",
         addition: "ADDITION"
-    },
-    labels: {
+        labels: {
         reaction_display: "Reaction Display",
         input_terminal: "Input Terminal",
         animation_speed: "Animation Speed",
         show_mechanism: "Show Mechanism",
         chemistry_score: "Chemistry Score"
-    },
-    prompts: {
+        prompts: {
         combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
         substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
         addition: "When {alkene} reacts with {reagent}, what is the product?",
         hint_combustion: "Count carbon atoms in the reactant",
         hint_substitution: "One H atom is replaced by a halogen atom",
         hint_addition: "The double bond opens and adds the reagent"
-    },
-    scenarios: {
+        scenarios: {
         novartis_combustion: "Novartis Energy Lab: Combustion reactions power Basel's pharmaceutical facilities. Complete combustion of organic fuels produces CO₂ and H₂O with maximum energy release.",
         basel_chemical_plant: "Basel Chemical Synthesis: Substitution reactions at Basel's chemical plants use UV light to replace hydrogen atoms with halogens, creating valuable pharmaceutical intermediates.",
         polymer_production: "Polymer Production in Basel: Addition reactions convert alkenes into polymers at Basel's chemical facilities. Double bonds open to form long polymer chains.",
         free_radical_mechanism: "Free Radical Chemistry: UV light initiates free radical mechanisms in substitution reactions. Radicals propagate through chain reactions until termination.",
         reaction_control: "Reaction Control at Novartis: Controlling reaction conditions (light, temperature, catalysts) determines product selectivity and yield in organic synthesis."
-    },
-    feedback: {
+        feedback: {
         correct: "Reaction mechanism understood!",
         incorrect: "Review the reaction mechanism."
     }
@@ -5076,7 +4878,7 @@ CN: {
                 cyl_elite: "侧面积为 ${la}，半径为 ${r}。"
             }
         },
-    em1_01: {
+        em1_01: {
         back: "返回枢纽",
         title: "EM1.01 // THALES TOWER",
         difficulty: {
@@ -5114,7 +4916,6 @@ CN: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         }
-    },
         sp2_03: {
             back: "返回枢纽",
             title: "SP2.03 // MOTOR LAB",
@@ -5394,7 +5195,7 @@ CN: {
                 incorrect: "请复习流体力学原理。"
             }
         },
-    sp1_05: {
+        sp1_05: {
         back: "返回枢纽",
         title: "SP1.05 // 莱茵河渡轮",
         difficulty: {
@@ -5424,8 +5225,7 @@ CN: {
             title: "莱茵河横渡任务",
             description: "驾驶巴塞尔莱茵河渡轮。调整缆索角度和渡轮速度以补偿河水流速。"
         }
-    },
-    sp2_01: {
+        sp2_01: {
         back: "返回枢纽",
         title: "P2.01 // 热力学",
         difficulty: {
@@ -5468,8 +5268,7 @@ CN: {
             phase_change: "Q = mL",
             mixed: "Q_{\\text{总}} = Q_1 + Q_2"
         }
-    },
-    sp3_02: {
+        sp3_02: {
         back: "返回枢纽",
         title: "P3.02 // 波动光学",
         difficulty: {
@@ -5511,8 +5310,7 @@ CN: {
             diffraction: "a \\sin \\theta = m \\lambda",
             polarization: "I = I_0 \\cos^2 \\theta"
         }
-    },
-    sm1_02_new: {
+        sm1_02_new: {
         back: "返回 Nexus",
         title: "EM1.01 // 代数探险",
         difficulty: {
@@ -5548,8 +5346,7 @@ CN: {
             terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
             substitution: "BVB电车售票机：你正在测试售票机的逻辑。将区域值（x）代入价格公式，计算正确的法郎（CHF）票价。"
         }
-    },
-    sm2_07: {
+        sm2_07: {
         back: "返回枢纽",
         title: "SM2.07 // 坐标几何",
         difficulty: {
@@ -5588,8 +5385,7 @@ CN: {
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
         }
-    },
-    sm1_03_new: {
+        sm1_03_new: {
         back: "返回枢纽",
         title: "SM1.03 // 零度以下",
         difficulty: {
@@ -5679,8 +5475,7 @@ CN: {
             q_diagonal_distance: "从(2, 3)到(6, 5)的水平距离？",
             q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
         }
-    },
-    sm1_04_new: {
+        sm1_04_new: {
         back: "返回枢纽",
         title: "SM1.04 // 等式平衡",
         difficulty: {
@@ -5792,8 +5587,7 @@ CN: {
             app_boat_current: "莱茵河船：顺流 30 公里再逆流返回需要 5 小时。水流速度 2 公里/小时。求静水中船速。",
             app_profit_loss: "巴塞尔商店：以 20% 利润或 10% 亏损出售，差价 60 瑞郎。求成本价。"
         }
-    },
-    sm1_05_new: {
+        sm1_05_new: {
         back: "返回枢纽",
         title: "SM1.05 // 比例实验室",
         difficulty: {
@@ -5819,8 +5613,7 @@ CN: {
             solute: "溶质",
             solvent: "溶剂"
         }
-    },
-    sm2_08: {
+        sm2_08: {
         back: "返回枢纽",
         title: "SM2.08 // 概率基础",
         difficulty: {
@@ -5955,8 +5748,7 @@ CN: {
             percentage_change: "上个月：100瑞郎。这个月：120瑞郎。计算百分比变化。",
             correlation_direction: "随着学习时间增加，考试成绩提高。相关性是正（1）还是负（-1）？",
         }
-    },
-    gp5_01: {
+        gp5_01: {
         back: "返回枢纽",
         title: "P5.01 // 原子核核心",
         difficulty: {
@@ -5998,8 +5790,7 @@ CN: {
             gamma_decay_prompt_latex: "\\text{识别 γ 放射状态。}",
             fission_prompt_latex: "\\text{预测核裂变反应中缺失产物。}"
         }
-    },
-    gp5_02: {
+        gp5_02: {
         back: "返回枢纽",
         title: "P5.02 // 相对论实验室",
         difficulty: {
@@ -6037,8 +5828,7 @@ CN: {
             contraction_prompt_latex: "\\text{计算收缩长度 }L=L_0/\\gamma\\text{。}",
             dilation_prompt_latex: "\\text{计算膨胀时间 }T=T_0\\times\\gamma\\text{。}"
         }
-    },
-    sm3_04: {
+        sm3_04: {
         back: "返回枢纽",
         title: "SM3.04 // 对数刻度",
         difficulty: {
@@ -6105,8 +5895,7 @@ CN: {
             status_sim: "对数刻度模拟：运行中",
             status_mode: "模式"
         }
-    },
-    sc3_01: {
+        sc3_01: {
         back: "返回枢纽",
         title: "C3.01 // 分子建筑师",
         difficulty: {
@@ -6137,8 +5926,7 @@ CN: {
             aspirin: "阿司匹林",
             caffeine: "咖啡因"
         }
-    },
-    sp1_06: {
+        sp1_06: {
         back: "返回枢纽",
         title: "SP1.06 // 瑞士钟摆",
         difficulty: {
@@ -6170,8 +5958,7 @@ CN: {
             gravity: "重力",
             energy: "能量"
         }
-    },
-    sp2_02: {
+        sp2_02: {
         back: "返回枢纽",
         title: "SP2.02 // 电路沙盒 2.0",
         difficulty: {
@@ -6216,8 +6003,7 @@ CN: {
             measure_hint: "选择 2 个点以测量电压降",
             analyze_hint: "观察过阻尼、欠阻尼或临界阻尼响应"
         }
-    },
-    sp4_01: {
+        sp4_01: {
         back: "返回枢纽",
         title: "SP3.03 // 波动基础",
         difficulty: {
@@ -6264,8 +6050,7 @@ CN: {
             longitudinal_hint: "粒子平行于波传播方向振动",
             parameters_hint: "v = λf, T = 1/f, ω = 2πf"
         }
-    },
-    sb1_01: {
+        sb1_01: {
         back: "返回枢纽",
         title: "SB1.01 // 细胞工厂",
         difficulty: {
@@ -6337,8 +6122,7 @@ CN: {
                 details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
             }
         }
-    },
-    sb1_01_metabolic: {
+        sb1_01_metabolic: {
         back: "返回枢纽",
         title: "SB1.01 // 代谢引擎",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -6377,8 +6161,7 @@ CN: {
             hint_hypo: "外部盐分低！水分涌入细胞。",
             hint_oxy: "我们吸入它来氧化葡萄糖。"
         }
-    },
-    sb2_01: {
+        sb2_01: {
         back: "返回枢纽",
         title: "SB2.01 // 孟德尔花园",
         difficulty: {
@@ -6440,8 +6223,7 @@ CN: {
             hint_all_rr: "所有子代均为 Rr。",
             hint_count: "4个方格中的 {count} 个。"
         }
-    },
-    gb1_01: {
+        gb1_01: {
         back: "返回枢纽",
         title: "GB1.01 // 进化实验室",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -6477,8 +6259,7 @@ CN: {
         incorrect: "错误",
         ready: "就绪",
         footer_left: "GB1.01 // 进化实验室"
-    },
-    gb3_01: {
+        gb3_01: {
         back: "返回枢纽",
         title: "GB3.01 // DNA 熔炉",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -6531,8 +6312,7 @@ CN: {
             hint_at: "A 与 T 配对，产生 2 个氢键。",
             hint_gc: "G 与 C 配对，产生 3 个氢键。"
         }
-    },
-    sc1_01: {
+        sc1_01: {
         back: "返回枢纽",
         title: "C1.01 // 神秘实验室",
         difficulty: {
@@ -6563,8 +6343,7 @@ CN: {
             properties: "性质",
             reactions: "反应"
         }
-    },
-    sc1_03: {
+        sc1_03: {
         back: "返回枢纽",
         title: "SC1.03 // 原子熔炉",
         difficulty: {
@@ -6607,8 +6386,7 @@ CN: {
             elements_desc: "探索元素周期表前 20 号元素",
             isotopes_desc: "研究同位素：相同质子数，不同中子数"
         }
-    },
-    gsc2_01: {
+        gsc2_01: {
         back: "返回枢纽",
         title: "GC2.01 // 碳世界",
         difficulty: {
@@ -6680,8 +6458,7 @@ CN: {
             bonds: "原子根据化合价规则连接",
             delete: "使用 DELETE 删除选中的原子"
         }
-    },
-    gsc1_01: {
+        gsc1_01: {
         back: "返回枢纽",
         title: "GC1.01 // 氧化还原巨人",
         difficulty: {
@@ -6727,8 +6504,7 @@ CN: {
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "盐桥维持电中性"
         }
-    },
-    gc3_01: {
+        gc3_01: {
         back: "返回枢纽",
         title: "GC3.01 // 平衡大师",
         difficulty: {
@@ -6776,8 +6552,7 @@ CN: {
             temperature_hint: "温度升高增加粒子动能",
             pressure_hint: "压强增大使容器体积减小"
         }
-    },
-    gc3_02: {
+        gc3_02: {
         back: "返回枢纽",
         title: "GC3.02 // 晶体宫殿",
         difficulty: {
@@ -6825,8 +6600,7 @@ CN: {
             bcc_hint: "中等堆积（68%），如Fe、Cr等金属",
             fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
         }
-    },
-    gm4_01: {
+        gm4_01: {
         back: "返回枢纽",
         title: "GM4.01 // 复数地平线",
         difficulty: {
@@ -6875,8 +6649,7 @@ CN: {
             polar_meaning: "模长变为 r^n，角度变为 n·θ",
             parallelogram_rule: "平行四边形法则：从原点到 z₁，再从 z₁ 平移 z₂"
         }
-    },
-    em2_01: {
+        em2_01: {
         back: "返回枢纽",
         title: "EM2.01 // 矩阵几何",
         difficulty: {
@@ -6941,8 +6714,7 @@ CN: {
             composition: "巴塞尔大学机器人学：您在巴塞尔大学机器人实验室编程机械臂。每个关节的运动由一个变换矩阵表示。复合变换 AB 表示先执行关节A的运动，再执行关节B的运动。矩阵乘法的顺序决定了机械臂的最终位置。"
         },
         explanation_label: "解释"
-    },
-    sc2_02: {
+        sc2_02: {
         back: "返回枢纽",
         title: "SC2.02 // pH 哨兵",
         difficulty: {
@@ -6979,8 +6751,7 @@ CN: {
             eq_ph_guess: "强酸/强碱等当点 pH？ (<7=1, 7=2, >7=3)。",
             conc_calc: "20mL 未知酸被 10mL 0.2M NaOH 中和。求 Ca。"
         }
-    },
-    sc2_03: {
+        sc2_03: {
         back: "返回枢纽",
         title: "SC2.03 // 气体实验室",
         difficulty: {
@@ -7021,8 +6792,7 @@ CN: {
             charles_hint: "查理定律：升高温度 → 增大体积",
             combined_hint: "组合定律：三个变量相互作用"
         }
-    },
-    sc1_03_orbitals: {
+        sc1_03_orbitals: {
         back: "返回枢纽",
         title: "SC1.03 // 原子熔炉",
         difficulty: {
@@ -7063,8 +6833,7 @@ CN: {
             p_hint: "p 轨道：l=1，三个方向",
             d_hint: "d 轨道：l=2，五个方向"
         }
-    },
-    sc1_04: {
+        sc1_04: {
         back: "返回枢纽",
         title: "SC1.04 // 元素周期拼图",
         difficulty: {
@@ -7105,8 +6874,7 @@ CN: {
             periodic_hint: "元素按原子序数排列",
             groups_hint: "同族元素 = 相同价电子数"
         }
-    },
-    sc2_04: {
+        sc2_04: {
         back: "返回枢纽",
         title: "SC2.04 // 溶解度实验室",
         difficulty: {
@@ -7148,8 +6916,7 @@ CN: {
             saturate_hint: "饱和：溶解的最大量",
             crystallize_hint: "冷却导致过量溶质结晶"
         }
-    },
-    gp1_03: {
+        gp1_03: {
         back: "返回枢纽",
         title: "GP5.03 // 粒子对撞机",
         difficulty: {
@@ -7190,8 +6957,7 @@ CN: {
             collision_hint: "对撞能量：13 TeV = 13,000 GeV",
             detection_hint: "磁场使带电粒子径迹弯曲"
         }
-    },
-    ggp5_02: {
+        ggp5_02: {
         title: "GP1.02 // 相对论实验室",
         back: "返回 Nexus",
         footer_left: "GP1.02_相对论实验室 // 节点: RHINE",
@@ -7222,8 +6988,7 @@ CN: {
             title: "任务：狭义相对论",
             description: "探索狭义相对论效应。观察相对论速度下的时间膨胀、长度收缩和多普勒效应。"
         }
-    },
-    sp1_08: {
+        sp1_08: {
         title: "SP1.08 // 光学工作台",
         back: "返回 Nexus",
         footer_left: "SP1.08_光学工作台 // 节点: BASEL",
@@ -7250,8 +7015,7 @@ CN: {
             title: "任务：几何光学",
             description: "掌握斯涅尔定律和几何光学。观察折射、全内反射和棱镜色散。"
         }
-    },
-    sp1_01: {
+        sp1_01: {
         back: "返回枢纽",
         title: "SP1.01 // 测量与单位",
         check: "验证",
@@ -7295,8 +7059,7 @@ CN: {
             correct: "测量精度确认。",
             incorrect: "检测到校准错误。"
         }
-    },
-    sp1_04: {
+        sp1_04: {
         back: "返回枢纽",
         title: "SP1.04 // 简单机械",
         difficulty: {
@@ -7344,8 +7107,7 @@ CN: {
             correct: "机械优势计算正确！",
             incorrect: "检查你的机械优势计算。"
         }
-    },
-    sb1_02: {
+        sb1_02: {
         back: "返回枢纽",
         title: "SB1.02 // 光合作用实验室",
         stages: {
@@ -7359,8 +7121,7 @@ CN: {
             temp: "温度",
             glucose: "葡萄糖产量"
         }
-    },
-    sb2_02: {
+        sb2_02: {
         back: "返回枢纽",
         title: "SB2.02 // 人体系统",
         stages: {
@@ -7373,8 +7134,7 @@ CN: {
             o2_sat: "血氧饱和度",
             enzyme: "酶活性"
         }
-    },
-    sb3_01: {
+        sb3_01: {
         back: "返回枢纽",
         title: "SB3.01 // 生态系统动力学",
         difficulty: {
@@ -7422,8 +7182,7 @@ CN: {
             correct: "生态系统平衡维持！",
             incorrect: "生态系统被破坏。请复习关系。"
         }
-    },
-    sc1_05: {
+        sc1_05: {
         back: "返回中心实验室",
         title: "SC1.05 // 化学键桥",
         check: "验证",
@@ -7448,8 +7207,7 @@ CN: {
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
         }
-    },
-    sc3_02: {
+        sc3_02: {
         back: "返回枢纽",
         title: "SC3.02 // 有机化学基础",
         stages: {
@@ -7462,8 +7220,7 @@ CN: {
             hydroxyl: "羟基",
             double_bond: "双键"
         }
-    },
-    sc3_03: {
+        sc3_03: {
         back: "返回枢纽",
         title: "SC3.03 // 有机化学反应",
         difficulty: {
@@ -8935,7 +8692,7 @@ DE: {
                     cyl_elite: "Die Mantelfläche beträgt ${la}, der Radius ist ${r}."
                 }
             },
-    em1_01: {
+        em1_01: {
         back: "Zurück zum Nexus",
         title: "EM1.01 // THALES TOWER",
         difficulty: {
@@ -8973,7 +8730,6 @@ DE: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         }
-    },
         sp2_03: {
                 back: "Zurück zum Nexus",
                 title: "SP2.03 // MOTOR LAB",
@@ -11353,9 +11109,9 @@ export function useLanguage() {
 }
 
 export interface Translations {
-    EN: typeof translations.EN;
-    DE: typeof translations.DE;
-    CN: typeof translations.CN;
+        EN: typeof translations.EN;
+        DE: typeof translations.DE;
+        CN: typeof translations.CN;
 }
 
 export function getTranslations(lang?: string) {
