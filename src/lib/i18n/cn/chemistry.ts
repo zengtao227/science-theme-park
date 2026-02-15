@@ -798,6 +798,53 @@ export const cnChemistry = {
             incorrect: "复习反应机理。"
         }
     },
+    sc3_05: {
+        back: "返回枢纽",
+        title: "SC3.05 // 分子熔炉",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "当前任务目标",
+        monitor_title: "轨道稳定性监视器",
+        footer_left: "SC3.05_化学键 // 节点：巴塞尔",
+        check: "验证",
+        next: "下一合成",
+        correct: "几何结构已优化",
+        incorrect: "化学键不匹配",
+        ready: "就绪",
+        stages: {
+            vsepr: "VSEPR 几何构型",
+            hybridization: "轨道杂化理论",
+            mo_theory: "分子轨道理论 (MO)"
+        },
+        labels: {
+            electron_density: "电子密度",
+            bond_angle: "键角",
+            hybrid_type: "杂化类型",
+            bond_order: "键级",
+            paramagnetism: "磁性属性",
+            lone_pairs: "孤电子对",
+            bonded_atoms: "成键原子"
+        },
+        prompts: {
+            vsepr_geometry: "确定 {molecule} 的几何构型，该分子具有 {lone} 对孤电子对和 {bonded} 个成键原子。",
+            hybridization_type: "在 {molecule} 中，中心原子的杂化轨道类型是什么？",
+            bond_order_calc: "使用分子轨道理论计算 {ion} 的键级。",
+            paramagnetic: "根据分子轨道理论，{molecule} 是顺磁性还是反磁性？",
+            hint_vsepr: "计算中心原子周围的总电子畴数。",
+            hint_hybrid: "sp 对应 2 个畴，sp2 对应 3 个，sp3 对应 4 个。",
+            hint_mo: "键级 = (成键电子数 - 反键电子数) / 2。",
+            hint_paramagnetism: "存在未成对电子会导致顺磁性。"
+        },
+        scenarios: {
+            basel_catalysis: "巴塞尔大学 - 催化中心：研究人员研究催化剂的分子几何结构如何影响反应速率和选择性。",
+            syngenta_agrochemicals: "巴塞尔先正达 (Syngenta)：科学家通过优化农药分子的三维几何结构，以实现与受体的最大程度结合。",
+            quantum_chem_lab: "瑞士量子化学实验室：利用超级计算机计算新材料设计的分子轨道能量。",
+            pharmaceutical_design: "巴塞尔高级药物设计：理解杂化状态对于预测药物先导化合物的反应性至关重要。"
+        },
+        feedback: {
+            correct: "分子几何构型与成键验证通过！",
+            incorrect: "结构不稳定。请重新计算轨道相互作用。"
+        }
+    },
     sc3_04: {
         back: "返回枢纽",
         title: "SC3.04 // 官能团地平线",

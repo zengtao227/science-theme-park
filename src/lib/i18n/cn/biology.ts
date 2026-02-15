@@ -145,6 +145,53 @@ export const cnBiology = {
             hint_gc: "G 与 C 配对，产生 3 个氢键。"
         }
     },
+    gb3_02: {
+        back: "返回枢纽",
+        title: "GB3.02 // 免疫学实验室",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "当前任务目标",
+        monitor_title: "免疫反应监视器",
+        footer_left: "GB3.02_免疫学 // 节点：巴塞尔",
+        check: "验证",
+        next: "下一挑战",
+        correct: "抗原已被中和",
+        incorrect: "病原体逃逸",
+        ready: "就绪",
+        stages: {
+            innate: "先天性免疫",
+            adaptive: "特异性免疫",
+            vaccines: "疫苗与免疫记忆"
+        },
+        labels: {
+            antigen_count: "抗原负荷",
+            antibody_titer: "抗体滴度",
+            b_cell_activity: "B 细胞活性",
+            t_cell_count: "T 细胞激活度",
+            pathogen_type: "病原体类型",
+            inflammation_level: "炎症水平",
+            macrophage_status: "巨噬细胞状态"
+        },
+        prompts: {
+            innate_defense: "{pathogen} 突破了皮肤屏障。哪些细胞提供了第一道快速反应点？",
+            antibody_matching: "已知抗原结构为 {antigen}，抗体的哪个区域确保了结合的特异性？",
+            memory_response: "在二次免疫反应中，延迟期为 {lag} 天，而初次反应为 {primary_lag} 天。计算反应加速倍数。",
+            vaccine_logic: "mRNA 疫苗如何在不使用活病原体的情况下，促使免疫系统识别病毒？",
+            hint_innate: "思考巨噬细胞和中性粒细胞等吞噬细胞。",
+            hint_adaptive: "B 细胞产生抗体；T 细胞杀死受感染细胞。",
+            hint_constant: "抗体的高变区（可变区）是关键。",
+            hint_memory: "记忆细胞允许几乎瞬时的二次免疫反应。"
+        },
+        scenarios: {
+            roche_immunology: "罗氏 (Roche) 免疫学部门：巴塞尔罗氏的科学家开发单克隆抗体来精准打击癌细胞，利用了特异性免疫系统的精准度。",
+            basel_hospital_infectious: "巴塞尔大学医院 - 传染病科：医生分析患者免疫系统对季节性流感和新兴病原体的反应机制。",
+            vaccine_research: "瑞士疫苗研究所：研究疫苗的新型交付机制，有助于在全球范围内增强人群免疫力。",
+            autoimmune_center: "巴塞尔自身免疫研究中心：理解免疫系统何时错误地攻击宿主组织，是治疗多发性硬化症等疾病的关键。"
+        },
+        feedback: {
+            correct: "免疫防御成功！记忆细胞已存档。",
+            incorrect: "免疫反应不足。病原体正在扩散。"
+        }
+    },
     sb1_01: {
         back: "返回枢纽",
         title: "SB1.01 // 细胞工厂",

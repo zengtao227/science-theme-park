@@ -795,7 +795,54 @@ export const enChemistry = {
         },
         feedback: {
             correct: "Reaction mechanism understood!",
-            incorrect: "Review the reaction mechanism."
+            hint_structure: "Light reactions happen in thylakoid membranes; Calvin cycle in stroma."
+        }
+    },
+    sc3_05: {
+        back: "Back to Nexus",
+        title: "SC3.05 // MOLECULAR FORGE",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        monitor_title: "Orbital Stability Monitor",
+        footer_left: "SC3.05_BONDING // NODE: BASEL",
+        check: "Verify",
+        next: "Next Synthesis",
+        correct: "Geometry Optimized",
+        incorrect: "Bond Mismatch",
+        ready: "Ready",
+        stages: {
+            vsepr: "VSEPR GEOMETRY",
+            hybridization: "ORBITAL HYBRIDIZATION",
+            mo_theory: "MOLECULAR ORBITALS"
+        },
+        labels: {
+            electron_density: "Electron Density",
+            bond_angle: "Bond Angle",
+            hybrid_type: "Hybridization Type",
+            bond_order: "Bond Order",
+            paramagnetism: "Magnetic Property",
+            lone_pairs: "Lone Pairs",
+            bonded_atoms: "Bonded Atoms"
+        },
+        prompts: {
+            vsepr_geometry: "Determine the geometry for {molecule} with {lone} lone pairs and {bonded} atoms.",
+            hybridization_type: "What is the hybridization of the central atom in {molecule}?",
+            bond_order_calc: "Calculate the bond order for {ion} using MO theory.",
+            paramagnetic: "Is {molecule} paramagnetic or diamagnetic according to MO theory?",
+            hint_vsepr: "Count the total number of electron domains around the central atom.",
+            hint_hybrid: "sp matches 2 domains, sp2 matches 3, sp3 matches 4.",
+            hint_mo: "Bond Order = (Bonding - Antibonding) / 2.",
+            hint_paramagnetism: "Unpaired electrons result in paramagnetism."
+        },
+        scenarios: {
+            basel_catalysis: "University of Basel - Catalysis Center: Researchers study how catalyst molecular geometry influences reaction rates and selectivity.",
+            syngenta_agrochemicals: "Syngenta Basel: Scientists engineer pesticide molecules by optimizing their 3D geometry for maximum receptor binding.",
+            quantum_chem_lab: "Swiss Quantum Chemistry Lab: Using supercomputers to calculate molecular orbital energies for new material design.",
+            pharmaceutical_design: "Advanced Drug Design Basel: Understanding hybridization state is crucial for predicting the reactivity of drug lead compounds."
+        },
+        feedback: {
+            correct: "Molecular geometry and bonding verified!",
+            incorrect: "Geometry unstable. Recalculate orbital interactions."
         }
     },
     sc3_04: {

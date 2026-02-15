@@ -145,6 +145,53 @@ export const enBiology = {
             hint_gc: "G pairs with C via 3 bonds."
         }
     },
+    gb3_02: {
+        back: "Back to Nexus",
+        title: "GB3.02 // IMMUNOLOGY LAB",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        monitor_title: "Immune Response Monitor",
+        footer_left: "GB3.02_IMMUNOLOGY // NODE: BASEL",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Antigen Neutralized",
+        incorrect: "Pathogen Escape",
+        ready: "Ready",
+        stages: {
+            innate: "INNATE IMMUNITY",
+            adaptive: "ADAPTIVE IMMUNITY",
+            vaccines: "VACCINES & MEMORY"
+        },
+        labels: {
+            antigen_count: "Antigen Load",
+            antibody_titer: "Antibody Titer",
+            b_cell_activity: "B-Cell Activity",
+            t_cell_count: "T-Cell Activation",
+            pathogen_type: "Pathogen Type",
+            inflammation_level: "Inflammation",
+            macrophage_status: "Macrophage Status"
+        },
+        prompts: {
+            innate_defense: "A {pathogen} breaches the skin. Which cells provide the first rapid response?",
+            antibody_matching: "Given an antigen with structure {antigen}, which antibody region ensures specificity?",
+            memory_response: "In the secondary response, the lag period is {lag} days compared to {primary_lag} days in primary. Calculate the response acceleration.",
+            vaccine_logic: "How do mRNA vaccines prompt the immune system to recognize a virus without using a live pathogen?",
+            hint_innate: "Think of phagocytes like macrophages and neutrophils.",
+            hint_adaptive: "B-cells produce antibodies; T-cells kill infected cells.",
+            hint_constant: "The variable region of the antibody is the key.",
+            hint_memory: "Memory cells allow for a near-instantaneous response."
+        },
+        scenarios: {
+            roche_immunology: "Roche Immunology Division: Scientists at Roche Basel develop monoclonal antibodies to target cancer cells, utilizing the precision of the adaptive immune system.",
+            basel_hospital_infectious: "University Hospital Basel - Infectious Diseases: Doctors analyze how patients' immune systems respond to seasonal influenza and emerging pathogens.",
+            vaccine_research: "Swiss Vaccine Institute: Researching new delivery mechanisms for vaccines helps broaden immunity across global populations.",
+            autoimmune_center: "Basel Autoimmune Research Center: Understanding when the immune system mistakenly attacks host tissues is key to treating diseases like Multiple Sclerosis."
+        },
+        feedback: {
+            correct: "Immune defense successful! Memory cells archived.",
+            incorrect: "Immune response insufficient. Pathogen spreading."
+        }
+    },
     sb1_01: {
         back: "Back to Nexus",
         title: "SB1.01 // CELL FACTORY",

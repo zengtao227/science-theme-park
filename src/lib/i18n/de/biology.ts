@@ -145,6 +145,53 @@ export const deBiology = {
             hint_gc: "G paart mit C über 3 Brücken."
         }
     },
+    gb3_02: {
+        back: "Zurück zum Nexus",
+        title: "GB3.02 // IMMUNOLOGIE-LABOR",
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        objective_title: "Aktuelles Missionsziel",
+        monitor_title: "Monitor für Immunantwort",
+        footer_left: "GB3.02_IMMUNOLOGIE // KNOTEN: BASEL",
+        check: "Überprüfen",
+        next: "Nächste Herausforderung",
+        correct: "Antigen neutralisiert",
+        incorrect: "Erreger entkommen",
+        ready: "Bereit",
+        stages: {
+            innate: "ANGEBORENE IMMUNITÄT",
+            adaptive: "ADAPTIVE IMMUNITÄT",
+            vaccines: "IMPFSTOFFE & GEDÄCHTNIS"
+        },
+        labels: {
+            antigen_count: "Antigenlast",
+            antibody_titer: "Antikörpertiter",
+            b_cell_activity: "B-Zell-Aktivität",
+            t_cell_count: "T-Zell-Aktivierung",
+            pathogen_type: "Erregertyp",
+            inflammation_level: "Entzündung",
+            macrophage_status: "Makrophagen-Status"
+        },
+        prompts: {
+            innate_defense: "Ein {pathogen} durchbricht die Hautbarriere. Welche Zellen liefern die erste schnelle Antwort?",
+            antibody_matching: "Gegeben ist ein Antigen mit der Struktur {antigen}. Welche Antikörperregion gewährleistet die Spezifität?",
+            memory_response: "Bei der Sekundärantwort beträgt die Latenzzeit {lag} Tage im Vergleich zu {primary_lag} Tagen bei der Primärantwort. Berechnen Sie die Beschleunigung.",
+            vaccine_logic: "Wie regen mRNA-Impfstoffe das Immunsystem an, ein Virus zu erkennen, ohne einen lebenden Erreger zu verwenden?",
+            hint_innate: "Denken Sie an Phagozyten wie Makrophagen und Neutrophile.",
+            hint_adaptive: "B-Zellen produzieren Antikörper; T-Zellen töten infizierte Zellen.",
+            hint_constant: "Die variable Region des Antikörpers ist der Schlüssel.",
+            hint_memory: "Gedächtniszellen ermöglichen eine nahezu sofortige Zweitantwort."
+        },
+        scenarios: {
+            roche_immunology: "Roche Immunologie-Abteilung: Wissenschaftler bei Roche Basel entwickeln monoklonale Antikörper, um Krebszellen gezielt zu bekämpfen.",
+            basel_hospital_infectious: "Universitätsspital Basel - Infektiologie: Ärzte analysieren, wie das Immunsystem von Patienten auf Influenza und neue Erreger reagiert.",
+            vaccine_research: "Schweizer Impfinstitut: Die Erforschung neuer Verabreichungsmechanismen für Impfstoffe hilft, die Immunität weltweit zu stärken.",
+            autoimmune_center: "Basler Forschungszentrum für Autoimmunität: Das Verständnis, wann das Immunsystem fälschlicherweise körpereigenes Gewebe angreift, ist der Schlüssel zur Behandlung von Krankheiten wie Multipler Sklerose."
+        },
+        feedback: {
+            correct: "Immunabwehr erfolgreich! Gedächtniszellen archiviert.",
+            incorrect: "Immunantwort unzureichend. Erreger verbreitet sich."
+        }
+    },
     sb1_01: {
         back: "Zurück zum Nexus",
         title: "SB1.01 // ZELLFABRIK",

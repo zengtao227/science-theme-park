@@ -783,7 +783,55 @@ export const deChemistry = {
         },
         feedback: {
             correct: "Reaktionsmechanismus verstanden!",
-            incorrect: "Überprüfe den Reaktionsmechanismus."
+            incorrect: "Überprüfe den Reaktionsmechanismus.",
+            hint_structure: "Lichtreaktionen finden in den Thylakoidmembranen statt; der Calvin-Zyklus im Stroma."
+        }
+    },
+    sc3_05: {
+        back: "Zurück zum Nexus",
+        title: "SC3.05 // MOLEKULARE SCHMIEDE",
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        objective_title: "Aktuelles Missionsziel",
+        monitor_title: "Orbital-Stabilitätsmonitor",
+        footer_left: "SC3.05_BINDUNG // KNOTEN: BASEL",
+        check: "Überprüfen",
+        next: "Nächste Synthese",
+        correct: "Geometrie optimiert",
+        incorrect: "Bindungskonflikt",
+        ready: "Bereit",
+        stages: {
+            vsepr: "VSEPR-GEOMETRIE",
+            hybridization: "ORBITAL-HYBRIDISIERUNG",
+            mo_theory: "MOLEKÜLORBITALTHEORIE (MO)"
+        },
+        labels: {
+            electron_density: "Elektronendichte",
+            bond_angle: "Bindungswinkel",
+            hybrid_type: "Hybridisierungstyp",
+            bond_order: "Bindungsordnung",
+            paramagnetism: "Magnetische Eigenschaft",
+            lone_pairs: "Freie Elektronenpaare",
+            bonded_atoms: "Gebundene Atome"
+        },
+        prompts: {
+            vsepr_geometry: "Bestimmen Sie die Geometrie für {molecule} mit {lone} freien Elektronenpaaren und {bonded} gebundenen Atomen.",
+            hybridization_type: "Was ist die Hybridisierung des Zentralatoms in {molecule}?",
+            bond_order_calc: "Berechnen Sie die Bindungsordnung für {ion} mittels MO-Theorie.",
+            paramagnetic: "Ist {molecule} laut MO-Theorie paramagnetisch oder diamagnetisch?",
+            hint_vsepr: "Zählen Sie die Gesamtzahl der Elektronendomänen um das Zentralatom.",
+            hint_hybrid: "sp entspricht 2 Domänen, sp2 entspricht 3, sp3 entspricht 4.",
+            hint_mo: "Bindungsordnung = (Bindend - Antibindend) / 2.",
+            hint_paramagnetism: "Ungepaarte Elektronen führen zu Paramagnetismus."
+        },
+        scenarios: {
+            basel_catalysis: "Universität Basel - Katalysezentrum: Forscher untersuchen, wie die Molekülgeometrie von Katalysatoren Reaktionsraten und Selektivität beeinflusst.",
+            syngenta_agrochemicals: "Syngenta Basel: Wissenschaftler entwickeln Pestizidmoleküle, indem sie deren 3D-Geometrie für maximale Rezeptorbindung optimieren.",
+            quantum_chem_lab: "Schweizer Labor für Quantenchemie: Einsatz von Supercomputern zur Berechnung von Molekülorbitalenergien für das Design neuer Materialien.",
+            pharmaceutical_design: "Advanced Drug Design Basel: Das Verständnis des Hybridisierungszustands ist entscheidend für die Vorhersage der Reaktivität von Wirkstoffvorstufen."
+        },
+        feedback: {
+            correct: "Molekülgeometrie und Bindung verifiziert!",
+            incorrect: "Geometrie instabil. Berechnen Sie die Orbitalwechselwirkungen neu."
         }
     },
     sc3_04: {
