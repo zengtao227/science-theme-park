@@ -290,6 +290,73 @@ export const deBiology = {
                           meiosis_ii: "MEIOSE II"
                       }
                   },
+  sb2_01_new: {
+                  back: "Zurück zum Nexus",
+                  title: "SB2.01 // GEWEBE & ORGANE",
+                  difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                  objective_title: "Aktuelles Missionsziel",
+                  monitor_title: "Gewebeorganisations-Monitor",
+                  footer_left: "SB2.01_GEWEBE_ORGANE // KNOTEN: BASEL",
+                  check: "Prüfen",
+                  next: "Nächste Ebene",
+                  correct: "Richtig",
+                  incorrect: "Falsch",
+                  stages: {
+                      tissues: "GEWEBETYPEN",
+                      organs: "ORGANZUSAMMENSETZUNG",
+                      systems: "ORGANSYSTEME"
+                  },
+                  labels: {
+                      tissue_type: "Gewebetyp",
+                      function: "Funktion",
+                      location: "Ort",
+                      organ: "Organ",
+                      system: "System"
+                  },
+                  prompts: {
+                      tissue_type: "Identifiziere die Hauptfunktion von Epithelgewebe:",
+                      organ_composition: "Wie viele Gewebetypen bilden das Herz?",
+                      system_hierarchy: "Vervollständige die Hierarchie: Zelle → Gewebe → Organ → ?"
+                  },
+                  hints: {
+                      epithelial: "Epithelgewebe bedeckt Körperoberflächen",
+                      organ_tissues: "Organe bestehen aus mehreren Gewebetypen",
+                      hierarchy: "Die nächste Ebene nach Organen ist..."
+                  }
+              },
+  sb2_02_new: {
+                  back: "Zurück zum Nexus",
+                  title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
+                  difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                  objective_title: "Aktuelles Missionsziel",
+                  monitor_title: "Körpersysteme-Monitor",
+                  footer_left: "SB2.02_KÖRPERSYSTEME // KNOTEN: BASEL",
+                  check: "Prüfen",
+                  next: "Nächstes System",
+                  correct: "Richtig",
+                  incorrect: "Falsch",
+                  stages: {
+                      digestive: "VERDAUUNGSSYSTEM",
+                      circulatory: "KREISLAUFSYSTEM",
+                      respiratory: "ATMUNGSSYSTEM"
+                  },
+                  labels: {
+                      system: "System",
+                      organs: "Organe",
+                      function: "Funktion",
+                      pathway: "Weg"
+                  },
+                  prompts: {
+                      digestive_path: "Ordne den Verdauungsweg: Mund → ? → Magen → ?",
+                      circulatory_function: "Was ist die Hauptfunktion des Herzens?",
+                      respiratory_exchange: "Wo findet der Gasaustausch in der Lunge statt?"
+                  },
+                  hints: {
+                      digestive: "Nahrung wandert durch die Speiseröhre zum Magen",
+                      circulatory: "Das Herz pumpt Blut durch den ganzen Körper",
+                      respiratory: "Gasaustausch findet in den Alveolen statt"
+                  }
+              },
   sb2_01: {
                   back: "Zurück zum Nexus",
                   title: "SB2.01 // MENDELS GARTEN",

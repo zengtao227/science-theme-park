@@ -269,6 +269,73 @@ export const cnBiology = {
               incorrect: "请复习光合作用反应。"
           }
       },
+  sb2_01_new: {
+          back: "返回枢纽",
+          title: "SB2.01 // 组织与器官",
+          difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+          objective_title: "当前任务目标",
+          monitor_title: "组织结构监视器",
+          footer_left: "SB2.01_组织器官 // 节点：巴塞尔",
+          check: "验证",
+          next: "下一层级",
+          correct: "正确",
+          incorrect: "错误",
+          stages: {
+              tissues: "组织类型",
+              organs: "器官组成",
+              systems: "器官系统"
+          },
+          labels: {
+              tissue_type: "组织类型",
+              function: "功能",
+              location: "位置",
+              organ: "器官",
+              system: "系统"
+          },
+          prompts: {
+              tissue_type: "识别上皮组织的主要功能：",
+              organ_composition: "心脏由多少种组织类型组成？",
+              system_hierarchy: "完成层级结构：细胞 → 组织 → 器官 → ？"
+          },
+          hints: {
+              epithelial: "上皮组织覆盖身体表面",
+              organ_tissues: "器官由多种组织类型组成",
+              hierarchy: "器官之后的下一层级是..."
+          }
+      },
+  sb2_02_new: {
+          back: "返回枢纽",
+          title: "SB2.02 // 人体系统",
+          difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+          objective_title: "当前任务目标",
+          monitor_title: "人体系统监视器",
+          footer_left: "SB2.02_人体系统 // 节点：巴塞尔",
+          check: "验证",
+          next: "下一系统",
+          correct: "正确",
+          incorrect: "错误",
+          stages: {
+              digestive: "消化系统",
+              circulatory: "循环系统",
+              respiratory: "呼吸系统"
+          },
+          labels: {
+              system: "系统",
+              organs: "器官",
+              function: "功能",
+              pathway: "路径"
+          },
+          prompts: {
+              digestive_path: "排列消化路径：口 → ? → 胃 → ?",
+              circulatory_function: "心脏的主要功能是什么？",
+              respiratory_exchange: "肺部的气体交换发生在哪里？"
+          },
+          hints: {
+              digestive: "食物通过食道进入胃",
+              circulatory: "心脏将血液泵送到全身",
+              respiratory: "气体交换发生在肺泡中"
+          }
+      },
   sb2_01: {
           back: "返回枢纽",
           title: "SB2.01 // 孟德尔花园",

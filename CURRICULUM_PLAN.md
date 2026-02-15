@@ -5,18 +5,23 @@
 ### 📐 Mathematics (Basel Standard)
 | Code | Module Title | Status | Grade |
 |:---:|:---|:---:|:---:|
-| **SM1.01** | Geometry: Areas & Volumes | ✅ Production | Sek |
-| **SM1.02** | Algebra Quest: Variables & Terms | ✅ Production | Sek |
-| **SM1.03** | Below Zero: Integers & Coordinates | ✅ Production | Sek |
-| **SM1.04** | **Equation Balance** | ✅ Production | Linear Equations Intro | Sek |
-| **SM1.05** | **Ratio Lab** | ✅ Production | Proportionality & % | Sek |
-| **SM2.01** | Binomial Formulas | ✅ Production | Sek |
-| **SM2.02** | Pythagoras Theorem | ✅ Production | Sek |
-| **SM2.03** | Linear Functions | ✅ Production | Sek |
-| **SM2.08** | Probability & Statistics | ✅ Production | Sek |
-| **SM3.01** | Quadratics (p-q formula) | ✅ Production | Sek |
-| **SM3.02** | Trig Circle | ✅ Production | Sek |
-| **SM3.03** | Exponential Growth | ✅ Production | Sek |
+| **SM1.01** | Geometry: Areas & Volumes | ✅ Production | Sek 1 |
+| **SM1.02** | Algebra Quest: Variables & Terms | ✅ Production | Sek 1 |
+| **SM1.03** | Below Zero: Integers & Coordinates | ✅ Production | Sek 1 |
+| **SM1.04** | Equation Balance | ✅ Production | Sek 1 |
+| **SM1.05** | Ratio Lab | ✅ Production | Sek 1 |
+| **SM2.01** | Binomial Formulas | ✅ Production | Sek 2 |
+| **SM2.02** | Pythagoras Theorem | ✅ Production | Sek 2 |
+| **SM2.03** | Linear Functions | ✅ Production | Sek 2 |
+| **SM2.04** | Similarity & Scaling | ✅ Production | Sek 2 |
+| **SM2.05** | Powers & Roots | ✅ Production | Sek 2 |
+| **SM2.06** | Linear Systems | ✅ Production | Sek 2 |
+| **SM2.07** | Coordinate Geometry | ✅ Production | Sek 2 |
+| **SM2.08** | Probability & Statistics | ✅ Production | Sek 2 |
+| **SM3.01** | Quadratics (p-q formula) | ✅ Production | Sek 3 |
+| **SM3.02** | Trig Circle | ✅ Production | Sek 3 |
+| **SM3.03** | Exponential Growth | ✅ Production | Sek 3 |
+| **SM3.04** | Logarithms | ✅ Production | Sek 3 |
 | **GM1.01** | Calculus (Derivatives) | ✅ Production | Gym |
 | **GM2.01** | Vector Geometry 3D | ✅ Production | Gym |
 | **GM3.01** | Probability Vault | ✅ Production | Gym |
@@ -65,12 +70,15 @@
 | **SC1.02** | **Mole Master** | ✅ Production | Stoichiometry & Yield | Sek 1 |
 | **SC1.03** | **Atoms Forge** | ✅ Production | Atomic Orbitals (3D) | Sek 1 |
 | **SC1.04** | **Periodic Puzzle** | ✅ Production | Periodic Table & Config | Sek 1 |
+| **SC1.05** | **Bonding Lab** | ✅ Production | Ionic, Covalent & Lewis Structures | Sek 1 |
 | **SC2.01** | **Kinetics Crash** | ✅ Production | Arrhenius & Collision | Sek 2 |
 | **SC2.02** | **pH Sentinel** | ✅ Production | pH Curves & Titration | Sek 2 |
 | **SC2.03** | **Aero Lab** | ✅ Production | Ideal Gas Laws (PV=nRT) | Sek 2 |
 | **SC2.04** | **Solubility Lab** | ✅ Production | Solutions & Crystallization | Sek 2 |
 | **SC3.01** | (TBD) | ✅ Production | TBD | Sek 3 |
-| **SC3.02-04** | **Organic Chemistry Basics** | 📋 Planned | Hydrocarbons & Functional Groups | Sek 3 |
+| **SC3.02** | (TBD) | ✅ Production | TBD | Sek 3 |
+| **SC3.03** | (TBD) | ✅ Production | TBD | Sek 3 |
+| **SC3.04** | **Organic Chemistry Basics** | 📋 Planned | Hydrocarbons & Functional Groups | Sek 3 |
 | **GC1.01** | **Redox Titan** | ✅ Production | Nernst & Galvanic Cells | Gym 1 |
 | **GC2.01** | **Carbon Kingdom** | ✅ Production | Organic Chemistry & 3D Isomers | Gym 2 |
 | **GC3.01** | **Equilibrium Master** | ✅ Production | Le Chatelier's Principle | Gym 3 |
@@ -83,11 +91,12 @@
 |:---:|:---|:---:|:---|:---:|
 | **SB1.01** | **Cell Factory** | ✅ Production | Cell Structure & Organelles | Sek 1 |
 | **SB1.01-M**| **Metabolic Engine** | ✅ Production | Cellular Respiration & Osmosis | Sek 1 |
-| **SB1.02** | **Photosynthesis Lab** | 📋 Planned | Photosynthesis & Plant Physiology | Sek 1 |
+| **SB1.02** | **Photosynthesis Lab** | ✅ Production | Photosynthesis & Plant Physiology | Sek 1 |
+| **SB1.03** | **Cell Division Lab** | ✅ Production | Mitosis & Meiosis | Sek 1 |
 | **SB2.01** | **Mendel's Garden** | ✅ Production | Genetics & Punnett Squares | Sek 2 |
 | **SB2.02** | **Human Body Systems** | 📋 Planned | Digestive, Circulatory, Respiratory | Sek 2 |
-| **SB3.01** | **Ecosystem Dynamics** | 📋 Planned | Food Chains & Energy Flow | Sek 3 |
-| **GB1.01** | **Evolution Lab** | 📋 Planned | Natural Selection & Speciation | Gym 1 |
+| **SB3.01** | **Ecosystem Dynamics** | ✅ Production | Food Chains & Energy Flow | Sek 3 |
+| **GB1.01** | **Evolution Lab** | ✅ Production | Natural Selection & Speciation | Gym 1 |
 | **GB2.01** | **Neurobiology** | 📋 Planned | Neurons & Action Potentials | Gym 2 |
 | **GB3.01** | **DNA Forge** | ✅ Production | Molecular Biology & Replication | Gym 3 |
 | **GB3.02** | **Immunology** | 📋 Planned | Immune System & Antibodies | Gym 3 |
@@ -137,3 +146,29 @@ This project follows a strict three-phase cycle for all new modules to ensure sy
 
 ---
 *Generated by Antigravity - 2026-02-14*
+
+
+---
+
+## 📋 2026 Curriculum Expansion Plan
+
+**重要更新**: 基于Basel课程对照审查，我们识别出了25个需要新增的模块以及多个需要重组的现有模块。
+
+详细的扩展开发计划请参阅: **[CURRICULUM_PLAN_UPDATE_2026.md](./CURRICULUM_PLAN_UPDATE_2026.md)**
+
+### 关键发现摘要:
+- ✅ **已良好覆盖**: 代数、函数、电学、化学计量、细胞生物学
+- 🔴 **严重缺失**: 热力学模块(有设计但未实现)、人体系统、生态学
+- 🟡 **需要补充**: 相似形、统计分析、简单机械、声学、化学键、神经生物学、免疫学
+
+### 新增模块统计:
+- **数学**: 3个新模块 (相似形、数据分析、3D几何)
+- **物理**: 8个新模块 (温度与热量、气体定律、热力学系列、简单机械、声学、磁场)
+- **化学**: 3个新模块 (化学键、官能团、电化学应用)
+- **生物**: 6个新模块 (组织与器官、人体系统、生态系统、神经生物学、免疫学)
+
+**总计新增**: 25个模块 | **开发周期**: 12周 | **目标完成**: 2026-05
+
+---
+
+*Last Updated: 2026-02-15 by Kiro*

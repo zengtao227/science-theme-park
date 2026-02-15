@@ -290,6 +290,73 @@ export const enBiology = {
           meiosis_ii: "MEIOSIS II"
       }
       },
+  sb2_01_new: {
+      back: "Back to Nexus",
+      title: "SB2.01 // TISSUES & ORGANS",
+      difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+      objective_title: "Active Mission Objective",
+      monitor_title: "Tissue Organization Monitor",
+      footer_left: "SB2.01_TISSUES_ORGANS // NODE: BASEL",
+      check: "Verify",
+      next: "Next Level",
+      correct: "Correct",
+      incorrect: "Incorrect",
+      stages: {
+          tissues: "TISSUE TYPES",
+          organs: "ORGAN COMPOSITION",
+          systems: "ORGAN SYSTEMS"
+      },
+      labels: {
+          tissue_type: "Tissue Type",
+          function: "Function",
+          location: "Location",
+          organ: "Organ",
+          system: "System"
+      },
+      prompts: {
+          tissue_type: "Identify the primary function of epithelial tissue:",
+          organ_composition: "How many tissue types compose the heart?",
+          system_hierarchy: "Complete the hierarchy: Cell → Tissue → Organ → ?"
+      },
+      hints: {
+          epithelial: "Epithelial tissue covers body surfaces",
+          organ_tissues: "Organs are made of multiple tissue types",
+          hierarchy: "The next level after organs is..."
+      }
+  },
+  sb2_02_new: {
+      back: "Back to Nexus",
+      title: "SB2.02 // HUMAN BODY SYSTEMS",
+      difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+      objective_title: "Active Mission Objective",
+      monitor_title: "Body Systems Monitor",
+      footer_left: "SB2.02_BODY_SYSTEMS // NODE: BASEL",
+      check: "Verify",
+      next: "Next System",
+      correct: "Correct",
+      incorrect: "Incorrect",
+      stages: {
+          digestive: "DIGESTIVE SYSTEM",
+          circulatory: "CIRCULATORY SYSTEM",
+          respiratory: "RESPIRATORY SYSTEM"
+      },
+      labels: {
+          system: "System",
+          organs: "Organs",
+          function: "Function",
+          pathway: "Pathway"
+      },
+      prompts: {
+          digestive_path: "Order the digestive pathway: Mouth → ? → Stomach → ?",
+          circulatory_function: "What is the primary function of the heart?",
+          respiratory_exchange: "Where does gas exchange occur in the lungs?"
+      },
+      hints: {
+          digestive: "Food travels through the esophagus to the stomach",
+          circulatory: "The heart pumps blood throughout the body",
+          respiratory: "Gas exchange occurs in the alveoli"
+      }
+  },
   sb2_01: {
       back: "Back to Nexus",
       title: "SB2.01 // MENDEL'S GARDEN",
