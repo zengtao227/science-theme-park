@@ -3736,7 +3736,6 @@ export const translations: Record<string, any> = {
         incorrect: "Review the reaction mechanism."
     }
     },
-    },
     CN: {
         protocol: {
             system_name: "系统协议 v2.1",
@@ -7521,7 +7520,7 @@ export const translations: Record<string, any> = {
             hold_instruction: "Autorisierung erforderlich",
             hold_button: "[ NEXUS BETRETEN ]",
             secure_connection: "SICHERE VERBINDUNG HERGESTELLT",
-            },
+        },
         common: {
             history_title: "Experimentverlauf",
             history_toggle: "Verlauf",
