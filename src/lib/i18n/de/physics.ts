@@ -464,6 +464,19 @@ export const dePhysics = {
                       formulas: "RLC-FORMELN",
                       reset: "ZURÜCKSETZEN"
                   },
+                  canvas_labels: {
+                      voltage_time: "V(t)",
+                      zero_volts: "0V"
+                  },
+                  multimeter_messages: {
+                      select_points: "Wählen Sie 2 Punkte",
+                      invalid_selection: "Ungültige Auswahl"
+                  },
+                  damping_types: {
+                      overdamped: "Überdämpft",
+                      underdamped: "Unterdämpft",
+                      critically_damped: "Kritisch gedämpft"
+                  },
                   mission: {
                       title: "MISSION: RLC-TRANSIENTEN-ANALYSE",
                       description: "Bauen und analysieren Sie RLC-Schaltkreise. Verwenden Sie das Multimeter zur Messung von Spannung und Strom. Beobachten Sie transiente Antworten auf dem Oszilloskop."

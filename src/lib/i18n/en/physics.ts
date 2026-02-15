@@ -558,6 +558,19 @@ export const enPhysics = {
           formulas: "RLC FORMULAS",
           reset: "RESET"
       },
+      canvas_labels: {
+          voltage_time: "V(t)",
+          zero_volts: "0V"
+      },
+      multimeter_messages: {
+          select_points: "Select 2 points",
+          invalid_selection: "Invalid selection"
+      },
+      damping_types: {
+          overdamped: "Overdamped",
+          underdamped: "Underdamped",
+          critically_damped: "Critically Damped"
+      },
       mission: {
           title: "MISSION: RLC TRANSIENT ANALYSIS",
           description: "Build and analyze RLC circuits. Use the multimeter to measure voltage and current. Observe transient responses on the oscilloscope."

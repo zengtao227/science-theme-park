@@ -517,6 +517,19 @@ export const cnPhysics = {
               formulas: "RLC 公式",
               reset: "重置"
           },
+          canvas_labels: {
+              voltage_time: "V(t)",
+              zero_volts: "0V"
+          },
+          multimeter_messages: {
+              select_points: "选择 2 个点",
+              invalid_selection: "无效选择"
+          },
+          damping_types: {
+              overdamped: "过阻尼",
+              underdamped: "欠阻尼",
+              critically_damped: "临界阻尼"
+          },
           mission: {
               title: "任务：RLC 瞬态分析",
               description: "构建和分析 RLC 电路。使用万用表测量电压和电流。在示波器上观察瞬态响应。"

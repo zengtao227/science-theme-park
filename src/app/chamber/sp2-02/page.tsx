@@ -167,9 +167,9 @@ export default function SP2_02_CircuitSandbox() {
         // Draw labels
         ctx.fillStyle = "#00e5ff";
         ctx.font = "12px monospace";
-        ctx.fillText(`V(t)`, 10, 20);
+        ctx.fillText(t("sp2_02.canvas_labels.voltage_time"), 10, 20);
         ctx.fillText(`${voltage.toFixed(1)}V`, 10, canvas.height - 10);
-        ctx.fillText(`0V`, 10, canvas.height / 2);
+        ctx.fillText(t("sp2_02.canvas_labels.zero_volts"), 10, canvas.height / 2);
     }, [oscilloscopeData, voltage]);
 
     const handleComponentClick = (id: string) => {
@@ -188,12 +188,12 @@ export default function SP2_02_CircuitSandbox() {
 
     // Calculate multimeter reading
     const getMultimeterReading = () => {
-        if (selectedPoints.length !== 2) return "Select 2 points";
+        if (selectedPoints.length !== 2) return t("sp2_02.multimeter_messages.select_points");
 
         const comp1 = components.find((c) => c.id === selectedPoints[0]);
         const comp2 = components.find((c) => c.id === selectedPoints[1]);
 
-        if (!comp1 || !comp2) return "Invalid selection";
+        if (!comp1 || !comp2) return t("sp2_02.multimeter_messages.invalid_selection");
 
         if (multimeterMode === "voltage") {
             // Simplified voltage calculation
@@ -212,7 +212,11 @@ export default function SP2_02_CircuitSandbox() {
     const omega0 = 1 / Math.sqrt(inductance * capacitance);
     const alpha = resistance / (2 * inductance);
     const discriminant = alpha * alpha - omega0 * omega0;
-    const dampingType = discriminant > 0 ? "Overdamped" : discriminant < 0 ? "Underdamped" : "Critically Damped";
+    const dampingType = discriminant > 0 
+        ? t("sp2_02.damping_types.overdamped")
+        : discriminant < 0 
+        ? t("sp2_02.damping_types.underdamped")
+        : t("sp2_02.damping_types.critically_damped");
     const Q = omega0 * inductance / resistance;
 
     return (
