@@ -21,8 +21,7 @@ type SB301T = typeof translations.EN.sb3_01;
 
 export default function SB301Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    // 临时强制使用EN来调试
-    const locale = translations.EN;
+    const locale = getTranslations(currentLanguage);
     const t = locale.sb3_01 as SB301T;
     const [selectedLevel, setSelectedLevel] = useState<number>(1);
     const [showEnergyFlow, setShowEnergyFlow] = useState(true);

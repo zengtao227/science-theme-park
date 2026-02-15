@@ -1649,7 +1649,7 @@ export const translations: Record<string, any> = {
             cube_elite: "The total surface area of the cubic space is ${sa}.",
             prism_elite: "The base is a square with perimeter ${p}, and the height is ${h}.",
             cyl_elite: "The lateral surface area is ${la}, and the radius is ${r}."
-        }
+        },
     },
     em1_01: {
         back: "Back to Nexus",
@@ -1690,7 +1690,7 @@ export const translations: Record<string, any> = {
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         }
     },
-    sp2_03: {
+        sp2_03: {
         back: "Back to Nexus",
         title: "SP2.03 // MOTOR LAB",
         difficulty: {
@@ -1738,7 +1738,7 @@ export const translations: Record<string, any> = {
             reverse_hint: "Swap N/S to reverse rotation"
         }
     },
-    sc1_02: {
+        sc1_02: {
         back: "Back to Nexus",
         title: "C1.02 // MOLE MASTER",
         difficulty: {
@@ -1773,7 +1773,7 @@ export const translations: Record<string, any> = {
             description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
         }
     },
-    sc2_01: {
+        sc2_01: {
         back: "Back to Nexus",
         title: "C2.01 // CHEMICAL KINETICS",
         difficulty: {
@@ -1881,7 +1881,7 @@ export const translations: Record<string, any> = {
             hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
         }
     },
-    sp1_03: {
+        sp1_03: {
         back: "Back to Nexus",
         title: "P1.03 // ENERGY & POWER",
         difficulty: {
@@ -1921,7 +1921,7 @@ export const translations: Record<string, any> = {
             description: "Convert Rhine water flow into clean electricity. Track energy transfer and turbine power."
         }
     },
-    sp1_07: {
+        sp1_07: {
         back: "Return to Nexus",
         title: "SP1.07 // PRESSURE & BUOYANCY",
         difficulty: {
@@ -1969,7 +1969,7 @@ export const translations: Record<string, any> = {
             incorrect: "Review the fluid mechanics principles."
         }
     },
-    sp1_05: {
+        sp1_05: {
         back: "Back to Nexus",
         title: "SP1.05 // THE RHINE FERRY",
         difficulty: {
@@ -2000,7 +2000,7 @@ export const translations: Record<string, any> = {
             description: "Navigate the Basel Rhine ferry. Adjust cable angle and ferry speed to compensate for river current."
         }
     },
-    sp2_01: {
+        sp2_01: {
         back: "Back to Nexus",
         title: "SP2.01 // HEAT & TEMPERATURE",
         difficulty: {
@@ -2050,7 +2050,7 @@ export const translations: Record<string, any> = {
             incorrect: "Review the heat transfer principles."
         }
     },
-    sp3_02: {
+        sp3_02: {
         back: "Back to Nexus",
         title: "P3.02 // WAVE OPTICS",
         difficulty: {
@@ -2093,7 +2093,7 @@ export const translations: Record<string, any> = {
             polarization: "I = I_0 \\cos^2 \\theta"
         }
     },
-    sm1_02_new: {
+        sm1_02_new: {
         back: "Back to Nexus",
         title: "EM1.01 // ALGEBRA QUEST",
         difficulty: {
@@ -2130,7 +2130,7 @@ export const translations: Record<string, any> = {
             substitution: "BVB Tram Ticket Machine: You are testing the ticket machine logic. Insert a zone value (x) into the price formula to calculate the correct fare in CHF."
         }
     },
-    sm2_07: {
+        sm2_07: {
         back: "Back to Nexus",
         title: "SM2.07 // COORDINATE GEOMETRY",
         difficulty: {
@@ -2170,7 +2170,7 @@ export const translations: Record<string, any> = {
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
         }
     },
-    sm1_03_new: {
+        sm1_03_new: {
         back: "Back to Nexus",
         title: "SM1.03 // BELOW ZERO",
         difficulty: {
@@ -2261,7 +2261,7 @@ export const translations: Record<string, any> = {
             q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
         }
     },
-    sm1_04_new: {
+        sm1_04_new: {
         back: "Back to Nexus",
         title: "SM1.04 // EQUATION BALANCE",
         difficulty: {
@@ -2374,7 +2374,7 @@ export const translations: Record<string, any> = {
             app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
         }
     },
-    sm1_05_new: {
+        sm1_05_new: {
         back: "Back to Nexus",
         title: "SM1.05 // RATIO LAB",
         difficulty: {
@@ -2401,7 +2401,7 @@ export const translations: Record<string, any> = {
             solvent: "Solvent"
         }
     },
-    sm2_08: {
+        sm2_08: {
         back: "Back to Nexus",
         title: "SM2.08 // PROBABILITY BASICS",
         difficulty: {
@@ -2537,7 +2537,7 @@ export const translations: Record<string, any> = {
             correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?",
         }
     },
-    gp5_01: {
+        gp5_01: {
         back: "Back to Nexus",
         title: "P5.01 // THE ATOMIC CORE",
         difficulty: {
@@ -2580,7 +2580,7 @@ export const translations: Record<string, any> = {
             fission_prompt_latex: "\\text{Predict the missing product in this fission reaction.}"
         }
     },
-    sm3_04: {
+        sm3_04: {
         back: "Back to Nexus",
         title: "SM3.04 // LOGARITHMIC SCALES",
         difficulty: {
@@ -2648,7 +2648,7 @@ export const translations: Record<string, any> = {
             status_mode: "MODE"
         }
     },
-    sc3_01: {
+        sc3_01: {
         back: "Back to Nexus",
         title: "C3.01 // MOLECULAR ARCHITECT",
         difficulty: {
@@ -2680,7 +2680,7 @@ export const translations: Record<string, any> = {
             caffeine: "CAFFEINE"
         }
     },
-    sp1_06: {
+        sp1_06: {
         back: "Back to Nexus",
         title: "SP1.06 // THE SWISS PENDULUM",
         difficulty: {
@@ -2713,7 +2713,7 @@ export const translations: Record<string, any> = {
             energy: "ENERGY"
         }
     },
-    sp2_02: {
+        sp2_02: {
         back: "Back to Nexus",
         title: "SP2.02 // CIRCUIT SANDBOX 2.0",
         difficulty: {
@@ -2759,7 +2759,7 @@ export const translations: Record<string, any> = {
             analyze_hint: "Watch for overdamped, underdamped, or critically damped responses"
         }
     },
-    sp4_01: {
+        sp4_01: {
         back: "Back to Nexus",
         title: "SP3.03 // WAVE BASICS",
         difficulty: {
@@ -2807,7 +2807,7 @@ export const translations: Record<string, any> = {
             parameters_hint: "v = λf, T = 1/f, ω = 2πf"
         }
     },
-    sb1_01: {
+        sb1_01: {
         back: "Back to Nexus",
         title: "SB1.01 // CELL FACTORY",
         difficulty: {
@@ -2880,7 +2880,7 @@ export const translations: Record<string, any> = {
             }
         }
     },
-    sb1_01_metabolic: {
+        sb1_01_metabolic: {
         back: "Back to Nexus",
         title: "SB1.01 // METABOLIC ENGINE",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -2920,7 +2920,7 @@ export const translations: Record<string, any> = {
             hint_oxy: "We breathe this in to burn glucose."
         }
     },
-    sb2_01: {
+        sb2_01: {
         back: "Back to Nexus",
         title: "SB2.01 // MENDEL'S GARDEN",
         difficulty: {
@@ -2983,7 +2983,7 @@ export const translations: Record<string, any> = {
             hint_count: "{count} out of 4 squares."
         }
     },
-    gb1_01: {
+        gb1_01: {
         back: "Back to Nexus",
         title: "GB1.01 // EVOLUTION LAB",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -3020,7 +3020,7 @@ export const translations: Record<string, any> = {
         ready: "Ready",
         footer_left: "GB1.01 // EVOLUTION LAB"
     },
-    gb3_01: {
+        gb3_01: {
         back: "Back to Nexus",
         title: "GB3.01 // DNA FORGE",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -3074,7 +3074,7 @@ export const translations: Record<string, any> = {
             hint_gc: "G pairs with C via 3 bonds."
         }
     },
-    sc1_01: {
+        sc1_01: {
         back: "Back to Nexus",
         title: "C1.01 // MYSTERY LAB",
         difficulty: {
@@ -3106,7 +3106,7 @@ export const translations: Record<string, any> = {
             reactions: "REACTIONS"
         }
     },
-    sc1_03: {
+        sc1_03: {
         back: "Back to Nexus",
         title: "SC1.03 // ATOMS FORGE",
         difficulty: {
@@ -3150,7 +3150,7 @@ export const translations: Record<string, any> = {
             isotopes_desc: "Study isotopes: same protons, different neutrons"
         }
     },
-    sc2_02: {
+        sc2_02: {
         back: "Back to Nexus",
         title: "SC2.02 // pH SENTINEL",
         difficulty: {
@@ -3188,7 +3188,7 @@ export const translations: Record<string, any> = {
             conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
         }
     },
-    sc2_03: {
+        sc2_03: {
         back: "Back to Nexus",
         title: "SC2.03 // AERO LAB",
         difficulty: {
@@ -3230,7 +3230,7 @@ export const translations: Record<string, any> = {
             combined_hint: "Combined: All three variables interact"
         }
     },
-    sc1_03_orbitals: {
+        sc1_03_orbitals: {
         back: "Back to Nexus",
         title: "SC1.03 // ATOMS FORGE",
         difficulty: {
@@ -3272,7 +3272,7 @@ export const translations: Record<string, any> = {
             d_hint: "d orbitals: l=2, five orientations"
         }
     },
-    sc1_04: {
+        sc1_04: {
         back: "Back to Nexus",
         title: "SC1.04 // PERIODIC PUZZLE",
         difficulty: {
@@ -3314,7 +3314,7 @@ export const translations: Record<string, any> = {
             groups_hint: "Same group = same valence electrons"
         }
     },
-    sc2_04: {
+        sc2_04: {
         back: "Back to Nexus",
         title: "SC2.04 // SOLUBILITY LAB",
         difficulty: {
@@ -3357,7 +3357,7 @@ export const translations: Record<string, any> = {
             crystallize_hint: "Cooling causes excess solute to crystallize"
         }
     },
-    gp1_03: {
+        gp1_03: {
         back: "Back to Nexus",
         title: "GP5.03 // PARTICLE COLLIDER",
         difficulty: {
@@ -3399,7 +3399,7 @@ export const translations: Record<string, any> = {
             detection_hint: "Magnetic field bends charged particle tracks"
         }
     },
-    gp5_02: {
+        gp5_02: {
         title: "GP1.02 // RELATIVITY LAB",
         back: "Back to Nexus",
         footer_left: "GP1.02_RELATIVITY_LAB // NODE: RHINE",
@@ -3431,7 +3431,7 @@ export const translations: Record<string, any> = {
             description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
         }
     },
-    sp1_08: {
+        sp1_08: {
         title: "SP1.08 // OPTICS BENCH",
         back: "Back to Nexus",
         footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
@@ -3459,7 +3459,7 @@ export const translations: Record<string, any> = {
             description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
         }
     },
-    sb1_02: {
+        sb1_02: {
         back: "Return to Nexus",
         title: "SB1.02 // PHOTOSYNTHESIS LAB",
         stages: {
@@ -3474,7 +3474,7 @@ export const translations: Record<string, any> = {
             glucose: "Glucose Production"
         }
     },
-    sb2_02: {
+        sb2_02: {
         back: "Return to Nexus",
         title: "SB2.02 // HUMAN BODY SYSTEMS",
         stages: {
@@ -3488,7 +3488,7 @@ export const translations: Record<string, any> = {
             enzyme: "Enzyme Activity"
         }
     },
-    sb3_01: {
+        sb3_01: {
         back: "Return to Nexus",
         title: "SB3.01 // ECOSYSTEM DYNAMICS",
         difficulty: {
@@ -3537,7 +3537,7 @@ export const translations: Record<string, any> = {
             incorrect: "Ecosystem disrupted. Review the relationships."
         }
     },
-    sp1_04: {
+        sp1_04: {
         back: "Return to Nexus",
         title: "SP1.04 // SIMPLE MACHINES",
         difficulty: {
@@ -3586,7 +3586,7 @@ export const translations: Record<string, any> = {
             incorrect: "Check your mechanical advantage calculation."
         }
     },
-    sb1_03: {
+        sb1_03: {
         back: "Back to Nexus",
         title: "SB1.03 // CELL DIVISION",
         check: "Verify",
@@ -3607,7 +3607,7 @@ export const translations: Record<string, any> = {
             meiosis_ii: "MEIOSIS II"
         }
     },
-    sc1_05: {
+        sc1_05: {
         back: "Back to Nexus",
         title: "SC1.05 // BONDING BRIDGE",
         check: "Verify",
@@ -3633,7 +3633,7 @@ export const translations: Record<string, any> = {
             co2: "C + 2O -> CO2"
         }
     },
-    sc3_02: {
+        sc3_02: {
         back: "Return to Nexus",
         title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
         stages: {
@@ -3647,7 +3647,7 @@ export const translations: Record<string, any> = {
             double_bond: "Double Bond"
         }
     },
-    sc3_03: {
+        sc3_03: {
         back: "Return to Nexus",
         title: "SC3.03 // ORGANIC REACTIONS",
         difficulty: {
@@ -3695,6 +3695,7 @@ export const translations: Record<string, any> = {
             correct: "Reaction mechanism understood!",
             incorrect: "Review the reaction mechanism."
         }
+    },
     },
     CN: {
         protocol: {
@@ -11318,10 +11319,15 @@ export interface Translations {
     CN: typeof translations.CN;
 }
 
-export function getTranslations(lang: string) {
-    // SSR 安全: 确保 lang 有效，默认使用 EN
-    const safeLang = (lang && lang in translations) ? lang : "EN";
-    return translations[safeLang as keyof typeof translations];
+export function getTranslations(lang?: string) {
+    console.log('[DEBUG] translations.EN has em1_01?', 'em1_01' in translations.EN);
+    console.log('[DEBUG] translations has em1_01?', 'em1_01' in translations);
+    
+    if (!lang || !(lang in translations)) {
+        return translations.EN;
+    }
+    const validLang = lang as keyof typeof translations;
+    return translations[validLang];
 }
 
 

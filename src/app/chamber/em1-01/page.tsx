@@ -14,8 +14,7 @@ type ThalesQuest = Quest & { stage: Stage };
 
 export default function S102Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  // 临时强制使用EN来调试
-  const locale = translations.EN;
+  const locale = getTranslations(currentLanguage);
   const t = locale.em1_01;
   const [sunAngle, setSunAngle] = useState(35);
   const [towerShadow, setTowerShadow] = useState(18);
