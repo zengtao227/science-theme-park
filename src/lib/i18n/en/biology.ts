@@ -290,7 +290,7 @@ export const enBiology = {
           meiosis_ii: "MEIOSIS II"
       }
       },
-  sb2_01_new: {
+  sb2_01_tissues: {
       back: "Back to Nexus",
       title: "SB2.01 // TISSUES & ORGANS",
       difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -306,25 +306,13 @@ export const enBiology = {
           organs: "ORGAN COMPOSITION",
           systems: "ORGAN SYSTEMS"
       },
-      labels: {
-          tissue_type: "Tissue Type",
-          function: "Function",
-          location: "Location",
-          organ: "Organ",
-          system: "System"
-      },
-      prompts: {
-          tissue_type: "Identify the primary function of epithelial tissue:",
-          organ_composition: "How many tissue types compose the heart?",
-          system_hierarchy: "Complete the hierarchy: Cell → Tissue → Organ → ?"
-      },
-      hints: {
-          epithelial: "Epithelial tissue covers body surfaces",
-          organ_tissues: "Organs are made of multiple tissue types",
-          hierarchy: "The next level after organs is..."
+      scenarios: {
+          tissues: "Basel University Hospital Pathology Lab: You are a medical student at Basel University Hospital learning tissue identification under Dr. Müller's guidance. Using advanced microscopes, you examine tissue samples from different body locations. Each of the four main tissue types has a specific function: epithelial tissue covers and protects body surfaces (like skin and intestinal lining), connective tissue provides structural support (like bone and cartilage), muscle tissue enables movement through contraction (like heart muscle and skeletal muscles), and nervous tissue transmits electrical signals for communication (like brain cells and nerve fibers). Your task is to identify the primary function of each tissue type based on its microscopic structure and location in the body. This fundamental skill is essential for medical diagnosis, as abnormal tissue structure often indicates disease. Just like a building needs different materials for different purposes (concrete for foundation, glass for windows, wires for electricity), your body needs different tissue types for different jobs. Understanding tissue function is the first step in understanding how organs work.",
+          organs: "Novartis Pharmaceutical Research - Organ Modeling Division: You are working at Novartis Basel's biomedical research division, where scientists create detailed 3D models of human organs for drug testing and development. Each organ in the human body is composed of multiple tissue types working together in harmony. For example, the heart contains four tissue types: muscle tissue (cardiac muscle for pumping blood), epithelial tissue (endothelium lining blood vessels), connective tissue (providing structural framework), and nervous tissue (controlling heart rate and rhythm). Similarly, the stomach has epithelial tissue (secreting digestive enzymes), muscle tissue (churning food), connective tissue (structural support), and nervous tissue (coordinating digestion). Your task is to count how many different tissue types compose each organ. This information is crucial for understanding how pharmaceutical drugs affect different parts of an organ - a drug targeting muscle tissue might also affect epithelial or nervous tissue in the same organ. Accurate organ models help Novartis develop safer medications by predicting potential side effects before human clinical trials. This work directly contributes to the development of life-saving drugs used in Swiss hospitals.",
+          systems: "Basel Medical School - Human Body Organization: You are studying anatomy at Basel Medical School, learning how the human body is organized in a clear hierarchical structure. This biological hierarchy follows a logical progression from simple to complex: cells (the smallest living units, like a single muscle cell) → tissues (groups of similar cells working together, like muscle tissue) → organs (structures made of multiple tissue types, like the heart) → organ systems (groups of organs working together, like the circulatory system) → organism (the complete human body). For example, a single cardiac muscle cell joins with millions of other muscle cells to form cardiac muscle tissue. This muscle tissue combines with epithelial tissue (lining), connective tissue (framework), and nervous tissue (control) to form the heart organ. The heart then works together with blood vessels (arteries, veins, capillaries) to form the circulatory system, which transports oxygen and nutrients throughout the entire organism. Understanding this hierarchy is fundamental for medical diagnosis and treatment - a problem at the cellular level (like a genetic mutation) can cascade up through tissues, organs, and systems to affect the entire body. Your task is to identify the correct level in this biological organization and understand how many organs compose each major body system."
       }
   },
-  sb2_02_new: {
+  sb2_02_body_systems: {
       back: "Back to Nexus",
       title: "SB2.02 // HUMAN BODY SYSTEMS",
       difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -340,21 +328,10 @@ export const enBiology = {
           circulatory: "CIRCULATORY SYSTEM",
           respiratory: "RESPIRATORY SYSTEM"
       },
-      labels: {
-          system: "System",
-          organs: "Organs",
-          function: "Function",
-          pathway: "Pathway"
-      },
-      prompts: {
-          digestive_path: "Order the digestive pathway: Mouth → ? → Stomach → ?",
-          circulatory_function: "What is the primary function of the heart?",
-          respiratory_exchange: "Where does gas exchange occur in the lungs?"
-      },
-      hints: {
-          digestive: "Food travels through the esophagus to the stomach",
-          circulatory: "The heart pumps blood throughout the body",
-          respiratory: "Gas exchange occurs in the alveoli"
+      scenarios: {
+          digestive: "Basel University Hospital Gastroenterology Department: You are shadowing Dr. Weber, a gastroenterologist at Basel University Hospital, as she explains the digestive system to medical students. The digestive system is a complex assembly of organs working together to break down food into nutrients your body can absorb and use for energy, growth, and cell repair. The journey begins in the mouth, where mechanical digestion (chewing) and chemical digestion (saliva enzymes) start breaking down food. Food then travels down the esophagus through peristaltic waves (muscle contractions) into the stomach, where powerful gastric acid (pH 1.5-3.5) and pepsin enzymes further break down proteins. The partially digested food (chyme) moves into the small intestine (6-7 meters long), where most nutrient absorption occurs through millions of tiny finger-like projections called villi. The liver produces bile to emulsify fats, while the pancreas secretes digestive enzymes and bicarbonate to neutralize stomach acid. Finally, the large intestine absorbs water and forms solid waste. Understanding this system is crucial for diagnosing conditions like Crohn's disease, ulcers, and malabsorption disorders that affect thousands of Basel residents. Your task is to identify the correct organ in the digestive pathway and understand each organ's specific function in this remarkable biological assembly line.",
+          circulatory: "Basel Cardiology Center - Heart Function Analysis: You are working at the Basel Cardiology Center with Dr. Schneider, analyzing how the circulatory system delivers oxygen and nutrients to every cell in the human body while removing carbon dioxide and metabolic waste. The heart is a powerful muscular pump with four chambers: two atria (upper chambers that receive blood) and two ventricles (lower chambers that pump blood out). The right side pumps deoxygenated blood to the lungs for oxygenation, while the left side pumps oxygen-rich blood to the entire body through a network of blood vessels. Arteries carry blood away from the heart under high pressure (systolic pressure ~120 mmHg), with thick elastic walls to withstand this pressure. Veins return blood to the heart under low pressure, using one-way valves to prevent backflow. Capillaries are microscopic vessels where gas exchange occurs between blood and tissues. The average adult heart beats 60-100 times per minute, pumping about 5 liters of blood per minute at rest (cardiac output). This increases to 20-25 liters per minute during intense exercise. Understanding the circulatory system is essential for treating cardiovascular diseases, which are the leading cause of death in Switzerland. Your task is to identify the main components of the circulatory system and understand how blood flows through this vital transportation network.",
+          respiratory: "Basel Pulmonology Institute - Respiratory Function Lab: You are assisting Dr. Keller at the Basel Pulmonology Institute, where researchers study how the respiratory system enables gas exchange - bringing oxygen into the body and removing carbon dioxide. Air enters through the nose or mouth, where it is filtered, warmed, and humidified. It passes through the pharynx (throat) and larynx (voice box, containing vocal cords) into the trachea (windpipe), a rigid tube reinforced with C-shaped cartilage rings to prevent collapse. The trachea branches into two bronchi (one for each lung), which further divide into smaller bronchioles, creating a tree-like structure called the bronchial tree. At the end of the smallest bronchioles are clusters of tiny air sacs called alveoli (approximately 300 million in adult lungs), where gas exchange occurs. The alveolar walls are extremely thin (0.5 micrometers) and surrounded by capillaries, allowing oxygen to diffuse into the blood while carbon dioxide diffuses out. The diaphragm, a dome-shaped muscle below the lungs, contracts to expand the chest cavity during inhalation, creating negative pressure that draws air in. During exhalation, the diaphragm relaxes and the elastic lungs recoil, pushing air out. A healthy adult breathes 12-20 times per minute at rest, exchanging about 500 mL of air per breath (tidal volume). Understanding respiratory function is critical for treating conditions like asthma, COPD, and pneumonia. Your task is to identify the organs in the respiratory pathway and understand the mechanism of breathing and gas exchange."
       }
   },
   sb2_01: {

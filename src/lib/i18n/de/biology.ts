@@ -290,7 +290,7 @@ export const deBiology = {
                           meiosis_ii: "MEIOSE II"
                       }
                   },
-  sb2_01_new: {
+  sb2_01_tissues: {
                   back: "Zurück zum Nexus",
                   title: "SB2.01 // GEWEBE & ORGANE",
                   difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -306,25 +306,13 @@ export const deBiology = {
                       organs: "ORGANZUSAMMENSETZUNG",
                       systems: "ORGANSYSTEME"
                   },
-                  labels: {
-                      tissue_type: "Gewebetyp",
-                      function: "Funktion",
-                      location: "Ort",
-                      organ: "Organ",
-                      system: "System"
-                  },
-                  prompts: {
-                      tissue_type: "Identifiziere die Hauptfunktion von Epithelgewebe:",
-                      organ_composition: "Wie viele Gewebetypen bilden das Herz?",
-                      system_hierarchy: "Vervollständige die Hierarchie: Zelle → Gewebe → Organ → ?"
-                  },
-                  hints: {
-                      epithelial: "Epithelgewebe bedeckt Körperoberflächen",
-                      organ_tissues: "Organe bestehen aus mehreren Gewebetypen",
-                      hierarchy: "Die nächste Ebene nach Organen ist..."
+                  scenarios: {
+                      tissues: "Pathologielabor des Universitätsspitals Basel: Sie sind Medizinstudent am Universitätsspital Basel und lernen unter der Anleitung von Dr. Müller die Gewebeidentifikation. Mit hochmodernen Mikroskopen untersuchen Sie Gewebeproben aus verschiedenen Körperregionen. Jeder der vier Hauptgewebetypen hat eine spezifische Funktion: Epithelgewebe bedeckt und schützt Körperoberflächen (wie Haut und Darmschleimhaut), Bindegewebe bietet strukturelle Unterstützung (wie Knochen und Knorpel), Muskelgewebe ermöglicht Bewegung durch Kontraktion (wie Herzmuskel und Skelettmuskeln), und Nervengewebe überträgt elektrische Signale zur Kommunikation (wie Gehirnzellen und Nervenfasern). Ihre Aufgabe ist es, die Hauptfunktion jedes Gewebetyps anhand seiner mikroskopischen Struktur und seiner Lage im Körper zu identifizieren. Diese grundlegende Fähigkeit ist für die medizinische Diagnose unerlässlich, da abnorme Gewebestrukturen oft auf Krankheiten hinweisen. Genau wie ein Gebäude verschiedene Materialien für verschiedene Zwecke benötigt (Beton für das Fundament, Glas für Fenster, Drähte für Elektrizität), benötigt Ihr Körper verschiedene Gewebetypen für verschiedene Aufgaben.",
+                      organs: "Novartis Pharmaforschung - Organmodellierungsabteilung: Sie arbeiten in der biomedizinischen Forschungsabteilung von Novartis Basel, wo Wissenschaftler detaillierte 3D-Modelle menschlicher Organe für Arzneimitteltests und -entwicklung erstellen. Jedes Organ im menschlichen Körper besteht aus mehreren Gewebetypen, die harmonisch zusammenarbeiten. Zum Beispiel enthält das Herz vier Gewebetypen: Muskelgewebe (Herzmuskel zum Pumpen von Blut), Epithelgewebe (Endothel, das Blutgefäße auskleidet), Bindegewebe (strukturelles Gerüst) und Nervengewebe (Steuerung von Herzfrequenz und Rhythmus). Ebenso hat der Magen Epithelgewebe (Sekretion von Verdauungsenzymen), Muskelgewebe (Durchmischung der Nahrung), Bindegewebe (strukturelle Unterstützung) und Nervengewebe (Koordination der Verdauung). Ihre Aufgabe ist es, zu zählen, wie viele verschiedene Gewebetypen jedes Organ zusammensetzen. Diese Information ist entscheidend für das Verständnis, wie pharmazeutische Medikamente verschiedene Teile eines Organs beeinflussen. Genaue Organmodelle helfen Novartis, sicherere Medikamente zu entwickeln, indem potenzielle Nebenwirkungen vor klinischen Studien am Menschen vorhergesagt werden.",
+                      systems: "Medizinische Fakultät Basel - Organisation des menschlichen Körpers: Sie studieren Anatomie an der Medizinischen Fakultät Basel und lernen, wie der menschliche Körper in einer klaren hierarchischen Struktur organisiert ist. Diese biologische Hierarchie folgt einer logischen Progression von einfach zu komplex: Zellen (die kleinsten lebenden Einheiten, wie eine einzelne Muskelzelle) → Gewebe (Gruppen ähnlicher Zellen, die zusammenarbeiten, wie Muskelgewebe) → Organe (Strukturen aus mehreren Gewebetypen, wie das Herz) → Organsysteme (Gruppen von Organen, die zusammenarbeiten, wie das Kreislaufsystem) → Organismus (der vollständige menschliche Körper). Zum Beispiel verbindet sich eine einzelne Herzmuskelzelle mit Millionen anderer Muskelzellen, um Herzmuskelgewebe zu bilden. Dieses Muskelgewebe kombiniert sich mit Epithelgewebe (Auskleidung), Bindegewebe (Gerüst) und Nervengewebe (Steuerung), um das Herzorgan zu bilden. Das Herz arbeitet dann zusammen mit Blutgefäßen (Arterien, Venen, Kapillaren), um das Kreislaufsystem zu bilden, das Sauerstoff und Nährstoffe durch den gesamten Organismus transportiert. Das Verständnis dieser Hierarchie ist grundlegend für medizinische Diagnose und Behandlung. Ihre Aufgabe ist es, die richtige Ebene in dieser biologischen Organisation zu identifizieren."
                   }
               },
-  sb2_02_new: {
+  sb2_02_body_systems: {
                   back: "Zurück zum Nexus",
                   title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
                   difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -340,21 +328,10 @@ export const deBiology = {
                       circulatory: "KREISLAUFSYSTEM",
                       respiratory: "ATMUNGSSYSTEM"
                   },
-                  labels: {
-                      system: "System",
-                      organs: "Organe",
-                      function: "Funktion",
-                      pathway: "Weg"
-                  },
-                  prompts: {
-                      digestive_path: "Ordne den Verdauungsweg: Mund → ? → Magen → ?",
-                      circulatory_function: "Was ist die Hauptfunktion des Herzens?",
-                      respiratory_exchange: "Wo findet der Gasaustausch in der Lunge statt?"
-                  },
-                  hints: {
-                      digestive: "Nahrung wandert durch die Speiseröhre zum Magen",
-                      circulatory: "Das Herz pumpt Blut durch den ganzen Körper",
-                      respiratory: "Gasaustausch findet in den Alveolen statt"
+                  scenarios: {
+                      digestive: "Gastroenterologie-Abteilung des Universitätsspitals Basel: Sie begleiten Dr. Weber, eine Gastroenterologin am Universitätsspital Basel, während sie Medizinstudenten das Verdauungssystem erklärt. Das Verdauungssystem ist eine komplexe Anordnung von Organen, die zusammenarbeiten, um Nahrung in Nährstoffe zu zerlegen, die Ihr Körper für Energie, Wachstum und Zellreparatur aufnehmen und verwenden kann. Die Reise beginnt im Mund, wo mechanische Verdauung (Kauen) und chemische Verdauung (Speichelenzyme) beginnen, Nahrung abzubauen. Die Nahrung wandert dann durch peristaltische Wellen (Muskelkontraktionen) durch die Speiseröhre in den Magen, wo starke Magensäure (pH 1,5-3,5) und Pepsin-Enzyme Proteine weiter abbauen. Die teilweise verdaute Nahrung (Chymus) gelangt in den Dünndarm (6-7 Meter lang), wo die meiste Nährstoffaufnahme durch Millionen winziger fingerartiger Ausstülpungen namens Zotten erfolgt. Die Leber produziert Galle zur Emulgierung von Fetten, während die Bauchspeicheldrüse Verdauungsenzyme und Bikarbonat absondert, um Magensäure zu neutralisieren. Schließlich absorbiert der Dickdarm Wasser und bildet feste Abfälle. Das Verständnis dieses Systems ist entscheidend für die Diagnose von Erkrankungen wie Morbus Crohn, Geschwüren und Malabsorptionsstörungen, die Tausende von Basler Einwohnern betreffen. Ihre Aufgabe ist es, das richtige Organ im Verdauungsweg zu identifizieren und die spezifische Funktion jedes Organs in diesem bemerkenswerten biologischen Fließband zu verstehen.",
+                      circulatory: "Basel Kardiologie-Zentrum - Herzfunktionsanalyse: Sie arbeiten im Basel Kardiologie-Zentrum mit Dr. Schneider und analysieren, wie das Kreislaufsystem Sauerstoff und Nährstoffe zu jeder Zelle im menschlichen Körper liefert und gleichzeitig Kohlendioxid und Stoffwechselabfälle entfernt. Das Herz ist eine kraftvolle Muskelpumpe mit vier Kammern: zwei Vorhöfe (obere Kammern, die Blut empfangen) und zwei Ventrikel (untere Kammern, die Blut auspumpen). Die rechte Seite pumpt sauerstoffarmes Blut zur Sauerstoffanreicherung in die Lungen, während die linke Seite sauerstoffreiches Blut durch ein Netzwerk von Blutgefäßen in den gesamten Körper pumpt. Arterien transportieren Blut unter hohem Druck vom Herzen weg (systolischer Druck ~120 mmHg), mit dicken elastischen Wänden, um diesem Druck standzuhalten. Venen führen Blut unter niedrigem Druck zum Herzen zurück und verwenden Einwegventile, um Rückfluss zu verhindern. Kapillaren sind mikroskopische Gefäße, in denen der Gasaustausch zwischen Blut und Gewebe stattfindet. Das durchschnittliche erwachsene Herz schlägt 60-100 Mal pro Minute und pumpt in Ruhe etwa 5 Liter Blut pro Minute (Herzminutenvolumen). Dies erhöht sich während intensiver Bewegung auf 20-25 Liter pro Minute. Das Verständnis des Kreislaufsystems ist für die Behandlung von Herz-Kreislauf-Erkrankungen unerlässlich, die die häufigste Todesursache in der Schweiz sind. Ihre Aufgabe ist es, die Hauptkomponenten des Kreislaufsystems zu identifizieren und zu verstehen, wie Blut durch dieses lebenswichtige Transportnetzwerk fließt.",
+                      respiratory: "Basel Pneumologie-Institut - Atemfunktionslabor: Sie assistieren Dr. Keller am Basel Pneumologie-Institut, wo Forscher untersuchen, wie das Atmungssystem den Gasaustausch ermöglicht - Sauerstoff in den Körper bringen und Kohlendioxid entfernen. Luft tritt durch Nase oder Mund ein, wo sie gefiltert, erwärmt und befeuchtet wird. Sie passiert den Rachen (Pharynx) und Kehlkopf (Larynx, enthält Stimmbänder) in die Luftröhre (Trachea), ein starres Rohr, das mit C-förmigen Knorpelringen verstärkt ist, um ein Kollabieren zu verhindern. Die Luftröhre verzweigt sich in zwei Bronchien (einen für jede Lunge), die sich weiter in kleinere Bronchiolen teilen und eine baumartige Struktur namens Bronchialbaum bilden. Am Ende der kleinsten Bronchiolen befinden sich Cluster winziger Luftsäcke namens Alveolen (etwa 300 Millionen in erwachsenen Lungen), wo der Gasaustausch stattfindet. Die Alveolarwände sind extrem dünn (0,5 Mikrometer) und von Kapillaren umgeben, wodurch Sauerstoff ins Blut diffundieren kann, während Kohlendioxid herausdiffundiert. Das Zwerchfell, ein kuppelförmiger Muskel unter den Lungen, zieht sich zusammen, um den Brustraum beim Einatmen zu erweitern und einen Unterdruck zu erzeugen, der Luft hineinzieht. Beim Ausatmen entspannt sich das Zwerchfell und die elastischen Lungen ziehen sich zusammen und drücken Luft heraus. Ein gesunder Erwachsener atmet in Ruhe 12-20 Mal pro Minute und tauscht etwa 500 ml Luft pro Atemzug aus (Atemzugvolumen). Das Verständnis der Atemfunktion ist entscheidend für die Behandlung von Erkrankungen wie Asthma, COPD und Lungenentzündung. Ihre Aufgabe ist es, die Organe im Atemweg zu identifizieren und den Mechanismus der Atmung und des Gasaustauschs zu verstehen."
                   }
               },
   sb2_01: {

@@ -6,29 +6,29 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import GeneticsLab from "@/components/chamber/sb2-01/GeneticsLab";
+import GeneticsLab from "@/components/chamber/sb2-03/GeneticsLab";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
 type Genotype = "RR" | "Rr" | "rr";
 
-interface SB201Quest extends Quest {
+interface SB203Quest extends Quest {
     stage: Stage;
     p1: Genotype;
     p2: Genotype;
 }
 
-type SB201T = typeof translations.EN.sb2_01;
+type SB203T = typeof translations.EN.sb2_01;
 
-export default function SB201Page() {
+export default function SB203Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb2_01 || translations.EN.sb2_01) as SB201T;
+    const t = (translations[currentLanguage]?.sb2_01 || translations.EN.sb2_01) as SB203T;
     const [p1, setP1] = useState<Genotype>("Rr");
     const [p2, setP2] = useState<Genotype>("Rr");
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB201Quest[] => {
-        const quests: SB201Quest[] = [];
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB203Quest[] => {
+        const quests: SB203Quest[] = [];
 
         if (stage === "MONOHYBRID") {
             quests.push(
@@ -86,14 +86,14 @@ export default function SB201Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SB201Quest, Stage>({
+    } = useQuestManager<SB203Quest, Stage>({
         buildPool,
         initialStage: "MONOHYBRID",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("sb2-01", stage);
+            completeStage("sb2-03", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -115,7 +115,7 @@ export default function SB201Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SB2.01"
+            moduleCode="SB2.03"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
