@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { translations, getTranslations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -14,8 +14,9 @@ type ThalesQuest = Quest & { stage: Stage };
 
 export default function S102Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
-  const t = locale.em1_01 || translations.EN.em1_01;
+  // 临时强制使用EN来调试
+  const locale = translations.EN;
+  const t = locale.em1_01;
   const [sunAngle, setSunAngle] = useState(35);
   const [towerShadow, setTowerShadow] = useState(18);
 

@@ -11319,9 +11319,8 @@ export interface Translations {
 }
 
 export function getTranslations(lang: string) {
-    // SSR 安全: 确保 lang 有效，默认使用 EN
-    const safeLang = (lang && lang in translations) ? lang : "EN";
-    return translations[safeLang as keyof typeof translations];
+    const validLang = lang as keyof typeof translations;
+    return translations[validLang] || translations.EN;
 }
 
 

@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { translations, getTranslations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EcosystemCanvas from "@/components/chamber/sb3-01/EcosystemCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -21,7 +21,9 @@ type SB301T = typeof translations.EN.sb3_01;
 
 export default function SB301Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb3_01 || translations.EN.sb3_01) as SB301T;
+    // 临时强制使用EN来调试
+    const locale = translations.EN;
+    const t = locale.sb3_01 as SB301T;
     const [selectedLevel, setSelectedLevel] = useState<number>(1);
     const [showEnergyFlow, setShowEnergyFlow] = useState(true);
 
