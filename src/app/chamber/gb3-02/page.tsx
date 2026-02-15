@@ -14,6 +14,7 @@ type Stage = "INNATE" | "ADAPTIVE" | "VACCINES";
 
 interface GB302Quest extends Quest {
     stage: Stage;
+    scenario?: string;
     data?: any;
 }
 
@@ -26,19 +27,23 @@ export default function GB302Immunology() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB302Quest[] => {
         const quests: GB302Quest[] = [];
+        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "INNATE") {
             const cells = [
-                { id: "macro", name: "Macrophages", role: "ingesting pathogens" },
-                { id: "neutro", name: "Neutrophils", role: "first responders to sites of infection" },
-                { id: "nk", name: "Natural Killer Cells", role: "destroying virus-infected cells" }
+                { id: "macro", name: "Macrophages", role: "ingesting pathogens", scenario: "basel_hospital_infectious" },
+                { id: "neutro", name: "Neutrophils", role: "first responders", scenario: "basel_hospital_infectious" },
+                { id: "nk", name: "Natural Killer Cells", role: "virus defense", scenario: "autoimmune_center" }
             ];
 
-            cells.forEach((c, idx) => {
+            const filteredCells = isAdvanced ? cells : cells.slice(0, 2);
+
+            filteredCells.forEach((c, idx) => {
                 quests.push({
-                    id: `IN-${idx}`,
+                    id: `IN-${difficulty}-${idx}`,
                     difficulty,
                     stage,
+                    scenario: c.scenario,
                     promptLatex: `\\text{${t.prompts.innate_defense.replace("{pathogen}", "Staphylococcus")}}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${c.name}}`,
@@ -51,50 +56,57 @@ export default function GB302Immunology() {
 
         if (stage === "ADAPTIVE") {
             quests.push({
-                id: `AD-MATCH`,
+                id: `AD-MATCH-${difficulty}`,
                 difficulty,
                 stage,
+                scenario: "roche_immunology",
                 promptLatex: `\\text{${t.prompts.antibody_matching.replace("{antigen}", "A-type spike")}}`,
                 expressionLatex: "",
-                targetLatex: "\\text{Variable region}",
-                slots: [{ id: "ans", labelLatex: "\\text{Region}", placeholder: "...", expected: "Variable region" }],
-                correctLatex: "\\text{Variable region}",
+                targetLatex: isAdvanced ? "\\text{Hypervariable region}" : "\\text{Variable region}",
+                slots: [{ id: "ans", labelLatex: "\\text{Region}", placeholder: "...", expected: isAdvanced ? "Hypervariable region" : "Variable region" }],
+                correctLatex: isAdvanced ? "\\text{Hypervariable region}" : "\\text{Variable region}",
                 hintLatex: [`\\text{${t.prompts.hint_constant}}`]
             });
 
-            const logic = [
-                { q: "MHC molecules", a: "antigen presentation" },
-                { q: "Cytotoxic T cells", a: "apoptosis induction" },
-                { q: "Plasma B cells", a: "antibody secretion" }
+            const roles = [
+                { q: "Plasma B cells", a: "antibody secretion", scenario: "roche_immunology" },
+                { q: "Cytotoxic T cells", a: "apoptosis induction", scenario: "autoimmune_center" },
+                { q: "Helper T cells", a: "cytokine release", scenario: "vaccine_research" }
             ];
 
-            logic.forEach((l, idx) => {
+            const filteredRoles = isAdvanced ? roles : roles.slice(0, 2);
+
+            filteredRoles.forEach((r, idx) => {
                 quests.push({
-                    id: `AD-LOG-${idx}`,
+                    id: `AD-ROLE-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{Function of } \\text{${l.q}}?`,
+                    scenario: r.scenario,
+                    promptLatex: `\\text{Specific function of } \\text{${r.q}}?`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${l.a}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Function}", placeholder: "...", expected: l.a }],
-                    correctLatex: l.a
+                    targetLatex: `\\text{${r.a}}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Function}", placeholder: "...", expected: r.a }],
+                    correctLatex: r.a
                 });
             });
         }
 
         if (stage === "VACCINES") {
-            const accelerations = [
-                { lag: 2, prim: 10, expected: "5" },
-                { lag: 1, prim: 7, expected: "7" },
-                { lag: 3, prim: 12, expected: "4" }
+            const accelerations = isAdvanced ? [
+                { lag: 1.5, prim: 12, expected: "8", scenario: "vaccine_research" },
+                { lag: 1, prim: 14, expected: "14", scenario: "vaccine_research" }
+            ] : [
+                { lag: 2, prim: 10, expected: "5", scenario: "vaccine_research" },
+                { lag: 3, prim: 12, expected: "4", scenario: "vaccine_research" }
             ];
 
             accelerations.forEach((s, idx) => {
                 quests.push({
-                    id: `VA-ACC-${idx}`,
+                    id: `VA-ACC-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{Secondary: } ${s.lag} \\text{ days, Primary: } ${s.prim} \\text{ days. Calculate acceleration factor.}`,
+                    scenario: s.scenario,
+                    promptLatex: `\\text{${t.prompts.memory_response.replace('{lag}', s.lag.toString()).replace('{primary_lag}', s.prim.toString())}}`,
                     expressionLatex: "\\text{Factor} = \\frac{\\text{Primary Lag}}{\\text{Secondary Lag}}",
                     targetLatex: s.expected,
                     slots: [{ id: "ans", labelLatex: "\\text{Factor}", placeholder: "...", expected: s.expected }],
@@ -126,9 +138,12 @@ export default function GB302Immunology() {
     });
 
     const activeScenario = useMemo(() => {
+        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {
+            return t.scenarios[currentQuest.scenario as keyof typeof t.scenarios];
+        }
         const keys = Object.keys(t.scenarios);
-        return t.scenarios[keys[Math.floor(Math.random() * keys.length)] as keyof typeof t.scenarios];
-    }, [t, stage]);
+        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+    }, [t, currentQuest]);
 
     return (
         <ChamberLayout

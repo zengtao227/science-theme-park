@@ -14,6 +14,7 @@ type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
 
 interface GB201Quest extends Quest {
     stage: Stage;
+    scenario?: string;
     data?: any;
 }
 
@@ -26,21 +27,25 @@ export default function GB201Neurobiology() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB201Quest[] => {
         const quests: GB201Quest[] = [];
+        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "ANATOMY") {
             const parts = [
-                { id: "axon", func: "signal transmission", name: t.labels.axon },
-                { id: "soma", func: "metabolic processing", name: t.labels.cell_body },
-                { id: "dendrites", func: "signal reception", name: t.labels.dendrites },
-                { id: "myelin", func: "insulation and saltatory conduction", name: t.labels.myelin_sheath },
-                { id: "node", func: "ion exchange during propagation", name: t.labels.node_of_ranvier }
+                { id: "axon", func: "signal transmission", name: t.labels.axon, scenario: "roche_neuroscience" },
+                { id: "soma", func: "metabolic processing", name: t.labels.cell_body, scenario: "basel_biomedicine" },
+                { id: "dendrites", func: "signal reception", name: t.labels.dendrites, scenario: "neural_plasticity" },
+                { id: "myelin", func: "insulation and saltatory conduction", name: t.labels.myelin_sheath, scenario: "roche_neuroscience" },
+                { id: "node", func: "ion exchange during propagation", name: t.labels.node_of_ranvier, scenario: "basel_biomedicine" }
             ];
 
-            parts.forEach((p, idx) => {
+            const filteredParts = isAdvanced ? parts : parts.slice(0, 3);
+
+            filteredParts.forEach((p, idx) => {
                 quests.push({
-                    id: `AN-${idx}`,
+                    id: `AN-${difficulty}-${idx}`,
                     difficulty,
                     stage,
+                    scenario: p.scenario,
                     promptLatex: `\\text{${t.prompts.identify_part.replace("{function}", p.func)}}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${p.name}}`,
@@ -52,23 +57,27 @@ export default function GB201Neurobiology() {
         }
 
         if (stage === "POTENTIAL") {
-            const scenarios = [
-                { k_out: 5, k_in: 140, expected: "-88" },
-                { k_out: 10, k_in: 140, expected: "-70" },
-                { k_out: 4, k_in: 120, expected: "-90" },
-                { na_out: 145, na_in: 15, expected: "60" }
+            const scenarios = isAdvanced ? [
+                { k_out: 2.5, k_in: 150, expected: "-108", scenario: "basel_biomedicine" },
+                { na_out: 145, na_in: 12, expected: "66", scenario: "roche_neuroscience" },
+                { cl_out: 100, cl_in: 10, expected: "-61", scenario: "basel_biomedicine" }
+            ] : [
+                { k_out: 5, k_in: 140, expected: "-88", scenario: "basel_biomedicine" },
+                { k_out: 10, k_in: 140, expected: "-70", scenario: "basel_biomedicine" },
+                { na_out: 145, na_in: 15, expected: "60", scenario: "roche_neuroscience" }
             ];
 
             scenarios.forEach((s, idx) => {
-                const ion = s.na_out ? "Na⁺" : "K⁺";
-                const cout = s.na_out || s.k_out;
-                const cin = s.na_in || s.k_in;
+                const ion = s.na_out ? "Na^+" : (s.cl_out ? "Cl^-" : "K^+");
+                const cout = (s.na_out || s.cl_out || s.k_out || 0).toString();
+                const cin = (s.na_in || s.cl_in || s.k_in || 0).toString();
 
                 quests.push({
-                    id: `EP-${idx}`,
+                    id: `EP-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{Calculate equilibrium potential for } ${ion}. [\\text{out}] = ${cout}mM, [\\text{in}] = ${cin}mM.`,
+                    scenario: s.scenario,
+                    promptLatex: `\\text{${t.prompts.calc_potential.replace('{ion}', ion).replace('{cout}', cout).replace('{cin}', cin)}}`,
                     expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
                     targetLatex: s.expected,
                     slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: s.expected }],
@@ -77,18 +86,20 @@ export default function GB201Neurobiology() {
                 });
             });
 
-            // Add ion identification
-            quests.push({
-                id: `AP-ION`,
-                difficulty,
-                stage,
-                promptLatex: `\\text{${t.prompts.action_potential}}`,
-                expressionLatex: "",
-                targetLatex: "Na^+",
-                slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "Na+" }],
-                correctLatex: "Na^+",
-                hintLatex: [`\\text{${t.prompts.hint_sodium}}`]
-            });
+            if (isAdvanced) {
+                quests.push({
+                    id: `AP-ION-ADV`,
+                    difficulty,
+                    stage,
+                    scenario: "roche_neuroscience",
+                    promptLatex: `\\text{Identify the ion responsible for repolarization.}`,
+                    expressionLatex: "",
+                    targetLatex: "K^+",
+                    slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "K+" }],
+                    correctLatex: "K^+",
+                    hintLatex: ["\\text{Potassium leaves the cell to restore negative potential.}"]
+                });
+            }
         }
 
         if (stage === "SYNAPSE") {
@@ -96,6 +107,7 @@ export default function GB201Neurobiology() {
                 id: `SYN-ION`,
                 difficulty,
                 stage,
+                scenario: "friedrich_miescher",
                 promptLatex: `\\text{${t.prompts.synapse_mechanism}}`,
                 expressionLatex: "",
                 targetLatex: "Ca^{2+}",
@@ -105,17 +117,20 @@ export default function GB201Neurobiology() {
             });
 
             const neurotransmitters = [
-                { name: "GABA", type: "Inhibitory", effect: "Cl- influx" },
-                { name: "Glutamate", type: "Excitatory", effect: "Na+ influx" },
-                { name: "Acetylcholine", type: "Excitatory", effect: "Muscle contraction" }
+                { name: "GABA", type: "Inhibitory", effect: "Cl- influx", scenario: "roche_neuroscience" },
+                { name: "Glutamate", type: "Excitatory", effect: "Na+ influx", scenario: "basel_biomedicine" },
+                { name: "Acetylcholine", type: "Excitatory", effect: "Muscle contraction", scenario: "friedrich_miescher" }
             ];
 
-            neurotransmitters.forEach((nt, idx) => {
+            const filteredNT = isAdvanced ? neurotransmitters : neurotransmitters.slice(0, 2);
+
+            filteredNT.forEach((nt, idx) => {
                 quests.push({
-                    id: `NT-${idx}`,
+                    id: `NT-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{Role of } \\text{${nt.name}}: \\text{${nt.effect}}. \\text{Type?}`,
+                    scenario: nt.scenario,
+                    promptLatex: `\\text{Role: } \\text{${nt.effect}}. \\text{Type of } \\text{${nt.name}}?`,
                     expressionLatex: "",
                     targetLatex: `\\text{${nt.type}}`,
                     slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: nt.type }],
@@ -150,9 +165,12 @@ export default function GB201Neurobiology() {
     }, [currentStageStats, pool.length]);
 
     const activeScenario = useMemo(() => {
+        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {
+            return t.scenarios[currentQuest.scenario as keyof typeof t.scenarios];
+        }
         const keys = Object.keys(t.scenarios);
-        return t.scenarios[keys[Math.floor(Math.random() * keys.length)] as keyof typeof t.scenarios];
-    }, [t, stage]);
+        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+    }, [t, currentQuest]);
 
     return (
         <ChamberLayout

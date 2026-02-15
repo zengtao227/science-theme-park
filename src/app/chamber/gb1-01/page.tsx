@@ -27,22 +27,25 @@ export default function GB101Page() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB101Quest[] => {
         const quests: GB101Quest[] = [];
+        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "NATURAL_SELECTION") {
-            const scenarios = [
-                { initial: 100, survival: 60, fitness: 0.6 },
-                { initial: 200, survival: 140, fitness: 0.7 },
-                { initial: 150, survival: 90, fitness: 0.6 },
-                { initial: 80, survival: 64, fitness: 0.8 },
-                { initial: 120, survival: 84, fitness: 0.7 }
+            const scenarios = isAdvanced ? [
+                { initial: 500, survival: 125, fitness: 0.25, scenario: "galapagos_study" },
+                { initial: 1000, survival: 50, fitness: 0.05, scenario: "genetic_drift" },
+                { initial: 1200, survival: 960, fitness: 0.8, scenario: "galapagos_study" }
+            ] : [
+                { initial: 100, survival: 60, fitness: 0.6, scenario: "galapagos_study" },
+                { initial: 200, survival: 140, fitness: 0.7, scenario: "galapagos_study" },
+                { initial: 80, survival: 64, fitness: 0.8, scenario: "galapagos_study" }
             ];
 
             scenarios.forEach((s, idx) => {
                 quests.push({
-                    id: `NS-${idx}`,
+                    id: `NS-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    scenario: "galapagos_study",
+                    scenario: s.scenario,
                     promptLatex: `\\text{${t.prompts.natural_selection.replace('{initial}', s.initial.toString()).replace('{survival}', s.survival.toString())}}`,
                     expressionLatex: `\\text{Fitness} = \\frac{\\text{Survivors}}{\\text{Initial}} = \\frac{${s.survival}}{${s.initial}}`,
                     targetLatex: s.fitness.toFixed(2),
@@ -54,20 +57,22 @@ export default function GB101Page() {
         }
 
         if (stage === "SPECIATION") {
-            const scenarios = [
-                { generations: 100, mutation_rate: 0.01, divergence: 1 },
-                { generations: 200, mutation_rate: 0.02, divergence: 4 },
-                { generations: 150, mutation_rate: 0.015, divergence: 2.25 },
-                { generations: 250, mutation_rate: 0.01, divergence: 2.5 },
-                { generations: 300, mutation_rate: 0.02, divergence: 6 }
+            const scenarios = isAdvanced ? [
+                { generations: 5000, mutation_rate: 0.001, divergence: 5.0, scenario: "genetic_drift" },
+                { generations: 10000, mutation_rate: 0.0005, divergence: 5.0, scenario: "molecular_clock" },
+                { generations: 2500, mutation_rate: 0.004, divergence: 10.0, scenario: "genetic_drift" }
+            ] : [
+                { generations: 100, mutation_rate: 0.01, divergence: 1, scenario: "genetic_drift" },
+                { generations: 200, mutation_rate: 0.02, divergence: 4, scenario: "genetic_drift" },
+                { generations: 300, mutation_rate: 0.02, divergence: 6, scenario: "genetic_drift" }
             ];
 
             scenarios.forEach((s, idx) => {
                 quests.push({
-                    id: `SP-${idx}`,
+                    id: `SP-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    scenario: "genetic_drift",
+                    scenario: s.scenario,
                     promptLatex: `\\text{${t.prompts.speciation.replace('{generations}', s.generations.toString()).replace('{rate}', s.mutation_rate.toString())}}`,
                     expressionLatex: `\\text{Divergence} = \\text{generations} \\times \\text{rate} = ${s.generations} \\times ${s.mutation_rate}`,
                     targetLatex: s.divergence.toString(),
@@ -79,7 +84,11 @@ export default function GB101Page() {
         }
 
         if (stage === "EVIDENCE") {
-            const scenarios = [
+            const scenarios = isAdvanced ? [
+                { fossil_age: 22920, half_life: 5730, scenario: "fossil_record" },
+                { fossil_age: 28650, half_life: 5730, scenario: "molecular_clock" },
+                { fossil_age: 11460, half_life: 5730, scenario: "fossil_record" }
+            ] : [
                 { fossil_age: 5730, half_life: 5730, scenario: "fossil_record" },
                 { fossil_age: 11460, half_life: 5730, scenario: "fossil_record" },
                 { fossil_age: 17190, half_life: 5730, scenario: "molecular_clock" }
@@ -89,7 +98,7 @@ export default function GB101Page() {
                 const half_lives = s.fossil_age / s.half_life;
                 const remaining = Math.pow(0.5, half_lives);
                 quests.push({
-                    id: `EV-${idx}`,
+                    id: `EV-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     scenario: s.scenario,
@@ -141,9 +150,12 @@ export default function GB101Page() {
     const hint = getHint();
 
     const activeScenario = useMemo(() => {
-        if (!currentQuest?.scenario) return null;
-        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
-    }, [currentQuest, t]);
+        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {
+            return t.scenarios[currentQuest.scenario as keyof typeof t.scenarios];
+        }
+        const keys = Object.keys(t.scenarios);
+        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+    }, [t, currentQuest]);
 
     return (
         <ChamberLayout
@@ -212,8 +224,8 @@ export default function GB101Page() {
                                 <div
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
-                                            : "bg-transparent"
+                                        ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
+                                        : "bg-transparent"
                                         }`}
                                 />
                             ))}
@@ -285,8 +297,8 @@ export default function GB101Page() {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
                                             className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-5">
@@ -321,8 +333,8 @@ export default function GB101Page() {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={lastCheck?.ok ? next : verify}
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
-                                            ? "bg-neon-green text-black"
-                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        ? "bg-neon-green text-black"
+                                        : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
                                     {lastCheck?.ok ? t.next : t.check}
