@@ -206,7 +206,17 @@ export const cnBiology = {
               homeostasis_target: "调节环境以达到等渗状态。",
               hint_hyper: "外部盐分高！水分离开细胞。",
               hint_hypo: "外部盐分低！水分涌入细胞。",
-              hint_oxy: "我们吸入它来氧化葡萄糖。"
+              hint_oxy: "我们吸入它来氧化葡萄糖。",
+              hint_iso: "无净移动。",
+              hint_atp: "细胞的主要能量货币。",
+              hint_homeostasis: "将值设为零以保持稳定。"
+          },
+          latex_labels: {
+              water_movement: "水分移动",
+              product: "产物",
+              reactant: "反应物",
+              target_osmolarity: "目标渗透压",
+              current_error: "当前误差："
           }
       },
   sb1_02: {

@@ -206,7 +206,17 @@ export const enBiology = {
           homeostasis_target: "Balance the environment to achieve Isotonic state.",
           hint_hyper: "High salt outside! Water leaves the cell.",
           hint_hypo: "Low salt outside! Water rushes in.",
-          hint_oxy: "We breathe this in to burn glucose."
+          hint_oxy: "We breathe this in to burn glucose.",
+          hint_iso: "No net movement.",
+          hint_atp: "Primary energy currency of the cell.",
+          hint_homeostasis: "Set value to zero for stability."
+      },
+      latex_labels: {
+          water_movement: "Water Movement",
+          product: "Product",
+          reactant: "Reactant",
+          target_osmolarity: "Target Osmolarity",
+          current_error: "Current Error: "
       }
       },
   sb1_02: {

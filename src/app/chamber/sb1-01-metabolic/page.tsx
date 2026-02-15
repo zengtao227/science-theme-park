@@ -34,7 +34,7 @@ export default function SB101MetabolicPage() {
             const scenarios: { status: "hypertonic" | "hypotonic" | "isotonic", target: string, hint: string }[] = [
                 { status: "hypertonic", target: "leave", hint: t.prompts.hint_hyper },
                 { status: "hypotonic", target: "enter", hint: t.prompts.hint_hypo },
-                { status: "isotonic", target: "stable", hint: "\\text{No net movement.}" }
+                { status: "isotonic", target: "stable", hint: `\\text{${t.prompts.hint_iso}}` }
             ];
 
             scenarios.forEach((s, idx) => {
@@ -46,7 +46,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t.prompts.osmosis_prompt.replace("{status}", t.labels[s.status]),
                     expressionLatex: `\\text{${t.labels.status}: } \\text{${t.labels[s.status]}}`,
                     targetLatex: s.target,
-                    slots: [{ id: "ans", labelLatex: "\\text{Water Movement}", placeholder: "enter/leave/stable", expected: s.target }],
+                    slots: [{ id: "ans", labelLatex: `\\text{${t.latex_labels.water_movement}}`, placeholder: "enter/leave/stable", expected: s.target }],
                     correctLatex: s.target,
                     hintLatex: [s.hint]
                 });
@@ -61,9 +61,9 @@ export default function SB101MetabolicPage() {
                 promptLatex: t.prompts.respiration_prompt.replace("{reactant}", "?"),
                 expressionLatex: `C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + 6H_2O + \\text{?}`,
                 targetLatex: "atp",
-                slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "atp" }],
+                slots: [{ id: "ans", labelLatex: `\\text{${t.latex_labels.product}}`, placeholder: "...", expected: "atp" }],
                 correctLatex: "ATP",
-                hintLatex: ["\\text{Primary energy currency of the cell.}"]
+                hintLatex: [`\\text{${t.prompts.hint_atp}}`]
             });
             quests.push({
                 id: "RESP-2",
@@ -72,7 +72,7 @@ export default function SB101MetabolicPage() {
                 promptLatex: t.prompts.respiration_prompt.replace("{reactant}", "O_2"),
                 expressionLatex: `C_6H_{12}O_6 + 6\\text{?} \\rightarrow 6CO_2 + 6H_2O + ATP`,
                 targetLatex: "oxygen",
-                slots: [{ id: "ans", labelLatex: "\\text{Reactant}", placeholder: "...", expected: "oxygen" }],
+                slots: [{ id: "ans", labelLatex: `\\text{${t.latex_labels.reactant}}`, placeholder: "...", expected: "oxygen" }],
                 correctLatex: "Oxygen",
                 hintLatex: [t.prompts.hint_oxy]
             });
@@ -87,11 +87,11 @@ export default function SB101MetabolicPage() {
                     stage,
                     targetOsmolarity: target,
                     promptLatex: t.prompts.homeostasis_target,
-                    expressionLatex: `\\text{Current Error: } ${target > 0 ? "+" : ""}${target.toFixed(1)}`,
+                    expressionLatex: `\\text{${t.latex_labels.current_error}}${target > 0 ? "+" : ""}${target.toFixed(1)}`,
                     targetLatex: "0",
-                    slots: [{ id: "ans", labelLatex: "\\text{Target Osmolarity}", placeholder: "0", expected: "0" }],
+                    slots: [{ id: "ans", labelLatex: `\\text{${t.latex_labels.target_osmolarity}}`, placeholder: "0", expected: "0" }],
                     correctLatex: "0 (Isotonic)",
-                    hintLatex: ["\\text{Set value to zero for stability.}"]
+                    hintLatex: [`\\text{${t.prompts.hint_homeostasis}}`]
                 });
             });
         }

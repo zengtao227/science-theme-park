@@ -206,7 +206,17 @@ export const deBiology = {
                       homeostasis_target: "Gleichen Sie die Umgebung aus, um den isotonischen Zustand zu erreichen.",
                       hint_hyper: "Hoher Salzgehalt außen! Wasser verlässt die Zelle.",
                       hint_hypo: "Niedriger Salzgehalt außen! Wasser strömt ein.",
-                      hint_oxy: "Wir atmen dies ein, um Glukose zu verbrennen."
+                      hint_oxy: "Wir atmen dies ein, um Glukose zu verbrennen.",
+                      hint_iso: "Keine Nettobewegung.",
+                      hint_atp: "Primäre Energiewährung der Zelle.",
+                      hint_homeostasis: "Setzen Sie den Wert auf Null für Stabilität."
+                  },
+                  latex_labels: {
+                      water_movement: "Wasserbewegung",
+                      product: "Produkt",
+                      reactant: "Reaktant",
+                      target_osmolarity: "Ziel-Osmolarität",
+                      current_error: "Aktueller Fehler: "
                   }
               },
   sb1_02: {

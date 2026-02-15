@@ -615,7 +615,7 @@ export default function S201Page() {
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        Decomposition Pattern: a² + 2ab + b²
+                        {t.decomposition_pattern ?? "Decomposition Pattern: a² + 2ab + b²"}
                       </div>
                     </div>
                   ) : (

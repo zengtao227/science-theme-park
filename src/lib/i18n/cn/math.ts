@@ -959,7 +959,8 @@ export const cnMath = {
                   v_squared: "V²",
                   by: "by",
                   question: "?"
-              }
+              },
+              decomposition_pattern: "分解模式：a² + 2ab + b²"
           },
   sm2_02: {
               back: "返回枢纽",

@@ -988,7 +988,8 @@ export const deMath = {
                       v_squared: "V²",
                       by: "by",
                       question: "?"
-                  }
+                  },
+                  decomposition_pattern: "Zerlegungsmuster: a² + 2ab + b²"
               },
   sm2_02: {
                   back: "Zurück zum Nexus",

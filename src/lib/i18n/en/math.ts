@@ -978,7 +978,8 @@ export const enMath = {
               v_squared: "V²",
               by: "by",
               question: "?"
-          }
+          },
+          decomposition_pattern: "Decomposition Pattern: a² + 2ab + b²"
       },
   sm2_02: {
           back: "Back to Nexus",
