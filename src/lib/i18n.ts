@@ -5076,45 +5076,45 @@ export const translations: Record<string, any> = {
                 cyl_elite: "侧面积为 ${la}，半径为 ${r}。"
             }
         },
-        em1_01: {
-            back: "返回枢纽",
-            title: "EM1.01 // THALES TOWER",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "Tower Height",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "不匹配",
-            ready: "就绪",
-            monitor_title: "EM1.01_THALES_MONITOR",
-            footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
-            stages: {
-                measure: "MEASURE",
-                measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
-            },
-            labels: {
-                input: "输入",
-                hints: "提示",
-                readings: "READINGS",
-                pole_height: "Pole Height (h)",
-                pole_shadow: "Pole Shadow (l)",
-                tower_shadow: "Tower Shadow (L)",
-                sun_angle: "Sun Angle",
-                solve_height: "Solve Tower Height (H)",
-                height_placeholder: "height in meters",
-                hint_ratio: "Hint: h/H = l/L"
-            },
-            mission: {
-                title: "MISSION: BASEL CATHEDRAL SURVEY",
-                description: "Measure the tower height using Thales' theorem and shadow ratios."
-            }
+    em1_01: {
+        back: "返回枢纽",
+        title: "EM1.01 // THALES TOWER",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
         },
+        objective_title: "当前任务目标",
+        target_title: "Tower Height",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "EM1.01_THALES_MONITOR",
+        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
+        stages: {
+            measure: "测量"
+        },
+        measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
+        labels: {
+            input: "输入",
+            hints: "提示",
+            readings: "READINGS",
+            pole_height: "Pole Height (h)",
+            pole_shadow: "Pole Shadow (l)",
+            tower_shadow: "Tower Shadow (L)",
+            sun_angle: "Sun Angle",
+            solve_height: "Solve Tower Height (H)",
+            height_placeholder: "height in meters",
+            hint_ratio: "Hint: h/H = l/L"
+        },
+        mission: {
+            title: "MISSION: BASEL CATHEDRAL SURVEY",
+            description: "Measure the tower height using Thales' theorem and shadow ratios."
+        }
+    },
         sp2_03: {
             back: "返回枢纽",
             title: "SP2.03 // MOTOR LAB",
@@ -8936,45 +8936,45 @@ export const translations: Record<string, any> = {
                     cyl_elite: "Die Mantelfläche beträgt ${la}, der Radius ist ${r}."
                 }
             },
-        em1_01: {
-                back: "Zurück zum Nexus",
-                title: "EM1.01 // THALES TOWER",
-                difficulty: {
-                    basic: "BASIS",
-                    core: "KERN",
-                    advanced: "FORTGESCHRITTEN",
-                    elite: "ELITE"
-                },
-                objective_title: "Aktuelles Missionsziel",
-                target_title: "Tower Height",
-                next: "Nächste Sequenz ausführen",
-                check: "Prüfen",
-                correct: "Verifiziert",
-                incorrect: "Abweichung",
-                ready: "Bereit",
-                monitor_title: "EM1.01_THALES_MONITOR",
-                footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
-                stages: {
-                    measure: "MEASURE",
-                    measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
-                },
-                labels: {
-                    input: "EINGABE",
-                    hints: "HINWEISE",
-                    readings: "READINGS",
-                    pole_height: "Pole Height (h)",
-                    pole_shadow: "Pole Shadow (l)",
-                    tower_shadow: "Tower Shadow (L)",
-                    sun_angle: "Sun Angle",
-                    solve_height: "Solve Tower Height (H)",
-                    height_placeholder: "height in meters",
-                    hint_ratio: "Hint: h/H = l/L"
-                },
-                mission: {
-                    title: "MISSION: BASEL CATHEDRAL SURVEY",
-                    description: "Measure the tower height using Thales' theorem and shadow ratios."
-                }
-            },
+    em1_01: {
+        back: "Zurück zum Nexus",
+        title: "EM1.01 // THALES TOWER",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "FORTGESCHRITTEN",
+            elite: "ELITE"
+        },
+        objective_title: "Aktuelles Missionsziel",
+        target_title: "Tower Height",
+        next: "Nächste Sequenz ausführen",
+        check: "Prüfen",
+        correct: "Verifiziert",
+        incorrect: "Abweichung",
+        ready: "Bereit",
+        monitor_title: "EM1.01_THALES_MONITOR",
+        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
+        stages: {
+            measure: "MESSEN"
+        },
+        measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
+        labels: {
+            input: "EINGABE",
+            hints: "HINWEISE",
+            readings: "READINGS",
+            pole_height: "Pole Height (h)",
+            pole_shadow: "Pole Shadow (l)",
+            tower_shadow: "Tower Shadow (L)",
+            sun_angle: "Sun Angle",
+            solve_height: "Solve Tower Height (H)",
+            height_placeholder: "height in meters",
+            hint_ratio: "Hint: h/H = l/L"
+        },
+        mission: {
+            title: "MISSION: BASEL CATHEDRAL SURVEY",
+            description: "Measure the tower height using Thales' theorem and shadow ratios."
+        }
+    },
         sp2_03: {
                 back: "Zurück zum Nexus",
                 title: "SP2.03 // MOTOR LAB",
