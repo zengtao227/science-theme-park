@@ -234,6 +234,14 @@ export const deBiology = {
                       reaction_display: "Reaktionsanzeige",
                       input_terminal: "Eingabeterminal"
                   },
+                  canvas_labels: {
+                      light: "LICHT",
+                      rate: "Rate",
+                      thylakoid: "THYLAKOID",
+                      stroma: "STROMA",
+                      co2_label: "CO₂",
+                      temp_label: "Temp"
+                  },
                   prompts: {
                       reactant: "Vervollständigen Sie die Gleichung: 6CO₂ + 6H₂O + Licht → C₆H₁₂O₆ + 6{O₂}. Wie viele fehlende Reaktanten?",
                       hint_oxygen: "Zählen Sie die Sauerstoffatome auf beiden Seiten der Gleichung",

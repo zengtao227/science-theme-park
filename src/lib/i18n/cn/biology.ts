@@ -234,6 +234,14 @@ export const cnBiology = {
               reaction_display: "反应显示",
               input_terminal: "输入终端"
           },
+          canvas_labels: {
+              light: "光能",
+              rate: "速率",
+              thylakoid: "类囊体",
+              stroma: "基质",
+              co2_label: "CO₂",
+              temp_label: "温度"
+          },
           prompts: {
               reactant: "完成方程式：6CO₂ + 6H₂O + 光能 → C₆H₁₂O₆ + 6{O₂}。缺少的反应物数量是多少？",
               hint_oxygen: "计算方程式两边的氧原子数",

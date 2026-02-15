@@ -234,6 +234,14 @@ export const enBiology = {
           reaction_display: "Reaction Display",
           input_terminal: "Input Terminal"
       },
+      canvas_labels: {
+          light: "LIGHT",
+          rate: "Rate",
+          thylakoid: "THYLAKOID",
+          stroma: "STROMA",
+          co2_label: "CO₂",
+          temp_label: "Temp"
+      },
       prompts: {
           reactant: "Complete the equation: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6{O₂}. What is the missing reactant count?",
           hint_oxygen: "Count the oxygen atoms on both sides of the equation",

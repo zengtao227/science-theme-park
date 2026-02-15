@@ -71,7 +71,7 @@ export default function PhotosynthesisCanvas({
         // Arrow label
         ctx.fillStyle = `rgba(255, 255, 0, ${lightAlpha})`;
         ctx.font = "10px monospace";
-        ctx.fillText("LIGHT", w * 0.35, centerY - 45);
+        ctx.fillText(translations?.canvas_labels?.light ?? "LIGHT", w * 0.35, centerY - 45);
 
         // Chloroplast (center)
         ctx.fillStyle = "#0a4d0a";
@@ -134,9 +134,9 @@ export default function PhotosynthesisCanvas({
 
         // Bars
         const bars = [
-            { x: spacing * 2, value: light, color: "#ffff00", label: "Light" },
-            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: "CO₂" },
-            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: "Temp" }
+            { x: spacing * 2, value: light, color: "#ffff00", label: translations?.canvas_labels?.light ?? "Light" },
+            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO₂" },
+            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations?.canvas_labels?.temp_label ?? "Temp" }
         ];
 
         bars.forEach(bar => {
@@ -165,7 +165,7 @@ export default function PhotosynthesisCanvas({
         ctx.fillStyle = "#00ff00";
         ctx.font = "bold 16px monospace";
         ctx.textAlign = "center";
-        ctx.fillText(`Rate: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
+        ctx.fillText(`${translations?.canvas_labels?.rate ?? "Rate"}: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
     };
 
     const drawChloroplast = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
@@ -217,7 +217,7 @@ export default function PhotosynthesisCanvas({
         ctx.textAlign = "center";
         
         // Thylakoid label
-        ctx.fillText("THYLAKOID", centerX, centerY - 55);
+        ctx.fillText(translations?.canvas_labels?.thylakoid ?? "THYLAKOID", centerX, centerY - 55);
         ctx.strokeStyle = "#00ff00";
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -226,7 +226,7 @@ export default function PhotosynthesisCanvas({
         ctx.stroke();
 
         // Stroma label
-        ctx.fillText("STROMA", centerX + 70, centerY + 50);
+        ctx.fillText(translations?.canvas_labels?.stroma ?? "STROMA", centerX + 70, centerY + 50);
         ctx.beginPath();
         ctx.moveTo(centerX + 70, centerY + 45);
         ctx.lineTo(centerX + 40, centerY + 10);
