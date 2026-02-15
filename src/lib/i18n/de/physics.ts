@@ -400,30 +400,37 @@ export const dePhysics = {
                   ready: "Bereit",
                   monitor_title: "P2.01_THERMIK_MONITOR",
                   footer_left: "P2.01_THERMODYNAMIK // KNOTEN: BASEL",
-                  labels: {
-                      input: "EINGABE",
-                      hints: "HINWEISE",
-                      heat: "Wärmeenergie (Q)",
-                      temperature: "Temperaturänderung (ΔT)",
-                      mass: "Masse (m)",
-                      specific_heat: "Spezifische Wärme (c)"
-                  },
-                  mission: {
-                      title: "THERMISCHER REAKTORKONTROLLE",
-                      description: "Der Novartis-Thermoreaktor erfordert präzise Wärmeberechnungen. Meistern Sie Wärmekapazität und Phasenübergänge."
-                  },
                   stages: {
-                      heat_capacity: "WÄRMEKAPAZITÄT",
-                      phase_change: "PHASENÜBERGANG",
-                      mixed: "GEMISCHTE PROBLEME",
-                      heat_capacity_prompt_latex: "\\text{Berechne Wärmeübertragung mit }Q=mc\\Delta T.",
-                      phase_change_prompt_latex: "\\text{Berechne latente Wärme mit }Q=mL.",
-                      mixed_prompt_latex: "\\text{Kombiniere Wärmekapazität und Phasenübergang.}"
+                      heat_transfer: "WÄRMEÜBERTRAGUNG",
+                      specific_heat: "SPEZIFISCHE WÄRME",
+                      phase_changes: "PHASENÜBERGÄNGE"
                   },
-                  formulas: {
-                      heat_capacity: "Q = mc\\Delta T",
-                      phase_change: "Q = mL",
-                      mixed: "Q_{\\text{gesamt}} = Q_1 + Q_2"
+                  labels: {
+                      thermal_display: "Thermische Anzeige",
+                      input_terminal: "Eingabeterminal",
+                      temperature: "Temperatur",
+                      show_particles: "Partikel anzeigen",
+                      thermal_score: "Thermische Punktzahl"
+                  },
+                  prompts: {
+                      heat_transfer: "Berechne die Wärmeübertragungsrate mit der {method}-Methode.",
+                      specific_heat: "Eine {mass} kg Probe wird um {deltaT}°C erhitzt. Berechne die benötigte Energie (c=4186 J/kg·K für Wasser).",
+                      phase_change: "Berechne die Energie für {phase} von {mass} kg Wasser.",
+                      hint_heat: "Verwende die entsprechende Wärmeübertragungsgleichung für die Methode",
+                      hint_specific: "Verwende Q = mcΔT, wobei c die spezifische Wärmekapazität ist",
+                      hint_phase: "Verwende Q = mL, wobei L die latente Wärme ist"
+                  },
+                  scenarios: {
+                      conduction: "Novartis Thermoreaktor: Wärme leitet durch Metallreaktorwände in Basels pharmazeutischen Anlagen. Die Wärmeleitfähigkeit bestimmt die Wärmeübertragungsrate.",
+                      convection: "Rheinkühlung: Konvektionsströme im Rhein übertragen Wärme von Basels Industrieanlagen. Wasserzirkulation sorgt für effiziente Kühlung.",
+                      radiation: "Solarheizung in Basel: Wärmestrahlung der Sonne heizt Basels Gebäude. Das Stefan-Boltzmann-Gesetz beschreibt die Strahlungswärmeübertragung.",
+                      water_heating: "Basler Fernwärme: Basels Fernwärmesystem nutzt die spezifische Wärmekapazität von Wasser, um thermische Energie effizient durch die Stadt zu transportieren.",
+                      melting: "Eisschmelze am Rhein: Der Phasenübergang von Eis zu Wasser erfordert latente Schmelzwärme. Die Temperatur bleibt beim Schmelzen bei 0°C konstant.",
+                      boiling: "Dampferzeugung in Basel: Das Kochen von Wasser zu Dampf bei 100°C erfordert latente Verdampfungswärme. Dampf trägt mehr Energie als heißes Wasser."
+                  },
+                  feedback: {
+                      correct: "Thermodynamik gemeistert!",
+                      incorrect: "Überprüfe die Wärmeübertragungsprinzipien."
                   }
               },
   sp2_02: {

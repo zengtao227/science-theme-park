@@ -453,30 +453,37 @@ export const cnPhysics = {
           ready: "就绪",
           monitor_title: "P2.01_热力学监视器",
           footer_left: "P2.01_热力学 // 节点：巴塞尔",
-          labels: {
-              input: "输入",
-              hints: "提示",
-              heat: "热能 (Q)",
-              temperature: "温度变化 (ΔT)",
-              mass: "质量 (m)",
-              specific_heat: "比热容 (c)"
-          },
-          mission: {
-              title: "热反应堆控制",
-              description: "诺华热反应堆需要精确的热量计算。掌握热容量和相变。"
-          },
           stages: {
-              heat_capacity: "热容量",
-              phase_change: "相变",
-              mixed: "混合问题",
-              heat_capacity_prompt_latex: "\\text{使用 }Q=mc\\Delta T\\text{ 计算热量传递。}",
-              phase_change_prompt_latex: "\\text{使用 }Q=mL\\text{ 计算潜热。}",
-              mixed_prompt_latex: "\\text{结合热容量和相变计算。}"
+              heat_transfer: "热传递",
+              specific_heat: "比热容",
+              phase_changes: "相变"
           },
-          formulas: {
-              heat_capacity: "Q = mc\\Delta T",
-              phase_change: "Q = mL",
-              mixed: "Q_{\\text{总}} = Q_1 + Q_2"
+          labels: {
+              thermal_display: "热显示",
+              input_terminal: "输入终端",
+              temperature: "温度",
+              show_particles: "显示粒子",
+              thermal_score: "热力学分数"
+          },
+          prompts: {
+              heat_transfer: "使用{method}方法计算热传递速率。",
+              specific_heat: "{mass} kg样品被加热{deltaT}°C。计算所需能量（水的c=4186 J/kg·K）。",
+              phase_change: "计算{mass} kg水的{phase}所需能量。",
+              hint_heat: "使用适当的热传递方程",
+              hint_specific: "使用 Q = mcΔT，其中c是比热容",
+              hint_phase: "使用 Q = mL，其中L是潜热"
+          },
+          scenarios: {
+              conduction: "诺华热反应器：热量通过巴塞尔制药设施的金属反应器壁传导。热导率决定热传递速率。",
+              convection: "莱茵河冷却：莱茵河中的对流传递巴塞尔工业设施的热量。水循环提供高效冷却。",
+              radiation: "巴塞尔太阳能加热：太阳的热辐射加热巴塞尔的建筑物。斯特藩-玻尔兹曼定律描述辐射热传递。",
+              water_heating: "巴塞尔区域供暖：巴塞尔的区域供暖系统利用水的比热容在整个城市高效输送热能。",
+              melting: "莱茵河融冰：从冰到水的相变需要潜热。在0°C融化时温度保持恒定。",
+              boiling: "巴塞尔蒸汽生成：在100°C将水煮沸成蒸汽需要汽化潜热。蒸汽比热水携带更多能量。"
+          },
+          feedback: {
+              correct: "热力学掌握了！",
+              incorrect: "复习热传递原理。"
           }
       },
   sp2_02: {

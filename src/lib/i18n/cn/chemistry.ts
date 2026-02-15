@@ -710,15 +710,42 @@ export const cnChemistry = {
   sc3_02: {
           back: "返回枢纽",
           title: "SC3.02 // 有机化学基础",
+          check: "验证",
+          next: "下一个",
+          correct: "已验证",
+          incorrect: "不匹配",
+          ready: "就绪",
+          monitor_title: "SC3.02_有机监控",
+          footer_left: "SC3.02_有机基础 // 节点：巴塞尔",
+          objective_title: "当前任务目标",
+          difficulty: {
+              basic: "基础",
+              core: "核心",
+              advanced: "进阶",
+              elite: "精英"
+          },
           stages: {
-              alkanes: "烷烃",
+              hydrocarbons: "烃类",
               functional_groups: "官能团",
               isomers: "同分异构体"
           },
           labels: {
-              carbon_chain: "碳链",
-              hydroxyl: "羟基",
-              double_bond: "双键"
+              molecule_display: "分子显示",
+              input_terminal: "输入终端",
+              view_3d: "3D视图",
+              organic_mastery: "有机化学掌握度"
+          },
+          prompts: {
+              name_formula: "{name}的分子式是什么？",
+              functional_group: "{name}中的官能团是什么？",
+              isomer_count: "{formula}有多少个同分异构体？",
+              hint_carbons: "这个分子有{count}个碳原子",
+              hint_group: "在{example}中寻找特征基团",
+              hint_isomer: "考虑{type}同分异构体"
+          },
+          feedback: {
+              correct: "有机结构理解了！",
+              incorrect: "复习分子结构。"
           }
       },
   sc3_03: {

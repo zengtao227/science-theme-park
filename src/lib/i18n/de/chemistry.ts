@@ -698,15 +698,42 @@ export const deChemistry = {
   sc3_02: {
                       back: "Zurück zum Nexus",
                       title: "SC3.02 // GRUNDLAGEN DER ORGANISCHEN CHEMIE",
+                      check: "Verifizieren",
+                      next: "Weiter",
+                      correct: "Verifiziert",
+                      incorrect: "Fehlreaktion",
+                      ready: "Bereit",
+                      monitor_title: "SC3.02_ORGANIK_MONITOR",
+                      footer_left: "SC3.02_ORGANISCHE_GRUNDLAGEN // KNOTEN: BASEL",
+                      objective_title: "Aktuelles Missionsziel",
+                      difficulty: {
+                          basic: "BASIS",
+                          core: "KERN",
+                          advanced: "ERWEITERT",
+                          elite: "ELITE"
+                      },
                       stages: {
-                          alkanes: "ALKANE",
+                          hydrocarbons: "KOHLENWASSERSTOFFE",
                           functional_groups: "FUNKTIONELLE GRUPPEN",
                           isomers: "ISOMERE"
                       },
                       labels: {
-                          carbon_chain: "Kohlenstoffkette",
-                          hydroxyl: "Hydroxylgruppe",
-                          double_bond: "Doppelbindung"
+                          molecule_display: "Molekülanzeige",
+                          input_terminal: "Eingabeterminal",
+                          view_3d: "3D-Ansicht",
+                          organic_mastery: "Organische Meisterschaft"
+                      },
+                      prompts: {
+                          name_formula: "Was ist die Summenformel für {name}?",
+                          functional_group: "Was ist die funktionelle Gruppe in {name}?",
+                          isomer_count: "Wie viele Isomere hat {formula}?",
+                          hint_carbons: "Dieses Molekül hat {count} Kohlenstoffatome",
+                          hint_group: "Suche nach der charakteristischen Gruppe in {example}",
+                          hint_isomer: "Betrachte {type}-Isomere"
+                      },
+                      feedback: {
+                          correct: "Organische Struktur verstanden!",
+                          incorrect: "Überprüfe die Molekülstruktur."
                       }
                   },
   
