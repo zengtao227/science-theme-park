@@ -656,7 +656,8 @@ export const translations: Record<string, any> = {
             biology: "Biology",
             socratic: "Socratic"
         },
-        completed_badge: "COMPLETED",
+        completed_badge: "COMPLETED"
+    },
     profile: {
         title: "Scientist Profile",
         subtitle: "Operator dossier // performance matrix",
@@ -2137,7 +2138,7 @@ export const translations: Record<string, any> = {
         polarization: "I = I_0 \\cos^2 \\theta"
     }
     },
-    sm1_02_new: {
+    sm1_02: {
     back: "Back to Nexus",
     title: "EM1.01 // ALGEBRA QUEST",
     difficulty: {
@@ -2214,7 +2215,7 @@ export const translations: Record<string, any> = {
         slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
     }
     },
-    sm1_03_new: {
+    sm1_03: {
     back: "Back to Nexus",
     title: "SM1.03 // BELOW ZERO",
     difficulty: {
@@ -2305,7 +2306,7 @@ export const translations: Record<string, any> = {
         q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
     }
     },
-    sm1_04_new: {
+    sm1_04: {
     back: "Back to Nexus",
     title: "SM1.04 // EQUATION BALANCE",
     difficulty: {
@@ -2418,7 +2419,7 @@ export const translations: Record<string, any> = {
         app_profit_loss: "Basel shop: Sell at 20% profit or 10% loss, difference is 60 CHF. Find cost price."
     }
     },
-    sm1_05_new: {
+    sm1_05: {
     back: "Back to Nexus",
     title: "SM1.05 // RATIO LAB",
     difficulty: {
@@ -11321,7 +11322,7 @@ export const translations: Record<string, any> = {
                         incorrect: "Überprüfen Sie den Reaktionsmechanismus."
                     }
                 }
-    },
+        }
 };
 
 export function useLanguage() {
