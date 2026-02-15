@@ -223,6 +223,7 @@ export const deMath = {
                   title: "GM1.01-ADV // FORTGESCHRITTENE ANALYSIS",
                   monitor_title: "GM1.01_FORTGESCHRITTEN_MONITOR",
                   footer_left: "GM1.01_FORTGESCHRITTEN // KNOTEN: BASEL",
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
                   check: "Prüfen",
                   next: "Nächste Herausforderung",
                   correct: "Verifiziert",
@@ -557,6 +558,8 @@ export const deMath = {
                   ready: "Bereit",
                   monitor_title: "SM1.01_MONITOR",
                   footer_left: "SM1.01_GEOMETRIE // KNOTEN: BASEL",
+                  input_tip_2dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an.",
+                  base_twice_height: "Basis ist doppelt so hoch wie die Höhe",
                   stages: {
                       areas: "FLÄCHEN",
                       volumes: "VOLUMEN",
@@ -846,7 +849,7 @@ export const deMath = {
                       app_profit_loss: "Basel Geschäft: Verkauf mit 20% Gewinn oder 10% Verlust, Differenz ist 60 CHF. Finde Einkaufspreis."
                   }
               },
-  sm1_05_new: {
+  sm1_05: {
                   back: "Zurück zum Nexus",
                   title: "SM1.05 // PROPORTIONS-LABOR",
                   difficulty: {
@@ -1215,6 +1218,14 @@ export const deMath = {
                       oranges: "Orangen",
                       adult: "Erwachsene",
                       child: "Kinder"
+                  },
+                  canvas_translations: {
+                      legend: "LEGENDE",
+                      eq1: "Gleichung 1",
+                      eq2: "Gleichung 2",
+                      cursor: "Ziel-Cursor",
+                      locked: "GESPERRT",
+                      view: "ANSICHT: ORTHOGONAL_2D"
                   }
               },
   sm2_07: {
@@ -1255,6 +1266,20 @@ export const deMath = {
                       distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
                       midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
                       slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+                  },
+                  canvas_translations: {
+                      distance_formula: "Abstandsformel",
+                      midpoint_formula: "Mittelpunktsformel",
+                      slope_formula: "Steigungsformel",
+                      line_eq: "Geradengleichung",
+                      hide_formula: "Formel verbergen",
+                      show_formula: "Formel anzeigen"
+                  },
+                  dynamic_prompts: {
+                      dist_rev_y: "Abstand d=${d}. Finde y für B(3,y) (y>0).",
+                      dist_rev_x: "Abstand d=${d}. Finde x für B(x,5) (x>1).",
+                      mid_rev: "M ist der Mittelpunkt. Finde B(x,y).",
+                      collinear: "Punkte A, B, C sind kollinear. Finde ${target}."
                   }
               },
   sm2_08: {
@@ -1612,6 +1637,7 @@ export const deMath = {
                   ready: "Bereit",
                   monitor_title: "SM3.04_LOG_MONITOR",
                   footer_left: "SM3.04_LOGARITHMEN // KNOTEN: BASEL",
+                  input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
                   labels: {
                       input: "EINGABE",
                       hints: "HINWEISE",

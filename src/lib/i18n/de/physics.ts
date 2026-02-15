@@ -179,6 +179,7 @@ export const dePhysics = {
                   ready: "Bereit",
                   monitor_title: "P1.03_TURBINENMONITOR",
                   footer_left: "P1.03_RHEIN_WASSERKRAFT // KNOTEN: BASEL",
+                  input_tip_1dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 1 Dezimalstelle gerundet an.",
                   stages: {
                       potential: "LAGEENERGIE",
                       kinetic: "BEWEGUNGSENERGIE",

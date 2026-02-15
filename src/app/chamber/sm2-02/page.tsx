@@ -689,7 +689,6 @@ export default function S202Page() {
               {useFluidViz ? "2D View" : "Fluid View"}
             </button>
           </div>
-          {/* 使用简单的2D可视化，适合初二学生 */}
           {stage === "EXPLORER" ? (
             useFluidViz ? (
               <PythagorasFluidCanvas

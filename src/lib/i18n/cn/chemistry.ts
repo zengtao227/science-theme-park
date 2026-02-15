@@ -273,6 +273,7 @@ export const cnChemistry = {
               ready: "就绪",
               monitor_title: "C1.02_称重监控",
               footer_left: "C1.02_摩尔大师 // 节点：巴塞尔",
+              input_tip_1dp: "提示：输入分数 (如 4/3) 或保留 1 位小数。",
               stages: {
                   molar_mass: "摩尔质量",
                   stoichiometry: "反应比例",

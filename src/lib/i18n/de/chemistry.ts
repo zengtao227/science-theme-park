@@ -261,6 +261,7 @@ export const deChemistry = {
                   ready: "Bereit",
                   monitor_title: "C1.02_WAAGE",
                   footer_left: "C1.02_MOL_MEISTER // KNOTEN: BASEL",
+                  input_tip_1dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 1 Dezimalstelle gerundet an.",
                   stages: {
                       molar_mass: "MOLMASSE",
                       stoichiometry: "REAKTIONSVERHÄLTNIS",
@@ -736,5 +737,54 @@ export const deChemistry = {
                           incorrect: "Überprüfe die Molekülstruktur."
                       }
                   },
+  sc3_03: {
+      back: "Zurück zum Nexus",
+      title: "SC3.03 // ORGANISCHE REAKTIONEN",
+      difficulty: {
+          basic: "BASIS",
+          core: "KERN",
+          advanced: "ERWEITERT",
+          elite: "ELITE"
+      },
+      next: "Nächste Sequenz ausführen",
+      check: "Verifizieren",
+      correct: "Verifiziert",
+      incorrect: "Fehlreaktion",
+      ready: "Bereit",
+      monitor_title: "SC3.03_REAKTIONS_MONITOR",
+      footer_left: "SC3.03_ORGANISCHE_REAKTIONEN // KNOTEN: BASEL",
+      objective_title: "Aktuelles Missionsziel",
+      stages: {
+          combustion: "VERBRENNUNG",
+          substitution: "SUBSTITUTION",
+          addition: "ADDITION"
+      },
+      labels: {
+          reaction_display: "Reaktionsanzeige",
+          input_terminal: "Eingabeterminal",
+          animation_speed: "Animationsgeschwindigkeit",
+          show_mechanism: "Mechanismus anzeigen",
+          chemistry_score: "Chemie-Punktzahl"
+      },
+      prompts: {
+          combustion: "Vollständige Verbrennung von {reactant} produziert CO₂ und H₂O. Wie viele CO₂-Moleküle?",
+          substitution: "Wenn {alkane} mit {halogen} unter UV-Licht reagiert, was ist das Hauptprodukt?",
+          addition: "Wenn {alkene} mit {reagent} reagiert, was ist das Produkt?",
+          hint_combustion: "Zähle die Kohlenstoffatome im Reaktanten",
+          hint_substitution: "Ein H-Atom wird durch ein Halogenatom ersetzt",
+          hint_addition: "Die Doppelbindung öffnet sich und addiert das Reagenz"
+      },
+      scenarios: {
+          novartis_combustion: "Novartis Energielabor: Verbrennungsreaktionen versorgen Basels pharmazeutische Anlagen mit Energie. Vollständige Verbrennung organischer Brennstoffe produziert CO₂ und H₂O mit maximaler Energiefreisetzung.",
+          basel_chemical_plant: "Basler Chemische Synthese: Substitutionsreaktionen in Basels Chemieanlagen verwenden UV-Licht, um Wasserstoffatome durch Halogene zu ersetzen und wertvolle pharmazeutische Zwischenprodukte zu erzeugen.",
+          polymer_production: "Polymerproduktion in Basel: Additionsreaktionen wandeln Alkene in Polymere in Basels Chemieanlagen um. Doppelbindungen öffnen sich, um lange Polymerketten zu bilden.",
+          free_radical_mechanism: "Freie-Radikal-Chemie: UV-Licht initiiert Freie-Radikal-Mechanismen in Substitutionsreaktionen. Radikale propagieren durch Kettenreaktionen bis zur Terminierung.",
+          reaction_control: "Reaktionskontrolle bei Novartis: Die Kontrolle der Reaktionsbedingungen (Licht, Temperatur, Katalysatoren) bestimmt die Produktselektivität und Ausbeute in der organischen Synthese."
+      },
+      feedback: {
+          correct: "Reaktionsmechanismus verstanden!",
+          incorrect: "Überprüfe den Reaktionsmechanismus."
+      }
+  },
   
 };

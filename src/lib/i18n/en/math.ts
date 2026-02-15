@@ -223,6 +223,7 @@ export const enMath = {
           title: "GM1.01-ADV // ADVANCED CALCULUS",
           monitor_title: "GM1.01_ADVANCED_MONITOR",
           footer_left: "GM1.01_ADVANCED // NODE: BASEL",
+          input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
           check: "Verify",
           next: "Next Challenge",
           correct: "Verified",
@@ -547,6 +548,8 @@ export const enMath = {
           ready: "Ready",
           monitor_title: "SM1.01_MONITOR",
           footer_left: "SM1.01_GEOMETRY // NODE: BASEL",
+          input_tip_2dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places.",
+          base_twice_height: "base is twice the height",
           stages: {
               areas: "AREAS",
               volumes: "VOLUMES",
@@ -1206,6 +1209,14 @@ export const enMath = {
               oranges: "Oranges",
               adult: "Adults",
               child: "Children"
+          },
+          canvas_translations: {
+              legend: "LEGEND",
+              eq1: "Equation 1",
+              eq2: "Equation 2",
+              cursor: "Target Cursor",
+              locked: "LOCKED",
+              view: "VIEW: ORTHOGRAPHIC_2D"
           }
       },
   sm2_07: {
@@ -1246,6 +1257,20 @@ export const enMath = {
           distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
           midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
           slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+      },
+      canvas_translations: {
+          distance_formula: "Distance Formula",
+          midpoint_formula: "Midpoint Formula",
+          slope_formula: "Slope Formula",
+          line_eq: "Line Equation",
+          hide_formula: "Hide Formula",
+          show_formula: "Show Formula"
+      },
+      dynamic_prompts: {
+          dist_rev_y: "Distance d=${d}. Find y for B(3,y) (y>0).",
+          dist_rev_x: "Distance d=${d}. Find x for B(x,5) (x>1).",
+          mid_rev: "M is midpoint. Find B(x,y).",
+          collinear: "Points A, B, C are collinear. Find ${target}."
       }
       },
   sm2_08: {
@@ -1595,6 +1620,7 @@ export const enMath = {
       ready: "Ready",
       monitor_title: "SM3.04_LOG_MONITOR",
       footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
+      input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
       labels: {
           input: "INPUT",
           hints: "HINTS",

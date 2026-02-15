@@ -224,6 +224,7 @@ export const cnPhysics = {
               ready: "就绪",
               monitor_title: "P1.03_涡轮监控",
               footer_left: "P1.03_莱茵水电 // 节点：巴塞尔",
+              input_tip_1dp: "提示：输入分数 (如 4/3) 或保留 1 位小数。",
               stages: {
                   potential: "势能",
                   kinetic: "动能",

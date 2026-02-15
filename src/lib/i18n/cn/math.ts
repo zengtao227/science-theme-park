@@ -223,6 +223,7 @@ export const cnMath = {
               title: "GM1.01-进阶 // 高级微积分",
               monitor_title: "GM1.01_进阶监控",
               footer_left: "GM1.01_进阶 // 节点: 巴塞尔",
+              input_tip_2dp: "提示：保留 2 位小数。",
               check: "验证",
               next: "下一挑战",
               correct: "已验证",
@@ -527,6 +528,8 @@ export const cnMath = {
               ready: "就绪",
               monitor_title: "SM1.01_监控",
               footer_left: "SM1.01_几何任务 // 节点：巴塞尔",
+              input_tip_2dp: "提示：输入分数 (如 4/3) 或保留 2 位小数。",
+              base_twice_height: "底边是高的2倍",
               stages: {
                   areas: "面积",
                   volumes: "体积",
@@ -816,7 +819,7 @@ export const cnMath = {
               app_profit_loss: "巴塞尔商店：以 20% 利润或 10% 亏损出售，差价 60 瑞郎。求成本价。"
           }
       },
-  sm1_05_new: {
+  sm1_05: {
           back: "返回枢纽",
           title: "SM1.05 // 比例实验室",
           difficulty: {
@@ -1185,6 +1188,14 @@ export const cnMath = {
                   oranges: "橙子",
                   adult: "成人",
                   child: "儿童"
+              },
+              canvas_translations: {
+                  legend: "图例",
+                  eq1: "方程 1",
+                  eq2: "方程 2",
+                  cursor: "目标光标",
+                  locked: "已锁定",
+                  view: "视图: 2D正交坐标系"
               }
           },
   sm2_07: {
@@ -1225,6 +1236,20 @@ export const cnMath = {
               distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
               midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
               slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
+          },
+          canvas_translations: {
+              distance_formula: "距离公式",
+              midpoint_formula: "中点公式",
+              slope_formula: "斜率公式",
+              line_eq: "直线方程",
+              hide_formula: "隐藏公式",
+              show_formula: "显示公式"
+          },
+          dynamic_prompts: {
+              dist_rev_y: "距离 d=${d}。已知 A(0,0), B(3,y) 且 y>0，求 y。",
+              dist_rev_x: "距离 d=${d}。已知 A(1,1), B(x,5) 且 x>1，求 x。",
+              mid_rev: "M 是中点。已知 A 和 M，求 B(x,y)。",
+              collinear: "A, B, C 三点共线。求 ${target}。"
           }
       },
   sm2_08: {
@@ -1574,6 +1599,7 @@ export const cnMath = {
           ready: "就绪",
           monitor_title: "SM3.04_对数监视器",
           footer_left: "SM3.04_对数 // 节点：巴塞尔",
+          input_tip_2dp: "提示：保留 2 位小数。",
           labels: {
               input: "输入",
               hints: "提示",

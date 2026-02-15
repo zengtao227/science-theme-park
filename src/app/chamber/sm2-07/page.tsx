@@ -316,28 +316,7 @@ export default function S207Page() {
             stage={stage}
             point1={currentQuest?.point1 || [2, 3]}
             point2={currentQuest?.point2 || [6, 7]}
-            translations={currentLanguage === "CN" ? {
-              distance_formula: "距离公式",
-              midpoint_formula: "中点公式",
-              slope_formula: "斜率公式",
-              line_eq: "直线方程",
-              hide_formula: "隐藏公式",
-              show_formula: "显示公式"
-            } : currentLanguage === "DE" ? {
-              distance_formula: "Abstandsformel",
-              midpoint_formula: "Mittelpunktsformel",
-              slope_formula: "Steigungsformel",
-              line_eq: "Geradengleichung",
-              hide_formula: "Formel verbergen",
-              show_formula: "Formel anzeigen"
-            } : {
-              distance_formula: "Distance Formula",
-              midpoint_formula: "Midpoint Formula",
-              slope_formula: "Slope Formula",
-              line_eq: "Line Equation",
-              hide_formula: "Hide Formula",
-              show_formula: "Show Formula"
-            }}
+            translations={t.canvas_translations}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">

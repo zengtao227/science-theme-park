@@ -273,6 +273,7 @@ export const enChemistry = {
       ready: "Ready",
       monitor_title: "C1.02_SCALE",
       footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
+      input_tip_1dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 1 decimal place.",
       stages: {
           molar_mass: "MOLAR MASS",
           stoichiometry: "REACTION RATIO",

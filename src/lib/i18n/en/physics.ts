@@ -266,6 +266,7 @@ export const enPhysics = {
       ready: "Ready",
       monitor_title: "P1.03_TURBINE_MONITOR",
       footer_left: "P1.03_RHINE_TURBINE // NODE: BASEL",
+      input_tip_1dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 1 decimal place.",
       stages: {
           potential: "POTENTIAL",
           kinetic: "KINETIC",

@@ -60,7 +60,7 @@ function buildStagePool(t: Mg12T, difficulty: Difficulty, stage: Stage): S101Que
             expr2 = `\\text{${t.quests.tri_elite.replace("${c}", "14.14")}}`;
         } else {
             b2 = 12; h2 = 6;
-            expr2 = `\\text{${t.labels.base} }b=12\\text{m, }\\text{底边是高的2倍}`;
+            expr2 = `\\text{${t.labels.base} }b=12\\text{m, }\\text{${t.base_twice_height}}`;
         }
 
         // --- A3: Trapezoid (Gate) ---
@@ -429,12 +429,7 @@ export default function S101Page() {
                 </div>
 
                 <div className="text-[10px] text-white/90 font-mono italic text-center">
-                    {currentLanguage === 'DE'
-                        ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an."
-                        : currentLanguage === 'CN'
-                            ? "提示：输入分数 (如 4/3) 或保留 2 位小数。"
-                            : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places."
-                    }
+                    {t.input_tip_2dp}
                 </div>
 
             </div>

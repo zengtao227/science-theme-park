@@ -251,12 +251,7 @@ export default function P103Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 1 Dezimalstelle gerundet an."
-              : currentLanguage === 'CN'
-                ? "提示：输入分数 (如 4/3) 或保留 1 位小数。"
-                : "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 1 decimal place."
-            }
+            {t.input_tip_1dp}
           </div>
         </div>
       </div>

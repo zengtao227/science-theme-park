@@ -352,12 +352,7 @@ export default function S304Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
-              : currentLanguage === 'CN'
-                ? "提示：保留 2 位小数。"
-                : "Tip: Enter result rounded to 2 decimal places."
-            }
+            {t.input_tip_2dp}
           </div>
         </div>
       </div>
