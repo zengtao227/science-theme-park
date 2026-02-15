@@ -13,6 +13,7 @@ type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES";
 
 interface SB301Quest extends Quest {
     stage: Stage;
+    scenario?: string;
     data?: any;
 }
 
@@ -24,27 +25,25 @@ export default function SB301Page() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB301Quest[] => {
         const quests: SB301Quest[] = [];
+        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "FOOD_CHAINS") {
-            const basicQuests = [
-                { p: "Algae", c: "Zooplankton", next: "Silver Carp", q: t.prompts.food_chain },
-                { p: "Waterweed", c: "Snails", next: "Tench", q: t.prompts.food_chain },
-                { p: "Reed", c: "Aphids", next: "Ladybugs", q: t.prompts.food_chain }
+            const scenarios = [
+                { p: "Algae", c: "Zooplankton", next: "Silver Carp", scenario: "rhine_river" },
+                { p: "Waterweed", c: t.labels?.snails || "Snails", next: "Tench", scenario: "rhine_river" },
+                { p: "Detritus", c: "Benthic Invertebrates", next: "Eel", scenario: "rhine_river" },
+                { p: "Phytoplankton", c: "Mussels", next: "Cormorant", scenario: "rhine_river" }
             ];
 
-            const advancedQuests = [
-                { p: "Detritus", c: "Benthic Invertebrates", next: "Eel", q: t.prompts.food_chain },
-                { p: "Phytoplankton", c: "Mussels", next: "Cormorant", q: t.prompts.food_chain }
-            ];
+            const filtered = isAdvanced ? scenarios : scenarios.slice(0, 2);
 
-            const activeList = (difficulty === "ADVANCED" || difficulty === "ELITE") ? [...basicQuests, ...advancedQuests] : basicQuests;
-
-            activeList.forEach((item, idx) => {
+            filtered.forEach((item, idx) => {
                 quests.push({
                     id: `FC-${difficulty}-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{${item.q.replace("{producer}", item.p).replace("{consumer}", item.c)}}`,
+                    scenario: item.scenario,
+                    promptLatex: `\\text{${t.prompts.food_chain.replace("{producer}", item.p).replace("{consumer}", item.c)}}`,
                     expressionLatex: `\\text{${item.p}} \\rightarrow \\text{${item.c}} \\rightarrow ?`,
                     targetLatex: `\\text{${item.next}}`,
                     slots: [{ id: "ans", labelLatex: "\\text{Level 3}", placeholder: "...", expected: item.next.toLowerCase() }],
@@ -55,20 +54,22 @@ export default function SB301Page() {
         }
 
         if (stage === "ENERGY_FLOW") {
-            const energyValues = [
+            const scenarios = isAdvanced ? [
+                { level: "Secondary", energy: 1250, expected: "125" },
+                { level: "Tertiary", energy: 85, expected: "8.5" }
+            ] : [
                 { level: "Primary", energy: 10000, expected: "1000" },
-                { level: "Secondary", energy: 500, expected: "50" },
-                { level: "Tertiary", energy: 80, expected: "8" },
                 { level: "Primary", energy: 25000, expected: "2500" }
             ];
 
-            energyValues.forEach((item, idx) => {
+            scenarios.forEach((item, idx) => {
                 quests.push({
                     id: `EF-${difficulty}-${idx}`,
                     difficulty,
                     stage,
+                    scenario: "energy_pyramid",
                     promptLatex: `\\text{${t.prompts.energy_transfer.replace("{level}", item.level).replace("{energy}", item.energy.toString())}}`,
-                    expressionLatex: `E_{next} = E_{current} \\times 0.10`,
+                    expressionLatex: `E_{next} = E_{current} \\times 10\\%`,
                     targetLatex: item.expected,
                     slots: [{ id: "ans", labelLatex: "\\text{Energy (kJ)}", placeholder: "0", expected: item.expected }],
                     correctLatex: `${item.expected}\\text{ kJ}`,
@@ -78,18 +79,21 @@ export default function SB301Page() {
         }
 
         if (stage === "CYCLES") {
-            const processes = [
-                { cycle: "Carbon", process: "Photosynthesis", out: "Glucose/Oxygen" },
-                { cycle: "Carbon", process: "Respiration", out: "CO2/Water" },
-                { cycle: "Nitrogen", process: "Nitrogen Fixation", out: "Ammonia" },
-                { cycle: "Water", process: "Evaporation", out: "Water Vapor" }
+            const scenarios = [
+                { cycle: "Carbon", process: "Photosynthesis", out: "Oxygen", scenario: "carbon_cycle" },
+                { cycle: "Carbon", process: "Respiration", out: "CO2", scenario: "carbon_cycle" },
+                { cycle: "Nitrogen", process: "Nitrogen Fixation", out: "Ammonia", scenario: "nitrogen_cycle" },
+                { cycle: "Water", process: "Evaporation", out: "Water Vapor", scenario: "water_cycle" }
             ];
 
-            processes.forEach((item, idx) => {
+            const filtered = isAdvanced ? scenarios : scenarios.slice(0, 2);
+
+            filtered.forEach((item, idx) => {
                 quests.push({
                     id: `CYC-${difficulty}-${idx}`,
                     difficulty,
                     stage,
+                    scenario: item.scenario,
                     promptLatex: `\\text{${t.prompts.cycle_process.replace("{cycle}", item.cycle).replace("{process}", item.process)}}`,
                     expressionLatex: `\\text{${item.process}} \\rightarrow ?`,
                     targetLatex: `\\text{${item.out}}`,
@@ -133,6 +137,14 @@ export default function SB301Page() {
         { id: "ENERGY_FLOW" as Stage, label: t.stages.energy_flow },
         { id: "CYCLES" as Stage, label: t.stages.cycles },
     ], [t.stages]);
+
+    const activeScenario = useMemo(() => {
+        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {
+            return t.scenarios[currentQuest.scenario as keyof typeof t.scenarios];
+        }
+        const keys = Object.keys(t.scenarios);
+        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+    }, [t, currentQuest]);
 
     if (!currentQuest) {
         return (
@@ -187,7 +199,7 @@ export default function SB301Page() {
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-green-500/30">
                     <h3 className="text-green-400 font-bold mb-2">{t.objective_title}</h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                        {t.scenarios[stage.toLowerCase() as keyof typeof t.scenarios]}
+                        {activeScenario}
                     </p>
                 </div>
 
