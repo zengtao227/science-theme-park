@@ -963,6 +963,21 @@ export const enMath = {
               footer_left: "SM2.01_ALGEBRA_SYNC // NODE: ZURICH",
               verified: "Verified",
               simulating: "Simulating",
+              coeff: "Coefficient",
+              const: "Constant"
+          },
+          placeholders: {
+              ax: "ax",
+              b: "b",
+              a_squared: "a²",
+              two_ab: "2ab",
+              b_squared: "b²",
+              cxy: "Cxy",
+              v: "V",
+              two_cvxy: "2CVxy",
+              v_squared: "V²",
+              by: "by",
+              question: "?"
           }
       },
   sm2_02: {
@@ -1086,6 +1101,9 @@ export const enMath = {
               level1: "LEVEL 1",
               level2: "LEVEL 2",
               level3: "LEVEL 3"
+          },
+          placeholders: {
+              question: "?"
           }
       },
   sm2_04: {

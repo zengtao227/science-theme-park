@@ -944,6 +944,21 @@ export const cnMath = {
                   footer_left: "SM2.01_代数同步 // 节点：苏黎世工业区",
                   verified: "已验证",
                   simulating: "模拟中",
+                  coeff: "系数",
+                  const: "常数"
+              },
+              placeholders: {
+                  ax: "ax",
+                  b: "b",
+                  a_squared: "a²",
+                  two_ab: "2ab",
+                  b_squared: "b²",
+                  cxy: "Cxy",
+                  v: "V",
+                  two_cvxy: "2CVxy",
+                  v_squared: "V²",
+                  by: "by",
+                  question: "?"
               }
           },
   sm2_02: {
@@ -1067,6 +1082,9 @@ export const cnMath = {
                   level1: "等级 1",
                   level2: "等级 2",
                   level3: "等级 3"
+              },
+              placeholders: {
+                  question: "?"
               }
           },
   sm2_04: {

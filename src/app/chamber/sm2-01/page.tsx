@@ -579,7 +579,7 @@ export default function S201Page() {
                           value={inputs.a_root || ""}
                           onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="ax"
+                          placeholder={t.placeholders?.ax ?? "ax"}
                         />
                         <span className="text-white/80">)²</span>
 
@@ -591,14 +591,14 @@ export default function S201Page() {
                           value={inputs.a_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="ax"
+                          placeholder={t.placeholders?.ax ?? "ax"}
                         />
                         <span className="text-white/80">)(</span>
                         <input
                           value={inputs.b_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, b_mid: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="b"
+                          placeholder={t.placeholders?.b ?? "b"}
                         />
                         <span className="text-white/90">)</span>
 
@@ -609,7 +609,7 @@ export default function S201Page() {
                           value={inputs.b_root || ""}
                           onChange={(e) => setInputs({ ...inputs, b_root: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder="b"
+                          placeholder={t.placeholders?.b ?? "b"}
                         />
                         <span className="text-white/80">)²</span>
                       </div>
@@ -625,7 +625,7 @@ export default function S201Page() {
                           value={inputs.a2 || ""}
                           onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder="?"
+                          placeholder={t.placeholders?.question ?? "?"}
                         />
                         <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
@@ -636,7 +636,7 @@ export default function S201Page() {
                           value={inputs.ab || ""}
                           onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder="?"
+                          placeholder={t.placeholders?.question ?? "?"}
                         />
                         <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
@@ -647,7 +647,7 @@ export default function S201Page() {
                           value={inputs.b2 || ""}
                           onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder="?"
+                          placeholder={t.placeholders?.question ?? "?"}
                         />
                         <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
                       </div>
@@ -681,7 +681,7 @@ export default function S201Page() {
                       value={inputs.a || ""}
                       onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder="ax"
+                      placeholder={t.placeholders?.ax ?? "ax"}
                     />
                   </div>
                   <div className="flex items-end pb-4 justify-center text-4xl text-white font-black">+</div>
@@ -693,7 +693,7 @@ export default function S201Page() {
                       value={inputs.b || ""}
                       onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder={scrapperQuest?.variant === "XY" ? "by" : "b"}
+                      placeholder={scrapperQuest?.variant === "XY" ? (t.placeholders?.by ?? "by") : (t.placeholders?.b ?? "b")}
                     />
                   </div>
                 </>
@@ -706,21 +706,21 @@ export default function S201Page() {
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder="a²"
+                      placeholder={t.placeholders?.a_squared ?? "a²"}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part2 || ""}
                       onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder="2ab"
+                      placeholder={t.placeholders?.two_ab ?? "2ab"}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder="b²"
+                      placeholder={t.placeholders?.b_squared ?? "b²"}
                     />
                   </div>
                 </div>
@@ -767,14 +767,14 @@ export default function S201Page() {
                         value={inputs.base || ""}
                         onChange={(e) => setInputs({ ...inputs, base: e.target.value })}
                         className="w-32 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder="Cxy"
+                        placeholder={t.placeholders?.cxy ?? "Cxy"}
                       />
                       <span className="text-3xl text-white font-black">-</span>
                       <input
                         value={inputs.sub || ""}
                         onChange={(e) => setInputs({ ...inputs, sub: e.target.value })}
                         className="w-24 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder="V"
+                        placeholder={t.placeholders?.v ?? "V"}
                       />
                       <span className="text-3xl text-white font-black">)²</span>
                     </div>
@@ -788,14 +788,14 @@ export default function S201Page() {
                         value={inputs.add_term || ""}
                         onChange={(e) => setInputs({ ...inputs, add_term: e.target.value })}
                         className="w-40 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder="2CVxy"
+                        placeholder={t.placeholders?.two_cvxy ?? "2CVxy"}
                       />
                       <span className="text-2xl text-white font-black">-</span>
                       <input
                         value={inputs.const_term || ""}
                         onChange={(e) => setInputs({ ...inputs, const_term: e.target.value })}
                         className="w-32 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder="V²"
+                        placeholder={t.placeholders?.v_squared ?? "V²"}
                       />
                     </div>
                   </div>
@@ -810,19 +810,19 @@ export default function S201Page() {
                         value={inputs.a || ""}
                         onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                         className="w-24 sm:w-32 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder="ax"
+                        placeholder={t.placeholders?.ax ?? "ax"}
                       />
                       <span className="text-white">+</span>
                       <input
                         value={inputs.b || ""}
                         onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                         className="w-20 sm:w-28 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder="b"
+                        placeholder={t.placeholders?.b ?? "b"}
                       />
                       <span className="text-white">) (</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || "ax"}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || (t.placeholders?.ax ?? "ax")}</span>
                       <span className="text-white">-</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || "b"}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || (t.placeholders?.b ?? "b")}</span>
                       <span className="text-white">)</span>
                     </div>
                   ) : (
@@ -832,7 +832,7 @@ export default function S201Page() {
                           value={inputs.part1 || ""}
                           onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder="?"
+                          placeholder={t.placeholders?.question ?? "?"}
                         />
                         <span className="text-white ml-2">x²</span>
                       </div>
@@ -842,7 +842,7 @@ export default function S201Page() {
                           value={inputs.part2 || ""}
                           onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder="?"
+                          placeholder={t.placeholders?.question ?? "?"}
                         />
                       </div>
                     </div>

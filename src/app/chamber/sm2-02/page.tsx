@@ -915,7 +915,7 @@ export default function S202Page() {
                     value={inputs[step.id] || ""}
                     onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
                     className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
-                    placeholder="?"
+                    placeholder={t.placeholders?.question ?? "?"}
                     inputMode="numeric"
                   />
                 )}
