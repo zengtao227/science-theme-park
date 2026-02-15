@@ -1,0 +1,129 @@
+        }
+
+        if (stage === "MAGNETIC_FIELD") {
+            // MAGNETIC_FIELD stage quests here
+        }
+
+        if (stage === "APPLICATIONS") {
+            // APPLICATIONS stage quests here
+        }
+
+        return quests;
+    }, []);
+
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+    const {
+        currentQuest,
+        difficulty,
+        stage,
+        lastCheck,
+        inputs,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+    } = useQuestManager<GP205Quest, Stage>({
+        buildPool,
+        initialStage: "MAGNETIC_FORCE",
+    });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("gp2-05", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
+    const stagesProps = useMemo(() => [
+        { id: "MAGNETIC_FORCE" as Stage, label: t.stages.magnetic_force },
+        { id: "MAGNETIC_FIELD" as Stage, label: t.stages.magnetic_field },
+        { id: "APPLICATIONS" as Stage, label: t.stages.applications },
+    ], [t.stages]);
+
+    if (!currentQuest) {
+        return (
+            <ChamberLayout
+                title={t.title}
+                moduleCode="GP2.05"
+                difficulty={difficulty}
+                onDifficultyChange={handleDifficultyChange}
+                stages={stagesProps}
+                currentStage={stage}
+                onStageChange={(s) => handleStageChange(s as Stage)}
+                footerLeft={t.footer_left}
+                translations={{
+                    back: t.back,
+                    check: t.check,
+                    next: t.next,
+                    correct: t.correct,
+                    incorrect: t.incorrect,
+                    difficulty: t.difficulty,
+                }}
+                monitorContent={<MagneticFieldVisualization stage={stage} />}
+            >
+                <div className="text-center text-blue-400 text-xl">Module Complete!</div>
+            </ChamberLayout>
+        );
+    }
+
+    return (
+        <ChamberLayout
+            title={t.title}
+            moduleCode="GP2.05"
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={stagesProps}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                difficulty: t.difficulty,
+            }}
+            monitorContent={<MagneticFieldVisualization stage={stage} />}
+        >
+            <div className="space-y-6">
+                <div className="bg-gray-800/50 p-4 rounded-lg border border-blue-500/30">
+                    <h3 className="text-blue-400 font-bold mb-2">{t.objective_title}</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                        {t.scenarios[stage.toLowerCase() as keyof typeof t.scenarios]}
+                    </p>
+                </div>
+
+                <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
+                    <div className="text-lg">
+                        <InlineMath math={currentQuest.promptLatex} />
+                    </div>
+                    
+                    <div className="text-blue-300">
+                        <InlineMath math={currentQuest.expressionLatex} />
+                    </div>
+
+                    <div className="space-y-3">
+                        {currentQuest.slots.map((slot) => (
+                            <div key={slot.id} className="flex items-center gap-3">
+                                <InlineMath math={slot.labelLatex} />
+                                <input
+                                    type="text"
+                                    value={inputs[slot.id] || ""}
+                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                    placeholder={slot.placeholder}
+                                    className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white"
+                                    disabled={lastCheck?.ok}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </ChamberLayout>
+    );
+}
