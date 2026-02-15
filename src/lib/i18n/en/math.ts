@@ -1699,8 +1699,7 @@ export const enMath = {
           status_sim: "LOG_SCALE_SIM: ACTIVE",
           status_mode: "MODE"
       }
-      },
-};
+  },
   sm2_10: {
       back: "Back to Nexus",
       title: "SM2.10 // DATA ANALYSIS",
@@ -1723,3 +1722,4 @@ export const enMath = {
           correlation: "Basel Public Health - Correlation vs. Causation: You are working with Basel's public health department analyzing relationships between various factors and health outcomes. Correlation measures the strength and direction of the linear relationship between two variables, quantified by the correlation coefficient r, which ranges from -1 to +1. r = +1 means perfect positive correlation (points lie exactly on an upward line), r = -1 means perfect negative correlation (points lie exactly on a downward line), and r = 0 means no linear correlation. Values like r = 0.8 indicate strong positive correlation, r = -0.6 indicates moderate negative correlation, and r = 0.1 indicates weak or no correlation. CRITICAL CONCEPT: Correlation does NOT imply causation! Just because two variables are correlated doesn't mean one causes the other. Classic example: ice cream sales and drowning deaths are positively correlated (both increase in summer), but ice cream doesn't cause drowning - both are caused by hot weather (confounding variable). In Basel, researchers found correlation between coffee consumption and heart health, but this doesn't prove coffee causes better health - perhaps healthier people simply drink more coffee, or coffee drinkers exercise more. To establish causation, you need controlled experiments, not just correlation. However, strong correlation can suggest relationships worth investigating and enables useful predictions even without causation. Basel uses correlation analysis for: predicting flu outbreaks from weather data, optimizing public transport schedules based on passenger patterns, and identifying risk factors for diseases. Understanding correlation helps you interpret research findings critically, avoid false conclusions, and make data-driven decisions."
       }
   },
+};
