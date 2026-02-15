@@ -138,7 +138,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|SOLVE_HYP|${difficulty}|${a}|${b}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_hyp}:\\; \\text{水平距离 }a=${a}\\text{m, 垂直高度 }b=${b}\\text{m}`,
+          promptLatex: `${t.pythagoras.solve_hyp}:\\; \\text{${t.pythagoras.solve_hyp_params.replace('{a}', a.toString()).replace('{b}', b.toString())}}`,
           expressionLatex: `c^2=a^2+b^2`,
           targetLatex: `c`,
           correctLatex: `c=${c}`,
@@ -170,10 +170,13 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         const missing = knownIsA ? b : a;
         const missing2 = c * c - known * known;
 
+        const knownLabel = knownIsA ? t.pythagoras.known_horizontal : t.pythagoras.known_given;
+        const knownVar = knownIsA ? "a" : "b";
+        
         quests.push({
           id: `PYT|SOLVE_LEG|${difficulty}|${c}|${known}|${knownIsA ? "A" : "B"}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_leg}:\\; \\text{绳索全长 }c=${c}\\text{m, ${knownIsA ? "水平移动" : "已知"} }${knownIsA ? "a" : "b"}=${known}\\text{m}`,
+          promptLatex: `${t.pythagoras.solve_leg}:\\; \\text{${t.pythagoras.solve_leg_params.replace('{c}', c.toString()).replace('{known_label}', knownLabel).replace('{known_var}', knownVar).replace('{known}', known.toString())}}`,
           expressionLatex: `${knownIsA ? "b^2" : "a^2"}=c^2-${knownIsA ? "a^2" : "b^2"}`,
           targetLatex: `${knownIsA ? "b" : "a"}`,
           correctLatex: `${knownIsA ? "b" : "a"}=${missing}`,
