@@ -256,8 +256,8 @@
 ### Week 9-10: Phase 2.3-2.4 - 化学与生物补充
 - [ ] 确认SC3.01-03内容
 - [x] 创建SC3.04 (Functional Groups) ✅
-- [ ] 创建GC1.02 (Electrochemistry)
-- [ ] 确认并完善GB1.01 (Evolution Lab)
+- [x] 创建GC1.02 (Electrochemistry) ✅ 
+- [ ] 确认并完善GB1.01 (Evolution Lab) ✅
 - [ ] 创建GB2.01 (Neurobiology)
 - [ ] 创建GB3.02 (Immunology)
 

@@ -1,0 +1,334 @@
+"use client";
+
+import { useEffect, useCallback, useMemo, useState } from "react";
+import { BlockMath, InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useAppStore } from "@/lib/store";
+import { translations } from "@/lib/i18n";
+import ChamberLayout from "@/components/layout/ChamberLayout";
+import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
+
+type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
+
+interface GB201Quest extends Quest {
+    stage: Stage;
+    data?: any;
+}
+
+type GB201T = typeof translations.EN.gb2_01;
+
+export default function GB201Neurobiology() {
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = (translations[currentLanguage]?.gb2_01 || translations.EN.gb2_01) as GB201T;
+    const [voltage, setVoltage] = useState(-70);
+
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB201Quest[] => {
+        const quests: GB201Quest[] = [];
+
+        if (stage === "ANATOMY") {
+            const parts = [
+                { id: "axon", func: "signal transmission", name: t.labels.axon },
+                { id: "soma", func: "metabolic processing", name: t.labels.cell_body },
+                { id: "dendrites", func: "signal reception", name: t.labels.dendrites },
+                { id: "myelin", func: "insulation and saltatory conduction", name: t.labels.myelin_sheath },
+                { id: "node", func: "ion exchange during propagation", name: t.labels.node_of_ranvier }
+            ];
+
+            parts.forEach((p, idx) => {
+                quests.push({
+                    id: `AN-${idx}`,
+                    difficulty,
+                    stage,
+                    promptLatex: `\\text{${t.prompts.identify_part.replace("{function}", p.func)}}`,
+                    expressionLatex: "",
+                    targetLatex: `\\text{${p.name}}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: p.name }],
+                    correctLatex: p.name,
+                    hintLatex: [`\\text{${t.prompts.hint_anatomy}}`]
+                });
+            });
+        }
+
+        if (stage === "POTENTIAL") {
+            const scenarios = [
+                { k_out: 5, k_in: 140, expected: "-88" },
+                { k_out: 10, k_in: 140, expected: "-70" },
+                { k_out: 4, k_in: 120, expected: "-90" },
+                { na_out: 145, na_in: 15, expected: "60" }
+            ];
+
+            scenarios.forEach((s, idx) => {
+                const ion = s.na_out ? "Na⁺" : "K⁺";
+                const cout = s.na_out || s.k_out;
+                const cin = s.na_in || s.k_in;
+
+                quests.push({
+                    id: `EP-${idx}`,
+                    difficulty,
+                    stage,
+                    promptLatex: `\\text{Calculate equilibrium potential for } ${ion}. [\\text{out}] = ${cout}mM, [\\text{in}] = ${cin}mM.`,
+                    expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
+                    targetLatex: s.expected,
+                    slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: s.expected }],
+                    correctLatex: `${s.expected}\\text{ mV}`,
+                    hintLatex: [`\\text{${t.prompts.hint_nernst}}`]
+                });
+            });
+
+            // Add ion identification
+            quests.push({
+                id: `AP-ION`,
+                difficulty,
+                stage,
+                promptLatex: `\\text{${t.prompts.action_potential}}`,
+                expressionLatex: "",
+                targetLatex: "Na^+",
+                slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "Na+" }],
+                correctLatex: "Na^+",
+                hintLatex: [`\\text{${t.prompts.hint_sodium}}`]
+            });
+        }
+
+        if (stage === "SYNAPSE") {
+            quests.push({
+                id: `SYN-ION`,
+                difficulty,
+                stage,
+                promptLatex: `\\text{${t.prompts.synapse_mechanism}}`,
+                expressionLatex: "",
+                targetLatex: "Ca^{2+}",
+                slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "Ca2+" }],
+                correctLatex: "Ca^{2+}",
+                hintLatex: [`\\text{${t.prompts.hint_calcium}}`]
+            });
+
+            const neurotransmitters = [
+                { name: "GABA", type: "Inhibitory", effect: "Cl- influx" },
+                { name: "Glutamate", type: "Excitatory", effect: "Na+ influx" },
+                { name: "Acetylcholine", type: "Excitatory", effect: "Muscle contraction" }
+            ];
+
+            neurotransmitters.forEach((nt, idx) => {
+                quests.push({
+                    id: `NT-${idx}`,
+                    difficulty,
+                    stage,
+                    promptLatex: `\\text{Role of } \\text{${nt.name}}: \\text{${nt.effect}}. \\text{Type?}`,
+                    expressionLatex: "",
+                    targetLatex: `\\text{${nt.type}}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: nt.type }],
+                    correctLatex: nt.type
+                });
+            });
+        }
+
+        return quests;
+    }, [t]);
+
+    const {
+        stage,
+        difficulty,
+        currentQuest,
+        handleStageChange,
+        handleDifficultyChange,
+        currentStageStats,
+        pool,
+        verify,
+        next,
+        inputs,
+        setInputs
+    } = useQuestManager<GB201Quest, Stage>({
+        buildPool: buildStagePool,
+        initialStage: "ANATOMY",
+    });
+
+    const successRate = useMemo(() => {
+        if (!currentStageStats || pool.length === 0) return 0;
+        return (currentStageStats.correct / pool.length) * 100;
+    }, [currentStageStats, pool.length]);
+
+    const activeScenario = useMemo(() => {
+        const keys = Object.keys(t.scenarios);
+        return t.scenarios[keys[Math.floor(Math.random() * keys.length)] as keyof typeof t.scenarios];
+    }, [t, stage]);
+
+    return (
+        <ChamberLayout
+            title={t.title}
+            moduleCode="GB2.01"
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            stages={[
+                { id: "ANATOMY", label: t.stages.anatomy },
+                { id: "POTENTIAL", label: t.stages.potential },
+                { id: "SYNAPSE", label: t.stages.synapse },
+            ]}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            translations={t}
+            monitorContent={[
+                <div key="stats" className="flex items-center gap-6">
+                    <div className="flex flex-col items-end">
+                        <span className="text-[10px] text-white/40 uppercase tracking-widest">{t.monitor_title}</span>
+                        <span className="text-xl font-mono text-green-400">
+                            {voltage.toFixed(1)} <span className="text-xs text-white/20">mV</span>
+                        </span>
+                    </div>
+                    <div className="h-8 w-[1px] bg-white/10" />
+                    <div className="flex flex-col items-end text-sm font-mono">
+                        <span className="text-white/40 text-[10px]">{t.correct}</span>
+                        <span className="text-green-500">{currentStageStats?.correct ?? 0}</span>
+                    </div>
+                </div>
+            ]}
+        >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
+                {/* Left Column: Mission & Interaction */}
+                <div className="lg:col-span-5 flex flex-col gap-6">
+                    <div className="p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md flex-1 overflow-y-auto">
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-6 flex items-center gap-2">
+                            <span className="w-8 h-[1px] bg-white/10" />
+                            {t.objective_title}
+                        </div>
+
+                        <AnimatePresence mode="wait">
+                            {currentQuest && (
+                                <motion.div
+                                    key={currentQuest.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    className="space-y-8"
+                                >
+                                    <div className="bg-white/5 p-6 rounded-xl border border-white/5">
+                                        <div className="text-lg text-white/90 leading-relaxed mb-4">
+                                            <BlockMath math={currentQuest.promptLatex} />
+                                        </div>
+                                        {currentQuest.expressionLatex && (
+                                            <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center overflow-x-auto">
+                                                <BlockMath math={currentQuest.expressionLatex} />
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Input Section */}
+                                    <div className="space-y-6">
+                                        {currentQuest.slots.map((slot) => (
+                                            <div key={slot.id} className="space-y-3">
+                                                <label className="text-xs uppercase tracking-widest text-white/40 block">
+                                                    <InlineMath math={slot.labelLatex} />
+                                                </label>
+                                                <div className="relative group">
+                                                    <input
+                                                        type="text"
+                                                        value={inputs[slot.id] || ""}
+                                                        placeholder={slot.placeholder}
+                                                        className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-purple-500/50 transition-all font-mono"
+                                                        onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                                        onKeyDown={(e) => {
+                                                            if (e.key === "Enter") {
+                                                                verify();
+                                                            }
+                                                        }}
+                                                    />
+                                                    <div className="absolute inset-0 rounded-xl bg-purple-500/5 opacity-0 group-focus-within:opacity-100 pointer-events-none transition-opacity" />
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                        <button
+                                            onClick={verify}
+                                            className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-white/90 active:scale-[0.98] transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                        >
+                                            {t.check}
+                                        </button>
+                                    </div>
+
+                                    {currentQuest.hintLatex && (
+                                        <div className="p-4 bg-purple-500/5 border border-purple-500/10 rounded-xl flex items-start gap-4">
+                                            <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                                <span className="text-purple-400 font-bold text-xs">?</span>
+                                            </div>
+                                            <div className="text-sm text-purple-300/80 leading-relaxed italic overflow-x-auto">
+                                                <InlineMath math={currentQuest.hintLatex[0]} />
+                                            </div>
+                                        </div>
+                                    )}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Scenario / Info Section */}
+                    <div className="p-6 bg-black/40 border border-white/5 rounded-2xl flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
+                            <div className="text-[10px] uppercase tracking-[0.2em] text-cyan-400/60 font-medium">Node: Basel_Neuro</div>
+                            <div className="h-1 w-12 bg-white/10 rounded-full" />
+                        </div>
+                        <p className="text-xs text-white/40 leading-relaxed italic">
+                            {activeScenario}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Right Column: Visualization */}
+                <div className="lg:col-span-7 flex flex-col gap-6 h-full min-h-[500px]">
+                    <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md relative overflow-hidden flex flex-col p-8">
+                        <div className="flex items-center justify-between mb-8">
+                            <div className="flex items-center gap-4 text-xs tracking-widest uppercase font-mono">
+                                <span className="text-white/20">system</span>
+                                <span className="text-green-400">active</span>
+                            </div>
+                            <div className="text-[10px] text-white/20 font-mono">GB2.01_VISUALIZATION_GRID</div>
+                        </div>
+
+                        <div className="flex-1 relative border border-white/5 rounded-xl bg-black/40 shadow-inner group">
+                            <div className="absolute inset-0">
+                                <NeuralCanvas
+                                    stage={stage}
+                                    isActive={true}
+                                    voltage={voltage}
+                                />
+                            </div>
+
+                            {/* Overlay Controls/Readouts */}
+                            <div className="absolute top-4 left-4 p-3 bg-black/60 border border-white/10 backdrop-blur-md rounded-lg pointer-events-none">
+                                <div className="text-[8px] uppercase tracking-widest text-white/40 mb-1">{t.labels.voltage}</div>
+                                <div className="text-lg font-mono text-cyan-400">{voltage.toFixed(1)}</div>
+                            </div>
+
+                            <div className="absolute top-4 right-4 p-3 bg-black/60 border border-white/10 backdrop-blur-md rounded-lg pointer-events-none max-w-[150px]">
+                                <div className="text-[8px] uppercase tracking-widest text-white/40 mb-1">STABILITY</div>
+                                <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-green-500"
+                                        animate={{ width: `${Math.max(0, 100 - Math.abs(voltage + 70) * 2)}%` }}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Grid decorations */}
+                            <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                        </div>
+
+                        <div className="mt-8 flex items-center justify-between text-[10px] font-mono tracking-widest">
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-purple-500" />
+                                    <span className="text-white/40 uppercase">{t.labels.cell_body}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-pink-500" />
+                                    <span className="text-white/40 uppercase">{t.labels.myelin_sheath}</span>
+                                </div>
+                            </div>
+                            <div className="text-white/20 uppercase tracking-[0.3em]">Neural Link Stable</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ChamberLayout>
+    );
+}
