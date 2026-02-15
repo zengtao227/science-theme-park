@@ -575,9 +575,9 @@ export const cnMath = {
                   cyl_elite: "侧面积为 ${la}，半径为 ${r}。"
               }
           },
-  sm1_02_new: {
-          back: "返回 Nexus",
-          title: "EM1.01 // 代数探险",
+  sm1_02: {
+          back: "返回枢纽",
+          title: "SM1.02 // 代数探险",
           difficulty: {
               basic: "基础",
               core: "核心",

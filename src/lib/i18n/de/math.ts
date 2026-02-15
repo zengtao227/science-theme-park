@@ -605,9 +605,9 @@ export const deMath = {
                       cyl_elite: "Die Mantelfläche beträgt ${la}, der Radius ist ${r}."
                   }
               },
-  sm1_02_new: {
+  sm1_02: {
                   back: "Zurück zum Nexus",
-                  title: "EM1.01 // ALGEBRA QUEST",
+                  title: "SM1.02 // ALGEBRA QUEST",
                   difficulty: {
                       basic: "BASIS",
                       core: "KERN",
