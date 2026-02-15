@@ -3398,11 +3398,12 @@ export const translations: Record<string, any> = {
             detection_hint: "Magnetic field bends charged particle tracks"
         }
     },
+    gp5_02: {
         title: "GP1.02 // RELATIVITY LAB",
         back: "Back to Nexus",
         footer_left: "GP1.02_RELATIVITY_LAB // NODE: RHINE",
         monitor_title: "GP1.02_RELATIVITY_MONITOR",
-    labels: {
+        labels: {
             lorentz_factor_title: "LORENTZ FACTOR",
             velocity_label: "VELOCITY (v/c)",
             velocity_value: "{value}% c",
@@ -3410,31 +3411,31 @@ export const translations: Record<string, any> = {
             toggle_doppler: "Show Doppler Effect",
             toggle_contraction: "Show Length Contraction"
         },
-    effects: {
+        effects: {
             title: "RELATIVISTIC EFFECTS",
             time_dilation_label: "Time Dilation:",
             time_dilation_value: "Δt' = {value}Δt",
             length_contraction_label: "Length Contraction:",
             length_contraction_value: "L' = {value}L"
         },
-    formulas: {
+        formulas: {
             title: "FORMULAS",
             gamma: "γ = 1/√(1 - v²/c²)",
             time: "Δt' = γΔt",
             length: "L' = L/γ",
             energy: "E = γmc²"
         },
-    mission: {
+        mission: {
             title: "MISSION: SPECIAL RELATIVITY",
             description: "Explore special relativity effects. Observe time dilation, length contraction, and Doppler shift at relativistic speeds."
         }
     },
-    sp1_08: {
+        sp1_08: {
         title: "SP1.08 // OPTICS BENCH",
         back: "Back to Nexus",
         footer_left: "SP1.08_OPTICS_BENCH // NODE: BASEL",
         monitor_title: "SP1.08_OPTICS_MONITOR",
-    labels: {
+        labels: {
             show_prism: "Show Prism Dispersion",
             medium_1: "MEDIUM 1 (n₁)",
             medium_2: "MEDIUM 2 (n₂)",
@@ -3446,50 +3447,50 @@ export const translations: Record<string, any> = {
             na: "N/A",
             angle_value: "{value}°"
         },
-    snell: {
+        snell: {
             title: "SNELL'S LAW",
             line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)",
             line_2: "θ_c = arcsin(n₂/n₁)",
             line_3: "v = c/n"
         },
-    mission: {
+        mission: {
             title: "MISSION: RAY OPTICS",
             description: "Master Snell's law and ray optics. Observe refraction, total internal reflection, and prism dispersion."
         }
     },
-    sb1_02: {
+        sb1_02: {
         back: "Return to Nexus",
         title: "SB1.02 // PHOTOSYNTHESIS LAB",
-    stages: {
+        stages: {
             equation: "REACTION EQUATION",
             limiting_factors: "LIMITING FACTORS",
             chloroplast: "CHLOROPLAST"
         },
-    labels: {
+        labels: {
             light: "Light Intensity",
             co2: "CO2 Level",
             temp: "Temperature",
             glucose: "Glucose Production"
         }
     },
-    sb2_02: {
+        sb2_02: {
         back: "Return to Nexus",
         title: "SB2.02 // HUMAN BODY SYSTEMS",
-    stages: {
+        stages: {
             digestion: "DIGESTION",
             circulation: "CIRCULATION",
             respiration: "RESPIRATION"
         },
-    labels: {
+        labels: {
             heart_rate: "Heart Rate",
             o2_sat: "O2 Saturation",
             enzyme: "Enzyme Activity"
         }
     },
-    sb3_01: {
+        sb3_01: {
         back: "Return to Nexus",
         title: "SB3.01 // ECOSYSTEM DYNAMICS",
-    difficulty: {
+        difficulty: {
             basic: "BASIC",
             core: "CORE",
             advanced: "ADVANCED",
@@ -3503,19 +3504,19 @@ export const translations: Record<string, any> = {
         monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
         footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
         objective_title: "Active Mission Objective",
-    stages: {
+        stages: {
             food_chains: "FOOD CHAINS",
             energy_flow: "ENERGY FLOW",
             cycles: "BIOGEOCHEMICAL CYCLES"
         },
-    labels: {
+        labels: {
             ecosystem_display: "Ecosystem Display",
             input_terminal: "Input Terminal",
             trophic_level: "Trophic Level",
             show_energy: "Show Energy Flow",
             ecology_score: "Ecology Score"
         },
-    prompts: {
+        prompts: {
             food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
             energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
             cycle_process: "In the {cycle} cycle, what is produced by {process}?",
@@ -3523,22 +3524,22 @@ export const translations: Record<string, any> = {
             hint_10percent: "Use the 10% rule: multiply by 0.1",
             hint_cycle: "Think about the inputs and outputs of this process"
         },
-    scenarios: {
+        scenarios: {
             rhine_river: "Rhine River Ecosystem: The Rhine supports diverse aquatic life from algae to predatory birds. Food chains begin with phytoplankton and progress through zooplankton, fish, and apex predators.",
             energy_pyramid: "Energy Flow in Basel Wetlands: Basel's wetland reserves demonstrate energy pyramids. Only 10% of energy transfers between trophic levels, limiting food chain length.",
             carbon_cycle: "Carbon Cycle at Rhine Delta: Photosynthesis and respiration drive carbon cycling in Rhine ecosystems. Plants absorb CO₂, animals release it through respiration.",
             nitrogen_cycle: "Nitrogen Fixation in Basel Soil: Bacteria in Basel's agricultural soils convert atmospheric N₂ into usable NH₃ for plants through nitrogen fixation.",
             water_cycle: "Rhine Water Cycle: Evaporation from the Rhine, condensation in clouds, and precipitation complete the water cycle that sustains Basel's ecosystems."
         },
-    feedback: {
+        feedback: {
             correct: "Ecosystem balance maintained!",
             incorrect: "Ecosystem disrupted. Review the relationships."
         }
     },
-    sp1_04: {
+        sp1_04: {
         back: "Return to Nexus",
         title: "SP1.04 // SIMPLE MACHINES",
-    difficulty: {
+        difficulty: {
             basic: "BASIC",
             core: "CORE",
             advanced: "ADVANCED",
@@ -3552,19 +3553,19 @@ export const translations: Record<string, any> = {
         monitor_title: "SP1.04_MECHANICS_MONITOR",
         footer_left: "SP1.04_SIMPLE_MACHINES // NODE: BASEL",
         objective_title: "Active Mission Objective",
-    stages: {
+        stages: {
             levers: "LEVERS",
             pulleys: "PULLEYS",
             inclined_planes: "INCLINED PLANES"
         },
-    labels: {
+        labels: {
             machine_display: "Machine Display",
             input_terminal: "Input Terminal",
             force_ratio: "Force Ratio (MA)",
             show_forces: "Show Forces",
             mechanics_score: "Mechanics Score"
         },
-    prompts: {
+        prompts: {
             lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
             pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
             inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
@@ -3572,19 +3573,19 @@ export const translations: Record<string, any> = {
             hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
             hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"
         },
-    scenarios: {
+        scenarios: {
             basel_construction: "Basel Construction Site: Workers at Basel's Roche Tower construction site use levers, pulleys, and ramps to move heavy materials efficiently. Simple machines reduce the force needed.",
             lever_crowbar: "Crowbar at Basel Renovation: Renovating Basel's historic buildings requires careful use of levers. A crowbar with long effort arm provides mechanical advantage to lift heavy stones.",
             pulley_crane: "Construction Crane Pulley: Basel's construction cranes use multiple pulley strands to lift steel beams. Each additional strand reduces the required input force.",
             ramp_loading: "Loading Ramp at Basel Port: Rhine port workers use inclined planes to load cargo onto barges. Longer ramps require less force but more distance.",
             compound_machine: "Compound Machines in Basel: Real construction equipment combines levers, pulleys, and inclined planes to achieve high mechanical advantage for heavy lifting tasks."
         },
-    feedback: {
+        feedback: {
             correct: "Mechanical advantage calculated correctly!",
             incorrect: "Check your mechanical advantage calculation."
         }
     },
-    sb1_03: {
+        sb1_03: {
         back: "Back to Nexus",
         title: "SB1.03 // CELL DIVISION",
         check: "Verify",
@@ -3593,19 +3594,19 @@ export const translations: Record<string, any> = {
         incorrect: "Misaligned",
         ready: "Ready",
         monitor_title: "SB1.03_REPLICATION_HUB",
-    difficulty: {
+        difficulty: {
             basic: "BASIC",
             core: "CORE",
             advanced: "ADVANCED",
             elite: "ELITE"
         },
-    stages: {
+        stages: {
             mitosis: "MITOSIS",
             meiosis_i: "MEIOSIS I",
             meiosis_ii: "MEIOSIS II"
         }
     },
-    sc1_05: {
+        sc1_05: {
         back: "Back to Nexus",
         title: "SC1.05 // BONDING BRIDGE",
         check: "Verify",
@@ -3614,41 +3615,41 @@ export const translations: Record<string, any> = {
         incorrect: "Bond Failed",
         ready: "Ready",
         monitor_title: "SC1.05_BOND_LAB",
-    difficulty: {
+        difficulty: {
             basic: "BASIC",
             core: "CORE",
             advanced: "ADVANCED",
             elite: "ELITE"
         },
-    stages: {
+        stages: {
             ionic: "IONIC",
             covalent: "COVALENT",
             lewis: "LEWIS"
         },
-    labels: {
+        labels: {
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
         }
     },
-    sc3_02: {
+        sc3_02: {
         back: "Return to Nexus",
         title: "SC3.02 // ORGANIC CHEMISTRY BASICS",
-    stages: {
+        stages: {
             alkanes: "ALKANES",
             functional_groups: "FUNCTIONAL GROUPS",
             isomers: "ISOMERS"
         },
-    labels: {
+        labels: {
             carbon_chain: "Carbon Chain",
             hydroxyl: "Hydroxyl Group",
             double_bond: "Double Bond"
         }
     },
-    sc3_03: {
+        sc3_03: {
         back: "Return to Nexus",
         title: "SC3.03 // ORGANIC REACTIONS",
-    difficulty: {
+        difficulty: {
             basic: "BASIC",
             core: "CORE",
             advanced: "ADVANCED",
@@ -3662,19 +3663,19 @@ export const translations: Record<string, any> = {
         monitor_title: "SC3.03_REACTION_MONITOR",
         footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
         objective_title: "Active Mission Objective",
-    stages: {
+        stages: {
             combustion: "COMBUSTION",
             substitution: "SUBSTITUTION",
             addition: "ADDITION"
         },
-    labels: {
+        labels: {
             reaction_display: "Reaction Display",
             input_terminal: "Input Terminal",
             animation_speed: "Animation Speed",
             show_mechanism: "Show Mechanism",
             chemistry_score: "Chemistry Score"
         },
-    prompts: {
+        prompts: {
             combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
             substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
             addition: "When {alkene} reacts with {reagent}, what is the product?",
@@ -3682,14 +3683,14 @@ export const translations: Record<string, any> = {
             hint_substitution: "One H atom is replaced by a halogen atom",
             hint_addition: "The double bond opens and adds the reagent"
         },
-    scenarios: {
+        scenarios: {
             novartis_combustion: "Novartis Energy Lab: Combustion reactions power Basel's pharmaceutical facilities. Complete combustion of organic fuels produces CO₂ and H₂O with maximum energy release.",
             basel_chemical_plant: "Basel Chemical Synthesis: Substitution reactions at Basel's chemical plants use UV light to replace hydrogen atoms with halogens, creating valuable pharmaceutical intermediates.",
             polymer_production: "Polymer Production in Basel: Addition reactions convert alkenes into polymers at Basel's chemical facilities. Double bonds open to form long polymer chains.",
             free_radical_mechanism: "Free Radical Chemistry: UV light initiates free radical mechanisms in substitution reactions. Radicals propagate through chain reactions until termination.",
             reaction_control: "Reaction Control at Novartis: Controlling reaction conditions (light, temperature, catalysts) determines product selectivity and yield in organic synthesis."
         },
-    feedback: {
+        feedback: {
             correct: "Reaction mechanism understood!",
             incorrect: "Review the reaction mechanism."
         }
