@@ -311,55 +311,8 @@ export const deCommon = {
         sc3_04_subtitle: "Beherrschen Sie die Eigenschaften und Umwandlungen von Alkoholen, Aldehyden, Säuren und Estern.",
         gc1_01_title: "GC1.01 // REDOX-TITAN",
         gc1_01_subtitle: "Meistern Sie elektrochemische Zellen und Redoxpotentiale.",
-        gsc1_01: {
-            back: "Zurück zum Nexus",
-            title: "GC1.01 // REDOX-TITAN",
-            difficulty: {
-                basic: "BASIS",
-                core: "KERN",
-                advanced: "FORTGESCHRITTEN",
-                elite: "ELITE"
-            },
-            objective_title: "Aktuelles Missionsziel",
-            target_title: "Galvanische Zelle",
-            next: "Nächste Sequenz ausführen",
-            check: "Prüfen",
-            correct: "Verifiziert",
-            incorrect: "Fehlanpassung",
-            ready: "Bereit",
-            monitor_title: "GC1.01_REDOX_MONITOR",
-            footer_left: "GC1.01_REDOX_TITAN // KNOTEN: BASEL",
-            labels: {
-                cell_reaction: "ZELLREAKTION",
-                half_reactions: "HALBREAKTIONEN",
-                anode: "Anode (−)",
-                cathode: "Kathode (+)",
-                cell_potential: "ZELLPOTENTIAL",
-                standard_potential: "E⁰ (Standard)",
-                actual_potential: "E (tatsächlich)",
-                standard_potentials: "STANDARD-REDUKTIONSPOTENTIALE",
-                anode_metal: "ANODENMETALL (−)",
-                cathode_metal: "KATHODENMETALL (+)",
-                anode_concentration: "ANODENKONZENTRATION [M²⁺]",
-                cathode_concentration: "KATHODENKONZENTRATION [M²⁺]",
-                formulas: "FORMELN"
-            },
-            mission: {
-                title: "MISSION: ELEKTROCHEMIE",
-                description: "Meistern Sie galvanische Zellen und Redoxreaktionen. Beobachten Sie Elektronenfluss und berechnen Sie Zellpotentiale."
-            },
-            stages: {
-                daniell: "DANIELL-ZELLE",
-                custom: "BENUTZERDEFINIERTE ZELLE",
-                nernst: "NERNST-GLEICHUNG",
-                daniell_desc: "Studieren Sie die klassische Daniell-Zelle (Zn-Cu)",
-                custom_desc: "Bauen Sie benutzerdefinierte Zellen mit verschiedenen Metallen",
-                nernst_desc: "Wenden Sie die Nernst-Gleichung an, um E zu berechnen",
-                daniell_hint: "Zn verliert Elektronen (Oxidation), Cu²⁺ gewinnt Elektronen (Reduktion)",
-                custom_hint: "Metall mit niedrigerem Potential wird zur Anode (−)",
-                nernst_hint: "Höhere [Produkte] verringern das Zellpotential"
-            }
-        },
+        gc1_02_title: "GC1.02 // ELEKTROLYSE-LABOR",
+        gc1_02_subtitle: "Beherrschen Sie Elektrolyse, Faradaysche Gesetze und Galvanisierung in der Basler Metallindustrie.",
         gc2_01_title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
         gc2_01_subtitle: "Montieren Sie pharmazeutische Moleküle mit 3D-Modellen.",
         gc3_01_title: "GC3.01 // MOLEKULARER ARCHITEKT",

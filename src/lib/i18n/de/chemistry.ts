@@ -97,7 +97,7 @@ export const deChemistry = {
             fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
         },
     },
-    gsc1_01: {
+    gc1_01: {
         back: "Zurück zum Nexus",
         title: "GC1.01 // REDOX-TITAN",
         difficulty: {
@@ -144,7 +144,7 @@ export const deChemistry = {
             analyze_hint: "Salzbrücke erhält elektrische Neutralität"
         }
     },
-    gsc2_01: {
+    gc2_01: {
         back: "Zurück zum Nexus",
         title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -831,6 +831,53 @@ export const deChemistry = {
         feedback: {
             correct: "Meisterschaft der funktionellen Gruppen erreicht!",
             incorrect: "Untersuchen Sie die Molekülstruktur sorgfältig."
+        }
+    },
+    gc1_02: {
+        back: "Zurück zum Nexus",
+        title: "GC1.02 // ELEKTROLYSE-LABOR",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        next: "Nächste Sequenz ausführen",
+        check: "Verifizieren",
+        correct: "Verifiziert",
+        incorrect: "Fehlanpassung",
+        ready: "Bereit",
+        monitor_title: "GC1.02_ELEKTROLYSE_MONITOR",
+        footer_left: "GC1.02_ELEKTROLYSE-LABOR // KNOTEN: BASEL",
+        objective_title: "Aktuelles Missionsziel",
+        stages: {
+            principles: "PRINZIPIEN",
+            plating: "GALVANISIERUNG",
+            corrosion: "KORROSIONSSCHUTZ"
+        },
+        labels: {
+            voltage: "Angelegte Spannung",
+            current: "Stromstärke (I)",
+            mass_deposited: "Abschiedene Masse",
+            time: "Dauer (s)",
+            power_status: "Stromversorgungsstatus"
+        },
+        prompts: {
+            calc_mass: "Berechnen Sie die Masse von {metal}, die bei {current}A in {time}s abgeschieden wird.",
+            identify_anode: "Bei der Elektrolyse von {solution}, welche Spezies wird an der Anode oxidiert?",
+            plating_setup: "An welche Elektrode sollte das Objekt zur Galvanisierung angeschlossen werden?",
+            corrosion_protection: "Wählen Sie die beste Opferanode zum Schutz von {metal}."
+        },
+        scenarios: {
+            basel_metal_refinery: "Basler Metallraffinerie: Die industrielle Elektrolyse am Rheinhafen gewinnt reine Metalle aus Erzen. Hohe Energieeffizienz wird durch präzise Steuerung von Zellspannung und Stromdichte erreicht.",
+            swiss_watchmaking: "Schweizer Uhrenherstellung: Die Gold- und Silberbeschichtung von in Basel gefertigten Uhren nutzt Präzisionsgalvanik. Die Dicke der Beschichtung wird durch Faradays erstes Elektrolysegesetz bestimmt.",
+            rhine_infrastructure: "Rhein-Infrastruktur: Der Schutz der Basler Rheinbrücken vor Korrosion erfordert kathodischen Schutz. Opferanoden aus Magnesium werden an den Stahlpfeilern angebracht, um Rost durch bevorzugte Oxidation zu verhindern.",
+            faraday_law: "Faradays Erbe: Michael Faradays Gesetze quantifizieren die Beziehung zwischen Elektrizität und Masse bei der Elektrolyse. Ein Faraday entspricht der Ladung eines Mols Elektronen, etwa 96.485 Coulomb.",
+            industrial_plating: "Industrielle Galvanik: Großflächige Galvanisierung in Basler Industriegebieten bietet Korrosionsbeständigkeit für Automobil- und Luftfahrtkomponenten. Cyanidfreie Bäder sind heute Standard für die Umweltsicherheit."
+        },
+        feedback: {
+            correct: "Elektrolytischer Prozess verstanden!",
+            incorrect: "Überprüfen Sie die Faradayschen Gesetze und Elektrodenpotentiale."
         }
     }
 };

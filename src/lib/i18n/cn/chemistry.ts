@@ -103,7 +103,7 @@ export const cnChemistry = {
             fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
         }
     },
-    gsc1_01: {
+    gc1_01: {
         back: "返回枢纽",
         title: "GC1.01 // 氧化还原巨人",
         difficulty: {
@@ -150,7 +150,7 @@ export const cnChemistry = {
             analyze_hint: "盐桥维持电中性"
         }
     },
-    gsc2_01: {
+    gc2_01: {
         back: "返回枢纽",
         title: "GC2.01 // 碳世界",
         difficulty: {
@@ -843,6 +843,53 @@ export const cnChemistry = {
         feedback: {
             correct: "官能团掌握达成！",
             incorrect: "仔细观察分子结构。"
+        }
+    },
+    gc1_02: {
+        back: "返回枢纽",
+        title: "GC1.02 // 电解实验室",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "GC1.02_电解监控",
+        footer_left: "GC1.02_电解实验室 // 节点: 巴塞尔",
+        objective_title: "当前任务目标",
+        stages: {
+            principles: "电解原理",
+            plating: "电镀工艺",
+            corrosion: "腐蚀控制"
+        },
+        labels: {
+            voltage: "外加电压",
+            current: "电流强度 (I)",
+            mass_deposited: "析出质量",
+            time: "持续时间 (s)",
+            power_status: "电源状态"
+        },
+        prompts: {
+            calc_mass: "计算 {current}A 电流在 {time}s 内析出 {metal} 的质量。",
+            identify_anode: "在电解 {solution} 时，哪种物质在阳极被氧化？",
+            plating_setup: "电镀时，待镀物体应放在哪个电极上？",
+            corrosion_protection: "选择保护 {metal} 的最佳牺牲阳极。"
+        },
+        scenarios: {
+            basel_metal_refinery: "巴塞尔金属精炼厂：位于莱茵河港口的工业电解装置从矿石中回收纯金属。通过精确控制槽电压和电流密度，实现了极高的能源效率。",
+            swiss_watchmaking: "瑞士钟表制造：巴塞尔工匠制造的手表上的金银电镀采用精密电镀工艺。涂层的厚度根据法拉第第一电解定律确定。",
+            rhine_infrastructure: "莱茵河基础设施：保护巴塞尔莱茵河桥梁免受腐蚀需要阴极保护。牺牲性镁块被安装在钢制支柱上，通过优先氧化防止生锈。",
+            faraday_law: "法拉第的遗产：迈克尔·法拉第定律量化了电解中电与质量的关系。一法拉第代表一摩尔电子的电荷量，约等于 96,485 库仑。",
+            industrial_plating: "工业电镀：巴塞尔工业区的规模化电镀为汽车和航空部件提供耐腐蚀保护。为了环境安全，现在标准工艺采用无氰电镀液。"
+        },
+        feedback: {
+            correct: "掌握电解过程！",
+            incorrect: "复习法拉第定律和电极电势。"
         }
     }
 };

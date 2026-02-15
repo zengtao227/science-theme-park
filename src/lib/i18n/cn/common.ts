@@ -264,55 +264,8 @@ export const cnCommon = {
         sc3_04_subtitle: "掌握醇、醛、酮、羧酸和酯的性质及其相互转化。",
         gc1_01_title: "GC1.01 // 氧化还原巨神",
         gc1_01_subtitle: "掌握电化学电池与氧化还原电位。",
-        gsc1_01: {
-            back: "返回枢纽",
-            title: "GC1.01 // 氧化还原巨神",
-            difficulty: {
-                basic: "基础",
-                core: "核心",
-                advanced: "进阶",
-                elite: "精英"
-            },
-            objective_title: "当前任务目标",
-            target_title: "原电池",
-            next: "执行下一序列",
-            check: "验证",
-            correct: "已验证",
-            incorrect: "匹配失败",
-            ready: "就绪",
-            monitor_title: "GC1.01_氧化还原监视器",
-            footer_left: "GC1.01_氧化还原巨神 // 节点：巴塞尔",
-            labels: {
-                cell_reaction: "电池反应",
-                half_reactions: "半反应",
-                anode: "阳极 (−)",
-                cathode: "阴极 (+)",
-                cell_potential: "电池电势",
-                standard_potential: "E⁰ (标准)",
-                actual_potential: "E (实际)",
-                standard_potentials: "标准还原电势",
-                anode_metal: "阳极金属 (−)",
-                cathode_metal: "阴极金属 (+)",
-                anode_concentration: "阳极浓度 [M²⁺]",
-                cathode_concentration: "阴极浓度 [M²⁺]",
-                formulas: "公式"
-            },
-            mission: {
-                title: "任务：电化学",
-                description: "掌握原电池和氧化还原反应。观察电子流动并计算电池电势。"
-            },
-            stages: {
-                daniell: "丹尼尔电池",
-                custom: "自定义电池",
-                nernst: "能斯特方程",
-                daniell_desc: "研究经典丹尼尔电池 (Zn-Cu)",
-                custom_desc: "用不同金属构建自定义电池",
-                nernst_desc: "应用能斯特方程计算 E",
-                daniell_hint: "Zn 失去电子（氧化），Cu²⁺ 获得电子（还原）",
-                custom_hint: "电势较低的金属成为阳极 (−)",
-                nernst_hint: "更高的 [产物] 降低电池电势"
-            }
-        },
+        gc1_02_title: "GC1.02 // 电解实验室",
+        gc1_02_subtitle: "掌握巴塞尔金属工业中的电解、法拉第定律与电镀工艺。",
         gc2_01_title: "GC2.01 // 碳世界",
         gc2_01_subtitle: "使用 3D 模型组装药物分子。",
         gc3_01_title: "GC3.01 // 分子建筑师",

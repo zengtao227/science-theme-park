@@ -169,6 +169,8 @@ export const enCommon = {
 
         gc1_01_title: "GC1.01 // REDOX TITAN",
         gc1_01_subtitle: "Master electrochemical cells and redox potentials.",
+        gc1_02_title: "GC1.02 // ELECTROLYSIS LAB",
+        gc1_02_subtitle: "Master electrolysis, Faraday's laws, and electroplating in Basel's metal industry.",
         gc2_01_title: "GC2.01 // CARBON KINGDOM",
         gc2_01_subtitle: "Assemble pharmaceutical molecules with 3D models.",
         gc3_01_title: "GC3.01 // EQUILIBRIUM MASTER",

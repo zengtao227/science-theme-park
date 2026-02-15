@@ -103,7 +103,7 @@ export const enChemistry = {
             fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
         }
     },
-    gsc1_01: {
+    gc1_01: {
         back: "Back to Nexus",
         title: "GC1.01 // REDOX TITAN",
         difficulty: {
@@ -150,7 +150,7 @@ export const enChemistry = {
             analyze_hint: "Salt bridge maintains electrical neutrality"
         }
     },
-    gsc2_01: {
+    gc2_01: {
         back: "Back to Nexus",
         title: "GC2.01 // CARBON KINGDOM",
         difficulty: {
@@ -843,6 +843,53 @@ export const enChemistry = {
         feedback: {
             correct: "Functional group mastery achieved!",
             incorrect: "Examine the molecular structure carefully."
+        }
+    },
+    gc1_02: {
+        back: "Return to Nexus",
+        title: "GC1.02 // ELECTROLYSIS LAB",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GC1.02_ELECTROLYSIS_MONITOR",
+        footer_left: "GC1.02_ELECTROLYSIS_LAB // NODE: BASEL",
+        objective_title: "Active Mission Objective",
+        stages: {
+            principles: "PRINCIPLES",
+            plating: "ELECTROPLATING",
+            corrosion: "CORROSION CONTROL"
+        },
+        labels: {
+            voltage: "Applied Voltage",
+            current: "Current Intensity (I)",
+            mass_deposited: "Mass Deposited",
+            time: "Duration (s)",
+            power_status: "Power Supply Status"
+        },
+        prompts: {
+            calc_mass: "Calculate mass of {metal} deposited by {current}A in {time}s.",
+            identify_anode: "In the electrolysis of {solution}, which species is oxidized at the anode?",
+            plating_setup: "Which electrode should the object be placed on for plating?",
+            corrosion_protection: "Select the best sacrificial anode for protecting {metal}."
+        },
+        scenarios: {
+            basel_metal_refinery: "Basel Metal Refinery: Industrial electrolysis at the Rhine harbor recovers pure metals from ores. High energy efficiency is achieved by precisely controlling the cell voltage and current density.",
+            swiss_watchmaking: "Swiss Watchmaking: Gold and silver plating on Basel-crafted watches uses precision electroplating. The thickness of the coating is determined by Faraday's first law of electrolysis.",
+            rhine_infrastructure: "Rhine Infrastructure: Protecting Basel's Rhine bridges from corrosion requires cathodic protection. Sacrificial magnesium blocks are attached to the steel pillars to prevent rust through preferential oxidation.",
+            faraday_law: "Faraday's Legacy: Michael Faraday's laws quantify the relationship between electricity and mass in electrolysis. One faraday represents the charge of one mole of electrons, approximately 96,485 coulombs.",
+            industrial_plating: "Industrial Plating: Large-scale electroplating in Basel's industrial zones provides corrosion resistance for automotive and aerospace components. Cyanide-free baths are now standard for environmental safety."
+        },
+        feedback: {
+            correct: "Electrolytic process understood!",
+            incorrect: "Review Faraday's laws and electrode potentials."
         }
     }
 };
