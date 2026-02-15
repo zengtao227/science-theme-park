@@ -30,15 +30,18 @@ export default function SC303Page() {
         const quests: SC303Quest[] = [];
 
         if (stage === "COMBUSTION") {
-            const combustions = [
+            const allCombustions = [
                 { reactant: "CH_4", co2: 1, scenario: "novartis_combustion" },
                 { reactant: "C_2H_6", co2: 2, scenario: "reaction_control" },
-                { reactant: "C_3H_8", co2: 3, scenario: "novartis_combustion" }
+                { reactant: "C_3H_8", co2: 3, scenario: "novartis_combustion" },
+                { reactant: "C_4H_{10}", co2: 4, scenario: "reaction_control" }
             ];
 
-            combustions.forEach((comb, idx) => {
+            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? allCombustions.slice(0, 3) : allCombustions;
+
+            activeList.forEach((comb, idx) => {
                 quests.push({
-                    id: `COMB-${idx}`,
+                    id: `COMB-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     reactionType: "combustion",
@@ -56,12 +59,15 @@ export default function SC303Page() {
         if (stage === "SUBSTITUTION") {
             const substitutions = [
                 { alkane: "CH_4", product: "CH_3Cl", scenario: "basel_chemical_plant" },
-                { alkane: "C_2H_6", product: "C_2H_5Br", scenario: "free_radical_mechanism" }
+                { alkane: "C_2H_6", product: "C_2H_5Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_3H_8", product: "C_3H_7Cl", scenario: "basel_chemical_plant" }
             ];
 
-            substitutions.forEach((sub, idx) => {
+            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? substitutions.slice(0, 2) : substitutions;
+
+            activeList.forEach((sub, idx) => {
                 quests.push({
-                    id: `SUB-${idx}`,
+                    id: `SUB-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     reactionType: "substitution",
@@ -79,12 +85,15 @@ export default function SC303Page() {
         if (stage === "ADDITION") {
             const additions = [
                 { alkene: "C_2H_4", reagent: "H_2", product: "C_2H_6", scenario: "polymer_production" },
-                { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8", scenario: "reaction_control" }
+                { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8", scenario: "reaction_control" },
+                { alkene: "C_2H_4", reagent: "Cl_2", product: "C_2H_4Cl_2", scenario: "polymer_production" }
             ];
 
-            additions.forEach((add, idx) => {
+            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? additions.slice(0, 2) : additions;
+
+            activeList.forEach((add, idx) => {
                 quests.push({
-                    id: `ADD-${idx}`,
+                    id: `ADD-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     reactionType: "addition",
@@ -203,8 +212,8 @@ export default function SC303Page() {
                                 <div
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
-                                            : "bg-transparent"
+                                        ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
+                                        : "bg-transparent"
                                         }`}
                                 />
                             ))}
@@ -276,8 +285,8 @@ export default function SC303Page() {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
                                             className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-5">
@@ -312,8 +321,8 @@ export default function SC303Page() {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={lastCheck?.ok ? next : verify}
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
-                                            ? "bg-neon-purple text-black"
-                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        ? "bg-neon-purple text-black"
+                                        : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
                                     {lastCheck?.ok ? t.next : t.check}

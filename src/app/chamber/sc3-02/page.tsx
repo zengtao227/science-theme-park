@@ -31,16 +31,18 @@ export default function SC302Page() {
         const quests: SC302Quest[] = [];
 
         if (stage === "HYDROCARBONS") {
-            const hydrocarbons = [
+            const allHydrocarbons = [
                 { name: "methane", formula: "CH4", carbons: "1", scenario: "lonza_feedstock" },
                 { name: "ethane", formula: "C2H6", carbons: "2", scenario: "basel_polymer_research" },
                 { name: "propane", formula: "C3H8", carbons: "3", scenario: "green_chemistry" },
                 { name: "butane", formula: "C4H10", carbons: "4", scenario: "fragrance_design" }
             ];
 
-            hydrocarbons.forEach((hc, idx) => {
+            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? allHydrocarbons.slice(0, 3) : allHydrocarbons;
+
+            activeList.forEach((hc, idx) => {
                 quests.push({
-                    id: `HC-${idx}`,
+                    id: `HC-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     molecule: hc.name,
@@ -60,20 +62,21 @@ export default function SC302Page() {
             const groups = [
                 { name: "alcohol", group: "OH", example: "ethanol", scenario: "fragrance_design" },
                 { name: "carboxylic acid", group: "COOH", example: "ethanoic acid", scenario: "lonza_feedstock" },
-                { name: "amine", group: "NH2", example: "methylamine", scenario: "green_chemistry" }
+                { name: "amine", group: "NH2", example: "methylamine", scenario: "green_chemistry" },
+                { name: "benzene", group: "C6H6", example: "benzene", scenario: "basel_polymer_research" }
             ];
 
             groups.forEach((g, idx) => {
                 quests.push({
-                    id: `FG-${idx}`,
+                    id: `FG-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     molecule: g.example,
                     scenario: g.scenario,
-                    promptLatex: `\\text{${t.prompts.functional_group.replace('{name}', g.name)}}`,
+                    promptLatex: `\\text{${t.prompts.functional_group.replace('{name}', g.name === 'benzene' ? 'Benzene' : g.name)}}`,
                     expressionLatex: `\\text{${g.name}} \\rightarrow \\text{?}`,
                     targetLatex: g.group,
-                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: g.group }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Formula/Group}", placeholder: "...", expected: g.group }],
                     correctLatex: g.group,
                     hintLatex: [`\\text{${t.prompts.hint_group.replace('{example}', g.example)}}`]
                 });
@@ -83,12 +86,15 @@ export default function SC302Page() {
         if (stage === "ISOMERS") {
             const isomers = [
                 { formula: "C4H10", count: "2", type: "structural", scenario: "lonza_feedstock" },
-                { formula: "C5H12", count: "3", type: "structural", scenario: "basel_polymer_research" }
+                { formula: "C5H12", count: "3", type: "structural", scenario: "basel_polymer_research" },
+                { formula: "C6H14", count: "5", type: "structural", scenario: "green_chemistry" }
             ];
 
-            isomers.forEach((iso, idx) => {
+            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? isomers.slice(0, 2) : isomers;
+
+            activeList.forEach((iso, idx) => {
                 quests.push({
-                    id: `ISO-${idx}`,
+                    id: `ISO-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     formula: iso.formula,
@@ -198,8 +204,8 @@ export default function SC302Page() {
                                 <div
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
-                                            : "bg-transparent"
+                                        ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
+                                        : "bg-transparent"
                                         }`}
                                 />
                             ))}
@@ -271,8 +277,8 @@ export default function SC302Page() {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
                                             className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-5">
@@ -307,8 +313,8 @@ export default function SC302Page() {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={lastCheck?.ok ? next : verify}
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
-                                            ? "bg-neon-purple text-black"
-                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        ? "bg-neon-purple text-black"
+                                        : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
                                     {lastCheck?.ok ? t.next : t.check}

@@ -22,7 +22,7 @@ export default function SC203Page() {
 
   const handleStageChange = (newStage: Stage) => {
     setStage(newStage);
-    
+
     // Reset to default values for each stage
     if (newStage === "boyle") {
       setVolume(5);
@@ -46,7 +46,7 @@ export default function SC203Page() {
       title={t?.title || "SC2.03 // AERO LAB"}
       moduleCode="SC2.03"
       difficulty="CORE"
-      onDifficultyChange={() => {}}
+      onDifficultyChange={() => { }}
       stages={[
         { id: "boyle", label: t?.stages?.boyle || "BOYLE'S LAW" },
         { id: "charles", label: t?.stages?.charles || "CHARLES' LAW" },
@@ -54,8 +54,8 @@ export default function SC203Page() {
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => {}}
-      onNext={() => {}}
+      onVerify={() => { }}
+      onNext={() => { }}
       checkStatus={null}
       footerLeft={t?.footer_left || "SC2.03_AERO_LAB // NODE: BASEL"}
       translations={{
@@ -84,7 +84,7 @@ export default function SC203Page() {
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t?.target_title || "GAS PROPERTIES"}
           </div>
-          
+
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
               {t?.labels?.pressure || "PRESSURE"}
@@ -213,6 +213,27 @@ export default function SC203Page() {
             </div>
           </div>
         </div>
+
+        {/* Scenario Display */}
+        {t?.scenarios && (
+          <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+                <p className="text-sm text-white/50 leading-relaxed italic">
+                  {stage === "boyle" && t.scenarios.gas_compression}
+                  {stage === "charles" && t.scenarios.weather_balloons}
+                  {stage === "combined" && t.scenarios.chemical_reactors}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </ChamberLayout>
   );

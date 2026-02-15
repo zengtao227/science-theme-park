@@ -1,239 +1,225 @@
 "use client";
 
-import { useState } from "react";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
+import { useState, useMemo, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import CrystalCanvas from "@/components/chamber/gc3-02/CrystalCanvas";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { motion, AnimatePresence } from "framer-motion";
+
+const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalCanvas"), {
+  ssr: false,
+});
 
 type Stage = "SC" | "BCC" | "FCC";
-type LatticeType = "SC" | "BCC" | "FCC";
+
+interface CrystalQuest extends Quest {
+  stage: Stage;
+  simConfig: {
+    latticeType: "SC" | "BCC" | "FCC";
+    showVoids: boolean;
+    slicePosition?: number;
+  };
+}
+
+function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): CrystalQuest[] {
+  const questKeys = ["atoms_per_cell", "coord_num", "pack_eff", "void_id"];
+
+  let indices: number[] = [];
+  if (difficulty === "BASIC") indices = [0, 1];
+  else if (difficulty === "CORE") indices = [1, 2];
+  else if (difficulty === "ADVANCED") indices = [2, 3];
+  else indices = [0, 1, 2, 3];
+
+  return indices.map((idx) => {
+    const key = questKeys[idx];
+    const prompt = t.prompts[key];
+
+    const config: CrystalQuest["simConfig"] = {
+      latticeType: stage,
+      showVoids: key === "void_id"
+    };
+
+    let expected: string | number = "1";
+    if (idx === 0) { // atoms_per_cell
+      expected = stage === "SC" ? 1 : stage === "BCC" ? 2 : 4;
+    } else if (idx === 1) { // coord_num
+      expected = stage === "SC" ? 6 : stage === "BCC" ? 8 : 12;
+    } else if (idx === 2) { // pack_eff
+      expected = stage === "SC" ? 52 : stage === "BCC" ? 68 : 74;
+    } else if (idx === 3) { // void_id
+      expected = stage === "FCC" ? "8" : "1";
+    }
+
+    return {
+      id: `${stage}|${difficulty}|${key}`,
+      difficulty,
+      stage,
+      promptLatex: `\\text{${prompt}}`,
+      expressionLatex: "",
+      targetLatex: "\\text{Conclusion}",
+      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected }],
+      correctLatex: expected.toString(),
+      simConfig: config
+    };
+  });
+}
 
 export default function GC302Page() {
-  const { currentLanguage } = useAppStore();
+  const { currentLanguage, completeStage } = useAppStore();
   const t = translations[currentLanguage].gc3_02 || translations.EN.gc3_02;
 
-  const [stage, setStage] = useState<Stage>("SC");
-  const [showVoids, setShowVoids] = useState(false);
-  const [slicePosition, setSlicePosition] = useState<number | undefined>(undefined);
+  const {
+    difficulty,
+    stage,
+    inputs,
+    lastCheck,
+    currentQuest,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+  } = useQuestManager<CrystalQuest, Stage>({
+    buildPool: (d, s) => buildStagePool(t, d, s),
+    initialStage: "SC",
+  });
 
-  const handleStageChange = (newStage: Stage) => {
-    setStage(newStage);
-    setShowVoids(false);
-    setSlicePosition(undefined);
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("gc3-02", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
+
+  const activeScenario = useMemo(() => {
+    if (!t?.scenarios) return null;
+    if (stage === "SC") return t.scenarios.crystallography_center;
+    if (stage === "BCC") return t.scenarios.solid_state_research;
+    return t.scenarios.drug_polymorphism;
+  }, [stage, t]);
+
+  const stages = [
+    { id: "SC", label: t?.stages?.sc || "SIMPLE CUBIC" },
+    { id: "BCC", label: t?.stages?.bcc || "BODY-CENTERED" },
+    { id: "FCC", label: t?.stages?.fcc || "FACE-CENTERED" },
+  ];
+
+  const config = currentQuest?.simConfig || {
+    latticeType: stage,
+    showVoids: false
   };
-
-  // Crystal structure data
-  const structureData: Record<LatticeType, { 
-    atomsPerCell: number; 
-    coordinationNumber: number; 
-    packingEfficiency: number;
-    tetrahedralVoids: number;
-    octahedralVoids: number;
-  }> = {
-    "SC": { 
-      atomsPerCell: 1, 
-      coordinationNumber: 6, 
-      packingEfficiency: 52,
-      tetrahedralVoids: 0,
-      octahedralVoids: 1
-    },
-    "BCC": { 
-      atomsPerCell: 2, 
-      coordinationNumber: 8, 
-      packingEfficiency: 68,
-      tetrahedralVoids: 0,
-      octahedralVoids: 4
-    },
-    "FCC": { 
-      atomsPerCell: 4, 
-      coordinationNumber: 12, 
-      packingEfficiency: 74,
-      tetrahedralVoids: 8,
-      octahedralVoids: 4
-    },
-  };
-
-  const currentData = structureData[stage];
 
   return (
     <ChamberLayout
       title={t?.title || "GC3.02 // CRYSTAL PALACE"}
       moduleCode="GC3.02"
-      difficulty="ELITE"
-      onDifficultyChange={() => {}}
-      stages={[
-        { id: "SC", label: t?.stages?.sc || "SIMPLE CUBIC" },
-        { id: "BCC", label: t?.stages?.bcc || "BODY-CENTERED" },
-        { id: "FCC", label: t?.stages?.fcc || "FACE-CENTERED" },
-      ]}
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => {}}
-      onNext={() => {}}
-      checkStatus={null}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
       footerLeft={t?.footer_left || "GC3.02_CRYSTAL_PALACE // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GC3.02_CRYSTAL_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
+      translations={t}
       monitorContent={
-        <div className="space-y-4">
-          <CrystalCanvas
-            latticeType={stage}
-            showVoids={showVoids}
-            slicePosition={slicePosition}
-          />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "CRYSTAL STRUCTURE"}
+        <div className="flex flex-col h-full gap-4">
+          <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
+            <CrystalCanvas
+              latticeType={config.latticeType}
+              showVoids={config.showVoids}
+            />
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
+
+          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3 font-mono">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
               {t?.labels?.lattice_type || "LATTICE TYPE"}
             </div>
-            <div className="text-2xl text-white font-black text-center">
+            <div className="text-xl text-white font-black text-center">
               {stage === "SC" && "Simple Cubic (SC)"}
-              {stage === "BCC" && "Body-Centered Cubic (BCC)"}
-              {stage === "FCC" && "Face-Centered Cubic (FCC)"}
+              {stage === "BCC" && "Body-Centered (BCC)"}
+              {stage === "FCC" && "Face-Centered (FCC)"}
             </div>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.properties || "PROPERTIES"}
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">{t?.labels?.atoms_per_cell || "Atoms/Cell"}:</span>
-                <span className="text-neon-cyan font-black">{currentData.atomsPerCell}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">{t?.labels?.coordination || "Coordination"}:</span>
-                <span className="text-neon-purple font-black">{currentData.coordinationNumber}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">{t?.labels?.packing || "Packing"}:</span>
-                <span className="text-neon-green font-black">{currentData.packingEfficiency}%</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-white/60 font-mono">{t?.labels?.tet_voids || "Tet. Voids"}:</span>
-                <span className="text-neon-amber font-black">{currentData.tetrahedralVoids}</span>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="p-3 bg-white/[0.02] border border-white/10 rounded-lg">
+              <div className="text-[8px] text-white/40 uppercase font-black mb-1">ATOMS</div>
+              <div className="text-lg font-black text-neon-cyan">
+                {stage === "SC" ? 1 : stage === "BCC" ? 2 : 4}
               </div>
             </div>
-          </div>
-
-          {showVoids && (
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                {t?.labels?.voids || "INTERSTITIAL VOIDS"}
+            <div className="p-3 bg-white/[0.02] border border-white/10 rounded-lg">
+              <div className="text-[8px] text-white/40 uppercase font-black mb-1">PACKING</div>
+              <div className="text-lg font-black text-neon-green">
+                {stage === "SC" ? "52%" : stage === "BCC" ? "68%" : "74%"}
               </div>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-neon-amber"></div>
-                  <span className="text-white/60 font-mono">{t?.labels?.tetrahedral || "Tetrahedral"}:</span>
-                  <span className="text-white font-black">{currentData.tetrahedralVoids}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-neon-pink"></div>
-                  <span className="text-white/60 font-mono">{t?.labels?.octahedral || "Octahedral"}:</span>
-                  <span className="text-white font-black">{currentData.octahedralVoids}</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formulas || "FORMULAS"}
-            </div>
-            <div className="text-white font-black text-sm space-y-2">
-              <div><InlineMath math="\text{Packing Efficiency} = \frac{V_{atoms}}{V_{cell}} \times 100\%" /></div>
-              <div><InlineMath math="\text{Coordination Number} = \text{nearest neighbors}" /></div>
             </div>
           </div>
         </div>
       }
     >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: SOLID STATE PHYSICS"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description ||
-              "Explore crystal structures and Bravais lattices. Understand atomic packing and coordination."}
-          </p>
-        </div>
+      <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
+          <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black mb-4 italic">
+            {t?.monitor_title || "CRYSTALLOGRAPHIC ANALYSIS"}
           </h3>
-          <p className="text-3xl text-white font-black italic">
-            {stage === "SC" && (t?.stages?.sc_desc || "Study simple cubic lattice (6 coordination)")}
-            {stage === "BCC" && (t?.stages?.bcc_desc || "Analyze body-centered cubic (8 coordination)")}
-            {stage === "FCC" && (t?.stages?.fcc_desc || "Master face-centered cubic (12 coordination)")}
-          </p>
+          <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
+            <InlineMath math={currentQuest?.promptLatex || ""} />
+          </div>
         </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                id="showVoids"
-                checked={showVoids}
-                onChange={(e) => setShowVoids(e.target.checked)}
-                className="w-5 h-5"
-              />
-              <label htmlFor="showVoids" className="text-sm text-white font-black cursor-pointer">
-                {t?.labels?.show_voids || "Show Interstitial Voids"}
-              </label>
+
+        <div className="p-6 bg-black/40 border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6 backdrop-blur-md">
+          <div className="space-y-3">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black text-center">
+              {t?.labels?.input_answer || "Enter Value"}
             </div>
+            <input
+              value={inputs["ans"] || ""}
+              onChange={(e) => setInputs({ ans: e.target.value })}
+              className="w-full bg-black/50 border-2 border-neon-purple p-4 text-center outline-none focus:border-white placeholder:text-white/20 font-black text-2xl text-white transition-all shadow-[0_0_30px_rgba(255,0,255,0.05)]"
+              placeholder="..."
+            />
           </div>
 
-          <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.slice_plane || "SLICE PLANE (Y-AXIS)"}
-            </div>
-            <div className="flex items-center gap-4">
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={slicePosition ?? 0.5}
-                onChange={(e) => setSlicePosition(parseFloat(e.target.value))}
-                className="flex-1"
-              />
-              <button
-                onClick={() => setSlicePosition(undefined)}
-                className="px-4 py-2 bg-white/10 border border-white/60 text-white text-sm font-black rounded hover:bg-white/60"
-              >
-                {t?.labels?.reset_slice || "Reset"}
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/90 font-mono italic">
-              {stage === "SC" && (t?.stages?.sc_hint || "Lowest packing efficiency (52%)")}
-              {stage === "BCC" && (t?.stages?.bcc_hint || "Moderate packing (68%), metals like Fe, Cr")}
-              {stage === "FCC" && (t?.stages?.fcc_hint || "Highest packing (74%), metals like Cu, Al, Au")}
+          <div className="p-4 bg-white/[0.03] border border-white/10 rounded-3xl relative">
+            <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{t.labels.formulas}</div>
+            <div className="flex flex-wrap gap-6 justify-center items-center">
+              <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{P.E.} = \frac{V_{atoms}}{V_{cell}} \times 100\%" /></div>
+              <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{CN} = \text{nearest neighbors}" /></div>
             </div>
           </div>
         </div>
+
+        {activeScenario && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${stage}-${difficulty}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+                  <p className="text-sm text-white/50 leading-relaxed italic">
+                    {activeScenario}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </ChamberLayout>
   );

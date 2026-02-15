@@ -10,7 +10,7 @@ import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "ASPIRIN" | "CAFFEINE";
+type Stage = "ASPIRIN" | "CAFFEINE" | "ADRENALINE";
 
 interface SC301Quest extends Quest {
   stage: Stage;
@@ -27,61 +27,51 @@ export default function SC301Page() {
   const buildStagePool = useCallback((difficulty: Difficulty, currentStage: Stage): SC301Quest[] => {
     const quests: SC301Quest[] = [];
 
-    if (currentStage === "ASPIRIN") {
+    const configs = {
+      ASPIRIN: { name: "Aspirin", formula: "C_9H_8O_4", scenario: "roche_aspirin", c: 9, h: 8, o: 4, n: 0 },
+      CAFFEINE: { name: "Caffeine", formula: "C_8H_{10}N_4O_2", scenario: "novartis_molecular_engineering", c: 8, h: 10, o: 2, n: 4 },
+      ADRENALINE: { name: "Adrenaline", formula: "C_9H_{13}NO_3", scenario: "basel_biozentrum_neuro", c: 9, h: 13, o: 3, n: 1 }
+    };
+
+    const config = configs[currentStage];
+
+    if (difficulty === "BASIC" || difficulty === "CORE") {
+      // Formula discovery
       quests.push({
-        id: "ASP-1",
-        difficulty,
-        stage: currentStage,
-        moleculeName: "Aspirin",
-        scenario: "roche_aspirin",
-        promptLatex: "\\text{Identify the molecular formula for Aspirin.}",
-        expressionLatex: "C_?H_8O_4",
-        targetLatex: "9",
-        slots: [{ id: "c", labelLatex: "\\text{Carbon Count}", placeholder: "?", expected: "9" }],
-        correctLatex: "9",
-        hintLatex: ["\\text{Check the legend: Carbon is black.}"]
+        id: `${currentStage}-C`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
+        promptLatex: `\\text{Find Carbon count in ${config.name}.}`,
+        expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+        targetLatex: config.c.toString(),
+        slots: [{ id: "c", labelLatex: "\\text{Carbon}", placeholder: "?", expected: config.c.toString() }],
+        correctLatex: config.c.toString(),
+        hintLatex: ["\\text{Carbon is black.}"]
       });
       quests.push({
-        id: "ASP-2",
-        difficulty,
-        stage: currentStage,
-        moleculeName: "Aspirin",
-        scenario: "basel_pharma_hub",
-        promptLatex: "\\text{How many Oxygen atoms are in Aspirin?}",
-        expressionLatex: "C_9H_8O_?",
-        targetLatex: "4",
-        slots: [{ id: "o", labelLatex: "\\text{Oxygen Count}", placeholder: "?", expected: "4" }],
-        correctLatex: "4",
-        hintLatex: ["\\text{Oxygen atoms are red in the 3D model.}"]
+        id: `${currentStage}-O`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
+        promptLatex: `\\text{Find Oxygen count in ${config.name}.}`,
+        expressionLatex: `C_{${config.c}}H_{${config.h}}O_?`,
+        targetLatex: config.o.toString(),
+        slots: [{ id: "o", labelLatex: "\\text{Oxygen}", placeholder: "?", expected: config.o.toString() }],
+        correctLatex: config.o.toString(),
+        hintLatex: ["\\text{Oxygen is red.}"]
       });
     }
 
-    if (currentStage === "CAFFEINE") {
+    if (difficulty === "ADVANCED" || difficulty === "ELITE") {
+      // Advanced formula and composition
       quests.push({
-        id: "CAF-1",
-        difficulty,
-        stage: currentStage,
-        moleculeName: "Caffeine",
-        scenario: "novartis_caffeine",
-        promptLatex: "\\text{How many Nitrogen atoms are in Caffeine?}",
-        expressionLatex: "C_8H_{10}N_?O_2",
-        targetLatex: "4",
-        slots: [{ id: "n", labelLatex: "\\text{Nitrogen Count}", placeholder: "?", expected: "4" }],
-        correctLatex: "4",
-        hintLatex: ["\\text{Nitrogen atoms are blue in the 3D model.}"]
-      });
-      quests.push({
-        id: "CAF-2",
-        difficulty,
-        stage: currentStage,
-        moleculeName: "Caffeine",
-        scenario: "molecular_purity",
-        promptLatex: "\\text{Total Carbon atoms in Caffeine?}",
-        expressionLatex: "C_?H_{10}N_4O_2",
-        targetLatex: "8",
-        slots: [{ id: "c", labelLatex: "\\text{Carbon Count}", placeholder: "?", expected: "8" }],
-        correctLatex: "8",
-        hintLatex: ["\\text{Count the black spheres in the model.}"]
+        id: `${currentStage}-FULL`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
+        promptLatex: `\\text{Identify the complete formula for ${config.name}.}`,
+        expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
+        targetLatex: config.formula,
+        slots: [
+          { id: "c", labelLatex: "x (C)", placeholder: "0", expected: config.c.toString() },
+          { id: "h", labelLatex: "y (H)", placeholder: "0", expected: config.h.toString() },
+          ...(config.n > 0 ? [{ id: "n", labelLatex: "z (N)", placeholder: "0", expected: config.n.toString() } as any] : []),
+          { id: "o", labelLatex: "w (O)", placeholder: "0", expected: config.o.toString() }
+        ],
+        correctLatex: config.formula,
+        hintLatex: ["\\text{Count all atoms carefully.}"]
       });
     }
 
@@ -115,8 +105,9 @@ export default function SC301Page() {
   }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
-    { id: "ASPIRIN", label: t.stages.aspirin },
-    { id: "CAFFEINE", label: t.stages.caffeine },
+    { id: "ASPIRIN" as Stage, label: t.stages.aspirin },
+    { id: "CAFFEINE" as Stage, label: t.stages.caffeine },
+    { id: "ADRENALINE" as Stage, label: t.stages.adrenaline },
   ], [t]);
 
   const hint = getHint();
@@ -155,8 +146,8 @@ export default function SC301Page() {
                 <div
                   key={i}
                   className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                      ? "bg-neon-cyan shadow-[0_0_5px_#00e5ff]"
-                      : "bg-transparent"
+                    ? "bg-neon-cyan shadow-[0_0_5px_#00e5ff]"
+                    : "bg-transparent"
                     }`}
                 />
               ))}
@@ -216,8 +207,8 @@ export default function SC301Page() {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.98, y: -10 }}
                       className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                          ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                          : 'bg-red-500/10 border-red-500/30 text-red-400'
+                        ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                        : 'bg-red-500/10 border-red-500/30 text-red-400'
                         }`}
                     >
                       <div className="flex items-center gap-5">
@@ -249,8 +240,8 @@ export default function SC301Page() {
                   whileTap={{ scale: 0.98 }}
                   onClick={lastCheck?.ok ? next : verify}
                   className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
-                      ? "bg-neon-cyan text-black"
-                      : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                    ? "bg-neon-cyan text-black"
+                    : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                     }`}
                 >
                   {lastCheck?.ok ? t.next : t.check}

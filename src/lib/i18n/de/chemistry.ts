@@ -51,7 +51,23 @@ export const deChemistry = {
             pressure_desc: "Druck ändern und Volumeneffekte sehen",
             concentration_hint: "Höhere [A] verschiebt Gleichgewicht nach rechts → mehr C und D",
             temperature_hint: "Höhere Temperatur erhöht kinetische Energie der Teilchen",
-            pressure_hint: "Höherer Druck verringert Behältervolumen"
+            pressure_hint: "Höherer Druck verringert das Behältervolumen"
+        },
+        prompts: {
+            shift_dir: "Die Reaktion A + B ⇌ C + D ist im Gleichgewicht. Wenn wir die Konzentration von A erhöhen, in welche Richtung verschiebt sich das System? (Rechts=1, Links=2).",
+            temp_exothermic: "Eine exotherme Reaktion setzt Wärme frei. Wenn wir die Temperatur in einem solchen System erhöhen, in welche Richtung verschiebt sich das Gleichgewicht? (Rechts=1, Links=2).",
+            pressure_moles: "A(g) + B(g) ⇌ C(g). Das System hat links 2 Gasmoleküle und rechts 1. Wohin verschiebt sich das Gleichgewicht bei Druckerhöhung? (Rechts=1, Links=2).",
+            catalyst_yield: "Erhöht ein Katalysator die Gleichbehaltsausbeute eines Produkts oder beschleunigt er nur das Erreichen des Zustands? (Ausbeute=1, Geschwindigkeit=2).",
+            kc_calculation: "Berechnen Sie Kc für A + B ⇌ C + D, wenn [A]=0.5M, [B]=0.5M, [C]=1M, [D]=1M bei Gleichgewicht. (Kc = [C][D]/[A][B]).",
+            inert_gas: "In einem System mit konstantem Volumen wird ein Edelgas hinzugefügt. Beeinflusst dies die Gleichgewichtsposition? (Ja=1, Nein=2).",
+            haber_temp: "Warum wird im Haber-Bosch-Verfahren (exotherm) 450°C verwendet, obwohl niedrigere Temperaturen mehr Ammoniak ergeben würden? (Reaktionsrate=1, Thermodynamik=2).",
+            endothermic_kc: "Bei einer endothermen Reaktion: Erhöht eine Temperatursteigerung den Wert der Gleichgewichtskonstante Kc? (Ja=1, Nein=2)."
+        },
+        scenarios: {
+            basel_synthesis: "Chemische Produktion am Rheinhafen Basel: Sie sind Prozessingenieur in der Lonza-Produktionsanlage im Basler Rheinhafen. Heute beaufsichtigen Sie die großtechnische Synthese von Ethylacetat, einem wichtigen Lösungsmittel für die lokale Pharmaproduktion bei Novartis und Roche. Die Reaktion ist ein Gleichgewichtsprozess, bei dem Essigsäure und Ethanol zum Produkt reagieren. Derzeit liefert der Reaktor nur 60 % seiner theoretischen Kapazität, was für die hohe Nachfrage der städtischen Labore unzureichend ist. Durch Anwendung des Le-Chatelier-Prinzips entscheiden Sie sich, die Konzentration der Reaktanten zu erhöhen. Sie müssen berechnen, wie die Zugabe von 500 Litern konzentriertem Ethanol zum 5000-Liter-Reaktor die Gleichgewichtslage nach rechts verschiebt. Eine Erhöhung der Reaktantenkonzentration zwingt das System, den Überschuss zu verbrauchen und dadurch mehr Ethylacetat zu produzieren. Diese Optimierung ist entscheidend für die Aufrechterhaltung der Medikamenten-Lieferkette für die Schweiz. Genau wie wenn man mehr Spieler zu einem Spiel hinzufügt, um das Punktesammeln zu beschleunigen, beschleunigt das Hinzufügen von mehr 'Spielern' (Reaktanten) zu einer chemischen Reaktion die Produktion Ihres Ziels.",
+            haber_process: "Industrieller Stickstoff-Hub - Basel: Sie sind leitender Forschungswissenschaftler am Institut für Anorganische Chemie der Universität Basel. Sie arbeiten an der Optimierung des Haber-Bosch-Verfahrens, das Ammoniak aus Stickstoff und Wasserstoff synthetisiert – ein Prozess, der für die weltweite Herstellung von Düngemitteln und Medikamenten unerlässlich ist. In Ihrem Labor leiten Sie einen Reaktor, der bei einem Druck von 200 Atmosphären arbeitet. Da die Hinreaktion zur Ammoniakbildung zu einer Abnahme der Anzahl der Gasmoleküle führt (4 Moleküle Reaktant werden zu 2 Molekülen Produkt), verschlechtert eine Druckerhöhung das Gleichgewicht in Richtung Ammoniak. Wenn der Druck jedoch unter 150 Atmosphären fällt, sinkt die Ausbeute drastisch, was den Prozess wirtschaftlich unrentabel macht. Sie müssen die Manometer genau überwachen, um maximale Effizienz zu gewährleisten. Dieses Konzept ähnelt einem überfüllten Tram in Basel während der Fasnacht: Wenn mehr Menschen (Druck) in das Tram gezwungen werden, müssen sie zusammenrücken (Verschiebung zu weniger Molekülen), um einen stabilen Zustand zu finden.",
+            buffer_systems: "Biozentrum Basel: Sie sind Doktorand am Biozentrum der Universität Basel und arbeiten in einem erstklassigen Labor für Zellbiologie. Sie kultivieren empfindliche menschliche Leberzellen in einem Bioreaktor für Toxizitätstests von Medikamenten. Diese Zellen können nur in einem engen pH-Bereich um 7,4 überleben. Um dies aufrechtzuerhalten, verwenden Sie ein biologisches Puffersystem, das Kohlendioxid und Bicarbonat-Ionen in einem dynamischen Gleichgewicht umfasst. Wenn der Stoffwechsel der Zellen einen Überschuss an sauren Abfällen (Protonen) produziert, muss sich das Gleichgewicht sofort verschieben, um diese zu neutralisieren. Sie haben die Aufgabe, den CO2-Partialdruck im Inkubator anzupassen, um einem unerwarteten Anstieg der Säure entgegenzuwirken, der von den Sensoren aufgezeichnet wurde. Eine präzise Gleichgewichtskontrolle ist hier buchstäblich eine Frage von Leben und Tod für Ihre Zellkultur. Es ist genau wie das körpereigene Blutpuffersystem, das Sie auch nach einem langen Lauf am Rhein stabil hält.",
+            catalysis_innovation: "Katalyse-Gruppe der Universität Basel: Sie sind Innovationsmanager beim Basler Chemie-Startup 'RhineCatalyst'. Ihr Team hat einen revolutionären heterogenen Katalysator für die nachhaltige Produktion von Feinchemikalien entwickelt. Ein Katalysator ändert zwar nicht die endgültige Gleichgewichtslage K, erhöht aber drastisch die Geschwindigkeit, mit der das Gleichgewicht erreicht wird. In Ihrem aktuellen Projekt spart das Erreichen des Gleichgewichts in 1 Stunde bei 50 °C statt in 10 Stunden bei 90 °C dem Unternehmen jährlich über 100.000 Schweizer Franken an Energiekosten. Sie müssen die Reaktionskinetik analysieren, um sicherzustellen, dass sich das System stabilisiert, bevor das Kühlwassersystem an seine Grenzen stößt. Diese industrielle Effizienz hält Basel an der Spitze der globalen Chemie. Denken Sie an eine Abkürzung auf Ihrem Weg durch die Basler Altstadt – Sie landen immer noch am selben Brunnen, aber Sie kommen viel schneller und mit weniger Anstrengung dorthin."
         }
     },
     gc3_02: {
@@ -96,6 +112,12 @@ export const deChemistry = {
             bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
             fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
         },
+        scenarios: {
+            crystallography_center: "Basler Zentrum für Kristallographie: Röntgenbeugung wird genutzt, um die Atomstrukturen neuer pharmazeutischer Kristalle abzubilden.",
+            solid_state_research: "Physikalisches Institut - Basel: Forscher untersuchen die Eigenschaften von raumzentrierten und flächenzentrierten kubischen Metallen für die Luft- und Raumfahrt.",
+            drug_polymorphism: "Qualitätskontrolle bei Novartis: Unterschiedliche Kristallpackungen (Polymorphie) können drastisch verändern, wie sich ein Medikament im Körper löst.",
+            nano_materials: "Swiss Nanoscience Institute (SNI): Am SNI in Basel konstruieren Wissenschaftler Kristallstrukturen auf atomarer Ebene für neue elektronische Bauteile."
+        }
     },
     gc1_01: {
         back: "Zurück zum Nexus",
@@ -142,6 +164,22 @@ export const deChemistry = {
             build_hint: "Zn wird an der Anode oxidiert, Cu²⁺ an der Kathode reduziert",
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "Salzbrücke erhält elektrische Neutralität"
+        },
+        prompts: {
+            cell_potential_calc: "Gegeben E° = 1.10V, [Zn2+] = 1.0M, [Cu2+] = 0.1M. Berechnen Sie E mit E = E° - (RT/nF)lnQ bei 298K. (ln10 ≈ 2.303).",
+            nernst_q: "Für Zn + Cu2+ → Zn2+ + Cu: Wenn [Zn2+] steigt, nimmt das Zellpotential (E) zu oder ab? (Zunahme=1, Abnahme=2).",
+            standard_v: "Was ist das Standardzellpotential (E°) für eine Zn-Cu-Zelle, wenn E°(Cu2+/Cu)=+0.34V und E°(Zn2+/Zn)=-0.76V? (E° = Ek - Ea).",
+            electron_flow: "Fließen Elektronen in einer galvanischen Zelle von der Anode zur Kathode oder umgekehrt? (Anode zu Kathode=1, Kathode zu Anode=2).",
+            salt_bridge: "Welche Komponente erhält die elektrische Neutralität durch Ionenmigration? (Voltmeter=1, Salzbrücke=2).",
+            cathode_process: "An welcher Elektrode findet die Reduktion (Elektronenaufnahme) statt? (Anode=1, Kathode=2).",
+            zn_reduction: "Ist die Reduktion von Zink (Zn2+ + 2e- → Zn) unter Standardbedingungen ein spontaner Prozess? (Ja=1, Nein=2).",
+            temperature_effect: "Erhöht eine Temperatursteigerung laut Nernst-Gleichung immer das Zellpotential? (Ja=1, Nein=2)."
+        },
+        scenarios: {
+            battery_storage: "Basler Energienetz: Sie sind Energiesystem-Architekt bei den Industriellen Werken Basel (IWB). Während Basel sich in Richtung einer kohlenstoffneutralen Zukunft bewegt, integrieren wir großtechnische Vanadium-Redox-Flow-Batterien in das lokale Stromnetz, um überschüssige Energie aus Windparks am Rhein zu speichern. Im Gegensatz zu herkömmlichen Batterien speichern diese die Energie in flüssigen Elektrolyttanks. Ihre Aufgabe ist es, das theoretische Zellpotential E unter den nicht-standardmäßigen Konzentrationen zu berechnen, die in unserem Prototyp-Reaktor B-85 vorliegen. Wenn die Konzentration von V(V) 1,5 M und V(IV) 0,5 M beträgt, wie beeinflusst dies die Spannung im Vergleich zum Standardwert von 1,1 V? Diese gespeicherte Energie liefert die notwendige Reserve, um die Basler Trams bei einem Stromausfall in Betrieb zu halten. Es ist ähnlich wie ein Wasserturm, der Energie speichert, indem er Wasser in der Höhe hält, bereit zu fließen, wenn die Stadt durstig ist.",
+            corrosion_protection: "Instandhaltung der Rheinbrücken: Sie sind Spezialist für Denkmalpflege beim Basler Tiefbauamt. Sie inspizieren die historische Mittlere Brücke über den Rhein. Die stählernen Pfeiler unter Wasser sind anfällig für elektrochemische Korrosion, bei der Eisenatome Elektronen verlieren und zu Rost werden. Um dies zu verhindern, verwenden wir 'Opferanoden' aus Zink und schaffen so eine galvanische Zelle, in der das Zink anstelle des Brückenstahls korrodiert. Sie müssen überprüfen, ob die Potenzialdifferenz zwischen dem Flusswasser und den Stützen hoch genug ist, um den Schutz aufrechtzuerhalten. Wenn sich die Ionenkonzentration des Rheins durch saisonale Abflüsse ändert, könnte Ihr Schutzsystem versagen und die strukturelle Integrität dieses 800 Jahre alten Wahrzeichens gefährden. Es ist genau so, als würde man einen Schild vor ein Ziel stellen; der Schild fängt die Treffer (Korrosion) ab, damit das Ziel sicher bleibt.",
+            analytical_electrochem: "Lonza Basel: Sie sind Forensik-Analyst im Kantonslabor Basel-Stadt. Wir haben eine Probe von einem Industriestandort nahe der Grenze erhalten, der im Verdacht steht, Schwermetalle in den Rhein einzuleiten. Mit einer Technik namens Anodic Stripping Voltammetry erstellen Sie eine winzige elektrochemische Zelle, um Spuren von Kupfer und Blei nachzuweisen. Der während der Redoxreaktion erzeugte Strom ist proportional zur Schadstoffkonzentration. Sie müssen den Sensor kalibrieren, indem Sie die Potenzialantwort einer 1,0-M-Standardlösung im Vergleich zu unserer unbekannten Probe messen. Eine genaue Messung ist hierbei entscheidend für die Durchsetzung von Umweltgesetzen und den Schutz des Rhein-Ökosystems für die Schwimmer im Rheinbad. Diese Präzision ist wie eine digitale Waage, die ein einzelnes Salzkorn in einem Schwimmbecken erkennen kann.",
+            fuel_cell_innovation: "Swiss Hydrogen Hub: Sie sind Chemieingenieur am Swiss Hydrogen Hub in Basel. Wir entwickeln hocheffiziente Protonenaustauschmembran-Brennstoffzellen (PEM), um die nächste Generation der Schweizer Züge (SBB) anzutreiben. In diesen Zellen wird Wasserstoff an der Anode oxidiert und Sauerstoff an der Kathode reduziert, wobei nur Wasser und Strom entstehen. Ihr Projekt umfasst das Testen eines neuen Platin-Legierungskatalysators, der bei 80 °C arbeitet. Sie müssen den Effizienzverlust aufgrund des Konzentrationsgradienten über die Membran berechnen. Wenn der Wasserstoffdruck abfällt, sinkt das Zellpotential E gemäß der Nernst-Gleichung, was den Zug auf den steilen Strecken in der Nähe des Jura zum Stillstand bringen könnte. Diese Technologie repräsentiert die Zukunft des sauberen Verkehrs in Europa, ähnlich wie der Akku Ihres Laptops Ihre Arbeit antreibt, aber mit Wasserstoff als ultimativem sauberem Brennstoff."
         }
     },
     gc2_01: {
@@ -208,7 +246,18 @@ export const deChemistry = {
             select_atom: "Klicken Sie auf ein Atom, um es auszuwählen",
             add_atom: "Klicken Sie auf das Atom-Werkzeug, um ein neues Atom hinzuzufügen",
             bonds: "Atome verbinden sich basierend auf Valenzregeln",
-            delete: "Verwenden Sie DELETE, um das ausgewählte Atom zu entfernen"
+            delete: "Verwenden Sie ENTF, um das ausgewählte Atom zu entfernen"
+        },
+        prompts: {
+            atom_count: "Bestimmen Sie die Gesamtzahl der Atome in dieser Molekülstruktur.",
+            bond_type: "Identifizieren Sie den primären Typ der vorhandenen Kohlenstoff-Kohlenstoff-Bindung.",
+            mol_type: "Klassifizieren Sie dieses Molekül in seine organische Kategorie.",
+            functional_id: "Welche funktionelle Gruppe ist in diesem 3D-Modell am prominentesten?"
+        },
+        scenarios: {
+            lonza_methane_cracking: "Lonza Basel - Rohstoffoptimierung: Sie sind Chemieingenieur am globalen Hauptsitz von Lonza in Basel. Wir optimieren unsere Methan-Cracking-Reaktoren, um hochreinen Wasserstoff für grüne Energieinitiativen zu produzieren. Ihre Aufgabe ist es, die Bindungsstruktur unseres Methan-Rohstoffs zu visualisieren. In der Hochdruckumgebung unserer Basler Anlage ist das Verständnis der C-H-Bindungslänge und der Tetraedergeometrie entscheidend, um suboptimale Erträge zu verhindern. Eine genaue Modellierung stellt sicher, dass Lonza ein weltweit führendes Unternehmen in der nachhaltigen chemischen Produktion hier im Rheintal bleibt. Es ist wie das Überprüfen der einzelnen Glieder in einer massiven Kette, um sicherzustellen, dass das gesamte System der Spannung einer industriellen Synthese standhalten kann.",
+            roche_aromatic_pipeline: "Roche Basel - Ringsystem-Synthese: Sie sind leitender Chemiker im Roche-Turm in Basel, dem höchsten Gebäude der Schweiz und einem Zentrum der Arzneimittelforschung. Ihr Team entwickelt eine neue Klasse von Antibiotika auf der Basis substituierter aromatischer Ringe. Die Resonanzstabilität des Benzolkerns ist das Fundament für die Wirksamkeit Ihres Medikaments. Mit unseren 3D-Visualisierungstools müssen Sie die Bindungsdelokalisierung in Ihrem aktuellen Leitwirkstoff verifizieren. In der wettbewerbsintensiven Basler Pharma-Landschaft könnte ein Fehler bei der Vorhersage der Ringspannung eine klinische Studie in Milliardenhöhe um Jahre zurückwerfen. Ihre Arbeit schlägt die Brücke zwischen theoretischer organischer Chemie und lebensrettender Medizin. Denken Sie daran wie an die Sicherstellung der strukturellen Integrität eines komplexen Wolkenkratzers - wenn das Fundament nicht perfekt stabil ist, ist das gesamte Gebäude in Gefahr.",
+            biozentrum_protein_research: "Biozentrum Basel - Molekulare Grundlagen: Sie sind Forscher am Biozentrum der Universität Basel und Teil eines Weltklasse-Teams, das die molekularen Grundlagen neurodegenerativer Erkrankungen untersucht. Sie analysieren die Bausteine des Lebens: Aminosäuren und Zucker. Das Verständnis der exakten 3D-Orientierung der Amino- und Carboxylgruppe in Alanin ist unerlässlich, um zu modellieren, wie sich Proteine im menschlichen Gehirn falten. Hier in Basel, wo sich Biologie und Chemie auf höchstem Niveau treffen, hilft Ihre Raumanalyse dabei, die 'Sprache des Lebens' auf atomarer Ebene zu entschlüsseln. Jeder Bindungswinkel, den Sie verifizieren, trägt zu unserem Verständnis von Volkskrankheiten wie Alzheimer bei. Dies ist wie das Zusammensetzen eines komplexen 3D-Puzzles, bei dem die Form jedes Teils bestimmt, wie sich das Gesamtbild schließlich zusammenfügt."
         }
     },
     sc1_01: {
@@ -431,6 +480,12 @@ export const deChemistry = {
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        scenarios: {
+            ionic_salts: "Basler Chemielager: Das Verständnis ionischer Bindungen ist grundlegend für die Produktion von Industriesalzen und Katalysatoren.",
+            molecular_oxygen: "Luftgütestation am Rhein: Kovalente Bindungen in Sauerstoff- und Stickstoffmolekülen werden untersucht, um Gasaustauschprozesse zu verstehen.",
+            pharmaceutical_chains: "Molekulardesign bei Roche: Die Entwicklung neuer Medikamente in Basel umfasst das Engineering spezifischer kovalenter Bindungen.",
+            electrostatic_attraction: "Physik der Universität Basel: Untersuchung der elektrostatischen Kräfte, die Ionenoxide auf atomarer Ebene zusammenhalten."
         }
     },
     sc2_01: {
@@ -577,6 +632,12 @@ export const deChemistry = {
             weak_ph_calc: "Am Halbäquivalenzpunkt (pH = pKa). Wenn pKa = 4.75, pH?",
             eq_ph_guess: "Äquivalenz-pH bei Stark/Stark? (<7=1, 7=2, >7=3).",
             conc_calc: "20mL Säure werden durch 10mL 0.2M NaOH neutralisiert. Finde Ca."
+        },
+        scenarios: {
+            water_quality: "IWB Basler Wasserfiltration: Sie sind Techniker für Wasserqualität im Filtrationswerk der Industriellen Werke Basel (IWB) am Rhein. Ihre Aufgabe ist es, sicherzustellen, dass der pH-Wert des aufbereiteten Trinkwassers innerhalb eines strengen Bereichs (normalerweise 7,2 bis 8,5) bleibt, um Korrosion im städtischen Rohrnetz zu verhindern. Heute führen Sie eine Präzisionstitration an einer Probe aus der Grundwasseranreicherung Langen Erlen durch. Die Probe zeigt aufgrund starker Regenfälle, die das Mineralgleichgewicht des Flusses beeinflusst haben, einen leichten Anstieg des Säuregehalts. Mit einer Standard-NaOH-Lösung müssen Sie den Gesamtsäuregehalt (Alkalität) bestimmen, um das Kalkdosierungssystem zu kalibrieren. Eine genaue pH-Kontrolle ist lebenswichtig, da zu saures Wasser Schwermetalle aus alten Leitungen in die Häuser der Basler Bürger lösen kann. Es ist genau wie wenn Sie einen Teststreifen verwenden, um den pH-Wert Ihres Pools zu prüfen, damit das Wasser sicher und klar bleibt.",
+            biotech_titration: "CSL Behring Basel - Proteinstabilität: Sie sind Laborspezialist in der hochmodernen Anlage von CSL Behring in Basel und arbeiten an der Reinigung von aus Plasma gewonnenen Proteinen zur Behandlung seltener Krankheiten. Diese Proteine reagieren extrem empfindlich auf ihre Umgebung; schon eine geringe Abweichung vom optimalen pH-Wert kann dazu führen, dass sie denaturieren oder ihre therapeutische Wirkung verlieren. Während des abschließenden Pufferaustauschprozesses müssen Sie eine Titration durchführen, um die Pufferkapazität der Lösung zu überprüfen. Sie testen, ob das aktuelle System aus schwacher Säure und konjugierter Base pH-Änderungen widerstehen kann, wenn eine kleine Menge pharmazeutischer Inhaltsstoff hinzugefügt wird. Ihre Präzision stellt sicher, dass diese lebensrettenden Medikamente während des Transports und der Lagerung in der ganzen Schweiz stabil bleiben. Dieses Gleichgewicht ähnelt der richtigen Ölviskosität in einem Hochleistungsmotor, damit dieser ohne Überhitzung reibungslos läuft.",
+            environmental_monitoring: "Rhein-Ökologieforschung - Biozentrum: Sie sind Umweltforscher am Biozentrum der Universität Basel und überwachen die Auswirkungen von städtischem Abfluss auf das empfindliche Ökosystem des Rheins. Nach einem größeren Industrieprojekt flussaufwärts müssen Sie beurteilen, ob sich das pH-Profil des Flusses verschoben hat, was die Laichgründe der Rheinlachs gefährden könnte. Sie nehmen Proben in der Nähe des Dreiländerecks, wo Frankreich, Deutschland und die Schweiz aufeinandertreffen, und führen eine detaillierte Titration durch, um das Vorhandensein schwacher organischer Säuren festzustellen. Die Form der Titrationskurve, die Sie heute generieren, wird die Konzentration dieser Schadstoffe offenbaren. Das Verständnis dieser chemischen Verschiebungen ist für das Kantonslabor unerlässlich, um Umweltschutzgesetze durchzusetzen. Es ist genau wie ein Gärtner, der den pH-Wert des Bodens überwacht, um sicherzustellen, dass seine Pflanzen die Nährstoffe aufnehmen können, die sie zum Wachsen brauchen.",
+            gastro_science: "Basler Gourmetküche - Kulinarische Chemie: Sie sind spezialisierter Lebensmittelwissenschaftler und arbeiten mit einem Michelin-Sterne-Restaurant im Grossbasel zusammen. Die moderne Gastronomie stützt sich stark auf die präzise Kontrolle des Säuregehalts, um Aromen auszubalancieren und die Textur von feinen Saucen oder Fruchtgelen zu steuern. Sie analysieren den Zitronensäuregehalt in einer lokalen Spezialität, um sicherzustellen, dass sie einen pH-Wert von 3,2 beibehält, was sowohl für den frischen Geschmack als auch für die sichere Konservierung des Produkts entscheidend ist. Durch eine Titration mit einer lebensmittelechten Base bestimmen Sie die exakte Säurekonzentration. Dieser wissenschaftliche Ansatz ermöglicht es dem Küchenchef, bei jeder Portion perfekte Konsistenz zu erreichen. Es ist genau wie wenn Sie einen Spritzer Zitrone zu einem schweren Gericht hinzufügen – Sie nutzen Chemie, um die Aromen an Ihrem Gaumen auszubalancieren."
         }
     },
     sc2_03: {
@@ -619,6 +680,11 @@ export const deChemistry = {
             boyle_hint: "Boyle-Gesetz: Volumen verringern → Druck erhöhen",
             charles_hint: "Charles-Gesetz: Temperatur erhöhen → Volumen erhöhen",
             combined_hint: "Kombiniert: Alle drei Variablen interagieren"
+        },
+        scenarios: {
+            gas_compression: "Basler Industriegas-Service: Optimierung der Lagerung von komprimierten Gasen für Industrie und Medizin in der Nordwestschweiz.",
+            weather_balloons: "Meteorologie der Universität Basel: Anwendung des Charles-Gesetzes zur Vorhersage der Ausdehnung von Forschungsballons.",
+            chemical_reactors: "Lonza Chemical Engineering: Die präzise Steuerung der Druck-Volumen-Beziehungen in Reaktoren ist entscheidend für die Sicherheit."
         }
     },
     sc2_04: {
@@ -662,6 +728,11 @@ export const deChemistry = {
             dissolve_hint: "Die meisten Salze lösen sich bei höheren Temperaturen besser",
             saturate_hint: "Sättigung: maximal gelöste Menge",
             crystallize_hint: "Abkühlung führt zur Kristallisation überschüssigen Stoffes"
+        },
+        scenarios: {
+            pharma_solubility: "Novartis Formulierung: Das Verständnis der Temperaturabhängigkeit der Löslichkeit ist essenziell für die Entwicklung von Medikamenten.",
+            rhine_pollution_monitoring: "Basler Labor für Umweltanalyse: Überwachung der Löslichkeit von Umweltkontaminanten im Rheinwasser bei saisonalen Temperaturschwankungen.",
+            crystallization_purification: "Roche Chemische Produktion: Großtechnische Kristallisation ist die primäre Methode zur Reinigung komplexer pharmazeutischer Wirkstoffe (APIs)."
         }
     },
     sc3_01: {
@@ -693,13 +764,15 @@ export const deChemistry = {
         },
         stages: {
             aspirin: "ASPIRIN",
-            caffeine: "KOFFEIN"
+            caffeine: "KOFFEIN",
+            adrenaline: "ADRENALIN"
         },
         scenarios: {
-            roche_aspirin: "Hoffmann-La Roche in Basel war einer der ersten großen Produzenten von synthetischem Aspirin und revolutionierte weltweit das Schmerzmanagement.",
-            novartis_caffeine: "Koffeinforschung bei Novartis untersucht die Auswirkungen auf das zentrale Nervensystem und potenzielle neuroprotektive Eigenschaften.",
-            basel_pharma_hub: "Als weltweit führender Pharma-Hub synthetisieren Basels Labore jedes Jahr Tausende von komplexen organischen Molekülen.",
-            molecular_purity: "Die Hochleistungsflüssigkeitschromatographie (HPLC) in Basler Laboren stellt sicher, dass synthetisierte Medikamente strengste Reinheitsstandards erfüllen."
+            roche_aspirin: "Hoffmann-La Roche Basel - Das Erbe der Synthese: Sie sind Historiker im Roche-Turm und erforschen die Ursprünge der synthetischen Pharmazeutika in der Stadt. F. Hoffmann-La Roche war Ende des 19. Jahrhunderts ein Pionier und eines der ersten Unternehmen, das reines synthetisches Aspirin industriell herstellte. Dieser Durchbruch revolutionierte das Schmerzmanagement und legte den Grundstein dafür, dass Basel zu einem globalen Pharma-Hub wurde. Wenn Sie heute das Acetylsalicylsäure-Molekül zusammenbauen, replizieren Sie die Arbeit von Chemikern, die das Rheintal in ein Zentrum für molekulare Innovation verwandelten. Das Verständnis der 3D-Geometrie von Aspirin ist essenziell, da die räumliche Anordnung seiner funktionellen Gruppen bestimmt, wie es Enzyme im menschlichen Körper blockiert. Es ist, als würde man den richtigen Bauplan für eine Brücke entdecken, die Medizin mit der Linderung des Patienten verbindet.",
+            novartis_molecular_engineering: "Novartis Campus Basel - Gezielte Therapie: Sie sind Wirkstoffchemiker auf dem Novartis Campus, einem der fortschrittlichsten Forschungszentren der Welt. Ihr Projekt umfasst das Design von 'Small Molecule'-Inhibitoren, die gezielt Krebszellen angreifen können, ohne gesundes Gewebe zu beeinträchtigen. Dieser 'Schlüssel-Schloss'-Mechanismus hängt vollständig von der 3D-Form und den elektronischen Eigenschaften der Moleküle ab, die Sie bauen. Durch Drehen und Inspizieren der Kugel-Stab-Modelle stellen Sie sicher, dass die Stereochemie für die Bindung an den Zielrezeptor korrekt ist. Das Basler Forschungsumfeld bietet die kooperativen Werkzeuge, die erforderlich sind, um die Lücke zwischen abstrakten chemischen Formeln und lebensrettenden Behandlungen zu schließen. Dieser Prozess ist wie das Anfertigen eines maßgeschneiderten Schlüssels für ein hochentwickeltes Schloss, bei dem nur die perfekte Passform eine Heilung ermöglicht.",
+            basel_nano_hub: "Swiss Nanoscience Institute (SNI) - Atomare Bestückung: Sie sind Forscher am Swiss Nanoscience Institute der Universität Basel, wo die Grenzen zwischen Biologie und Physik verschwimmen. Ihre Arbeit konzentriert sich auf die molekulare Selbstorganisation, bei der Moleküle so entworfen werden, dass sie spontan komplexe Nanostrukturen bilden. Heute modellieren Sie eine Sequenz funktioneller Kohlenstoffringe, die als Gerüst für einen neuartigen Biosensor dienen sollen. Die Kontrolle der Bindungswinkel und -abstände ist in der Nanowelt entscheidend, da bereits eine Abweichung von einem Pikometer die gesamten Eigenschaften des Materials verändern kann. Diese Arbeit steht an der Spitze der Basler 'Nano-Tech'-Revolution und ermöglicht die Entwicklung intelligenterer, effizienterer Materialien. Stellen Sie es sich wie das Spielen mit LEGO-Steinen vor, aber die Steine sind Atome und die Bauanleitung sind die Gesetze der Quantenmechanik.",
+            lonza_ag_scaling: "Lonza Basel - Industrielle Skalierung: Sie sind Prozessingenieur am globalen Hauptsitz von Lonza in Basel und spezialisiert auf den Übergang von der Laborsynthese zur Massenproduktion. Ihre Aufgabe ist es, sicherzustellen, dass komplexe organische Moleküle, wie spezialisierte Wirkstoffe (APIs), in Mengen von mehreren Tonnen ohne Reinheitsverlust produziert werden können. Die strukturelle Integrität des Moleküls muss während der Hochdruckreaktionen in den massiven Industriereaktoren von Basel gewahrt bleiben. Durch die heutige genaue Modellierung der 3D-Struktur identifizieren Sie potenzielle 'Engpässe' im Herstellungsprozess, bei denen Bindungsspannungen zu unerwünschten Nebenreaktionen führen könnten. Ihre Expertise hält Basel an der Spitze der chemischen Fertigungsexzellenz. Dies ist vergleichbar mit der Skalierung eines kleinen Prototyps eines Schiffes zu einem massiven Ozeandampfer, wobei sichergestellt wird, dass jede Schraube und jede Platte perfekt ausgerichtet ist.",
+            basel_biozentrum_neuro: "Biozentrum Universität Basel - Stressreaktionsforschung: Als Forschungsstipendiat am Biozentrum untersuchen Sie die molekularen Mechanismen der 'Kampf-oder-Flucht'-Reaktion. Adrenalin (Epinephrin) ist das primäre Hormon und der Neurotransmitter, der diesen Pfad steuert. Ihre Aufgabe besteht darin, die genaue Platzierung der Sauerstoffatome am Catecholring zu identifizieren, was für seine Bindungsaffinität an adrenerge Rezeptoren entscheidend ist. Durch die genaue Modellierung dieser 3D-Struktur helfen Sie den Basler Wissenschaftlern zu verstehen, wie chronischer Stress die zelluläre Signalübertragung im Gehirn beeinflusst. Diese molekulare Kartierung ist die Grundlage für die Entwicklung neuer Behandlungen für Angststörungen in einer der führenden Schweizer Forschungseinrichtungen für Biowissenschaften."
         }
     },
     sc3_02: {
