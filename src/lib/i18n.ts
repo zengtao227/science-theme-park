@@ -3517,15 +3517,44 @@ export const translations: Record<string, any> = {
     sb2_02: {
     back: "Return to Nexus",
     title: "SB2.02 // HUMAN BODY SYSTEMS",
+    difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+    check: "Verify",
+    next: "Execute Next Sequence",
+    correct: "Verified",
+    incorrect: "Mismatch",
+    ready: "Ready",
+    monitor_title: "SB2.02_BODY_SYSTEMS_MONITOR",
+    footer_left: "SB2.02_HUMAN_BODY_SYSTEMS // NODE: BASEL",
+    objective_title: "Active Mission Objective",
     stages: {
-        digestion: "DIGESTION",
-        circulation: "CIRCULATION",
-        respiration: "RESPIRATION"
+        digestive: "DIGESTIVE",
+        circulatory: "CIRCULATORY",
+        respiratory: "RESPIRATORY"
+    },
+    systems: {
+        digestive: "Digestive System",
+        circulatory: "Circulatory System",
+        respiratory: "Respiratory System"
     },
     labels: {
         heart_rate: "Heart Rate",
         o2_sat: "O2 Saturation",
-        enzyme: "Enzyme Activity"
+        enzyme: "Enzyme Activity",
+        anatomy_score: "Anatomy Score",
+        anatomy_display: "Anatomy Display",
+        input_terminal: "Input Terminal"
+    },
+    prompts: {
+        organ_function: "Which organ is responsible for {function}?",
+        hint_organ: "The {name} performs this function",
+        component_function: "Which component is responsible for {function}?",
+        hint_component: "The {name} performs this function",
+        structure_function: "Which structure is responsible for {function}?",
+        hint_structure: "The {name} performs this function"
+    },
+    feedback: {
+        correct: "Anatomy knowledge verified!",
+        incorrect: "Review the body system structure."
     }
     },
     sb3_01: {
@@ -7418,15 +7447,44 @@ CN: {
     sb2_02: {
         back: "返回枢纽",
         title: "SB2.02 // 人体系统",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        check: "验证",
+        next: "执行下一序列",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SB2.02_人体系统_监控",
+        footer_left: "SB2.02_人体系统 // 节点：巴塞尔",
+        objective_title: "当前任务目标",
         stages: {
-            digestion: "消化系统",
-            circulation: "循环系统",
-            respiration: "呼吸系统"
+            digestive: "消化系统",
+            circulatory: "循环系统",
+            respiratory: "呼吸系统"
+        },
+        systems: {
+            digestive: "消化系统",
+            circulatory: "循环系统",
+            respiratory: "呼吸系统"
         },
         labels: {
             heart_rate: "心率",
             o2_sat: "血氧饱和度",
-            enzyme: "酶活性"
+            enzyme: "酶活性",
+            anatomy_score: "解剖学分数",
+            anatomy_display: "解剖学显示",
+            input_terminal: "输入终端"
+        },
+        prompts: {
+            organ_function: "哪个器官负责{function}？",
+            hint_organ: "{name}执行此功能",
+            component_function: "哪个组成部分负责{function}？",
+            hint_component: "{name}执行此功能",
+            structure_function: "哪个结构负责{function}？",
+            hint_structure: "{name}执行此功能"
+        },
+        feedback: {
+            correct: "解剖学知识已验证！",
+            incorrect: "请复习身体系统结构。"
         }
     },
     sb3_01: {
@@ -11198,15 +11256,44 @@ DE: {
         sb2_02: {
                 back: "Zurück zum Nexus",
                 title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
+                difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                check: "Prüfen",
+                next: "Nächste Sequenz ausführen",
+                correct: "Verifiziert",
+                incorrect: "Fehlanpassung",
+                ready: "Bereit",
+                monitor_title: "SB2.02_KÖRPERSYSTEME_MONITOR",
+                footer_left: "SB2.02_MENSCHLICHE_KÖRPERSYSTEME // KNOTEN: BASEL",
+                objective_title: "Aktuelles Missionsziel",
                 stages: {
-                    digestion: "VERDAUUNG",
-                    circulation: "KREISLAUF",
-                    respiration: "ATMUNG"
+                    digestive: "VERDAUUNG",
+                    circulatory: "KREISLAUF",
+                    respiratory: "ATMUNG"
+                },
+                systems: {
+                    digestive: "Verdauungssystem",
+                    circulatory: "Kreislaufsystem",
+                    respiratory: "Atmungssystem"
                 },
                 labels: {
                     heart_rate: "Herzfrequenz",
                     o2_sat: "O2-Sättigung",
-                    enzyme: "Enzymaktivität"
+                    enzyme: "Enzymaktivität",
+                    anatomy_score: "Anatomie-Punktzahl",
+                    anatomy_display: "Anatomie-Anzeige",
+                    input_terminal: "Eingabeterminal"
+                },
+                prompts: {
+                    organ_function: "Welches Organ ist für {function} verantwortlich?",
+                    hint_organ: "Das {name} erfüllt diese Funktion",
+                    component_function: "Welche Komponente ist für {function} verantwortlich?",
+                    hint_component: "Das {name} erfüllt diese Funktion",
+                    structure_function: "Welche Struktur ist für {function} verantwortlich?",
+                    hint_structure: "Das {name} erfüllt diese Funktion"
+                },
+                feedback: {
+                    correct: "Anatomie-Wissen verifiziert!",
+                    incorrect: "Überprüfen Sie die Struktur des Körpersystems."
                 }
             },
         sb3_01: {
