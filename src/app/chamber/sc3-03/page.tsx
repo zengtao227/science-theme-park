@@ -15,6 +15,7 @@ type Stage = "COMBUSTION" | "SUBSTITUTION" | "ADDITION";
 interface SC303Quest extends Quest {
     stage: Stage;
     reactionType?: string;
+    scenario?: string;
 }
 
 type SC303T = typeof translations.EN.sc3_03;
@@ -29,13 +30,10 @@ export default function SC303Page() {
         const quests: SC303Quest[] = [];
 
         if (stage === "COMBUSTION") {
-            // Combustion reactions
             const combustions = [
-                { reactant: "CH_4", o2: 2, co2: 1, h2o: 2 },
-                { reactant: "C_2H_6", o2: 3.5, co2: 2, h2o: 3 },
-                { reactant: "C_3H_8", o2: 5, co2: 3, h2o: 4 },
-                { reactant: "C_2H_5OH", o2: 3, co2: 2, h2o: 3 },
-                { reactant: "C_4H_{10}", o2: 6.5, co2: 4, h2o: 5 }
+                { reactant: "CH_4", co2: 1, scenario: "novartis_combustion" },
+                { reactant: "C_2H_6", co2: 2, scenario: "reaction_control" },
+                { reactant: "C_3H_8", co2: 3, scenario: "novartis_combustion" }
             ];
 
             combustions.forEach((comb, idx) => {
@@ -44,24 +42,21 @@ export default function SC303Page() {
                     difficulty,
                     stage,
                     reactionType: "combustion",
+                    scenario: comb.scenario,
                     promptLatex: `\\text{${t.prompts.combustion.replace('{reactant}', comb.reactant)}}`,
                     expressionLatex: `\\ce{${comb.reactant} + O2 -> CO2 + H2O}`,
                     targetLatex: comb.co2.toString(),
                     slots: [{ id: "ans", labelLatex: "\\ce{CO2}\\text{ molecules}", placeholder: "...", expected: comb.co2.toString() }],
-                    correctLatex: `${comb.co2}\\ce{CO2} + ${comb.h2o}\\ce{H2O}`,
+                    correctLatex: `${comb.co2}\\ce{CO2}`,
                     hintLatex: [`\\text{${t.prompts.hint_combustion}}`]
                 });
             });
         }
 
         if (stage === "SUBSTITUTION") {
-            // Substitution reactions
             const substitutions = [
-                { alkane: "CH_4", halogen: "Cl_2", product: "CH_3Cl", byproduct: "HCl" },
-                { alkane: "C_2H_6", halogen: "Br_2", product: "C_2H_5Br", byproduct: "HBr" },
-                { alkane: "C_3H_8", halogen: "Cl_2", product: "C_3H_7Cl", byproduct: "HCl" },
-                { alkane: "CH_4", halogen: "Br_2", product: "CH_3Br", byproduct: "HBr" },
-                { alkane: "C_4H_{10}", halogen: "Cl_2", product: "C_4H_9Cl", byproduct: "HCl" }
+                { alkane: "CH_4", product: "CH_3Cl", scenario: "basel_chemical_plant" },
+                { alkane: "C_2H_6", product: "C_2H_5Br", scenario: "free_radical_mechanism" }
             ];
 
             substitutions.forEach((sub, idx) => {
@@ -70,10 +65,11 @@ export default function SC303Page() {
                     difficulty,
                     stage,
                     reactionType: "substitution",
-                    promptLatex: `\\text{${t.prompts.substitution.replace('{alkane}', sub.alkane).replace('{halogen}', sub.halogen)}}`,
-                    expressionLatex: `\\ce{${sub.alkane} + ${sub.halogen} ->[light] ? + ${sub.byproduct}}`,
+                    scenario: sub.scenario,
+                    promptLatex: `\\text{${t.prompts.substitution.replace('{alkane}', sub.alkane).replace('{halogen}', 'Halogen')}}`,
+                    expressionLatex: `\\ce{${sub.alkane} + X2 ->[light] ? + HX}`,
                     targetLatex: sub.product.replace(/_/g, ''),
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: sub.product.replace(/_/g, '') }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: sub.product.replace(/_/g, '') }],
                     correctLatex: `\\ce{${sub.product}}`,
                     hintLatex: [`\\text{${t.prompts.hint_substitution}}`]
                 });
@@ -81,13 +77,9 @@ export default function SC303Page() {
         }
 
         if (stage === "ADDITION") {
-            // Addition reactions
             const additions = [
-                { alkene: "C_2H_4", reagent: "H_2", product: "C_2H_6" },
-                { alkene: "C_2H_4", reagent: "Br_2", product: "C_2H_4Br_2" },
-                { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8" },
-                { alkene: "C_3H_6", reagent: "Cl_2", product: "C_3H_6Cl_2" },
-                { alkene: "C_4H_8", reagent: "H_2", product: "C_4H_{10}" }
+                { alkene: "C_2H_4", reagent: "H_2", product: "C_2H_6", scenario: "polymer_production" },
+                { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8", scenario: "reaction_control" }
             ];
 
             additions.forEach((add, idx) => {
@@ -96,10 +88,11 @@ export default function SC303Page() {
                     difficulty,
                     stage,
                     reactionType: "addition",
+                    scenario: add.scenario,
                     promptLatex: `\\text{${t.prompts.addition.replace('{alkene}', add.alkene).replace('{reagent}', add.reagent)}}`,
                     expressionLatex: `\\ce{${add.alkene} + ${add.reagent} -> ?}`,
                     targetLatex: add.product.replace(/_/g, ''),
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: add.product.replace(/_/g, '') }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: add.product.replace(/_/g, '') }],
                     correctLatex: `\\ce{${add.product}}`,
                     hintLatex: [`\\text{${t.prompts.hint_addition}}`]
                 });
@@ -143,6 +136,11 @@ export default function SC303Page() {
 
     const hint = getHint();
 
+    const activeScenario = useMemo(() => {
+        if (!currentQuest?.scenario) return null;
+        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+    }, [currentQuest, t]);
+
     return (
         <ChamberLayout
             moduleCode="SC3.03"
@@ -156,21 +154,7 @@ export default function SC303Page() {
             onNext={next}
             checkStatus={lastCheck}
             footerLeft={t.footer_left}
-            translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
-                difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
-                },
-            }}
+            translations={t}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -182,7 +166,6 @@ export default function SC303Page() {
                         />
                     </div>
 
-                    {/* Controls */}
                     <div className="grid grid-cols-1 gap-2">
                         <div className="space-y-1">
                             <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.animation_speed}</label>
@@ -219,11 +202,10 @@ export default function SC303Page() {
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`flex-1 transition-all duration-1000 ${
-                                        i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                                             ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
                                             : "bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -293,16 +275,14 @@ export default function SC303Page() {
                                             initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                                                lastCheck.ok
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                                     : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-5">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                                                    lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                                                }`}>
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
                                                     {lastCheck.ok ? "✓" : "✗"}
                                                 </div>
                                                 <div>
@@ -323,21 +303,44 @@ export default function SC303Page() {
                                                     </div>
                                                 </div>
                                             )}
-
-                                            {lastCheck.ok && (
-                                                <button
-                                                    onClick={next}
-                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
-                                                >
-                                                    {t.next}
-                                                </button>
-                                            )}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(255, 0, 255, 0.2)" }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={lastCheck?.ok ? next : verify}
+                                    className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
+                                            ? "bg-neon-purple text-black"
+                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        }`}
+                                >
+                                    {lastCheck?.ok ? t.next : t.check}
+                                </motion.button>
                             </div>
                         </div>
                     </div>
+                )}
+
+                {activeScenario && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm"
+                    >
+                        <div className="flex items-start gap-4">
+                            <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div className="space-y-2">
+                                <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+                                <p className="text-sm text-white/50 leading-relaxed italic">{activeScenario}</p>
+                            </div>
+                        </div>
+                    </motion.div>
                 )}
             </div>
         </ChamberLayout>

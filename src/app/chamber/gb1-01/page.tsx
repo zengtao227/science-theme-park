@@ -29,7 +29,6 @@ export default function GB101Page() {
         const quests: GB101Quest[] = [];
 
         if (stage === "NATURAL_SELECTION") {
-            // Natural selection and fitness calculations
             const scenarios = [
                 { initial: 100, survival: 60, fitness: 0.6 },
                 { initial: 200, survival: 140, fitness: 0.7 },
@@ -43,7 +42,7 @@ export default function GB101Page() {
                     id: `NS-${idx}`,
                     difficulty,
                     stage,
-                    scenario: "galapagos_finches",
+                    scenario: "galapagos_study",
                     promptLatex: `\\text{${t.prompts.natural_selection.replace('{initial}', s.initial.toString()).replace('{survival}', s.survival.toString())}}`,
                     expressionLatex: `\\text{Fitness} = \\frac{\\text{Survivors}}{\\text{Initial}} = \\frac{${s.survival}}{${s.initial}}`,
                     targetLatex: s.fitness.toFixed(2),
@@ -55,7 +54,6 @@ export default function GB101Page() {
         }
 
         if (stage === "SPECIATION") {
-            // Speciation and reproductive isolation
             const scenarios = [
                 { generations: 100, mutation_rate: 0.01, divergence: 1 },
                 { generations: 200, mutation_rate: 0.02, divergence: 4 },
@@ -69,7 +67,7 @@ export default function GB101Page() {
                     id: `SP-${idx}`,
                     difficulty,
                     stage,
-                    scenario: "island_isolation",
+                    scenario: "genetic_drift",
                     promptLatex: `\\text{${t.prompts.speciation.replace('{generations}', s.generations.toString()).replace('{rate}', s.mutation_rate.toString())}}`,
                     expressionLatex: `\\text{Divergence} = \\text{generations} \\times \\text{rate} = ${s.generations} \\times ${s.mutation_rate}`,
                     targetLatex: s.divergence.toString(),
@@ -81,13 +79,10 @@ export default function GB101Page() {
         }
 
         if (stage === "EVIDENCE") {
-            // Fossil record and molecular evidence
             const scenarios = [
-                { fossil_age: 50, half_life: 5730, remaining: 0.5 },
-                { fossil_age: 11460, half_life: 5730, remaining: 0.25 },
-                { fossil_age: 17190, half_life: 5730, remaining: 0.125 },
-                { fossil_age: 2865, half_life: 5730, remaining: 0.707 },
-                { fossil_age: 22920, half_life: 5730, remaining: 0.0625 }
+                { fossil_age: 5730, half_life: 5730, scenario: "fossil_record" },
+                { fossil_age: 11460, half_life: 5730, scenario: "fossil_record" },
+                { fossil_age: 17190, half_life: 5730, scenario: "molecular_clock" }
             ];
 
             scenarios.forEach((s, idx) => {
@@ -97,7 +92,7 @@ export default function GB101Page() {
                     id: `EV-${idx}`,
                     difficulty,
                     stage,
-                    scenario: "fossil_dating",
+                    scenario: s.scenario,
                     promptLatex: `\\text{${t.prompts.evidence.replace('{age}', s.fossil_age.toString()).replace('{halflife}', s.half_life.toString())}}`,
                     expressionLatex: `\\text{Remaining} = (0.5)^{t/t_{1/2}} = (0.5)^{${s.fossil_age}/${s.half_life}}`,
                     targetLatex: remaining.toFixed(3),
@@ -145,6 +140,11 @@ export default function GB101Page() {
 
     const hint = getHint();
 
+    const activeScenario = useMemo(() => {
+        if (!currentQuest?.scenario) return null;
+        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+    }, [currentQuest, t]);
+
     return (
         <ChamberLayout
             moduleCode="GB1.01"
@@ -158,21 +158,7 @@ export default function GB101Page() {
             onNext={next}
             checkStatus={lastCheck}
             footerLeft={t.footer_left}
-            translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
-                difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
-                },
-            }}
+            translations={t}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -184,7 +170,6 @@ export default function GB101Page() {
                         />
                     </div>
 
-                    {/* Controls */}
                     <div className="grid grid-cols-1 gap-3">
                         <div className="space-y-1">
                             <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.generation}</label>
@@ -226,11 +211,10 @@ export default function GB101Page() {
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`flex-1 transition-all duration-1000 ${
-                                        i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                                             ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
                                             : "bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -256,8 +240,8 @@ export default function GB101Page() {
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
                                     {t.labels.evolution_display}
                                 </span>
-                                <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                <div className="text-4xl text-white font-black overflow-x-auto">
+                                    <BlockMath math={currentQuest.expressionLatex} />
                                 </div>
                             </div>
                         </div>
@@ -300,16 +284,14 @@ export default function GB101Page() {
                                             initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                                                lastCheck.ok
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                                     : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-5">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                                                    lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                                                }`}>
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
                                                     {lastCheck.ok ? "✓" : "✗"}
                                                 </div>
                                                 <div>
@@ -330,21 +312,44 @@ export default function GB101Page() {
                                                     </div>
                                                 </div>
                                             )}
-
-                                            {lastCheck.ok && (
-                                                <button
-                                                    onClick={next}
-                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
-                                                >
-                                                    {t.next}
-                                                </button>
-                                            )}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0, 255, 0, 0.2)" }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={lastCheck?.ok ? next : verify}
+                                    className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
+                                            ? "bg-neon-green text-black"
+                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        }`}
+                                >
+                                    {lastCheck?.ok ? t.next : t.check}
+                                </motion.button>
                             </div>
                         </div>
                     </div>
+                )}
+
+                {activeScenario && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-neon-green/[0.02] border border-neon-green/10 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_50px_rgba(0,255,0,0.02)]"
+                    >
+                        <div className="flex items-start gap-4">
+                            <div className="p-2 bg-neon-green/20 rounded-lg text-neon-green shadow-[0_0_15px_rgba(0,255,0,0.1)]">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div className="space-y-2">
+                                <div className="text-[10px] uppercase tracking-widest text-neon-green/60 font-black">Regional Case Study // Basel Node</div>
+                                <p className="text-sm text-white/50 leading-relaxed italic">{activeScenario}</p>
+                            </div>
+                        </div>
+                    </motion.div>
                 )}
             </div>
         </ChamberLayout>

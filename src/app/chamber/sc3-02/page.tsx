@@ -16,6 +16,7 @@ interface SC302Quest extends Quest {
     stage: Stage;
     molecule?: string;
     formula?: string;
+    scenario?: string;
 }
 
 type SC302T = typeof translations.EN.sc3_02;
@@ -31,11 +32,10 @@ export default function SC302Page() {
 
         if (stage === "HYDROCARBONS") {
             const hydrocarbons = [
-                { name: "methane", formula: "CH4", carbons: "1" },
-                { name: "ethane", formula: "C2H6", carbons: "2" },
-                { name: "propane", formula: "C3H8", carbons: "3" },
-                { name: "butane", formula: "C4H10", carbons: "4" },
-                { name: "ethene", formula: "C2H4", carbons: "2" }
+                { name: "methane", formula: "CH4", carbons: "1", scenario: "lonza_feedstock" },
+                { name: "ethane", formula: "C2H6", carbons: "2", scenario: "basel_polymer_research" },
+                { name: "propane", formula: "C3H8", carbons: "3", scenario: "green_chemistry" },
+                { name: "butane", formula: "C4H10", carbons: "4", scenario: "fragrance_design" }
             ];
 
             hydrocarbons.forEach((hc, idx) => {
@@ -45,10 +45,11 @@ export default function SC302Page() {
                     stage,
                     molecule: hc.name,
                     formula: hc.formula,
+                    scenario: hc.scenario,
                     promptLatex: `\\text{${t.prompts.name_formula.replace('{name}', hc.name)}}`,
                     expressionLatex: `\\text{${hc.name}} \\rightarrow \\text{?}`,
-                    targetLatex: hc.formula.toLowerCase().replace(/(\d+)/g, '_$1'),
-                    slots: [{ id: "ans", labelLatex: "\\text{Formula}", placeholder: "CxHy", expected: hc.formula.toLowerCase() }],
+                    targetLatex: hc.formula,
+                    slots: [{ id: "ans", labelLatex: "\\text{Formula}", placeholder: "CxHy", expected: hc.formula }],
                     correctLatex: hc.formula,
                     hintLatex: [`\\text{${t.prompts.hint_carbons.replace('{count}', hc.carbons)}}`]
                 });
@@ -57,11 +58,9 @@ export default function SC302Page() {
 
         if (stage === "FUNCTIONAL_GROUPS") {
             const groups = [
-                { name: "alcohol", group: "OH", example: "ethanol" },
-                { name: "aldehyde", group: "CHO", example: "methanal" },
-                { name: "ketone", group: "CO", example: "propanone" },
-                { name: "carboxylic acid", group: "COOH", example: "ethanoic acid" },
-                { name: "amine", group: "NH2", example: "methylamine" }
+                { name: "alcohol", group: "OH", example: "ethanol", scenario: "fragrance_design" },
+                { name: "carboxylic acid", group: "COOH", example: "ethanoic acid", scenario: "lonza_feedstock" },
+                { name: "amine", group: "NH2", example: "methylamine", scenario: "green_chemistry" }
             ];
 
             groups.forEach((g, idx) => {
@@ -70,10 +69,11 @@ export default function SC302Page() {
                     difficulty,
                     stage,
                     molecule: g.example,
+                    scenario: g.scenario,
                     promptLatex: `\\text{${t.prompts.functional_group.replace('{name}', g.name)}}`,
                     expressionLatex: `\\text{${g.name}} \\rightarrow \\text{?}`,
-                    targetLatex: g.group.toLowerCase(),
-                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: g.group.toLowerCase() }],
+                    targetLatex: g.group,
+                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: g.group }],
                     correctLatex: g.group,
                     hintLatex: [`\\text{${t.prompts.hint_group.replace('{example}', g.example)}}`]
                 });
@@ -82,10 +82,8 @@ export default function SC302Page() {
 
         if (stage === "ISOMERS") {
             const isomers = [
-                { formula: "C4H10", count: "2", type: "structural" },
-                { formula: "C5H12", count: "3", type: "structural" },
-                { formula: "C2H6O", count: "2", type: "functional" },
-                { formula: "C3H6", count: "2", type: "geometric" }
+                { formula: "C4H10", count: "2", type: "structural", scenario: "lonza_feedstock" },
+                { formula: "C5H12", count: "3", type: "structural", scenario: "basel_polymer_research" }
             ];
 
             isomers.forEach((iso, idx) => {
@@ -94,6 +92,7 @@ export default function SC302Page() {
                     difficulty,
                     stage,
                     formula: iso.formula,
+                    scenario: iso.scenario,
                     promptLatex: `\\text{${t.prompts.isomer_count.replace('{formula}', iso.formula)}}`,
                     expressionLatex: `${iso.formula} \\rightarrow \\text{? isomers}`,
                     targetLatex: iso.count,
@@ -139,7 +138,6 @@ export default function SC302Page() {
         { id: "ISOMERS", label: t.stages.isomers },
     ], [t]);
 
-    // Sync molecule with quest
     useEffect(() => {
         if (currentQuest?.molecule) {
             setSelectedMolecule(currentQuest.molecule);
@@ -147,6 +145,11 @@ export default function SC302Page() {
     }, [currentQuest]);
 
     const hint = getHint();
+
+    const activeScenario = useMemo(() => {
+        if (!currentQuest?.scenario) return null;
+        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+    }, [currentQuest, t]);
 
     return (
         <ChamberLayout
@@ -161,21 +164,7 @@ export default function SC302Page() {
             onNext={next}
             checkStatus={lastCheck}
             footerLeft={t.footer_left}
-            translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
-                difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
-                },
-            }}
+            translations={t}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -187,7 +176,6 @@ export default function SC302Page() {
                         />
                     </div>
 
-                    {/* View Controls */}
                     <div className="grid grid-cols-1 gap-2">
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
                             <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.view_3d}</span>
@@ -209,11 +197,10 @@ export default function SC302Page() {
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`flex-1 transition-all duration-1000 ${
-                                        i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                                             ? "bg-neon-purple shadow-[0_0_5px_#ff00ff]"
                                             : "bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -262,7 +249,7 @@ export default function SC302Page() {
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-purple/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-purple/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -283,16 +270,14 @@ export default function SC302Page() {
                                             initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                                                lastCheck.ok
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                                     : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-5">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                                                    lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                                                }`}>
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
                                                     {lastCheck.ok ? "✓" : "✗"}
                                                 </div>
                                                 <div>
@@ -313,21 +298,44 @@ export default function SC302Page() {
                                                     </div>
                                                 </div>
                                             )}
-
-                                            {lastCheck.ok && (
-                                                <button
-                                                    onClick={next}
-                                                    className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
-                                                >
-                                                    {t.next}
-                                                </button>
-                                            )}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(255, 0, 255, 0.2)" }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={lastCheck?.ok ? next : verify}
+                                    className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
+                                            ? "bg-neon-purple text-black"
+                                            : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                                        }`}
+                                >
+                                    {lastCheck?.ok ? t.next : t.check}
+                                </motion.button>
                             </div>
                         </div>
                     </div>
+                )}
+
+                {activeScenario && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm"
+                    >
+                        <div className="flex items-start gap-4">
+                            <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple">
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div className="space-y-2">
+                                <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+                                <p className="text-sm text-white/50 leading-relaxed italic">{activeScenario}</p>
+                            </div>
+                        </div>
+                    </motion.div>
                 )}
             </div>
         </ChamberLayout>

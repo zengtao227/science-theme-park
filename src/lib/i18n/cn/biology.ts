@@ -40,7 +40,13 @@ export const cnBiology = {
         correct: "正确",
         incorrect: "错误",
         ready: "就绪",
-        footer_left: "GB1.01 // 进化实验室"
+        footer_left: "GB1.01 // 进化实验室",
+        scenarios: {
+            galapagos_study: "巴塞尔自然历史博物馆收藏了大量标本，帮助科学家研究几个世纪以来该地区的生物多样性变化，呼应了达尔文的观察。",
+            genetic_drift: "巴塞尔大学生物中心 (Biozentrum) 的研究人员调查遗传突变如何在隔离种群中传播，这是物种形成的关键因素。",
+            fossil_record: "在巴塞尔地区发现的古代犀牛化石提供了上莱茵河谷曾存在亚热带气候的证据。",
+            molecular_clock: "在弗雷德里希·米舍尔研究所 (FMI) 进行的 DNA 序列对比，使科学家能够估计不同物种在进化道路上分化的时间。"
+        }
     },
     gb2_01: {
         back: "返回枢纽",

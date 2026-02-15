@@ -1,110 +1,284 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useCallback, useMemo, useState } from "react";
+import { BlockMath, InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "ASPIRIN" | "CAFFEINE";
 
-export default function C301Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sc3_01 || translations.EN.sc3_01;
+interface SC301Quest extends Quest {
+  stage: Stage;
+  moleculeName: string;
+  scenario?: string;
+}
 
-  const [stage, setStage] = useState<Stage>("ASPIRIN");
-  const [completed, setCompleted] = useState(false);
+type SC301T = typeof translations.EN.sc3_01;
+
+export default function SC301Page() {
+  const { currentLanguage, completeStage } = useAppStore();
+  const t = (translations[currentLanguage]?.sc3_01 || translations.EN.sc3_01) as SC301T;
+
+  const buildStagePool = useCallback((difficulty: Difficulty, currentStage: Stage): SC301Quest[] => {
+    const quests: SC301Quest[] = [];
+
+    if (currentStage === "ASPIRIN") {
+      quests.push({
+        id: "ASP-1",
+        difficulty,
+        stage: currentStage,
+        moleculeName: "Aspirin",
+        scenario: "roche_aspirin",
+        promptLatex: "\\text{Identify the molecular formula for Aspirin.}",
+        expressionLatex: "C_?H_8O_4",
+        targetLatex: "9",
+        slots: [{ id: "c", labelLatex: "\\text{Carbon Count}", placeholder: "?", expected: "9" }],
+        correctLatex: "9",
+        hintLatex: ["\\text{Check the legend: Carbon is black.}"]
+      });
+      quests.push({
+        id: "ASP-2",
+        difficulty,
+        stage: currentStage,
+        moleculeName: "Aspirin",
+        scenario: "basel_pharma_hub",
+        promptLatex: "\\text{How many Oxygen atoms are in Aspirin?}",
+        expressionLatex: "C_9H_8O_?",
+        targetLatex: "4",
+        slots: [{ id: "o", labelLatex: "\\text{Oxygen Count}", placeholder: "?", expected: "4" }],
+        correctLatex: "4",
+        hintLatex: ["\\text{Oxygen atoms are red in the 3D model.}"]
+      });
+    }
+
+    if (currentStage === "CAFFEINE") {
+      quests.push({
+        id: "CAF-1",
+        difficulty,
+        stage: currentStage,
+        moleculeName: "Caffeine",
+        scenario: "novartis_caffeine",
+        promptLatex: "\\text{How many Nitrogen atoms are in Caffeine?}",
+        expressionLatex: "C_8H_{10}N_?O_2",
+        targetLatex: "4",
+        slots: [{ id: "n", labelLatex: "\\text{Nitrogen Count}", placeholder: "?", expected: "4" }],
+        correctLatex: "4",
+        hintLatex: ["\\text{Nitrogen atoms are blue in the 3D model.}"]
+      });
+      quests.push({
+        id: "CAF-2",
+        difficulty,
+        stage: currentStage,
+        moleculeName: "Caffeine",
+        scenario: "molecular_purity",
+        promptLatex: "\\text{Total Carbon atoms in Caffeine?}",
+        expressionLatex: "C_?H_{10}N_4O_2",
+        targetLatex: "8",
+        slots: [{ id: "c", labelLatex: "\\text{Carbon Count}", placeholder: "?", expected: "8" }],
+        correctLatex: "8",
+        hintLatex: ["\\text{Count the black spheres in the model.}"]
+      });
+    }
+
+    return quests;
+  }, []);
+
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+  const {
+    currentQuest,
+    difficulty,
+    stage,
+    lastCheck,
+    inputs,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+    getHint,
+    currentStageStats,
+  } = useQuestManager<SC301Quest, Stage>({
+    buildPool,
+    initialStage: "ASPIRIN",
+  });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("SC3.01", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
+
+  const stagesProps = useMemo(() => [
+    { id: "ASPIRIN", label: t.stages.aspirin },
+    { id: "CAFFEINE", label: t.stages.caffeine },
+  ], [t]);
+
+  const hint = getHint();
+
+  const activeScenario = useMemo(() => {
+    if (!currentQuest?.scenario) return null;
+    return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+  }, [currentQuest, t]);
 
   return (
     <ChamberLayout
-      title={t?.title || "C3.01 // MOLECULAR ARCHITECT"}
       moduleCode="SC3.01"
-      difficulty="CORE"
-      onDifficultyChange={() => {}}
-      stages={[
-        { id: "ASPIRIN", label: t?.stages?.aspirin || "ASPIRIN" },
-        { id: "CAFFEINE", label: t?.stages?.caffeine || "CAFFEINE" },
-      ]}
+      title={t.title}
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stagesProps}
       currentStage={stage}
-      onStageChange={(s) => setStage(s as Stage)}
-      onVerify={() => {}}
-      onNext={() => {}}
-      checkStatus={null}
-      footerLeft={t?.footer_left || "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "C3.01_MOLECULE_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
+      onStageChange={(s) => handleStageChange(s as Stage)}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
+      footerLeft={t.footer_left}
+      translations={t}
       monitorContent={
-        <div className="space-y-4">
-          <MoleculeCanvas
-            target={stage}
-            onComplete={() => setCompleted(true)}
-          />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "MOLECULAR STRUCTURE"}
+        <div className="flex flex-col h-full gap-4">
+          <div className="flex-1 min-h-[400px]">
+            <MoleculeCanvas target={stage} />
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.hints || "HINTS"}
+          <div className="mt-auto pt-4 border-t border-white/5">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
+              <span>{t.labels.snap || "MASTERY"}</span>
+              <span>{currentStageStats?.correct || 0} PTS</span>
             </div>
-            <div className="text-white/70 text-sm font-mono">
-              {stage === "ASPIRIN" 
-                ? "Aspirin contains a benzene ring, acetyl group, and carboxyl group."
-                : "Caffeine contains a purine-derived bicyclic structure with methylxanthine."}
+            <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                      ? "bg-neon-cyan shadow-[0_0_5px_#00e5ff]"
+                      : "bg-transparent"
+                    }`}
+                />
+              ))}
             </div>
           </div>
         </div>
       }
     >
-      <div className="space-y-10">
-        <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION"}
-          </h3>
-          <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description || "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."}
-          </p>
-        </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
-          </h3>
-          <p className="text-3xl text-white font-black italic">
-            {stage === "ASPIRIN" ? "C₉H₈O₄" : "C₈H₁₀N₄O₂"}
-          </p>
-        </div>
-        <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="text-center space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              MOLECULAR FORMULA
+      <div className="space-y-10 max-w-4xl mx-auto w-full">
+        {currentQuest && (
+          <div className="space-y-12">
+            <div className="text-center space-y-6">
+              <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
+                {t.objective_title}
+              </h3>
+              <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
+                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+              </div>
             </div>
-            <div className="text-2xl font-black text-white">
-              {stage === "ASPIRIN" ? "Aspirin (Acetylsalicylic Acid)" : "Caffeine (Trimethylxanthine)"}
-            </div>
-            <div className="text-sm text-white/60 font-mono">
-              {stage === "ASPIRIN" 
-                ? "Used as analgesic and anti-inflammatory drug"
-                : "Central nervous system stimulant"}
+
+            <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
+              <div className="space-y-8">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                  <span className="w-8 h-px bg-neon-cyan/30" />
+                  {t.labels.input}
+                </div>
+
+                <div className="grid grid-cols-1 gap-8 justify-items-center">
+                  {currentQuest.slots.map((slot: any) => (
+                    <div key={slot.id} className="w-full max-w-md space-y-3">
+                      <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
+                        <InlineMath>{slot.labelLatex}</InlineMath>
+                        <span className="text-neon-cyan/30 font-mono">MOL_BUILD_0x{slot.id.toUpperCase()}</span>
+                      </div>
+                      <div className="relative group">
+                        <input
+                          className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                          placeholder={slot.placeholder}
+                          value={inputs[slot.id] || ""}
+                          onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') verify();
+                          }}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <AnimatePresence mode="wait">
+                  {lastCheck && (
+                    <motion.div
+                      key={lastCheck.ok ? "correct" : "incorrect"}
+                      initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                      className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
+                          ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                          : 'bg-red-500/10 border-red-500/30 text-red-400'
+                        }`}
+                    >
+                      <div className="flex items-center gap-5">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                          }`}>
+                          {lastCheck.ok ? "✓" : "✗"}
+                        </div>
+                        <div>
+                          <div className="font-black text-lg tracking-widest uppercase italic">
+                            {lastCheck.ok ? t.correct : t.incorrect}
+                          </div>
+                        </div>
+                      </div>
+
+                      {!lastCheck.ok && hint && (
+                        <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                          <div className="text-white font-bold">
+                            <InlineMath>{hint}</InlineMath>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <motion.button
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0, 229, 255, 0.2)" }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={lastCheck?.ok ? next : verify}
+                  className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
+                      ? "bg-neon-cyan text-black"
+                      : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
+                    }`}
+                >
+                  {lastCheck?.ok ? t.next : t.check}
+                </motion.button>
+              </div>
             </div>
           </div>
-          {completed && (
-            <div className="text-center text-green-400 font-black text-lg animate-pulse">
-              ✓ STRUCTURE VERIFIED
+        )}
+
+        {activeScenario && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-neon-cyan/[0.02] border border-neon-cyan/10 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_50px_rgba(0,229,255,0.02)]"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-neon-cyan/20 rounded-lg text-neon-cyan shadow-[0_0_15px_rgba(0,229,255,0.1)]">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="space-y-2">
+                <div className="text-[10px] uppercase tracking-widest text-neon-cyan/60 font-black">Regional Case Study // Basel Node</div>
+                <p className="text-sm text-white/50 leading-relaxed italic">{activeScenario}</p>
+              </div>
             </div>
-          )}
-        </div>
+          </motion.div>
+        )}
       </div>
     </ChamberLayout>
   );

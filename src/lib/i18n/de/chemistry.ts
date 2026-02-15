@@ -694,6 +694,12 @@ export const deChemistry = {
         stages: {
             aspirin: "ASPIRIN",
             caffeine: "KOFFEIN"
+        },
+        scenarios: {
+            roche_aspirin: "Hoffmann-La Roche in Basel war einer der ersten großen Produzenten von synthetischem Aspirin und revolutionierte weltweit das Schmerzmanagement.",
+            novartis_caffeine: "Koffeinforschung bei Novartis untersucht die Auswirkungen auf das zentrale Nervensystem und potenzielle neuroprotektive Eigenschaften.",
+            basel_pharma_hub: "Als weltweit führender Pharma-Hub synthetisieren Basels Labore jedes Jahr Tausende von komplexen organischen Molekülen.",
+            molecular_purity: "Die Hochleistungsflüssigkeitschromatographie (HPLC) in Basler Laboren stellt sicher, dass synthetisierte Medikamente strengste Reinheitsstandards erfüllen."
         }
     },
     sc3_02: {
@@ -735,6 +741,12 @@ export const deChemistry = {
         feedback: {
             correct: "Organische Struktur verstanden!",
             incorrect: "Überprüfe die Molekülstruktur."
+        },
+        scenarios: {
+            lonza_feedstock: "Lonza Basel liefert kritische chemische Rohstoffe und Zwischenprodukte, die weltweit für komplexe organische Synthesen benötigt werden.",
+            basel_polymer_research: "Polymerwissenschaftler in Basel entwickeln neue organische Materialien mit einzigartigen Eigenschaften für medizinische Implantate und Elektronik.",
+            green_chemistry: "Die Green-Chemistry-Initiativen der Universität Basel zielen darauf ab, die Umweltauswirkungen der organischen Synthese durch katalytische Innovationen zu verringern.",
+            fragrance_design: "Givaudan in Basel kombiniert organische Chemie mit künstlerischer Intuition, um die nächste Generation globaler Düfte zu entwerfen."
         }
     },
     sc3_03: {
@@ -783,8 +795,7 @@ export const deChemistry = {
         },
         feedback: {
             correct: "Reaktionsmechanismus verstanden!",
-            incorrect: "Überprüfe den Reaktionsmechanismus.",
-            hint_structure: "Lichtreaktionen finden in den Thylakoidmembranen statt; der Calvin-Zyklus im Stroma."
+            incorrect: "Überprüfe den Reaktionsmechanismus."
         }
     },
     sc3_05: {

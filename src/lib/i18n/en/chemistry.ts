@@ -52,6 +52,12 @@ export const enChemistry = {
             concentration_hint: "Higher [A] shifts equilibrium right → more C and D",
             temperature_hint: "Higher temperature increases particle kinetic energy",
             pressure_hint: "Higher pressure decreases container volume"
+        },
+        scenarios: {
+            basel_synthesis: "Basel Chemical Production: Large-scale chemical synthesis at the Rhine harbor relies on controlling chemical equilibrium to maximize yield while minimizing energy costs.",
+            haber_process: "Industrial Nitrogen Hub - Basel: The Haber-Bosch process for ammonia synthesis is the classic example of Le Chatelier's Principle in industrial action, supplying fertilizer precursors worldwide.",
+            buffer_systems: "Biozentrum Basel: Biological systems use complex equilibrium networks and buffers to maintain stability in living organisms, a key focus of local biomedical research.",
+            catalysis_innovation: "University of Basel Catalysis Group: Developing new catalysts that reach equilibrium faster at lower temperatures is critical for sustainable green chemistry."
         }
     },
     gc3_02: {
@@ -101,6 +107,12 @@ export const enChemistry = {
             sc_hint: "Lowest packing efficiency (52%)",
             bcc_hint: "Moderate packing (68%), metals like Fe, Cr",
             fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
+        },
+        scenarios: {
+            crystallography_center: "Basel Crystallography Center: Using X-ray diffraction to map the atomic structures of new pharmaceutical crystals discovered in the city's labs.",
+            solid_state_research: "Institute of Physics - Basel: Researchers explore the properties of body-centered and face-centered cubic metals for use in next-generation aerospace components.",
+            drug_polymorphism: "Novartis Quality Control: Different crystal packing (polymorphism) can drastically change how a drug dissolves in the body, making lattice analysis a vital step.",
+            nano_materials: "Swiss Nanoscience Institute (SNI): At the SNI in Basel, scientists engineer crystal structures at the atomic level to create smart materials for electronics."
         }
     },
     gc1_01: {
@@ -148,6 +160,12 @@ export const enChemistry = {
             build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "Salt bridge maintains electrical neutrality"
+        },
+        scenarios: {
+            battery_storage: "Basel Energy Grid: Large-scale redox flow batteries are being tested in Basel's industrial zones to store renewable energy from Rhine wind farms.",
+            corrosion_protection: "Rhine Bridge Maintenance: Understanding cell potentials is vital for protecting Basel's historic bridges from electrochemical corrosion caused by river water.",
+            analytical_electrochem: "Lonza Basel: Using electrochemical sensors to detect trace impurities in pharmaceutical intermediates with high precision.",
+            fuel_cell_innovation: "Swiss Hydrogen Hub: Basel researchers develop advanced fuel cells where hydrogen-oxygen redox reactions generate clean electricity for Swiss trains."
         }
     },
     gc2_01: {
@@ -443,6 +461,12 @@ export const enChemistry = {
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        scenarios: {
+            ionic_salts: "Basel Chemical Stores: Understanding ionic bonding between metals and non-metals is fundamental for the production of industrial salts and catalysts.",
+            molecular_oxygen: "Rhine Air Quality Station: Covalent bonding in oxygen and nitrogen molecules is studied to understand gas exchange processes in the city's atmosphere.",
+            pharmaceutical_chains: "Roche Molecular Design: Developing new drugs in Basel involves engineering specific covalent bonds to create precise molecular architectures.",
+            electrostatic_attraction: "University of Basel Physics: Studying the electrostatic forces that hold ionic crystals together at the atomic level using advanced microscopy."
         }
     },
     sc2_01: {
@@ -589,6 +613,12 @@ export const enChemistry = {
             weak_ph_calc: "At half-equivalence (pH = pKa). If pKa is 4.75, what is the pH?",
             eq_ph_guess: "Equivalence pH of Strong/Strong? (<7=1, 7=2, >7=3).",
             conc_calc: "20mL of unknown acid is neutralized by 10mL of 0.2M NaOH. Find Ca."
+        },
+        scenarios: {
+            water_quality: "Basel Water Works (IWB): Precise pH monitoring of the Rhine water ensures safe drinking water production for the city's inhabitants.",
+            biotech_titration: "CSL Behring Basel: Titration is used to calibrate the pH of protein-based solutions, ensuring the stability of life-saving plasma products.",
+            environmental_monitoring: "Bau- und Verkehrsdepartement Basel-Stadt: Monitoring soil pH in Basel's parks and forests reveals the long-term impact of acid rain and urban emissions.",
+            gastro_science: "Swiss Culinary Institute: Understanding acid-base chemistry is essential for food science, from cheese maturation to the preservation of local Basel specialties."
         }
     },
     sc2_03: {
@@ -706,6 +736,12 @@ export const enChemistry = {
         stages: {
             aspirin: "ASPIRIN",
             caffeine: "CAFFEINE"
+        },
+        scenarios: {
+            roche_aspirin: "Hoffmann-La Roche in Basel was one of the first major producers of synthetic aspirin, revolutionizing pain management globally.",
+            novartis_caffeine: "Caffeine research at Novartis explores its effects on the central nervous system and its potential neuroprotective properties.",
+            basel_pharma_hub: "As the world's leading pharma hub, Basel's laboratories synthesize thousands of complex organic molecules every year.",
+            molecular_purity: "High-performance liquid chromatography (HPLC) in Basel labs ensures that synthesized drugs meet the strictest purity standards."
         }
     },
     sc3_02: {
@@ -747,6 +783,12 @@ export const enChemistry = {
         feedback: {
             correct: "Organic structure understood!",
             incorrect: "Review the molecular structure."
+        },
+        scenarios: {
+            lonza_feedstock: "Lonza Basel provides critical chemical feedstocks and intermediates required for complex organic synthesis worldwide.",
+            basel_polymer_research: "Polymer scientists in Basel develop new organic materials with unique properties for medical implants and electronics.",
+            green_chemistry: "The University of Basel's Green Chemistry initiatives aim to reduce the environmental impact of organic synthesis through catalytic innovation.",
+            fragrance_design: "Givaudan in Basel combines organic chemistry with artistic intuition to design the next generation of global fragrances."
         }
     },
     sc3_03: {
@@ -795,7 +837,7 @@ export const enChemistry = {
         },
         feedback: {
             correct: "Reaction mechanism understood!",
-            hint_structure: "Light reactions happen in thylakoid membranes; Calvin cycle in stroma."
+            incorrect: "Review the reaction mechanism."
         }
     },
     sc3_05: {

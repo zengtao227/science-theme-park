@@ -45,13 +45,19 @@ export const cnChemistry = {
         stages: {
             concentration: "浓度",
             temperature: "温度",
-            pressure: "压强",
-            concentration_desc: "添加反应物 A 并观察平衡移动",
-            temperature_desc: "升高温度并观察粒子速度",
-            pressure_desc: "改变压强并观察体积效应",
-            concentration_hint: "增加 [A] 使平衡右移 → 更多 C 和 D",
-            temperature_hint: "温度升高增加粒子动能",
-            pressure_hint: "压强增大使容器体积减小"
+            pressure: "压力",
+            concentration_desc: "添加反应物A并观察平衡移动",
+            temperature_desc: "提高温度并观察粒子速度",
+            pressure_desc: "改变压力并查看体积效应",
+            concentration_hint: "较高的[A]使平衡向右移动 → 产生更多C和D",
+            temperature_hint: "高温增加粒子的动能",
+            pressure_hint: "高压减小容器体积"
+        },
+        scenarios: {
+            basel_synthesis: "巴塞尔化学生产：莱茵河港口的大规模化学合成依赖于控制化学平衡，以在降低能源成本的同时最大化产率。",
+            haber_process: "工业氮枢纽 - 巴塞尔：合成氨的哈伯法是勒夏特列原理在工业应用中的经典案例，为全球提供肥料前体。",
+            buffer_systems: "巴塞尔生物中心 (Biozentrum)：生物系统利用复杂的平衡网络和缓冲溶液来维持生物体的稳定性，这是当地生物医学研究的重点。",
+            catalysis_innovation: "巴塞尔大学催化小组：开发能在较低温度下更快达到平衡的新型催化剂对可持续绿色化学至关重要。"
         }
     },
     gc3_02: {
@@ -95,12 +101,18 @@ export const cnChemistry = {
             sc: "简单立方",
             bcc: "体心立方",
             fcc: "面心立方",
-            sc_desc: "研究简单立方晶格（配位数6）",
-            bcc_desc: "分析体心立方（配位数8）",
-            fcc_desc: "掌握面心立方（配位数12）",
-            sc_hint: "最低堆积效率（52%）",
-            bcc_hint: "中等堆积（68%），如Fe、Cr等金属",
-            fcc_hint: "最高堆积（74%），如Cu、Al、Au等金属"
+            sc_desc: "学习简单立方晶格（6配位）",
+            bcc_desc: "分析体心立方（8配位）",
+            fcc_desc: "掌握面心立方（12配位）",
+            sc_hint: "最低的堆积效率 (52%)",
+            bcc_hint: "中等堆积 (68%)，如铁、铬等金属",
+            fcc_hint: "最高的堆积 (74%)，如铜、铝、金等金属",
+        },
+        scenarios: {
+            crystallography_center: "巴塞尔晶体学中心：利用X射线衍射绘制该市实验室发现的新型药物晶体的原子结构。",
+            solid_state_research: "巴塞尔物理研究所：研究人员探索体心和面心立方金属的特性，用于下一代航空航天组件。",
+            drug_polymorphism: "诺华 (Novartis) 质量控制：不同的晶体堆积（多晶型）会极大地改变药物在体内的溶解方式，使晶格分析成为至关重要的一步。",
+            nano_materials: "瑞士纳米科学研究所 (SNI)：在巴塞尔的SNI，科学家在原子水平上工程化晶体结构，以制造用于电子产品的智能材料。"
         }
     },
     gc1_01: {
@@ -142,12 +154,18 @@ export const cnChemistry = {
             build: "构建电池",
             measure: "测量电势",
             analyze: "分析反应",
-            build_desc: "构建 Zn-Cu 原电池",
+            build_desc: "构建锌铜原电池",
             measure_desc: "使用能斯特方程计算电池电势",
             analyze_desc: "观察氧化还原反应和电子流动",
-            build_hint: "Zn 在阳极被氧化，Cu²⁺ 在阴极被还原",
+            build_hint: "锌在阳极被氧化，铜离子在阴极被还原",
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "盐桥维持电中性"
+        },
+        scenarios: {
+            battery_storage: "巴塞尔能源网：巴塞尔工业区正在测试大规模氧化还原液流电池，以储存来自莱茵河风力发电场的再生能源。",
+            corrosion_protection: "莱茵河大桥维护：了解电极电势对于保护巴塞尔的历史性桥梁免受河水引起的电化学腐蚀至关重要。",
+            analytical_electrochem: "巴塞尔龙沙 (Lonza)：使用电化学传感器高精度检测药物中间体中的痕量杂质。",
+            fuel_cell_innovation: "瑞士氢能枢纽：巴塞尔研究人员开发先进的燃料电池，通过氢氧氧化还原反应为瑞士火车产生清洁电力。"
         }
     },
     gc2_01: {
@@ -443,6 +461,12 @@ export const cnChemistry = {
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        scenarios: {
+            ionic_salts: "巴塞尔化学仓库：了解金属与非金属之间的离子键是工业盐和催化剂生产的基础。",
+            molecular_oxygen: "莱茵河空气质量站：研究氧气和氮气分子中的共价键，以了解城市大气中的气体交换过程。",
+            pharmaceutical_chains: "罗氏 (Roche) 分子设计：在巴塞尔开发新药涉及工程化特定的共价键，以创建精确的分子结构。",
+            electrostatic_attraction: "巴塞尔大学物理系：利用先进显微镜研究在原子水平上将离子晶体结合在一起的静电引力。"
         }
     },
     sc2_01: {
@@ -583,12 +607,18 @@ export const cnChemistry = {
             formula: "滴定公式"
         },
         prompts: {
-            curve_type: "初始 pH 为 {ph}。识别酸类型 (强酸=1, 弱酸=2)。",
-            find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M。求等当点体积 Vb。",
-            select_indicator: "弱酸 + 强碱。选择指示剂：酚酞(1), 甲基橙(2)。",
-            weak_ph_calc: "在半等当点 (pH = pKa)。如果 pKa 为 4.75，pH 是多少？",
-            eq_ph_guess: "强酸/强碱等当点 pH？ (<7=1, 7=2, >7=3)。",
+            curve_type: "初始 pH 为 {ph}。识别酸类型（强酸=1，弱酸=2）。",
+            find_eq: "若 Va=50mL, Ca=0.1M, Cb=0.2M。求等当点时的 Vb。",
+            select_indicator: "弱酸 + 强碱。选择指示剂：酚酞(1)，甲基橙(2)。",
+            weak_ph_calc: "在半等当点 (pH = pKa)。若 pKa 为 4.75，pH 是多少？",
+            eq_ph_guess: "强酸/强碱滴定的等当点 pH？（<7=1, 7=2, >7=3）。",
             conc_calc: "20mL 未知酸被 10mL 0.2M NaOH 中和。求 Ca。"
+        },
+        scenarios: {
+            water_quality: "巴塞尔自来水厂 (IWB)：对莱茵河水进行精确的 pH 监测，确保为城市居民生产安全的饮用水。",
+            biotech_titration: "巴塞尔杰特贝林 (CSL Behring)：滴定用于校准蛋白质溶液的 pH 值，确保救命血浆产品的稳定性。",
+            environmental_monitoring: "巴塞尔城市州建筑与交通局：监测巴塞尔公园和森林的土壤 pH 值，揭示酸雨和城市排放的长期影响。",
+            gastro_science: "瑞士烹饪学院：了解酸碱化学对食品科学至关重要，从奶酪成熟到巴塞尔特色美食的保存。"
         }
     },
     sc2_03: {
@@ -706,6 +736,12 @@ export const cnChemistry = {
         stages: {
             aspirin: "阿司匹林",
             caffeine: "咖啡因"
+        },
+        scenarios: {
+            roche_aspirin: "位于巴塞尔的罗氏制药 (Hoffmann-La Roche) 是最早大规模生产合成阿司匹林的公司之一，彻底改变了全球的疼痛管理。",
+            novartis_caffeine: "诺华 (Novartis) 的咖啡因研究探索其对中枢神经系统的影响及其潜在的神经保护特性。",
+            basel_pharma_hub: "作为世界领先的制药中心，巴塞尔的实验室每年合成数千种复杂的有机分子。",
+            molecular_purity: "巴塞尔实验室使用高效液相色谱 (HPLC) 确保合成药物符合最严格的纯度标准。"
         }
     },
     sc3_02: {
@@ -745,8 +781,14 @@ export const cnChemistry = {
             hint_isomer: "考虑{type}同分异构体"
         },
         feedback: {
-            correct: "有机结构理解了！",
-            incorrect: "复习分子结构。"
+            correct: "理解有机结构！",
+            incorrect: "请检查分子结构。"
+        },
+        scenarios: {
+            lonza_feedstock: "巴塞尔龙沙 (Lonza) 为全球复杂的有机合成提供关键的化学原料和中间体。",
+            basel_polymer_research: "巴塞尔的高分子科学家开发具有独特性能的新型有机材料，用于医疗植入物和电子产品。",
+            green_chemistry: "巴塞尔大学的绿色化学计划旨在通过催化创新减少有机合成对环境的影响。",
+            fragrance_design: "巴塞尔的奇华顿 (Givaudan) 将有机化学与艺术直觉相结合，设计下一代全球香氛。"
         }
     },
     sc3_03: {
@@ -794,8 +836,8 @@ export const cnChemistry = {
             reaction_control: "诺华反应控制：控制反应条件（光、温度、催化剂）决定有机合成中的产物选择性和产率。"
         },
         feedback: {
-            correct: "反应机理理解正确！",
-            incorrect: "复习反应机理。"
+            correct: "反应机理已掌握！",
+            incorrect: "请检查反应机理。"
         }
     },
     sc3_05: {

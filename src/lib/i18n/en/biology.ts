@@ -40,7 +40,13 @@ export const enBiology = {
         correct: "Correct",
         incorrect: "Incorrect",
         ready: "Ready",
-        footer_left: "GB1.01 // EVOLUTION LAB"
+        footer_left: "GB1.01 // EVOLUTION LAB",
+        scenarios: {
+            galapagos_study: "The Natural History Museum of Basel hosts collections that help scientists study regional biodiversity changes over centuries, mirroring Darwin's observations.",
+            genetic_drift: "Researchers at the Biozentrum Basel investigate how genetic mutations propagate through isolated populations, a key factor in speciation.",
+            fossil_record: "Ancient rhinoceros fossils found in the Basel region provide evidence of the subtropical climate that once existed in the Upper Rhine Valley.",
+            molecular_clock: "Comparing DNA sequences at the Friedrich Miescher Institute (FMI) allows scientists to estimate when different species diverged in their evolutionary paths."
+        }
     },
     gb2_01: {
         back: "Back to Nexus",
