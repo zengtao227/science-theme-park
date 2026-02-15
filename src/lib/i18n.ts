@@ -1670,9 +1670,9 @@ export const translations: Record<string, any> = {
         monitor_title: "EM1.01_THALES_MONITOR",
         footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
-            measure: "MEASURE",
-            measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}"
+            measure: "MEASURE"
         },
+        measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
         labels: {
             input: "INPUT",
             hints: "HINTS",
