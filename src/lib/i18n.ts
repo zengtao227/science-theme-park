@@ -1880,6 +1880,51 @@ export const translations: Record<string, any> = {
         hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
     }
     },
+    sp1_01: {
+        back: "Back to Nexus",
+        title: "SP1.01 // MEASUREMENT & UNITS",
+        check: "Verify",
+        next: "Next",
+        correct: "Measurement Verified",
+        incorrect: "Measurement Error",
+        ready: "Ready",
+        monitor_title: "SP1.01_MEASUREMENT_LAB",
+        footer_left: "SP1.01_MEASUREMENT // NODE: BASEL",
+        objective_title: "Measurement Objective",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            si_units: "SI UNITS",
+            conversion: "CONVERSION",
+            precision: "PRECISION"
+        },
+        tools: {
+            ruler: "Ruler",
+            scale: "Scale",
+            timer: "Timer"
+        },
+        labels: {
+            precision: "Measurement Precision",
+            measurement_display: "Measurement Display",
+            input_terminal: "Terminal Input [Measurement Node]"
+        },
+        prompts: {
+            si_unit: "What is the SI unit for {measurement}?",
+            convert: "Convert {value} {from} to {to}",
+            sigfigs: "How many significant figures in {value}?",
+            hint_si: "The SI unit is {name}",
+            hint_factor: "Multiply by {factor}",
+            hint_sigfigs: "Count all non-zero digits and zeros between them"
+        },
+        feedback: {
+            correct: "Measurement precision confirmed.",
+            incorrect: "Calibration error detected."
+        }
+    },
     sp1_03: {
     back: "Back to Nexus",
     title: "P1.03 // ENERGY & POWER",
