@@ -99,9 +99,6 @@ export const deCommon = {
                   sm1_04_subtitle: "Löse lineare Gleichungen mit Waagemodellen, Umformungen und Basler Anwendungen.",
                   sm1_05_title: "SM1.05 // VERHÄLTNIS-LABOR",
                   sm1_05_subtitle: "Meistere Proportionen, Prozente und Mischungen mit interaktiven Basler Laborszenarien.",
-                  sm1_05_subtitle: "Löse lineare Gleichungen mit Waagemodellen, Transformationen und Basler Anwendungen.",
-                  sm1_06_title: "SM1.05 // PROPORTIONS-LABOR",
-                  sm1_06_subtitle: "Meistere Proportionen, Prozentsätze und Mischungen mit interaktiven Basler Laborszenarien.",
   
                   sp1_01_title: "SP1.01 // MESSUNG & EINHEITEN",
                   sp1_01_subtitle: "Meistere SI-Einheiten, Einheitenumrechnung und Messpräzision mit Basler Laborinstrumenten.",

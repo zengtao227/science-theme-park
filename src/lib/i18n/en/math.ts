@@ -598,7 +598,7 @@ export const enMath = {
       },
   sm1_02: {
       back: "Back to Nexus",
-      title: "EM1.01 // ALGEBRA QUEST",
+      title: "SM1.02 // ALGEBRA QUEST",
       difficulty: {
           basic: "BASIC",
           core: "CORE",
