@@ -33,7 +33,7 @@ describe('Property 10: Premium UI styling', () => {
           content.includes('dark:');
         
         expect(hasDarkTheme).toBe(true);
-      } catch (error) {
+      } catch {
         // Module might not exist yet
         console.warn(`Could not read ${module}/page.tsx`);
       }
@@ -53,7 +53,7 @@ describe('Property 10: Premium UI styling', () => {
           content.includes('bg-white/');
         
         expect(hasGlassmorphism).toBe(true);
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -75,7 +75,7 @@ describe('Property 10: Premium UI styling', () => {
           content.includes('text-emerald');
         
         expect(hasNeonColors).toBe(true);
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -104,7 +104,7 @@ describe('Property 11: Animation integration', () => {
           content.includes('motion.');
         
         expect(hasFramerMotion).toBe(true);
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -122,7 +122,7 @@ describe('Property 11: Animation integration', () => {
           content.includes('<motion');
         
         expect(hasMotionComponents).toBe(true);
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -143,7 +143,7 @@ describe('Property 11: Animation integration', () => {
           
           expect(hasAnimationProps).toBe(true);
         }
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -172,7 +172,7 @@ describe('Property 12: Layout standardization', () => {
           content.includes('from "@/components/chamber/ChamberLayout"');
         
         expect(usesChamberLayout).toBe(true);
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -190,7 +190,7 @@ describe('Property 12: Layout standardization', () => {
           expect(content).toMatch(/currentStage\s*=/);
           expect(content).toMatch(/onStageChange\s*=/);
         }
-      } catch (error) {
+      } catch {
         console.warn(`Could not read ${module}/page.tsx`);
       }
     });
@@ -205,7 +205,7 @@ describe('Property 12: Layout standardization', () => {
       try {
         readFileSync(pagePath, 'utf-8');
         expect(true).toBe(true);
-      } catch (error) {
+      } catch {
         fail(`${module}/page.tsx does not exist`);
       }
     });

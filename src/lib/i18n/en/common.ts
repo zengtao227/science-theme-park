@@ -131,6 +131,8 @@ export const enCommon = {
 
         gp2_01_title: "GP2.01 // THERMODYNAMICS I",
         gp2_01_subtitle: "Gas laws, heat, and internal energy in Basel's energy systems.",
+        gp2_02_title: "GP2.02 // THERMODYNAMICS I",
+        gp2_02_subtitle: "Master the first law of thermodynamics, internal energy, and work-heat relationships.",
 
         gp1_01_title: "GP1.01 // THE ATOMIC CORE",
         gp1_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
@@ -149,6 +151,8 @@ export const enCommon = {
         sc1_03_subtitle: "Build isotopes and understand atomic orbitals in 3D.",
         sc1_04_title: "SC1.04 // PERIODIC PUZZLE",
         sc1_04_subtitle: "Build atoms and discover the periodic table. Master electron configuration.",
+        sc1_05_title: "SC1.05 // BONDING BRIDGE",
+        sc1_05_subtitle: "Master ionic, covalent, and metallic bonds with electron transfer visualization.",
         sc2_01_title: "SC2.01 // KINETICS CRASH",
         sc2_01_subtitle: "Master Arrhenius equation, collision theory, and reaction rates.",
         sc2_02_title: "SC2.02 // pH SENTINEL",
@@ -165,6 +169,8 @@ export const enCommon = {
         sc3_03_subtitle: "Explore combustion, substitution, and addition reactions with mechanism animations.",
         sc3_04_title: "SC3.04 // FUNCTIONAL HORIZON",
         sc3_04_subtitle: "Master properties and transformations of alcohols, aldehydes, acids, and esters.",
+        sc3_05_title: "SC3.05 // MOLECULAR FORGE",
+        sc3_05_subtitle: "Master VSEPR geometry, orbital hybridization, and molecular orbital theory.",
 
         gc1_01_title: "GC1.01 // REDOX TITAN",
         gc1_01_subtitle: "Master electrochemical cells and redox potentials.",

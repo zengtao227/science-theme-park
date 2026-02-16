@@ -5,8 +5,7 @@
  * Feature: biology-i18n-phase2
  */
 
-import * as fc from 'fast-check';
-import { hasAllKeys, haveSameParameters, getLeafValues, translationTestConfig } from '../utils/translation-test-utils';
+import { hasAllKeys, haveSameParameters, getLeafValues } from '../utils/translation-test-utils';
 
 // Import translations directly from the files
 import { enBiology } from '@/lib/i18n/en/biology';
@@ -158,7 +157,7 @@ describe('Biology Translation Completeness', () => {
 
           const leaves = getLeafValues(targetModule);
           
-          leaves.forEach(({ path, value }) => {
+          leaves.forEach(({ value }) => {
             if (typeof value === 'string') {
               expect(value.trim()).not.toBe('');
             }
@@ -212,11 +211,11 @@ describe('Property 2: Language switching', () => {
     const languages = ['EN', 'CN', 'DE'] as const;
     
     languages.forEach(lang => {
-      const module = translations[lang][testModule];
-      expect(module).toBeDefined();
-      expect(module.title).toBeDefined();
-      expect(module.difficulty).toBeDefined();
-      expect(module.stages).toBeDefined();
+      const moduleData = translations[lang][testModule];
+      expect(moduleData).toBeDefined();
+      expect(moduleData.title).toBeDefined();
+      expect(moduleData.difficulty).toBeDefined();
+      expect(moduleData.stages).toBeDefined();
     });
   });
 });
@@ -247,7 +246,7 @@ describe('Property 5: Anatomical labels', () => {
     languages.forEach(lang => {
       const sb2_01 = translations[lang].sb2_01_tissues;
       if (sb2_01?.labels) {
-        Object.entries(sb2_01.labels).forEach(([key, value]) => {
+        Object.entries(sb2_01.labels).forEach(([, value]) => {
           if (typeof value === 'string') {
             expect(value.trim()).not.toBe('');
           }
@@ -269,9 +268,9 @@ describe('Property 6: Multi-stage learning', () => {
     
     languages.forEach(lang => {
       modulesWithStages.forEach(moduleKey => {
-        const module = translations[lang][moduleKey];
-        if (module?.stages) {
-          const stages = Object.values(module.stages);
+        const moduleData = translations[lang][moduleKey];
+        if (moduleData?.stages) {
+          const stages = Object.values(moduleData.stages);
           stages.forEach(stage => {
             expect(typeof stage).toBe('string');
             expect(stage.trim()).not.toBe('');
@@ -315,11 +314,11 @@ describe('Property 7: Interaction feedback', () => {
     
     languages.forEach(lang => {
       Object.keys(translations[lang]).forEach(moduleKey => {
-        const module = translations[lang][moduleKey];
+        const moduleData = translations[lang][moduleKey];
         requiredFeedbackKeys.forEach(key => {
-          expect(module[key]).toBeDefined();
-          expect(typeof module[key]).toBe('string');
-          expect(module[key].trim()).not.toBe('');
+          expect(moduleData[key]).toBeDefined();
+          expect(typeof moduleData[key]).toBe('string');
+          expect(moduleData[key].trim()).not.toBe('');
         });
       });
     });

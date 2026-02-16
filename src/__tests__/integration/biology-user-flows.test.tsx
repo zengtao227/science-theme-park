@@ -313,7 +313,7 @@ describe('Integration: Error Handling', () => {
   });
 
   test('should handle network errors during progress save', async () => {
-    const saveProgress = async (_data: unknown) => {
+    const saveProgress = async () => {
       try {
         // Simulate network error
         throw new Error('Network error');
@@ -322,7 +322,7 @@ describe('Integration: Error Handling', () => {
       }
     };
     
-    const result = await saveProgress({});
+    const result = await saveProgress();
     expect(result.success).toBe(false);
   });
 });

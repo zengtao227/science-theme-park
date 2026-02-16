@@ -50,18 +50,18 @@ All modules follow the established CHAMBER_MODULE_STANDARDS, implementing the Mi
                     └────────────────────┘
 ```
 
-### Technology Stack
+### Technology Stack (Verified Versions)
 
-- **Frontend Framework**: Next.js 14 (React 18)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Frontend Framework**: Next.js 16.1.5 (React 19.2.3)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS 4.1.18 (v4 config via `@tailwindcss/postcss`)
 - **Math Rendering**: react-katex (KaTeX)
-- **3D Graphics**: Three.js + React Three Fiber
-- **2D Graphics**: SVG + Canvas API
+- **3D Graphics**: Three.js + React Three Fiber (select modules only)
+- **2D Graphics**: SVG (preferred) + Canvas API (legacy)
 - **Animation**: Framer Motion
 - **State Management**: Zustand (via useAppStore)
-- **Quest Management**: Custom useQuestManager hook
-- **Testing**: Jest + React Testing Library + fast-check (property-based testing)
+- **Quest Management**: Custom useQuestManager hook (default tolerance = 0.1)
+- **Testing**: Jest 30.2 + React Testing Library + fast-check 4.5.3
 
 ### Module Structure Pattern
 
@@ -97,54 +97,70 @@ src/
 
 ### 1. Module Page Component
 
-Each module page implements the following structure:
+Each module page implements the following structure.
+
+**⚠️ IMPORTANT: Two i18n patterns coexist in the codebase:**
+- **Old pattern** (gm1-01, sc2-01, etc.): `import { translations } from "@/lib/i18n"; const t = translations[currentLanguage].module_key;`
+- **New pattern** (sb1-03, sb2-01, gb2-01): `import { useLanguage } from "@/lib/i18n"; const { t } = useLanguage();`
+
+**All new modules MUST use the new `useLanguage()` pattern.**
 
 ```typescript
 // src/app/chamber/{module-code}/page.tsx
 
 "use client";
 
-import { useMemo } from "react";
-import ChamberLayout from "@/components/layout/ChamberLayout";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useEffect, useCallback, useMemo } from "react";
+import { BlockMath, InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";  // ✅ New pattern
+import ChamberLayout from "@/components/layout/ChamberLayout";
 import ModuleVisualization from "@/components/chamber/{module-code}/Visualization";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
-// Stage type definition
 type Stage = "STAGE_1" | "STAGE_2" | "STAGE_3";
 
-// Quest type definition
 interface ModuleQuest extends Quest {
+  stage: Stage;
   // Module-specific quest properties
-  data: {
-    // Question-specific data
-  };
 }
 
-// Data pools for each difficulty level
-const stage1DataBasic = [/* 4-5 questions */];
-const stage1DataCore = [/* 4-5 questions */];
-const stage1DataAdvanced = [/* 4-5 questions */];
-const stage1DataElite = [/* 4-5 questions */];
+const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// Similar for stage2 and stage3...
-
-// Build quest pool based on difficulty and stage
-function buildStagePool(
-  t: typeof translations.EN.{module_key},
-  difficulty: Difficulty,
-  stage: Stage
-): ModuleQuest[] {
-  // Select appropriate data pool
-  // Transform data into Quest objects
-  // Return quest array
-}
+// Data pools: 5 questions per difficulty per stage
+const stage1DataBasic = [/* exactly 5 questions */];
+const stage1DataCore = [/* exactly 5 questions */];
+const stage1DataAdvanced = [/* exactly 5 questions */];
+const stage1DataElite = [/* exactly 5 questions */];
 
 export default function ModulePage() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].{module_key};
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();  // ✅ Use useLanguage hook
   
+  // ✅ Wrap buildStagePool in useCallback to prevent quest regeneration
+  const buildStagePool = useCallback(
+    (difficulty: Difficulty, stage: Stage): ModuleQuest[] => {
+      let dataSet;
+      switch (difficulty) {
+        case "BASIC": dataSet = stage1DataBasic; break;
+        case "CORE": dataSet = stage1DataCore; break;
+        case "ADVANCED": dataSet = stage1DataAdvanced; break;
+        case "ELITE": dataSet = stage1DataElite; break;
+        default: dataSet = stage1DataBasic;
+      }
+      return dataSet.map((item) => ({
+        id: item.id,
+        difficulty,
+        stage,
+        promptLatex: t("module_key.prompts.some_prompt", { param: item.value }),
+        // ... build quest
+      }));
+    },
+    [t]
+  );
+
   const {
     difficulty,
     stage,
@@ -157,36 +173,42 @@ export default function ModulePage() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<ModuleQuest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool: buildStagePool,
     initialStage: "STAGE_1",
+    // tolerance: 0.1 (default), use 0.01 for higher precision if needed
   });
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={t("module_key.title")}
       moduleCode="{MODULE_CODE}"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "STAGE_1", label: t.stages.stage_1 },
-        { id: "STAGE_2", label: t.stages.stage_2 },
-        { id: "STAGE_3", label: t.stages.stage_3 },
+        { id: "STAGE_1", label: t("module_key.stages.stage_1") },
+        { id: "STAGE_2", label: t("module_key.stages.stage_2") },
+        { id: "STAGE_3", label: t("module_key.stages.stage_3") },
       ]}
       currentStage={stage}
       onStageChange={handleStageChange}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={t("module_key.footer_left")}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
-        difficulty: t.difficulty,
+        back: t("module_key.back"),
+        check: t("module_key.check"),
+        next: t("module_key.next"),
+        correct: t("module_key.correct"),
+        incorrect: t("module_key.incorrect"),
+        ready: t("module_key.ready"),
+        monitor_title: t("module_key.monitor_title"),
+        difficulty: {
+          basic: t("module_key.difficulty.basic"),
+          core: t("module_key.difficulty.core"),
+          advanced: t("module_key.difficulty.advanced"),
+          elite: t("module_key.difficulty.elite"),
+        },
       }}
       monitorContent={
         <ModuleVisualization
@@ -488,7 +510,7 @@ Each difficulty level must follow these guidelines:
 **Validates: Requirements 1.4, 2.4, 3.4, 4.4**
 
 ### Property 3: Numerical Validation Tolerance
-*For any* numerical answer slot with expected value E and tolerance T, submitting a value V should pass validation if and only if |V - E| ≤ T, where T = 0.01 for most calculations and T = 0.1 for pH values.
+*For any* numerical answer slot with expected value E and tolerance T, submitting a value V should pass validation if and only if |V - E| ≤ T, where T = 0.1 (useQuestManager default). Modules requiring higher precision must explicitly pass `tolerance: 0.01`.
 
 **Validates: Requirements 1.5, 2.5, 3.5, 4.5, 10.6**
 

@@ -128,6 +128,8 @@ export const cnCommon = {
 
         gp2_01_title: "GP2.01 // 热力学 I",
         gp2_01_subtitle: "巴塞尔能源系统中的气体定律、热量和内能逻辑。",
+        gp2_02_title: "GP2.02 // 热力学第一定律",
+        gp2_02_subtitle: "掌握热力学第一定律、内能和功热关系。",
 
         gp1_01_title: "GP1.01 // 原子核核心",
         gp1_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
@@ -151,6 +153,8 @@ export const cnCommon = {
         sc1_03_subtitle: "在 3D 空间中构建同位素并理解原子轨道。",
         sc1_04_title: "SC1.04 // 元素周期拼图",
         sc1_04_subtitle: "构建原子并发现元素周期表。掌握电子排布。",
+        sc1_05_title: "SC1.05 // 化学键桥",
+        sc1_05_subtitle: "通过电子转移可视化掌握离子键、共价键和金属键。",
         sc2_01_title: "SC2.01 // 反应动力学",
         sc2_01_subtitle: "掌握阿伦尼乌斯方程、碰撞理论和反应速率。",
         sc2_02_title: "SC2.02 // pH 哨兵",
@@ -167,6 +171,8 @@ export const cnCommon = {
         sc3_03_subtitle: "探索燃烧、取代和加成反应及其机理动画。",
         sc3_04_title: "SC3.04 // 官能团地平线",
         sc3_04_subtitle: "掌握醇、醛、酮、羧酸和酯的性质及其相互转化。",
+        sc3_05_title: "SC3.05 // 分子熔炉",
+        sc3_05_subtitle: "掌握VSEPR几何、轨道杂化和分子轨道理论。",
         gc1_01_title: "GC1.01 // 氧化还原巨神",
         gc1_01_subtitle: "掌握电化学电池与氧化还原电位。",
         gc1_02_title: "GC1.02 // 电解实验室",

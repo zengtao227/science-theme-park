@@ -213,14 +213,14 @@ export default function GB201Neurobiology() {
             monitorContent={[
                 <div key="stats" className="flex items-center gap-6">
                     <div className="flex flex-col items-end">
-                        <span className="text-[10px] text-white/40 uppercase tracking-widest">{t.monitor_title}</span>
+                        <span className="text-[10px] text-white/40 uppercase tracking-widest">{gb2_01.monitor_title}</span>
                         <span className="text-xl font-mono text-green-400">
                             {voltage.toFixed(1)} <span className="text-xs text-white/20">mV</span>
                         </span>
                     </div>
                     <div className="h-8 w-[1px] bg-white/10" />
                     <div className="flex flex-col items-end text-sm font-mono">
-                        <span className="text-white/40 text-[10px]">{t.correct}</span>
+                        <span className="text-white/40 text-[10px]">{gb2_01.correct}</span>
                         <span className="text-green-500">{currentStageStats?.correct ?? 0}</span>
                     </div>
                 </div>
@@ -232,7 +232,7 @@ export default function GB201Neurobiology() {
                     <div className="p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md flex-1 overflow-y-auto">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-6 flex items-center gap-2">
                             <span className="w-8 h-[1px] bg-white/10" />
-                            {t.objective_title}
+                            {gb2_01.objective_title}
                         </div>
 
                         <AnimatePresence mode="wait">
@@ -284,7 +284,7 @@ export default function GB201Neurobiology() {
                                             onClick={verify}
                                             className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-white/90 active:scale-[0.98] transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                                         >
-                                            {t.check}
+                                            {gb2_01.check}
                                         </button>
                                     </div>
 

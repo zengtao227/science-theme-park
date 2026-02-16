@@ -128,6 +128,8 @@ export const deCommon = {
 
         gp2_01_title: "GP2.01 // THERMODYNAMIK I",
         gp2_01_subtitle: "Gasgesetze, Wärme und innere Energie in Basler Energiesystemen.",
+        gp2_02_title: "GP2.02 // THERMODYNAMIK I",
+        gp2_02_subtitle: "Meistern Sie den ersten Hauptsatz der Thermodynamik, innere Energie und Arbeit-Wärme-Beziehungen.",
 
         gp1_01_title: "GP1.01 // DER ATOMKERN",
         gp1_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
@@ -153,6 +155,8 @@ export const deCommon = {
         sc1_03_subtitle: "Baue Isotope und verstehe Atomorbitale in 3D.",
         sc1_04_title: "SC1.04 // PERIODISCHES PUZZLE",
         sc1_04_subtitle: "Baue Atome und entdecke das Periodensystem. Meistere die Elektronenkonfiguration.",
+        sc1_05_title: "SC1.05 // BINDUNGSBRÜCKE",
+        sc1_05_subtitle: "Meistern Sie Ionen-, kovalente und metallische Bindungen mit Elektronentransfer-Visualisierung.",
         sc2_01_title: "SC2.01 // REAKTIONSKINETIK",
         sc2_01_subtitle: "Meistern Sie Arrhenius-Gleichung, Kollisionstheorie und Reaktionsgeschwindigkeiten.",
         sc2_02_title: "SC2.02 // pH-WÄCHTER",
@@ -169,6 +173,8 @@ export const deCommon = {
         sc3_03_subtitle: "Erkunden Sie Verbrennungs-, Substitutions- und Additionsreaktionen mit Mechanismus-Animationen.",
         sc3_04_title: "SC3.04 // FUNKTIONALER HORIZONT",
         sc3_04_subtitle: "Beherrschen Sie die Eigenschaften und Umwandlungen von Alkoholen, Aldehyden, Säuren und Estern.",
+        sc3_05_title: "SC3.05 // MOLEKULARE SCHMIEDE",
+        sc3_05_subtitle: "Meistern Sie VSEPR-Geometrie, Orbitalhybridisierung und Molekülorbitaltheorie.",
         gc1_01_title: "GC1.01 // REDOX-TITAN",
         gc1_01_subtitle: "Meistern Sie elektrochemische Zellen und Redoxpotentiale.",
         gc1_02_title: "GC1.02 // ELEKTROLYSE-LABOR",
