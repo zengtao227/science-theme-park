@@ -629,7 +629,29 @@ export const deBiology = {
             input_terminal: "Eingabeterminal",
             trophic_level: "Trophische Ebene",
             show_energy: "Energiefluss anzeigen",
-            ecology_score: "Ökologie-Punktzahl"
+            ecology_score: "Ökologie-Punktzahl",
+            analysis: "Ökosystem-Analyse",
+            hint: "Ökologie-Hinweis",
+            viz: {
+                sun: "SONNE",
+                producers: "PRODUZENTEN",
+                primary_consumer: "PRIMÄRKONSUMENT",
+                secondary_consumer: "SEKUNDÄRKONSUMENT",
+                decomposers: "DESTRUENTEN",
+                carbon_cycle: "KOHLENSTOFFKREISLAUF",
+                nitrogen_cycle: "N-KREISLAUF",
+                water_cycle: "WASSERKREISLAUF",
+                co2_air: "CO₂ in der Luft",
+                plants: "Pflanzen",
+                animals: "Tiere",
+                river: "Rhein",
+                clouds: "Wolken",
+                rain: "Regen",
+                evap: "Verdunstung",
+                fix: "Fixierung",
+                nitrate: "Nitrat",
+                denit: "Denitrifizierung"
+            }
         },
         prompts: {
             food_chain: "Im Rhein-Ökosystem wird {producer} von {consumer} gefressen. Was kommt als Nächstes?",
@@ -639,16 +661,19 @@ export const deBiology = {
             hint_10percent: "Verwenden Sie die 10%-Regel: mit 0,1 multiplizieren",
             hint_cycle: "Denken Sie an die Ein- und Ausgänge dieses Prozesses"
         },
+        results: {
+            valid: "Ökologisches Gleichgewicht",
+            invalid: "Trophischer Kollaps",
+            valid_desc: "Energiefluss und Nährstoffkreisläufe sind optimal.",
+            invalid_desc: "Falsche Berechnung. Das Ökosystem ist destabilisiert.",
+            next: "Nächsten Sektor überwachen"
+        },
         scenarios: {
             rhine_river: "Der Rhein in Basel ist ein komplexes aquatisches Ökosystem, das das empfindliche Gleichgewicht von Nahrungsketten verdeutlicht. An der Basis dieses Systems stehen Primärproduzenten wie Phytoplankton und Algen, die Sonnenenergie nutzen. Diese werden von Primärkonsumenten wie Zooplankton und kleinen wirbellosen Wassertieren verzehrt. In höheren trophischen Ebenen finden wir verschiedene Fischarten wie den Silberkarpfen und den Europäischen Aal. Das Projekt 'Lachs Comeback' in Basel unterstreicht die Bedeutung der Erhaltung dieser Verbindungen, da Lachse als wichtige Indikatoren für die Gesundheit des Ökosystems fungieren. An der Spitze der Nahrungskette regulieren Prädatoren wie der Kormoran und der Graureiher die darunter liegenden Populationen. Das Verständnis dieser Beziehungen ist entscheidend für die Naturschutzbemühungen der Universität Basel und lokaler Umweltbehörden, um sicherzustellen, dass das gesamte Nahrungsnetz stabil bleibt, selbst wenn einzelne Glieder – wie benthische Invertebraten – durch Umweltbelastungen oder invasive Arten wie die Quagga-Muschel gestört werden.",
             energy_pyramid: "In den Feuchtgebieten der Petite Camargue Alsacienne, direkt hinter der Basler Grenze, veranschaulicht die Energiepyramide das fundamentale thermodynamische Gesetz der Ökologie. Gemäß der 10%-Regel werden nur etwa zehn Prozent der als Biomasse gespeicherten Energie von einer trophischen Ebene an die nächste weitergegeben. Dieser dramatische Energieverlust bei jedem Schritt erklärt, warum die Landschaft von üppiger Vegetation (Produzenten) sowie einer hohen Anzahl von Insekten und kleinen Fischen dominiert wird, während Spitzenprädatoren wie der Luchs oder große Greifvögel relativ selten bleiben. Diese energetische Einschränkung begrenzt die Anzahl der möglichen trophischen Ebenen auf typischerweise vier oder fünf. Basler Forscher nutzen diese Modelle, um die 'Tragfähigkeit' lokaler Naturschutzgebiete zu berechnen. Durch die Überwachung der Biomasse der Primärproduzenten können Wissenschaftler am Biozentrum vorhersagen, wie viele Konsumenten höherer Ebenen das Ökosystem nachhaltig unterstützen kann.",
             carbon_cycle: "Der globale Kohlenstoffkreislauf findet in den städtischen Wäldern und Parks von Basel, wie dem Hardwald und den Langen Erlen, einen lokalen Rhythmus. Durch Photosynthese absorbieren die ausgedehnten Buchen- und Eichenbestände Basels atmosphärisches Kohlendioxid und speichern es als organischen Kohlenstoff in Holz und Boden. Dieser Prozess der Kohlenstoff-Sequestrierung spielt eine entscheidende Rolle in der Klimastrophie der Stadt Basel, um Netto-Null-Emissionen zu erreichen. Im Gegenzug setzen die Zellatmung von Tieren, Menschen und Destruenten im Boden CO2 wieder in die Atmosphäre frei. Der Kreislauf wird zudem durch den Rhein beeinflusst, der gelösten organischen Kohlenstoff aus den Schweizer Alpen transportiert. Die Verwaltung dieser 'Kohlenstoffsenken' hat für das Basler Umweltdepartement Priorität. Durch den Schutz alter Baumbestände und die Förderung einer nachhaltigen städtischen Forstwirtschaft erhält die Stadt ein natürliches Gleichgewicht, das den urbanen Hitzeinseleffekt mildert und ein stabiles Klima fördert.",
             nitrogen_cycle: "Der Stickstoffkreislauf in den landwirtschaftlichen Regionen um Basel, insbesondere im Kanton Basel-Landschaft, ist essentiell für die Nahrungsmittelproduktion und die Bodenqualität. Obwohl Stickstoffgas 78% der Atmosphäre ausmacht, ist er für Pflanzen weitgehend unzugänglich, bis er 'fixiert' wird. In der Natur geschieht dies durch Blitze oder, weitaus bedeutender, durch stickstofffixierende Bakterien in den Wurzelknöllchen von Leguminosen wie Klee und Bohnen. Diese Mikroorganismen wandeln N2 in Ammonium und dann in Nitrate um, welche die Pflanzen für den Aufbau von Proteinen und DNA nutzen können. In der modernen Landwirtschaft der Region Basel wird dieser Kreislauf durch nachhaltige Düngungspraktiken ergänzt, um Nitratauswaschungen in den Rhein zu verhindern, die zu Eutrophierung führen können. Lokale Landwirtschaftsschulen lehren die Bedeutung der Fruchtfolge, um den Boden auf natürliche Weise zu regenerieren und einen robusten landwirtschaftlichen Kreislauf zu unterstützen.",
             water_cycle: "Der Rhein bei Basel dient als massives, sichtbares Segment des globalen Wasserkreislaufs. Wasser gelangt primär als Niederschlag oder Schmelzwasser aus den Schweizer Alpen in dieses lokale System und fließt durch das ikonische Rheinknie der Stadt. Die Sonnenenergie treibt die Verdunstung von der Wasseroberfläche und die Transpiration aus den dichten Wäldern des Juras an, wodurch Feuchtigkeit in die Atmosphäre zurückkehrt. Die IWB (Industrielle Werke Basel) nutzt diesen Kreislauf für die Trinkwasserversorgung der Stadt, indem sie Wasser aus dem Grundwasser der Langen Erlen gewinnt, das natürlich durch den Rhein gespeist wird. Dieser Prozess der Filtration und Infiltration zeigt, wie das Ökosystem Wasser reinigt, während es sich durch die verschiedenen Stadien des Kreislaufs bewegt. Menschliche Aktivitäten, von der Industriekühlung bis zur Schifffahrt, werden sorgfältig verwaltet, um die Integrität des Wasserkreislaufs zu respektieren. Den Rhein sauberzuhalten, ist dabei eine grenzüberschreitende Verantwortung im Rahmen der Internationalen Kommission zum Schutz des Rheins."
-        },
-        feedback: {
-            correct: "Ökosystem-Gleichgewicht aufrechterhalten!",
-            incorrect: "Ökosystem gestört. Überprüfen Sie die Beziehungen."
         }
     },
     sb2_03: {
