@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,10 @@ interface GB201Quest extends Quest {
     data?: any;
 }
 
-type GB201T = typeof translations.EN.gb2_01;
-
 export default function GB201Neurobiology() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.gb2_01 || translations.EN.gb2_01) as GB201T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
+    const gb2_01 = t('gb2_01');
     const [voltage] = useState(-70);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB201Quest[] => {
@@ -31,11 +30,11 @@ export default function GB201Neurobiology() {
 
         if (stage === "ANATOMY") {
             const parts = [
-                { id: "axon", func: "signal transmission", name: t.labels.axon, scenario: "roche_neuroscience" },
-                { id: "soma", func: "metabolic processing", name: t.labels.cell_body, scenario: "basel_biomedicine" },
-                { id: "dendrites", func: "signal reception", name: t.labels.dendrites, scenario: "neural_plasticity" },
-                { id: "myelin", func: "insulation and saltatory conduction", name: t.labels.myelin_sheath, scenario: "roche_neuroscience" },
-                { id: "node", func: "ion exchange during propagation", name: t.labels.node_of_ranvier, scenario: "basel_biomedicine" }
+                { id: "axon", func: "signal transmission", name: gb2_01.labels.axon, scenario: "roche_neuroscience" },
+                { id: "soma", func: "metabolic processing", name: gb2_01.labels.cell_body, scenario: "basel_biomedicine" },
+                { id: "dendrites", func: "signal reception", name: gb2_01.labels.dendrites, scenario: "neural_plasticity" },
+                { id: "myelin", func: "insulation and saltatory conduction", name: gb2_01.labels.myelin_sheath, scenario: "roche_neuroscience" },
+                { id: "node", func: "ion exchange during propagation", name: gb2_01.labels.node_of_ranvier, scenario: "basel_biomedicine" }
             ];
 
             const filteredParts = isAdvanced ? parts : parts.slice(0, 3);
@@ -46,12 +45,12 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: p.scenario,
-                    promptLatex: `\\text{${t.prompts.identify_part.replace("{function}", p.func)}}`,
+                    promptLatex: `\\text{${gb2_01.prompts.identify_part.replace("{function}", p.func)}}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${p.name}}`,
                     slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: p.name }],
                     correctLatex: p.name,
-                    hintLatex: [`\\text{${t.prompts.hint_anatomy}}`]
+                    hintLatex: [`\\text{${gb2_01.prompts.hint_anatomy}}`]
                 });
             });
         }
@@ -77,12 +76,12 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: s.scenario,
-                    promptLatex: `\\text{${t.prompts.calc_potential.replace('{ion}', ion).replace('{cout}', cout).replace('{cin}', cin)}}`,
+                    promptLatex: `\\text{${gb2_01.prompts.calc_potential.replace('{ion}', ion).replace('{cout}', cout).replace('{cin}', cin)}}`,
                     expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
                     targetLatex: s.expected,
                     slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: s.expected }],
                     correctLatex: `${s.expected}\\text{ mV}`,
-                    hintLatex: [`\\text{${t.prompts.hint_nernst}}`]
+                    hintLatex: [`\\text{${gb2_01.prompts.hint_nernst}}`]
                 });
             });
 
@@ -108,12 +107,12 @@ export default function GB201Neurobiology() {
                 difficulty,
                 stage,
                 scenario: "friedrich_miescher",
-                promptLatex: `\\text{${t.prompts.synapse_mechanism}}`,
+                promptLatex: `\\text{${gb2_01.prompts.synapse_mechanism}}`,
                 expressionLatex: "",
                 targetLatex: "Ca^{2+}",
                 slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "Ca2+" }],
                 correctLatex: "Ca^{2+}",
-                hintLatex: [`\\text{${t.prompts.hint_calcium}}`]
+                hintLatex: [`\\text{${gb2_01.prompts.hint_calcium}}`]
             });
 
             const neurotransmitters = [
@@ -172,43 +171,43 @@ export default function GB201Neurobiology() {
     }, [currentStageStats, pool.length]);
 
     const activeScenario = useMemo(() => {
-        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {
-            return t.scenarios[currentQuest.scenario as keyof typeof t.scenarios];
+        if (currentQuest?.scenario && gb2_01.scenarios[currentQuest.scenario as keyof typeof gb2_01.scenarios]) {
+            return gb2_01.scenarios[currentQuest.scenario as keyof typeof gb2_01.scenarios];
         }
-        const keys = Object.keys(t.scenarios);
-        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+        const keys = Object.keys(gb2_01.scenarios);
+        return gb2_01.scenarios[keys[0] as keyof typeof gb2_01.scenarios];
     }, [t, currentQuest]);
 
     return (
         <ChamberLayout
-            title={t.title}
+            title={gb2_01.title}
             moduleCode="GB2.01"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
             stages={[
-                { id: "ANATOMY", label: t.stages.anatomy },
-                { id: "POTENTIAL", label: t.stages.potential },
-                { id: "SYNAPSE", label: t.stages.synapse },
+                { id: "ANATOMY", label: gb2_01.stages.anatomy },
+                { id: "POTENTIAL", label: gb2_01.stages.potential },
+                { id: "SYNAPSE", label: gb2_01.stages.synapse },
             ]}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             onVerify={verify}
             onNext={lastCheck?.ok ? next : undefined}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={gb2_01.footer_left}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: gb2_01.back,
+                check: gb2_01.check,
+                next: gb2_01.next,
+                correct: gb2_01.correct,
+                incorrect: gb2_01.incorrect,
+                ready: gb2_01.ready,
+                monitor_title: gb2_01.monitor_title,
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: gb2_01.difficulty.basic,
+                    core: gb2_01.difficulty.core,
+                    advanced: gb2_01.difficulty.advanced,
+                    elite: gb2_01.difficulty.elite,
                 },
             }}
             monitorContent={[
@@ -338,7 +337,7 @@ export default function GB201Neurobiology() {
 
                             {/* Overlay Controls/Readouts */}
                             <div className="absolute top-4 left-4 p-3 bg-black/60 border border-white/10 backdrop-blur-md rounded-lg pointer-events-none">
-                                <div className="text-[8px] uppercase tracking-widest text-white/40 mb-1">{t.labels.voltage}</div>
+                                <div className="text-[8px] uppercase tracking-widest text-white/40 mb-1">{gb2_01.labels.voltage}</div>
                                 <div className="text-lg font-mono text-cyan-400">{voltage.toFixed(1)}</div>
                             </div>
 
@@ -360,11 +359,11 @@ export default function GB201Neurobiology() {
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 rounded-full bg-purple-500" />
-                                    <span className="text-white/40 uppercase">{t.labels.cell_body}</span>
+                                    <span className="text-white/40 uppercase">{gb2_01.labels.cell_body}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 rounded-full bg-pink-500" />
-                                    <span className="text-white/40 uppercase">{t.labels.myelin_sheath}</span>
+                                    <span className="text-white/40 uppercase">{gb2_01.labels.myelin_sheath}</span>
                                 </div>
                             </div>
                             <div className="text-white/20 uppercase tracking-[0.3em]">Neural Link Stable</div>
