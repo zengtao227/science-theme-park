@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -19,34 +19,27 @@ interface SP307Quest extends Quest {
     theta: number; // degrees
 }
 
-type SP307T = typeof translations.EN.sp3_07;
-
 export default function SP307Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp3_07 || translations.EN.sp3_07) as SP307T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP307Quest[] => {
         const isBasic = difficulty === "BASIC";
-        const isCore = difficulty === "CORE";
-        const isAdv = difficulty === "ADVANCED";
-        const isElite = difficulty === "ELITE";
-
         const quests: SP307Quest[] = [];
 
         if (stage === "COMPOSITION") {
-            // Focus on basic vector addition: V_net_z = V_ferry_z + V_river
             if (isBasic) {
                 quests.push(
                     {
                         id: "C-B1", difficulty, stage, vRiver: 1.0, vFerry: 2.0, theta: 0,
-                        promptLatex: "\\text{Ferry moves at } 2m/s \\text{ north. River flows } 1m/s \\text{ north. Net speed?}",
+                        promptLatex: t("sp3_07.prompts.c_b1"),
                         expressionLatex: "v_{net} = v_f + v_r", targetLatex: "3.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 3.0 }],
                         correctLatex: "3.0", hintLatex: ["Add the velocities."]
                     },
                     {
                         id: "C-B2", difficulty, stage, vRiver: 1.5, vFerry: 1.5, theta: 180,
-                        promptLatex: "\\text{Ferry moves at } 1.5m/s \\text{ south against } 1.5m/s \\text{ current. Net speed?}",
+                        promptLatex: t("sp3_07.prompts.c_b2"),
                         expressionLatex: "v_{net} = v_r - v_f", targetLatex: "0.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 0.0 }],
                         correctLatex: "0.0", hintLatex: ["They cancel out."]
@@ -56,7 +49,7 @@ export default function SP307Page() {
                 quests.push(
                     {
                         id: "C-C1", difficulty, stage, vRiver: 2.0, vFerry: 4.0, theta: 60,
-                        promptLatex: "\\text{Calculate the longitudinal velocity component } v_{net,z}.",
+                        promptLatex: t("sp3_07.prompts.c_c1"),
                         expressionLatex: "v_{net,z} = v_f \\cos(60^\\circ) + v_r", targetLatex: "4.0",
                         slots: [{ id: "ans", labelLatex: "v_{net,z}", placeholder: "m/s", expected: 4.0 }],
                         correctLatex: "4.0", hintLatex: ["\\cos(60^\\circ) = 0.5"]
@@ -66,11 +59,10 @@ export default function SP307Page() {
         }
 
         if (stage === "DRIFT") {
-            // Focus on neutralizing drift: V_net_z = 0
             quests.push(
                 {
                     id: "D-C1", difficulty, stage, vRiver: 1.5, vFerry: 3.0, theta: 120,
-                    promptLatex: "\\text{Find the angle } \\theta \\text{ to achieve zero longitudinal drift if } v_r=1.5, v_f=3.0.",
+                    promptLatex: t("sp3_07.prompts.d_c1"),
                     expressionLatex: "3.0 \\cos(\\theta) + 1.5 = 0", targetLatex: "120",
                     slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 120 }],
                     correctLatex: "120", hintLatex: ["\\cos(\\theta) = -0.5"]
@@ -79,11 +71,10 @@ export default function SP307Page() {
         }
 
         if (stage === "NAVIGATION") {
-            // Comprehensive path finding
             quests.push(
                 {
                     id: "N-A1", difficulty, stage, vRiver: 1.2, vFerry: 2.4, theta: 120,
-                    promptLatex: "\\text{If crossing a 20m wide river with } v_{net,x} \\text{, how long to reach the bank?}",
+                    promptLatex: t("sp3_07.prompts.n_a1"),
                     expressionLatex: "t = \\frac{20}{v_{f} \\sin(120^\\circ)}", targetLatex: "9.62",
                     slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 9.62 }],
                     correctLatex: "9.62", hintLatex: ["v_x = v_f \\sin(120^\\circ)"]
@@ -92,7 +83,7 @@ export default function SP307Page() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
@@ -121,9 +112,9 @@ export default function SP307Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "COMPOSITION", label: t.stages.composition },
-        { id: "DRIFT", label: t.stages.drift },
-        { id: "NAVIGATION", label: t.stages.navigation },
+        { id: "COMPOSITION", label: t("sp3_07.stages.composition") },
+        { id: "DRIFT", label: t("sp3_07.stages.drift") },
+        { id: "NAVIGATION", label: t("sp3_07.stages.navigation") },
     ], [t]);
 
     const hint = getHint();
@@ -131,7 +122,7 @@ export default function SP307Page() {
     return (
         <ChamberLayout
             moduleCode="SP3.07"
-            title={t.title}
+            title={t("sp3_07.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -140,20 +131,20 @@ export default function SP307Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sp3_07.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sp3_07.back"),
+                check: t("sp3_07.check"),
+                next: t("sp3_07.next"),
+                correct: t("sp3_07.correct"),
+                incorrect: t("sp3_07.incorrect"),
+                ready: t("sp3_07.ready"),
+                monitor_title: t("sp3_07.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sp3_07.difficulty.basic"),
+                    core: t("sp3_07.difficulty.core"),
+                    advanced: t("sp3_07.difficulty.advanced"),
+                    elite: t("sp3_07.difficulty.elite"),
                 },
             }}
             monitorContent={
@@ -174,17 +165,17 @@ export default function SP307Page() {
                     {/* HUD Overlay */}
                     <div className="grid grid-cols-2 gap-2">
                         <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t.labels.river_speed}</div>
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("sp3_07.labels.river_speed")}</div>
                             <div className="text-sm font-mono text-neon-cyan">{currentQuest?.vRiver.toFixed(2)} m/s</div>
                         </div>
                         <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t.labels.cable_angle}</div>
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("sp3_07.labels.cable_angle")}</div>
                             <div className="text-sm font-mono text-neon-cyan">{currentQuest?.theta.toFixed(1)}°</div>
                         </div>
                     </div>
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>Vector Stability</span>
+                            <span>{t("sp3_07.results.stability")}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -205,7 +196,7 @@ export default function SP307Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                                Mission Objective
+                                {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -229,7 +220,7 @@ export default function SP307Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-cyan/30" />
-                                    Terminal Input [Node Alpha]
+                                    {t("labels.terminal_input")} [Alpha]
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -274,17 +265,17 @@ export default function SP307Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? "Calculation Valid" : "Vector Mismatch"}
+                                                        {lastCheck.ok ? t("sp3_07.results.valid") : t("sp3_07.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? "Physics confirmed. Proceeding to next objective." : "Recalculate vector components."}
+                                                        {lastCheck.ok ? t("sp3_07.results.valid_desc") : t("sp3_07.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("labels.hint")}:</span>
                                                     <div className="text-white font-bold">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -296,7 +287,7 @@ export default function SP307Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    Next Mission
+                                                    {t("labels.next_mission")}
                                                 </button>
                                             )}
                                         </motion.div>

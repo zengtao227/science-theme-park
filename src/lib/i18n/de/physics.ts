@@ -312,6 +312,20 @@ export const dePhysics = {
         mission: {
             title: "RHEIN-ÜBERQUERUNG",
             description: "Steuern Sie die Basler Rheinfähre. Passen Sie den Seilwinkel und die Fährengeschwindigkeit an, um die Flussströmung mittels Vektoraddition zu kompensieren."
+        },
+        prompts: {
+            c_b1: "\\text{Fähre bewegt sich mit } 2m/s \\text{ Nord. Fluss fließt } 1m/s \\text{ Nord. Netto-Geschwindigkeit?}",
+            c_b2: "\\text{Fähre bewegt sich mit } 1.5m/s \\text{ Süd gegen } 1.5m/s \\text{ Strömung. Netto-Geschwindigkeit?}",
+            c_c1: "\\text{Berechnen Sie die Längsgeschwindigkeitskomponente } v_{net,z}.",
+            d_c1: "\\text{Finden Sie den Winkel } \\theta \\text{, um eine Null-Längsabdrift zu erreichen, wenn } v_r=1.5, v_f=3.0.",
+            n_a1: "\\text{Wenn Sie einen 20m breiten Fluss mit } v_{net,x} \\text{ überqueren, wie lange dauert es bis zum Ufer?}",
+        },
+        results: {
+            valid: "Berechnung gültig",
+            invalid: "Vektor-Abweichung",
+            valid_desc: "Physik bestätigt. Weiter zum nächsten Ziel.",
+            invalid_desc: "Vektorkomponenten neu berechnen.",
+            stability: "Vektor-Stabilität",
         }
     },
 

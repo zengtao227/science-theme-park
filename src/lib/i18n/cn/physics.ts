@@ -314,6 +314,20 @@ export const cnPhysics = {
         mission: {
             title: "莱茵河横渡任务",
             description: "驾驶巴塞尔莱茵河渡轮。利用矢量合成调整缆索角度和渡轮速度，以补偿河流流速。"
+        },
+        prompts: {
+            c_b1: "\\text{渡轮向北行驶速度为 } 2m/s \\text{。河水向北流速为 } 1m/s \\text{。合速度是多少？}",
+            c_b2: "\\text{渡轮向南行驶速度为 } 1.5m/s \\text{，逆流速度为 } 1.5m/s \\text{。合速度是多少？}",
+            c_c1: "\\text{计算纵向速度分量 } v_{net,z} \\text{。}",
+            d_c1: "\\text{如果 } v_r=1.5, v_f=3.0 \\text{，求达到零纵向偏移所需的角度 } \\theta \\text{。}",
+            n_a1: "\\text{如果以 } v_{net,x} \\text{ 横渡 20m 宽的河流，到达对岸需要多长时间？}",
+        },
+        results: {
+            valid: "计算有效",
+            invalid: "矢量不匹配",
+            valid_desc: "物理计算确认。正在进入下一目标。",
+            invalid_desc: "重新计算矢量分量。",
+            stability: "矢量稳定性",
         }
     },
 

@@ -15,6 +15,19 @@ export interface CommonTranslations {
   common: Record<string, any>;
   home: Record<string, any>;
   profile: Record<string, any>;
+  labels: {
+    mission_objective: string;
+    scenario_context: string;
+    terminal_input: string;
+    system_status: string;
+    active: string;
+    stability: string;
+    node: string;
+    calculation_valid: string;
+    calculation_error: string;
+    next_mission: string;
+    hint: string;
+  };
 }
 
 /**

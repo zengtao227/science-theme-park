@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { useLanguage, translations } from '@/lib/i18n';
+import { useLanguage } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import ModuleCard from '@/components/ui/ModuleCard';
 import MasteryRadar from '@/components/ui/MasteryRadar';
@@ -18,7 +18,6 @@ import UserSetup from '@/components/UserSetup';
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history, currentUser } = useAppStore();
   const { t } = useLanguage();
-  const translations_raw = translations[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
     DE: '🇩🇪 DE',

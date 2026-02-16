@@ -314,6 +314,20 @@ export const enPhysics = {
         mission: {
             title: "RHINE CROSSING MISSION",
             description: "Navigate the Basel Rhine ferry. Adjust the cable angle and ferry speed to compensate for the river's current using vector addition."
+        },
+        prompts: {
+            c_b1: "\\text{Ferry moves at } 2m/s \\text{ north. River flows } 1m/s \\text{ north. Net speed?}",
+            c_b2: "\\text{Ferry moves at } 1.5m/s \\text{ south against } 1.5m/s \\text{ current. Net speed?}",
+            c_c1: "\\text{Calculate the longitudinal velocity component } v_{net,z}.",
+            d_c1: "\\text{Find the angle } \\theta \\text{ to achieve zero longitudinal drift if } v_r=1.5, v_f=3.0.",
+            n_a1: "\\text{If crossing a 20m wide river with } v_{net,x} \\text{, how long to reach the bank?}",
+        },
+        results: {
+            valid: "Calculation Valid",
+            invalid: "Vector Mismatch",
+            valid_desc: "Physics confirmed. Proceeding to next objective.",
+            invalid_desc: "Recalculate vector components.",
+            stability: "Vector Stability",
         }
     },
 
