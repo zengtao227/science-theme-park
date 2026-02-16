@@ -12,8 +12,12 @@
  * Example: node scripts/validate-translations.js biology
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // ANSI color codes for terminal output
 const colors = {
@@ -27,26 +31,6 @@ const colors = {
 
 function log(message, color = 'reset') {
   console.log(`${colors[color]}${message}${colors.reset}`);
-}
-
-/**
- * Deep comparison of object keys
- */
-function getObjectKeys(obj, prefix = '') {
-  const keys = [];
-  
-  for (const key in obj) {
-    const fullKey = prefix ? `${prefix}.${key}` : key;
-    
-    if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-      keys.push(fullKey);
-      keys.push(...getObjectKeys(obj[key], fullKey));
-    } else {
-      keys.push(fullKey);
-    }
-  }
-  
-  return keys;
 }
 
 /**
@@ -70,8 +54,6 @@ function loadTranslation(lang, module) {
       return null;
     }
     
-    // Use eval to parse the object (in a real production script, use a proper parser)
-    // For now, we'll use a simpler approach - just check for key patterns
     return content;
   } catch (error) {
     log(`Error reading file ${filePath}: ${error.message}`, 'red');
@@ -183,12 +165,12 @@ function validateSymmetry(module) {
  */
 function main() {
   const args = process.argv.slice(2);
-  const module = args[0] || 'biology';
+  const moduleName = args[0] || 'biology';
   
   log('\n🔍 Translation Validation Tool', 'cyan');
   log('─'.repeat(60), 'cyan');
   
-  const isValid = validateSymmetry(module);
+  const isValid = validateSymmetry(moduleName);
   
   log(`\n${'='.repeat(60)}`, 'cyan');
   if (isValid) {
@@ -202,9 +184,7 @@ function main() {
   }
 }
 
-// Run if called directly
-if (require.main === module) {
-  main();
-}
+// Run main function
+main();
 
-module.exports = { validateSymmetry, extractKeys };
+export { validateSymmetry, extractKeys };

@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "validate:translations": "node scripts/validate-translations.js"
+    "validate:translations": "node scripts/validate-translations.mjs"
   },
   "dependencies": {
     "@react-spring/web": "^10.0.3",
