@@ -131,7 +131,7 @@ const t = translations[currentLanguage].gm1_02;
   - ADVANCED: 旋转体体积 (圆盘法)
   - ELITE: 综合应用 (功, 位移)
 
-- [ ] 1.2 创建 GM1.02 可视化组件
+- [x] 1.2 创建 GM1.02 可视化组件
   - 创建 `src/components/chamber/gm1-02/IntegralVisualization.tsx`
   - **参考 `DerivativeCanvas.tsx` 的 SVG 结构**
   - 必须实现:
@@ -151,7 +151,7 @@ const t = translations[currentLanguage].gm1_02;
     }
     ```
 
-- [ ] 1.3 添加 GM1.02 三语翻译
+- [x] 1.3 添加 GM1.02 三语翻译
   - 在 `src/lib/i18n/en/math.ts` 的 export 对象中添加 `gm1_02` section
   - 在 `src/lib/i18n/cn/math.ts` 的 export 对象中添加 `gm1_02` section
   - 在 `src/lib/i18n/de/math.ts` 的 export 对象中添加 `gm1_02` section
@@ -204,7 +204,7 @@ const t = translations[currentLanguage].gm1_02;
     - definite_integral 场景: 巴塞尔莱茵河水流量在特定时间段内的总流量累计
     - application 场景: Novartis 新园区建筑曲面屋顶的面积计算
 
-- [ ] 1.4 Checkpoint GM1.02
+- [-] 1.4 Checkpoint GM1.02
   - `npm run build` 通过
   - 浏览器访问 `/chamber/gm1-02`
   - 切换 EN/CN/DE 三种语言，确认：

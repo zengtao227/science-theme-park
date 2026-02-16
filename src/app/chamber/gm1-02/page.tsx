@@ -7,6 +7,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useCallback, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
+import IntegralVisualization from "@/components/chamber/gm1-02/IntegralVisualization";
 
 type Stage = "ANTIDERIVATIVE" | "DEFINITE_INTEGRAL" | "APPLICATION";
 
@@ -433,7 +434,7 @@ export default function GM102Page() {
         },
       }}
       monitorContent={
-        <div className="space-y-4">
+        <div className="space-y-4 h-full flex flex-col">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t("gm1_02.monitor_title")}
           </div>
@@ -459,6 +460,13 @@ export default function GM102Page() {
                 <InlineMath math={t("gm1_02.prompts.hint_area")} />
               </div>
             )}
+          </div>
+          <div className="flex-1 min-h-0">
+            <IntegralVisualization
+              quest={currentQuest}
+              inputs={inputs}
+              checkStatus={lastCheck}
+            />
           </div>
         </div>
       }
