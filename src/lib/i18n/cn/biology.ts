@@ -787,6 +787,8 @@ export const cnBiology = {
             stats: "子代统计",
             genotype_ratio: "基因型比例",
             phenotype_ratio: "表现型比例",
+            purple_flowers: "紫色花朵",
+            white_flowers: "白色花朵",
             genetics_basics: "遗传学基础",
             instructions: "操作说明",
             prediction: "表现型预测",

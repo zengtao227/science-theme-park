@@ -153,7 +153,8 @@ export default function GB201Neurobiology() {
         verify,
         inputs,
         setInputs,
-        lastCheck
+        lastCheck,
+        next
     } = useQuestManager<GB201Quest, Stage>({
         buildPool: buildStagePool,
         initialStage: "ANATOMY",

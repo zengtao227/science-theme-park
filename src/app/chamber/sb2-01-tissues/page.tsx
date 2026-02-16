@@ -25,11 +25,12 @@ export default function SB201TissuesPage() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB201TissuesQuest[] => {
         const quests: SB201TissuesQuest[] = [];
+        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "TISSUES") {
-            quests.push(
+            const tissueQuests = [
                 {
-                    id: "T-B1", difficulty, stage, tissueType: "epithelial",
+                    id: `T-${difficulty}-1`, difficulty, stage, tissueType: "epithelial",
                     promptLatex: t("sb2_01_tissues.prompts.epithelial_func"),
                     expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Skin, intestines" }),
                     targetLatex: t("sb2_01_tissues.prompts.function_label"),
@@ -38,7 +39,7 @@ export default function SB201TissuesPage() {
                     hintLatex: [t("sb2_01_tissues.prompts.hint_epithelial")]
                 },
                 {
-                    id: "T-B2", difficulty, stage, tissueType: "connective",
+                    id: `T-${difficulty}-2`, difficulty, stage, tissueType: "connective",
                     promptLatex: t("sb2_01_tissues.prompts.connective_func"),
                     expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Bone, cartilage" }),
                     targetLatex: t("sb2_01_tissues.prompts.function_label"),
@@ -47,7 +48,7 @@ export default function SB201TissuesPage() {
                     hintLatex: [t("sb2_01_tissues.prompts.hint_connective")]
                 },
                 {
-                    id: "T-B3", difficulty, stage, tissueType: "muscle",
+                    id: `T-${difficulty}-3`, difficulty, stage, tissueType: "muscle",
                     promptLatex: t("sb2_01_tissues.prompts.muscle_func"),
                     expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Heart, limbs" }),
                     targetLatex: t("sb2_01_tissues.prompts.function_label"),
@@ -56,30 +57,35 @@ export default function SB201TissuesPage() {
                     hintLatex: [t("sb2_01_tissues.prompts.hint_muscle")]
                 },
                 {
-                    id: "T-B4", difficulty, stage, tissueType: "nervous",
+                    id: `T-${difficulty}-4`, difficulty, stage, tissueType: "nervous",
                     promptLatex: t("sb2_01_tissues.prompts.nervous_func"),
                     expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Brain, nerves" }),
                     targetLatex: t("sb2_01_tissues.prompts.function_label"),
                     slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "signaling", expected: "signaling" }],
                     correctLatex: "Signaling",
                     hintLatex: [t("sb2_01_tissues.prompts.hint_nervous")]
-                },
-                {
-                    id: "T-B5", difficulty, stage, tissueType: "epithelial",
+                }
+            ];
+
+            if (isAdvanced) {
+                tissueQuests.push({
+                    id: `T-${difficulty}-5`, difficulty, stage, tissueType: "epithelial",
                     promptLatex: t("sb2_01_tissues.prompts.absorb_func"),
                     expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Small intestine" }),
                     targetLatex: t("sb2_01_tissues.prompts.function_label"),
                     slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "absorption", expected: "absorption" }],
                     correctLatex: "Absorption",
                     hintLatex: [t("sb2_01_tissues.prompts.hint_epithelial")]
-                }
-            );
+                });
+            }
+
+            quests.push(...tissueQuests);
         }
 
         if (stage === "ORGANS") {
-            quests.push(
+            const organQuests = [
                 {
-                    id: "O-C1", difficulty, stage, organName: "heart",
+                    id: `O-${difficulty}-1`, difficulty, stage, organName: "heart",
                     promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Heart" }),
                     expressionLatex: "\\text{Organ: Heart}",
                     targetLatex: "n",
@@ -88,7 +94,7 @@ export default function SB201TissuesPage() {
                     hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
                 },
                 {
-                    id: "O-C2", difficulty, stage, organName: "stomach",
+                    id: `O-${difficulty}-2`, difficulty, stage, organName: "stomach",
                     promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Stomach" }),
                     expressionLatex: "\\text{Organ: Stomach}",
                     targetLatex: "n",
@@ -96,21 +102,49 @@ export default function SB201TissuesPage() {
                     correctLatex: "n = 4",
                     hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
                 }
-            );
+            ];
+
+            if (isAdvanced) {
+                organQuests.push({
+                    id: `O-${difficulty}-3`, difficulty, stage, organName: "liver",
+                    promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Liver" }),
+                    expressionLatex: "\\text{Organ: Liver}",
+                    targetLatex: "n",
+                    slots: [{ id: "count", labelLatex: "n", placeholder: "3", expected: "3" }],
+                    correctLatex: "n = 3",
+                    hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
+                });
+            }
+
+            quests.push(...organQuests);
         }
 
         if (stage === "SYSTEMS") {
-            quests.push(
+            const systemQuests = [
                 {
-                    id: "S-A1", difficulty, stage, systemName: "hierarchy",
+                    id: `S-${difficulty}-1`, difficulty, stage, systemName: "hierarchy",
                     promptLatex: t("sb2_01_tissues.prompts.hierarchy"),
-                    expressionLatex: "\\text{Biological Hierarchy}",
+                    expressionLatex: "\\text{Cell} \\rightarrow \\text{Tissue} \\rightarrow \\text{Organ} \\rightarrow ?",
                     targetLatex: t("sb2_01_tissues.prompts.next_level"),
                     slots: [{ id: "level", labelLatex: t("sb2_01_tissues.prompts.next_level"), placeholder: "system", expected: "system" }],
                     correctLatex: "Organ System",
                     hintLatex: [t("sb2_01_tissues.prompts.hint_systems")]
                 }
-            );
+            ];
+
+            if (isAdvanced) {
+                systemQuests.push({
+                    id: `S-${difficulty}-2`, difficulty, stage, systemName: "organism",
+                    promptLatex: "Complete the hierarchy: Organ System \\rightarrow ?",
+                    expressionLatex: "\\text{System} \\rightarrow ?",
+                    targetLatex: "Next Level",
+                    slots: [{ id: "level", labelLatex: "\\text{Level}", placeholder: "organism", expected: "organism" }],
+                    correctLatex: "Organism",
+                    hintLatex: ["The complete living individual"]
+                });
+            }
+
+            quests.push(...systemQuests);
         }
 
         return quests;
@@ -131,6 +165,7 @@ export default function SB201TissuesPage() {
         handleStageChange,
         getHint,
         getCurrentErrorCount,
+        currentStageStats,
     } = useQuestManager<SB201TissuesQuest, Stage>({
         buildPool,
         initialStage: "TISSUES",
@@ -179,22 +214,17 @@ export default function SB201TissuesPage() {
                 },
             }}
             monitorContent={
-                <div className="flex flex-col h-full gap-4">
+                <div className="flex flex-col h-full gap-4 overflow-y-auto pr-2 custom-scrollbar">
                     <TissueVisualization quest={currentQuest} stage={stage} />
                     
                     {/* Stage Progress Indicator */}
-                    <motion.div
-                        className="mt-auto pt-4 border-t border-white/5"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                    >
+                    <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3 flex justify-between items-center font-black">
                             <span className="flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
                                 {stage.replace('_', ' ')} STAGE
                             </span>
-                            <span className="text-neon-green">{currentQuest?.id || "---"}</span>
+                            <span className="text-neon-green">{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         
                         {/* Visual progress bar */}
@@ -204,7 +234,7 @@ export default function SB201TissuesPage() {
                                     key={i}
                                     className="flex-1 bg-neon-green shadow-[0_0_8px_rgba(16,185,129,0.6)]"
                                     initial={{ scaleX: 0 }}
-                                    animate={{ scaleX: i < (lastCheck?.ok ? 1 : 0) ? 1 : 0 }}
+                                    animate={{ scaleX: i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? 1 : 0 }}
                                     transition={{ delay: i * 0.1, duration: 0.5 }}
                                 />
                             ))}
@@ -216,53 +246,48 @@ export default function SB201TissuesPage() {
                             {stage === "ORGANS" && "Mapping organ composition..."}
                             {stage === "SYSTEMS" && "Tracing biological hierarchy..."}
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             }
         >
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={stage}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="space-y-10 max-w-4xl mx-auto w-full"
-                >
-                    {/* Scenario Description with enhanced animation */}
-                <motion.div
-                    key={`scenario-${stage}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-black/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md relative overflow-hidden group"
-                >
-                    {/* Animated border accent */}
+            <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {/* Scenario Description with enhanced animation */}
+                <AnimatePresence mode="wait">
                     <motion.div
-                        className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-green to-transparent"
-                        initial={{ x: "-100%" }}
-                        animate={{ x: "100%" }}
-                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                    />
-                    <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic mb-4 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-                        {t("sb2_01_tissues.objective_title")}
-                    </h3>
-                    <p className="text-white/70 text-sm leading-relaxed font-medium">
-                        {t(`sb2_01_tissues.scenarios.${stage.toLowerCase()}` as any)}
-                    </p>
-                </motion.div>
+                        key={`scenario-${stage}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-black/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md relative overflow-hidden group"
+                    >
+                        {/* Animated border accent */}
+                        <motion.div
+                            className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-green to-transparent"
+                            initial={{ x: "-100%" }}
+                            animate={{ x: "100%" }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                        />
+                        <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic mb-4 flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+                            {t("sb2_01_tissues.objective_title")}
+                        </h3>
+                        <p className="text-white/70 text-sm leading-relaxed font-medium">
+                            {t(`sb2_01_tissues.scenarios.${stage.toLowerCase()}` as any)}
+                        </p>
+                    </motion.div>
+                </AnimatePresence>
 
                 {currentQuest && (
-                    <motion.div
-                        key={`quest-${currentQuest.id}`}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.4 }}
-                        className="space-y-12"
-                    >
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={`quest-${currentQuest.id}`}
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.98 }}
+                            transition={{ duration: 0.4 }}
+                            className="space-y-12"
+                        >
                         <motion.div
                             className="text-center space-y-6"
                             initial={{ opacity: 0, y: 20 }}
@@ -461,10 +486,10 @@ export default function SB201TissuesPage() {
                                 </AnimatePresence>
                             </div>
                         </motion.div>
-                    </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
                 )}
-                </motion.div>
-            </AnimatePresence>
+            </div>
         </ChamberLayout>
     );
 }

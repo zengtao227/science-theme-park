@@ -78,7 +78,7 @@ export const deBiology = {
         },
         prompts: {
             identify_part: "Identifizieren Sie die Struktur, die für {function} verantwortlich ist.",
-            calc_potential: "Gegessen sind {ion} außen = {cout} und innen = {cin}. Berechnen Sie das Gleichgewichtspotential.",
+            calc_potential: "Gegeben sind {ion} außen = {cout} und innen = {cin}. Berechnen Sie das Gleichgewichtspotential.",
             action_potential: "Welches Ion ist primär für die Depolarisation während der Anstiegsphase verantwortlich?",
             synapse_mechanism: "Welcher Ioneneinstrom löst die Freisetzung von Neurotransmittern in den synaptischen Spalt aus?",
             hint_anatomy: "Suchen Sie nach der langen Faser, die Impulse vom Zellkörper weg leitet.",
@@ -787,6 +787,8 @@ export const deBiology = {
             stats: "STATISTIK DER NACHKOMMEN",
             genotype_ratio: "Genotyp-Verhältnis",
             phenotype_ratio: "Phänotyp-Verhältnis",
+            purple_flowers: "Lila Blüten",
+            white_flowers: "Weiße Blüten",
             genetics_basics: "GRUNDLAGEN DER GENETIK",
             instructions: "ANWEISUNGEN",
             prediction: "Phänotyp-Vorhersage",

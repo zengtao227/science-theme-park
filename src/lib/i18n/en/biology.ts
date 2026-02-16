@@ -93,7 +93,7 @@ export const enBiology = {
             friedrich_miescher: "Friedrich Miescher Institute for Biomedical Research (FMI) - Neural Development & Epigenetics: At the FMI, a Novartis-funded research institute, you work to understand how neural circuits self-assemble during development. Your project investigates the role of calcium signaling in neurotransmitter release at the neuromuscular junction. Using fluorescent calcium indicators and high-speed imaging, you visualize how Ca²⁺ influx through voltage-gated calcium channels triggers synaptic vesicle fusion, releasing acetylcholine into the synaptic cleft (20-40 nm wide). You measure quantal release events and calculate release probability under different stimulation protocols. This fundamental research honors Friedrich Miescher's legacy—he discovered DNA in Basel in 1869 while studying white blood cell nuclei from surgical bandages at the University Hospital. Today, the FMI continues this tradition of groundbreaking molecular biology, with insights that inform drug development at Roche and Novartis. Understanding synaptic transmission at the molecular level is crucial for treating myasthenia gravis, Lambert-Eaton syndrome, and other neuromuscular disorders."
         },
         feedback: {
-            correct: "Action potential successfully propagation verified!",
+            correct: "Action potential propagation successfully verified!",
             incorrect: "The signal was lost. Review the neural mechanism."
         }
     },
@@ -787,6 +787,8 @@ export const enBiology = {
             stats: "OFFSPRING STATISTICS",
             genotype_ratio: "Genotype Ratio",
             phenotype_ratio: "Phenotype Ratio",
+            purple_flowers: "Purple Flowers",
+            white_flowers: "White Flowers",
             genetics_basics: "GENETICS BASICS",
             instructions: "INSTRUCTIONS",
             prediction: "Phenotype Prediction",

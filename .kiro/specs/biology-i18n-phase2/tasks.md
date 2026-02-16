@@ -116,7 +116,7 @@ This implementation plan focuses on completing the internationalization upgrade 
     - **Validates: Requirements 2.2**
 
 - [ ] 6. Enhance SB2.01 module with multi-stage learning design
-  - [~] 6.1 Update SB2.01 page.tsx with three-stage structure
+  - [x] 6.1 Update SB2.01 page.tsx with three-stage structure
     - Implement tissues, organs, systems stages
     - Add stage-specific visualizations
     - Integrate ChamberLayout with stage navigation
@@ -153,19 +153,19 @@ This implementation plan focuses on completing the internationalization upgrade 
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 8. Verify and enhance GB2.01 Neurobiology translations
-  - [-] 8.1 Audit GB2.01 translation completeness and accuracy
+  - [x] 8.1 Audit GB2.01 translation completeness and accuracy
     - Verify all neurobiology terminology translations
     - Check scientific accuracy across EN, CN, DE
     - Identify any missing translation keys
     - _Requirements: 3.1, 3.2, 3.3_
 
-  - [~] 8.2 Add missing translations for GB2.01 if needed
+  - [x] 8.2 Add missing translations for GB2.01 if needed
     - Complete any gaps in EN, CN, DE files
     - Ensure precise professional terminology
     - Add Basel biomedical research context
     - _Requirements: 3.2, 3.3, 6.1, 6.2_
 
-  - [~] 8.3 Verify KaTeX formula rendering in GB2.01
+  - [x] 8.3 Verify KaTeX formula rendering in GB2.01
     - Check action potential formulas render correctly
     - Verify Nernst equation and other mathematical expressions
     - Test formula rendering across all languages

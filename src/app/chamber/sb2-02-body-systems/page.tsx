@@ -18,11 +18,11 @@ interface SB202BodySystemsQuest extends Quest {
     organPath?: string[];
 }
 
-type SB202BodySystemsT = typeof translations.EN.sb2_02_body_systems;
+type SB202BodySystemsT = typeof translations.EN.sb2_02;
 
 export default function SB202BodySystemsPage() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb2_02_body_systems || translations.EN.sb2_02_body_systems) as SB202BodySystemsT;
+    const t = (translations[currentLanguage]?.sb2_02 || translations.EN.sb2_02) as SB202BodySystemsT;
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB202BodySystemsQuest[] => {
         const quests: SB202BodySystemsQuest[] = [];
