@@ -69,11 +69,23 @@ export function extractParameters(str: string): string[] {
 }
 
 /**
+ * Normalize LaTeX text commands for comparison
+ * Replaces \text{...} with a placeholder to ignore language-specific content
+ */
+function normalizeLatexText(str: string): string {
+  return str.replace(/\\text\{[^}]*\}/g, '\\text{PLACEHOLDER}');
+}
+
+/**
  * Check if two translation strings have the same parameters
  */
 export function haveSameParameters(str1: string, str2: string): boolean {
-  const params1 = extractParameters(str1).sort();
-  const params2 = extractParameters(str2).sort();
+  // Normalize LaTeX text commands before comparing
+  const normalized1 = normalizeLatexText(str1);
+  const normalized2 = normalizeLatexText(str2);
+  
+  const params1 = extractParameters(normalized1).sort();
+  const params2 = extractParameters(normalized2).sort();
   
   if (params1.length !== params2.length) return false;
   

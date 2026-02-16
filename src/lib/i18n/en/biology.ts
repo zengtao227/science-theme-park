@@ -800,7 +800,8 @@ export const enBiology = {
             invalid: "Genetic Drift",
             valid_desc: "Mendelian ratios confirmed.",
             invalid_desc: "Recalculate the probability matrix.",
-            next: "Next Specimen"
+            next: "Next Specimen",
+            analysis: "Phenotype Prediction"
         },
         prompts: {
             monohybrid_ratio: "Cross {p1} \\times {p2}. What is the phenotypic ratio?",
