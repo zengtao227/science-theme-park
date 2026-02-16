@@ -94,6 +94,7 @@ export default function Home() {
     { code: "SM3.02", title: t.home.sm3_02_title, desc: t.home.sm3_02_subtitle, color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
     { code: "SM3.03", title: t.home.sm3_03_title, desc: t.home.sm3_03_subtitle, color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
     { code: "SM3.04", title: t.home.sm3_04_title, desc: t.home.sm3_04_subtitle, color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
+    { code: "SM3.05", title: t.home.sm3_05_title, desc: t.home.sm3_05_subtitle, color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
     { code: "GM1.01", title: t.home.gm1_01_title, desc: t.home.gm1_01_subtitle, color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
     { code: "GM1.01-ADV", title: t.home.gm1_01_title + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },

@@ -71,6 +71,8 @@ export const cnCommon = {
         sm3_02_subtitle: "通过波形反馈训练正弦、余弦和相位偏移。",
         sm3_04_title: "SM3.04 // 对数实验室",
         sm3_04_subtitle: "通过精密训练解码对数刻度和逆向增长。",
+        sm3_05_title: "SM3.05 // 高级3D几何",
+        sm3_05_subtitle: "利用曲面与截面对巴塞尔建筑地标进行建模。",
         sm2_07_title: "SM2.07 // 坐标侦察",
         sm2_07_subtitle: "在巴塞尔网格中掌握坐标系、平移和绘图精度。",
         sm2_08_title: "SM2.08 // 概率基础",

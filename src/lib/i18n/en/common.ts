@@ -97,6 +97,8 @@ export const enCommon = {
         sm3_03_subtitle: "Model exponential and logarithmic growth with cell division simulations.",
         sm3_04_title: "SM3.04 // LOGARITHMIC LAB",
         sm3_04_subtitle: "Decode log scales and inverse growth with precision drills.",
+        sm3_05_title: "SM3.05 // ADVANCED 3D GEOMETRY",
+        sm3_05_subtitle: "Model Basel's architectural icons with curved surfaces and cross-sections.",
         gm1_01_title: "GM1.01 // CALCULUS INTRO",
         gm1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
         gm2_01_title: "GM2.01 // VECTOR PILOT 3D",

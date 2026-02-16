@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-type Stage = 'POLYHEDRA' | 'CROSS_SECTIONS' | 'SPATIAL_REASONING';
+type Stage = 'BASEL_ARCH' | 'CROSS_SECTIONS' | 'CURVED_SOLIDS';
 
 interface GeometryVisualizationProps {
   stage: Stage;
@@ -10,16 +10,16 @@ interface GeometryVisualizationProps {
 
 export default function GeometryVisualization({ stage }: GeometryVisualizationProps) {
   const [rotation, setRotation] = useState({ x: 30, y: 45 });
-  const [selectedShape, setSelectedShape] = useState<'cube' | 'pyramid' | 'sphere' | 'cylinder'>('cube');
+  const [selectedShape, setSelectedShape] = useState<'cube' | 'pyramid' | 'sphere' | 'cylinder' | 'roche'>('roche');
 
   const renderPolyhedra = () => (
     <div className="space-y-4">
-      <div className="flex gap-2 mb-4">
-        {(['cube', 'pyramid', 'sphere', 'cylinder'] as const).map(shape => (
+      <div className="flex flex-wrap gap-2 mb-4">
+        {(['roche', 'cube', 'pyramid', 'sphere', 'cylinder'] as const).map(shape => (
           <button
             key={shape}
             onClick={() => setSelectedShape(shape)}
-            className={`px-4 py-2 rounded ${selectedShape === shape ? 'bg-cyan-500' : 'bg-gray-700'}`}
+            className={`px-3 py-1 text-xs rounded border transition-all ${selectedShape === shape ? 'bg-cyan-500 border-cyan-400 text-white shadow-[0_0_10px_#00ffff]' : 'bg-gray-800 border-gray-700 text-gray-400'}`}
           >
             {shape.toUpperCase()}
           </button>
@@ -37,16 +37,28 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             }}
           >
             {selectedShape === 'cube' && (
-              <div className="w-full h-full border-4 border-cyan-400 bg-cyan-500/20" />
+              <div className="w-full h-full border-4 border-cyan-400 bg-cyan-500/20 shadow-[0_0_20px_#00ffff44]" />
+            )}
+            {selectedShape === 'roche' && (
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-8 border-2 border-cyan-400 bg-cyan-500/30" />
+                <div className="w-20 h-12 border-2 border-cyan-400 bg-cyan-500/20 mt-1" />
+                <div className="w-24 h-16 border-2 border-cyan-400 bg-cyan-500/10 mt-1" />
+              </div>
             )}
             {selectedShape === 'pyramid' && (
-              <div className="w-0 h-0 border-l-16 border-r-16 border-b-32 border-l-transparent border-r-transparent border-b-cyan-400" />
+              <div className="w-0 h-0 border-l-[64px] border-r-[64px] border-b-[96px] border-l-transparent border-r-transparent border-b-cyan-400/50 relative">
+                <div className="absolute top-[20px] left-[-32px] w-[64px] h-[76px] border-2 border-cyan-400" />
+              </div>
             )}
             {selectedShape === 'sphere' && (
-              <div className="w-full h-full rounded-full border-4 border-cyan-400 bg-cyan-500/20" />
+              <div className="w-full h-full rounded-full border-4 border-cyan-400 bg-cyan-500/20 shadow-[0_0_30px_#00ffff66]" />
             )}
             {selectedShape === 'cylinder' && (
-              <div className="w-full h-full rounded-lg border-4 border-cyan-400 bg-cyan-500/20" />
+              <div className="w-full h-full rounded-xl border-4 border-cyan-400 bg-cyan-500/20 flex flex-col justify-between">
+                <div className="border-b-2 border-cyan-400 h-4" />
+                <div className="border-t-2 border-cyan-400 h-4" />
+              </div>
             )}
           </div>
         </div>
@@ -83,6 +95,14 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <div className="text-cyan-400 mb-2">Properties:</div>
+            {selectedShape === 'roche' && (
+              <>
+                <div className="text-white">Roche Tower Analogy</div>
+                <div>Structure: Stacked Prisms</div>
+                <div>Area: 2400m²-1800m²</div>
+                <div>Height: 205m</div>
+              </>
+            )}
             {selectedShape === 'cube' && (
               <>
                 <div>Faces: 6</div>
@@ -109,8 +129,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             )}
             {selectedShape === 'cylinder' && (
               <>
-                <div>Faces: 3 (2 circles + 1 curved)</div>
-                <div>Edges: 2</div>
+                <div>Faces: 3</div>
                 <div>V = πr²h</div>
                 <div>A = 2πr² + 2πrh</div>
               </>
@@ -245,9 +264,9 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
 
   return (
     <div className="w-full h-full p-4">
-      {stage === 'POLYHEDRA' && renderPolyhedra()}
+      {stage === 'BASEL_ARCH' && renderPolyhedra()}
       {stage === 'CROSS_SECTIONS' && renderCrossSections()}
-      {stage === 'SPATIAL_REASONING' && renderSpatialReasoning()}
+      {stage === 'CURVED_SOLIDS' && renderSpatialReasoning()}
     </div>
   );
 }
