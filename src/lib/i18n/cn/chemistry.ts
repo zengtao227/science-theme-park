@@ -1029,5 +1029,52 @@ export const cnChemistry = {
             correct: "掌握电解过程！",
             incorrect: "复习法拉第定律和电极电势。"
         }
+    },
+    sc2_05: {
+        back: "返回主界面",
+        title: "SC2.05 // 酸碱化学",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            ph_basics: "pH 基础",
+            neutralization: "中和反应",
+            titration: "滴定分析"
+        },
+        scenarios: {
+            ph_basics: "诺华制药 pH 控制：您是诺华巴塞尔的配方科学家，正在开发一种新的口服药物。药物的稳定性和生物利用度严重依赖于 pH 值。在胃中（pH 1.5），活性成分必须保持稳定，而在血液中（pH 7.4），它必须快速溶解。您正在测试缓冲系统，以在制造和储存期间维持最佳 pH 范围。使用精密 pH 计和 Henderson-Hasselbalch 计算，您调整弱酸与共轭碱的比例。仅 0.2 个 pH 单位的偏差就可能使整批产品失效，影响瑞士各地数千名患者。这种药物 pH 控制类似于您身体的血液如何维持狭窄的 pH 范围以保持健康。",
+            neutralization: "巴塞尔大学医院胃部治疗：您是巴塞尔大学医院的临床药剂师，为严重胃酸反流患者准备抗酸剂配方。胃产生盐酸（HCl），pH 值为 1-2，引起疼痛症状。您的任务是计算中和过量酸所需的碳酸氢钠（NaHCO₃）的确切量，而不会过度到碱性 pH，这可能会引起不同的并发症。您必须考虑患者的胃容量（空腹时约 50mL）和酸浓度。中和反应产生 CO₂ 气体，患者会感觉到打嗝。精确的化学计量计算确保有效缓解，同时最大限度地减少副作用。这就像在厨房里向醋中添加小苏打，但具有医学精度。",
+            titration: "罗氏质量控制实验室：您是罗氏巴塞尔总部的质量控制分析师，进行滴定分析以验证新药化合物的纯度。使用校准的滴定管，您逐滴向溶解在水中的药物样品中添加标准化的 NaOH 溶液。pH 电极持续监测溶液，在计算机屏幕上生成滴定曲线。等当点处的急剧 pH 跳跃表明完全中和，使用的滴定剂体积揭示了药物的确切浓度。任何偏离规定纯度（最低 99.5%）的情况都会触发全批次调查。这种分析精度确保每种罗氏药物都符合瑞士药品标准。这就像使用精确的量杯来确保您的食谱每次都完美。"
+        },
+        prompts: {
+            calculate_ph: "计算溶液的 pH 值。",
+            find_concentration: "确定酸或碱的浓度。",
+            equivalence_point: "找到等当点的体积。",
+            buffer_ph: "计算缓冲系统的 pH 值。",
+            neutralization_moles: "计算生成产物的摩尔数。"
+        },
+        labels: {
+            acid: "酸",
+            base: "碱",
+            salt: "盐",
+            water: "水",
+            ph: "pH",
+            concentration: "浓度",
+            volume: "体积",
+            indicator: "指示剂"
+        },
+        check: "验证",
+        next: "下一题",
+        correct: "反应已验证",
+        incorrect: "检查平衡",
+        ready: "就绪",
+        monitor_title: "SC2.05_酸碱监控",
+        footer_left: "SC2.05_酸碱化学 // 节点: 巴塞尔",
+        scenario_title: "巴塞尔场景",
+        objective_title: "问题",
+        answer_title: "您的答案"
     }
 };

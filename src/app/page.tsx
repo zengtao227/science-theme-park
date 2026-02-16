@@ -130,6 +130,7 @@ export default function Home() {
     { code: "SC2.02", title: t("home.sc2_02_title"), desc: t("home.sc2_02_subtitle"), color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
     { code: "SC2.03", title: t("home.sc2_03_title"), desc: t("home.sc2_03_subtitle"), color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
     { code: "SC2.04", title: t("home.sc2_04_title"), desc: t("home.sc2_04_subtitle"), color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
+    { code: "SC2.05", title: t("home.sc2_05_title"), desc: t("home.sc2_05_subtitle"), color: "neon-purple", href: "/chamber/sc2-05", tags: ["chemistry"] },
     { code: "SC3.01", title: t("home.sc3_01_title"), desc: t("home.sc3_01_subtitle"), color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
     { code: "SC3.02", title: t("home.sc3_02_title"), desc: t("home.sc3_02_subtitle"), color: "neon-purple", href: "/chamber/sc3-02", tags: ["chemistry"] },
     { code: "SC3.03", title: t("home.sc3_03_title"), desc: t("home.sc3_03_subtitle"), color: "neon-purple", href: "/chamber/sc3-03", tags: ["chemistry"] },

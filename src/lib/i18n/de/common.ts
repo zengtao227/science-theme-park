@@ -167,6 +167,8 @@ export const deCommon = {
         sc2_03_subtitle: "Erkunden Sie ideale Gasgesetze mit Partikelsimulationen. Meistern Sie PV=nRT.",
         sc2_04_title: "SC2.04 // LÖSLICHKEITSLABOR",
         sc2_04_subtitle: "Erkunden Sie Löslichkeitskurven und Kristallisation. Meistern Sie Sättigungsgleichgewicht.",
+        sc2_05_title: "SC2.05 // SÄURE-BASE-CHEMIE",
+        sc2_05_subtitle: "Meistern Sie pH-Berechnungen, Neutralisation und Titrationsanalyse.",
         sc3_01_title: "SC3.01 // MOLEKÜL-LEINWAND",
         sc3_01_subtitle: "Bauen und visualisieren Sie Molekülstrukturen im 3D-Raum.",
         sc3_02_title: "SC3.02 // GRUNDLAGEN DER ORGANISCHEN CHEMIE",

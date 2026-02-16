@@ -163,6 +163,8 @@ export const enCommon = {
         sc2_03_subtitle: "Explore ideal gas laws with particle simulations. Master PV=nRT.",
         sc2_04_title: "SC2.04 // SOLUBILITY LAB",
         sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
+        sc2_05_title: "SC2.05 // ACID-BASE CHEMISTRY",
+        sc2_05_subtitle: "Master pH calculations, neutralization, and titration analysis.",
         sc3_01_title: "SC3.01 // MOLECULE CANVAS",
         sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
         sc3_02_title: "SC3.02 // ORGANIC CHEMISTRY BASICS",

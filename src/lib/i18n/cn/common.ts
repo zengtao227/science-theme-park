@@ -165,6 +165,8 @@ export const cnCommon = {
         sc2_03_subtitle: "通过粒子模拟探索理想气体定律。掌握 PV=nRT。",
         sc2_04_title: "SC2.04 // 溶解度实验室",
         sc2_04_subtitle: "探索溶解度曲线与结晶过程。掌握饱和平衡。",
+        sc2_05_title: "SC2.05 // 酸碱化学",
+        sc2_05_subtitle: "掌握 pH 计算、中和反应和滴定分析。",
         sc3_01_title: "SC3.01 // 分子画布",
         sc3_01_subtitle: "在 3D 空间中构建和可视化分子结构。",
         sc3_02_title: "SC3.02 // 有机化学基础",

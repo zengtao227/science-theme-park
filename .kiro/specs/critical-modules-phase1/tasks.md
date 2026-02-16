@@ -204,7 +204,7 @@ const t = translations[currentLanguage].gm1_02;
     - definite_integral 场景: 巴塞尔莱茵河水流量在特定时间段内的总流量累计
     - application 场景: Novartis 新园区建筑曲面屋顶的面积计算
 
-- [-] 1.4 Checkpoint GM1.02
+- [x] 1.4 Checkpoint GM1.02
   - `npm run build` 通过
   - 浏览器访问 `/chamber/gm1-02`
   - 切换 EN/CN/DE 三种语言，确认：
@@ -223,7 +223,7 @@ const t = translations[currentLanguage].gm1_02;
 **参考模块**: `src/app/chamber/sc2-01/page.tsx` (306行, 反应动力学 — 同系列化学模块)
 **翻译参考**: `src/lib/i18n/en/chemistry.ts` 中 `sc2_01` section (第 509 行起)
 
-- [ ] 2.1 创建 SC2.05 页面结构
+- [x] 2.1 创建 SC2.05 页面结构
   - 创建 `src/app/chamber/sc2-05/page.tsx`
   - **参考 `sc2-01/page.tsx` 的结构**
   - Stage: `"PH_BASICS" | "NEUTRALIZATION" | "TITRATION"`
@@ -249,7 +249,7 @@ const t = translations[currentLanguage].gm1_02;
   - ADVANCED: 弱酸滴定曲线分析，半当量点
   - ELITE: 多元酸滴定，指示剂选择
 
-- [ ] 2.2 创建 SC2.05 可视化组件
+- [x] 2.2 创建 SC2.05 可视化组件
   - 创建 `src/components/chamber/sc2-05/AcidBaseVisualization.tsx`
   - 必须实现:
     - **pH 刻度条** (0-14 渐变色条: 红→黄→绿→蓝→紫)
@@ -260,7 +260,7 @@ const t = translations[currentLanguage].gm1_02;
   - **使用 SVG**，不用 Canvas
   - 动态缩放 + 50% padding
 
-- [ ] 2.3 添加 SC2.05 三语翻译
+- [x] 2.3 添加 SC2.05 三语翻译
   - 在 `src/lib/i18n/{en,cn,de}/chemistry.ts` 中添加 `sc2_05` section
   - 在 `src/app/page.tsx` 首页模块列表中添加 SC2.05 条目（化学部分，SC2.04 之后）
   - **翻译键结构** (参照 `sc2_01`):
@@ -293,7 +293,7 @@ const t = translations[currentLanguage].gm1_02;
     - neutralization: Basel 大学医院 (Universitätsspital) 的胃酸中和治疗
     - titration: Roche 质控实验室的药物纯度滴定分析
 
-- [ ] 2.4 Checkpoint SC2.05
+- [x] 2.4 Checkpoint SC2.05
   - 同 1.4 的检查方法
   - 额外检查: pH 颜色编码正确 (pH 3 → 红, pH 7 → 绿, pH 11 → 蓝)
   - `git add -A && git commit -m "feat: add SC2.05 Acid-Base Chemistry module" && git push`

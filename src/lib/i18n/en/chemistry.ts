@@ -1029,5 +1029,52 @@ export const enChemistry = {
             correct: "Electrolytic process understood!",
             incorrect: "Review Faraday's laws and electrode potentials."
         }
+    },
+    sc2_05: {
+        back: "Back to Nexus",
+        title: "SC2.05 // ACID-BASE CHEMISTRY",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            ph_basics: "PH FUNDAMENTALS",
+            neutralization: "NEUTRALIZATION",
+            titration: "TITRATION ANALYSIS"
+        },
+        scenarios: {
+            ph_basics: "Novartis Pharmaceutical pH Control: You are a formulation scientist at Novartis Basel, developing a new oral medication. The drug's stability and bioavailability critically depend on pH. In the stomach (pH 1.5), the active ingredient must remain stable, while in the bloodstream (pH 7.4), it must dissolve rapidly. You are testing buffer systems to maintain the optimal pH range during manufacturing and storage. Using precision pH meters and Henderson-Hasselbalch calculations, you adjust the ratio of weak acid to conjugate base. A deviation of just 0.2 pH units could render the entire batch ineffective, affecting thousands of patients across Switzerland. This pharmaceutical pH control is similar to how your body's blood maintains a narrow pH range to keep you healthy.",
+            neutralization: "University Hospital Basel Gastric Treatment: You are a clinical pharmacist at the Universitätsspital Basel, preparing antacid formulations for patients with severe acid reflux. The stomach produces hydrochloric acid (HCl) at pH 1-2, causing painful symptoms. Your task is to calculate the exact amount of sodium bicarbonate (NaHCO₃) needed to neutralize the excess acid without overshooting to alkaline pH, which could cause different complications. You must consider the patient's stomach volume (approximately 50mL when empty) and the acid concentration. The neutralization reaction produces CO₂ gas, which patients experience as burping. Precise stoichiometric calculations ensure effective relief while minimizing side effects. This is exactly like adding baking soda to vinegar in your kitchen, but with medical precision.",
+            titration: "Roche Quality Control Laboratory: You are a quality control analyst at Roche's Basel headquarters, performing titration analysis to verify the purity of a new drug compound. Using a calibrated burette, you add standardized NaOH solution dropwise to a sample of the drug dissolved in water. A pH electrode continuously monitors the solution, generating a titration curve on your computer screen. The sharp pH jump at the equivalence point indicates complete neutralization, and the volume of titrant used reveals the drug's exact concentration. Any deviation from the specified purity (99.5% minimum) triggers a full batch investigation. This analytical precision ensures that every Roche medication meets Swiss pharmaceutical standards. It's like using a precise measuring cup to ensure your recipe turns out perfect every time."
+        },
+        prompts: {
+            calculate_ph: "Calculate the pH of the solution.",
+            find_concentration: "Determine the concentration of the acid or base.",
+            equivalence_point: "Find the volume at the equivalence point.",
+            buffer_ph: "Calculate the pH of the buffer system.",
+            neutralization_moles: "Calculate moles of product formed."
+        },
+        labels: {
+            acid: "Acid",
+            base: "Base",
+            salt: "Salt",
+            water: "Water",
+            ph: "pH",
+            concentration: "Concentration",
+            volume: "Volume",
+            indicator: "Indicator"
+        },
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Reaction Verified",
+        incorrect: "Check equilibrium",
+        ready: "Ready",
+        monitor_title: "SC2.05_ACIDBASE_MONITOR",
+        footer_left: "SC2.05_ACIDBASE // NODE: BASEL",
+        scenario_title: "BASEL SCENARIO",
+        objective_title: "PROBLEM",
+        answer_title: "YOUR ANSWER"
     }
 };

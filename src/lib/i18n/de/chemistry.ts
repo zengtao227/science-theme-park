@@ -1017,5 +1017,52 @@ export const deChemistry = {
             correct: "Elektrolytischer Prozess verstanden!",
             incorrect: "Überprüfen Sie die Faradayschen Gesetze und Elektrodenpotentiale."
         }
+    },
+    sc2_05: {
+        back: "Zurück zum Nexus",
+        title: "SC2.05 // SÄURE-BASE-CHEMIE",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            ph_basics: "PH-GRUNDLAGEN",
+            neutralization: "NEUTRALISATION",
+            titration: "TITRATIONSANALYSE"
+        },
+        scenarios: {
+            ph_basics: "Novartis Pharmazeutische pH-Kontrolle: Sie sind Formulierungswissenschaftler bei Novartis Basel und entwickeln ein neues orales Medikament. Die Stabilität und Bioverfügbarkeit des Arzneimittels hängen entscheidend vom pH-Wert ab. Im Magen (pH 1,5) muss der Wirkstoff stabil bleiben, während er im Blutkreislauf (pH 7,4) schnell gelöst werden muss. Sie testen Puffersysteme, um den optimalen pH-Bereich während der Herstellung und Lagerung aufrechtzuerhalten. Mit Präzisions-pH-Metern und Henderson-Hasselbalch-Berechnungen passen Sie das Verhältnis von schwacher Säure zu konjugierter Base an. Eine Abweichung von nur 0,2 pH-Einheiten könnte die gesamte Charge unwirksam machen und Tausende von Patienten in der Schweiz betreffen. Diese pharmazeutische pH-Kontrolle ähnelt der Art und Weise, wie das Blut Ihres Körpers einen engen pH-Bereich aufrechterhält, um Sie gesund zu halten.",
+            neutralization: "Universitätsspital Basel Magenbehandlung: Sie sind klinischer Apotheker am Universitätsspital Basel und bereiten Antazida-Formulierungen für Patienten mit schwerem Säurereflux vor. Der Magen produziert Salzsäure (HCl) bei pH 1-2, was schmerzhafte Symptome verursacht. Ihre Aufgabe ist es, die genaue Menge an Natriumbicarbonat (NaHCO₃) zu berechnen, die benötigt wird, um die überschüssige Säure zu neutralisieren, ohne auf alkalischen pH zu überschießen, was andere Komplikationen verursachen könnte. Sie müssen das Magenvolumen des Patienten (ca. 50 ml bei leerem Magen) und die Säurekonzentration berücksichtigen. Die Neutralisationsreaktion produziert CO₂-Gas, das Patienten als Aufstoßen erleben. Präzise stöchiometrische Berechnungen gewährleisten wirksame Linderung bei minimalen Nebenwirkungen. Dies ist genau wie das Hinzufügen von Backpulver zu Essig in Ihrer Küche, aber mit medizinischer Präzision.",
+            titration: "Roche Qualitätskontrolllabor: Sie sind Qualitätskontrollanalyst im Basler Hauptsitz von Roche und führen Titrationsanalysen durch, um die Reinheit einer neuen Arzneimittelverbindung zu überprüfen. Mit einer kalibrierten Bürette fügen Sie tropfenweise standardisierte NaOH-Lösung zu einer in Wasser gelösten Probe des Arzneimittels hinzu. Eine pH-Elektrode überwacht kontinuierlich die Lösung und erzeugt eine Titrationskurve auf Ihrem Computerbildschirm. Der scharfe pH-Sprung am Äquivalenzpunkt zeigt vollständige Neutralisation an, und das verwendete Volumen des Titriermittels zeigt die genaue Konzentration des Arzneimittels. Jede Abweichung von der angegebenen Reinheit (mindestens 99,5%) löst eine vollständige Chargenuntersuchung aus. Diese analytische Präzision stellt sicher, dass jedes Roche-Medikament den Schweizer Pharmastandards entspricht. Es ist wie die Verwendung eines präzisen Messbechers, um sicherzustellen, dass Ihr Rezept jedes Mal perfekt wird."
+        },
+        prompts: {
+            calculate_ph: "Berechnen Sie den pH-Wert der Lösung.",
+            find_concentration: "Bestimmen Sie die Konzentration der Säure oder Base.",
+            equivalence_point: "Finden Sie das Volumen am Äquivalenzpunkt.",
+            buffer_ph: "Berechnen Sie den pH-Wert des Puffersystems.",
+            neutralization_moles: "Berechnen Sie die Molzahl des gebildeten Produkts."
+        },
+        labels: {
+            acid: "Säure",
+            base: "Base",
+            salt: "Salz",
+            water: "Wasser",
+            ph: "pH",
+            concentration: "Konzentration",
+            volume: "Volumen",
+            indicator: "Indikator"
+        },
+        check: "Überprüfen",
+        next: "Nächste Herausforderung",
+        correct: "Reaktion verifiziert",
+        incorrect: "Gleichgewicht prüfen",
+        ready: "Bereit",
+        monitor_title: "SC2.05_SÄUREBASE_MONITOR",
+        footer_left: "SC2.05_SÄUREBASE // KNOTEN: BASEL",
+        scenario_title: "BASEL-SZENARIO",
+        objective_title: "PROBLEM",
+        answer_title: "IHRE ANTWORT"
     }
 };
