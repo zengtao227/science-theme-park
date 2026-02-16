@@ -411,6 +411,8 @@ export const enBiology = {
         incorrect: "Misaligned",
         ready: "Ready",
         monitor_title: "SB1.03_REPLICATION_HUB",
+        footer_left: "SB1.03_CELL_DIVISION // NODE: BASEL",
+        objective_title: "Active Mission Objective",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -421,6 +423,34 @@ export const enBiology = {
             mitosis: "MITOSIS",
             meiosis_i: "MEIOSIS I",
             meiosis_ii: "MEIOSIS II"
+        },
+        labels: {
+            analysis: "Cell Division Analysis",
+            phase_analysis: "Phase Analysis",
+            chromosome_count: "Chromosome Count",
+            hint: "Division Hint",
+            visualization: "Cell Division Visualization",
+            loading: "Loading Cell Data..."
+        },
+        scenarios: {
+            mitosis: "University Hospital Basel - Cancer Research Division: You are working at the Basel University Hospital's oncology research lab, where understanding mitosis is crucial for cancer treatment. Mitosis is the process by which a single cell divides to produce two identical daughter cells, each with the same number of chromosomes as the parent cell (46 in humans). This process ensures genetic continuity and is essential for growth, tissue repair, and asexual reproduction. The process consists of several phases: Prophase (chromatin condenses into visible chromosomes, each consisting of two sister chromatids joined at the centromere), Metaphase (chromosomes align at the cell's equator), Anaphase (sister chromatids separate and move to opposite poles), and Telophase (nuclear envelopes reform around each set of chromosomes). Your task is to track the number of chromatids or chromosomes at each phase. Understanding mitosis is fundamental to Basel's cutting-edge cancer research, as cancer cells often have abnormal mitotic processes. This knowledge helps researchers at Roche and the University Hospital develop targeted therapies that disrupt cancer cell division while preserving normal cells.",
+            meiosis_i: "Friedrich Miescher Institute - Reproductive Biology Lab: At the FMI in Basel, you are studying meiosis, the specialized cell division that produces gametes (sex cells) with half the number of chromosomes. Meiosis I is the first division, where homologous chromosome pairs separate, reducing the chromosome number from diploid (2n = 46) to haploid (n = 23). This process is unique because of crossing over during Prophase I, where homologous chromosomes exchange genetic material, creating genetic diversity. The phases include: Prophase I (homologous chromosomes pair up and exchange segments), Metaphase I (paired chromosomes align at the cell equator), Anaphase I (homologous chromosomes separate and move to opposite poles), and Telophase I (two haploid cells form, each with 23 chromosomes, but each chromosome still consists of two sister chromatids). Your task is to count chromosomes or chromosome pairs at each phase. Understanding meiosis is essential for Basel's reproductive medicine and genetic counseling services, helping families understand inheritance patterns and genetic disorders.",
+            meiosis_ii: "Basel Genetics Counseling Center - Heredity Analysis: You are working at Basel's Genetics Counseling Center, where understanding Meiosis II is crucial for explaining inheritance to families. Meiosis II is similar to mitosis but starts with haploid cells. It separates sister chromatids to produce four haploid gametes, each with 23 single chromosomes. The phases include: Prophase II (chromosomes condense again), Metaphase II (chromosomes align at the equator), Anaphase II (sister chromatids finally separate), and Telophase II (four haploid cells form, each with 23 single chromosomes). This process explains why siblings can look different despite having the same parents - each gamete carries a unique combination of genetic material due to crossing over in Meiosis I and independent assortment. Your task is to track the chromosome count through each phase. This knowledge is vital for Basel's genetic counseling services, helping families understand conditions like Down syndrome (trisomy 21) that result from errors in meiosis."
+        },
+        prompts: {
+            mitosis_count: "During {phase} of mitosis, how many chromatids are present?",
+            meiosis_i_count: "During {phase} of Meiosis I, how many chromosomes or pairs are present?",
+            meiosis_ii_count: "During {phase} of Meiosis II, how many chromosomes are present?",
+            hint_mitosis: "In mitosis, sister chromatids separate during Anaphase, doubling the count temporarily",
+            hint_meiosis_i: "Meiosis I separates homologous pairs, reducing from 46 to 23 chromosomes per cell",
+            hint_meiosis_ii: "Meiosis II separates sister chromatids, similar to mitosis but starting with 23"
+        },
+        results: {
+            valid: "Division Verified",
+            invalid: "Chromosome Miscount",
+            valid_desc: "Cell division phase correctly analyzed.",
+            invalid_desc: "Recount the chromosomes at this phase.",
+            next: "Next Phase"
         }
     },
     sb2_01_tissues: {
@@ -434,20 +464,65 @@ export const enBiology = {
         next: "Next Level",
         correct: "Correct",
         incorrect: "Incorrect",
+        ready: "Ready",
         stages: {
             tissues: "TISSUE TYPES",
             organs: "ORGAN COMPOSITION",
             systems: "ORGAN SYSTEMS"
         },
         scenarios: {
-            tissues: "Basel University Hospital Pathology Lab: You are a medical student at Basel University Hospital learning tissue identification under Dr. Müller's guidance. Using advanced microscopes, you examine tissue samples from different body locations. Each of the four main tissue types has a specific function: epithelial tissue covers and protects body surfaces (like skin and intestinal lining), connective tissue provides structural support (like bone and cartilage), muscle tissue enables movement through contraction (like heart muscle and skeletal muscles), and nervous tissue transmits electrical signals for communication (like brain cells and nerve fibers). Your task is to identify the primary function of each tissue type based on its microscopic structure and location in the body. This fundamental skill is essential for medical diagnosis, as abnormal tissue structure often indicates disease. Just like a building needs different materials for different purposes (concrete for foundation, glass for windows, wires for electricity), your body needs different tissue types for different jobs. Understanding tissue function is the first step in understanding how organs work.",
-            organs: "Novartis Pharmaceutical Research - Organ Modeling Division: You are working at Novartis Basel's biomedical research division, where scientists create detailed 3D models of human organs for drug testing and development. Each organ in the human body is composed of multiple tissue types working together in harmony. For example, the heart contains four tissue types: muscle tissue (cardiac muscle for pumping blood), epithelial tissue (endothelium lining blood vessels), connective tissue (providing structural framework), and nervous tissue (controlling heart rate and rhythm). Similarly, the stomach has epithelial tissue (secreting digestive enzymes), muscle tissue (churning food), connective tissue (structural support), and nervous tissue (coordinating digestion). Your task is to count how many different tissue types compose each organ. This information is crucial for understanding how pharmaceutical drugs affect different parts of an organ - a drug targeting muscle tissue might also affect epithelial or nervous tissue in the same organ. Accurate organ models help Novartis develop safer medications by predicting potential side effects before human clinical trials. This work directly contributes to the development of life-saving drugs used in Swiss hospitals.",
-            systems: "Basel Medical School - Human Body Organization: You are studying anatomy at Basel Medical School, learning how the human body is organized in a clear hierarchical structure. This biological hierarchy follows a logical progression from simple to complex: cells (the smallest living units, like a single muscle cell) → tissues (groups of similar cells working together, like muscle tissue) → organs (structures made of multiple tissue types, like the heart) → organ systems (groups of organs working together, like the circulatory system) → organism (the complete human body). For example, a single cardiac muscle cell joins with millions of other muscle cells to form cardiac muscle tissue. This muscle tissue combines with epithelial tissue (lining), connective tissue (framework), and nervous tissue (control) to form the heart organ. The heart then works together with blood vessels (arteries, veins, capillaries) to form the circulatory system, which transports oxygen and nutrients throughout the entire organism. Understanding this hierarchy is fundamental for medical diagnosis and treatment - a problem at the cellular level (like a genetic mutation) can cascade up through tissues, organs, and systems to affect the entire body. Your task is to identify the correct level in this biological organization and understand how many organs compose each major body system."
+            tissues: "University Hospital Basel - Institute of Pathology: You are a medical student at the University Hospital Basel (Universitätsspital Basel), one of Switzerland's leading medical centers, learning tissue identification under the guidance of Dr. Müller from the Institute of Pathology. Using state-of-the-art Zeiss microscopes in the Department of Biomedicine, you examine histological samples from different anatomical regions. Each of the four primary tissue types has distinct structural and functional characteristics: Epithelial tissue (epithelium) forms protective barriers and secretory surfaces - simple squamous epithelium lines blood vessels, stratified squamous epithelium protects the skin, and columnar epithelium with microvilli absorbs nutrients in the intestinal tract. Connective tissue provides mechanical support and metabolic functions - dense regular connective tissue forms tendons, hyaline cartilage cushions joints, compact bone provides skeletal structure, and adipose tissue stores energy. Muscle tissue generates contractile force - cardiac muscle (myocardium) pumps blood with involuntary rhythmic contractions, skeletal muscle enables voluntary movement via neuromuscular junctions, and smooth muscle regulates organ function in the digestive and vascular systems. Nervous tissue processes and transmits electrochemical signals - neurons conduct action potentials, while glial cells (astrocytes, oligodendrocytes, microglia) provide support and insulation. Your task is to identify the primary function of each tissue type based on its microscopic architecture, cellular composition, and anatomical location. This fundamental skill is essential for clinical pathology at Basel's renowned medical institutions, as abnormal tissue histology often indicates disease processes. Understanding tissue function is the foundation for comprehending organ physiology.",
+            organs: "Roche Pharmaceutical Research - Organ Systems Biology Division: You are working at Roche's global headquarters in Basel, specifically in the Organ Systems Biology Division where scientists create detailed computational and physical models of human organs for drug discovery and preclinical testing. Basel, as the world's leading pharmaceutical hub, hosts cutting-edge research at Roche, Novartis, and the Biozentrum. Each organ in the human body represents a complex integration of multiple tissue types working in coordinated harmony. The heart (cor) contains four tissue types: cardiac muscle tissue (myocardium with intercalated discs for synchronized contraction), epithelial tissue (endocardium lining chambers and endothelium lining vessels), connective tissue (fibrous cardiac skeleton providing structural framework and valve support), and nervous tissue (autonomic innervation from the cardiac plexus controlling heart rate and contractility). The stomach (gaster) similarly integrates: epithelial tissue (gastric mucosa with parietal cells secreting HCl and chief cells secreting pepsinogen), smooth muscle tissue (muscularis externa with circular and longitudinal layers for peristalsis), connective tissue (submucosa providing vascular and neural support), and nervous tissue (myenteric plexus coordinating digestive motility). The liver (hepar) contains: epithelial tissue (hepatocytes arranged in lobules performing metabolic functions), connective tissue (Glisson's capsule and portal triads), and specialized endothelial tissue (sinusoidal capillaries for blood filtration). Your task is to quantify the tissue type composition of each organ. This information is critical for understanding how pharmaceutical compounds affect different cellular populations within an organ - a drug targeting smooth muscle may also interact with epithelial or neural components in the same organ. Accurate multi-tissue organ models help Roche and other Basel pharmaceutical companies develop safer, more effective medications by predicting potential side effects and off-target interactions before human clinical trials. This work directly contributes to the development of life-saving therapeutics used in University Hospital Basel and medical centers worldwide.",
+            systems: "University of Basel Medical Faculty - Department of Anatomy: You are studying human anatomy at the University of Basel's Medical Faculty, one of Europe's oldest and most prestigious medical schools (founded 1460), learning how the human body is organized in a hierarchical structural framework. This biological hierarchy of organization follows a logical progression from molecular to organismal complexity: Cells (the fundamental units of life, such as a single cardiomyocyte with sarcomeres for contraction) → Tissues (populations of similar cells with shared function and extracellular matrix, such as cardiac muscle tissue) → Organs (integrated structures composed of multiple tissue types with specific physiological roles, such as the heart with its four chambers) → Organ Systems (coordinated groups of organs performing related functions, such as the cardiovascular system with heart, arteries, veins, and capillaries) → Organism (the complete human body as an integrated whole). For example, a single cardiac muscle cell (cardiomyocyte) with its contractile proteins joins with millions of other cardiomyocytes through intercalated discs to form cardiac muscle tissue. This muscle tissue combines with endocardial epithelium (lining chambers), fibrous connective tissue (cardiac skeleton and valves), and autonomic nervous tissue (cardiac plexus for rate control) to form the heart organ. The heart then works in coordination with blood vessels (elastic arteries like the aorta, muscular arteries for distribution, capillaries for exchange, and veins for return) to form the cardiovascular system, which transports oxygen, nutrients, hormones, and immune cells throughout the entire organism while removing metabolic waste products. Understanding this hierarchical organization is fundamental for clinical medicine and research at Basel's medical institutions - a molecular defect (such as a mutation in the gene encoding cardiac troponin) can cascade through cellular dysfunction, tissue pathology, organ failure, and systemic disease to affect the entire organism. Your task is to identify the correct level in this biological hierarchy and understand the composition of major organ systems. This knowledge is essential for medical practice at University Hospital Basel and for biomedical research at the Biozentrum and Friedrich Miescher Institute."
         },
         labels: {
             analysis: "Tissue Analysis",
             terminal: "Input Terminal",
-            hint: "Pathology Hint"
+            hint: "Pathology Hint",
+            tissue_type: "Tissue Type",
+            organ_structure: "Organ Structure",
+            system_hierarchy: "System Hierarchy"
+        },
+        anatomy: {
+            tissues: {
+                epithelial: {
+                    name: "Epithelial Tissue",
+                    function: "Protection, secretion, absorption",
+                    subtypes: "Squamous, cuboidal, columnar; simple or stratified",
+                    location: "Skin epidermis, intestinal lining, glandular tissue"
+                },
+                connective: {
+                    name: "Connective Tissue",
+                    function: "Structural support, energy storage, immune defense",
+                    subtypes: "Loose, dense, cartilage, bone, blood, adipose",
+                    location: "Tendons, ligaments, bone matrix, blood vessels"
+                },
+                muscle: {
+                    name: "Muscle Tissue",
+                    function: "Contraction and force generation",
+                    subtypes: "Skeletal (voluntary), cardiac (involuntary), smooth (involuntary)",
+                    location: "Skeletal muscles, heart myocardium, organ walls"
+                },
+                nervous: {
+                    name: "Nervous Tissue",
+                    function: "Signal transmission and information processing",
+                    subtypes: "Neurons (conducting), glial cells (supporting)",
+                    location: "Brain, spinal cord, peripheral nerves"
+                }
+            },
+            organs: {
+                heart: "Heart (Cor): 4 tissue types - cardiac muscle, endothelium, connective, nervous",
+                stomach: "Stomach (Gaster): 4 tissue types - epithelial mucosa, smooth muscle, connective, nervous",
+                liver: "Liver (Hepar): 3 tissue types - hepatocytes, connective, endothelial",
+                kidney: "Kidney (Ren): 4 tissue types - epithelial tubules, connective, vascular, nervous"
+            },
+            hierarchy: {
+                cell: "Cell - fundamental unit of life",
+                tissue: "Tissue - group of similar cells",
+                organ: "Organ - multiple tissues integrated",
+                system: "Organ System - coordinated organs",
+                organism: "Organism - complete individual"
+            }
         },
         results: {
             valid: "Biological Verification Complete",
@@ -476,6 +551,10 @@ export const enBiology = {
             location: "Location: {loc}",
             function_label: "Function",
             next_level: "Next level"
+        },
+        feedback: {
+            correct: "Tissue identification verified! Proceeding to next specimen.",
+            incorrect: "Tissue misidentification. Review histological features."
         }
     },
     sb2_01: {

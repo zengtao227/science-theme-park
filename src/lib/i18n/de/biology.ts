@@ -411,6 +411,8 @@ export const deBiology = {
         incorrect: "Fehlausrichtung",
         ready: "Bereit",
         monitor_title: "SB1.03_REPLIKATIONSZENTRUM",
+        footer_left: "SB1.03_ZELLTEILUNG // KNOTEN: BASEL",
+        objective_title: "Aktuelles Missionsziel",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -421,6 +423,34 @@ export const deBiology = {
             mitosis: "MITOSE",
             meiosis_i: "MEIOSE I",
             meiosis_ii: "MEIOSE II"
+        },
+        labels: {
+            analysis: "Zellteilungsanalyse",
+            phase_analysis: "Phasenanalyse",
+            chromosome_count: "Chromosomenzahl",
+            hint: "Teilungshinweis",
+            visualization: "Zellteilungsvisualisierung",
+            loading: "Lade Zelldaten..."
+        },
+        scenarios: {
+            mitosis: "Universitätsspital Basel - Krebsforschungsabteilung: Sie arbeiten im onkologischen Forschungslabor des Universitätsspitals Basel, wo das Verständnis der Mitose für die Krebsbehandlung entscheidend ist. Mitose ist der Prozess, bei dem sich eine einzelne Zelle teilt, um zwei identische Tochterzellen zu produzieren, jede mit der gleichen Anzahl von Chromosomen wie die Mutterzelle (46 beim Menschen). Dieser Prozess gewährleistet genetische Kontinuität und ist essentiell für Wachstum, Gewebereparatur und asexuelle Fortpflanzung. Der Prozess besteht aus mehreren Phasen: Prophase (Chromatin kondensiert zu sichtbaren Chromosomen, jedes bestehend aus zwei Schwesterchromatiden, die am Zentromer verbunden sind), Metaphase (Chromosomen ordnen sich am Äquator der Zelle an), Anaphase (Schwesterchromatiden trennen sich und bewegen sich zu entgegengesetzten Polen), und Telophase (Kernhüllen bilden sich um jeden Chromosomensatz neu). Ihre Aufgabe ist es, die Anzahl der Chromatiden oder Chromosomen in jeder Phase zu verfolgen. Das Verständnis der Mitose ist grundlegend für Basels hochmoderne Krebsforschung, da Krebszellen oft abnormale mitotische Prozesse aufweisen. Dieses Wissen hilft Forschern bei Roche und dem Universitätsspital, gezielte Therapien zu entwickeln, die die Zellteilung von Krebszellen stören und gleichzeitig normale Zellen schonen.",
+            meiosis_i: "Friedrich Miescher Institut - Labor für Reproduktionsbiologie: Am FMI in Basel untersuchen Sie die Meiose, die spezialisierte Zellteilung, die Gameten (Geschlechtszellen) mit der halben Anzahl von Chromosomen produziert. Meiose I ist die erste Teilung, bei der sich homologe Chromosomenpaare trennen und die Chromosomenzahl von diploid (2n = 46) auf haploid (n = 23) reduziert wird. Dieser Prozess ist einzigartig wegen des Crossing-over während der Prophase I, bei dem homologe Chromosomen genetisches Material austauschen und so genetische Vielfalt schaffen. Die Phasen umfassen: Prophase I (homologe Chromosomen paaren sich und tauschen Segmente aus), Metaphase I (gepaarte Chromosomen ordnen sich am Zelläquator an), Anaphase I (homologe Chromosomen trennen sich und bewegen sich zu entgegengesetzten Polen), und Telophase I (zwei haploide Zellen bilden sich, jede mit 23 Chromosomen, aber jedes Chromosom besteht noch aus zwei Schwesterchromatiden). Ihre Aufgabe ist es, Chromosomen oder Chromosomenpaare in jeder Phase zu zählen. Das Verständnis der Meiose ist essentiell für Basels Reproduktionsmedizin und genetische Beratungsdienste und hilft Familien, Vererbungsmuster und genetische Störungen zu verstehen.",
+            meiosis_ii: "Basler Genetikberatungszentrum - Vererbungsanalyse: Sie arbeiten im Basler Genetikberatungszentrum, wo das Verständnis der Meiose II entscheidend ist, um Familien die Vererbung zu erklären. Meiose II ähnelt der Mitose, beginnt aber mit haploiden Zellen. Sie trennt Schwesterchromatiden, um vier haploide Gameten zu produzieren, jede mit 23 einzelnen Chromosomen. Die Phasen umfassen: Prophase II (Chromosomen kondensieren erneut), Metaphase II (Chromosomen ordnen sich am Äquator an), Anaphase II (Schwesterchromatiden trennen sich schließlich), und Telophase II (vier haploide Zellen bilden sich, jede mit 23 einzelnen Chromosomen). Dieser Prozess erklärt, warum Geschwister trotz gleicher Eltern unterschiedlich aussehen können - jede Gamete trägt aufgrund des Crossing-over in Meiose I und der unabhängigen Verteilung eine einzigartige Kombination von genetischem Material. Ihre Aufgabe ist es, die Chromosomenzahl durch jede Phase zu verfolgen. Dieses Wissen ist vital für Basels genetische Beratungsdienste und hilft Familien, Zustände wie das Down-Syndrom (Trisomie 21) zu verstehen, die aus Fehlern in der Meiose resultieren."
+        },
+        prompts: {
+            mitosis_count: "Während der {phase} der Mitose, wie viele Chromatiden sind vorhanden?",
+            meiosis_i_count: "Während der {phase} der Meiose I, wie viele Chromosomen oder Paare sind vorhanden?",
+            meiosis_ii_count: "Während der {phase} der Meiose II, wie viele Chromosomen sind vorhanden?",
+            hint_mitosis: "In der Mitose trennen sich Schwesterchromatiden während der Anaphase, wodurch sich die Anzahl vorübergehend verdoppelt",
+            hint_meiosis_i: "Meiose I trennt homologe Paare und reduziert von 46 auf 23 Chromosomen pro Zelle",
+            hint_meiosis_ii: "Meiose II trennt Schwesterchromatiden, ähnlich der Mitose, aber beginnend mit 23"
+        },
+        results: {
+            valid: "Teilung Verifiziert",
+            invalid: "Chromosomenzählfehler",
+            valid_desc: "Zellteilungsphase korrekt analysiert.",
+            invalid_desc: "Zählen Sie die Chromosomen in dieser Phase erneut.",
+            next: "Nächste Phase"
         }
     },
     sb2_01_tissues: {

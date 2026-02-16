@@ -146,7 +146,7 @@ export default function Home() {
     { code: "SB1.01", title: t("home.sb1_01_title"), desc: t("home.sb1_01_subtitle"), color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
     { code: "SB1.01-M", title: t("home.sb1_01_met_title"), desc: t("home.sb1_01_met_subtitle"), color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
     { code: "SB1.02", title: t("home.sb1_02_title"), desc: t("home.sb1_02_subtitle"), color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
-    { code: "SB1.03", title: t("home.sb1_03_title"), desc: t("home.sb1_03_subtitle"), color: "neon-cyan", href: "/sb1-03", tags: ["biology"] },
+    { code: "SB1.03", title: t("home.sb1_03_title"), desc: t("home.sb1_03_subtitle"), color: "neon-cyan", href: "/chamber/sb1-03", tags: ["biology"] },
     { code: "SB2.01", title: t("home.sb2_01_title"), desc: t("home.sb2_01_subtitle"), color: "neon-purple", href: "/chamber/sb2-01-tissues", tags: ["biology"] },
     { code: "SB2.02", title: t("home.sb2_02_title"), desc: t("home.sb2_02_subtitle"), color: "neon-cyan", href: "/chamber/sb2-02-body-systems", tags: ["biology"] },
     { code: "SB2.03", title: t("home.sb2_03_title"), desc: t("home.sb2_03_subtitle"), color: "neon-purple", href: "/chamber/sb2-03", tags: ["biology"] },
