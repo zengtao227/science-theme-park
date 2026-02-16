@@ -8,6 +8,7 @@ import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/BodySystemVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -232,7 +233,14 @@ export default function SB202BodySystemsPage() {
                     next: t.next,
                     correct: t.correct,
                     incorrect: t.incorrect,
-                    difficulty: t.difficulty,
+                    ready: t.ready,
+                    monitor_title: t.monitor_title,
+                    difficulty: {
+                        basic: t.difficulty.basic,
+                        core: t.difficulty.core,
+                        advanced: t.difficulty.advanced,
+                        elite: t.difficulty.elite,
+                    },
                 }}
                 monitorContent={<BodySystemVisualization quest={null} stage={stage} />}
             >
@@ -260,7 +268,14 @@ export default function SB202BodySystemsPage() {
                 next: t.next,
                 correct: t.correct,
                 incorrect: t.incorrect,
-                difficulty: t.difficulty,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
             }}
             monitorContent={<BodySystemVisualization quest={currentQuest} stage={stage} />}
         >

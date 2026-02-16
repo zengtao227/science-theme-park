@@ -170,7 +170,21 @@ export default function GB101Page() {
             onNext={next}
             checkStatus={lastCheck}
             footerLeft={t.footer_left}
-            translations={t}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
+            }}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -192,7 +206,7 @@ export default function GB101Page() {
                                     max="100"
                                     value={generation}
                                     onChange={(e) => setGeneration(Number(e.target.value))}
-                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-green"
+                                    className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-cyan"
                                 />
                                 <span className="text-[10px] font-mono text-white/60 w-16 text-right">Gen {generation}</span>
                             </div>
@@ -224,7 +238,7 @@ export default function GB101Page() {
                                 <div
                                     key={i}
                                     className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                        ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
+                                        ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
                                         : "bg-transparent"
                                         }`}
                                 />
@@ -238,7 +252,7 @@ export default function GB101Page() {
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
-                            <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
+                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
                                 {t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
@@ -247,8 +261,8 @@ export default function GB101Page() {
                         </div>
 
                         <div className="flex justify-center">
-                            <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
-                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
                                     {t.labels.evolution_display}
                                 </span>
@@ -259,10 +273,10 @@ export default function GB101Page() {
                         </div>
 
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-green/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-green/30" />
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-cyan/30" />
                                     {t.labels.input_terminal}
                                 </div>
 
@@ -271,11 +285,11 @@ export default function GB101Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-green/30 font-mono">EVO_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-cyan/30 font-mono">EVO_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -283,7 +297,7 @@ export default function GB101Page() {
                                                         if (e.key === 'Enter') verify();
                                                     }}
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-green/0 group-focus-within:bg-neon-green/20 transition-all blur-sm" />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
                                             </div>
                                         </div>
                                     ))}
@@ -329,11 +343,11 @@ export default function GB101Page() {
                                 </AnimatePresence>
 
                                 <motion.button
-                                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0, 255, 0, 0.2)" }}
+                                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0, 255, 255, 0.2)" }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={lastCheck?.ok ? next : verify}
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-xl ${lastCheck?.ok
-                                        ? "bg-neon-green text-black"
+                                        ? "bg-neon-cyan text-black"
                                         : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
@@ -348,16 +362,16 @@ export default function GB101Page() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-neon-green/[0.02] border border-neon-green/10 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_50px_rgba(0,255,0,0.02)]"
+                        className="bg-neon-cyan/[0.02] border border-neon-cyan/10 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_50px_rgba(0,255,255,0.02)]"
                     >
                         <div className="flex items-start gap-4">
-                            <div className="p-2 bg-neon-green/20 rounded-lg text-neon-green shadow-[0_0_15px_rgba(0,255,0,0.1)]">
+                            <div className="p-2 bg-neon-cyan/20 rounded-lg text-neon-cyan shadow-[0_0_15px_rgba(0,255,255,0.1)]">
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
                             <div className="space-y-2">
-                                <div className="text-[10px] uppercase tracking-widest text-neon-green/60 font-black">Regional Case Study // Basel Node</div>
+                                <div className="text-[10px] uppercase tracking-widest text-neon-cyan/60 font-black">Regional Case Study // Basel Node</div>
                                 <p className="text-sm text-white/50 leading-relaxed italic">{activeScenario}</p>
                             </div>
                         </div>

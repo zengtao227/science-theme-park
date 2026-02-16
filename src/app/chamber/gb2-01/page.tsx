@@ -191,7 +191,25 @@ export default function GB201Neurobiology() {
             ]}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            translations={t}
+            onVerify={verify}
+            onNext={lastCheck?.ok ? next : undefined}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                ready: t.ready,
+                monitor_title: t.monitor_title,
+                difficulty: {
+                    basic: t.difficulty.basic,
+                    core: t.difficulty.core,
+                    advanced: t.difficulty.advanced,
+                    elite: t.difficulty.elite,
+                },
+            }}
             monitorContent={[
                 <div key="stats" className="flex items-center gap-6">
                     <div className="flex flex-col items-end">

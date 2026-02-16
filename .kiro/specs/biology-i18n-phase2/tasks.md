@@ -1,248 +1,313 @@
-# Implementation Plan: Biology I18n Phase 2
+# Implementation Plan: Biology i18n Phase 2
 
 ## Overview
 
-本实施计划将系统性地完成 Science Theme Park 生物模块国际化升级 Phase 2 项目。重点处理 SB1.03 细胞分裂模块的重构迁移、SB2.01 组织器官模块的优化升级，以及 GB2.01 神经生物学模块的验证完善。
+This implementation plan focuses on completing the internationalization upgrade for three core biology modules (SB1.03 Cell Division, SB2.01 Tissues & Organs, GB2.01 Neurobiology) in the Science Theme Park educational platform. The approach follows a systematic refactoring strategy: standardize module architecture, complete translation files, implement UI components, and ensure comprehensive testing.
 
 ## Tasks
 
-- [x] 1. SB1.03 细胞分裂模块重构迁移
-  - 将模块从 `src/app/sb1-03/` 迁移到 `src/app/chamber/sb1-03/`
-  - 重构组件以使用 ChamberLayout 和 useQuestManager 模式
-  - 完善翻译键结构，确保三语言对称性
-  - _Requirements: 1.1, 1.2, 1.3, 1.5_
+- [ ] 1. Set up translation file structure and core interfaces
+  - [ ] 1.1 Create standardized translation interfaces for biology modules
+    - Define `BiologyModuleTranslations` interface in shared types
+    - Create type definitions for stage-specific translations
+    - Ensure type safety for all translation keys
+    - _Requirements: 1.3, 5.2_
 
-- [x] 1.1 创建新的 chamber 目录结构
-  - 在 `src/app/chamber/` 下创建 `sb1-03` 目录
-  - 设置标准的文件结构：page.tsx, components/, types.ts
-  - _Requirements: 1.1_
+  - [ ] 1.2 Audit existing translation files for SB1.03, SB2.01, GB2.01
+    - Check EN, CN, DE files for key symmetry
+    - Identify missing or incomplete translation keys
+    - Document hardcoded strings that need internationalization
+    - _Requirements: 1.1, 5.1, 8.2_
 
-- [x] 1.2 重构主页面组件
-  - 将 CellDivisionLab 组件重构为使用 useQuestManager 钩子
-  - 实现标准的 BiologyQuest 接口
-  - 集成 ChamberLayout 组件模式
-  - _Requirements: 1.1, 1.2_
+  - [ ]* 1.3 Write property test for translation key symmetry
+    - **Property 3: Translation key structure symmetry**
+    - **Validates: Requirements 1.3, 2.5, 5.2**
 
-- [ ]* 1.3 编写 SB1.03 模块的属性测试
-  - **Property 1: 翻译界面完整性验证**
-  - **Validates: Requirements 1.1**
+- [ ] 2. Complete SB1.03 Cell Division translation files
+  - [ ] 2.1 Implement complete EN translation keys for SB1.03
+    - Add `sb1_03_cell_division` section to `src/lib/i18n/en/biology.ts`
+    - Include translations for mitosis, meiosis_i, meiosis_ii stages
+    - Add Basel-contextualized scenario descriptions
+    - Include all labels, prompts, and feedback messages
+    - _Requirements: 1.1, 1.3, 1.4_
 
-- [x] 1.4 完善翻译键结构
-  - 更新 `src/lib/i18n/{en|cn|de}/biology.ts` 中的 `sb1_03` 键
-  - 添加缺失的翻译内容：scenarios, prompts, results
-  - 确保三语言文件的键结构完全对称
-  - _Requirements: 1.3, 1.5_
+  - [ ] 2.2 Implement complete CN translation keys for SB1.03
+    - Mirror EN structure in `src/lib/i18n/cn/biology.ts`
+    - Ensure accurate biological terminology in Chinese
+    - Adapt Basel context for Chinese-speaking audience
+    - _Requirements: 1.1, 1.3, 6.3_
 
-- [ ]* 1.5 编写翻译键对称性测试
-  - **Property 3: 翻译键结构对称性**
-  - **Validates: Requirements 1.3, 2.5, 5.2**
+  - [ ] 2.3 Implement complete DE translation keys for SB1.03
+    - Mirror EN structure in `src/lib/i18n/de/biology.ts`
+    - Use precise German anatomical terminology
+    - Localize Basel context for German-speaking audience
+    - _Requirements: 1.1, 1.3, 6.3_
 
-- [x] 1.6 实现细胞分裂可视化组件
-  - 创建 CellDivisionVisualization 组件
-  - 实现 mitosis, meiosis I, meiosis II 三个阶段的可视化
-  - 集成 framer-motion 动画效果
-  - _Requirements: 1.1, 1.4_
+  - [ ]* 2.4 Write property test for translation completeness
+    - **Property 1: Translation interface completeness verification**
+    - **Validates: Requirements 1.1**
 
-- [ ]* 1.7 编写动画集成测试
-  - **Property 11: 动画集成完整性**
-  - **Validates: Requirements 4.3**
+  - [ ]* 2.5 Write property test for hardcoded text detection
+    - **Property 4: Hardcoded text internationalization**
+    - **Validates: Requirements 1.5**
 
-- [x] 2. SB2.01 组织器官模块优化升级
-  - 优化现有翻译键结构和用户交互体验
-  - 完善解剖学标签和多阶段学习设计
-  - 确保响应式输入验证和即时反馈
-  - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+- [ ] 3. Refactor SB1.03 module to standard chamber structure
+  - [ ] 3.1 Create new chamber directory structure for SB1.03
+    - Create `src/app/chamber/sb1-03-cell-division/` directory
+    - Set up page.tsx with ChamberLayout integration
+    - Create components subdirectory for visualizations
+    - _Requirements: 1.1, 4.4_
 
-- [x] 2.1 优化翻译键结构
-  - 重构 `sb2_01_tissues` 翻译键，提高可维护性
-  - 添加更详细的解剖学标签和功能描述
-  - 完善巴塞尔本地化场景描述
-  - _Requirements: 2.1, 2.2_
+  - [ ] 3.2 Implement CellDivisionVisualization component
+    - Create interactive chromosome visualization
+    - Implement mitosis, meiosis I, and meiosis II animations
+    - Use framer-motion for smooth transitions
+    - Apply Premium UI styling (dark theme, glassmorphism, neon accents)
+    - _Requirements: 1.1, 4.1, 4.2, 4.3_
 
-- [ ]* 2.2 编写解剖学标签完整性测试
-  - **Property 5: 解剖学标签完整性**
-  - **Validates: Requirements 2.2**
+  - [ ] 3.3 Integrate useQuestManager for SB1.03 state management
+    - Set up difficulty levels (BASIC, CORE, ADVANCED, ELITE)
+    - Implement stage switching (mitosis, meiosis_i, meiosis_ii)
+    - Add input validation and feedback logic
+    - Connect to local storage for progress tracking
+    - _Requirements: 1.2, 2.4, 7.4_
 
-- [x] 2.3 增强多阶段学习体验
-  - 优化 tissues、organs、systems 三个阶段的交互设计
-  - 改进阶段间的过渡动画和视觉反馈
-  - 完善每个阶段的教育内容和场景描述
-  - _Requirements: 2.3_
+  - [ ] 3.4 Wire SB1.03 translations to UI components
+    - Replace all hardcoded strings with t() function calls
+    - Implement language switching functionality
+    - Add fallback mechanism for missing translations
+    - _Requirements: 1.2, 1.5, 5.4_
 
-- [ ]* 2.4 编写多阶段功能测试
-  - **Property 6: 多阶段学习功能**
-  - **Validates: Requirements 2.3**
+  - [ ]* 3.5 Write property test for language switching
+    - **Property 2: Language switching real-time update**
+    - **Validates: Requirements 1.2**
 
-- [x] 2.5 优化输入验证和反馈系统
-  - 改进 useQuestManager 的验证逻辑
-  - 增强错误提示和成功反馈的视觉效果
-  - 实现更智能的提示系统
-  - _Requirements: 2.4_
+  - [ ]* 3.6 Write unit tests for CellDivisionVisualization
+    - Test chromosome rendering for different stages
+    - Test animation state transitions
+    - Test user interaction handlers
+    - _Requirements: 1.1, 4.3_
 
-- [ ]* 2.6 编写交互反馈测试
-  - **Property 7: 交互反馈一致性**
-  - **Validates: Requirements 2.4, 7.4**
+- [ ] 4. Checkpoint - Verify SB1.03 module functionality
+  - Ensure all tests pass, ask the user if questions arise.
 
-- [-] 3. GB2.01 神经生物学模块验证完善
-  - 验证现有模块的翻译完整性和功能正确性
-  - 完善神经解剖术语的专业翻译
-  - 确保数学公式的正确渲染
-  - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
+- [ ] 5. Optimize SB2.01 Tissues & Organs translation structure
+  - [ ] 5.1 Restructure sb2_01_tissues translation keys in EN
+    - Organize by hierarchy: tissues, organs, systems
+    - Add anatomical labels for epithelial, connective, muscle, nervous tissues
+    - Include functional descriptions for each tissue type
+    - Add Basel-contextualized medical scenarios
+    - _Requirements: 2.1, 2.2, 6.1_
 
-- [x] 3.1 验证翻译完整性
-  - 检查 GB2.01 模块的所有翻译键
-  - 验证神经生物学术语的准确性和一致性
-  - 补充缺失的翻译内容
-  - _Requirements: 3.1, 3.2_
+  - [ ] 5.2 Update CN translation keys for SB2.01
+    - Mirror restructured EN keys
+    - Ensure accurate anatomical terminology in Chinese
+    - Maintain cultural adaptation for Basel context
+    - _Requirements: 2.1, 2.5, 6.3_
 
-- [ ]* 3.2 编写专业术语翻译测试
-  - **Property 8: 专业术语翻译完整性**
-  - **Validates: Requirements 3.2**
+  - [ ] 5.3 Update DE translation keys for SB2.01
+    - Mirror restructured EN keys
+    - Use precise German medical terminology
+    - Localize Basel medical institution references
+    - _Requirements: 2.1, 2.5, 6.3_
 
-- [x] 3.3 验证数学公式渲染
-  - 检查所有 KaTeX 公式的正确性
-  - 确保公式在不同语言环境下的正确显示
-  - 优化公式的视觉呈现效果
-  - _Requirements: 3.4_
+  - [ ]* 5.4 Write property test for anatomical label completeness
+    - **Property 5: Anatomical label completeness**
+    - **Validates: Requirements 2.2**
 
-- [ ]* 3.4 编写数学公式渲染测试
-  - **Property 9: 数学公式渲染正确性**
-  - **Validates: Requirements 3.4**
+- [ ] 6. Enhance SB2.01 module with multi-stage learning design
+  - [ ] 6.1 Update SB2.01 page.tsx with three-stage structure
+    - Implement tissues, organs, systems stages
+    - Add stage-specific visualizations
+    - Integrate ChamberLayout with stage navigation
+    - _Requirements: 2.3, 4.4_
 
-- [-] 3.5 完善巴塞尔本地化内容
-  - 更新神经生物学相关的巴塞尔场景描述
-  - 确保内容的科学准确性和文化适应性
-  - 添加与当地研究机构相关的实际案例
-  - _Requirements: 3.5_
+  - [ ] 6.2 Create TissueOrganVisualization component
+    - Implement 2D/3D anatomy diagrams
+    - Add interactive labeling system
+    - Support cross-section views
+    - Apply Premium UI styling
+    - _Requirements: 2.2, 4.1, 4.2_
 
-- [~] 4. 统一设计规范实施
-  - 在所有生物模块中实施 Premium Feel 设计规范
-  - 确保视觉一致性和用户体验的连贯性
-  - 优化响应式设计和可访问性
-  - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [ ] 6.3 Implement responsive input validation for SB2.01
+    - Add real-time input validation
+    - Provide immediate visual feedback
+    - Implement hint system for incorrect answers
+    - _Requirements: 2.4, 7.4_
 
-- [~] 4.1 实施 Premium UI 样式
-  - 在所有生物模块中应用深色主题和玻璃拟态效果
-  - 统一使用霓虹色调 (`neon-cyan`, `neon-emerald`)
-  - 确保样式的一致性和品牌统一性
-  - _Requirements: 4.1, 4.2_
+  - [ ]* 6.4 Write property test for multi-stage learning functionality
+    - **Property 6: Multi-stage learning functionality**
+    - **Validates: Requirements 2.3**
 
-- [ ]* 4.2 编写 UI 样式一致性测试
-  - **Property 10: Premium UI 样式一致性**
-  - **Validates: Requirements 4.1, 4.2**
+  - [ ]* 6.5 Write property test for interaction feedback consistency
+    - **Property 7: Interaction feedback consistency**
+    - **Validates: Requirements 2.4, 7.4**
 
-- [~] 4.3 标准化布局组件使用
-  - 确保所有生物模块都使用 ChamberLayout 组件
-  - 统一组件的 props 接口和使用方式
-  - 优化响应式设计和视觉层次
-  - _Requirements: 4.4_
+  - [ ]* 6.6 Write unit tests for TissueOrganVisualization
+    - Test tissue type rendering
+    - Test organ hierarchy display
+    - Test interactive label toggling
+    - _Requirements: 2.2, 2.3_
 
-- [ ]* 4.4 编写布局组件标准化测试
-  - **Property 12: 布局组件标准化**
-  - **Validates: Requirements 4.4**
+- [ ] 7. Checkpoint - Verify SB2.01 module functionality
+  - Ensure all tests pass, ask the user if questions arise.
 
-- [~] 5. 翻译系统优化完善
-  - 完善翻译文件的同步管理机制
-  - 实现回退机制和参数化翻译支持
-  - 优化翻译内容的预加载和缓存
-  - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
+- [ ] 8. Verify and enhance GB2.01 Neurobiology translations
+  - [ ] 8.1 Audit GB2.01 translation completeness and accuracy
+    - Verify all neurobiology terminology translations
+    - Check scientific accuracy across EN, CN, DE
+    - Identify any missing translation keys
+    - _Requirements: 3.1, 3.2, 3.3_
 
-- [~] 5.1 实现翻译回退机制
-  - 完善 useLanguage 钩子的回退逻辑
-  - 确保缺失翻译时的优雅降级
-  - 添加开发环境的警告日志
-  - _Requirements: 5.4_
+  - [ ] 8.2 Add missing translations for GB2.01 if needed
+    - Complete any gaps in EN, CN, DE files
+    - Ensure precise professional terminology
+    - Add Basel biomedical research context
+    - _Requirements: 3.2, 3.3, 6.1, 6.2_
 
-- [ ]* 5.2 编写翻译回退机制测试
-  - **Property 13: 翻译回退机制**
-  - **Validates: Requirements 5.4**
+  - [ ] 8.3 Verify KaTeX formula rendering in GB2.01
+    - Check action potential formulas render correctly
+    - Verify Nernst equation and other mathematical expressions
+    - Test formula rendering across all languages
+    - _Requirements: 3.4_
 
-- [~] 5.3 优化参数化翻译处理
-  - 增强 t() 函数的参数替换功能
-  - 支持更复杂的格式化需求
-  - 改进错误处理和类型安全性
-  - _Requirements: 5.5_
+  - [ ]* 8.4 Write property test for professional terminology completeness
+    - **Property 8: Professional terminology translation completeness**
+    - **Validates: Requirements 3.2**
 
-- [ ]* 5.4 编写参数化翻译测试
-  - **Property 14: 参数化翻译处理**
-  - **Validates: Requirements 5.5, 8.3**
+  - [ ]* 8.5 Write property test for mathematical formula rendering
+    - **Property 9: Mathematical formula rendering correctness**
+    - **Validates: Requirements 3.4**
 
-- [~] 5.5 实现翻译内容预加载
-  - 优化翻译文件的加载策略
-  - 实现智能缓存和预加载机制
-  - 提高语言切换的响应速度
-  - _Requirements: 7.2_
+  - [ ]* 8.6 Write unit tests for neuron visualization components
+    - Test action potential state transitions
+    - Test ion channel state rendering
+    - Test synaptic activity visualization
+    - _Requirements: 3.1, 3.4_
 
-- [ ]* 5.6 编写翻译预加载测试
-  - **Property 15: 翻译内容预加载**
-  - **Validates: Requirements 7.2**
+- [ ] 9. Implement unified Premium UI design across all modules
+  - [ ] 9.1 Apply dark theme and glassmorphism to all biology modules
+    - Update CSS/Tailwind classes for dark backgrounds
+    - Add backdrop-blur effects for glassmorphism
+    - Ensure consistent visual hierarchy
+    - _Requirements: 4.1, 4.4_
 
-- [~] 6. 检查点 - 核心功能验证
-  - 确保所有测试通过，询问用户是否有问题
+  - [ ] 9.2 Integrate neon accent colors (cyan, emerald) consistently
+    - Apply neon-cyan and neon-emerald to interactive elements
+    - Add glow effects for hover states
+    - Ensure accessibility contrast ratios
+    - _Requirements: 4.2, 4.5_
 
-- [~] 7. 代码质量保证和优化
-  - 实施代码质量检查和性能优化
-  - 确保所有硬编码文本都已国际化
-  - 完善错误处理和用户体验
-  - _Requirements: 1.5, 7.1, 7.3, 7.4, 7.5_
+  - [ ] 9.3 Add framer-motion animations to all interactive elements
+    - Implement smooth transitions for stage changes
+    - Add entrance/exit animations for components
+    - Create micro-interactions for user feedback
+    - _Requirements: 4.3_
 
-- [~] 7.1 硬编码文本国际化检查
-  - 扫描所有生物模块组件中的硬编码文本
-  - 确保所有用户可见文本都使用 t() 函数
-  - 添加静态分析工具检查
-  - _Requirements: 1.5_
+  - [ ]* 9.4 Write property test for Premium UI style consistency
+    - **Property 10: Premium UI style consistency**
+    - **Validates: Requirements 4.1, 4.2**
 
-- [ ]* 7.2 编写硬编码文本检查测试
-  - **Property 4: 硬编码文本国际化**
-  - **Validates: Requirements 1.5**
+  - [ ]* 9.5 Write property test for animation integration
+    - **Property 11: Animation integration completeness**
+    - **Validates: Requirements 4.3**
 
-- [~] 7.3 性能优化和用户体验改进
-  - 优化组件渲染性能和内存使用
-  - 改进加载状态和错误处理
-  - 实施渐进式加载策略
-  - _Requirements: 7.1, 7.3, 7.5_
+  - [ ]* 9.6 Write property test for layout component standardization
+    - **Property 12: Layout component standardization**
+    - **Validates: Requirements 4.4**
 
-- [~] 7.4 错误处理机制完善
-  - 实现统一的错误边界组件
-  - 完善各种异常情况的处理逻辑
-  - 提供用户友好的错误提示和恢复机制
-  - _Requirements: Error Handling Strategy_
+- [ ] 10. Implement translation management utilities
+  - [ ] 10.1 Create translation validation script
+    - Check key symmetry across EN, CN, DE files
+    - Validate translation format and structure
+    - Report missing or incomplete translations
+    - _Requirements: 5.2, 5.3, 8.1_
 
-- [~] 8. 综合测试和文档完善
-  - 运行完整的测试套件验证所有功能
-  - 完善代码文档和使用说明
-  - 进行最终的质量检查和验收
-  - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
+  - [ ] 10.2 Implement translation fallback mechanism
+    - Add fallback to English for missing translations
+    - Log missing translation warnings in development
+    - Ensure graceful degradation in production
+    - _Requirements: 5.4_
 
-- [ ]* 8.1 运行完整的属性测试套件
-  - 执行所有 15 个正确性属性的测试
-  - 验证测试覆盖率达到预期目标
-  - 修复发现的任何问题
-  - _Requirements: All Properties_
+  - [ ] 10.3 Add support for parameterized translations
+    - Implement parameter substitution in translation strings
+    - Add type safety for translation parameters
+    - Handle edge cases (missing parameters, type mismatches)
+    - _Requirements: 5.5, 8.3_
 
-- [ ]* 8.2 编写语言切换功能测试
-  - **Property 2: 语言切换实时更新**
-  - **Validates: Requirements 1.2**
+  - [ ]* 10.4 Write property test for translation fallback mechanism
+    - **Property 13: Translation fallback mechanism**
+    - **Validates: Requirements 5.4**
 
-- [~] 8.3 代码文档和注释完善
-  - 为所有新增和修改的组件添加 JSDoc 注释
-  - 更新 README 和技术文档
-  - 创建使用示例和最佳实践指南
-  - _Requirements: Documentation_
+  - [ ]* 10.5 Write property test for parameterized translation handling
+    - **Property 14: Parameterized translation handling**
+    - **Validates: Requirements 5.5, 8.3**
 
-- [~] 8.4 最终质量检查和验收
-  - 进行全面的功能测试和回归测试
-  - 验证所有需求的完成情况
-  - 准备项目交付和部署
-  - _Requirements: All Requirements_
+- [ ] 11. Optimize performance and user experience
+  - [ ] 11.1 Implement translation preloading
+    - Preload current language translations on module load
+    - Cache translations in memory for fast access
+    - Implement progressive loading for large translation sets
+    - _Requirements: 7.2, 7.5_
 
-- [~] 9. 最终检查点 - 确保所有测试通过
-  - 确保所有测试通过，询问用户是否有问题
+  - [ ] 11.2 Optimize language switching performance
+    - Ensure language switch completes within 200ms
+    - Batch UI updates to minimize reflows
+    - Add loading states for smooth transitions
+    - _Requirements: 7.1_
+
+  - [ ] 11.3 Optimize image and animation resources
+    - Compress visualization assets
+    - Implement lazy loading for non-critical images
+    - Use appropriate image formats (WebP, AVIF)
+    - _Requirements: 7.3_
+
+  - [ ]* 11.4 Write property test for translation preloading
+    - **Property 15: Translation content preloading**
+    - **Validates: Requirements 7.2**
+
+  - [ ]* 11.5 Write performance tests for language switching
+    - Test language switch completes within 200ms
+    - Test UI responsiveness during switch
+    - _Requirements: 7.1_
+
+- [ ] 12. Implement comprehensive testing suite
+  - [ ] 12.1 Set up fast-check for property-based testing
+    - Install and configure fast-check library
+    - Create test utilities for translation testing
+    - Set up test configuration (minimum 100 runs per property)
+    - _Requirements: 8.1, 8.2_
+
+  - [ ] 12.2 Create automated translation completeness tests
+    - Test all translation keys exist in EN, CN, DE
+    - Verify translation format correctness
+    - Check parameter placeholder consistency
+    - _Requirements: 8.1, 8.2_
+
+  - [ ] 12.3 Implement UI consistency tests across languages
+    - Test layout consistency for all languages
+    - Verify functionality parity across languages
+    - Check text overflow and truncation handling
+    - _Requirements: 8.4_
+
+  - [ ]* 12.4 Write integration tests for complete user flows
+    - Test complete learning flow for each module
+    - Test language switching during active sessions
+    - Test progress persistence across sessions
+    - _Requirements: 7.4, 8.4_
+
+- [ ] 13. Final checkpoint - Comprehensive testing and validation
+  - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
 
-- 标记为 `*` 的任务是可选的测试任务，可以跳过以加快 MVP 交付
-- 每个任务都引用了具体的需求编号以确保可追溯性
-- 检查点任务确保增量验证和用户反馈
-- 属性测试验证通用正确性属性
-- 单元测试验证具体示例和边界情况
+- Tasks marked with `*` are optional and can be skipped for faster MVP
+- Each task references specific requirements for traceability
+- Checkpoints ensure incremental validation at key milestones
+- Property tests validate universal correctness properties (minimum 100 iterations each)
+- Unit tests validate specific examples, edge cases, and error conditions
+- All property tests should be tagged with: **Feature: biology-i18n-phase2, Property {number}: {property_text}**
+- Translation files must maintain strict key symmetry across EN, CN, DE
+- All modules must use ChamberLayout for consistent UI structure
+- Premium UI styling (dark theme, glassmorphism, neon accents) must be applied consistently
+- Basel-contextualized scenarios should reference local research institutions and medical centers
