@@ -101,6 +101,8 @@ export const enCommon = {
         sm3_05_subtitle: "Model Basel's architectural icons with curved surfaces and cross-sections.",
         gm1_01_title: "GM1.01 // CALCULUS INTRO",
         gm1_01_subtitle: "Explore derivatives and tangent slopes. Calculate secant and tangent slopes on parabolas.",
+        gm1_02_title: "GM1.02 // INTEGRAL CALCULUS",
+        gm1_02_subtitle: "Master integration: antiderivatives, definite integrals, and area calculations.",
         gm2_01_title: "GM2.01 // VECTOR PILOT 3D",
         gm2_01_subtitle: "Navigate drones with 3D vectors, dot products, and magnitude control above the Rhine.",
         gm3_01_title: "GM3.01 // PROBABILITY VAULT",

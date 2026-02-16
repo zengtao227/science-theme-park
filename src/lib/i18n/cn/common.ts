@@ -85,6 +85,8 @@ export const cnCommon = {
         sm2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
         gm1_01_title: "GM1.01 // 微积分初步",
         gm1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+        gm1_02_title: "GM1.02 // 积分微积分",
+        gm1_02_subtitle: "掌握积分：不定积分、定积分和面积计算。",
         gm2_01_title: "GM2.01 // 矢量飞行员 3D",
         gm2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
         gm3_01_title: "GM3.01 // 概率金库",

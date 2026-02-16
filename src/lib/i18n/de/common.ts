@@ -85,6 +85,8 @@ export const deCommon = {
         sm2_04_subtitle: "Trainiere Ähnlichkeitsverhältnisse, Skalierungsfaktoren und angewandtes proportionales Denken.",
         gm1_01_title: "GM1.01 // INFINITESIMALRECHNUNG",
         gm1_01_subtitle: "Erkunde Ableitungen und Tangentensteigungen. Berechne Sekanten- und Tangentensteigungen auf Parabeln.",
+        gm1_02_title: "GM1.02 // INTEGRALRECHNUNG",
+        gm1_02_subtitle: "Meistere Integration: Stammfunktionen, bestimmte Integrale und Flächenberechnungen.",
         gm2_01_title: "GM2.01 // VEKTOR-PILOT 3D",
         gm2_01_subtitle: "Steuere Drohnen mit 3D-Vektoren, Skalarprodukt und Betrag über dem Rhein.",
         gm3_01_title: "GM3.01 // WAHRSCHEINLICHKEITS-TRESOR",
