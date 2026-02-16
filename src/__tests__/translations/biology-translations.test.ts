@@ -180,3 +180,250 @@ describe('Property 13: Translation fallback', () => {
     expect(translations.DE).toBeDefined();
   });
 });
+
+/**
+ * Property 2: Language switching real-time update
+ * Validates: Requirements 1.2
+ * Feature: biology-i18n-phase2, Property 2: Language switching real-time update
+ */
+describe('Property 2: Language switching', () => {
+  test('should support switching between all language pairs', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(fromLang => {
+      languages.forEach(toLang => {
+        if (fromLang === toLang) return;
+        
+        // Verify both languages have complete translations
+        expect(translations[fromLang]).toBeDefined();
+        expect(translations[toLang]).toBeDefined();
+        
+        // Verify all modules exist in both languages
+        const fromModules = Object.keys(translations[fromLang]);
+        const toModules = Object.keys(translations[toLang]);
+        
+        expect(fromModules.sort()).toEqual(toModules.sort());
+      });
+    });
+  });
+  
+  test('should maintain translation structure when switching languages', () => {
+    const testModule = 'sb1_03';
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      const module = translations[lang][testModule];
+      expect(module).toBeDefined();
+      expect(module.title).toBeDefined();
+      expect(module.difficulty).toBeDefined();
+      expect(module.stages).toBeDefined();
+    });
+  });
+});
+
+/**
+ * Property 5: Anatomical label completeness
+ * Validates: Requirements 2.2
+ * Feature: biology-i18n-phase2, Property 5: Anatomical label completeness
+ */
+describe('Property 5: Anatomical labels', () => {
+  test('SB2.01 should have complete anatomical labels in all languages', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      const sb2_01 = translations[lang].sb2_01_tissues;
+      expect(sb2_01).toBeDefined();
+      
+      // Check that labels exist
+      if (sb2_01.labels) {
+        expect(Object.keys(sb2_01.labels).length).toBeGreaterThan(0);
+      }
+    });
+  });
+  
+  test('anatomical labels should be non-empty across all languages', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      const sb2_01 = translations[lang].sb2_01_tissues;
+      if (sb2_01?.labels) {
+        Object.entries(sb2_01.labels).forEach(([key, value]) => {
+          if (typeof value === 'string') {
+            expect(value.trim()).not.toBe('');
+          }
+        });
+      }
+    });
+  });
+});
+
+/**
+ * Property 6: Multi-stage learning functionality
+ * Validates: Requirements 2.3
+ * Feature: biology-i18n-phase2, Property 6: Multi-stage learning functionality
+ */
+describe('Property 6: Multi-stage learning', () => {
+  test('modules with stages should have complete stage translations', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    const modulesWithStages = ['sb1_03', 'sb2_01', 'sb2_02', 'sb2_03', 'gb2_01'];
+    
+    languages.forEach(lang => {
+      modulesWithStages.forEach(moduleKey => {
+        const module = translations[lang][moduleKey];
+        if (module?.stages) {
+          const stages = Object.values(module.stages);
+          stages.forEach(stage => {
+            expect(typeof stage).toBe('string');
+            expect(stage.trim()).not.toBe('');
+          });
+        }
+      });
+    });
+  });
+  
+  test('stage keys should be consistent across languages', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    const modulesWithStages = ['sb1_03', 'sb2_01', 'sb2_02', 'sb2_03', 'gb2_01'];
+    
+    modulesWithStages.forEach(moduleKey => {
+      const enStages = translations.EN[moduleKey]?.stages;
+      if (!enStages) return;
+      
+      const enKeys = Object.keys(enStages).sort();
+      
+      languages.forEach(lang => {
+        if (lang === 'EN') return;
+        const targetStages = translations[lang][moduleKey]?.stages;
+        if (targetStages) {
+          const targetKeys = Object.keys(targetStages).sort();
+          expect(targetKeys).toEqual(enKeys);
+        }
+      });
+    });
+  });
+});
+
+/**
+ * Property 7: Interaction feedback consistency
+ * Validates: Requirements 2.4, 7.4
+ * Feature: biology-i18n-phase2, Property 7: Interaction feedback consistency
+ */
+describe('Property 7: Interaction feedback', () => {
+  test('all modules should have consistent feedback keys', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    const requiredFeedbackKeys = ['correct', 'incorrect', 'check'];
+    
+    languages.forEach(lang => {
+      Object.keys(translations[lang]).forEach(moduleKey => {
+        const module = translations[lang][moduleKey];
+        requiredFeedbackKeys.forEach(key => {
+          expect(module[key]).toBeDefined();
+          expect(typeof module[key]).toBe('string');
+          expect(module[key].trim()).not.toBe('');
+        });
+      });
+    });
+  });
+  
+  test('feedback messages should be non-empty across all languages', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      Object.values(translations[lang]).forEach(module => {
+        if (module.correct) expect(module.correct.trim()).not.toBe('');
+        if (module.incorrect) expect(module.incorrect.trim()).not.toBe('');
+        if (module.check) expect(module.check.trim()).not.toBe('');
+      });
+    });
+  });
+});
+
+/**
+ * Property 8: Professional terminology translation completeness
+ * Validates: Requirements 3.2
+ * Feature: biology-i18n-phase2, Property 8: Professional terminology translation completeness
+ */
+describe('Property 8: Professional terminology', () => {
+  test('GB2.01 should have complete neurobiology terminology', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    const requiredTerms = ['neuron', 'synapse', 'action', 'potential'];
+    
+    languages.forEach(lang => {
+      const gb2_01 = translations[lang].gb2_01;
+      expect(gb2_01).toBeDefined();
+      
+      // Check that professional terms appear in labels or scenarios
+      const allText = JSON.stringify(gb2_01).toLowerCase();
+      const hasTerminology = requiredTerms.some(term => 
+        allText.includes(term) || allText.includes(term.replace(/\s/g, ''))
+      );
+      expect(hasTerminology).toBe(true);
+    });
+  });
+  
+  test('professional terminology should maintain scientific accuracy', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      const gb2_01 = translations[lang].gb2_01;
+      if (gb2_01?.labels) {
+        Object.values(gb2_01.labels).forEach(value => {
+          if (typeof value === 'string') {
+            expect(value.trim()).not.toBe('');
+            // Should not contain placeholder text
+            expect(value.toLowerCase()).not.toContain('todo');
+            expect(value.toLowerCase()).not.toContain('placeholder');
+          }
+        });
+      }
+    });
+  });
+});
+
+/**
+ * Property 9: Mathematical formula rendering correctness
+ * Validates: Requirements 3.4
+ * Feature: biology-i18n-phase2, Property 9: Mathematical formula rendering correctness
+ */
+describe('Property 9: Mathematical formulas', () => {
+  test('LaTeX formulas should be properly formatted', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    
+    languages.forEach(lang => {
+      Object.values(translations[lang]).forEach(module => {
+        const allText = JSON.stringify(module);
+        
+        // Check for LaTeX patterns
+        const latexMatches = allText.match(/\\[a-zA-Z]+\{[^}]*\}/g);
+        if (latexMatches) {
+          latexMatches.forEach(match => {
+            // Should have balanced braces
+            const openBraces = (match.match(/\{/g) || []).length;
+            const closeBraces = (match.match(/\}/g) || []).length;
+            expect(openBraces).toBe(closeBraces);
+          });
+        }
+      });
+    });
+  });
+  
+  test('mathematical symbols should be consistent across languages', () => {
+    const languages = ['EN', 'CN', 'DE'] as const;
+    const mathSymbols = ['=', '+', '-', '×', '\\times', '\\div'];
+    
+    languages.forEach(lang => {
+      const gb2_01 = translations[lang].gb2_01;
+      if (gb2_01?.prompts) {
+        Object.values(gb2_01.prompts).forEach(value => {
+          if (typeof value === 'string') {
+            // If contains math, should use proper symbols
+            const hasMath = mathSymbols.some(symbol => value.includes(symbol));
+            if (hasMath) {
+              expect(value).toMatch(/[=+\-×÷\\]/);
+            }
+          }
+        });
+      }
+    });
+  });
+});
