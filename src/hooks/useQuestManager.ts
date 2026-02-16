@@ -116,15 +116,34 @@ export function useQuestManager<T extends Quest, S extends string>({
         return Number.isFinite(v) ? v : null;
     }, [locale]);
 
+    /**
+     * Enhanced validation function with improved error feedback
+     * 
+     * Features:
+     * - Detailed empty field tracking and reporting
+     * - Progressive error counting for smart hint system
+     * - Enhanced error messages with context
+     * - Locale-aware number parsing (supports German decimal comma)
+     * - Robust string comparison with mathematical normalization
+     * 
+     * Validation flow:
+     * 1. Check for empty inputs and track which fields are empty
+     * 2. For numeric slots: parse with locale support and check tolerance
+     * 3. For string slots: normalize and compare (handles mathematical notation)
+     * 4. Update statistics and error counts for progressive hints
+     * 5. Provide contextual feedback through lastCheck state
+     */
     const verify = useCallback(() => {
         if (!currentQuest) return;
 
+        // Enhanced validation: Check for empty inputs with detailed feedback
         let anyEmpty = false;
+        const emptySlots: string[] = [];
         for (const slot of currentQuest.slots) {
             const raw = inputs[slot.id] ?? "";
             if (!raw.trim()) {
                 anyEmpty = true;
-                break;
+                emptySlots.push(slot.labelLatex);
             }
         }
 
@@ -144,7 +163,11 @@ export function useQuestManager<T extends Quest, S extends string>({
                 };
             });
             setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-            setLastCheck({ ok: false, correct: currentQuest.correctLatex });
+            // Enhanced error message for empty inputs
+            const errorMessage = emptySlots.length > 0 
+                ? `${currentQuest.correctLatex} \\text{ (Empty: ${emptySlots.join(', ')})}`
+                : currentQuest.correctLatex;
+            setLastCheck({ ok: false, correct: errorMessage });
             return;
         }
 
@@ -248,18 +271,66 @@ export function useQuestManager<T extends Quest, S extends string>({
         return currentStageStats.correct / currentStageStats.attempts;
     }, [currentStageStats]);
 
+    /**
+     * Progressive hint system that provides increasingly specific guidance
+     * 
+     * Hint progression:
+     * - Error 1: Show target format/structure
+     * - Error 2: Show expression context
+     * - Error 3: Show partial answer (masked)
+     * - Error 4+: Show complete answer
+     * 
+     * If quest has custom hintLatex array, uses those hints instead
+     * 
+     * @returns Hint string in LaTeX format, or null if no errors yet
+     */
     const getHint = useCallback(() => {
         if (!currentQuest) return null;
         const questKey = `${stage}:${currentQuest.id}`;
         const errors = errorCounts[questKey] ?? 0;
         if (errors <= 0) return null;
+        
+        // Progressive hint system: provide increasingly specific hints
         if (currentQuest.hintLatex && currentQuest.hintLatex.length > 0) {
             const idx = Math.min(errors - 1, currentQuest.hintLatex.length - 1);
             return currentQuest.hintLatex[idx];
         }
-        if (errors === 1) return currentQuest.targetLatex;
-        if (errors === 2) return currentQuest.expressionLatex;
-        return currentQuest.correctLatex.replace(/[0-9]/g, "•");
+        
+        // Smart fallback hints based on error count
+        if (errors === 1) {
+            // First error: show target format
+            return currentQuest.targetLatex;
+        } else if (errors === 2) {
+            // Second error: show expression context
+            return currentQuest.expressionLatex;
+        } else if (errors === 3) {
+            // Third error: show partial answer (mask some digits)
+            const masked = currentQuest.correctLatex.replace(/[0-9]/g, (match, offset, str) => {
+                // Show first and last digit, mask middle ones
+                const digitPositions = [...str.matchAll(/[0-9]/g)].map(m => m.index);
+                const currentPos = digitPositions.indexOf(offset);
+                if (currentPos === 0 || currentPos === digitPositions.length - 1) {
+                    return match;
+                }
+                return "•";
+            });
+            return masked;
+        } else {
+            // Fourth+ error: show full answer
+            return currentQuest.correctLatex;
+        }
+    }, [currentQuest, errorCounts, stage]);
+
+    /**
+     * Get the current error count for the active quest
+     * Useful for displaying attempt numbers and adjusting UI feedback
+     * 
+     * @returns Number of incorrect attempts for current quest
+     */
+    const getCurrentErrorCount = useCallback(() => {
+        if (!currentQuest) return 0;
+        const questKey = `${stage}:${currentQuest.id}`;
+        return errorCounts[questKey] ?? 0;
     }, [currentQuest, errorCounts, stage]);
 
     return {
@@ -275,6 +346,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         currentStageStats,
         successRate,
         getHint,
+        getCurrentErrorCount,
         setInputs,
         verify,
         next,
