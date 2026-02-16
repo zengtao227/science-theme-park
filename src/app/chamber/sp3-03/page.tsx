@@ -1,209 +1,157 @@
 "use client";
 
-import { useState } from "react";
-import { useLanguage } from "@/lib/i18n";
-import Link from "next/link";
-import dynamic from "next/dynamic";
+import { useEffect, useCallback, useMemo } from "react";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { useAppStore } from "@/lib/store";
+import { translations } from "@/lib/i18n";
+import ChamberLayout from "@/components/layout/ChamberLayout";
+import HydroCanvas from "@/components/chamber/sp1-03/HydroCanvas";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
-const WaveCanvas = dynamic(() => import("@/components/chamber/sp3-03/WaveCanvas"), {
-    ssr: false,
-});
+type Stage = "POTENTIAL" | "KINETIC" | "POWER";
 
-export default function SP3_03_WaveBasics() {
-    const { t } = useLanguage();
-    const [amplitude, setAmplitude] = useState(1.0);
-    const [frequency, setFrequency] = useState(0.5);
-    const [waveSpeed, setWaveSpeed] = useState(1.0);
-    const [showParticles, setShowParticles] = useState(true);
-    const [waveType, setWaveType] = useState<"transverse" | "longitudinal">("transverse");
+interface SP303Quest extends Quest {
+    stage: Stage;
+    mass?: number;
+    height?: number;
+    velocity?: number;
+    force?: number;
+    distance?: number;
+}
 
-    const wavelength = waveSpeed / frequency;
-    const period = 1 / frequency;
-    const omega = 2 * Math.PI * frequency;
+type SP303T = typeof translations.EN.sp3_03;
+
+export default function SP303Page() {
+    const { currentLanguage, completeStage } = useAppStore();
+    const t = (translations[currentLanguage]?.sp3_03 || translations.EN.sp3_03) as SP303T;
+
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP303Quest[] => {
+        const quests: SP303Quest[] = [];
+
+        if (stage === "POTENTIAL") {
+            quests.push(
+                {
+                    id: "EP-1", difficulty, stage, mass: 2, height: 10,
+                    promptLatex: `E_p = mgh. \\text{ If } m = 2 \\text{ kg, } h = 10 \\text{ m (}g=9.8\\text{), find } E_p.`,
+                    expressionLatex: `E_p = 2 \\times 9.8 \\times 10`,
+                    targetLatex: `E_p`,
+                    slots: [{ id: "energy", labelLatex: `E_p \\text{ (J)}`, placeholder: "196", expected: 196 }],
+                    correctLatex: `E_p = 196 \\text{ J}`,
+                    hintLatex: [`E_p = mgh`]
+                }
+            );
+        }
+
+        if (stage === "KINETIC") {
+            quests.push(
+                {
+                    id: "EK-1", difficulty, stage, mass: 4, velocity: 5,
+                    promptLatex: `E_k = \\frac{1}{2}mv^2. \\text{ If } m = 4 \\text{ kg, } v = 5 \\text{ m/s, find } E_k.`,
+                    expressionLatex: `E_k = 0.5 \\times 4 \\times 5^2`,
+                    targetLatex: `E_k`,
+                    slots: [{ id: "energy", labelLatex: `E_k \\text{ (J)}`, placeholder: "50", expected: 50 }],
+                    correctLatex: `E_k = 50 \\text{ J}`,
+                    hintLatex: [`E_k = 0.5 \\times 4 \\times 25`]
+                }
+            );
+        }
+
+        if (stage === "POWER") {
+            quests.push(
+                {
+                    id: "W-1", difficulty, stage, force: 100, distance: 5,
+                    promptLatex: `W = Fs. \\text{ If } F = 100 \\text{ N, } s = 5 \\text{ m, find } W.`,
+                    expressionLatex: `W = 100 \\times 5`,
+                    targetLatex: `W`,
+                    slots: [{ id: "work", labelLatex: `W \\text{ (J)}`, placeholder: "500", expected: 500 }],
+                    correctLatex: `W = 500 \\text{ J}`,
+                    hintLatex: [`\\text{Work = Force } \\times \\text{ displacement}`]
+                }
+            );
+        }
+
+        return quests;
+    }, []);
+
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+    const {
+        currentQuest,
+        difficulty,
+        stage,
+        lastCheck,
+        inputs,
+        setInputs,
+        verify,
+        next,
+        handleDifficultyChange,
+        handleStageChange,
+    } = useQuestManager<SP303Quest, Stage>({
+        buildPool,
+        initialStage: "POTENTIAL",
+    });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("sp3-03", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
+    const stagesProps = useMemo(() => [
+        { id: "POTENTIAL" as Stage, label: t.stages.potential },
+        { id: "KINETIC" as Stage, label: t.stages.kinetic },
+        { id: "POWER" as Stage, label: t.stages.work },
+    ], [t.stages]);
+
+    if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
 
     return (
-        <div className="min-h-screen bg-black text-green-400 font-mono p-4 relative overflow-hidden">
-            {/* Cyber grid background */}
-            <div className="fixed inset-0 opacity-10 pointer-events-none">
-                <div
-                    className="w-full h-full"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px)
-                        `,
-                        backgroundSize: "50px 50px",
-                    }}
-                />
-            </div>
-
-            {/* Header */}
-            <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
-                <div className="flex justify-between items-center mb-2">
-                    <h1 className="text-2xl font-bold text-cyan-400">
-                        {t("sp3_03.title")}
-                    </h1>
-                    <Link
-                        href="/"
-                        className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors"
-                    >
-                        {t("sp3_03.back")}
-                    </Link>
-                </div>
-                <div className="text-sm text-cyan-300/70">{t("sp3_03.footer_left")}</div>
-            </div>
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {/* Canvas */}
-                <div className="lg:col-span-2 border-2 border-purple-500 bg-black/80 h-[600px]">
-                    <WaveCanvas
-                        amplitude={amplitude}
-                        frequency={frequency}
-                        waveSpeed={waveSpeed}
-                        showParticles={showParticles}
-                        waveType={waveType}
-                    />
-                </div>
-
-                {/* Control Panel */}
-                <div className="border-2 border-green-500 p-4 bg-black/80 space-y-4 overflow-y-auto max-h-[600px]">
-                    <div className="border-b border-green-500 pb-2 mb-4">
-                        <h2 className="text-lg font-bold text-green-400">
-                            {t("sp3_03.monitor_title")}
-                        </h2>
+        <ChamberLayout
+            title={t.title}
+            moduleCode="SP3.03"
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={stagesProps}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
+            footerLeft={t.footer_left}
+            translations={{
+                back: t.back,
+                check: t.check,
+                next: t.next,
+                correct: t.correct,
+                incorrect: t.incorrect,
+                difficulty: t.difficulty,
+            }}
+            monitorContent={<HydroCanvas stage={stage} />}
+        >
+            <div className="space-y-6">
+                <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
+                    <div className="text-lg">
+                        <InlineMath math={currentQuest.promptLatex} />
                     </div>
-
-                    {/* Wave Type Selection */}
-                    <div className="space-y-2">
-                        <label className="text-sm text-cyan-400">{t("sp3_03.labels.wave_type")}</label>
-                        <div className="flex gap-2">
-                            <button
-                                onClick={() => setWaveType("transverse")}
-                                className={`flex-1 px-3 py-2 border transition-colors ${
-                                    waveType === "transverse"
-                                        ? "border-cyan-500 bg-cyan-500/20 text-cyan-300"
-                                        : "border-gray-600 text-white hover:border-cyan-500/50"
-                                }`}
-                            >
-                                {t("sp3_03.labels.transverse")}
-                            </button>
-                            <button
-                                onClick={() => setWaveType("longitudinal")}
-                                className={`flex-1 px-3 py-2 border transition-colors ${
-                                    waveType === "longitudinal"
-                                        ? "border-green-500 bg-green-500/20 text-green-300"
-                                        : "border-gray-600 text-white hover:border-green-500/50"
-                                }`}
-                            >
-                                {t("sp3_03.labels.longitudinal")}
-                            </button>
-                        </div>
+                    <div className="text-cyan-300">
+                        <InlineMath math={currentQuest.expressionLatex} />
                     </div>
-
-                    {/* Amplitude Control */}
-                    <div className="space-y-2">
-                        <label className="text-sm text-yellow-400">
-                            {t("sp3_03.labels.amplitude")} (A)
-                        </label>
-                        <input
-                            type="range"
-                            min="0.2"
-                            max="2.0"
-                            step="0.1"
-                            value={amplitude}
-                            onChange={(e) => setAmplitude(Number(e.target.value))}
-                            className="w-full"
-                        />
-                        <div className="text-center text-lg text-yellow-300">{amplitude.toFixed(1)} m</div>
-                    </div>
-
-                    {/* Frequency Control */}
-                    <div className="space-y-2">
-                        <label className="text-sm text-purple-400">
-                            {t("sp3_03.labels.frequency")} (f)
-                        </label>
-                        <input
-                            type="range"
-                            min="0.1"
-                            max="2.0"
-                            step="0.1"
-                            value={frequency}
-                            onChange={(e) => setFrequency(Number(e.target.value))}
-                            className="w-full"
-                        />
-                        <div className="text-center text-lg text-purple-300">{frequency.toFixed(1)} Hz</div>
-                    </div>
-
-                    {/* Wave Speed Control */}
-                    <div className="space-y-2">
-                        <label className="text-sm text-pink-400">
-                            {t("sp3_03.labels.wave_speed")} (v)
-                        </label>
-                        <input
-                            type="range"
-                            min="0.5"
-                            max="3.0"
-                            step="0.1"
-                            value={waveSpeed}
-                            onChange={(e) => setWaveSpeed(Number(e.target.value))}
-                            className="w-full"
-                        />
-                        <div className="text-center text-lg text-pink-300">{waveSpeed.toFixed(1)} m/s</div>
-                    </div>
-
-                    {/* Show Particles Toggle */}
-                    {waveType === "transverse" && (
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={showParticles}
-                                onChange={(e) => setShowParticles(e.target.checked)}
-                                className="w-4 h-4"
-                            />
-                            <span className="text-cyan-400">{t("sp3_03.labels.show_particles")}</span>
-                        </label>
-                    )}
-
-                    {/* Calculated Values */}
-                    <div className="border border-green-500 p-3 space-y-2">
-                        <div className="text-sm text-green-400">{t("sp3_03.labels.calculated")}</div>
-                        <div className="space-y-1 text-sm">
-                            <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp3_03.labels.wavelength")} (λ):</span>
-                                <span className="text-cyan-200 font-bold">{wavelength.toFixed(2)} m</span>
+                    <div className="space-y-3">
+                        {currentQuest.slots.map((slot) => (
+                            <div key={slot.id} className="flex items-center gap-3">
+                                <InlineMath math={slot.labelLatex} />
+                                <input
+                                    type="text"
+                                    value={inputs[slot.id] || ""}
+                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                                    className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white"
+                                />
                             </div>
-                            <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp3_03.labels.period")} (T):</span>
-                                <span className="text-cyan-200 font-bold">{period.toFixed(2)} s</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-cyan-300">{t("sp3_03.labels.angular_freq")} (ω):</span>
-                                <span className="text-cyan-200 font-bold">{omega.toFixed(2)} rad/s</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Formulas */}
-                    <div className="border border-purple-500 p-3 space-y-2">
-                        <div className="text-sm text-purple-400">{t("sp3_03.labels.formulas")}</div>
-                        <div className="text-xs space-y-1 text-purple-300/80">
-                            <div>y = A·sin(kx - ωt + φ)</div>
-                            <div>v = λ·f</div>
-                            <div>T = 1/f</div>
-                            <div>ω = 2πf</div>
-                            <div>k = 2π/λ</div>
-                        </div>
-                    </div>
-
-                    {/* Mission Info */}
-                    <div className="border border-amber-500 p-3 space-y-2">
-                        <div className="text-sm text-amber-400">{t("sp3_03.mission.title")}</div>
-                        <div className="text-xs text-amber-300/80">
-                            {t("sp3_03.mission.description")}
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
-        </div>
+        </ChamberLayout>
     );
 }

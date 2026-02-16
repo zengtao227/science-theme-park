@@ -360,12 +360,43 @@ export const cnPhysics = {
 
     // --- 热力学 (保留自 GP2 系列) ---
     gp2_01: {
+        back: "返回核心枢纽",
         title: "GP2.01 // 气体定律",
-        stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" }
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "分子动理论分析",
+        target_title: "理想气体状态",
+        next: "执行下一序列",
+        check: "验证状态",
+        correct: "状态已平衡",
+        incorrect: "方程不匹配",
+        ready: "状态就绪",
+        monitor_title: "GP2.01_热力学监视器",
+        footer_left: "GP2.01_热力学 // 节点：巴塞尔",
+        stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" },
+        scenarios: {
+            ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
+            boyles_law: "波义耳定律：在温度恒定的情况下，体积与压强成反比。",
+            charles_law: "查理定律：在压强恒定的情况下，体积与温度成正比。"
+        }
     },
     gp2_02: {
+        back: "返回核心枢纽",
         title: "GP2.02 // 热力学第一定律",
-        stages: { first_law: "能量守恒", internal_energy: "系统内能", work_heat: "功与热量" }
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        objective_title: "内能转换分析",
+        next: "下一阶段",
+        check: "验证能量",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "GP2.02_热力学监视器",
+        footer_left: "GP2.02_热力学 // 节点：巴塞尔",
+        stages: { first_law: "能量守恒", internal_energy: "系统内能", work_heat: "功与热量" },
+        scenarios: {
+            first_law: "热力学第一定律即能量守恒定律。",
+            internal_energy: "内能取决于系统的温度和状态。",
+            work_heat: "热量和功是能量转移的两种方式。"
+        }
     },
     gp2_03: {
         title: "GP2.03 // 热机效率",

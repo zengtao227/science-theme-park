@@ -358,12 +358,43 @@ export const dePhysics = {
 
     // --- Thermodynamik (Legacy GP2 Serie) ---
     gp2_01: {
+        back: "Zurück zum Nexus",
         title: "GP2.01 // GASGESETZE",
-        stages: { ideal_gas: "IDEALES GAS", boyles: "BOYLE-MARIOTTE", charles: "GAY-LUSSAC" }
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        objective_title: "Analyse der kinetischen Gastheorie",
+        target_title: "Idealer Gaszustand",
+        next: "Nächste Transformation",
+        check: "Zustand analysieren",
+        correct: "Zustand stabil",
+        incorrect: "Gleichungsfehler",
+        ready: "Stabil",
+        monitor_title: "GP2.01_THERMO_MONITOR",
+        footer_left: "GP2.01_THERMODYNAMIK // KNOTEN: BASEL",
+        stages: { ideal_gas: "IDEALES GAS", boyles: "BOYLE-MARIOTTE", charles: "GAY-LUSSAC" },
+        scenarios: {
+            ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
+            boyles_law: "Boyle-Mariotte-Gesetz: Bei konstanter Temperatur ist das Volumen umgekehrt proportional zum Druck.",
+            charles_law: "Gesetz von Gay-Lussac: Bei konstantem Druck ist das Volumen direkt proportional zur Temperatur."
+        }
     },
     gp2_02: {
+        back: "Zurück zum Nexus",
         title: "GP2.02 // THERMODYNAMIK I",
-        stages: { first_law: "ERSTER HAUPTSATZ", internal_energy: "INNERE ENERGIE", work_heat: "ARBEIT & WÄRME" }
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        objective_title: "Analyse der thermischen Energie",
+        next: "Nächste Phase",
+        check: "Energie verifizieren",
+        correct: "Bestätigt",
+        incorrect: "Abweichung",
+        ready: "Bereit",
+        monitor_title: "GP2.02_THERMO_MONITOR",
+        footer_left: "GP2.02_THERMODYNAMIK // KNOTEN: BASEL",
+        stages: { first_law: "ERSTER HAUPTSATZ", internal_energy: "INNERE ENERGIE", work_heat: "ARBEIT & WÄRME" },
+        scenarios: {
+            first_law: "Der erste Hauptsatz der Thermodynamik ist der Satz von der Erhaltung der Energie.",
+            internal_energy: "Die innere Energie hängt von der Temperatur und dem Zustand des Systems ab.",
+            work_heat: "Wärme und Arbeit sind die zwei Arten, wie Energie übertragen wird."
+        }
     },
     gp2_03: {
         title: "GP2.03 // WÄRMEMASCHINEN",

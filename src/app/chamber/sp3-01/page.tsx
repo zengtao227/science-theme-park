@@ -20,11 +20,11 @@ interface SP301Quest extends Quest {
     measurement?: string;
 }
 
-type SP301T = typeof translations.EN.sp1_01;
+type SP301T = typeof translations.EN.sp3_01;
 
 export default function SP301Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_01 || translations.EN.sp1_01) as SP301T;
+    const t = (translations[currentLanguage]?.sp3_01 || translations.EN.sp3_01) as SP301T;
     const [selectedTool, setSelectedTool] = useState<string>("ruler");
     const [measurementValue, setMeasurementValue] = useState<number>(0);
 

@@ -108,8 +108,8 @@ export const enCommon = {
         sp3_01_subtitle: "Master SI units, unit conversions, and measurement precision with Basel lab instruments.",
         sp3_02_title: "SP3.02 // FORCES & MOTION",
         sp3_02_subtitle: "The mechanics of Basel: Explore friction, acceleration, and collision dynamics.",
-        sp3_03_title: "SP3.03 // ENERGY & POWER",
-        sp3_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and power output.",
+        sp3_03_title: "SP3.03 // ENERGY & WORK",
+        sp3_03_subtitle: "Model Rhine hydropower with potential energy, kinetic energy, and work/power output.",
         sp3_04_title: "SP3.04 // FLUIDS & PRESSURE",
         sp3_04_subtitle: "Explore pressure, buoyancy, and hydraulics in the Basel Rhine harbor.",
         sp3_05_title: "SP3.05 // SIMPLE MACHINES",
@@ -123,8 +123,10 @@ export const enCommon = {
 
         sp2_02_title: "SP2.02 // CIRCUIT SANDBOX",
         sp2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
-        sp2_03_title: "SP2.03 // MOTOR LAB",
         sp2_03_subtitle: "Electromagnetism and motor principles.",
+
+        gp2_01_title: "GP2.01 // THERMODYNAMICS I",
+        gp2_01_subtitle: "Gas laws, heat, and internal energy in Basel's energy systems.",
 
         gp1_01_title: "GP1.01 // THE ATOMIC CORE",
         gp1_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",

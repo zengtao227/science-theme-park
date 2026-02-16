@@ -17,11 +17,11 @@ interface SP305Quest extends Quest {
     machineType?: string;
 }
 
-type SP305T = typeof translations.EN.sp1_04;
+type SP305T = typeof translations.EN.sp3_05;
 
 export default function SP305Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_04 || translations.EN.sp1_04) as SP305T;
+    const t = (translations[currentLanguage]?.sp3_05 || translations.EN.sp3_05) as SP305T;
     const [forceRatio, setForceRatio] = useState(2);
     const [showForces, setShowForces] = useState(true);
 

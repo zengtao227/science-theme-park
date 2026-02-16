@@ -360,12 +360,43 @@ export const enPhysics = {
 
     // --- Thermodynamics (Legacy GP2 series) ---
     gp2_01: {
+        back: "Return to Nexus",
         title: "GP2.01 // GAS LAWS",
-        stages: { ideal_gas: "IDEAL GAS", boyles: "BOYLE'S LAW", charles: "CHARLES'S LAW" }
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Kinetic Theory Analysis",
+        target_title: "Ideal Gas State",
+        next: "Next Transformation",
+        check: "Analyze State",
+        correct: "State Balanced",
+        incorrect: "Equation Mismatch",
+        ready: "Stable",
+        monitor_title: "GP2.01_THERMO_MONITOR",
+        footer_left: "GP2.01_THERMODYNAMICS // NODE: BASEL",
+        stages: { ideal_gas: "IDEAL GAS", boyles: "BOYLE'S LAW", charles: "CHARLES'S LAW" },
+        scenarios: {
+            ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",
+            boyles_law: "Boyle's Law: At constant temperature, volume is inversely proportional to pressure.",
+            charles_law: "Charles's Law: At constant pressure, volume is directly proportional to temperature."
+        }
     },
     gp2_02: {
+        back: "Return to Nexus",
         title: "GP2.02 // THERMODYNAMICS I",
-        stages: { first_law: "FIRST LAW", internal_energy: "INTERNAL ENERGY", work_heat: "WORK & HEAT" }
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Thermal Energy Analysis",
+        next: "Next Phase",
+        check: "Verify Energy",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GP2.02_THERMO_MONITOR",
+        footer_left: "GP2.02_THERMODYNAMICS // NODE: BASEL",
+        stages: { first_law: "FIRST LAW", internal_energy: "INTERNAL ENERGY", work_heat: "WORK & HEAT" },
+        scenarios: {
+            first_law: "The First Law of Thermodynamics is the law of conservation of energy.",
+            internal_energy: "Internal energy depends on the temperature and state of the system.",
+            work_heat: "Heat and work are the two ways energy is transferred."
+        }
     },
     gp2_03: {
         title: "GP2.03 // HEAT ENGINES",
