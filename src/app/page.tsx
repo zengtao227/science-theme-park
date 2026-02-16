@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { translations } from '@/lib/i18n';
+import { useLanguage, translations } from '@/lib/i18n';
 import EntryProtocol from '@/components/EntryProtocol';
 import ModuleCard from '@/components/ui/ModuleCard';
 import MasteryRadar from '@/components/ui/MasteryRadar';
@@ -17,7 +17,8 @@ import UserSetup from '@/components/UserSetup';
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history, currentUser } = useAppStore();
-  const t = translations[currentLanguage];
+  const { t } = useLanguage();
+  const translations_raw = translations[currentLanguage];
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
     DE: '🇩🇪 DE',
@@ -76,91 +77,93 @@ export default function Home() {
   };
 
   const mathModules = useMemo(() => ([
-    { code: "SM1.01", title: t.home.sm1_01_title, desc: t.home.sm1_01_subtitle, color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
-    { code: "SM1.02", title: t.home.sm1_02_title, desc: t.home.sm1_02_subtitle, color: "neon-purple", href: "/chamber/sm1-02", tags: ["math"] },
-    { code: "SM1.03", title: t.home.sm1_03_title, desc: t.home.sm1_03_subtitle, color: "neon-cyan", href: "/chamber/sm1-03", tags: ["math"] },
-    { code: "SM1.04", title: t.home.sm1_04_title, desc: t.home.sm1_04_subtitle, color: "neon-green", href: "/chamber/sm1-04", tags: ["math"] },
-    { code: "SM1.05", title: t.home.sm1_05_title, desc: t.home.sm1_05_subtitle, color: "neon-cyan", href: "/chamber/sm1-05", tags: ["math"] },
-    { code: "SM2.01", title: t.home.sm2_01_title, desc: t.home.sm2_01_subtitle, color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
-    { code: "SM2.02", title: t.home.sm2_02_title, desc: t.home.sm2_02_subtitle, color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
-    { code: "SM2.03", title: t.home.sm2_03_title, desc: t.home.sm2_03_subtitle, color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
-    { code: "SM2.04", title: t.home.sm2_04_title, desc: t.home.sm2_04_subtitle, color: "neon-cyan", href: "/chamber/sm2-04", tags: ["math", "socratic"] },
-    { code: "SM2.05", title: t.home.sm2_05_title, desc: t.home.sm2_05_subtitle, color: "neon-cyan", href: "/chamber/sm2-05", tags: ["math"] },
-    { code: "SM2.06", title: t.home.sm2_06_title, desc: t.home.sm2_06_subtitle, color: "neon-cyan", href: "/chamber/sm2-06", tags: ["math"] },
-    { code: "SM2.07", title: t.home.sm2_07_title, desc: t.home.sm2_07_subtitle, color: "neon-green", href: "/chamber/sm2-07", tags: ["math"] },
-    { code: "SM2.08", title: t.home.sm2_08_title, desc: t.home.sm2_08_subtitle, color: "neon-purple", href: "/chamber/sm2-08", tags: ["math"] },
-    { code: "SM2.10", title: t.home.sm2_10_title, desc: t.home.sm2_10_subtitle, color: "neon-cyan", href: "/chamber/sm2-10", tags: ["math"] },
-    { code: "SM3.01", title: t.home.sm3_01_title, desc: t.home.sm3_01_subtitle, color: "neon-purple", href: "/chamber/sm3-01", tags: ["math", "socratic"] },
-    { code: "SM3.02", title: t.home.sm3_02_title, desc: t.home.sm3_02_subtitle, color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
-    { code: "SM3.03", title: t.home.sm3_03_title, desc: t.home.sm3_03_subtitle, color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
-    { code: "SM3.04", title: t.home.sm3_04_title, desc: t.home.sm3_04_subtitle, color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
-    { code: "SM3.05", title: t.home.sm3_05_title, desc: t.home.sm3_05_subtitle, color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
-    { code: "GM1.01", title: t.home.gm1_01_title, desc: t.home.gm1_01_subtitle, color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
-    { code: "GM1.01-ADV", title: t.home.gm1_01_title + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
-    { code: "GM2.01", title: t.home.gm2_01_title, desc: t.home.gm2_01_subtitle, color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
-    { code: "GM3.01", title: t.home.gm3_01_title, desc: t.home.gm3_01_subtitle, color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
-    { code: "GM4.01", title: t.home.gm4_01_title, desc: t.home.gm4_01_subtitle, color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
+    { code: "SM1.01", title: t("home.sm1_01_title"), desc: t("home.sm1_01_subtitle"), color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
+    { code: "SM1.02", title: t("home.sm1_02_title"), desc: t("home.sm1_02_subtitle"), color: "neon-purple", href: "/chamber/sm1-02", tags: ["math"] },
+    { code: "SM1.03", title: t("home.sm1_03_title"), desc: t("home.sm1_03_subtitle"), color: "neon-cyan", href: "/chamber/sm1-03", tags: ["math"] },
+    { code: "SM1.04", title: t("home.sm1_04_title"), desc: t("home.sm1_04_subtitle"), color: "neon-green", href: "/chamber/sm1-04", tags: ["math"] },
+    { code: "SM1.05", title: t("home.sm1_05_title"), desc: t("home.sm1_05_subtitle"), color: "neon-cyan", href: "/chamber/sm1-05", tags: ["math"] },
+    { code: "SM2.01", title: t("home.sm2_01_title"), desc: t("home.sm2_01_subtitle"), color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
+    { code: "SM2.02", title: t("home.sm2_02_title"), desc: t("home.sm2_02_subtitle"), color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
+    { code: "SM2.03", title: t("home.sm2_03_title"), desc: t("home.sm2_03_subtitle"), color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
+    { code: "SM2.04", title: t("home.sm2_04_title"), desc: t("home.sm2_04_subtitle"), color: "neon-cyan", href: "/chamber/sm2-04", tags: ["math", "socratic"] },
+    { code: "SM2.05", title: t("home.sm2_05_title"), desc: t("home.sm2_05_subtitle"), color: "neon-cyan", href: "/chamber/sm2-05", tags: ["math"] },
+    { code: "SM2.06", title: t("home.sm2_06_title"), desc: t("home.sm2_06_subtitle"), color: "neon-cyan", href: "/chamber/sm2-06", tags: ["math"] },
+    { code: "SM2.07", title: t("home.sm2_07_title"), desc: t("home.sm2_07_subtitle"), color: "neon-green", href: "/chamber/sm2-07", tags: ["math"] },
+    { code: "SM2.08", title: t("home.sm2_08_title"), desc: t("home.sm2_08_subtitle"), color: "neon-purple", href: "/chamber/sm2-08", tags: ["math"] },
+    { code: "SM2.10", title: t("home.sm2_10_title"), desc: t("home.sm2_10_subtitle"), color: "neon-cyan", href: "/chamber/sm2-10", tags: ["math"] },
+    { code: "SM3.01", title: t("home.sm3_01_title"), desc: t("home.sm3_01_subtitle"), color: "neon-purple", href: "/chamber/sm3-01", tags: ["math", "socratic"] },
+    { code: "SM3.02", title: t("home.sm3_02_title"), desc: t("home.sm3_02_subtitle"), color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
+    { code: "SM3.03", title: t("home.sm3_03_title"), desc: t("home.sm3_03_subtitle"), color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
+    { code: "SM3.04", title: t("home.sm3_04_title"), desc: t("home.sm3_04_subtitle"), color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
+    { code: "SM3.05", title: t("home.sm3_05_title"), desc: t("home.sm3_05_subtitle"), color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
+    { code: "GM1.01", title: t("home.gm1_01_title"), desc: t("home.gm1_01_subtitle"), color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
+    { code: "GM1.01-ADV", title: t("home.gm1_01_title") + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
+    { code: "GM2.01", title: t("home.gm2_01_title"), desc: t("home.gm2_01_subtitle"), color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
+    { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
+    { code: "GM4.01", title: t("home.gm4_01_title"), desc: t("home.gm4_01_subtitle"), color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
-    { code: "SP3.01", title: t.home.sp3_01_title, desc: t.home.sp3_01_subtitle, color: "neon-green", href: "/chamber/sp3-01", tags: ["physics"] },
-    { code: "SP3.02", title: t.home.sp3_02_title, desc: t.home.sp3_02_subtitle, color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
-    { code: "SP3.03", title: t.home.sp3_03_title, desc: t.home.sp3_03_subtitle, color: "neon-amber", href: "/chamber/sp3-03", tags: ["physics"] },
-    { code: "SP3.04", title: t.home.sp3_04_title, desc: t.home.sp3_04_subtitle, color: "neon-cyan", href: "/chamber/sp3-04", tags: ["physics"] },
-    { code: "SP3.05", title: t.home.sp3_05_title, desc: t.home.sp3_05_subtitle, color: "neon-amber", href: "/chamber/sp3-05", tags: ["physics"] },
-    { code: "SP3.06", title: t.home.sp3_06_title, desc: t.home.sp3_06_subtitle, color: "neon-green", href: "/chamber/sp3-06", tags: ["physics"] },
-    { code: "SP3.08", title: t.home.sp3_08_title, desc: t.home.sp3_08_subtitle, color: "neon-purple", href: "/chamber/sp3-08", tags: ["physics"] },
-    { code: "GP2.01", title: t.home.gp2_01_title, desc: t.home.gp2_01_subtitle, color: "neon-amber", href: "/chamber/gp2-01", tags: ["physics"] },
-    { code: "GP1.01", title: t.home.gp1_01_title, desc: t.home.gp1_01_subtitle, color: "neon-cyan", href: "/chamber/gp1-01", tags: ["physics"] },
-    { code: "GP1.02", title: t.home.gp1_02_title, desc: t.home.gp1_02_subtitle, color: "neon-purple", href: "/chamber/gp1-02", tags: ["physics"] },
-    { code: "GP1.03", title: t.home.gp1_03_title, desc: t.home.gp1_03_subtitle, color: "neon-amber", href: "/chamber/gp1-03", tags: ["physics"] },
-    { code: "GP1.04", title: t.home.gp1_04_title, desc: t.home.gp1_04_subtitle, color: "neon-purple", href: "/chamber/gp1-04", tags: ["physics"] },
+    { code: "SP3.01", title: t("home.sp3_01_title"), desc: t("home.sp3_01_subtitle"), color: "neon-green", href: "/chamber/sp3-01", tags: ["physics"] },
+    { code: "SP3.02", title: t("home.sp3_02_title"), desc: t("home.sp3_02_subtitle"), color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
+    { code: "SP3.03", title: t("home.sp3_03_title"), desc: t("home.sp3_03_subtitle"), color: "neon-amber", href: "/chamber/sp3-03", tags: ["physics"] },
+    { code: "SP3.04", title: t("home.sp3_04_title"), desc: t("home.sp3_04_subtitle"), color: "neon-cyan", href: "/chamber/sp3-04", tags: ["physics"] },
+    { code: "SP3.05", title: t("home.sp3_05_title"), desc: t("home.sp3_05_subtitle"), color: "neon-amber", href: "/chamber/sp3-05", tags: ["physics"] },
+    { code: "SP3.06", title: t("home.sp3_06_title"), desc: t("home.sp3_06_subtitle"), color: "neon-green", href: "/chamber/sp3-06", tags: ["physics"] },
+    { code: "SP3.08", title: t("home.sp3_08_title"), desc: t("home.sp3_08_subtitle"), color: "neon-purple", href: "/chamber/sp3-08", tags: ["physics"] },
+    { code: "GP2.01", title: t("home.gp2_01_title"), desc: t("home.gp2_01_subtitle"), color: "neon-amber", href: "/chamber/gp2-01", tags: ["physics"] },
+    { code: "GP1.01", title: t("home.gp1_01_title"), desc: t("home.gp1_01_subtitle"), color: "neon-cyan", href: "/chamber/gp1-01", tags: ["physics"] },
+    { code: "GP1.02", title: t("home.gp1_02_title"), desc: t("home.gp1_02_subtitle"), color: "neon-purple", href: "/chamber/gp1-02", tags: ["physics"] },
+    { code: "GP1.03", title: t("home.gp1_03_title"), desc: t("home.gp1_03_subtitle"), color: "neon-amber", href: "/chamber/gp1-03", tags: ["physics"] },
+    { code: "GP1.04", title: t("home.gp1_04_title"), desc: t("home.gp1_04_subtitle"), color: "neon-purple", href: "/chamber/gp1-04", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
-    { code: "SC1.01", title: t.home.sc1_01_title, desc: t.home.sc1_01_subtitle, color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
-    { code: "SC1.02", title: t.home.sc1_02_title, desc: t.home.sc1_02_subtitle, color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
-    { code: "SC1.03", title: t.home.sc1_03_title || "SC1.03 // ATOMS FORGE", desc: t.home.sc1_03_subtitle || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
-    { code: "SC1.04", title: t.home.sc1_04_title, desc: t.home.sc1_04_subtitle, color: "neon-cyan", href: "/chamber/sc1-04", tags: ["chemistry"] },
-    { code: "SC2.01", title: t.home.sc2_01_title, desc: t.home.sc2_01_subtitle, color: "neon-cyan", href: "/chamber/sc2-01", tags: ["chemistry"] },
-    { code: "SC2.02", title: t.home.sc2_02_title, desc: t.home.sc2_02_subtitle, color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
-    { code: "SC2.03", title: t.home.sc2_03_title, desc: t.home.sc2_03_subtitle, color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
-    { code: "SC2.04", title: t.home.sc2_04_title, desc: t.home.sc2_04_subtitle, color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
-    { code: "SC3.01", title: t.home.sc3_01_title, desc: t.home.sc3_01_subtitle, color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
-    { code: "SC3.02", title: t.home.sc3_02_title, desc: t.home.sc3_02_subtitle, color: "neon-purple", href: "/chamber/sc3-02", tags: ["chemistry"] },
-    { code: "SC3.03", title: t.home.sc3_03_title, desc: t.home.sc3_03_subtitle, color: "neon-purple", href: "/chamber/sc3-03", tags: ["chemistry"] },
-    { code: "SC3.04", title: t.home.sc3_04_title, desc: t.home.sc3_04_subtitle, color: "neon-purple", href: "/chamber/sc3-04", tags: ["chemistry"] },
-    { code: "GC1.01", title: t.home.gc1_01_title, desc: t.home.gc1_01_subtitle, color: "neon-amber", href: "/chamber/gc1-01", tags: ["chemistry"] },
-    { code: "GC1.02", title: t.home.gc1_02_title, desc: t.home.gc1_02_subtitle, color: "neon-amber", href: "/chamber/gc1-02", tags: ["chemistry"] },
-    { code: "GC2.01", title: t.home.gc2_01_title, desc: t.home.gc2_01_subtitle, color: "neon-green", href: "/chamber/gc2-01", tags: ["chemistry"] },
-    { code: "GC3.01", title: t.home.gc3_01_title, desc: t.home.gc3_01_subtitle, color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
-    { code: "GC3.02", title: t.home.gc3_02_title, desc: t.home.gc3_02_subtitle, color: "neon-purple", href: "/chamber/gc3-02", tags: ["chemistry"] },
+    { code: "SC1.01", title: t("home.sc1_01_title"), desc: t("home.sc1_01_subtitle"), color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
+    { code: "SC1.02", title: t("home.sc1_02_title"), desc: t("home.sc1_02_subtitle"), color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
+    { code: "SC1.03", title: t("home.sc1_03_title") || "SC1.03 // ATOMS FORGE", desc: t("home.sc1_03_subtitle") || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
+    { code: "SC1.04", title: t("home.sc1_04_title"), desc: t("home.sc1_04_subtitle"), color: "neon-cyan", href: "/chamber/sc1-04", tags: ["chemistry"] },
+    { code: "SC2.01", title: t("home.sc2_01_title"), desc: t("home.sc2_01_subtitle"), color: "neon-cyan", href: "/chamber/sc2-01", tags: ["chemistry"] },
+    { code: "SC2.02", title: t("home.sc2_02_title"), desc: t("home.sc2_02_subtitle"), color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
+    { code: "SC2.03", title: t("home.sc2_03_title"), desc: t("home.sc2_03_subtitle"), color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
+    { code: "SC2.04", title: t("home.sc2_04_title"), desc: t("home.sc2_04_subtitle"), color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
+    { code: "SC3.01", title: t("home.sc3_01_title"), desc: t("home.sc3_01_subtitle"), color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
+    { code: "SC3.02", title: t("home.sc3_02_title"), desc: t("home.sc3_02_subtitle"), color: "neon-purple", href: "/chamber/sc3-02", tags: ["chemistry"] },
+    { code: "SC3.03", title: t("home.sc3_03_title"), desc: t("home.sc3_03_subtitle"), color: "neon-purple", href: "/chamber/sc3-03", tags: ["chemistry"] },
+    { code: "SC3.04", title: t("home.sc3_04_title"), desc: t("home.sc3_04_subtitle"), color: "neon-purple", href: "/chamber/sc3-04", tags: ["chemistry"] },
+    { code: "GC1.01", title: t("home.gc1_01_title"), desc: t("home.gc1_01_subtitle"), color: "neon-amber", href: "/chamber/gc1-01", tags: ["chemistry"] },
+    { code: "GC1.02", title: t("home.gc1_02_title"), desc: t("home.gc1_02_subtitle"), color: "neon-amber", href: "/chamber/gc1-02", tags: ["chemistry"] },
+    { code: "GC2.01", title: t("home.gc2_01_title"), desc: t("home.gc2_01_subtitle"), color: "neon-green", href: "/chamber/gc2-01", tags: ["chemistry"] },
+    { code: "GC3.01", title: t("home.gc3_01_title"), desc: t("home.gc3_01_subtitle"), color: "neon-green", href: "/chamber/gc3-01", tags: ["chemistry"] },
+    { code: "GC3.02", title: t("home.gc3_02_title"), desc: t("home.gc3_02_subtitle"), color: "neon-purple", href: "/chamber/gc3-02", tags: ["chemistry"] },
   ]), [t]);
 
   const enrichmentModules = useMemo(() => ([
-    { code: "EM1.01", title: t.home.em1_01_title, desc: t.home.em1_01_subtitle + " (Advanced Geometry)", color: "neon-purple", href: "/chamber/em1-01", tags: ["math", "enrichment", "advanced"] },
-    { code: "EM2.01", title: t.home.em2_01_title, desc: t.home.em2_01_subtitle + " (Matura Preparation)", color: "neon-amber", href: "/chamber/em2-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM1.01", title: t("home.em1_01_title"), desc: t("home.em1_01_subtitle") + " (Advanced Geometry)", color: "neon-purple", href: "/chamber/em1-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM2.01", title: t("home.em2_01_title"), desc: t("home.em2_01_subtitle") + " (Matura Preparation)", color: "neon-amber", href: "/chamber/em2-01", tags: ["math", "enrichment", "advanced"] },
   ]), [t]);
 
   const biologyModules = useMemo(() => ([
-    { code: "SB1.01", title: t.home.sb1_01_title, desc: t.home.sb1_01_subtitle, color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
-    { code: "SB1.01-M", title: t.home.sb1_01_met_title, desc: t.home.sb1_01_met_subtitle, color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
-    { code: "SB1.02", title: t.home.sb1_02_title, desc: t.home.sb1_02_subtitle, color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
-    { code: "SB2.01", title: t.home.sb2_01_title, desc: t.home.sb2_01_subtitle, color: "neon-purple", href: "/chamber/sb2-01", tags: ["biology"] },
-    { code: "SB2.02", title: t.home.sb2_02_title, desc: t.home.sb2_02_subtitle, color: "neon-cyan", href: "/chamber/sb2-02", tags: ["biology"] },
-    { code: "GB2.01", title: t.home.gb2_01_title, desc: t.home.gb2_01_subtitle, color: "neon-purple", href: "/chamber/gb2-01", tags: ["biology"] },
-    { code: "SB3.01", title: t.home.sb3_01_title, desc: t.home.sb3_01_subtitle, color: "neon-green", href: "/chamber/sb3-01", tags: ["biology"] },
-    { code: "GB1.01", title: t.home.gb1_01_title, desc: t.home.gb1_01_subtitle, color: "neon-purple", href: "/chamber/gb1-01", tags: ["biology"] },
-    { code: "GB3.01", title: t.home.gb3_01_title, desc: t.home.gb3_01_subtitle, color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
-    { code: "GB3.02", title: t.home.gb3_02_title, desc: t.home.gb3_02_subtitle, color: "neon-amber", href: "/chamber/gb3-02", tags: ["biology"] },
+    { code: "SB1.01", title: t("home.sb1_01_title"), desc: t("home.sb1_01_subtitle"), color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
+    { code: "SB1.01-M", title: t("home.sb1_01_met_title"), desc: t("home.sb1_01_met_subtitle"), color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
+    { code: "SB1.02", title: t("home.sb1_02_title"), desc: t("home.sb1_02_subtitle"), color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
+    { code: "SB1.03", title: t("home.sb1_03_title"), desc: t("home.sb1_03_subtitle"), color: "neon-cyan", href: "/sb1-03", tags: ["biology"] },
+    { code: "SB2.01", title: t("home.sb2_01_title"), desc: t("home.sb2_01_subtitle"), color: "neon-purple", href: "/chamber/sb2-01-tissues", tags: ["biology"] },
+    { code: "SB2.02", title: t("home.sb2_02_title"), desc: t("home.sb2_02_subtitle"), color: "neon-cyan", href: "/chamber/sb2-02-body-systems", tags: ["biology"] },
+    { code: "SB2.03", title: t("home.sb2_03_title"), desc: t("home.sb2_03_subtitle"), color: "neon-purple", href: "/chamber/sb2-03", tags: ["biology"] },
+    { code: "GB2.01", title: t("home.gb2_01_title"), desc: t("home.gb2_01_subtitle"), color: "neon-purple", href: "/chamber/gb2-01", tags: ["biology"] },
+    { code: "SB3.01", title: t("home.sb3_01_title"), desc: t("home.sb3_01_subtitle"), color: "neon-green", href: "/chamber/sb3-01", tags: ["biology"] },
+    { code: "GB1.01", title: t("home.gb1_01_title"), desc: t("home.gb1_01_subtitle"), color: "neon-purple", href: "/chamber/gb1-01", tags: ["biology"] },
+    { code: "GB3.01", title: t("home.gb3_01_title"), desc: t("home.gb3_01_subtitle"), color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
+    { code: "GB3.02", title: t("home.gb3_02_title"), desc: t("home.gb3_02_subtitle"), color: "neon-amber", href: "/chamber/gb3-02", tags: ["biology"] },
   ]), [t]);
 
   const filterTags = useMemo(() => ([
-    { id: "physics", label: t.home.filter_tags.physics },
-    { id: "math", label: t.home.filter_tags.math },
-    { id: "chemistry", label: t.home.filter_tags.chemistry },
-    { id: "biology", label: t.home.filter_tags.biology },
-    { id: "socratic", label: t.home.filter_tags.socratic },
+    { id: "physics", label: t("home.filter_tags.physics") },
+    { id: "math", label: t("home.filter_tags.math") },
+    { id: "chemistry", label: t("home.filter_tags.chemistry") },
+    { id: "biology", label: t("home.filter_tags.biology") },
+    { id: "socratic", label: t("home.filter_tags.socratic") },
   ]), [t]);
 
   const toggleTag = (tagId: string) => {
@@ -205,7 +208,7 @@ export default function Home() {
               <Gamepad2 className="w-5 h-5 text-neon-green" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t.home.title}</h1>
+              <h1 className="text-xl font-bold tracking-tighter neon-text-green">{t("home.title")}</h1>
               <div className="flex gap-4 text-[10px] text-neutral-300 font-mono tracking-widest leading-none mt-1 uppercase">
                 <span>SYS.ONLINE</span>
                 <span className="text-neon-green">●</span>
@@ -221,7 +224,7 @@ export default function Home() {
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"
               >
                 <Medal className="w-4 h-4" />
-                {t.common.achievements_title}
+                {t("common.achievements_title")}
               </button>
               {languages.map((lang) => (
                 <button
@@ -248,7 +251,7 @@ export default function Home() {
         <div className="mb-4 flex items-start justify-between gap-8 relative">
           <div className="border-l-2 border-neon-green pl-6 py-2 flex-1 z-10">
             <h2 className="text-5xl font-black tracking-tighter mb-2 max-w-2xl leading-[0.9]">
-              {t.home.subtitle}
+              {t("home.subtitle")}
             </h2>
             <p className="text-white/50 font-mono text-sm tracking-widest uppercase">
               Interactive STEM Simulations // V2.2 (Scenario Update)
@@ -263,11 +266,11 @@ export default function Home() {
               rigor={masteryMetrics.rigor}
               decay={masteryMetrics.decay}
               labels={{
-                title: t.common.mastery_title,
-                conceptual: t.common.mastery_conceptual,
-                speed: t.common.mastery_speed,
-                rigor: t.common.mastery_rigor,
-                decay: t.common.mastery_decay,
+                title: t("common.mastery_title"),
+                conceptual: t("common.mastery_conceptual"),
+                speed: t("common.mastery_speed"),
+                rigor: t("common.mastery_rigor"),
+                decay: t("common.mastery_decay"),
               }}
             />
           </div>
@@ -275,10 +278,10 @@ export default function Home() {
 
         <div className="mb-8">
           <ModuleFilter
-            label={t.home.search_label}
+            label={t("home.search_label")}
             query={query}
-            placeholder={t.home.search_placeholder}
-            tagsLabel={t.home.filter_tags_label}
+            placeholder={t("home.search_placeholder")}
+            tagsLabel={t("home.filter_tags_label")}
             tags={filterTags}
             selectedTags={selectedTags}
             onQueryChange={setQuery}
@@ -287,11 +290,11 @@ export default function Home() {
               setQuery('');
               setSelectedTags([]);
             }}
-            clearLabel={t.home.filter_clear}
+            clearLabel={t("home.filter_clear")}
           />
           {totalFiltered === 0 && (
             <div className="mt-6 border border-white/10 bg-white/[0.02] rounded-xl px-5 py-4 text-xs font-mono text-white/60">
-              {t.home.filter_empty}
+              {t("home.filter_empty")}
             </div>
           )}
         </div>
@@ -321,8 +324,8 @@ export default function Home() {
                     color={module.color}
                     progress={getProgress(module.code)}
                     href={module.href}
-                    actionLabel={t.home.initiate_simulation}
-                    completedLabel={t.home.completed_badge}
+                    actionLabel={t("home.initiate_simulation")}
+                    completedLabel={t("home.completed_badge")}
                   />
                 </motion.div>
               ))}
@@ -355,8 +358,8 @@ export default function Home() {
                       color={module.color}
                       progress={getProgress(module.code)}
                       href={module.href}
-                      actionLabel={t.home.initiate_simulation}
-                      completedLabel={t.home.completed_badge}
+                      actionLabel={t("home.initiate_simulation")}
+                      completedLabel={t("home.completed_badge")}
                     />
                   </motion.div>
                 ))}
@@ -389,8 +392,8 @@ export default function Home() {
                       color={module.color}
                       progress={getProgress(module.code)}
                       href={module.href}
-                      actionLabel={t.home.initiate_simulation}
-                      completedLabel={t.home.completed_badge}
+                      actionLabel={t("home.initiate_simulation")}
+                      completedLabel={t("home.completed_badge")}
                     />
                   </motion.div>
                 ))}
@@ -423,8 +426,8 @@ export default function Home() {
                       color={module.color}
                       progress={getProgress(module.code)}
                       href={module.href}
-                      actionLabel={t.home.initiate_simulation}
-                      completedLabel={t.home.completed_badge}
+                      actionLabel={t("home.initiate_simulation")}
+                      completedLabel={t("home.completed_badge")}
                     />
                   </motion.div>
                 ))}
@@ -457,8 +460,8 @@ export default function Home() {
                       color={module.color}
                       progress={getProgress(module.code)}
                       href={module.href}
-                      actionLabel={t.home.initiate_simulation}
-                      completedLabel={t.home.completed_badge}
+                      actionLabel={t("home.initiate_simulation")}
+                      completedLabel={t("home.completed_badge")}
                     />
                   </motion.div>
                 ))}

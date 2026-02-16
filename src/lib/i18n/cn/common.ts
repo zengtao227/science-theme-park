@@ -189,6 +189,8 @@ export const cnCommon = {
         sb2_01_subtitle: "遗传学与庞尼特方格。",
         sb2_02_title: "SB2.02 // 人体系统",
         sb2_02_subtitle: "通过交互式解剖学探索消化、循环和呼吸系统。",
+        gb2_01_title: "GB2.01 // 神经生物学实验室",
+        gb2_01_subtitle: "探索人类大脑中的神经元、动作电位和突触传递。",
         sb3_01_title: "SB3.01 // 生态系统动力学",
         sb3_01_subtitle: "掌握莱茵河生态系统中的食物链、能量流动和生物地球化学循环。",
         gb3_01_title: "GB3.01 // DNA 锻造厂",

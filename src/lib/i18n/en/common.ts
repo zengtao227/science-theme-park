@@ -192,6 +192,8 @@ export const enCommon = {
         sb2_01_subtitle: "Genetics and Punnett squares.",
         sb2_02_title: "SB2.02 // HUMAN BODY SYSTEMS",
         sb2_02_subtitle: "Explore digestive, circulatory, and respiratory systems with interactive anatomy.",
+        gb2_01_title: "GB2.01 // NEUROBIOLOGY LAB",
+        gb2_01_subtitle: "Explore neurons, action potentials, and synaptic transmission in the human brain.",
         sb3_01_title: "SB3.01 // ECOSYSTEM DYNAMICS",
         sb3_01_subtitle: "Master food chains, energy flow, and biogeochemical cycles in the Rhine ecosystem.",
 

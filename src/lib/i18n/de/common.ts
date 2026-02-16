@@ -189,6 +189,8 @@ export const deCommon = {
         sb2_01_subtitle: "Genetik und Punnett-Quadrate.",
         sb2_02_title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
         sb2_02_subtitle: "Erkunde Verdauungs-, Kreislauf- und Atmungssysteme mit interaktiver Anatomie.",
+        gb2_01_title: "GB2.01 // NEUROBIOLOGIE-LABOR",
+        gb2_01_subtitle: "Erforschen Sie Neuronen, Aktionspotenziale und synaptische Übertragung im menschlichen Gehirn.",
         sb3_01_title: "SB3.01 // ÖKOSYSTEM-DYNAMIK",
         sb3_01_subtitle: "Meistere Nahrungsketten, Energiefluss und biogeochemische Kreisläufe im Rhein-Ökosystem.",
         gb1_01_title: "GB1.01 // EVOLUTIONSLABOR",
