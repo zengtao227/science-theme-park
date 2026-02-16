@@ -125,8 +125,10 @@ export default function SB101MetabolicPage() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    // Sync visual state with quest
-    useEffect(() => {
+    // Sync visual state with quest - using the "adjust state during render" pattern to satisfy React Compiler
+    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
+    if (currentQuest?.id !== prevQuestId) {
+        setPrevQuestId(currentQuest?.id);
         if (currentQuest) {
             if (currentQuest.stage === "OSMOSIS") {
                 if (currentQuest.statusKey === "hypertonic") setOsmolarity(-0.6);
@@ -136,7 +138,7 @@ export default function SB101MetabolicPage() {
                 setOsmolarity(currentQuest.targetOsmolarity || 0);
             }
         }
-    }, [currentQuest]);
+    }
 
     const stagesProps = useMemo(() => [
         { id: "OSMOSIS", label: t.stages.osmosis },
@@ -264,7 +266,7 @@ export default function SB101MetabolicPage() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

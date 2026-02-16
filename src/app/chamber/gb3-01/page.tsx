@@ -130,14 +130,16 @@ export default function GB301Page() {
         { id: "SEQUENCE", label: t.stages.sequence },
     ], [t]);
 
-    // Sync highlight with quest
-    useEffect(() => {
+    // Sync highlight with quest - using the "adjust state during render" pattern to satisfy React Compiler
+    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
+    if (currentQuest?.id !== prevQuestId) {
+        setPrevQuestId(currentQuest?.id);
         if (currentQuest && currentQuest.highlightIndex !== undefined) {
             setHighlightPair(currentQuest.highlightIndex);
         } else {
             setHighlightPair(null);
         }
-    }, [currentQuest]);
+    }
 
     const hint = getHint();
 
@@ -255,7 +257,7 @@ export default function GB301Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

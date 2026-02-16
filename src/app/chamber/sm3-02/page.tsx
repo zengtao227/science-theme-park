@@ -417,8 +417,10 @@ export default function S302Page() {
         initialStage: "UNIT_CIRCLE",
     });
 
-    // Sync angle from quest
-    useEffect(() => {
+    // Sync angle from quest - using the "adjust state during render" pattern to satisfy React Compiler
+    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
+    if (currentQuest?.id !== prevQuestId) {
+        setPrevQuestId(currentQuest?.id);
         if (currentQuest?.angle != null) {
             setAngle(currentQuest.angle);
             // Auto toggle relevant visuals based on quest type
@@ -426,7 +428,7 @@ export default function S302Page() {
             if (currentQuest.trigFunc === "cos") { setShowSin(false); setShowCos(true); setShowTan(false); }
             if (currentQuest.trigFunc === "tan") { setShowSin(false); setShowCos(false); setShowTan(true); }
         }
-    }, [currentQuest]);
+    }
 
     useEffect(() => {
         if (lastCheck?.ok) {

@@ -25,10 +25,10 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
           </button>
         ))}
       </div>
-      
+
       <div className="p-6 bg-gray-900/50 border border-cyan-500/30 rounded-lg">
         <div className="relative w-full h-64 bg-black/30 rounded flex items-center justify-center">
-          <div 
+          <div
             className="relative w-32 h-32"
             style={{
               transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
@@ -50,7 +50,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             )}
           </div>
         </div>
-        
+
         <div className="mt-4 space-y-2">
           <div className="flex items-center gap-4">
             <span className="text-cyan-400">Rotation X:</span>
@@ -117,7 +117,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             )}
           </div>
           <div>
-            <div className="text-cyan-400 mb-2">Euler's Formula:</div>
+            <div className="text-cyan-400 mb-2">Euler&apos;s Formula:</div>
             <div className="text-lg">V - E + F = 2</div>
             <div className="text-xs text-gray-400 mt-2">
               (for convex polyhedra)
@@ -135,7 +135,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="relative w-full h-64 bg-black/30 rounded flex items-center justify-center">
           <div className="relative">
             <div className="w-32 h-32 border-4 border-cyan-400 bg-cyan-500/20 relative">
-              <div 
+              <div
                 className="absolute inset-0 border-2 border-yellow-400 bg-yellow-500/20"
                 style={{ clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)' }}
               />
@@ -143,7 +143,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-yellow-400" />
           </div>
         </div>
-        
+
         <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Cube → Square</div>
@@ -189,24 +189,24 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
             {/* X-axis (red) */}
             <div className="absolute top-1/2 left-0 w-full h-0.5 bg-red-500" />
             <div className="absolute top-1/2 right-0 text-red-500 text-xs">X</div>
-            
+
             {/* Y-axis (green) */}
             <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500" />
             <div className="absolute left-1/2 top-0 text-green-500 text-xs">Y</div>
-            
+
             {/* Z-axis (blue) - diagonal to simulate depth */}
-            <div 
+            <div
               className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-blue-500"
               style={{ transform: 'rotate(-45deg) translateX(-50%)', transformOrigin: 'left' }}
             />
             <div className="absolute bottom-4 left-4 text-blue-500 text-xs">Z</div>
-            
+
             {/* Example point */}
             <div className="absolute top-1/3 left-2/3 w-3 h-3 bg-cyan-400 rounded-full" />
             <div className="absolute top-1/4 left-3/4 text-cyan-400 text-xs">(3, 4, 5)</div>
           </div>
         </div>
-        
+
         <div className="mt-4 space-y-2 text-sm">
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Distance Formula:</div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 interface FunctionalGroupCanvasProps {
     molecule: string;
@@ -11,31 +11,7 @@ interface FunctionalGroupCanvasProps {
 export default function FunctionalGroupCanvas({ molecule, highlight, stage }: FunctionalGroupCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.scale(dpr, dpr);
-
-        const w = rect.width;
-        const h = rect.height;
-
-        // Clear
-        ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, w, h);
-
-        drawMolecule(ctx, w, h, molecule, highlight);
-
-    }, [molecule, highlight, stage]);
-
-    const drawAtom = (ctx: CanvasRenderingContext2D, x: number, y: number, symbol: string, color: string, isHighlighted: boolean = false) => {
+    const drawAtom = useCallback((ctx: CanvasRenderingContext2D, x: number, y: number, symbol: string, color: string, isHighlighted: boolean = false) => {
         const radius = 18;
 
         // Highlight glow
@@ -65,18 +41,18 @@ export default function FunctionalGroupCanvas({ molecule, highlight, stage }: Fu
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(symbol, x, y);
-    };
+    }, []);
 
-    const drawBond = (ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, color: string = "#ffffff80", width: number = 3) => {
+    const drawBond = useCallback((ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, color: string = "#ffffff80", width: number = 3) => {
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.stroke();
-    };
+    }, []);
 
-    const drawMolecule = (ctx: CanvasRenderingContext2D, w: number, h: number, mol: string, hl: boolean) => {
+    const drawMolecule = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, mol: string, hl: boolean) => {
         const cx = w / 2;
         const cy = h / 2;
 
@@ -174,7 +150,31 @@ export default function FunctionalGroupCanvas({ molecule, highlight, stage }: Fu
             ctx.textAlign = "center";
             ctx.fillText(mol.toUpperCase(), cx, cy + 40);
         }
-    };
+    }, [drawAtom, drawBond]);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        const w = rect.width;
+        const h = rect.height;
+
+        // Clear
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, w, h);
+
+        drawMolecule(ctx, w, h, molecule, highlight);
+
+    }, [molecule, highlight, stage, drawMolecule]);
 
     return (
         <canvas

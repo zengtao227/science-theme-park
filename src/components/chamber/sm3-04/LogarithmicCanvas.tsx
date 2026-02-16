@@ -36,18 +36,18 @@ const palette = {
 // pH Scale visualization
 function PHScale({ value }: { value: number }) {
   const barRef = useRef<THREE.Mesh>(null);
-  
+
   useFrame(({ clock }) => {
     if (!barRef.current) return;
     const pulse = 1 + Math.sin(clock.elapsedTime * 2) * 0.05;
     barRef.current.scale.y = pulse;
   });
-  
+
   // pH scale from 0 to 14, scaled down to fit better
   const logPosition = value; // 0-14
   const scaleHeight = 10; // Reduced from 14 to 10
   const scaleFactor = scaleHeight / 14;
-  
+
   return (
     <group scale={[1, scaleFactor, 1]}>
       {/* pH scale bar */}
@@ -59,7 +59,7 @@ function PHScale({ value }: { value: number }) {
           opacity={0.3}
         />
       </mesh>
-      
+
       {/* pH markers - show every 2 units for clarity */}
       {[0, 2, 4, 6, 7, 8, 10, 12, 14].map((ph) => (
         <group key={ph} position={[0, ph - 7, 0]}>
@@ -77,7 +77,7 @@ function PHScale({ value }: { value: number }) {
           )}
         </group>
       ))}
-      
+
       {/* Current value indicator */}
       <mesh ref={barRef} position={[0, logPosition - 7, 0.3]}>
         <sphereGeometry args={[0.3, 16, 16]} />
@@ -94,16 +94,16 @@ function PHScale({ value }: { value: number }) {
 // Decibel Scale visualization
 function DecibelScale({ value }: { value: number }) {
   const waveRef = useRef<THREE.Group>(null);
-  
+
   useFrame(({ clock }) => {
     if (!waveRef.current) return;
     waveRef.current.rotation.z = clock.elapsedTime * 0.5;
   });
-  
+
   // dB = 10 * log10(I/I0)
   const intensity = Math.pow(10, value / 10); // relative to I0
   const scaleHeight = 10; // Reduced from 12 to 10
-  
+
   return (
     <group scale={[1, scaleHeight / 12, 1]}>
       {/* dB scale */}
@@ -115,7 +115,7 @@ function DecibelScale({ value }: { value: number }) {
           opacity={0.3}
         />
       </mesh>
-      
+
       {/* dB markers - show every 20 dB for clarity */}
       {[0, 20, 40, 60, 80, 100, 120].map((db, i) => (
         <group key={db} position={[0, (i - 3) * 2, 0]}>
@@ -128,7 +128,7 @@ function DecibelScale({ value }: { value: number }) {
           </Text>
         </group>
       ))}
-      
+
       {/* Sound wave visualization */}
       <group ref={waveRef} position={[0, (value / 20 - 3) * 2, 0]}>
         {Array.from({ length: 8 }).map((_, i) => {
@@ -153,15 +153,15 @@ function DecibelScale({ value }: { value: number }) {
 // Richter Scale visualization
 function RichterScale({ value }: { value: number }) {
   const quakeRef = useRef<THREE.Group>(null);
-  
+
   useFrame(({ clock }) => {
     if (!quakeRef.current) return;
     const shake = Math.sin(clock.elapsedTime * 10) * (value / 10) * 0.1;
     quakeRef.current.position.x = shake;
   });
-  
+
   const scaleHeight = 8; // Reduced from 10 to 8
-  
+
   return (
     <group scale={[1, scaleHeight / 10, 1]}>
       {/* Richter scale */}
@@ -173,7 +173,7 @@ function RichterScale({ value }: { value: number }) {
           opacity={0.3}
         />
       </mesh>
-      
+
       {/* Magnitude markers */}
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((mag) => (
         <group key={mag} position={[0, mag - 5, 0]}>
@@ -189,7 +189,7 @@ function RichterScale({ value }: { value: number }) {
           </Text>
         </group>
       ))}
-      
+
       {/* Earthquake visualization */}
       <group ref={quakeRef} position={[0, value - 5, 0.5]}>
         <mesh>
@@ -200,7 +200,7 @@ function RichterScale({ value }: { value: number }) {
             emissiveIntensity={1}
           />
         </mesh>
-        
+
         {/* Shockwaves */}
         {[1, 2, 3].map((i) => (
           <mesh key={i} position={[0, 0, 0]}>
@@ -250,12 +250,12 @@ export default function LogarithmicCanvas({
     <div className="relative w-full h-[700px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [10, 0, 10], fov: 45 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.6} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, 10]} intensity={0.5} color={palette.cyan} />
-        
+
         {/* Controls */}
         <OrbitControls
           enablePan={false}
@@ -263,13 +263,13 @@ export default function LogarithmicCanvas({
           maxDistance={18}
           autoRotate={false}
         />
-        
+
         {/* Stage-specific visualization */}
         {stage === "PH" && <PHScale value={value} />}
         {stage === "DECIBEL" && <DecibelScale value={value} />}
         {stage === "RICHTER" && <RichterScale value={value} />}
       </Canvas>
-      
+
       {/* Info panel */}
       <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider">
@@ -282,10 +282,10 @@ export default function LogarithmicCanvas({
           {getFormula()}
         </div>
       </div>
-      
+
       {/* Status */}
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        {translations.status_chamber} // S3.04<br />
+        {translations.status_chamber} {/* S3.04 */}<br />
         {translations.status_sim}<br />
         {translations.status_mode}: {stage}
       </div>

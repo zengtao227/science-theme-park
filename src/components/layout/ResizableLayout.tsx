@@ -31,6 +31,7 @@ export default function ResizableLayout({
       if (saved) {
         const width = parseFloat(saved);
         if (width >= minLeftWidth && width <= maxLeftWidth) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setLeftWidth(width);
         }
       }
@@ -55,7 +56,7 @@ export default function ResizableLayout({
     const containerRect = containerRef.current.getBoundingClientRect();
     const newWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
     const clampedWidth = Math.max(minLeftWidth, Math.min(maxLeftWidth, newWidth));
-    
+
     setLeftWidth(clampedWidth);
   }, [isDragging, minLeftWidth, maxLeftWidth]);
 
@@ -91,7 +92,7 @@ export default function ResizableLayout({
   return (
     <div ref={containerRef} className="flex h-full w-full overflow-hidden">
       {/* 左侧内容区 */}
-      <div 
+      <div
         className="overflow-y-auto overflow-x-hidden"
         style={{ width: `${leftWidth}%` }}
       >
@@ -119,7 +120,7 @@ export default function ResizableLayout({
       </div>
 
       {/* 右侧可视化区 - 响应式缩放 */}
-      <div 
+      <div
         className="overflow-hidden"
         style={{ width: `${100 - leftWidth}%` }}
       >

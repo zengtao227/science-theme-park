@@ -142,8 +142,10 @@ export default function SB202Page() {
         { id: "RESPIRATORY", label: t.stages.respiratory },
     ], [t]);
 
-    // Sync visualization with quest
-    useEffect(() => {
+    // Sync visualization with quest - using the "adjust state during render" pattern to satisfy React Compiler
+    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
+    if (currentQuest?.id !== prevQuestId) {
+        setPrevQuestId(currentQuest?.id);
         if (currentQuest) {
             if (currentQuest.system) {
                 setSelectedSystem(currentQuest.system);
@@ -152,7 +154,7 @@ export default function SB202Page() {
                 setHighlightedOrgan(currentQuest.organ);
             }
         }
-    }, [currentQuest]);
+    }
 
     const hint = getHint();
 
@@ -200,11 +202,10 @@ export default function SB202Page() {
                             <button
                                 key={sys}
                                 onClick={() => setSelectedSystem(sys)}
-                                className={`p-2 text-[9px] uppercase tracking-widest font-bold rounded border transition-all ${
-                                    selectedSystem === sys
+                                className={`p-2 text-[9px] uppercase tracking-widest font-bold rounded border transition-all ${selectedSystem === sys
                                         ? "bg-neon-cyan/20 border-neon-cyan text-neon-cyan"
                                         : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
-                                }`}
+                                    }`}
                             >
                                 {t.systems[sys as keyof typeof t.systems]}
                             </button>
@@ -220,11 +221,10 @@ export default function SB202Page() {
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`flex-1 transition-all duration-1000 ${
-                                        i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                                             ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
                                             : "bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -265,7 +265,7 @@ export default function SB202Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
@@ -294,16 +294,14 @@ export default function SB202Page() {
                                             initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                                                lastCheck.ok
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                                     : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-5">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                                                    lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                                                }`}>
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
                                                     {lastCheck.ok ? "✓" : "✗"}
                                                 </div>
                                                 <div>

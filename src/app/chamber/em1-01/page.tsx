@@ -12,6 +12,8 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 type Stage = "MEASURE";
 type ThalesQuest = Quest & { stage: Stage };
 
+const POLE_HEIGHT = 2;
+
 export default function S102Page() {
   const { currentLanguage, completeStage } = useAppStore();
   const locale = getTranslations(currentLanguage);
@@ -19,12 +21,12 @@ export default function S102Page() {
   const [sunAngle, setSunAngle] = useState(35);
   const [towerShadow, setTowerShadow] = useState(18);
 
-  const poleHeight = 2;
   const poleShadow = useMemo(() => {
     const rad = (sunAngle * Math.PI) / 180;
-    return poleHeight / Math.tan(rad);
+    return POLE_HEIGHT / Math.tan(rad);
   }, [sunAngle]);
-  const towerHeight = useMemo(() => poleHeight * (towerShadow / poleShadow), [poleHeight, poleShadow, towerShadow]);
+
+  const towerHeight = useMemo(() => POLE_HEIGHT * (towerShadow / poleShadow), [poleShadow, towerShadow]);
 
   const buildStagePool = useCallback((t: typeof translations.EN.em1_01, difficulty: Difficulty, stage: Stage): ThalesQuest[] => {
     const height = Number(towerHeight.toFixed(2));
@@ -34,7 +36,7 @@ export default function S102Page() {
         difficulty,
         stage,
         promptLatex: t.stages.measure_prompt_latex,
-        expressionLatex: `\\text{h=${poleHeight.toFixed(1)}\\,m,\\; l=${poleShadow.toFixed(2)}\\,m,\\; L=${towerShadow.toFixed(1)}\\,m}`,
+        expressionLatex: `\\text{h=${POLE_HEIGHT.toFixed(1)}\\,m,\\; l=${poleShadow.toFixed(2)}\\,m,\\; L=${towerShadow.toFixed(1)}\\,m}`,
         targetLatex: "H",
         slots: [
           {
@@ -48,7 +50,7 @@ export default function S102Page() {
         correctLatex: `H=${height}\\,\\text{m}`,
       },
     ];
-  }, [poleHeight, poleShadow, towerHeight]);
+  }, [poleShadow, towerHeight, towerShadow]);
 
   const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(t, difficulty, stage), [t, buildStagePool]);
 
@@ -94,7 +96,6 @@ export default function S102Page() {
       onVerify={verify}
       onNext={handleNext}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
       translations={{
         back: t.back,
         check: t.check,
@@ -110,9 +111,10 @@ export default function S102Page() {
           elite: t.difficulty.elite,
         },
       }}
+      footerLeft={t.footer_left}
       monitorContent={
         <div className="space-y-4">
-          <ThalesTowerCanvas sunAngle={sunAngle} poleHeight={poleHeight} towerShadow={towerShadow} />
+          <ThalesTowerCanvas sunAngle={sunAngle} poleHeight={POLE_HEIGHT} towerShadow={towerShadow} />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t.target_title}
           </div>
@@ -123,7 +125,7 @@ export default function S102Page() {
             <div className="text-white font-black text-sm space-y-1">
               <div className="flex justify-between">
                 <span className="text-white/60 font-mono">{t.labels.pole_height}</span>
-                <span>{poleHeight.toFixed(1)} m</span>
+                <span>{POLE_HEIGHT.toFixed(1)} m</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-white/60 font-mono">{t.labels.pole_shadow}</span>
@@ -210,6 +212,6 @@ export default function S102Page() {
           </div>
         </div>
       </div>
-    </ChamberLayout>
+    </ChamberLayout >
   );
 }

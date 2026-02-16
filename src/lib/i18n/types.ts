@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * i18n Type Definitions
  * Generated from i18n.ts refactoring
@@ -53,10 +54,10 @@ export interface BiologyTranslations {
  */
 export interface Translations
   extends CommonTranslations,
-    MathTranslations,
-    PhysicsTranslations,
-    ChemistryTranslations,
-    BiologyTranslations {}
+  MathTranslations,
+  PhysicsTranslations,
+  ChemistryTranslations,
+  BiologyTranslations { }
 
 /**
  * All languages translations

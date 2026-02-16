@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 interface PhotosynthesisCanvasProps {
     lightIntensity: number;
@@ -19,6 +19,163 @@ export default function PhotosynthesisCanvas({
 }: PhotosynthesisCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
+    const drawEquationFlow = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, light: number) => {
+        const centerY = h / 2;
+
+        ctx.font = "14px monospace";
+        ctx.fillStyle = "#00ffff";
+        ctx.textAlign = "center";
+        ctx.fillText("6CO₂", w * 0.15, centerY - 20);
+        ctx.fillText("6H₂O", w * 0.15, centerY + 20);
+
+        const lightAlpha = light / 100;
+        ctx.strokeStyle = `rgba(255, 255, 0, ${lightAlpha})`;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(w * 0.25, centerY - 40);
+        ctx.lineTo(w * 0.45, centerY);
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(255, 255, 0, ${lightAlpha})`;
+        ctx.font = "10px monospace";
+        ctx.fillText(translations?.canvas_labels?.light ?? "LIGHT", w * 0.35, centerY - 45);
+
+        ctx.fillStyle = "#0a4d0a";
+        ctx.beginPath();
+        ctx.ellipse(w * 0.5, centerY, 60, 40, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "#00ff00";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(w * 0.5, centerY, 60, 40, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        for (let i = 0; i < 3; i++) {
+            const x = w * 0.5 - 20 + i * 20;
+            ctx.fillStyle = "#00ff00";
+            ctx.fillRect(x - 8, centerY - 10, 16, 4);
+            ctx.fillRect(x - 8, centerY - 4, 16, 4);
+            ctx.fillRect(x - 8, centerY + 2, 16, 4);
+        }
+
+        ctx.fillStyle = "#00ff00";
+        ctx.font = "14px monospace";
+        ctx.fillText("C₆H₁₂O₆", w * 0.85, centerY - 20);
+        ctx.fillText("6O₂", w * 0.85, centerY + 20);
+
+        ctx.strokeStyle = "#00ff00";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(w * 0.6, centerY);
+        ctx.lineTo(w * 0.75, centerY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(w * 0.75, centerY);
+        ctx.lineTo(w * 0.72, centerY - 5);
+        ctx.lineTo(w * 0.72, centerY + 5);
+        ctx.closePath();
+        ctx.fill();
+    }, [translations]);
+
+    const drawFactorsGraph = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, light: number, co2: number, temp: number) => {
+        const graphH = h * 0.6;
+        const graphY = h * 0.2;
+        const barWidth = w * 0.2;
+        const spacing = w * 0.05;
+
+        ctx.strokeStyle = "#ffffff40";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(spacing, graphY);
+        ctx.lineTo(spacing, graphY + graphH);
+        ctx.lineTo(w - spacing, graphY + graphH);
+        ctx.stroke();
+
+        const bars = [
+            { x: spacing * 2, value: light, color: "#ffff00", label: translations?.canvas_labels?.light ?? "Light" },
+            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO₂" },
+            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations?.canvas_labels?.temp_label ?? "Temp" }
+        ];
+
+        bars.forEach(bar => {
+            const barH = (bar.value / 100) * graphH;
+            ctx.fillStyle = bar.color + "40";
+            ctx.fillRect(bar.x, graphY + graphH - barH, barWidth, barH);
+            ctx.strokeStyle = bar.color;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(bar.x, graphY + graphH - barH, barWidth, barH);
+            ctx.fillStyle = bar.color;
+            ctx.font = "10px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText(bar.label, bar.x + barWidth / 2, graphY + graphH + 20);
+            ctx.fillText(`${Math.round(bar.value)}%`, bar.x + barWidth / 2, graphY + graphH - barH - 5);
+        });
+
+        const avgRate = (light + co2 + temp * 2) / 3;
+        ctx.fillStyle = "#00ff00";
+        ctx.font = "bold 16px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(`${translations?.canvas_labels?.rate ?? "Rate"}: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
+    }, [translations]);
+
+    const drawChloroplast = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number) => {
+        const centerX = w / 2;
+        const centerY = h / 2;
+
+        ctx.fillStyle = "#0a3d0a";
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, 120, 80, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "#00ff00";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, 120, 80, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = "#0a2d0a";
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, 110, 70, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        const granaPositions = [
+            { x: centerX - 50, y: centerY - 20 },
+            { x: centerX, y: centerY - 30 },
+            { x: centerX + 50, y: centerY - 20 },
+            { x: centerX - 30, y: centerY + 20 },
+            { x: centerX + 30, y: centerY + 20 }
+        ];
+
+        granaPositions.forEach(pos => {
+            for (let i = 0; i < 4; i++) {
+                ctx.fillStyle = i % 2 === 0 ? "#00ff00" : "#00cc00";
+                ctx.fillRect(pos.x - 15, pos.y + i * 5, 30, 4);
+                ctx.strokeStyle = "#00ff00";
+                ctx.lineWidth = 1;
+                ctx.strokeRect(pos.x - 15, pos.y + i * 5, 30, 4);
+            }
+        });
+
+        ctx.fillStyle = "#00ff00";
+        ctx.font = "10px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(translations?.canvas_labels?.thylakoid ?? "THYLAKOID", centerX, centerY - 55);
+        ctx.strokeStyle = "#00ff00";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - 50);
+        ctx.lineTo(centerX, centerY - 35);
+        ctx.stroke();
+
+        ctx.fillText(translations?.canvas_labels?.stroma ?? "STROMA", centerX + 70, centerY + 50);
+        ctx.beginPath();
+        ctx.moveTo(centerX + 70, centerY + 45);
+        ctx.lineTo(centerX + 40, centerY + 10);
+        ctx.stroke();
+    }, [translations]);
+
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -35,7 +192,6 @@ export default function PhotosynthesisCanvas({
         const w = rect.width;
         const h = rect.height;
 
-        // Clear
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, w, h);
 
@@ -47,191 +203,7 @@ export default function PhotosynthesisCanvas({
             drawChloroplast(ctx, w, h);
         }
 
-    }, [lightIntensity, co2Level, temperature, stage]);
-
-    const drawEquationFlow = (ctx: CanvasRenderingContext2D, w: number, h: number, light: number) => {
-        const centerY = h / 2;
-        
-        // Reactants (left)
-        ctx.font = "14px monospace";
-        ctx.fillStyle = "#00ffff";
-        ctx.textAlign = "center";
-        ctx.fillText("6CO₂", w * 0.15, centerY - 20);
-        ctx.fillText("6H₂O", w * 0.15, centerY + 20);
-
-        // Light arrow
-        const lightAlpha = light / 100;
-        ctx.strokeStyle = `rgba(255, 255, 0, ${lightAlpha})`;
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(w * 0.25, centerY - 40);
-        ctx.lineTo(w * 0.45, centerY);
-        ctx.stroke();
-
-        // Arrow label
-        ctx.fillStyle = `rgba(255, 255, 0, ${lightAlpha})`;
-        ctx.font = "10px monospace";
-        ctx.fillText(translations?.canvas_labels?.light ?? "LIGHT", w * 0.35, centerY - 45);
-
-        // Chloroplast (center)
-        ctx.fillStyle = "#0a4d0a";
-        ctx.beginPath();
-        ctx.ellipse(w * 0.5, centerY, 60, 40, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.strokeStyle = "#00ff00";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.ellipse(w * 0.5, centerY, 60, 40, 0, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Grana (stacks)
-        for (let i = 0; i < 3; i++) {
-            const x = w * 0.5 - 20 + i * 20;
-            ctx.fillStyle = "#00ff00";
-            ctx.fillRect(x - 8, centerY - 10, 16, 4);
-            ctx.fillRect(x - 8, centerY - 4, 16, 4);
-            ctx.fillRect(x - 8, centerY + 2, 16, 4);
-        }
-
-        // Products (right)
-        ctx.fillStyle = "#00ff00";
-        ctx.font = "14px monospace";
-        ctx.fillText("C₆H₁₂O₆", w * 0.85, centerY - 20);
-        ctx.fillText("6O₂", w * 0.85, centerY + 20);
-
-        // Arrow to products
-        ctx.strokeStyle = "#00ff00";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(w * 0.6, centerY);
-        ctx.lineTo(w * 0.75, centerY);
-        ctx.stroke();
-
-        // Arrowhead
-        ctx.beginPath();
-        ctx.moveTo(w * 0.75, centerY);
-        ctx.lineTo(w * 0.72, centerY - 5);
-        ctx.lineTo(w * 0.72, centerY + 5);
-        ctx.closePath();
-        ctx.fill();
-    };
-
-    const drawFactorsGraph = (ctx: CanvasRenderingContext2D, w: number, h: number, light: number, co2: number, temp: number) => {
-        const graphH = h * 0.6;
-        const graphY = h * 0.2;
-        const barWidth = w * 0.2;
-        const spacing = w * 0.05;
-
-        // Axes
-        ctx.strokeStyle = "#ffffff40";
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(spacing, graphY);
-        ctx.lineTo(spacing, graphY + graphH);
-        ctx.lineTo(w - spacing, graphY + graphH);
-        ctx.stroke();
-
-        // Bars
-        const bars = [
-            { x: spacing * 2, value: light, color: "#ffff00", label: translations?.canvas_labels?.light ?? "Light" },
-            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO₂" },
-            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations?.canvas_labels?.temp_label ?? "Temp" }
-        ];
-
-        bars.forEach(bar => {
-            const barH = (bar.value / 100) * graphH;
-            
-            // Bar
-            ctx.fillStyle = bar.color + "40";
-            ctx.fillRect(bar.x, graphY + graphH - barH, barWidth, barH);
-            
-            ctx.strokeStyle = bar.color;
-            ctx.lineWidth = 2;
-            ctx.strokeRect(bar.x, graphY + graphH - barH, barWidth, barH);
-
-            // Label
-            ctx.fillStyle = bar.color;
-            ctx.font = "10px monospace";
-            ctx.textAlign = "center";
-            ctx.fillText(bar.label, bar.x + barWidth / 2, graphY + graphH + 20);
-            
-            // Value
-            ctx.fillText(`${Math.round(bar.value)}%`, bar.x + barWidth / 2, graphY + graphH - barH - 5);
-        });
-
-        // Rate indicator
-        const avgRate = (light + co2 + temp * 2) / 3;
-        ctx.fillStyle = "#00ff00";
-        ctx.font = "bold 16px monospace";
-        ctx.textAlign = "center";
-        ctx.fillText(`${translations?.canvas_labels?.rate ?? "Rate"}: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
-    };
-
-    const drawChloroplast = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
-        const centerX = w / 2;
-        const centerY = h / 2;
-
-        // Outer membrane
-        ctx.fillStyle = "#0a3d0a";
-        ctx.beginPath();
-        ctx.ellipse(centerX, centerY, 120, 80, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.strokeStyle = "#00ff00";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.ellipse(centerX, centerY, 120, 80, 0, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Stroma (background)
-        ctx.fillStyle = "#0a2d0a";
-        ctx.beginPath();
-        ctx.ellipse(centerX, centerY, 110, 70, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Grana stacks (thylakoids)
-        const granaPositions = [
-            { x: centerX - 50, y: centerY - 20 },
-            { x: centerX, y: centerY - 30 },
-            { x: centerX + 50, y: centerY - 20 },
-            { x: centerX - 30, y: centerY + 20 },
-            { x: centerX + 30, y: centerY + 20 }
-        ];
-
-        granaPositions.forEach(pos => {
-            // Stack of thylakoids
-            for (let i = 0; i < 4; i++) {
-                ctx.fillStyle = i % 2 === 0 ? "#00ff00" : "#00cc00";
-                ctx.fillRect(pos.x - 15, pos.y + i * 5, 30, 4);
-                
-                ctx.strokeStyle = "#00ff00";
-                ctx.lineWidth = 1;
-                ctx.strokeRect(pos.x - 15, pos.y + i * 5, 30, 4);
-            }
-        });
-
-        // Labels
-        ctx.fillStyle = "#00ff00";
-        ctx.font = "10px monospace";
-        ctx.textAlign = "center";
-        
-        // Thylakoid label
-        ctx.fillText(translations?.canvas_labels?.thylakoid ?? "THYLAKOID", centerX, centerY - 55);
-        ctx.strokeStyle = "#00ff00";
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY - 50);
-        ctx.lineTo(centerX, centerY - 35);
-        ctx.stroke();
-
-        // Stroma label
-        ctx.fillText(translations?.canvas_labels?.stroma ?? "STROMA", centerX + 70, centerY + 50);
-        ctx.beginPath();
-        ctx.moveTo(centerX + 70, centerY + 45);
-        ctx.lineTo(centerX + 40, centerY + 10);
-        ctx.stroke();
-    };
+    }, [lightIntensity, co2Level, temperature, stage, drawChloroplast, drawEquationFlow, drawFactorsGraph]);
 
     return (
         <canvas
@@ -241,3 +213,4 @@ export default function PhotosynthesisCanvas({
         />
     );
 }
+

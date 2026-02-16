@@ -21,14 +21,14 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
                                     LOW ENTROPY
                                 </text>
                                 {/* Ordered particles in grid */}
-                                {[0, 1, 2, 3].map(row => 
+                                {[0, 1, 2, 3].map(row =>
                                     [0, 1, 2, 3].map(col => (
-                                        <circle 
+                                        <circle
                                             key={`ordered-${row}-${col}`}
-                                            cx={20 + col * 25} 
-                                            cy={20 + row * 20} 
-                                            r={4} 
-                                            fill="#4da6ff" 
+                                            cx={20 + col * 25}
+                                            cy={20 + row * 20}
+                                            r={4}
+                                            fill="#4da6ff"
                                         />
                                     ))
                                 )}
@@ -56,12 +56,12 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
                                     [20, 75], [50, 80], [80, 70], [100, 85],
                                     [35, 90], [65, 95], [90, 90], [110, 95]
                                 ].map((pos, i) => (
-                                    <circle 
+                                    <circle
                                         key={`random-${i}`}
-                                        cx={pos[0]} 
-                                        cy={pos[1]} 
-                                        r={4} 
-                                        fill="#ff6b6b" 
+                                        cx={pos[0]}
+                                        cy={pos[1]}
+                                        r={4}
+                                        fill="#ff6b6b"
                                     />
                                 ))}
                                 <text x={60} y={120} textAnchor="middle" fill="white" fontSize="10">
@@ -122,23 +122,23 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
                                 <text x={65} y={-10} textAnchor="middle" fill="#00ff00" fontSize="12" fontWeight="bold">
                                     ALLOWED ✓
                                 </text>
-                                
+
                                 {/* Hot to cold */}
                                 <circle cx={30} cy={40} r={20} fill="#ff3300" opacity={0.7} />
                                 <text x={30} y={45} textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">
                                     HOT
                                 </text>
-                                
+
                                 <path d="M 55 40 L 75 40" stroke="#ffd93d" strokeWidth={3} markerEnd="url(#arrowHeat)" />
                                 <text x={65} y={30} textAnchor="middle" fill="#ffd93d" fontSize="9">
                                     Heat
                                 </text>
-                                
+
                                 <circle cx={100} cy={40} r={20} fill="#0066ff" opacity={0.7} />
                                 <text x={100} y={45} textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">
                                     COLD
                                 </text>
-                                
+
                                 <text x={65} y={80} textAnchor="middle" fill="white" fontSize="9">
                                     Heat flows hot → cold
                                 </text>
@@ -153,23 +153,23 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
                                 <text x={65} y={-10} textAnchor="middle" fill="#ff0000" fontSize="12" fontWeight="bold">
                                     FORBIDDEN ✗
                                 </text>
-                                
+
                                 {/* Cold to hot (impossible) */}
                                 <circle cx={30} cy={40} r={20} fill="#0066ff" opacity={0.7} />
                                 <text x={30} y={45} textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">
                                     COLD
                                 </text>
-                                
+
                                 <path d="M 55 40 L 75 40" stroke="#ff0000" strokeWidth={3} markerEnd="url(#arrowForbidden)" />
                                 <text x={65} y={30} textAnchor="middle" fill="#ff0000" fontSize="9">
                                     Heat?
                                 </text>
-                                
+
                                 <circle cx={100} cy={40} r={20} fill="#ff3300" opacity={0.7} />
                                 <text x={100} y={45} textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">
                                     HOT
                                 </text>
-                                
+
                                 <text x={65} y={80} textAnchor="middle" fill="white" fontSize="9">
                                     Heat cold → hot?
                                 </text>
@@ -273,10 +273,10 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
                                     IRREVERSIBLE PROCESSES
                                 </text>
                                 <text x={150} y={40} textAnchor="middle" fill="white" fontSize="10">
-                                    • Glass shatters (can't spontaneously reassemble)
+                                    • Glass shatters (can&apos;t spontaneously reassemble)
                                 </text>
                                 <text x={150} y={58} textAnchor="middle" fill="white" fontSize="10">
-                                    • Milk mixes in coffee (can't unmix)
+                                    • Milk mixes in coffee (can&apos;t unmix)
                                 </text>
                                 <text x={150} y={76} textAnchor="middle" fill="white" fontSize="10">
                                     • Heat flows hot → cold (never reverses)

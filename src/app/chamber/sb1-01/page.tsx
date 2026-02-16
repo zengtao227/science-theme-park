@@ -118,12 +118,12 @@ export default function SB101Page() {
         { id: "ORGANELLES", label: t.stages.organelles },
     ], [t]);
 
-    // Sync highlight with quest
-    useEffect(() => {
-        if (currentQuest) {
-            setSelectedOrganelle(currentQuest.targetOrganelleId);
-        }
-    }, [currentQuest]);
+    // Sync highlight with quest - using the "adjust state during render" pattern to satisfy React Compiler
+    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
+    if (currentQuest?.id !== prevQuestId) {
+        setPrevQuestId(currentQuest?.id);
+        setSelectedOrganelle(currentQuest?.targetOrganelleId || null);
+    }
 
     const hint = getHint();
 
@@ -228,7 +228,7 @@ export default function SB101Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
