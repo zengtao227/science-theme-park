@@ -312,18 +312,17 @@ describe('Integration: Error Handling', () => {
     expect(getTranslation('missing', 'Default')).toBe('Default');
   });
 
-  test('should handle network errors during progress save', () => {
-    const saveProgress = async (data: any) => {
+  test('should handle network errors during progress save', async () => {
+    const saveProgress = async (_data: unknown) => {
       try {
         // Simulate network error
         throw new Error('Network error');
-      } catch (error) {
+      } catch {
         return { success: false, error: 'Failed to save' };
       }
     };
     
-    saveProgress({}).then(result => {
-      expect(result.success).toBe(false);
-    });
+    const result = await saveProgress({});
+    expect(result.success).toBe(false);
   });
 });

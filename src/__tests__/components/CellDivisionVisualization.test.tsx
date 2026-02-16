@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Mock framer-motion to avoid animation issues in tests

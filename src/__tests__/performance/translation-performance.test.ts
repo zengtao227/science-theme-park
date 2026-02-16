@@ -91,8 +91,6 @@ describe('Property: Language switching performance', () => {
     
     for (let i = 0; i < iterations; i++) {
       const title = enBiology.sb1_03.title;
-      const stage = enBiology.sb1_03.stages?.mitosis;
-      const label = enBiology.sb1_03.labels?.chromosome;
       
       expect(title).toBeDefined();
     }
