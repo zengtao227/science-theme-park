@@ -305,7 +305,7 @@ const t = translations[currentLanguage].gm1_02;
 **参考模块**: `src/app/chamber/sp3-06/page.tsx` (声学模块 — 波动概念最接近)
 **翻译参考**: `src/lib/i18n/en/physics.ts` 中 `sp3_06` section
 
-- [ ] 3.1 创建 GP3.01 页面结构
+- [-] 3.1 创建 GP3.01 页面结构
   - 创建 `src/app/chamber/gp3-01/page.tsx`
   - Stage: `"WAVE_PROPERTIES" | "SUPERPOSITION" | "OPTICS"`
   - Quest 接口: `amplitude`, `frequency`, `wavelength`, `velocity`, `medium`, `waveType`
@@ -411,7 +411,7 @@ const t = translations[currentLanguage].gm1_02;
 
 ### Task 5: 全面集成验证
 
-- [ ] 5.1 构建验证
+- [x] 5.1 构建验证
   - `npm run build` 通过, 0 errors
   - `npm run lint` 只有 scripts/ 目录的 warning（不得有新增 error）
   - `npm test -- --ci --passWithNoTests` 全部通过
