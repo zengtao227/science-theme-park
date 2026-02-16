@@ -273,7 +273,7 @@ export default function AlchemistCanvas({ visual, inputs, translations }: Alchem
             </div>
 
             <div className="absolute bottom-4 left-4 text-[9px] text-white/30 font-mono">
-                {t.view} // GRID_01
+                {t.view} {/* GRID_01 */}
             </div>
         </div>
     );

@@ -29,7 +29,7 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
   const engineRef = useRef<Matter.Engine | null>(null);
   const renderRef = useRef<Matter.Render | null>(null);
   const [rotation, setRotation] = useState(0);
-  const isDragging = useRef(false);
+  const [isDraggingState, setIsDraggingState] = useState(false);
   const startX = useRef(0);
 
   useEffect(() => {
@@ -125,12 +125,12 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
 
   // Handle Dragging to Rotate
   const handleMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
+    setIsDraggingState(true);
     startX.current = e.clientX;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current) return;
+    if (!isDraggingState) return;
     const dx = e.clientX - startX.current;
     const newRotation = rotation + dx * 0.01;
     setRotation(newRotation);
@@ -144,7 +144,7 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
   };
 
   const handleMouseUp = () => {
-    isDragging.current = false;
+    setIsDraggingState(false);
   };
 
   const { currentLanguage } = useAppStore();
@@ -163,7 +163,7 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
         ref={canvasRef}
         style={{
           transform: `rotate(${rotation}rad)`,
-          transition: isDragging.current ? 'none' : 'transform 0.1s ease-out'
+          transition: isDraggingState ? 'none' : 'transform 0.1s ease-out'
         }}
         className="w-full h-full"
       />

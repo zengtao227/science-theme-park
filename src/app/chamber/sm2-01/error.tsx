@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function Error({
   error,
   reset,
@@ -23,12 +25,12 @@ export default function Error({
         >
           TRY AGAIN
         </button>
-        <a
+        <Link
           href="/"
           className="block w-full mt-3 px-6 py-3 border border-white/60 text-center text-white/70 hover:bg-white/5 transition-all"
         >
           RETURN TO NEXUS
-        </a>
+        </Link>
       </div>
     </div>
   );

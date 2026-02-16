@@ -387,7 +387,7 @@ export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
 
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/70 text-right uppercase">
         VISUAL_MODE: {mode}<br />
-        BASE: {base} // M: {m} // N: {n}
+        BASE: {base} {/* M: {m} N: {n} */}
       </div>
     </div>
   );
