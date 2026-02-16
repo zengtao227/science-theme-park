@@ -325,6 +325,48 @@ export const enMath = {
             mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
         }
     },
+    gm1_02: {
+        back: "Back to Nexus",
+        title: "GM1.02 // INTEGRAL CALCULUS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Integral HUD",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GM1.02_INTEGRAL_MONITOR",
+        footer_left: "GM1.02_INTEGRAL // NODE: BASEL",
+        mission: {
+            title: "INTEGRAL CALCULUS MISSION",
+            description: "Master integration by calculating antiderivatives, definite integrals, and real-world applications. Integration is the inverse of differentiation."
+        },
+        stages: {
+            antiderivative: "ANTIDERIVATIVE",
+            definite_integral: "DEFINITE INTEGRAL",
+            application: "APPLICATION"
+        },
+        scenarios: {
+            antiderivative: "Roche Pharmaceutical Laboratory - Drug Concentration Analysis: You are working at Roche's Basel research facility analyzing how drug concentration changes over time in the bloodstream. The rate of concentration change is given by f(t) = derivative. To find the total accumulated concentration (the antiderivative F(t)), you must integrate the rate function. This antiderivative tells you the drug concentration at any time t, which is critical for determining safe dosage levels. The integration constant C represents the initial concentration at t=0. Accurate integration ensures patient safety by predicting drug levels in the body over time.",
+            definite_integral: "Rhine River Flow Analysis - Total Water Volume: Basel's environmental monitoring station tracks the Rhine River's flow rate (cubic meters per second) throughout the day. The flow rate varies with time: f(t) represents the instantaneous flow rate. To calculate the total volume of water that passed through Basel between time a and time b, you must evaluate the definite integral ∫[a,b] f(t) dt. This integral gives the accumulated volume in cubic meters. The result helps Basel Port Authority manage shipping schedules and predict flood risks. Unlike antiderivatives, definite integrals give a specific numerical answer representing total accumulation.",
+            application: "Novartis Building Design - Curved Roof Area Calculation: Novartis is constructing a new research building in Basel with a curved roof following the function f(x). The architecture team needs to calculate the exact surface area under the curve from x=a to x=b to order the correct amount of roofing material. The area equals the definite integral ∫[a,b] f(x) dx. For more complex applications, you might calculate the volume of a rotational structure using V = π∫[a,b] [f(x)]² dx (disk method). Accurate integration prevents material waste and ensures structural integrity. This is how engineers translate mathematical curves into real-world construction specifications."
+        },
+        prompts: {
+            find_antiderivative: "Find the antiderivative F(x) of f(x) = {expr}.",
+            evaluate_integral: "Evaluate the definite integral: {expr}.",
+            find_area: "Find the area under f(x) = {expr} from x = {a} to x = {b}.",
+            hint_power: "\\text{For }x^n\\text{, antiderivative is }\\frac{x^{n+1}}{n+1}+C",
+            hint_definite: "F(b) - F(a)\\text{ where }F\\text{ is the antiderivative}",
+            hint_area: "\\text{Area} = \\int_a^b f(x)dx\\text{ when }f(x)\\geq 0"
+        },
+        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
+    },
     gm3_01: {
         back: "Back to Nexus",
         title: "GM3.01 // PROBABILITY VAULT",

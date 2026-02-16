@@ -327,6 +327,48 @@ export const cnMath = {
         },
         input_tip_2dp: "提示：保留 2 位小数。"
     },
+    gm1_02: {
+        back: "返回枢纽",
+        title: "GM1.02 // 积分微积分",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "积分显示器",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "验证通过",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "GM1.02_积分监测器",
+        footer_left: "GM1.02_积分 // 节点: 巴塞尔",
+        mission: {
+            title: "积分微积分任务",
+            description: "通过计算不定积分、定积分和实际应用来掌握积分。积分是微分的逆运算。"
+        },
+        stages: {
+            antiderivative: "不定积分",
+            definite_integral: "定积分",
+            application: "积分应用"
+        },
+        scenarios: {
+            antiderivative: "罗氏制药实验室 - 药物浓度分析：你在罗氏巴塞尔研究机构工作，分析药物浓度随时间在血液中的变化。浓度变化率由 f(t) = 导数给出。要找到总累积浓度（不定积分 F(t)），你必须对速率函数进行积分。这个不定积分告诉你任何时间 t 的药物浓度，这对确定安全剂量水平至关重要。积分常数 C 代表 t=0 时的初始浓度。准确的积分通过预测体内药物水平随时间的变化来确保患者安全。",
+            definite_integral: "莱茵河流量分析 - 总水量：巴塞尔的环境监测站跟踪莱茵河全天的流量（立方米/秒）。流量随时间变化：f(t) 表示瞬时流量。要计算时间 a 到 b 之间流经巴塞尔的总水量，你必须计算定积分 ∫[a,b] f(t) dt。这个积分给出累积体积（立方米）。结果帮助巴塞尔港务局管理航运时间表并预测洪水风险。与不定积分不同，定积分给出表示总累积量的具体数值答案。",
+            application: "诺华建筑设计 - 曲面屋顶面积计算：诺华正在巴塞尔建造一座新的研究大楼，屋顶遵循函数 f(x) 的曲线。建筑团队需要计算从 x=a 到 x=b 曲线下的精确表面积，以订购正确数量的屋顶材料。面积等于定积分 ∫[a,b] f(x) dx。对于更复杂的应用，你可能使用 V = π∫[a,b] [f(x)]² dx（圆盘法）计算旋转结构的体积。准确的积分可防止材料浪费并确保结构完整性。这就是工程师如何将数学曲线转化为实际建筑规范。"
+        },
+        prompts: {
+            find_antiderivative: "求 f(x) = {expr} 的不定积分 F(x)。",
+            evaluate_integral: "计算定积分：{expr}。",
+            find_area: "求 f(x) = {expr} 从 x = {a} 到 x = {b} 下的面积。",
+            hint_power: "\\text{对于 }x^n\\text{，不定积分是 }\\frac{x^{n+1}}{n+1}+C",
+            hint_definite: "F(b) - F(a)\\text{，其中 }F\\text{ 是不定积分}",
+            hint_area: "\\text{面积} = \\int_a^b f(x)dx\\text{，当 }f(x)\\geq 0"
+        },
+        input_tip_2dp: "提示：保留 2 位小数。"
+    },
     gm3_01: {
         back: "返回枢纽",
         title: "GM3.01 // 概率金库",

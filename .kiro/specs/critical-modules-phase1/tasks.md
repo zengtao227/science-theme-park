@@ -80,7 +80,7 @@ const t = translations[currentLanguage].gm1_02;
   - 如果是空壳或废弃模块，记录在 CURRICULUM_PLAN_UPDATE_2026_v2.md 中
   - 确认方法: 浏览器访问 `/chamber/sp3-07`，功能正常
 
-- [-] 0.4 Checkpoint Sprint 0
+- [x] 0.4 Checkpoint Sprint 0
   - 运行 `npm run build` 通过
   - 浏览器检查首页：GP2.02, SC1.05, SC3.05 链接可见且可点击
   - SB2.02 只有一个条目
@@ -94,7 +94,7 @@ const t = translations[currentLanguage].gm1_02;
 **可视化参考**: `src/components/chamber/gm1-01/DerivativeCanvas.tsx`
 **翻译参考**: `src/lib/i18n/en/math.ts` 中 `gm1_01` section (第 113 行起)
 
-- [ ] 1.1 创建 GM1.02 页面结构
+- [x] 1.1 创建 GM1.02 页面结构
   - 创建 `src/app/chamber/gm1-02/page.tsx`
   - **直接复制 `gm1-01/page.tsx` 的结构**，然后修改：
     - Stage 改为: `"ANTIDERIVATIVE" | "DEFINITE_INTEGRAL" | "APPLICATION"`

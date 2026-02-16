@@ -326,6 +326,48 @@ export const deMath = {
         },
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
     },
+    gm1_02: {
+        back: "Zurück zum Nexus",
+        title: "GM1.02 // INTEGRALRECHNUNG",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        objective_title: "Aktuelles Missionsziel",
+        target_title: "Integral-HUD",
+        next: "Nächste Sequenz",
+        check: "Überprüfen",
+        correct: "Verifiziert",
+        incorrect: "Fehlermeldung",
+        ready: "Bereit",
+        monitor_title: "GM1.02_INTEGRAL_MONITOR",
+        footer_left: "GM1.02_INTEGRAL // KNOTEN: BASEL",
+        mission: {
+            title: "INTEGRALRECHNUNG MISSION",
+            description: "Meistere Integration durch Berechnung von Stammfunktionen, bestimmten Integralen und realen Anwendungen. Integration ist die Umkehrung der Differentiation."
+        },
+        stages: {
+            antiderivative: "STAMMFUNKTION",
+            definite_integral: "BESTIMMTES INTEGRAL",
+            application: "ANWENDUNG"
+        },
+        scenarios: {
+            antiderivative: "Roche Pharmalabor - Arzneimittelkonzentrationsanalyse: Sie arbeiten in Roches Basler Forschungseinrichtung und analysieren, wie sich die Arzneimittelkonzentration im Blutkreislauf über die Zeit verändert. Die Änderungsrate der Konzentration ist durch f(t) = Ableitung gegeben. Um die gesamte akkumulierte Konzentration (die Stammfunktion F(t)) zu finden, müssen Sie die Ratenfunktion integrieren. Diese Stammfunktion gibt Ihnen die Arzneimittelkonzentration zu jedem Zeitpunkt t, was für die Bestimmung sicherer Dosierungsniveaus entscheidend ist. Die Integrationskonstante C repräsentiert die Anfangskonzentration bei t=0. Genaue Integration gewährleistet Patientensicherheit durch Vorhersage der Arzneimittelspiegel im Körper über die Zeit.",
+            definite_integral: "Rhein-Durchflussanalyse - Gesamtwasservolumen: Basels Umweltüberwachungsstation verfolgt die Durchflussrate des Rheins (Kubikmeter pro Sekunde) über den Tag. Die Durchflussrate variiert mit der Zeit: f(t) repräsentiert die momentane Durchflussrate. Um das Gesamtvolumen des Wassers zu berechnen, das zwischen Zeit a und Zeit b durch Basel geflossen ist, müssen Sie das bestimmte Integral ∫[a,b] f(t) dt auswerten. Dieses Integral gibt das akkumulierte Volumen in Kubikmetern. Das Ergebnis hilft der Basler Hafenbehörde, Schifffahrtspläne zu verwalten und Hochwasserrisiken vorherzusagen. Im Gegensatz zu Stammfunktionen geben bestimmte Integrale eine spezifische numerische Antwort, die die Gesamtakkumulation darstellt.",
+            application: "Novartis Gebäudedesign - Berechnung der gekrümmten Dachfläche: Novartis baut ein neues Forschungsgebäude in Basel mit einem gekrümmten Dach, das der Funktion f(x) folgt. Das Architekturteam muss die exakte Oberfläche unter der Kurve von x=a bis x=b berechnen, um die richtige Menge an Dachmaterial zu bestellen. Die Fläche entspricht dem bestimmten Integral ∫[a,b] f(x) dx. Für komplexere Anwendungen könnten Sie das Volumen einer Rotationsstruktur mit V = π∫[a,b] [f(x)]² dx (Scheibenmethode) berechnen. Genaue Integration verhindert Materialverschwendung und gewährleistet strukturelle Integrität. So übersetzen Ingenieure mathematische Kurven in reale Bauspezifikationen."
+        },
+        prompts: {
+            find_antiderivative: "Finde die Stammfunktion F(x) von f(x) = {expr}.",
+            evaluate_integral: "Berechne das bestimmte Integral: {expr}.",
+            find_area: "Finde die Fläche unter f(x) = {expr} von x = {a} bis x = {b}.",
+            hint_power: "\\text{Für }x^n\\text{ ist die Stammfunktion }\\frac{x^{n+1}}{n+1}+C",
+            hint_definite: "F(b) - F(a)\\text{, wobei }F\\text{ die Stammfunktion ist}",
+            hint_area: "\\text{Fläche} = \\int_a^b f(x)dx\\text{ wenn }f(x)\\geq 0"
+        },
+        input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
+    },
     gm3_01: {
         back: "Zurück zum Nexus",
         title: "GM3.01 // WAHRSCHEINLICHKEITS-TRESOR",
