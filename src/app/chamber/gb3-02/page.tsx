@@ -23,7 +23,7 @@ type GB302T = typeof translations.EN.gb3_02;
 export default function GB302Immunology() {
     const { currentLanguage, completeStage } = useAppStore();
     const t = (translations[currentLanguage]?.gb3_02 || translations.EN.gb3_02) as GB302T;
-    const [antigenLoad, setAntigenLoad] = useState(100);
+    const [antigenLoad] = useState(100);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB302Quest[] => {
         const quests: GB302Quest[] = [];
@@ -126,7 +126,6 @@ export default function GB302Immunology() {
         handleStageChange,
         handleDifficultyChange,
         currentStageStats,
-        pool,
         verify,
         next,
         inputs,
@@ -136,6 +135,12 @@ export default function GB302Immunology() {
         buildPool: buildStagePool,
         initialStage: "INNATE",
     });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("GB3.02", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (currentQuest?.scenario && t.scenarios[currentQuest.scenario as keyof typeof t.scenarios]) {

@@ -23,7 +23,7 @@ type GB201T = typeof translations.EN.gb2_01;
 export default function GB201Neurobiology() {
     const { currentLanguage, completeStage } = useAppStore();
     const t = (translations[currentLanguage]?.gb2_01 || translations.EN.gb2_01) as GB201T;
-    const [voltage, setVoltage] = useState(-70);
+    const [voltage] = useState(-70);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB201Quest[] => {
         const quests: GB201Quest[] = [];
@@ -151,13 +151,19 @@ export default function GB201Neurobiology() {
         currentStageStats,
         pool,
         verify,
-        next,
         inputs,
-        setInputs
+        setInputs,
+        lastCheck
     } = useQuestManager<GB201Quest, Stage>({
         buildPool: buildStagePool,
         initialStage: "ANATOMY",
     });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("GB2.01", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
 
     const successRate = useMemo(() => {
         if (!currentStageStats || pool.length === 0) return 0;

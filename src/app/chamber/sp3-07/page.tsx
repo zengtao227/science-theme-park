@@ -6,32 +6,32 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import FerryCanvas from "@/components/chamber/sp1-05/FerryCanvas";
+import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "COMPOSITION" | "DRIFT" | "NAVIGATION";
 
-interface SP105Quest extends Quest {
+interface SP307Quest extends Quest {
     stage: Stage;
     vRiver: number;
     vFerry: number;
     theta: number; // degrees
 }
 
-type SP105T = typeof translations.EN.sp1_05;
+type SP307T = typeof translations.EN.sp3_07;
 
-export default function SP105Page() {
+export default function SP307Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp1_05 || translations.EN.sp1_05) as SP105T;
+    const t = (translations[currentLanguage]?.sp3_07 || translations.EN.sp3_07) as SP307T;
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP105Quest[] => {
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP307Quest[] => {
         const isBasic = difficulty === "BASIC";
         const isCore = difficulty === "CORE";
         const isAdv = difficulty === "ADVANCED";
         const isElite = difficulty === "ELITE";
 
-        const quests: SP105Quest[] = [];
+        const quests: SP307Quest[] = [];
 
         if (stage === "COMPOSITION") {
             // Focus on basic vector addition: V_net_z = V_ferry_z + V_river
@@ -91,7 +91,6 @@ export default function SP105Page() {
             );
         }
 
-        // Fill remaining slots with procedural variants if needed
         return quests;
     }, []);
 
@@ -110,14 +109,14 @@ export default function SP105Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-    } = useQuestManager<SP105Quest, Stage>({
+    } = useQuestManager<SP307Quest, Stage>({
         buildPool,
         initialStage: "COMPOSITION",
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("sp1-05", stage);
+            completeStage("sp3-07", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -131,7 +130,7 @@ export default function SP105Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SP1.05"
+            moduleCode="SP3.07"
             title={t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -264,8 +263,8 @@ export default function SP105Page() {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
                                             className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-5">

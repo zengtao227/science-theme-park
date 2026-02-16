@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Grid, OrbitControls, Text, MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-interface P301OpticsCanvasProps {
+interface P308OpticsCanvasProps {
   scenario: "reflection" | "refraction" | "lens" | "prism";
   angle?: number;
   n1?: number;
@@ -40,15 +40,15 @@ function VolumetricBeam({
   radius?: number;
 }) {
   const tubeRef = useRef<THREE.Mesh>(null);
-  
+
   const curve = useMemo(() => new THREE.CatmullRomCurve3(points), [points]);
-  
+
   useFrame(({ clock }) => {
     if (!tubeRef.current) return;
     const pulse = 0.7 + Math.sin(clock.getElapsedTime() * 4) * 0.3;
     (tubeRef.current.material as THREE.MeshBasicMaterial).opacity = pulse * intensity;
   });
-  
+
   return (
     <group>
       {/* Main beam tube */}
@@ -60,7 +60,7 @@ function VolumetricBeam({
           opacity={0.9 * intensity}
         />
       </mesh>
-      
+
       {/* Outer glow */}
       <mesh>
         <tubeGeometry args={[curve, 64, radius * 2, 8, false]} />
@@ -70,7 +70,7 @@ function VolumetricBeam({
           opacity={0.2 * intensity}
         />
       </mesh>
-      
+
       {/* Inner core */}
       <mesh>
         <tubeGeometry args={[curve, 64, radius * 0.5, 8, false]} />
@@ -98,7 +98,7 @@ function RainbowFan({
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useRef(new THREE.Object3D());
-  
+
   // Rainbow colors with real refractive indices
   const colors = [
     { color: palette.red, wavelength: 700, n: 1.514 },      // Red
@@ -109,48 +109,48 @@ function RainbowFan({
     { color: "#4444ff", wavelength: 450, n: 1.524 },        // Blue
     { color: palette.purple, wavelength: 400, n: 1.528 },   // Violet
   ];
-  
+
   const count = colors.length;
-  
+
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
-    
+
     const time = clock.getElapsedTime();
     const dummyObj = dummy.current;
-    
+
     colors.forEach((colorData, i) => {
       // Calculate refraction angle based on refractive index
       const angleOffset = (i - count / 2) * spreadAngle;
       const angle = Math.atan2(direction.y, direction.x) + angleOffset;
-      
+
       const endX = origin.x + Math.cos(angle) * distance;
       const endY = origin.y + Math.sin(angle) * distance;
-      
+
       // Position and scale the beam
       const midX = (origin.x + endX) / 2;
       const midY = (origin.y + endY) / 2;
       const length = Math.sqrt((endX - origin.x) ** 2 + (endY - origin.y) ** 2);
-      
+
       dummyObj.position.set(midX, midY, 0);
       dummyObj.rotation.z = angle;
       dummyObj.scale.set(length, 0.05, 0.05);
-      
+
       // Pulse effect
       const pulse = 1 + Math.sin(time * 3 + i * 0.5) * 0.1;
       dummyObj.scale.y *= pulse;
       dummyObj.scale.z *= pulse;
-      
+
       dummyObj.updateMatrix();
       meshRef.current!.setMatrixAt(i, dummyObj.matrix);
       meshRef.current!.setColorAt(i, new THREE.Color(colorData.color));
     });
-    
+
     meshRef.current.instanceMatrix.needsUpdate = true;
     if (meshRef.current.instanceColor) {
       meshRef.current.instanceColor.needsUpdate = true;
     }
   });
-  
+
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
       <boxGeometry args={[1, 1, 1]} />
@@ -171,7 +171,7 @@ function SpatialPulse({
 }) {
   const ringsRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
-  
+
   // Create materials once using useMemo
   const ringMaterials = useMemo(() => {
     return [0, 1, 2, 3].map(() => new THREE.MeshBasicMaterial({
@@ -181,23 +181,23 @@ function SpatialPulse({
       side: THREE.DoubleSide
     }));
   }, [color]);
-  
+
   useFrame(({ clock }) => {
     if (!isActive || !ringsRef.current || !coreRef.current) return;
-    
+
     const time = clock.getElapsedTime();
-    
+
     // Pulsing core
     const pulse = 1 + Math.sin(time * 6) * 0.3;
     coreRef.current.scale.setScalar(pulse);
-    
+
     // Expanding ripple rings - only update opacity
     ringsRef.current.children.forEach((ring, i) => {
       const offset = i * 0.4;
       const scale = 1 + ((time * 3 + offset) % 3);
       const opacity = 1 - ((time * 3 + offset) % 3) / 3;
       ring.scale.setScalar(scale);
-      
+
       // Update existing material opacity instead of creating new material
       const material = ringMaterials[i];
       if (material) {
@@ -205,9 +205,9 @@ function SpatialPulse({
       }
     });
   });
-  
+
   if (!isActive) return null;
-  
+
   return (
     <group position={position}>
       {/* Core flash */}
@@ -219,7 +219,7 @@ function SpatialPulse({
           opacity={0.8}
         />
       </mesh>
-      
+
       {/* Expanding ripple rings */}
       <group ref={ringsRef}>
         {[0, 1, 2, 3].map((i) => (
@@ -228,7 +228,7 @@ function SpatialPulse({
           </mesh>
         ))}
       </group>
-      
+
       {/* Particle burst */}
       {[0, 1, 2, 3, 4, 5].map((i) => {
         const angle = (i / 6) * Math.PI * 2;
@@ -242,7 +242,7 @@ function SpatialPulse({
           </Float>
         );
       })}
-      
+
       <pointLight color={color} intensity={2} distance={4} />
     </group>
   );
@@ -274,7 +274,7 @@ function GlassPrism() {
     shape.lineTo(1.5, 0);
     shape.lineTo(0.75, 1.3);
     shape.closePath();
-    
+
     const extrudeSettings = {
       depth: 0.8,
       bevelEnabled: true,
@@ -282,10 +282,10 @@ function GlassPrism() {
       bevelSize: 0.05,
       bevelSegments: 5
     };
-    
+
     return new THREE.ExtrudeGeometry(shape, extrudeSettings);
   }, []);
-  
+
   return (
     <mesh geometry={geometry} rotation={[0, 0, Math.PI / 2]} position={[0, 0.65, 0]}>
       <MeshTransmissionMaterial
@@ -309,7 +309,7 @@ function GlassPrism() {
 // Glass lens with transmission material
 function GlassLens({ focalLength }: { focalLength: number }) {
   const curve = focalLength >= 0 ? 0.8 : -0.6;
-  
+
   const shape = useMemo(() => {
     const s = new THREE.Shape();
     s.moveTo(0, -1.4);
@@ -317,7 +317,7 @@ function GlassLens({ focalLength }: { focalLength: number }) {
     s.quadraticCurveTo(-curve, 0, 0, -1.4);
     return s;
   }, [curve]);
-  
+
   return (
     <mesh rotation={[0, Math.PI / 2, 0]} position={[0, 0, 0]}>
       <extrudeGeometry args={[shape, { depth: 0.6, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 5 }]} />
@@ -375,34 +375,34 @@ function OpticalWorkbench({
     const theta = (angle * Math.PI) / 180;
     const incidentDir = new THREE.Vector2(Math.sin(theta), -Math.cos(theta));
     const source = new THREE.Vector3(-incidentDir.x * 3, -incidentDir.y * 3, 0);
-    
+
     const incidentPoints = [source, hit];
-    
+
     const reflectedDir = reflect(incidentDir, new THREE.Vector2(0, 1));
     const reflectedPoints = [hit, new THREE.Vector3(reflectedDir.x * 3.5, reflectedDir.y * 3.5, 0)];
-    
+
     const normal = new THREE.Vector2(0, 1);
     const refracted = refract(incidentDir, normal, n1, n2) ?? reflect(incidentDir, normal);
     const refractionPoints = [hit, new THREE.Vector3(refracted.x * 4, refracted.y * 4, 0)];
-    
-    return { 
-      incidentPoints, 
-      reflectedPoints, 
-      refractionPoints, 
-      source, 
-      hit, 
+
+    return {
+      incidentPoints,
+      reflectedPoints,
+      refractionPoints,
+      source,
+      hit,
       refracted,
       reflectedDir
     };
   }, [angle, n1, n2]);
-  
+
   // Derive isAligned from rayData during render, not in useMemo
   const isAligned = useMemo(() => {
     if (targetAngle === undefined) return false;
     const reflectedAngle = Math.atan2(rayData.reflectedDir.y, rayData.reflectedDir.x) * 180 / Math.PI;
     return Math.abs(reflectedAngle - targetAngle) < 2;
   }, [rayData.reflectedDir, targetAngle]);
-  
+
   const lensScene = useMemo(() => {
     const scale = 0.02;
     const f = focalLength * scale;
@@ -413,13 +413,13 @@ function OpticalWorkbench({
     const focalPoint = new THREE.Vector3(f, 0, 0);
     const throughCenter = new THREE.Vector3(0, 0, 0);
     const imageTop = new THREE.Vector3(v, -1 * (v / u), 0);
-    
+
     return {
       f, u, v,
       objectTop, parallelHit, focalPoint, throughCenter, imageTop,
     };
   }, [focalLength]);
-  
+
   return (
     <group>
       {/* Reflection scenario */}
@@ -435,7 +435,7 @@ function OpticalWorkbench({
           <GlassMirror />
         </>
       )}
-      
+
       {/* Refraction scenario */}
       {scenario === "refraction" && (
         <>
@@ -443,7 +443,7 @@ function OpticalWorkbench({
           {showAnswer && (
             <VolumetricBeam points={rayData.refractionPoints} color={palette.green} />
           )}
-          
+
           {/* Water/glass medium */}
           <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, -0.1]}>
             <planeGeometry args={[8, 5, 32, 32]} />
@@ -457,7 +457,7 @@ function OpticalWorkbench({
               opacity={0.3}
             />
           </mesh>
-          
+
           {/* Interface line */}
           <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
             <planeGeometry args={[8, 0.08]} />
@@ -469,21 +469,21 @@ function OpticalWorkbench({
           </mesh>
         </>
       )}
-      
+
       {/* Prism dispersion scenario */}
       {scenario === "prism" && (
         <>
-          <VolumetricBeam 
+          <VolumetricBeam
             points={[
               new THREE.Vector3(-3, 0.65, 0),
               new THREE.Vector3(-0.5, 0.65, 0)
-            ]} 
+            ]}
             color={palette.white}
             radius={0.06}
           />
-          
+
           <GlassPrism />
-          
+
           {showAnswer && (
             <RainbowFan
               origin={new THREE.Vector3(0.5, 0.65, 0)}
@@ -494,12 +494,12 @@ function OpticalWorkbench({
           )}
         </>
       )}
-      
+
       {/* Lens scenario */}
       {scenario === "lens" && (
         <>
           <GlassLens focalLength={focalLength} />
-          
+
           {/* Object */}
           <mesh position={[-lensScene.u, 0.5, 0]}>
             <boxGeometry args={[0.12, 1, 0.12]} />
@@ -511,11 +511,11 @@ function OpticalWorkbench({
               roughness={0.2}
             />
           </mesh>
-          
+
           <Text position={[-lensScene.u, -1.2, 0]} fontSize={0.2} color={palette.pink}>
             Object
           </Text>
-          
+
           {showAnswer && (
             <>
               <VolumetricBeam
@@ -528,7 +528,7 @@ function OpticalWorkbench({
                 color={palette.cyan}
                 radius={0.03}
               />
-              
+
               {/* Image */}
               <mesh position={[lensScene.imageTop.x, lensScene.imageTop.y / 2, 0]}>
                 <boxGeometry args={[0.1, Math.abs(lensScene.imageTop.y), 0.1]} />
@@ -540,13 +540,13 @@ function OpticalWorkbench({
                   roughness={0.2}
                 />
               </mesh>
-              
+
               <Text position={[lensScene.imageTop.x, -1.2, 0]} fontSize={0.18} color={palette.green}>
                 Image
               </Text>
             </>
           )}
-          
+
           {/* Focal points */}
           <Float speed={2} rotationIntensity={0} floatIntensity={0.2}>
             <mesh position={[lensScene.f, 0, 0]}>
@@ -561,7 +561,7 @@ function OpticalWorkbench({
               <pointLight color={palette.cyan} intensity={1} distance={2} />
             </mesh>
           </Float>
-          
+
           <Float speed={2.5} rotationIntensity={0} floatIntensity={0.2}>
             <mesh position={[-lensScene.f, 0, 0]}>
               <sphereGeometry args={[0.1, 20, 20]} />
@@ -581,7 +581,7 @@ function OpticalWorkbench({
   );
 }
 
-export default function P301OpticsCanvas({
+export default function P308OpticsCanvas({
   scenario = "reflection",
   angle = 30,
   n1 = 1.0,
@@ -589,18 +589,18 @@ export default function P301OpticsCanvas({
   focalLength = 100,
   showAnswer = false,
   targetAngle,
-}: P301OpticsCanvasProps) {
+}: P308OpticsCanvasProps) {
   return (
     <div className="relative w-full h-[420px] border border-white/10 rounded-lg bg-[#020208] overflow-hidden shadow-2xl">
       <Canvas camera={{ position: [0, 3, 7], fov: 45 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.3} />
         <pointLight position={[5, 5, 5]} intensity={1.2} />
         <pointLight position={[-5, -3, 3]} intensity={0.8} color={palette.cyan} />
         <pointLight position={[0, 5, -5]} intensity={0.6} color={palette.purple} />
-        
+
         {/* Controls */}
         <OrbitControls
           enablePan={false}
@@ -608,7 +608,7 @@ export default function P301OpticsCanvas({
           maxDistance={12}
           autoRotate={false}
         />
-        
+
         {/* Grid floor */}
         <Grid
           infiniteGrid
@@ -620,7 +620,7 @@ export default function P301OpticsCanvas({
           fadeStrength={1.2}
           position={[0, -2, 0]}
         />
-        
+
         {/* Main optical workbench */}
         <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.12}>
           <OpticalWorkbench
@@ -633,7 +633,7 @@ export default function P301OpticsCanvas({
             targetAngle={targetAngle}
           />
         </Float>
-        
+
         {/* 3D Branding */}
         <Float speed={1.2} rotationIntensity={0} floatIntensity={0.15}>
           <Text
@@ -646,7 +646,7 @@ export default function P301OpticsCanvas({
           </Text>
         </Float>
       </Canvas>
-      
+
       {/* Cyber-Euler HUD */}
       <div className="absolute top-4 left-4 flex gap-2 items-center">
         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
@@ -654,7 +654,7 @@ export default function P301OpticsCanvas({
           Photon_Tracer v3.0
         </span>
       </div>
-      
+
       <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[9px] text-white">
         <div className="text-cyan-400">Mode: {scenario.toUpperCase()}</div>
         {scenario !== "lens" && scenario !== "prism" && (
@@ -667,13 +667,13 @@ export default function P301OpticsCanvas({
           <div className="text-purple-400">f: {focalLength}mm</div>
         )}
       </div>
-      
+
       <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
         CHAMBER // P3.01<br />
         RAY_TRACING: ACTIVE<br />
         GLASS_PHYSICS: ENABLED
       </div>
-      
+
       <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Optics Lab 3D
       </div>
