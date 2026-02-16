@@ -126,7 +126,15 @@ export const deBiology = {
             adenine: "Adenin",
             thymine: "Thymin",
             cytosine: "Cytosin",
-            guanine: "Guanin"
+            guanine: "Guanin",
+            analysis: "Basenpaaranalyse"
+        },
+        results: {
+            valid: "Bindung Stabil",
+            invalid: "Helix-Instabilität",
+            valid_desc: "Nukleotidpaare verifiziert.",
+            invalid_desc: "Sequenzabweichung erkannt.",
+            next: "Nächstes Paar schmieden"
         },
         concepts: {
             helix: "Doppelhelix: Zwei antiparallele Stränge",
@@ -235,6 +243,14 @@ export const deBiology = {
             title: "MISSION: ZELLERKUNDUNG",
             description: "Erkunden Sie die tierische Zellstruktur. Identifizieren Sie Organellen und verstehen Sie ihre Funktionen in der Zellökonomie."
         },
+        results: {
+            valid: "Struktur Verifiziert",
+            invalid: "Analysefehler",
+            valid_desc: "Organell stimmt mit Datenbank überein. Fortfahren.",
+            invalid_desc: "Abweichung in der morphologischen Analyse erkannt.",
+            next: "Nächstes Präparat",
+            analysis: "Mikroskopische Analyse"
+        },
         prompts: {
             id_prompt: "Identifizieren Sie das in der 3D-Ansicht markierte Organell.",
             id_target: "Markiert: ?",
@@ -299,7 +315,15 @@ export const deBiology = {
             respiration_formula: "Atmungsformel",
             glucose: "Glukose",
             oxygen: "Sauerstoff",
-            atp: "ATP-Energie"
+            atp: "ATP-Energie",
+            analysis: "Biologisches Ziel"
+        },
+        results: {
+            valid: "Homöostase Stabil",
+            invalid: "Stoffwechselkrise",
+            valid_desc: "Zelluläres Gleichgewicht erreicht.",
+            invalid_desc: "Zellulärer Stress erkannt. Stoffwechselfluss korrigieren.",
+            next: "Nächstes Gleichgewicht"
         },
         prompts: {
             osmosis_prompt: "Die Zelle befindet sich in einer {status} Umgebung. Was passiert mit dem Wasser?",
@@ -345,6 +369,13 @@ export const deBiology = {
             efficiency: "Effizienz",
             reaction_display: "Reaktionsanzeige",
             input_terminal: "Eingabeterminal"
+        },
+        results: {
+            valid: "Gleichung Ausgeglichen",
+            invalid: "Reaktionsfehler",
+            valid_desc: "Photosynthese-Gleichung verifiziert.",
+            invalid_desc: "Stöchiometrie-Fehler. Atombalance prüfen.",
+            next: "Nächste Herausforderung"
         },
         canvas_labels: {
             light: "LICHT",
@@ -409,31 +440,42 @@ export const deBiology = {
             systems: "ORGANSYSTEME"
         },
         scenarios: {
-            tissues: "Pathologielabor des Universitätsspitals Basel: Sie sind Medizinstudent am Universitätsspital Basel und lernen unter der Anleitung von Dr. Müller die Gewebeidentifikation. Mit hochmodernen Mikroskopen untersuchen Sie Gewebeproben aus verschiedenen Körperregionen. Jeder der vier Hauptgewebetypen hat eine spezifische Funktion: Epithelgewebe bedeckt und schützt Körperoberflächen (wie Haut und Darmschleimhaut), Bindegewebe bietet strukturelle Unterstützung (wie Knochen und Knorpel), Muskelgewebe ermöglicht Bewegung durch Kontraktion (wie Herzmuskel und Skelettmuskeln), und Nervengewebe überträgt elektrische Signale zur Kommunikation (wie Gehirnzellen und Nervenfasern). Ihre Aufgabe ist es, die Hauptfunktion jedes Gewebetyps anhand seiner mikroskopischen Struktur und seiner Lage im Körper zu identifizieren. Diese grundlegende Fähigkeit ist für die medizinische Diagnose unerlässlich, da abnorme Gewebestrukturen oft auf Krankheiten hinweisen. Genau wie ein Gebäude verschiedene Materialien für verschiedene Zwecke benötigt (Beton für das Fundament, Glas für Fenster, Drähte für Elektrizität), benötigt Ihr Körper verschiedene Gewebetypen für verschiedene Aufgaben.",
+            tissues: "Pathologielabor des Universitätsspitals Basel: Sie sind Medizinstudent am Universitätsspital Basel und lernen unter der Leitung von Dr. Müller die Gewebeidentifikation. Mit hochmodernen Mikroskopen untersuchen Sie Gewebeproben aus verschiedenen Körperregionen. Jeder der vier Hauptgewebetypen hat eine spezifische Funktion: Epithelgewebe bedeckt und schützt Körperoberflächen (wie Haut und Darmschleimhaut), Bindegewebe bietet strukturelle Unterstützung (wie Knochen und Knorpel), Muskelgewebe ermöglicht Bewegung durch Kontraktion (wie Herzmuskel und Skelettmuskeln), und Nervengewebe überträgt elektrische Signale zur Kommunikation (wie Gehirnzellen und Nervenfasern). Ihre Aufgabe ist es, die Hauptfunktion jedes Gewebetyps anhand seiner mikroskopischen Struktur und seiner Lage im Körper zu identifizieren. Diese grundlegende Fähigkeit ist für die medizinische Diagnose unerlässlich, da abnorme Gewebestrukturen oft auf Krankheiten hinweisen. Genau wie ein Gebäude verschiedene Materialien für verschiedene Zwecke benötigt (Beton für das Fundament, Glas für Fenster, Drähte für Elektrizität), benötigt Ihr Körper verschiedene Gewebetypen für verschiedene Aufgaben.",
             organs: "Novartis Pharmaforschung - Organmodellierungsabteilung: Sie arbeiten in der biomedizinischen Forschungsabteilung von Novartis Basel, wo Wissenschaftler detaillierte 3D-Modelle menschlicher Organe für Arzneimitteltests und -entwicklung erstellen. Jedes Organ im menschlichen Körper besteht aus mehreren Gewebetypen, die harmonisch zusammenarbeiten. Zum Beispiel enthält das Herz vier Gewebetypen: Muskelgewebe (Herzmuskel zum Pumpen von Blut), Epithelgewebe (Endothel, das Blutgefäße auskleidet), Bindegewebe (strukturelles Gerüst) und Nervengewebe (Steuerung von Herzfrequenz und Rhythmus). Ebenso hat der Magen Epithelgewebe (Sekretion von Verdauungsenzymen), Muskelgewebe (Durchmischung der Nahrung), Bindegewebe (strukturelle Unterstützung) und Nervengewebe (Koordination der Verdauung). Ihre Aufgabe ist es, zu zählen, wie viele verschiedene Gewebetypen jedes Organ zusammensetzen. Diese Information ist entscheidend für das Verständnis, wie pharmazeutische Medikamente verschiedene Teile eines Organs beeinflussen. Genaue Organmodelle helfen Novartis, sicherere Medikamente zu entwickeln, indem potenzielle Nebenwirkungen vor klinischen Studien am Menschen vorhergesagt werden.",
             systems: "Medizinische Fakultät Basel - Organisation des menschlichen Körpers: Sie studieren Anatomie an der Medizinischen Fakultät Basel und lernen, wie der menschliche Körper in einer klaren hierarchischen Struktur organisiert ist. Diese biologische Hierarchie folgt einer logischen Progression von einfach zu komplex: Zellen (die kleinsten lebenden Einheiten, wie eine einzelne Muskelzelle) → Gewebe (Gruppen ähnlicher Zellen, die zusammenarbeiten, wie Muskelgewebe) → Organe (Strukturen aus mehreren Gewebetypen, wie das Herz) → Organsysteme (Gruppen von Organen, die zusammenarbeiten, wie das Kreislaufsystem) → Organismus (der vollständige menschliche Körper). Zum Beispiel verbindet sich eine einzelne Herzmuskelzelle mit Millionen anderer Muskelzellen, um Herzmuskelgewebe zu bilden. Dieses Muskelgewebe kombiniert sich mit Epithelgewebe (Auskleidung), Bindegewebe (Gerüst) und Nervengewebe (Steuerung), um das Herzorgan zu bilden. Das Herz arbeitet dann zusammen mit Blutgefäßen (Arterien, Venen, Kapillaren), um das Kreislaufsystem zu bilden, das Sauerstoff und Nährstoffe durch den gesamten Organismus transportiert. Das Verständnis dieser Hierarchie ist grundlegend für medizinische Diagnose und Behandlung. Ihre Aufgabe ist es, die richtige Ebene in dieser biologischen Organisation zu identifizieren."
-        }
-    },
-    sb2_02_body_systems: {
-        back: "Zurück zum Nexus",
-        title: "SB2.02 // MENSCHLICHE KÖRPERSYSTEME",
-        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
-        objective_title: "Aktuelles Missionsziel",
-        monitor_title: "Körpersysteme-Monitor",
-        footer_left: "SB2.02_KÖRPERSYSTEME // KNOTEN: BASEL",
-        check: "Prüfen",
-        next: "Nächstes System",
-        correct: "Richtig",
-        incorrect: "Falsch",
-        stages: {
-            digestive: "VERDAUUNGSSYSTEM",
-            circulatory: "KREISLAUFSYSTEM",
-            respiratory: "ATMUNGSSYSTEM"
         },
-        scenarios: {
-            digestive: "Gastroenterologie-Abteilung des Universitätsspitals Basel: Sie begleiten Dr. Weber, eine Gastroenterologin am Universitätsspital Basel, während sie Medizinstudenten das Verdauungssystem erklärt. Das Verdauungssystem ist eine komplexe Anordnung von Organen, die zusammenarbeiten, um Nahrung in Nährstoffe zu zerlegen, die Ihr Körper für Energie, Wachstum und Zellreparatur aufnehmen und verwenden kann. Die Reise beginnt im Mund, wo mechanische Verdauung (Kauen) und chemische Verdauung (Speichelenzyme) beginnen, Nahrung abzubauen. Die Nahrung wandert dann durch peristaltische Wellen (Muskelkontraktionen) durch die Speiseröhre in den Magen, wo starke Magensäure (pH 1,5-3,5) und Pepsin-Enzyme Proteine weiter abbauen. Die teilweise verdaute Nahrung (Chymus) gelangt in den Dünndarm (6-7 Meter lang), wo die meiste Nährstoffaufnahme durch Millionen winziger fingerartiger Ausstülpungen namens Zotten erfolgt. Die Leber produziert Galle zur Emulgierung von Fetten, während die Bauchspeicheldrüse Verdauungsenzyme und Bikarbonat absondert, um Magensäure zu neutralisieren. Schließlich absorbiert der Dickdarm Wasser und bildet feste Abfälle. Das Verständnis dieses Systems ist entscheidend für die Diagnose von Erkrankungen wie Morbus Crohn, Geschwüren und Malabsorptionsstörungen, die Tausende von Basler Einwohnern betreffen. Ihre Aufgabe ist es, das richtige Organ im Verdauungsweg zu identifizieren und die spezifische Funktion jedes Organs in diesem bemerkenswerten biologischen Fließband zu verstehen.",
-            circulatory: "Basel Kardiologie-Zentrum - Herzfunktionsanalyse: Sie arbeiten im Basel Kardiologie-Zentrum mit Dr. Schneider und analysieren, wie das Kreislaufsystem Sauerstoff und Nährstoffe zu jeder Zelle im menschlichen Körper liefert und gleichzeitig Kohlendioxid und Stoffwechselabfälle entfernt. Das Herz ist eine kraftvolle Muskelpumpe mit vier Kammern: zwei Vorhöfe (obere Kammern, die Blut empfangen) und zwei Ventrikel (untere Kammern, die Blut auspumpen). Die rechte Seite pumpt sauerstoffarmes Blut zur Sauerstoffanreicherung in die Lungen, während die linke Seite sauerstoffreiches Blut durch ein Netzwerk von Blutgefäßen in den gesamten Körper pumpt. Arterien transportieren Blut unter hohem Druck vom Herzen weg (systolischer Druck ~120 mmHg), mit dicken elastischen Wänden, um diesem Druck standzuhalten. Venen führen Blut unter niedrigem Druck zum Herzen zurück und verwenden Einwegventile, um Rückfluss zu verhindern. Kapillaren sind mikroskopische Gefäße, in denen der Gasaustausch zwischen Blut und Gewebe stattfindet. Das durchschnittliche erwachsene Herz schlägt 60-100 Mal pro Minute und pumpt in Ruhe etwa 5 Liter Blut pro Minute (Herzminutenvolumen). Dies erhöht sich während intensiver Bewegung auf 20-25 Liter pro Minute. Das Verständnis des Kreislaufsystems ist für die Behandlung von Herz-Kreislauf-Erkrankungen unerlässlich, die die häufigste Todesursache in der Schweiz sind. Ihre Aufgabe ist es, die Hauptkomponenten des Kreislaufsystems zu identifizieren und zu verstehen, wie Blut durch dieses lebenswichtige Transportnetzwerk fließt.",
-            respiratory: "Basel Pneumologie-Institut - Atemfunktionslabor: Sie assistieren Dr. Keller am Basel Pneumologie-Institut, wo Forscher untersuchen, wie das Atmungssystem den Gasaustausch ermöglicht - Sauerstoff in den Körper bringen und Kohlendioxid entfernen. Luft tritt durch Nase oder Mund ein, wo sie gefiltert, erwärmt und befeuchtet wird. Sie passiert den Rachen (Pharynx) und Kehlkopf (Larynx, enthält Stimmbänder) in die Luftröhre (Trachea), ein starres Rohr, das mit C-förmigen Knorpelringen verstärkt ist, um ein Kollabieren zu verhindern. Die Luftröhre verzweigt sich in zwei Bronchien (einen für jede Lunge), die sich weiter in kleinere Bronchiolen teilen und eine baumartige Struktur namens Bronchialbaum bilden. Am Ende der kleinsten Bronchiolen befinden sich Cluster winziger Luftsäcke namens Alveolen (etwa 300 Millionen in erwachsenen Lungen), wo der Gasaustausch stattfindet. Die Alveolarwände sind extrem dünn (0,5 Mikrometer) und von Kapillaren umgeben, wodurch Sauerstoff ins Blut diffundieren kann, während Kohlendioxid herausdiffundiert. Das Zwerchfell, ein kuppelförmiger Muskel unter den Lungen, zieht sich zusammen, um den Brustraum beim Einatmen zu erweitern und einen Unterdruck zu erzeugen, der Luft hineinzieht. Beim Ausatmen entspannt sich das Zwerchfell und die elastischen Lungen ziehen sich zusammen und drücken Luft heraus. Ein gesunder Erwachsener atmet in Ruhe 12-20 Mal pro Minute und tauscht etwa 500 ml Luft pro Atemzug aus (Atemzugvolumen). Das Verständnis der Atemfunktion ist entscheidend für die Behandlung von Erkrankungen wie Asthma, COPD und Lungenentzündung. Ihre Aufgabe ist es, die Organe im Atemweg zu identifizieren und den Mechanismus der Atmung und des Gasaustauschs zu verstehen."
+        labels: {
+            analysis: "Gewebe-Analyse",
+            terminal: "Eingabeterminal",
+            hint: "Pathologie-Hinweis"
+        },
+        results: {
+            valid: "Biologische Verifizierung abgeschlossen",
+            invalid: "Diagnosefehler",
+            valid_desc: "Die identifizierte biologische Struktur stimmt mit unserer Datenbank überein.",
+            invalid_desc: "Falsche Identifizierung. Bitte überprüfen Sie die Gewebemorphologie und -funktionen.",
+            next: "Nächste Stufe analysieren"
+        },
+        prompts: {
+            epithelial_func: "Epithelgewebe bedeckt Körperoberflächen. Was ist seine Hauptfunktion?",
+            connective_func: "Bindegewebe bietet strukturelle Unterstützung. Nennen Sie seine Funktion:",
+            muscle_func: "Muskelgewebe ermöglicht Körperbewegung. Was ist seine Funktion?",
+            nervous_func: "Nervengewebe überträgt elektrische Signale. Was ist seine Funktion?",
+            absorb_func: "Epithelgewebe im Darm absorbiert Nährstoffe. Funktion?",
+            organ_count: "Das {organ} enthält Muskel-, Epithel-, Binde- und Nervengewebe. Anzahl:",
+            organ_count_simple: "Das {organ} enthält {list}. Anzahl:",
+            hierarchy: "Vervollständigen: Zelle \\\\to Gewebe \\\\to Organ \\\\to ?",
+            system_count: "Das {system} hat {n} Hauptorgane. Anzahl:",
+            nervous_divisions: "Das Nervensystem hat 2 Hauptabteilungen. Anzahl:",
+            hint_epithelial: "Bedeckt und schützt Oberflächen",
+            hint_connective: "Bietet Gerüst",
+            hint_muscle: "Kontrahiert zur Bewegung",
+            hint_nervous: "Sendet elektrische Signale",
+            hint_organs: "Alle Organe haben mehrere Gewebe",
+            hint_systems: "Gruppen von Organen",
+            location: "Lage: {loc}",
+            function_label: "Funktion",
+            next_level: "Nächste Ebene"
         }
     },
     sb2_01: {
@@ -516,6 +558,18 @@ export const deBiology = {
             circulatory: "KREISLAUF",
             respiratory: "ATMUNG"
         },
+        scenarios: {
+            digestive: "Universitätsspital Basel - Abteilung für Gastroenterologie: Sie begleiten Frau Dr. Weber, eine Gastroenterologin am Universitätsspital Basel, während sie Medizinstudenten das Verdauungssystem erklärt. Das Verdauungssystem ist ein komplexes Gefüge von Organen, die zusammenarbeiten, um Nahrung in Nährstoffe zu zerlegen, die Ihr Körper für Energie, Wachstum und Zellreparatur aufnehmen und verwenden kann. Die Reise beginnt im Mund, wo die mechanische Verdauung (Kauen) und die chemische Verdauung (Speichelenzyme) mit dem Abbau der Nahrung beginnen. Die Nahrung gelangt dann durch peristaltische Wellen (Muskelkontraktionen) durch die Speiseröhre in den Magen, wo starke Magensäure (pH 1.5-3.5) und Pepsin-Enzyme Proteine weiter abbauen. Der teilweise verdaute Speisebrei (Chymus) gelangt in den Dünndarm (6-7 Meter lang), wo die meiste Nährstoffaufnahme durch Millionen winziger fingerartiger Ausstülpungen, die Zotten, stattfindet. Die Leber produziert Galle zur Emulgierung von Fetten, während die Bauchspeicheldrüse Verdauungsenzyme und Bikarbonat zur Neutralisierung der Magensäure ausscheidet. Schließlich nimmt der Dickdarm Wasser auf und bildet festen Abfall. Das Verständnis dieses Systems ist entscheidend für die Diagnose von Erkrankungen wie Morbus Crohn, Geschwüren und Malabsorptionsstörungen, von denen Tausende von Basler Einwohnern betroffen sind. Ihre Aufgabe ist es, das richtige Organ im Verdauungsweg zu identifizieren und die spezifische Funktion jedes Organs in dieser bemerkenswerten biologischen Montagelinie zu verstehen.",
+            circulatory: "Kardiologiezentrum Basel - Analyse der Herzfunktion: Sie arbeiten im Kardiologiezentrum Basel mit Dr. Schneider zusammen und analysieren, wie das Kreislaufsystem jede Zelle des menschlichen Körpers mit Sauerstoff und Nährstoffen versorgt und gleichzeitig Kohlendioxid und Stoffwechselabfälle entfernt. Das Herz ist eine starke Muskelpumpe mit vier Kammern: zwei Vorhöfen (obere Kammern, die Blut empfangen) und zwei Ventrikeln (untere Kammern, die Blut ausstoßen). Die rechte Seite pumpt sauerstoffarmes Blut zur Oxygenierung in die Lunge, während die linke Seite pumpt sauerstoffreiches Blut durch ein Netzwerk von Blutgefäßen in den gesamten Körper pumpt. Arterien transportieren Blut unter hohem Druck (systolischer Druck ~120 mmHg) vom Herzen weg und haben dicke elastische Wände, um diesem Druck standzuhalten. Venen führen Blut unter niedrigem Druck zum Herzen zurück und verwenden Einwegventile, um einen Rückfluss zu verhindern. Kapillaren sind mikroskopisch kleine Gefäße, in denen der Gasaustausch zwischen Blut und Gewebe stattfindet. Das Herz eines durchschnittlichen Erwachsenen schlägt 60-100 Mal pro Minute und pumpt in Ruhe etwa 5 Liter Blut pro Minute (Herzzeitvolumen). Bei intensiver körperlicher Betätigung steigt dieser Wert auf 20-25 Liter pro Minute an. Das Verständnis des Kreislaufsystems ist unerlässlich für die Behandlung von Herz-Kreislauf-Erkrankungen, der häufigsten Todesursache in der Schweiz. Ihre Aufgabe ist es, die Hauptkomponenten des Kreislaufsystems zu identifizieren und zu verstehen, wie das Blut durch dieses lebenswichtige Transportnetzwerk fließt.",
+            respiratory: "Pneumologisches Institut Basel - Labor für Atemfunktion: Sie unterstützen Dr. Keller am Pneumologischen Institut Basel, wo Forscher untersuchen, wie das Atmungssystem den Gasaustausch ermöglicht – Sauerstoff in den Körper aufnimmt und Kohlendioxid entfernt. Die Luft gelangt durch die Nase oder den Mund in den Körper, wo sie gefiltert, erwärmt und befeuchtet wird. Sie gelangt durch den Pharynx (Rachen) und den Larynx (Kehlkopf mit den Stimmbändern) in die Trachea (Luftröhre), eine starre Röhre, die mit C-förmigen Knorpelringen verstärkt ist, um ein Kollabieren zu verhindern. Die Luftröhre verzweigt sich in zwei Bronchien (eine für jeden Lungenflügel), die sich weiter in kleinere Bronchiolen verzweigen und eine baumartige Struktur bilden, die Bronchialbaum genannt wird. Am Ende der kleinsten Bronchiolen befinden sich Cluster winziger Lungenbläschen, die Alveolen genannt werden (ca. 300 Millionen in der Lunge eines Erwachsenen), in denen der Gasaustausch stattfindet. Die Alveolarwände sind extrem dünn (0.5 Mikrometer) und von Kapillaren umgeben, sodass Sauerstoff in das Blut diffundieren kann, während Kohlendioxid herausdiffundiert. Das Zwerchfell, ein kuppelförmiger Muskel unter der Lunge, zieht sich beim Einatmen zusammen, um den Brustraum zu erweitern, wodurch ein Unterdruck entsteht, der Luft ansaugt. Beim Ausatmen entspannt sich das Zwerchfell und die elastische Lunge zieht sich zusammen, wobei die Luft herausgedrückt wird. Ein gesunder Erwachsener atmet in Ruhe 12-20 Mal pro Minute und tauscht etwa 500 ml Luft pro Atemzug aus (Atemzugvolumen). Das Verständnis der Atemfunktion ist entscheidend für die Behandlung von Erkrankungen wie Asthma, COPD und Lungenentzündung. Ihre Aufgabe ist es, die Organe im Atemweg zu identifizieren und den Mechanismus der Atmung und des Gasaustauschs zu verstehen."
+        },
+        results: {
+            valid: "Biologischer Pfad verifiziert",
+            invalid: "Physiologischer Fehler",
+            valid_desc: "Organfunktion und Sequenz stimmen mit dem menschlichen Anatomiemodell überein.",
+            invalid_desc: "Fehlanpassung erkannt. Überprüfen Sie Organfunktion und Lage.",
+            next: "Nächstes Systemmodul"
+        },
         systems: {
             digestive: "Verdauungssystem",
             circulatory: "Kreislaufsystem",
@@ -527,7 +581,17 @@ export const deBiology = {
             enzyme: "Enzymaktivität",
             anatomy_score: "Anatomie-Punktzahl",
             anatomy_display: "Anatomie-Anzeige",
-            input_terminal: "Eingabeterminal"
+            input_terminal: "Eingabeterminal",
+            analysis: "Systemanalyse",
+            hint: "Anatome-Hinweis",
+            stomach: "MAGEN",
+            liver: "LEBER",
+            intestines: "DÄRME",
+            heart: "HERZ",
+            arteries: "ARTERIEN",
+            veins: "VENEN",
+            lungs: "LUNGEN",
+            trachea: "LUFTRÖHRE"
         },
         prompts: {
             organ_function: "Welches Organ ist für {function} verantwortlich?",
@@ -536,10 +600,6 @@ export const deBiology = {
             hint_component: "Das {name} erfüllt diese Funktion",
             structure_function: "Welche Struktur ist für {function} verantwortlich?",
             hint_structure: "Das {name} erfüllt diese Funktion"
-        },
-        feedback: {
-            correct: "Anatomie-Wissen verifiziert!",
-            incorrect: "Überprüfen Sie die Struktur des Körpersystems."
         }
     },
     sb3_01: {
@@ -589,6 +649,64 @@ export const deBiology = {
         feedback: {
             correct: "Ökosystem-Gleichgewicht aufrechterhalten!",
             incorrect: "Ökosystem gestört. Überprüfen Sie die Beziehungen."
+        }
+    },
+    sb2_03: {
+        back: "Zurück zum Nexus",
+        title: "SB2.03 // GENETISCHE VARIATION",
+        difficulty: {
+            basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+        },
+        objective_title: "Aktuelles Missionsziel",
+        target_title: "Analyse der genetischen Variation",
+        next: "Nächste Sequenz ausführen",
+        check: "Prüfen",
+        correct: "Verifiziert",
+        incorrect: "Abweichung",
+        ready: "Bereit",
+        monitor_title: "SB2.03_VARIATIONS_MONITOR",
+        footer_left: "SB2.03_GENETISCHE_VARIATION // KNOTEN: BASEL",
+        stages: {
+            monohybrid: "MONOHYBRIDE KREUZUNG",
+            probability: "WAHRSCHEINLICHKEIT",
+            dihybrid: "DIHYBRIDE KREUZUNG"
+        },
+        scenarios: {
+            monohybrid: "Botanischer Garten Basel - Mendelsche Studie: Sie arbeiten im Botanischen Garten Basel, wo Forscher Gregor Mendels berühmte Experimente mit Erbsenpflanzen replizieren. Durch die Kreuzung von Pflanzen mit unterschiedlichen Merkmalen (wie lila vs. weißen Blüten) untersuchen Sie das Gesetz der Segregation. Jede Pflanze trägt zwei Allele für ein Merkmal, die sich während der Gametenbildung trennen. Ihre Aufgabe ist es, ein Punnett-Quadrat zu verwenden, um die phänotypischen und genotypischen Verhältnisse der Nachkommen einer bestimmten Kreuzung vorherzusagen. Das Verständnis dieser grundlegenden Vererbungsmuster ist die Basis für die gesamte moderne Genetik und Landwirtschaft in der Schweiz.",
+            probability: "Universität Basel - Genetisches Forschungslabor: Im High-Tech-Genetiklabor der Universität Basel berechnen Sie die statistische Wahrscheinlichkeit bestimmter genetischer Ergebnisse. Die Genetik ist von Natur aus probabilistisch; wenn zwei heterozygote Eltern (Rr) gekreuzt werden, besteht eine 25%ige Wahrscheinlichkeit für homozygot dominante (RR), eine 50%ige Wahrscheinlichkeit für heterozygote (Rr) und eine 25%ige Wahrscheinlichkeit für homozygot rezessive (rr) Nachkommen. Ihre Aufgabe ist es, die exakte mathematische Wahrscheinlichkeit (Prozentsatz oder Bruch) zu bestimmen, mit der ein zufälliger Nachkomme einen bestimmten Genotyp oder Phänotyp aufweist. Diese Präzision ist entscheidend für die klinische Genetik und das Verständnis von Erbkrankheiten.",
+            dihybrid: "Syngenta Gewächshaus - Analyse komplexer Merkmale: Im Forschungsgewächshaus von Syngenta in Basel analysieren Sie die Vererbung von zwei unabhängigen Merkmalen gleichzeitig, wie z. B. Samenform (rund/runzelig) und Samenfarbe (gelb/grün). Dies folgt Mendels Gesetz der unabhängigen Sortierung, das besagt, dass Allele für verschiedene Merkmale unabhängig voneinander auf die Gameten verteilt werden. Eine dihybride Kreuzung zwischen zwei Doppel-Heterozygoten (RrYy x RrYy) führt typischerweise zu einem phänotypischen Verhältnis von 9:3:3:1. Ihre Aufgabe ist es, das komplexe Ergebnis dieser genetischen Kreuzungen zu berechnen, eine Fähigkeit, die für die Entwicklung neuer resistenter Nutzpflanzensorten unerlässlich ist."
+        },
+        labels: {
+            parent: "Elternteil",
+            offspring: "Nachkomme",
+            punnett_square: "PUNNETT-QUADRAT",
+            stats: "STATISTIK DER NACHKOMMEN",
+            genotype_ratio: "Genotyp-Verhältnis",
+            phenotype_ratio: "Phänotyp-Verhältnis",
+            genetics_basics: "GRUNDLAGEN DER GENETIK",
+            instructions: "ANWEISUNGEN",
+            prediction: "Phänotyp-Vorhersage",
+            analysis: "Genetische Analyse",
+            hint: "Genetik-Hinweis"
+        },
+        results: {
+            valid: "Sequenz Validiert",
+            invalid: "Genetische Drift",
+            valid_desc: "Mendelsche Verhältnisse bestätigt.",
+            invalid_desc: "Wahrscheinlichkeitsmatrix neu berechnen.",
+            next: "Nächstes Präparat",
+            analysis: "Phänotyp-Vorhersage"
+        },
+        prompts: {
+            monohybrid_ratio: "Kreuzung {p1} \\times {p2}. Wie ist das phänotypische Verhältnis?",
+            monohybrid_percent: "Kreuzung {p1} \\times {p2}. Wie viel Prozent der Nachkommen werden dominant sein?",
+            prob_genotype: "Kreuzung {p1} \\times {p2}. Wie hoch ist die Wahrscheinlichkeit für einen {genotype} Nachkommen?",
+            ratio_target: "\\text{Verhältnis} = ?",
+            percent_target: "\\text{Prozentanteil}",
+            prob_target: "P({genotype}) = ?",
+            hint_square: "Überprüfe das Punnett-Quadrat.",
+            hint_all_rr: "Alle Nachkommen sind Rr.",
+            hint_count: "{count} von 4 Quadraten."
         }
     },
 };

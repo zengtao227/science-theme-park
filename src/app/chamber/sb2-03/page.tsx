@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeneticsLab from "@/components/chamber/sb2-03/GeneticsLab";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -19,11 +19,9 @@ interface SB203Quest extends Quest {
     p2: Genotype;
 }
 
-type SB203T = typeof translations.EN.sb2_01;
-
 export default function SB203Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb2_01 || translations.EN.sb2_01) as SB203T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [p1, setP1] = useState<Genotype>("Rr");
     const [p2, setP2] = useState<Genotype>("Rr");
 
@@ -34,17 +32,17 @@ export default function SB203Page() {
             quests.push(
                 {
                     id: "M-1", difficulty, stage, p1: "Rr", p2: "Rr",
-                    promptLatex: `\\text{${t.prompts.monohybrid_ratio.replace('{p1}', 'Rr').replace('{p2}', 'Rr')}}`,
-                    expressionLatex: t.prompts.ratio_target, targetLatex: "3:1",
+                    promptLatex: t("sb2_03.prompts.monohybrid_ratio", { p1: "Rr", p2: "Rr" }),
+                    expressionLatex: t("sb2_03.prompts.ratio_target"), targetLatex: "3:1",
                     slots: [{ id: "ans", labelLatex: "\\text{Ratio}", placeholder: "X:Y", expected: "3:1" }],
-                    correctLatex: "3:1", hintLatex: [`\\text{${t.prompts.hint_square}}`]
+                    correctLatex: "3:1", hintLatex: [t("sb2_03.prompts.hint_square")]
                 },
                 {
                     id: "M-2", difficulty, stage, p1: "RR", p2: "rr",
-                    promptLatex: `\\text{${t.prompts.monohybrid_percent.replace('{p1}', 'RR').replace('{p2}', 'rr')}}`,
-                    expressionLatex: t.prompts.percent_target, targetLatex: "100",
-                    slots: [{ id: "ans", labelLatex: "\\%", placeholder: "0-100", expected: "100" }],
-                    correctLatex: "100\\%", hintLatex: [`\\text{${t.prompts.hint_all_rr}}`]
+                    promptLatex: t("sb2_03.prompts.monohybrid_percent", { p1: "RR", p2: "rr" }),
+                    expressionLatex: t("sb2_03.prompts.percent_target"), targetLatex: "100\\%",
+                    slots: [{ id: "ans", labelLatex: "\\text{Percentage}", placeholder: "X%", expected: "100%" }],
+                    correctLatex: "100%", hintLatex: [t("sb2_03.prompts.hint_all_rr")]
                 }
             );
         }
@@ -53,23 +51,16 @@ export default function SB203Page() {
             quests.push(
                 {
                     id: "P-1", difficulty, stage, p1: "Rr", p2: "Rr",
-                    promptLatex: `\\text{${t.prompts.prob_genotype.replace('{p1}', 'Rr').replace('{p2}', 'Rr').replace('{genotype}', 'rr')}}`,
-                    expressionLatex: t.prompts.prob_target.replace('{genotype}', 'rr'), targetLatex: "0.25",
-                    slots: [{ id: "ans", labelLatex: "P", placeholder: "0.00-1.00", expected: "0.25" }],
-                    correctLatex: "0.25", hintLatex: [`\\text{${t.prompts.hint_count.replace('{count}', '1')}}`]
-                },
-                {
-                    id: "P-2", difficulty, stage, p1: "Rr", p2: "rr",
-                    promptLatex: `\\text{${t.prompts.prob_genotype.replace('{p1}', 'Rr').replace('{p2}', 'rr').replace('{genotype}', 'Rr')}}`,
-                    expressionLatex: t.prompts.prob_target.replace('{genotype}', 'Rr'), targetLatex: "0.5",
-                    slots: [{ id: "ans", labelLatex: "P", placeholder: "0.5", expected: "0.5" }],
-                    correctLatex: "0.5", hintLatex: [`\\text{${t.prompts.hint_count.replace('{count}', '2')}}`]
+                    promptLatex: t("sb2_03.prompts.prob_genotype", { p1: "Rr", p2: "Rr", genotype: "rr" }),
+                    expressionLatex: t("sb2_03.prompts.prob_target", { genotype: "rr" }), targetLatex: "0.25",
+                    slots: [{ id: "ans", labelLatex: "P", placeholder: "0.XX", expected: "0.25" }],
+                    correctLatex: "0.25", hintLatex: [t("sb2_03.prompts.hint_count", { count: 1 })]
                 }
             );
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
@@ -98,12 +89,11 @@ export default function SB203Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "MONOHYBRID", label: t.stages.monohybrid },
-        { id: "PROBABILITY", label: t.stages.probability },
-        { id: "DIHYBRID", label: t.stages.dihybrid },
+        { id: "MONOHYBRID" as Stage, label: t("sb2_03.stages.monohybrid") },
+        { id: "PROBABILITY" as Stage, label: t("sb2_03.stages.probability") },
+        { id: "DIHYBRID" as Stage, label: t("sb2_03.stages.dihybrid") },
     ], [t]);
 
-    // Sync parents with quest
     useEffect(() => {
         if (currentQuest) {
             setP1(currentQuest.p1);
@@ -116,7 +106,7 @@ export default function SB203Page() {
     return (
         <ChamberLayout
             moduleCode="SB2.03"
-            title={t.title}
+            title={t("sb2_03.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -125,20 +115,20 @@ export default function SB203Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sb2_03.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sb2_03.back"),
+                check: t("sb2_03.check"),
+                next: t("sb2_03.next"),
+                correct: t("sb2_03.correct"),
+                incorrect: t("sb2_03.incorrect"),
+                ready: t("sb2_03.ready"),
+                monitor_title: t("sb2_03.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sb2_03.difficulty.basic"),
+                    core: t("sb2_03.difficulty.core"),
+                    advanced: t("sb2_03.difficulty.advanced"),
+                    elite: t("sb2_03.difficulty.elite"),
                 },
             }}
             monitorContent={
@@ -148,11 +138,11 @@ export default function SB203Page() {
                         parent2={p2}
                         onParent1Change={(gen) => setP1(gen as Genotype)}
                         onParent2Change={(gen) => setP2(gen as Genotype)}
-                        translations={t}
+                        translations={t("sb2_03")}
                     />
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>Genetic Rigor</span>
+                            <span>{t("sb2_03.labels.analysis")}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -169,11 +159,21 @@ export default function SB203Page() {
             }
         >
             <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {/* Scenario Description */}
+                <div className="bg-black/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md">
+                    <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic mb-4">
+                        {t("sb2_03.objective_title")}
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed font-medium">
+                        {t(`sb2_03.scenarios.${stage.toLowerCase()}` as any)}
+                    </p>
+                </div>
+
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                                Mission Objective
+                                {t("sb2_03.labels.analysis")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -184,7 +184,7 @@ export default function SB203Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    Phenotype Prediction
+                                    {t("sb2_03.labels.prediction")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -197,7 +197,7 @@ export default function SB203Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-cyan/30" />
-                                    Terminal Input [Gene-Sequencer]
+                                    {t("sb2_03.labels.instructions")} [Gene-Sequencer]
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -209,7 +209,7 @@ export default function SB203Page() {
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -242,17 +242,17 @@ export default function SB203Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? "Sequence Validated" : "Genetic Drift"}
+                                                        {lastCheck.ok ? t("sb2_03.results.valid") : t("sb2_03.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? "Mendelian ratios confirmed." : "Recalculate the probability matrix."}
+                                                        {lastCheck.ok ? t("sb2_03.results.valid_desc") : t("sb2_03.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("sb2_03.labels.hint")}:</span>
                                                     <div className="text-white font-bold">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -264,7 +264,7 @@ export default function SB203Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    Next Specimen
+                                                    {t("sb2_03.results.next")}
                                                 </button>
                                             )}
                                         </motion.div>

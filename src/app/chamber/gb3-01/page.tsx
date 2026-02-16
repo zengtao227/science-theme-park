@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DnaCanvas from "@/components/chamber/gb3-01/DnaCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -21,13 +21,11 @@ interface GB301Quest extends Quest {
     highlightIndex?: number;
 }
 
-type GB301T = typeof translations.EN.gb3_01;
-
 const DNA_SEQUENCE = ["A", "T", "G", "C", "A", "T", "C", "G", "T", "A"];
 
 export default function GB301Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.gb3_01 || translations.EN.gb3_01) as GB301T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const [rotation, setRotation] = useState(0);
     const [showBonds, setShowBonds] = useState(true);
@@ -38,59 +36,27 @@ export default function GB301Page() {
 
         if (stage === "PAIRING") {
             DNA_SEQUENCE.forEach((base, idx) => {
-                const complement = base === "A" ? "T" : base === "T" ? "A" : base === "C" ? "G" : "C";
                 quests.push({
-                    id: `P-${idx}`,
-                    difficulty,
-                    stage,
-                    base,
-                    highlightIndex: idx,
-                    promptLatex: t.prompts.pairing_prompt.replace("{base}", base),
-                    expressionLatex: t.prompts.pairing_target.replace("{base}", base),
-                    targetLatex: complement,
-                    slots: [{ id: "ans", labelLatex: "\\text{Base}", placeholder: "A/T/C/G", expected: complement }],
-                    correctLatex: complement,
-                    hintLatex: [base === "A" || base === "T" ? t.prompts.hint_at : t.prompts.hint_gc]
+                    id: `P-${idx}`, difficulty, stage, base, highlightIndex: idx,
+                    promptLatex: t("gb3_01.prompts.pairing_prompt", { base }),
+                    expressionLatex: t("gb3_01.prompts.pairing_target", { base }),
+                    targetLatex: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G",
+                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.pairing_target", { base }), placeholder: "...", expected: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G" }],
+                    correctLatex: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G",
+                    hintLatex: [base === "A" || base === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
             });
         }
 
         if (stage === "BONDS") {
-            DNA_SEQUENCE.forEach((base, idx) => {
-                const complement = base === "A" ? "T" : base === "T" ? "A" : base === "C" ? "G" : "C";
-                const bonds = (base === "A" || base === "T") ? "2" : "3";
+            const pairs = [["A", "T", 2], ["G", "C", 3], ["T", "A", 2], ["C", "G", 3]];
+            pairs.forEach((p, idx) => {
                 quests.push({
-                    id: `B-${idx}`,
-                    difficulty,
-                    stage,
-                    b1: base,
-                    b2: complement,
-                    highlightIndex: idx,
-                    promptLatex: t.prompts.bonds_prompt.replace("{b1}", base).replace("{b2}", complement),
-                    expressionLatex: t.prompts.bonds_target,
-                    targetLatex: bonds,
-                    slots: [{ id: "ans", labelLatex: "\\text{Bonds}", placeholder: "2/3", expected: bonds }],
-                    correctLatex: bonds,
-                    hintLatex: [base === "A" || base === "T" ? t.prompts.hint_at : t.prompts.hint_gc]
-                });
-            });
-        }
-
-        if (stage === "SEQUENCE") {
-            const shortSeqs = ["ATGC", "GCTA", "AATT", "CCGG"];
-            shortSeqs.forEach((seq, idx) => {
-                const complement = seq.split("").map(b => b === "A" ? "T" : b === "T" ? "A" : b === "C" ? "G" : "C").join("");
-                quests.push({
-                    id: `S-${idx}`,
-                    difficulty,
-                    stage,
-                    seq,
-                    promptLatex: t.prompts.seq_prompt.replace("{seq}", seq),
-                    expressionLatex: t.prompts.seq_target,
-                    targetLatex: complement,
-                    slots: [{ id: "ans", labelLatex: "\\text{Sequence}", placeholder: "...", expected: complement }],
-                    correctLatex: complement,
-                    hintLatex: ["\\text{Apply Chargaff's rules to each base.}"]
+                    id: `B-${idx}`, difficulty, stage, b1: p[0] as string, b2: p[1] as string,
+                    promptLatex: t("gb3_01.prompts.bonds_prompt", { b1: p[0] as string, b2: p[1] as string }),
+                    expressionLatex: t("gb3_01.prompts.bonds_target"), targetLatex: p[2].toString(),
+                    slots: [{ id: "ans", labelLatex: "n_{H}", placeholder: "2-3", expected: p[2].toString() }],
+                    correctLatex: p[2].toString(), hintLatex: [p[0] === "A" || p[0] === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
             });
         }
@@ -124,29 +90,26 @@ export default function GB301Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const stagesProps = useMemo(() => [
-        { id: "PAIRING", label: t.stages.pairing },
-        { id: "BONDS", label: t.stages.bonds },
-        { id: "SEQUENCE", label: t.stages.sequence },
-    ], [t]);
-
-    // Sync highlight with quest - using the "adjust state during render" pattern to satisfy React Compiler
-    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
-    if (currentQuest?.id !== prevQuestId) {
-        setPrevQuestId(currentQuest?.id);
-        if (currentQuest && currentQuest.highlightIndex !== undefined) {
+    useEffect(() => {
+        if (currentQuest?.highlightIndex !== undefined) {
             setHighlightPair(currentQuest.highlightIndex);
         } else {
             setHighlightPair(null);
         }
-    }
+    }, [currentQuest]);
+
+    const stagesProps = useMemo(() => [
+        { id: "PAIRING" as Stage, label: t("gb3_01.stages.pairing") },
+        { id: "BONDS" as Stage, label: t("gb3_01.stages.bonds") },
+        { id: "SEQUENCE" as Stage, label: t("gb3_01.stages.sequence") },
+    ], [t]);
 
     const hint = getHint();
 
     return (
         <ChamberLayout
             moduleCode="GB3.01"
-            title={t.title}
+            title={t("gb3_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -155,20 +118,20 @@ export default function GB301Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("gb3_01.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("gb3_01.back"),
+                check: t("gb3_01.check"),
+                next: t("gb3_01.next"),
+                correct: t("gb3_01.correct"),
+                incorrect: t("gb3_01.incorrect"),
+                ready: t("gb3_01.ready"),
+                monitor_title: t("gb3_01.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("gb3_01.difficulty.basic"),
+                    core: t("gb3_01.difficulty.core"),
+                    advanced: t("gb3_01.difficulty.advanced"),
+                    elite: t("gb3_01.difficulty.elite"),
                 },
             }}
             monitorContent={
@@ -180,35 +143,27 @@ export default function GB301Page() {
                             highlightPair={highlightPair}
                         />
                     </div>
-
-                    {/* Visual Controls */}
+                    {/* Controls */}
                     <div className="grid grid-cols-2 gap-2">
-                        <div className="col-span-2 space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.rotation}</label>
-                            <input
-                                type="range"
-                                min="0"
-                                max={Math.PI * 2}
-                                step="0.01"
-                                value={rotation}
-                                onChange={(e) => setRotation(Number(e.target.value))}
-                                className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-neon-cyan"
-                            />
+                        <button
+                            onClick={() => setShowBonds(!showBonds)}
+                            className={`p-3 rounded-lg border transition-all text-[10px] font-black tracking-widest uppercase ${showBonds
+                                ? "bg-neon-cyan/20 border-neon-cyan text-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.2)]"
+                                : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
+                                }`}
+                        >
+                            {t("gb3_01.labels.show_bonds")}
+                        </button>
+                        <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center">
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("gb3_01.labels.highlight_pair")}</div>
+                            <div className="text-xs font-mono text-neon-cyan truncate uppercase">
+                                {highlightPair !== null ? `INDEX_0x${highlightPair}` : "AUTO_SCAN"}
+                            </div>
                         </div>
-                        <label className="flex items-center justify-between p-2 bg-white/5 rounded border border-white/10 cursor-pointer hover:bg-white/10">
-                            <span className="text-[9px] uppercase text-white/60">{t.labels.show_bonds}</span>
-                            <input
-                                type="checkbox"
-                                checked={showBonds}
-                                onChange={(e) => setShowBonds(e.target.checked)}
-                                className="w-3 h-3 rounded bg-black border-white/20 text-neon-cyan focus:ring-neon-cyan/50"
-                            />
-                        </label>
                     </div>
-
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>Helix Stability</span>
+                            <span>Helix Integrity</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -229,7 +184,7 @@ export default function GB301Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                                Mission Objective
+                                {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -240,9 +195,9 @@ export default function GB301Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    Base Pair Analysis
+                                    {t("gb3_01.labels.analysis")}
                                 </span>
-                                <div className="text-4xl text-white font-black">
+                                <div className="text-4xl text-white font-black uppercase">
                                     <InlineMath math={currentQuest.expressionLatex} />
                                 </div>
                             </div>
@@ -253,7 +208,7 @@ export default function GB301Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-cyan/30" />
-                                    Terminal Input [Helix-Forge]
+                                    {t("labels.terminal_input")} [Helix-Forge]
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -298,17 +253,17 @@ export default function GB301Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? "Bonding Stable" : "Helix Instability"}
+                                                        {lastCheck.ok ? t("gb3_01.results.valid") : t("gb3_01.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? "Nucleotide pairs verified." : "Mismatched sequencing detected."}
+                                                        {lastCheck.ok ? t("gb3_01.results.valid_desc") : t("gb3_01.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("labels.hint")}:</span>
                                                     <div className="text-white font-bold text-sm">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -320,7 +275,7 @@ export default function GB301Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    Forge Next Pair
+                                                    {t("gb3_01.results.next")}
                                                 </button>
                                             )}
                                         </motion.div>

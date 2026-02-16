@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemCanvas from "@/components/chamber/sb2-02/BodySystemCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,9 @@ interface SB202Quest extends Quest {
     system?: string;
 }
 
-type SB202T = typeof translations.EN.sb2_02;
-
 export default function SB202Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb2_02 || translations.EN.sb2_02) as SB202T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [selectedSystem, setSelectedSystem] = useState<string>("digestive");
     const [highlightedOrgan, setHighlightedOrgan] = useState<string | null>(null);
 
@@ -38,71 +36,57 @@ export default function SB202Page() {
                 { name: "pancreas", function: "enzyme secretion" }
             ];
 
-            organs.forEach((org, idx) => {
+            organs.forEach(o => {
                 quests.push({
-                    id: `DIG-${idx}`,
-                    difficulty,
-                    stage,
-                    organ: org.name,
-                    system: "digestive",
-                    promptLatex: `\\text{${t.prompts.organ_function.replace('{function}', org.function)}}`,
-                    expressionLatex: `\\text{${org.function}} \\rightarrow \\text{?}`,
-                    targetLatex: org.name.replace(" ", "_"),
-                    slots: [{ id: "ans", labelLatex: "\\text{Organ}", placeholder: "...", expected: org.name.replace(" ", "_") }],
-                    correctLatex: org.name,
-                    hintLatex: [`\\text{${t.prompts.hint_organ.replace('{name}', org.name)}}`]
+                    id: `D-${o.name}`, difficulty, stage, organ: o.name,
+                    promptLatex: t("sb2_02.prompts.organ_function", { function: o.function }),
+                    expressionLatex: `\\text{${o.name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}}`,
+                    targetLatex: t("sb2_02.labels.anatomy_display"),
+                    slots: [{ id: "organ", labelLatex: "\\text{Organ}", placeholder: o.name, expected: o.name }],
+                    correctLatex: o.name,
+                    hintLatex: [t("sb2_02.prompts.hint_organ", { name: o.name })]
                 });
             });
         }
 
         if (stage === "CIRCULATORY") {
             const components = [
-                { name: "heart", function: "pump blood", answer: "heart" },
-                { name: "arteries", function: "carry oxygenated blood", answer: "arteries" },
-                { name: "veins", function: "return deoxygenated blood", answer: "veins" },
-                { name: "capillaries", function: "gas exchange", answer: "capillaries" },
-                { name: "red blood cells", function: "oxygen transport", answer: "red_blood_cells" }
+                { name: "heart", function: "pumping blood" },
+                { name: "arteries", function: "oxygen transport" },
+                { name: "veins", function: "deoxygenated transport" },
+                { name: "capillaries", function: "gas exchange" }
             ];
 
-            components.forEach((comp, idx) => {
+            components.forEach(c => {
                 quests.push({
-                    id: `CIRC-${idx}`,
-                    difficulty,
-                    stage,
-                    organ: comp.name,
-                    system: "circulatory",
-                    promptLatex: `\\text{${t.prompts.component_function.replace('{function}', comp.function)}}`,
-                    expressionLatex: `\\text{${comp.function}} \\rightarrow \\text{?}`,
-                    targetLatex: comp.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Component}", placeholder: "...", expected: comp.answer }],
-                    correctLatex: comp.name,
-                    hintLatex: [`\\text{${t.prompts.hint_component.replace('{name}', comp.name)}}`]
+                    id: `C-${c.name}`, difficulty, stage, organ: c.name,
+                    promptLatex: t("sb2_02.prompts.component_function", { function: c.function }),
+                    expressionLatex: `\\text{${c.name.charAt(0).toUpperCase() + c.name.slice(1)}}`,
+                    targetLatex: t("sb2_02.labels.anatomy_display"),
+                    slots: [{ id: "comp", labelLatex: "\\text{Component}", placeholder: c.name, expected: c.name }],
+                    correctLatex: c.name,
+                    hintLatex: [t("sb2_02.prompts.hint_component", { name: c.name })]
                 });
             });
         }
 
         if (stage === "RESPIRATORY") {
             const structures = [
-                { name: "trachea", function: "air passage" },
-                { name: "bronchi", function: "branch to lungs" },
-                { name: "alveoli", function: "gas exchange" },
-                { name: "diaphragm", function: "breathing muscle" },
-                { name: "lungs", function: "oxygen intake" }
+                { name: "trachea", function: "air conduit" },
+                { name: "lungs", function: "gas exchange surface" },
+                { name: "diaphragm", function: "breathing mechanism" },
+                { name: "alveoli", function: "diffusion site" }
             ];
 
-            structures.forEach((struct, idx) => {
+            structures.forEach(s => {
                 quests.push({
-                    id: `RESP-${idx}`,
-                    difficulty,
-                    stage,
-                    organ: struct.name,
-                    system: "respiratory",
-                    promptLatex: `\\text{${t.prompts.structure_function.replace('{function}', struct.function)}}`,
-                    expressionLatex: `\\text{${struct.function}} \\rightarrow \\text{?}`,
-                    targetLatex: struct.name,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: struct.name }],
-                    correctLatex: struct.name,
-                    hintLatex: [`\\text{${t.prompts.hint_structure.replace('{name}', struct.name)}}`]
+                    id: `R-${s.name}`, difficulty, stage, organ: s.name,
+                    promptLatex: t("sb2_02.prompts.structure_function", { function: s.function }),
+                    expressionLatex: `\\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
+                    targetLatex: t("sb2_02.labels.anatomy_display"),
+                    slots: [{ id: "struct", labelLatex: "\\text{Structure}", placeholder: s.name, expected: s.name }],
+                    correctLatex: s.name,
+                    hintLatex: [t("sb2_02.prompts.hint_structure", { name: s.name })]
                 });
             });
         }
@@ -124,44 +108,41 @@ export default function SB202Page() {
         handleDifficultyChange,
         handleStageChange,
         getHint,
-        currentStageStats,
     } = useQuestManager<SB202Quest, Stage>({
         buildPool,
         initialStage: "DIGESTIVE",
     });
 
     useEffect(() => {
+        if (stage === "DIGESTIVE") setSelectedSystem("digestive");
+        if (stage === "CIRCULATORY") setSelectedSystem("circulatory");
+        if (stage === "RESPIRATORY") setSelectedSystem("respiratory");
+    }, [stage]);
+
+    useEffect(() => {
+        if (currentQuest?.organ) {
+            setHighlightedOrgan(currentQuest.organ);
+        }
+    }, [currentQuest]);
+
+    useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SB2.02", stage);
+            completeStage("sb2-02", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "DIGESTIVE", label: t.stages.digestive },
-        { id: "CIRCULATORY", label: t.stages.circulatory },
-        { id: "RESPIRATORY", label: t.stages.respiratory },
+        { id: "DIGESTIVE" as Stage, label: t("sb2_02.stages.digestive") },
+        { id: "CIRCULATORY" as Stage, label: t("sb2_02.stages.circulatory") },
+        { id: "RESPIRATORY" as Stage, label: t("sb2_02.stages.respiratory") },
     ], [t]);
-
-    // Sync visualization with quest - using the "adjust state during render" pattern to satisfy React Compiler
-    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
-    if (currentQuest?.id !== prevQuestId) {
-        setPrevQuestId(currentQuest?.id);
-        if (currentQuest) {
-            if (currentQuest.system) {
-                setSelectedSystem(currentQuest.system);
-            }
-            if (currentQuest.organ) {
-                setHighlightedOrgan(currentQuest.organ);
-            }
-        }
-    }
 
     const hint = getHint();
 
     return (
         <ChamberLayout
             moduleCode="SB2.02"
-            title={t.title}
+            title={t("sb2_02.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -170,74 +151,55 @@ export default function SB202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sb2_02.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sb2_02.back"),
+                check: t("sb2_02.check"),
+                next: t("sb2_02.next"),
+                correct: t("sb2_02.correct"),
+                incorrect: t("sb2_02.incorrect"),
+                ready: t("sb2_02.ready"),
+                monitor_title: t("sb2_02.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sb2_02.difficulty.basic"),
+                    core: t("sb2_02.difficulty.core"),
+                    advanced: t("sb2_02.difficulty.advanced"),
+                    elite: t("sb2_02.difficulty.elite"),
                 },
             }}
             monitorContent={
-                <div className="flex flex-col h-full gap-4">
-                    <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                        <BodySystemCanvas
-                            system={selectedSystem}
-                            highlightedOrgan={highlightedOrgan}
-                            translations={t}
-                        />
-                    </div>
-
-                    {/* System Selection */}
-                    <div className="grid grid-cols-3 gap-2">
-                        {["digestive", "circulatory", "respiratory"].map((sys) => (
-                            <button
-                                key={sys}
-                                onClick={() => setSelectedSystem(sys)}
-                                className={`p-2 text-[9px] uppercase tracking-widest font-bold rounded border transition-all ${selectedSystem === sys
-                                        ? "bg-neon-cyan/20 border-neon-cyan text-neon-cyan"
-                                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
-                                    }`}
-                            >
-                                {t.systems[sys as keyof typeof t.systems]}
-                            </button>
-                        ))}
-                    </div>
-
-                    <div className="mt-auto pt-4 border-t border-white/5">
-                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.anatomy_score}</span>
-                            <span>{currentStageStats?.correct || 0} PTS</span>
-                        </div>
-                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <div
-                                    key={i}
-                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
-                                            ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
-                                            : "bg-transparent"
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                <BodySystemCanvas
+                    system={selectedSystem}
+                    highlightedOrgan={highlightedOrgan}
+                    translations={{
+                        stomach: t("sb2_02.labels.stomach"),
+                        liver: t("sb2_02.labels.liver"),
+                        intestines: t("sb2_02.labels.intestines"),
+                        heart: t("sb2_02.labels.heart"),
+                        arteries: t("sb2_02.labels.arteries"),
+                        veins: t("sb2_02.labels.veins"),
+                        lungs: t("sb2_02.labels.lungs"),
+                        trachea: t("sb2_02.labels.trachea")
+                    }}
+                />
             }
         >
             <div className="space-y-10 max-w-4xl mx-auto w-full">
+                {/* Scenario Description */}
+                <div className="bg-black/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md">
+                    <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic mb-4">
+                        {t("sb2_02.objective_title")}
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed font-medium">
+                        {t(`sb2_02.scenarios.${stage.toLowerCase()}` as any)}
+                    </p>
+                </div>
+
                 {currentQuest && (
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
-                            <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                            <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
+                                {t("sb2_02.labels.analysis")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -245,11 +207,8 @@ export default function SB202Page() {
                         </div>
 
                         <div className="flex justify-center">
-                            <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
-                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
-                                <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.anatomy_display}
-                                </span>
+                            <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
+                                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
                                 </div>
@@ -257,11 +216,11 @@ export default function SB202Page() {
                         </div>
 
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
+                            <div className="absolute top-0 left-0 w-1 h-full bg-neon-green/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-cyan/30" />
-                                    {t.labels.input_terminal}
+                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
+                                    <span className="w-8 h-px bg-neon-green/30" />
+                                    {t("sb2_02.labels.input_terminal")}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -269,11 +228,11 @@ export default function SB202Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>
-                                                <span className="text-neon-cyan/30 font-mono">ANAT_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-green/30 font-mono">SYS_REG_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
-                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-cyan/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
+                                                    className="w-full bg-white/5 border-2 border-white/10 group-focus-within:border-neon-green/50 p-6 text-center outline-none transition-all font-mono text-3xl text-white rounded-2xl shadow-inner uppercase"
                                                     placeholder={slot.placeholder}
                                                     value={inputs[slot.id] || ""}
                                                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
@@ -281,7 +240,7 @@ export default function SB202Page() {
                                                         if (e.key === 'Enter') verify();
                                                     }}
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-cyan/0 group-focus-within:bg-neon-cyan/20 transition-all blur-sm" />
+                                                <div className="absolute inset-x-0 bottom-0 h-1 bg-neon-green/0 group-focus-within:bg-neon-green/20 transition-all blur-sm" />
                                             </div>
                                         </div>
                                     ))}
@@ -295,8 +254,8 @@ export default function SB202Page() {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
                                             className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
-                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-5">
@@ -306,17 +265,17 @@ export default function SB202Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? t("sb2_02.results.valid") : t("sb2_02.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? t("sb2_02.results.valid_desc") : t("sb2_02.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("sb2_02.labels.hint")}:</span>
                                                     <div className="text-white font-bold">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -328,7 +287,7 @@ export default function SB202Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    {t.next}
+                                                    {t("sb2_02.results.next")}
                                                 </button>
                                             )}
                                         </motion.div>

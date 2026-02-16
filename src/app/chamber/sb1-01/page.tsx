@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellCanvas from "@/components/chamber/sb1-01/CellCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,8 +18,6 @@ interface SB101Quest extends Quest {
     organelleName: string;
 }
 
-type SB101T = typeof translations.EN.sb1_01;
-
 const ORGANELLE_LIST = [
     { id: "nucleus", key: "nucleus" },
     { id: "mitochondria1", key: "mitochondria" },
@@ -29,8 +27,8 @@ const ORGANELLE_LIST = [
 ];
 
 export default function SB101Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb1_01 || translations.EN.sb1_01) as SB101T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [selectedOrganelle, setSelectedOrganelle] = useState<string | null>(null);
     const [showCutaway, setShowCutaway] = useState(true);
 
@@ -38,47 +36,43 @@ export default function SB101Page() {
         const quests: SB101Quest[] = [];
 
         if (stage === "IDENTIFICATION") {
-            ORGANELLE_LIST.forEach((org, idx) => {
-                const organelleData = t.organelles[org.key as keyof typeof t.organelles];
-                if (!organelleData) return;
-
-                const name = organelleData.name;
+            ORGANELLE_LIST.forEach((org) => {
                 quests.push({
-                    id: `ID-${idx}`,
+                    id: `id-${org.id}`,
                     difficulty,
                     stage,
                     targetOrganelleId: org.id,
-                    organelleName: name,
-                    promptLatex: `\\text{${t.prompts.id_prompt}}`,
-                    expressionLatex: `\\text{${t.prompts.id_target}}`,
-                    targetLatex: name.toLowerCase(),
-                    slots: [{ id: "ans", labelLatex: "\\text{Name}", placeholder: "...", expected: name.toLowerCase() }],
-                    correctLatex: name,
-                    hintLatex: [`\\text{${t.prompts.hint_name.replace('{name}', name)}}`]
+                    organelleName: org.key,
+                    promptLatex: t("sb1_01.prompts.id_prompt"),
+                    expressionLatex: t("sb1_01.prompts.id_target"),
+                    targetLatex: org.key,
+                    slots: [{ id: "ans", labelLatex: t("sb1_01.prompts.id_target"), placeholder: "...", expected: org.key }],
+                    correctLatex: org.key,
+                    hintLatex: [t("sb1_01.prompts.hint_start", { char: org.key[0].toUpperCase() })]
                 });
             });
         }
 
         if (stage === "FUNCTION") {
-            ORGANELLE_LIST.forEach((org, idx) => {
-                const organelleData = t.organelles[org.key as keyof typeof t.organelles];
-                if (!organelleData) return;
-
-                const name = organelleData.name;
-                const func = organelleData.func;
+            ORGANELLE_LIST.forEach((org) => {
+                // In a real app we'd fetch localized function text from translations.EN.sb1_01.organelles[org.key].func
+                // For now, since we're in buildPool, we can use the key and translate it later or pull from translations
+                // Let's pull from translations directly
+                const organelleData = t(`sb1_01.organelles.${org.key}`) as any;
+                const funcText = typeof organelleData === 'object' ? organelleData.func : org.key;
 
                 quests.push({
-                    id: `FN-${idx}`,
+                    id: `fn-${org.id}`,
                     difficulty,
                     stage,
                     targetOrganelleId: org.id,
-                    organelleName: name,
-                    promptLatex: `\\text{${t.prompts.fn_prompt.replace('{func}', func)}}`,
-                    expressionLatex: `\\text{${t.prompts.fn_target.replace('{func}', func)}}`,
-                    targetLatex: name.toLowerCase(),
-                    slots: [{ id: "ans", labelLatex: "\\text{Organelle}", placeholder: "...", expected: name.toLowerCase() }],
-                    correctLatex: name,
-                    hintLatex: [`\\text{${t.prompts.hint_start.replace('{char}', name[0])}}`]
+                    organelleName: org.key,
+                    promptLatex: t("sb1_01.prompts.fn_prompt").replace("{func}", funcText),
+                    expressionLatex: t("sb1_01.prompts.fn_target").replace("{func}", funcText),
+                    targetLatex: org.key,
+                    slots: [{ id: "ans", labelLatex: "Organelle", placeholder: "...", expected: org.key }],
+                    correctLatex: org.key,
+                    hintLatex: [t("sb1_01.prompts.hint_name").replace("{name}", organelleData.name || org.key)]
                 });
             });
         }
@@ -100,7 +94,6 @@ export default function SB101Page() {
         handleDifficultyChange,
         handleStageChange,
         getHint,
-        currentStageStats,
     } = useQuestManager<SB101Quest, Stage>({
         buildPool,
         initialStage: "IDENTIFICATION",
@@ -113,24 +106,17 @@ export default function SB101Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "IDENTIFICATION", label: t.stages.identification },
-        { id: "FUNCTION", label: t.stages.function },
-        { id: "ORGANELLES", label: t.stages.organelles },
+        { id: "IDENTIFICATION" as Stage, label: t("sb1_01.stages.identification") },
+        { id: "FUNCTION" as Stage, label: t("sb1_01.stages.function") },
+        { id: "ORGANELLES" as Stage, label: t("sb1_01.stages.organelles") },
     ], [t]);
-
-    // Sync highlight with quest - using the "adjust state during render" pattern to satisfy React Compiler
-    const [prevQuestId, setPrevQuestId] = useState<string | undefined>();
-    if (currentQuest?.id !== prevQuestId) {
-        setPrevQuestId(currentQuest?.id);
-        setSelectedOrganelle(currentQuest?.targetOrganelleId || null);
-    }
 
     const hint = getHint();
 
     return (
         <ChamberLayout
             moduleCode="SB1.01"
-            title={t.title}
+            title={t("sb1_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -139,57 +125,48 @@ export default function SB101Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sb1_01.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sb1_01.back"),
+                check: t("sb1_01.check"),
+                next: t("sb1_01.next"),
+                correct: t("sb1_01.correct"),
+                incorrect: t("sb1_01.incorrect"),
+                ready: t("sb1_01.ready"),
+                monitor_title: t("sb1_01.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sb1_01.difficulty.basic"),
+                    core: t("sb1_01.difficulty.core"),
+                    advanced: t("sb1_01.difficulty.advanced"),
+                    elite: t("sb1_01.difficulty.elite"),
                 },
             }}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
                         <CellCanvas
-                            selectedOrganelle={selectedOrganelle}
+                            selectedOrganelle={currentQuest?.targetOrganelleId || selectedOrganelle}
                             onSelectOrganelle={setSelectedOrganelle}
                             showCutaway={showCutaway}
-                            translations={t}
+                            translations={t("sb1_01")}
                         />
                     </div>
-                    {/* View Controls */}
-                    <div className="grid grid-cols-1 gap-2">
-                        <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.cutaway_view}</span>
-                            <input
-                                type="checkbox"
-                                checked={showCutaway}
-                                onChange={(e) => setShowCutaway(e.target.checked)}
-                                className="w-4 h-4 rounded border-white/20 bg-black text-neon-cyan focus:ring-neon-cyan/50"
-                            />
-                        </label>
-                    </div>
-                    <div className="mt-auto pt-4 border-t border-white/5">
-                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>Analysis Precision</span>
-                            <span>{currentStageStats?.correct || 0} PTS</span>
-                        </div>
-                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <div
-                                    key={i}
-                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-neon-cyan shadow-[0_0_5px_cyan]" : "bg-transparent"
-                                        }`}
-                                />
-                            ))}
+                    {/* Controls */}
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            onClick={() => setShowCutaway(!showCutaway)}
+                            className={`p-3 rounded-lg border transition-all text-[10px] font-black tracking-widest uppercase ${showCutaway
+                                ? "bg-neon-cyan/20 border-neon-cyan text-neon-cyan shadow-[0_0_10px_rgba(0,255,255,0.2)]"
+                                : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
+                                }`}
+                        >
+                            {t("sb1_01.labels.cutaway_view")}
+                        </button>
+                        <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center">
+                            <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("sb1_01.labels.selected")}</div>
+                            <div className="text-xs font-mono text-neon-cyan truncate uppercase">
+                                {selectedOrganelle || "NONE"}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,7 +177,7 @@ export default function SB101Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                                Mission Objective
+                                {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -211,9 +188,9 @@ export default function SB101Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-cyan/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,255,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-cyan/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    Microscopic Analysis
+                                    {t("sb1_01.results.analysis")}
                                 </span>
-                                <div className="text-4xl text-white font-black">
+                                <div className="text-4xl text-white font-black uppercase">
                                     <InlineMath math={currentQuest.expressionLatex} />
                                 </div>
                             </div>
@@ -224,7 +201,7 @@ export default function SB101Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-cyan/30" />
-                                    Terminal Input [Bio-Node]
+                                    {t("labels.terminal_input")} [Bio-Node]
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -269,17 +246,17 @@ export default function SB101Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? "Structure Verified" : "Analysis Error"}
+                                                        {lastCheck.ok ? t("sb1_01.results.valid") : t("sb1_01.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? "Organelle matched database. Proceeding." : "Mismatch detected in morphological analysis."}
+                                                        {lastCheck.ok ? t("sb1_01.results.valid_desc") : t("sb1_01.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("labels.hint")}:</span>
                                                     <div className="text-white font-bold">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -291,7 +268,7 @@ export default function SB101Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    Next Specimen
+                                                    {t("sb1_01.results.next")}
                                                 </button>
                                             )}
                                         </motion.div>

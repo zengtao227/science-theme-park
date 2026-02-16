@@ -9,30 +9,30 @@
 import { useAppStore } from "@/lib/store";
 
 // Import EN translations
-import { 
-  enCommon, 
-  enMath, 
-  enPhysics, 
-  enChemistry, 
-  enBiology 
+import {
+  enCommon,
+  enMath,
+  enPhysics,
+  enChemistry,
+  enBiology
 } from './en';
 
 // Import CN translations
-import { 
-  cnCommon, 
-  cnMath, 
-  cnPhysics, 
-  cnChemistry, 
-  cnBiology 
+import {
+  cnCommon,
+  cnMath,
+  cnPhysics,
+  cnChemistry,
+  cnBiology
 } from './cn';
 
 // Import DE translations
-import { 
-  deCommon, 
-  deMath, 
-  dePhysics, 
-  deChemistry, 
-  deBiology 
+import {
+  deCommon,
+  deMath,
+  dePhysics,
+  deChemistry,
+  deBiology
 } from './de';
 
 // Export types
@@ -72,31 +72,41 @@ export const translations: Record<string, any> = {
  * @returns Object with translation function, current language, and language setter
  */
 export function useLanguage() {
-    const { currentLanguage, setLanguage } = useAppStore();
-    const t = (path: string) => {
-        const segments = path.split(".");
-        
-        // SSR 安全: 确保 currentLanguage 有效，默认使用 EN
-        const safeLang = (currentLanguage && currentLanguage in translations) 
-            ? currentLanguage 
-            : "EN";
-        
-        let node: unknown = translations[safeLang];
-        
-        for (const segment of segments) {
-            if (!node || typeof node !== "object") {
-                return path;
-            }
-            const record = node as Record<string, unknown>;
-            if (!(segment in record)) {
-                return path;
-            }
-            node = record[segment];
-        }
-        return typeof node === "string" ? node : path;
-    };
+  const { currentLanguage, setLanguage } = useAppStore();
+  const t = (path: string, params?: Record<string, string | number>): any => {
+    const segments = path.split(".");
 
-    return { t, currentLanguage, setLanguage };
+    // SSR 安全: 确保 currentLanguage 有效，默认使用 EN
+    const safeLang = (currentLanguage && currentLanguage in translations)
+      ? currentLanguage
+      : "EN";
+
+    let node: unknown = translations[safeLang];
+
+    for (const segment of segments) {
+      if (!node || typeof node !== "object") {
+        return path;
+      }
+      const record = node as Record<string, unknown>;
+      if (!(segment in record)) {
+        return path;
+      }
+      node = record[segment];
+    }
+
+    if (typeof node === "string") {
+      let val = node;
+      if (params) {
+        Object.entries(params).forEach(([key, value]) => {
+          val = val.replace(`{${key}}`, String(value));
+        });
+      }
+      return val;
+    }
+    return node || path;
+  };
+
+  return { t, currentLanguage, setLanguage };
 }
 
 /**

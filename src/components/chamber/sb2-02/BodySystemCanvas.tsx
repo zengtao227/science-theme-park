@@ -55,9 +55,10 @@ export default function BodySystemCanvas({ system, highlightedOrgan, translation
         ctx.fillStyle = "#00ff00";
         ctx.font = "10px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("STOMACH", centerX, h * 0.42);
-        ctx.fillText("LIVER", centerX - 60, h * 0.32);
-    }, []);
+        ctx.fillText(translations.stomach || "STOMACH", centerX, h * 0.42);
+        ctx.fillText(translations.liver || "LIVER", centerX - 60, h * 0.32);
+        ctx.fillText(translations.intestines || "INTESTINES", centerX, h * 0.6);
+    }, [translations]);
 
     const drawCirculatorySystem = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, highlight: string | null) => {
         const centerX = w / 2;
@@ -103,10 +104,10 @@ export default function BodySystemCanvas({ system, highlightedOrgan, translation
         ctx.fillStyle = "#ff0000";
         ctx.font = "10px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("HEART", centerX, h * 0.35);
-        ctx.fillText("ARTERIES", centerX - 60, h * 0.08);
-        ctx.fillText("VEINS", centerX + 70, h * 0.08);
-    }, []);
+        ctx.fillText(translations.heart || "HEART", centerX, h * 0.35);
+        ctx.fillText(translations.arteries || "ARTERIES", centerX - 60, h * 0.08);
+        ctx.fillText(translations.veins || "VEINS", centerX + 70, h * 0.08);
+    }, [translations]);
 
     const drawRespiratorySystem = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, highlight: string | null) => {
         const centerX = w / 2;
@@ -143,9 +144,9 @@ export default function BodySystemCanvas({ system, highlightedOrgan, translation
         ctx.fillStyle = "#00ffff";
         ctx.font = "10px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("LUNGS", centerX, h * 0.42);
-        ctx.fillText("TRACHEA", centerX + 40, h * 0.2);
-    }, []);
+        ctx.fillText(translations.lungs || "LUNGS", centerX, h * 0.42);
+        ctx.fillText(translations.trachea || "TRACHEA", centerX + 40, h * 0.2);
+    }, [translations]);
 
     useEffect(() => {
         const canvas = canvasRef.current;

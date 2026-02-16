@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PhotosynthesisCanvas from "@/components/chamber/sb1-02/PhotosynthesisCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,9 @@ interface SB102Quest extends Quest {
     structure?: string;
 }
 
-type SB102T = typeof translations.EN.sb1_02;
-
 export default function SB102Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb1_02 || translations.EN.sb1_02) as SB102T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [lightIntensity, setLightIntensity] = useState(50);
     const [co2Level, setCo2Level] = useState(50);
     const [temperature, setTemperature] = useState(25);
@@ -35,30 +33,30 @@ export default function SB102Page() {
             quests.push(
                 {
                     id: "EQ-1", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.reactant}}`,
+                    promptLatex: t("sb1_02.prompts.reactant"),
                     expressionLatex: `6CO_2 + 6H_2O + \\text{light} \\rightarrow C_6H_{12}O_6 + \\text{?}`,
                     targetLatex: "o2",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "o2" }],
+                    slots: [{ id: "ans", labelLatex: t("sb1_02.prompts.reactant"), placeholder: "...", expected: "o2" }],
                     correctLatex: "6O_2",
-                    hintLatex: [`\\text{${t.prompts.hint_oxygen}}`]
+                    hintLatex: [t("sb1_02.prompts.hint_oxygen")]
                 },
                 {
                     id: "EQ-2", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.glucose}}`,
+                    promptLatex: t("sb1_02.prompts.glucose", { co2: "6" }),
                     expressionLatex: `6CO_2 + 6H_2O \\rightarrow \\text{?} + 6O_2`,
                     targetLatex: "glucose",
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: "glucose" }],
+                    slots: [{ id: "ans", labelLatex: t("sb1_02.prompts.reactant"), placeholder: "...", expected: "glucose" }],
                     correctLatex: "C_6H_{12}O_6",
-                    hintLatex: [`\\text{${t.prompts.hint_glucose}}`]
+                    hintLatex: [t("sb1_02.prompts.hint_glucose")]
                 },
                 {
                     id: "EQ-3", difficulty, stage,
-                    promptLatex: `\\text{${t.prompts.water_count}}`,
+                    promptLatex: t("sb1_02.prompts.water_count", { glucose: "1" }),
                     expressionLatex: `6CO_2 + \\text{?}H_2O \\rightarrow C_6H_{12}O_6 + 6O_2`,
                     targetLatex: "6",
                     slots: [{ id: "ans", labelLatex: "\\text{Coefficient}", placeholder: "...", expected: "6" }],
                     correctLatex: "6",
-                    hintLatex: [`\\text{${t.prompts.hint_balance}}`]
+                    hintLatex: [t("sb1_02.prompts.hint_balance")]
                 }
             );
         }
@@ -78,12 +76,12 @@ export default function SB102Page() {
                     difficulty,
                     stage,
                     factor: f.factor,
-                    promptLatex: `\\text{${t.prompts.factor_effect.replace('{factor}', f.factor).replace('{effect}', f.effect)}}`,
+                    promptLatex: t("sb1_02.prompts.factor_effect", { factor: f.factor, effect: f.effect }),
                     expressionLatex: `\\text{${f.factor}} \\uparrow \\rightarrow \\text{rate } \\text{?}`,
                     targetLatex: f.answer,
                     slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "increase/decrease/optimal", expected: f.answer }],
                     correctLatex: f.answer,
-                    hintLatex: [`\\text{${t.prompts.hint_factor}}`]
+                    hintLatex: [t("sb1_02.prompts.hint_factor")]
                 });
             });
         }
@@ -103,12 +101,12 @@ export default function SB102Page() {
                     difficulty,
                     stage,
                     structure: s.name,
-                    promptLatex: `\\text{${t.prompts.structure_function.replace('{function}', s.function)}}`,
+                    promptLatex: t("sb1_02.prompts.structure_function", { process: s.function }),
                     expressionLatex: `\\text{${s.function}} \\rightarrow \\text{?}`,
                     targetLatex: s.name,
                     slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: s.name }],
                     correctLatex: s.name,
-                    hintLatex: [`\\text{${t.prompts.hint_structure.replace('{name}', s.name)}}`]
+                    hintLatex: [t("sb1_02.prompts.hint_structure", { name: s.name })]
                 });
             });
         }
@@ -138,14 +136,14 @@ export default function SB102Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SB1.02", stage);
+            completeStage("sb1-02", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "EQUATION", label: t.stages.equation },
-        { id: "FACTORS", label: t.stages.factors },
-        { id: "CHLOROPLAST", label: t.stages.chloroplast },
+        { id: "EQUATION" as Stage, label: t("sb1_02.stages.equation") },
+        { id: "FACTORS" as Stage, label: t("sb1_02.stages.factors") },
+        { id: "CHLOROPLAST" as Stage, label: t("sb1_02.stages.chloroplast") },
     ], [t]);
 
     const hint = getHint();
@@ -153,7 +151,7 @@ export default function SB102Page() {
     return (
         <ChamberLayout
             moduleCode="SB1.02"
-            title={t.title}
+            title={t("sb1_02.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -162,20 +160,20 @@ export default function SB102Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sb1_02.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sb1_02.back"),
+                check: t("sb1_02.check"),
+                next: t("sb1_02.next"),
+                correct: t("sb1_02.correct"),
+                incorrect: t("sb1_02.incorrect"),
+                ready: t("sb1_02.ready"),
+                monitor_title: t("sb1_02.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sb1_02.difficulty.basic"),
+                    core: t("sb1_02.difficulty.core"),
+                    advanced: t("sb1_02.difficulty.advanced"),
+                    elite: t("sb1_02.difficulty.elite"),
                 },
             }}
             monitorContent={
@@ -186,14 +184,14 @@ export default function SB102Page() {
                             co2Level={co2Level}
                             temperature={temperature}
                             stage={stage}
-                            translations={t}
+                            translations={t("sb1_02")}
                         />
                     </div>
 
                     {/* Environmental Controls */}
                     <div className="grid grid-cols-1 gap-3">
                         <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.light}</label>
+                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t("sb1_02.labels.light")}</label>
                             <div className="flex items-center gap-3">
                                 <input
                                     type="range"
@@ -207,7 +205,7 @@ export default function SB102Page() {
                             </div>
                         </div>
                         <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.co2}</label>
+                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t("sb1_02.labels.co2")}</label>
                             <div className="flex items-center gap-3">
                                 <input
                                     type="range"
@@ -221,7 +219,7 @@ export default function SB102Page() {
                             </div>
                         </div>
                         <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.temp}</label>
+                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t("sb1_02.labels.temp")}</label>
                             <div className="flex items-center gap-3">
                                 <input
                                     type="range"
@@ -238,18 +236,17 @@ export default function SB102Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.efficiency}</span>
+                            <span>{t("sb1_02.labels.efficiency")}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`flex-1 transition-all duration-1000 ${
-                                        i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                                             ? "bg-neon-green shadow-[0_0_5px_#00ff00]"
                                             : "bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             ))}
                         </div>
@@ -262,7 +259,7 @@ export default function SB102Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -273,7 +270,7 @@ export default function SB102Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.reaction_display}
+                                    {t("sb1_02.labels.reaction_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -286,7 +283,7 @@ export default function SB102Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-green/30" />
-                                    {t.labels.input_terminal}
+                                    {t("labels.terminal_input")}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -319,31 +316,29 @@ export default function SB102Page() {
                                             initial={{ opacity: 0, scale: 0.98, y: 10 }}
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                                                lastCheck.ok
+                                            className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                                     : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-5">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                                                    lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                                                }`}>
+                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                                                    }`}>
                                                     {lastCheck.ok ? "✓" : "✗"}
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? t("sb1_02.results.valid") : t("sb1_02.results.invalid")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? t("sb1_02.results.valid_desc") : t("sb1_02.results.invalid_desc")}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {!lastCheck.ok && hint && (
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Hint:</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("labels.hint")}:</span>
                                                     <div className="text-white font-bold">
                                                         <InlineMath>{hint}</InlineMath>
                                                     </div>
@@ -355,7 +350,7 @@ export default function SB102Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    {t.next}
+                                                    {t("sb1_02.results.next")}
                                                 </button>
                                             )}
                                         </motion.div>
