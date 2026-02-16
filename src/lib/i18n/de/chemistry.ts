@@ -106,11 +106,17 @@ export const deChemistry = {
             bcc: "RAUMZENTRIERT",
             fcc: "FLÄCHENZENTRIERT",
             sc_desc: "Studieren Sie einfach kubisches Gitter (Koordination 6)",
-            bcc_desc: "Analysieren Sie raumzentriert kubisch (Koordination 8)",
-            fcc_desc: "Meistern Sie flächenzentriert kubisch (Koordination 12)",
-            sc_hint: "Niedrigste Packungseffizienz (52%)",
+            bcc_desc: "Analysieren Sie raumzentriert (Koordination 8)",
+            fcc_desc: "Meistern Sie flächenzentriert (Koordination 12)",
+            sc_hint: "Niedrigste Packungsdichte (52%)",
             bcc_hint: "Mittlere Packung (68%), Metalle wie Fe, Cr",
             fcc_hint: "Höchste Packung (74%), Metalle wie Cu, Al, Au"
+        },
+        prompts: {
+            atoms_per_cell: "Berechnen Sie die Gesamtzahl der Atome pro Elementarzelle für dieses Gitter.",
+            coord_num: "Was ist die Koordinationszahl (Anzahl der nächsten Nachbarn) für ein Atom in dieser Struktur?",
+            pack_eff: "Bestimmen Sie den atomaren Packungsfaktor (%) für dieses Kristallsystem.",
+            void_id: "Identifizieren Sie die Anzahl der verfügbaren Tetraederlücken in dieser Elementarzelle."
         },
         scenarios: {
             crystallography_center: "Basler Zentrum für Kristallographie: Röntgenbeugung wird genutzt, um die Atomstrukturen neuer pharmazeutischer Kristalle abzubilden.",

@@ -115,8 +115,14 @@ export const enChemistry = {
             bcc_desc: "Analyze body-centered cubic (8 coordination)",
             fcc_desc: "Master face-centered cubic (12 coordination)",
             sc_hint: "Lowest packing efficiency (52%)",
-            bcc_hint: "Moderate packing (68%), metals like Fe, Cr",
-            fcc_hint: "Highest packing (74%), metals like Cu, Al, Au"
+            bcc_hint: "Moderate packing (68%), used in metals like Iron",
+            fcc_hint: "Highest packing (74%), used in metals like Gold"
+        },
+        prompts: {
+            atoms_per_cell: "Calculate the total number of atoms per unit cell for this lattice.",
+            coord_num: "What is the coordination number (number of nearest neighbors) for an atom in this structure?",
+            pack_eff: "Determine the atomic packing factor (%) for this crystal system.",
+            void_id: "Identify the number of tetrahedral voids available in this unit cell."
         },
         scenarios: {
             crystallography_center: "Basel Crystallography Center: Using X-ray diffraction to map the atomic structures of new pharmaceutical crystals discovered in the city's labs.",

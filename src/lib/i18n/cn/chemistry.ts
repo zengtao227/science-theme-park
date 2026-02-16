@@ -118,6 +118,12 @@ export const cnChemistry = {
             bcc_hint: "中等堆积 (68%)，如铁、铬等金属",
             fcc_hint: "最高的堆积 (74%)，如铜、铝、金等金属",
         },
+        prompts: {
+            atoms_per_cell: "计算该晶格每个晶胞的总原子数。",
+            coord_num: "该结构中原子的配位数（最近邻数）是多少？",
+            pack_eff: "确定该晶系的原子堆积因子 (%)。",
+            void_id: "识别该晶胞中可用的四面体空隙数量。"
+        },
         scenarios: {
             crystallography_center: "巴塞尔晶体学中心：利用X射线衍射绘制该市实验室发现的新型药物晶体的原子结构。",
             solid_state_research: "巴塞尔物理研究所：研究人员探索体心和面心立方金属的特性，用于下一代航空航天组件。",
