@@ -341,7 +341,7 @@ const t = translations[currentLanguage].gm1_02;
   - ⚠️ 动画中**不使用 Math.random()**: 使用确定性函数 `Math.sin(t * frequency * 2π)`
   - **不要使用 Canvas API**: 项目标准是 SVG
 
-- [-] 3.3 添加 GP3.01 三语翻译
+- [x] 3.3 添加 GP3.01 三语翻译
   - 在 `src/lib/i18n/{en,cn,de}/physics.ts` 中添加 `gp3_01` section
   - 在 `src/app/page.tsx` 首页模块列表中添加 GP3.01 条目
   - **场景要求** (Basel 语境):
@@ -349,7 +349,7 @@ const t = translations[currentLanguage].gm1_02;
     - superposition: Basel 音乐厅 (Stadtcasino) 音响设计中的声波干涉
     - optics: CERN-Basel 合作项目中的激光干涉仪校准
 
-- [~] 3.4 Checkpoint GP3.01
+- [x] 3.4 Checkpoint GP3.01
   - 同 1.4
   - 额外检查: 波动画流畅 (60fps)，无闪烁
   - `git add -A && git commit -m "feat: add GP3.01 Wave Physics module" && git push`
@@ -361,7 +361,7 @@ const t = translations[currentLanguage].gm1_02;
 **参考模块**: `src/app/chamber/gc1-01/page.tsx` (电化学基础 — 概念相关)
 **翻译参考**: `src/lib/i18n/en/chemistry.ts`
 
-- [~] 4.1 创建 SC2.06 页面结构
+- [x] 4.1 创建 SC2.06 页面结构
   - 创建 `src/app/chamber/sc2-06/page.tsx`
   - Stage: `"OXIDATION_STATE" | "ELECTRON_TRANSFER" | "ELECTROCHEMISTRY"`
   - Quest 接口: `reactants[]`, `products[]`, `oxidationStates`, `electronsTransferred`, `cellPotential`
@@ -386,7 +386,7 @@ const t = translations[currentLanguage].gm1_02;
   - ADVANCED: 能斯特方程 E = E° - (RT/nF)ln(Q)
   - ELITE: 电解定律 (法拉第定律)，工业电解
 
-- [~] 4.2 创建 SC2.06 可视化组件
+- [x] 4.2 创建 SC2.06 可视化组件
   - 创建 `src/components/chamber/sc2-06/RedoxVisualization.tsx`
   - 必须实现:
     - **氧化态变化图**: 原子上方/下方标注氧化态数字 (+3, -2 等)
@@ -395,7 +395,7 @@ const t = translations[currentLanguage].gm1_02;
     - 颜色: 氧化 → 红色, 还原 → 蓝色
   - **使用 SVG**
 
-- [~] 4.3 添加 SC2.06 三语翻译
+- [x] 4.3 添加 SC2.06 三语翻译
   - 在 `src/lib/i18n/{en,cn,de}/chemistry.ts` 中添加 `sc2_06` section
   - 在 `src/app/page.tsx` 首页模块列表中添加 SC2.06 条目
   - **场景要求** (Basel 语境):
@@ -403,7 +403,7 @@ const t = translations[currentLanguage].gm1_02;
     - electron_transfer: Roche 锂电池研发中的正极材料反应
     - electrochemistry: 巴塞尔黄铜制造历史 (Basel Goldschmied) + 现代电镀工艺
 
-- [~] 4.4 Checkpoint SC2.06
+- [x] 4.4 Checkpoint SC2.06
   - 同 1.4
   - `git add -A && git commit -m "feat: add SC2.06 Redox Reactions module" && git push`
 
@@ -416,7 +416,7 @@ const t = translations[currentLanguage].gm1_02;
   - `npm run lint` 只有 scripts/ 目录的 warning（不得有新增 error）
   - `npm test -- --ci --passWithNoTests` 全部通过
 
-- [~] 5.2 浏览器三语言测试（不可跳过）
+- [x] 5.2 浏览器三语言测试（不可跳过）
   - **英文 (EN)**:
     - 访问 GM1.02, SC2.05, GP3.01, SC2.06 四个模块
     - 所有文本英文, LaTeX 渲染正常
@@ -436,7 +436,7 @@ const t = translations[currentLanguage].gm1_02;
   - SB2.02 无重复
   - 所有链接可点击并导航到正确模块
 
-- [x] 5.4 更新文档
+- [-] 5.4 更新文档
   - 更新 `CURRICULUM_PLAN_UPDATE_2026_v2.md`:
     - 将 GM1.02, SC2.05, GP3.01, SC2.06 标记为 ✅ 已完成
     - 更新模块统计数字

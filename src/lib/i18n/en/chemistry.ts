@@ -1076,5 +1076,61 @@ export const enChemistry = {
         scenario_title: "BASEL SCENARIO",
         objective_title: "PROBLEM",
         answer_title: "YOUR ANSWER"
+    },
+    sc2_06: {
+        back: "Back to Nexus",
+        title: "SC2.06 // REDOX REACTIONS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            oxidation_state: "OXIDATION STATES",
+            electron_transfer: "ELECTRON TRANSFER",
+            electrochemistry: "ELECTROCHEMISTRY"
+        },
+        scenarios: {
+            oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn⁷⁺) converting to brown manganese dioxide (Mn⁴⁺). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
+            electron_transfer: "Roche Battery Technology Development: You are a materials scientist at Roche's energy research division in Basel, developing next-generation lithium-ion batteries for medical devices. The battery's cathode material (LiCoO₂) undergoes reversible electron transfer during charging and discharging cycles. Cobalt alternates between +3 and +4 oxidation states as lithium ions shuttle in and out. You must balance the redox equations to optimize energy density and cycle life. Each battery cell must deliver exactly 3.7V for 500+ charge cycles to power portable insulin pumps and cardiac monitors reliably. Electron transfer efficiency directly impacts patient safety—a failing battery in a critical medical device could be life-threatening. This is similar to a rechargeable phone battery, but with medical-grade precision and reliability requirements.",
+            electrochemistry: "Basel Industrial Electroplating Heritage: You are a process engineer at a Basel metal finishing company, continuing the city's 500-year tradition of precision metalworking. Today, you're electroplating surgical instruments with a thin gold layer for corrosion resistance and biocompatibility. Using the Nernst equation, you calculate the cell potential needed to deposit exactly 2.5 micrometers of gold onto stainless steel forceps. The electrochemical cell operates at 1.5V with carefully controlled current density. Too much current causes rough, porous deposits; too little extends processing time uneconomically. You apply Faraday's laws to determine that 3.2 amperes for 45 minutes will deposit the required mass. This electrochemical precision ensures Basel-made surgical tools meet international medical standards and maintain the city's reputation for quality craftsmanship."
+        },
+        prompts: {
+            oxidation_state: "What is the oxidation state of {element} in {formula}?",
+            oxidation_state_complex: "Determine the oxidation state of {element} in the complex {formula}.",
+            oxidation_state_organic: "What is the oxidation state of {element} in the organic compound {formula}?",
+            oxidizing_agent: "In the reaction {reaction}, identify the oxidizing agent.",
+            reducing_agent: "In the reaction {reaction}, identify the reducing agent.",
+            electrons_transferred: "How many electrons are transferred in the half-reaction: {reaction}?",
+            half_reaction: "Balance the half-reaction in the specified medium: {half}. How many electrons are involved?",
+            disproportionation: "In the disproportionation reaction {reaction}, how many total electrons are transferred?",
+            anode_process: "What process occurs at the anode in a galvanic cell?",
+            cathode_process: "What process occurs at the cathode in a galvanic cell?",
+            electron_flow: "From which electrode do electrons flow in the external circuit?",
+            salt_bridge: "What species move through the salt bridge?",
+            positive_electrode: "Which electrode is positive in a galvanic cell?",
+            cell_potential: "Calculate the standard cell potential E° for the cell: {cell}",
+            nernst_equation: "Using the Nernst equation, calculate the cell potential for: {cell}",
+            faraday_law: "How many grams of {substance} are deposited when a current of {current}A flows for {time}s?"
+        },
+        labels: {
+            input_answer: "Enter Your Answer",
+            reaction: "REACTION EQUATION",
+            oxidation_state: "Oxidation State",
+            electrons: "Electrons Transferred",
+            cell_potential: "Cell Potential",
+            regional_case: "Regional Case Study // Basel Node"
+        },
+        mission: {
+            title: "REDOX MISSION"
+        },
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Redox Verified",
+        incorrect: "Check electron balance",
+        ready: "Ready",
+        monitor_title: "SC2.06_REDOX_MONITOR",
+        footer_left: "SC2.06_REDOX // NODE: BASEL"
     }
 };

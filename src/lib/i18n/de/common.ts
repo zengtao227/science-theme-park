@@ -132,6 +132,8 @@ export const deCommon = {
         gp2_01_subtitle: "Gasgesetze, Wärme und innere Energie in Basler Energiesystemen.",
         gp2_02_title: "GP2.02 // THERMODYNAMIK I",
         gp2_02_subtitle: "Meistern Sie den ersten Hauptsatz der Thermodynamik, innere Energie und Arbeit-Wärme-Beziehungen.",
+        gp3_01_title: "GP3.01 // WELLENPHYSIK",
+        gp3_01_subtitle: "Erforschen Sie Welleneigenschaften, Interferenz und Optik am Basler Rhein und in Konzertsälen.",
 
         gp1_01_title: "GP1.01 // DER ATOMKERN",
         gp1_01_subtitle: "Stabilisiere den Basler Reaktor durch Ausgleichen von Kernreaktionen: Alpha-, Beta- und Gammazerfall.",
@@ -169,6 +171,8 @@ export const deCommon = {
         sc2_04_subtitle: "Erkunden Sie Löslichkeitskurven und Kristallisation. Meistern Sie Sättigungsgleichgewicht.",
         sc2_05_title: "SC2.05 // SÄURE-BASE-CHEMIE",
         sc2_05_subtitle: "Meistern Sie pH-Berechnungen, Neutralisation und Titrationsanalyse.",
+        sc2_06_title: "SC2.06 // REDOXREAKTIONEN",
+        sc2_06_subtitle: "Meistern Sie Oxidationsstufen, Elektronentransfer und Elektrochemie.",
         sc3_01_title: "SC3.01 // MOLEKÜL-LEINWAND",
         sc3_01_subtitle: "Bauen und visualisieren Sie Molekülstrukturen im 3D-Raum.",
         sc3_02_title: "SC3.02 // GRUNDLAGEN DER ORGANISCHEN CHEMIE",

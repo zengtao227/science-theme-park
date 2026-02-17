@@ -135,6 +135,8 @@ export const enCommon = {
         gp2_01_subtitle: "Gas laws, heat, and internal energy in Basel's energy systems.",
         gp2_02_title: "GP2.02 // THERMODYNAMICS I",
         gp2_02_subtitle: "Master the first law of thermodynamics, internal energy, and work-heat relationships.",
+        gp3_01_title: "GP3.01 // WAVE PHYSICS",
+        gp3_01_subtitle: "Explore wave properties, interference, and optics in Basel's Rhine and concert halls.",
 
         gp1_01_title: "GP1.01 // THE ATOMIC CORE",
         gp1_01_subtitle: "Stabilize the Basel reactor by balancing nuclear equations: Alpha, Beta, and Gamma decay.",
@@ -165,6 +167,8 @@ export const enCommon = {
         sc2_04_subtitle: "Explore solubility curves and crystallization. Master saturation equilibrium.",
         sc2_05_title: "SC2.05 // ACID-BASE CHEMISTRY",
         sc2_05_subtitle: "Master pH calculations, neutralization, and titration analysis.",
+        sc2_06_title: "SC2.06 // REDOX REACTIONS",
+        sc2_06_subtitle: "Master oxidation states, electron transfer, and electrochemistry.",
         sc3_01_title: "SC3.01 // MOLECULE CANVAS",
         sc3_01_subtitle: "Build and visualize molecular structures in 3D space.",
         sc3_02_title: "SC3.02 // ORGANIC CHEMISTRY BASICS",

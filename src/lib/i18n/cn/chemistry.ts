@@ -1076,5 +1076,61 @@ export const cnChemistry = {
         scenario_title: "巴塞尔场景",
         objective_title: "问题",
         answer_title: "您的答案"
+    },
+    sc2_06: {
+        back: "返回主界面",
+        title: "SC2.06 // 氧化还原反应",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            oxidation_state: "氧化态",
+            electron_transfer: "电子转移",
+            electrochemistry: "电化学"
+        },
+        scenarios: {
+            oxidation_state: "诺华药物合成氧化控制：您是诺华巴塞尔的合成化学家，从事复杂的药物合成工作。活性成分需要对过渡金属催化剂进行精确的氧化态控制。在您当前的反应中，锰在 +4 和 +7 氧化态之间循环，以促进 C-H 键活化。您必须跟踪每个步骤的氧化态变化，以防止不需要的副反应。使用光谱分析，您监测高锰酸盐（Mn⁷⁺）的紫色转化为棕色二氧化锰（Mn⁴⁺）。单个电子计算错误可能导致有毒副产物，使整批产品无法使用。这种氧化态跟踪对于为瑞士各地的患者生产安全有效的药物至关重要。理解氧化态就像跟踪银行账户余额——您需要确切知道每个原子获得或失去了多少电子。",
+            electron_transfer: "罗氏电池技术开发：您是罗氏巴塞尔能源研究部门的材料科学家，为医疗设备开发下一代锂离子电池。电池的正极材料（LiCoO₂）在充放电循环期间经历可逆电子转移。随着锂离子进出，钴在 +3 和 +4 氧化态之间交替。您必须平衡氧化还原方程以优化能量密度和循环寿命。每个电池单元必须在 500 多个充电周期中精确提供 3.7V，以可靠地为便携式胰岛素泵和心脏监护仪供电。电子转移效率直接影响患者安全——关键医疗设备中的电池故障可能危及生命。这类似于可充电手机电池，但具有医疗级精度和可靠性要求。",
+            electrochemistry: "巴塞尔工业电镀传统：您是巴塞尔金属精加工公司的工艺工程师，延续该市 500 年的精密金属加工传统。今天，您正在为手术器械电镀一层薄金层，以提高耐腐蚀性和生物相容性。使用能斯特方程，您计算在不锈钢镊子上沉积恰好 2.5 微米金所需的电池电位。电化学电池在 1.5V 下运行，电流密度受到仔细控制。电流过大会导致粗糙、多孔的沉积物；电流过小会延长处理时间，经济上不划算。您应用法拉第定律确定 3.2 安培持续 45 分钟将沉积所需质量。这种电化学精度确保巴塞尔制造的手术工具符合国际医疗标准，并保持该市的质量工艺声誉。"
+        },
+        prompts: {
+            oxidation_state: "{formula} 中 {element} 的氧化态是多少？",
+            oxidation_state_complex: "确定配合物 {formula} 中 {element} 的氧化态。",
+            oxidation_state_organic: "有机化合物 {formula} 中 {element} 的氧化态是多少？",
+            oxidizing_agent: "在反应 {reaction} 中，识别氧化剂。",
+            reducing_agent: "在反应 {reaction} 中，识别还原剂。",
+            electrons_transferred: "半反应 {reaction} 中转移了多少电子？",
+            half_reaction: "在指定介质中平衡半反应：{half}。涉及多少电子？",
+            disproportionation: "在歧化反应 {reaction} 中，总共转移了多少电子？",
+            anode_process: "原电池的阳极发生什么过程？",
+            cathode_process: "原电池的阴极发生什么过程？",
+            electron_flow: "在外电路中，电子从哪个电极流出？",
+            salt_bridge: "什么物质通过盐桥移动？",
+            positive_electrode: "原电池中哪个电极是正极？",
+            cell_potential: "计算电池的标准电池电位 E°：{cell}",
+            nernst_equation: "使用能斯特方程，计算电池电位：{cell}",
+            faraday_law: "当 {current}A 电流流过 {time}s 时，沉积多少克 {substance}？"
+        },
+        labels: {
+            input_answer: "输入您的答案",
+            reaction: "反应方程",
+            oxidation_state: "氧化态",
+            electrons: "转移电子数",
+            cell_potential: "电池电位",
+            regional_case: "区域案例研究 // 巴塞尔节点"
+        },
+        mission: {
+            title: "氧化还原任务"
+        },
+        check: "验证",
+        next: "下一题",
+        correct: "氧化还原已验证",
+        incorrect: "检查电子平衡",
+        ready: "就绪",
+        monitor_title: "SC2.06_氧化还原监控",
+        footer_left: "SC2.06_氧化还原 // 节点: 巴塞尔"
     }
 };

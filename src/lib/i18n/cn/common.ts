@@ -132,6 +132,8 @@ export const cnCommon = {
         gp2_01_subtitle: "巴塞尔能源系统中的气体定律、热量和内能逻辑。",
         gp2_02_title: "GP2.02 // 热力学第一定律",
         gp2_02_subtitle: "掌握热力学第一定律、内能和功热关系。",
+        gp3_01_title: "GP3.01 // 波动物理",
+        gp3_01_subtitle: "探索巴塞尔莱茵河和音乐厅中的波动性质、干涉和光学。",
 
         gp1_01_title: "GP1.01 // 原子核核心",
         gp1_01_subtitle: "通过平衡核反应方程式（α、β、γ 衰变）来稳定巴塞尔反应堆。",
@@ -167,6 +169,8 @@ export const cnCommon = {
         sc2_04_subtitle: "探索溶解度曲线与结晶过程。掌握饱和平衡。",
         sc2_05_title: "SC2.05 // 酸碱化学",
         sc2_05_subtitle: "掌握 pH 计算、中和反应和滴定分析。",
+        sc2_06_title: "SC2.06 // 氧化还原反应",
+        sc2_06_subtitle: "掌握氧化态、电子转移和电化学。",
         sc3_01_title: "SC3.01 // 分子画布",
         sc3_01_subtitle: "在 3D 空间中构建和可视化分子结构。",
         sc3_02_title: "SC3.02 // 有机化学基础",

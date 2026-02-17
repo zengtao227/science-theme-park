@@ -1064,5 +1064,61 @@ export const deChemistry = {
         scenario_title: "BASEL-SZENARIO",
         objective_title: "PROBLEM",
         answer_title: "IHRE ANTWORT"
+    },
+    sc2_06: {
+        back: "Zurück zum Nexus",
+        title: "SC2.06 // REDOXREAKTIONEN",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            oxidation_state: "OXIDATIONSSTUFEN",
+            electron_transfer: "ELEKTRONENTRANSFER",
+            electrochemistry: "ELEKTROCHEMIE"
+        },
+        scenarios: {
+            oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn⁷⁺), die sich in braunes Mangandioxid (Mn⁴⁺) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
+            electron_transfer: "Roche Batterietechnologieentwicklung: Sie sind Materialwissenschaftler in der Energieforschungsabteilung von Roche in Basel und entwickeln Lithium-Ionen-Batterien der nächsten Generation für medizinische Geräte. Das Kathodenmaterial der Batterie (LiCoO₂) durchläuft während der Lade- und Entladezyklen reversiblen Elektronentransfer. Kobalt wechselt zwischen +3 und +4 Oxidationsstufen, während Lithiumionen ein- und ausströmen. Sie müssen die Redoxgleichungen ausgleichen, um Energiedichte und Zykluslebensdauer zu optimieren. Jede Batteriezelle muss genau 3,7 V für über 500 Ladezyklen liefern, um tragbare Insulinpumpen und Herzmonitore zuverlässig mit Strom zu versorgen. Die Effizienz des Elektronentransfers wirkt sich direkt auf die Patientensicherheit aus – eine ausfallende Batterie in einem kritischen medizinischen Gerät könnte lebensbedrohlich sein. Dies ähnelt einer wiederaufladbaren Telefonbatterie, jedoch mit medizinischer Präzision und Zuverlässigkeitsanforderungen.",
+            electrochemistry: "Basler Industriegalvanik-Erbe: Sie sind Verfahrensingenieur in einem Basler Metallveredelungsunternehmen und setzen die 500-jährige Tradition der Stadt in präziser Metallbearbeitung fort. Heute galvanisieren Sie chirurgische Instrumente mit einer dünnen Goldschicht für Korrosionsbeständigkeit und Biokompatibilität. Mit der Nernst-Gleichung berechnen Sie das Zellpotential, das erforderlich ist, um genau 2,5 Mikrometer Gold auf Edelstahlpinzetten abzuscheiden. Die elektrochemische Zelle arbeitet bei 1,5 V mit sorgfältig kontrollierter Stromdichte. Zu viel Strom verursacht raue, poröse Ablagerungen; zu wenig verlängert die Verarbeitungszeit unwirtschaftlich. Sie wenden die Faradayschen Gesetze an, um festzustellen, dass 3,2 Ampere für 45 Minuten die erforderliche Masse abscheiden. Diese elektrochemische Präzision stellt sicher, dass in Basel hergestellte chirurgische Werkzeuge internationalen medizinischen Standards entsprechen und den Ruf der Stadt für Qualitätshandwerk aufrechterhalten."
+        },
+        prompts: {
+            oxidation_state: "Was ist die Oxidationsstufe von {element} in {formula}?",
+            oxidation_state_complex: "Bestimmen Sie die Oxidationsstufe von {element} im Komplex {formula}.",
+            oxidation_state_organic: "Was ist die Oxidationsstufe von {element} in der organischen Verbindung {formula}?",
+            oxidizing_agent: "Identifizieren Sie in der Reaktion {reaction} das Oxidationsmittel.",
+            reducing_agent: "Identifizieren Sie in der Reaktion {reaction} das Reduktionsmittel.",
+            electrons_transferred: "Wie viele Elektronen werden in der Halbreaktio {reaction} übertragen?",
+            half_reaction: "Gleichen Sie die Halbreaktion im angegebenen Medium aus: {half}. Wie viele Elektronen sind beteiligt?",
+            disproportionation: "In der Disproportionierungsreaktion {reaction}, wie viele Elektronen werden insgesamt übertragen?",
+            anode_process: "Welcher Prozess findet an der Anode in einer galvanischen Zelle statt?",
+            cathode_process: "Welcher Prozess findet an der Kathode in einer galvanischen Zelle statt?",
+            electron_flow: "Von welcher Elektrode fließen Elektronen im externen Stromkreis?",
+            salt_bridge: "Welche Spezies bewegen sich durch die Salzbrücke?",
+            positive_electrode: "Welche Elektrode ist in einer galvanischen Zelle positiv?",
+            cell_potential: "Berechnen Sie das Standardzellpotential E° für die Zelle: {cell}",
+            nernst_equation: "Berechnen Sie mit der Nernst-Gleichung das Zellpotential für: {cell}",
+            faraday_law: "Wie viele Gramm {substance} werden abgeschieden, wenn ein Strom von {current}A für {time}s fließt?"
+        },
+        labels: {
+            input_answer: "Geben Sie Ihre Antwort ein",
+            reaction: "REAKTIONSGLEICHUNG",
+            oxidation_state: "Oxidationsstufe",
+            electrons: "Übertragene Elektronen",
+            cell_potential: "Zellpotential",
+            regional_case: "Regionale Fallstudie // Basel-Knoten"
+        },
+        mission: {
+            title: "REDOX-MISSION"
+        },
+        check: "Überprüfen",
+        next: "Nächste Herausforderung",
+        correct: "Redox verifiziert",
+        incorrect: "Elektronenbilanz prüfen",
+        ready: "Bereit",
+        monitor_title: "SC2.06_REDOX_MONITOR",
+        footer_left: "SC2.06_REDOX // KNOTEN: BASEL"
     }
 };

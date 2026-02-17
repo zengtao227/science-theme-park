@@ -15,7 +15,8 @@
 - **几何基础**: SM1.01, SM2.02, SM2.04 (相似形), SM2.07 (坐标几何)
 - **幂运算与根式**: SM2.05
 - **电学基础**: SP2.02, SP2.03
-- **化学计量与反应**: SC1.01-SC1.05, SC2.01-SC2.05 ✅
+- **化学计量与反应**: SC1.01-SC1.05, SC2.01-SC2.06 ✅
+- **波动物理**: GP3.01 ✅
 - **细胞生物学基础**: SB1.01, SB1.01-M, SB1.02, SB1.03
 - **遗传学基础**: SB2.01
 
@@ -249,6 +250,16 @@
 - **最新完成**: 2026-02-15 - GP2.05磁场模块 (3 stages, MagneticFieldVisualization)
 - **构建状态**: ✅ 84页编译通过 (包含所有GP2.05阶段)
 
+### Week 6.5: Critical Modules Phase 1 (P0 Priority) ✅ 已完成
+- [x] 创建GM1.02 (Integral Calculus) ✅ - 3 stages, IntegralVisualization
+- [x] 创建SC2.05 (Acid-Base Chemistry) ✅ - 3 stages, AcidBaseVisualization
+- [x] 创建GP3.01 (Wave Physics) ✅ - 3 stages, WaveVisualization
+- [x] 创建SC2.06 (Redox Reactions) ✅ - 3 stages, RedoxVisualization
+- [x] 首页修复 (GP2.02, SC1.05, SC3.05, SB2.02重复) ✅
+- **完成日期**: 2026-02-15
+- **构建状态**: ✅ 全部通过 (95个chamber页面)
+- **特性**: 完整三语言翻译 (EN/CN/DE), Basel语境场景, 每Stage×每Difficulty=5题
+
 ### Week 9: Phase 1.2 - 物理模块对齐与全量恢复 ✅ 已提前完成
 - [x] 审查SP1.01, SP1.04, SP1.08内容并在SP3.xx恢复 ✅
 - [x] 审查SP2.01, SP3.02内容 ✅
@@ -361,26 +372,26 @@
 ## 📈 当前模块统计 (Current Module Count)
 
 ### 已实现模块 (更新至2026-02-15):
-- 数学: 22个 (SM: 18, GM: 4, EM: 2) - 包含SM2.04-07, SM3.04-05 ⬆️ +1
-- 物理: 27个 (SP: 16包含SP3.04-06, GP: 11包含GP2.01-05) ⬆️ +2
-- 化学: 21个 (SC: 15包含SC3.01-05, GC: 6包含GC1.01-02) ⬆️ +2
-- 生物: 14个 (SB: 7包含SB3.01, GB: 7包含GB1.01, GB2.01, GB3.01, GB3.02) ⬆️ +2
+- 数学: 22个 (SM: 18, GM: 4, EM: 2) - 包含SM2.04-07, SM3.04-05, GM1.02 ✅
+- 物理: 28个 (SP: 16包含SP3.04-06, GP: 12包含GP2.01-05, GP3.01 ✅) ⬆️ +1
+- 化学: 22个 (SC: 16包含SC2.05 ✅, SC2.06 ✅, SC3.01-05, GC: 6包含GC1.01-02) ⬆️ +2
+- 生物: 14个 (SB: 7包含SB3.01, GB: 7包含GB1.01, GB2.01, GB3.01, GB3.02)
 
-**当前总计**: 85个独立模块 (94个chamber页面)
-**构建状态**: ✅ 84页全部通过 (包含GP2.05)
+**当前总计**: 86个独立模块 (95个chamber页面)
+**构建状态**: ✅ 全部通过 (包含Critical Modules Phase 1: GM1.02, SC2.05, GP3.01, SC2.06)
 
 ### 计划新增:
 - P0优先级: 10个模块
 - P1优先级: 9个模块
 - 待确认后决定: 约8个模块
 
-**预计总计**: 89-92个模块
+**预计总计**: 90-93个模块
 
 ---
 
-**文档版本**: v2.0 (Revised)
+**文档版本**: v2.1 (Critical Modules Phase 1 Complete)
 **创建日期**: 2026-02-15
-**修订日期**: 2026-02-15 (GP2.05 Completion)
+**修订日期**: 2026-02-15 (Critical Modules Phase 1: GM1.02, SC2.05, GP3.01, SC2.06)
 **审批状态**: 待用户审批
 **预计完成**: 2026-05 (12周开发周期)
 
