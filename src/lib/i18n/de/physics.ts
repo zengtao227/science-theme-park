@@ -514,6 +514,23 @@ export const dePhysics = {
         monitor_title: "GP2.01_THERMO_MONITOR",
         footer_left: "GP2.01_THERMODYNAMIK // KNOTEN: BASEL",
         stages: { ideal_gas: "IDEALES GAS", boyles: "BOYLE-MARIOTTE", charles: "GAY-LUSSAC" },
+        prompts: {
+            find_p: "Ideales Gas: n = {n} mol, T = {T} K, V = {V} m³. Finde P.",
+            find_v: "Gas: n = {n} mol, P = {P} Pa, T = {T} K. Finde V.",
+            find_n: "Gas: P = {P} Pa, V = {V} m³, T = {T} K. Finde n.",
+            find_t: "Gas: P = {P} Pa, V = {V} m³, n = {n} mol. Finde T.",
+            relation_pt: "Temperatur bei konstantem Volumen verdoppeln. Um welchen Faktor ändert sich der Druck?",
+            relation_vn: "Molzahl bei konstantem P und T verdoppeln. Um welchen Faktor ändert sich das Volumen?",
+            boyle_find_p2: "Boyle-Mariotte: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. Finde P₂.",
+            boyle_find_v2: "Boyle-Mariotte: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. Finde V₂.",
+            boyle_relation: "Komprimiere Gas von {v1} L auf {v2} L bei konst. T. Druck vervielfacht sich um?",
+            boyle_condition: "Welche Größe muss beim Gesetz von Boyle-Mariotte konstant bleiben?",
+            charles_find_v2: "Gay-Lussac (Charles): V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. Finde V₂.",
+            charles_find_t2: "Gay-Lussac (Charles): V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Finde T₂.",
+            charles_relation: "Absolute Temperatur bei konstantem P verdoppeln. Um welchen Faktor ändert sich das Volumen?",
+            charles_condition: "Welche Größe muss beim Gesetz von Charles (Gay-Lussac) konstant bleiben?",
+            combined_law: "Allgemeines Gasgesetz bei P, V, T Änderung. Suche nach {target}."
+        },
         scenarios: {
             ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
             boyles_law: "Boyle-Mariotte-Gesetz: Bei konstanter Temperatur ist das Volumen umgekehrt proportional zum Druck.",

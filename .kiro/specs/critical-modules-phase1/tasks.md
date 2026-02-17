@@ -705,9 +705,9 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - [x] 2C.4 SC3.01 药物化学 (276行) — 补充到60题
 - [x] 2C.5 SC3.02 烃类 (349行) — 补充到60题
 - [x] 2C.6 SC3.03 有机反应 (357行) — 补充到60题
-- [-] 2C.7 SC3.04 官能团 (334行) — 补充到60题
+- [x] 2C.7 SC3.04 官能团 (334行) — 补充到60题
 
-- [ ] 2C.8 Checkpoint SC
+- [x] 2C.8 Checkpoint SC
   - `npm run build` 通过
   - `git add -A && git commit -m "feat(chemistry): complete question pools for SC modules" && git push`
 
@@ -715,18 +715,18 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 
 > ⚠️ **重要**: 以下列表是初步估计。Sprint 0.5 验证后，请删除已确认完整的模块。
 
-- [ ] 2D.1 SB1.01 细胞结构 (284行) — 补充到60题
-- [ ] 2D.2 SB1.01-M 细胞代谢 (288行) — 补充到60题
-- [ ] 2D.3 SB1.02 光合作用 (366行) — 补充到60题
-- [ ] 2D.4 SB1.03 细胞分裂 (323行)
+- [x] 2D.1 SB1.01 细胞结构 (284行) — 补充到60题
+- [x] 2D.2 SB1.01-M 细胞代谢 (288行) — 补充到60题
+- [x] 2D.3 SB1.02 光合作用 (366行) — 补充到60题
+- [x] 2D.4 SB1.03 细胞分裂 (323行)
   - 当前实际: MITOSIS 有 2 题(BASIC/CORE) 或 4 题(ADV/ELITE)
   - 目标: 每难度5题，需要独立的数据池而非 `isAdvanced` 开关
   - 需要: 将 `const scenarios = isAdvanced ? [...] : [...]` 改为 `switch(difficulty)` + 各5题
-- [ ] 2D.5 SB2.01-tissues 组织器官 (495行) — 补充到60题
-- [ ] 2D.6 SB2.03 遗传学 (280行) — 补充到60题
-- [ ] 2D.7 SB3.01 生态系统 (316行) — 补充到60题
+- [x] 2D.5 SB2.01-tissues 组织器官 (495行) — 补充到60题
+- [x] 2D.6 SB2.03 遗传学 (280行) — 补充到60题
+- [x] 2D.7 SB3.01 生态系统 (316行) — 补充到60题
 
-- [ ] 2D.8 Checkpoint SB
+- [x] 2D.8 Checkpoint SB
   - `npm run build` 通过
   - `git add -A && git commit -m "feat(biology): complete question pools for SB modules" && git push`
 
@@ -738,8 +738,9 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 > 以下列表是初步估计，Sprint 0.5 验证后请删除已确认完整的模块。
 
 - [x] 3.1 GM4.01 复数 (385行) — 当前~21/60，严重不足 + 迁移 i18n ✅ 已验证60题完整，i18n已迁移
-- [ ] 3.2 GP2.01 热力学-理想气体 (303行) — ~3题，缺ELITE + 迁移 i18n
+- [x] 3.2 GP2.01 热力学-理想气体 (303行) — ~3题，缺ELITE + 迁移 i18n ✅ 已完成60题 (3 Stages * 4 Diff)，i18n迁移完毕
 - [ ] 3.3 GP2.02 热力学-第一定律 (302行) — ~3题，缺ELITE + 迁移 i18n
+
 - [ ] 3.4 EM1.01 (217行) — 只1个Stage，数据极少
 - [ ] 3.5 EM2.01 矩阵 (355行) — 稀疏 + 迁移 i18n
 - [ ] 3.6 GB1.01 进化 (383行) — 稀疏 + 迁移 i18n

@@ -3,8 +3,8 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -17,175 +17,386 @@ interface GP201Quest extends Quest {
     lawType?: string;
 }
 
-type GP201T = typeof translations.EN.gp2_01;
+// Helper to access nested keys safely if needed, but we rely on standard structure
+// We will use the t() function provided by useLanguage for dynamic prompts
+type T = (path: string, params?: Record<string, string | number>) => string;
+
+const R = 8.314;
+
+function buildStagePool(
+    getT: any, // The main t function from useLanguage
+    tObj: TranslationKeys['gp2_01'], // The object for static keys
+    difficulty: Difficulty,
+    stage: Stage
+): GP201Quest[] {
+    const quests: GP201Quest[] = [];
+    const t = getT; // Alias for brevity
+
+    // Helper to format numbers
+    const fm = (n: number) => Number.isInteger(n) ? n.toString() : n.toFixed(2);
+
+    if (stage === "IDEAL_GAS") {
+        // PV = nRT
+        if (difficulty === "BASIC") {
+            // Simple direct calculations
+            quests.push(
+                {
+                    id: "IG-B1", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_p", { n: 2, T: 300, V: 0.05 }),
+                    expressionLatex: `P = \\frac{nRT}{V}`,
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P \\text{ (Pa)}", placeholder: "99768", expected: 99768 }],
+                    correctLatex: "P \\approx 99768 \\text{ Pa}",
+                    hintLatex: [`P = \\frac{2 \\times 8.314 \\times 300}{0.05}`]
+                },
+                {
+                    id: "IG-B2", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_n", { P: 100000, V: 0.1, T: 400 }),
+                    expressionLatex: `n = \\frac{PV}{RT}`,
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n \\text{ (mol)}", placeholder: "3.01", expected: 3.01 }],
+                    correctLatex: "n \\approx 3.01 \\text{ mol}",
+                    hintLatex: [`n = \\frac{100000 \\times 0.1}{8.314 \\times 400}`]
+                },
+                {
+                    id: "IG-B3", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_v", { n: 1, P: 101325, T: 273 }),
+                    expressionLatex: `V = \\frac{nRT}{P}`,
+                    targetLatex: "V",
+                    slots: [{ id: "v", labelLatex: "V \\text{ (m}^3)", placeholder: "0.0224", expected: 0.0224 }],
+                    correctLatex: "V \\approx 0.0224 \\text{ m}^3",
+                    hintLatex: [`\\text{STP conditions}`]
+                },
+                {
+                    id: "IG-B4", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_t", { P: 200000, V: 0.02, n: 2 }),
+                    expressionLatex: `T = \\frac{PV}{nR}`,
+                    targetLatex: "T",
+                    slots: [{ id: "t", labelLatex: "T \\text{ (K)}", placeholder: "240.56", expected: 240.56 }],
+                    correctLatex: "T \\approx 240.6 \\text{ K}",
+                    hintLatex: [`T = \\frac{200000 \\times 0.02}{2 \\times 8.314}`]
+                },
+                {
+                    id: "IG-B5", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_p", { n: 5, T: 350, V: 0.1 }),
+                    expressionLatex: `P = \\frac{nRT}{V}`,
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P \\text{ (Pa)}", placeholder: "145495", expected: 145495 }],
+                    correctLatex: "P \\approx 145495 \\text{ Pa}",
+                    hintLatex: [`P = \\frac{5 \\times 8.314 \\times 350}{0.1}`]
+                }
+            );
+        } else if (difficulty === "CORE") {
+            // More varied values
+            quests.push(
+                {
+                    id: "IG-C1", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_p", { n: 0.5, T: 298, V: 0.01 }),
+                    expressionLatex: `P = \\frac{nRT}{V}`,
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P", placeholder: "123878", expected: 123878 }],
+                    correctLatex: "P \\approx 123879 \\text{ Pa}",
+                    hintLatex: ["R = 8.314"]
+                },
+                {
+                    id: "IG-C2", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_n", { P: 150000, V: 0.05, T: 300 }),
+                    expressionLatex: `n = \\frac{PV}{RT}`,
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n", placeholder: "3.01", expected: 3.01 }],
+                    correctLatex: "n \\approx 3.01 \\text{ mol}",
+                    hintLatex: ["Watch units"]
+                },
+                {
+                    id: "IG-C3", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_v", { n: 2.5, P: 50000, T: 400 }),
+                    expressionLatex: `V = \\frac{nRT}{P}`,
+                    targetLatex: "V",
+                    slots: [{ id: "v", labelLatex: "V", placeholder: "0.166", expected: 0.166 }],
+                    correctLatex: "V \\approx 0.166 \\text{ m}^3",
+                    hintLatex: ["Standard calculation"]
+                },
+                {
+                    id: "IG-C4", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_t", { P: 300000, V: 0.01, n: 1 }),
+                    expressionLatex: `T = \\frac{PV}{nR}`,
+                    targetLatex: "T",
+                    slots: [{ id: "t", labelLatex: "T", placeholder: "360.8", expected: 360.8 }],
+                    correctLatex: "T \\approx 361 \\text{ K}",
+                    hintLatex: ["Check R value"]
+                },
+                {
+                    id: "IG-C5", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.relation_pt"),
+                    expressionLatex: `P \\propto T \\text{ (V, n const)}`,
+                    targetLatex: "\\text{Factor}",
+                    slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
+                    correctLatex: "\\text{Factor } = 2",
+                    hintLatex: ["Linear relationship"]
+                }
+            );
+        } else if (difficulty === "ADVANCED") {
+            quests.push(
+                {
+                    id: "IG-A1", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.relation_vn"),
+                    expressionLatex: `V \\propto n`,
+                    targetLatex: "\\text{Factor}",
+                    slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
+                    correctLatex: "\\text{Factor } = 2",
+                    hintLatex: ["Avogadro's Law"]
+                },
+                {
+                    id: "IG-A2", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_p", { n: 10, T: 500, V: 0.1 }),
+                    expressionLatex: "P = \\frac{nRT}{V}",
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P", placeholder: "415700", expected: 415700 }],
+                    correctLatex: "P = 415700 \\text{ Pa}",
+                    hintLatex: ["High temperature"]
+                },
+                {
+                    id: "IG-A3", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_n", { P: 10000, V: 2, T: 100 }),
+                    expressionLatex: "n = \\frac{PV}{RT}",
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n", placeholder: "24.06", expected: 24.06 }],
+                    correctLatex: "n \\approx 24.1 \\text{ mol}",
+                    hintLatex: ["Low temperature"]
+                },
+                {
+                    id: "IG-A4", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_v", { n: 0.1, P: 1000000, T: 300 }),
+                    expressionLatex: "V = \\frac{nRT}{P}",
+                    targetLatex: "V",
+                    slots: [{ id: "v", labelLatex: "V", placeholder: "0.00025", expected: 0.00025 }],
+                    correctLatex: "V \\approx 2.5 \\times 10^{-4} \\text{ m}^3",
+                    hintLatex: ["High pressure"]
+                },
+                {
+                    id: "IG-A5", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.combined_law", { target: "P2" }),
+                    expressionLatex: "\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}",
+                    targetLatex: "P_2",
+                    slots: [{ id: "f", labelLatex: "\\text{Symbol}", placeholder: "P2", expected: "P2" }], // Logic placeholder
+                    correctLatex: "P_2 = P_1 \\frac{V_1 T_2}{V_2 T_1}",
+                    hintLatex: ["Isolate P2"]
+                }
+            );
+        } else { // ELITE
+            quests.push(
+                {
+                    id: "IG-E1", difficulty, stage, gasType: "ideal",
+                    promptLatex: "\\text{Van der Waals (Concept): Real gases deviation.}",
+                    expressionLatex: "\\left(P + a\\frac{n^2}{V^2}\\right)(V-nb) = nRT",
+                    targetLatex: "\\text{Ideal if}",
+                    slots: [{ id: "cond", labelLatex: "a,b \\to", placeholder: "0", expected: 0 }],
+                    correctLatex: "a, b \\to 0",
+                    hintLatex: ["Ideal gas has no volume/forces"]
+                },
+                {
+                    id: "IG-E2", difficulty, stage, gasType: "ideal",
+                    promptLatex: t("gp2_01.prompts.find_p", { n: 100, T: 1000, V: 1 }),
+                    expressionLatex: "P = nRT/V",
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P", placeholder: "831400", expected: 831400 }],
+                    correctLatex: "P \\approx 831.4 \\text{ kPa}",
+                    hintLatex: ["Large scale"]
+                },
+                // Additional Elite
+                {
+                    id: "IG-E3", difficulty, stage, gasType: "ideal",
+                    promptLatex: "n=1, T=300, V=0.0249. Solve PV/nRT.",
+                    expressionLatex: "Z = \\frac{PV}{nRT}",
+                    targetLatex: "Z",
+                    slots: [{ id: "z", labelLatex: "Z", placeholder: "1", expected: 1 }],
+                    correctLatex: "Z = 1 \\text{ for ideal gas}",
+                    hintLatex: ["Compressibility factor"]
+                },
+                {
+                    id: "IG-E4", difficulty, stage, gasType: "ideal",
+                    promptLatex: "Density \\rho = PM/RT. If M=0.028 (N2), P=101325, T=298. Find \\rho.",
+                    expressionLatex: "\\rho = \\frac{101325 \\times 0.028}{8.314 \\times 298}",
+                    targetLatex: "\\rho",
+                    slots: [{ id: "rho", labelLatex: "\\rho", placeholder: "1.14", expected: 1.14 }],
+                    correctLatex: "\\rho \\approx 1.14 \\text{ kg/m}^3",
+                    hintLatex: ["Use SI units"]
+                },
+                {
+                    id: "IG-E5", difficulty, stage, gasType: "ideal",
+                    promptLatex: "Molar volume at STP (P=101325, T=273.15).",
+                    expressionLatex: "V_m = RT/P",
+                    targetLatex: "V_m",
+                    slots: [{ id: "v", labelLatex: "V_m", placeholder: "0.0224", expected: 0.0224 }],
+                    correctLatex: "22.4 \\text{ L/mol}",
+                    hintLatex: ["Standard value"]
+                }
+            );
+        }
+    }
+
+    if (stage === "BOYLES_LAW") {
+        if (difficulty === "BASIC") {
+            quests.push(
+                {
+                    id: "B-B1", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 100, v1: 2, v2: 1 }),
+                    expressionLatex: "P_1 V_1 = P_2 V_2",
+                    targetLatex: "P_2",
+                    slots: [{ id: "p", labelLatex: "P_2", placeholder: "200", expected: 200 }],
+                    correctLatex: "P_2 = 200 \\text{ kPa}",
+                    hintLatex: ["Volume halves, pressure doubles"]
+                },
+                {
+                    id: "B-B2", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 200, v1: 1, p2: 100 }),
+                    expressionLatex: "V_2 = P_1 V_1 / P_2",
+                    targetLatex: "V_2",
+                    slots: [{ id: "v", labelLatex: "V_2", placeholder: "2", expected: 2 }],
+                    correctLatex: "V_2 = 2 \\text{ L}",
+                    hintLatex: ["Pressure halves, volume doubles"]
+                },
+                {
+                    id: "B-B3", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 50, v1: 4, v2: 2 }),
+                    expressionLatex: "50 \\times 4 = P_2 \\times 2",
+                    targetLatex: "P_2",
+                    slots: [{ id: "p", labelLatex: "P_2", placeholder: "100", expected: 100 }],
+                    correctLatex: "P_2 = 100 \\text{ kPa}",
+                    hintLatex: ["Calculate constant first"]
+                },
+                {
+                    id: "B-B4", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 100, v1: 5, p2: 500 }),
+                    expressionLatex: "100 \\times 5 = 500 \\times V_2",
+                    targetLatex: "V_2",
+                    slots: [{ id: "v", labelLatex: "V_2", placeholder: "1", expected: 1 }],
+                    correctLatex: "V_2 = 1 \\text{ L}",
+                    hintLatex: ["Pressure x5, Vol /5"]
+                },
+                {
+                    id: "B-B5", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_condition"),
+                    expressionLatex: "PV = k",
+                    targetLatex: "\\text{Constant}",
+                    slots: [{ id: "c", labelLatex: "T", placeholder: "temperature", expected: "temperature" }],
+                    correctLatex: "Temperature",
+                    hintLatex: ["Isothermal"]
+                }
+            );
+        } else if (difficulty === "CORE") {
+            quests.push(
+                {
+                    id: "B-C1", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 150, v1: 3, v2: 1.5 }),
+                    expressionLatex: "150 \\times 3 = P_2 \\times 1.5",
+                    targetLatex: "P_2",
+                    slots: [{ id: "p", labelLatex: "P_2", placeholder: "300", expected: 300 }],
+                    correctLatex: "P_2 = 300 \\text{ kPa}",
+                    hintLatex: ["Inverse proportion"]
+                },
+                {
+                    id: "B-C2", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 120, v1: 2, p2: 80 }),
+                    expressionLatex: "120 \\times 2 = 80 \\times V_2",
+                    targetLatex: "V_2",
+                    slots: [{ id: "v", labelLatex: "V_2", placeholder: "3", expected: 3 }],
+                    correctLatex: "V_2 = 3 \\text{ L}",
+                    hintLatex: ["240 / 80"]
+                },
+                {
+                    id: "B-C3", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_relation", { v1: 10, v2: 2 }),
+                    expressionLatex: "P_2/P_1 = V_1/V_2",
+                    targetLatex: "\\text{Factor}",
+                    slots: [{ id: "f", labelLatex: "\\times", placeholder: "5", expected: 5 }],
+                    correctLatex: "5\\times",
+                    hintLatex: ["10/2"]
+                },
+                {
+                    id: "B-C4", difficulty, stage, lawType: "boyle",
+                    promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 101.3, v1: 10, v2: 5 }),
+                    expressionLatex: "101.3 \\times 10 = P_2 \\times 5",
+                    targetLatex: "P_2",
+                    slots: [{ id: "p", labelLatex: "P_2", placeholder: "202.6", expected: 202.6 }],
+                    correctLatex: "202.6 \\text{ kPa}",
+                    hintLatex: ["Double"]
+                },
+                {
+                    id: "B-C5", difficulty, stage, lawType: "boyle",
+                    promptLatex: "PV constant k = 2400 (kPa L). If P = 600, V?",
+                    expressionLatex: "600 \\times V = 2400",
+                    targetLatex: "V",
+                    slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }],
+                    correctLatex: "4 \\text{ L}",
+                    hintLatex: ["2400/600"]
+                }
+            );
+        } else if (difficulty === "ADVANCED") {
+            quests.push(
+                { id: "B-A1", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 300, v1: 0.5, v2: 0.1 }), expressionLatex: "300 \\times 0.5 = P_2 \\times 0.1", targetLatex: "P_2", slots: [{ id: "p", labelLatex: "P", placeholder: "1500", expected: 1500 }], correctLatex: "1500 kPa", hintLatex: ["x5"] },
+                { id: "B-A2", difficulty, stage, lawType: "boyle", promptLatex: "Pressure increases by 25%. New Volume factor?", expressionLatex: "P_2 = 1.25 P_1 \\implies V_2 = V_1 / 1.25", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.8", expected: 0.8 }], correctLatex: "0.8", hintLatex: ["1/1.25"] },
+                { id: "B-A3", difficulty, stage, lawType: "boyle", promptLatex: "P V = 5000 J (energy density). If V=0.01 m^3, P?", expressionLatex: "P = 5000/0.01", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "500000", expected: 500000 }], correctLatex: "500 kPa", hintLatex: ["J/m^3 = Pa"] },
+                { id: "B-A4", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 400, v1: 2.5, p2: 1000 }), expressionLatex: "400(2.5)=1000 V_2", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["1000/1000"] },
+                { id: "B-A5", difficulty, stage, lawType: "boyle", promptLatex: "Graph P vs V is a hyperbola. P(V) = k/V. If k=100, P at V=5?", expressionLatex: "P=100/5", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "20", expected: 20 }], correctLatex: "20", hintLatex: ["Inverse"] }
+            );
+        } else {
+            // ELITE
+            quests.push(
+                { id: "B-E1", difficulty, stage, lawType: "boyle", promptLatex: "Isothermal Work W = nRT ln(V2/V1). P1V1=1000 J. Expand V to 2V. W?", expressionLatex: "W = 1000 \\ln(2)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "693", expected: 693 }], correctLatex: "\\approx 693 \\text{ J}", hintLatex: ["ln(2)=0.693"] },
+                { id: "B-E2", difficulty, stage, lawType: "boyle", promptLatex: "Compress V to V/3. Work done on gas?", expressionLatex: "W = -P_1 V_1 \\ln(1/3)", targetLatex: "\\text{Sign}", slots: [{ id: "s", labelLatex: "+/-", placeholder: "+", expected: "+" }], correctLatex: "Positive work on gas", hintLatex: ["Compression"] },
+                { id: "B-E3", difficulty, stage, lawType: "boyle", promptLatex: "Real gas does NOT follow Boyle's exactly at...", expressionLatex: "\\text{High P, Low T}", targetLatex: "\\text{Conditions}", slots: [{ id: "c", labelLatex: "P is", placeholder: "high", expected: "high" }], correctLatex: "High Pressure", hintLatex: ["Intermolecular forces dominate"] },
+                { id: "B-E4", difficulty, stage, lawType: "boyle", promptLatex: "P1=1 atm, V1=10 L. Compress to P2=10 atm. V2 if Ideal?", expressionLatex: "1(10) = 10(V_2)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["Ratio 10"] },
+                { id: "B-E5", difficulty, stage, lawType: "boyle", promptLatex: "Two bulbs connected. P1=2, V1=1; P2=0, V2=1 (Values). Open valve. Final P?", expressionLatex: "P_f (V_1+V_2) = P_1 V_1", targetLatex: "P_f", slots: [{ id: "p", labelLatex: "P", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["Total Volume = 2"] }
+            );
+        }
+    }
+
+    if (stage === "CHARLES_LAW") {
+        if (difficulty === "BASIC") {
+            quests.push(
+                { id: "C-B1", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_v2", { v1: 2, t1: 300, t2: 600 }), expressionLatex: "V_2/600 = 2/300", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }], correctLatex: "4 L", hintLatex: ["T doubles, V doubles"] },
+                { id: "C-B2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 1, t1: 200, v2: 2 }), expressionLatex: "2/T_2 = 1/200", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "400", expected: 400 }], correctLatex: "400 K", hintLatex: ["V doubles, T doubles"] },
+                { id: "C-B3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_v2", { v1: 10, t1: 400, t2: 200 }), expressionLatex: "V_2/200 = 10/400", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "5", expected: 5 }], correctLatex: "5 L", hintLatex: ["T halves"] },
+                { id: "C-B4", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 5, t1: 250, v2: 10 }), expressionLatex: "10/T_2 = 5/250", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "500", expected: 500 }], correctLatex: "500 K", hintLatex: ["Proportional"] },
+                { id: "C-B5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_condition"), expressionLatex: "V/T = k", targetLatex: "\\text{Constant}", slots: [{ id: "c", labelLatex: "P", placeholder: "pressure", expected: "pressure" }], correctLatex: "Pressure", hintLatex: ["Isobaric"] }
+            );
+        } else if (difficulty === "CORE") {
+            quests.push(
+                { id: "C-C1", difficulty, stage, lawType: "charles", promptLatex: "V1=3 L, T1=27 °C (300 K). T2=127 °C (400 K). Find V2.", expressionLatex: "V_2 = 3 \\times 400/300", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }], correctLatex: "4 L", hintLatex: ["Use Kelvin Only"] },
+                { id: "C-C2", difficulty, stage, lawType: "charles", promptLatex: "V1=2 L, T1=200 K. V2=3 L. Find T2.", expressionLatex: "T_2 = 3 \\times 200/2", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "300", expected: 300 }], correctLatex: "300 K", hintLatex: ["Ratio 1.5"] },
+                { id: "C-C3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_relation"), expressionLatex: "V \\propto T", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Linear"] },
+                { id: "C-C4", difficulty, stage, lawType: "charles", promptLatex: "Cool gas from 400 K to 100 K. Volume factor?", expressionLatex: "100/400", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["1/4"] },
+                { id: "C-C5", difficulty, stage, lawType: "charles", promptLatex: "Absolute Zero in Celsius?", expressionLatex: "0 \\text{ K}", targetLatex: "^\circ\\text{C}", slots: [{ id: "c", labelLatex: "C", placeholder: "-273.15", expected: -273.15 }], correctLatex: "-273.15", hintLatex: ["Offset"] }
+            );
+        } else if (difficulty === "ADVANCED") {
+            quests.push(
+                { id: "C-A1", difficulty, stage, lawType: "charles", promptLatex: "V1=5 L at 20 °C. At 80 °C (353 K), V2?", expressionLatex: "V_2 = 5 \\times 353 / 293", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "6.02", expected: 6.02 }], correctLatex: "\\approx 6.02 \\text{ L}", hintLatex: ["Kelvin conv"] },
+                { id: "C-A2", difficulty, stage, lawType: "charles", promptLatex: "Heating gas increases kinetic energy. Mean KE is prop to?", expressionLatex: "KE \\propto T", targetLatex: "\\text{Quantity}", slots: [{ id: "q", labelLatex: "Q", placeholder: "temperature", expected: "temperature" }], correctLatex: "Temperature", hintLatex: ["T is measure of KE"] },
+                { id: "C-A3", difficulty, stage, lawType: "charles", promptLatex: "V1=10, T1=500. V2=5. T2?", expressionLatex: "T_2 = 5/10 \\times 500", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "250", expected: 250 }], correctLatex: "250 K", hintLatex: ["Halved"] },
+                { id: "C-A4", difficulty, stage, lawType: "combined", promptLatex: "Combined Law at constant P reduces to?", expressionLatex: "V/T = k", targetLatex: "\\text{Law}", slots: [{ id: "l", labelLatex: "Law", placeholder: "charles", expected: "charles" }], correctLatex: "Charles's Law", hintLatex: ["Name"] },
+                { id: "C-A5", difficulty, stage, lawType: "charles", promptLatex: "Isobaric expansion work W = P(V2-V1). If P=100 Pa, V changes 1 to 2. W?", expressionLatex: "100(2-1)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "100", expected: 100 }], correctLatex: "100 J", hintLatex: ["Direct mult"] }
+            );
+        } else { // ELITE
+            quests.push(
+                { id: "C-E1", difficulty, stage, lawType: "combined", promptLatex: "Ideal Gas: density \\rho \\propto 1/T (at const P). T multiplies by 2. \\rho factor?", expressionLatex: "1/2", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.5", expected: 0.5 }], correctLatex: "0.5", hintLatex: ["Inverse"] },
+                { id: "C-E2", difficulty, stage, lawType: "charles", promptLatex: "V-T Graph slope = nR/P. If n=1, P=8.314. Slope?", expressionLatex: "Slope = R/P = 1", targetLatex: "S", slots: [{ id: "s", labelLatex: "S", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["R = 8.314"] },
+                { id: "C-E3", difficulty, stage, lawType: "charles", promptLatex: "T1=300, V1=1. Piston moves out, doing Work W=300J at P=100Pa. V2?", expressionLatex: "300 = 100(V_2 - 1)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }], correctLatex: "4 L", hintLatex: ["W = P \\Delta V"] },
+                { id: "C-E4", difficulty, stage, lawType: "charles", promptLatex: "Find T2 in prev problem (Quest C-E3). T1/V1 = T2/V2.", expressionLatex: "300/1 = T_2/4", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "1200", expected: 1200 }], correctLatex: "1200 K", hintLatex: ["Prop"] },
+                { id: "C-E5", difficulty, stage, lawType: "combined", promptLatex: "Efficiency = 1 - T_c/T_h (Carnot). If V doubles adiabatically... (Ignore for Charles). Just: T proportional E_kin.", expressionLatex: "v_{rms} \\propto \\sqrt{T}", targetLatex: "\\text{Power}", slots: [{ id: "p", labelLatex: "P", placeholder: "0.5", expected: 0.5 }], correctLatex: "Sq root", hintLatex: ["Power 1/2"] }
+            );
+        }
+    }
+
+    return quests;
+}
 
 export default function GP201Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.gp2_01 || translations.EN.gp2_01) as GP201T;
+    const { t: getT, currentLanguage } = useLanguage();
+    const t = getT("gp2_01");
+    const { completeStage } = useAppStore();
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GP201Quest[] => {
-        const quests: GP201Quest[] = [];
-
-        if (stage === "IDEAL_GAS") {
-            if (difficulty === "BASIC") {
-                quests.push(
-                    {
-                        id: "IG-B1", difficulty, stage, gasType: "ideal",
-                        promptLatex: `\\text{Ideal gas: } n = 2 \\text{ mol, } T = 300 \\text{ K, } V = 0.05 \\text{ m}^3. \\text{ Find } P. \\text{ (R = 8.314)}`,
-                        expressionLatex: `PV = nRT \\Rightarrow P = \\frac{nRT}{V}`,
-                        targetLatex: `P`,
-                        slots: [{ id: "pressure", labelLatex: `P \\text{ (Pa)}`, placeholder: "99768", expected: 99768 }],
-                        correctLatex: `P = 99768 \\text{ Pa}`,
-                        hintLatex: [`P = \\frac{2 \\times 8.314 \\times 300}{0.05}`]
-                    },
-                    {
-                        id: "IG-B2", difficulty, stage, gasType: "ideal",
-                        promptLatex: `\\text{Gas: } P = 100000 \\text{ Pa, } V = 0.1 \\text{ m}^3, T = 400 \\text{ K. Find } n.`,
-                        expressionLatex: `n = \\frac{PV}{RT}`,
-                        targetLatex: `n`,
-                        slots: [{ id: "moles", labelLatex: `n \\text{ (mol)}`, placeholder: "3.01", expected: 3.01 }],
-                        correctLatex: `n \\approx 3.01 \\text{ mol}`,
-                        hintLatex: [`n = \\frac{100000 \\times 0.1}{8.314 \\times 400}`]
-                    },
-                    {
-                        id: "IG-B3", difficulty, stage, gasType: "ideal",
-                        promptLatex: `\\text{Gas: } n = 1 \\text{ mol, } P = 101325 \\text{ Pa, } T = 273 \\text{ K. Find } V.`,
-                        expressionLatex: `V = \\frac{nRT}{P}`,
-                        targetLatex: `V`,
-                        slots: [{ id: "volume", labelLatex: `V \\text{ (m}^3\\text{)}`, placeholder: "0.0224", expected: 0.0224 }],
-                        correctLatex: `V \\approx 0.0224 \\text{ m}^3 = 22.4 \\text{ L}`,
-                        hintLatex: [`\\text{Standard molar volume at STP}`]
-                    },
-                    {
-                        id: "IG-B4", difficulty, stage, gasType: "ideal",
-                        promptLatex: `\\text{Gas: } P = 200000 \\text{ Pa, } V = 0.02 \\text{ m}^3, n = 2 \\text{ mol. Find } T.`,
-                        expressionLatex: `T = \\frac{PV}{nR}`,
-                        targetLatex: `T`,
-                        slots: [{ id: "temp", labelLatex: `T \\text{ (K)}`, placeholder: "240", expected: 240 }],
-                        correctLatex: `T \\approx 240 \\text{ K}`,
-                        hintLatex: [`T = \\frac{200000 \\times 0.02}{2 \\times 8.314}`]
-                    },
-                    {
-                        id: "IG-B5", difficulty, stage, gasType: "ideal",
-                        promptLatex: `\\text{Double the temperature at constant volume. Pressure changes by what factor?}`,
-                        expressionLatex: `\\frac{P_2}{P_1} = \\frac{T_2}{T_1}`,
-                        targetLatex: `\\text{Factor}`,
-                        slots: [{ id: "factor", labelLatex: `\\text{Factor}`, placeholder: "2", expected: 2 }],
-                        correctLatex: `\\text{Pressure doubles (factor = 2)}`,
-                        hintLatex: [`P \\propto T \\text{ at constant } V`]
-                    }
-                );
-            }
-        }
-
-        if (stage === "BOYLES_LAW") {
-            if (difficulty === "CORE") {
-                quests.push(
-                    {
-                        id: "B-C1", difficulty, stage, lawType: "boyle",
-                        promptLatex: `\\text{Boyle's Law: } P_1V_1 = P_2V_2. \\text{ If } P_1 = 100 \\text{ kPa, } V_1 = 2 \\text{ L, } V_2 = 1 \\text{ L, find } P_2.`,
-                        expressionLatex: `P_2 = \\frac{P_1V_1}{V_2}`,
-                        targetLatex: `P_2`,
-                        slots: [{ id: "pressure", labelLatex: `P_2 \\text{ (kPa)}`, placeholder: "200", expected: 200 }],
-                        correctLatex: `P_2 = 200 \\text{ kPa}`,
-                        hintLatex: [`\\text{Volume halves, pressure doubles}`]
-                    },
-                    {
-                        id: "B-C2", difficulty, stage, lawType: "boyle",
-                        promptLatex: `\\text{Gas: } P_1 = 150 \\text{ kPa, } V_1 = 3 \\text{ L, } P_2 = 50 \\text{ kPa. Find } V_2.`,
-                        expressionLatex: `V_2 = \\frac{P_1V_1}{P_2}`,
-                        targetLatex: `V_2`,
-                        slots: [{ id: "volume", labelLatex: `V_2 \\text{ (L)}`, placeholder: "9", expected: 9 }],
-                        correctLatex: `V_2 = 9 \\text{ L}`,
-                        hintLatex: [`V_2 = \\frac{150 \\times 3}{50}`]
-                    },
-                    {
-                        id: "B-C3", difficulty, stage, lawType: "boyle",
-                        promptLatex: `\\text{Compress gas from } 10 \\text{ L to } 2 \\text{ L at constant T. Pressure multiplies by?}`,
-                        expressionLatex: `\\frac{P_2}{P_1} = \\frac{V_1}{V_2}`,
-                        targetLatex: `\\text{Factor}`,
-                        slots: [{ id: "factor", labelLatex: `\\text{Factor}`, placeholder: "5", expected: 5 }],
-                        correctLatex: `\\text{Pressure multiplies by 5}`,
-                        hintLatex: [`\\frac{10}{2} = 5`]
-                    },
-                    {
-                        id: "B-C4", difficulty, stage, lawType: "boyle",
-                        promptLatex: `\\text{Scuba tank: } P = 200 \\text{ bar, } V = 10 \\text{ L. At } 1 \\text{ bar, volume = ?}`,
-                        expressionLatex: `V_2 = \\frac{P_1V_1}{P_2}`,
-                        targetLatex: `V_2`,
-                        slots: [{ id: "volume", labelLatex: `V_2 \\text{ (L)}`, placeholder: "2000", expected: 2000 }],
-                        correctLatex: `V_2 = 2000 \\text{ L}`,
-                        hintLatex: [`V_2 = \\frac{200 \\times 10}{1}`]
-                    },
-                    {
-                        id: "B-C5", difficulty, stage, lawType: "boyle",
-                        promptLatex: `\\text{Boyle's Law requires which quantity to remain constant?}`,
-                        expressionLatex: `PV = \\text{constant (at constant T and n)}`,
-                        targetLatex: `\\text{Quantity}`,
-                        slots: [{ id: "const", labelLatex: `\\text{Constant}`, placeholder: "temperature", expected: "temperature" }],
-                        correctLatex: `\\text{Temperature (T) must be constant}`,
-                        hintLatex: [`\\text{Isothermal process}`]
-                    }
-                );
-            }
-        }
-
-        if (stage === "CHARLES_LAW") {
-            if (difficulty === "ADVANCED") {
-                quests.push(
-                    {
-                        id: "C-A1", difficulty, stage, lawType: "charles",
-                        promptLatex: `\\text{Charles's Law: } \\frac{V_1}{T_1} = \\frac{V_2}{T_2}. \\text{ If } V_1 = 2 \\text{ L, } T_1 = 300 \\text{ K, } T_2 = 600 \\text{ K, find } V_2.`,
-                        expressionLatex: `V_2 = \\frac{V_1T_2}{T_1}`,
-                        targetLatex: `V_2`,
-                        slots: [{ id: "volume", labelLatex: `V_2 \\text{ (L)}`, placeholder: "4", expected: 4 }],
-                        correctLatex: `V_2 = 4 \\text{ L}`,
-                        hintLatex: [`\\text{Temperature doubles, volume doubles}`]
-                    },
-                    {
-                        id: "C-A2", difficulty, stage, lawType: "charles",
-                        promptLatex: `\\text{Balloon: } V_1 = 5 \\text{ L at } 20°C. \\text{ At } 80°C, V_2 = ? \\text{ (Use Kelvin!)}`,
-                        expressionLatex: `V_2 = \\frac{V_1T_2}{T_1}, \\quad T_1 = 293 \\text{ K, } T_2 = 353 \\text{ K}`,
-                        targetLatex: `V_2`,
-                        slots: [{ id: "volume", labelLatex: `V_2 \\text{ (L)}`, placeholder: "6.02", expected: 6.02 }],
-                        correctLatex: `V_2 \\approx 6.02 \\text{ L}`,
-                        hintLatex: [`\\text{Convert to Kelvin first!}`]
-                    },
-                    {
-                        id: "C-A3", difficulty, stage, lawType: "charles",
-                        promptLatex: `\\text{Gas: } V_1 = 10 \\text{ L, } T_1 = 400 \\text{ K, } V_2 = 5 \\text{ L. Find } T_2.`,
-                        expressionLatex: `T_2 = \\frac{V_2T_1}{V_1}`,
-                        targetLatex: `T_2`,
-                        slots: [{ id: "temp", labelLatex: `T_2 \\text{ (K)}`, placeholder: "200", expected: 200 }],
-                        correctLatex: `T_2 = 200 \\text{ K}`,
-                        hintLatex: [`T_2 = \\frac{5 \\times 400}{10}`]
-                    },
-                    {
-                        id: "C-A4", difficulty, stage, lawType: "charles",
-                        promptLatex: `\\text{Charles's Law requires which quantity to remain constant?}`,
-                        expressionLatex: `\\frac{V}{T} = \\text{constant (at constant P and n)}`,
-                        targetLatex: `\\text{Quantity}`,
-                        slots: [{ id: "const", labelLatex: `\\text{Constant}`, placeholder: "pressure", expected: "pressure" }],
-                        correctLatex: `\\text{Pressure (P) must be constant}`,
-                        hintLatex: [`\\text{Isobaric process}`]
-                    },
-                    {
-                        id: "C-A5", difficulty, stage, lawType: "combined",
-                        promptLatex: `\\text{Combined Gas Law: } \\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}. \\text{ Which law is this at constant P?}`,
-                        expressionLatex: `\\text{At constant } P: \\frac{V_1}{T_1} = \\frac{V_2}{T_2}`,
-                        targetLatex: `\\text{Law}`,
-                        slots: [{ id: "law", labelLatex: `\\text{Law}`, placeholder: "charles", expected: "charles" }],
-                        correctLatex: `\\text{Charles's Law}`,
-                        hintLatex: [`\\text{Cancel out P from both sides}`]
-                    }
-                );
-            }
-        }
-
-        return quests;
-    }, []);
-
-    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(getT, t, d, s), [getT, t]);
 
     const {
         currentQuest,
@@ -211,9 +422,12 @@ export default function GP201Page() {
 
     const stagesProps = useMemo(() => [
         { id: "IDEAL_GAS" as Stage, label: t.stages.ideal_gas },
-        { id: "BOYLES_LAW" as Stage, label: t.stages.boyles_law },
-        { id: "CHARLES_LAW" as Stage, label: t.stages.charles_law },
+        { id: "BOYLES_LAW" as Stage, label: t.stages.boyles },
+        { id: "CHARLES_LAW" as Stage, label: t.stages.charles },
     ], [t.stages]);
+
+    // Safety check for t loading
+    if (!t || !t.stages) return null;
 
     if (!currentQuest) {
         return (
@@ -276,7 +490,7 @@ export default function GP201Page() {
                     <div className="text-lg">
                         <InlineMath math={currentQuest.promptLatex} />
                     </div>
-                    
+
                     <div className="text-cyan-300">
                         <InlineMath math={currentQuest.expressionLatex} />
                     </div>

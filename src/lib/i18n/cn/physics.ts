@@ -531,6 +531,23 @@ export const cnPhysics = {
         monitor_title: "GP2.01_热力学监视器",
         footer_left: "GP2.01_热力学 // 节点：巴塞尔",
         stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" },
+        prompts: {
+            find_p: "理想气体: n = {n} mol, T = {T} K, V = {V} m³. 求 P.",
+            find_v: "气体: n = {n} mol, P = {P} Pa, T = {T} K. 求 V.",
+            find_n: "气体: P = {P} Pa, V = {V} m³, T = {T} K. 求 n.",
+            find_t: "气体: P = {P} Pa, V = {V} m³, n = {n} mol. 求 T.",
+            relation_pt: "体积恒定时温度加倍，压强变为原来的几倍？",
+            relation_vn: "恒温恒压下摩尔数加倍，体积变为原来的几倍？",
+            boyle_find_p2: "波义耳定律: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. 求 P₂.",
+            boyle_find_v2: "波义耳定律: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. 求 V₂.",
+            boyle_relation: "恒温下将气体从 {v1} L 压缩到 {v2} L，压强变为原来的几倍？",
+            boyle_condition: "波义耳定律要求哪个量保持不变？",
+            charles_find_v2: "查理定律: V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. 求 V₂.",
+            charles_find_t2: "查理定律: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. 求 T₂.",
+            charles_relation: "恒压下绝对温度加倍，体积变为原来的几倍？",
+            charles_condition: "查理定律要求哪个量保持不变？",
+            combined_law: "联合气体定律：已知 P, V, T 变化，求 {target}。"
+        },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
             boyles_law: "波义耳定律：在温度恒定的情况下，体积与压强成反比。",
