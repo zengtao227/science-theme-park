@@ -71,66 +71,66 @@ function countQuestionsByDifficulty(content) {
     ELITE: 0
   };
 
-  // Method 1: Count quests.push() calls within each difficulty block (SB2.02 pattern)
-  const difficultyBlocks = {
-    BASIC: /if\s*\(\s*difficulty\s*===\s*["']BASIC["']\s*\)\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/gs,
-    CORE: /if\s*\(\s*difficulty\s*===\s*["']CORE["']\s*\)\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/gs,
-    ADVANCED: /if\s*\(\s*difficulty\s*===\s*["']ADVANCED["']\s*\)\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/gs,
-    ELITE: /if\s*\(\s*difficulty\s*===\s*["']ELITE["']\s*\)\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/gs
-  };
-
-  for (const [difficulty, regex] of Object.entries(difficultyBlocks)) {
-    const matches = content.match(regex);
-    if (matches) {
-      for (const match of matches) {
-        // Count quests.push() calls in this block
-        const pushCalls = (match.match(/quests\.push\(/g) || []).length;
-        counts[difficulty] += pushCalls;
-      }
+  // Strategy 1: Count all quests.push() calls and check which difficulty blocks they're in
+  // This handles both if/else if chains and independent if blocks
+  
+  // Find all quests.push() calls with context
+  const pushPattern = /quests\.push\s*\(/g;
+  let match;
+  const pushPositions = [];
+  
+  while ((match = pushPattern.exec(content)) !== null) {
+    pushPositions.push(match.index);
+  }
+  
+  // For each push, determine which difficulty block it belongs to
+  for (const pushPos of pushPositions) {
+    // Look backwards from push position to find the nearest difficulty check
+    const beforePush = content.substring(Math.max(0, pushPos - 2000), pushPos);
+    
+    // Check for difficulty conditions in reverse order (closest first)
+    if (/if\s*\(\s*isElite\s*\)|else\s*\{[\s\S]*\/\/\s*Elite/.test(beforePush)) {
+      counts.ELITE++;
+    } else if (/if\s*\(\s*isAdv\s*\)|if\s*\(\s*difficulty\s*===\s*["']ADVANCED["']\s*\)/.test(beforePush)) {
+      counts.ADVANCED++;
+    } else if (/if\s*\(\s*isCore\s*\)|if\s*\(\s*difficulty\s*===\s*["']CORE["']\s*\)/.test(beforePush)) {
+      counts.CORE++;
+    } else if (/if\s*\(\s*isBasic\s*\)|if\s*\(\s*difficulty\s*===\s*["']BASIC["']\s*\)/.test(beforePush)) {
+      counts.BASIC++;
     }
   }
-
-  // Method 2: Check for array declarations with quest objects (SM1.01 pattern)
-  // Look for patterns like: const all: Quest[] = [ { id: "A1", ... }, { id: "A2", ... } ]
-  const arrayPattern = /const\s+all\s*:\s*\w+\[\]\s*=\s*\[([^\]]*\{[^\]]*\}[^\]]*)*\]/gs;
-  const arrayMatches = content.match(arrayPattern);
   
-  if (arrayMatches) {
-    for (const arrayMatch of arrayMatches) {
-      // Count objects in the array (each { id: "..." } is a quest)
-      const questObjects = (arrayMatch.match(/\{\s*id:\s*["'][^"']+["']/g) || []).length;
-      
-      // If we found quest objects but no push calls, this module uses the array pattern
-      if (questObjects > 0 && Object.values(counts).every(c => c === 0)) {
-        // Check for return statements to determine difficulty distribution
-        // Pattern: if (difficulty === "BASIC") return all.slice(0, 2);
-        const basicReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']BASIC["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
-        const coreReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']CORE["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
-        const advancedReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']ADVANCED["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
+  // Strategy 2: Check for array-based patterns (SM1-01 style)
+  // Pattern: const all: Quest[] = [...]; return all.slice(0, n);
+  if (Object.values(counts).every(c => c === 0)) {
+    const arrayPattern = /const\s+all\s*:\s*\w+\[\]\s*=\s*\[([^\]]*\{[^\]]*\}[^\]]*)*\]/gs;
+    const arrayMatches = content.match(arrayPattern);
+    
+    if (arrayMatches) {
+      for (const arrayMatch of arrayMatches) {
+        // Count objects in the array
+        const questObjects = (arrayMatch.match(/\{\s*id:\s*["'][^"']+["']/g) || []).length;
         
-        if (basicReturn) {
-          counts.BASIC = parseInt(basicReturn[1]);
-        }
-        if (coreReturn) {
-          counts.CORE = parseInt(coreReturn[1]);
-        }
-        if (advancedReturn) {
-          counts.ADVANCED = parseInt(advancedReturn[1]);
-        }
-        
-        // If no specific return for ELITE, it gets all questions
-        if (!content.includes('if (difficulty === "ELITE")') && questObjects > 0) {
-          counts.ELITE = questObjects;
-        }
-        
-        // If ADVANCED doesn't have a specific return, it also gets all
-        if (!advancedReturn && !content.includes('if (difficulty === "ADVANCED")') && questObjects > 0) {
-          counts.ADVANCED = questObjects;
-        }
-        
-        // If CORE doesn't have a specific return but BASIC does, CORE gets all
-        if (!coreReturn && basicReturn && questObjects > 0) {
-          counts.CORE = questObjects;
+        if (questObjects > 0) {
+          // Check for return statements to determine difficulty distribution
+          const basicReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']BASIC["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
+          const coreReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']CORE["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
+          const advancedReturn = content.match(/if\s*\(\s*difficulty\s*===\s*["']ADVANCED["']\s*\)\s*return\s+all\.slice\(0,\s*(\d+)\)/);
+          
+          if (basicReturn) counts.BASIC = parseInt(basicReturn[1]);
+          if (coreReturn) counts.CORE = parseInt(coreReturn[1]);
+          if (advancedReturn) counts.ADVANCED = parseInt(advancedReturn[1]);
+          
+          // If no specific return for ELITE/ADVANCED/CORE, they get all questions
+          if (!content.includes('if (difficulty === "ELITE")') && questObjects > 0) {
+            counts.ELITE = questObjects;
+          }
+          if (!advancedReturn && !content.includes('if (difficulty === "ADVANCED")') && questObjects > 0) {
+            counts.ADVANCED = questObjects;
+          }
+          if (!coreReturn && basicReturn && questObjects > 0) {
+            counts.CORE = questObjects;
+          }
         }
       }
     }

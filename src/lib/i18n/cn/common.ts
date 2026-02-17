@@ -201,6 +201,7 @@ export const cnCommon = {
         sb1_03_subtitle: "掌握有丝分裂和减数分裂机制。通往遗传学的桥梁。",
         sb2_01_title: "SB2.01 // 孟德尔花园",
         sb2_01_subtitle: "遗传学与庞尼特方格。",
+        sb2_02_title: "SB2.02 // 人体系统",
         sb2_02_subtitle: "通过交互式解剖学探索消化、循环和呼吸系统。",
         sb2_03_title: "SB2.03 // 遗传变异",
         sb2_03_subtitle: "掌握非孟德尔遗传：不完全显性、共显性和伴性遗传。",

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-17T12:29:17.317Z",
+  "timestamp": "2026-02-17T12:34:32.901Z",
   "totalModules": 76,
   "issues": {
     "p0_empty_pools": [
@@ -343,6 +343,18 @@
         }
       },
       {
+        "module": "gp3-01",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 3,
+          "CORE": 3,
+          "ADVANCED": 3,
+          "ELITE": 0
+        }
+      },
+      {
         "module": "sb1-01",
         "emptyDifficulties": [
           "BASIC",
@@ -429,6 +441,18 @@
           "BASIC": 0,
           "CORE": 0,
           "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb2-02-body-systems",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 3,
+          "CORE": 3,
+          "ADVANCED": 3,
           "ELITE": 0
         }
       },
@@ -615,15 +639,12 @@
       {
         "module": "sc2-06",
         "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
           "ELITE"
         ],
         "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
+          "BASIC": 3,
+          "CORE": 3,
+          "ADVANCED": 5,
           "ELITE": 0
         }
       },
@@ -703,21 +724,6 @@
         }
       },
       {
-        "module": "sm1-02",
-        "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
-          "ELITE"
-        ],
-        "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
-          "ELITE": 0
-        }
-      },
-      {
         "module": "sm1-03",
         "emptyDifficulties": [
           "BASIC",
@@ -734,21 +740,6 @@
       },
       {
         "module": "sm1-04",
-        "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
-          "ELITE"
-        ],
-        "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
-          "ELITE": 0
-        }
-      },
-      {
-        "module": "sm1-05",
         "emptyDifficulties": [
           "BASIC",
           "CORE",
@@ -794,21 +785,6 @@
       },
       {
         "module": "sm2-03",
-        "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
-          "ELITE"
-        ],
-        "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
-          "ELITE": 0
-        }
-      },
-      {
-        "module": "sm2-05",
         "emptyDifficulties": [
           "BASIC",
           "CORE",
@@ -940,6 +916,18 @@
         }
       },
       {
+        "module": "sm3-05",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 1,
+          "CORE": 1,
+          "ADVANCED": 1,
+          "ELITE": 0
+        }
+      },
+      {
         "module": "sp3-01",
         "emptyDifficulties": [
           "BASIC",
@@ -1015,15 +1003,26 @@
         }
       },
       {
+        "module": "sp3-06",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 3,
+          "CORE": 3,
+          "ADVANCED": 3,
+          "ELITE": 0
+        }
+      },
+      {
         "module": "sp3-07",
         "emptyDifficulties": [
-          "BASIC",
           "CORE",
           "ADVANCED",
           "ELITE"
         ],
         "questionCounts": {
-          "BASIC": 0,
+          "BASIC": 3,
           "CORE": 0,
           "ADVANCED": 0,
           "ELITE": 0
@@ -1108,9 +1107,9 @@
   },
   "summary": {
     "totalModules": 76,
-    "modulesWithIssues": 74,
-    "modulesClean": 2,
-    "p0_issues": 70,
+    "modulesWithIssues": 76,
+    "modulesClean": 0,
+    "p0_issues": 71,
     "p1_issues": 56
   },
   "moduleDetails": [
@@ -1589,14 +1588,19 @@
     {
       "name": "gp3-01",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp3-01",
-      "issues": [],
+      "issues": [
+        "empty_question_pools"
+      ],
       "questionCounts": {
         "BASIC": 3,
         "CORE": 3,
         "ADVANCED": 3,
-        "ELITE": 3
+        "ELITE": 0
       },
-      "stageCount": 3
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
     },
     {
       "name": "sb1-01",
@@ -1722,14 +1726,19 @@
     {
       "name": "sb2-02-body-systems",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb2-02-body-systems",
-      "issues": [],
+      "issues": [
+        "empty_question_pools"
+      ],
       "questionCounts": {
         "BASIC": 3,
         "CORE": 3,
         "ADVANCED": 3,
-        "ELITE": 3
+        "ELITE": 0
       },
-      "stageCount": 3
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
     },
     {
       "name": "sb2-03",
@@ -1985,16 +1994,13 @@
         "empty_question_pools"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 5,
         "ELITE": 0
       },
       "stageCount": 3,
       "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
         "ELITE"
       ]
     },
@@ -2121,22 +2127,15 @@
       "name": "sm1-02",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-02",
       "issues": [
-        "old_i18n_pattern",
-        "empty_question_pools"
+        "old_i18n_pattern"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
-        "ELITE": 0
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 3,
+        "ELITE": 3
       },
-      "stageCount": 3,
-      "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
-        "ELITE"
-      ]
+      "stageCount": 3
     },
     {
       "name": "sm1-03",
@@ -2184,22 +2183,15 @@
       "name": "sm1-05",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-05",
       "issues": [
-        "old_i18n_pattern",
-        "empty_question_pools"
+        "old_i18n_pattern"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
-        "ELITE": 0
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 3,
+        "ELITE": 3
       },
-      "stageCount": 3,
-      "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
-        "ELITE"
-      ]
+      "stageCount": 3
     },
     {
       "name": "sm2-01",
@@ -2282,22 +2274,15 @@
       "name": "sm2-05",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-05",
       "issues": [
-        "old_i18n_pattern",
-        "empty_question_pools"
+        "old_i18n_pattern"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
-        "ELITE": 0
+        "BASIC": 2,
+        "CORE": 2,
+        "ADVANCED": 7,
+        "ELITE": 4
       },
-      "stageCount": 3,
-      "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
-        "ELITE"
-      ]
+      "stageCount": 3
     },
     {
       "name": "sm2-06",
@@ -2468,15 +2453,19 @@
       "name": "sm3-05",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-05",
       "issues": [
-        "old_i18n_pattern"
+        "old_i18n_pattern",
+        "empty_question_pools"
       ],
       "questionCounts": {
         "BASIC": 1,
         "CORE": 1,
         "ADVANCED": 1,
-        "ELITE": 2
+        "ELITE": 0
       },
-      "stageCount": 3
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
     },
     {
       "name": "sp3-01",
@@ -2587,15 +2576,19 @@
       "name": "sp3-06",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-06",
       "issues": [
-        "old_i18n_pattern"
+        "old_i18n_pattern",
+        "empty_question_pools"
       ],
       "questionCounts": {
         "BASIC": 3,
         "CORE": 3,
         "ADVANCED": 3,
-        "ELITE": 3
+        "ELITE": 0
       },
-      "stageCount": 3
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
     },
     {
       "name": "sp3-07",
@@ -2604,14 +2597,13 @@
         "empty_question_pools"
       ],
       "questionCounts": {
-        "BASIC": 0,
+        "BASIC": 3,
         "CORE": 0,
         "ADVANCED": 0,
         "ELITE": 0
       },
       "stageCount": 3,
       "emptyDifficulties": [
-        "BASIC",
         "CORE",
         "ADVANCED",
         "ELITE"
