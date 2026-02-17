@@ -2,15 +2,14 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
 
 type Stage = "MOLAR_MASS" | "STOICHIOMETRY" | "YIELD";
-type C102T = typeof translations.EN.sc1_02;
 
 interface ReagentInfo {
   label: string;
@@ -40,276 +39,357 @@ const atomicWeights: Record<string, number> = {
   P: 30.97,
 };
 
-// 20 formulas for molar mass calculations (4 difficulties × 5 questions)
-const molarMassFormulas = [
-  // BASIC (5 questions) - Simple molecules
-  "H2O", "CO2", "NaCl", "NH3", "O2",
-  // CORE (5 questions) - Common compounds
-  "CaCO3", "H2SO4", "NaOH", "HCl", "CH4",
-  // ADVANCED (5 questions) - More complex molecules
-  "C6H12O6", "Ca(OH)2", "Al2O3", "Fe2O3", "C2H5OH",
-  // ELITE (5 questions) - Complex compounds
-  "C12H22O11", "Ca3(PO4)2", "Al2(SO4)3", "Fe(NO3)3", "C6H5COOH",
-];
+/* ────────────────────────────────────────────────
+ *  Structured Data - forEach + Structured Data Pattern
+ *  Standard naming: QUESTION_DATA with Record<Stage, Record<Difficulty, DataType[]>>
+ * ──────────────────────────────────────────────── */
 
 type ReactionSide = { formula: string; coefficient: number };
 type Reaction = { reactants: ReactionSide[]; products: ReactionSide[] };
 
-// 20 stoichiometry reactions (4 difficulties × 5 questions)
-const stoichiometryReactions = [
-  // BASIC (5 questions) - Simple reactions
-  {
-    id: "S1",
-    reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
-    given: { formula: "H2", moles: 3 },
-    target: "H2O",
-  },
-  {
-    id: "S2",
-    reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
-    given: { formula: "H2", moles: 4.5 },
-    target: "NH3",
-  },
-  {
-    id: "S3",
-    reaction: { reactants: [{ formula: "Na", coefficient: 2 }, { formula: "Cl2", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 2 }] },
-    given: { formula: "Na", moles: 5 },
-    target: "NaCl",
-  },
-  {
-    id: "S4",
-    reaction: { reactants: [{ formula: "C", coefficient: 1 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "CO2", coefficient: 1 }] },
-    given: { formula: "C", moles: 2 },
-    target: "CO2",
-  },
-  {
-    id: "S5",
-    reaction: { reactants: [{ formula: "Mg", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "MgO", coefficient: 2 }] },
-    given: { formula: "Mg", moles: 4 },
-    target: "MgO",
-  },
-  // CORE (5 questions) - Common reactions
-  {
-    id: "S6",
-    reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
-    given: { formula: "CaCO3", moles: 2.5 },
-    target: "CO2",
-  },
-  {
-    id: "S7",
-    reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
-    given: { formula: "Cl2", moles: 6 },
-    target: "AlCl3",
-  },
-  {
-    id: "S8",
-    reaction: { reactants: [{ formula: "H2O2", coefficient: 2 }], products: [{ formula: "H2O", coefficient: 2 }, { formula: "O2", coefficient: 1 }] },
-    given: { formula: "H2O2", moles: 1.2 },
-    target: "O2",
-  },
-  {
-    id: "S9",
-    reaction: { reactants: [{ formula: "CH4", coefficient: 1 }, { formula: "O2", coefficient: 2 }], products: [{ formula: "CO2", coefficient: 1 }, { formula: "H2O", coefficient: 2 }] },
-    given: { formula: "CH4", moles: 3 },
-    target: "H2O",
-  },
-  {
-    id: "S10",
-    reaction: { reactants: [{ formula: "NaOH", coefficient: 1 }, { formula: "HCl", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
-    given: { formula: "NaOH", moles: 2.5 },
-    target: "NaCl",
-  },
-  // ADVANCED (5 questions) - Complex reactions
-  {
-    id: "S11",
-    reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
-    given: { formula: "Fe", moles: 6 },
-    target: "Fe2O3",
-  },
-  {
-    id: "S12",
-    reaction: { reactants: [{ formula: "C3H8", coefficient: 1 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "CO2", coefficient: 3 }, { formula: "H2O", coefficient: 4 }] },
-    given: { formula: "C3H8", moles: 2 },
-    target: "CO2",
-  },
-  {
-    id: "S13",
-    reaction: { reactants: [{ formula: "KClO3", coefficient: 2 }], products: [{ formula: "KCl", coefficient: 2 }, { formula: "O2", coefficient: 3 }] },
-    given: { formula: "KClO3", moles: 4 },
-    target: "O2",
-  },
-  {
-    id: "S14",
-    reaction: { reactants: [{ formula: "Ca(OH)2", coefficient: 1 }, { formula: "CO2", coefficient: 1 }], products: [{ formula: "CaCO3", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
-    given: { formula: "CO2", moles: 3.5 },
-    target: "CaCO3",
-  },
-  {
-    id: "S15",
-    reaction: { reactants: [{ formula: "Al2O3", coefficient: 2 }, { formula: "C", coefficient: 3 }], products: [{ formula: "Al", coefficient: 4 }, { formula: "CO", coefficient: 3 }] },
-    given: { formula: "Al2O3", moles: 5 },
-    target: "Al",
-  },
-  // ELITE (5 questions) - Most complex reactions
-  {
-    id: "S16",
-    reaction: { reactants: [{ formula: "C6H12O6", coefficient: 1 }], products: [{ formula: "C2H5OH", coefficient: 2 }, { formula: "CO2", coefficient: 2 }] },
-    given: { formula: "C6H12O6", moles: 1.5 },
-    target: "C2H5OH",
-  },
-  {
-    id: "S17",
-    reaction: { reactants: [{ formula: "Fe2O3", coefficient: 1 }, { formula: "CO", coefficient: 3 }], products: [{ formula: "Fe", coefficient: 2 }, { formula: "CO2", coefficient: 3 }] },
-    given: { formula: "CO", moles: 9 },
-    target: "Fe",
-  },
-  {
-    id: "S18",
-    reaction: { reactants: [{ formula: "NH3", coefficient: 4 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "NO", coefficient: 4 }, { formula: "H2O", coefficient: 6 }] },
-    given: { formula: "NH3", moles: 8 },
-    target: "NO",
-  },
-  {
-    id: "S19",
-    reaction: { reactants: [{ formula: "C2H5OH", coefficient: 1 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "CO2", coefficient: 2 }, { formula: "H2O", coefficient: 3 }] },
-    given: { formula: "O2", moles: 12 },
-    target: "CO2",
-  },
-  {
-    id: "S20",
-    reaction: { reactants: [{ formula: "Ca3(PO4)2", coefficient: 1 }, { formula: "H2SO4", coefficient: 3 }], products: [{ formula: "CaSO4", coefficient: 3 }, { formula: "H3PO4", coefficient: 2 }] },
-    given: { formula: "H2SO4", moles: 6 },
-    target: "H3PO4",
-  },
-];
+// Type for question data
+type QuestionData = 
+  | { type: "MOLAR_MASS"; formula: string }
+  | { type: "STOICHIOMETRY"; id: string; reaction: Reaction; given: { formula: string; moles: number }; target: string }
+  | { type: "YIELD"; id: string; reaction: Reaction; reactants: Array<{ formula: string; mass: number }>; target: string };
 
-// 20 yield reactions (4 difficulties × 5 questions)
-const yieldReactions = [
-  // BASIC (5 questions) - Simple yield calculations
-  {
-    id: "Y1",
-    reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
-    reactants: [{ formula: "H2", mass: 8 }, { formula: "O2", mass: 32 }],
-    target: "H2O",
+// All question data organized by Stage and Difficulty
+const QUESTION_DATA: Record<Stage, Record<Difficulty, QuestionData[]>> = {
+  MOLAR_MASS: {
+    BASIC: [
+      { type: "MOLAR_MASS", formula: "H2O" },
+      { type: "MOLAR_MASS", formula: "CO2" },
+      { type: "MOLAR_MASS", formula: "NaCl" },
+      { type: "MOLAR_MASS", formula: "NH3" },
+      { type: "MOLAR_MASS", formula: "O2" },
+    ],
+    CORE: [
+      { type: "MOLAR_MASS", formula: "CaCO3" },
+      { type: "MOLAR_MASS", formula: "H2SO4" },
+      { type: "MOLAR_MASS", formula: "NaOH" },
+      { type: "MOLAR_MASS", formula: "HCl" },
+      { type: "MOLAR_MASS", formula: "CH4" },
+    ],
+    ADVANCED: [
+      { type: "MOLAR_MASS", formula: "C6H12O6" },
+      { type: "MOLAR_MASS", formula: "Ca(OH)2" },
+      { type: "MOLAR_MASS", formula: "Al2O3" },
+      { type: "MOLAR_MASS", formula: "Fe2O3" },
+      { type: "MOLAR_MASS", formula: "C2H5OH" },
+    ],
+    ELITE: [
+      { type: "MOLAR_MASS", formula: "C12H22O11" },
+      { type: "MOLAR_MASS", formula: "Ca3(PO4)2" },
+      { type: "MOLAR_MASS", formula: "Al2(SO4)3" },
+      { type: "MOLAR_MASS", formula: "Fe(NO3)3" },
+      { type: "MOLAR_MASS", formula: "C6H5COOH" },
+    ],
   },
-  {
-    id: "Y2",
-    reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
-    reactants: [{ formula: "N2", mass: 28 }, { formula: "H2", mass: 6 }],
-    target: "NH3",
+  STOICHIOMETRY: {
+    BASIC: [
+      {
+        type: "STOICHIOMETRY",
+        id: "S1",
+        reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
+        given: { formula: "H2", moles: 3 },
+        target: "H2O",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S2",
+        reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
+        given: { formula: "H2", moles: 4.5 },
+        target: "NH3",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S3",
+        reaction: { reactants: [{ formula: "Na", coefficient: 2 }, { formula: "Cl2", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 2 }] },
+        given: { formula: "Na", moles: 5 },
+        target: "NaCl",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S4",
+        reaction: { reactants: [{ formula: "C", coefficient: 1 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "CO2", coefficient: 1 }] },
+        given: { formula: "C", moles: 2 },
+        target: "CO2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S5",
+        reaction: { reactants: [{ formula: "Mg", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "MgO", coefficient: 2 }] },
+        given: { formula: "Mg", moles: 4 },
+        target: "MgO",
+      },
+    ],
+    CORE: [
+      {
+        type: "STOICHIOMETRY",
+        id: "S6",
+        reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
+        given: { formula: "CaCO3", moles: 2.5 },
+        target: "CO2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S7",
+        reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
+        given: { formula: "Cl2", moles: 6 },
+        target: "AlCl3",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S8",
+        reaction: { reactants: [{ formula: "H2O2", coefficient: 2 }], products: [{ formula: "H2O", coefficient: 2 }, { formula: "O2", coefficient: 1 }] },
+        given: { formula: "H2O2", moles: 1.2 },
+        target: "O2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S9",
+        reaction: { reactants: [{ formula: "CH4", coefficient: 1 }, { formula: "O2", coefficient: 2 }], products: [{ formula: "CO2", coefficient: 1 }, { formula: "H2O", coefficient: 2 }] },
+        given: { formula: "CH4", moles: 3 },
+        target: "H2O",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S10",
+        reaction: { reactants: [{ formula: "NaOH", coefficient: 1 }, { formula: "HCl", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
+        given: { formula: "NaOH", moles: 2.5 },
+        target: "NaCl",
+      },
+    ],
+    ADVANCED: [
+      {
+        type: "STOICHIOMETRY",
+        id: "S11",
+        reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
+        given: { formula: "Fe", moles: 6 },
+        target: "Fe2O3",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S12",
+        reaction: { reactants: [{ formula: "C3H8", coefficient: 1 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "CO2", coefficient: 3 }, { formula: "H2O", coefficient: 4 }] },
+        given: { formula: "C3H8", moles: 2 },
+        target: "CO2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S13",
+        reaction: { reactants: [{ formula: "KClO3", coefficient: 2 }], products: [{ formula: "KCl", coefficient: 2 }, { formula: "O2", coefficient: 3 }] },
+        given: { formula: "KClO3", moles: 4 },
+        target: "O2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S14",
+        reaction: { reactants: [{ formula: "Ca(OH)2", coefficient: 1 }, { formula: "CO2", coefficient: 1 }], products: [{ formula: "CaCO3", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
+        given: { formula: "CO2", moles: 3.5 },
+        target: "CaCO3",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S15",
+        reaction: { reactants: [{ formula: "Al2O3", coefficient: 2 }, { formula: "C", coefficient: 3 }], products: [{ formula: "Al", coefficient: 4 }, { formula: "CO", coefficient: 3 }] },
+        given: { formula: "Al2O3", moles: 5 },
+        target: "Al",
+      },
+    ],
+    ELITE: [
+      {
+        type: "STOICHIOMETRY",
+        id: "S16",
+        reaction: { reactants: [{ formula: "C6H12O6", coefficient: 1 }], products: [{ formula: "C2H5OH", coefficient: 2 }, { formula: "CO2", coefficient: 2 }] },
+        given: { formula: "C6H12O6", moles: 1.5 },
+        target: "C2H5OH",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S17",
+        reaction: { reactants: [{ formula: "Fe2O3", coefficient: 1 }, { formula: "CO", coefficient: 3 }], products: [{ formula: "Fe", coefficient: 2 }, { formula: "CO2", coefficient: 3 }] },
+        given: { formula: "CO", moles: 9 },
+        target: "Fe",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S18",
+        reaction: { reactants: [{ formula: "NH3", coefficient: 4 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "NO", coefficient: 4 }, { formula: "H2O", coefficient: 6 }] },
+        given: { formula: "NH3", moles: 8 },
+        target: "NO",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S19",
+        reaction: { reactants: [{ formula: "C2H5OH", coefficient: 1 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "CO2", coefficient: 2 }, { formula: "H2O", coefficient: 3 }] },
+        given: { formula: "O2", moles: 12 },
+        target: "CO2",
+      },
+      {
+        type: "STOICHIOMETRY",
+        id: "S20",
+        reaction: { reactants: [{ formula: "Ca3(PO4)2", coefficient: 1 }, { formula: "H2SO4", coefficient: 3 }], products: [{ formula: "CaSO4", coefficient: 3 }, { formula: "H3PO4", coefficient: 2 }] },
+        given: { formula: "H2SO4", moles: 6 },
+        target: "H3PO4",
+      },
+    ],
   },
-  {
-    id: "Y3",
-    reaction: { reactants: [{ formula: "C", coefficient: 1 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "CO2", coefficient: 1 }] },
-    reactants: [{ formula: "C", mass: 12 }, { formula: "O2", mass: 32 }],
-    target: "CO2",
+  YIELD: {
+    BASIC: [
+      {
+        type: "YIELD",
+        id: "Y1",
+        reaction: { reactants: [{ formula: "H2", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "H2O", coefficient: 2 }] },
+        reactants: [{ formula: "H2", mass: 8 }, { formula: "O2", mass: 32 }],
+        target: "H2O",
+      },
+      {
+        type: "YIELD",
+        id: "Y2",
+        reaction: { reactants: [{ formula: "N2", coefficient: 1 }, { formula: "H2", coefficient: 3 }], products: [{ formula: "NH3", coefficient: 2 }] },
+        reactants: [{ formula: "N2", mass: 28 }, { formula: "H2", mass: 6 }],
+        target: "NH3",
+      },
+      {
+        type: "YIELD",
+        id: "Y3",
+        reaction: { reactants: [{ formula: "C", coefficient: 1 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "CO2", coefficient: 1 }] },
+        reactants: [{ formula: "C", mass: 12 }, { formula: "O2", mass: 32 }],
+        target: "CO2",
+      },
+      {
+        type: "YIELD",
+        id: "Y4",
+        reaction: { reactants: [{ formula: "Mg", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "MgO", coefficient: 2 }] },
+        reactants: [{ formula: "Mg", mass: 24 }, { formula: "O2", mass: 16 }],
+        target: "MgO",
+      },
+      {
+        type: "YIELD",
+        id: "Y5",
+        reaction: { reactants: [{ formula: "Na", coefficient: 2 }, { formula: "Cl2", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 2 }] },
+        reactants: [{ formula: "Na", mass: 23 }, { formula: "Cl2", mass: 35.5 }],
+        target: "NaCl",
+      },
+    ],
+    CORE: [
+      {
+        type: "YIELD",
+        id: "Y6",
+        reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
+        reactants: [{ formula: "CaCO3", mass: 50 }],
+        target: "CO2",
+      },
+      {
+        type: "YIELD",
+        id: "Y7",
+        reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
+        reactants: [{ formula: "Al", mass: 5.4 }, { formula: "Cl2", mass: 21.3 }],
+        target: "AlCl3",
+      },
+      {
+        type: "YIELD",
+        id: "Y8",
+        reaction: { reactants: [{ formula: "CH4", coefficient: 1 }, { formula: "O2", coefficient: 2 }], products: [{ formula: "CO2", coefficient: 1 }, { formula: "H2O", coefficient: 2 }] },
+        reactants: [{ formula: "CH4", mass: 16 }, { formula: "O2", mass: 64 }],
+        target: "CO2",
+      },
+      {
+        type: "YIELD",
+        id: "Y9",
+        reaction: { reactants: [{ formula: "NaOH", coefficient: 1 }, { formula: "HCl", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
+        reactants: [{ formula: "NaOH", mass: 40 }, { formula: "HCl", mass: 36.5 }],
+        target: "NaCl",
+      },
+      {
+        type: "YIELD",
+        id: "Y10",
+        reaction: { reactants: [{ formula: "H2O2", coefficient: 2 }], products: [{ formula: "H2O", coefficient: 2 }, { formula: "O2", coefficient: 1 }] },
+        reactants: [{ formula: "H2O2", mass: 34 }],
+        target: "O2",
+      },
+    ],
+    ADVANCED: [
+      {
+        type: "YIELD",
+        id: "Y11",
+        reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
+        reactants: [{ formula: "Fe", mass: 11.2 }, { formula: "O2", mass: 9.6 }],
+        target: "Fe2O3",
+      },
+      {
+        type: "YIELD",
+        id: "Y12",
+        reaction: { reactants: [{ formula: "C3H8", coefficient: 1 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "CO2", coefficient: 3 }, { formula: "H2O", coefficient: 4 }] },
+        reactants: [{ formula: "C3H8", mass: 22 }, { formula: "O2", mass: 80 }],
+        target: "CO2",
+      },
+      {
+        type: "YIELD",
+        id: "Y13",
+        reaction: { reactants: [{ formula: "KClO3", coefficient: 2 }], products: [{ formula: "KCl", coefficient: 2 }, { formula: "O2", coefficient: 3 }] },
+        reactants: [{ formula: "KClO3", mass: 24.5 }],
+        target: "O2",
+      },
+      {
+        type: "YIELD",
+        id: "Y14",
+        reaction: { reactants: [{ formula: "Ca(OH)2", coefficient: 1 }, { formula: "CO2", coefficient: 1 }], products: [{ formula: "CaCO3", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
+        reactants: [{ formula: "Ca(OH)2", mass: 37 }, { formula: "CO2", mass: 44 }],
+        target: "CaCO3",
+      },
+      {
+        type: "YIELD",
+        id: "Y15",
+        reaction: { reactants: [{ formula: "Al2O3", coefficient: 2 }, { formula: "C", coefficient: 3 }], products: [{ formula: "Al", coefficient: 4 }, { formula: "CO", coefficient: 3 }] },
+        reactants: [{ formula: "Al2O3", mass: 51 }, { formula: "C", mass: 18 }],
+        target: "Al",
+      },
+    ],
+    ELITE: [
+      {
+        type: "YIELD",
+        id: "Y16",
+        reaction: { reactants: [{ formula: "C6H12O6", coefficient: 1 }], products: [{ formula: "C2H5OH", coefficient: 2 }, { formula: "CO2", coefficient: 2 }] },
+        reactants: [{ formula: "C6H12O6", mass: 90 }],
+        target: "C2H5OH",
+      },
+      {
+        type: "YIELD",
+        id: "Y17",
+        reaction: { reactants: [{ formula: "Fe2O3", coefficient: 1 }, { formula: "CO", coefficient: 3 }], products: [{ formula: "Fe", coefficient: 2 }, { formula: "CO2", coefficient: 3 }] },
+        reactants: [{ formula: "Fe2O3", mass: 80 }, { formula: "CO", mass: 42 }],
+        target: "Fe",
+      },
+      {
+        type: "YIELD",
+        id: "Y18",
+        reaction: { reactants: [{ formula: "NH3", coefficient: 4 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "NO", coefficient: 4 }, { formula: "H2O", coefficient: 6 }] },
+        reactants: [{ formula: "NH3", mass: 34 }, { formula: "O2", mass: 80 }],
+        target: "NO",
+      },
+      {
+        type: "YIELD",
+        id: "Y19",
+        reaction: { reactants: [{ formula: "C2H5OH", coefficient: 1 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "CO2", coefficient: 2 }, { formula: "H2O", coefficient: 3 }] },
+        reactants: [{ formula: "C2H5OH", mass: 23 }, { formula: "O2", mass: 48 }],
+        target: "CO2",
+      },
+      {
+        type: "YIELD",
+        id: "Y20",
+        reaction: { reactants: [{ formula: "Ca3(PO4)2", coefficient: 1 }, { formula: "H2SO4", coefficient: 3 }], products: [{ formula: "CaSO4", coefficient: 3 }, { formula: "H3PO4", coefficient: 2 }] },
+        reactants: [{ formula: "Ca3(PO4)2", mass: 155 }, { formula: "H2SO4", mass: 147 }],
+        target: "H3PO4",
+      },
+    ],
   },
-  {
-    id: "Y4",
-    reaction: { reactants: [{ formula: "Mg", coefficient: 2 }, { formula: "O2", coefficient: 1 }], products: [{ formula: "MgO", coefficient: 2 }] },
-    reactants: [{ formula: "Mg", mass: 24 }, { formula: "O2", mass: 16 }],
-    target: "MgO",
-  },
-  {
-    id: "Y5",
-    reaction: { reactants: [{ formula: "Na", coefficient: 2 }, { formula: "Cl2", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 2 }] },
-    reactants: [{ formula: "Na", mass: 23 }, { formula: "Cl2", mass: 35.5 }],
-    target: "NaCl",
-  },
-  // CORE (5 questions) - Common reactions
-  {
-    id: "Y6",
-    reaction: { reactants: [{ formula: "CaCO3", coefficient: 1 }], products: [{ formula: "CaO", coefficient: 1 }, { formula: "CO2", coefficient: 1 }] },
-    reactants: [{ formula: "CaCO3", mass: 50 }],
-    target: "CO2",
-  },
-  {
-    id: "Y7",
-    reaction: { reactants: [{ formula: "Al", coefficient: 2 }, { formula: "Cl2", coefficient: 3 }], products: [{ formula: "AlCl3", coefficient: 2 }] },
-    reactants: [{ formula: "Al", mass: 5.4 }, { formula: "Cl2", mass: 21.3 }],
-    target: "AlCl3",
-  },
-  {
-    id: "Y8",
-    reaction: { reactants: [{ formula: "CH4", coefficient: 1 }, { formula: "O2", coefficient: 2 }], products: [{ formula: "CO2", coefficient: 1 }, { formula: "H2O", coefficient: 2 }] },
-    reactants: [{ formula: "CH4", mass: 16 }, { formula: "O2", mass: 64 }],
-    target: "CO2",
-  },
-  {
-    id: "Y9",
-    reaction: { reactants: [{ formula: "NaOH", coefficient: 1 }, { formula: "HCl", coefficient: 1 }], products: [{ formula: "NaCl", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
-    reactants: [{ formula: "NaOH", mass: 40 }, { formula: "HCl", mass: 36.5 }],
-    target: "NaCl",
-  },
-  {
-    id: "Y10",
-    reaction: { reactants: [{ formula: "H2O2", coefficient: 2 }], products: [{ formula: "H2O", coefficient: 2 }, { formula: "O2", coefficient: 1 }] },
-    reactants: [{ formula: "H2O2", mass: 34 }],
-    target: "O2",
-  },
-  // ADVANCED (5 questions) - Complex reactions
-  {
-    id: "Y11",
-    reaction: { reactants: [{ formula: "Fe", coefficient: 4 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "Fe2O3", coefficient: 2 }] },
-    reactants: [{ formula: "Fe", mass: 11.2 }, { formula: "O2", mass: 9.6 }],
-    target: "Fe2O3",
-  },
-  {
-    id: "Y12",
-    reaction: { reactants: [{ formula: "C3H8", coefficient: 1 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "CO2", coefficient: 3 }, { formula: "H2O", coefficient: 4 }] },
-    reactants: [{ formula: "C3H8", mass: 22 }, { formula: "O2", mass: 80 }],
-    target: "CO2",
-  },
-  {
-    id: "Y13",
-    reaction: { reactants: [{ formula: "KClO3", coefficient: 2 }], products: [{ formula: "KCl", coefficient: 2 }, { formula: "O2", coefficient: 3 }] },
-    reactants: [{ formula: "KClO3", mass: 24.5 }],
-    target: "O2",
-  },
-  {
-    id: "Y14",
-    reaction: { reactants: [{ formula: "Ca(OH)2", coefficient: 1 }, { formula: "CO2", coefficient: 1 }], products: [{ formula: "CaCO3", coefficient: 1 }, { formula: "H2O", coefficient: 1 }] },
-    reactants: [{ formula: "Ca(OH)2", mass: 37 }, { formula: "CO2", mass: 44 }],
-    target: "CaCO3",
-  },
-  {
-    id: "Y15",
-    reaction: { reactants: [{ formula: "Al2O3", coefficient: 2 }, { formula: "C", coefficient: 3 }], products: [{ formula: "Al", coefficient: 4 }, { formula: "CO", coefficient: 3 }] },
-    reactants: [{ formula: "Al2O3", mass: 51 }, { formula: "C", mass: 18 }],
-    target: "Al",
-  },
-  // ELITE (5 questions) - Most complex reactions
-  {
-    id: "Y16",
-    reaction: { reactants: [{ formula: "C6H12O6", coefficient: 1 }], products: [{ formula: "C2H5OH", coefficient: 2 }, { formula: "CO2", coefficient: 2 }] },
-    reactants: [{ formula: "C6H12O6", mass: 90 }],
-    target: "C2H5OH",
-  },
-  {
-    id: "Y17",
-    reaction: { reactants: [{ formula: "Fe2O3", coefficient: 1 }, { formula: "CO", coefficient: 3 }], products: [{ formula: "Fe", coefficient: 2 }, { formula: "CO2", coefficient: 3 }] },
-    reactants: [{ formula: "Fe2O3", mass: 80 }, { formula: "CO", mass: 42 }],
-    target: "Fe",
-  },
-  {
-    id: "Y18",
-    reaction: { reactants: [{ formula: "NH3", coefficient: 4 }, { formula: "O2", coefficient: 5 }], products: [{ formula: "NO", coefficient: 4 }, { formula: "H2O", coefficient: 6 }] },
-    reactants: [{ formula: "NH3", mass: 34 }, { formula: "O2", mass: 80 }],
-    target: "NO",
-  },
-  {
-    id: "Y19",
-    reaction: { reactants: [{ formula: "C2H5OH", coefficient: 1 }, { formula: "O2", coefficient: 3 }], products: [{ formula: "CO2", coefficient: 2 }, { formula: "H2O", coefficient: 3 }] },
-    reactants: [{ formula: "C2H5OH", mass: 23 }, { formula: "O2", mass: 48 }],
-    target: "CO2",
-  },
-  {
-    id: "Y20",
-    reaction: { reactants: [{ formula: "Ca3(PO4)2", coefficient: 1 }, { formula: "H2SO4", coefficient: 3 }], products: [{ formula: "CaSO4", coefficient: 3 }, { formula: "H3PO4", coefficient: 2 }] },
-    reactants: [{ formula: "Ca3(PO4)2", mass: 155 }, { formula: "H2SO4", mass: 147 }],
-    target: "H3PO4",
-  },
-];
+};
+
+/* ────────────────────────────────────────────────
+ *  Helper functions
+ * ──────────────────────────────────────────────── */
 
 function normalizeFormula(formula: string) {
   return formula.replace(/[_{}]/g, "");
@@ -395,16 +475,27 @@ function computeTheoreticalYield(reaction: Reaction, reactants: Array<{ formula:
   return maxProductMoles * computeMolarMass(targetFormula);
 }
 
-function buildStagePool(t: C102T, difficulty: Difficulty, stage: Stage): C102Quest[] {
-  if (stage === "MOLAR_MASS") {
-    const all = molarMassFormulas.map((formula, index) => {
-      const formulaLatex = toLatexFormula(formula);
-      const { atoms, breakdown } = buildMolarBreakdown(formula);
-      const molarMass = computeMolarMass(formula);
+/* ────────────────────────────────────────────────
+ *  Build quest pool — forEach + Structured Data
+ * ──────────────────────────────────────────────── */
+
+function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest[] {
+  const quests: C102Quest[] = [];
+  
+  // Get data for the current stage and difficulty
+  const dataList = QUESTION_DATA[stage]?.[difficulty] || [];
+  
+  dataList.forEach((item, idx) => {
+    if (item.type === "MOLAR_MASS") {
+      // ── Molar Mass Calculation ──
+      const formulaLatex = toLatexFormula(item.formula);
+      const { atoms, breakdown } = buildMolarBreakdown(item.formula);
+      const molarMass = computeMolarMass(item.formula);
       const rounded = roundValue(molarMass, 2);
       const display = formatValue(molarMass, 2);
-      return {
-        id: `M${index + 1}`,
+      
+      quests.push({
+        id: `M${idx + 1}`,
         difficulty,
         stage,
         reactionLatex: formulaLatex,
@@ -418,23 +509,17 @@ function buildStagePool(t: C102T, difficulty: Difficulty, stage: Stage): C102Que
           { label: "ATOMS", value: atoms },
         ],
         scaleReading: `${display}\\;\\text{g/mol}`,
-      };
-    });
-    
-    // Select 5 questions based on difficulty
-    const startIndex = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
-    return all.slice(startIndex, startIndex + 5);
-  }
-
-  if (stage === "STOICHIOMETRY") {
-    const all = stoichiometryReactions.map((item) => {
+      });
+    } else if (item.type === "STOICHIOMETRY") {
+      // ── Stoichiometry Calculation ──
       const reactionLatex = buildReactionLatex(item.reaction);
       const targetLatex = `n(${toLatexFormula(item.target)})`;
       const givenLatex = `n(${toLatexFormula(item.given.formula)})=${formatValue(item.given.moles, 2)}\\;\\text{mol}`;
       const answer = computeStoichiometryAnswer(item.reaction, item.given.formula, item.target, item.given.moles);
       const rounded = roundValue(answer, 2);
       const display = formatValue(answer, 2);
-      return {
+      
+      quests.push({
         id: item.id,
         difficulty,
         stage,
@@ -449,47 +534,79 @@ function buildStagePool(t: C102T, difficulty: Difficulty, stage: Stage): C102Que
           { label: "GIVEN", value: givenLatex },
         ],
         scaleReading: `${display}\\;\\text{mol}`,
-      };
-    });
-    
-    // Select 5 questions based on difficulty
-    const startIndex = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
-    return all.slice(startIndex, startIndex + 5);
-  }
-
-  const all = yieldReactions.map((item) => {
-    const reactionLatex = buildReactionLatex(item.reaction);
-    const givenLatex = item.reactants.map((r) => `m(${toLatexFormula(r.formula)})=${formatValue(r.mass, 2)}\\;\\text{g}`).join(",\\; ");
-    const targetLatex = `m(${toLatexFormula(item.target)})`;
-    const answer = computeTheoreticalYield(item.reaction, item.reactants, item.target);
-    const rounded = roundValue(answer, 2);
-    const display = formatValue(answer, 2);
-    return {
-      id: item.id,
-      difficulty,
-      stage,
-      reactionLatex,
-      promptLatex: t.stages.yield_prompt_latex,
-      expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
-      targetLatex,
-      slots: [{ id: "m", labelLatex: targetLatex, placeholder: "mass", expected: rounded, unit: "g" }],
-      correctLatex: `${targetLatex}=${display}\\;\\text{g}`,
-      reagents: [
-        { label: "REACTION", value: reactionLatex },
-        { label: "GIVEN", value: givenLatex },
-      ],
-      scaleReading: `${display}\\;\\text{g}`,
-    };
+      });
+    } else if (item.type === "YIELD") {
+      // ── Yield Calculation ──
+      const reactionLatex = buildReactionLatex(item.reaction);
+      const givenLatex = item.reactants.map((r) => `m(${toLatexFormula(r.formula)})=${formatValue(r.mass, 2)}\\;\\text{g}`).join(",\\; ");
+      const targetLatex = `m(${toLatexFormula(item.target)})`;
+      const answer = computeTheoreticalYield(item.reaction, item.reactants, item.target);
+      const rounded = roundValue(answer, 2);
+      const display = formatValue(answer, 2);
+      
+      quests.push({
+        id: item.id,
+        difficulty,
+        stage,
+        reactionLatex,
+        promptLatex: t.stages.yield_prompt_latex,
+        expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
+        targetLatex,
+        slots: [{ id: "m", labelLatex: targetLatex, placeholder: "mass", expected: rounded, unit: "g" }],
+        correctLatex: `${targetLatex}=${display}\\;\\text{g}`,
+        reagents: [
+          { label: "REACTION", value: reactionLatex },
+          { label: "GIVEN", value: givenLatex },
+        ],
+        scaleReading: `${display}\\;\\text{g}`,
+      });
+    }
   });
   
-  // Select 5 questions based on difficulty
-  const startIndex = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
-  return all.slice(startIndex, startIndex + 5);
+  return quests;
 }
 
 export default function C102Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].sc1_02;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
+
+  const sc1_02_t = {
+    title: t("sc1_02.title"),
+    back: t("sc1_02.back"),
+    check: t("sc1_02.check"),
+    next: t("sc1_02.next"),
+    correct: t("sc1_02.correct"),
+    incorrect: t("sc1_02.incorrect"),
+    ready: t("sc1_02.ready"),
+    monitor_title: t("sc1_02.monitor_title"),
+    target_title: t("sc1_02.target_title"),
+    objective_title: t("sc1_02.objective_title"),
+    footer_left: t("sc1_02.footer_left"),
+    input_tip_1dp: t("sc1_02.input_tip_1dp"),
+    difficulty: {
+      basic: t("sc1_02.difficulty.basic"),
+      core: t("sc1_02.difficulty.core"),
+      advanced: t("sc1_02.difficulty.advanced"),
+      elite: t("sc1_02.difficulty.elite"),
+    },
+    stages: {
+      molar_mass: t("sc1_02.stages.molar_mass"),
+      stoichiometry: t("sc1_02.stages.stoichiometry"),
+      yield: t("sc1_02.stages.yield"),
+      molar_mass_prompt_latex: t("sc1_02.stages.molar_mass_prompt_latex"),
+      stoichiometry_prompt_latex: t("sc1_02.stages.stoichiometry_prompt_latex"),
+      yield_prompt_latex: t("sc1_02.stages.yield_prompt_latex"),
+    },
+    labels: {
+      scale: t("sc1_02.labels.scale"),
+    },
+    mission: {
+      title: t("sc1_02.mission.title"),
+      description: t("sc1_02.mission.description"),
+    },
+  };
+
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sc1_02_t, d, s), [sc1_02_t]);
 
   const {
     difficulty,
@@ -504,7 +621,7 @@ export default function C102Page() {
     handleStageChange,
     parseNumberLike,
   } = useQuestManager<C102Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "MOLAR_MASS",
   });
 
@@ -521,42 +638,42 @@ export default function C102Page() {
   }, [activeSlot, inputs, parseNumberLike]);
   const targetValue = typeof activeSlot?.expected === "number" ? activeSlot.expected : null;
   const stageLabel = useMemo(() => {
-    if (stage === "MOLAR_MASS") return t.stages.molar_mass;
-    if (stage === "STOICHIOMETRY") return t.stages.stoichiometry;
-    return t.stages.yield;
-  }, [stage, t.stages.molar_mass, t.stages.stoichiometry, t.stages.yield]);
+    if (stage === "MOLAR_MASS") return sc1_02_t.stages.molar_mass;
+    if (stage === "STOICHIOMETRY") return sc1_02_t.stages.stoichiometry;
+    return sc1_02_t.stages.yield;
+  }, [stage, sc1_02_t.stages.molar_mass, sc1_02_t.stages.stoichiometry, sc1_02_t.stages.yield]);
   const status = lastCheck?.ok ? "correct" : lastCheck ? "incorrect" : "idle";
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={sc1_02_t.title}
       moduleCode="SC1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "MOLAR_MASS", label: t.stages.molar_mass },
-        { id: "STOICHIOMETRY", label: t.stages.stoichiometry },
-        { id: "YIELD", label: t.stages.yield },
+        { id: "MOLAR_MASS", label: sc1_02_t.stages.molar_mass },
+        { id: "STOICHIOMETRY", label: sc1_02_t.stages.stoichiometry },
+        { id: "YIELD", label: sc1_02_t.stages.yield },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={sc1_02_t.footer_left}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: sc1_02_t.back,
+        check: sc1_02_t.check,
+        next: sc1_02_t.next,
+        correct: sc1_02_t.correct,
+        incorrect: sc1_02_t.incorrect,
+        ready: sc1_02_t.ready,
+        monitor_title: sc1_02_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: sc1_02_t.difficulty.basic,
+          core: sc1_02_t.difficulty.core,
+          advanced: sc1_02_t.difficulty.advanced,
+          elite: sc1_02_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -568,9 +685,9 @@ export default function C102Page() {
             targetValue={targetValue}
             status={status}
           />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
+          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{sc1_02_t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
-            <div className="text-[11px] font-black tracking-[0.3em] text-white/60">{t.labels.scale}</div>
+            <div className="text-[11px] font-black tracking-[0.3em] text-white/60">{sc1_02_t.labels.scale}</div>
             <div className="text-white font-black text-xl">
               <InlineMath math={currentQuest?.scaleReading || ""} />
             </div>
@@ -590,11 +707,11 @@ export default function C102Page() {
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{sc1_02_t.mission.title}</h3>
+          <p className="text-base text-white/70 font-mono">{sc1_02_t.mission.description}</p>
         </div>
         <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{sc1_02_t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">
             <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
@@ -623,7 +740,7 @@ export default function C102Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {t.input_tip_1dp}
+            {sc1_02_t.input_tip_1dp}
           </div>
         </div>
       </div>
