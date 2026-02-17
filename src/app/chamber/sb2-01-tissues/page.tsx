@@ -25,124 +25,162 @@ export default function SB201TissuesPage() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB201TissuesQuest[] => {
         const quests: SB201TissuesQuest[] = [];
-        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "TISSUES") {
+            // 5 questions per difficulty level
             const tissueQuests = [
                 {
                     id: `T-${difficulty}-1`, difficulty, stage, tissueType: "epithelial",
-                    promptLatex: t("sb2_01_tissues.prompts.epithelial_func"),
-                    expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Skin, intestines" }),
-                    targetLatex: t("sb2_01_tissues.prompts.function_label"),
-                    slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "protection", expected: "protection" }],
+                    promptLatex: "Epithelial tissue covers body surfaces. What is its primary function?",
+                    expressionLatex: "\\text{Location: Skin, intestines}",
+                    targetLatex: "\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "protection", expected: "protection" }],
                     correctLatex: "Protection",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_epithelial")]
+                    hintLatex: ["Covers and protects surfaces"]
                 },
                 {
                     id: `T-${difficulty}-2`, difficulty, stage, tissueType: "connective",
-                    promptLatex: t("sb2_01_tissues.prompts.connective_func"),
-                    expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Bone, cartilage" }),
-                    targetLatex: t("sb2_01_tissues.prompts.function_label"),
-                    slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "support", expected: "support" }],
+                    promptLatex: "Connective tissue provides structural support. Name its function:",
+                    expressionLatex: "\\text{Location: Bone, cartilage}",
+                    targetLatex: "\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "support", expected: "support" }],
                     correctLatex: "Support",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_connective")]
+                    hintLatex: ["Provides framework"]
                 },
                 {
                     id: `T-${difficulty}-3`, difficulty, stage, tissueType: "muscle",
-                    promptLatex: t("sb2_01_tissues.prompts.muscle_func"),
-                    expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Heart, limbs" }),
-                    targetLatex: t("sb2_01_tissues.prompts.function_label"),
-                    slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "movement", expected: "movement" }],
+                    promptLatex: "Muscle tissue enables body movement. What is its function?",
+                    expressionLatex: "\\text{Location: Heart, limbs}",
+                    targetLatex: "\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "movement", expected: "movement" }],
                     correctLatex: "Movement",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_muscle")]
+                    hintLatex: ["Contracts to move"]
                 },
                 {
                     id: `T-${difficulty}-4`, difficulty, stage, tissueType: "nervous",
-                    promptLatex: t("sb2_01_tissues.prompts.nervous_func"),
-                    expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Brain, nerves" }),
-                    targetLatex: t("sb2_01_tissues.prompts.function_label"),
-                    slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "signaling", expected: "signaling" }],
+                    promptLatex: "Nervous tissue transmits electrical signals. What is its function?",
+                    expressionLatex: "\\text{Location: Brain, nerves}",
+                    targetLatex: "\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "signaling", expected: "signaling" }],
                     correctLatex: "Signaling",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_nervous")]
+                    hintLatex: ["Sends electrical signals"]
+                },
+                {
+                    id: `T-${difficulty}-5`, difficulty, stage, tissueType: "epithelial",
+                    promptLatex: "Epithelial tissue in intestines absorbs nutrients. Function?",
+                    expressionLatex: "\\text{Location: Small intestine}",
+                    targetLatex: "\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "absorption", expected: "absorption" }],
+                    correctLatex: "Absorption",
+                    hintLatex: ["Takes in nutrients"]
                 }
             ];
-
-            if (isAdvanced) {
-                tissueQuests.push({
-                    id: `T-${difficulty}-5`, difficulty, stage, tissueType: "epithelial",
-                    promptLatex: t("sb2_01_tissues.prompts.absorb_func"),
-                    expressionLatex: t("sb2_01_tissues.prompts.location", { loc: "Small intestine" }),
-                    targetLatex: t("sb2_01_tissues.prompts.function_label"),
-                    slots: [{ id: "func", labelLatex: t("sb2_01_tissues.prompts.function_label"), placeholder: "absorption", expected: "absorption" }],
-                    correctLatex: "Absorption",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_epithelial")]
-                });
-            }
 
             quests.push(...tissueQuests);
         }
 
         if (stage === "ORGANS") {
+            // 5 questions per difficulty level
             const organQuests = [
                 {
                     id: `O-${difficulty}-1`, difficulty, stage, organName: "heart",
-                    promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Heart" }),
+                    promptLatex: "The Heart contains muscle, epithelial, connective, and nervous tissue. Count:",
                     expressionLatex: "\\text{Organ: Heart}",
                     targetLatex: "n",
                     slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
                     correctLatex: "n = 4",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
+                    hintLatex: ["All organs have multiple tissues"]
                 },
                 {
                     id: `O-${difficulty}-2`, difficulty, stage, organName: "stomach",
-                    promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Stomach" }),
+                    promptLatex: "The Stomach contains muscle, epithelial, connective, and nervous tissue. Count:",
                     expressionLatex: "\\text{Organ: Stomach}",
                     targetLatex: "n",
                     slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
                     correctLatex: "n = 4",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
-                }
-            ];
-
-            if (isAdvanced) {
-                organQuests.push({
+                    hintLatex: ["All organs have multiple tissues"]
+                },
+                {
                     id: `O-${difficulty}-3`, difficulty, stage, organName: "liver",
-                    promptLatex: t("sb2_01_tissues.prompts.organ_count", { organ: "Liver" }),
+                    promptLatex: "The Liver contains epithelial, connective, and vascular tissue. Count:",
                     expressionLatex: "\\text{Organ: Liver}",
                     targetLatex: "n",
                     slots: [{ id: "count", labelLatex: "n", placeholder: "3", expected: "3" }],
                     correctLatex: "n = 3",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_organs")]
-                });
-            }
+                    hintLatex: ["Count the tissue types"]
+                },
+                {
+                    id: `O-${difficulty}-4`, difficulty, stage, organName: "kidney",
+                    promptLatex: "The Kidney contains epithelial, connective, vascular, and nervous tissue. Count:",
+                    expressionLatex: "\\text{Organ: Kidney}",
+                    targetLatex: "n",
+                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
+                    correctLatex: "n = 4",
+                    hintLatex: ["All organs have multiple tissues"]
+                },
+                {
+                    id: `O-${difficulty}-5`, difficulty, stage, organName: "lung",
+                    promptLatex: "The Lung contains epithelial, connective, vascular, and nervous tissue. Count:",
+                    expressionLatex: "\\text{Organ: Lung}",
+                    targetLatex: "n",
+                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
+                    correctLatex: "n = 4",
+                    hintLatex: ["All organs have multiple tissues"]
+                }
+            ];
 
             quests.push(...organQuests);
         }
 
         if (stage === "SYSTEMS") {
+            // 5 questions per difficulty level
             const systemQuests = [
                 {
                     id: `S-${difficulty}-1`, difficulty, stage, systemName: "hierarchy",
-                    promptLatex: t("sb2_01_tissues.prompts.hierarchy"),
+                    promptLatex: "Complete: Cell \\rightarrow Tissue \\rightarrow Organ \\rightarrow ?",
                     expressionLatex: "\\text{Cell} \\rightarrow \\text{Tissue} \\rightarrow \\text{Organ} \\rightarrow ?",
-                    targetLatex: t("sb2_01_tissues.prompts.next_level"),
-                    slots: [{ id: "level", labelLatex: t("sb2_01_tissues.prompts.next_level"), placeholder: "system", expected: "system" }],
+                    targetLatex: "\\text{Next level}",
+                    slots: [{ id: "level", labelLatex: "\\text{Next level}", placeholder: "system", expected: "system" }],
                     correctLatex: "Organ System",
-                    hintLatex: [t("sb2_01_tissues.prompts.hint_systems")]
-                }
-            ];
-
-            if (isAdvanced) {
-                systemQuests.push({
+                    hintLatex: ["Groups of organs"]
+                },
+                {
                     id: `S-${difficulty}-2`, difficulty, stage, systemName: "organism",
                     promptLatex: "Complete the hierarchy: Organ System \\rightarrow ?",
                     expressionLatex: "\\text{System} \\rightarrow ?",
-                    targetLatex: "Next Level",
+                    targetLatex: "\\text{Next Level}",
                     slots: [{ id: "level", labelLatex: "\\text{Level}", placeholder: "organism", expected: "organism" }],
                     correctLatex: "Organism",
                     hintLatex: ["The complete living individual"]
-                });
-            }
+                },
+                {
+                    id: `S-${difficulty}-3`, difficulty, stage, systemName: "cell_to_tissue",
+                    promptLatex: "What comes after Cell in the biological hierarchy?",
+                    expressionLatex: "\\text{Cell} \\rightarrow ?",
+                    targetLatex: "\\text{Next}",
+                    slots: [{ id: "level", labelLatex: "\\text{Next}", placeholder: "tissue", expected: "tissue" }],
+                    correctLatex: "Tissue",
+                    hintLatex: ["Group of similar cells"]
+                },
+                {
+                    id: `S-${difficulty}-4`, difficulty, stage, systemName: "tissue_to_organ",
+                    promptLatex: "What comes after Tissue in the biological hierarchy?",
+                    expressionLatex: "\\text{Tissue} \\rightarrow ?",
+                    targetLatex: "\\text{Next}",
+                    slots: [{ id: "level", labelLatex: "\\text{Next}", placeholder: "organ", expected: "organ" }],
+                    correctLatex: "Organ",
+                    hintLatex: ["Multiple tissues integrated"]
+                },
+                {
+                    id: `S-${difficulty}-5`, difficulty, stage, systemName: "full_hierarchy",
+                    promptLatex: "How many levels: Cell, Tissue, Organ, System, Organism?",
+                    expressionLatex: "\\text{Count hierarchy levels}",
+                    targetLatex: "n",
+                    slots: [{ id: "count", labelLatex: "n", placeholder: "5", expected: "5" }],
+                    correctLatex: "5",
+                    hintLatex: ["Count all the levels"]
+                }
+            ];
 
             quests.push(...systemQuests);
         }

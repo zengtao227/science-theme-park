@@ -358,6 +358,15 @@ export default function SM305Page() {
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^2\\text{)}`, placeholder: "16", expected: 16 }],
                         correctLatex: `16\\text{ cm}^2`,
                         hintLatex: [`4^2 = 16`]
+                    },
+                    {
+                        id: "CS-A5", difficulty, stage, geometryType: "cylinder_ellipse",
+                        promptLatex: `\\text{Cylinder radius 3 cm cut at 45° angle. Cross-section is ellipse. Minor axis?}`,
+                        expressionLatex: `\\text{Minor axis} = 2r`,
+                        targetLatex: `b`,
+                        slots: [{ id: "minor", labelLatex: `b\\text{ (cm)}`, placeholder: "6", expected: 6 }],
+                        correctLatex: `6\\text{ cm}`,
+                        hintLatex: [`\\text{Minor axis equals diameter: } 2 \\times 3 = 6`]
                     }
                 );
             }
