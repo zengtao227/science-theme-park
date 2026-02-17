@@ -201,26 +201,83 @@ export const enPhysics = {
             normal_force: "Normal Force (N)"
         },
         prompts: {
-            // NEWTON 1
+            // NEWTON 1 - Inertia & Equilibrium
+            rest: "Object (m={m}kg) is at rest. Net force ΣF?",
+            const_v: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
+            equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
+            space: "In deep space (no friction), object (m={m}kg) is pushed with F={f}N for {t}s, then released. Force after release?",
+            inertia: "Object (m={m}kg) at rest. What property resists change in motion?",
+            "2d_balance": "Two perpendicular forces act on object (m={m}kg). Resultant force magnitude?",
+            vector_add: "Forces F₁={f}N (east) and F₂={f}N (north) act on object. Net force magnitude?",
+            slope: "Object (m={m}kg) on slope (θ={theta}°) with friction μ={mu}. Normal force component?",
+            space_friction: "In space, object (m={m}kg) experiences friction μ={mu}. Is this realistic?",
+            complex: "Object (m={m}kg) pulled by F={f}N against friction μ={mu}. Net force?",
+
+            // NEWTON 2 - F=ma
+            find_f: "Mass m={m}kg accelerates at a={a}m/s². Find net force F.",
+            find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
+            gravity: "Object m={m}kg on planet (g={g}m/s²). Weight force W=mg?",
+            net_force: "Force F={f}N acts on m={m}kg. Friction f={fr}N opposes. Net acceleration?",
+            friction: "Force F={f}N pulls m={m}kg with friction μ={mu}. Acceleration?",
+            pulley: "Pulley system: mass m={m}kg, applied force F={f}N, friction μ={mu}. Acceleration?",
+            variable_mass: "Force F={f}N acts on variable mass system m={m}kg. Effective acceleration?",
+            coupled: "Two masses coupled: m₁={m}kg, applied F={f}N. System acceleration?",
+
+            // FRICTION
+            static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
+            kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
+            max_static: "Box m={m}kg on surface (μs={mu}). Maximum static friction before sliding?",
+            kinetic_vs_static: "Box m={m}kg: μs={mu}, μk={mu}. Which friction is larger?",
+            slope_friction: "Box m={m}kg on slope (θ={theta}°) with μ={mu}. Friction force?",
+            critical: "Box m={m}kg pulled by F={f}N with μ={mu}. At critical point, net force?",
+
+            // Legacy keys for compatibility
             n1_const_vel: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
             n1_equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
             n1_rest: "Object (m={m}kg) is at rest. Force F={f}N pushes right. Friction f={fr}N acts left. Acceleration?",
             n1_space: "In deep space (no friction), object (m={m}kg) is pushed with F={f}N for {t}s, then released. Force after release?",
             n1_inertia: "Which property resists change in motion for a {m}kg object?",
-
-            // NEWTON 2
             n2_find_f: "Mass m={m}kg accelerates at a={a}m/s². Find net force F.",
             n2_find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
             n2_find_m: "Net force F={f}N causes acceleration a={a}m/s². Find mass m.",
             n2_complex: "Force F={f}N pulls mass m={m}kg against friction f={fr}N. Find acceleration.",
             n2_gravity: "Object m={m}kg falls on planet (g={g}m/s²). Weight force Fg?",
-
-            // FRICTION
             fr_static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
             fr_kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
             fr_norm: "Box m={m}kg pressed against wall with F={f}N. Normal force?",
             fr_slide: "Box m={m}kg slides on level floor. Friction f={f}N. Coefficient μk?",
             fr_bank: "Car turns on banked road (θ={theta}°). Friction required?"
+        },
+        hints: {
+            // NEWTON 1
+            rest: "At rest means v=0, so ΣF=0 (Newton's First Law)",
+            const_v: "Constant velocity means a=0, so ΣF=0",
+            equilibrium: "For equilibrium, all forces must balance: F₁ + F₃ = F₂",
+            space: "After release, no force acts (F=0 in space)",
+            inertia: "Inertia is the property that resists changes in motion",
+            "2d_balance": "Use Pythagorean theorem for perpendicular forces",
+            vector_add: "Use vector addition: |F_net| = √(F₁² + F₂²)",
+            slope: "Normal force N = mg cos(θ)",
+            space_friction: "No friction in space (no atmosphere)",
+            complex: "F_net = F_applied - f_friction",
+
+            // NEWTON 2
+            find_f: "Use F = ma",
+            find_a: "Use a = F/m",
+            gravity: "Weight W = mg",
+            net_force: "F_net = F_applied - f, then a = F_net/m",
+            friction: "f = μN = μmg, then a = (F - f)/m",
+            pulley: "Consider tension and friction forces",
+            variable_mass: "Use F = ma with effective mass",
+            coupled: "Total mass moves together: a = F/m_total",
+
+            // FRICTION
+            static: "f_s,max = μs × N = μs × mg",
+            kinetic: "f_k = μk × N = μk × mg",
+            max_static: "Maximum static friction before motion starts",
+            kinetic_vs_static: "Static friction is usually larger than kinetic",
+            slope_friction: "f = μN = μ(mg cos θ)",
+            critical: "At critical point, F_applied = f_max"
         }
     },
 

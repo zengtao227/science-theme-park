@@ -188,6 +188,95 @@ export const dePhysics = {
             newton_1: "TRÄGHEIT",
             newton_2: "F = ma",
             friction: "REIBUNGSKRÄFTE"
+        },
+        labels: {
+            input: "KRAFTPARAMETER",
+            mass: "Masse (m)",
+            acc: "Beschleunigung (a)",
+            force: "Kraft (F)",
+            friction: "Reibung (f)",
+            coeff: "Koeffizient (μ)",
+            net_force: "Nettokraft (ΣF)",
+            normal_force: "Normalkraft (N)"
+        },
+        prompts: {
+            // NEWTON 1 - Trägheit & Gleichgewicht
+            rest: "Objekt (m={m}kg) ist in Ruhe. Nettokraft ΣF?",
+            const_v: "Objekt (m={m}kg) bewegt sich mit konstanter Geschwindigkeit {v}m/s. Nettokraft ΣF?",
+            equilibrium: "Kräfte F₁={f1}N (rechts) und F₂={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F₃?",
+            space: "Im Weltraum (keine Reibung), Objekt (m={m}kg) wird mit F={f}N für {t}s geschoben, dann losgelassen. Kraft nach Loslassen?",
+            inertia: "Objekt (m={m}kg) in Ruhe. Welche Eigenschaft widersetzt sich Bewegungsänderung?",
+            "2d_balance": "Zwei senkrechte Kräfte wirken auf Objekt (m={m}kg). Resultierende Kraft?",
+            vector_add: "Kräfte F₁={f}N (Ost) und F₂={f}N (Nord) wirken auf Objekt. Nettokraft?",
+            slope: "Objekt (m={m}kg) auf Hang (θ={theta}°) mit Reibung μ={mu}. Normalkomponente?",
+            space_friction: "Im Weltraum, Objekt (m={m}kg) erfährt Reibung μ={mu}. Ist das realistisch?",
+            complex: "Objekt (m={m}kg) gezogen mit F={f}N gegen Reibung μ={mu}. Nettokraft?",
+
+            // NEWTON 2 - F=ma
+            find_f: "Masse m={m}kg beschleunigt mit a={a}m/s². Finde Nettokraft F.",
+            find_a: "Nettokraft F={f}N wirkt auf Masse m={m}kg. Finde Beschleunigung a.",
+            gravity: "Objekt m={m}kg auf Planet (g={g}m/s²). Gewichtskraft W=mg?",
+            net_force: "Kraft F={f}N wirkt auf m={m}kg. Reibung f={fr}N wirkt entgegen. Nettobeschleunigung?",
+            friction: "Kraft F={f}N zieht m={m}kg mit Reibung μ={mu}. Beschleunigung?",
+            pulley: "Flaschenzugsystem: Masse m={m}kg, angewandte Kraft F={f}N, Reibung μ={mu}. Beschleunigung?",
+            variable_mass: "Kraft F={f}N wirkt auf variables Massensystem m={m}kg. Effektive Beschleunigung?",
+            coupled: "Zwei gekoppelte Massen: m₁={m}kg, angewandt F={f}N. Systembeschleunigung?",
+
+            // REIBUNG
+            static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
+            kinetic: "Kiste m={m}kg rutscht (μk={mu}). Gleitreibung?",
+            max_static: "Kiste m={m}kg auf Oberfläche (μs={mu}). Maximale Haftreibung vor Rutschen?",
+            kinetic_vs_static: "Kiste m={m}kg: μs={mu}, μk={mu}. Welche Reibung ist größer?",
+            slope_friction: "Kiste m={m}kg auf Hang (θ={theta}°) mit μ={mu}. Reibungskraft?",
+            critical: "Kiste m={m}kg gezogen mit F={f}N mit μ={mu}. Am kritischen Punkt, Nettokraft?",
+
+            // Kompatibilitätsschlüssel
+            n1_const_vel: "Objekt (m={m}kg) bewegt sich mit konstanter Geschwindigkeit {v}m/s. Nettokraft ΣF?",
+            n1_equilibrium: "Kräfte F₁={f1}N (rechts) und F₂={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F₃?",
+            n1_rest: "Objekt (m={m}kg) ist in Ruhe. Kraft F={f}N schiebt rechts. Reibung f={fr}N wirkt links. Beschleunigung?",
+            n1_space: "Im Weltraum (keine Reibung), Objekt (m={m}kg) wird mit F={f}N für {t}s geschoben, dann losgelassen. Kraft nach Loslassen?",
+            n1_inertia: "Welche Eigenschaft widersetzt sich Bewegungsänderung für ein {m}kg Objekt?",
+            n2_find_f: "Masse m={m}kg beschleunigt mit a={a}m/s². Finde Nettokraft F.",
+            n2_find_a: "Nettokraft F={f}N wirkt auf Masse m={m}kg. Finde Beschleunigung a.",
+            n2_find_m: "Nettokraft F={f}N verursacht Beschleunigung a={a}m/s². Finde Masse m.",
+            n2_complex: "Kraft F={f}N zieht Masse m={m}kg gegen Reibung f={fr}N. Finde Beschleunigung.",
+            n2_gravity: "Objekt m={m}kg fällt auf Planet (g={g}m/s²). Gewichtskraft Fg?",
+            fr_static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
+            fr_kinetic: "Kiste m={m}kg rutscht (μk={mu}). Gleitreibung?",
+            fr_norm: "Kiste m={m}kg gegen Wand gedrückt mit F={f}N. Normalkraft?",
+            fr_slide: "Kiste m={m}kg rutscht auf ebener Fläche. Reibung f={f}N. Koeffizient μk?",
+            fr_bank: "Auto fährt auf geneigter Straße (θ={theta}°). Benötigte Reibung?"
+        },
+        hints: {
+            // NEWTON 1
+            rest: "In Ruhe bedeutet v=0, also ΣF=0 (Newtons Erstes Gesetz)",
+            const_v: "Konstante Geschwindigkeit bedeutet a=0, also ΣF=0",
+            equilibrium: "Für Gleichgewicht müssen alle Kräfte ausgeglichen sein: F₁ + F₃ = F₂",
+            space: "Nach Loslassen wirkt keine Kraft (F=0 im Weltraum)",
+            inertia: "Trägheit ist die Eigenschaft, die Bewegungsänderungen widersetzt",
+            "2d_balance": "Verwenden Sie Pythagoras für senkrechte Kräfte",
+            vector_add: "Verwenden Sie Vektoraddition: |F_net| = √(F₁² + F₂²)",
+            slope: "Normalkraft N = mg cos(θ)",
+            space_friction: "Keine Reibung im Weltraum (keine Atmosphäre)",
+            complex: "F_net = F_angewandt - f_reibung",
+
+            // NEWTON 2
+            find_f: "Verwenden Sie F = ma",
+            find_a: "Verwenden Sie a = F/m",
+            gravity: "Gewicht W = mg",
+            net_force: "F_net = F_angewandt - f, dann a = F_net/m",
+            friction: "f = μN = μmg, dann a = (F - f)/m",
+            pulley: "Berücksichtigen Sie Spannung und Reibungskräfte",
+            variable_mass: "Verwenden Sie F = ma mit effektiver Masse",
+            coupled: "Gesamtmasse bewegt sich zusammen: a = F/m_gesamt",
+
+            // REIBUNG
+            static: "f_s,max = μs × N = μs × mg",
+            kinetic: "f_k = μk × N = μk × mg",
+            max_static: "Maximale Haftreibung vor Bewegungsbeginn",
+            kinetic_vs_static: "Haftreibung ist normalerweise größer als Gleitreibung",
+            slope_friction: "f = μN = μ(mg cos θ)",
+            critical: "Am kritischen Punkt, F_angewandt = f_max"
         }
     },
 

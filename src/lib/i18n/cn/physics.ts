@@ -189,6 +189,95 @@ export const cnPhysics = {
             newton_1: "惯性定律",
             newton_2: "牛顿第二定律 (F=ma)",
             friction: "摩擦力分析"
+        },
+        labels: {
+            input: "力学参数",
+            mass: "质量 (m)",
+            acc: "加速度 (a)",
+            force: "力 (F)",
+            friction: "摩擦力 (f)",
+            coeff: "摩擦系数 (μ)",
+            net_force: "合力 (ΣF)",
+            normal_force: "支持力 (N)"
+        },
+        prompts: {
+            // 牛顿第一定律 - 惯性与平衡
+            rest: "物体 (m={m}kg) 处于静止状态。合力 ΣF？",
+            const_v: "物体 (m={m}kg) 以恒定速度 {v}m/s 运动。合力 ΣF？",
+            equilibrium: "力 F₁={f1}N (向右) 和 F₂={f2}N (向左) 作用于物体。为达到平衡，F₃？",
+            space: "在深空中（无摩擦），物体 (m={m}kg) 被力 F={f}N 推动 {t}秒后释放。释放后的力？",
+            inertia: "物体 (m={m}kg) 静止。什么性质阻止运动状态改变？",
+            "2d_balance": "两个垂直的力作用于物体 (m={m}kg)。合力大小？",
+            vector_add: "力 F₁={f}N (向东) 和 F₂={f}N (向北) 作用于物体。合力大小？",
+            slope: "物体 (m={m}kg) 在斜面上 (θ={theta}°)，摩擦系数 μ={mu}。支持力分量？",
+            space_friction: "在太空中，物体 (m={m}kg) 受摩擦力 μ={mu}。这现实吗？",
+            complex: "物体 (m={m}kg) 被力 F={f}N 拉动，对抗摩擦 μ={mu}。合力？",
+
+            // 牛顿第二定律 - F=ma
+            find_f: "质量 m={m}kg 以加速度 a={a}m/s² 运动。求合力 F。",
+            find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
+            gravity: "物体 m={m}kg 在行星上 (g={g}m/s²)。重力 W=mg？",
+            net_force: "力 F={f}N 作用于 m={m}kg。摩擦力 f={fr}N 阻碍。合加速度？",
+            friction: "力 F={f}N 拉动 m={m}kg，摩擦系数 μ={mu}。加速度？",
+            pulley: "滑轮系统：质量 m={m}kg，施加力 F={f}N，摩擦 μ={mu}。加速度？",
+            variable_mass: "力 F={f}N 作用于变质量系统 m={m}kg。有效加速度？",
+            coupled: "两个质量耦合：m₁={m}kg，施加 F={f}N。系统加速度？",
+
+            // 摩擦力
+            static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
+            kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
+            max_static: "箱子 m={m}kg 在表面上 (μs={mu})。滑动前的最大静摩擦？",
+            kinetic_vs_static: "箱子 m={m}kg：μs={mu}，μk={mu}。哪个摩擦力更大？",
+            slope_friction: "箱子 m={m}kg 在斜面上 (θ={theta}°)，μ={mu}。摩擦力？",
+            critical: "箱子 m={m}kg 被力 F={f}N 拉动，μ={mu}。临界点的合力？",
+
+            // 兼容旧键
+            n1_const_vel: "物体 (m={m}kg) 以恒定速度 {v}m/s 运动。合力 ΣF？",
+            n1_equilibrium: "力 F₁={f1}N (向右) 和 F₂={f2}N (向左) 作用于物体。为达到平衡，F₃？",
+            n1_rest: "物体 (m={m}kg) 静止。力 F={f}N 向右推。摩擦力 f={fr}N 向左。加速度？",
+            n1_space: "在深空中（无摩擦），物体 (m={m}kg) 被力 F={f}N 推动 {t}秒后释放。释放后的力？",
+            n1_inertia: "什么性质阻止 {m}kg 物体的运动状态改变？",
+            n2_find_f: "质量 m={m}kg 以加速度 a={a}m/s² 运动。求合力 F。",
+            n2_find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
+            n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s²。求质量 m。",
+            n2_complex: "力 F={f}N 拉动质量 m={m}kg 对抗摩擦力 f={fr}N。求加速度。",
+            n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s²)。重力 Fg？",
+            fr_static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
+            fr_kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
+            fr_norm: "箱子 m={m}kg 被力 F={f}N 压在墙上。支持力？",
+            fr_slide: "箱子 m={m}kg 在水平地板上滑动。摩擦力 f={f}N。系数 μk？",
+            fr_bank: "汽车在倾斜路面转弯 (θ={theta}°)。需要的摩擦力？"
+        },
+        hints: {
+            // 牛顿第一定律
+            rest: "静止意味着 v=0，所以 ΣF=0（牛顿第一定律）",
+            const_v: "恒定速度意味着 a=0，所以 ΣF=0",
+            equilibrium: "平衡时，所有力必须平衡：F₁ + F₃ = F₂",
+            space: "释放后，无力作用（太空中 F=0）",
+            inertia: "惯性是阻止运动状态改变的性质",
+            "2d_balance": "对垂直的力使用勾股定理",
+            vector_add: "使用矢量加法：|F_net| = √(F₁² + F₂²)",
+            slope: "支持力 N = mg cos(θ)",
+            space_friction: "太空中无摩擦（无大气）",
+            complex: "F_net = F_applied - f_friction",
+
+            // 牛顿第二定律
+            find_f: "使用 F = ma",
+            find_a: "使用 a = F/m",
+            gravity: "重力 W = mg",
+            net_force: "F_net = F_applied - f，然后 a = F_net/m",
+            friction: "f = μN = μmg，然后 a = (F - f)/m",
+            pulley: "考虑张力和摩擦力",
+            variable_mass: "使用 F = ma，有效质量",
+            coupled: "总质量一起运动：a = F/m_total",
+
+            // 摩擦力
+            static: "f_s,max = μs × N = μs × mg",
+            kinetic: "f_k = μk × N = μk × mg",
+            max_static: "运动开始前的最大静摩擦",
+            kinetic_vs_static: "静摩擦通常大于动摩擦",
+            slope_friction: "f = μN = μ(mg cos θ)",
+            critical: "临界点时，F_applied = f_max"
         }
     },
 
