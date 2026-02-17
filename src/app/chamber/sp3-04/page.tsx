@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PressureBuoyancyCanvas from "@/components/chamber/sp1-07/PressureBuoyancyCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -19,11 +19,9 @@ interface SP304Quest extends Quest {
     volume?: number;
 }
 
-type SP304T = typeof translations.EN.sp3_04;
-
 export default function SP304Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp3_04 || translations.EN.sp3_04) as SP304T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP304Quest[] => {
         const quests: SP304Quest[] = [];
@@ -662,16 +660,16 @@ export default function SP304Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "PRESSURE" as Stage, label: t.stages.pressure },
-        { id: "BUOYANCY" as Stage, label: t.stages.buoyancy },
-        { id: "HYDRAULICS" as Stage, label: t.stages.hydraulics },
-    ], [t.stages]);
+        { id: "PRESSURE" as Stage, label: t("sp3_04.stages.pressure") },
+        { id: "BUOYANCY" as Stage, label: t("sp3_04.stages.buoyancy") },
+        { id: "HYDRAULICS" as Stage, label: t("sp3_04.stages.hydraulics") },
+    ], [t]);
 
     if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
 
     return (
         <ChamberLayout
-            title={t.title}
+            title={t("sp3_04.title")}
             moduleCode="SP3.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -681,14 +679,19 @@ export default function SP304Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sp3_04.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                difficulty: t.difficulty,
+                back: t("sp3_04.back"),
+                check: t("sp3_04.check"),
+                next: t("sp3_04.next"),
+                correct: t("sp3_04.correct"),
+                incorrect: t("sp3_04.incorrect"),
+                difficulty: {
+                    basic: t("sp3_04.difficulty.basic"),
+                    core: t("sp3_04.difficulty.core"),
+                    advanced: t("sp3_04.difficulty.advanced"),
+                    elite: t("sp3_04.difficulty.elite"),
+                },
             }}
             monitorContent={
                 <PressureBuoyancyCanvas
@@ -696,7 +699,26 @@ export default function SP304Page() {
                     depth={currentQuest.depth || 0}
                     objectDensity={1000}
                     pistonForce={currentQuest.force || 0}
-                    translations={t}
+                    translations={{
+                        title: t("sp3_04.title"),
+                        stages: {
+                            pressure: t("sp3_04.stages.pressure"),
+                            buoyancy: t("sp3_04.stages.buoyancy"),
+                            hydraulics: t("sp3_04.stages.hydraulics"),
+                        },
+                        difficulty: {
+                            basic: t("sp3_04.difficulty.basic"),
+                            core: t("sp3_04.difficulty.core"),
+                            advanced: t("sp3_04.difficulty.advanced"),
+                            elite: t("sp3_04.difficulty.elite"),
+                        },
+                        back: t("sp3_04.back"),
+                        check: t("sp3_04.check"),
+                        next: t("sp3_04.next"),
+                        correct: t("sp3_04.correct"),
+                        incorrect: t("sp3_04.incorrect"),
+                        footer_left: t("sp3_04.footer_left"),
+                    }}
                 />
             }
         >

@@ -61,6 +61,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
         slots: [
           { id: "theta_r", labelLatex: "\\theta_r", placeholder: "θᵣ (degrees)", expected: reflectedAngle },
         ],
+        hintLatex: [`\\text{Angle of incidence equals angle of reflection}`],
       });
     }
     return quests;
@@ -146,6 +147,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
         slots: [
           { id: "theta_2", labelLatex: "\\theta_2", placeholder: "θ₂ (degrees)", expected: parseFloat(theta2.toFixed(1)) },
         ],
+        hintLatex: [`\\text{Use Snell's Law: } n_1\\sin\\theta_1=n_2\\sin\\theta_2`],
       });
     }
     
@@ -225,6 +227,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
           { id: "v", labelLatex: "v\\text{ (image distance)}", placeholder: "v (px)", expected: parseFloat(v.toFixed(1)) },
           { id: "m", labelLatex: "m\\text{ (magnification)}", placeholder: "m", expected: parseFloat(magnification.toFixed(2)) },
         ],
+        hintLatex: [`\\text{Lens equation: } \\frac{1}{f}=\\frac{1}{u}+\\frac{1}{v}`],
       });
     }
     
