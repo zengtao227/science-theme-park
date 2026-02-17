@@ -790,7 +790,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
   - 更新 `CURRICULUM_PLAN_UPDATE_2026_v2.md`
   - 更新 `DEVELOPMENT_STATUS_2026-02-15.md`
 
-- [x] 4.6 最终提交
+- [-] 4.6 最终提交
   - `git add -A && git commit -m "feat: complete all module question pools - phase 1" && git push`
 
 ---
