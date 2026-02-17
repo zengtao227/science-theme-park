@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,9 @@ interface SC301Quest extends Quest {
   scenario?: string;
 }
 
-type SC301T = typeof translations.EN.sc3_01;
-
 export default function SC301Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = (translations[currentLanguage]?.sc3_01 || translations.EN.sc3_01) as SC301T;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
 
   const buildStagePool = useCallback((difficulty: Difficulty, currentStage: Stage): SC301Quest[] => {
     const quests: SC301Quest[] = [];
@@ -222,22 +220,23 @@ export default function SC301Page() {
   }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
-    { id: "ASPIRIN" as Stage, label: t.stages.aspirin },
-    { id: "CAFFEINE" as Stage, label: t.stages.caffeine },
-    { id: "ADRENALINE" as Stage, label: t.stages.adrenaline },
+    { id: "ASPIRIN" as Stage, label: t("sc3_01.stages.aspirin") },
+    { id: "CAFFEINE" as Stage, label: t("sc3_01.stages.caffeine") },
+    { id: "ADRENALINE" as Stage, label: t("sc3_01.stages.adrenaline") },
   ], [t]);
 
   const hint = getHint();
 
   const activeScenario = useMemo(() => {
     if (!currentQuest?.scenario) return null;
-    return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+    const scenario = t(`sc3_01.scenarios.${currentQuest.scenario}`, { defaultValue: "" });
+    return scenario || null;
   }, [currentQuest, t]);
 
   return (
     <ChamberLayout
       moduleCode="SC3.01"
-      title={t.title}
+      title={t("sc3_01.title")}
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stagesProps}
@@ -246,8 +245,20 @@ export default function SC301Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
-      translations={t}
+      footerLeft={t("sc3_01.footer_left")}
+      translations={{
+        back: t("sc3_01.back"),
+        check: t("sc3_01.check"),
+        next: t("sc3_01.next"),
+        correct: t("sc3_01.correct"),
+        incorrect: t("sc3_01.incorrect"),
+        difficulty: {
+          BASIC: t("sc3_01.difficulty.BASIC"),
+          CORE: t("sc3_01.difficulty.CORE"),
+          ADVANCED: t("sc3_01.difficulty.ADVANCED"),
+          ELITE: t("sc3_01.difficulty.ELITE"),
+        },
+      }}
       monitorContent={
         <div className="flex flex-col h-full gap-4">
           <div className="flex-1 min-h-[400px]">
@@ -255,7 +266,7 @@ export default function SC301Page() {
           </div>
           <div className="mt-auto pt-4 border-t border-white/5">
             <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-              <span>{t.labels.snap || "MASTERY"}</span>
+              <span>{t("sc3_01.labels.snap", { defaultValue: "MASTERY" })}</span>
               <span>{currentStageStats?.correct || 0} PTS</span>
             </div>
             <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -278,7 +289,7 @@ export default function SC301Page() {
           <div className="space-y-12">
             <div className="text-center space-y-6">
               <h3 className="text-[10px] text-neon-cyan uppercase tracking-[0.5em] font-black italic">
-                {t.objective_title}
+                {t("sc3_01.objective_title")}
               </h3>
               <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -290,7 +301,7 @@ export default function SC301Page() {
               <div className="space-y-8">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
                   <span className="w-8 h-px bg-neon-cyan/30" />
-                  {t.labels.input}
+                  {t("sc3_01.labels.input")}
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -335,7 +346,7 @@ export default function SC301Page() {
                         </div>
                         <div>
                           <div className="font-black text-lg tracking-widest uppercase italic">
-                            {lastCheck.ok ? t.correct : t.incorrect}
+                            {lastCheck.ok ? t("sc3_01.correct") : t("sc3_01.incorrect")}
                           </div>
                         </div>
                       </div>
@@ -361,7 +372,7 @@ export default function SC301Page() {
                     : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                     }`}
                 >
-                  {lastCheck?.ok ? t.next : t.check}
+                  {lastCheck?.ok ? t("sc3_01.next") : t("sc3_01.check")}
                 </motion.button>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -19,11 +19,9 @@ interface SC302Quest extends Quest {
     scenario?: string;
 }
 
-type SC302T = typeof translations.EN.sc3_02;
-
 export default function SC302Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sc3_02 || translations.EN.sc3_02) as SC302T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methane");
     const [show3D, setShow3D] = useState(true);
 
@@ -69,12 +67,12 @@ export default function SC302Page() {
                     molecule: hc.name,
                     formula: hc.formula,
                     scenario: hc.scenario,
-                    promptLatex: `\\text{${t.prompts.name_formula.replace('{name}', hc.name)}}`,
+                    promptLatex: `\\text{${t("sc3_02.prompts.name_formula", { name: hc.name })}}`,
                     expressionLatex: `\\text{${hc.name}} \\rightarrow \\text{?}`,
                     targetLatex: hc.formula,
                     slots: [{ id: "ans", labelLatex: "\\text{Formula}", placeholder: "CxHy", expected: hc.formula }],
                     correctLatex: hc.formula,
-                    hintLatex: [`\\text{${t.prompts.hint_carbons.replace('{count}', hc.carbons)}}`]
+                    hintLatex: [`\\text{${t("sc3_02.prompts.hint_carbons", { count: hc.carbons })}}`]
                 });
             });
         }
@@ -117,12 +115,12 @@ export default function SC302Page() {
                     stage,
                     molecule: g.example,
                     scenario: g.scenario,
-                    promptLatex: `\\text{${t.prompts.functional_group.replace('{name}', g.name === 'benzene' ? 'Benzene' : g.name)}}`,
+                    promptLatex: `\\text{${t("sc3_02.prompts.functional_group", { name: g.name === 'benzene' ? 'Benzene' : g.name })}}`,
                     expressionLatex: `\\text{${g.name}} \\rightarrow \\text{?}`,
                     targetLatex: g.group,
                     slots: [{ id: "ans", labelLatex: "\\text{Formula/Group}", placeholder: "...", expected: g.group }],
                     correctLatex: g.group,
-                    hintLatex: [`\\text{${t.prompts.hint_group.replace('{example}', g.example)}}`]
+                    hintLatex: [`\\text{${t("sc3_02.prompts.hint_group", { example: g.example })}}`]
                 });
             });
         }
@@ -165,12 +163,12 @@ export default function SC302Page() {
                     stage,
                     formula: iso.formula,
                     scenario: iso.scenario,
-                    promptLatex: `\\text{${t.prompts.isomer_count.replace('{formula}', iso.formula)}}`,
+                    promptLatex: `\\text{${t("sc3_02.prompts.isomer_count", { formula: iso.formula })}}`,
                     expressionLatex: `${iso.formula} \\rightarrow \\text{? isomers}`,
                     targetLatex: iso.count,
                     slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "...", expected: iso.count }],
                     correctLatex: iso.count,
-                    hintLatex: [`\\text{${t.prompts.hint_isomer.replace('{type}', iso.type)}}`]
+                    hintLatex: [`\\text{${t("sc3_02.prompts.hint_isomer", { type: iso.type })}}`]
                 });
             });
         }
@@ -205,9 +203,9 @@ export default function SC302Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "HYDROCARBONS", label: t.stages.hydrocarbons },
-        { id: "FUNCTIONAL_GROUPS", label: t.stages.functional_groups },
-        { id: "ISOMERS", label: t.stages.isomers },
+        { id: "HYDROCARBONS", label: t("sc3_02.stages.hydrocarbons") },
+        { id: "FUNCTIONAL_GROUPS", label: t("sc3_02.stages.functional_groups") },
+        { id: "ISOMERS", label: t("sc3_02.stages.isomers") },
     ], [t]);
 
     useEffect(() => {
@@ -220,13 +218,14 @@ export default function SC302Page() {
 
     const activeScenario = useMemo(() => {
         if (!currentQuest?.scenario) return null;
-        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+        const scenario = t(`sc3_02.scenarios.${currentQuest.scenario}`, { defaultValue: "" });
+        return scenario || null;
     }, [currentQuest, t]);
 
     return (
         <ChamberLayout
             moduleCode="SC3.02"
-            title={t.title}
+            title={t("sc3_02.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -235,8 +234,20 @@ export default function SC302Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
-            translations={t}
+            footerLeft={t("sc3_02.footer_left")}
+            translations={{
+                back: t("sc3_02.back"),
+                check: t("sc3_02.check"),
+                next: t("sc3_02.next"),
+                correct: t("sc3_02.correct"),
+                incorrect: t("sc3_02.incorrect"),
+                difficulty: {
+                    BASIC: t("sc3_02.difficulty.BASIC"),
+                    CORE: t("sc3_02.difficulty.CORE"),
+                    ADVANCED: t("sc3_02.difficulty.ADVANCED"),
+                    ELITE: t("sc3_02.difficulty.ELITE"),
+                },
+            }}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -250,7 +261,7 @@ export default function SC302Page() {
 
                     <div className="grid grid-cols-1 gap-2">
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.view_3d}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t("sc3_02.labels.view_3d")}</span>
                             <input
                                 type="checkbox"
                                 checked={show3D}
@@ -262,7 +273,7 @@ export default function SC302Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.organic_mastery}</span>
+                            <span>{t("sc3_02.labels.organic_mastery")}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -285,7 +296,7 @@ export default function SC302Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {t("sc3_02.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -296,7 +307,7 @@ export default function SC302Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-purple/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(255,0,255,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-purple/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.molecule_display}
+                                    {t("sc3_02.labels.molecule_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -309,7 +320,7 @@ export default function SC302Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-purple/30" />
-                                    {t.labels.input_terminal}
+                                    {t("sc3_02.labels.input_terminal")}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -354,10 +365,10 @@ export default function SC302Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? t("sc3_02.correct") : t("sc3_02.incorrect")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? t("sc3_02.feedback.correct") : t("sc3_02.feedback.incorrect")}
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,7 +394,7 @@ export default function SC302Page() {
                                         : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
-                                    {lastCheck?.ok ? t.next : t.check}
+                                    {lastCheck?.ok ? t("sc3_02.next") : t("sc3_02.check")}
                                 </motion.button>
                             </div>
                         </div>
