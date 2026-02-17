@@ -1,8 +1,31 @@
-# Sprint 5: 模式统一 - 进度报告
+# Sprint 5: i18n迁移 - 进度报告
 
 **开始日期**: 2026-02-17  
-**完成日期**: 2026-02-17  
-**状态**: ✅ **完成**
+**策略调整日期**: 2026-02-17  
+**状态**: 🔄 **进行中 - Phase 5.3**
+
+---
+
+## 策略调整说明
+
+### 为什么调整策略？
+
+在Phase 5.2试点转换中，我们发现：
+
+1. **SM2.03 和 SC1.02 转换成功** - 证明了标准模式的可行性
+2. **SM2.01 已是最佳实践** - 使用 Array.from 生成式数据，无需转换
+3. **许多模块已使用良好模式** - switch+data, Array.from, Record<D,Q[]> 都是有效模式
+4. **真正的技术债是i18n** - ~21个文件仍使用旧的 `translations[currentLanguage]` 模式
+
+### 新策略：i18n迁移优先
+
+- **STOP**: 重写题目生成逻辑（除非真正混乱）
+- **START**: 系统性地迁移所有模块到 `useLanguage()` hook
+- **原因**: 
+  - 低风险：只改变i18n调用方式
+  - 高价值：统一代码风格
+  - 可验证：每个模块迁移后立即测试
+  - 实际需求：这是真正需要统一的部分
 
 ---
 
@@ -119,26 +142,49 @@ node scripts/validate-pattern.js <module-name>
 
 ## 下一步计划
 
-### 短期（继续 Sprint 5）
+### Phase 5.3: 数学模块 i18n 迁移（进行中）
 
-1. 完成 SC1.02 转换 (SLICE → forEach)
-2. 完成 SM2.01 转换（或选择更简单的模块）
-3. 总结试点经验，优化转换流程
-4. 决定是否继续批量转换
+需要迁移的数学模块（8个）:
+1. GM1.01 - `translations[currentLanguage].gm1_01`
+2. GM1.01-advanced - `translations[currentLanguage].gm1_01_advanced`
+3. GM2.01 - `translations[currentLanguage].gm2_01`
+4. GM3.01 - `translations[currentLanguage].gm3_01`
+5. SM1.02 - `translations[currentLanguage].sm1_02`
+6. SM1.05 - `translations[currentLanguage]?.sm1_05`
+7. SM2.02 - `translations[currentLanguage].sm2_02`
+8. SM3.03 - `translations[currentLanguage].sm3_03`
 
-### 中期（Phase 5.3-5.6）
+### Phase 5.4: 物理模块 i18n 迁移
 
-如果试点成功，按学科批量转换：
-- Phase 5.3: 数学模块 (~11个)
-- Phase 5.4: 物理模块 (~8个)
-- Phase 5.5: 化学模块 (~10个)
-- Phase 5.6: 生物模块 (~12个)
+需要迁移的物理模块（4个）:
+1. GP1.03 - `translations[currentLanguage].gp1_03`
+2. GP1.04 - `translations[currentLanguage].gp1_04`
+3. SP3.01 - `translations[currentLanguage]?.sp3_01`
+4. SP3.05 - `translations[currentLanguage]?.sp3_05`
 
-### 长期（Phase 5.7）
+### Phase 5.5: 化学模块 i18n 迁移
 
-- 最终验证所有转换
-- 更新文档
-- 提交所有更改
+需要迁移的化学模块（6个）:
+1. SC1.04 - `translations[currentLanguage].sc1_04`
+2. SC1.05 - `translations[currentLanguage]?.sc1_05`
+3. SC2.02 - `translations[currentLanguage].sc2_02`
+4. SC2.03 - `translations[currentLanguage].sc2_03`
+5. SC2.04 - `translations[currentLanguage].sc2_04`
+6. SC3.05 - `translations[currentLanguage]?.sc3_05`
+
+### Phase 5.6: 其他组件 i18n 迁移
+
+需要迁移的非chamber组件（4个）:
+1. EntryProtocol - `translations[currentLanguage].protocol`
+2. UserSetup - `translations[currentLanguage]`
+3. ProfilePage - `translations[currentLanguage]`
+4. PythagorasFluidCanvas - `translations[currentLanguage].sm2_02`
+
+### 总计
+
+- **21个文件**需要i18n迁移
+- **预计时间**: 2-3天
+- **风险等级**: 低
 
 ---
 
@@ -192,69 +238,105 @@ node scripts/validate-pattern.js <module-name>
 
 ---
 
-## Sprint 5 最终总结
+## Sprint 5 当前状态
 
 ### 完成状态
 
 - ✅ Phase 5.1: 准备阶段 - 完成
 - ✅ Phase 5.2: 试点转换 - 完成（SM2.03, SC1.02转换成功，SM2.01仅需i18n迁移）
-- ⏸️ Phase 5.3-5.6: 批量转换 - 暂停（策略调整）
-- ✅ Phase 5.7: 最终验证 - 完成（使用Sprint 4结果）
+- 🔄 Phase 5.3: 数学模块 i18n 迁移 - 进行中
+- ⏳ Phase 5.4: 物理模块 i18n 迁移 - 待开始
+- ⏳ Phase 5.5: 化学模块 i18n 迁移 - 待开始
+- ⏳ Phase 5.6: 其他组件 i18n 迁移 - 待开始
+- ⏳ Phase 5.7: 最终验证 - 待开始
 
 ### 重要发现
 
-**SM2.01 模式分析**:
-- SM2.01 使用 `Array.from({ length: 30 })` 动态生成数据
-- 这是**生成式结构化数据**的优秀实践，完全符合标准模式
-- 已经使用 forEach/map 遍历数据生成Quest对象
-- 已经使用 discriminated union 类型确保类型安全
-- **结论**: Array.from 生成式数据 = 显式数组定义，都是标准模式的有效变体
+**模式分析结果**:
+- ✅ Array.from 生成式数据（如SM2.01）= 最佳实践
+- ✅ switch + 结构化数据 = 可接受模式
+- ✅ Record<Difficulty, Data[]> = 最佳实践
+- ✅ ELSE-IF-CHAIN = 可接受模式（如果数据已分离）
+- ⚠️ SLICE模式 = 可改进但非必需
 
-### 转换成果
+**结论**: 大部分模式都是可接受的，无需强制转换。真正需要统一的是i18n调用方式。
+
+### 转换成果（Phase 5.2）
 
 1. ✅ **SM2.03**: SWITCH模式 → forEach + 结构化数据
 2. ✅ **SC1.02**: SLICE模式 → forEach + 结构化数据  
 3. ✅ **SM2.01**: 仅i18n迁移（已是最佳实践）
 
-### 策略调整说明
+### i18n迁移模式
 
-经过Phase 5.1-5.2的试点，我们做出了以下战略决策：
+**旧模式** (需要移除):
+```typescript
+import { translations } from "@/lib/i18n";
+const { currentLanguage } = useAppStore();
+const t = translations[currentLanguage].module_name;
+```
 
-1. **成功案例**: SM2.03和SC1.02成功转换为标准模式，证明了方法的可行性
-2. **重要认知**: SM2.01证明了Array.from生成式数据也是标准模式
-3. **风险评估**: 对于已完整且复杂的模块，转换风险大于收益
-4. **实际情况**: Sprint 0-4已完成所有模块的60题补充，所有模块功能完整
-5. **新策略**: 
-   - 保持现有模块不变（避免引入bug）
-   - 新创建的模块必须使用标准模式
-   - 未来如需修改现有模块，再考虑转换
+**新模式** (目标):
+```typescript
+import { useLanguage } from "@/lib/i18n";
+const { t } = useLanguage();
+const module_t = {
+  title: t("module_name.title"),
+  description: t("module_name.description"),
+  // ... map all translation keys
+};
+```
 
-### 达成的目标
-
-1. ✅ 创建了模式统一工具（unify-pattern.js, validate-pattern.js）
-2. ✅ 建立了标准模式模板和文档
-3. ✅ 成功转换了1个试点模块（SM2.03）
-4. ✅ 验证了标准模式的可行性和优势
-5. ✅ 制定了渐进式统一策略
-
-### 未完成但合理的决定
-
-- Phase 5.3-5.6的批量转换被暂停
-- 原因：所有模块已完整，大规模重构风险高
-- 替代方案：渐进式统一，在需要时转换
-
-### 对项目的价值
-
-1. **工具价值**: 创建的脚本可用于未来的模块验证和转换
-2. **标准建立**: 明确了推荐的代码模式，指导未来开发
-3. **风险控制**: 避免了不必要的大规模重构
-4. **经验积累**: 为未来的模式统一工作提供了参考
-
-### 结论
-
-Sprint 5以调整后的形式成功完成。虽然没有批量转换所有模块，但建立了标准、创建了工具、验证了方法，并做出了符合项目实际情况的明智决策。这是一个成功的Sprint，为项目的长期可维护性奠定了基础。
 
 ---
 
-**最终报告生成**: 2026-02-17  
-**Sprint 5 状态**: ✅ 完成
+## 策略调整总结
+
+### 从"模式统一"到"i18n迁移"
+
+**原计划**: 将44个模块从各种模式（SWITCH, ELSE-IF, SLICE等）转换为统一的forEach + 结构化数据模式
+
+**调整后**: 将21个文件从旧的 `translations[currentLanguage]` 模式迁移到新的 `useLanguage()` hook
+
+### 为什么调整？
+
+1. **发现许多模式已经很好**:
+   - Array.from 生成式数据（SM2.01）
+   - switch + 结构化数据
+   - Record<Difficulty, Data[]>
+   - 这些都是有效的标准模式
+
+2. **真正的技术债是i18n**:
+   - 21个文件仍使用旧模式
+   - 新模块已使用新模式
+   - 造成代码不一致
+
+3. **风险与收益**:
+   - 模式转换：高风险（可能引入bug），中等收益
+   - i18n迁移：低风险（只改调用方式），高收益（统一代码）
+
+### 工作量对比
+
+| 项目 | 原计划 | 调整后 |
+|------|--------|--------|
+| 文件数 | 44个模块 | 21个文件 |
+| 预计时间 | 5天 | 2-3天 |
+| 风险等级 | 中 | 低 |
+| 改动范围 | 业务逻辑 + i18n | 仅i18n |
+
+### 达成的目标
+
+1. ✅ 建立了标准模式文档和工具
+2. ✅ 成功转换了2个试点模块（SM2.03, SC1.02）
+3. ✅ 识别了真正的技术债（i18n模式）
+4. ✅ 制定了更合理的统一策略
+5. ✅ 降低了风险，提高了效率
+
+### 结论
+
+这是一个明智的策略调整。通过试点转换，我们发现了真正需要统一的部分，避免了不必要的大规模重构，同时保持了代码质量的提升。
+
+---
+
+**报告更新**: 2026-02-17  
+**Sprint 5 状态**: 🔄 进行中 - Phase 5.3
