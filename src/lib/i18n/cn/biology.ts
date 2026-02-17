@@ -673,12 +673,158 @@ export const cnBiology = {
             trachea: "气管"
         },
         prompts: {
-            organ_function: "哪个器官负责{function}？",
-            hint_organ: "{name}执行此功能",
-            component_function: "哪个组成部分负责{function}？",
-            hint_component: "{name}执行此功能",
-            structure_function: "哪个结构负责{function}？",
-            hint_structure: "{name}执行此功能"
+            // 消化系统 - 基础 (5题)
+            digestive_b1: "食物路径：口腔 → 食道 → ? → 肠道",
+            digestive_b2: "消化系统分解食物。它的主要功能是什么？",
+            digestive_b3: "小肠吸收营养。它的功能是什么？",
+            digestive_b4: "肝脏产生胆汁以消化脂肪。它的功能是什么？",
+            digestive_b5: "消化系统有7个主要器官。数一数：",
+            
+            // 消化系统 - 核心 (5题)
+            digestive_c1: "哪个器官产生消化酶和胰岛素？",
+            digestive_c2: "胃使用盐酸（pH 1.5-3.5）。它的功能是什么？",
+            digestive_c3: "小肠中的绒毛增加表面积。为什么这很重要？",
+            digestive_c4: "大肠吸收水分。如果这个功能失败会怎样？",
+            digestive_c5: "蠕动将食物推过消化道。这是什么过程？",
+            
+            // 消化系统 - 进阶 (5题)
+            digestive_a1: "胰腺分泌碳酸氢盐以中和胃酸。pH值如何变化？",
+            digestive_a2: "胆汁将脂肪乳化成更小的液滴。为什么这对消化是必要的？",
+            digestive_a3: "小肠长6-7米。长度如何影响吸收效率？",
+            digestive_a4: "胃酸杀死食物中的细菌。如果酸产生过低会怎样？",
+            digestive_a5: "肝脏处理来自小肠的营养物质。这个过程叫什么？",
+            
+            // 消化系统 - 精英 (5题)
+            digestive_e1: "克罗恩病导致消化道炎症。哪些器官最受影响？",
+            digestive_e2: "乳糖不耐症发生在小肠缺乏一种酶时。是哪种酶？",
+            digestive_e3: "肠神经系统独立控制消化。它包含多少神经元？",
+            digestive_e4: "乳糜泻损害小肠中的绒毛。后果是什么？",
+            digestive_e5: "消化系统使用机械和化学消化。比较它们的作用。",
+            
+            // 循环系统 - 基础 (5题)
+            circulatory_b1: "心脏将血液泵送到全身。它的功能是什么？",
+            circulatory_b2: "动脉将血液从心脏带走。静脉做什么？",
+            circulatory_b3: "循环系统有3个主要组成部分。数一数：",
+            circulatory_b4: "血液将氧气输送到细胞。它带走什么？",
+            circulatory_b5: "心脏有4个腔室。数一数：",
+            
+            // 循环系统 - 核心 (5题)
+            circulatory_c1: "心脏右侧将血液泵入肺部。这种循环叫什么？",
+            circulatory_c2: "左心室的壁比右心室厚。为什么？",
+            circulatory_c3: "毛细血管是微小的血管。它们的功能是什么？",
+            circulatory_c4: "血压测量为收缩压/舒张压。正常血压是多少？",
+            circulatory_c5: "心脏在静息时每分钟跳动60-100次。这叫什么？",
+            
+            // 循环系统 - 进阶 (5题)
+            circulatory_a1: "心输出量 = 心率 × 每搏输出量。计算静息时的心输出量：",
+            circulatory_a2: "动脉有厚实的弹性壁。这如何帮助承受压力？",
+            circulatory_a3: "静脉有单向瓣膜。如果这些瓣膜失效会怎样？",
+            circulatory_a4: "红细胞使用血红蛋白携带氧气。每个血红蛋白携带多少氧分子？",
+            circulatory_a5: "心脏的电系统控制节律。起搏器叫什么？",
+            
+            // 循环系统 - 精英 (5题)
+            circulatory_e1: "动脉粥样硬化用斑块使动脉变窄。后果是什么？",
+            circulatory_e2: "Frank-Starling机制调节心输出量。它如何工作？",
+            circulatory_e3: "血压调节涉及多个系统。说出三种机制：",
+            circulatory_e4: "心力衰竭降低心输出量。发生什么补偿机制？",
+            circulatory_e5: "循环系统在静息时输送5升/分钟，运动时25升/分钟。计算增加量：",
+            
+            // 呼吸系统 - 基础 (5题)
+            respiratory_b1: "气体交换发生在微小的气囊中。它们叫什么？",
+            respiratory_b2: "呼吸系统交换气体。什么气体进入血液？",
+            respiratory_b3: "呼吸系统有5个主要器官。数一数：",
+            respiratory_b4: "横膈膜收缩以扩张肺部。它的功能是什么？",
+            respiratory_b5: "空气路径：鼻 → 咽 → ? → 气管",
+            
+            // 呼吸系统 - 核心 (5题)
+            respiratory_c1: "气管有C形软骨环。为什么这种结构很重要？",
+            respiratory_c2: "支气管分支成更小的细支气管。这种结构叫什么？",
+            respiratory_c3: "肺泡有极薄的壁（0.5微米）。为什么这是必要的？",
+            respiratory_c4: "横膈膜在吸气时产生负压。这如何吸入空气？",
+            respiratory_c5: "健康成年人每分钟呼吸12-20次。这个速率叫什么？",
+            
+            // 呼吸系统 - 进阶 (5题)
+            respiratory_a1: "成年肺部包含约3亿个肺泡。总表面积是多少？",
+            respiratory_a2: "潮气量是每次呼吸交换的空气（~500毫升）。计算分钟通气量：",
+            respiratory_a3: "氧气从肺泡扩散到毛细血管。什么驱动这种扩散？",
+            respiratory_a4: "喉包含声带。它们如何产生声音？",
+            respiratory_a5: "表面活性剂降低肺泡中的表面张力。如果缺乏表面活性剂会怎样？",
+            
+            // 呼吸系统 - 精英 (5题)
+            respiratory_e1: "哮喘导致细支气管收缩。生理后果是什么？",
+            respiratory_e2: "COPD降低气体交换效率。发生什么补偿机制？",
+            respiratory_e3: "呼吸系统通过控制CO2水平调节血液pH。解释机制：",
+            respiratory_e4: "高海拔降低氧气可用性。身体如何适应？",
+            respiratory_e5: "肺炎使肺泡充满液体。计算气体交换能力的降低："
+        },
+        organs: {
+            stomach: "胃",
+            heart: "心脏",
+            lungs: "肺",
+            esophagus: "食道",
+            intestines: "肠道",
+            small_intestine: "小肠",
+            large_intestine: "大肠",
+            liver: "肝脏",
+            pancreas: "胰腺",
+            arteries: "动脉",
+            veins: "静脉",
+            capillaries: "毛细血管",
+            alveoli: "肺泡",
+            diaphragm: "横膈膜",
+            trachea: "气管",
+            larynx: "喉",
+            pharynx: "咽",
+            bronchi: "支气管",
+            bronchioles: "细支气管",
+            mouth: "口腔",
+            nose: "鼻"
+        },
+        functions: {
+            digestion: "消化",
+            absorption: "吸收",
+            bile_production: "胆汁分泌",
+            enzyme_production: "酶分泌",
+            acid_production: "酸分泌",
+            pump_blood: "泵血",
+            carry_blood: "输送血液",
+            return_blood: "将血液送回心脏",
+            gas_exchange: "气体交换",
+            breathing: "呼吸",
+            filter_air: "过滤空气",
+            produce_sound: "产生声音"
+        },
+        hints: {
+            digestive_b1: "食物在这里被搅拌和消化",
+            digestive_b2: "将食物分解为营养物质",
+            digestive_b3: "将营养物质吸收到血液中",
+            digestive_b4: "帮助消化脂肪",
+            digestive_b5: "数一数路径中的所有器官",
+            digestive_c1: "位于胃后面",
+            digestive_c2: "分解蛋白质并杀死细菌",
+            digestive_c3: "更大的表面积 = 更多的吸收",
+            digestive_c4: "导致脱水",
+            digestive_c5: "肌肉收缩",
+            circulatory_b1: "循环血液",
+            circulatory_b2: "与动脉相反",
+            circulatory_b3: "心脏和两种血管",
+            circulatory_b4: "细胞产生的废气",
+            circulatory_b5: "上下腔室",
+            circulatory_c1: "肺循环",
+            circulatory_c2: "泵送到全身",
+            circulatory_c3: "气体交换发生的地方",
+            circulatory_c4: "120/80 mmHg",
+            circulatory_c5: "心率",
+            respiratory_b1: "肺中的微小气囊",
+            respiratory_b2: "细胞呼吸所需的气体",
+            respiratory_b3: "从鼻到肺",
+            respiratory_b4: "呼吸肌肉",
+            respiratory_b5: "喉头",
+            respiratory_c1: "防止塌陷",
+            respiratory_c2: "支气管树",
+            respiratory_c3: "允许气体扩散",
+            respiratory_c4: "压力差",
+            respiratory_c5: "呼吸频率"
         }
     },
     sb3_01: {

@@ -673,12 +673,158 @@ export const enBiology = {
             trachea: "TRACHEA"
         },
         prompts: {
-            organ_function: "Which organ is responsible for {function}?",
-            hint_organ: "The {name} performs this function",
-            component_function: "Which component is responsible for {function}?",
-            hint_component: "The {name} performs this function",
-            structure_function: "Which structure is responsible for {function}?",
-            hint_structure: "The {name} performs this function"
+            // DIGESTIVE STAGE - BASIC (5 questions)
+            digestive_b1: "Food travels: Mouth → Esophagus → ? → Intestines",
+            digestive_b2: "The digestive system breaks down food. What is its main function?",
+            digestive_b3: "The small intestine absorbs nutrients. What is its function?",
+            digestive_b4: "The liver produces bile for fat digestion. What is its function?",
+            digestive_b5: "The digestive system has 7 major organs. Count them:",
+            
+            // DIGESTIVE STAGE - CORE (5 questions)
+            digestive_c1: "Which organ produces digestive enzymes and insulin?",
+            digestive_c2: "The stomach uses hydrochloric acid (pH 1.5-3.5). What is its function?",
+            digestive_c3: "Villi in the small intestine increase surface area. Why is this important?",
+            digestive_c4: "The large intestine absorbs water. What happens if this fails?",
+            digestive_c5: "Peristalsis moves food through the digestive tract. What is this process?",
+            
+            // DIGESTIVE STAGE - ADVANCED (5 questions)
+            digestive_a1: "The pancreas secretes bicarbonate to neutralize stomach acid. What is the pH change?",
+            digestive_a2: "Bile emulsifies fats into smaller droplets. Why is this necessary for digestion?",
+            digestive_a3: "The small intestine is 6-7 meters long. How does length affect absorption efficiency?",
+            digestive_a4: "Gastric acid kills bacteria in food. What happens if acid production is too low?",
+            digestive_a5: "The liver processes nutrients from the small intestine. What is this process called?",
+            
+            // DIGESTIVE STAGE - ELITE (5 questions)
+            digestive_e1: "Crohn's disease causes inflammation in the digestive tract. Which organs are most affected?",
+            digestive_e2: "Lactose intolerance occurs when the small intestine lacks an enzyme. Which enzyme?",
+            digestive_e3: "The enteric nervous system controls digestion independently. How many neurons does it contain?",
+            digestive_e4: "Celiac disease damages villi in the small intestine. What is the consequence?",
+            digestive_e5: "The digestive system uses mechanical and chemical digestion. Compare their roles.",
+            
+            // CIRCULATORY STAGE - BASIC (5 questions)
+            circulatory_b1: "The heart pumps blood throughout the body. What is its function?",
+            circulatory_b2: "Arteries carry blood away from the heart. What do veins do?",
+            circulatory_b3: "The circulatory system has 3 main components. Count them:",
+            circulatory_b4: "Blood carries oxygen to cells. What does it carry away?",
+            circulatory_b5: "The heart has 4 chambers. Count them:",
+            
+            // CIRCULATORY STAGE - CORE (5 questions)
+            circulatory_c1: "The right side of the heart pumps blood to the lungs. What is this circulation called?",
+            circulatory_c2: "The left ventricle has thicker walls than the right. Why?",
+            circulatory_c3: "Capillaries are microscopic blood vessels. What is their function?",
+            circulatory_c4: "Blood pressure is measured as systolic/diastolic. What is normal blood pressure?",
+            circulatory_c5: "The heart beats 60-100 times per minute at rest. What is this called?",
+            
+            // CIRCULATORY STAGE - ADVANCED (5 questions)
+            circulatory_a1: "Cardiac output is heart rate × stroke volume. Calculate cardiac output at rest:",
+            circulatory_a2: "Arteries have thick elastic walls. How does this help withstand pressure?",
+            circulatory_a3: "Veins have one-way valves. What happens if these valves fail?",
+            circulatory_a4: "Red blood cells carry oxygen using hemoglobin. How many oxygen molecules per hemoglobin?",
+            circulatory_a5: "The heart's electrical system controls rhythm. What is the pacemaker called?",
+            
+            // CIRCULATORY STAGE - ELITE (5 questions)
+            circulatory_e1: "Atherosclerosis narrows arteries with plaque. What are the consequences?",
+            circulatory_e2: "The Frank-Starling mechanism adjusts cardiac output. How does it work?",
+            circulatory_e3: "Blood pressure regulation involves multiple systems. Name three mechanisms:",
+            circulatory_e4: "Heart failure reduces cardiac output. What compensatory mechanisms occur?",
+            circulatory_e5: "The circulatory system delivers 5 L/min at rest, 25 L/min during exercise. Calculate the increase:",
+            
+            // RESPIRATORY STAGE - BASIC (5 questions)
+            respiratory_b1: "Gas exchange occurs in tiny air sacs. What are they called?",
+            respiratory_b2: "The respiratory system exchanges gases. What gas enters the blood?",
+            respiratory_b3: "The respiratory system has 5 major organs. Count them:",
+            respiratory_b4: "The diaphragm contracts to expand the lungs. What is its function?",
+            respiratory_b5: "Air pathway: Nose → Pharynx → ? → Trachea",
+            
+            // RESPIRATORY STAGE - CORE (5 questions)
+            respiratory_c1: "The trachea has C-shaped cartilage rings. Why is this structure important?",
+            respiratory_c2: "Bronchi branch into smaller bronchioles. What is this structure called?",
+            respiratory_c3: "Alveoli have extremely thin walls (0.5 micrometers). Why is this necessary?",
+            respiratory_c4: "The diaphragm creates negative pressure during inhalation. How does this draw air in?",
+            respiratory_c5: "A healthy adult breathes 12-20 times per minute. What is this rate called?",
+            
+            // RESPIRATORY STAGE - ADVANCED (5 questions)
+            respiratory_a1: "Adult lungs contain approximately 300 million alveoli. What is the total surface area?",
+            respiratory_a2: "Tidal volume is the air exchanged per breath (~500 mL). Calculate minute ventilation:",
+            respiratory_a3: "Oxygen diffuses from alveoli into capillaries. What drives this diffusion?",
+            respiratory_a4: "The larynx contains vocal cords. How do they produce sound?",
+            respiratory_a5: "Surfactant reduces surface tension in alveoli. What happens if surfactant is lacking?",
+            
+            // RESPIRATORY STAGE - ELITE (5 questions)
+            respiratory_e1: "Asthma causes bronchiole constriction. What are the physiological consequences?",
+            respiratory_e2: "COPD reduces gas exchange efficiency. What compensatory mechanisms occur?",
+            respiratory_e3: "The respiratory system regulates blood pH by controlling CO2 levels. Explain the mechanism:",
+            respiratory_e4: "High altitude reduces oxygen availability. How does the body adapt?",
+            respiratory_e5: "Pneumonia fills alveoli with fluid. Calculate the reduction in gas exchange capacity:"
+        },
+        organs: {
+            stomach: "Stomach",
+            heart: "Heart",
+            lungs: "Lungs",
+            esophagus: "Esophagus",
+            intestines: "Intestines",
+            small_intestine: "Small intestine",
+            large_intestine: "Large intestine",
+            liver: "Liver",
+            pancreas: "Pancreas",
+            arteries: "Arteries",
+            veins: "Veins",
+            capillaries: "Capillaries",
+            alveoli: "Alveoli",
+            diaphragm: "Diaphragm",
+            trachea: "Trachea",
+            larynx: "Larynx",
+            pharynx: "Pharynx",
+            bronchi: "Bronchi",
+            bronchioles: "Bronchioles",
+            mouth: "Mouth",
+            nose: "Nose"
+        },
+        functions: {
+            digestion: "Digestion",
+            absorption: "Absorption",
+            bile_production: "Bile production",
+            enzyme_production: "Enzyme production",
+            acid_production: "Acid production",
+            pump_blood: "Pump blood",
+            carry_blood: "Carry blood",
+            return_blood: "Return blood to heart",
+            gas_exchange: "Gas exchange",
+            breathing: "Breathing",
+            filter_air: "Filter air",
+            produce_sound: "Produce sound"
+        },
+        hints: {
+            digestive_b1: "Where food is churned and digested",
+            digestive_b2: "Breaks down food into nutrients",
+            digestive_b3: "Takes nutrients into bloodstream",
+            digestive_b4: "Helps digest fats",
+            digestive_b5: "Count all organs in the pathway",
+            digestive_c1: "Located behind the stomach",
+            digestive_c2: "Breaks down proteins and kills bacteria",
+            digestive_c3: "More surface area = more absorption",
+            digestive_c4: "Leads to dehydration",
+            digestive_c5: "Muscle contractions",
+            circulatory_b1: "Circulates blood",
+            circulatory_b2: "Opposite of arteries",
+            circulatory_b3: "Heart and two types of vessels",
+            circulatory_b4: "Waste gas from cells",
+            circulatory_b5: "Upper and lower chambers",
+            circulatory_c1: "Pulmonary circulation",
+            circulatory_c2: "Pumps to entire body",
+            circulatory_c3: "Where gas exchange occurs",
+            circulatory_c4: "120/80 mmHg",
+            circulatory_c5: "Heart rate",
+            respiratory_b1: "Tiny air sacs in lungs",
+            respiratory_b2: "Gas needed for cellular respiration",
+            respiratory_b3: "From nose to lungs",
+            respiratory_b4: "Muscle for breathing",
+            respiratory_b5: "Voice box",
+            respiratory_c1: "Prevents collapse",
+            respiratory_c2: "Bronchial tree",
+            respiratory_c3: "Allows gas diffusion",
+            respiratory_c4: "Pressure difference",
+            respiratory_c5: "Respiratory rate"
         }
     },
     sb3_01: {

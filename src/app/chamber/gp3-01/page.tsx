@@ -21,8 +21,6 @@ interface GP301Quest extends Quest {
     waveType?: string;
 }
 
-const round2 = (v: number) => Math.round(v * 100) / 100;
-
 export default function GP301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
