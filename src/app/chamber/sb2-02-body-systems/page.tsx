@@ -4,11 +4,10 @@ import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/BodySystemVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -18,11 +17,9 @@ interface SB202BodySystemsQuest extends Quest {
     organPath?: string[];
 }
 
-type SB202BodySystemsT = typeof translations.EN.sb2_02;
-
 export default function SB202BodySystemsPage() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sb2_02 || translations.EN.sb2_02) as SB202BodySystemsT;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB202BodySystemsQuest[] => {
         const quests: SB202BodySystemsQuest[] = [];
@@ -211,35 +208,35 @@ export default function SB202BodySystemsPage() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "DIGESTIVE" as Stage, label: t.stages.digestive },
-        { id: "CIRCULATORY" as Stage, label: t.stages.circulatory },
-        { id: "RESPIRATORY" as Stage, label: t.stages.respiratory },
-    ], [t.stages]);
+        { id: "DIGESTIVE" as Stage, label: t("sb2_02.stages.digestive") },
+        { id: "CIRCULATORY" as Stage, label: t("sb2_02.stages.circulatory") },
+        { id: "RESPIRATORY" as Stage, label: t("sb2_02.stages.respiratory") },
+    ], [t]);
 
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t.title}
+                title={t("sb2_02.title")}
                 moduleCode="SB2.02"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t.footer_left}
+                footerLeft={t("sb2_02.footer_left")}
                 translations={{
-                    back: t.back,
-                    check: t.check,
-                    next: t.next,
-                    correct: t.correct,
-                    incorrect: t.incorrect,
-                    ready: t.ready,
-                    monitor_title: t.monitor_title,
+                    back: t("sb2_02.back"),
+                    check: t("sb2_02.check"),
+                    next: t("sb2_02.next"),
+                    correct: t("sb2_02.correct"),
+                    incorrect: t("sb2_02.incorrect"),
+                    ready: t("sb2_02.ready"),
+                    monitor_title: t("sb2_02.monitor_title"),
                     difficulty: {
-                        basic: t.difficulty.basic,
-                        core: t.difficulty.core,
-                        advanced: t.difficulty.advanced,
-                        elite: t.difficulty.elite,
+                        basic: t("sb2_02.difficulty.basic"),
+                        core: t("sb2_02.difficulty.core"),
+                        advanced: t("sb2_02.difficulty.advanced"),
+                        elite: t("sb2_02.difficulty.elite"),
                     },
                 }}
                 monitorContent={<BodySystemVisualization quest={null} stage={stage} />}
@@ -251,7 +248,7 @@ export default function SB202BodySystemsPage() {
 
     return (
         <ChamberLayout
-            title={t.title}
+            title={t("sb2_02.title")}
             moduleCode="SB2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -261,20 +258,20 @@ export default function SB202BodySystemsPage() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sb2_02.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sb2_02.back"),
+                check: t("sb2_02.check"),
+                next: t("sb2_02.next"),
+                correct: t("sb2_02.correct"),
+                incorrect: t("sb2_02.incorrect"),
+                ready: t("sb2_02.ready"),
+                monitor_title: t("sb2_02.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sb2_02.difficulty.basic"),
+                    core: t("sb2_02.difficulty.core"),
+                    advanced: t("sb2_02.difficulty.advanced"),
+                    elite: t("sb2_02.difficulty.elite"),
                 },
             }}
             monitorContent={<BodySystemVisualization quest={currentQuest} stage={stage} />}
@@ -283,9 +280,9 @@ export default function SB202BodySystemsPage() {
             <div className="space-y-6">
                 {/* Scenario Description */}
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-cyan-500/30">
-                    <h3 className="text-cyan-400 font-bold mb-2">{t.objective_title}</h3>
+                    <h3 className="text-cyan-400 font-bold mb-2">{t("sb2_02.objective_title")}</h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                        {t.scenarios[stage.toLowerCase() as keyof typeof t.scenarios]}
+                        {t(`sb2_02.scenarios.${stage.toLowerCase()}`)}
                     </p>
                 </div>
 
