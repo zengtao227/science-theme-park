@@ -670,10 +670,10 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - [x] 2A.10 SM3.04 对数应用 (361行)
   - 小数据池，补充
 
-- [-] 2A.11 SM3.05 3D几何 (402行)
+- [x] 2A.11 SM3.05 3D几何 (402行)
   - ~5题，补充
 
-- [ ] 2A.12 Checkpoint SM
+- [-] 2A.12 Checkpoint SM
   - 所有 SM 模块每 Stage × Difficulty 有 5 题
   - `npm run build` 通过
   - `git add -A && git commit -m "feat(math): complete question pools for SM modules" && git push`

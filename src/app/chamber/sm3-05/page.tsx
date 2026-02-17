@@ -407,6 +407,15 @@ export default function SM305Page() {
                         slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circles", expected: "circles" }],
                         correctLatex: `\\text{Two circles}`,
                         hintLatex: [`\\text{Cut shows two circular tubes}`]
+                    },
+                    {
+                        id: "CS-E5", difficulty, stage, geometryType: "pyramid_diagonal",
+                        promptLatex: `\\text{Square pyramid: base 6 cm, height 8 cm. Cut through apex and base diagonal. Cross-section area?}`,
+                        expressionLatex: `A = \\frac{1}{2} \\times \\text{diagonal} \\times h`,
+                        targetLatex: `A`,
+                        slots: [{ id: "area", labelLatex: `A\\text{ (cm}^2\\text{)}`, placeholder: "34", expected: 34 }],
+                        correctLatex: `33.9\\text{ cm}^2`,
+                        hintLatex: [`\\text{Diagonal} = 6\\sqrt{2} \\approx 8.49, \\; A = \\frac{1}{2} \\times 8.49 \\times 8 \\approx 34`]
                     }
                 );
             }
