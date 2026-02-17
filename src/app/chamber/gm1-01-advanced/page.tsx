@@ -4,13 +4,12 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
 
 type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
-type G101AdvT = typeof translations.EN.gm1_01_advanced;
 
 interface G101AdvQuest extends Quest {
   challenge: Challenge;
@@ -23,82 +22,82 @@ interface G101AdvQuest extends Quest {
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
 // Composite function problems - combining multiple rules
-function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQuest[] {
+function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty): G101AdvQuest[] {
   const basic = [
     {
       id: "C_B1",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_1,
+      scenario: gm1_01_advanced_t.scenarios.composite_1,
       functionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=2",
       expressionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x), \\; x=2",
       targetLatex: "f'(2)",
       slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((4*2 + 3) * Math.sin(2) + (2*4 + 6) * Math.cos(2)) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_B2",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1",
       expressionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}, \\; x=1",
       targetLatex: "f'(1)",
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 * Math.sin(1) - (1 + 1) * Math.cos(1)) / (Math.sin(1) * Math.sin(1))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
     {
       id: "C_B3",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_3,
+      scenario: gm1_01_advanced_t.scenarios.composite_3,
       functionLatex: "f(x) = (x^2 - x) \\cdot \\cos(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1",
       expressionLatex: "f(x) = (x^2 - x) \\cdot \\cos(x), \\; x=1",
       targetLatex: "f'(1)",
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 - 1) * Math.cos(1) + (1*1 - 1) * (-Math.sin(1))) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_B4",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_1,
+      scenario: gm1_01_advanced_t.scenarios.composite_1,
       functionLatex: "f(x) = (x^2 + 2x) \\cdot \\sin(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1",
       expressionLatex: "f(x) = (x^2 + 2x) \\cdot \\sin(x), \\; x=1",
       targetLatex: "f'(1)",
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 + 2) * Math.sin(1) + (1 + 2) * Math.cos(1)) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_B5",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^2}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=2",
       expressionLatex: "f(x) = \\frac{x^2}{\\sin(x)}, \\; x=2",
       targetLatex: "f'(2)",
       slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 * Math.sin(2) - 4 * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
   ];
 
@@ -108,60 +107,60 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_3,
+      scenario: gm1_01_advanced_t.scenarios.composite_3,
       functionLatex: "f(x) = (x^3 - 2x) \\cdot \\cos(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1",
       expressionLatex: "f(x) = (x^3 - 2x) \\cdot \\cos(x), \\; x=1",
       targetLatex: "f'(1)",
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((3*1*1 - 2) * Math.cos(1) + (1*1*1 - 2*1) * (-Math.sin(1))) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_C2",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_1,
+      scenario: gm1_01_advanced_t.scenarios.composite_1,
       functionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1.5",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1.5",
       expressionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x), \\; x=1.5",
       targetLatex: "f'(1.5)",
       slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((4*1.5 + 3) * Math.sin(1.5) + (2*1.5*1.5 + 3*1.5) * Math.cos(1.5)) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_C3",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^3}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1.5",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1.5",
       expressionLatex: "f(x) = \\frac{x^3}{\\sin(x)}, \\; x=1.5",
       targetLatex: "f'(1.5)",
       slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((3*1.5*1.5 * Math.sin(1.5) - 1.5*1.5*1.5 * Math.cos(1.5)) / (Math.sin(1.5) * Math.sin(1.5))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
     {
       id: "C_C4",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_3,
+      scenario: gm1_01_advanced_t.scenarios.composite_3,
       functionLatex: "f(x) = (x^2 + x) \\cdot \\cos(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=2",
       expressionLatex: "f(x) = (x^2 + x) \\cdot \\cos(x), \\; x=2",
       targetLatex: "f'(2)",
       slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 + 1) * Math.cos(2) + (4 + 2) * (-Math.sin(2))) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     }
   ];
 
@@ -171,60 +170,60 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=2",
       expressionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}, \\; x=2",
       targetLatex: "f'(2)",
       slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 * Math.sin(2) - (4 + 1) * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
     {
       id: "C_A2",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_3,
+      scenario: gm1_01_advanced_t.scenarios.composite_3,
       functionLatex: "f(x) = (x^3 - 2x) \\cdot \\cos(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=0.5",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=0.5",
       expressionLatex: "f(x) = (x^3 - 2x) \\cdot \\cos(x), \\; x=0.5",
       targetLatex: "f'(0.5)",
       slots: [{ id: "derivative", labelLatex: "f'(0.5)", placeholder: "0.00", expected: round2((3*0.5*0.5 - 2) * Math.cos(0.5) + (0.5*0.5*0.5 - 2*0.5) * (-Math.sin(0.5))) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_A3",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_1,
+      scenario: gm1_01_advanced_t.scenarios.composite_1,
       functionLatex: "f(x) = (3x^2 - x) \\cdot \\sin(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1.2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1.2",
       expressionLatex: "f(x) = (3x^2 - x) \\cdot \\sin(x), \\; x=1.2",
       targetLatex: "f'(1.2)",
       slots: [{ id: "derivative", labelLatex: "f'(1.2)", placeholder: "0.00", expected: round2((6*1.2 - 1) * Math.sin(1.2) + (3*1.2*1.2 - 1.2) * Math.cos(1.2)) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_A4",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{2x^2 + 1}{\\cos(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=1",
       expressionLatex: "f(x) = \\frac{2x^2 + 1}{\\cos(x)}, \\; x=1",
       targetLatex: "f'(1)",
       slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((4*1 * Math.cos(1) - (2*1 + 1) * (-Math.sin(1))) / (Math.cos(1) * Math.cos(1))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
   ];
 
@@ -234,60 +233,60 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_1,
+      scenario: gm1_01_advanced_t.scenarios.composite_1,
       functionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/2",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=\\pi/2",
       expressionLatex: "f(x) = (2x^2 + 3x) \\cdot \\sin(x), \\; x=\\pi/2",
       targetLatex: "f'(\\pi/2)",
       slots: [{ id: "derivative", labelLatex: "f'(\\pi/2)", placeholder: "0.00", expected: round2((4*Math.PI/2 + 3) * Math.sin(Math.PI/2) + (2*(Math.PI/2)*(Math.PI/2) + 3*Math.PI/2) * Math.cos(Math.PI/2)) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_E2",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/4",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=\\pi/4",
       expressionLatex: "f(x) = \\frac{x^2 + 1}{\\sin(x)}, \\; x=\\pi/4",
       targetLatex: "f'(\\pi/4)",
       slots: [{ id: "derivative", labelLatex: "f'(\\pi/4)", placeholder: "0.00", expected: round2((2*Math.PI/4 * Math.sin(Math.PI/4) - ((Math.PI/4)*(Math.PI/4) + 1) * Math.cos(Math.PI/4)) / (Math.sin(Math.PI/4) * Math.sin(Math.PI/4))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
     {
       id: "C_E3",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_3,
+      scenario: gm1_01_advanced_t.scenarios.composite_3,
       functionLatex: "f(x) = (x^3 + x^2) \\cdot \\cos(x)",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/3",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=\\pi/3",
       expressionLatex: "f(x) = (x^3 + x^2) \\cdot \\cos(x), \\; x=\\pi/3",
       targetLatex: "f'(\\pi/3)",
       slots: [{ id: "derivative", labelLatex: "f'(\\pi/3)", placeholder: "0.00", expected: round2((3*(Math.PI/3)*(Math.PI/3) + 2*Math.PI/3) * Math.cos(Math.PI/3) + ((Math.PI/3)*(Math.PI/3)*(Math.PI/3) + (Math.PI/3)*(Math.PI/3)) * (-Math.sin(Math.PI/3))) }],
       correctLatex: "",
-      hint: t.hints.use_product_rule
+      hint: gm1_01_advanced_t.hints.use_product_rule
     },
     {
       id: "C_E4",
       difficulty,
       stage: "COMPOSITE",
       challenge: "COMPOSITE" as Challenge,
-      scenario: t.scenarios.composite_2,
+      scenario: gm1_01_advanced_t.scenarios.composite_2,
       functionLatex: "f(x) = \\frac{x^3 - x}{\\sin(x)}",
-      question: t.questions.find_derivative,
-      promptLatex: "\\text{" + t.questions.find_derivative + " at } x=\\pi/6",
+      question: gm1_01_advanced_t.questions.find_derivative,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_derivative + " at } x=\\pi/6",
       expressionLatex: "f(x) = \\frac{x^3 - x}{\\sin(x)}, \\; x=\\pi/6",
       targetLatex: "f'(\\pi/6)",
       slots: [{ id: "derivative", labelLatex: "f'(\\pi/6)", placeholder: "0.00", expected: round2(((3*(Math.PI/6)*(Math.PI/6) - 1) * Math.sin(Math.PI/6) - ((Math.PI/6)*(Math.PI/6)*(Math.PI/6) - Math.PI/6) * Math.cos(Math.PI/6)) / (Math.sin(Math.PI/6) * Math.sin(Math.PI/6))) }],
       correctLatex: "",
-      hint: t.hints.use_quotient_rule
+      hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
   ];
 
@@ -298,82 +297,82 @@ function buildCompositeProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQue
 }
 
 // Modeling problems - real-world applications
-function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQuest[] {
+function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): G101AdvQuest[] {
   const basic = [
     {
       id: "M_B1",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 2t^3 - 3t^2 + 5t",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=3",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=3",
       expressionLatex: "s(t) = 2t^3 - 3t^2 + 5t, \\; t=3",
       targetLatex: "v(3)",
       slots: [{ id: "velocity", labelLatex: "v(3)", placeholder: "0.00", expected: round2(6*9 - 6*3 + 5) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_B2",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -5t^2 + 20t + 2",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=2",
       expressionLatex: "h(t) = -5t^2 + 20t + 2, \\; t=2",
       targetLatex: "v(2)",
       slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(-10*2 + 20) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_B3",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = t^3 + 2t^2 + t",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=2",
       expressionLatex: "s(t) = t^3 + 2t^2 + t, \\; t=2",
       targetLatex: "v(2)",
       slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(3*4 + 4*2 + 1) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_B4",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -4t^2 + 16t + 5",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=1",
       expressionLatex: "h(t) = -4t^2 + 16t + 5, \\; t=1",
       targetLatex: "v(1)",
       slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-8*1 + 16) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_B5",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 3t^2 + 4t",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=2",
       expressionLatex: "s(t) = 3t^2 + 4t, \\; t=2",
       targetLatex: "v(2)",
       slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(6*2 + 4) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     }
   ];
 
@@ -383,60 +382,60 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 2t^3 - 3t^2 + 5t",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=2",
       expressionLatex: "s(t) = 2t^3 - 3t^2 + 5t, \\; t=2",
       targetLatex: "v(2)",
       slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(6*4 - 6*2 + 5) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_C2",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -5t^2 + 20t + 2",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=1",
       expressionLatex: "h(t) = -5t^2 + 20t + 2, \\; t=1",
       targetLatex: "v(1)",
       slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-10*1 + 20) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_C3",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = t^3 - 4t^2 + 6t",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1.5",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=1.5",
       expressionLatex: "s(t) = t^3 - 4t^2 + 6t, \\; t=1.5",
       targetLatex: "v(1.5)",
       slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(3*1.5*1.5 - 8*1.5 + 6) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     },
     {
       id: "M_C4",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -3t^2 + 12t + 8",
-      question: t.questions.find_velocity,
-      promptLatex: "\\text{" + t.questions.find_velocity + " at } t=1.5",
+      question: gm1_01_advanced_t.questions.find_velocity,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_velocity + " at } t=1.5",
       expressionLatex: "h(t) = -3t^2 + 12t + 8, \\; t=1.5",
       targetLatex: "v(1.5)",
       slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(-6*1.5 + 12) }],
       correctLatex: "",
-      hint: t.hints.take_first_derivative
+      hint: gm1_01_advanced_t.hints.take_first_derivative
     }
   ];
 
@@ -446,60 +445,60 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 2t^3 - 3t^2 + 5t",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=3",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=3",
       expressionLatex: "s(t) = 2t^3 - 3t^2 + 5t, \\; t=3",
       targetLatex: "a(3)",
       slots: [{ id: "acceleration", labelLatex: "a(3)", placeholder: "0.00", expected: round2(12*3 - 6) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_A2",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -5t^2 + 20t + 2",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=2",
       expressionLatex: "h(t) = -5t^2 + 20t + 2, \\; t=2",
       targetLatex: "a(2)",
       slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: -10 }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_A3",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = t^3 + 3t^2 - 2t",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=2",
       expressionLatex: "s(t) = t^3 + 3t^2 - 2t, \\; t=2",
       targetLatex: "a(2)",
       slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: round2(6*2 + 6) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_A4",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -4t^2 + 16t + 3",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=1.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=1.5",
       expressionLatex: "h(t) = -4t^2 + 16t + 3, \\; t=1.5",
       targetLatex: "a(1.5)",
       slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: "0.00", expected: -8 }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -509,60 +508,60 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 2t^3 - 3t^2 + 5t",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=1.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=1.5",
       expressionLatex: "s(t) = 2t^3 - 3t^2 + 5t, \\; t=1.5",
       targetLatex: "a(1.5)",
       slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: "0.00", expected: round2(12*1.5 - 6) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_E2",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -5t^2 + 20t + 2",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=0.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=0.5",
       expressionLatex: "h(t) = -5t^2 + 20t + 2, \\; t=0.5",
       targetLatex: "a(0.5)",
       slots: [{ id: "acceleration", labelLatex: "a(0.5)", placeholder: "0.00", expected: -10 }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_E3",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_1,
+      scenario: gm1_01_advanced_t.scenarios.modeling_1,
       functionLatex: "s(t) = 3t^3 - 6t^2 + 4t",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=2.5",
       expressionLatex: "s(t) = 3t^3 - 6t^2 + 4t, \\; t=2.5",
       targetLatex: "a(2.5)",
       slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: round2(18*2.5 - 12) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "M_E4",
       stage: "MODELING",
       difficulty,
       challenge: "MODELING" as Challenge,
-      scenario: t.scenarios.modeling_2,
+      scenario: gm1_01_advanced_t.scenarios.modeling_2,
       functionLatex: "h(t) = -6t^2 + 18t + 10",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } t=2.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } t=2.5",
       expressionLatex: "h(t) = -6t^2 + 18t + 10, \\; t=2.5",
       targetLatex: "a(2.5)",
       slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: -12 }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -573,67 +572,67 @@ function buildModelingProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
 }
 
 // Optimization problems
-function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQuest[] {
+function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficulty): G101AdvQuest[] {
   const basic = [
     {
       id: "O_B1",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(10 - x)",
-      question: t.questions.find_critical_point,
-      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      question: gm1_01_advanced_t.questions.find_critical_point,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_point + "}",
       expressionLatex: "A(x) = x(10 - x) = 10x - x^2",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 5 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_B2",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -2x^2 + 12x - 10",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + "}",
       expressionLatex: "P(x) = -2x^2 + 12x - 10",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_B3",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(8 - x)",
-      question: t.questions.find_critical_point,
-      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      question: gm1_01_advanced_t.questions.find_critical_point,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_point + "}",
       expressionLatex: "A(x) = x(8 - x) = 8x - x^2",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_B4",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -x^2 + 10x - 15",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + "}",
       expressionLatex: "P(x) = -x^2 + 10x - 15",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 5 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
   ];
 
@@ -643,60 +642,60 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(10 - x)",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (area)}",
       expressionLatex: "A(x) = x(10 - x) = 10x - x^2",
       targetLatex: "A_{max}",
       slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 25 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_C2",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -2x^2 + 12x - 10",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (profit)}",
       expressionLatex: "P(x) = -2x^2 + 12x - 10",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 8 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_C3",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(12 - x)",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (area)}",
       expressionLatex: "A(x) = x(12 - x) = 12x - x^2",
       targetLatex: "A_{max}",
       slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 36 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_C4",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -x^2 + 8x - 12",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (profit)}",
       expressionLatex: "P(x) = -x^2 + 8x - 12",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
   ];
 
@@ -706,60 +705,60 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(12 - 2x)",
-      question: t.questions.find_critical_point,
-      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      question: gm1_01_advanced_t.questions.find_critical_point,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_point + "}",
       expressionLatex: "A(x) = x(12 - 2x) = 12x - 2x^2",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_A2",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -3x^2 + 18x - 15",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + "}",
       expressionLatex: "P(x) = -3x^2 + 18x - 15",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_A3",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(15 - 2x)",
-      question: t.questions.find_critical_point,
-      promptLatex: "\\text{" + t.questions.find_critical_point + "}",
+      question: gm1_01_advanced_t.questions.find_critical_point,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_point + "}",
       expressionLatex: "A(x) = x(15 - 2x) = 15x - 2x^2",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3.75 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_A4",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -2x^2 + 16x - 20",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + "}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + "}",
       expressionLatex: "P(x) = -2x^2 + 16x - 20",
       targetLatex: "x",
       slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
   ];
 
@@ -769,60 +768,60 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(15 - 3x)",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (area)}",
       expressionLatex: "A(x) = x(15 - 3x) = 15x - 3x^2",
       targetLatex: "A_{max}",
       slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 18.75 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_E2",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -x^2 + 8x - 12",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (profit)}",
       expressionLatex: "P(x) = -x^2 + 8x - 12",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_E3",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_1,
+      scenario: gm1_01_advanced_t.scenarios.optimization_1,
       functionLatex: "A(x) = x(20 - 4x)",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (area)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (area)}",
       expressionLatex: "A(x) = x(20 - 4x) = 20x - 4x^2",
       targetLatex: "A_{max}",
       slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 25 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "O_E4",
       stage: "OPTIMIZATION",
       difficulty,
       challenge: "OPTIMIZATION" as Challenge,
-      scenario: t.scenarios.optimization_2,
+      scenario: gm1_01_advanced_t.scenarios.optimization_2,
       functionLatex: "P(x) = -2x^2 + 20x - 30",
-      question: t.questions.find_maximum,
-      promptLatex: "\\text{" + t.questions.find_maximum + " (profit)}",
+      question: gm1_01_advanced_t.questions.find_maximum,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_maximum + " (profit)}",
       expressionLatex: "P(x) = -2x^2 + 20x - 30",
       targetLatex: "P_{max}",
       slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 20 }],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
   ];
 
@@ -833,17 +832,17 @@ function buildOptimizationProblems(t: G101AdvT, difficulty: Difficulty): G101Adv
 }
 
 // Analysis problems - increasing/decreasing, concavity
-function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQuest[] {
+function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): G101AdvQuest[] {
   const basic = [
     {
       id: "A_B1",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 3x^2 + 2",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 3x^2 + 2",
       targetLatex: "x_1, x_2",
       slots: [
@@ -851,32 +850,32 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_B2",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = 2x^3 - 6x + 1",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=1",
       expressionLatex: "f(x) = 2x^3 - 6x + 1, \\; x=1",
       targetLatex: "f''(1)",
       slots: [{ id: "second_derivative", labelLatex: "f''(1)", placeholder: "0.00", expected: round2(12*1) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "A_B3",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 6x + 5",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 6x + 5",
       targetLatex: "x_1, x_2",
       slots: [
@@ -884,22 +883,22 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 1.41 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_B4",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = x^3 - 3x + 2",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=2",
       expressionLatex: "f(x) = x^3 - 3x + 2, \\; x=2",
       targetLatex: "f''(2)",
       slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(6*2) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -909,10 +908,10 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 6x^2 + 9x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 6x^2 + 9x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -920,32 +919,32 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 3 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_C2",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = 2x^3 - 6x + 1",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=2",
       expressionLatex: "f(x) = 2x^3 - 6x + 1, \\; x=2",
       targetLatex: "f''(2)",
       slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "A_C3",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 9x^2 + 15x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 9x^2 + 15x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -953,22 +952,22 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 5 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_C4",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = x^3 - 6x + 3",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=1.5",
       expressionLatex: "f(x) = x^3 - 6x + 3, \\; x=1.5",
       targetLatex: "f''(1.5)",
       slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -978,10 +977,10 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 9x^2 + 24x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 9x^2 + 24x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -989,32 +988,32 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 4 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_A2",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = x^3 - 3x^2 + 2x",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=1.5",
       expressionLatex: "f(x) = x^3 - 3x^2 + 2x, \\; x=1.5",
       targetLatex: "f''(1.5)",
       slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5 - 6) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "A_A3",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 12x^2 + 36x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 12x^2 + 36x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -1022,22 +1021,22 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 6 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_A4",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = 2x^3 - 9x^2 + 12x",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=2",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=2",
       expressionLatex: "f(x) = 2x^3 - 9x^2 + 12x, \\; x=2",
       targetLatex: "f''(2)",
       slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2 - 18) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -1047,10 +1046,10 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = 2x^3 - 9x^2 + 12x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = 2x^3 - 9x^2 + 12x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -1058,32 +1057,32 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_E2",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = x^3 - 3x^2 + 2x",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=0.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=0.5",
       expressionLatex: "f(x) = x^3 - 3x^2 + 2x, \\; x=0.5",
       targetLatex: "f''(0.5)",
       slots: [{ id: "second_derivative", labelLatex: "f''(0.5)", placeholder: "0.00", expected: round2(6*0.5 - 6) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     },
     {
       id: "A_E3",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_1,
+      scenario: gm1_01_advanced_t.scenarios.analysis_1,
       functionLatex: "f(x) = x^3 - 6x^2 + 12x",
-      question: t.questions.find_critical_points,
-      promptLatex: "\\text{" + t.questions.find_critical_points + "}",
+      question: gm1_01_advanced_t.questions.find_critical_points,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_critical_points + "}",
       expressionLatex: "f(x) = x^3 - 6x^2 + 12x",
       targetLatex: "x_1, x_2",
       slots: [
@@ -1091,22 +1090,22 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
         { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
       ],
       correctLatex: "",
-      hint: t.hints.set_derivative_zero
+      hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
     {
       id: "A_E4",
       stage: "ANALYSIS",
       difficulty,
       challenge: "ANALYSIS" as Challenge,
-      scenario: t.scenarios.analysis_2,
+      scenario: gm1_01_advanced_t.scenarios.analysis_2,
       functionLatex: "f(x) = 3x^3 - 9x^2 + 6x",
-      question: t.questions.find_acceleration,
-      promptLatex: "\\text{" + t.questions.find_acceleration + " at } x=1.5",
+      question: gm1_01_advanced_t.questions.find_acceleration,
+      promptLatex: "\\text{" + gm1_01_advanced_t.questions.find_acceleration + " at } x=1.5",
       expressionLatex: "f(x) = 3x^3 - 9x^2 + 6x, \\; x=1.5",
       targetLatex: "f''(1.5)",
       slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(18*1.5 - 18) }],
       correctLatex: "",
-      hint: t.hints.take_second_derivative
+      hint: gm1_01_advanced_t.hints.take_second_derivative
     }
   ];
 
@@ -1116,19 +1115,90 @@ function buildAnalysisProblems(t: G101AdvT, difficulty: Difficulty): G101AdvQues
   return elite;
 }
 
-function buildChallengePool(t: G101AdvT, difficulty: Difficulty, challenge: Challenge): G101AdvQuest[] {
+function buildChallengePool(gm1_01_advanced_t: any, difficulty: Difficulty, challenge: Challenge): G101AdvQuest[] {
   switch (challenge) {
-    case "COMPOSITE": return buildCompositeProblems(t, difficulty);
-    case "MODELING": return buildModelingProblems(t, difficulty);
-    case "OPTIMIZATION": return buildOptimizationProblems(t, difficulty);
-    case "ANALYSIS": return buildAnalysisProblems(t, difficulty);
-    default: return buildCompositeProblems(t, difficulty);
+    case "COMPOSITE": return buildCompositeProblems(gm1_01_advanced_t, difficulty);
+    case "MODELING": return buildModelingProblems(gm1_01_advanced_t, difficulty);
+    case "OPTIMIZATION": return buildOptimizationProblems(gm1_01_advanced_t, difficulty);
+    case "ANALYSIS": return buildAnalysisProblems(gm1_01_advanced_t, difficulty);
+    default: return buildCompositeProblems(gm1_01_advanced_t, difficulty);
   }
 }
 
 export default function G101AdvancedPage() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gm1_01_advanced;
+  const { completeStage, currentLanguage } = useAppStore();
+  const { t } = useLanguage();
+  
+  const gm1_01_advanced_t = {
+    title: t("gm1_01_advanced.title"),
+    back: t("gm1_01_advanced.back"),
+    check: t("gm1_01_advanced.check"),
+    next: t("gm1_01_advanced.next"),
+    correct: t("gm1_01_advanced.correct"),
+    incorrect: t("gm1_01_advanced.incorrect"),
+    ready: t("gm1_01_advanced.ready"),
+    monitor_title: t("gm1_01_advanced.monitor_title"),
+    footer_left: t("gm1_01_advanced.footer_left"),
+    function_label: t("gm1_01_advanced.function_label"),
+    question_label: t("gm1_01_advanced.question_label"),
+    hint_label: t("gm1_01_advanced.hint_label"),
+    visualization_title: t("gm1_01_advanced.visualization_title"),
+    input_tip_2dp: t("gm1_01_advanced.input_tip_2dp"),
+    challenges: {
+      COMPOSITE: t("gm1_01_advanced.challenges.COMPOSITE"),
+      MODELING: t("gm1_01_advanced.challenges.MODELING"),
+      OPTIMIZATION: t("gm1_01_advanced.challenges.OPTIMIZATION"),
+      ANALYSIS: t("gm1_01_advanced.challenges.ANALYSIS"),
+      composite: t("gm1_01_advanced.challenges.composite"),
+      modeling: t("gm1_01_advanced.challenges.modeling"),
+      optimization: t("gm1_01_advanced.challenges.optimization"),
+      analysis: t("gm1_01_advanced.challenges.analysis"),
+    },
+    difficulty: {
+      basic: t("gm1_01_advanced.difficulty.basic"),
+      core: t("gm1_01_advanced.difficulty.core"),
+      advanced: t("gm1_01_advanced.difficulty.advanced"),
+      elite: t("gm1_01_advanced.difficulty.elite"),
+    },
+    mission: {
+      title: t("gm1_01_advanced.mission.title"),
+      description: t("gm1_01_advanced.mission.description"),
+    },
+    scenarios: {
+      composite_1: t("gm1_01_advanced.scenarios.composite_1"),
+      composite_2: t("gm1_01_advanced.scenarios.composite_2"),
+      composite_3: t("gm1_01_advanced.scenarios.composite_3"),
+      modeling_1: t("gm1_01_advanced.scenarios.modeling_1"),
+      modeling_2: t("gm1_01_advanced.scenarios.modeling_2"),
+      optimization_1: t("gm1_01_advanced.scenarios.optimization_1"),
+      optimization_2: t("gm1_01_advanced.scenarios.optimization_2"),
+      analysis_1: t("gm1_01_advanced.scenarios.analysis_1"),
+      analysis_2: t("gm1_01_advanced.scenarios.analysis_2"),
+    },
+    questions: {
+      find_derivative: t("gm1_01_advanced.questions.find_derivative"),
+      find_velocity: t("gm1_01_advanced.questions.find_velocity"),
+      find_acceleration: t("gm1_01_advanced.questions.find_acceleration"),
+      find_maximum: t("gm1_01_advanced.questions.find_maximum"),
+      find_critical_point: t("gm1_01_advanced.questions.find_critical_point"),
+      find_critical_points: t("gm1_01_advanced.questions.find_critical_points"),
+    },
+    hints: {
+      use_product_rule: t("gm1_01_advanced.hints.use_product_rule"),
+      use_quotient_rule: t("gm1_01_advanced.hints.use_quotient_rule"),
+      use_chain_rule: t("gm1_01_advanced.hints.use_chain_rule"),
+      take_first_derivative: t("gm1_01_advanced.hints.take_first_derivative"),
+      take_second_derivative: t("gm1_01_advanced.hints.take_second_derivative"),
+      set_derivative_zero: t("gm1_01_advanced.hints.set_derivative_zero"),
+    },
+    visualization: {
+      title: t("gm1_01_advanced.visualization.title"),
+      x_label: t("gm1_01_advanced.visualization.x_label"),
+      y_label: t("gm1_01_advanced.visualization.y_label"),
+      function_label: t("gm1_01_advanced.visualization.function_label"),
+      point_label: t("gm1_01_advanced.visualization.point_label"),
+    },
+  };
 
   const {
     difficulty,
@@ -1142,7 +1212,7 @@ export default function G101AdvancedPage() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<G101AdvQuest, Challenge>({
-    buildPool: (d, s) => buildChallengePool(t, d, s),
+    buildPool: (d, s) => buildChallengePool(gm1_01_advanced_t, d, s),
     initialStage: "COMPOSITE",
   });
 
@@ -1154,35 +1224,35 @@ export default function G101AdvancedPage() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={gm1_01_advanced_t.title}
       moduleCode="GM1.01-ADV"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "COMPOSITE", label: t.challenges.composite },
-        { id: "MODELING", label: t.challenges.modeling },
-        { id: "OPTIMIZATION", label: t.challenges.optimization },
-        { id: "ANALYSIS", label: t.challenges.analysis },
+        { id: "COMPOSITE", label: gm1_01_advanced_t.challenges.composite },
+        { id: "MODELING", label: gm1_01_advanced_t.challenges.modeling },
+        { id: "OPTIMIZATION", label: gm1_01_advanced_t.challenges.optimization },
+        { id: "ANALYSIS", label: gm1_01_advanced_t.challenges.analysis },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Challenge)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={gm1_01_advanced_t.footer_left}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: gm1_01_advanced_t.back,
+        check: gm1_01_advanced_t.check,
+        next: gm1_01_advanced_t.next,
+        correct: gm1_01_advanced_t.correct,
+        incorrect: gm1_01_advanced_t.incorrect,
+        ready: gm1_01_advanced_t.ready,
+        monitor_title: gm1_01_advanced_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: gm1_01_advanced_t.difficulty.basic,
+          core: gm1_01_advanced_t.difficulty.core,
+          advanced: gm1_01_advanced_t.difficulty.advanced,
+          elite: gm1_01_advanced_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -1191,19 +1261,19 @@ export default function G101AdvancedPage() {
             functionLatex={currentQuest?.functionLatex || "f(x) = x^2"}
             xPosition={2}
             translations={{
-              title: t.visualization.title,
-              xLabel: t.visualization.x_label,
-              yLabel: t.visualization.y_label,
-              functionLabel: t.visualization.function_label,
-              pointLabel: t.visualization.point_label,
+              title: gm1_01_advanced_t.visualization.title,
+              xLabel: gm1_01_advanced_t.visualization.x_label,
+              yLabel: gm1_01_advanced_t.visualization.y_label,
+              functionLabel: gm1_01_advanced_t.visualization.function_label,
+              pointLabel: gm1_01_advanced_t.visualization.point_label,
             }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t.visualization_title}
+            {gm1_01_advanced_t.visualization_title}
           </div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t.hint_label}
+              {gm1_01_advanced_t.hint_label}
             </div>
             <div className="text-white/70 text-sm font-mono">
               {currentQuest?.hint}
@@ -1215,9 +1285,9 @@ export default function G101AdvancedPage() {
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t.mission.title}
+            {gm1_01_advanced_t.mission.title}
           </h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+          <p className="text-base text-white/70 font-mono">{gm1_01_advanced_t.mission.description}</p>
         </div>
 
         {/* Scenario */}
@@ -1230,7 +1300,7 @@ export default function G101AdvancedPage() {
         {/* Function Display */}
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t.function_label}
+            {gm1_01_advanced_t.function_label}
           </h3>
           <p className="text-3xl text-white font-black italic">
             <InlineMath math={currentQuest?.functionLatex || ""} />
@@ -1240,7 +1310,7 @@ export default function G101AdvancedPage() {
         {/* Question */}
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t.question_label}
+            {gm1_01_advanced_t.question_label}
           </h3>
           <p className="text-xl text-white/90 font-mono">{currentQuest?.question}</p>
         </div>
@@ -1265,7 +1335,7 @@ export default function G101AdvancedPage() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {t.input_tip_2dp}
+            {gm1_01_advanced_t.input_tip_2dp}
           </div>
         </div>
       </div>

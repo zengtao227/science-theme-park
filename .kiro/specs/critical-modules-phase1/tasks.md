@@ -1179,12 +1179,12 @@ const module_t = {
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [-] 5.3.2 GM1.01-advanced - i18n迁移
+- [x] 5.3.2 GM1.01-advanced - i18n迁移
   - 当前: `translations[currentLanguage].gm1_01_advanced`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.3 GM2.01 - i18n迁移
+- [x] 5.3.3 GM2.01 - i18n迁移
   - 当前: `translations[currentLanguage].gm2_01`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试

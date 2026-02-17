@@ -350,7 +350,8 @@ export const enMath = {
             navigation: "Basel Drone Delivery Network: You are programming the navigation system for Basel's autonomous medical supply drones. The drones must calculate precise 3D vectors between hospital rooftops and delivery points across the city. Given coordinates A (departure helipad at Basel University Hospital) and B (arrival point at Claraspital), compute the displacement vector v and its magnitude. The magnitude represents the direct flight distance in meters. Accurate vector calculation is critical for battery management and flight time estimation.",
             dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
             mission: "Rhine Navigation System: Basel Port Authority is developing an automated barge navigation system for the Rhine River. A cargo barge must travel from point A (current position) to point B (destination dock). The river current is represented by vector s. Calculate: (1) displacement vector v from A to B, (2) dot product v·s to determine if the current helps or hinders (positive = helps, negative = hinders, zero = perpendicular), and (3) magnitude |v| for the direct distance. This data optimizes fuel consumption and arrival time predictions."
-        }
+        },
+        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
     },
     gm1_02: {
         back: "Back to Nexus",

@@ -4,13 +4,12 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import VectorVisualization from "@/components/chamber/gm2-01/VectorVisualization";
 
 type Stage = "NAVIGATION" | "DOT" | "MISSION";
-type G201T = typeof translations.EN.gm2_01;
 
 interface G201Quest extends Quest {
   stage: Stage;
@@ -119,7 +118,7 @@ const missionDataElite = [
   { id: "M_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number], s: [1.8, 2.5, 2.1] as [number, number, number] },
 ];
 
-function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Quest[] {
+function buildStagePool(gm2_01_t: any, difficulty: Difficulty, stage: Stage): G201Quest[] {
   if (stage === "NAVIGATION") {
     let dataSet;
     switch (difficulty) {
@@ -140,7 +139,7 @@ function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Que
         stage,
         pointA: item.A,
         pointB: item.B,
-        promptLatex: t.stages.navigation_prompt_latex,
+        promptLatex: gm2_01_t.stages.navigation_prompt_latex,
         expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')})`,
         targetLatex: "\\vec v,\\;|\\vec v|",
         slots: [
@@ -174,7 +173,7 @@ function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Que
         vectorV: item.v,
         vectorW: item.w,
         showDotProduct: true,
-        promptLatex: t.stages.dot_prompt_latex,
+        promptLatex: gm2_01_t.stages.dot_prompt_latex,
         expressionLatex: `\\vec v=(${item.v.join(',')}),\\;\\vec w=(${item.w.join(',')})`,
         targetLatex: "\\vec v\\cdot\\vec w",
         slots: [
@@ -208,7 +207,7 @@ function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Que
       pointB: item.B,
       vectorW: item.s,
       showDotProduct: true,
-      promptLatex: t.stages.mission_prompt_latex,
+      promptLatex: gm2_01_t.stages.mission_prompt_latex,
       expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')}),\\;\\vec s=(${item.s.join(',')})`,
       targetLatex: "\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|",
       slots: [
@@ -224,8 +223,49 @@ function buildStagePool(t: G201T, difficulty: Difficulty, stage: Stage): G201Que
 }
 
 export default function G201Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gm2_01;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
+  
+  const gm2_01_t = {
+    title: t("gm2_01.title"),
+    back: t("gm2_01.back"),
+    check: t("gm2_01.check"),
+    next: t("gm2_01.next"),
+    correct: t("gm2_01.correct"),
+    incorrect: t("gm2_01.incorrect"),
+    ready: t("gm2_01.ready"),
+    monitor_title: t("gm2_01.monitor_title"),
+    footer_left: t("gm2_01.footer_left"),
+    objective_title: t("gm2_01.objective_title"),
+    target_title: t("gm2_01.target_title"),
+    stages: {
+      navigation: t("gm2_01.stages.navigation"),
+      dot: t("gm2_01.stages.dot"),
+      mission: t("gm2_01.stages.mission"),
+      navigation_prompt_latex: t("gm2_01.stages.navigation_prompt_latex"),
+      dot_prompt_latex: t("gm2_01.stages.dot_prompt_latex"),
+      mission_prompt_latex: t("gm2_01.stages.mission_prompt_latex"),
+    },
+    difficulty: {
+      basic: t("gm2_01.difficulty.basic"),
+      core: t("gm2_01.difficulty.core"),
+      advanced: t("gm2_01.difficulty.advanced"),
+      elite: t("gm2_01.difficulty.elite"),
+    },
+    labels: {
+      input: t("gm2_01.labels.input"),
+    },
+    mission: {
+      title: t("gm2_01.mission.title"),
+      description: t("gm2_01.mission.description"),
+    },
+    scenarios: {
+      navigation: t("gm2_01.scenarios.navigation"),
+      dot: t("gm2_01.scenarios.dot"),
+      mission: t("gm2_01.scenarios.mission"),
+    },
+    input_tip_2dp: t("gm2_01.input_tip_2dp"),
+  };
 
   const {
     difficulty,
@@ -239,7 +279,7 @@ export default function G201Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<G201Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool: (d, s) => buildStagePool(gm2_01_t, d, s),
     initialStage: "NAVIGATION",
   });
 
@@ -251,34 +291,34 @@ export default function G201Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={gm2_01_t.title}
       moduleCode="GM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "NAVIGATION", label: t.stages.navigation },
-        { id: "DOT", label: t.stages.dot },
-        { id: "MISSION", label: t.stages.mission },
+        { id: "NAVIGATION", label: gm2_01_t.stages.navigation },
+        { id: "DOT", label: gm2_01_t.stages.dot },
+        { id: "MISSION", label: gm2_01_t.stages.mission },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={gm2_01_t.footer_left}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: gm2_01_t.back,
+        check: gm2_01_t.check,
+        next: gm2_01_t.next,
+        correct: gm2_01_t.correct,
+        incorrect: gm2_01_t.incorrect,
+        ready: gm2_01_t.ready,
+        monitor_title: gm2_01_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: gm2_01_t.difficulty.basic,
+          core: gm2_01_t.difficulty.core,
+          advanced: gm2_01_t.difficulty.advanced,
+          elite: gm2_01_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -289,7 +329,7 @@ export default function G201Page() {
           vectorW={currentQuest?.vectorW}
           showDotProduct={currentQuest?.showDotProduct}
           translations={{
-            title: t.monitor_title,
+            title: gm2_01_t.monitor_title,
             pointA: "Point A",
             pointB: "Point B",
             vectorV: "Vector v",
@@ -300,20 +340,20 @@ export default function G201Page() {
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{gm2_01_t.mission.title}</h3>
+          <p className="text-base text-white/70 font-mono">{gm2_01_t.mission.description}</p>
         </div>
         
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "NAVIGATION" && t.scenarios.navigation}
-            {stage === "DOT" && t.scenarios.dot}
-            {stage === "MISSION" && t.scenarios.mission}
+            {stage === "NAVIGATION" && gm2_01_t.scenarios.navigation}
+            {stage === "DOT" && gm2_01_t.scenarios.dot}
+            {stage === "MISSION" && gm2_01_t.scenarios.mission}
           </div>
         </div>
 
         <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{gm2_01_t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">
             <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
@@ -342,12 +382,7 @@ export default function G201Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? t.input_tip_2dp
-              : currentLanguage === 'CN'
-                ? "提示：保留 2 位小数。"
-                : "Tip: Enter result rounded to 2 decimal places."
-            }
+            {gm2_01_t.input_tip_2dp}
           </div>
         </div>
       </div>

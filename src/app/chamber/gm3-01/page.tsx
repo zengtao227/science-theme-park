@@ -4,13 +4,12 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualization from "@/components/chamber/gm3-01/ProbabilityVisualization";
 
 type Stage = "BASIC_PROB" | "BINOMIAL" | "CONDITIONAL" | "MISSION";
-type G301T = typeof translations.EN.gm3_01;
 
 interface G301Quest extends Quest {
   stage: Stage;
@@ -178,7 +177,7 @@ const missionDataElite = [
   { id: "MISS_E5", n: 18, k: 11, p: 0.6, type: "binomial", context: "mission_elite_5" },
 ];
 
-function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Quest[] {
+function buildStagePool(gm3_01_t: any, difficulty: Difficulty, stage: Stage): G301Quest[] {
   if (stage === "BASIC_PROB") {
     let dataSet;
     switch (difficulty) {
@@ -191,7 +190,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
     
     return dataSet.map((item) => {
       const probability = round4(item.favorable / item.total);
-      const problemText = t.problems?.[item.context] || `${item.favorable} favorable out of ${item.total} total`;
+      const problemText = gm3_01_t.problems?.[item.context] || `${item.favorable} favorable out of ${item.total} total`;
       
       return {
         id: item.id,
@@ -200,7 +199,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
         favorable: item.favorable,
         total: item.total,
         problemText,
-        promptLatex: t.stages.basic_prob_prompt_latex,
+        promptLatex: gm3_01_t.stages.basic_prob_prompt_latex,
         expressionLatex: `\\text{Given: }${item.favorable}\\text{ favorable, }${item.total}\\text{ total}`,
         targetLatex: "P(E)",
         slots: [
@@ -223,7 +222,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
     
     return dataSet.map((item) => {
       const prob = round4(binomial(item.n, item.k) * Math.pow(item.p, item.k) * Math.pow(1 - item.p, item.n - item.k));
-      const problemText = t.problems?.[item.context] || `n=${item.n} trials, k=${item.k} successes, p=${item.p}`;
+      const problemText = gm3_01_t.problems?.[item.context] || `n=${item.n} trials, k=${item.k} successes, p=${item.p}`;
       
       return {
         id: item.id,
@@ -233,7 +232,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
         k: item.k,
         p: item.p,
         problemText,
-        promptLatex: t.stages.binomial_prompt_latex,
+        promptLatex: gm3_01_t.stages.binomial_prompt_latex,
         expressionLatex: `\\text{Given: }n=${item.n},\\;k=${item.k},\\;p=${item.p}`,
         targetLatex: "P(X=k)",
         slots: [
@@ -256,7 +255,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
     
     return dataSet.map((item) => {
       const condProb = round4(item.eventAB / item.eventB);
-      const problemText = t.problems?.[item.context] || `P(A)=${item.eventA}, P(B)=${item.eventB}, P(A∩B)=${item.eventAB}`;
+      const problemText = gm3_01_t.problems?.[item.context] || `P(A)=${item.eventA}, P(B)=${item.eventB}, P(A∩B)=${item.eventAB}`;
       
       return {
         id: item.id,
@@ -266,7 +265,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
         eventB: item.eventB,
         eventAB: item.eventAB,
         problemText,
-        promptLatex: t.stages.conditional_prompt_latex,
+        promptLatex: gm3_01_t.stages.conditional_prompt_latex,
         expressionLatex: `\\text{Given: }P(A)=${item.eventA},\\;P(B)=${item.eventB},\\;P(A\\cap B)=${item.eventAB}`,
         targetLatex: "P(A|B)",
         slots: [
@@ -295,15 +294,15 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
     if (item.type === "binomial") {
       prob = round4(binomial(item.n, item.k) * Math.pow(item.p, item.k) * Math.pow(1 - item.p, item.n - item.k));
       expressionLatex = `\\text{Given: }n=${item.n},\\;k=${item.k},\\;p=${item.p}`;
-      problemText = t.problems?.[item.context] || `n=${item.n}, k=${item.k}, p=${item.p}`;
+      problemText = gm3_01_t.problems?.[item.context] || `n=${item.n}, k=${item.k}, p=${item.p}`;
     } else if (item.type === "basic") {
       prob = round4(item.favorable / item.total);
       expressionLatex = `\\text{Given: }${item.favorable}\\text{ favorable, }${item.total}\\text{ total}`;
-      problemText = t.problems?.[item.context] || `${item.favorable} favorable out of ${item.total}`;
+      problemText = gm3_01_t.problems?.[item.context] || `${item.favorable} favorable out of ${item.total}`;
     } else if (item.type === "conditional") {
       prob = round4(item.eventAB / item.eventB);
       expressionLatex = `\\text{Given: }P(A)=${item.eventA},\\;P(B)=${item.eventB},\\;P(A\\cap B)=${item.eventAB}`;
-      problemText = t.problems?.[item.context] || `P(A)=${item.eventA}, P(B)=${item.eventB}, P(A∩B)=${item.eventAB}`;
+      problemText = gm3_01_t.problems?.[item.context] || `P(A)=${item.eventA}, P(B)=${item.eventB}, P(A∩B)=${item.eventAB}`;
     }
     
     return {
@@ -319,7 +318,7 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
       eventB: item.eventB,
       eventAB: item.eventAB,
       problemText,
-      promptLatex: t.stages.mission_prompt_latex,
+      promptLatex: gm3_01_t.stages.mission_prompt_latex,
       expressionLatex,
       targetLatex: "P",
       slots: [
@@ -331,8 +330,53 @@ function buildStagePool(t: G301T, difficulty: Difficulty, stage: Stage): G301Que
 }
 
 export default function G301Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gm3_01;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
+  
+  const gm3_01_t = {
+    title: t("gm3_01.title"),
+    back: t("gm3_01.back"),
+    check: t("gm3_01.check"),
+    next: t("gm3_01.next"),
+    correct: t("gm3_01.correct"),
+    incorrect: t("gm3_01.incorrect"),
+    ready: t("gm3_01.ready"),
+    monitor_title: t("gm3_01.monitor_title"),
+    footer_left: t("gm3_01.footer_left"),
+    objective_title: t("gm3_01.objective_title"),
+    target_title: t("gm3_01.target_title"),
+    stages: {
+      basic_prob: t("gm3_01.stages.basic_prob"),
+      binomial: t("gm3_01.stages.binomial"),
+      conditional: t("gm3_01.stages.conditional"),
+      mission: t("gm3_01.stages.mission"),
+      basic_prob_prompt_latex: t("gm3_01.stages.basic_prob_prompt_latex"),
+      binomial_prompt_latex: t("gm3_01.stages.binomial_prompt_latex"),
+      conditional_prompt_latex: t("gm3_01.stages.conditional_prompt_latex"),
+      mission_prompt_latex: t("gm3_01.stages.mission_prompt_latex"),
+    },
+    difficulty: {
+      basic: t("gm3_01.difficulty.basic"),
+      core: t("gm3_01.difficulty.core"),
+      advanced: t("gm3_01.difficulty.advanced"),
+      elite: t("gm3_01.difficulty.elite"),
+    },
+    labels: {
+      input: t("gm3_01.labels.input"),
+      hints: t("gm3_01.labels.hints"),
+    },
+    mission: {
+      title: t("gm3_01.mission.title"),
+      description: t("gm3_01.mission.description"),
+    },
+    scenarios: {
+      basic_prob: t("gm3_01.scenarios.basic_prob"),
+      binomial: t("gm3_01.scenarios.binomial"),
+      conditional: t("gm3_01.scenarios.conditional"),
+      mission: t("gm3_01.scenarios.mission"),
+    },
+    problems: t("gm3_01.problems"),
+  };
 
   const {
     difficulty,
@@ -346,7 +390,7 @@ export default function G301Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<G301Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool: (d, s) => buildStagePool(gm3_01_t, d, s),
     initialStage: "BASIC_PROB",
   });
 
@@ -358,35 +402,35 @@ export default function G301Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={gm3_01_t.title}
       moduleCode="GM3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "BASIC_PROB", label: t.stages.basic_prob },
-        { id: "BINOMIAL", label: t.stages.binomial },
-        { id: "CONDITIONAL", label: t.stages.conditional },
-        { id: "MISSION", label: t.stages.mission },
+        { id: "BASIC_PROB", label: gm3_01_t.stages.basic_prob },
+        { id: "BINOMIAL", label: gm3_01_t.stages.binomial },
+        { id: "CONDITIONAL", label: gm3_01_t.stages.conditional },
+        { id: "MISSION", label: gm3_01_t.stages.mission },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={gm3_01_t.footer_left}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: gm3_01_t.back,
+        check: gm3_01_t.check,
+        next: gm3_01_t.next,
+        correct: gm3_01_t.correct,
+        incorrect: gm3_01_t.incorrect,
+        ready: gm3_01_t.ready,
+        monitor_title: gm3_01_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: gm3_01_t.difficulty.basic,
+          core: gm3_01_t.difficulty.core,
+          advanced: gm3_01_t.difficulty.advanced,
+          elite: gm3_01_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -401,23 +445,23 @@ export default function G301Page() {
           eventB={currentQuest?.eventB}
           eventAB={currentQuest?.eventAB}
           translations={{
-            title: t.monitor_title,
+            title: gm3_01_t.monitor_title,
           }}
         />
       }
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{gm3_01_t.mission.title}</h3>
+          <p className="text-base text-white/70 font-mono">{gm3_01_t.mission.description}</p>
         </div>
         
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "BASIC_PROB" && t.scenarios.basic_prob}
-            {stage === "BINOMIAL" && t.scenarios.binomial}
-            {stage === "CONDITIONAL" && t.scenarios.conditional}
-            {stage === "MISSION" && t.scenarios.mission}
+            {stage === "BASIC_PROB" && gm3_01_t.scenarios.basic_prob}
+            {stage === "BINOMIAL" && gm3_01_t.scenarios.binomial}
+            {stage === "CONDITIONAL" && gm3_01_t.scenarios.conditional}
+            {stage === "MISSION" && gm3_01_t.scenarios.mission}
           </div>
         </div>
 
@@ -432,7 +476,7 @@ export default function G301Page() {
         )}
 
         <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{gm3_01_t.objective_title}</h3>
           <p className="text-2xl text-white font-black italic mb-4">
             <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
@@ -460,7 +504,7 @@ export default function G301Page() {
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
             {currentLanguage === 'DE'
-              ? t.input_tip_4dp
+              ? gm3_01_t.input_tip_4dp
               : currentLanguage === 'CN'
                 ? "提示：保留 4 位小数。"
                 : "Tip: Enter result rounded to 4 decimal places."
