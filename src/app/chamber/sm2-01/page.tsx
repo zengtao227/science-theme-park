@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BinomialSquare2D from "@/components/chamber/sm2-01/BinomialSquare2D";
@@ -13,7 +13,6 @@ import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
 type QuestMode = "EXPLORE" | "ARCHITECT" | "SCRAPPER" | "SPEEDSTER" | "ELITE" | "VOYAGER";
-type S201T = typeof translations.EN.sm2_01;
 
 interface ArchitectQuest extends Quest {
   type: "EXPAND";
@@ -64,7 +63,7 @@ interface VoyagerQuest extends Quest {
 
 type S201Quest = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | VoyagerQuest;
 
-function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
+function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
   if (stage === "EXPLORE") return [];
 
   const isBasic = difficulty === "BASIC";
@@ -246,8 +245,107 @@ function buildStagePool(t: S201T, difficulty: Difficulty, stage: QuestMode): S20
 }
 
 export default function S201Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].sm2_01;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
+
+  const sm2_01_t = {
+    title: t("sm2_01.title"),
+    back: t("sm2_01.back"),
+    check: t("sm2_01.check"),
+    solve_success: t("sm2_01.solve_success"),
+    solve_fail: t("sm2_01.solve_fail"),
+    params_config: t("sm2_01.params_config"),
+    param_a: t("sm2_01.param_a"),
+    param_b: t("sm2_01.param_b"),
+    units: t("sm2_01.units"),
+    lock: t("sm2_01.lock"),
+    unlock: t("sm2_01.unlock"),
+    active_objective: t("sm2_01.active_objective"),
+    target_expression: t("sm2_01.target_expression"),
+    speedster_hint: t("sm2_01.speedster_hint"),
+    elite_tips_title: t("sm2_01.elite_tips_title"),
+    elite_tips_target: t("sm2_01.elite_tips_target"),
+    decomposition_pattern: t("sm2_01.decomposition_pattern"),
+    scrapper_step01: t("sm2_01.scrapper_step01"),
+    instruction_solve: t("sm2_01.instruction_solve"),
+    instruction_setup: t("sm2_01.instruction_setup"),
+    tabs: {
+      explore: t("sm2_01.tabs.explore"),
+      architect: t("sm2_01.tabs.architect"),
+      scrapper: t("sm2_01.tabs.scrapper"),
+      speedster: t("sm2_01.tabs.speedster"),
+      voyager: t("sm2_01.tabs.voyager"),
+      elite: t("sm2_01.tabs.elite"),
+    },
+    difficulty: {
+      basic: t("sm2_01.difficulty.basic"),
+      core: t("sm2_01.difficulty.core"),
+      advanced: t("sm2_01.difficulty.advanced"),
+      elite: t("sm2_01.difficulty.elite"),
+    },
+    scenarios: {
+      architect_mission: t("sm2_01.scenarios.architect_mission"),
+      architect_context: t("sm2_01.scenarios.architect_context"),
+      architect_advanced_prompt: t("sm2_01.scenarios.architect_advanced_prompt"),
+      architect_elite_prompt: t("sm2_01.scenarios.architect_elite_prompt"),
+      scrapper_mission: t("sm2_01.scenarios.scrapper_mission"),
+      scrapper_context: t("sm2_01.scenarios.scrapper_context"),
+      speedster_mission: t("sm2_01.scenarios.speedster_mission"),
+      speedster_context: t("sm2_01.scenarios.speedster_context"),
+      elite_mission: t("sm2_01.scenarios.elite_mission"),
+      voyager_mission: t("sm2_01.scenarios.voyager_mission"),
+      voyager_context: t("sm2_01.scenarios.voyager_context"),
+    },
+    terms: {
+      a2: t("sm2_01.terms.a2"),
+      b2: t("sm2_01.terms.b2"),
+      ab: t("sm2_01.terms.ab"),
+      target_plus: t("sm2_01.terms.target_plus"),
+    },
+    placeholders: {
+      question: t("sm2_01.placeholders.question"),
+      ax: t("sm2_01.placeholders.ax"),
+      b: t("sm2_01.placeholders.b"),
+      by: t("sm2_01.placeholders.by"),
+      a_squared: t("sm2_01.placeholders.a_squared"),
+      two_ab: t("sm2_01.placeholders.two_ab"),
+      b_squared: t("sm2_01.placeholders.b_squared"),
+      cxy: t("sm2_01.placeholders.cxy"),
+      v: t("sm2_01.placeholders.v"),
+      two_cvxy: t("sm2_01.placeholders.two_cvxy"),
+      v_squared: t("sm2_01.placeholders.v_squared"),
+    },
+    ui: {
+      footer_left: t("sm2_01.ui.footer_left"),
+      execute_next_sequence: t("sm2_01.ui.execute_next_sequence"),
+      visual_reference_position: t("sm2_01.ui.visual_reference_position"),
+      status_operational: t("sm2_01.ui.status_operational"),
+      fps: t("sm2_01.ui.fps"),
+      latency: t("sm2_01.ui.latency"),
+      continue_operation: t("sm2_01.ui.continue_operation"),
+      coeff: t("sm2_01.ui.coeff"),
+      const: t("sm2_01.ui.const"),
+      identify_root_a: t("sm2_01.ui.identify_root_a"),
+      identify_root_b: t("sm2_01.ui.identify_root_b"),
+      elite_step_1: t("sm2_01.ui.elite_step_1"),
+      elite_step_2: t("sm2_01.ui.elite_step_2"),
+      logic_lattice_title: t("sm2_01.ui.logic_lattice_title"),
+      logic_architect_step_1: t("sm2_01.ui.logic_architect_step_1"),
+      logic_architect_step_2: t("sm2_01.ui.logic_architect_step_2"),
+      logic_scrapper_step_1: t("sm2_01.ui.logic_scrapper_step_1"),
+      logic_scrapper_step_2: t("sm2_01.ui.logic_scrapper_step_2"),
+      logic_voyager_axiom_title: t("sm2_01.ui.logic_voyager_axiom_title"),
+      logic_voyager_axiom_body: t("sm2_01.ui.logic_voyager_axiom_body"),
+      logic_voyager_derivation_title: t("sm2_01.ui.logic_voyager_derivation_title"),
+      link_established: t("sm2_01.ui.link_established"),
+      axiomatic_constraints_title: t("sm2_01.ui.axiomatic_constraints_title"),
+      constraints_architect: t("sm2_01.ui.constraints_architect"),
+      constraints_scrapper: t("sm2_01.ui.constraints_scrapper"),
+      constraints_speedster: t("sm2_01.ui.constraints_speedster"),
+      constraints_elite: t("sm2_01.ui.constraints_elite"),
+      constraints_voyager: t("sm2_01.ui.constraints_voyager"),
+    },
+  };
 
   const [questMode, setQuestMode] = useState<QuestMode>("EXPLORE");
   const [a, setA] = useState(3);
@@ -255,7 +353,7 @@ export default function S201Page() {
   const [locked, setLocked] = useState(false);
   const [snappedBlocks, setSnappedBlocks] = useState<Record<string, boolean>>({});
 
-  const buildPool = useCallback((d: Difficulty, s: QuestMode) => buildStagePool(t, d, s), [t]);
+  const buildPool = useCallback((d: Difficulty, s: QuestMode) => buildStagePool(sm2_01_t, d, s), [sm2_01_t]);
 
   const {
     difficulty,
@@ -274,12 +372,12 @@ export default function S201Page() {
   });
 
   const stages = [
-    { id: "EXPLORE", label: t.tabs?.explore ?? "EXPLORE" },
-    { id: "ARCHITECT", label: t.tabs?.architect ?? "ARCHITECT" },
-    { id: "SCRAPPER", label: t.tabs?.scrapper ?? "SCRAPPER" },
-    { id: "SPEEDSTER", label: t.tabs?.speedster ?? "SPEEDSTER" },
-    { id: "VOYAGER", label: t.tabs?.voyager ?? "VOYAGER" },
-    { id: "ELITE", label: t.tabs?.elite ?? "ELITE" },
+    { id: "EXPLORE", label: sm2_01_t.tabs?.explore ?? "EXPLORE" },
+    { id: "ARCHITECT", label: sm2_01_t.tabs?.architect ?? "ARCHITECT" },
+    { id: "SCRAPPER", label: sm2_01_t.tabs?.scrapper ?? "SCRAPPER" },
+    { id: "SPEEDSTER", label: sm2_01_t.tabs?.speedster ?? "SPEEDSTER" },
+    { id: "VOYAGER", label: sm2_01_t.tabs?.voyager ?? "VOYAGER" },
+    { id: "ELITE", label: sm2_01_t.tabs?.elite ?? "ELITE" },
   ];
 
   const handleModeChange = (mode: string) => {
@@ -358,7 +456,7 @@ export default function S201Page() {
         ab: `${voyagerQuest.ca * voyagerQuest.vb}x`,
       };
     }
-    return { a2: t.terms?.a2 ?? "a²", b2: t.terms?.b2 ?? "b²", ab: t.terms?.ab ?? "ab" };
+    return { a2: sm2_01_t.terms?.a2 ?? "a²", b2: sm2_01_t.terms?.b2 ?? "b²", ab: sm2_01_t.terms?.ab ?? "ab" };
   };
 
   const getCanvasTitleText = () => {
@@ -370,7 +468,7 @@ export default function S201Page() {
     }
     if (questMode === "ELITE" && eliteQuest) return `${eliteQuest.C ** 2}x²y² - ${eliteQuest.V ** 2}`;
     if (questMode === "VOYAGER" && voyagerQuest) return voyagerQuest.expr;
-    return t.terms?.target_plus ?? "(a + b)²";
+    return sm2_01_t.terms?.target_plus ?? "(a + b)²";
   };
 
   const handleSidebarKeyDown = (e: React.KeyboardEvent) => {
@@ -400,31 +498,31 @@ export default function S201Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={sm2_01_t.title}
       moduleCode="SM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}
       currentStage={questMode}
       onStageChange={handleModeChange}
-      footerLeft={t.ui?.footer_left ?? "S2.01_BINOMIAL_FACTORY"}
+      footerLeft={sm2_01_t.ui?.footer_left ?? "S2.01_BINOMIAL_FACTORY"}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}
       successRate={successRate}
       translations={{
-        back: t.back,
-        check: t.check || "VERIFY",
-        next: t.ui?.execute_next_sequence ?? "NEXT",
-        correct: t.solve_success ?? "VERIFIED",
-        incorrect: t.solve_fail || "INCORRECT",
+        back: sm2_01_t.back,
+        check: sm2_01_t.check || "VERIFY",
+        next: sm2_01_t.ui?.execute_next_sequence ?? "NEXT",
+        correct: sm2_01_t.solve_success ?? "VERIFIED",
+        incorrect: sm2_01_t.solve_fail || "INCORRECT",
         ready: "READY",
-        monitor_title: t.ui?.visual_reference_position ?? "VISUAL_MONITOR",
+        monitor_title: sm2_01_t.ui?.visual_reference_position ?? "VISUAL_MONITOR",
         difficulty: {
-          basic: t.difficulty?.basic ?? "BASIC",
-          core: t.difficulty?.core ?? "CORE",
-          advanced: t.difficulty?.advanced ?? "ADVANCED",
-          elite: t.difficulty?.elite ?? "ELITE",
+          basic: sm2_01_t.difficulty?.basic ?? "BASIC",
+          core: sm2_01_t.difficulty?.core ?? "CORE",
+          advanced: sm2_01_t.difficulty?.advanced ?? "ADVANCED",
+          elite: sm2_01_t.difficulty?.elite ?? "ELITE",
         },
       }}
       monitorContent={
@@ -448,14 +546,14 @@ export default function S201Page() {
                       <Zap className="text-neon-green w-5 h-5" />
                     </div>
                     <h3 className="text-xl font-black neon-text-green tracking-tighter uppercase">
-                      {t.solve_success ?? "VERIFIED"}
+                      {sm2_01_t.solve_success ?? "VERIFIED"}
                     </h3>
                     <div className="h-px bg-white/10 w-full" />
                     <button
                       onClick={() => (questMode !== "EXPLORE" ? next() : setSnappedBlocks({}))}
                       className="w-full py-3 bg-neon-green/10 text-neon-green border border-neon-green hover:bg-neon-green text-[10px] font-bold tracking-widest uppercase transition-colors hover:text-black"
                     >
-                      {t.ui?.continue_operation ?? "CONTINUE"}
+                      {sm2_01_t.ui?.continue_operation ?? "CONTINUE"}
                     </button>
                   </div>
                 </motion.div>
@@ -466,11 +564,11 @@ export default function S201Page() {
             <div className="p-4 bg-white/[0.02] border-t-2 border-white/10 text-[9px] font-black text-white/90 uppercase tracking-[0.4em] flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_10px_#00ff9d]" />{" "}
-                {t.ui?.status_operational ?? "OPERATIONAL"}
+                {sm2_01_t.ui?.status_operational ?? "OPERATIONAL"}
               </div>
               <div className="flex items-center gap-4">
-                <span>{t.ui?.fps ?? "FPS"}: 60.0</span>
-                <span>{t.ui?.latency ?? "LATENCY"}: 2ms</span>
+                <span>{sm2_01_t.ui?.fps ?? "FPS"}: 60.0</span>
+                <span>{sm2_01_t.ui?.latency ?? "LATENCY"}: 2ms</span>
               </div>
             </div>
           )}
@@ -481,14 +579,14 @@ export default function S201Page() {
         {questMode === "EXPLORE" ? (
           <div className="space-y-12 py-20 flex flex-col justify-center min-h-[60vh]">
             <h3 className="text-xl text-white uppercase tracking-[0.4em] font-black flex items-center gap-4 border-l-4 border-white pl-6">
-              {t.params_config}
+              {sm2_01_t.params_config}
             </h3>
             <div className="grid grid-cols-2 gap-12">
               <div className="space-y-6">
                 <div className="flex justify-between text-base mb-3 text-white uppercase tracking-widest font-black">
-                  <span>{t.param_a}</span>
+                  <span>{sm2_01_t.param_a}</span>
                   <span className="text-white">
-                    {a.toFixed(1)} {t.units}
+                    {a.toFixed(1)} {sm2_01_t.units}
                   </span>
                 </div>
                 <input
@@ -503,9 +601,9 @@ export default function S201Page() {
               </div>
               <div className="space-y-6">
                 <div className="flex justify-between text-base mb-3 text-white uppercase tracking-widest font-black">
-                  <span>{t.param_b}</span>
+                  <span>{sm2_01_t.param_b}</span>
                   <span className="text-white">
-                    {b.toFixed(1)} {t.units}
+                    {b.toFixed(1)} {sm2_01_t.units}
                   </span>
                 </div>
                 <input
@@ -527,7 +625,7 @@ export default function S201Page() {
               )}
             >
               {locked ? <Unlock className="inline w-5 h-5 mr-3 mb-1" /> : <Lock className="inline w-5 h-5 mr-3 mb-1" />}{" "}
-              {locked ? t.unlock : t.lock}
+              {locked ? sm2_01_t.unlock : sm2_01_t.lock}
             </button>
           </div>
         ) : (
@@ -536,17 +634,17 @@ export default function S201Page() {
               {/* Scenario Context Box - SHIFTED UP AND REFINED */}
               <div className="bg-white/[0.04] border-l-4 border-neon-green/50 rounded-r-xl p-5 max-w-3xl mx-auto backdrop-blur-sm">
                 <div className="text-white/70 text-xs font-mono leading-relaxed">
-                  {questMode === "ARCHITECT" && t.scenarios.architect_context}
-                  {questMode === "SCRAPPER" && t.scenarios.scrapper_context}
-                  {questMode === "SPEEDSTER" && t.scenarios.speedster_context}
-                  {questMode === "VOYAGER" && t.scenarios.voyager_context}
+                  {questMode === "ARCHITECT" && sm2_01_t.scenarios.architect_context}
+                  {questMode === "SCRAPPER" && sm2_01_t.scenarios.scrapper_context}
+                  {questMode === "SPEEDSTER" && sm2_01_t.scenarios.speedster_context}
+                  {questMode === "VOYAGER" && sm2_01_t.scenarios.voyager_context}
                 </div>
               </div>
 
               {/* MISSION CONTEXT / PROMPT */}
               <div className="text-center">
                 <h3 className="text-[9px] text-white uppercase tracking-[0.4em] font-black mb-2">
-                  {t.active_objective}
+                  {sm2_01_t.active_objective}
                 </h3>
                 <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md">
                   {currentQuest?.promptLatex?.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}
@@ -557,13 +655,13 @@ export default function S201Page() {
               <div className="p-4 sm:p-6 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative max-w-4xl mx-auto shadow-xl overflow-x-auto">
                 <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-white/70" />
                 <span className="text-[9px] text-white/90 uppercase tracking-[0.6em] font-black block mb-3">
-                  {t.target_expression}
+                  {sm2_01_t.target_expression}
                 </span>
                 <div className="font-black italic tracking-tighter text-white block py-1 drop-shadow-lg text-[clamp(1.5rem,5vw,4.5rem)] leading-tight whitespace-normal break-words">
                   {currentQuest?.expressionLatex}
                 </div>
                 {questMode === "SPEEDSTER" && (
-                  <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{t.speedster_hint}</div>
+                  <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{sm2_01_t.speedster_hint}</div>
                 )}
               </div>
             </div>
@@ -579,7 +677,7 @@ export default function S201Page() {
                           value={inputs.a_root || ""}
                           onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={t.placeholders?.ax ?? "ax"}
+                          placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                         />
                         <span className="text-white/80">)²</span>
 
@@ -591,14 +689,14 @@ export default function S201Page() {
                           value={inputs.a_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={t.placeholders?.ax ?? "ax"}
+                          placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                         />
                         <span className="text-white/80">)(</span>
                         <input
                           value={inputs.b_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, b_mid: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={t.placeholders?.b ?? "b"}
+                          placeholder={sm2_01_t.placeholders?.b ?? "b"}
                         />
                         <span className="text-white/90">)</span>
 
@@ -609,13 +707,13 @@ export default function S201Page() {
                           value={inputs.b_root || ""}
                           onChange={(e) => setInputs({ ...inputs, b_root: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={t.placeholders?.b ?? "b"}
+                          placeholder={sm2_01_t.placeholders?.b ?? "b"}
                         />
                         <span className="text-white/80">)²</span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        {t.decomposition_pattern ?? "Decomposition Pattern: a² + 2ab + b²"}
+                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a² + 2ab + b²"}
                       </div>
                     </div>
                   ) : (
@@ -625,9 +723,9 @@ export default function S201Page() {
                           value={inputs.a2 || ""}
                           onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
                       <span className="text-4xl font-black text-white/80">x²</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -636,9 +734,9 @@ export default function S201Page() {
                           value={inputs.ab || ""}
                           onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
                       <span className="text-4xl font-black text-white/80">x</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -647,9 +745,9 @@ export default function S201Page() {
                           value={inputs.b2 || ""}
                           onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{t.ui?.const ?? "Constant"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.const ?? "Constant"}</span>
                       </div>
                     </>
                   )}
@@ -660,7 +758,7 @@ export default function S201Page() {
                   <div className="col-span-3 mb-6">
                     <div className="bg-white/5 border border-white/60 rounded-xl p-6 max-w-2xl mx-auto">
                       <div className="text-white/60 text-xs font-mono uppercase tracking-widest mb-3">
-                        {t.scrapper_step01}
+                        {sm2_01_t.scrapper_step01}
                       </div>
                       <div className="text-white text-2xl font-black flex items-center justify-center gap-4">
                         <InlineMath
@@ -675,25 +773,25 @@ export default function S201Page() {
                   </div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {t.ui?.identify_root_a ?? "ROOT A"}
+                      {sm2_01_t.ui?.identify_root_a ?? "ROOT A"}
                     </span>
                     <input
                       value={inputs.a || ""}
                       onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder={t.placeholders?.ax ?? "ax"}
+                      placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                     />
                   </div>
                   <div className="flex items-end pb-4 justify-center text-4xl text-white font-black">+</div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {t.ui?.identify_root_b ?? "ROOT B"}
+                      {sm2_01_t.ui?.identify_root_b ?? "ROOT B"}
                     </span>
                     <input
                       value={inputs.b || ""}
                       onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder={scrapperQuest?.variant === "XY" ? (t.placeholders?.by ?? "by") : (t.placeholders?.b ?? "b")}
+                      placeholder={scrapperQuest?.variant === "XY" ? (sm2_01_t.placeholders?.by ?? "by") : (sm2_01_t.placeholders?.b ?? "b")}
                     />
                   </div>
                 </>
@@ -706,21 +804,21 @@ export default function S201Page() {
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={t.placeholders?.a_squared ?? "a²"}
+                      placeholder={sm2_01_t.placeholders?.a_squared ?? "a²"}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part2 || ""}
                       onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={t.placeholders?.two_ab ?? "2ab"}
+                      placeholder={sm2_01_t.placeholders?.two_ab ?? "2ab"}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={t.placeholders?.b_squared ?? "b²"}
+                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b²"}
                     />
                   </div>
                 </div>
@@ -732,7 +830,7 @@ export default function S201Page() {
                       <div className="text-4xl">💡</div>
                       <div className="flex-1">
                         <div className="text-white/80 text-sm font-mono uppercase tracking-widest mb-3">
-                          {t.elite_tips_title}
+                          {sm2_01_t.elite_tips_title}
                         </div>
                         <div className="text-white text-lg space-y-2">
                           <div className="flex items-center gap-3">
@@ -749,7 +847,7 @@ export default function S201Page() {
                           <div className="flex items-center gap-3">
                             <span className="text-white/60">•</span>
                             <span>
-                              {t.elite_tips_target}{" "}
+                              {sm2_01_t.elite_tips_target}{" "}
                               <InlineMath math={`(${eliteQuest?.C ?? ""}xy - ${eliteQuest?.V ?? ""})^2`} />
                             </span>
                           </div>
@@ -759,7 +857,7 @@ export default function S201Page() {
                   </div>
                   <div className="flex flex-col items-center gap-6">
                     <div className="text-white/60 text-xs font-mono uppercase tracking-widest mb-2">
-                      {t.ui?.elite_step_1 ?? "STEP 1"}
+                      {sm2_01_t.ui?.elite_step_1 ?? "STEP 1"}
                     </div>
                     <div className="flex items-center gap-4 justify-center bg-white/10 p-8 rounded-2xl border-2 border-white/40">
                       <span className="text-3xl text-white font-black">(</span>
@@ -767,20 +865,20 @@ export default function S201Page() {
                         value={inputs.base || ""}
                         onChange={(e) => setInputs({ ...inputs, base: e.target.value })}
                         className="w-32 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder={t.placeholders?.cxy ?? "Cxy"}
+                        placeholder={sm2_01_t.placeholders?.cxy ?? "Cxy"}
                       />
                       <span className="text-3xl text-white font-black">-</span>
                       <input
                         value={inputs.sub || ""}
                         onChange={(e) => setInputs({ ...inputs, sub: e.target.value })}
                         className="w-24 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder={t.placeholders?.v ?? "V"}
+                        placeholder={sm2_01_t.placeholders?.v ?? "V"}
                       />
                       <span className="text-3xl text-white font-black">)²</span>
                     </div>
 
                     <div className="text-white/60 text-xs font-mono uppercase tracking-widest mt-4 mb-2">
-                      {t.ui?.elite_step_2 ?? "STEP 2"}
+                      {sm2_01_t.ui?.elite_step_2 ?? "STEP 2"}
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-2xl text-white font-black">+</span>
@@ -788,14 +886,14 @@ export default function S201Page() {
                         value={inputs.add_term || ""}
                         onChange={(e) => setInputs({ ...inputs, add_term: e.target.value })}
                         className="w-40 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder={t.placeholders?.two_cvxy ?? "2CVxy"}
+                        placeholder={sm2_01_t.placeholders?.two_cvxy ?? "2CVxy"}
                       />
                       <span className="text-2xl text-white font-black">-</span>
                       <input
                         value={inputs.const_term || ""}
                         onChange={(e) => setInputs({ ...inputs, const_term: e.target.value })}
                         className="w-32 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder={t.placeholders?.v_squared ?? "V²"}
+                        placeholder={sm2_01_t.placeholders?.v_squared ?? "V²"}
                       />
                     </div>
                   </div>
@@ -810,19 +908,19 @@ export default function S201Page() {
                         value={inputs.a || ""}
                         onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                         className="w-24 sm:w-32 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder={t.placeholders?.ax ?? "ax"}
+                        placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                       />
                       <span className="text-white">+</span>
                       <input
                         value={inputs.b || ""}
                         onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                         className="w-20 sm:w-28 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder={t.placeholders?.b ?? "b"}
+                        placeholder={sm2_01_t.placeholders?.b ?? "b"}
                       />
                       <span className="text-white">) (</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || (t.placeholders?.ax ?? "ax")}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || (sm2_01_t.placeholders?.ax ?? "ax")}</span>
                       <span className="text-white">-</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || (t.placeholders?.b ?? "b")}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || (sm2_01_t.placeholders?.b ?? "b")}</span>
                       <span className="text-white">)</span>
                     </div>
                   ) : (
@@ -832,7 +930,7 @@ export default function S201Page() {
                           value={inputs.part1 || ""}
                           onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder={t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
                         <span className="text-white ml-2">x²</span>
                       </div>
@@ -842,7 +940,7 @@ export default function S201Page() {
                           value={inputs.part2 || ""}
                           onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder={t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
                       </div>
                     </div>
@@ -858,14 +956,14 @@ export default function S201Page() {
             <div className="flex items-center gap-2 mb-2">
               <Settings2 className="w-4 h-4 text-white" />
               <span className="text-[10px] uppercase tracking-[0.2em] font-black text-white underline underline-offset-[6px] decoration-white decoration-2">
-                {t.ui?.logic_lattice_title ?? "LOGIC"}
+                {sm2_01_t.ui?.logic_lattice_title ?? "LOGIC"}
               </span>
             </div>
             <div className="p-5 bg-white/[0.03] border-2 border-white/10 rounded-lg font-mono text-xs space-y-3 hover:border-white/60 transition-all">
               {questMode === "ARCHITECT" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {t.ui?.logic_architect_step_1 ?? "STEP 1"}
+                    {sm2_01_t.ui?.logic_architect_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
                     {architectQuest
@@ -873,7 +971,7 @@ export default function S201Page() {
                       : ""}
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {t.ui?.logic_architect_step_2 ?? "STEP 2"}
+                    {sm2_01_t.ui?.logic_architect_step_2 ?? "STEP 2"}
                   </div>
                   <div className="text-white font-black">
                     {architectQuest
@@ -886,13 +984,13 @@ export default function S201Page() {
               {questMode === "SCRAPPER" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
+                    {sm2_01_t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
                     {scrapperQuest ? `√(${scrapperQuest.ca * scrapperQuest.ca})x² = ${scrapperQuest.ca}x` : ""}
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
+                    {sm2_01_t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
                   </div>
                   <div className="text-white font-black">
                     {scrapperQuest ? `2 * (${scrapperQuest.ca}x) * (${scrapperQuest.vb}) = ${2 * scrapperQuest.ca * scrapperQuest.vb}x` : ""}
@@ -902,18 +1000,18 @@ export default function S201Page() {
               {questMode === "VOYAGER" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {t.ui?.logic_voyager_axiom_title ?? "AXIOM"}
+                    {sm2_01_t.ui?.logic_voyager_axiom_title ?? "AXIOM"}
                   </div>
-                  <div className="text-white font-black">{t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A² - B²"}</div>
+                  <div className="text-white font-black">{sm2_01_t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A² - B²"}</div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
+                    {sm2_01_t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
                   </div>
                   <div className="text-white font-black">A² + AB - AB - B² ≡ A² - B²</div>
                 </>
               )}
               {!["ARCHITECT", "SCRAPPER", "VOYAGER"].includes(questMode) && (
                 <div className="text-white/60 italic text-[10px] py-8 text-center uppercase tracking-[0.3em] font-black">
-                  {t.ui?.link_established ?? "LINK ESTABLISHED"}
+                  {sm2_01_t.ui?.link_established ?? "LINK ESTABLISHED"}
                 </div>
               )}
             </div>
@@ -923,16 +1021,16 @@ export default function S201Page() {
             <div className="flex items-center gap-2 mb-2">
               <Info className="w-4 h-4 text-white" />
               <span className="text-[10px] uppercase tracking-[0.2em] font-black text-white underline underline-offset-[6px] decoration-white decoration-2">
-                {t.ui?.axiomatic_constraints_title ?? "CONSTRAINTS"}
+                {sm2_01_t.ui?.axiomatic_constraints_title ?? "CONSTRAINTS"}
               </span>
             </div>
             <p className="text-xs text-white/70 leading-relaxed font-mono italic font-black bg-white/[0.03] p-5 rounded-lg border-2 border-white/10">
-              {questMode === "EXPLORE" && (locked ? t.instruction_solve : t.instruction_setup)}
-              {questMode === "ARCHITECT" && t.ui?.constraints_architect}
-              {questMode === "SCRAPPER" && t.ui?.constraints_scrapper}
-              {questMode === "SPEEDSTER" && t.ui?.constraints_speedster}
-              {questMode === "ELITE" && t.ui?.constraints_elite}
-              {questMode === "VOYAGER" && t.ui?.constraints_voyager}
+              {questMode === "EXPLORE" && (locked ? sm2_01_t.instruction_solve : sm2_01_t.instruction_setup)}
+              {questMode === "ARCHITECT" && sm2_01_t.ui?.constraints_architect}
+              {questMode === "SCRAPPER" && sm2_01_t.ui?.constraints_scrapper}
+              {questMode === "SPEEDSTER" && sm2_01_t.ui?.constraints_speedster}
+              {questMode === "ELITE" && sm2_01_t.ui?.constraints_elite}
+              {questMode === "VOYAGER" && sm2_01_t.ui?.constraints_voyager}
             </p>
           </div>
         </div>
