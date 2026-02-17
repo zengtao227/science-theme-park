@@ -364,25 +364,26 @@ cat MODULE_AUDIT_LATEST.txt
 
 ---
 
-### Sprint 0.5: 手动验证 — 消除误判（必须在任何修复前完成）
+### Sprint 0.5: 系统性验证 — 消除误判（必须在任何修复前完成）
 
 **目的**: 之前的审查脚本有严重误判（无法检测 Record 模式和 else-if 模式），
-必须逐模块手动验证，确认哪些真的缺题，哪些实际已完整。
+必须逐模块验证，确认哪些真的缺题，哪些实际已完整。
 
-**验证方法** — 对每个标记为 🔴 或 ⚠️ 的模块执行：
+**验证方法** — 运行升级后的审查脚本：
+```bash
+bash scripts/deep-audit.sh > MODULE_AUDIT_LATEST.txt 2>&1
+```
+
+然后对每个审查脚本报告为 ⚠️/🔴 的模块，用以下命令手动确认：
 
 ```bash
-# 步骤1: 检查是否使用 Record 模式（完整的题目池结构）
-grep -c 'Record<.*Stage.*Record<.*Difficulty\|Record<.*Difficulty.*Quest' src/app/chamber/MODULE/page.tsx
-
-# 步骤2: 统计 quests.push 次数
-grep -c 'quests.push' src/app/chamber/MODULE/page.tsx
-
-# 步骤3: 检查 else-if 难度分支数
-grep -c 'isBasic\|isCore\|isAdv\|isElite\|else if\|case.*BASIC\|case.*CORE' src/app/chamber/MODULE/page.tsx
-
-# 步骤4: 如果以上都为0，查看 buildStagePool 函数结构
-grep -A 20 'buildStagePool\|buildPool' src/app/chamber/MODULE/page.tsx
+# 快速验证单个模块 — 将 MODULE 替换为模块名
+MOD=sm1-03 && echo "=== $MOD ==="  \
+  && echo "Record模式: $(grep -c 'Record<' src/app/chamber/$MOD/page.tsx)" \
+  && echo "quests.push: $(grep -c 'quests.push' src/app/chamber/$MOD/page.tsx)" \
+  && echo "难度分支: $(grep -c 'BASIC\|CORE\|ADVANCED\|ELITE\|isBasic\|isCore\|isAdv\|isElite' src/app/chamber/$MOD/page.tsx)" \
+  && echo "ID数量: $(grep -oE '"[A-Z_]+_[BCAE][0-9]+"' src/app/chamber/$MOD/page.tsx | wc -l | tr -d ' ')" \
+  && echo "行数: $(wc -l < src/app/chamber/$MOD/page.tsx)"
 ```
 
 **需要验证的模块列表** — 按优先级排列：
@@ -404,14 +405,15 @@ grep -A 20 'buildStagePool\|buildPool' src/app/chamber/MODULE/page.tsx
 - [ ] GB 全系列 (需验证)
 - [ ] GC 全系列 (需验证)
 
-**输出**: 生成一份验证报告，将每个模块分类为：
+**输出**: 生成验证报告 `MODULE_VERIFICATION_REPORT.md`，将每个模块分类为：
 - ✅ **已完整**: 有4难度×5题 — 不需要修改
-- ⚠️ **部分完整**: 有题目但缺某些难度（如缺ELITE）— 只需小量补充
-- 🔴 **确实稀疏**: 只有2-4题 — 需要大量补充
+- ⚠️ **只缺ELITE**: 有BASIC/CORE/ADV但缺ELITE — **快速胜利(Sprint 1.5)**
+- 🟡 **题数不足**: 有题但每难度<5题 — 需要补充
+- 🔴 **确实稀疏**: 只有2-4题或用isAdvanced二值开关 — 需要大量补充
 
 - [ ] 0.6 Checkpoint Sprint 0.5
   - 验证报告输出到 `MODULE_VERIFICATION_REPORT.md`
-  - 更新下方 Sprint 2-3 的模块列表（移除误判的模块）
+  - 更新下方 Sprint 1.5/2/3 的模块列表（移除误判的模块）
   - `git add -A && git commit -m "docs: module verification report" && git push`
 
 ---
@@ -455,16 +457,49 @@ grep -A 20 'buildStagePool\|buildPool' src/app/chamber/MODULE/page.tsx
 
 ---
 
+### Sprint 1.5: 快速胜利 — 只缺 ELITE 的模块（低垂的果实）
+
+**目的**: 先处理最容易的模块 — 已有 BASIC/CORE/ADVANCED 但只缺 ELITE 难度。
+每个模块只需补充 stage数 × 5 题，工作量小，能快速建立信心。
+
+> 以下列表是初步估计，以 Sprint 0.5 验证报告中标记为 ⚠️ 只缺ELITE 的模块为准。
+
+可能的候选（待 Sprint 0.5 确认）：
+- [ ] SM1.02 (Kiro报告: BASIC:3 CORE:3 ADV:3 ELITE:0) — 只需加 3stages×5=15题
+- [ ] SM1.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 同上
+- [ ] SM2.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 同上
+- [ ] GP2.01 (BASIC:1 CORE:1 ADV:1 ELITE:0) — 可能需要更多补充
+- [ ] GP2.02 (同 GP2.01)
+
+**工作模式**: 
+1. 只添加 `case "ELITE":` 分支和对应的 5 题数据
+2. 添加 ELITE 难度的三语翻译
+3. `npm run build` 验证
+4. 浏览器快速确认 ELITE 难度可选且有题
+
+- [ ] 1.6 Checkpoint Sprint 1.5
+  - `git add -A && git commit -m "feat: add ELITE difficulty to partial modules" && git push`
+
+---
+
 ### Sprint 2: 修复确认缺题的初中模块 (基于 Sprint 0.5 验证结果)
 
-**重要**: 只修复 Sprint 0.5 确认为 🔴 或 ⚠️ 的模块。如果某模块在验证中被确认 ✅，跳过它。
+**重要**: 只修复 Sprint 0.5 确认为 🔴 或 🟡 的模块。如果某模块在验证中被确认 ✅，跳过它。
 
 **工作模式**: 对于每个需要修复的模块，同时完成 3 项：
 1. **补题目**: 每 Stage × 每 Difficulty = 5 题
 2. **迁移 i18n**: 如果还在用旧模式，顺便改为 `useLanguage()`
 3. **改进 LaTeX**: 确保所有公式用 `<InlineMath>`/`<BlockMath>` 渲染
 
-然后在三语翻译文件中添加对应的 prompts/hints，最后 `npm run build` 验证。
+然后在三语翻译文件中添加对应的 prompts/hints。
+
+**⚠️ 渐进式验证**: 每修复完 **一个模块** 就立即执行：
+1. `npm run build` — 确保编译通过
+2. 浏览器快速点击该模块的 4 个难度 — 确认每个都有题
+3. 切换 CN 语言 — 确认 difficulty 显示"基础/核心/进阶/精英"
+4. 如果有问题，**立即修复**，不要等整个学科做完再回头
+
+✅ 通过后再进入下一个模块。每完成 3-5 个模块做一次 git commit。
 
 #### 2A. 初中数学 (SM) — 需补充的模块
 
@@ -731,27 +766,34 @@ const { t } = useLanguage();
 | Sprint | 模块数 | 新增题目(估) | 附加工作 | 预计时间 |
 |--------|--------|-------------|---------|----------|
 | Sprint 0 | 0(修复) | 0 | 首页链接 | 1小时 |
-| Sprint 0.5 | 0(验证) | 0 | 手动验证~45模块 | 2-3小时 |
+| Sprint 0.5 | 0(验证) | 0 | 审查脚本+手动确认 | 2-3小时 |
 | Sprint 1 | 4(验证) | 0 | 浏览器测试 | 2小时 |
-| Sprint 2A | ~11(SM) | ~550题 | +i18n迁移+LaTeX | 2-3天 |
-| Sprint 2B | ~8(SP) | ~400题 | +i18n迁移+LaTeX | 1-2天 |
-| Sprint 2C | ~7(SC) | ~350题 | +i18n迁移+LaTeX | 1-2天 |
-| Sprint 2D | ~7(SB) | ~350题 | +i18n迁移 | 1-2天 |
-| Sprint 3 | ~14(G*) | ~700题 | +i18n迁移+LaTeX | 3-4天 |
+| Sprint 1.5 | ~5(快速) | ~75题 | 只加ELITE | 1天 |
+| Sprint 2A | ~8(SM) | ~400题 | +i18n+LaTeX+翻译 | 3-4天 |
+| Sprint 2B | ~6(SP) | ~300题 | +i18n+LaTeX+翻译 | 2-3天 |
+| Sprint 2C | ~6(SC) | ~300题 | +i18n+LaTeX+翻译 | 2-3天 |
+| Sprint 2D | ~5(SB) | ~250题 | +i18n迁移+翻译 | 2-3天 |
+| Sprint 3 | ~12(G*) | ~600题 | +i18n+LaTeX+翻译 | 4-5天 |
 | Sprint 4 | 0(验证) | 0 | 质量检查 | 半天 |
-| **总计** | **~51模块** | **~2350题** | **43 i18n迁移** | **~10-14天** |
+| **总计** | **~46模块** | **~1925题** | **43 i18n迁移** | **~15-20天** |
 
-> **重要**: Sprint 0.5 验证后，实际需要修复的模块可能少于 51 个，
-> 因为部分使用 Record/else-if 模式的模块可能实际已完整。
-> 估计实际工作量可能减少 20-30%。
+> **工作量说明**: 每个模块从~3题补充到60题，包含：
+> - 题目设计（每题~5分钟）
+> - 数据生成（公式/答案计算）
+> - EN/CN/DE 三语翻译（每题×3语言）
+> - 渐进式验证（build + 浏览器点击测试）
+>
+> 实际数量可能比估算少 20-30%，因为 Sprint 0.5 会排除误判。
 
 ## Notes
 
-- **Sprint 0 + 0.5 + 1 最先做**，阻塞最小
-- **Sprint 0.5 是关键**：它决定了 Sprint 2-3 的实际工作量
+- **执行顺序**: Sprint 0 → 0.5 → 1 → 1.5 → 2A-2D → 3 → 4
+- **Sprint 0.5 是关键**: 它决定了 Sprint 1.5/2/3 的实际工作量
+- **Sprint 1.5 建立信心**: 先做最简单的模块，快速看到成果
 - Sprint 2 的四个子项 (2A-2D) 可以并行
 - Sprint 3 可以在 Sprint 2 之后或部分并行
-- 每完成一个学科就 commit + push
+- **渐进式验证**: 每修完 1 个模块就立即 build+浏览器测试，不要等整个学科做完
+- 每完成 3-5 个模块 commit + push
 - 如果另一个AI已经修复了某些模块（如 sb2-02-body-systems），跳过该模块
 - **每个模块修复时同时做 3 件事**: 补题目 + 迁移 i18n + 改进 LaTeX
 - 请参考 `CHAMBER_MODULE_STANDARDS.md` (1667行) 获取完整的设计标准和反例分析
