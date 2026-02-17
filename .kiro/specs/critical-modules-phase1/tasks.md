@@ -753,7 +753,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - [x] 3.13 GC3.01 化学平衡 (210行) — 稀疏 + 迁移 i18n
 - [x] 3.14 GC3.02 晶体 (226行) — 稀疏 + 迁移 i18n
 
-- [ ] 3.15 Checkpoint Gymnasium
+- [-] 3.15 Checkpoint Gymnasium
   - `npm run build` 通过
   - `git add -A && git commit -m "feat: complete question pools for Gymnasium modules" && git push`
 
