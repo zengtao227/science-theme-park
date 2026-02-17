@@ -189,6 +189,38 @@ export const enPhysics = {
             newton_1: "INERTIA",
             newton_2: "F = ma",
             friction: "FRICTIONAL FORCES"
+        },
+        labels: {
+            input: "FORCE PARAMETERS",
+            mass: "Mass (m)",
+            acc: "Acceleration (a)",
+            force: "Force (F)",
+            friction: "Friction (f)",
+            coeff: "Coefficient (μ)",
+            net_force: "Net Force (ΣF)",
+            normal_force: "Normal Force (N)"
+        },
+        prompts: {
+            // NEWTON 1
+            n1_const_vel: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
+            n1_equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
+            n1_rest: "Object (m={m}kg) is at rest. Force F={f}N pushes right. Friction f={fr}N acts left. Acceleration?",
+            n1_space: "In deep space (no friction), object (m={m}kg) is pushed with F={f}N for {t}s, then released. Force after release?",
+            n1_inertia: "Which property resists change in motion for a {m}kg object?",
+
+            // NEWTON 2
+            n2_find_f: "Mass m={m}kg accelerates at a={a}m/s². Find net force F.",
+            n2_find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
+            n2_find_m: "Net force F={f}N causes acceleration a={a}m/s². Find mass m.",
+            n2_complex: "Force F={f}N pulls mass m={m}kg against friction f={fr}N. Find acceleration.",
+            n2_gravity: "Object m={m}kg falls on planet (g={g}m/s²). Weight force Fg?",
+
+            // FRICTION
+            fr_static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
+            fr_kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
+            fr_norm: "Box m={m}kg pressed against wall with F={f}N. Normal force?",
+            fr_slide: "Box m={m}kg slides on level floor. Friction f={f}N. Coefficient μk?",
+            fr_bank: "Car turns on banked road (θ={theta}°). Friction required?"
         }
     },
 
