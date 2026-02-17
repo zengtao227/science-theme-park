@@ -547,26 +547,26 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
   - 可视化（函数曲线 + 着色区域）正常
   - 如果发现问题，记录后在 Sprint 2 修复
 
-- [ ] 1.2 验证 SC2.05 酸碱化学模块
+- [x] 1.2 验证 SC2.05 酸碱化学模块
   - 浏览器访问 `/chamber/sc2-05`
   - 测试 PH_BASICS, NEUTRALIZATION, TITRATION 各Stage
   - 测试 4 难度各 5 题
   - 三语测试
   - pH 颜色编码: pH < 7 红, pH = 7 绿, pH > 7 蓝
 
-- [ ] 1.3 验证 GP3.01 波动物理模块
+- [x] 1.3 验证 GP3.01 波动物理模块
   - 浏览器访问 `/chamber/gp3-01`
   - 测试 WAVE_PROPERTIES, SUPERPOSITION, OPTICS
   - 波动画流畅(60fps)、无闪烁
   - 三语测试
 
-- [ ] 1.4 验证 SC2.06 氧化还原模块
+- [x] 1.4 验证 SC2.06 氧化还原模块
   - 浏览器访问 `/chamber/sc2-06`
   - 测试 OXIDATION_STATE, ELECTRON_TRANSFER, ELECTROCHEMISTRY
   - 三语测试
   - 氧化态标注正确
 
-- [ ] 1.5 Checkpoint Sprint 1
+- [x] 1.5 Checkpoint Sprint 1
   - 记录所有发现的问题到一个列表
   - 如果问题严重(build失败/页面崩溃)，直接修复
   - `git add -A && git commit -m "fix: verification fixes for new modules" && git push`
@@ -594,7 +594,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 3. `npm run build` 验证
 4. 浏览器快速确认 ELITE 难度可选且有题
 
-- [ ] 1.6 Checkpoint Sprint 1.5
+- [x] 1.6 Checkpoint Sprint 1.5
   - `git add -A && git commit -m "feat: add ELITE difficulty to partial modules" && git push`
 
 ---
@@ -623,7 +623,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 > ⚠️ **重要**: 以下列表是初步估计，基于有缺陷的审查脚本。Sprint 0.5 验证后，请删除已确认完整的模块。
 > 实际需要修复的模块数量可能比此列表少 30-40%。
 
-- [-] 2A.1 SM1.01 几何基础 (438行)
+- [x] 2A.1 SM1.01 几何基础 (438行)
   - 当前: ~9题，slice模式
   - 目标: 3 stages × 4 difficulties × 5 = 60题
   - 方法: 扩展 `all` 数组为独立的 stageXDifficultyY 数据池
@@ -681,8 +681,8 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 > ⚠️ **重要**: 以下列表是初步估计。Sprint 0.5 验证后，请删除已确认完整的模块。
 
 - [ ] 2B.1 SP3.01 测量与单位 (335行) — 补充到60题
-- [-] 2B.2 SP3.02 牛顿定律 (163行) — 骨架模块,需大量补充
-- [ ] 2B.3 SP3.03 能量 (157行) — 骨架模块,需大量补充
+- [x] 2B.2 SP3.02 牛顿定律 (163行) — 骨架模块,需大量补充
+- [-] 2B.3 SP3.03 能量 (157行) — 骨架模块,需大量补充
 - [ ] 2B.4 SP3.04 压强 (164行) — 骨架模块,需大量补充
 - [ ] 2B.5 SP3.05 简单机械 (343行) — 补充到60题
 - [ ] 2B.6 SP3.06 声学 (689行) — 验证, 可能已足够(动态生成)
