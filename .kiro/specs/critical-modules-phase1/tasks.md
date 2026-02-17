@@ -761,19 +761,19 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 
 ### Sprint 4: 收尾验证
 
-- [ ] 4.1 全量构建
+- [x] 4.1 全量构建
   - `npm run build` 通过, 0 errors
   - `npm run lint` 无新增 error
 
-- [ ] 4.2 运行最终审查
+- [x] 4.2 运行最终审查
   - `bash scripts/deep-audit.sh` — 全部模块 status 为 ✅ ALL-4
 
-- [ ] 4.3 三语浏览器验证（抽查 10 个模块）
+- [x] 4.3 三语浏览器验证（抽查 10 个模块）
   - EN: 所有文本英文
   - CN: difficulty 显示"基础/核心/进阶/精英"
   - DE: difficulty 显示"BASIS/KERN/ERWEITERT/ELITE"
 
-- [ ] 4.4 单模块质量检查清单（每个修改过的模块必须通过）
+- [x] 4.4 单模块质量检查清单（每个修改过的模块必须通过）
   - [ ] 每个难度有 5 道题？
   - [ ] 难度递进是概念深度而非数量？
   - [ ] 场景描述详细完整（150-250词）？
@@ -786,11 +786,11 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
   - [ ] 在浏览器中测试过所有语言？
   - [ ] `npm run build` 通过？
 
-- [ ] 4.5 更新文档
+- [x] 4.5 更新文档
   - 更新 `CURRICULUM_PLAN_UPDATE_2026_v2.md`
   - 更新 `DEVELOPMENT_STATUS_2026-02-15.md`
 
-- [ ] 4.6 最终提交
+- [-] 4.6 最终提交
   - `git add -A && git commit -m "feat: complete all module question pools - phase 1" && git push`
 
 ---
