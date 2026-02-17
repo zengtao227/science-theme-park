@@ -689,9 +689,9 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - [ ] 2B.5 SP3.05 简单机械 (343行) — 补充到60题
 - [x] 2B.6 SP3.06 声学 (689行) — 验证, 可能已足够(动态生成)
 - [-] 2B.7 SP3.07 (303行) — 检查内容,确定是否需要补充
-- [ ] 2B.8 SP3.08 几何光学 (309行) — 补充到60题
+- [x] 2B.8 SP3.08 几何光学 (309行) — 补充到60题
 
-- [ ] 2B.9 Checkpoint SP
+- [x] 2B.9 Checkpoint SP
   - `npm run build` 通过
   - `git add -A && git commit -m "feat(physics): complete question pools for SP modules" && git push`
 
