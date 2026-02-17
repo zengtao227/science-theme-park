@@ -2,14 +2,36 @@
 
 import { useMemo } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ScienceRadar from "@/components/ui/ScienceRadar";
 import StatsMatrix from "@/components/profile/StatsMatrix";
 import { clsx } from "clsx";
 
 export default function ProfilePage() {
-  const { currentLanguage, history } = useAppStore();
-  const t = translations[currentLanguage];
+  const { history } = useAppStore();
+  const { t, currentLanguage } = useLanguage();
+  
+  const profile_t = {
+    title: t("profile.title"),
+    subtitle: t("profile.subtitle"),
+    radar_title: t("profile.radar_title"),
+    stats_title: t("profile.stats_title"),
+    timeline_title: t("profile.timeline_title"),
+    timeline_empty: t("profile.timeline_empty"),
+    timeline_accuracy: t("profile.timeline_accuracy"),
+    metrics: {
+      logic: t("profile.metrics.logic"),
+      intuition: t("profile.metrics.intuition"),
+      rigor: t("profile.metrics.rigor"),
+      experiment: t("profile.metrics.experiment"),
+    },
+    stats: {
+      completed_modules: t("profile.stats.completed_modules"),
+      avg_accuracy: t("profile.stats.avg_accuracy"),
+      total_runs: t("profile.stats.total_runs"),
+      experiment_index: t("profile.stats.experiment_index"),
+    },
+  };
 
   const stats = useMemo(() => {
     const totalRuns = history.length;
@@ -38,8 +60,8 @@ export default function ProfilePage() {
     <main className="min-h-screen bg-black text-white px-6 pb-20 pt-12 overflow-y-auto">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="border-l-2 border-neon-purple pl-6 py-3">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black">{t.profile.title}</div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-3">{t.profile.subtitle}</h1>
+          <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black">{profile_t.title}</div>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-3">{profile_t.subtitle}</h1>
         </div>
 
         <ScienceRadar
@@ -48,38 +70,38 @@ export default function ProfilePage() {
           rigor={stats.rigor}
           experiment={stats.experiment}
           labels={{
-            title: t.profile.radar_title,
-            logic: t.profile.metrics.logic,
-            intuition: t.profile.metrics.intuition,
-            rigor: t.profile.metrics.rigor,
-            experiment: t.profile.metrics.experiment,
+            title: profile_t.radar_title,
+            logic: profile_t.metrics.logic,
+            intuition: profile_t.metrics.intuition,
+            rigor: profile_t.metrics.rigor,
+            experiment: profile_t.metrics.experiment,
           }}
         />
 
         <StatsMatrix
-          title={t.profile.stats_title}
+          title={profile_t.stats_title}
           items={[
             {
               id: "completed",
-              label: t.profile.stats.completed_modules,
+              label: profile_t.stats.completed_modules,
               value: `${stats.completedModules}`,
               tone: "cyan",
             },
             {
               id: "accuracy",
-              label: t.profile.stats.avg_accuracy,
+              label: profile_t.stats.avg_accuracy,
               value: `${Math.round(stats.avgAccuracy * 100)}%`,
               tone: "green",
             },
             {
               id: "runs",
-              label: t.profile.stats.total_runs,
+              label: profile_t.stats.total_runs,
               value: `${stats.totalRuns}`,
               tone: "purple",
             },
             {
               id: "experiment",
-              label: t.profile.stats.experiment_index,
+              label: profile_t.stats.experiment_index,
               value: `${Math.round(stats.experiment * 100)}%`,
               tone: "amber",
             },
@@ -87,9 +109,9 @@ export default function ProfilePage() {
         />
 
         <div className="border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.35)]">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.profile.timeline_title}</div>
+          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{profile_t.timeline_title}</div>
           {timeline.length === 0 ? (
-            <div className="mt-6 text-sm text-white/50 font-mono">{t.profile.timeline_empty}</div>
+            <div className="mt-6 text-sm text-white/50 font-mono">{profile_t.timeline_empty}</div>
           ) : (
             <div className="mt-6 space-y-4">
               {timeline.map((entry, index) => (
@@ -114,7 +136,7 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div className="mt-2 text-xs text-white/60 font-mono">
-                      {t.profile.timeline_accuracy}: {Math.round(entry.score * 100)}%
+                      {profile_t.timeline_accuracy}: {Math.round(entry.score * 100)}%
                     </div>
                   </div>
                 </div>

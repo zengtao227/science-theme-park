@@ -2,17 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
-import { translations } from '@/lib/i18n';
+import { useLanguage } from '@/lib/i18n';
 import { clsx } from 'clsx';
 
 export default function EntryProtocol() {
-    const { acceptProtocol, currentLanguage, setLanguage } = useAppStore();
-    const t = translations[currentLanguage].protocol;
+    const { acceptProtocol, setLanguage } = useAppStore();
+    const { t, currentLanguage } = useLanguage();
+    
+    const protocol_t = {
+        system_name: t("protocol.system_name"),
+        warning_text: t("protocol.warning_text"),
+        hold_button: t("protocol.hold_button"),
+        secure_connection: t("protocol.secure_connection"),
+    };
 
     const [textIndex, setTextIndex] = useState(0);
     const [showButton, setShowButton] = useState(false);
 
-    const fullText = t.warning_text;
+    const fullText = protocol_t.warning_text;
 
     useEffect(() => {
         const raf = requestAnimationFrame(() => {
@@ -52,7 +59,7 @@ export default function EntryProtocol() {
             </div>
 
             <div className="max-w-2xl w-full">
-                <div className="mb-4 text-sm text-neutral-300 font-bold tracking-widest uppercase">{t.system_name}</div>
+                <div className="mb-4 text-sm text-neutral-300 font-bold tracking-widest uppercase">{protocol_t.system_name}</div>
                 <div className="text-xl md:text-3xl leading-relaxed min-h-[120px] text-green-400">
                     {fullText.slice(0, textIndex)}
                     <span className="animate-pulse">_</span>
@@ -65,7 +72,7 @@ export default function EntryProtocol() {
                             className="relative group overflow-hidden border border-green-500 bg-black hover:bg-green-500/10 px-8 py-4 transition-colors"
                         >
                             <span className="relative z-10 font-bold tracking-widest text-green-500 group-hover:text-green-400">
-                                {t.hold_button}
+                                {protocol_t.hold_button}
                             </span>
                         </button>
                     </div>
@@ -73,7 +80,7 @@ export default function EntryProtocol() {
             </div>
 
             <div className="fixed bottom-4 right-4 text-[10px] text-neutral-400 tracking-[0.3em] uppercase">
-                {t.secure_connection}
+                {protocol_t.secure_connection}
             </div>
         </div>
     );

@@ -1287,27 +1287,27 @@ const module_t = {
 
 #### Phase 5.6: i18n迁移 - 其他组件（半天）
 
-**状态**: ⏳ **待开始**
+**状态**: ✅ **已完成**
 
 **非chamber组件 i18n 迁移列表**:
 
-- [ ] 5.6.1 EntryProtocol - i18n迁移
+- [x] 5.6.1 EntryProtocol - i18n迁移
   - 当前: `translations[currentLanguage].protocol`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.6.2 UserSetup - i18n迁移
+- [x] 5.6.2 UserSetup - i18n迁移
   - 当前: `translations[currentLanguage]`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.6.3 ProfilePage - i18n迁移
+- [x] 5.6.3 ProfilePage - i18n迁移
   - 当前: `translations[currentLanguage]`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.6.4 PythagorasFluidCanvas - i18n迁移
+- [x] 5.6.4 PythagorasFluidCanvas - i18n迁移
   - 当前: `translations[currentLanguage].sm2_02`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.6.5 Checkpoint 其他组件
+- [x] 5.6.5 Checkpoint 其他组件
   - 运行 `npm run build`
   - 浏览器测试所有修改的组件
   - `git commit -m "refactor(components): migrate to useLanguage hook"`

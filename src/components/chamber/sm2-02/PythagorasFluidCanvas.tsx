@@ -15,7 +15,7 @@ interface PythagorasFluidCanvasProps {
  * Demonstrates a² + b² = c² through liquid flow between containers
  */
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 
 interface PythagorasFluidCanvasProps {
   a: number;
@@ -147,8 +147,13 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
     setIsDraggingState(false);
   };
 
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sm2_02;
+  const { t } = useLanguage();
+  const sm2_02_t = {
+    pythagoras: {
+      fluid_title: t("sm2_02.pythagoras.fluid_title"),
+      fluid_desc: t("sm2_02.pythagoras.fluid_desc"),
+    }
+  };
 
   return (
     <div
@@ -174,10 +179,10 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
 
       <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm p-3 rounded-lg border border-white/10">
         <div className="text-white text-xs font-bold mb-1 uppercase tracking-tighter">
-          {t.pythagoras.fluid_title || "Fluid Conservation Lab"}
+          {sm2_02_t.pythagoras.fluid_title}
         </div>
         <div className="text-[10px] text-white/60">
-          {t.pythagoras.fluid_desc || "Tilt to observe how A² + B² perfectly fills C². This demonstrates that the sum of the areas of the squares on the legs equals the area of the square on the hypotenuse."}
+          {sm2_02_t.pythagoras.fluid_desc}
         </div>
       </div>
     </div>
