@@ -29,85 +29,325 @@ export default function SP305Page() {
         const quests: SP305Quest[] = [];
 
         if (stage === "LEVERS") {
-            // Lever mechanical advantage problems
-            const levers = [
-                { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
-                { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
-                { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
-                { effort: 60, load: 240, effortArm: 4, loadArm: 1 },
-                { effort: 75, load: 225, effortArm: 3, loadArm: 1 }
-            ];
+            if (difficulty === "BASIC") {
+                // Simple lever problems
+                const levers = [
+                    { effort: 100, load: 300, effortArm: 3, loadArm: 1 },
+                    { effort: 50, load: 200, effortArm: 4, loadArm: 1 },
+                    { effort: 80, load: 160, effortArm: 2, loadArm: 1 },
+                    { effort: 60, load: 240, effortArm: 4, loadArm: 1 },
+                    { effort: 75, load: 225, effortArm: 3, loadArm: 1 }
+                ];
 
-            levers.forEach((lever, idx) => {
-                quests.push({
-                    id: `LEVER-${idx}`,
-                    difficulty,
-                    stage,
-                    machineType: "lever",
-                    promptLatex: `\\text{${t.prompts.lever.replace('{load}', lever.load.toString()).replace('{effortArm}', lever.effortArm.toString()).replace('{loadArm}', lever.loadArm.toString())}}`,
-                    expressionLatex: `\\text{MA} = \\frac{d_e}{d_l} = \\frac{${lever.effortArm}}{${lever.loadArm}}`,
-                    targetLatex: lever.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                    correctLatex: `${lever.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_lever}}`]
+                levers.forEach((lever, idx) => {
+                    quests.push({
+                        id: `LEVER-B${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "lever",
+                        promptLatex: `\\text{Lever: load ${lever.load} N at ${lever.loadArm} m, effort arm ${lever.effortArm} m. Effort force?}`,
+                        expressionLatex: `F_e \\times d_e = F_l \\times d_l`,
+                        targetLatex: lever.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{MA} = d_e/d_l = ${lever.effortArm}/${lever.loadArm}`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Class 1, 2, 3 levers
+                const levers = [
+                    { effort: 200, load: 600, effortArm: 6, loadArm: 2, class: 1 },
+                    { effort: 150, load: 450, effortArm: 9, loadArm: 3, class: 1 },
+                    { effort: 120, load: 360, effortArm: 6, loadArm: 2, class: 2 },
+                    { effort: 180, load: 360, effortArm: 4, loadArm: 2, class: 2 },
+                    { effort: 300, load: 150, effortArm: 1, loadArm: 2, class: 3 }
+                ];
+
+                levers.forEach((lever, idx) => {
+                    quests.push({
+                        id: `LEVER-C${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "lever",
+                        promptLatex: `\\text{Class ${lever.class} lever: load ${lever.load} N, effort arm ${lever.effortArm} m, load arm ${lever.loadArm} m. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\frac{d_l}{d_e}`,
+                        targetLatex: lever.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Class ${lever.class}: fulcrum position varies}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Efficiency and real-world levers
+                const levers = [
+                    { effort: 110, load: 300, effortArm: 3, loadArm: 1, efficiency: 0.9 },
+                    { effort: 220, load: 600, effortArm: 3, loadArm: 1, efficiency: 0.9 },
+                    { effort: 165, load: 450, effortArm: 3, loadArm: 1, efficiency: 0.9 },
+                    { effort: 132, load: 360, effortArm: 3, loadArm: 1, efficiency: 0.9 },
+                    { effort: 88, load: 240, effortArm: 3, loadArm: 1, efficiency: 0.9 }
+                ];
+
+                levers.forEach((lever, idx) => {
+                    quests.push({
+                        id: `LEVER-A${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "lever",
+                        promptLatex: `\\text{Lever with ${lever.efficiency * 100}\\% efficiency: load ${lever.load} N, MA = ${lever.effortArm}. Actual effort?}`,
+                        expressionLatex: `F_e = \\frac{F_l}{MA \\times \\eta}`,
+                        targetLatex: lever.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Account for friction losses}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Complex lever systems
+                const levers = [
+                    { effort: 50, load: 600, effortArm: 4, loadArm: 1, stages: 2 },
+                    { effort: 40, load: 480, effortArm: 4, loadArm: 1, stages: 2 },
+                    { effort: 60, load: 720, effortArm: 4, loadArm: 1, stages: 2 },
+                    { effort: 45, load: 540, effortArm: 4, loadArm: 1, stages: 2 },
+                    { effort: 55, load: 660, effortArm: 4, loadArm: 1, stages: 2 }
+                ];
+
+                levers.forEach((lever, idx) => {
+                    quests.push({
+                        id: `LEVER-E${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "lever",
+                        promptLatex: `\\text{Two-stage lever system: each stage MA = ${lever.effortArm}, load ${lever.load} N. Input effort?}`,
+                        expressionLatex: `F_e = \\frac{F_l}{MA_1 \\times MA_2}`,
+                        targetLatex: lever.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Compound MA} = MA_1 \\times MA_2`]
+                    });
+                });
+            }
         }
 
         if (stage === "PULLEYS") {
-            // Pulley system problems
-            const pulleys = [
-                { load: 400, strands: 4, effort: 100 },
-                { load: 600, strands: 3, effort: 200 },
-                { load: 300, strands: 2, effort: 150 },
-                { load: 500, strands: 5, effort: 100 },
-                { load: 800, strands: 4, effort: 200 }
-            ];
+            if (difficulty === "BASIC") {
+                // Simple pulley systems
+                const pulleys = [
+                    { load: 400, strands: 4, effort: 100 },
+                    { load: 600, strands: 3, effort: 200 },
+                    { load: 300, strands: 2, effort: 150 },
+                    { load: 500, strands: 5, effort: 100 },
+                    { load: 800, strands: 4, effort: 200 }
+                ];
 
-            pulleys.forEach((pulley, idx) => {
-                quests.push({
-                    id: `PULLEY-${idx}`,
-                    difficulty,
-                    stage,
-                    machineType: "pulley",
-                    promptLatex: `\\text{${t.prompts.pulley.replace('{load}', pulley.load.toString()).replace('{strands}', pulley.strands.toString())}}`,
-                    expressionLatex: `F_e = \\frac{F_l}{n} = \\frac{${pulley.load}}{${pulley.strands}}`,
-                    targetLatex: pulley.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                    correctLatex: `${pulley.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_pulley}}`]
+                pulleys.forEach((pulley, idx) => {
+                    quests.push({
+                        id: `PULLEY-B${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "pulley",
+                        promptLatex: `\\text{Pulley system: ${pulley.strands} supporting strands, load ${pulley.load} N. Effort force?}`,
+                        expressionLatex: `F_e = \\frac{F_l}{n}`,
+                        targetLatex: pulley.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{MA} = n \\text{ (number of strands)}`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Fixed and movable pulleys
+                const pulleys = [
+                    { load: 600, movable: 2, fixed: 1, effort: 200 },
+                    { load: 900, movable: 3, fixed: 0, effort: 300 },
+                    { load: 400, movable: 1, fixed: 1, effort: 200 },
+                    { load: 1200, movable: 4, fixed: 0, effort: 300 },
+                    { load: 800, movable: 2, fixed: 2, effort: 200 }
+                ];
+
+                pulleys.forEach((pulley, idx) => {
+                    quests.push({
+                        id: `PULLEY-C${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "pulley",
+                        promptLatex: `\\text{Pulley: ${pulley.movable} movable, ${pulley.fixed} fixed. Load ${pulley.load} N. Effort?}`,
+                        expressionLatex: `\\text{MA} = 2 \\times n_{movable}`,
+                        targetLatex: pulley.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Movable pulleys double MA}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Pulley efficiency
+                const pulleys = [
+                    { load: 400, strands: 4, efficiency: 0.8, effort: 125 },
+                    { load: 600, strands: 3, efficiency: 0.85, effort: 235 },
+                    { load: 500, strands: 5, efficiency: 0.9, effort: 111 },
+                    { load: 800, strands: 4, efficiency: 0.75, effort: 267 },
+                    { load: 300, strands: 2, efficiency: 0.9, effort: 167 }
+                ];
+
+                pulleys.forEach((pulley, idx) => {
+                    quests.push({
+                        id: `PULLEY-A${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "pulley",
+                        promptLatex: `\\text{Pulley: ${pulley.strands} strands, ${pulley.efficiency * 100}\\% efficiency, load ${pulley.load} N. Actual effort?}`,
+                        expressionLatex: `F_e = \\frac{F_l}{n \\times \\eta}`,
+                        targetLatex: pulley.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Account for friction}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Block and tackle systems
+                const pulleys = [
+                    { load: 1000, blocks: 2, strands: 6, effort: 167 },
+                    { load: 1200, blocks: 3, strands: 8, effort: 150 },
+                    { load: 800, blocks: 2, strands: 5, effort: 160 },
+                    { load: 1500, blocks: 3, strands: 10, effort: 150 },
+                    { load: 900, blocks: 2, strands: 6, effort: 150 }
+                ];
+
+                pulleys.forEach((pulley, idx) => {
+                    quests.push({
+                        id: `PULLEY-E${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "pulley",
+                        promptLatex: `\\text{Block and tackle: ${pulley.blocks} blocks, ${pulley.strands} strands, load ${pulley.load} N. Effort?}`,
+                        expressionLatex: `F_e = \\frac{F_l}{n}`,
+                        targetLatex: pulley.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Count all supporting strands}`]
+                    });
+                });
+            }
         }
 
         if (stage === "INCLINED_PLANES") {
-            // Inclined plane problems
-            const planes = [
-                { load: 500, height: 2, length: 10, effort: 100 },
-                { load: 600, height: 3, length: 12, effort: 150 },
-                { load: 400, height: 1, length: 8, effort: 50 },
-                { load: 800, height: 4, length: 16, effort: 200 },
-                { load: 1000, height: 5, length: 20, effort: 250 }
-            ];
+            if (difficulty === "BASIC") {
+                // Simple inclined plane problems
+                const planes = [
+                    { load: 500, height: 2, length: 10, effort: 100 },
+                    { load: 600, height: 3, length: 12, effort: 150 },
+                    { load: 400, height: 1, length: 8, effort: 50 },
+                    { load: 800, height: 4, length: 16, effort: 200 },
+                    { load: 1000, height: 5, length: 20, effort: 250 }
+                ];
 
-            planes.forEach((plane, idx) => {
-                quests.push({
-                    id: `PLANE-${idx}`,
-                    difficulty,
-                    stage,
-                    machineType: "inclined_plane",
-                    promptLatex: `\\text{${t.prompts.inclined_plane.replace('{load}', plane.load.toString()).replace('{height}', plane.height.toString()).replace('{length}', plane.length.toString())}}`,
-                    expressionLatex: `F_e = F_l \\times \\frac{h}{l} = ${plane.load} \\times \\frac{${plane.height}}{${plane.length}}`,
-                    targetLatex: plane.effort.toString(),
-                    slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                    correctLatex: `${plane.effort}\\,\\text{N}`,
-                    hintLatex: [`\\text{${t.prompts.hint_inclined}}`]
+                planes.forEach((plane, idx) => {
+                    quests.push({
+                        id: `PLANE-B${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "inclined_plane",
+                        promptLatex: `\\text{Inclined plane: height ${plane.height} m, length ${plane.length} m, load ${plane.load} N. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\frac{h}{l}`,
+                        targetLatex: plane.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{MA} = l/h`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Inclined plane with angle
+                const planes = [
+                    { load: 500, angle: 30, effort: 250 },
+                    { load: 600, angle: 45, effort: 424 },
+                    { load: 400, angle: 20, effort: 137 },
+                    { load: 800, angle: 60, effort: 693 },
+                    { load: 1000, angle: 15, effort: 259 }
+                ];
+
+                planes.forEach((plane, idx) => {
+                    quests.push({
+                        id: `PLANE-C${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "inclined_plane",
+                        promptLatex: `\\text{Inclined plane: angle ${plane.angle}°, load ${plane.load} N. Effort parallel to plane?}`,
+                        expressionLatex: `F_e = F_l \\times \\sin(\\theta)`,
+                        targetLatex: plane.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Use } \\sin(${plane.angle}°)`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Inclined plane with friction
+                const planes = [
+                    { load: 500, height: 2, length: 10, friction: 0.1, effort: 150 },
+                    { load: 600, height: 3, length: 12, friction: 0.15, effort: 240 },
+                    { load: 400, height: 1, length: 8, friction: 0.2, effort: 130 },
+                    { load: 800, height: 4, length: 16, friction: 0.1, effort: 280 },
+                    { load: 1000, height: 5, length: 20, friction: 0.05, effort: 300 }
+                ];
+
+                planes.forEach((plane, idx) => {
+                    quests.push({
+                        id: `PLANE-A${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "inclined_plane",
+                        promptLatex: `\\text{Inclined plane: h=${plane.height} m, l=${plane.length} m, load ${plane.load} N, friction μ=${plane.friction}. Effort?}`,
+                        expressionLatex: `F_e = F_l(\\frac{h}{l} + \\mu)`,
+                        targetLatex: plane.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Add friction component}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Wedge and screw applications
+                const planes = [
+                    { load: 1000, pitch: 0.5, radius: 2, effort: 40 },
+                    { load: 1200, pitch: 0.4, radius: 2.5, effort: 38 },
+                    { load: 800, pitch: 0.6, radius: 1.5, effort: 51 },
+                    { load: 1500, pitch: 0.3, radius: 3, effort: 36 },
+                    { load: 900, pitch: 0.5, radius: 1.8, effort: 40 }
+                ];
+
+                planes.forEach((plane, idx) => {
+                    quests.push({
+                        id: `PLANE-E${idx}`,
+                        difficulty,
+                        stage,
+                        machineType: "inclined_plane",
+                        promptLatex: `\\text{Screw jack: pitch ${plane.pitch} cm, handle radius ${plane.radius} cm, load ${plane.load} N. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\frac{p}{2\\pi r}`,
+                        targetLatex: plane.effort.toString(),
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\text{N}`,
+                        hintLatex: [`\\text{Screw is inclined plane wrapped around cylinder}`]
+                    });
+                });
+            }
         }
 
         return quests;
-    }, [t]);
+    }, []);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
