@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquilibriumCanvas from "@/components/chamber/gc3-01/EquilibriumCanvas";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -22,45 +22,61 @@ interface GC301Quest extends Quest {
 }
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): GC301Quest[] {
-  const questKeys = [
-    "shift_dir", "temp_exothermic", "pressure_moles", "catalyst_yield",
-    "kc_calculation", "inert_gas", "haber_temp", "endothermic_kc"
-  ];
+  const quests: GC301Quest[] = [];
 
-  // Each difficulty gets a unique set of 4-5 problems from the pool
-  let indices: number[] = [];
-  if (difficulty === "BASIC") indices = [0, 1, 3, 5];
-  else if (difficulty === "CORE") indices = [0, 2, 4, 6];
-  else if (difficulty === "ADVANCED") indices = [1, 2, 5, 7];
-  else indices = [2, 4, 6, 7];
+  // Each stage × difficulty = 5 questions (60 total)
+  const questData = {
+    BASIC: [
+      { key: "shift_right", expected: "right", temp: 50, pressure: 50, concA: 80 },
+      { key: "shift_left", expected: "left", temp: 50, pressure: 50, concA: 20 },
+      { key: "temp_effect", expected: "increase", temp: 80, pressure: 50, concA: 50 },
+      { key: "pressure_effect", expected: "increase", temp: 50, pressure: 80, concA: 50 },
+      { key: "catalyst_effect", expected: "no", temp: 50, pressure: 50, concA: 50 }
+    ],
+    CORE: [
+      { key: "kc_value", expected: "2.5", temp: 50, pressure: 50, concA: 60 },
+      { key: "temp_exothermic", expected: "left", temp: 80, pressure: 50, concA: 50 },
+      { key: "pressure_moles", expected: "right", temp: 50, pressure: 80, concA: 50 },
+      { key: "inert_gas", expected: "no", temp: 50, pressure: 50, concA: 50 },
+      { key: "conc_change", expected: "right", temp: 50, pressure: 50, concA: 80 }
+    ],
+    ADVANCED: [
+      { key: "kc_calculation", expected: "4.0", temp: 60, pressure: 60, concA: 60 },
+      { key: "endothermic_kc", expected: "increase", temp: 80, pressure: 50, concA: 50 },
+      { key: "haber_temp", expected: "compromise", temp: 70, pressure: 80, concA: 50 },
+      { key: "volume_decrease", expected: "right", temp: 50, pressure: 80, concA: 50 },
+      { key: "partial_pressure", expected: "3.2", temp: 50, pressure: 70, concA: 60 }
+    ],
+    ELITE: [
+      { key: "kp_calculation", expected: "1.8", temp: 60, pressure: 70, concA: 60 },
+      { key: "gibbs_equilibrium", expected: "zero", temp: 50, pressure: 50, concA: 50 },
+      { key: "vant_hoff", expected: "5.2", temp: 80, pressure: 50, concA: 50 },
+      { key: "activity_coefficient", expected: "0.85", temp: 60, pressure: 60, concA: 70 },
+      { key: "heterogeneous_eq", expected: "independent", temp: 50, pressure: 80, concA: 50 }
+    ]
+  };
 
-  return indices.map((idx) => {
-    const key = questKeys[idx];
-    const prompt = t.prompts[key];
-
-    // Default config per stage for visualization
-    const baseConfig = { temp: 50, pressure: 50, concA: 50 };
-    if (stage === "CONCENTRATION") baseConfig.concA = idx % 2 === 0 ? 80 : 20;
-    if (stage === "TEMPERATURE") baseConfig.temp = idx % 2 === 0 ? 80 : 20;
-    if (stage === "PRESSURE") baseConfig.pressure = idx % 2 === 0 ? 80 : 20;
-
-    return {
-      id: `${stage}|${difficulty}|${key}`,
+  const dataList = questData[difficulty];
+  dataList.forEach((data, idx) => {
+    quests.push({
+      id: `${stage}_${difficulty[0]}${idx + 1}`,
       difficulty,
       stage,
-      promptLatex: `\\text{${prompt}}`,
+      promptLatex: `\\text{${t(`gc3_01.prompts.${data.key}`)}}`,
       expressionLatex: "",
-      targetLatex: "\\text{Select Option}",
-      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "1 or 2", expected: idx % 2 === 0 ? 1 : 2 }],
-      correctLatex: idx % 2 === 0 ? "1" : "2",
-      simConfig: baseConfig
-    };
+      targetLatex: "\\text{Answer}",
+      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
+      correctLatex: data.expected,
+      simConfig: { temp: data.temp, pressure: data.pressure, concA: data.concA }
+    });
   });
+
+  return quests;
 }
 
 export default function GC301Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gc3_01 || translations.EN.gc3_01;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
 
   const {
     difficulty,
@@ -85,22 +101,20 @@ export default function GC301Page() {
   }, [lastCheck, completeStage, stage]);
 
   const activeScenario = useMemo(() => {
-    if (!t?.scenarios) return null;
-    if (stage === "CONCENTRATION") return t.scenarios.basel_synthesis;
-    if (stage === "TEMPERATURE") return t.scenarios.catalysis_innovation;
-    if (stage === "PRESSURE") return t.scenarios.haber_process;
-    return t.scenarios.buffer_systems;
+    if (stage === "CONCENTRATION") return t("gc3_01.scenarios.basel_synthesis");
+    if (stage === "TEMPERATURE") return t("gc3_01.scenarios.catalysis_innovation");
+    return t("gc3_01.scenarios.haber_process");
   }, [stage, t]);
 
   const stages = [
-    { id: "CONCENTRATION", label: t?.stages?.concentration || "CONCENTRATION" },
-    { id: "TEMPERATURE", label: t?.stages?.temperature || "TEMPERATURE" },
-    { id: "PRESSURE", label: t?.stages?.pressure || "PRESSURE" },
+    { id: "CONCENTRATION", label: t("gc3_01.stages.concentration") },
+    { id: "TEMPERATURE", label: t("gc3_01.stages.temperature") },
+    { id: "PRESSURE", label: t("gc3_01.stages.pressure") },
   ];
 
   return (
     <ChamberLayout
-      title={t?.title || "GC3.01 // EQUILIBRIUM MASTER"}
+      title={t("gc3_01.title")}
       moduleCode="GC3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -110,8 +124,20 @@ export default function GC301Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t?.footer_left || "GC3.01_EQUILIBRIUM_MASTER // NODE: BASEL"}
-      translations={t}
+      footerLeft={t("gc3_01.footer_left")}
+      translations={{
+        back: t("gc3_01.back"),
+        check: t("gc3_01.check"),
+        next: t("gc3_01.next"),
+        correct: t("gc3_01.correct"),
+        incorrect: t("gc3_01.incorrect"),
+        difficulty: {
+          BASIC: t("gc3_01.difficulty.BASIC"),
+          CORE: t("gc3_01.difficulty.CORE"),
+          ADVANCED: t("gc3_01.difficulty.ADVANCED"),
+          ELITE: t("gc3_01.difficulty.ELITE"),
+        },
+      }}
       monitorContent={
         <div className="space-y-4">
           <EquilibriumCanvas
@@ -120,11 +146,11 @@ export default function GC301Page() {
             concentrationA={currentQuest?.simConfig.concA ?? 50}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "CHEMICAL EQUILIBRIUM"}
+            {t("gc3_01.target_title")}
           </div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.reaction || "REVERSIBLE REACTION"}
+              {t("gc3_01.labels.reaction")}
             </div>
             <div className="text-xl text-white font-black text-center">
               <InlineMath math="A + B \rightleftharpoons C + D" />
@@ -133,7 +159,7 @@ export default function GC301Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-neon-cyan font-black mb-1">
-              {t?.labels?.conditions || "SIMULATION STATUS"}
+              {t("gc3_01.labels.conditions")}
             </div>
             <div className="grid grid-cols-3 gap-2 text-[10px] font-mono">
               <div className="text-white/40">T: <span className="text-white">{(currentQuest?.simConfig.temp ?? 50)}%</span></div>
@@ -147,7 +173,7 @@ export default function GC301Page() {
       <div className="space-y-6">
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.mission?.title || "MISSION: CHEMICAL EQUILIBRIUM"}
+            {t("gc3_01.mission.title")}
           </h3>
           <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
             <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -157,7 +183,7 @@ export default function GC301Page() {
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-3">
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-              {t?.labels?.input_answer || "Input Conclusion (1 or 2)"}
+              {t("gc3_01.labels.input_answer")}
             </div>
             <input
               value={inputs["ans"] || ""}
@@ -169,12 +195,12 @@ export default function GC301Page() {
 
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-black mb-2">
-              {t?.labels?.principle || "LE CHATELIER'S PRINCIPLE"}
+              {t("gc3_01.labels.principle")}
             </div>
             <div className="text-xs text-white/60 font-mono space-y-1">
-              <div>{t?.labels?.principle_1}</div>
-              <div>{t?.labels?.principle_2}</div>
-              <div>{t?.labels?.principle_3}</div>
+              <div>{t("gc3_01.labels.principle_1")}</div>
+              <div>{t("gc3_01.labels.principle_2")}</div>
+              <div>{t("gc3_01.labels.principle_3")}</div>
             </div>
           </div>
         </div>

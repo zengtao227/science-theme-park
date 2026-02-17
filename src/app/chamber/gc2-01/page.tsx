@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -26,55 +26,65 @@ interface OrganicQuest extends Quest {
 }
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQuest[] {
-    const questKeys = ["atom_count", "bond_type", "mol_type", "functional_id"];
+    const quests: OrganicQuest[] = [];
 
-    let indices: number[] = [];
-    if (difficulty === "BASIC") indices = [0, 2];
-    else if (difficulty === "CORE") indices = [1, 2];
-    else if (difficulty === "ADVANCED") indices = [2, 3];
-    else indices = [0, 1, 2, 3];
+    // Each stage × difficulty = 5 questions (60 total)
+    const questData = {
+        BASIC: [
+            { key: "atom_count", molecule: "methane" as const, expected: "5" },
+            { key: "carbon_count", molecule: "ethane" as const, expected: "2" },
+            { key: "hydrogen_count", molecule: "methane" as const, expected: "4" },
+            { key: "bond_count", molecule: "ethane" as const, expected: "7" },
+            { key: "mol_formula", molecule: "methane" as const, expected: "CH4" }
+        ],
+        CORE: [
+            { key: "bond_type", molecule: "benzene" as const, expected: "delocalized" },
+            { key: "mol_type", molecule: "ethane" as const, expected: "alkane" },
+            { key: "saturation", molecule: "benzene" as const, expected: "unsaturated" },
+            { key: "hybridization", molecule: "methane" as const, expected: "sp3" },
+            { key: "geometry", molecule: "methane" as const, expected: "tetrahedral" }
+        ],
+        ADVANCED: [
+            { key: "aromatic_test", molecule: "benzene" as const, expected: "yes" },
+            { key: "functional_id", molecule: "glucose" as const, expected: "hydroxyl" },
+            { key: "isomer_count", molecule: "ethane" as const, expected: "1" },
+            { key: "resonance", molecule: "benzene" as const, expected: "yes" },
+            { key: "ring_strain", molecule: "benzene" as const, expected: "no" }
+        ],
+        ELITE: [
+            { key: "amino_acid", molecule: "alanine" as const, expected: "amino" },
+            { key: "chirality", molecule: "alanine" as const, expected: "yes" },
+            { key: "peptide_bond", molecule: "alanine" as const, expected: "amide" },
+            { key: "sugar_type", molecule: "glucose" as const, expected: "aldose" },
+            { key: "biomolecule_class", molecule: "glucose" as const, expected: "carbohydrate" }
+        ]
+    };
 
-    return indices.map((idx) => {
-        const key = questKeys[idx];
-        const prompt = t.prompts[key];
-
-        let molecule: OrganicQuest["simConfig"]["molecule"] = "methane";
-        if (stage === "ALKANES") molecule = idx % 2 === 0 ? "methane" : "ethane";
-        else if (stage === "AROMATICS") molecule = "benzene";
-        else molecule = idx % 2 === 0 ? "glucose" : "alanine";
-
-        let expected: string | number = "1";
-        if (idx === 0) { // atom_count
-            expected = molecule === "methane" ? 5 : molecule === "ethane" ? 8 : 12;
-        } else if (idx === 1) { // bond_type
-            expected = molecule === "benzene" ? "delocalized" : "single";
-        } else if (idx === 2) { // mol_type
-            expected = molecule === "benzene" ? "aromatic" : (molecule === "methane" || molecule === "ethane") ? "alkane" : "sugar";
-        } else if (idx === 3) { // functional_id
-            expected = molecule === "alanine" ? "amino" : "hydroxyl";
-        }
-
-        return {
-            id: `${stage}|${difficulty}|${key}`,
+    const dataList = questData[difficulty];
+    dataList.forEach((data, idx) => {
+        quests.push({
+            id: `${stage}_${difficulty[0]}${idx + 1}`,
             difficulty,
             stage,
-            promptLatex: `\\text{${prompt}}`,
+            promptLatex: `\\text{${t(`gc2_01.prompts.${data.key}`)}}`,
             expressionLatex: "",
-            targetLatex: "\\text{Conclusion}",
-            slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected }],
-            correctLatex: expected.toString(),
+            targetLatex: "\\text{Answer}",
+            slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
+            correctLatex: data.expected,
             simConfig: {
-                molecule,
+                molecule: data.molecule,
                 showBonds: true,
                 showHydrogens: true
             }
-        };
+        });
     });
+
+    return quests;
 }
 
 export default function GC201Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].gc2_01 || translations.EN.gc2_01;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const {
         difficulty,
@@ -99,16 +109,15 @@ export default function GC201Page() {
     }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
-        if (!t?.scenarios) return null;
-        if (stage === "ALKANES") return t.scenarios.lonza_methane_cracking;
-        if (stage === "AROMATICS") return t.scenarios.roche_aromatic_pipeline;
-        return t.scenarios.biozentrum_protein_research;
+        if (stage === "ALKANES") return t("gc2_01.scenarios.lonza_methane_cracking");
+        if (stage === "AROMATICS") return t("gc2_01.scenarios.roche_aromatic_pipeline");
+        return t("gc2_01.scenarios.biozentrum_protein_research");
     }, [stage, t]);
 
     const stages = [
-        { id: "ALKANES", label: t?.stages?.alkanes || "ALKANES" },
-        { id: "AROMATICS", label: t?.stages?.aromatics || "AROMATICS" },
-        { id: "BIOMOLECULES", label: t?.stages?.biomolecules || "BIOMOLECULES" },
+        { id: "ALKANES", label: t("gc2_01.stages.alkanes") },
+        { id: "AROMATICS", label: t("gc2_01.stages.aromatics") },
+        { id: "BIOMOLECULES", label: t("gc2_01.stages.biomolecules") },
     ];
 
     const config = currentQuest?.simConfig || {
@@ -119,7 +128,7 @@ export default function GC201Page() {
 
     return (
         <ChamberLayout
-            title={t?.title || "GC2.01 // CARBON KINGDOM"}
+            title={t("gc2_01.title")}
             moduleCode="GC2.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -129,8 +138,20 @@ export default function GC201Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t?.footer_left || "GC2.01_CARBON_KINGDOM // NODE: BASEL"}
-            translations={t}
+            footerLeft={t("gc2_01.footer_left")}
+            translations={{
+                back: t("gc2_01.back"),
+                check: t("gc2_01.check"),
+                next: t("gc2_01.next"),
+                correct: t("gc2_01.correct"),
+                incorrect: t("gc2_01.incorrect"),
+                difficulty: {
+                    BASIC: t("gc2_01.difficulty.BASIC"),
+                    CORE: t("gc2_01.difficulty.CORE"),
+                    ADVANCED: t("gc2_01.difficulty.ADVANCED"),
+                    ELITE: t("gc2_01.difficulty.ELITE"),
+                },
+            }}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -144,7 +165,7 @@ export default function GC201Page() {
 
                     <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3 font-mono text-center">
                         <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                            {t?.labels?.molecule_info || "MOLECULE"}
+                            {t("gc2_01.labels.molecule_info")}
                         </div>
                         <div className="text-2xl text-neon-cyan font-black">
                             {config.molecule.toUpperCase()}
@@ -169,7 +190,7 @@ export default function GC201Page() {
             <div className="space-y-6">
                 <div className="text-center">
                     <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black mb-4 italic">
-                        {t?.monitor_title || "MOLECULAR RECONSTRUCTION"}
+                        {t("gc2_01.monitor_title")}
                     </h3>
                     <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
                         <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -179,7 +200,7 @@ export default function GC201Page() {
                 <div className="p-6 bg-black/40 border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6 backdrop-blur-md">
                     <div className="space-y-3">
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black text-center">
-                            {t?.labels?.input_answer || "Enter Value"}
+                            {t("gc2_01.labels.input_answer")}
                         </div>
                         <input
                             value={inputs["ans"] || ""}

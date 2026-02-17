@@ -24,7 +24,21 @@ export const deMath = {
         monitor_title: "EM1.01_THALES_MONITOR",
         footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
-            measure: "MESSEN"
+            basics: "BASIS",
+            measure: "MESSEN",
+            survey: "VERMESSUNG"
+        },
+        prompts: {
+            sim_ratio: "Dreieckseiten {a}, {b}, {c}. Ähnliches Dreieck hat kürzeste Seite {s}. Finde die längste.",
+            sim_missing: "Dreiecke ABC und DEF sind ähnlich. AB={ab}, DE={de}, AC={ac}. Finde DF.",
+            sim_scale: "Skalierungsfaktor ist {k}. Wenn Ursprungslänge {l} ist, finde neue Länge.",
+            shadow_h: "Stabhöhe {h} m wirft Schatten {s} m. Turmschatten {S} m. Finde Turmhöhe H.",
+            shadow_s: "Stab (h={h}, s={s}). Turm H={H}. Finde Schatten S.",
+            shadow_angle: "Sonnenwinkel {a}°. Turmhöhe {H}. Finde Schattenlänge L.",
+            tri_dist: "Objektdistanz ca. h / tan(a). Wenn h={h}, a={a}°, finde Distanz.",
+            tri_height: "Distanz {d}, Winkel {a}°. Höhe h = d * tan(a). Finde h.",
+            thales_basic: "Strahlensatz: a/b = c/d. Wenn a={a}, b={b}, c={c}, finde d.",
+            thales_prop: "Strahlensatz: x/{a} = {b}/{c}. Finde x."
         },
         measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
         labels: {

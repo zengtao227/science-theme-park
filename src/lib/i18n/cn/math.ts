@@ -24,7 +24,21 @@ export const cnMath = {
         monitor_title: "EM1.01_THALES_MONITOR",
         footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
-            measure: "测量"
+            basics: "基础",
+            measure: "测量",
+            survey: "勘测"
+        },
+        prompts: {
+            sim_ratio: "三角形边长 {a}, {b}, {c}. 相似三角形最短边为 {s}. 求最长边.",
+            sim_missing: "三角形 ABC 与 DEF 相似. AB={ab}, DE={de}, AC={ac}. 求 DF.",
+            sim_scale: "比例因子为 {k}. 若原始长度为 {l}, 求新长度.",
+            shadow_h: "竿高 {h} m, 影长 {s} m. 塔影长 {S} m. 求塔高 H.",
+            shadow_s: "竿 (h={h}, s={s}). 塔高 H={H}. 求影长 S.",
+            shadow_angle: "太阳角度 {a}°. 塔高 {H}. 求影长 L.",
+            tri_dist: "物体距离约 h / tan(a). 若 h={h}, a={a}°, 求距离.",
+            tri_height: "距离 {d}, 角度 {a}°. 高度 h = d * tan(a). 求 h.",
+            thales_basic: "平行线截割线段. 比例 a/b = c/d. 若 a={a}, b={b}, c={c}, 求 d.",
+            thales_prop: "泰勒斯定理: 截线段成比例. x/{a} = {b}/{c}. 求 x."
         },
         measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
         labels: {
