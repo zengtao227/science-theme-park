@@ -24,7 +24,21 @@ export const enMath = {
         monitor_title: "EM1.01_THALES_MONITOR",
         footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
-            measure: "MEASURE"
+            basics: "BASICS",
+            measure: "MEASURE",
+            survey: "SURVEY"
+        },
+        prompts: {
+            sim_ratio: "Triangle sides {a}, {b}, {c}. Similar triangle has shortest side {s}. Find longest side.",
+            sim_missing: "Triangles ABC and DEF are similar. AB={ab}, DE={de}, AC={ac}. Find DF.",
+            sim_scale: "Scale factor is {k}. If original length is {l}, find new length.",
+            shadow_h: "Pole height {h} m casts shadow {s} m. Tower shadow {S} m. Find Tower height H.",
+            shadow_s: "Pole (h={h}, s={s}). Tower H={H}. Find shadow S.",
+            shadow_angle: "Sun angle {a}°. Tower height {H}. Find shadow length L.",
+            tri_dist: "Distance to object approx. h / tan(a). If h={h}, a={a}°, find dist.",
+            tri_height: "Distance {d}, angle {a}°. Height h = d * tan(a). Find h.",
+            thales_basic: "Parallel lines intercept segments. Ratio a/b = c/d. If a={a}, b={b}, c={c}, find d.",
+            thales_prop: "Thales theorem: Proportional segments on transversal lines. x/{a} = {b}/{c}. Find x."
         },
         measure_prompt_latex: "\\text{Use }\\frac{h}{H}=\\frac{l}{L}\\text{ to solve tower height.}",
         labels: {

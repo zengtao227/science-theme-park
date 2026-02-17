@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -26,51 +26,66 @@ interface CrystalQuest extends Quest {
 }
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): CrystalQuest[] {
-  const questKeys = ["atoms_per_cell", "coord_num", "pack_eff", "void_id"];
+  const quests: CrystalQuest[] = [];
 
-  let indices: number[] = [];
-  if (difficulty === "BASIC") indices = [0, 1];
-  else if (difficulty === "CORE") indices = [1, 2];
-  else if (difficulty === "ADVANCED") indices = [2, 3];
-  else indices = [0, 1, 2, 3];
+  // Each stage has 5 questions per difficulty (20 total per stage)
+  const questData = {
+    BASIC: [
+      { key: "atoms_per_cell", expected: stage === "SC" ? "1" : stage === "BCC" ? "2" : "4" },
+      { key: "coord_num", expected: stage === "SC" ? "6" : stage === "BCC" ? "8" : "12" },
+      { key: "pack_eff", expected: stage === "SC" ? "52" : stage === "BCC" ? "68" : "74" },
+      { key: "void_type", expected: stage === "FCC" ? "octahedral" : "cubic" },
+      { key: "density_calc", expected: stage === "SC" ? "low" : stage === "BCC" ? "medium" : "high" }
+    ],
+    CORE: [
+      { key: "coord_num", expected: stage === "SC" ? "6" : stage === "BCC" ? "8" : "12" },
+      { key: "pack_eff", expected: stage === "SC" ? "52" : stage === "BCC" ? "68" : "74" },
+      { key: "void_count", expected: stage === "FCC" ? "8" : "1" },
+      { key: "lattice_param", expected: stage === "SC" ? "2r" : stage === "BCC" ? "4r/√3" : "4r/√2" },
+      { key: "stability", expected: stage === "FCC" ? "high" : stage === "BCC" ? "medium" : "low" }
+    ],
+    ADVANCED: [
+      { key: "pack_eff", expected: stage === "SC" ? "52" : stage === "BCC" ? "68" : "74" },
+      { key: "void_id", expected: stage === "FCC" ? "8" : "1" },
+      { key: "slip_systems", expected: stage === "FCC" ? "12" : stage === "BCC" ? "48" : "6" },
+      { key: "anisotropy", expected: stage === "SC" ? "isotropic" : "anisotropic" },
+      { key: "thermal_exp", expected: stage === "FCC" ? "low" : stage === "BCC" ? "medium" : "high" }
+    ],
+    ELITE: [
+      { key: "void_id", expected: stage === "FCC" ? "8" : "1" },
+      { key: "miller_indices", expected: stage === "FCC" ? "111" : stage === "BCC" ? "110" : "100" },
+      { key: "stacking_fault", expected: stage === "FCC" ? "yes" : "no" },
+      { key: "burgers_vector", expected: stage === "FCC" ? "a/2<110>" : stage === "BCC" ? "a/2<111>" : "a<100>" },
+      { key: "elastic_modulus", expected: stage === "FCC" ? "high" : stage === "BCC" ? "medium" : "low" }
+    ]
+  };
 
-  return indices.map((idx) => {
-    const key = questKeys[idx];
-    const prompt = t.prompts[key];
-
+  const dataList = questData[difficulty];
+  dataList.forEach((data, idx) => {
     const config: CrystalQuest["simConfig"] = {
       latticeType: stage,
-      showVoids: key === "void_id"
+      showVoids: data.key.includes("void")
     };
 
-    let expected: string | number = "1";
-    if (idx === 0) { // atoms_per_cell
-      expected = stage === "SC" ? 1 : stage === "BCC" ? 2 : 4;
-    } else if (idx === 1) { // coord_num
-      expected = stage === "SC" ? 6 : stage === "BCC" ? 8 : 12;
-    } else if (idx === 2) { // pack_eff
-      expected = stage === "SC" ? 52 : stage === "BCC" ? 68 : 74;
-    } else if (idx === 3) { // void_id
-      expected = stage === "FCC" ? "8" : "1";
-    }
-
-    return {
-      id: `${stage}|${difficulty}|${key}`,
+    quests.push({
+      id: `${stage}_${difficulty[0]}${idx + 1}`,
       difficulty,
       stage,
-      promptLatex: `\\text{${prompt}}`,
+      promptLatex: `\\text{${t(`gc3_02.prompts.${data.key}`)}}`,
       expressionLatex: "",
-      targetLatex: "\\text{Conclusion}",
-      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected }],
-      correctLatex: expected.toString(),
+      targetLatex: "\\text{Result}",
+      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
+      correctLatex: data.expected,
       simConfig: config
-    };
+    });
   });
+
+  return quests;
 }
 
 export default function GC302Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gc3_02 || translations.EN.gc3_02;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
 
   const {
     difficulty,
@@ -95,16 +110,15 @@ export default function GC302Page() {
   }, [lastCheck, completeStage, stage]);
 
   const activeScenario = useMemo(() => {
-    if (!t?.scenarios) return null;
-    if (stage === "SC") return t.scenarios.crystallography_center;
-    if (stage === "BCC") return t.scenarios.solid_state_research;
-    return t.scenarios.drug_polymorphism;
+    if (stage === "SC") return t("gc3_02.scenarios.crystallography_center");
+    if (stage === "BCC") return t("gc3_02.scenarios.solid_state_research");
+    return t("gc3_02.scenarios.drug_polymorphism");
   }, [stage, t]);
 
   const stages = [
-    { id: "SC", label: t?.stages?.sc || "SIMPLE CUBIC" },
-    { id: "BCC", label: t?.stages?.bcc || "BODY-CENTERED" },
-    { id: "FCC", label: t?.stages?.fcc || "FACE-CENTERED" },
+    { id: "SC", label: t("gc3_02.stages.sc") },
+    { id: "BCC", label: t("gc3_02.stages.bcc") },
+    { id: "FCC", label: t("gc3_02.stages.fcc") },
   ];
 
   const config = currentQuest?.simConfig || {
@@ -114,7 +128,7 @@ export default function GC302Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "GC3.02 // CRYSTAL PALACE"}
+      title={t("gc3_02.title")}
       moduleCode="GC3.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -124,8 +138,20 @@ export default function GC302Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t?.footer_left || "GC3.02_CRYSTAL_PALACE // NODE: BASEL"}
-      translations={t}
+      footerLeft={t("gc3_02.footer_left")}
+      translations={{
+        back: t("gc3_02.back"),
+        check: t("gc3_02.check"),
+        next: t("gc3_02.next"),
+        correct: t("gc3_02.correct"),
+        incorrect: t("gc3_02.incorrect"),
+        difficulty: {
+          BASIC: t("gc3_02.difficulty.BASIC"),
+          CORE: t("gc3_02.difficulty.CORE"),
+          ADVANCED: t("gc3_02.difficulty.ADVANCED"),
+          ELITE: t("gc3_02.difficulty.ELITE"),
+        },
+      }}
       monitorContent={
         <div className="flex flex-col h-full gap-4">
           <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -137,7 +163,7 @@ export default function GC302Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3 font-mono">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.lattice_type || "LATTICE TYPE"}
+              {t("gc3_02.labels.lattice_type")}
             </div>
             <div className="text-xl text-white font-black text-center">
               {stage === "SC" && "Simple Cubic (SC)"}
@@ -166,7 +192,7 @@ export default function GC302Page() {
       <div className="space-y-6">
         <div className="text-center">
           <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black mb-4 italic">
-            {t?.monitor_title || "CRYSTALLOGRAPHIC ANALYSIS"}
+            {t("gc3_02.monitor_title")}
           </h3>
           <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
             <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -176,7 +202,7 @@ export default function GC302Page() {
         <div className="p-6 bg-black/40 border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6 backdrop-blur-md">
           <div className="space-y-3">
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black text-center">
-              {t?.labels?.input_answer || "Enter Value"}
+              {t("gc3_02.labels.input_answer")}
             </div>
             <input
               value={inputs["ans"] || ""}
@@ -187,7 +213,7 @@ export default function GC302Page() {
           </div>
 
           <div className="p-4 bg-white/[0.03] border border-white/10 rounded-3xl relative">
-            <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{t.labels.formulas}</div>
+            <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{t("gc3_02.labels.formulas")}</div>
             <div className="flex flex-wrap gap-6 justify-center items-center">
               <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{P.E.} = \frac{V_{atoms}}{V_{cell}} \times 100\%" /></div>
               <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{CN} = \text{nearest neighbors}" /></div>
