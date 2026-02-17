@@ -789,7 +789,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
   - 更新 `CURRICULUM_PLAN_UPDATE_2026_v2.md`
   - 更新 `DEVELOPMENT_STATUS_2026-02-15.md`
 
-- [-] 4.6 最终提交
+- [x] 4.6 最终提交
   - `git add -A && git commit -m "feat: complete all module question pools - phase 1" && git push`
 
 ---
@@ -1120,15 +1120,15 @@ const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest
 
 #### Phase 5.1: 准备阶段（1天）
 
-- [ ] 5.1.1 创建模式统一工具脚本
+- [x] 5.1.1 创建模式统一工具脚本
   - 创建 `scripts/unify-pattern.js` 用于自动化部分转换
   - 创建 `scripts/validate-pattern.js` 用于验证转换后的模块
   
-- [ ] 5.1.2 创建标准模板文件
+- [x] 5.1.2 创建标准模板文件
   - 创建 `templates/quest-module-template.tsx` 作为参考模板
   - 包含完整的类型定义和注释说明
   
-- [ ] 5.1.3 选择试点模块
+- [x] 5.1.3 选择试点模块
   - 选择3个不同模式的模块作为试点：
     - SM2.03 (SWITCH模式) - 简单
     - SC1.02 (SLICE模式) - 中等
@@ -1136,7 +1136,7 @@ const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest
 
 #### Phase 5.2: 试点转换（1天）
 
-- [ ] 5.2.1 转换 SM2.03 (SWITCH → forEach)
+- [x] 5.2.1 转换 SM2.03 (SWITCH → forEach)
   - 提取现有题目数据
   - 重构为三层Record结构
   - 验证：`npm run build` + 浏览器测试
@@ -1151,7 +1151,7 @@ const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest
   - 统一为forEach模式
   - 验证：构建 + 浏览器测试
   
-- [ ] 5.2.4 总结试点经验
+- [-] 5.2.4 总结试点经验
   - 记录遇到的问题和解决方案
   - 优化转换流程
   - 更新模板和工具脚本

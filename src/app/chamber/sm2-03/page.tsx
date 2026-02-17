@@ -23,176 +23,195 @@ interface S203Quest extends Quest {
 }
 
 /* ────────────────────────────────────────────────
- *  Quest factory helpers
+ *  Helper functions
  * ──────────────────────────────────────────────── */
 
 function r2(n: number) { return Math.round(n * 100) / 100; }
 
-function makeCalc(
-  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
-  id: string, m: number, c: number, x: number,
-) {
-  const y = r2(m * x + c);
-  quests.push({
-    id: `S1|${id}`, difficulty, stage, mode: "CALCULATE",
-    m1: m, c1: c, targetX: x, targetY: y,
-    promptLatex: t.prompts.level1 || "Calculate the ticket price for the given destination",
-    expressionLatex: `Plan: y = ${m}x + ${c}    |    x = ${x} km`,
-    targetLatex: "y", correctLatex: `y=${y}`,
-    slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
-  });
-}
+/* ────────────────────────────────────────────────
+ *  Structured Data - forEach + Structured Data Pattern
+ * ──────────────────────────────────────────────── */
 
-function makeIntersect(
-  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
-  id: string, m1: number, c1: number, m2: number, c2: number,
-) {
-  const x = r2((c2 - c1) / (m1 - m2));
-  const y = r2(m1 * x + c1);
-  quests.push({
-    id: `S2|${id}`, difficulty, stage, mode: "INTERSECT",
-    m1, c1, m2, c2, targetX: x, targetY: y,
-    promptLatex: t.prompts.level2 || "Find the distance where two fare plans cost the same",
-    expressionLatex: `Plan A: y = ${m1}x + ${c1}    |    Plan B: y = ${m2}x + ${c2}`,
-    targetLatex: "x", correctLatex: `x=${x}`,
-    slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
-  });
-}
+// Type for question data
+type CalcData = { id: string; m: number; c: number; x: number };
+type IntersectData = { id: string; m1: number; c1: number; m2: number; c2: number };
+type OptimizeData = { id: string; m1: number; c1: number; m2: number; c2: number };
 
-function makeOptimize(
-  quests: S203Quest[], t: any, difficulty: Difficulty, stage: Stage,
-  id: string, m1: number, c1: number, m2: number, c2: number,
-) {
-  // Plan A: low slope, high base  |  Plan B: high slope, low base
-  // Plan A cheaper when x > threshold
-  const x = r2((c1 - c2) / (m2 - m1));
-  const y = r2(m1 * x + c1);
-  quests.push({
-    id: `S3|${id}`, difficulty, stage: "LEVEL3", mode: "OPTIMIZE",
-    m1, c1, m2, c2, targetX: x, targetY: y,
-    promptLatex: t.prompts.level3 || "Find the threshold distance where Plan A becomes cheaper",
-    expressionLatex: `Plan A: y = ${m1}x + ${c1}    |    Plan B: y = ${m2}x + ${c2}`,
-    targetLatex: "x",
-    correctLatex: `x=${x}`,
-    slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
-  });
-}
+// LEVEL1 Data: Calculate y = m·x + c
+const LEVEL1_DATA: Record<Difficulty, CalcData[]> = {
+  BASIC: [
+    { id: "B1", m: 2, c: 0, x: 5 },    // y=10
+    { id: "B2", m: 3, c: 0, x: 4 },    // y=12
+    { id: "B3", m: 1, c: 5, x: 10 },   // y=15
+    { id: "B4", m: 4, c: 0, x: 3 },    // y=12
+    { id: "B5", m: 2, c: 3, x: 6 },    // y=15
+  ],
+  CORE: [
+    { id: "C1", m: 1.5, c: 3, x: 8 },  // y=15
+    { id: "C2", m: 0.5, c: 4, x: 12 }, // y=10
+    { id: "C3", m: 2.5, c: 2, x: 6 },  // y=17
+    { id: "C4", m: 1.2, c: 5, x: 10 }, // y=17
+    { id: "C5", m: 0.8, c: 6, x: 15 }, // y=18
+  ],
+  ADVANCED: [
+    { id: "A1", m: 0.75, c: 5, x: 12 },   // y=14
+    { id: "A2", m: 1.25, c: 3.5, x: 10 }, // y=16
+    { id: "A3", m: 0.35, c: 8, x: 20 },   // y=15
+    { id: "A4", m: 0.65, c: 7, x: 18 },   // y=18.7
+    { id: "A5", m: 1.35, c: 4.5, x: 14 }, // y=23.4
+  ],
+  ELITE: [
+    { id: "E1", m: 0.85, c: 6.5, x: 14 },  // y=18.4
+    { id: "E2", m: 1.15, c: 2.75, x: 12 }, // y=16.55
+    { id: "E3", m: 0.45, c: 11.5, x: 18 }, // y=19.6
+    { id: "E4", m: 0.95, c: 8.25, x: 16 }, // y=23.45
+    { id: "E5", m: 1.25, c: 5.5, x: 15 },  // y=24.25
+  ],
+};
+
+// LEVEL2 Data: Break-even intersection
+const LEVEL2_DATA: Record<Difficulty, IntersectData[]> = {
+  BASIC: [
+    { id: "B1", m1: 3, c1: 0, m2: 1, c2: 10 },  // x=5
+    { id: "B2", m1: 4, c1: 0, m2: 1, c2: 12 },  // x=4
+    { id: "B3", m1: 2, c1: 0, m2: 1, c2: 8 },   // x=8
+    { id: "B4", m1: 5, c1: 0, m2: 2, c2: 12 },  // x=4
+    { id: "B5", m1: 3, c1: 0, m2: 2, c2: 6 },   // x=6
+  ],
+  CORE: [
+    { id: "C1", m1: 2, c1: 0, m2: 0.5, c2: 15 },   // x=10
+    { id: "C2", m1: 2.5, c1: 0, m2: 1, c2: 12 },   // x=8
+    { id: "C3", m1: 3, c1: 2, m2: 1, c2: 12 },     // x=5
+    { id: "C4", m1: 1.5, c1: 0, m2: 0.5, c2: 10 }, // x=10
+    { id: "C5", m1: 2.8, c1: 1, m2: 1.2, c2: 11 }, // x=6.25
+  ],
+  ADVANCED: [
+    { id: "A1", m1: 1.5, c1: 2, m2: 0.5, c2: 8 },   // x=6
+    { id: "A2", m1: 2.5, c1: 1, m2: 0.5, c2: 9 },   // x=4
+    { id: "A3", m1: 1.8, c1: 3, m2: 0.6, c2: 18 },  // x=12.5
+    { id: "A4", m1: 2.2, c1: 2.5, m2: 0.8, c2: 12 }, // x=6.79
+    { id: "A5", m1: 1.6, c1: 4, m2: 0.4, c2: 16 },  // x=10
+  ],
+  ELITE: [
+    { id: "E1", m1: 2.4, c1: 1.5, m2: 0.9, c2: 12 },    // x=7
+    { id: "E2", m1: 3.5, c1: 0, m2: 1.25, c2: 13.5 },   // x=6
+    { id: "E3", m1: 1.75, c1: 4.5, m2: 0.5, c2: 20 },   // x=12.4
+    { id: "E4", m1: 2.8, c1: 2.25, m2: 1.1, c2: 15 },   // x=7.5
+    { id: "E5", m1: 3.2, c1: 1.8, m2: 1.5, c2: 18.5 },  // x=9.82
+  ],
+};
+
+// LEVEL3 Data: Optimization threshold
+const LEVEL3_DATA: Record<Difficulty, OptimizeData[]> = {
+  BASIC: [
+    { id: "B1", m1: 1, c1: 10, m2: 3, c2: 0 },  // x=5
+    { id: "B2", m1: 1, c1: 8, m2: 3, c2: 0 },   // x=4
+    { id: "B3", m1: 1, c1: 12, m2: 4, c2: 0 },  // x=4
+    { id: "B4", m1: 2, c1: 10, m2: 4, c2: 0 },  // x=5
+    { id: "B5", m1: 1, c1: 15, m2: 4, c2: 0 },  // x=5
+  ],
+  CORE: [
+    { id: "C1", m1: 0.5, c1: 15, m2: 2, c2: 0 },   // x=10
+    { id: "C2", m1: 1, c1: 12, m2: 2.5, c2: 0 },   // x=8
+    { id: "C3", m1: 0.8, c1: 14, m2: 2.2, c2: 0 }, // x=10
+    { id: "C4", m1: 1.2, c1: 16, m2: 3, c2: 0 },   // x=8.89
+    { id: "C5", m1: 0.6, c1: 18, m2: 2.4, c2: 0 }, // x=10
+  ],
+  ADVANCED: [
+    { id: "A1", m1: 0.5, c1: 12, m2: 1.5, c2: 2 },  // x=10
+    { id: "A2", m1: 0.8, c1: 15, m2: 2, c2: 3 },    // x=10
+    { id: "A3", m1: 0.6, c1: 16, m2: 1.8, c2: 4 },  // x=10
+    { id: "A4", m1: 0.7, c1: 18, m2: 2.1, c2: 5 },  // x=9.29
+    { id: "A5", m1: 0.4, c1: 20, m2: 1.6, c2: 6 },  // x=11.67
+  ],
+  ELITE: [
+    { id: "E1", m1: 0.2, c1: 18, m2: 1.4, c2: 3 },     // x=12.5
+    { id: "E2", m1: 0.35, c1: 20, m2: 1.6, c2: 2.5 },  // x=14
+    { id: "E3", m1: 0.25, c1: 22, m2: 1.5, c2: 4 },    // x=14.4
+    { id: "E4", m1: 0.3, c1: 24, m2: 1.7, c2: 5 },     // x=13.57
+    { id: "E5", m1: 0.15, c1: 25, m2: 1.35, c2: 3.5 }, // x=17.92
+  ],
+};
 
 /* ────────────────────────────────────────────────
- *  Build quest pool — 4 difficulty tiers per level
+ *  Build quest pool — forEach + Structured Data
  * ──────────────────────────────────────────────── */
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest[] {
-  const q: S203Quest[] = [];
+  const quests: S203Quest[] = [];
 
   if (stage === "LEVEL1") {
     // ── Calculate y = m·x + c ──
-    switch (difficulty) {
-      case "BASIC":
-        // Whole numbers, simple mental math
-        makeCalc(q, t, difficulty, stage, "B1", 2, 0, 5);    // y=10
-        makeCalc(q, t, difficulty, stage, "B2", 3, 0, 4);    // y=12
-        makeCalc(q, t, difficulty, stage, "B3", 1, 5, 10);   // y=15
-        makeCalc(q, t, difficulty, stage, "B4", 4, 0, 3);    // y=12
-        makeCalc(q, t, difficulty, stage, "B5", 2, 3, 6);    // y=15
-        break;
-      case "CORE":
-        // One decimal in slope
-        makeCalc(q, t, difficulty, stage, "C1", 1.5, 3, 8);  // y=15
-        makeCalc(q, t, difficulty, stage, "C2", 0.5, 4, 12); // y=10
-        makeCalc(q, t, difficulty, stage, "C3", 2.5, 2, 6);  // y=17
-        makeCalc(q, t, difficulty, stage, "C4", 1.2, 5, 10); // y=17
-        makeCalc(q, t, difficulty, stage, "C5", 0.8, 6, 15); // y=18
-        break;
-      case "ADVANCED":
-        // Two-decimal slope, larger intercept
-        makeCalc(q, t, difficulty, stage, "A1", 0.75, 5, 12);  // y=14
-        makeCalc(q, t, difficulty, stage, "A2", 1.25, 3.5, 10); // y=16
-        makeCalc(q, t, difficulty, stage, "A3", 0.35, 8, 20);  // y=15
-        makeCalc(q, t, difficulty, stage, "A4", 0.65, 7, 18);  // y=18.7
-        makeCalc(q, t, difficulty, stage, "A5", 1.35, 4.5, 14); // y=23.4
-        break;
-      default: // ELITE
-        // Hard decimals, requires careful calculation
-        makeCalc(q, t, difficulty, stage, "E1", 0.85, 6.5, 14); // y=18.4
-        makeCalc(q, t, difficulty, stage, "E2", 1.15, 2.75, 12); // y=16.55
-        makeCalc(q, t, difficulty, stage, "E3", 0.45, 11.5, 18); // y=19.6
-        makeCalc(q, t, difficulty, stage, "E4", 0.95, 8.25, 16); // y=23.45
-        makeCalc(q, t, difficulty, stage, "E5", 1.25, 5.5, 15); // y=24.25
-        break;
-    }
+    const dataList = LEVEL1_DATA[difficulty];
+    dataList.forEach((data) => {
+      const y = r2(data.m * data.x + data.c);
+      quests.push({
+        id: `S1|${data.id}`,
+        difficulty,
+        stage,
+        mode: "CALCULATE",
+        m1: data.m,
+        c1: data.c,
+        targetX: data.x,
+        targetY: y,
+        promptLatex: t.prompts.level1 || "Calculate the ticket price for the given destination",
+        expressionLatex: `Plan: y = ${data.m}x + ${data.c}    |    x = ${data.x} km`,
+        targetLatex: "y",
+        correctLatex: `y=${y}`,
+        slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
+      });
+    });
   } else if (stage === "LEVEL2") {
     // ── Break-even: m1·x + c1 = m2·x + c2 ──
-    switch (difficulty) {
-      case "BASIC":
-        // Integer answers, one plan has c=0
-        makeIntersect(q, t, difficulty, stage, "B1", 3, 0, 1, 10);  // x=5
-        makeIntersect(q, t, difficulty, stage, "B2", 4, 0, 1, 12);  // x=4
-        makeIntersect(q, t, difficulty, stage, "B3", 2, 0, 1, 8);   // x=8
-        makeIntersect(q, t, difficulty, stage, "B4", 5, 0, 2, 12);  // x=4
-        makeIntersect(q, t, difficulty, stage, "B5", 3, 0, 2, 6);   // x=6
-        break;
-      case "CORE":
-        // One decimal slope, integer answer
-        makeIntersect(q, t, difficulty, stage, "C1", 2, 0, 0.5, 15);   // x=10
-        makeIntersect(q, t, difficulty, stage, "C2", 2.5, 0, 1, 12);   // x=8
-        makeIntersect(q, t, difficulty, stage, "C3", 3, 2, 1, 12);     // x=5
-        makeIntersect(q, t, difficulty, stage, "C4", 1.5, 0, 0.5, 10);  // x=10
-        makeIntersect(q, t, difficulty, stage, "C5", 2.8, 1, 1.2, 11);  // x=6.25
-        break;
-      case "ADVANCED":
-        // Both plans have intercepts
-        makeIntersect(q, t, difficulty, stage, "A1", 1.5, 2, 0.5, 8);   // x=6
-        makeIntersect(q, t, difficulty, stage, "A2", 2.5, 1, 0.5, 9);   // x=4
-        makeIntersect(q, t, difficulty, stage, "A3", 1.8, 3, 0.6, 18);  // x=12.5
-        makeIntersect(q, t, difficulty, stage, "A4", 2.2, 2.5, 0.8, 12); // x=6.79
-        makeIntersect(q, t, difficulty, stage, "A5", 1.6, 4, 0.4, 16);  // x=10
-        break;
-      default: // ELITE
-        // Non-integer answers
-        makeIntersect(q, t, difficulty, stage, "E1", 2.4, 1.5, 0.9, 12);    // x=7
-        makeIntersect(q, t, difficulty, stage, "E2", 3.5, 0, 1.25, 13.5);   // x=6
-        makeIntersect(q, t, difficulty, stage, "E3", 1.75, 4.5, 0.5, 20);   // x=12.4
-        makeIntersect(q, t, difficulty, stage, "E4", 2.8, 2.25, 1.1, 15);   // x=7.5
-        makeIntersect(q, t, difficulty, stage, "E5", 3.2, 1.8, 1.5, 18.5);  // x=9.82
-        break;
-    }
+    const dataList = LEVEL2_DATA[difficulty];
+    dataList.forEach((data) => {
+      const x = r2((data.c2 - data.c1) / (data.m1 - data.m2));
+      const y = r2(data.m1 * x + data.c1);
+      quests.push({
+        id: `S2|${data.id}`,
+        difficulty,
+        stage,
+        mode: "INTERSECT",
+        m1: data.m1,
+        c1: data.c1,
+        m2: data.m2,
+        c2: data.c2,
+        targetX: x,
+        targetY: y,
+        promptLatex: t.prompts.level2 || "Find the distance where two fare plans cost the same",
+        expressionLatex: `Plan A: y = ${data.m1}x + ${data.c1}    |    Plan B: y = ${data.m2}x + ${data.c2}`,
+        targetLatex: "x",
+        correctLatex: `x=${x}`,
+        slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
+      });
+    });
   } else {
     // ── LEVEL3: Threshold (Plan A cheaper when x > ?) ──
-    // Plan A has lower m (per-km) but higher c (base fare)
-    switch (difficulty) {
-      case "BASIC":
-        makeOptimize(q, t, difficulty, stage, "B1", 1, 10, 3, 0);  // x=5
-        makeOptimize(q, t, difficulty, stage, "B2", 1, 8, 3, 0);  // x=4
-        makeOptimize(q, t, difficulty, stage, "B3", 1, 12, 4, 0);  // x=4
-        makeOptimize(q, t, difficulty, stage, "B4", 2, 10, 4, 0);  // x=5
-        makeOptimize(q, t, difficulty, stage, "B5", 1, 15, 4, 0);  // x=5
-        break;
-      case "CORE":
-        makeOptimize(q, t, difficulty, stage, "C1", 0.5, 15, 2, 0);  // x=10
-        makeOptimize(q, t, difficulty, stage, "C2", 1, 12, 2.5, 0);  // x=8
-        makeOptimize(q, t, difficulty, stage, "C3", 0.8, 14, 2.2, 0);  // x=10
-        makeOptimize(q, t, difficulty, stage, "C4", 1.2, 16, 3, 0);  // x=8.89
-        makeOptimize(q, t, difficulty, stage, "C5", 0.6, 18, 2.4, 0);  // x=10
-        break;
-      case "ADVANCED":
-        makeOptimize(q, t, difficulty, stage, "A1", 0.5, 12, 1.5, 2);  // x=10
-        makeOptimize(q, t, difficulty, stage, "A2", 0.8, 15, 2, 3);    // x=10
-        makeOptimize(q, t, difficulty, stage, "A3", 0.6, 16, 1.8, 4);  // x=10
-        makeOptimize(q, t, difficulty, stage, "A4", 0.7, 18, 2.1, 5);  // x=9.29
-        makeOptimize(q, t, difficulty, stage, "A5", 0.4, 20, 1.6, 6);  // x=11.67
-        break;
-      default: // ELITE
-        makeOptimize(q, t, difficulty, stage, "E1", 0.2, 18, 1.4, 3);     // x=12.5
-        makeOptimize(q, t, difficulty, stage, "E2", 0.35, 20, 1.6, 2.5);  // x=14
-        makeOptimize(q, t, difficulty, stage, "E3", 0.25, 22, 1.5, 4);    // x=14.4
-        makeOptimize(q, t, difficulty, stage, "E4", 0.3, 24, 1.7, 5);     // x=13.57
-        makeOptimize(q, t, difficulty, stage, "E5", 0.15, 25, 1.35, 3.5); // x=17.92
-        break;
-    }
+    const dataList = LEVEL3_DATA[difficulty];
+    dataList.forEach((data) => {
+      const x = r2((data.c1 - data.c2) / (data.m2 - data.m1));
+      const y = r2(data.m1 * x + data.c1);
+      quests.push({
+        id: `S3|${data.id}`,
+        difficulty,
+        stage: "LEVEL3",
+        mode: "OPTIMIZE",
+        m1: data.m1,
+        c1: data.c1,
+        m2: data.m2,
+        c2: data.c2,
+        targetX: x,
+        targetY: y,
+        promptLatex: t.prompts.level3 || "Find the threshold distance where Plan A becomes cheaper",
+        expressionLatex: `Plan A: y = ${data.m1}x + ${data.c1}    |    Plan B: y = ${data.m2}x + ${data.c2}`,
+        targetLatex: "x",
+        correctLatex: `x=${x}`,
+        slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
+      });
+    });
   }
 
-  return q;
+  return quests;
 }
 
 export default function S203Page() {
