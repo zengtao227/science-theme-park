@@ -6,12 +6,10 @@ import { clsx } from "clsx";
 import { useEffect, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S301QuadraticCanvas from "@/components/chamber/sm3-01/QuadraticCanvas";
-
-type S301T = typeof translations.EN.sm3_01;
 
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
 
@@ -37,7 +35,7 @@ function q(id: string, d: Difficulty, s: Stage, p: string, expr: string, target:
   };
 }
 
-function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Quest[] {
+function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest[] {
   const tp = t.stages.terms_prompt_latex;
   const fp = t.stages.factor_prompt_latex;
   const rp = t.stages.fractions_prompt_latex;
@@ -224,10 +222,10 @@ function buildStagePool(t: S301T, difficulty: Difficulty, stage: Stage): S301Que
 }
 
 export default function S301Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].sm3_01;
+  const { completeStage, currentLanguage } = useAppStore();
+  const { t } = useLanguage();
 
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t("sm3_01"), d, s), [t]);
 
   const {
     difficulty,
@@ -254,15 +252,15 @@ export default function S301Page() {
   }, [lastCheck, completeStage, stage]);
 
   const stages = [
-    { id: "TERMS", label: t.stages.terms },
-    { id: "FACTORIZE", label: t.stages.factorize },
-    { id: "FRACTIONS", label: t.stages.fractions },
-    { id: "EQUATIONS", label: t.stages.equations },
+    { id: "TERMS", label: t("sm3_01.stages.terms") },
+    { id: "FACTORIZE", label: t("sm3_01.stages.factorize") },
+    { id: "FRACTIONS", label: t("sm3_01.stages.fractions") },
+    { id: "EQUATIONS", label: t("sm3_01.stages.equations") },
   ];
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={t("sm3_01.title")}
       moduleCode="SM3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -272,21 +270,21 @@ export default function S301Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
-      footerLeft={t.footer_left}
+      footerLeft={t("sm3_01.footer_left")}
       checkStatus={lastCheck}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: t("sm3_01.back"),
+        check: t("sm3_01.check"),
+        next: t("sm3_01.next"),
+        correct: t("sm3_01.correct"),
+        incorrect: t("sm3_01.incorrect"),
+        ready: t("sm3_01.ready"),
+        monitor_title: t("sm3_01.monitor_title"),
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: t("sm3_01.difficulty.basic"),
+          core: t("sm3_01.difficulty.core"),
+          advanced: t("sm3_01.difficulty.advanced"),
+          elite: t("sm3_01.difficulty.elite"),
         },
       }}
       monitorContent={
@@ -299,7 +297,7 @@ export default function S301Page() {
       <div className="w-full max-w-5xl space-y-10">
         <div className="space-y-6">
           <div className="text-center">
-            <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+            <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t("sm3_01.objective_title")}</h3>
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
               <InlineMath math={currentQuest.promptLatex} />
             </p>
@@ -308,7 +306,7 @@ export default function S301Page() {
           <div className="flex justify-center overflow-x-auto w-full">
             <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative w-fit max-w-[calc(100vw-3rem)] shadow-2xl">
               <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
-              <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t.target_title}</span>
+              <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t("sm3_01.target_title")}</span>
               <div className="space-y-4">
                 <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
                   <InlineMath math={currentQuest.expressionLatex} />
@@ -323,7 +321,7 @@ export default function S301Page() {
 
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
           <div className="space-y-4">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.labels.input}</div>
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t("sm3_01.labels.input")}</div>
             {currentQuest.slotGroups ? (
               <div className="space-y-4">
                 {currentQuest.slotGroups.map((group) => (
@@ -374,7 +372,7 @@ export default function S301Page() {
             )}
 
             <div className="text-[10px] text-white/90 font-mono italic text-center mt-6">
-              {t.labels.fraction_hint}
+              {t("sm3_01.labels.fraction_hint")}
             </div>
 
             {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
