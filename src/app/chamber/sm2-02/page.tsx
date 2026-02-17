@@ -6,15 +6,13 @@ import { clsx } from "clsx";
 import { useEffect, useState, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
 import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
-
-type Mg05T = typeof translations.EN.sm2_02;
 
 type Stage =
   | "EXPLORER"
@@ -102,7 +100,7 @@ function difficultyScale(d: Difficulty) {
 }
 
 // Build quest pool for each stage
-function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Quest[] {
+function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S202Quest[] {
   const tab: "PYTHAGORAS" | "SQRT" =
     ["EXPLORER", "SOLVE_HYP", "SOLVE_LEG", "CHECK_RIGHT", "DISTANCE", "ELITE_SPACE", "MISSION", "MENTAL", "CHAIN"].includes(stage)
       ? "PYTHAGORAS"
@@ -112,7 +110,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
     return [{
       id: "EXPLORER",
       difficulty, stage, tab,
-      promptLatex: t.pythagoras.explorer_mission || "Pythagorean Explorer: Adjust scale and witness constants.",
+      promptLatex: sm2_02_t.pythagoras.explorer_mission || "Pythagorean Explorer: Adjust scale and witness constants.",
       expressionLatex: "a^2 + b^2 = c^2",
       targetLatex: "(k a)^2 + (k b)^2 = (k c)^2",
       correctLatex: "",
@@ -138,7 +136,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|SOLVE_HYP|${difficulty}|${a}|${b}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_hyp}:\\; \\text{${t.pythagoras.solve_hyp_params.replace('{a}', a.toString()).replace('{b}', b.toString())}}`,
+          promptLatex: `${sm2_02_t.pythagoras.solve_hyp}:\\; \\text{${sm2_02_t.pythagoras.solve_hyp_params.replace('{a}', a.toString()).replace('{b}', b.toString())}}`,
           expressionLatex: `c^2=a^2+b^2`,
           targetLatex: `c`,
           correctLatex: `c=${c}`,
@@ -170,13 +168,13 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         const missing = knownIsA ? b : a;
         const missing2 = c * c - known * known;
 
-        const knownLabel = knownIsA ? t.pythagoras.known_horizontal : t.pythagoras.known_given;
+        const knownLabel = knownIsA ? sm2_02_t.pythagoras.known_horizontal : sm2_02_t.pythagoras.known_given;
         const knownVar = knownIsA ? "a" : "b";
         
         quests.push({
           id: `PYT|SOLVE_LEG|${difficulty}|${c}|${known}|${knownIsA ? "A" : "B"}`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.solve_leg}:\\; \\text{${t.pythagoras.solve_leg_params.replace('{c}', c.toString()).replace('{known_label}', knownLabel).replace('{known_var}', knownVar).replace('{known}', known.toString())}}`,
+          promptLatex: `${sm2_02_t.pythagoras.solve_leg}:\\; \\text{${sm2_02_t.pythagoras.solve_leg_params.replace('{c}', c.toString()).replace('{known_label}', knownLabel).replace('{known_var}', knownVar).replace('{known}', known.toString())}}`,
           expressionLatex: `${knownIsA ? "b^2" : "a^2"}=c^2-${knownIsA ? "a^2" : "b^2"}`,
           targetLatex: `${knownIsA ? "b" : "a"}`,
           correctLatex: `${knownIsA ? "b" : "a"}=${missing}`,
@@ -208,10 +206,10 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c}|T`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.check_right}:\\; ${a},\\; ${b},\\; ${c}`,
+          promptLatex: `${sm2_02_t.pythagoras.check_right}:\\; ${a},\\; ${b},\\; ${c}`,
           expressionLatex: `${a}^2+${b}^2\\stackrel{?}{=}${c}^2`,
           targetLatex: `\\text{right triangle?}`,
-          correctLatex: `${t.yes}`,
+          correctLatex: `${sm2_02_t.yes}`,
           slots: [],
           steps: [{ id: "judge", labelLatex: `${a}^2+${b}^2\\stackrel{?}{=}${c}^2`, input: "boolean", answer: true }],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: false },
@@ -221,10 +219,10 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c + 1}|F`,
           difficulty, stage, tab,
-          promptLatex: `${t.pythagoras.check_right}:\\; ${a},\\; ${b},\\; ${c + 1}`,
+          promptLatex: `${sm2_02_t.pythagoras.check_right}:\\; ${a},\\; ${b},\\; ${c + 1}`,
           expressionLatex: `${a}^2+${b}^2\\stackrel{?}{=}${c + 1}^2`,
           targetLatex: `\\text{right triangle?}`,
-          correctLatex: `${t.no}`,
+          correctLatex: `${sm2_02_t.no}`,
           slots: [],
           steps: [{ id: "judge", labelLatex: `${a}^2+${b}^2\\stackrel{?}{=}${c + 1}^2`, input: "boolean", answer: false }],
           visual: { kind: "triangle", a, b, c: c + 1, highlightRightAngle: false },
@@ -256,7 +254,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `${t.pythagoras.distance}:\\; (${x1},${y1}) \\rightarrow (${x2},${y2})`,
+        promptLatex: `${sm2_02_t.pythagoras.distance}:\\; (${x1},${y1}) \\rightarrow (${x2},${y2})`,
         expressionLatex: `d^2=(\\Delta x)^2+(\\Delta y)^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -288,7 +286,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|SPACE|${difficulty}|${a}|${b}|${c}`,
         difficulty, stage, tab,
-        promptLatex: `${t.pythagoras.elite_space}:\\; a=${a},\\, b=${b},\\, c=${c}`,
+        promptLatex: `${sm2_02_t.pythagoras.elite_space}:\\; a=${a},\\, b=${b},\\, c=${c}`,
         expressionLatex: `d^2=a^2+b^2+c^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -318,7 +316,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
     quests.push({
       id: `PYT|MISSION|${difficulty}|CERN|${scale}`,
       difficulty, stage, tab,
-      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.cern_title}}\\\\\\text{${t.mission.cern_desc}}`,
+      promptLatex: `\\text{${sm2_02_t.mission.protocol}}\\\\\\text{${sm2_02_t.mission.cern_title}}\\\\\\text{${sm2_02_t.mission.cern_desc}}`,
       expressionLatex: `d^2=w^2+h^2`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(exact_cern)}`,
@@ -338,7 +336,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
     quests.push({
       id: `PYT|MISSION|${difficulty}|GRIND|${a_grind}|${b_grind}`,
       difficulty, stage, tab,
-      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.roof_title}}\\\\\\text{${t.mission.roof_desc}}`,
+      promptLatex: `\\text{${sm2_02_t.mission.protocol}}\\\\\\text{${sm2_02_t.mission.roof_title}}\\\\\\text{${sm2_02_t.mission.roof_desc}}`,
       expressionLatex: `r^2=a^2+b^2`,
       targetLatex: `r`,
       correctLatex: `r=${formatRadicalLatex(exact_grind)}`,
@@ -357,7 +355,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
     quests.push({
       id: `PYT|MISSION|${difficulty}|LUCERNE|${base_lucerne}|${height_lucerne}`,
       difficulty, stage, tab,
-      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.ladder_title}}\\\\\\text{${t.mission.ladder_desc}}`,
+      promptLatex: `\\text{${sm2_02_t.mission.protocol}}\\\\\\text{${sm2_02_t.mission.ladder_title}}\\\\\\text{${sm2_02_t.mission.ladder_desc}}`,
       expressionLatex: `c^2=a^2+b^2`,
       targetLatex: `c`,
       correctLatex: `c=${Math.sqrt(d2_lucerne)}`,
@@ -385,7 +383,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.grid_title}}\\\\\\text{${t.mission.grid_desc}}`,
+        promptLatex: `\\text{${sm2_02_t.mission.protocol}}\\\\\\text{${sm2_02_t.mission.grid_title}}\\\\\\text{${sm2_02_t.mission.grid_desc}}`,
         expressionLatex: `d^2=(\\Delta x)^2+(\\Delta y)^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -413,7 +411,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
     quests.push({
       id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
       difficulty, stage, tab,
-      promptLatex: `\\text{${t.mission.protocol}}\\\\\\text{${t.mission.chain_title}}\\\\\\text{${t.mission.chain_desc}}`,
+      promptLatex: `\\text{${sm2_02_t.mission.protocol}}\\\\\\text{${sm2_02_t.mission.chain_title}}\\\\\\text{${sm2_02_t.mission.chain_desc}}`,
       expressionLatex: `d^2=s^2+c^2`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(dExact)}`,
@@ -482,7 +480,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `PYT|CHAIN|${difficulty}|${a}|${b}|${c}`,
         difficulty, stage, tab,
-        promptLatex: `${t.mental.chain}:\\; a=${a},\\; b=${b},\\; c=${c}`,
+        promptLatex: `${sm2_02_t.mental.chain}:\\; a=${a},\\; b=${b},\\; c=${c}`,
         expressionLatex: `d^2=s^2+c^2`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(dExact)}`,
@@ -513,7 +511,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `SQRT|PERFECT|${difficulty}|${n}`,
         difficulty, stage, tab,
-        promptLatex: `${t.sqrt.perfect}:\\; \\sqrt{${n}}`,
+        promptLatex: `${sm2_02_t.sqrt.perfect}:\\; \\sqrt{${n}}`,
         expressionLatex: `\\sqrt{${n}}`,
         targetLatex: `\\sqrt{${n}}`,
         correctLatex: `${r}`,
@@ -537,7 +535,7 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
         quests.push({
           id: `SQRT|SIMPLIFY|${difficulty}|${k}|${m}`,
           difficulty, stage, tab,
-          promptLatex: `${t.sqrt.simplify}:\\; \\sqrt{${n}}`,
+          promptLatex: `${sm2_02_t.sqrt.simplify}:\\; \\sqrt{${n}}`,
           expressionLatex: `\\sqrt{${n}}=k\\sqrt{m}`,
           targetLatex: `k\\sqrt{m}`,
           correctLatex: `${formatRadicalLatex({ k, m })}`,
@@ -564,10 +562,10 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
       quests.push({
         id: `SQRT|ESTIMATE|${difficulty}|${n}|${interval[0]}|${interval[1]}|${isTrue ? 1 : 0}`,
         difficulty, stage, tab,
-        promptLatex: `${t.sqrt.estimate}:\\; \\sqrt{${n}}\\in[${interval[0]},${interval[1]}]\\,?`,
+        promptLatex: `${sm2_02_t.sqrt.estimate}:\\; \\sqrt{${n}}\\in[${interval[0]},${interval[1]}]\\,?`,
         expressionLatex: `\\sqrt{${n}}`,
         targetLatex: `\\sqrt{${n}}\\in[${interval[0]},${interval[1]}]`,
-        correctLatex: isTrue ? t.yes : t.no,
+        correctLatex: isTrue ? sm2_02_t.yes : sm2_02_t.no,
         slots: [],
         steps: [{ id: "judge", labelLatex: `\\sqrt{${n}}\\in[${interval[0]},${interval[1]}]`, input: "boolean", answer: isTrue }],
         visual: { kind: "triangle", a: 3, b: 4, c: 5 },
@@ -582,10 +580,78 @@ function buildStagePool(t: Mg05T, difficulty: Difficulty, stage: Stage): S202Que
 // Main component
 export default function S202Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].sm2_02 as Mg05T;
+  const { t } = useLanguage();
+  
+  const sm2_02_t = {
+    title: t("sm2_02.title"),
+    back: t("sm2_02.back"),
+    check: t("sm2_02.check"),
+    next: t("sm2_02.next"),
+    correct: t("sm2_02.correct"),
+    incorrect: t("sm2_02.incorrect"),
+    ready: t("sm2_02.ready"),
+    yes: t("sm2_02.yes"),
+    no: t("sm2_02.no"),
+    monitor_title: t("sm2_02.monitor_title"),
+    objective_title: t("sm2_02.objective_title"),
+    target_title: t("sm2_02.target_title"),
+    input_k: t("sm2_02.input_k"),
+    input_m: t("sm2_02.input_m"),
+    difficulty: {
+      basic: t("sm2_02.difficulty.basic"),
+      core: t("sm2_02.difficulty.core"),
+      advanced: t("sm2_02.difficulty.advanced"),
+      elite: t("sm2_02.difficulty.elite")
+    },
+    tabs: {
+      pythagoras: t("sm2_02.tabs.pythagoras"),
+      sqrt: t("sm2_02.tabs.sqrt"),
+      explorer: t("sm2_02.tabs.explorer"),
+      quest_mode: t("sm2_02.tabs.quest_mode")
+    },
+    pythagoras: {
+      solve_hyp: t("sm2_02.pythagoras.solve_hyp"),
+      solve_hyp_params: t("sm2_02.pythagoras.solve_hyp_params"),
+      solve_leg: t("sm2_02.pythagoras.solve_leg"),
+      solve_leg_params: t("sm2_02.pythagoras.solve_leg_params"),
+      known_horizontal: t("sm2_02.pythagoras.known_horizontal"),
+      known_given: t("sm2_02.pythagoras.known_given"),
+      check_right: t("sm2_02.pythagoras.check_right"),
+      distance: t("sm2_02.pythagoras.distance"),
+      elite_space: t("sm2_02.pythagoras.elite_space"),
+      explorer_mission: t("sm2_02.pythagoras.explorer_mission")
+    },
+    mission: {
+      title: t("sm2_02.mission.title"),
+      protocol: t("sm2_02.mission.protocol"),
+      cern_title: t("sm2_02.mission.cern_title"),
+      cern_desc: t("sm2_02.mission.cern_desc"),
+      roof_title: t("sm2_02.mission.roof_title"),
+      roof_desc: t("sm2_02.mission.roof_desc"),
+      ladder_title: t("sm2_02.mission.ladder_title"),
+      ladder_desc: t("sm2_02.mission.ladder_desc"),
+      grid_title: t("sm2_02.mission.grid_title"),
+      grid_desc: t("sm2_02.mission.grid_desc"),
+      chain_title: t("sm2_02.mission.chain_title"),
+      chain_desc: t("sm2_02.mission.chain_desc")
+    },
+    mental: {
+      title: t("sm2_02.mental.title"),
+      chain: t("sm2_02.mental.chain")
+    },
+    sqrt: {
+      perfect: t("sm2_02.sqrt.perfect"),
+      simplify: t("sm2_02.sqrt.simplify"),
+      estimate: t("sm2_02.sqrt.estimate")
+    },
+    placeholders: {
+      question: "?"
+    }
+  };
+  
   const [useFluidViz, setUseFluidViz] = useState(false);
 
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm2_02_t, d, s), [sm2_02_t]);
 
   const {
     difficulty,
@@ -621,22 +687,22 @@ export default function S202Page() {
 
   // Stage definitions
   const pythagorasStages = [
-    { id: "SOLVE_HYP", label: t.pythagoras.solve_hyp },
-    { id: "SOLVE_LEG", label: t.pythagoras.solve_leg },
-    { id: "CHECK_RIGHT", label: t.pythagoras.check_right },
-    { id: "MISSION", label: t.mission.title },
-    { id: "MENTAL", label: t.mental.title },
+    { id: "SOLVE_HYP", label: sm2_02_t.pythagoras.solve_hyp },
+    { id: "SOLVE_LEG", label: sm2_02_t.pythagoras.solve_leg },
+    { id: "CHECK_RIGHT", label: sm2_02_t.pythagoras.check_right },
+    { id: "MISSION", label: sm2_02_t.mission.title },
+    { id: "MENTAL", label: sm2_02_t.mental.title },
     ...(difficulty === "ADVANCED" || difficulty === "ELITE" ? [
-      { id: "CHAIN", label: t.mental.chain },
-      { id: "DISTANCE", label: t.pythagoras.distance },
+      { id: "CHAIN", label: sm2_02_t.mental.chain },
+      { id: "DISTANCE", label: sm2_02_t.pythagoras.distance },
     ] : []),
-    ...(difficulty === "ELITE" ? [{ id: "ELITE_SPACE", label: t.pythagoras.elite_space }] : []),
+    ...(difficulty === "ELITE" ? [{ id: "ELITE_SPACE", label: sm2_02_t.pythagoras.elite_space }] : []),
   ];
 
   const sqrtStages = [
-    { id: "PERFECT", label: t.sqrt.perfect },
-    { id: "SIMPLIFY", label: t.sqrt.simplify },
-    ...(difficulty !== "BASIC" ? [{ id: "ESTIMATE", label: t.sqrt.estimate }] : []),
+    { id: "PERFECT", label: sm2_02_t.sqrt.perfect },
+    { id: "SIMPLIFY", label: sm2_02_t.sqrt.simplify },
+    ...(difficulty !== "BASIC" ? [{ id: "ESTIMATE", label: sm2_02_t.sqrt.estimate }] : []),
   ];
 
   const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
@@ -649,7 +715,7 @@ export default function S202Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={sm2_02_t.title}
       moduleCode="SM2.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -661,25 +727,25 @@ export default function S202Page() {
       onNext={next}
       successRate={successRate}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: sm2_02_t.back,
+        check: sm2_02_t.check,
+        next: sm2_02_t.next,
+        correct: sm2_02_t.correct,
+        incorrect: sm2_02_t.incorrect,
+        ready: sm2_02_t.ready,
+        monitor_title: sm2_02_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: sm2_02_t.difficulty.basic,
+          core: sm2_02_t.difficulty.core,
+          advanced: sm2_02_t.difficulty.advanced,
+          elite: sm2_02_t.difficulty.elite,
         },
       }}
       monitorContent={
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-              {isPythagorasTab ? t.tabs.pythagoras : t.tabs.sqrt}
+              {isPythagorasTab ? sm2_02_t.tabs.pythagoras : sm2_02_t.tabs.sqrt}
             </div>
             {/* Toggle for testing fluid visualization */}
             <button
@@ -744,7 +810,7 @@ export default function S202Page() {
               : "border-white/70 text-white hover:border-white/50"
           )}
         >
-          {t?.tabs?.explorer || "EXPLORER LAB"}
+          {sm2_02_t.tabs.explorer}
         </button>
         <button
           onClick={() => { if (stage === "EXPLORER") handleStageChange("SOLVE_HYP"); }}
@@ -755,7 +821,7 @@ export default function S202Page() {
               : "border-white/70 text-white hover:border-white/50"
           )}
         >
-          {t?.tabs?.quest_mode || "QUEST MODES"}
+          {sm2_02_t.tabs.quest_mode}
         </button>
       </div>
 
@@ -870,7 +936,7 @@ export default function S202Page() {
         <div className="space-y-6">
           <div className="text-center">
             <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-              {t.objective_title}
+              {sm2_02_t.objective_title}
             </h3>
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
               {(() => {
@@ -895,7 +961,7 @@ export default function S202Page() {
           <div className="p-4 sm:p-8 bg-white/[0.03] border border-white/60 rounded-2xl text-center relative max-w-5xl mx-auto shadow-2xl overflow-x-auto">
             <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
             <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">
-              {t.target_title}
+              {sm2_02_t.target_title}
             </span>
             <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
               <InlineMath math={currentQuest.targetLatex} />
@@ -915,7 +981,7 @@ export default function S202Page() {
                     value={inputs[step.id] || ""}
                     onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
                     className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
-                    placeholder={t.placeholders?.question ?? "?"}
+                    placeholder={sm2_02_t.placeholders?.question ?? "?"}
                     inputMode="numeric"
                   />
                 )}
@@ -924,8 +990,8 @@ export default function S202Page() {
                   <RadicalSlotInput
                     value={(() => { try { return JSON.parse(inputs[step.id] || "{}"); } catch { return { k: 1, m: 1 }; } })()}
                     onChange={(v) => setInputs({ ...inputs, [step.id]: JSON.stringify(v) })}
-                    labelK={t.input_k}
-                    labelM={t.input_m}
+                    labelK={sm2_02_t.input_k}
+                    labelM={sm2_02_t.input_m}
                   />
                 )}
 
@@ -940,7 +1006,7 @@ export default function S202Page() {
                           : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
                       )}
                     >
-                      {t.yes}
+                      {sm2_02_t.yes}
                     </button>
                     <button
                       onClick={() => setInputs({ ...inputs, [step.id]: "false" })}
@@ -951,7 +1017,7 @@ export default function S202Page() {
                           : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
                       )}
                     >
-                      {t.no}
+                      {sm2_02_t.no}
                     </button>
                   </div>
                 )}

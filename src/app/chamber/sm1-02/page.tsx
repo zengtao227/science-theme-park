@@ -4,13 +4,12 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlgebraCanvas, { type AlgebraVisualMode } from "@/components/chamber/sm1-02/AlgebraCanvas";
 
 type Stage = "VARIABLES" | "TERMS" | "SUBSTITUTION";
-type S103T = typeof translations.EN.sm1_02;
 
 interface S103Quest extends Quest {
     visualMode: AlgebraVisualMode;
@@ -23,7 +22,7 @@ interface S103Quest extends Quest {
     };
 }
 
-function buildStagePool(t: S103T, difficulty: Difficulty, stage: Stage): S103Quest[] {
+function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S103Quest[] {
     const isBasic = difficulty === "BASIC";
     const isCore = difficulty === "CORE";
     const isAdv = difficulty === "ADVANCED";
@@ -529,10 +528,36 @@ function buildStagePool(t: S103T, difficulty: Difficulty, stage: Stage): S103Que
 }
 
 export default function SM103Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].sm1_02;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
+    
+    const sm1_02_t = {
+        title: t("sm1_02.title"),
+        back: t("sm1_02.back"),
+        check: t("sm1_02.check"),
+        next: t("sm1_02.next"),
+        correct: t("sm1_02.correct"),
+        incorrect: t("sm1_02.incorrect"),
+        ready: t("sm1_02.ready"),
+        difficulty: {
+            basic: t("sm1_02.difficulty.basic"),
+            core: t("sm1_02.difficulty.core"),
+            advanced: t("sm1_02.difficulty.advanced"),
+            elite: t("sm1_02.difficulty.elite")
+        },
+        stages: {
+            variables: t("sm1_02.stages.variables"),
+            terms: t("sm1_02.stages.terms"),
+            substitution: t("sm1_02.stages.substitution")
+        },
+        scenarios: {
+            variables: t("sm1_02.scenarios.variables"),
+            terms: t("sm1_02.scenarios.terms"),
+            substitution: t("sm1_02.scenarios.substitution")
+        }
+    };
 
-    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_02_t, d, s), [sm1_02_t]);
 
     const {
         difficulty, stage, inputs, lastCheck, currentQuest,
@@ -558,14 +583,14 @@ export default function SM103Page() {
 
     return (
         <ChamberLayout
-            title={t.title}
+            title={sm1_02_t.title}
             moduleCode="SM1.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={[
-                { id: "VARIABLES", label: t.stages.variables },
-                { id: "TERMS", label: t.stages.terms },
-                { id: "SUBSTITUTION", label: t.stages.substitution },
+                { id: "VARIABLES", label: sm1_02_t.stages.variables },
+                { id: "TERMS", label: sm1_02_t.stages.terms },
+                { id: "SUBSTITUTION", label: sm1_02_t.stages.substitution },
             ]}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
@@ -574,9 +599,9 @@ export default function SM103Page() {
             successRate={successRate}
             checkStatus={lastCheck}
             translations={{
-                back: t.back, check: t.check, next: t.next, correct: t.correct, incorrect: t.incorrect,
-                ready: t.ready, monitor_title: "ALGEBRA_VISUALIZER",
-                difficulty: { basic: t.difficulty.basic, core: t.difficulty.core, advanced: t.difficulty.advanced, elite: t.difficulty.elite },
+                back: sm1_02_t.back, check: sm1_02_t.check, next: sm1_02_t.next, correct: sm1_02_t.correct, incorrect: sm1_02_t.incorrect,
+                ready: sm1_02_t.ready, monitor_title: "ALGEBRA_VISUALIZER",
+                difficulty: { basic: sm1_02_t.difficulty.basic, core: sm1_02_t.difficulty.core, advanced: sm1_02_t.difficulty.advanced, elite: sm1_02_t.difficulty.elite },
             }}
             monitorContent={
                 <div className="w-full h-full flex items-center justify-center">
@@ -621,9 +646,9 @@ export default function SM103Page() {
                 <div className="mt-8 text-center opacity-60 hover:opacity-100 transition-opacity">
                     <div className="text-xs font-mono text-neon-blue mb-2">SCENARIO CONTEXT</div>
                     <div className="text-sm italic text-white max-w-lg mx-auto leading-relaxed">
-                        {stage === 'VARIABLES' && t.scenarios.variables}
-                        {stage === 'TERMS' && t.scenarios.terms}
-                        {stage === 'SUBSTITUTION' && t.scenarios.substitution}
+                        {stage === 'VARIABLES' && sm1_02_t.scenarios.variables}
+                        {stage === 'TERMS' && sm1_02_t.scenarios.terms}
+                        {stage === 'SUBSTITUTION' && sm1_02_t.scenarios.substitution}
                     </div>
                 </div>
             </div>

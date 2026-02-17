@@ -1189,17 +1189,17 @@ const module_t = {
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.4 GM3.01 - i18n迁移
+- [x] 5.3.4 GM3.01 - i18n迁移
   - 当前: `translations[currentLanguage].gm3_01`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.5 SM1.02 - i18n迁移
+- [x] 5.3.5 SM1.02 - i18n迁移
   - 当前: `translations[currentLanguage].sm1_02`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.6 SM1.05 - i18n迁移
+- [x] 5.3.6 SM1.05 - i18n迁移
   - 当前: `translations[currentLanguage]?.sm1_05`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试

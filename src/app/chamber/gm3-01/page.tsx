@@ -376,6 +376,7 @@ export default function G301Page() {
       mission: t("gm3_01.scenarios.mission"),
     },
     problems: t("gm3_01.problems"),
+    input_tip_4dp: t("gm3_01.input_tip_4dp"),
   };
 
   const {
@@ -503,12 +504,7 @@ export default function G301Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? gm3_01_t.input_tip_4dp
-              : currentLanguage === 'CN'
-                ? "提示：保留 4 位小数。"
-                : "Tip: Enter result rounded to 4 decimal places."
-            }
+            {gm3_01_t.input_tip_4dp}
           </div>
         </div>
       </div>

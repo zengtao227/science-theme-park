@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,37 @@ interface S106Quest extends Quest {
     visualData: any;
 }
 
-type S106T = typeof translations.EN.sm1_05;
-
 export default function SM106Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sm1_05 || translations.EN.sm1_05) as S106T;
+    const { completeStage, currentLanguage } = useAppStore();
+    const { t } = useLanguage();
+    
+    const sm1_05_t = {
+        title: t("sm1_05.title"),
+        back: t("sm1_05.back"),
+        check: t("sm1_05.check"),
+        next: t("sm1_05.next"),
+        correct: t("sm1_05.correct"),
+        incorrect: t("sm1_05.incorrect"),
+        ready: t("sm1_05.ready"),
+        footer_left: t("sm1_05.footer_left"),
+        monitor_title: t("sm1_05.monitor_title"),
+        difficulty: {
+            basic: t("sm1_05.difficulty.basic"),
+            core: t("sm1_05.difficulty.core"),
+            advanced: t("sm1_05.difficulty.advanced"),
+            elite: t("sm1_05.difficulty.elite")
+        },
+        stages: {
+            recipes: t("sm1_05.stages.recipes"),
+            percent: t("sm1_05.stages.percent"),
+            mixtures: t("sm1_05.stages.mixtures")
+        },
+        scenarios: {
+            recipes: t("sm1_05.scenarios.recipes"),
+            percent: t("sm1_05.scenarios.percent"),
+            mixtures: t("sm1_05.scenarios.mixtures")
+        }
+    };
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): S106Quest[] => {
         const isBasic = difficulty === "BASIC";
@@ -456,9 +482,9 @@ export default function SM106Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "RECIPES", label: t.stages.recipes },
-        { id: "PERCENT", label: t.stages.percent },
-        { id: "MIXTURES", label: t.stages.mixtures },
+        { id: "RECIPES", label: sm1_05_t.stages.recipes },
+        { id: "PERCENT", label: sm1_05_t.stages.percent },
+        { id: "MIXTURES", label: sm1_05_t.stages.mixtures },
     ], [t]);
 
     const hint = getHint();
@@ -466,7 +492,7 @@ export default function SM106Page() {
     return (
         <ChamberLayout
             moduleCode="SM1.05"
-            title={t.title}
+            title={sm1_05_t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -475,20 +501,20 @@ export default function SM106Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={sm1_05_t.footer_left}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: sm1_05_t.back,
+                check: sm1_05_t.check,
+                next: sm1_05_t.next,
+                correct: sm1_05_t.correct,
+                incorrect: sm1_05_t.incorrect,
+                ready: sm1_05_t.ready,
+                monitor_title: sm1_05_t.monitor_title,
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: sm1_05_t.difficulty.basic,
+                    core: sm1_05_t.difficulty.core,
+                    advanced: sm1_05_t.difficulty.advanced,
+                    elite: sm1_05_t.difficulty.elite,
                 },
             }}
             monitorContent={

@@ -4,14 +4,13 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ExponentialChart from "@/components/chamber/sm3-03/ExponentialChart";
 import { clsx } from "clsx";
 
 type Stage = "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
-type S303T = typeof translations.EN.sm3_03;
 
 interface S303Quest extends Quest {
   stage: Stage;
@@ -20,7 +19,7 @@ interface S303Quest extends Quest {
   time?: number;
   finalCount?: number;
   chartMode?: "exponential" | "logarithm" | "halflife" | "compound";
-  scenarioKey?: keyof S303T["scenarios"];
+  scenarioKey?: string;
 }
 
 // Helper to create quests concisely
@@ -54,16 +53,16 @@ function q(
   } as S303Quest;
 }
 
-function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
+function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
   const quests: S303Quest[] = [];
 
   // ----------------------------------------------------------------------
   // STAGE 1: EXPONENTIAL
   // ----------------------------------------------------------------------
   if (s === "EXPONENTIAL") {
-    const pBasic = t.stages.exp_basic_prompt;
-    const pAdv = t.stages.exp_advanced_prompt;
-    const pElite = t.stages.exp_elite_prompt;
+    const pBasic = sm3_03_t.stages.exp_basic_prompt;
+    const pAdv = sm3_03_t.stages.exp_advanced_prompt;
+    const pElite = sm3_03_t.stages.exp_elite_prompt;
 
     if (d === "BASIC") {
       quests.push(
@@ -116,10 +115,10 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
   // STAGE 2: LOGARITHM
   // ----------------------------------------------------------------------
   if (s === "LOGARITHM") {
-    const pBasic = t.stages.log_basic_prompt;
-    const pCore = t.stages.log_core_prompt;
-    const pAdv = t.stages.log_advanced_prompt;
-    const pElite = t.stages.log_elite_prompt;
+    const pBasic = sm3_03_t.stages.log_basic_prompt;
+    const pCore = sm3_03_t.stages.log_core_prompt;
+    const pAdv = sm3_03_t.stages.log_advanced_prompt;
+    const pElite = sm3_03_t.stages.log_elite_prompt;
 
     if (d === "BASIC") {
       quests.push(
@@ -172,10 +171,10 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
   // STAGE 3: APPLICATIONS
   // ----------------------------------------------------------------------
   if (s === "APPLICATIONS") {
-    const pHalf = t.stages.app_half_prompt;
-    const pComp = t.stages.app_compound_prompt;
-    const pRate = t.stages.app_rate_prompt;
-    const pPH = t.stages.app_ph_prompt;
+    const pHalf = sm3_03_t.stages.app_half_prompt;
+    const pComp = sm3_03_t.stages.app_compound_prompt;
+    const pRate = sm3_03_t.stages.app_rate_prompt;
+    const pPH = sm3_03_t.stages.app_ph_prompt;
 
     if (d === "BASIC") { // Half-life
       quests.push(
@@ -229,10 +228,71 @@ function buildStagePool(t: S303T, d: Difficulty, s: Stage): S303Quest[] {
 
 export default function S303Page() {
   const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].sm3_03;
+  const { t } = useLanguage();
+  
+  const sm3_03_t = {
+    title: t("sm3_03.title"),
+    back: t("sm3_03.back"),
+    check: t("sm3_03.check"),
+    next: t("sm3_03.next"),
+    correct: t("sm3_03.correct"),
+    incorrect: t("sm3_03.incorrect"),
+    ready: t("sm3_03.ready"),
+    monitor_title: t("sm3_03.monitor_title"),
+    footer_left: t("sm3_03.footer_left"),
+    objective_title: t("sm3_03.objective_title"),
+    input_tip: t("sm3_03.input_tip"),
+    difficulty: {
+      basic: t("sm3_03.difficulty.basic"),
+      core: t("sm3_03.difficulty.core"),
+      advanced: t("sm3_03.difficulty.advanced"),
+      elite: t("sm3_03.difficulty.elite")
+    },
+    stages: {
+      exponential: t("sm3_03.stages.exponential"),
+      logarithm: t("sm3_03.stages.logarithm"),
+      applications: t("sm3_03.stages.applications"),
+      exp_basic_prompt: t("sm3_03.stages.exp_basic_prompt"),
+      exp_advanced_prompt: t("sm3_03.stages.exp_advanced_prompt"),
+      exp_elite_prompt: t("sm3_03.stages.exp_elite_prompt"),
+      log_basic_prompt: t("sm3_03.stages.log_basic_prompt"),
+      log_core_prompt: t("sm3_03.stages.log_core_prompt"),
+      log_advanced_prompt: t("sm3_03.stages.log_advanced_prompt"),
+      log_elite_prompt: t("sm3_03.stages.log_elite_prompt"),
+      app_half_prompt: t("sm3_03.stages.app_half_prompt"),
+      app_compound_prompt: t("sm3_03.stages.app_compound_prompt"),
+      app_rate_prompt: t("sm3_03.stages.app_rate_prompt"),
+      app_ph_prompt: t("sm3_03.stages.app_ph_prompt")
+    },
+    scenarios: {
+      exp_bac: t("sm3_03.scenarios.exp_bac"),
+      exp_social: t("sm3_03.scenarios.exp_social"),
+      exp_virus: t("sm3_03.scenarios.exp_virus"),
+      exp_moore: t("sm3_03.scenarios.exp_moore"),
+      log_invest: t("sm3_03.scenarios.log_invest"),
+      log_sound: t("sm3_03.scenarios.log_sound"),
+      log_security: t("sm3_03.scenarios.log_security"),
+      log_ph: t("sm3_03.scenarios.log_ph"),
+      app_med: t("sm3_03.scenarios.app_med"),
+      app_carbon: t("sm3_03.scenarios.app_carbon"),
+      app_bank: t("sm3_03.scenarios.app_bank"),
+      app_pop: t("sm3_03.scenarios.app_pop")
+    },
+    labels: {
+      time: t("sm3_03.labels.time"),
+      population: t("sm3_03.labels.population"),
+      formula_ref: t("sm3_03.labels.formula_ref"),
+      parameters: t("sm3_03.labels.parameters")
+    },
+    formulas: {
+      exponential: t("sm3_03.formulas.exponential"),
+      logarithm: t("sm3_03.formulas.logarithm"),
+      applications: t("sm3_03.formulas.applications")
+    }
+  };
 
   // Canvas State
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm3_03_t, d, s), [sm3_03_t]);
 
   const {
     difficulty,
@@ -258,9 +318,9 @@ export default function S303Page() {
   }, [lastCheck, completeStage, stage]);
 
   const stages = [
-    { id: "EXPONENTIAL", label: t.stages.exponential },
-    { id: "LOGARITHM", label: t.stages.logarithm },
-    { id: "APPLICATIONS", label: t.stages.applications },
+    { id: "EXPONENTIAL", label: sm3_03_t.stages.exponential },
+    { id: "LOGARITHM", label: sm3_03_t.stages.logarithm },
+    { id: "APPLICATIONS", label: sm3_03_t.stages.applications },
   ];
 
   const chartMode = useMemo(() => {
@@ -273,7 +333,7 @@ export default function S303Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={sm3_03_t.title}
       moduleCode="SM3.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -284,8 +344,8 @@ export default function S303Page() {
       onNext={next}
       onVerify={verify}
       checkStatus={lastCheck}
-      translations={t}
-      footerLeft={t.footer_left}
+      translations={sm3_03_t}
+      footerLeft={sm3_03_t.footer_left}
       monitorContent={
         <div className="space-y-6">
           {/* SVG Chart */}
@@ -297,8 +357,8 @@ export default function S303Page() {
               time={currentQuest?.time}
               finalCount={currentQuest?.finalCount}
               labels={{
-                xAxis: t.labels.time,
-                yAxis: t.labels.population,
+                xAxis: sm3_03_t.labels.time,
+                yAxis: sm3_03_t.labels.population,
               }}
             />
           </div>
@@ -306,11 +366,11 @@ export default function S303Page() {
           {/* Formula Ref */}
           <div className="space-y-2">
             <div className="text-[9px] uppercase tracking-[0.3em] font-black text-green-400/70">
-              {t.labels.formula_ref}
+              {sm3_03_t.labels.formula_ref}
             </div>
             <div className="bg-white/5 rounded-lg p-3 border border-white/10">
               <div className="text-lg text-center text-white">
-                <InlineMath math={t.formulas[stage.toLowerCase() as keyof typeof t.formulas] || ""} />
+                <InlineMath math={sm3_03_t.formulas[stage.toLowerCase() as keyof typeof sm3_03_t.formulas] || ""} />
               </div>
             </div>
           </div>
@@ -318,7 +378,7 @@ export default function S303Page() {
           {/* Parameters */}
           <div className="space-y-2">
             <div className="text-[9px] uppercase tracking-[0.3em] font-black text-cyan-400/70">
-              {t.labels.parameters}
+              {sm3_03_t.labels.parameters}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {currentQuest?.initialCount !== undefined && (
@@ -355,11 +415,11 @@ export default function S303Page() {
         <div className="space-y-6">
           <div className="text-center">
             <div className="text-xs font-mono text-cyan-400 mb-2 uppercase tracking-widest opacity-60">
-              {t.objective_title}
+              {sm3_03_t.objective_title}
             </div>
-            {currentQuest?.scenarioKey && t.scenarios && (
+            {currentQuest?.scenarioKey && sm3_03_t.scenarios && (
               <div className="text-sm font-medium text-emerald-300 mb-6 max-w-2xl mx-auto border-l-2 border-emerald-500/50 pl-4 py-2 text-left bg-emerald-900/10 rounded-r shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]">
-                {t.scenarios[currentQuest.scenarioKey]}
+                {(sm3_03_t.scenarios as any)[currentQuest.scenarioKey]}
               </div>
             )}
             <h2 className="text-3xl font-black text-white tracking-tight">
@@ -415,13 +475,13 @@ export default function S303Page() {
               "text-center font-mono text-sm tracking-widest uppercase transition-all duration-500",
               lastCheck.ok ? "text-green-400 opacity-100 scale-100" : "text-red-400 opacity-100"
             )}>
-              {lastCheck.ok ? t.correct : `${t.incorrect}: ${lastCheck.correct}`}
+              {lastCheck.ok ? sm3_03_t.correct : `${sm3_03_t.incorrect}: ${lastCheck.correct}`}
             </div>
           )}
         </div>
 
         <div className="text-center text-[10px] text-white/30 font-mono">
-          {t.input_tip}
+          {sm3_03_t.input_tip}
         </div>
       </div>
     </ChamberLayout>
