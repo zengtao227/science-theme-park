@@ -46,7 +46,14 @@ export default function SP305Page() {
         },
         labels: {
             force_ratio: t("sp3_05.labels.force_ratio"),
-            show_forces: t("sp3_05.labels.show_forces")
+            show_forces: t("sp3_05.labels.show_forces"),
+            mechanics_score: t("sp3_05.labels.mechanics_score"),
+            machine_display: t("sp3_05.labels.machine_display"),
+            input_terminal: t("sp3_05.labels.input_terminal")
+        },
+        feedback: {
+            correct: t("sp3_05.feedback.correct"),
+            incorrect: t("sp3_05.feedback.incorrect")
         },
         mission: {
             title: t("sp3_05.mission.title"),

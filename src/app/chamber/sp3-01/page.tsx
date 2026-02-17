@@ -52,7 +52,19 @@ export default function SP301Page() {
             ruler: t("sp3_01.labels.ruler"),
             caliper: t("sp3_01.labels.caliper"),
             micrometer: t("sp3_01.labels.micrometer"),
-            measured_value: t("sp3_01.labels.measured_value")
+            measured_value: t("sp3_01.labels.measured_value"),
+            precision: t("sp3_01.labels.precision"),
+            measurement_display: t("sp3_01.labels.measurement_display"),
+            input_terminal: t("sp3_01.labels.input_terminal")
+        },
+        tools: {
+            ruler: t("sp3_01.tools.ruler"),
+            scale: t("sp3_01.tools.scale"),
+            timer: t("sp3_01.tools.timer")
+        },
+        feedback: {
+            correct: t("sp3_01.feedback.correct"),
+            incorrect: t("sp3_01.feedback.incorrect")
         },
         mission: {
             title: t("sp3_01.mission.title"),
