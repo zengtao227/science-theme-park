@@ -32,87 +32,330 @@ export default function SP301Page() {
         const quests: SP301Quest[] = [];
 
         if (stage === "SI_UNITS") {
-            // Basic SI unit identification
-            const units = [
-                { measurement: "length", unit: "m", name: "meter" },
-                { measurement: "mass", unit: "kg", name: "kilogram" },
-                { measurement: "time", unit: "s", name: "second" },
-                { measurement: "temperature", unit: "K", name: "kelvin" },
-                { measurement: "current", unit: "A", name: "ampere" }
-            ];
+            if (difficulty === "BASIC") {
+                // Basic SI unit identification
+                const units = [
+                    { measurement: "length", unit: "m", name: "meter" },
+                    { measurement: "mass", unit: "kg", name: "kilogram" },
+                    { measurement: "time", unit: "s", name: "second" },
+                    { measurement: "temperature", unit: "K", name: "kelvin" },
+                    { measurement: "current", unit: "A", name: "ampere" }
+                ];
 
-            units.forEach((u, idx) => {
-                quests.push({
-                    id: `SI-${idx}`,
-                    difficulty,
-                    stage,
-                    measurement: u.measurement,
-                    promptLatex: `\\text{${t.prompts.si_unit.replace('{measurement}', u.measurement)}}`,
-                    expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
-                    targetLatex: u.unit,
-                    slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
-                    correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
-                    hintLatex: [`\\text{${t.prompts.hint_si.replace('{name}', u.name)}}`]
+                units.forEach((u, idx) => {
+                    quests.push({
+                        id: `SI-B${idx}`,
+                        difficulty,
+                        stage,
+                        measurement: u.measurement,
+                        promptLatex: `\\text{What is the SI unit for ${u.measurement}?}`,
+                        expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
+                        targetLatex: u.unit,
+                        slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
+                        correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
+                        hintLatex: [`\\text{The base unit for ${u.measurement} is ${u.name}}`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Derived units
+                const derived = [
+                    { quantity: "force", unit: "N", formula: "kg·m/s²" },
+                    { quantity: "energy", unit: "J", formula: "N·m" },
+                    { quantity: "power", unit: "W", formula: "J/s" },
+                    { quantity: "pressure", unit: "Pa", formula: "N/m²" },
+                    { quantity: "frequency", unit: "Hz", formula: "1/s" }
+                ];
+
+                derived.forEach((d, idx) => {
+                    quests.push({
+                        id: `SI-C${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{What is the SI unit for ${d.quantity}?}`,
+                        expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
+                        targetLatex: d.unit,
+                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: d.unit }],
+                        correctLatex: `\\text{${d.unit}}`,
+                        hintLatex: [`\\text{${d.formula}}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Unit conversions within SI
+                const conversions = [
+                    { value: 5000, from: "mm", to: "m", answer: "5" },
+                    { value: 2.5, from: "kg", to: "g", answer: "2500" },
+                    { value: 3600, from: "s", to: "h", answer: "1" },
+                    { value: 0.5, from: "km", to: "m", answer: "500" },
+                    { value: 250, from: "cm", to: "m", answer: "2.5" }
+                ];
+
+                conversions.forEach((c, idx) => {
+                    quests.push({
+                        id: `SI-A${idx}`,
+                        difficulty,
+                        stage,
+                        value: c.value,
+                        fromUnit: c.from,
+                        toUnit: c.to,
+                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        targetLatex: c.answer,
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
+                        hintLatex: [`\\text{Use metric prefixes}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Complex unit analysis
+                const complex = [
+                    { expr: "kg·m²/s²", unit: "J", name: "joule" },
+                    { expr: "kg·m/s²", unit: "N", name: "newton" },
+                    { expr: "kg/(m·s²)", unit: "Pa", name: "pascal" },
+                    { expr: "J/s", unit: "W", name: "watt" },
+                    { expr: "C/s", unit: "A", name: "ampere" }
+                ];
+
+                complex.forEach((c, idx) => {
+                    quests.push({
+                        id: `SI-E${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{What unit is equivalent to ${c.expr}?}`,
+                        expressionLatex: `${c.expr} = \\text{?}`,
+                        targetLatex: c.unit,
+                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: c.unit }],
+                        correctLatex: `\\text{${c.unit} (${c.name})}`,
+                        hintLatex: [`\\text{Simplify the base units}`]
+                    });
+                });
+            }
         }
 
         if (stage === "CONVERSION") {
-            // Unit conversions
-            const conversions = [
-                { value: 1000, from: "m", to: "km", factor: 0.001, answer: "1" },
-                { value: 5, from: "km", to: "m", factor: 1000, answer: "5000" },
-                { value: 100, from: "cm", to: "m", factor: 0.01, answer: "1" },
-                { value: 2.5, from: "kg", to: "g", factor: 1000, answer: "2500" },
-                { value: 3600, from: "s", to: "h", factor: 1 / 3600, answer: "1" }
-            ];
+            if (difficulty === "BASIC") {
+                // Simple metric conversions
+                const conversions = [
+                    { value: 1000, from: "m", to: "km", factor: 0.001, answer: "1" },
+                    { value: 5, from: "km", to: "m", factor: 1000, answer: "5000" },
+                    { value: 100, from: "cm", to: "m", factor: 0.01, answer: "1" },
+                    { value: 2.5, from: "kg", to: "g", factor: 1000, answer: "2500" },
+                    { value: 3600, from: "s", to: "h", factor: 1 / 3600, answer: "1" }
+                ];
 
-            conversions.forEach((c, idx) => {
-                const result = (c.value * c.factor).toString();
-                quests.push({
-                    id: `CONV-${idx}`,
-                    difficulty,
-                    stage,
-                    value: c.value,
-                    fromUnit: c.from,
-                    toUnit: c.to,
-                    promptLatex: `\\text{${t.prompts.convert.replace('{value}', c.value.toString()).replace('{from}', c.from).replace('{to}', c.to)}}`,
-                    expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
-                    targetLatex: result,
-                    slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
-                    correctLatex: `${result}\\,\\text{${c.to}}`,
-                    hintLatex: [`\\text{${t.prompts.hint_factor.replace('{factor}', c.factor.toString())}}`]
+                conversions.forEach((c, idx) => {
+                    const result = (c.value * c.factor).toString();
+                    quests.push({
+                        id: `CONV-B${idx}`,
+                        difficulty,
+                        stage,
+                        value: c.value,
+                        fromUnit: c.from,
+                        toUnit: c.to,
+                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        targetLatex: result,
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
+                        correctLatex: `${result}\\,\\text{${c.to}}`,
+                        hintLatex: [`\\text{Factor: ${c.factor}}`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Multi-step conversions
+                const conversions = [
+                    { value: 2.5, from: "km", to: "cm", answer: "250000" },
+                    { value: 0.5, from: "kg", to: "mg", answer: "500000" },
+                    { value: 2, from: "h", to: "s", answer: "7200" },
+                    { value: 500, from: "mm", to: "km", answer: "0.0005" },
+                    { value: 1.5, from: "L", to: "mL", answer: "1500" }
+                ];
+
+                conversions.forEach((c, idx) => {
+                    quests.push({
+                        id: `CONV-C${idx}`,
+                        difficulty,
+                        stage,
+                        value: c.value,
+                        fromUnit: c.from,
+                        toUnit: c.to,
+                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        targetLatex: c.answer,
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
+                        hintLatex: [`\\text{Multiple steps needed}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Area and volume conversions
+                const conversions = [
+                    { value: 1, from: "m²", to: "cm²", answer: "10000" },
+                    { value: 2, from: "km²", to: "m²", answer: "2000000" },
+                    { value: 1, from: "m³", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m³", to: "cm³", answer: "500000" },
+                    { value: 5000, from: "cm²", to: "m²", answer: "0.5" }
+                ];
+
+                conversions.forEach((c, idx) => {
+                    quests.push({
+                        id: `CONV-A${idx}`,
+                        difficulty,
+                        stage,
+                        value: c.value,
+                        fromUnit: c.from,
+                        toUnit: c.to,
+                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        targetLatex: c.answer,
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
+                        hintLatex: [`\\text{Square or cube the conversion factor}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Compound unit conversions
+                const conversions = [
+                    { value: 72, from: "km/h", to: "m/s", answer: "20" },
+                    { value: 10, from: "m/s", to: "km/h", answer: "36" },
+                    { value: 1000, from: "g/cm³", to: "kg/m³", answer: "1000000" },
+                    { value: 2, from: "kg/m³", to: "g/cm³", answer: "0.002" },
+                    { value: 100, from: "kPa", to: "Pa", answer: "100000" }
+                ];
+
+                conversions.forEach((c, idx) => {
+                    quests.push({
+                        id: `CONV-E${idx}`,
+                        difficulty,
+                        stage,
+                        value: c.value,
+                        fromUnit: c.from,
+                        toUnit: c.to,
+                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        targetLatex: c.answer,
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
+                        hintLatex: [`\\text{Convert numerator and denominator separately}`]
+                    });
+                });
+            }
         }
 
         if (stage === "PRECISION") {
-            // Significant figures and precision
-            const precision = [
-                { value: "12.5", sigfigs: "3", measurement: "length" },
-                { value: "0.0045", sigfigs: "2", measurement: "mass" },
-                { value: "100", sigfigs: "1", measurement: "time" },
-                { value: "3.14", sigfigs: "3", measurement: "distance" },
-                { value: "0.500", sigfigs: "3", measurement: "volume" }
-            ];
+            if (difficulty === "BASIC") {
+                // Counting significant figures
+                const precision = [
+                    { value: "12.5", sigfigs: "3", measurement: "length" },
+                    { value: "0.0045", sigfigs: "2", measurement: "mass" },
+                    { value: "100", sigfigs: "1", measurement: "time" },
+                    { value: "3.14", sigfigs: "3", measurement: "distance" },
+                    { value: "0.500", sigfigs: "3", measurement: "volume" }
+                ];
 
-            precision.forEach((p, idx) => {
-                quests.push({
-                    id: `PREC-${idx}`,
-                    difficulty,
-                    stage,
-                    promptLatex: `\\text{${t.prompts.sigfigs.replace('{value}', p.value)}}`,
-                    expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
-                    targetLatex: p.sigfigs,
-                    slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
-                    correctLatex: `${p.sigfigs}\\text{ significant figures}`,
-                    hintLatex: [`\\text{${t.prompts.hint_sigfigs}}`]
+                precision.forEach((p, idx) => {
+                    quests.push({
+                        id: `PREC-B${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{How many significant figures in ${p.value}?}`,
+                        expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
+                        targetLatex: p.sigfigs,
+                        slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
+                        correctLatex: `${p.sigfigs}\\text{ significant figures}`,
+                        hintLatex: [`\\text{Count non-zero digits and trapped zeros}`]
+                    });
                 });
-            });
+            }
+            
+            if (difficulty === "CORE") {
+                // Rounding to significant figures
+                const rounding = [
+                    { value: "12.345", sigfigs: 3, answer: "12.3" },
+                    { value: "0.004567", sigfigs: 2, answer: "0.0046" },
+                    { value: "1234.5", sigfigs: 3, answer: "1230" },
+                    { value: "0.09876", sigfigs: 2, answer: "0.099" },
+                    { value: "567.89", sigfigs: 4, answer: "567.9" }
+                ];
+
+                rounding.forEach((r, idx) => {
+                    quests.push({
+                        id: `PREC-C${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{Round ${r.value} to ${r.sigfigs} significant figures}`,
+                        expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
+                        targetLatex: r.answer,
+                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: r.answer }],
+                        correctLatex: `${r.answer}`,
+                        hintLatex: [`\\text{Round at the ${r.sigfigs}th significant digit}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ADVANCED") {
+                // Calculations with significant figures
+                const calculations = [
+                    { expr: "12.5 + 3.456", answer: "16.0", rule: "decimal places" },
+                    { expr: "4.5 × 2.34", answer: "11", rule: "sig figs" },
+                    { expr: "100.0 ÷ 3.0", answer: "33", rule: "sig figs" },
+                    { expr: "25.0 - 12.34", answer: "12.7", rule: "decimal places" },
+                    { expr: "2.5 × 3.14", answer: "7.9", rule: "sig figs" }
+                ];
+
+                calculations.forEach((c, idx) => {
+                    quests.push({
+                        id: `PREC-A${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{Calculate ${c.expr} with proper sig figs}`,
+                        expressionLatex: `${c.expr}`,
+                        targetLatex: c.answer,
+                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}`,
+                        hintLatex: [`\\text{Use ${c.rule} rule}`]
+                    });
+                });
+            }
+            
+            if (difficulty === "ELITE") {
+                // Uncertainty and error analysis
+                const uncertainty = [
+                    { measurement: "12.5 ± 0.1", quantity: "length", unit: "cm", percent: "0.8" },
+                    { measurement: "100 ± 5", quantity: "mass", unit: "g", percent: "5" },
+                    { measurement: "25.0 ± 0.5", quantity: "time", unit: "s", percent: "2" },
+                    { measurement: "50 ± 2", quantity: "volume", unit: "mL", percent: "4" },
+                    { measurement: "200 ± 10", quantity: "distance", unit: "m", percent: "5" }
+                ];
+
+                uncertainty.forEach((u, idx) => {
+                    quests.push({
+                        id: `PREC-E${idx}`,
+                        difficulty,
+                        stage,
+                        promptLatex: `\\text{What is the percent uncertainty of ${u.measurement} ${u.unit}?}`,
+                        expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
+                        targetLatex: u.percent,
+                        slots: [{ id: "ans", labelLatex: "\\text{Percent}", placeholder: "...", expected: u.percent }],
+                        correctLatex: `${u.percent}\\%`,
+                        hintLatex: [`\\text{Divide uncertainty by measurement}`]
+                    });
+                });
+            }
         }
 
         return quests;
-    }, [t]);
+    }, []);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
