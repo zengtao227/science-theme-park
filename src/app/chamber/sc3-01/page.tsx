@@ -35,45 +35,162 @@ export default function SC301Page() {
 
     const config = configs[currentStage];
 
-    if (difficulty === "BASIC" || difficulty === "CORE") {
-      // Formula discovery
-      quests.push({
-        id: `${currentStage}-C`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
-        promptLatex: `\\text{Find Carbon count in ${config.name}.}`,
-        expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-        targetLatex: config.c.toString(),
-        slots: [{ id: "c", labelLatex: "\\text{Carbon}", placeholder: "?", expected: config.c.toString() }],
-        correctLatex: config.c.toString(),
-        hintLatex: ["\\text{Carbon is black.}"]
-      });
-      quests.push({
-        id: `${currentStage}-O`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
-        promptLatex: `\\text{Find Oxygen count in ${config.name}.}`,
-        expressionLatex: `C_{${config.c}}H_{${config.h}}O_?`,
-        targetLatex: config.o.toString(),
-        slots: [{ id: "o", labelLatex: "\\text{Oxygen}", placeholder: "?", expected: config.o.toString() }],
-        correctLatex: config.o.toString(),
-        hintLatex: ["\\text{Oxygen is red.}"]
-      });
-    }
+    // Generate 5 questions per difficulty level (20 total per stage)
+    const questionSets = {
+      BASIC: [
+        {
+          id: `${currentStage}-C1`, promptLatex: `\\text{Find Carbon count in ${config.name}.}`,
+          expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "c", labelLatex: "\\text{Carbon}", placeholder: "?", expected: config.c.toString() }],
+          hintLatex: ["\\text{Carbon is black.}"]
+        },
+        {
+          id: `${currentStage}-H1`, promptLatex: `\\text{Find Hydrogen count in ${config.name}.}`,
+          expressionLatex: `C_{${config.c}}H_?${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "h", labelLatex: "\\text{Hydrogen}", placeholder: "?", expected: config.h.toString() }],
+          hintLatex: ["\\text{Hydrogen is white.}"]
+        },
+        {
+          id: `${currentStage}-O1`, promptLatex: `\\text{Find Oxygen count in ${config.name}.}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_?`,
+          slots: [{ id: "o", labelLatex: "\\text{Oxygen}", placeholder: "?", expected: config.o.toString() }],
+          hintLatex: ["\\text{Oxygen is red.}"]
+        },
+        ...(config.n > 0 ? [{
+          id: `${currentStage}-N1`, promptLatex: `\\text{Find Nitrogen count in ${config.name}.}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}N_?O_{${config.o}}`,
+          slots: [{ id: "n", labelLatex: "\\text{Nitrogen}", placeholder: "?", expected: config.n.toString() }],
+          hintLatex: ["\\text{Nitrogen is blue.}"]
+        }] : []),
+        {
+          id: `${currentStage}-TOTAL1`, promptLatex: `\\text{Total atom count in ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "total", labelLatex: "\\text{Total}", placeholder: "?", expected: (config.c + config.h + config.o + config.n).toString() }],
+          hintLatex: ["\\text{Add all atoms.}"]
+        },
+      ],
+      CORE: [
+        {
+          id: `${currentStage}-C2`, promptLatex: `\\text{Verify Carbon atoms in ${config.name}.}`,
+          expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "c", labelLatex: "\\text{Carbon}", placeholder: "?", expected: config.c.toString() }],
+          hintLatex: ["\\text{Count black spheres.}"]
+        },
+        {
+          id: `${currentStage}-H2`, promptLatex: `\\text{Count Hydrogen in ${config.name}.}`,
+          expressionLatex: `C_{${config.c}}H_?${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "h", labelLatex: "\\text{Hydrogen}", placeholder: "?", expected: config.h.toString() }],
+          hintLatex: ["\\text{Smallest white atoms.}"]
+        },
+        {
+          id: `${currentStage}-O2`, promptLatex: `\\text{Oxygen atoms in ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_?`,
+          slots: [{ id: "o", labelLatex: "\\text{Oxygen}", placeholder: "?", expected: config.o.toString() }],
+          hintLatex: ["\\text{Red spheres.}"]
+        },
+        {
+          id: `${currentStage}-RATIO1`, promptLatex: `\\text{C:O ratio in ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}:O_{${config.o}}`,
+          slots: [{ id: "ratio", labelLatex: "\\text{Ratio}", placeholder: "x:y", expected: `${config.c}:${config.o}` }],
+          hintLatex: ["\\text{Simplify if possible.}"]
+        },
+        {
+          id: `${currentStage}-MASS1`, promptLatex: `\\text{Approximate molar mass of ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "mass", labelLatex: "\\text{Mass (g/mol)}", placeholder: "?", expected: (config.c * 12 + config.h * 1 + config.o * 16 + config.n * 14).toString() }],
+          hintLatex: ["\\text{C=12, H=1, O=16, N=14}"]
+        },
+      ],
+      ADVANCED: [
+        {
+          id: `${currentStage}-FULL1`, promptLatex: `\\text{Complete formula for ${config.name}?}`,
+          expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
+          slots: [
+            { id: "c", labelLatex: "x (C)", placeholder: "0", expected: config.c.toString() },
+            { id: "h", labelLatex: "y (H)", placeholder: "0", expected: config.h.toString() },
+            ...(config.n > 0 ? [{ id: "n", labelLatex: "z (N)", placeholder: "0", expected: config.n.toString() } as any] : []),
+            { id: "o", labelLatex: "w (O)", placeholder: "0", expected: config.o.toString() }
+          ],
+          hintLatex: ["\\text{Count all atoms.}"]
+        },
+        {
+          id: `${currentStage}-PERCENT1`, promptLatex: `\\text{Carbon percentage in ${config.name}?}`,
+          expressionLatex: `\\frac{C_{${config.c}}}{\\text{Total}}\\times 100`,
+          slots: [{ id: "percent", labelLatex: "\\text{Percent}", placeholder: "%", expected: ((config.c / (config.c + config.h + config.o + config.n)) * 100).toFixed(1) }],
+          hintLatex: ["\\text{Carbon / Total atoms}"]
+        },
+        {
+          id: `${currentStage}-BONDS1`, promptLatex: `\\text{Estimate bond count in ${config.name}?}`,
+          expressionLatex: `\\text{Approximate}`,
+          slots: [{ id: "bonds", labelLatex: "\\text{Bonds}", placeholder: "?", expected: (config.c + config.h + config.o + config.n - 1).toString() }],
+          hintLatex: ["\\text{Roughly atoms - 1}"]
+        },
+        {
+          id: `${currentStage}-EMPIRICAL1`, promptLatex: `\\text{Simplest ratio for ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "empirical", labelLatex: "\\text{Formula}", placeholder: "CxHyOz", expected: config.formula.replace(/_/g, "").replace(/\{|\}/g, "") }],
+          hintLatex: ["\\text{Already simplified}"]
+        },
+        {
+          id: `${currentStage}-MASS2`, promptLatex: `\\text{Precise molar mass of ${config.name}?}`,
+          expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
+          slots: [{ id: "mass", labelLatex: "\\text{Mass (g/mol)}", placeholder: "?", expected: (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01).toFixed(2) }],
+          hintLatex: ["\\text{Use precise atomic masses}"]
+        },
+      ],
+      ELITE: [
+        {
+          id: `${currentStage}-FULL2`, promptLatex: `\\text{Identify ${config.name} formula precisely.}`,
+          expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
+          slots: [
+            { id: "c", labelLatex: "x", placeholder: "0", expected: config.c.toString() },
+            { id: "h", labelLatex: "y", placeholder: "0", expected: config.h.toString() },
+            ...(config.n > 0 ? [{ id: "n", labelLatex: "z", placeholder: "0", expected: config.n.toString() } as any] : []),
+            { id: "o", labelLatex: "w", placeholder: "0", expected: config.o.toString() }
+          ],
+          hintLatex: ["\\text{Exact count required}"]
+        },
+        {
+          id: `${currentStage}-COMPOSITION1`, promptLatex: `\\text{Mass percent of C in ${config.name}?}`,
+          expressionLatex: `\\frac{m_C}{M_{total}}\\times 100`,
+          slots: [{ id: "percent", labelLatex: "\\text{Percent}", placeholder: "%", expected: ((config.c * 12.01) / (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01) * 100).toFixed(2) }],
+          hintLatex: ["\\text{Mass of C / Total mass}"]
+        },
+        {
+          id: `${currentStage}-FUNCTIONAL1`, promptLatex: `\\text{Functional groups in ${config.name}?}`,
+          expressionLatex: `\\text{Identify}`,
+          slots: [{ id: "groups", labelLatex: "\\text{Groups}", placeholder: "name", expected: currentStage === "ASPIRIN" ? "ester,carboxyl" : currentStage === "CAFFEINE" ? "amide,amine" : "amine,hydroxyl" }],
+          hintLatex: ["\\text{Look for O, N patterns}"]
+        },
+        {
+          id: `${currentStage}-STRUCTURE1`, promptLatex: `\\text{Ring structures in ${config.name}?}`,
+          expressionLatex: `\\text{Count}`,
+          slots: [{ id: "rings", labelLatex: "\\text{Rings}", placeholder: "?", expected: currentStage === "ASPIRIN" ? "1" : currentStage === "CAFFEINE" ? "2" : "1" }],
+          hintLatex: ["\\text{Closed carbon chains}"]
+        },
+        {
+          id: `${currentStage}-SATURATION1`, promptLatex: `\\text{Degree of unsaturation in ${config.name}?}`,
+          expressionLatex: `\\frac{2C + 2 + N - H}{2}`,
+          slots: [{ id: "unsat", labelLatex: "\\text{Degree}", placeholder: "?", expected: Math.floor((2 * config.c + 2 + config.n - config.h) / 2).toString() }],
+          hintLatex: ["\\text{Use formula}"]
+        },
+      ]
+    };
 
-    if (difficulty === "ADVANCED" || difficulty === "ELITE") {
-      // Advanced formula and composition
+    // Select 5 questions based on difficulty
+    const selectedQuestions = questionSets[difficulty].slice(0, 5);
+
+    selectedQuestions.forEach((q) => {
       quests.push({
-        id: `${currentStage}-FULL`, difficulty, stage: currentStage, moleculeName: config.name, scenario: config.scenario,
-        promptLatex: `\\text{Identify the complete formula for ${config.name}.}`,
-        expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
+        ...q,
+        difficulty,
+        stage: currentStage,
+        moleculeName: config.name,
+        scenario: config.scenario,
         targetLatex: config.formula,
-        slots: [
-          { id: "c", labelLatex: "x (C)", placeholder: "0", expected: config.c.toString() },
-          { id: "h", labelLatex: "y (H)", placeholder: "0", expected: config.h.toString() },
-          ...(config.n > 0 ? [{ id: "n", labelLatex: "z (N)", placeholder: "0", expected: config.n.toString() } as any] : []),
-          { id: "o", labelLatex: "w (O)", placeholder: "0", expected: config.o.toString() }
-        ],
         correctLatex: config.formula,
-        hintLatex: ["\\text{Count all atoms carefully.}"]
       });
-    }
+    });
 
     return quests;
   }, []);
