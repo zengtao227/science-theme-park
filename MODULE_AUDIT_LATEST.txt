@@ -1,0 +1,271 @@
+================================================================
+  Science Theme Park — Module Deep Audit v2
+  Tue Feb 17 15:23:09 CET 2026
+================================================================
+
+### Part 1: 模块题目完整性分析
+
+MODULE                       LINES PATTERN               B    C    A    E STATUS
+-----------------------------------------------------------------------------------------------------
+em1-01                         217 UNKNOWN               0    0    0    0 🔴 SPARSE
+em2-01                         355 DYNAMIC               0    0    0    0 🔴 SPARSE
+gb1-01                         383 PUSH(few)             0    0    0    0 🔴 SPARSE
+gb2-01                         376 SLICE                 0    0    0    0 ❓ VERIFY
+gb3-01                         291 PUSH(few)             0    0    0    0 🔴 SPARSE
+gb3-02                         303 SLICE                 0    0    0    0 ❓ VERIFY
+gc1-01                         237 UNKNOWN               0    0    0    0 🔴 SPARSE
+gc1-02                         336 DYNAMIC               0    0    0    0 🔴 SPARSE
+gc2-01                         221 UNKNOWN               0    0    0    0 🔴 SPARSE
+gc3-01                         210 UNKNOWN               0    0    0    0 🔴 SPARSE
+gc3-02                         226 UNKNOWN               0    0    0    0 🔴 SPARSE
+gm1-01-advanced               1274 UNKNOWN              18   16   16   16 ✅ FULL
+gm1-01                         584 SWITCH(difficulty)   24   30   30   30 ✅ FULL
+gm1-02                         530 SWITCH(difficulty)   60   55   50   45 ✅ FULL
+gm2-01                         356 SWITCH(difficulty)   12   15   15   15 ✅ FULL
+gm3-01                         473 SWITCH(difficulty)   66   67   67   62 ✅ FULL
+gm4-01                         385 SWITCH(difficulty)   15   15   15   15 ✅ FULL
+gp1-01                         282 SANDBOX               0    0    0    0 📋 N/A
+gp1-02                         111 SANDBOX               0    0    0    0 📋 N/A
+gp1-03                         204 LAYOUT-ONLY           0    0    0    0 📋 N/A
+gp1-04                         220 LAYOUT-ONLY           0    0    0    0 📋 N/A
+gp2-01                         303 PUSH(few)             0    0    0    0 🔴 SPARSE
+gp2-02                         302 PUSH(few)             0    0    0    0 🔴 SPARSE
+gp3-01                         813 PUSH(few)             0    0    0    0 ❓ VERIFY
+sb1-01-metabolic               288 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb1-01                         284 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb1-02                         366 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb1-03                         323 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb2-01-tissues                 495 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb2-02-body-systems            760 PUSH(few)             0    0    0    0 ❓ VERIFY
+sb2-02                         303 SLICE                 0    0    0    0 🔴 SPARSE
+sb2-03                         280 PUSH(few)             0    0    0    0 🔴 SPARSE
+sb3-01                         316 SLICE                 0    0    0    0 🔴 SPARSE
+sc1-01                         263 PUSH(few)             0    0    0    0 🔴 SPARSE
+sc1-02                         448 SLICE                 0    0    0    0 🔴 SPARSE
+sc1-03                         207 SANDBOX               0    0    0    0 📋 N/A
+sc1-04                         268 LAYOUT-ONLY           0    0    0    0 📋 N/A
+sc1-05                         108 LAYOUT-ONLY           0    0    0    0 📋 N/A
+sc2-01                         306 RECORD<D,Q[]>        49   57   53   48 ✅ FULL(Record)
+sc2-02                         243 UNKNOWN               0    0    0    0 🔴 SPARSE
+sc2-03                         240 LAYOUT-ONLY           0    0    0    0 📋 N/A
+sc2-04                         231 LAYOUT-ONLY           0    0    0    0 📋 N/A
+sc2-05                         932 RECORD<D,Q[]>        26   29   28   27 ✅ FULL(Record)
+sc2-06                         499 ELSE-IF-CHAIN         0    0    0   10 ❓ VERIFY
+sc3-01                         276 PUSH(few)             0    0    0    0 🔴 SPARSE
+sc3-02                         349 SLICE                 0    0    0    0 🔴 SPARSE
+sc3-03                         357 SLICE                 0    0    0    0 🔴 SPARSE
+sc3-04                         334 PUSH(few)             0    0    0    0 🔴 SPARSE
+sc3-05                         248 PUSH(few)             0    0    0    0 🔴 SPARSE
+sm1-01                         438 ELSE-IF-CHAIN         0    2    4    0 ❓ VERIFY
+sm1-02                         632 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm1-03                         986 RECORD<D,Q[]>        23   23   23   23 ✅ FULL(Record)
+sm1-04                        1189 RECORD<D,Q[]>        34   35   35   35 ✅ FULL(Record)
+sm1-05                         636 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm2-01                         942 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm2-02                         965 PUSH(few)             0    0    0    0 ❓ VERIFY
+sm2-03                         330 SWITCH(difficulty)    8    8    8    8 ⚠️ PARTIAL
+sm2-04                         313 SLICE                 0    0    0    0 🔴 SPARSE
+sm2-05                         319 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm2-06                         254 UNKNOWN               0    0    0    0 🔴 SPARSE
+sm2-07                         406 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm2-08                        1159 RECORD<D,Q[]>        36   36   36   36 ✅ FULL(Record)
+sm2-10                         302 PUSH(few)             0    0    0    0 🔴 SPARSE
+sm3-01                         392 DYNAMIC               0    0    0    0 🔴 SPARSE
+sm3-02                         538 DYNAMIC               0    0    0    0 🔴 SPARSE
+sm3-03                         429 ELSE-IF-CHAIN         0    0    0    0 ❓ VERIFY
+sm3-04                         361 DYNAMIC              50   46   49   39 ✅ FULL
+sm3-05                         402 PUSH(few)             0    0    0    0 ❓ VERIFY
+sp3-01                         335 PUSH(few)             0    0    0    0 🔴 SPARSE
+sp3-02                         163 PUSH(few)             0    0    0    0 🔴 SPARSE
+sp3-03                         157 PUSH(few)             0    0    0    0 🔴 SPARSE
+sp3-04                         164 PUSH(few)             0    0    0    0 🔴 SPARSE
+sp3-05                         343 PUSH(few)             0    0    0    0 🔴 SPARSE
+sp3-06                         689 PUSH(few)             0    0    0    0 ❓ VERIFY
+sp3-07                         303 PUSH(few)             0    0    0    0 ❓ VERIFY
+sp3-08                         309 SLICE                 0    0    0    0 🔴 SPARSE
+
+
+### Part 2: i18n 模式检查
+
+MODULE                       I18N_PATTERN         STATUS
+---------------------------------------------------------------------
+em1-01                       NONE/other          
+em2-01                       translations[] ❌  
+gb1-01                       translations[] ❌  
+gb2-01                       useLanguage() ✅   
+gb3-01                       useLanguage() ✅   
+gb3-02                       translations[] ❌  
+gc1-01                       translations[] ❌  
+gc1-02                       translations[] ❌  
+gc2-01                       translations[] ❌  
+gc3-01                       translations[] ❌  
+gc3-02                       translations[] ❌  
+gm1-01-advanced              translations[] ❌  
+gm1-01                       translations[] ❌  
+gm1-02                       useLanguage() ✅   
+gm2-01                       translations[] ❌  
+gm3-01                       translations[] ❌  
+gm4-01                       translations[] ❌  
+gp1-01                       useLanguage() ✅   
+gp1-02                       useLanguage() ✅   
+gp1-03                       translations[] ❌  
+gp1-04                       translations[] ❌  
+gp2-01                       translations[] ❌  
+gp2-02                       translations[] ❌  
+gp3-01                       useLanguage() ✅   
+sb1-01-metabolic             useLanguage() ✅   
+sb1-01                       useLanguage() ✅   
+sb1-02                       useLanguage() ✅   
+sb1-03                       useLanguage() ✅   
+sb2-01-tissues               useLanguage() ✅   
+sb2-02-body-systems          useLanguage() ✅   
+sb2-02                       useLanguage() ✅   
+sb2-03                       useLanguage() ✅   
+sb3-01                       useLanguage() ✅   
+sc1-01                       NONE/other          
+sc1-02                       translations[] ❌  
+sc1-03                       useLanguage() ✅   
+sc1-04                       translations[] ❌  
+sc1-05                       translations[] ❌  
+sc2-01                       translations[] ❌  
+sc2-02                       translations[] ❌  
+sc2-03                       translations[] ❌  
+sc2-04                       translations[] ❌  
+sc2-05                       useLanguage() ✅   
+sc2-06                       useLanguage() ✅   
+sc3-01                       translations[] ❌  
+sc3-02                       translations[] ❌  
+sc3-03                       translations[] ❌  
+sc3-04                       translations[] ❌  
+sc3-05                       translations[] ❌  
+sm1-01                       translations[] ❌  
+sm1-02                       translations[] ❌  
+sm1-03                       translations[] ❌  
+sm1-04                       translations[] ❌  
+sm1-05                       translations[] ❌  
+sm2-01                       translations[] ❌  
+sm2-02                       translations[] ❌  
+sm2-03                       translations[] ❌  
+sm2-04                       translations[] ❌  
+sm2-05                       translations[] ❌  
+sm2-06                       translations[] ❌  
+sm2-07                       translations[] ❌  
+sm2-08                       translations[] ❌  
+sm2-10                       translations[] ❌  
+sm3-01                       translations[] ❌  
+sm3-02                       translations[] ❌  
+sm3-03                       translations[] ❌  
+sm3-04                       translations[] ❌  
+sm3-05                       translations[] ❌  
+sp3-01                       translations[] ❌  
+sp3-02                       translations[] ❌  
+sp3-03                       translations[] ❌  
+sp3-04                       translations[] ❌  
+sp3-05                       translations[] ❌  
+sp3-06                       translations[] ❌  
+sp3-07                       useLanguage() ✅   
+sp3-08                       NONE/other          
+
+Summary: 19 modules use new pattern, 54 use old pattern
+
+
+### Part 3: LaTeX 使用检查
+
+MODULE                       Inline  Block STATUS
+---------------------------------------------------------------------
+em1-01                            2      0 ⚠️ PARTIAL
+em2-01                            1      4 ✅ GOOD
+gb1-01                            3      3 ✅ GOOD
+gb2-01                            3      3 ✅ GOOD
+gb3-01                            4      2 ✅ GOOD
+gb3-02                            2      3 ✅ GOOD
+gc1-01                            3      0 ⚠️ PARTIAL
+gc1-02                            3      2 ✅ GOOD
+gc2-01                            2      0 ⚠️ PARTIAL
+gc3-01                            3      0 ⚠️ PARTIAL
+gc3-02                            4      0 ⚠️ PARTIAL
+gm1-01-advanced                   3      0 ⚠️ PARTIAL
+gm1-01                            6      0 ✅ GOOD
+gm1-02                            8      0 ✅ GOOD
+gm2-01                            4      0 ⚠️ PARTIAL
+gm3-01                            4      0 ⚠️ PARTIAL
+gm4-01                            3      0 ⚠️ PARTIAL
+gp1-01                            0      0 🔴 NONE
+gp1-02                            0      0 🔴 NONE
+gp1-03                            4      0 ⚠️ PARTIAL
+gp1-04                            4      0 ⚠️ PARTIAL
+gp2-01                            4      0 ⚠️ PARTIAL
+gp2-02                            4      0 ⚠️ PARTIAL
+gp3-01                            4      0 ⚠️ PARTIAL
+sb1-01-metabolic                  4      2 ✅ GOOD
+sb1-01                            4      2 ✅ GOOD
+sb1-02                            4      2 ✅ GOOD
+sb1-03                            4      2 ✅ GOOD
+sb2-01-tissues                    4      2 ✅ GOOD
+sb2-02-body-systems               4      0 ⚠️ PARTIAL
+sb2-02                            4      2 ✅ GOOD
+sb2-03                            4      2 ✅ GOOD
+sb3-01                            4      2 ✅ GOOD
+sc1-01                            5      0 ✅ GOOD
+sc1-02                            6      0 ✅ GOOD
+sc1-03                            0      0 🔴 NONE
+sc1-04                            4      0 ⚠️ PARTIAL
+sc1-05                            4      0 ⚠️ PARTIAL
+sc2-01                            2      3 ✅ GOOD
+sc2-02                            4      0 ⚠️ PARTIAL
+sc2-03                            5      0 ✅ GOOD
+sc2-04                            3      0 ⚠️ PARTIAL
+sc2-05                            2      3 ✅ GOOD
+sc2-06                            3      1 ⚠️ PARTIAL
+sc3-01                            3      2 ✅ GOOD
+sc3-02                            4      2 ✅ GOOD
+sc3-03                            4      2 ✅ GOOD
+sc3-04                            4      2 ✅ GOOD
+sc3-05                            2      3 ✅ GOOD
+sm1-01                            9      0 ✅ GOOD
+sm1-02                            3      0 ⚠️ PARTIAL
+sm1-03                            3      3 ✅ GOOD
+sm1-04                            3      3 ✅ GOOD
+sm1-05                            4      2 ✅ GOOD
+sm2-01                            4      0 ⚠️ PARTIAL
+sm2-02                            5      0 ✅ GOOD
+sm2-03                            3      0 ⚠️ PARTIAL
+sm2-04                            6      0 ✅ GOOD
+sm2-05                            5      0 ✅ GOOD
+sm2-06                            4      0 ⚠️ PARTIAL
+sm2-07                            5      0 ✅ GOOD
+sm2-08                            3      4 ✅ GOOD
+sm2-10                            4      0 ⚠️ PARTIAL
+sm3-01                            8      0 ✅ GOOD
+sm3-02                            7      0 ✅ GOOD
+sm3-03                            6      0 ✅ GOOD
+sm3-04                            6      0 ✅ GOOD
+sm3-05                            4      0 ⚠️ PARTIAL
+sp3-01                            4      2 ✅ GOOD
+sp3-02                            4      0 ⚠️ PARTIAL
+sp3-03                            4      0 ⚠️ PARTIAL
+sp3-04                            4      0 ⚠️ PARTIAL
+sp3-05                            4      2 ✅ GOOD
+sp3-06                            4      0 ⚠️ PARTIAL
+sp3-07                            4      2 ✅ GOOD
+sp3-08                            5      0 ✅ GOOD
+
+
+### Part 4: 首页模块链接审查
+
+=== 存在于 chamber/ 但不在主页 ===
+  ⚠️ sb2-02
+
+
+### Part 5: 可视化组件存在性
+
+  🔴 gm1-01-advanced: 没有独立可视化组件
+  🔴 sb1-01-metabolic: 没有独立可视化组件
+  🔴 sb2-03: 没有独立可视化组件
+  🔴 sm1-04: 没有独立可视化组件
+  🔴 sm2-08: 没有独立可视化组件
+  🔴 sm3-03: 没有独立可视化组件
+
+================================================================
+  审查完成
+================================================================
