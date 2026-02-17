@@ -28,36 +28,153 @@ export default function SB101MetabolicPage() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): MetabolicQuest[] => {
         const quests: MetabolicQuest[] = [];
 
+        // OSMOSIS stage: 5 questions per difficulty
         if (stage === "OSMOSIS") {
-            const scenarios: { status: "hypertonic" | "hypotonic" | "isotonic", target: string, hint: string }[] = [
-                { status: "hypertonic", target: "leave", hint: t("sb1_01_metabolic.prompts.hint_hyper") },
-                { status: "hypotonic", target: "enter", hint: t("sb1_01_metabolic.prompts.hint_hypo") },
-                { status: "isotonic", target: "stable", hint: `\\text{${t("sb1_01_metabolic.prompts.hint_iso")}}` }
-            ];
+            const scenarios = {
+                BASIC: [
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.8, desc: "0.8 M external" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.2, desc: "0.2 M external" },
+                    { status: "isotonic" as const, target: "stable", osmolarity: 0.5, desc: "0.5 M external" },
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.9, desc: "0.9 M external" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.1, desc: "0.1 M external" }
+                ],
+                CORE: [
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.7, desc: "0.7 M external, 0.3 M internal" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.3, desc: "0.3 M external, 0.6 M internal" },
+                    { status: "isotonic" as const, target: "stable", osmolarity: 0.5, desc: "0.5 M both sides" },
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.85, desc: "0.85 M external" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.15, desc: "0.15 M external" }
+                ],
+                ADVANCED: [
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.75, desc: "Seawater: 1.0 M NaCl" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.25, desc: "Freshwater: 0.001 M" },
+                    { status: "isotonic" as const, target: "stable", osmolarity: 0.5, desc: "Blood plasma: 0.3 M" },
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.8, desc: "3% NaCl solution" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.2, desc: "0.9% NaCl solution" }
+                ],
+                ELITE: [
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.9, desc: "Hypertonic saline: 3% NaCl" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.1, desc: "Distilled water" },
+                    { status: "isotonic" as const, target: "stable", osmolarity: 0.5, desc: "Isotonic saline: 0.9% NaCl" },
+                    { status: "hypertonic" as const, target: "leave", osmolarity: 0.95, desc: "Dead Sea: 1.24 M" },
+                    { status: "hypotonic" as const, target: "enter", osmolarity: 0.05, desc: "Rainwater: 0.0001 M" }
+                ]
+            };
 
-            scenarios.forEach((s, idx) => {
+            const scenarioList = scenarios[difficulty];
+            scenarioList.forEach((s, idx) => {
                 const statusLabel = t(`sb1_01_metabolic.labels.${s.status}`);
                 quests.push({
-                    id: `O-${idx}`, difficulty, stage, statusKey: s.status,
-                    promptLatex: t("sb1_01_metabolic.prompts.osmosis_prompt", { status: statusLabel }),
-                    expressionLatex: t("sb1_01_metabolic.prompts.osmosis_target"),
+                    id: `OSM_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    statusKey: s.status,
+                    targetOsmolarity: s.osmolarity,
+                    promptLatex: t("sb1_01_metabolic.prompts.osmosis_prompt", { status: statusLabel, desc: s.desc }),
+                    expressionLatex: `\\text{${s.desc}}`,
                     targetLatex: s.target,
                     slots: [{ id: "ans", labelLatex: "\\text{Water Flow}", placeholder: "enter/leave/stable", expected: s.target }],
                     correctLatex: s.target,
-                    hintLatex: [s.hint]
+                    hintLatex: [t(`sb1_01_metabolic.prompts.hint_${s.status === "hypertonic" ? "hyper" : s.status === "hypotonic" ? "hypo" : "iso"}`)]
                 });
             });
         }
 
+        // RESPIRATION stage: 5 questions per difficulty
         if (stage === "RESPIRATION") {
-            quests.push({
-                id: "R-1", difficulty, stage,
-                promptLatex: t("sb1_01_metabolic.prompts.respiration_prompt"),
-                expressionLatex: "C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + 6H_2O + ?",
-                targetLatex: "ATP",
-                slots: [{ id: "ans", labelLatex: "\\text{Energy}", placeholder: "ATP", expected: "ATP" }],
-                correctLatex: "ATP",
-                hintLatex: [t("sb1_01_metabolic.prompts.hint_atp")]
+            const respirationQuestions = {
+                BASIC: [
+                    { q: "atp_product", answer: "ATP", equation: "C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + 6H_2O + ?" },
+                    { q: "glucose_input", answer: "glucose", equation: "? + 6O_2 \\rightarrow 6CO_2 + 6H_2O + ATP" },
+                    { q: "oxygen_input", answer: "oxygen", equation: "C_6H_{12}O_6 + ? \\rightarrow 6CO_2 + 6H_2O + ATP" },
+                    { q: "co2_product", answer: "CO2", equation: "C_6H_{12}O_6 + 6O_2 \\rightarrow ? + 6H_2O + ATP" },
+                    { q: "water_product", answer: "water", equation: "C_6H_{12}O_6 + 6O_2 \\rightarrow 6CO_2 + ? + ATP" }
+                ],
+                CORE: [
+                    { q: "atp_count", answer: "36", equation: "\\text{Total ATP from 1 glucose} = ?" },
+                    { q: "glycolysis_atp", answer: "2", equation: "\\text{Glycolysis net ATP} = ?" },
+                    { q: "krebs_atp", answer: "2", equation: "\\text{Krebs cycle ATP} = ?" },
+                    { q: "etc_atp", answer: "32", equation: "\\text{Electron transport chain ATP} = ?" },
+                    { q: "nadh_count", answer: "10", equation: "\\text{Total NADH produced} = ?" }
+                ],
+                ADVANCED: [
+                    { q: "nadh_atp", answer: "3", equation: "\\text{ATP per NADH} = ?" },
+                    { q: "fadh2_atp", answer: "2", equation: "\\text{ATP per FADH}_2 = ?" },
+                    { q: "glycolysis_location", answer: "cytoplasm", equation: "\\text{Glycolysis occurs in} = ?" },
+                    { q: "krebs_location", answer: "mitochondria", equation: "\\text{Krebs cycle occurs in} = ?" },
+                    { q: "etc_location", answer: "cristae", equation: "\\text{ETC occurs in} = ?" }
+                ],
+                ELITE: [
+                    { q: "proton_gradient", answer: "chemiosmosis", equation: "\\text{ATP synthesis mechanism} = ?" },
+                    { q: "atp_synthase", answer: "synthase", equation: "\\text{Enzyme producing ATP} = ?" },
+                    { q: "final_acceptor", answer: "oxygen", equation: "\\text{Final electron acceptor} = ?" },
+                    { q: "anaerobic_atp", answer: "2", equation: "\\text{ATP without oxygen} = ?" },
+                    { q: "fermentation_product", answer: "lactate", equation: "\\text{Muscle fermentation product} = ?" }
+                ]
+            };
+
+            const respList = respirationQuestions[difficulty];
+            respList.forEach((item, idx) => {
+                quests.push({
+                    id: `RESP_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    promptLatex: t(`sb1_01_metabolic.prompts.resp_${item.q}`),
+                    expressionLatex: item.equation,
+                    targetLatex: item.answer,
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
+                });
+            });
+        }
+
+        // HOMEOSTASIS stage: 5 questions per difficulty
+        if (stage === "HOMEOSTASIS") {
+            const homeostasisQuestions = {
+                BASIC: [
+                    { q: "body_temp", answer: "37", unit: "°C" },
+                    { q: "blood_ph", answer: "7.4", unit: "" },
+                    { q: "blood_glucose", answer: "90", unit: "mg/dL" },
+                    { q: "heart_rate", answer: "70", unit: "bpm" },
+                    { q: "blood_pressure", answer: "120", unit: "mmHg" }
+                ],
+                CORE: [
+                    { q: "insulin_effect", answer: "decrease", unit: "" },
+                    { q: "glucagon_effect", answer: "increase", unit: "" },
+                    { q: "sweat_response", answer: "cooling", unit: "" },
+                    { q: "shiver_response", answer: "warming", unit: "" },
+                    { q: "kidney_function", answer: "filtration", unit: "" }
+                ],
+                ADVANCED: [
+                    { q: "negative_feedback", answer: "negative", unit: "" },
+                    { q: "set_point", answer: "37", unit: "°C" },
+                    { q: "receptor_type", answer: "thermoreceptor", unit: "" },
+                    { q: "effector_organ", answer: "muscle", unit: "" },
+                    { q: "control_center", answer: "hypothalamus", unit: "" }
+                ],
+                ELITE: [
+                    { q: "adh_function", answer: "water", unit: "" },
+                    { q: "aldosterone_function", answer: "sodium", unit: "" },
+                    { q: "parathyroid_function", answer: "calcium", unit: "" },
+                    { q: "thyroid_function", answer: "metabolism", unit: "" },
+                    { q: "cortisol_function", answer: "stress", unit: "" }
+                ]
+            };
+
+            const homeoList = homeostasisQuestions[difficulty];
+            homeoList.forEach((item, idx) => {
+                quests.push({
+                    id: `HOME_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    promptLatex: t(`sb1_01_metabolic.prompts.home_${item.q}`),
+                    expressionLatex: `\\text{${item.q.replace(/_/g, ' ')}}`,
+                    targetLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Value}", placeholder: "...", expected: item.answer }],
+                    correctLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
+                    hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
+                });
             });
         }
 
