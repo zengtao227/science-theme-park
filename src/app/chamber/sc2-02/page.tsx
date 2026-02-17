@@ -28,59 +28,179 @@ interface TitrationQuest extends Quest {
 }
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): TitrationQuest[] {
-    const questKeys = [
-        "curve_type", "find_eq", "select_indicator", "weak_ph_calc", "eq_ph_guess", "conc_calc"
+    const quests: TitrationQuest[] = [];
+    
+    // Stage 1: CURVES - Titration curve analysis (20 questions: 4 difficulties × 5 questions)
+    if (stage === "CURVES") {
+        const curveQuestions = [
+            // BASIC (5 questions) - Simple curve identification
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, question: "Identify curve type", expected: "strong-strong" },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Identify weak acid curve", expected: "weak-strong" },
+            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.1, question: "Find equivalence volume", expected: 100 },
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.2, question: "Calculate eq point", expected: 25 },
+            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.1, question: "Weak acid eq volume", expected: 75 },
+            
+            // CORE (5 questions) - pH calculations
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, question: "pH at equivalence", expected: 7 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Weak acid pH at eq", expected: 8.5 },
+            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.2, question: "Strong acid eq pH", expected: 7 },
+            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.15, question: "Buffer region pH", expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.05, baseConc: 0.1, question: "Dilute acid eq volume", expected: 25 },
+            
+            // ADVANCED (5 questions) - Complex calculations
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.2, question: "Weak acid pKa", expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.3, baseConc: 0.1, question: "High conc eq point", expected: 150 },
+            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.1, question: "Buffer capacity", expected: 100 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.15, question: "Half-eq pH", expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.25, baseConc: 0.2, question: "Precise eq volume", expected: 62.5 },
+            
+            // ELITE (5 questions) - Expert level
+            { acidType: "weak" as const, acidConc: 0.12, baseConc: 0.18, question: "Complex pKa calc", expected: 4.75 },
+            { acidType: "weak" as const, acidConc: 0.08, baseConc: 0.12, question: "Low conc buffer", expected: 33.3 },
+            { acidType: "strong" as const, acidConc: 0.15, baseConc: 0.25, question: "Multi-step calc", expected: 30 },
+            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.15, question: "Advanced buffer", expected: 66.7 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Exact pH at 25mL", expected: 4.75 },
+        ];
+        
+        const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+        const selectedQuestions = curveQuestions.slice(startIdx, startIdx + 5);
+        
+        selectedQuestions.forEach((q, idx) => {
+            quests.push({
+                id: `CURVES_${difficulty}_${idx}`,
+                difficulty,
+                stage,
+                promptLatex: `\\text{${q.question}}`,
+                expressionLatex: `C_a=${q.acidConc}\\text{M},\\; C_b=${q.baseConc}\\text{M}`,
+                targetLatex: "\\text{Answer}",
+                slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected: q.expected }],
+                correctLatex: q.expected.toString(),
+                simConfig: {
+                    acidType: q.acidType,
+                    acidConc: q.acidConc,
+                    baseConc: q.baseConc,
+                    volumeAdded: 0,
+                    indicator: "phenolphthalein"
+                }
+            });
+        });
+        
+        return quests;
+    }
+    
+    // Stage 2: EQUIVALENCE - Equivalence point calculations (20 questions)
+    if (stage === "EQUIVALENCE") {
+        const eqQuestions = [
+            // BASIC (5 questions)
+            { acidConc: 0.1, baseConc: 0.1, volume: 50, question: "Find equivalence volume", expected: 50 },
+            { acidConc: 0.2, baseConc: 0.1, volume: 50, question: "Calculate eq point", expected: 100 },
+            { acidConc: 0.1, baseConc: 0.2, volume: 50, question: "Eq volume calc", expected: 25 },
+            { acidConc: 0.15, baseConc: 0.1, volume: 50, question: "Find eq volume", expected: 75 },
+            { acidConc: 0.1, baseConc: 0.15, volume: 50, question: "Calculate eq", expected: 33.3 },
+            
+            // CORE (5 questions)
+            { acidConc: 0.25, baseConc: 0.2, volume: 50, question: "Precise eq point", expected: 62.5 },
+            { acidConc: 0.3, baseConc: 0.15, volume: 50, question: "High conc eq", expected: 100 },
+            { acidConc: 0.05, baseConc: 0.1, volume: 50, question: "Low conc eq", expected: 25 },
+            { acidConc: 0.12, baseConc: 0.18, volume: 50, question: "Complex eq calc", expected: 33.3 },
+            { acidConc: 0.18, baseConc: 0.12, volume: 50, question: "Reverse calc", expected: 75 },
+            
+            // ADVANCED (5 questions)
+            { acidConc: 0.08, baseConc: 0.12, volume: 50, question: "Dilute eq point", expected: 33.3 },
+            { acidConc: 0.22, baseConc: 0.11, volume: 50, question: "2:1 ratio eq", expected: 100 },
+            { acidConc: 0.15, baseConc: 0.25, volume: 50, question: "Inverse ratio", expected: 30 },
+            { acidConc: 0.35, baseConc: 0.14, volume: 50, question: "High precision", expected: 125 },
+            { acidConc: 0.06, baseConc: 0.18, volume: 50, question: "1:3 ratio", expected: 16.7 },
+            
+            // ELITE (5 questions)
+            { acidConc: 0.125, baseConc: 0.175, volume: 50, question: "Complex ratio", expected: 35.7 },
+            { acidConc: 0.275, baseConc: 0.225, volume: 50, question: "Near 1:1 ratio", expected: 61.1 },
+            { acidConc: 0.085, baseConc: 0.135, volume: 50, question: "Precise dilute", expected: 31.5 },
+            { acidConc: 0.195, baseConc: 0.165, volume: 50, question: "Close conc", expected: 59.1 },
+            { acidConc: 0.105, baseConc: 0.155, volume: 50, question: "Fine tuning", expected: 33.9 },
+        ];
+        
+        const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+        const selectedQuestions = eqQuestions.slice(startIdx, startIdx + 5);
+        
+        selectedQuestions.forEach((q, idx) => {
+            quests.push({
+                id: `EQUIVALENCE_${difficulty}_${idx}`,
+                difficulty,
+                stage,
+                promptLatex: `\\text{${q.question}}`,
+                expressionLatex: `V_a C_a = V_b C_b,\\; C_a=${q.acidConc}\\text{M},\\; C_b=${q.baseConc}\\text{M}`,
+                targetLatex: "V_b\\text{ (mL)}",
+                slots: [{ id: "ans", labelLatex: "Volume (mL)", placeholder: "mL", expected: q.expected }],
+                correctLatex: `${q.expected}\\text{ mL}`,
+                simConfig: {
+                    acidType: "strong",
+                    acidConc: q.acidConc,
+                    baseConc: q.baseConc,
+                    volumeAdded: 0,
+                    indicator: "phenolphthalein"
+                }
+            });
+        });
+        
+        return quests;
+    }
+    
+    // Stage 3: INDICATORS - Indicator selection (20 questions)
+    const indicatorQuestions = [
+        // BASIC (5 questions)
+        { acidType: "strong" as const, pHRange: "8-10", question: "Select indicator for strong acid", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3-5", question: "Choose indicator", expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "8-10", question: "Weak acid indicator", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "4-10", question: "Universal indicator", expected: "universal" },
+        { acidType: "strong" as const, pHRange: "8-10", question: "Basic range indicator", expected: "phenolphthalein" },
+        
+        // CORE (5 questions)
+        { acidType: "weak" as const, pHRange: "8-10", question: "Weak acid best indicator", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3-5", question: "Acidic range", expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "7-9", question: "Near neutral weak", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "6-8", question: "Neutral range", expected: "universal" },
+        { acidType: "weak" as const, pHRange: "8-10", question: "Buffer indicator", expected: "phenolphthalein" },
+        
+        // ADVANCED (5 questions)
+        { acidType: "weak" as const, pHRange: "4-6", question: "Half-eq indicator", expected: "methyl_orange" },
+        { acidType: "strong" as const, pHRange: "2-4", question: "Strong acid low pH", expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "9-11", question: "High pH weak", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "1-14", question: "Full range", expected: "universal" },
+        { acidType: "weak" as const, pHRange: "7-10", question: "Weak acid eq range", expected: "phenolphthalein" },
+        
+        // ELITE (5 questions)
+        { acidType: "weak" as const, pHRange: "8.5-9.5", question: "Precise weak acid", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3.5-4.5", question: "Narrow acidic", expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "4.5-5.5", question: "Buffer region", expected: "methyl_orange" },
+        { acidType: "strong" as const, pHRange: "6.5-7.5", question: "Near neutral", expected: "universal" },
+        { acidType: "weak" as const, pHRange: "8-10", question: "Optimal weak acid", expected: "phenolphthalein" },
     ];
-
-    let indices: number[] = [];
-    if (difficulty === "BASIC") indices = [0, 4];
-    else if (difficulty === "CORE") indices = [1, 2];
-    else if (difficulty === "ADVANCED") indices = [3, 5];
-    else indices = [1, 3, 5];
-
-    return indices.map((idx) => {
-        const key = questKeys[idx];
-        let prompt = t.prompts[key];
-
-        const config: TitrationQuest["simConfig"] = {
-            acidType: "strong",
-            acidConc: 0.1,
-            baseConc: 0.1,
-            volumeAdded: 0,
-            indicator: "phenolphthalein"
-        };
-
-        let expected: string | number = "1";
-
-        if (idx === 0) { // curve_type
-            config.acidType = "weak";
-            prompt = prompt.replace("{ph}", "3.0");
-            expected = "2";
-        } else if (idx === 1) { // find_eq
-            config.acidConc = 0.1;
-            config.baseConc = 0.2;
-            expected = 25; // (0.1 * 50) / 0.2 = 25
-        } else if (idx === 3) { // weak_ph_calc
-            config.acidType = "weak";
-            expected = 4.75;
-        } else if (idx === 4) { // eq_ph_guess
-            expected = "2"; // 7
-        } else if (idx === 5) { // conc_calc
-            expected = 0.1; // (10 * 0.2) / 20 = 0.1
-        }
-
-        return {
-            id: `${stage}|${difficulty}|${key}`,
+    
+    const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+    const selectedQuestions = indicatorQuestions.slice(startIdx, startIdx + 5);
+    
+    selectedQuestions.forEach((q, idx) => {
+        quests.push({
+            id: `INDICATORS_${difficulty}_${idx}`,
             difficulty,
             stage,
-            promptLatex: `\\text{${prompt}}`,
-            expressionLatex: "",
-            targetLatex: "\\text{Conclusion}",
-            slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected }],
-            correctLatex: expected.toString(),
-            simConfig: config
-        };
+            promptLatex: `\\text{${q.question} (pH ${q.pHRange})}`,
+            expressionLatex: `\\text{pH range: ${q.pHRange}}`,
+            targetLatex: "\\text{Indicator}",
+            slots: [{ id: "ans", labelLatex: "Indicator", placeholder: "indicator name", expected: q.expected }],
+            correctLatex: `\\text{${q.expected}}`,
+            simConfig: {
+                acidType: q.acidType,
+                acidConc: 0.1,
+                baseConc: 0.1,
+                volumeAdded: 0,
+                indicator: q.expected as any
+            }
+        });
     });
+    
+    return quests;
 }
 
 export default function SC202Page() {
