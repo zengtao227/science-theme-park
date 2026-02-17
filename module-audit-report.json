@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-17T09:36:02.305Z",
+  "timestamp": "2026-02-17T12:29:17.317Z",
   "totalModules": 76,
   "issues": {
     "p0_empty_pools": [
@@ -703,21 +703,6 @@
         }
       },
       {
-        "module": "sm1-01",
-        "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
-          "ELITE"
-        ],
-        "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
-          "ELITE": 0
-        }
-      },
-      {
         "module": "sm1-02",
         "emptyDifficulties": [
           "BASIC",
@@ -809,21 +794,6 @@
       },
       {
         "module": "sm2-03",
-        "emptyDifficulties": [
-          "BASIC",
-          "CORE",
-          "ADVANCED",
-          "ELITE"
-        ],
-        "questionCounts": {
-          "BASIC": 0,
-          "CORE": 0,
-          "ADVANCED": 0,
-          "ELITE": 0
-        }
-      },
-      {
-        "module": "sm2-04",
         "emptyDifficulties": [
           "BASIC",
           "CORE",
@@ -1140,7 +1110,7 @@
     "totalModules": 76,
     "modulesWithIssues": 74,
     "modulesClean": 2,
-    "p0_issues": 72,
+    "p0_issues": 70,
     "p1_issues": 56
   },
   "moduleDetails": [
@@ -2137,22 +2107,15 @@
       "name": "sm1-01",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-01",
       "issues": [
-        "old_i18n_pattern",
-        "empty_question_pools"
+        "old_i18n_pattern"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
-        "ELITE": 0
+        "BASIC": 2,
+        "CORE": 3,
+        "ADVANCED": 2,
+        "ELITE": 2
       },
-      "stageCount": 3,
-      "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
-        "ELITE"
-      ]
+      "stageCount": 3
     },
     {
       "name": "sm1-02",
@@ -2305,22 +2268,15 @@
       "name": "sm2-04",
       "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-04",
       "issues": [
-        "old_i18n_pattern",
-        "empty_question_pools"
+        "old_i18n_pattern"
       ],
       "questionCounts": {
-        "BASIC": 0,
-        "CORE": 0,
-        "ADVANCED": 0,
-        "ELITE": 0
+        "BASIC": 1,
+        "CORE": 2,
+        "ADVANCED": 2,
+        "ELITE": 2
       },
-      "stageCount": 3,
-      "emptyDifficulties": [
-        "BASIC",
-        "CORE",
-        "ADVANCED",
-        "ELITE"
-      ]
+      "stageCount": 3
     },
     {
       "name": "sm2-05",
