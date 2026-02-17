@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcousticsVisualization from "@/components/chamber/sp3-06/AcousticsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -16,11 +16,9 @@ interface SP306Quest extends Quest {
     soundType?: string;
 }
 
-type SP306T = typeof translations.EN.sp3_06;
-
 export default function SP306Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp3_06 || translations.EN.sp3_06) as SP306T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP306Quest[] => {
         const quests: SP306Quest[] = [];
@@ -161,6 +159,15 @@ export default function SP306Page() {
                         slots: [{ id: "phenom", labelLatex: `\\text{Name}`, placeholder: "diffraction", expected: "diffraction" }],
                         correctLatex: `\\text{Diffraction}`,
                         hintLatex: [`\\text{Waves spread around obstacles}`]
+                    },
+                    {
+                        id: "SW-A5", difficulty, stage, soundType: "resonance_freq",
+                        promptLatex: `\\text{Tuning fork vibrates at 512 Hz near open tube. Tube resonates. What is tube's natural frequency?}`,
+                        expressionLatex: `\\text{Resonance occurs at natural frequency}`,
+                        targetLatex: `f`,
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "512", expected: 512 }],
+                        correctLatex: `512\\text{ Hz}`,
+                        hintLatex: [`\\text{Resonance = matching frequencies}`]
                     }
                 );
             }
@@ -201,6 +208,15 @@ export default function SP306Page() {
                         slots: [{ id: "phenom", labelLatex: `\\text{Name}`, placeholder: "sonic boom", expected: "sonic boom" }],
                         correctLatex: `\\text{Sonic boom}`,
                         hintLatex: [`\\text{Supersonic = shock wave}`]
+                    },
+                    {
+                        id: "SW-E5", difficulty, stage, soundType: "acoustic_impedance",
+                        promptLatex: `\\text{Sound reflects strongly at air-water boundary. Why?}`,
+                        expressionLatex: `\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}`,
+                        targetLatex: `\\text{Reason}`,
+                        slots: [{ id: "reason", labelLatex: `\\text{Reason}`, placeholder: "impedance", expected: "impedance" }],
+                        correctLatex: `\\text{Acoustic impedance mismatch}`,
+                        hintLatex: [`\\text{Different densities = impedance difference}`]
                     }
                 );
             }
@@ -342,6 +358,15 @@ export default function SP306Page() {
                         slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (infrasound)}`,
                         hintLatex: [`5 \\text{ Hz} < 20 \\text{ Hz}`]
+                    },
+                    {
+                        id: "FP-A5", difficulty, stage, soundType: "critical_bands",
+                        promptLatex: `\\text{Two tones 100 Hz and 150 Hz played together. Can ear distinguish them?}`,
+                        expressionLatex: `\\Delta f > \\text{critical bandwidth}`,
+                        targetLatex: `\\text{Answer}`,
+                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "yes", expected: "yes" }],
+                        correctLatex: `\\text{Yes (beyond critical band)}`,
+                        hintLatex: [`50 \\text{ Hz difference is distinguishable}`]
                     }
                 );
             }
@@ -382,6 +407,15 @@ export default function SP306Page() {
                         slots: [{ id: "freq", labelLatex: `f_0\\text{ (Hz)}`, placeholder: "200", expected: 200 }],
                         correctLatex: `200\\text{ Hz (missing fundamental)}`,
                         hintLatex: [`\\text{GCD}(400, 600, 800) = 200`]
+                    },
+                    {
+                        id: "FP-E5", difficulty, stage, soundType: "masking",
+                        promptLatex: `\\text{Loud 1000 Hz tone masks nearby 1100 Hz tone. What is this effect called?}`,
+                        expressionLatex: `\\text{Frequency masking}`,
+                        targetLatex: `\\text{Effect}`,
+                        slots: [{ id: "effect", labelLatex: `\\text{Effect}`, placeholder: "masking", expected: "masking" }],
+                        correctLatex: `\\text{Auditory masking}`,
+                        hintLatex: [`\\text{Loud tone hides nearby frequencies}`]
                     }
                 );
             }
@@ -523,6 +557,15 @@ export default function SP306Page() {
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "110", expected: 110 }],
                         correctLatex: `110\\text{ dB}`,
                         hintLatex: [`130 - 20 = 110`]
+                    },
+                    {
+                        id: "LI-A5", difficulty, stage, soundType: "four_sources",
+                        promptLatex: `\\text{Four identical 50 dB sources. Combined loudness?}`,
+                        expressionLatex: `4\\times \\text{ intensity} \\Rightarrow +6 \\text{ dB}`,
+                        targetLatex: `L`,
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "56", expected: 56 }],
+                        correctLatex: `56\\text{ dB}`,
+                        hintLatex: [`10 \\log_{10}(4) \\approx 6 \\text{ dB}`]
                     }
                 );
             }
@@ -563,6 +606,15 @@ export default function SP306Page() {
                         slots: [{ id: "dose", labelLatex: `\\text{Dose (\\%)}`, placeholder: "100", expected: 100 }],
                         correctLatex: `100\\%`,
                         hintLatex: [`+3 \\text{ dB doubles intensity, halves safe time}`]
+                    },
+                    {
+                        id: "LI-E5", difficulty, stage, soundType: "itu_weighting",
+                        promptLatex: `\\text{ITU-R 468 weighting emphasizes 6 kHz region. Used for measuring what?}`,
+                        expressionLatex: `\\text{Noise measurement standard}`,
+                        targetLatex: `\\text{Application}`,
+                        slots: [{ id: "app", labelLatex: `\\text{Application}`, placeholder: "noise", expected: "noise" }],
+                        correctLatex: `\\text{Audio noise/hiss}`,
+                        hintLatex: [`\\text{Emphasizes ear's most sensitive region}`]
                     }
                 );
             }
@@ -596,29 +648,29 @@ export default function SP306Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "SOUND_WAVES" as Stage, label: t.stages.sound_waves },
-        { id: "FREQUENCY_PITCH" as Stage, label: t.stages.frequency_pitch },
-        { id: "LOUDNESS_INTENSITY" as Stage, label: t.stages.loudness_intensity },
-    ], [t.stages]);
+        { id: "SOUND_WAVES" as Stage, label: t("sp3_06.stages.sound_waves") },
+        { id: "FREQUENCY_PITCH" as Stage, label: t("sp3_06.stages.frequency_pitch") },
+        { id: "LOUDNESS_INTENSITY" as Stage, label: t("sp3_06.stages.loudness_intensity") },
+    ], [t]);
 
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t.title}
+                title={t("sp3_06.title")}
                 moduleCode="SP3.06"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t.footer_left}
+                footerLeft={t("sp3_06.footer_left")}
                 translations={{
-                    back: t.back,
-                    check: t.check,
-                    next: t.next,
-                    correct: t.correct,
-                    incorrect: t.incorrect,
-                    difficulty: t.difficulty,
+                    back: t("sp3_06.back"),
+                    check: t("sp3_06.check"),
+                    next: t("sp3_06.next"),
+                    correct: t("sp3_06.correct"),
+                    incorrect: t("sp3_06.incorrect"),
+                    difficulty: t("sp3_06.difficulty"),
                 }}
                 monitorContent={<AcousticsVisualization stage={stage} />}
             >
@@ -629,7 +681,7 @@ export default function SP306Page() {
 
     return (
         <ChamberLayout
-            title={t.title}
+            title={t("sp3_06.title")}
             moduleCode="SP3.06"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -639,22 +691,22 @@ export default function SP306Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sp3_06.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                difficulty: t.difficulty,
+                back: t("sp3_06.back"),
+                check: t("sp3_06.check"),
+                next: t("sp3_06.next"),
+                correct: t("sp3_06.correct"),
+                incorrect: t("sp3_06.incorrect"),
+                difficulty: t("sp3_06.difficulty"),
             }}
             monitorContent={<AcousticsVisualization stage={stage} />}
         >
             <div className="space-y-6">
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-blue-500/30">
-                    <h3 className="text-blue-400 font-bold mb-2">{t.objective_title}</h3>
+                    <h3 className="text-blue-400 font-bold mb-2">{t("sp3_06.objective_title")}</h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                        {t.scenarios[stage.toLowerCase() as keyof typeof t.scenarios]}
+                        {t(`sp3_06.scenarios.${stage.toLowerCase()}`)}
                     </p>
                 </div>
 
