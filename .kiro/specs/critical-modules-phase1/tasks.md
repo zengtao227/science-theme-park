@@ -1148,7 +1148,7 @@ const module_t = {
 
 #### Phase 5.3: i18n迁移 - 数学模块（1天）
 
-**状态**: 🔄 **进行中 - 策略调整为i18n迁移**
+**状态**: ✅ **已完成**
 
 **策略调整说明**:
 - 许多模块已使用良好的结构化模式（Array.from, switch+data, etc.）
@@ -1204,17 +1204,17 @@ const module_t = {
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.7 SM2.02 - i18n迁移
+- [x] 5.3.7 SM2.02 - i18n迁移
   - 当前: `translations[currentLanguage].sm2_02`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.8 SM3.03 - i18n迁移
+- [x] 5.3.8 SM3.03 - i18n迁移
   - 当前: `translations[currentLanguage].sm3_03`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
   
-- [ ] 5.3.9 Checkpoint 数学模块
+- [x] 5.3.9 Checkpoint 数学模块
   - 运行 `npm run build`
   - 浏览器抽查3个模块
   - `git commit -m "refactor(math): migrate to useLanguage hook"`
