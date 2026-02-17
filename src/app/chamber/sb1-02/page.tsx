@@ -28,85 +28,151 @@ export default function SB102Page() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB102Quest[] => {
         const quests: SB102Quest[] = [];
 
+        // EQUATION stage: 5 questions per difficulty
         if (stage === "EQUATION") {
-            // Photosynthesis equation components
-            quests.push(
-                {
-                    id: "EQ-1", difficulty, stage,
-                    promptLatex: t("sb1_02.prompts.reactant"),
-                    expressionLatex: `6CO_2 + 6H_2O + \\text{light} \\rightarrow C_6H_{12}O_6 + \\text{?}`,
-                    targetLatex: "o2",
-                    slots: [{ id: "ans", labelLatex: t("sb1_02.prompts.reactant"), placeholder: "...", expected: "o2" }],
-                    correctLatex: "6O_2",
-                    hintLatex: [t("sb1_02.prompts.hint_oxygen")]
-                },
-                {
-                    id: "EQ-2", difficulty, stage,
-                    promptLatex: t("sb1_02.prompts.glucose", { co2: "6" }),
-                    expressionLatex: `6CO_2 + 6H_2O \\rightarrow \\text{?} + 6O_2`,
-                    targetLatex: "glucose",
-                    slots: [{ id: "ans", labelLatex: t("sb1_02.prompts.reactant"), placeholder: "...", expected: "glucose" }],
-                    correctLatex: "C_6H_{12}O_6",
-                    hintLatex: [t("sb1_02.prompts.hint_glucose")]
-                },
-                {
-                    id: "EQ-3", difficulty, stage,
-                    promptLatex: t("sb1_02.prompts.water_count", { glucose: "1" }),
-                    expressionLatex: `6CO_2 + \\text{?}H_2O \\rightarrow C_6H_{12}O_6 + 6O_2`,
-                    targetLatex: "6",
-                    slots: [{ id: "ans", labelLatex: "\\text{Coefficient}", placeholder: "...", expected: "6" }],
-                    correctLatex: "6",
-                    hintLatex: [t("sb1_02.prompts.hint_balance")]
-                }
-            );
-        }
+            const equations = {
+                BASIC: [
+                    { q: "oxygen_product", answer: "O2", equation: "6CO_2 + 6H_2O + \\text{light} \\rightarrow C_6H_{12}O_6 + ?" },
+                    { q: "glucose_product", answer: "glucose", equation: "6CO_2 + 6H_2O \\rightarrow ? + 6O_2" },
+                    { q: "co2_count", answer: "6", equation: "?CO_2 + 6H_2O \\rightarrow C_6H_{12}O_6 + 6O_2" },
+                    { q: "water_count", answer: "6", equation: "6CO_2 + ?H_2O \\rightarrow C_6H_{12}O_6 + 6O_2" },
+                    { q: "light_requirement", answer: "light", equation: "6CO_2 + 6H_2O + ? \\rightarrow C_6H_{12}O_6 + 6O_2" }
+                ],
+                CORE: [
+                    { q: "carbon_atoms", answer: "6", equation: "\\text{Carbon atoms in glucose} = ?" },
+                    { q: "oxygen_atoms_product", answer: "12", equation: "\\text{Oxygen atoms in 6O}_2 = ?" },
+                    { q: "hydrogen_atoms", answer: "12", equation: "\\text{Hydrogen atoms in glucose} = ?" },
+                    { q: "water_molecules", answer: "6", equation: "\\text{Water molecules needed} = ?" },
+                    { q: "co2_molecules", answer: "6", equation: "\\text{CO}_2 \\text{ molecules needed} = ?" }
+                ],
+                ADVANCED: [
+                    { q: "light_dependent", answer: "thylakoid", equation: "\\text{Light reactions occur in} = ?" },
+                    { q: "light_independent", answer: "stroma", equation: "\\text{Calvin cycle occurs in} = ?" },
+                    { q: "nadph_production", answer: "NADPH", equation: "\\text{Electron carrier produced} = ?" },
+                    { q: "atp_production", answer: "ATP", equation: "\\text{Energy molecule produced} = ?" },
+                    { q: "water_splitting", answer: "photolysis", equation: "\\text{Water splitting process} = ?" }
+                ],
+                ELITE: [
+                    { q: "photosystem_ii", answer: "P680", equation: "\\text{Photosystem II reaction center} = ?" },
+                    { q: "photosystem_i", answer: "P700", equation: "\\text{Photosystem I reaction center} = ?" },
+                    { q: "electron_transport", answer: "plastoquinone", equation: "\\text{Electron carrier between PS II and PS I} = ?" },
+                    { q: "carbon_fixation", answer: "RuBisCO", equation: "\\text{Enzyme fixing CO}_2 = ?" },
+                    { q: "g3p_molecules", answer: "2", equation: "\\text{G3P molecules per glucose} = ?" }
+                ]
+            };
 
-        if (stage === "FACTORS") {
-            // Limiting factors
-            const factors = [
-                { factor: "light", effect: "increase", answer: "increase" },
-                { factor: "co2", effect: "decrease", answer: "decrease" },
-                { factor: "temperature", effect: "optimal", answer: "optimal" },
-                { factor: "water", effect: "increase", answer: "increase" }
-            ];
-
-            factors.forEach((f, idx) => {
+            const eqList = equations[difficulty];
+            eqList.forEach((item, idx) => {
                 quests.push({
-                    id: `FACT-${idx}`,
+                    id: `EQ_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    factor: f.factor,
-                    promptLatex: t("sb1_02.prompts.factor_effect", { factor: f.factor, effect: f.effect }),
-                    expressionLatex: `\\text{${f.factor}} \\uparrow \\rightarrow \\text{rate } \\text{?}`,
-                    targetLatex: f.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "increase/decrease/optimal", expected: f.answer }],
-                    correctLatex: f.answer,
-                    hintLatex: [t("sb1_02.prompts.hint_factor")]
+                    promptLatex: t(`sb1_02.prompts.eq_${item.q}`),
+                    expressionLatex: item.equation,
+                    targetLatex: item.answer,
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_02.prompts.hint_${item.q}`)]
                 });
             });
         }
 
-        if (stage === "CHLOROPLAST") {
-            // Chloroplast structures
-            const structures = [
-                { name: "thylakoid", function: "light reactions" },
-                { name: "stroma", function: "calvin cycle" },
-                { name: "grana", function: "stacked thylakoids" },
-                { name: "chlorophyll", function: "light absorption" }
-            ];
+        // FACTORS stage: 5 questions per difficulty
+        if (stage === "FACTORS") {
+            const factors = {
+                BASIC: [
+                    { factor: "light", effect: "increase", answer: "increase" },
+                    { factor: "co2", effect: "increase", answer: "increase" },
+                    { factor: "temperature", effect: "increase", answer: "increase" },
+                    { factor: "water", effect: "increase", answer: "increase" },
+                    { factor: "chlorophyll", effect: "increase", answer: "increase" }
+                ],
+                CORE: [
+                    { factor: "light_saturation", effect: "plateau", answer: "plateau" },
+                    { factor: "co2_saturation", effect: "plateau", answer: "plateau" },
+                    { factor: "temperature_optimal", effect: "optimal", answer: "25" },
+                    { factor: "light_compensation", effect: "zero", answer: "compensation" },
+                    { factor: "limiting_factor", effect: "slowest", answer: "limiting" }
+                ],
+                ADVANCED: [
+                    { factor: "c3_plants", effect: "photorespiration", answer: "photorespiration" },
+                    { factor: "c4_plants", effect: "efficient", answer: "efficient" },
+                    { factor: "cam_plants", effect: "nocturnal", answer: "nocturnal" },
+                    { factor: "stomata_open", effect: "increase", answer: "increase" },
+                    { factor: "stomata_closed", effect: "decrease", answer: "decrease" }
+                ],
+                ELITE: [
+                    { factor: "quantum_yield", effect: "efficiency", answer: "8" },
+                    { factor: "action_spectrum", effect: "blue_red", answer: "blue" },
+                    { factor: "absorption_spectrum", effect: "chlorophyll", answer: "chlorophyll" },
+                    { factor: "light_saturation_point", effect: "maximum", answer: "1000" },
+                    { factor: "co2_compensation_point", effect: "minimum", answer: "50" }
+                ]
+            };
 
-            structures.forEach((s, idx) => {
+            const factorList = factors[difficulty];
+            factorList.forEach((item, idx) => {
                 quests.push({
-                    id: `STRUCT-${idx}`,
+                    id: `FACT_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    structure: s.name,
-                    promptLatex: t("sb1_02.prompts.structure_function", { process: s.function }),
-                    expressionLatex: `\\text{${s.function}} \\rightarrow \\text{?}`,
-                    targetLatex: s.name,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: s.name }],
-                    correctLatex: s.name,
-                    hintLatex: [t("sb1_02.prompts.hint_structure", { name: s.name })]
+                    factor: item.factor,
+                    promptLatex: t(`sb1_02.prompts.factor_${item.factor}`),
+                    expressionLatex: `\\text{${item.factor.replace(/_/g, ' ')}} \\rightarrow ?`,
+                    targetLatex: item.answer,
+                    slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_02.prompts.hint_factor_${item.factor}`)]
+                });
+            });
+        }
+
+        // CHLOROPLAST stage: 5 questions per difficulty
+        if (stage === "CHLOROPLAST") {
+            const structures = {
+                BASIC: [
+                    { name: "thylakoid", function: "light reactions" },
+                    { name: "stroma", function: "calvin cycle" },
+                    { name: "grana", function: "stacked thylakoids" },
+                    { name: "chlorophyll", function: "light absorption" },
+                    { name: "membrane", function: "outer boundary" }
+                ],
+                CORE: [
+                    { name: "lumen", function: "proton reservoir" },
+                    { name: "stroma_lamellae", function: "connecting thylakoids" },
+                    { name: "photosystem", function: "light harvesting" },
+                    { name: "atp_synthase", function: "ATP production" },
+                    { name: "rubisco", function: "carbon fixation" }
+                ],
+                ADVANCED: [
+                    { name: "antenna_complex", function: "light collection" },
+                    { name: "reaction_center", function: "electron excitation" },
+                    { name: "plastocyanin", function: "electron transport" },
+                    { name: "ferredoxin", function: "NADPH production" },
+                    { name: "cytochrome_b6f", function: "proton pumping" }
+                ],
+                ELITE: [
+                    { name: "psii_core", function: "water oxidation" },
+                    { name: "psi_core", function: "NADP+ reduction" },
+                    { name: "oxygen_evolving_complex", function: "O2 release" },
+                    { name: "calvin_cycle_enzymes", function: "carbon reduction" },
+                    { name: "starch_granules", function: "glucose storage" }
+                ]
+            };
+
+            const structList = structures[difficulty];
+            structList.forEach((item, idx) => {
+                quests.push({
+                    id: `STRUCT_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    structure: item.name,
+                    promptLatex: t(`sb1_02.prompts.struct_${item.name}`),
+                    expressionLatex: `\\text{${item.function}} \\rightarrow ?`,
+                    targetLatex: item.name,
+                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: item.name }],
+                    correctLatex: item.name,
+                    hintLatex: [t(`sb1_02.prompts.hint_struct_${item.name}`)]
                 });
             });
         }
