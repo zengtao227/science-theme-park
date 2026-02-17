@@ -268,9 +268,9 @@ export const deChemistry = {
     },
     sc1_01: {
         back: "Zurück zum Nexus",
-        title: "C1.01 // GEHEIM LABOR",
+        title: "SC1.01 // GEHEIM LABOR",
         difficulty: {
-            basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
+            basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
         objective_title: "Aktuelles Missionsziel",
         target_title: "Substanzanalyse",
@@ -279,14 +279,21 @@ export const deChemistry = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "C1.01_LABOR_MONITOR",
-        footer_left: "C1.01_GEHEIM_LABOR // KNOTEN: BASEL",
+        monitor_title: "SC1.01_LABOR_MONITOR",
+        footer_left: "SC1.01_GEHEIM_LABOR // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
             substance: "Substanz",
             tool: "Testwerkzeug",
-            observation: "Beobachtung"
+            observation: "Beobachtung",
+            method: "Methode",
+            hint: "Hinweis"
+        },
+        hints: {
+            soda: "Natron: Sprudelt mit Essig (CO₂)",
+            starch: "Stärke: Wird blau-schwarz mit Jod",
+            salt: "Salz: Löst sich vollständig in Wasser"
         },
         mission: {
             title: "PULVER-IDENTIFIKATION",

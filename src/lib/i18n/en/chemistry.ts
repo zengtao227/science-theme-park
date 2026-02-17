@@ -280,7 +280,7 @@ export const enChemistry = {
     },
     sc1_01: {
         back: "Back to Nexus",
-        title: "C1.01 // MYSTERY LAB",
+        title: "SC1.01 // MYSTERY LAB",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -291,14 +291,21 @@ export const enChemistry = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "C1.01_LAB_MONITOR",
-        footer_left: "C1.01_MYSTERY_LAB // NODE: BASEL",
+        monitor_title: "SC1.01_LAB_MONITOR",
+        footer_left: "SC1.01_MYSTERY_LAB // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
             substance: "Substance",
             tool: "Test Tool",
-            observation: "Observation"
+            observation: "Observation",
+            method: "Method",
+            hint: "Hint"
+        },
+        hints: {
+            soda: "Baking Soda: Fizzes with vinegar (CO₂)",
+            starch: "Starch: Turns blue-black with iodine",
+            salt: "Salt: Dissolves completely in water"
         },
         mission: {
             title: "POWDER IDENTIFICATION",

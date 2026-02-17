@@ -280,7 +280,7 @@ export const cnChemistry = {
     },
     sc1_01: {
         back: "返回枢纽",
-        title: "C1.01 // 神秘实验室",
+        title: "SC1.01 // 神秘实验室",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -291,14 +291,21 @@ export const cnChemistry = {
         correct: "验证通过",
         incorrect: "匹配失败",
         ready: "就绪",
-        monitor_title: "C1.01_实验室监控器",
-        footer_left: "C1.01_神秘实验室 // 节点：巴塞尔",
+        monitor_title: "SC1.01_实验室监控器",
+        footer_left: "SC1.01_神秘实验室 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
             substance: "物质",
             tool: "测试工具",
-            observation: "观察结果"
+            observation: "观察结果",
+            method: "方法",
+            hint: "提示"
+        },
+        hints: {
+            soda: "小苏打：与醋反应产生气泡 (CO₂)",
+            starch: "淀粉：与碘反应变蓝黑色",
+            salt: "食盐：完全溶于水"
         },
         mission: {
             title: "粉末鉴定任务",
