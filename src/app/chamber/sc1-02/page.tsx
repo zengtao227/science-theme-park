@@ -2,14 +2,15 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
 
 type Stage = "MOLAR_MASS" | "STOICHIOMETRY" | "YIELD";
+type C102T = typeof translations.EN.sc1_02;
 
 interface ReagentInfo {
   label: string;
