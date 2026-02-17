@@ -436,7 +436,7 @@ const t = translations[currentLanguage].gm1_02;
   - SB2.02 无重复
   - 所有链接可点击并导航到正确模块
 
-- [-] 5.4 更新文档
+- [x] 5.4 更新文档
   - 更新 `CURRICULUM_PLAN_UPDATE_2026_v2.md`:
     - 将 GM1.02, SC2.05, GP3.01, SC2.06 标记为 ✅ 已完成
     - 更新模块统计数字
