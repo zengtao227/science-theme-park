@@ -424,7 +424,7 @@ function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G1
 }
 
 export default function G101Page() {
-  const { completeStage } = useAppStore();
+  const { completeStage, currentLanguage } = useAppStore();
   const { t } = useLanguage();
   
   const gm1_01_t = {
@@ -439,6 +439,8 @@ export default function G101Page() {
     monitor_title: t("gm1_01.monitor_title"),
     footer_left: t("gm1_01.footer_left"),
     target_title: t("gm1_01.target_title"),
+    objective_title: t("gm1_01.objective_title"),
+    input_tip_2dp: t("gm1_01.input_tip_2dp"),
     stages: {
       POWER_RULE: t("gm1_01.stages.POWER_RULE"),
       FACTOR_RULE: t("gm1_01.stages.FACTOR_RULE"),
@@ -531,37 +533,37 @@ export default function G101Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={gm1_01_t.title}
       moduleCode="GM1.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "POWER_RULE", label: t.stages.power_rule },
-        { id: "FACTOR_RULE", label: t.stages.factor_rule },
-        { id: "SUM_RULE", label: t.stages.sum_rule },
-        { id: "PRODUCT_RULE", label: t.stages.product_rule },
-        { id: "QUOTIENT_RULE", label: t.stages.quotient_rule },
-        { id: "CHAIN_RULE", label: t.stages.chain_rule },
+        { id: "POWER_RULE", label: gm1_01_t.stages.power_rule },
+        { id: "FACTOR_RULE", label: gm1_01_t.stages.factor_rule },
+        { id: "SUM_RULE", label: gm1_01_t.stages.sum_rule },
+        { id: "PRODUCT_RULE", label: gm1_01_t.stages.product_rule },
+        { id: "QUOTIENT_RULE", label: gm1_01_t.stages.quotient_rule },
+        { id: "CHAIN_RULE", label: gm1_01_t.stages.chain_rule },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={gm1_01_t.footer_left}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: gm1_01_t.back,
+        check: gm1_01_t.check,
+        next: gm1_01_t.next,
+        correct: gm1_01_t.correct,
+        incorrect: gm1_01_t.incorrect,
+        ready: gm1_01_t.ready,
+        monitor_title: gm1_01_t.monitor_title,
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: gm1_01_t.difficulty.basic,
+          core: gm1_01_t.difficulty.core,
+          advanced: gm1_01_t.difficulty.advanced,
+          elite: gm1_01_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -571,28 +573,28 @@ export default function G101Page() {
             xPosition={currentQuest?.xPosition || 2}
             derivative={parseFloat(inputs.derivative || "0")}
             translations={{
-              title: t.canvas.title,
-              subtitle: stage === "POWER_RULE" ? t.canvas.subtitle_power :
-                       stage === "FACTOR_RULE" ? t.canvas.subtitle_factor :
-                       stage === "SUM_RULE" ? t.canvas.subtitle_sum :
-                       stage === "PRODUCT_RULE" ? t.canvas.subtitle_product :
-                       stage === "QUOTIENT_RULE" ? t.canvas.subtitle_quotient :
-                       t.canvas.subtitle_chain,
-              xLabel: t.canvas.x_label,
-              yLabel: t.canvas.y_label,
-              slopeLabel: t.canvas.slope_label,
-              yourSlope: t.canvas.your_slope,
-              correctSlope: t.canvas.correct_slope,
-              status_chamber: t.canvas.status_chamber,
-              status_sim: t.canvas.status_sim,
-              status_mode: t.canvas.status_mode,
+              title: gm1_01_t.canvas.title,
+              subtitle: stage === "POWER_RULE" ? gm1_01_t.canvas.subtitle_power :
+                       stage === "FACTOR_RULE" ? gm1_01_t.canvas.subtitle_factor :
+                       stage === "SUM_RULE" ? gm1_01_t.canvas.subtitle_sum :
+                       stage === "PRODUCT_RULE" ? gm1_01_t.canvas.subtitle_product :
+                       stage === "QUOTIENT_RULE" ? gm1_01_t.canvas.subtitle_quotient :
+                       gm1_01_t.canvas.subtitle_chain,
+              xLabel: gm1_01_t.canvas.x_label,
+              yLabel: gm1_01_t.canvas.y_label,
+              slopeLabel: gm1_01_t.canvas.slope_label,
+              yourSlope: gm1_01_t.canvas.your_slope,
+              correctSlope: gm1_01_t.canvas.correct_slope,
+              status_chamber: gm1_01_t.canvas.status_chamber,
+              status_sim: gm1_01_t.canvas.status_sim,
+              status_mode: gm1_01_t.canvas.status_mode,
             }}
           />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t.target_title}</div>
+          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{gm1_01_t.target_title}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{t.labels.hints}</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{gm1_01_t.labels.hints}</div>
             <div className="text-white font-black text-lg">
-              <InlineMath math={t.formulas[stage.toLowerCase() as keyof typeof t.formulas]} />
+              <InlineMath math={gm1_01_t.formulas[stage.toLowerCase() as keyof typeof gm1_01_t.formulas]} />
             </div>
             <div className="text-white/70 text-sm font-mono">
               <InlineMath math={currentQuest?.expressionLatex || ""} />
@@ -603,24 +605,24 @@ export default function G101Page() {
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{t.mission.title}</h3>
-          <p className="text-base text-white/70 font-mono">{t.mission.description}</p>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">{gm1_01_t.mission.title}</h3>
+          <p className="text-base text-white/70 font-mono">{gm1_01_t.mission.description}</p>
         </div>
         
         {/* Scenario Description */}
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "POWER_RULE" && t.scenarios.power_rule}
-            {stage === "FACTOR_RULE" && t.scenarios.factor_rule}
-            {stage === "SUM_RULE" && t.scenarios.sum_rule}
-            {stage === "PRODUCT_RULE" && t.scenarios.product_rule}
-            {stage === "QUOTIENT_RULE" && t.scenarios.quotient_rule}
-            {stage === "CHAIN_RULE" && t.scenarios.chain_rule}
+            {stage === "POWER_RULE" && gm1_01_t.scenarios.power_rule}
+            {stage === "FACTOR_RULE" && gm1_01_t.scenarios.factor_rule}
+            {stage === "SUM_RULE" && gm1_01_t.scenarios.sum_rule}
+            {stage === "PRODUCT_RULE" && gm1_01_t.scenarios.product_rule}
+            {stage === "QUOTIENT_RULE" && gm1_01_t.scenarios.quotient_rule}
+            {stage === "CHAIN_RULE" && gm1_01_t.scenarios.chain_rule}
           </div>
         </div>
 
         <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t.objective_title}</h3>
+          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{gm1_01_t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">
             <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
@@ -650,7 +652,7 @@ export default function G101Page() {
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
             {currentLanguage === 'DE'
-              ? t.input_tip_2dp
+              ? gm1_01_t.input_tip_2dp
               : currentLanguage === 'CN'
                 ? "提示：保留 2 位小数。"
                 : "Tip: Enter result rounded to 2 decimal places."
