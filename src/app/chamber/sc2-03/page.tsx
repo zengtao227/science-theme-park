@@ -23,15 +23,35 @@ export default function SC203Page() {
     incorrect: t("sc2_03.incorrect"),
     ready: t("sc2_03.ready"),
     monitor_title: t("sc2_03.monitor_title"),
+    target_title: t("sc2_03.target_title"),
+    objective_title: t("sc2_03.objective_title"),
     stages: {
       boyle: t("sc2_03.stages.boyle"),
       charles: t("sc2_03.stages.charles"),
       combined: t("sc2_03.stages.combined"),
+      boyle_desc: t("sc2_03.stages.boyle_desc"),
+      charles_desc: t("sc2_03.stages.charles_desc"),
+      combined_desc: t("sc2_03.stages.combined_desc"),
+      boyle_hint: t("sc2_03.stages.boyle_hint"),
+      charles_hint: t("sc2_03.stages.charles_hint"),
+      combined_hint: t("sc2_03.stages.combined_hint"),
     },
     scenarios: {
       gas_compression: t("sc2_03.scenarios.gas_compression"),
       weather_balloons: t("sc2_03.scenarios.weather_balloons"),
       chemical_reactors: t("sc2_03.scenarios.chemical_reactors"),
+    },
+    labels: {
+      pressure: t("sc2_03.labels.pressure"),
+      state_variables: t("sc2_03.labels.state_variables"),
+      formulas: t("sc2_03.labels.formulas"),
+      volume: t("sc2_03.labels.volume"),
+      temperature: t("sc2_03.labels.temperature"),
+      moles: t("sc2_03.labels.moles"),
+    },
+    mission: {
+      title: t("sc2_03.mission.title"),
+      description: t("sc2_03.mission.description"),
     },
     difficulty: {
       basic: "BASIC",
@@ -94,12 +114,12 @@ export default function SC203Page() {
             particleCount={100}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "GAS PROPERTIES"}
+            {sc2_03_t.target_title}
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.pressure || "PRESSURE"}
+              {sc2_03_t.labels.pressure}
             </div>
             <div className="text-4xl text-neon-cyan font-black text-center">
               P = {pressure.toFixed(2)} atm
@@ -108,7 +128,7 @@ export default function SC203Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.state_variables || "STATE VARIABLES"}
+              {sc2_03_t.labels.state_variables}
             </div>
             <div className="grid grid-cols-3 gap-2 text-sm">
               <div className="flex flex-col items-center">
@@ -128,7 +148,7 @@ export default function SC203Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formulas || "FORMULAS"}
+              {sc2_03_t.labels.formulas}
             </div>
             <div className="text-white font-black text-sm space-y-2">
               <div><InlineMath math="PV = nRT" /></div>
@@ -143,27 +163,26 @@ export default function SC203Page() {
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: IDEAL GAS LAWS"}
+            {sc2_03_t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description ||
-              "Explore the relationship between pressure, volume, and temperature in ideal gases."}
+            {sc2_03_t.mission.description}
           </p>
         </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
+            {sc2_03_t.objective_title}
           </h3>
           <p className="text-3xl text-white font-black italic">
-            {stage === "boyle" && (t?.stages?.boyle_desc || "Observe inverse relationship: P ∝ 1/V")}
-            {stage === "charles" && (t?.stages?.charles_desc || "Observe direct relationship: V ∝ T")}
-            {stage === "combined" && (t?.stages?.combined_desc || "Master the combined gas law")}
+            {stage === "boyle" && sc2_03_t.stages.boyle_desc}
+            {stage === "charles" && sc2_03_t.stages.charles_desc}
+            {stage === "combined" && sc2_03_t.stages.combined_desc}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.volume || "VOLUME (V)"}
+              {sc2_03_t.labels.volume}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -182,7 +201,7 @@ export default function SC203Page() {
 
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.temperature || "TEMPERATURE (T)"}
+              {sc2_03_t.labels.temperature}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -201,7 +220,7 @@ export default function SC203Page() {
 
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.moles || "MOLES (n)"}
+              {sc2_03_t.labels.moles}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -219,16 +238,15 @@ export default function SC203Page() {
 
           <div className="text-center pt-4 border-t border-white/10">
             <div className="text-[10px] text-white/90 font-mono italic">
-              {stage === "boyle" && (t?.stages?.boyle_hint || "Boyle's Law: Decrease volume → Increase pressure")}
-              {stage === "charles" && (t?.stages?.charles_hint || "Charles' Law: Increase temperature → Increase volume")}
-              {stage === "combined" && (t?.stages?.combined_hint || "Combined: All three variables interact")}
+              {stage === "boyle" && sc2_03_t.stages.boyle_hint}
+              {stage === "charles" && sc2_03_t.stages.charles_hint}
+              {stage === "combined" && sc2_03_t.stages.combined_hint}
             </div>
           </div>
         </div>
 
         {/* Scenario Display */}
-        {t?.scenarios && (
-          <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
+        <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
             <div className="flex items-start gap-4">
               <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -245,7 +263,6 @@ export default function SC203Page() {
               </div>
             </div>
           </div>
-        )}
       </div>
     </ChamberLayout>
   );

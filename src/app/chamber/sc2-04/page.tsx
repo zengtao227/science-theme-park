@@ -246,25 +246,23 @@ export default function SC204Page() {
         </div>
 
         {/* Scenario Display */}
-        {t?.scenarios && (
-          <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div className="space-y-2">
-                <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
-                <p className="text-sm text-white/50 leading-relaxed italic">
-                  {stage === "dissolve" && sc2_04_t.scenarios.pharma_solubility}
-                  {stage === "saturate" && sc2_04_t.scenarios.rhine_pollution_monitoring}
-                  {stage === "crystallize" && sc2_04_t.scenarios.crystallization_purification}
-                </p>
-              </div>
+        <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
+          <div className="flex items-start gap-4">
+            <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="space-y-2">
+              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+              <p className="text-sm text-white/50 leading-relaxed italic">
+                {stage === "dissolve" && sc2_04_t.scenarios.pharma_solubility}
+                {stage === "saturate" && sc2_04_t.scenarios.rhine_pollution_monitoring}
+                {stage === "crystallize" && sc2_04_t.scenarios.crystallization_purification}
+              </p>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </ChamberLayout>
   );

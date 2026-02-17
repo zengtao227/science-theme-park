@@ -1252,7 +1252,7 @@ const module_t = {
 
 #### Phase 5.5: i18n迁移 - 化学模块（1天）
 
-**状态**: ⏳ **待开始**
+**状态**: ✅ **已完成**
 
 **化学模块 i18n 迁移列表**:
 
@@ -1260,15 +1260,15 @@ const module_t = {
   - 当前: `translations[currentLanguage].sc1_04`
   - 目标: `useLanguage()` hook
   
-- [-] 5.5.2 SC1.05 - i18n迁移
+- [x] 5.5.2 SC1.05 - i18n迁移
   - 当前: `translations[currentLanguage]?.sc1_05`
   - 目标: `useLanguage()` hook
   
-- [-] 5.5.3 SC2.02 - i18n迁移
+- [x] 5.5.3 SC2.02 - i18n迁移
   - 当前: `translations[currentLanguage].sc2_02`
   - 目标: `useLanguage()` hook
   
-- [-] 5.5.4 SC2.03 - i18n迁移
+- [x] 5.5.4 SC2.03 - i18n迁移
   - 当前: `translations[currentLanguage].sc2_03`
   - 目标: `useLanguage()` hook
   
@@ -1280,7 +1280,7 @@ const module_t = {
   - 当前: `translations[currentLanguage]?.sc3_05`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.7 Checkpoint 化学模块
+- [x] 5.5.7 Checkpoint 化学模块
   - 运行 `npm run build`
   - 浏览器抽查3个模块
   - `git commit -m "refactor(chemistry): migrate to useLanguage hook"`
