@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import SimpleMachineCanvas from "@/components/chamber/sp3-05/SimpleMachineCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -17,11 +17,43 @@ interface SP305Quest extends Quest {
     machineType?: string;
 }
 
-type SP305T = typeof translations.EN.sp3_05;
-
 export default function SP305Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp3_05 || translations.EN.sp3_05) as SP305T;
+    const { t } = useLanguage();
+    
+    const sp3_05_t = {
+        title: t("sp3_05.title"),
+        back: t("sp3_05.back"),
+        check: t("sp3_05.check"),
+        next: t("sp3_05.next"),
+        correct: t("sp3_05.correct"),
+        incorrect: t("sp3_05.incorrect"),
+        ready: t("sp3_05.ready"),
+        monitor_title: t("sp3_05.monitor_title"),
+        footer_left: t("sp3_05.footer_left"),
+        objective_title: t("sp3_05.objective_title"),
+        target_title: t("sp3_05.target_title"),
+        difficulty: {
+            basic: t("sp3_05.difficulty.basic"),
+            core: t("sp3_05.difficulty.core"),
+            advanced: t("sp3_05.difficulty.advanced"),
+            elite: t("sp3_05.difficulty.elite")
+        },
+        stages: {
+            levers: t("sp3_05.stages.levers"),
+            pulleys: t("sp3_05.stages.pulleys"),
+            inclined_planes: t("sp3_05.stages.inclined_planes")
+        },
+        labels: {
+            force_ratio: t("sp3_05.labels.force_ratio"),
+            show_forces: t("sp3_05.labels.show_forces")
+        },
+        mission: {
+            title: t("sp3_05.mission.title"),
+            description: t("sp3_05.mission.description")
+        }
+    };
+    
     const [forceRatio, setForceRatio] = useState(2);
     const [showForces, setShowForces] = useState(true);
 
@@ -376,9 +408,9 @@ export default function SP305Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "LEVERS", label: t.stages.levers },
-        { id: "PULLEYS", label: t.stages.pulleys },
-        { id: "INCLINED_PLANES", label: t.stages.inclined_planes },
+        { id: "LEVERS", label: sp3_05_t.stages.levers },
+        { id: "PULLEYS", label: sp3_05_t.stages.pulleys },
+        { id: "INCLINED_PLANES", label: sp3_05_t.stages.inclined_planes },
     ], [t]);
 
     const hint = getHint();
@@ -386,7 +418,7 @@ export default function SP305Page() {
     return (
         <ChamberLayout
             moduleCode="SP3.05"
-            title={t.title}
+            title={sp3_05_t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -395,20 +427,20 @@ export default function SP305Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={sp3_05_t.footer_left}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: sp3_05_t.back,
+                check: sp3_05_t.check,
+                next: sp3_05_t.next,
+                correct: sp3_05_t.correct,
+                incorrect: sp3_05_t.incorrect,
+                ready: sp3_05_t.ready,
+                monitor_title: sp3_05_t.monitor_title,
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: sp3_05_t.difficulty.basic,
+                    core: sp3_05_t.difficulty.core,
+                    advanced: sp3_05_t.difficulty.advanced,
+                    elite: sp3_05_t.difficulty.elite,
                 },
             }}
             monitorContent={
@@ -426,7 +458,7 @@ export default function SP305Page() {
                     <div className="grid grid-cols-1 gap-2">
                         {stage === "LEVERS" && (
                             <div className="space-y-1">
-                                <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.force_ratio}</label>
+                                <label className="text-[9px] uppercase tracking-widest text-white/40">{sp3_05_t.labels.force_ratio}</label>
                                 <div className="flex items-center gap-3">
                                     <input
                                         type="range"
@@ -441,7 +473,7 @@ export default function SP305Page() {
                             </div>
                         )}
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_forces}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{sp3_05_t.labels.show_forces}</span>
                             <input
                                 type="checkbox"
                                 checked={showForces}
@@ -453,7 +485,7 @@ export default function SP305Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.mechanics_score}</span>
+                            <span>{sp3_05_t.labels.mechanics_score}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -476,7 +508,7 @@ export default function SP305Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {sp3_05_t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -487,7 +519,7 @@ export default function SP305Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.machine_display}
+                                    {sp3_05_t.labels.machine_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -500,7 +532,7 @@ export default function SP305Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-green/30" />
-                                    {t.labels.input_terminal}
+                                    {sp3_05_t.labels.input_terminal}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -545,10 +577,10 @@ export default function SP305Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? sp3_05_t.correct : sp3_05_t.incorrect}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? sp3_05_t.feedback.correct : sp3_05_t.feedback.incorrect}
                                                     </div>
                                                 </div>
                                             </div>
@@ -567,7 +599,7 @@ export default function SP305Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    {t.next}
+                                                    {sp3_05_t.next}
                                                 </button>
                                             )}
                                         </motion.div>

@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MeasurementCanvas from "@/components/chamber/sp3-01/MeasurementCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -20,11 +20,46 @@ interface SP301Quest extends Quest {
     measurement?: string;
 }
 
-type SP301T = typeof translations.EN.sp3_01;
-
 export default function SP301Page() {
     const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sp3_01 || translations.EN.sp3_01) as SP301T;
+    const { t } = useLanguage();
+    
+    const sp3_01_t = {
+        title: t("sp3_01.title"),
+        back: t("sp3_01.back"),
+        check: t("sp3_01.check"),
+        next: t("sp3_01.next"),
+        correct: t("sp3_01.correct"),
+        incorrect: t("sp3_01.incorrect"),
+        ready: t("sp3_01.ready"),
+        monitor_title: t("sp3_01.monitor_title"),
+        footer_left: t("sp3_01.footer_left"),
+        objective_title: t("sp3_01.objective_title"),
+        target_title: t("sp3_01.target_title"),
+        difficulty: {
+            basic: t("sp3_01.difficulty.basic"),
+            core: t("sp3_01.difficulty.core"),
+            advanced: t("sp3_01.difficulty.advanced"),
+            elite: t("sp3_01.difficulty.elite")
+        },
+        stages: {
+            si_units: t("sp3_01.stages.si_units"),
+            conversion: t("sp3_01.stages.conversion"),
+            precision: t("sp3_01.stages.precision")
+        },
+        labels: {
+            measurement_tool: t("sp3_01.labels.measurement_tool"),
+            ruler: t("sp3_01.labels.ruler"),
+            caliper: t("sp3_01.labels.caliper"),
+            micrometer: t("sp3_01.labels.micrometer"),
+            measured_value: t("sp3_01.labels.measured_value")
+        },
+        mission: {
+            title: t("sp3_01.mission.title"),
+            description: t("sp3_01.mission.description")
+        }
+    };
+    
     const [selectedTool, setSelectedTool] = useState<string>("ruler");
     const [measurementValue, setMeasurementValue] = useState<number>(0);
 
@@ -384,9 +419,9 @@ export default function SP301Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "SI_UNITS", label: t.stages.si_units },
-        { id: "CONVERSION", label: t.stages.conversion },
-        { id: "PRECISION", label: t.stages.precision },
+        { id: "SI_UNITS", label: sp3_01_t.stages.si_units },
+        { id: "CONVERSION", label: sp3_01_t.stages.conversion },
+        { id: "PRECISION", label: sp3_01_t.stages.precision },
     ], [t]);
 
     const hint = getHint();
@@ -394,7 +429,7 @@ export default function SP301Page() {
     return (
         <ChamberLayout
             moduleCode="SP3.01"
-            title={t.title}
+            title={sp3_01_t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -403,20 +438,20 @@ export default function SP301Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={sp3_01_t.footer_left}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: sp3_01_t.back,
+                check: sp3_01_t.check,
+                next: sp3_01_t.next,
+                correct: sp3_01_t.correct,
+                incorrect: sp3_01_t.incorrect,
+                ready: sp3_01_t.ready,
+                monitor_title: sp3_01_t.monitor_title,
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: sp3_01_t.difficulty.basic,
+                    core: sp3_01_t.difficulty.core,
+                    advanced: sp3_01_t.difficulty.advanced,
+                    elite: sp3_01_t.difficulty.elite,
                 },
             }}
             monitorContent={
@@ -441,14 +476,14 @@ export default function SP301Page() {
                                     : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10"
                                     }`}
                             >
-                                {t.tools[tool as keyof typeof t.tools]}
+                                {sp3_01_t.tools[tool as keyof typeof sp3_01_t.tools]}
                             </button>
                         ))}
                     </div>
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.precision}</span>
+                            <span>{sp3_01_t.labels.precision}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -471,7 +506,7 @@ export default function SP301Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-green uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {sp3_01_t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -482,7 +517,7 @@ export default function SP301Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.measurement_display}
+                                    {sp3_01_t.labels.measurement_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -495,7 +530,7 @@ export default function SP301Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-green/30" />
-                                    {t.labels.input_terminal}
+                                    {sp3_01_t.labels.input_terminal}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -540,10 +575,10 @@ export default function SP301Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? sp3_01_t.correct : sp3_01_t.incorrect}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? sp3_01_t.feedback.correct : sp3_01_t.feedback.incorrect}
                                                     </div>
                                                 </div>
                                             </div>
@@ -562,7 +597,7 @@ export default function SP301Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    {t.next}
+                                                    {sp3_01_t.next}
                                                 </button>
                                             )}
                                         </motion.div>
