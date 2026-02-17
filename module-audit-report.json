@@ -1,0 +1,2685 @@
+{
+  "timestamp": "2026-02-17T09:36:02.305Z",
+  "totalModules": 76,
+  "issues": {
+    "p0_empty_pools": [
+      {
+        "module": "em1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "em2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gb1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gb2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gb3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gb3-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gc1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gc1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gc2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gc3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gc3-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm1-01-advanced",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gm4-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp1-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp1-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp2-01",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 1,
+          "CORE": 1,
+          "ADVANCED": 1,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "gp2-02",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 1,
+          "CORE": 1,
+          "ADVANCED": 1,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb1-01-metabolic",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb1-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb2-01-tissues",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb2-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb2-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sb3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc1-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc1-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc1-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc2-06",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc3-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc3-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc3-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sc3-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm1-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm1-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm1-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm1-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm1-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-06",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-07",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-08",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm2-10",
+        "emptyDifficulties": [
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 1,
+          "CORE": 1,
+          "ADVANCED": 1,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm3-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm3-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sm3-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-01",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-02",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-03",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-04",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-05",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-07",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      },
+      {
+        "module": "sp3-08",
+        "emptyDifficulties": [
+          "BASIC",
+          "CORE",
+          "ADVANCED",
+          "ELITE"
+        ],
+        "questionCounts": {
+          "BASIC": 0,
+          "CORE": 0,
+          "ADVANCED": 0,
+          "ELITE": 0
+        }
+      }
+    ],
+    "p0_hardcoded_text": [],
+    "p1_old_i18n": [
+      "em1-01",
+      "em2-01",
+      "gb1-01",
+      "gb3-02",
+      "gc1-01",
+      "gc1-02",
+      "gc2-01",
+      "gc3-01",
+      "gc3-02",
+      "gm1-01",
+      "gm1-01-advanced",
+      "gm2-01",
+      "gm3-01",
+      "gm4-01",
+      "gp1-03",
+      "gp1-04",
+      "gp2-01",
+      "gp2-02",
+      "sb1-01",
+      "sc1-02",
+      "sc1-04",
+      "sc1-05",
+      "sc2-01",
+      "sc2-02",
+      "sc2-03",
+      "sc2-04",
+      "sc3-01",
+      "sc3-02",
+      "sc3-03",
+      "sc3-04",
+      "sc3-05",
+      "sm1-01",
+      "sm1-02",
+      "sm1-03",
+      "sm1-04",
+      "sm1-05",
+      "sm2-01",
+      "sm2-02",
+      "sm2-03",
+      "sm2-04",
+      "sm2-05",
+      "sm2-06",
+      "sm2-07",
+      "sm2-08",
+      "sm2-10",
+      "sm3-01",
+      "sm3-02",
+      "sm3-03",
+      "sm3-04",
+      "sm3-05",
+      "sp3-01",
+      "sp3-02",
+      "sp3-03",
+      "sp3-04",
+      "sp3-05",
+      "sp3-06"
+    ],
+    "p1_missing_translations": []
+  },
+  "summary": {
+    "totalModules": 76,
+    "modulesWithIssues": 74,
+    "modulesClean": 2,
+    "p0_issues": 72,
+    "p1_issues": 56
+  },
+  "moduleDetails": [
+    {
+      "name": "em1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/em1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "em2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/em2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gb1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gb1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gb2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gb2-01",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gb3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gb3-01",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gb3-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gb3-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gc1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gc1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gc1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gc1-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gc2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gc2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gc3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gc3-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gc3-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gc3-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 6,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm1-01-advanced",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm1-01-advanced",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm1-02",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm3-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 4,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gm4-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gm4-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp1-01",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp1-02",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp1-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp1-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp1-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp1-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 1,
+        "CORE": 1,
+        "ADVANCED": 1,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp2-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp2-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 1,
+        "CORE": 1,
+        "ADVANCED": 1,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
+    },
+    {
+      "name": "gp3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/gp3-01",
+      "issues": [],
+      "questionCounts": {
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 3,
+        "ELITE": 3
+      },
+      "stageCount": 3
+    },
+    {
+      "name": "sb1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb1-01-metabolic",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb1-01-metabolic",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb1-02",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb1-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb1-03",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb2-01-tissues",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb2-01-tissues",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb2-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb2-02",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb2-02-body-systems",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb2-02-body-systems",
+      "issues": [],
+      "questionCounts": {
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 3,
+        "ELITE": 3
+      },
+      "stageCount": 3
+    },
+    {
+      "name": "sb2-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb2-03",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sb3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sb3-01",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc1-01",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc1-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc1-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc1-03",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc1-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc1-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc1-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc1-05",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-05",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc2-06",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc2-06",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc3-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc3-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc3-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc3-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc3-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc3-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc3-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sc3-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sc3-05",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm1-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm1-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm1-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm1-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 4,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm1-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm1-05",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 1,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 13,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-05",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-06",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-06",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-07",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-07",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-08",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-08",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 4,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm2-10",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm2-10",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 1,
+        "CORE": 1,
+        "ADVANCED": 1,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 4,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm3-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm3-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm3-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sm3-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sm3-05",
+      "issues": [
+        "old_i18n_pattern"
+      ],
+      "questionCounts": {
+        "BASIC": 1,
+        "CORE": 1,
+        "ADVANCED": 1,
+        "ELITE": 2
+      },
+      "stageCount": 3
+    },
+    {
+      "name": "sp3-01",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-01",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-02",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-02",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-03",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-03",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-04",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-04",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-05",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-05",
+      "issues": [
+        "old_i18n_pattern",
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-06",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-06",
+      "issues": [
+        "old_i18n_pattern"
+      ],
+      "questionCounts": {
+        "BASIC": 3,
+        "CORE": 3,
+        "ADVANCED": 3,
+        "ELITE": 3
+      },
+      "stageCount": 3
+    },
+    {
+      "name": "sp3-07",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-07",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    },
+    {
+      "name": "sp3-08",
+      "path": "/Users/zengtao/science-theme-park/src/app/chamber/sp3-08",
+      "issues": [
+        "empty_question_pools"
+      ],
+      "questionCounts": {
+        "BASIC": 0,
+        "CORE": 0,
+        "ADVANCED": 0,
+        "ELITE": 0
+      },
+      "stageCount": 3,
+      "emptyDifficulties": [
+        "BASIC",
+        "CORE",
+        "ADVANCED",
+        "ELITE"
+      ]
+    }
+  ]
+}

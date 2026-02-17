@@ -6,7 +6,7 @@ This task list provides a systematic approach to audit and fix all 74 modules in
 
 ## Phase 1: Fix Known Issue - SB2.02
 
-- [ ] 1.1 Fix SB2.02 Body Systems module
+- [x] 1.1 Fix SB2.02 Body Systems module
   - 执行 `.kiro/specs/sb2-02-fixes/tasks.md` 中的所有任务
   - 添加所有 60 个问题的翻译键 (EN/CN/DE)
   - 迁移到 `useLanguage()` hook
@@ -16,7 +16,7 @@ This task list provides a systematic approach to audit and fix all 74 modules in
 
 ## Phase 2: Automated Audit - Identify All Issues
 
-- [ ] 2.1 Create audit script
+- [x] 2.1 Create audit script
   - 创建 `scripts/audit-modules.js`
   - 扫描所有 `src/app/chamber/*/page.tsx` 文件
   - 检查每个模块:
@@ -25,13 +25,13 @@ This task list provides a systematic approach to audit and fix all 74 modules in
     - 统计每个 stage×difficulty 的题目数量
   - 输出报告: `module-audit-report.json`
 
-- [ ] 2.2 Run audit script
+- [x] 2.2 Run audit script
   - 运行 `node scripts/audit-modules.js`
   - 生成完整的审计报告
   - 识别所有有问题的模块
   - 按优先级分类 (P0/P1/P2)
 
-- [ ] 2.3 Review audit results
+- [x] 2.3 Review audit results
   - 查看 `module-audit-report.json`
   - 确定需要修复的模块列表
   - 估算修复工作量
