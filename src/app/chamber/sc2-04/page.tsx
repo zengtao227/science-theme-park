@@ -4,7 +4,7 @@ import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BeakerCanvas from "@/components/chamber/sc2-04/BeakerCanvas";
 
@@ -21,8 +21,49 @@ function getSolubility(temperature: number): number {
 }
 
 export default function SC204Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sc2_04 || translations.EN.sc2_04;
+  const { t } = useLanguage();
+  const sc2_04_t = {
+    title: t("sc2_04.title"),
+    footer_left: t("sc2_04.footer_left"),
+    stages: {
+      dissolve: t("sc2_04.stages.dissolve"),
+      saturate: t("sc2_04.stages.saturate"),
+      crystallize: t("sc2_04.stages.crystallize"),
+      dissolve_desc: t("sc2_04.stages.dissolve_desc"),
+      saturate_desc: t("sc2_04.stages.saturate_desc"),
+      crystallize_desc: t("sc2_04.stages.crystallize_desc"),
+      dissolve_hint: t("sc2_04.stages.dissolve_hint"),
+      saturate_hint: t("sc2_04.stages.saturate_hint"),
+      crystallize_hint: t("sc2_04.stages.crystallize_hint"),
+    },
+    labels: {
+      solubility: t("sc2_04.labels.solubility"),
+      saturated: t("sc2_04.labels.saturated"),
+      unsaturated: t("sc2_04.labels.unsaturated"),
+      solution_data: t("sc2_04.labels.solution_data"),
+      formulas: t("sc2_04.labels.formulas"),
+      temperature: t("sc2_04.labels.temperature"),
+      solute_amount: t("sc2_04.labels.solute_amount"),
+    },
+    mission: {
+      title: t("sc2_04.mission.title"),
+      description: t("sc2_04.mission.description"),
+    },
+    scenarios: {
+      pharma_solubility: t("sc2_04.scenarios.pharma_solubility"),
+      rhine_pollution_monitoring: t("sc2_04.scenarios.rhine_pollution_monitoring"),
+      crystallization_purification: t("sc2_04.scenarios.crystallization_purification"),
+    },
+    target_title: t("sc2_04.target_title"),
+    objective_title: t("sc2_04.objective_title"),
+    back: t("sc2_04.back"),
+    check: t("sc2_04.check"),
+    next: t("sc2_04.next"),
+    correct: t("sc2_04.correct"),
+    incorrect: t("sc2_04.incorrect"),
+    ready: t("sc2_04.ready"),
+    monitor_title: t("sc2_04.monitor_title"),
+  };
 
   const [stage, setStage] = useState<Stage>("dissolve");
   const [temperature, setTemperature] = useState(25); // °C
@@ -49,29 +90,29 @@ export default function SC204Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "SC2.04 // SOLUBILITY LAB"}
+      title={sc2_04_t.title}
       moduleCode="SC2.04"
       difficulty="CORE"
       onDifficultyChange={() => { }}
       stages={[
-        { id: "dissolve", label: t?.stages?.dissolve || "DISSOLVE" },
-        { id: "saturate", label: t?.stages?.saturate || "SATURATE" },
-        { id: "crystallize", label: t?.stages?.crystallize || "CRYSTALLIZE" },
+        { id: "dissolve", label: sc2_04_t.stages.dissolve },
+        { id: "saturate", label: sc2_04_t.stages.saturate },
+        { id: "crystallize", label: sc2_04_t.stages.crystallize },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={() => { }}
       onNext={() => { }}
       checkStatus={null}
-      footerLeft={t?.footer_left || "SC2.04_SOLUBILITY_LAB // NODE: BASEL"}
+      footerLeft={sc2_04_t.footer_left}
       translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "SC2.04_SOLUBILITY_MONITOR",
+        back: sc2_04_t.back,
+        check: sc2_04_t.check,
+        next: sc2_04_t.next,
+        correct: sc2_04_t.correct,
+        incorrect: sc2_04_t.incorrect,
+        ready: sc2_04_t.ready,
+        monitor_title: sc2_04_t.monitor_title,
         difficulty: {
           basic: "BASIC",
           core: "CORE",
@@ -88,24 +129,24 @@ export default function SC204Page() {
             isSaturated={isSaturated}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "SOLUTION STATUS"}
+            {sc2_04_t.target_title}
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.solubility || "SOLUBILITY"}
+              {sc2_04_t.labels.solubility}
             </div>
             <div className="text-3xl text-neon-cyan font-black text-center">
               S = {solubility.toFixed(1)} g/100mL
             </div>
             <div className="text-xs text-center text-white/60 font-mono">
-              {isSaturated ? (t?.labels?.saturated || "SATURATED - Precipitate forming") : (t?.labels?.unsaturated || "UNSATURATED - Can dissolve more")}
+              {isSaturated ? sc2_04_t.labels.saturated : sc2_04_t.labels.unsaturated}
             </div>
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.solution_data || "SOLUTION DATA"}
+              {sc2_04_t.labels.solution_data}
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div className="flex justify-between">
@@ -129,7 +170,7 @@ export default function SC204Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formulas || "FORMULAS"}
+              {sc2_04_t.labels.formulas}
             </div>
             <div className="text-white font-black text-sm space-y-2">
               <div><InlineMath math="S = f(T)" /></div>
@@ -142,27 +183,26 @@ export default function SC204Page() {
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: SOLUBILITY"}
+            {sc2_04_t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description ||
-              "Explore solubility and temperature relationships. Observe crystallization."}
+            {sc2_04_t.mission.description}
           </p>
         </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
+            {sc2_04_t.objective_title}
           </h3>
           <p className="text-3xl text-white font-black italic">
-            {stage === "dissolve" && (t?.stages?.dissolve_desc || "Dissolve solute in water")}
-            {stage === "saturate" && (t?.stages?.saturate_desc || "Reach saturation point")}
-            {stage === "crystallize" && (t?.stages?.crystallize_desc || "Cool solution to crystallize")}
+            {stage === "dissolve" && sc2_04_t.stages.dissolve_desc}
+            {stage === "saturate" && sc2_04_t.stages.saturate_desc}
+            {stage === "crystallize" && sc2_04_t.stages.crystallize_desc}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.temperature || "TEMPERATURE (°C)"}
+              {sc2_04_t.labels.temperature}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -180,7 +220,7 @@ export default function SC204Page() {
 
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {t?.labels?.solute_amount || "SOLUTE AMOUNT (g)"}
+              {sc2_04_t.labels.solute_amount}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -198,9 +238,9 @@ export default function SC204Page() {
 
           <div className="text-center pt-4 border-t border-white/10">
             <div className="text-[10px] text-white/90 font-mono italic">
-              {stage === "dissolve" && (t?.stages?.dissolve_hint || "Most salts dissolve better at higher temperatures")}
-              {stage === "saturate" && (t?.stages?.saturate_hint || "Saturation: maximum amount dissolved")}
-              {stage === "crystallize" && (t?.stages?.crystallize_hint || "Cooling causes excess solute to crystallize")}
+              {stage === "dissolve" && sc2_04_t.stages.dissolve_hint}
+              {stage === "saturate" && sc2_04_t.stages.saturate_hint}
+              {stage === "crystallize" && sc2_04_t.stages.crystallize_hint}
             </div>
           </div>
         </div>
@@ -217,9 +257,9 @@ export default function SC204Page() {
               <div className="space-y-2">
                 <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
                 <p className="text-sm text-white/50 leading-relaxed italic">
-                  {stage === "dissolve" && t.scenarios.pharma_solubility}
-                  {stage === "saturate" && t.scenarios.rhine_pollution_monitoring}
-                  {stage === "crystallize" && t.scenarios.crystallization_purification}
+                  {stage === "dissolve" && sc2_04_t.scenarios.pharma_solubility}
+                  {stage === "saturate" && sc2_04_t.scenarios.rhine_pollution_monitoring}
+                  {stage === "crystallize" && sc2_04_t.scenarios.crystallization_purification}
                 </p>
               </div>
             </div>

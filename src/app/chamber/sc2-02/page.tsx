@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -204,8 +204,50 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
 }
 
 export default function SC202Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = translations[currentLanguage].sc2_02 || translations.EN.sc2_02;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
+    const sc2_02_t = {
+        title: t("sc2_02.title"),
+        footer_left: t("sc2_02.footer_left"),
+        monitor_title: t("sc2_02.monitor_title"),
+        back: t("sc2_02.back"),
+        check: t("sc2_02.check"),
+        next: t("sc2_02.next"),
+        correct: t("sc2_02.correct"),
+        incorrect: t("sc2_02.incorrect"),
+        ready: t("sc2_02.ready"),
+        stages: {
+            curves: t("sc2_02.stages.curves"),
+            equivalence: t("sc2_02.stages.equivalence"),
+            indicators: t("sc2_02.stages.indicators"),
+        },
+        prompts: {
+            curve_type: t("sc2_02.prompts.curve_type"),
+            eq_volume: t("sc2_02.prompts.eq_volume"),
+            ph_at_eq: t("sc2_02.prompts.ph_at_eq"),
+        },
+        hints: {
+            curve_hint: t("sc2_02.hints.curve_hint"),
+            volume_hint: t("sc2_02.hints.volume_hint"),
+            ph_hint: t("sc2_02.hints.ph_hint"),
+        },
+        scenarios: {
+            environmental_monitoring: t("sc2_02.scenarios.environmental_monitoring"),
+            water_quality: t("sc2_02.scenarios.water_quality"),
+            biotech_titration: t("sc2_02.scenarios.biotech_titration"),
+        },
+        labels: {
+            eq_point: t("sc2_02.labels.eq_point"),
+            input_answer: t("sc2_02.labels.input_answer"),
+            formula: t("sc2_02.labels.formula"),
+        },
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE",
+        },
+    };
 
     const {
         difficulty,
@@ -219,7 +261,7 @@ export default function SC202Page() {
         handleDifficultyChange,
         handleStageChange,
     } = useQuestManager<TitrationQuest, Stage>({
-        buildPool: (d, s) => buildStagePool(t, d, s),
+        buildPool: (d, s) => buildStagePool(sc2_02_t, d, s),
         initialStage: "CURVES",
         tolerance: 0.05
     });
@@ -231,16 +273,15 @@ export default function SC202Page() {
     }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
-        if (!t?.scenarios) return null;
-        if (stage === "CURVES") return t.scenarios.environmental_monitoring;
-        if (stage === "EQUIVALENCE") return t.scenarios.water_quality;
-        return t.scenarios.biotech_titration;
-    }, [stage, t]);
+        if (stage === "CURVES") return sc2_02_t.scenarios.environmental_monitoring;
+        if (stage === "EQUIVALENCE") return sc2_02_t.scenarios.water_quality;
+        return sc2_02_t.scenarios.biotech_titration;
+    }, [stage, sc2_02_t]);
 
     const stages = [
-        { id: "CURVES", label: t?.stages?.curves || "CURVES" },
-        { id: "EQUIVALENCE", label: t?.stages?.equivalence || "EQUIVALENCE" },
-        { id: "INDICATORS", label: t?.stages?.indicators || "INDICATORS" },
+        { id: "CURVES", label: sc2_02_t.stages.curves },
+        { id: "EQUIVALENCE", label: sc2_02_t.stages.equivalence },
+        { id: "INDICATORS", label: sc2_02_t.stages.indicators },
     ];
 
     const config = currentQuest?.simConfig || {
@@ -253,7 +294,7 @@ export default function SC202Page() {
 
     return (
         <ChamberLayout
-            title={t?.title || "SC2.02 // pH SENTINEL"}
+            title={sc2_02_t.title}
             moduleCode="SC2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -263,8 +304,8 @@ export default function SC202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t?.footer_left || "SC2.02_PH_SENTINEL // NODE: BASEL"}
-            translations={t}
+            footerLeft={sc2_02_t.footer_left}
+            translations={sc2_02_t}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -280,7 +321,7 @@ export default function SC202Page() {
 
                     <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3 font-mono">
                         <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                            {t?.labels?.eq_point || "EQUIVALENCE"}
+                            {sc2_02_t.labels.eq_point}
                         </div>
                         <div className="text-3xl text-neon-green font-black text-center shadow-[0_0_15px_rgba(0,255,0,0.1)]">
                             {((config.acidConc * 50) / config.baseConc).toFixed(1)} mL
@@ -303,7 +344,7 @@ export default function SC202Page() {
             <div className="space-y-6">
                 <div className="text-center">
                     <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black mb-4 italic">
-                        {t?.monitor_title || "TITRATION ANALYSIS"}
+                        {sc2_02_t.monitor_title}
                     </h3>
                     <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
                         <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -313,7 +354,7 @@ export default function SC202Page() {
                 <div className="p-6 bg-black/40 border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6 backdrop-blur-md">
                     <div className="space-y-3">
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black text-center">
-                            {t?.labels?.input_answer || "Enter Value"}
+                            {sc2_02_t.labels.input_answer}
                         </div>
                         <input
                             value={inputs["ans"] || ""}
@@ -324,7 +365,7 @@ export default function SC202Page() {
                     </div>
 
                     <div className="p-4 bg-white/[0.03] border border-white/10 rounded-3xl relative">
-                        <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{t.labels.formula}</div>
+                        <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{sc2_02_t.labels.formula}</div>
                         <div className="flex flex-wrap gap-6 justify-center items-center">
                             <div className="text-white font-mono text-sm opacity-60"><InlineMath math="V_a C_a = V_b C_b" /></div>
                             <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{pH} = pK_a + \log\frac{[A^-]}{[HA]}" /></div>

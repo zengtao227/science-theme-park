@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -17,11 +17,22 @@ interface SC305Quest extends Quest {
     data?: any;
 }
 
-type SC305T = typeof translations.EN.sc3_05;
-
 export default function SC305MolecularForge() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sc3_05 || translations.EN.sc3_05) as SC305T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
+    const sc3_05_t = {
+        title: t("sc3_05.title"),
+        footer_left: t("sc3_05.footer_left"),
+        stages: {
+            vsepr: t("sc3_05.stages.vsepr"),
+            hybridization: t("sc3_05.stages.hybridization"),
+            mo_theory: t("sc3_05.stages.mo_theory"),
+        },
+        prompts: {
+            vsepr_geometry: t("sc3_05.prompts.vsepr_geometry"),
+            hint_vsepr: t("sc3_05.prompts.hint_vsepr"),
+        },
+    };
     const [stability, setStability] = useState(98.5);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC305Quest[] => {
@@ -41,12 +52,12 @@ export default function SC305MolecularForge() {
                     id: `VS-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\text{${t.prompts.vsepr_geometry.replace("{molecule}", m.name).replace("{lone}", m.lone.toString()).replace("{bonded}", m.bonded.toString())}}`,
+                    promptLatex: `\\text{${sc3_05_t.prompts.vsepr_geometry.replace("{molecule}", m.name).replace("{lone}", m.lone.toString()).replace("{bonded}", m.bonded.toString())}}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${m.shape}}`,
                     slots: [{ id: "ans", labelLatex: "\\text{Geometry}", placeholder: "...", expected: m.shape }],
                     correctLatex: m.shape,
-                    hintLatex: [`\\text{${t.prompts.hint_vsepr}}`]
+                    hintLatex: [`\\text{${sc3_05_t.prompts.hint_vsepr}}`]
                 });
             });
         }

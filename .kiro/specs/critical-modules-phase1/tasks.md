@@ -1221,27 +1221,31 @@ const module_t = {
 
 #### Phase 5.4: i18n迁移 - 物理模块（1天）
 
-**状态**: ⏳ **待开始**
+**状态**: ✅ **已完成**
 
 **物理模块 i18n 迁移列表**:
 
-- [ ] 5.4.1 GP1.03 - i18n迁移
+- [x] 5.4.1 GP1.03 - i18n迁移
   - 当前: `translations[currentLanguage].gp1_03`
   - 目标: `useLanguage()` hook
+  - 验证: build + 浏览器测试
   
-- [ ] 5.4.2 GP1.04 - i18n迁移
+- [x] 5.4.2 GP1.04 - i18n迁移
   - 当前: `translations[currentLanguage].gp1_04`
   - 目标: `useLanguage()` hook
+  - 验证: build + 浏览器测试
   
-- [ ] 5.4.3 SP3.01 - i18n迁移
+- [x] 5.4.3 SP3.01 - i18n迁移
   - 当前: `translations[currentLanguage]?.sp3_01`
   - 目标: `useLanguage()` hook
+  - 验证: build + 浏览器测试
   
-- [ ] 5.4.4 SP3.05 - i18n迁移
+- [x] 5.4.4 SP3.05 - i18n迁移
   - 当前: `translations[currentLanguage]?.sp3_05`
   - 目标: `useLanguage()` hook
+  - 验证: build + 浏览器测试
   
-- [ ] 5.4.5 Checkpoint 物理模块
+- [x] 5.4.5 Checkpoint 物理模块
   - 运行 `npm run build`
   - 浏览器抽查2个模块
   - `git commit -m "refactor(physics): migrate to useLanguage hook"`
@@ -1252,27 +1256,27 @@ const module_t = {
 
 **化学模块 i18n 迁移列表**:
 
-- [ ] 5.5.1 SC1.04 - i18n迁移
+- [x] 5.5.1 SC1.04 - i18n迁移
   - 当前: `translations[currentLanguage].sc1_04`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.2 SC1.05 - i18n迁移
+- [-] 5.5.2 SC1.05 - i18n迁移
   - 当前: `translations[currentLanguage]?.sc1_05`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.3 SC2.02 - i18n迁移
+- [-] 5.5.3 SC2.02 - i18n迁移
   - 当前: `translations[currentLanguage].sc2_02`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.4 SC2.03 - i18n迁移
+- [-] 5.5.4 SC2.03 - i18n迁移
   - 当前: `translations[currentLanguage].sc2_03`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.5 SC2.04 - i18n迁移
+- [x] 5.5.5 SC2.04 - i18n迁移
   - 当前: `translations[currentLanguage].sc2_04`
   - 目标: `useLanguage()` hook
   
-- [ ] 5.5.6 SC3.05 - i18n迁移
+- [x] 5.5.6 SC3.05 - i18n迁移
   - 当前: `translations[currentLanguage]?.sc3_05`
   - 目标: `useLanguage()` hook
   

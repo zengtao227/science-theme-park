@@ -4,7 +4,7 @@ import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
 import { idealGasPressure } from "@/lib/physics";
@@ -12,8 +12,34 @@ import { idealGasPressure } from "@/lib/physics";
 type Stage = "boyle" | "charles" | "combined";
 
 export default function SC203Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sc2_03 || translations.EN.sc2_03;
+  const { t } = useLanguage();
+  const sc2_03_t = {
+    title: t("sc2_03.title"),
+    footer_left: t("sc2_03.footer_left"),
+    back: t("sc2_03.back"),
+    check: t("sc2_03.check"),
+    next: t("sc2_03.next"),
+    correct: t("sc2_03.correct"),
+    incorrect: t("sc2_03.incorrect"),
+    ready: t("sc2_03.ready"),
+    monitor_title: t("sc2_03.monitor_title"),
+    stages: {
+      boyle: t("sc2_03.stages.boyle"),
+      charles: t("sc2_03.stages.charles"),
+      combined: t("sc2_03.stages.combined"),
+    },
+    scenarios: {
+      gas_compression: t("sc2_03.scenarios.gas_compression"),
+      weather_balloons: t("sc2_03.scenarios.weather_balloons"),
+      chemical_reactors: t("sc2_03.scenarios.chemical_reactors"),
+    },
+    difficulty: {
+      basic: "BASIC",
+      core: "CORE",
+      advanced: "ADVANCED",
+      elite: "ELITE",
+    },
+  };
 
   const [stage, setStage] = useState<Stage>("boyle");
   const [volume, setVolume] = useState(5); // L
@@ -43,36 +69,22 @@ export default function SC203Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "SC2.03 // AERO LAB"}
+      title={sc2_03_t.title}
       moduleCode="SC2.03"
       difficulty="CORE"
       onDifficultyChange={() => { }}
       stages={[
-        { id: "boyle", label: t?.stages?.boyle || "BOYLE'S LAW" },
-        { id: "charles", label: t?.stages?.charles || "CHARLES' LAW" },
-        { id: "combined", label: t?.stages?.combined || "COMBINED GAS LAW" },
+        { id: "boyle", label: sc2_03_t.stages.boyle },
+        { id: "charles", label: sc2_03_t.stages.charles },
+        { id: "combined", label: sc2_03_t.stages.combined },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={() => { }}
       onNext={() => { }}
       checkStatus={null}
-      footerLeft={t?.footer_left || "SC2.03_AERO_LAB // NODE: BASEL"}
-      translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "SC2.03_GAS_MONITOR",
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE",
-        },
-      }}
+      footerLeft={sc2_03_t.footer_left}
+      translations={sc2_03_t}
       monitorContent={
         <div className="space-y-4">
           <GasTankCanvas
@@ -226,9 +238,9 @@ export default function SC203Page() {
               <div className="space-y-2">
                 <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
                 <p className="text-sm text-white/50 leading-relaxed italic">
-                  {stage === "boyle" && t.scenarios.gas_compression}
-                  {stage === "charles" && t.scenarios.weather_balloons}
-                  {stage === "combined" && t.scenarios.chemical_reactors}
+                  {stage === "boyle" && sc2_03_t.scenarios.gas_compression}
+                  {stage === "charles" && sc2_03_t.scenarios.weather_balloons}
+                  {stage === "combined" && sc2_03_t.scenarios.chemical_reactors}
                 </p>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";
 
@@ -35,8 +35,43 @@ const elements = [
 ];
 
 export default function SC104Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage].sc1_04 || translations.EN.sc1_04;
+  const { t } = useLanguage();
+  const sc1_04_t = {
+    title: t("sc1_04.title"),
+    stages: {
+      build: t("sc1_04.stages.build"),
+      periodic: t("sc1_04.stages.periodic"),
+      groups: t("sc1_04.stages.groups"),
+      build_desc: t("sc1_04.stages.build_desc"),
+      periodic_desc: t("sc1_04.stages.periodic_desc"),
+      groups_desc: t("sc1_04.stages.groups_desc"),
+      build_hint: t("sc1_04.stages.build_hint"),
+      periodic_hint: t("sc1_04.stages.periodic_hint"),
+      groups_hint: t("sc1_04.stages.groups_hint"),
+    },
+    labels: {
+      element_info: t("sc1_04.labels.element_info"),
+      formulas: t("sc1_04.labels.formulas"),
+      protons: t("sc1_04.labels.protons"),
+      neutrons: t("sc1_04.labels.neutrons"),
+      electrons: t("sc1_04.labels.electrons"),
+      select_element: t("sc1_04.labels.select_element"),
+    },
+    mission: {
+      title: t("sc1_04.mission.title"),
+      description: t("sc1_04.mission.description"),
+    },
+    target_title: t("sc1_04.target_title"),
+    objective_title: t("sc1_04.objective_title"),
+    footer_left: t("sc1_04.footer_left"),
+    back: t("sc1_04.back"),
+    check: t("sc1_04.check"),
+    next: t("sc1_04.next"),
+    correct: t("sc1_04.correct"),
+    incorrect: t("sc1_04.incorrect"),
+    ready: t("sc1_04.ready"),
+    monitor_title: t("sc1_04.monitor_title"),
+  };
 
   const [stage, setStage] = useState<Stage>("build");
   const [selectedElement, setSelectedElement] = useState(0); // Index in elements array
@@ -64,29 +99,29 @@ export default function SC104Page() {
 
   return (
     <ChamberLayout
-      title={t?.title || "SC1.04 // PERIODIC PUZZLE"}
+      title={sc1_04_t.title}
       moduleCode="SC1.04"
       difficulty="BASIC"
       onDifficultyChange={() => {}}
       stages={[
-        { id: "build", label: t?.stages?.build || "BUILD ATOM" },
-        { id: "periodic", label: t?.stages?.periodic || "PERIODIC TABLE" },
-        { id: "groups", label: t?.stages?.groups || "ELEMENT GROUPS" },
+        { id: "build", label: sc1_04_t.stages.build },
+        { id: "periodic", label: sc1_04_t.stages.periodic },
+        { id: "groups", label: sc1_04_t.stages.groups },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={() => {}}
       onNext={() => {}}
       checkStatus={null}
-      footerLeft={t?.footer_left || "SC1.04_PERIODIC_PUZZLE // NODE: BASEL"}
+      footerLeft={sc1_04_t.footer_left}
       translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "SC1.04_ATOM_MONITOR",
+        back: sc1_04_t.back,
+        check: sc1_04_t.check,
+        next: sc1_04_t.next,
+        correct: sc1_04_t.correct,
+        incorrect: sc1_04_t.incorrect,
+        ready: sc1_04_t.ready,
+        monitor_title: sc1_04_t.monitor_title,
         difficulty: {
           basic: "BASIC",
           core: "CORE",
@@ -102,12 +137,12 @@ export default function SC104Page() {
             electrons={currentElement.electrons}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t?.target_title || "ATOM STRUCTURE"}
+            {sc1_04_t.target_title}
           </div>
           
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.element_info || "ELEMENT INFO"}
+              {sc1_04_t.labels.element_info}
             </div>
             {stage !== "build" && (
               <div className="text-2xl text-white font-black text-center">
@@ -140,7 +175,7 @@ export default function SC104Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {t?.labels?.formulas || "FORMULAS"}
+              {sc1_04_t.labels.formulas}
             </div>
             <div className="text-white font-black text-sm space-y-2">
               <div><InlineMath math="Z = \text{protons}" /></div>
@@ -154,21 +189,20 @@ export default function SC104Page() {
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {t?.mission?.title || "MISSION: PERIODIC TABLE"}
+            {sc1_04_t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {t?.mission?.description ||
-              "Build atoms and discover the periodic table. Master electron configuration."}
+            {sc1_04_t.mission.description}
           </p>
         </div>
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {t?.objective_title || "ACTIVE MISSION OBJECTIVE"}
+            {sc1_04_t.objective_title}
           </h3>
           <p className="text-3xl text-white font-black italic">
-            {stage === "build" && (t?.stages?.build_desc || "Build atoms by adding protons, neutrons, and electrons")}
-            {stage === "periodic" && (t?.stages?.periodic_desc || "Explore the first 20 elements")}
-            {stage === "groups" && (t?.stages?.groups_desc || "Understand element groups and periods")}
+            {stage === "build" && sc1_04_t.stages.build_desc}
+            {stage === "periodic" && sc1_04_t.stages.periodic_desc}
+            {stage === "groups" && sc1_04_t.stages.groups_desc}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
@@ -176,7 +210,7 @@ export default function SC104Page() {
             <>
               <div className="space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-                  {t?.labels?.protons || "PROTONS"}
+                  {sc1_04_t.labels.protons}
                 </div>
                 <div className="flex items-center gap-4">
                   <input
@@ -194,7 +228,7 @@ export default function SC104Page() {
 
               <div className="space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-                  {t?.labels?.neutrons || "NEUTRONS"}
+                  {sc1_04_t.labels.neutrons}
                 </div>
                 <div className="flex items-center gap-4">
                   <input
@@ -212,7 +246,7 @@ export default function SC104Page() {
 
               <div className="space-y-4">
                 <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-                  {t?.labels?.electrons || "ELECTRONS"}
+                  {sc1_04_t.labels.electrons}
                 </div>
                 <div className="flex items-center gap-4">
                   <input
@@ -233,7 +267,7 @@ export default function SC104Page() {
           {stage === "periodic" && (
             <div className="space-y-4">
               <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-                {t?.labels?.select_element || "SELECT ELEMENT"}
+                {sc1_04_t.labels.select_element}
               </div>
               <div className="grid grid-cols-5 gap-2">
                 {elements.map((element, index) => (
@@ -256,9 +290,9 @@ export default function SC104Page() {
 
           <div className="text-center pt-4 border-t border-white/10">
             <div className="text-[10px] text-white/90 font-mono italic">
-              {stage === "build" && (t?.stages?.build_hint || "Proton number determines the element")}
-              {stage === "periodic" && (t?.stages?.periodic_hint || "Elements are arranged by atomic number")}
-              {stage === "groups" && (t?.stages?.groups_hint || "Same group = same valence electrons")}
+              {stage === "build" && sc1_04_t.stages.build_hint}
+              {stage === "periodic" && sc1_04_t.stages.periodic_hint}
+              {stage === "groups" && sc1_04_t.stages.groups_hint}
             </div>
           </div>
         </div>
