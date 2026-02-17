@@ -527,7 +527,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - 🟡 **题数不足**: 有题但每难度<5题 — 需要补充
 - 🔴 **确实稀疏**: 只有2-4题或用isAdvanced二值开关 — 需要大量补充
 
-- [-] 0.6 Checkpoint Sprint 0.5
+- [x] 0.6 Checkpoint Sprint 0.5
   - 验证报告输出到 `MODULE_VERIFICATION_REPORT.md`
   - 更新下方 Sprint 1.5/2/3 的模块列表（移除误判的模块）
   - `git add -A && git commit -m "docs: module verification report" && git push`
@@ -582,11 +582,13 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 > 如果 Sprint 0.5 验证后发现某模块实际已完整，请从此列表中删除。
 
 可能的候选（待 Sprint 0.5 确认）：
-- [x] SM1.02 (Kiro报告: BASIC:3 CORE:3 ADV:3 ELITE:0) — 只需加 3stages×5=15题
-- [ ] SM1.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 同上
-- [ ] SM2.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 同上
-- [ ] GP2.01 (BASIC:1 CORE:1 ADV:1 ELITE:0) — 可能需要更多补充
-- [ ] GP2.02 (同 GP2.01)
+- [x] SM1.02 (Kiro报告: BASIC:3 CORE:3 ADV:3 ELITE:0) — 验证后发现已完整60题 ✅
+- [x] SM1.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 验证后发现已完整60题 ✅
+- [x] SM2.05 (BASIC:3 CORE:3 ADV:3 ELITE:0) — 验证后发现只有15题，需要补充（移到Sprint 2）
+- [x] GP2.01 (BASIC:1 CORE:1 ADV:1 ELITE:0) — 验证后确认稀疏，需要补充（移到Sprint 3）
+- [x] GP2.02 (同 GP2.01) — 验证后确认稀疏，需要补充（移到Sprint 3）
+
+**结论**: Sprint 0.5验证后发现，没有"只缺ELITE"的模块。SM1-02和SM1-05已完整，其他模块需要全面补充。
 
 **工作模式**: 
 1. 只添加 `case "ELITE":` 分支和对应的 5 题数据
@@ -646,11 +648,11 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
   - 补充方法同 2A.1
   - **同时**: 迁移 i18n
 
-- [ ] 2A.5 SM2.04 相似形 (313行)
+- [x] 2A.5 SM2.04 相似形 (313行)
   - 当前: ~7题，缺ELITE
   - 补充到 60题
 
-- [ ] 2A.6 SM2.06 方程组 (254行)
+- [-] 2A.6 SM2.06 方程组 (254行)
   - 当前: 小数据池，缺ELITE
   - 补充到 60题
 
