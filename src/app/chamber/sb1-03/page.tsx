@@ -16,6 +16,7 @@ interface SB103Quest extends Quest {
     stage: Stage;
     phase: string;
     chromosomeCount: number;
+    [key: string]: any; // Allow additional properties
 }
 
 export default function SB103Page() {
@@ -24,87 +25,159 @@ export default function SB103Page() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB103Quest[] => {
         const quests: SB103Quest[] = [];
-        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
+        // MITOSIS stage: 5 questions per difficulty
         if (stage === "MITOSIS") {
-            const scenarios = [
-                { phase: "Prophase", chromatids: 46, answer: "46" },
-                { phase: "Metaphase", chromatids: 46, answer: "46" },
-                { phase: "Anaphase", chromatids: 92, answer: "92" },
-                { phase: "Telophase", chromatids: 46, answer: "46" }
-            ];
+            const scenarios = {
+                BASIC: [
+                    { phase: "Prophase", chromatids: 46, answer: "46", desc: "Chromatin condenses" },
+                    { phase: "Metaphase", chromatids: 46, answer: "46", desc: "Chromosomes align" },
+                    { phase: "Anaphase", chromatids: 92, answer: "92", desc: "Sister chromatids separate" },
+                    { phase: "Telophase", chromatids: 46, answer: "46", desc: "Two nuclei form" },
+                    { phase: "Cytokinesis", cells: 2, answer: "2", desc: "Cell division completes" }
+                ],
+                CORE: [
+                    { phase: "Interphase", chromatids: 46, answer: "46", desc: "DNA replication" },
+                    { phase: "Prophase", spindle: "forming", answer: "forming", desc: "Spindle apparatus" },
+                    { phase: "Metaphase", plate: "equator", answer: "equator", desc: "Metaphase plate" },
+                    { phase: "Anaphase", movement: "poles", answer: "poles", desc: "Chromatids to poles" },
+                    { phase: "Telophase", envelope: "reforms", answer: "reforms", desc: "Nuclear envelope" }
+                ],
+                ADVANCED: [
+                    { phase: "G1_phase", chromatids: 46, answer: "46", desc: "Before DNA replication" },
+                    { phase: "S_phase", chromatids: 46, answer: "46", desc: "During DNA replication" },
+                    { phase: "G2_phase", chromatids: 92, answer: "92", desc: "After DNA replication" },
+                    { phase: "Prometaphase", kinetochore: "attached", answer: "attached", desc: "Kinetochore attachment" },
+                    { phase: "Anaphase_A", movement: "kinetochore", answer: "kinetochore", desc: "Kinetochore movement" }
+                ],
+                ELITE: [
+                    { phase: "Checkpoint_G1", protein: "cyclin_D", answer: "cyclin_D", desc: "G1/S checkpoint" },
+                    { phase: "Checkpoint_G2", protein: "cyclin_B", answer: "cyclin_B", desc: "G2/M checkpoint" },
+                    { phase: "Checkpoint_M", protein: "APC", answer: "APC", desc: "Metaphase checkpoint" },
+                    { phase: "Cohesion", protein: "cohesin", answer: "cohesin", desc: "Sister chromatid cohesion" },
+                    { phase: "Separation", protein: "separase", answer: "separase", desc: "Cohesin cleavage" }
+                ]
+            };
 
-            const filtered = isAdvanced ? scenarios : scenarios.slice(0, 2);
-
-            filtered.forEach((item, idx) => {
+            const scenarioList = scenarios[difficulty];
+            scenarioList.forEach((item, idx) => {
+                const count = (item as any).chromatids || (item as any).cells || 46;
                 quests.push({
-                    id: `MIT-${difficulty}-${idx}`,
+                    id: `MIT_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     phase: item.phase,
-                    chromosomeCount: item.chromatids,
-                    promptLatex: t("sb1_03.prompts.mitosis_count", { phase: item.phase }),
-                    expressionLatex: `\\text{${item.phase}} \\rightarrow \\text{Chromatids} = ?`,
+                    chromosomeCount: count,
+                    promptLatex: t(`sb1_03.prompts.mit_${item.phase.toLowerCase()}`, { desc: item.desc }),
+                    expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "0", expected: item.answer }],
-                    correctLatex: `${item.answer}\\text{ chromatids}`,
-                    hintLatex: [t("sb1_03.prompts.hint_mitosis")]
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_03.prompts.hint_mit_${item.phase.toLowerCase()}`)]
                 });
             });
         }
 
+        // MEIOSIS_I stage: 5 questions per difficulty
         if (stage === "MEIOSIS_I") {
-            const scenarios = isAdvanced ? [
-                { phase: "Prophase I", pairs: 23, answer: "23" },
-                { phase: "Metaphase I", pairs: 23, answer: "23" },
-                { phase: "Anaphase I", chromosomes: 46, answer: "46" },
-                { phase: "Telophase I", chromosomes: 23, answer: "23" }
-            ] : [
-                { phase: "Prophase I", pairs: 23, answer: "23" },
-                { phase: "Anaphase I", chromosomes: 46, answer: "46" }
-            ];
+            const scenarios = {
+                BASIC: [
+                    { phase: "Prophase_I", pairs: 23, answer: "23", desc: "Homologous pairing" },
+                    { phase: "Metaphase_I", pairs: 23, answer: "23", desc: "Bivalents align" },
+                    { phase: "Anaphase_I", chromosomes: 46, answer: "46", desc: "Homologs separate" },
+                    { phase: "Telophase_I", chromosomes: 23, answer: "23", desc: "Two haploid cells" },
+                    { phase: "Result", cells: 2, answer: "2", desc: "Number of cells" }
+                ],
+                CORE: [
+                    { phase: "Leptotene", synapsis: "beginning", answer: "beginning", desc: "Chromosome condensation" },
+                    { phase: "Zygotene", synapsis: "pairing", answer: "pairing", desc: "Synapsis begins" },
+                    { phase: "Pachytene", crossing: "occurs", answer: "occurs", desc: "Crossing over" },
+                    { phase: "Diplotene", chiasmata: "visible", answer: "visible", desc: "Chiasmata visible" },
+                    { phase: "Diakinesis", condensation: "maximum", answer: "maximum", desc: "Maximum condensation" }
+                ],
+                ADVANCED: [
+                    { phase: "Crossing_over", exchange: "genetic", answer: "genetic", desc: "Genetic recombination" },
+                    { phase: "Chiasmata", number: "variable", answer: "variable", desc: "Crossover points" },
+                    { phase: "Bivalent", structure: "tetrad", answer: "tetrad", desc: "Four chromatids" },
+                    { phase: "Reduction", ploidy: "haploid", answer: "haploid", desc: "Chromosome number halves" },
+                    { phase: "Genetic_variation", source: "recombination", answer: "recombination", desc: "Variation source" }
+                ],
+                ELITE: [
+                    { phase: "Synaptonemal_complex", protein: "SC", answer: "SC", desc: "Synapsis structure" },
+                    { phase: "Recombination_nodules", enzyme: "recombinase", answer: "recombinase", desc: "Crossover enzyme" },
+                    { phase: "Cohesion_removal", timing: "anaphase_I", answer: "anaphase_I", desc: "Arm cohesin removal" },
+                    { phase: "Centromere_cohesion", timing: "anaphase_II", answer: "anaphase_II", desc: "Centromeric cohesin" },
+                    { phase: "Independent_assortment", combinations: "8388608", answer: "8388608", desc: "2^23 combinations" }
+                ]
+            };
 
-            scenarios.forEach((item, idx) => {
+            const scenarioList = scenarios[difficulty];
+            scenarioList.forEach((item, idx) => {
+                const count = (item as any).pairs || (item as any).chromosomes || (item as any).cells || 23;
                 quests.push({
-                    id: `MEI1-${difficulty}-${idx}`,
+                    id: `MEI1_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     phase: item.phase,
-                    chromosomeCount: item.pairs || item.chromosomes || 23,
-                    promptLatex: t("sb1_03.prompts.meiosis_i_count", { phase: item.phase }),
-                    expressionLatex: `\\text{${item.phase}} \\rightarrow ?`,
+                    chromosomeCount: count,
+                    promptLatex: t(`sb1_03.prompts.mei1_${item.phase.toLowerCase()}`, { desc: item.desc }),
+                    expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "0", expected: item.answer }],
-                    correctLatex: `${item.answer}`,
-                    hintLatex: [t("sb1_03.prompts.hint_meiosis_i")]
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_03.prompts.hint_mei1_${item.phase.toLowerCase()}`)]
                 });
             });
         }
 
+        // MEIOSIS_II stage: 5 questions per difficulty
         if (stage === "MEIOSIS_II") {
-            const scenarios = isAdvanced ? [
-                { phase: "Prophase II", chromosomes: 23, answer: "23" },
-                { phase: "Metaphase II", chromosomes: 23, answer: "23" },
-                { phase: "Anaphase II", chromatids: 46, answer: "46" },
-                { phase: "Telophase II", chromosomes: 23, answer: "23" }
-            ] : [
-                { phase: "Metaphase II", chromosomes: 23, answer: "23" },
-                { phase: "Telophase II", chromosomes: 23, answer: "23" }
-            ];
+            const scenarios = {
+                BASIC: [
+                    { phase: "Prophase_II", chromosomes: 23, answer: "23", desc: "Chromosomes condense" },
+                    { phase: "Metaphase_II", chromosomes: 23, answer: "23", desc: "Chromosomes align" },
+                    { phase: "Anaphase_II", chromatids: 46, answer: "46", desc: "Sister chromatids separate" },
+                    { phase: "Telophase_II", chromosomes: 23, answer: "23", desc: "Four haploid cells" },
+                    { phase: "Result", cells: 4, answer: "4", desc: "Total cells produced" }
+                ],
+                CORE: [
+                    { phase: "Interkinesis", replication: "no", answer: "no", desc: "No DNA replication" },
+                    { phase: "Spindle_II", orientation: "perpendicular", answer: "perpendicular", desc: "Spindle orientation" },
+                    { phase: "Equatorial_plate", alignment: "single", answer: "single", desc: "Single file alignment" },
+                    { phase: "Chromatid_separation", mechanism: "cohesin", answer: "cohesin", desc: "Cohesin cleavage" },
+                    { phase: "Gamete_formation", type: "haploid", answer: "haploid", desc: "Gamete ploidy" }
+                ],
+                ADVANCED: [
+                    { phase: "Male_meiosis", product: "sperm", answer: "sperm", desc: "Spermatogenesis" },
+                    { phase: "Female_meiosis", product: "egg", answer: "egg", desc: "Oogenesis" },
+                    { phase: "Polar_bodies", number: "3", answer: "3", desc: "Polar body count" },
+                    { phase: "Functional_gametes_male", number: "4", answer: "4", desc: "Functional sperm" },
+                    { phase: "Functional_gametes_female", number: "1", answer: "1", desc: "Functional egg" }
+                ],
+                ELITE: [
+                    { phase: "Nondisjunction", result: "aneuploidy", answer: "aneuploidy", desc: "Chromosome error" },
+                    { phase: "Trisomy_21", syndrome: "Down", answer: "Down", desc: "Down syndrome" },
+                    { phase: "Monosomy_X", syndrome: "Turner", answer: "Turner", desc: "Turner syndrome" },
+                    { phase: "XXY", syndrome: "Klinefelter", answer: "Klinefelter", desc: "Klinefelter syndrome" },
+                    { phase: "Meiotic_drive", bias: "segregation", answer: "segregation", desc: "Biased segregation" }
+                ]
+            };
 
-            scenarios.forEach((item, idx) => {
+            const scenarioList = scenarios[difficulty];
+            scenarioList.forEach((item, idx) => {
+                const count = (item as any).chromosomes || (item as any).chromatids || (item as any).cells || (item as any).number || 23;
                 quests.push({
-                    id: `MEI2-${difficulty}-${idx}`,
+                    id: `MEI2_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     phase: item.phase,
-                    chromosomeCount: item.chromosomes || item.chromatids || 23,
-                    promptLatex: t("sb1_03.prompts.meiosis_ii_count", { phase: item.phase }),
-                    expressionLatex: `\\text{${item.phase}} \\rightarrow ?`,
+                    chromosomeCount: count,
+                    promptLatex: t(`sb1_03.prompts.mei2_${item.phase.toLowerCase()}`, { desc: item.desc }),
+                    expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "0", expected: item.answer }],
-                    correctLatex: `${item.answer}`,
-                    hintLatex: [t("sb1_03.prompts.hint_meiosis_ii")]
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t(`sb1_03.prompts.hint_mei2_${item.phase.toLowerCase()}`)]
                 });
             });
         }
