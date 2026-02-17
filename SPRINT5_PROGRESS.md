@@ -26,13 +26,15 @@
 
 ### Phase 5.2: 试点转换 (部分完成)
 
-- ✅ 5.2.1 转换 SM2.03 (SWITCH → forEach)
+- ✅ 5.2.1 转换 SM2.03 (SWITCH → forEach) - **完成**
   - 成功将 SM2.03 从 SWITCH 模式转换为 forEach + 结构化数据模式
-  - 创建了三个数据结构：LEVEL1_DATA, LEVEL2_DATA, LEVEL3_DATA
-  - 每个数据结构都是 Record<Difficulty, DataType[]>
-  - 使用 forEach 循环生成题目
+  - 使用标准命名：`QUESTION_DATA: Record<Stage, Record<Difficulty, DataType[]>>`
+  - 定义了 QuestionData 联合类型（discriminated union with type field）
+  - 使用 forEach 循环统一生成逻辑
   - 构建通过 (npm run build: 0 errors)
+  - 验证通过 (node scripts/validate-pattern.js sm2-03)
   - 代码更清晰，数据与逻辑完全分离
+  - **关键改进**: 修正了命名不一致问题（之前使用LEVEL1_DATA等，现在统一为QUESTION_DATA）
 
 - ⏸️ 5.2.2 转换 SC1.02 (SLICE → forEach) - 未开始
 - ⏸️ 5.2.3 转换 SM2.01 (ELSE-IF → forEach) - 未开始
@@ -42,7 +44,7 @@
 
 ## 转换模式总结
 
-### SM2.03 转换经验
+### SM2.03 转换经验（最终版本）
 
 **转换前**:
 - 使用 switch(difficulty) 语句
@@ -51,17 +53,21 @@
 - 代码重复，难以维护
 
 **转换后**:
-- 数据定义在函数外部（3个 Record<Difficulty, DataType[]> 结构）
+- 使用标准命名：`QUESTION_DATA: Record<Stage, Record<Difficulty, DataType[]>>`
+- 定义了 QuestionData 联合类型（discriminated union）
+- 数据定义在函数外部，使用三层嵌套结构
 - 使用 forEach 循环统一生成逻辑
 - 数据与逻辑完全分离
 - 更容易添加/修改题目（只需修改数据数组）
 - 代码行数减少约30%
 
 **关键改进**:
-1. 类型安全：定义了 CalcData, IntersectData, OptimizeData 类型
-2. 可维护性：增删题目只需修改数据数组
-3. 可读性：数据结构一目了然
-4. 性能：数据在模块加载时定义一次，不在每次调用时重新创建
+1. **标准命名**: 使用 `QUESTION_DATA` 而非 `LEVEL1_DATA`, `LEVEL2_DATA`, `LEVEL3_DATA`
+2. **类型安全**: 定义了 QuestionData 联合类型，使用 type 字段区分不同类型
+3. **可维护性**: 增删题目只需修改数据数组
+4. **可读性**: 数据结构一目了然，三层嵌套清晰
+5. **性能**: 数据在模块加载时定义一次，不在每次调用时重新创建
+6. **类型守卫**: 在 forEach 中使用 type 检查确保类型安全
 
 ---
 

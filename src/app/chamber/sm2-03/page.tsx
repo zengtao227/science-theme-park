@@ -30,107 +30,107 @@ function r2(n: number) { return Math.round(n * 100) / 100; }
 
 /* ────────────────────────────────────────────────
  *  Structured Data - forEach + Structured Data Pattern
+ *  Standard naming: QUESTION_DATA with Record<Stage, Record<Difficulty, DataType[]>>
  * ──────────────────────────────────────────────── */
 
 // Type for question data
-type CalcData = { id: string; m: number; c: number; x: number };
-type IntersectData = { id: string; m1: number; c1: number; m2: number; c2: number };
-type OptimizeData = { id: string; m1: number; c1: number; m2: number; c2: number };
+type QuestionData = 
+  | { id: string; m: number; c: number; x: number; type: "CALCULATE" }
+  | { id: string; m1: number; c1: number; m2: number; c2: number; type: "INTERSECT" }
+  | { id: string; m1: number; c1: number; m2: number; c2: number; type: "OPTIMIZE" };
 
-// LEVEL1 Data: Calculate y = m·x + c
-const LEVEL1_DATA: Record<Difficulty, CalcData[]> = {
-  BASIC: [
-    { id: "B1", m: 2, c: 0, x: 5 },    // y=10
-    { id: "B2", m: 3, c: 0, x: 4 },    // y=12
-    { id: "B3", m: 1, c: 5, x: 10 },   // y=15
-    { id: "B4", m: 4, c: 0, x: 3 },    // y=12
-    { id: "B5", m: 2, c: 3, x: 6 },    // y=15
-  ],
-  CORE: [
-    { id: "C1", m: 1.5, c: 3, x: 8 },  // y=15
-    { id: "C2", m: 0.5, c: 4, x: 12 }, // y=10
-    { id: "C3", m: 2.5, c: 2, x: 6 },  // y=17
-    { id: "C4", m: 1.2, c: 5, x: 10 }, // y=17
-    { id: "C5", m: 0.8, c: 6, x: 15 }, // y=18
-  ],
-  ADVANCED: [
-    { id: "A1", m: 0.75, c: 5, x: 12 },   // y=14
-    { id: "A2", m: 1.25, c: 3.5, x: 10 }, // y=16
-    { id: "A3", m: 0.35, c: 8, x: 20 },   // y=15
-    { id: "A4", m: 0.65, c: 7, x: 18 },   // y=18.7
-    { id: "A5", m: 1.35, c: 4.5, x: 14 }, // y=23.4
-  ],
-  ELITE: [
-    { id: "E1", m: 0.85, c: 6.5, x: 14 },  // y=18.4
-    { id: "E2", m: 1.15, c: 2.75, x: 12 }, // y=16.55
-    { id: "E3", m: 0.45, c: 11.5, x: 18 }, // y=19.6
-    { id: "E4", m: 0.95, c: 8.25, x: 16 }, // y=23.45
-    { id: "E5", m: 1.25, c: 5.5, x: 15 },  // y=24.25
-  ],
-};
-
-// LEVEL2 Data: Break-even intersection
-const LEVEL2_DATA: Record<Difficulty, IntersectData[]> = {
-  BASIC: [
-    { id: "B1", m1: 3, c1: 0, m2: 1, c2: 10 },  // x=5
-    { id: "B2", m1: 4, c1: 0, m2: 1, c2: 12 },  // x=4
-    { id: "B3", m1: 2, c1: 0, m2: 1, c2: 8 },   // x=8
-    { id: "B4", m1: 5, c1: 0, m2: 2, c2: 12 },  // x=4
-    { id: "B5", m1: 3, c1: 0, m2: 2, c2: 6 },   // x=6
-  ],
-  CORE: [
-    { id: "C1", m1: 2, c1: 0, m2: 0.5, c2: 15 },   // x=10
-    { id: "C2", m1: 2.5, c1: 0, m2: 1, c2: 12 },   // x=8
-    { id: "C3", m1: 3, c1: 2, m2: 1, c2: 12 },     // x=5
-    { id: "C4", m1: 1.5, c1: 0, m2: 0.5, c2: 10 }, // x=10
-    { id: "C5", m1: 2.8, c1: 1, m2: 1.2, c2: 11 }, // x=6.25
-  ],
-  ADVANCED: [
-    { id: "A1", m1: 1.5, c1: 2, m2: 0.5, c2: 8 },   // x=6
-    { id: "A2", m1: 2.5, c1: 1, m2: 0.5, c2: 9 },   // x=4
-    { id: "A3", m1: 1.8, c1: 3, m2: 0.6, c2: 18 },  // x=12.5
-    { id: "A4", m1: 2.2, c1: 2.5, m2: 0.8, c2: 12 }, // x=6.79
-    { id: "A5", m1: 1.6, c1: 4, m2: 0.4, c2: 16 },  // x=10
-  ],
-  ELITE: [
-    { id: "E1", m1: 2.4, c1: 1.5, m2: 0.9, c2: 12 },    // x=7
-    { id: "E2", m1: 3.5, c1: 0, m2: 1.25, c2: 13.5 },   // x=6
-    { id: "E3", m1: 1.75, c1: 4.5, m2: 0.5, c2: 20 },   // x=12.4
-    { id: "E4", m1: 2.8, c1: 2.25, m2: 1.1, c2: 15 },   // x=7.5
-    { id: "E5", m1: 3.2, c1: 1.8, m2: 1.5, c2: 18.5 },  // x=9.82
-  ],
-};
-
-// LEVEL3 Data: Optimization threshold
-const LEVEL3_DATA: Record<Difficulty, OptimizeData[]> = {
-  BASIC: [
-    { id: "B1", m1: 1, c1: 10, m2: 3, c2: 0 },  // x=5
-    { id: "B2", m1: 1, c1: 8, m2: 3, c2: 0 },   // x=4
-    { id: "B3", m1: 1, c1: 12, m2: 4, c2: 0 },  // x=4
-    { id: "B4", m1: 2, c1: 10, m2: 4, c2: 0 },  // x=5
-    { id: "B5", m1: 1, c1: 15, m2: 4, c2: 0 },  // x=5
-  ],
-  CORE: [
-    { id: "C1", m1: 0.5, c1: 15, m2: 2, c2: 0 },   // x=10
-    { id: "C2", m1: 1, c1: 12, m2: 2.5, c2: 0 },   // x=8
-    { id: "C3", m1: 0.8, c1: 14, m2: 2.2, c2: 0 }, // x=10
-    { id: "C4", m1: 1.2, c1: 16, m2: 3, c2: 0 },   // x=8.89
-    { id: "C5", m1: 0.6, c1: 18, m2: 2.4, c2: 0 }, // x=10
-  ],
-  ADVANCED: [
-    { id: "A1", m1: 0.5, c1: 12, m2: 1.5, c2: 2 },  // x=10
-    { id: "A2", m1: 0.8, c1: 15, m2: 2, c2: 3 },    // x=10
-    { id: "A3", m1: 0.6, c1: 16, m2: 1.8, c2: 4 },  // x=10
-    { id: "A4", m1: 0.7, c1: 18, m2: 2.1, c2: 5 },  // x=9.29
-    { id: "A5", m1: 0.4, c1: 20, m2: 1.6, c2: 6 },  // x=11.67
-  ],
-  ELITE: [
-    { id: "E1", m1: 0.2, c1: 18, m2: 1.4, c2: 3 },     // x=12.5
-    { id: "E2", m1: 0.35, c1: 20, m2: 1.6, c2: 2.5 },  // x=14
-    { id: "E3", m1: 0.25, c1: 22, m2: 1.5, c2: 4 },    // x=14.4
-    { id: "E4", m1: 0.3, c1: 24, m2: 1.7, c2: 5 },     // x=13.57
-    { id: "E5", m1: 0.15, c1: 25, m2: 1.35, c2: 3.5 }, // x=17.92
-  ],
+// All question data organized by Stage and Difficulty
+const QUESTION_DATA: Record<Stage, Record<Difficulty, QuestionData[]>> = {
+  LEVEL1: {
+    BASIC: [
+      { id: "B1", m: 2, c: 0, x: 5, type: "CALCULATE" },    // y=10
+      { id: "B2", m: 3, c: 0, x: 4, type: "CALCULATE" },    // y=12
+      { id: "B3", m: 1, c: 5, x: 10, type: "CALCULATE" },   // y=15
+      { id: "B4", m: 4, c: 0, x: 3, type: "CALCULATE" },    // y=12
+      { id: "B5", m: 2, c: 3, x: 6, type: "CALCULATE" },    // y=15
+    ],
+    CORE: [
+      { id: "C1", m: 1.5, c: 3, x: 8, type: "CALCULATE" },  // y=15
+      { id: "C2", m: 0.5, c: 4, x: 12, type: "CALCULATE" }, // y=10
+      { id: "C3", m: 2.5, c: 2, x: 6, type: "CALCULATE" },  // y=17
+      { id: "C4", m: 1.2, c: 5, x: 10, type: "CALCULATE" }, // y=17
+      { id: "C5", m: 0.8, c: 6, x: 15, type: "CALCULATE" }, // y=18
+    ],
+    ADVANCED: [
+      { id: "A1", m: 0.75, c: 5, x: 12, type: "CALCULATE" },   // y=14
+      { id: "A2", m: 1.25, c: 3.5, x: 10, type: "CALCULATE" }, // y=16
+      { id: "A3", m: 0.35, c: 8, x: 20, type: "CALCULATE" },   // y=15
+      { id: "A4", m: 0.65, c: 7, x: 18, type: "CALCULATE" },   // y=18.7
+      { id: "A5", m: 1.35, c: 4.5, x: 14, type: "CALCULATE" }, // y=23.4
+    ],
+    ELITE: [
+      { id: "E1", m: 0.85, c: 6.5, x: 14, type: "CALCULATE" },  // y=18.4
+      { id: "E2", m: 1.15, c: 2.75, x: 12, type: "CALCULATE" }, // y=16.55
+      { id: "E3", m: 0.45, c: 11.5, x: 18, type: "CALCULATE" }, // y=19.6
+      { id: "E4", m: 0.95, c: 8.25, x: 16, type: "CALCULATE" }, // y=23.45
+      { id: "E5", m: 1.25, c: 5.5, x: 15, type: "CALCULATE" },  // y=24.25
+    ],
+  },
+  LEVEL2: {
+    BASIC: [
+      { id: "B1", m1: 3, c1: 0, m2: 1, c2: 10, type: "INTERSECT" },  // x=5
+      { id: "B2", m1: 4, c1: 0, m2: 1, c2: 12, type: "INTERSECT" },  // x=4
+      { id: "B3", m1: 2, c1: 0, m2: 1, c2: 8, type: "INTERSECT" },   // x=8
+      { id: "B4", m1: 5, c1: 0, m2: 2, c2: 12, type: "INTERSECT" },  // x=4
+      { id: "B5", m1: 3, c1: 0, m2: 2, c2: 6, type: "INTERSECT" },   // x=6
+    ],
+    CORE: [
+      { id: "C1", m1: 2, c1: 0, m2: 0.5, c2: 15, type: "INTERSECT" },   // x=10
+      { id: "C2", m1: 2.5, c1: 0, m2: 1, c2: 12, type: "INTERSECT" },   // x=8
+      { id: "C3", m1: 3, c1: 2, m2: 1, c2: 12, type: "INTERSECT" },     // x=5
+      { id: "C4", m1: 1.5, c1: 0, m2: 0.5, c2: 10, type: "INTERSECT" }, // x=10
+      { id: "C5", m1: 2.8, c1: 1, m2: 1.2, c2: 11, type: "INTERSECT" }, // x=6.25
+    ],
+    ADVANCED: [
+      { id: "A1", m1: 1.5, c1: 2, m2: 0.5, c2: 8, type: "INTERSECT" },   // x=6
+      { id: "A2", m1: 2.5, c1: 1, m2: 0.5, c2: 9, type: "INTERSECT" },   // x=4
+      { id: "A3", m1: 1.8, c1: 3, m2: 0.6, c2: 18, type: "INTERSECT" },  // x=12.5
+      { id: "A4", m1: 2.2, c1: 2.5, m2: 0.8, c2: 12, type: "INTERSECT" }, // x=6.79
+      { id: "A5", m1: 1.6, c1: 4, m2: 0.4, c2: 16, type: "INTERSECT" },  // x=10
+    ],
+    ELITE: [
+      { id: "E1", m1: 2.4, c1: 1.5, m2: 0.9, c2: 12, type: "INTERSECT" },    // x=7
+      { id: "E2", m1: 3.5, c1: 0, m2: 1.25, c2: 13.5, type: "INTERSECT" },   // x=6
+      { id: "E3", m1: 1.75, c1: 4.5, m2: 0.5, c2: 20, type: "INTERSECT" },   // x=12.4
+      { id: "E4", m1: 2.8, c1: 2.25, m2: 1.1, c2: 15, type: "INTERSECT" },   // x=7.5
+      { id: "E5", m1: 3.2, c1: 1.8, m2: 1.5, c2: 18.5, type: "INTERSECT" },  // x=9.82
+    ],
+  },
+  LEVEL3: {
+    BASIC: [
+      { id: "B1", m1: 1, c1: 10, m2: 3, c2: 0, type: "OPTIMIZE" },  // x=5
+      { id: "B2", m1: 1, c1: 8, m2: 3, c2: 0, type: "OPTIMIZE" },   // x=4
+      { id: "B3", m1: 1, c1: 12, m2: 4, c2: 0, type: "OPTIMIZE" },  // x=4
+      { id: "B4", m1: 2, c1: 10, m2: 4, c2: 0, type: "OPTIMIZE" },  // x=5
+      { id: "B5", m1: 1, c1: 15, m2: 4, c2: 0, type: "OPTIMIZE" },  // x=5
+    ],
+    CORE: [
+      { id: "C1", m1: 0.5, c1: 15, m2: 2, c2: 0, type: "OPTIMIZE" },   // x=10
+      { id: "C2", m1: 1, c1: 12, m2: 2.5, c2: 0, type: "OPTIMIZE" },   // x=8
+      { id: "C3", m1: 0.8, c1: 14, m2: 2.2, c2: 0, type: "OPTIMIZE" }, // x=10
+      { id: "C4", m1: 1.2, c1: 16, m2: 3, c2: 0, type: "OPTIMIZE" },   // x=8.89
+      { id: "C5", m1: 0.6, c1: 18, m2: 2.4, c2: 0, type: "OPTIMIZE" }, // x=10
+    ],
+    ADVANCED: [
+      { id: "A1", m1: 0.5, c1: 12, m2: 1.5, c2: 2, type: "OPTIMIZE" },  // x=10
+      { id: "A2", m1: 0.8, c1: 15, m2: 2, c2: 3, type: "OPTIMIZE" },    // x=10
+      { id: "A3", m1: 0.6, c1: 16, m2: 1.8, c2: 4, type: "OPTIMIZE" },  // x=10
+      { id: "A4", m1: 0.7, c1: 18, m2: 2.1, c2: 5, type: "OPTIMIZE" },  // x=9.29
+      { id: "A5", m1: 0.4, c1: 20, m2: 1.6, c2: 6, type: "OPTIMIZE" },  // x=11.67
+    ],
+    ELITE: [
+      { id: "E1", m1: 0.2, c1: 18, m2: 1.4, c2: 3, type: "OPTIMIZE" },     // x=12.5
+      { id: "E2", m1: 0.35, c1: 20, m2: 1.6, c2: 2.5, type: "OPTIMIZE" },  // x=14
+      { id: "E3", m1: 0.25, c1: 22, m2: 1.5, c2: 4, type: "OPTIMIZE" },    // x=14.4
+      { id: "E4", m1: 0.3, c1: 24, m2: 1.7, c2: 5, type: "OPTIMIZE" },     // x=13.57
+      { id: "E5", m1: 0.15, c1: 25, m2: 1.35, c2: 3.5, type: "OPTIMIZE" }, // x=17.92
+    ],
+  },
 };
 
 /* ────────────────────────────────────────────────
@@ -140,10 +140,13 @@ const LEVEL3_DATA: Record<Difficulty, OptimizeData[]> = {
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest[] {
   const quests: S203Quest[] = [];
 
+  // Get data for the current stage and difficulty
+  const dataList = QUESTION_DATA[stage]?.[difficulty] || [];
+
   if (stage === "LEVEL1") {
     // ── Calculate y = m·x + c ──
-    const dataList = LEVEL1_DATA[difficulty];
     dataList.forEach((data) => {
+      if (data.type !== "CALCULATE") return;
       const y = r2(data.m * data.x + data.c);
       quests.push({
         id: `S1|${data.id}`,
@@ -163,8 +166,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
     });
   } else if (stage === "LEVEL2") {
     // ── Break-even: m1·x + c1 = m2·x + c2 ──
-    const dataList = LEVEL2_DATA[difficulty];
     dataList.forEach((data) => {
+      if (data.type !== "INTERSECT") return;
       const x = r2((data.c2 - data.c1) / (data.m1 - data.m2));
       const y = r2(data.m1 * x + data.c1);
       quests.push({
@@ -187,8 +190,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
     });
   } else {
     // ── LEVEL3: Threshold (Plan A cheaper when x > ?) ──
-    const dataList = LEVEL3_DATA[difficulty];
     dataList.forEach((data) => {
+      if (data.type !== "OPTIMIZE") return;
       const x = r2((data.c1 - data.c2) / (data.m2 - data.m1));
       const y = r2(data.m1 * x + data.c1);
       quests.push({
