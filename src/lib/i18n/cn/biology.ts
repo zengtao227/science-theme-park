@@ -252,12 +252,34 @@ export const cnBiology = {
             analysis: "显微分析"
         },
         prompts: {
-            id_prompt: "识别3D视图中高亮显示的细胞器。",
+            id_prompt: "识别细胞器: {organelle}",
             id_target: "高亮部分: ?",
             fn_prompt: "哪个细胞器负责: {func}?",
             fn_target: "功能: {func}",
             hint_name: "它是 {name}",
-            hint_start: "答案以 {char} 开头"
+            hint_start: "答案以 {char} 开头",
+            hint_func: "该细胞器执行: {func}",
+            hint_range: "数值在 {min} 到 {max} 之间",
+            org_count_mitochondria: "人类肝细胞中通常有多少个线粒体？",
+            org_count_ribosomes: "典型真核细胞中大约有多少个核糖体？",
+            org_nucleus_diameter: "细胞核的典型直径是多少微米？",
+            org_cell_diameter: "动物细胞的典型直径是多少微米？",
+            org_mitochondria_length: "线粒体的典型长度是多少微米？",
+            org_golgi_cisternae: "高尔基体中通常有多少个扁平囊（囊泡）？",
+            org_lysosome_count: "典型动物细胞中大约有多少个溶酶体？",
+            org_er_percentage: "内质网占细胞体积的百分比是多少？",
+            org_nuclear_pores: "核膜上通常有多少个核孔？",
+            org_peroxisome_count: "典型肝细胞中大约有多少个过氧化物酶体？",
+            org_atp_per_glucose: "有氧呼吸中一个葡萄糖分子产生多少个ATP分子？",
+            org_protein_synthesis_rate: "蛋白质合成的典型速率是每秒多少个氨基酸？",
+            org_membrane_thickness: "细胞膜的厚度是多少纳米？",
+            org_microtubule_diameter: "微管的直径是多少纳米？",
+            org_ribosome_diameter: "核糖体的直径是多少纳米？",
+            org_cristae_surface_area: "线粒体嵴的近似表面积是多少平方微米？",
+            org_nuclear_dna_length: "如果将人类细胞核中的所有DNA拉直，长度是多少米？",
+            org_golgi_transit_time: "蛋白质通过高尔基体需要多少分钟？",
+            org_lysosome_ph: "溶酶体内部的典型pH值是多少？",
+            org_mitochondrial_dna: "线粒体DNA中编码多少个基因？"
         },
         organelles: {
             nucleus: {
@@ -284,7 +306,22 @@ export const cnBiology = {
                 name: "内质网",
                 func: "合成网络 (ER)",
                 details: "粗面内质网：蛋白质合成。光面内质网：脂质合成和解毒。"
-            }
+            },
+            lysosome: { name: "溶酶体", func: "细胞消化", details: "含有消化酶，分解废物和细胞碎片。" },
+            peroxisome: { name: "过氧化物酶体", func: "脂质代谢", details: "分解脂肪酸并解毒有害物质。" },
+            centrosome: { name: "中心体", func: "微管组织", details: "组织微管并调节细胞分裂。" },
+            vacuole: { name: "液泡", func: "储存和膨压", details: "储存水、营养物质和废物。维持细胞膨压。" },
+            cytoskeleton: { name: "细胞骨架", func: "结构支撑", details: "蛋白质纤维网络，提供细胞形状并实现运动。" },
+            nucleolus: { name: "核仁", func: "核糖体组装", details: "核内核糖体RNA合成和核糖体组装的场所。" },
+            nuclear_pore: { name: "核孔", func: "核运输", details: "核膜上的通道，允许分子选择性运输。" },
+            smooth_er: { name: "光面内质网", func: "脂质合成", details: "合成脂质和类固醇，解毒药物和毒物。" },
+            rough_er: { name: "粗面内质网", func: "蛋白质合成", details: "表面附着核糖体，合成分泌蛋白。" },
+            centriole: { name: "中心粒", func: "纺锤体形成", details: "一对圆柱形结构，在细胞分裂时形成有丝分裂纺锤体。" },
+            microtubule: { name: "微管", func: "细胞内运输", details: "空心管状结构，作为运动蛋白运输货物的轨道。" },
+            microfilament: { name: "微丝", func: "细胞运动", details: "细肌动蛋白丝，参与细胞运动和形状变化。" },
+            intermediate_filament: { name: "中间纤维", func: "机械强度", details: "绳状纤维，为细胞提供机械稳定性。" },
+            nuclear_envelope: { name: "核膜", func: "核区隔化", details: "双层膜，将细胞核与细胞质分隔开。" },
+            cristae: { name: "嵴", func: "ATP合成表面", details: "线粒体内膜折叠，ATP合成发生的场所。" }
         }
     },
     sb1_01_metabolic: {

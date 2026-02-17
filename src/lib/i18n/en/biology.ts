@@ -252,12 +252,34 @@ export const enBiology = {
             analysis: "Microscopic Analysis"
         },
         prompts: {
-            id_prompt: "Identify the organelle highlighted in the 3D view.",
+            id_prompt: "Identify the organelle: {organelle}",
             id_target: "Highlighted: ?",
             fn_prompt: "Which organelle is responsible for: {func}?",
             fn_target: "Function: {func}",
             hint_name: "It is the {name}",
-            hint_start: "The answer starts with {char}"
+            hint_start: "The answer starts with {char}",
+            hint_func: "This organelle performs: {func}",
+            hint_range: "The value is between {min} and {max}",
+            org_count_mitochondria: "How many mitochondria are typically in a human liver cell?",
+            org_count_ribosomes: "Approximately how many ribosomes are in a typical eukaryotic cell?",
+            org_nucleus_diameter: "What is the typical diameter of a nucleus in micrometers?",
+            org_cell_diameter: "What is the typical diameter of an animal cell in micrometers?",
+            org_mitochondria_length: "What is the typical length of a mitochondrion in micrometers?",
+            org_golgi_cisternae: "How many cisternae (flattened sacs) are typically in a Golgi apparatus?",
+            org_lysosome_count: "Approximately how many lysosomes are in a typical animal cell?",
+            org_er_percentage: "What percentage of the cell volume does the endoplasmic reticulum occupy?",
+            org_nuclear_pores: "How many nuclear pores are typically in a nuclear envelope?",
+            org_peroxisome_count: "Approximately how many peroxisomes are in a typical liver cell?",
+            org_atp_per_glucose: "How many ATP molecules are produced from one glucose molecule in aerobic respiration?",
+            org_protein_synthesis_rate: "What is the typical rate of protein synthesis in amino acids per second?",
+            org_membrane_thickness: "What is the thickness of a cell membrane in nanometers?",
+            org_microtubule_diameter: "What is the diameter of a microtubule in nanometers?",
+            org_ribosome_diameter: "What is the diameter of a ribosome in nanometers?",
+            org_cristae_surface_area: "What is the approximate surface area of mitochondrial cristae in square micrometers?",
+            org_nuclear_dna_length: "If all DNA in a human cell nucleus were stretched out, how long would it be in meters?",
+            org_golgi_transit_time: "How long does it take for a protein to transit through the Golgi apparatus in minutes?",
+            org_lysosome_ph: "What is the typical pH inside a lysosome?",
+            org_mitochondrial_dna: "How many genes are encoded in mitochondrial DNA?"
         },
         organelles: {
             nucleus: {
@@ -284,6 +306,81 @@ export const enBiology = {
                 name: "Endoplasmic Reticulum",
                 func: "Synthesis Network (ER)",
                 details: "Rough ER: protein synthesis. Smooth ER: lipid synthesis and detoxification."
+            },
+            lysosome: {
+                name: "Lysosome",
+                func: "Cellular Digestion",
+                details: "Contains digestive enzymes that break down waste materials and cellular debris."
+            },
+            peroxisome: {
+                name: "Peroxisome",
+                func: "Lipid Metabolism",
+                details: "Breaks down fatty acids and detoxifies harmful substances."
+            },
+            centrosome: {
+                name: "Centrosome",
+                func: "Microtubule Organization",
+                details: "Organizes microtubules and regulates cell division."
+            },
+            vacuole: {
+                name: "Vacuole",
+                func: "Storage and Turgor",
+                details: "Stores water, nutrients, and waste products. Maintains cell turgor pressure."
+            },
+            cytoskeleton: {
+                name: "Cytoskeleton",
+                func: "Structural Support",
+                details: "Network of protein filaments providing cell shape and enabling movement."
+            },
+            nucleolus: {
+                name: "Nucleolus",
+                func: "Ribosome Assembly",
+                details: "Site of ribosomal RNA synthesis and ribosome assembly within the nucleus."
+            },
+            nuclear_pore: {
+                name: "Nuclear Pore",
+                func: "Nuclear Transport",
+                details: "Channels in the nuclear envelope allowing selective transport of molecules."
+            },
+            smooth_er: {
+                name: "Smooth ER",
+                func: "Lipid Synthesis",
+                details: "Synthesizes lipids and steroids, detoxifies drugs and poisons."
+            },
+            rough_er: {
+                name: "Rough ER",
+                func: "Protein Synthesis",
+                details: "Studded with ribosomes, synthesizes proteins for secretion."
+            },
+            centriole: {
+                name: "Centriole",
+                func: "Spindle Formation",
+                details: "Pair of cylindrical structures that form the mitotic spindle during cell division."
+            },
+            microtubule: {
+                name: "Microtubule",
+                func: "Intracellular Transport",
+                details: "Hollow tubes that serve as tracks for motor proteins transporting cargo."
+            },
+            microfilament: {
+                name: "Microfilament",
+                func: "Cell Motility",
+                details: "Thin actin filaments involved in cell movement and shape changes."
+            },
+            intermediate_filament: {
+                name: "Intermediate Filament",
+                func: "Mechanical Strength",
+                details: "Rope-like fibers providing mechanical stability to cells."
+            },
+            nuclear_envelope: {
+                name: "Nuclear Envelope",
+                func: "Nuclear Compartmentalization",
+                details: "Double membrane separating the nucleus from the cytoplasm."
+            },
+            cristae: {
+                name: "Cristae",
+                func: "ATP Synthesis Surface",
+                details: "Folded inner membrane of mitochondria where ATP synthesis occurs."
             }
         }
     },

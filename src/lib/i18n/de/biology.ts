@@ -252,12 +252,34 @@ export const deBiology = {
             analysis: "Mikroskopische Analyse"
         },
         prompts: {
-            id_prompt: "Identifizieren Sie das in der 3D-Ansicht markierte Organell.",
+            id_prompt: "Identifizieren Sie das Organell: {organelle}",
             id_target: "Markiert: ?",
             fn_prompt: "Welches Organell ist verantwortlich für: {func}?",
             fn_target: "Funktion: {func}",
             hint_name: "Es ist der/die {name}",
-            hint_start: "Die Antwort beginnt mit {char}"
+            hint_start: "Die Antwort beginnt mit {char}",
+            hint_func: "Dieses Organell führt aus: {func}",
+            hint_range: "Der Wert liegt zwischen {min} und {max}",
+            org_count_mitochondria: "Wie viele Mitochondrien gibt es typischerweise in einer menschlichen Leberzelle?",
+            org_count_ribosomes: "Ungefähr wie viele Ribosomen gibt es in einer typischen eukaryotischen Zelle?",
+            org_nucleus_diameter: "Was ist der typische Durchmesser eines Zellkerns in Mikrometern?",
+            org_cell_diameter: "Was ist der typische Durchmesser einer tierischen Zelle in Mikrometern?",
+            org_mitochondria_length: "Was ist die typische Länge eines Mitochondriums in Mikrometern?",
+            org_golgi_cisternae: "Wie viele Zisternen (abgeflachte Säcke) gibt es typischerweise in einem Golgi-Apparat?",
+            org_lysosome_count: "Ungefähr wie viele Lysosomen gibt es in einer typischen tierischen Zelle?",
+            org_er_percentage: "Welchen Prozentsatz des Zellvolumens nimmt das endoplasmatische Retikulum ein?",
+            org_nuclear_pores: "Wie viele Kernporen gibt es typischerweise in einer Kernhülle?",
+            org_peroxisome_count: "Ungefähr wie viele Peroxisomen gibt es in einer typischen Leberzelle?",
+            org_atp_per_glucose: "Wie viele ATP-Moleküle werden aus einem Glukosemolekül bei aerober Atmung produziert?",
+            org_protein_synthesis_rate: "Was ist die typische Rate der Proteinsynthese in Aminosäuren pro Sekunde?",
+            org_membrane_thickness: "Was ist die Dicke einer Zellmembran in Nanometern?",
+            org_microtubule_diameter: "Was ist der Durchmesser eines Mikrotubulus in Nanometern?",
+            org_ribosome_diameter: "Was ist der Durchmesser eines Ribosoms in Nanometern?",
+            org_cristae_surface_area: "Was ist die ungefähre Oberfläche der mitochondrialen Cristae in Quadratmikrometern?",
+            org_nuclear_dna_length: "Wenn alle DNA in einem menschlichen Zellkern gestreckt würde, wie lang wäre sie in Metern?",
+            org_golgi_transit_time: "Wie lange dauert es, bis ein Protein durch den Golgi-Apparat transportiert wird in Minuten?",
+            org_lysosome_ph: "Was ist der typische pH-Wert innerhalb eines Lysosoms?",
+            org_mitochondrial_dna: "Wie viele Gene sind in der mitochondrialen DNA kodiert?"
         },
         organelles: {
             nucleus: {
@@ -284,7 +306,22 @@ export const deBiology = {
                 name: "Endoplasmatisches Retikulum",
                 func: "Synthesenetzwerk (ER)",
                 details: "Raues ER: Proteinsynthese. Glattes ER: Lipidsynthese und Entgiftung."
-            }
+            },
+            lysosome: { name: "Lysosom", func: "Zelluläre Verdauung", details: "Enthält Verdauungsenzyme, die Abfallmaterialien und Zelltrümmer abbauen." },
+            peroxisome: { name: "Peroxisom", func: "Lipidstoffwechsel", details: "Baut Fettsäuren ab und entgiftet schädliche Substanzen." },
+            centrosome: { name: "Zentrosom", func: "Mikrotubuli-Organisation", details: "Organisiert Mikrotubuli und reguliert die Zellteilung." },
+            vacuole: { name: "Vakuole", func: "Speicherung und Turgor", details: "Speichert Wasser, Nährstoffe und Abfallprodukte. Erhält den Zellturgordruck." },
+            cytoskeleton: { name: "Zytoskelett", func: "Strukturelle Unterstützung", details: "Netzwerk aus Proteinfilamenten, das Zellform bietet und Bewegung ermöglicht." },
+            nucleolus: { name: "Nukleolus", func: "Ribosomen-Assemblierung", details: "Ort der ribosomalen RNA-Synthese und Ribosomen-Assemblierung im Kern." },
+            nuclear_pore: { name: "Kernpore", func: "Nuklearer Transport", details: "Kanäle in der Kernhülle, die selektiven Transport von Molekülen ermöglichen." },
+            smooth_er: { name: "Glattes ER", func: "Lipidsynthese", details: "Synthetisiert Lipide und Steroide, entgiftet Medikamente und Gifte." },
+            rough_er: { name: "Raues ER", func: "Proteinsynthese", details: "Mit Ribosomen besetzt, synthetisiert Proteine zur Sekretion." },
+            centriole: { name: "Zentriol", func: "Spindelbildung", details: "Paar zylindrischer Strukturen, die während der Zellteilung die mitotische Spindel bilden." },
+            microtubule: { name: "Mikrotubulus", func: "Intrazellulärer Transport", details: "Hohle Röhren, die als Schienen für Motorproteine dienen, die Fracht transportieren." },
+            microfilament: { name: "Mikrofilament", func: "Zellmotilität", details: "Dünne Aktinfilamente, die an Zellbewegung und Formänderungen beteiligt sind." },
+            intermediate_filament: { name: "Intermediärfilament", func: "Mechanische Festigkeit", details: "Seilartige Fasern, die mechanische Stabilität für Zellen bieten." },
+            nuclear_envelope: { name: "Kernhülle", func: "Nukleare Kompartimentierung", details: "Doppelmembran, die den Kern vom Zytoplasma trennt." },
+            cristae: { name: "Cristae", func: "ATP-Synthese-Oberfläche", details: "Gefaltete innere Membran der Mitochondrien, wo ATP-Synthese stattfindet." }
         }
     },
     sb1_01_metabolic: {

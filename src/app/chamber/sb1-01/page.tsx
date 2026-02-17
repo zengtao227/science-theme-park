@@ -18,14 +18,6 @@ interface SB101Quest extends Quest {
     organelleName: string;
 }
 
-const ORGANELLE_LIST = [
-    { id: "nucleus", key: "nucleus" },
-    { id: "mitochondria1", key: "mitochondria" },
-    { id: "ribosome1", key: "ribosome" },
-    { id: "golgi", key: "golgi" },
-    { id: "er", key: "er" }
-];
-
 export default function SB101Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
@@ -35,44 +27,155 @@ export default function SB101Page() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB101Quest[] => {
         const quests: SB101Quest[] = [];
 
+        // IDENTIFICATION stage: 5 questions per difficulty
         if (stage === "IDENTIFICATION") {
-            ORGANELLE_LIST.forEach((org) => {
+            const organelles = {
+                BASIC: [
+                    { id: "nucleus", key: "nucleus", size: "10" },
+                    { id: "mitochondria1", key: "mitochondria", size: "2" },
+                    { id: "ribosome1", key: "ribosome", size: "0.025" },
+                    { id: "golgi", key: "golgi", size: "1" },
+                    { id: "er", key: "er", size: "variable" }
+                ],
+                CORE: [
+                    { id: "lysosome", key: "lysosome", size: "0.5" },
+                    { id: "peroxisome", key: "peroxisome", size: "0.5" },
+                    { id: "centrosome", key: "centrosome", size: "0.2" },
+                    { id: "vacuole", key: "vacuole", size: "variable" },
+                    { id: "cytoskeleton", key: "cytoskeleton", size: "network" }
+                ],
+                ADVANCED: [
+                    { id: "nucleolus", key: "nucleolus", size: "1" },
+                    { id: "nuclear_pore", key: "nuclear_pore", size: "0.1" },
+                    { id: "smooth_er", key: "smooth_er", size: "variable" },
+                    { id: "rough_er", key: "rough_er", size: "variable" },
+                    { id: "centriole", key: "centriole", size: "0.2" }
+                ],
+                ELITE: [
+                    { id: "microtubule", key: "microtubule", size: "0.025" },
+                    { id: "microfilament", key: "microfilament", size: "0.007" },
+                    { id: "intermediate_filament", key: "intermediate_filament", size: "0.010" },
+                    { id: "nuclear_envelope", key: "nuclear_envelope", size: "0.04" },
+                    { id: "cristae", key: "cristae", size: "0.02" }
+                ]
+            };
+
+            const orgList = organelles[difficulty];
+            orgList.forEach((org, idx) => {
                 quests.push({
-                    id: `id-${org.id}`,
+                    id: `ID_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     targetOrganelleId: org.id,
                     organelleName: org.key,
-                    promptLatex: t("sb1_01.prompts.id_prompt"),
-                    expressionLatex: t("sb1_01.prompts.id_target"),
+                    promptLatex: t("sb1_01.prompts.id_prompt", { organelle: org.key }),
+                    expressionLatex: `\\text{Size: } ${org.size} \\, \\mu\\text{m}`,
                     targetLatex: org.key,
-                    slots: [{ id: "ans", labelLatex: t("sb1_01.prompts.id_target"), placeholder: "...", expected: org.key }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Organelle}", placeholder: "...", expected: org.key }],
                     correctLatex: org.key,
                     hintLatex: [t("sb1_01.prompts.hint_start", { char: org.key[0].toUpperCase() })]
                 });
             });
         }
 
+        // FUNCTION stage: 5 questions per difficulty
         if (stage === "FUNCTION") {
-            ORGANELLE_LIST.forEach((org) => {
-                // In a real app we'd fetch localized function text from translations.EN.sb1_01.organelles[org.key].func
-                // For now, since we're in buildPool, we can use the key and translate it later or pull from translations
-                // Let's pull from translations directly
-                const organelleData = t(`sb1_01.organelles.${org.key}`) as any;
-                const funcText = typeof organelleData === 'object' ? organelleData.func : org.key;
+            const functions = {
+                BASIC: [
+                    { org: "nucleus", func: "DNA storage", answer: "nucleus" },
+                    { org: "mitochondria", func: "ATP production", answer: "mitochondria" },
+                    { org: "ribosome", func: "protein synthesis", answer: "ribosome" },
+                    { org: "golgi", func: "protein packaging", answer: "golgi" },
+                    { org: "er", func: "protein transport", answer: "er" }
+                ],
+                CORE: [
+                    { org: "lysosome", func: "cellular digestion", answer: "lysosome" },
+                    { org: "peroxisome", func: "lipid metabolism", answer: "peroxisome" },
+                    { org: "centrosome", func: "microtubule organization", answer: "centrosome" },
+                    { org: "vacuole", func: "storage and turgor", answer: "vacuole" },
+                    { org: "cytoskeleton", func: "structural support", answer: "cytoskeleton" }
+                ],
+                ADVANCED: [
+                    { org: "nucleolus", func: "ribosome assembly", answer: "nucleolus" },
+                    { org: "nuclear_pore", func: "nuclear transport", answer: "nuclear_pore" },
+                    { org: "smooth_er", func: "lipid synthesis", answer: "smooth_er" },
+                    { org: "rough_er", func: "protein synthesis", answer: "rough_er" },
+                    { org: "centriole", func: "spindle formation", answer: "centriole" }
+                ],
+                ELITE: [
+                    { org: "microtubule", func: "intracellular transport", answer: "microtubule" },
+                    { org: "microfilament", func: "cell motility", answer: "microfilament" },
+                    { org: "intermediate_filament", func: "mechanical strength", answer: "intermediate_filament" },
+                    { org: "nuclear_envelope", func: "nuclear compartmentalization", answer: "nuclear_envelope" },
+                    { org: "cristae", func: "ATP synthesis surface", answer: "cristae" }
+                ]
+            };
 
+            const funcList = functions[difficulty];
+            funcList.forEach((item, idx) => {
                 quests.push({
-                    id: `fn-${org.id}`,
+                    id: `FN_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    targetOrganelleId: org.id,
-                    organelleName: org.key,
-                    promptLatex: t("sb1_01.prompts.fn_prompt").replace("{func}", funcText),
-                    expressionLatex: t("sb1_01.prompts.fn_target").replace("{func}", funcText),
-                    targetLatex: org.key,
-                    slots: [{ id: "ans", labelLatex: "Organelle", placeholder: "...", expected: org.key }],
-                    correctLatex: org.key,
-                    hintLatex: [t("sb1_01.prompts.hint_name").replace("{name}", organelleData.name || org.key)]
+                    targetOrganelleId: item.org,
+                    organelleName: item.org,
+                    promptLatex: t("sb1_01.prompts.fn_prompt", { func: item.func }),
+                    expressionLatex: `\\text{Function: } \\text{${item.func}}`,
+                    targetLatex: item.answer,
+                    slots: [{ id: "ans", labelLatex: "\\text{Organelle}", placeholder: "...", expected: item.answer }],
+                    correctLatex: item.answer,
+                    hintLatex: [t("sb1_01.prompts.hint_func", { func: item.func })]
+                });
+            });
+        }
+
+        // ORGANELLES stage: 5 questions per difficulty (comparative/quantitative)
+        if (stage === "ORGANELLES") {
+            const comparisons = {
+                BASIC: [
+                    { q: "count_mitochondria", answer: "100", unit: "" },
+                    { q: "count_ribosomes", answer: "10000", unit: "" },
+                    { q: "nucleus_diameter", answer: "10", unit: "μm" },
+                    { q: "cell_diameter", answer: "20", unit: "μm" },
+                    { q: "mitochondria_length", answer: "2", unit: "μm" }
+                ],
+                CORE: [
+                    { q: "golgi_cisternae", answer: "6", unit: "" },
+                    { q: "lysosome_count", answer: "50", unit: "" },
+                    { q: "er_percentage", answer: "10", unit: "%" },
+                    { q: "nuclear_pores", answer: "3000", unit: "" },
+                    { q: "peroxisome_count", answer: "100", unit: "" }
+                ],
+                ADVANCED: [
+                    { q: "atp_per_glucose", answer: "36", unit: "ATP" },
+                    { q: "protein_synthesis_rate", answer: "20", unit: "aa/s" },
+                    { q: "membrane_thickness", answer: "7.5", unit: "nm" },
+                    { q: "microtubule_diameter", answer: "25", unit: "nm" },
+                    { q: "ribosome_diameter", answer: "25", unit: "nm" }
+                ],
+                ELITE: [
+                    { q: "cristae_surface_area", answer: "40", unit: "μm²" },
+                    { q: "nuclear_dna_length", answer: "2", unit: "m" },
+                    { q: "golgi_transit_time", answer: "30", unit: "min" },
+                    { q: "lysosome_ph", answer: "4.5", unit: "" },
+                    { q: "mitochondrial_dna", answer: "37", unit: "genes" }
+                ]
+            };
+
+            const compList = comparisons[difficulty];
+            compList.forEach((item, idx) => {
+                quests.push({
+                    id: `ORG_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    targetOrganelleId: "cell",
+                    organelleName: "cell",
+                    promptLatex: t(`sb1_01.prompts.org_${item.q}`),
+                    expressionLatex: `\\text{${item.q.replace(/_/g, ' ')}}`,
+                    targetLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Value}", placeholder: "...", expected: item.answer }],
+                    correctLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
+                    hintLatex: [t("sb1_01.prompts.hint_range", { min: Math.floor(parseFloat(item.answer) * 0.8), max: Math.ceil(parseFloat(item.answer) * 1.2) })]
                 });
             });
         }
