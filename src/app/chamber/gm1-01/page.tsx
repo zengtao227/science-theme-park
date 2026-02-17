@@ -4,13 +4,12 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
 
 type Stage = "POWER_RULE" | "FACTOR_RULE" | "SUM_RULE" | "PRODUCT_RULE" | "QUOTIENT_RULE" | "CHAIN_RULE";
-type G101T = typeof translations.EN.gm1_01;
 
 interface G101Quest extends Quest {
   stage: Stage;
@@ -223,7 +222,7 @@ const quotientDataElite = [
   { id: "Q_E5", x: 0.9 },
 ];
 
-function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Quest[] {
+function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G101Quest[] {
   if (stage === "POWER_RULE") {
     let dataSet;
     switch (difficulty) {
@@ -248,7 +247,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         xPosition: item.x,
         coefficient: item.a,
         exponent: item.n,
-        promptLatex: t.stages.power_rule_prompt_latex,
+        promptLatex: gm1_01_t.stages.power_rule_prompt_latex,
         expressionLatex: expr,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -281,7 +280,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         xPosition: item.x,
         coefficient: item.a,
         exponent: item.n,
-        promptLatex: t.stages.factor_rule_prompt_latex,
+        promptLatex: gm1_01_t.stages.factor_rule_prompt_latex,
         expressionLatex: expr,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -326,7 +325,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         xPosition: item.x,
         coefficient: item.a,
         exponent: item.n,
-        promptLatex: t.stages.sum_rule_prompt_latex,
+        promptLatex: gm1_01_t.stages.sum_rule_prompt_latex,
         expressionLatex: expr,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -355,7 +354,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         stage,
         functionType: "product" as const,
         xPosition: item.x,
-        promptLatex: t.stages.product_rule_prompt_latex,
+        promptLatex: gm1_01_t.stages.product_rule_prompt_latex,
         expressionLatex: `f(x)=x\\cdot\\sin(x),\\; x=${round2(item.x)}`,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -386,7 +385,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
         stage,
         functionType: "quotient" as const,
         xPosition: item.x,
-        promptLatex: t.stages.quotient_rule_prompt_latex,
+        promptLatex: gm1_01_t.stages.quotient_rule_prompt_latex,
         expressionLatex: `f(x)=\\frac{x}{\\sin(x)},\\; x=${round2(item.x)}`,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -415,7 +414,7 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
       stage,
       functionType: "chain" as const,
       xPosition: item.x,
-      promptLatex: t.stages.chain_rule_prompt_latex,
+      promptLatex: gm1_01_t.stages.chain_rule_prompt_latex,
       expressionLatex: `f(x)=\\sin(${item.k}x),\\; x=${round2(item.x)}`,
       targetLatex: "f'(x)",
       slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
@@ -425,8 +424,88 @@ function buildStagePool(t: G101T, difficulty: Difficulty, stage: Stage): G101Que
 }
 
 export default function G101Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const t = translations[currentLanguage].gm1_01;
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
+  
+  const gm1_01_t = {
+    title: t("gm1_01.title"),
+    description: t("gm1_01.description"),
+    back: t("gm1_01.back"),
+    check: t("gm1_01.check"),
+    next: t("gm1_01.next"),
+    correct: t("gm1_01.correct"),
+    incorrect: t("gm1_01.incorrect"),
+    ready: t("gm1_01.ready"),
+    monitor_title: t("gm1_01.monitor_title"),
+    footer_left: t("gm1_01.footer_left"),
+    target_title: t("gm1_01.target_title"),
+    stages: {
+      POWER_RULE: t("gm1_01.stages.POWER_RULE"),
+      FACTOR_RULE: t("gm1_01.stages.FACTOR_RULE"),
+      SUM_RULE: t("gm1_01.stages.SUM_RULE"),
+      PRODUCT_RULE: t("gm1_01.stages.PRODUCT_RULE"),
+      QUOTIENT_RULE: t("gm1_01.stages.QUOTIENT_RULE"),
+      CHAIN_RULE: t("gm1_01.stages.CHAIN_RULE"),
+      power_rule: t("gm1_01.stages.power_rule"),
+      factor_rule: t("gm1_01.stages.factor_rule"),
+      sum_rule: t("gm1_01.stages.sum_rule"),
+      product_rule: t("gm1_01.stages.product_rule"),
+      quotient_rule: t("gm1_01.stages.quotient_rule"),
+      chain_rule: t("gm1_01.stages.chain_rule"),
+      power_rule_prompt_latex: t("gm1_01.stages.power_rule_prompt_latex"),
+      factor_rule_prompt_latex: t("gm1_01.stages.factor_rule_prompt_latex"),
+      sum_rule_prompt_latex: t("gm1_01.stages.sum_rule_prompt_latex"),
+      product_rule_prompt_latex: t("gm1_01.stages.product_rule_prompt_latex"),
+      quotient_rule_prompt_latex: t("gm1_01.stages.quotient_rule_prompt_latex"),
+      chain_rule_prompt_latex: t("gm1_01.stages.chain_rule_prompt_latex"),
+    },
+    difficulty: {
+      basic: t("gm1_01.difficulty.basic"),
+      core: t("gm1_01.difficulty.core"),
+      advanced: t("gm1_01.difficulty.advanced"),
+      elite: t("gm1_01.difficulty.elite"),
+    },
+    labels: {
+      hints: t("gm1_01.labels.hints"),
+    },
+    formulas: {
+      power_rule: t("gm1_01.formulas.power_rule"),
+      factor_rule: t("gm1_01.formulas.factor_rule"),
+      sum_rule: t("gm1_01.formulas.sum_rule"),
+      product_rule: t("gm1_01.formulas.product_rule"),
+      quotient_rule: t("gm1_01.formulas.quotient_rule"),
+      chain_rule: t("gm1_01.formulas.chain_rule"),
+    },
+    mission: {
+      title: t("gm1_01.mission.title"),
+      description: t("gm1_01.mission.description"),
+    },
+    scenarios: {
+      power_rule: t("gm1_01.scenarios.power_rule"),
+      factor_rule: t("gm1_01.scenarios.factor_rule"),
+      sum_rule: t("gm1_01.scenarios.sum_rule"),
+      product_rule: t("gm1_01.scenarios.product_rule"),
+      quotient_rule: t("gm1_01.scenarios.quotient_rule"),
+      chain_rule: t("gm1_01.scenarios.chain_rule"),
+    },
+    canvas: {
+      title: t("gm1_01.canvas.title"),
+      subtitle_power: t("gm1_01.canvas.subtitle_power"),
+      subtitle_factor: t("gm1_01.canvas.subtitle_factor"),
+      subtitle_sum: t("gm1_01.canvas.subtitle_sum"),
+      subtitle_product: t("gm1_01.canvas.subtitle_product"),
+      subtitle_quotient: t("gm1_01.canvas.subtitle_quotient"),
+      subtitle_chain: t("gm1_01.canvas.subtitle_chain"),
+      x_label: t("gm1_01.canvas.x_label"),
+      y_label: t("gm1_01.canvas.y_label"),
+      slope_label: t("gm1_01.canvas.slope_label"),
+      your_slope: t("gm1_01.canvas.your_slope"),
+      correct_slope: t("gm1_01.canvas.correct_slope"),
+      status_chamber: t("gm1_01.canvas.status_chamber"),
+      status_sim: t("gm1_01.canvas.status_sim"),
+      status_mode: t("gm1_01.canvas.status_mode"),
+    },
+  };
 
   const {
     difficulty,
@@ -440,7 +519,7 @@ export default function G101Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<G101Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool: (d, s) => buildStagePool(gm1_01_t, d, s),
     initialStage: "POWER_RULE",
   });
 

@@ -1174,7 +1174,7 @@ const module_t = {
 
 **数学模块 i18n 迁移列表**:
 
-- [ ] 5.3.1 GM1.01 - i18n迁移
+- [-] 5.3.1 GM1.01 - i18n迁移
   - 当前: `translations[currentLanguage].gm1_01`
   - 目标: `useLanguage()` hook
   - 验证: build + 浏览器测试
