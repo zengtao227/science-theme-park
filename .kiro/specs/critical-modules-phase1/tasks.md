@@ -391,7 +391,7 @@ cat MODULE_AUDIT_LATEST.txt
 
 ### Sprint 0: 首页修复 + 重复清理（最先做）
 
-- [ ] 0.1 添加遗漏模块到首页
+- [x] 0.1 添加遗漏模块到首页
   - 打开 `src/app/page.tsx`
   - 在物理模块列表中，`GP2.01` 之后添加:
     ```typescript
@@ -411,25 +411,25 @@ cat MODULE_AUDIT_LATEST.txt
     - `home.sc3_05_title` / `home.sc3_05_subtitle`
   - 确认: `npm run build` 通过，浏览器检查链接
 
-- [ ] 0.2 解决 SB2.02 重复
+- [x] 0.2 解决 SB2.02 重复
   - 比较 `sb2-02/page.tsx` 和 `sb2-02-body-systems/page.tsx`
   - `sb2-02-body-systems` 是另一个AI已修复的正式版本（760行，60题）
   - `sb2-02` 是旧版（303行，3题）
   - 确保首页只链接到 `sb2-02-body-systems`
   - 确认: `grep -c "sb2-02" src/app/page.tsx` 返回 1（不是2）
 
-- [ ] 0.3 检查 SP3.07
+- [x] 0.3 检查 SP3.07
   - 查看 `src/app/chamber/sp3-07/page.tsx` 内容
   - `grep "sp3_07" src/lib/i18n/en/physics.ts` 检查翻译
   - 如果是有效模块，添加到首页
   - 如果是空壳，标记待补充
 
-- [ ] 0.4 添加新模块到首页 (GM1.02, SC2.05, GP3.01, SC2.06)
+- [x] 0.4 添加新模块到首页 (GM1.02, SC2.05, GP3.01, SC2.06)
   - 这些模块在上一轮已创建文件，需要确认首页有链接
   - 在 `src/app/page.tsx` 对应学科区域添加条目
   - 在 `src/lib/i18n/{en,cn,de}/common.ts` 添加首页翻译键
 
-- [ ] 0.5 Checkpoint Sprint 0
+- [x] 0.5 Checkpoint Sprint 0
   - `npm run build` 通过
   - 浏览器检查首页所有新链接
   - `git add -A && git commit -m "fix: homepage module links and SB2.02 cleanup" && git push`
@@ -527,7 +527,7 @@ MOD=sm1-03 && echo "=== $MOD ==="  \
 - 🟡 **题数不足**: 有题但每难度<5题 — 需要补充
 - 🔴 **确实稀疏**: 只有2-4题或用isAdvanced二值开关 — 需要大量补充
 
-- [ ] 0.6 Checkpoint Sprint 0.5
+- [-] 0.6 Checkpoint Sprint 0.5
   - 验证报告输出到 `MODULE_VERIFICATION_REPORT.md`
   - 更新下方 Sprint 1.5/2/3 的模块列表（移除误判的模块）
   - `git add -A && git commit -m "docs: module verification report" && git push`
