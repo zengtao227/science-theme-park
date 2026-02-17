@@ -1510,3 +1510,266 @@ Sprint 5完成后，项目应达到：
 - 建议预留1-2天缓冲时间
 
 ---
+
+
+---
+
+## 📊 补充：模块状态真值表 (antigravity审查补充)
+
+> **来源**: antigravity人工核查  
+> **日期**: 2026-02-17
+
+经过对源代码的深度人工核查，修正了自动化审计的部分误判：
+
+### 确认完整的模块 (无需修改)
+
+以下模块经人工核查确认为**完整 (Complete)**，自动化脚本可能误报为SPARSE：
+
+| 模块 | 真实状态 | 模式特征 | 行数 | 备注 |
+|------|---------|---------|------|------|
+| **SM3.01** | ✅ SUPER FULL | `return [...]` 直接返回数组 | 390 | 128题，算法生成 |
+| **SM2.02** | ✅ FULL | 多重循环生成几何题 | 965 | 循环生成，完整 |
+| **SM2.05** | ✅ FULL | 显式 `quests.push` 每难度5题 | 770 | 显式硬编码，完整 |
+| **SM2.07** | ✅ FULL | 算法生成 | 461 | ELSE-IF-CHAIN模式 |
+| **SP3.01** | ✅ FULL | `forEach` 循环生成 | 578 | 标准循环生成 |
+| **GB2.01** | ✅ FULL | `forEach` 循环生成 | 415 | 标准循环生成 |
+
+**重要提示**: 若自动化脚本报告这些模块为 "SPARSE" 或 "❓ VERIFY"，请忽略脚本结果。以人工核查为准。
+
+### 确认需要修复的骨架模块
+
+以下模块确实只有骨架代码，需要在Sprint 2中重构：
+
+| 模块 | 状态 | 当前题数 | 目标题数 | 优先级 |
+|------|------|---------|---------|--------|
+| **SP3.02** | 🔴 SKELETON | ~3题 | 60题 | 高 |
+| **SP3.03** | 🔴 SKELETON | ~3题 | 60题 | 高 |
+| **SP3.08** | 🔴 SKELETON | ~3题 | 60题 | 中 |
+| **SC1.02** | 🟡 PARTIAL | ~18题 | 60题 | 中 |
+
+---
+
+## 🚧 Sprint 2 补充：SP3.02 详细实施蓝图
+
+> **antigravity提供的详细实施指南**
+
+### SP3.02 (Newton's Laws) 重构计划
+
+**目标**: 将当前仅有 3 道题的骨架扩充为标准的 60 道题模块。  
+**模式**: 使用 Sprint 5 标准 (`forEach` + `Structured Data`)。  
+**i18n**: 已在 `src/lib/i18n/en/physics.ts` 中添加了所需的 Prompt 模板。
+
+#### 题目设计蓝图 (60题分布)
+
+**Stage 1: NEWTON_1 (Inertia & Equilibrium) - 20题**
+- **BASIC (5题)**: 
+  - 简单的净力计算 (同向/反向力)
+  - v=constant 意味着 F_net=0 的概念题
+  - 整数运算，直接观察
+  
+- **CORE (5题)**: 
+  - 二维平衡 (F_net_x=0, F_net_y=0)
+  - 简单的向量加法
+  - 需要纸笔计算
+  
+- **ADVANCED (5题)**: 
+  - 斜面平衡 (F_g_x = F_friction)
+  - 太空无摩擦场景
+  - 多步骤推理
+  
+- **ELITE (5题)**: 
+  - 复杂多力平衡系统
+  - 概念辨析题
+  - 综合应用
+
+**Stage 2: NEWTON_2 (F=ma) - 20题**
+- **BASIC (5题)**: 
+  - 给定 m, a 求 F
+  - 给定 F, m 求 a
+  - 整数运算
+  
+- **CORE (5题)**: 
+  - 包含重力因素 (W=mg)
+  - 给定 F_net 求 a
+  - 需要考虑多个力
+  
+- **ADVANCED (5题)**: 
+  - 反向力场景 (F_app - f = ma)
+  - 滑轮系统基础
+  - 小数/分数运算
+  
+- **ELITE (5题)**: 
+  - 变质量问题
+  - 耦合系统 (两个物体)
+  - 深入理解
+
+**Stage 3: FRICTION (Static & Kinetic) - 20题**
+- **BASIC (5题)**: 
+  - f = μN 计算 (水平面)
+  - 直接代入公式
+  - 整数结果
+  
+- **CORE (5题)**: 
+  - 最大静摩擦 vs 动摩擦判断
+  - 需要理解概念差异
+  
+- **ADVANCED (5题)**: 
+  - 斜面摩擦计算 (N = mg cosθ)
+  - 需要三角函数
+  
+- **ELITE (5题)**: 
+  - "即将滑动"临界条件分析
+  - 综合策略
+
+#### 代码模板 (SP3.02)
+
+```typescript
+// 1. 定义数据类型
+type SP302QuestData = {
+  id: string;
+  m: number;      // 质量 (kg)
+  f?: number;     // 力 (N)
+  mu?: number;    // 摩擦系数
+  a?: number;     // 加速度 (m/s²)
+  scen: string;   // 场景描述键
+  expect: number; // 预期答案
+};
+
+// 2. 静态数据表
+const QUEST_DATA: Record<Stage, Record<Difficulty, SP302QuestData[]>> = {
+  NEWTON_1: {
+    BASIC: [
+      { id: "Q1", m: 10, f: 0, scen: "rest", expect: 0 },
+      { id: "Q2", m: 5, f: 20, scen: "const_v", expect: 0 },
+      { id: "Q3", m: 8, f: 16, scen: "equilibrium", expect: 16 },
+      { id: "Q4", m: 12, f: 0, scen: "space", expect: 0 },
+      { id: "Q5", m: 15, f: 30, scen: "inertia", expect: 0 },
+    ],
+    CORE: [
+      { id: "Q1", m: 10, f: 20, scen: "2d_balance", expect: 20 },
+      { id: "Q2", m: 8, f: 16, scen: "vector_add", expect: 16 },
+      { id: "Q3", m: 12, f: 24, scen: "2d_balance", expect: 24 },
+      { id: "Q4", m: 15, f: 30, scen: "vector_add", expect: 30 },
+      { id: "Q5", m: 20, f: 40, scen: "2d_balance", expect: 40 },
+    ],
+    ADVANCED: [
+      { id: "Q1", m: 10, mu: 0.3, scen: "slope", expect: 29.4 },
+      { id: "Q2", m: 8, mu: 0.4, scen: "slope", expect: 23.52 },
+      { id: "Q3", m: 12, mu: 0.2, scen: "space_friction", expect: 0 },
+      { id: "Q4", m: 15, mu: 0.5, scen: "slope", expect: 44.1 },
+      { id: "Q5", m: 20, mu: 0.3, scen: "slope", expect: 58.8 },
+    ],
+    ELITE: [
+      { id: "Q1", m: 10, f: 50, mu: 0.3, scen: "complex", expect: 20.6 },
+      { id: "Q2", m: 8, f: 40, mu: 0.4, scen: "complex", expect: 8.64 },
+      { id: "Q3", m: 12, f: 60, mu: 0.2, scen: "complex", expect: 36.48 },
+      { id: "Q4", m: 15, f: 75, mu: 0.5, scen: "complex", expect: 1.5 },
+      { id: "Q5", m: 20, f: 100, mu: 0.3, scen: "complex", expect: 41.2 },
+    ],
+  },
+  NEWTON_2: {
+    BASIC: [
+      { id: "Q1", m: 10, a: 2, scen: "find_f", expect: 20 },
+      { id: "Q2", m: 5, f: 20, scen: "find_a", expect: 4 },
+      { id: "Q3", m: 8, a: 3, scen: "find_f", expect: 24 },
+      { id: "Q4", m: 12, f: 36, scen: "find_a", expect: 3 },
+      { id: "Q5", m: 15, a: 2, scen: "find_f", expect: 30 },
+    ],
+    CORE: [
+      { id: "Q1", m: 10, f: 100, scen: "gravity", expect: 98 },
+      { id: "Q2", m: 8, f: 80, scen: "gravity", expect: 78.4 },
+      { id: "Q3", m: 12, f: 120, scen: "net_force", expect: 2.4 },
+      { id: "Q4", m: 15, f: 150, scen: "gravity", expect: 147 },
+      { id: "Q5", m: 20, f: 200, scen: "net_force", expect: 4 },
+    ],
+    ADVANCED: [
+      { id: "Q1", m: 10, f: 50, mu: 0.2, scen: "friction", expect: 3.04 },
+      { id: "Q2", m: 8, f: 40, mu: 0.3, scen: "friction", expect: 2.06 },
+      { id: "Q3", m: 12, f: 60, mu: 0.25, scen: "pulley", expect: 2.05 },
+      { id: "Q4", m: 15, f: 75, mu: 0.2, scen: "friction", expect: 3.04 },
+      { id: "Q5", m: 20, f: 100, mu: 0.15, scen: "pulley", expect: 3.56 },
+    ],
+    ELITE: [
+      { id: "Q1", m: 10, f: 50, scen: "variable_mass", expect: 5 },
+      { id: "Q2", m: 8, f: 40, scen: "coupled", expect: 2.5 },
+      { id: "Q3", m: 12, f: 60, scen: "variable_mass", expect: 5 },
+      { id: "Q4", m: 15, f: 75, scen: "coupled", expect: 2.5 },
+      { id: "Q5", m: 20, f: 100, scen: "variable_mass", expect: 5 },
+    ],
+  },
+  FRICTION: {
+    BASIC: [
+      { id: "Q1", m: 10, mu: 0.3, scen: "static", expect: 29.4 },
+      { id: "Q2", m: 8, mu: 0.4, scen: "static", expect: 31.36 },
+      { id: "Q3", m: 12, mu: 0.2, scen: "kinetic", expect: 23.52 },
+      { id: "Q4", m: 15, mu: 0.5, scen: "static", expect: 73.5 },
+      { id: "Q5", m: 20, mu: 0.3, scen: "kinetic", expect: 58.8 },
+    ],
+    CORE: [
+      { id: "Q1", m: 10, mu: 0.3, scen: "max_static", expect: 29.4 },
+      { id: "Q2", m: 8, mu: 0.4, scen: "kinetic_vs_static", expect: 31.36 },
+      { id: "Q3", m: 12, mu: 0.2, scen: "max_static", expect: 23.52 },
+      { id: "Q4", m: 15, mu: 0.5, scen: "kinetic_vs_static", expect: 73.5 },
+      { id: "Q5", m: 20, mu: 0.3, scen: "max_static", expect: 58.8 },
+    ],
+    ADVANCED: [
+      { id: "Q1", m: 10, mu: 0.3, scen: "slope_friction", expect: 25.48 },
+      { id: "Q2", m: 8, mu: 0.4, scen: "slope_friction", expect: 27.18 },
+      { id: "Q3", m: 12, mu: 0.2, scen: "slope_friction", expect: 20.38 },
+      { id: "Q4", m: 15, mu: 0.5, scen: "slope_friction", expect: 63.72 },
+      { id: "Q5", m: 20, mu: 0.3, scen: "slope_friction", expect: 50.96 },
+    ],
+    ELITE: [
+      { id: "Q1", m: 10, mu: 0.3, f: 50, scen: "critical", expect: 20.6 },
+      { id: "Q2", m: 8, mu: 0.4, f: 40, scen: "critical", expect: 8.64 },
+      { id: "Q3", m: 12, mu: 0.2, f: 60, scen: "critical", expect: 36.48 },
+      { id: "Q4", m: 15, mu: 0.5, f: 75, scen: "critical", expect: 1.5 },
+      { id: "Q5", m: 20, mu: 0.3, f: 100, scen: "critical", expect: 41.2 },
+    ],
+  },
+};
+
+// 3. 生成逻辑
+const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest[] => {
+  const quests: Quest[] = [];
+  const dataList = QUEST_DATA[stage]?.[difficulty] || [];
+
+  dataList.forEach((item, idx) => {
+    quests.push({
+      id: `${stage}_${difficulty[0]}${idx + 1}`,
+      difficulty,
+      stage,
+      promptLatex: t(`sp3_02.prompts.${item.scen}`, { 
+        m: item.m, 
+        f: item.f, 
+        mu: item.mu,
+        a: item.a 
+      }),
+      expressionLatex: `F = ma`, // 根据场景调整
+      targetLatex: item.expect.toFixed(2),
+      slots: [{
+        id: "ans",
+        labelLatex: t("sp3_02.labels.force"),
+        placeholder: "...",
+        expected: item.expect.toFixed(2)
+      }],
+      correctLatex: item.expect.toFixed(2),
+      hintLatex: [t(`sp3_02.hints.${item.scen}`)]
+    });
+  });
+
+  return quests;
+}, [t]);
+```
+
+#### i18n 状态
+
+antigravity已在 `src/lib/i18n/en/physics.ts` 中添加了SP3.02所需的Prompt模板：
+- ✅ Newton 1 prompts (n1_const_vel, n1_equilibrium, n1_rest, n1_space, n1_inertia)
+- ✅ Newton 2 prompts (n2_find_f, n2_find_a, n2_find_m, n2_complex, n2_gravity)
+- ✅ Friction prompts (fr_static, fr_kinetic, fr_norm, fr_slide, fr_bank)
+- ✅ Labels (mass, acc, force, friction, coeff, net_force, normal_force)
+
+**待完成**: 需要在 `src/lib/i18n/cn/physics.ts` 和 `src/lib/i18n/de/physics.ts` 中添加对应的中文和德文翻译。
+
+---
