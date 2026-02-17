@@ -32,16 +32,38 @@ export default function SC304Page() {
 
         if (stage === "ALCOHOLS") {
             const molecules = [
+                // BASIC (5 questions)
                 { id: "methanol", name: "Methanol", group: "Hydroxyl", formula: "CH3OH", expected: "hydroxyl" },
-                { id: "ethanal", name: "Ethanal", group: "Aldehyde", formula: "CH3CHO", expected: "aldehyde" },
+                { id: "ethanol", name: "Ethanol", group: "Hydroxyl", formula: "C2H5OH", expected: "hydroxyl" },
                 { id: "propan-1-ol", name: "Propan-1-ol", group: "Hydroxyl", formula: "C3H7OH", expected: "hydroxyl" },
-                { id: "methanal", name: "Methanal", group: "Aldehyde", formula: "HCHO", expected: "aldehyde" },
-                { id: "ethanol", name: "Ethanol", group: "Hydroxyl", formula: "C2H5OH", expected: "hydroxyl" }
+                { id: "butan-1-ol", name: "Butan-1-ol", group: "Hydroxyl", formula: "C4H9OH", expected: "hydroxyl" },
+                { id: "propan-2-ol", name: "Propan-2-ol", group: "Hydroxyl", formula: "C3H7OH", expected: "hydroxyl" },
+                // CORE (5 questions)
+                { id: "pentan-1-ol", name: "Pentan-1-ol", group: "Hydroxyl", formula: "C5H11OH", expected: "hydroxyl" },
+                { id: "hexan-1-ol", name: "Hexan-1-ol", group: "Hydroxyl", formula: "C6H13OH", expected: "hydroxyl" },
+                { id: "butan-2-ol", name: "Butan-2-ol", group: "Hydroxyl", formula: "C4H9OH", expected: "hydroxyl" },
+                { id: "2-methylpropan-1-ol", name: "2-Methylpropan-1-ol", group: "Hydroxyl", formula: "C4H9OH", expected: "hydroxyl" },
+                { id: "2-methylpropan-2-ol", name: "2-Methylpropan-2-ol", group: "Hydroxyl", formula: "C4H9OH", expected: "hydroxyl" },
+                // ADVANCED (5 questions)
+                { id: "heptan-1-ol", name: "Heptan-1-ol", group: "Hydroxyl", formula: "C7H15OH", expected: "hydroxyl" },
+                { id: "octan-1-ol", name: "Octan-1-ol", group: "Hydroxyl", formula: "C8H17OH", expected: "hydroxyl" },
+                { id: "pentan-2-ol", name: "Pentan-2-ol", group: "Hydroxyl", formula: "C5H11OH", expected: "hydroxyl" },
+                { id: "3-methylbutan-1-ol", name: "3-Methylbutan-1-ol", group: "Hydroxyl", formula: "C5H11OH", expected: "hydroxyl" },
+                { id: "2-methylbutan-2-ol", name: "2-Methylbutan-2-ol", group: "Hydroxyl", formula: "C5H11OH", expected: "hydroxyl" },
+                // ELITE (5 questions)
+                { id: "nonan-1-ol", name: "Nonan-1-ol", group: "Hydroxyl", formula: "C9H19OH", expected: "hydroxyl" },
+                { id: "decan-1-ol", name: "Decan-1-ol", group: "Hydroxyl", formula: "C10H21OH", expected: "hydroxyl" },
+                { id: "hexan-3-ol", name: "Hexan-3-ol", group: "Hydroxyl", formula: "C6H13OH", expected: "hydroxyl" },
+                { id: "2,2-dimethylpropan-1-ol", name: "2,2-Dimethylpropan-1-ol", group: "Hydroxyl", formula: "C5H11OH", expected: "hydroxyl" },
+                { id: "3-methylpentan-2-ol", name: "3-Methylpentan-2-ol", group: "Hydroxyl", formula: "C6H13OH", expected: "hydroxyl" },
             ];
 
-            molecules.forEach((m, idx) => {
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = molecules.slice(startIdx, startIdx + 5);
+
+            activeList.forEach((m, idx) => {
                 quests.push({
-                    id: `ALC-${idx}`,
+                    id: `ALC-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     molecule: m.id,
@@ -57,16 +79,38 @@ export default function SC304Page() {
 
         if (stage === "ACIDS") {
             const molecules = [
-                { id: "ethanoic_acid", name: "Ethanoic Acid", group: "Carboxyl", formula: "CH3COOH", expected: "carboxyl" },
-                { id: "propanone", name: "Propanone", group: "Ketone", formula: "CH3COCH3", expected: "ketone" },
+                // BASIC (5 questions)
                 { id: "methanoic_acid", name: "Methanoic Acid", group: "Carboxyl", formula: "HCOOH", expected: "carboxyl" },
+                { id: "ethanoic_acid", name: "Ethanoic Acid", group: "Carboxyl", formula: "CH3COOH", expected: "carboxyl" },
+                { id: "propanoic_acid", name: "Propanoic Acid", group: "Carboxyl", formula: "C2H5COOH", expected: "carboxyl" },
+                { id: "butanoic_acid", name: "Butanoic Acid", group: "Carboxyl", formula: "C3H7COOH", expected: "carboxyl" },
+                { id: "methanal", name: "Methanal", group: "Aldehyde", formula: "HCHO", expected: "aldehyde" },
+                // CORE (5 questions)
+                { id: "pentanoic_acid", name: "Pentanoic Acid", group: "Carboxyl", formula: "C4H9COOH", expected: "carboxyl" },
+                { id: "hexanoic_acid", name: "Hexanoic Acid", group: "Carboxyl", formula: "C5H11COOH", expected: "carboxyl" },
+                { id: "ethanal", name: "Ethanal", group: "Aldehyde", formula: "CH3CHO", expected: "aldehyde" },
+                { id: "propanal", name: "Propanal", group: "Aldehyde", formula: "C2H5CHO", expected: "aldehyde" },
+                { id: "propanone", name: "Propanone", group: "Ketone", formula: "CH3COCH3", expected: "ketone" },
+                // ADVANCED (5 questions)
+                { id: "heptanoic_acid", name: "Heptanoic Acid", group: "Carboxyl", formula: "C6H13COOH", expected: "carboxyl" },
+                { id: "octanoic_acid", name: "Octanoic Acid", group: "Carboxyl", formula: "C7H15COOH", expected: "carboxyl" },
+                { id: "butanal", name: "Butanal", group: "Aldehyde", formula: "C3H7CHO", expected: "aldehyde" },
                 { id: "butanone", name: "Butanone", group: "Ketone", formula: "C2H5COCH3", expected: "ketone" },
-                { id: "propanoic_acid", name: "Propanoic Acid", group: "Carboxyl", formula: "C2H5COOH", expected: "carboxyl" }
+                { id: "pentanone", name: "Pentanone", group: "Ketone", formula: "C3H7COCH3", expected: "ketone" },
+                // ELITE (5 questions)
+                { id: "nonanoic_acid", name: "Nonanoic Acid", group: "Carboxyl", formula: "C8H17COOH", expected: "carboxyl" },
+                { id: "decanoic_acid", name: "Decanoic Acid", group: "Carboxyl", formula: "C9H19COOH", expected: "carboxyl" },
+                { id: "pentanal", name: "Pentanal", group: "Aldehyde", formula: "C4H9CHO", expected: "aldehyde" },
+                { id: "hexanone", name: "Hexanone", group: "Ketone", formula: "C4H9COCH3", expected: "ketone" },
+                { id: "heptanone", name: "Heptanone", group: "Ketone", formula: "C5H11COCH3", expected: "ketone" },
             ];
 
-            molecules.forEach((m, idx) => {
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = molecules.slice(startIdx, startIdx + 5);
+
+            activeList.forEach((m, idx) => {
                 quests.push({
-                    id: `ACD-${idx}`,
+                    id: `ACD-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     molecule: m.id,
@@ -75,23 +119,45 @@ export default function SC304Page() {
                     targetLatex: m.expected,
                     slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
-                    hintLatex: [`\\text{Characteristic ending: -oic acid or -one}`]
+                    hintLatex: [`\\text{Characteristic ending: -oic acid, -al, or -one}`]
                 });
             });
         }
 
         if (stage === "ESTERS") {
             const comparisons = [
+                // BASIC (5 questions)
+                { a: "Methanol", b: "Methanoic Acid", type: "bp", expected: "methanoic acid", q: t.prompts.predict_bp },
                 { a: "Ethanol", b: "Ethanoic Acid", type: "bp", expected: "ethanoic acid", q: t.prompts.predict_bp },
                 { a: "Ethanal", b: "Ethanol", type: "bp", expected: "ethanol", q: t.prompts.predict_bp },
                 { a: "Methane", b: "Methanol", type: "sol", expected: "methanol", q: t.prompts.solubility_check.replace('{molecule}', 'methanol') },
                 { a: "Propanone", b: "Propan-1-ol", type: "bp", expected: "propan-1-ol", q: t.prompts.predict_bp },
-                { a: "Methyl Ethanoate", b: "Ethanoic Acid", type: "bp", expected: "ethanoic acid", q: t.prompts.predict_bp }
+                // CORE (5 questions)
+                { a: "Propanol", b: "Propanoic Acid", type: "bp", expected: "propanoic acid", q: t.prompts.predict_bp },
+                { a: "Butanol", b: "Butanoic Acid", type: "bp", expected: "butanoic acid", q: t.prompts.predict_bp },
+                { a: "Propanal", b: "Propanol", type: "bp", expected: "propanol", q: t.prompts.predict_bp },
+                { a: "Ethane", b: "Ethanol", type: "sol", expected: "ethanol", q: t.prompts.solubility_check.replace('{molecule}', 'ethanol') },
+                { a: "Butanone", b: "Butan-1-ol", type: "bp", expected: "butan-1-ol", q: t.prompts.predict_bp },
+                // ADVANCED (5 questions)
+                { a: "Pentanol", b: "Pentanoic Acid", type: "bp", expected: "pentanoic acid", q: t.prompts.predict_bp },
+                { a: "Hexanol", b: "Hexanoic Acid", type: "bp", expected: "hexanoic acid", q: t.prompts.predict_bp },
+                { a: "Butanal", b: "Butanol", type: "bp", expected: "butanol", q: t.prompts.predict_bp },
+                { a: "Propane", b: "Propanol", type: "sol", expected: "propanol", q: t.prompts.solubility_check.replace('{molecule}', 'propanol') },
+                { a: "Pentanone", b: "Pentan-1-ol", type: "bp", expected: "pentan-1-ol", q: t.prompts.predict_bp },
+                // ELITE (5 questions)
+                { a: "Heptanol", b: "Heptanoic Acid", type: "bp", expected: "heptanoic acid", q: t.prompts.predict_bp },
+                { a: "Octanol", b: "Octanoic Acid", type: "bp", expected: "octanoic acid", q: t.prompts.predict_bp },
+                { a: "Pentanal", b: "Pentanol", type: "bp", expected: "pentanol", q: t.prompts.predict_bp },
+                { a: "Butane", b: "Butanol", type: "sol", expected: "butanol", q: t.prompts.solubility_check.replace('{molecule}', 'butanol') },
+                { a: "Hexanone", b: "Hexan-1-ol", type: "bp", expected: "hexan-1-ol", q: t.prompts.predict_bp },
             ];
 
-            comparisons.forEach((c, idx) => {
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = comparisons.slice(startIdx, startIdx + 5);
+
+            activeList.forEach((c, idx) => {
                 quests.push({
-                    id: `EST-${idx}`,
+                    id: `EST-${difficulty}-${idx}`,
                     difficulty,
                     stage,
                     propA: c.a,

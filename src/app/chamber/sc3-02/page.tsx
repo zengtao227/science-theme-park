@@ -32,13 +32,34 @@ export default function SC302Page() {
 
         if (stage === "HYDROCARBONS") {
             const allHydrocarbons = [
+                // BASIC (5 questions)
                 { name: "methane", formula: "CH4", carbons: "1", scenario: "lonza_feedstock" },
                 { name: "ethane", formula: "C2H6", carbons: "2", scenario: "basel_polymer_research" },
                 { name: "propane", formula: "C3H8", carbons: "3", scenario: "green_chemistry" },
-                { name: "butane", formula: "C4H10", carbons: "4", scenario: "fragrance_design" }
+                { name: "butane", formula: "C4H10", carbons: "4", scenario: "fragrance_design" },
+                { name: "ethene", formula: "C2H4", carbons: "2", scenario: "lonza_feedstock" },
+                // CORE (5 questions)
+                { name: "pentane", formula: "C5H12", carbons: "5", scenario: "basel_polymer_research" },
+                { name: "hexane", formula: "C6H14", carbons: "6", scenario: "green_chemistry" },
+                { name: "propene", formula: "C3H6", carbons: "3", scenario: "fragrance_design" },
+                { name: "butene", formula: "C4H8", carbons: "4", scenario: "lonza_feedstock" },
+                { name: "ethyne", formula: "C2H2", carbons: "2", scenario: "basel_polymer_research" },
+                // ADVANCED (5 questions)
+                { name: "heptane", formula: "C7H16", carbons: "7", scenario: "green_chemistry" },
+                { name: "octane", formula: "C8H18", carbons: "8", scenario: "fragrance_design" },
+                { name: "pentene", formula: "C5H10", carbons: "5", scenario: "lonza_feedstock" },
+                { name: "hexene", formula: "C6H12", carbons: "6", scenario: "basel_polymer_research" },
+                { name: "propyne", formula: "C3H4", carbons: "3", scenario: "green_chemistry" },
+                // ELITE (5 questions)
+                { name: "nonane", formula: "C9H20", carbons: "9", scenario: "fragrance_design" },
+                { name: "decane", formula: "C10H22", carbons: "10", scenario: "lonza_feedstock" },
+                { name: "heptene", formula: "C7H14", carbons: "7", scenario: "basel_polymer_research" },
+                { name: "octene", formula: "C8H16", carbons: "8", scenario: "green_chemistry" },
+                { name: "butyne", formula: "C4H6", carbons: "4", scenario: "fragrance_design" },
             ];
 
-            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? allHydrocarbons.slice(0, 3) : allHydrocarbons;
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = allHydrocarbons.slice(startIdx, startIdx + 5);
 
             activeList.forEach((hc, idx) => {
                 quests.push({
@@ -60,13 +81,36 @@ export default function SC302Page() {
 
         if (stage === "FUNCTIONAL_GROUPS") {
             const groups = [
+                // BASIC (5 questions)
                 { name: "alcohol", group: "OH", example: "ethanol", scenario: "fragrance_design" },
+                { name: "aldehyde", group: "CHO", example: "methanal", scenario: "lonza_feedstock" },
+                { name: "ketone", group: "CO", example: "propanone", scenario: "basel_polymer_research" },
+                { name: "ether", group: "O", example: "dimethyl ether", scenario: "green_chemistry" },
+                { name: "ester", group: "COO", example: "ethyl acetate", scenario: "fragrance_design" },
+                // CORE (5 questions)
                 { name: "carboxylic acid", group: "COOH", example: "ethanoic acid", scenario: "lonza_feedstock" },
                 { name: "amine", group: "NH2", example: "methylamine", scenario: "green_chemistry" },
-                { name: "benzene", group: "C6H6", example: "benzene", scenario: "basel_polymer_research" }
+                { name: "amide", group: "CONH2", example: "ethanamide", scenario: "basel_polymer_research" },
+                { name: "nitrile", group: "CN", example: "ethanenitrile", scenario: "fragrance_design" },
+                { name: "halide", group: "Cl", example: "chloromethane", scenario: "lonza_feedstock" },
+                // ADVANCED (5 questions)
+                { name: "benzene", group: "C6H6", example: "benzene", scenario: "basel_polymer_research" },
+                { name: "phenol", group: "C6H5OH", example: "phenol", scenario: "green_chemistry" },
+                { name: "aniline", group: "C6H5NH2", example: "aniline", scenario: "fragrance_design" },
+                { name: "nitro", group: "NO2", example: "nitrobenzene", scenario: "lonza_feedstock" },
+                { name: "sulfonic acid", group: "SO3H", example: "benzenesulfonic acid", scenario: "basel_polymer_research" },
+                // ELITE (5 questions)
+                { name: "acyl chloride", group: "COCl", example: "ethanoyl chloride", scenario: "green_chemistry" },
+                { name: "anhydride", group: "COOCO", example: "ethanoic anhydride", scenario: "fragrance_design" },
+                { name: "thiol", group: "SH", example: "ethanethiol", scenario: "lonza_feedstock" },
+                { name: "sulfide", group: "S", example: "dimethyl sulfide", scenario: "basel_polymer_research" },
+                { name: "phosphate", group: "PO4", example: "trimethyl phosphate", scenario: "green_chemistry" },
             ];
 
-            groups.forEach((g, idx) => {
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = groups.slice(startIdx, startIdx + 5);
+
+            activeList.forEach((g, idx) => {
                 quests.push({
                     id: `FG-${difficulty}-${idx}`,
                     difficulty,
@@ -85,12 +129,34 @@ export default function SC302Page() {
 
         if (stage === "ISOMERS") {
             const isomers = [
+                // BASIC (5 questions)
                 { formula: "C4H10", count: "2", type: "structural", scenario: "lonza_feedstock" },
                 { formula: "C5H12", count: "3", type: "structural", scenario: "basel_polymer_research" },
-                { formula: "C6H14", count: "5", type: "structural", scenario: "green_chemistry" }
+                { formula: "C3H8O", count: "2", type: "structural", scenario: "green_chemistry" },
+                { formula: "C4H8", count: "3", type: "structural", scenario: "fragrance_design" },
+                { formula: "C2H6O", count: "2", type: "structural", scenario: "lonza_feedstock" },
+                // CORE (5 questions)
+                { formula: "C6H14", count: "5", type: "structural", scenario: "basel_polymer_research" },
+                { formula: "C4H10O", count: "4", type: "structural", scenario: "green_chemistry" },
+                { formula: "C5H10", count: "5", type: "structural", scenario: "fragrance_design" },
+                { formula: "C3H6O", count: "2", type: "structural", scenario: "lonza_feedstock" },
+                { formula: "C4H8O", count: "4", type: "structural", scenario: "basel_polymer_research" },
+                // ADVANCED (5 questions)
+                { formula: "C7H16", count: "9", type: "structural", scenario: "green_chemistry" },
+                { formula: "C5H12O", count: "8", type: "structural", scenario: "fragrance_design" },
+                { formula: "C6H12", count: "13", type: "structural", scenario: "lonza_feedstock" },
+                { formula: "C4H9Cl", count: "4", type: "structural", scenario: "basel_polymer_research" },
+                { formula: "C5H10O", count: "8", type: "structural", scenario: "green_chemistry" },
+                // ELITE (5 questions)
+                { formula: "C8H18", count: "18", type: "structural", scenario: "fragrance_design" },
+                { formula: "C6H14O", count: "17", type: "structural", scenario: "lonza_feedstock" },
+                { formula: "C7H14", count: "27", type: "structural", scenario: "basel_polymer_research" },
+                { formula: "C5H11Cl", count: "8", type: "structural", scenario: "green_chemistry" },
+                { formula: "C6H12O", count: "20", type: "structural", scenario: "fragrance_design" },
             ];
 
-            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? isomers.slice(0, 2) : isomers;
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = isomers.slice(startIdx, startIdx + 5);
 
             activeList.forEach((iso, idx) => {
                 quests.push({

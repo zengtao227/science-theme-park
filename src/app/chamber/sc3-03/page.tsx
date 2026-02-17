@@ -31,13 +31,34 @@ export default function SC303Page() {
 
         if (stage === "COMBUSTION") {
             const allCombustions = [
-                { reactant: "CH_4", co2: 1, scenario: "novartis_combustion" },
-                { reactant: "C_2H_6", co2: 2, scenario: "reaction_control" },
-                { reactant: "C_3H_8", co2: 3, scenario: "novartis_combustion" },
-                { reactant: "C_4H_{10}", co2: 4, scenario: "reaction_control" }
+                // BASIC (5 questions)
+                { reactant: "CH_4", co2: 1, h2o: 2, scenario: "novartis_combustion" },
+                { reactant: "C_2H_6", co2: 2, h2o: 3, scenario: "reaction_control" },
+                { reactant: "C_3H_8", co2: 3, h2o: 4, scenario: "novartis_combustion" },
+                { reactant: "C_4H_{10}", co2: 4, h2o: 5, scenario: "reaction_control" },
+                { reactant: "C_2H_4", co2: 2, h2o: 2, scenario: "novartis_combustion" },
+                // CORE (5 questions)
+                { reactant: "C_5H_{12}", co2: 5, h2o: 6, scenario: "reaction_control" },
+                { reactant: "C_6H_{14}", co2: 6, h2o: 7, scenario: "novartis_combustion" },
+                { reactant: "C_3H_6", co2: 3, h2o: 3, scenario: "reaction_control" },
+                { reactant: "C_4H_8", co2: 4, h2o: 4, scenario: "novartis_combustion" },
+                { reactant: "C_2H_2", co2: 2, h2o: 1, scenario: "reaction_control" },
+                // ADVANCED (5 questions)
+                { reactant: "C_7H_{16}", co2: 7, h2o: 8, scenario: "novartis_combustion" },
+                { reactant: "C_8H_{18}", co2: 8, h2o: 9, scenario: "reaction_control" },
+                { reactant: "C_5H_{10}", co2: 5, h2o: 5, scenario: "novartis_combustion" },
+                { reactant: "C_6H_{12}", co2: 6, h2o: 6, scenario: "reaction_control" },
+                { reactant: "C_3H_4", co2: 3, h2o: 2, scenario: "novartis_combustion" },
+                // ELITE (5 questions)
+                { reactant: "C_9H_{20}", co2: 9, h2o: 10, scenario: "reaction_control" },
+                { reactant: "C_{10}H_{22}", co2: 10, h2o: 11, scenario: "novartis_combustion" },
+                { reactant: "C_7H_{14}", co2: 7, h2o: 7, scenario: "reaction_control" },
+                { reactant: "C_8H_{16}", co2: 8, h2o: 8, scenario: "novartis_combustion" },
+                { reactant: "C_4H_6", co2: 4, h2o: 3, scenario: "reaction_control" },
             ];
 
-            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? allCombustions.slice(0, 3) : allCombustions;
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = allCombustions.slice(startIdx, startIdx + 5);
 
             activeList.forEach((comb, idx) => {
                 quests.push({
@@ -58,12 +79,34 @@ export default function SC303Page() {
 
         if (stage === "SUBSTITUTION") {
             const substitutions = [
-                { alkane: "CH_4", product: "CH_3Cl", scenario: "basel_chemical_plant" },
-                { alkane: "C_2H_6", product: "C_2H_5Br", scenario: "free_radical_mechanism" },
-                { alkane: "C_3H_8", product: "C_3H_7Cl", scenario: "basel_chemical_plant" }
+                // BASIC (5 questions)
+                { alkane: "CH_4", halogen: "Cl", product: "CH3Cl", scenario: "basel_chemical_plant" },
+                { alkane: "C_2H_6", halogen: "Br", product: "C2H5Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_3H_8", halogen: "Cl", product: "C3H7Cl", scenario: "basel_chemical_plant" },
+                { alkane: "CH_4", halogen: "Br", product: "CH3Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_2H_6", halogen: "Cl", product: "C2H5Cl", scenario: "basel_chemical_plant" },
+                // CORE (5 questions)
+                { alkane: "C_4H_{10}", halogen: "Cl", product: "C4H9Cl", scenario: "free_radical_mechanism" },
+                { alkane: "C_5H_{12}", halogen: "Br", product: "C5H11Br", scenario: "basel_chemical_plant" },
+                { alkane: "C_3H_8", halogen: "Br", product: "C3H7Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_4H_{10}", halogen: "Br", product: "C4H9Br", scenario: "basel_chemical_plant" },
+                { alkane: "C_2H_6", halogen: "I", product: "C2H5I", scenario: "free_radical_mechanism" },
+                // ADVANCED (5 questions)
+                { alkane: "C_6H_{14}", halogen: "Cl", product: "C6H13Cl", scenario: "basel_chemical_plant" },
+                { alkane: "C_7H_{16}", halogen: "Br", product: "C7H15Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_5H_{12}", halogen: "Cl", product: "C5H11Cl", scenario: "basel_chemical_plant" },
+                { alkane: "C_6H_{14}", halogen: "Br", product: "C6H13Br", scenario: "free_radical_mechanism" },
+                { alkane: "C_3H_8", halogen: "I", product: "C3H7I", scenario: "basel_chemical_plant" },
+                // ELITE (5 questions)
+                { alkane: "C_8H_{18}", halogen: "Cl", product: "C8H17Cl", scenario: "free_radical_mechanism" },
+                { alkane: "C_9H_{20}", halogen: "Br", product: "C9H19Br", scenario: "basel_chemical_plant" },
+                { alkane: "C_7H_{16}", halogen: "Cl", product: "C7H15Cl", scenario: "free_radical_mechanism" },
+                { alkane: "C_8H_{18}", halogen: "Br", product: "C8H17Br", scenario: "basel_chemical_plant" },
+                { alkane: "C_4H_{10}", halogen: "I", product: "C4H9I", scenario: "free_radical_mechanism" },
             ];
 
-            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? substitutions.slice(0, 2) : substitutions;
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = substitutions.slice(startIdx, startIdx + 5);
 
             activeList.forEach((sub, idx) => {
                 quests.push({
@@ -72,10 +115,10 @@ export default function SC303Page() {
                     stage,
                     reactionType: "substitution",
                     scenario: sub.scenario,
-                    promptLatex: `\\text{${t.prompts.substitution.replace('{alkane}', sub.alkane).replace('{halogen}', 'Halogen')}}`,
-                    expressionLatex: `\\ce{${sub.alkane} + X2 ->[light] ? + HX}`,
-                    targetLatex: sub.product.replace(/_/g, ''),
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: sub.product.replace(/_/g, '') }],
+                    promptLatex: `\\text{${t.prompts.substitution.replace('{alkane}', sub.alkane).replace('{halogen}', sub.halogen)}}`,
+                    expressionLatex: `\\ce{${sub.alkane} + ${sub.halogen}2 ->[light] ? + H${sub.halogen}}`,
+                    targetLatex: sub.product,
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: sub.product }],
                     correctLatex: `\\ce{${sub.product}}`,
                     hintLatex: [`\\text{${t.prompts.hint_substitution}}`]
                 });
@@ -84,12 +127,34 @@ export default function SC303Page() {
 
         if (stage === "ADDITION") {
             const additions = [
-                { alkene: "C_2H_4", reagent: "H_2", product: "C_2H_6", scenario: "polymer_production" },
-                { alkene: "C_3H_6", reagent: "H_2", product: "C_3H_8", scenario: "reaction_control" },
-                { alkene: "C_2H_4", reagent: "Cl_2", product: "C_2H_4Cl_2", scenario: "polymer_production" }
+                // BASIC (5 questions)
+                { alkene: "C_2H_4", reagent: "H_2", product: "C2H6", scenario: "polymer_production" },
+                { alkene: "C_3H_6", reagent: "H_2", product: "C3H8", scenario: "reaction_control" },
+                { alkene: "C_2H_4", reagent: "Cl_2", product: "C2H4Cl2", scenario: "polymer_production" },
+                { alkene: "C_3H_6", reagent: "Br_2", product: "C3H6Br2", scenario: "reaction_control" },
+                { alkene: "C_4H_8", reagent: "H_2", product: "C4H10", scenario: "polymer_production" },
+                // CORE (5 questions)
+                { alkene: "C_5H_{10}", reagent: "H_2", product: "C5H12", scenario: "reaction_control" },
+                { alkene: "C_4H_8", reagent: "Cl_2", product: "C4H8Cl2", scenario: "polymer_production" },
+                { alkene: "C_5H_{10}", reagent: "Br_2", product: "C5H10Br2", scenario: "reaction_control" },
+                { alkene: "C_2H_4", reagent: "HCl", product: "C2H5Cl", scenario: "polymer_production" },
+                { alkene: "C_3H_6", reagent: "HBr", product: "C3H7Br", scenario: "reaction_control" },
+                // ADVANCED (5 questions)
+                { alkene: "C_6H_{12}", reagent: "H_2", product: "C6H14", scenario: "polymer_production" },
+                { alkene: "C_7H_{14}", reagent: "Cl_2", product: "C7H14Cl2", scenario: "reaction_control" },
+                { alkene: "C_6H_{12}", reagent: "Br_2", product: "C6H12Br2", scenario: "polymer_production" },
+                { alkene: "C_4H_8", reagent: "HCl", product: "C4H9Cl", scenario: "reaction_control" },
+                { alkene: "C_5H_{10}", reagent: "HBr", product: "C5H11Br", scenario: "polymer_production" },
+                // ELITE (5 questions)
+                { alkene: "C_8H_{16}", reagent: "H_2", product: "C8H18", scenario: "reaction_control" },
+                { alkene: "C_9H_{18}", reagent: "Cl_2", product: "C9H18Cl2", scenario: "polymer_production" },
+                { alkene: "C_8H_{16}", reagent: "Br_2", product: "C8H16Br2", scenario: "reaction_control" },
+                { alkene: "C_6H_{12}", reagent: "HCl", product: "C6H13Cl", scenario: "polymer_production" },
+                { alkene: "C_7H_{14}", reagent: "HBr", product: "C7H15Br", scenario: "reaction_control" },
             ];
 
-            const activeList = (difficulty === "BASIC" || difficulty === "CORE") ? additions.slice(0, 2) : additions;
+            const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
+            const activeList = additions.slice(startIdx, startIdx + 5);
 
             activeList.forEach((add, idx) => {
                 quests.push({
@@ -100,8 +165,8 @@ export default function SC303Page() {
                     scenario: add.scenario,
                     promptLatex: `\\text{${t.prompts.addition.replace('{alkene}', add.alkene).replace('{reagent}', add.reagent)}}`,
                     expressionLatex: `\\ce{${add.alkene} + ${add.reagent} -> ?}`,
-                    targetLatex: add.product.replace(/_/g, ''),
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: add.product.replace(/_/g, '') }],
+                    targetLatex: add.product,
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: add.product }],
                     correctLatex: `\\ce{${add.product}}`,
                     hintLatex: [`\\text{${t.prompts.hint_addition}}`]
                 });
