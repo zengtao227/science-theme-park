@@ -116,6 +116,19 @@ export const cnMath = {
             determinant: "行列式",
             composition: "复合变换"
         },
+        prompts: {
+            identify_trans: "识别矩阵表示的变换.",
+            create_scale: "创建一个缩放系数为 {k} 的矩阵.",
+            create_rot: "创建一个逆时针旋转 {deg}° 的矩阵.",
+            create_shear: "创建一个切变矩阵: x -> x + {k}y.",
+            create_reflect: "创建一个关于 {axis} 轴反射的矩阵.",
+            create_custom: "创建一个矩阵: {desc}.",
+            calc_det: "计算矩阵的行列式.",
+            property_det: "这个行列式的性质是什么？",
+            calc_prod: "计算矩阵乘积 AB.",
+            calc_inv: "计算逆矩阵 A⁻¹.",
+            identify_prop: "识别性质: {desc}."
+        },
         scenario_title: "巴塞尔工程任务",
         scenarios: {
             basic_transforms: "罗氏制药分子分析：您在罗氏巴塞尔的计算化学部门工作，使用线性变换分析蛋白质分子的对称性。每个矩阵代表一个对称操作（旋转、反射、缩放）。识别变换类型对于预测分子的光学性质至关重要。",

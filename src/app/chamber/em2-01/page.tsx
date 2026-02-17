@@ -1,31 +1,18 @@
 "use client";
 
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import MatrixVisualization2D from "@/components/chamber/em2-01/MatrixVisualization2D";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useMemo } from "react";
 
 type Stage = "BASIC_TRANSFORMS" | "DETERMINANT" | "COMPOSITION";
 
-interface MatrixQuest {
-  id: string;
-  difficulty: Difficulty;
+interface MatrixQuest extends Quest {
   stage: Stage;
-  promptLatex: string;
-  expressionLatex: string;
-  targetLatex: string;
-  slots: Array<{
-    id: string;
-    labelLatex: string;
-    placeholder: string;
-    expected: number | string;
-    unit?: string;
-  }>;
-  correctLatex: string;
-  // Matrix data
   type: "identify" | "calculate_det" | "calculate_matrix" | "predict";
   matrix?: number[][];
   matrixA?: number[][];
@@ -37,7 +24,8 @@ interface MatrixQuest {
 }
 
 // Build quest pool
-function buildMatrixPool(t: any, difficulty: Difficulty, stage: Stage): MatrixQuest[] {
+function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty: Difficulty, stage: Stage): MatrixQuest[] {
+  const t = getT;
   const pool: MatrixQuest[] = [];
   let idCounter = 0;
 
@@ -51,23 +39,23 @@ function buildMatrixPool(t: any, difficulty: Difficulty, stage: Stage): MatrixQu
     matrixB?: number[][],
     options?: string[]
   ): MatrixQuest => {
-    const id = `gm5-01-${stage}-${difficulty}-${idCounter++}`;
-    
+    const id = `em2-01-${stage}-${difficulty}-${idCounter++}`;
+
     // Create slots based on type
     let slots: MatrixQuest["slots"] = [];
     if (type === "calculate_det") {
       slots = [{
         id: "det",
         labelLatex: "det(A)",
-        placeholder: "Enter determinant",
+        placeholder: "det",
         expected: answer as number,
       }];
     } else if (type === "calculate_matrix") {
       slots = [
-        { id: "a11", labelLatex: "a₁₁", placeholder: "0", expected: 0 },
-        { id: "a12", labelLatex: "a₁₂", placeholder: "0", expected: 0 },
-        { id: "a21", labelLatex: "a₂₁", placeholder: "0", expected: 0 },
-        { id: "a22", labelLatex: "a₂₂", placeholder: "0", expected: 0 },
+        { id: "a11", labelLatex: "a_{11}", placeholder: "0", expected: 0 },
+        { id: "a12", labelLatex: "a_{12}", placeholder: "0", expected: 0 },
+        { id: "a21", labelLatex: "a_{21}", placeholder: "0", expected: 0 },
+        { id: "a22", labelLatex: "a_{22}", placeholder: "0", expected: 0 },
       ];
     }
 
@@ -93,100 +81,95 @@ function buildMatrixPool(t: any, difficulty: Difficulty, stage: Stage): MatrixQu
 
   if (stage === "BASIC_TRANSFORMS") {
     if (difficulty === "BASIC") {
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Uniform scaling by 2", "This is uniform scaling: both x and y are scaled by 2, so area becomes 4", [[2, 0], [0, 2]], undefined, undefined, ["Uniform scaling by 2", "Rotation by 90°", "Shear transformation", "Reflection"]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Horizontal stretch by 3", "This stretches x-axis by 3, y-axis unchanged", [[3, 0], [0, 1]], undefined, undefined, ["Horizontal stretch by 3", "Vertical stretch by 3", "Rotation", "Shear"]));
-      pool.push(createQuest("calculate_matrix", "Create a matrix that scales uniformly by 2", "2,0,0,2", "Diagonal matrix with 2 on diagonal", [[2, 0], [0, 2]]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Reflection over x-axis", "Flips y-coordinate: (x,y) → (x,-y)", [[1, 0], [0, -1]], undefined, undefined, ["Reflection over x-axis", "Reflection over y-axis", "Reflection over origin", "No change"]));
-    }
-    
-    if (difficulty === "CORE") {
-      pool.push(createQuest("calculate_matrix", "Create a matrix that rotates 90° counterclockwise", "0,-1,1,0", "90° CCW rotation: (x,y) → (-y,x)", [[0, -1], [1, 0]]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "90° counterclockwise rotation", "Rotates vectors 90° counterclockwise", [[0, -1], [1, 0]], undefined, undefined, ["90° counterclockwise rotation", "90° clockwise rotation", "180° rotation", "No rotation"]));
-      pool.push(createQuest("calculate_matrix", "Create a matrix that rotates 180°", "-1,0,0,-1", "180° rotation: (x,y) → (-x,-y)", [[-1, 0], [0, -1]]));
-      pool.push(createQuest("identify", "What angle of rotation does this matrix represent?", "45° counterclockwise", "cos(45°) ≈ 0.707, sin(45°) ≈ 0.707", [[0.707, -0.707], [0.707, 0.707]], undefined, undefined, ["45° counterclockwise", "30° counterclockwise", "45° shear", "45° scaling"]));
-    }
-    
-    if (difficulty === "ADVANCED") {
-      pool.push(createQuest("calculate_matrix", "Create a shear matrix that shifts x by 2y", "1,2,0,1", "Shear: (x,y) → (x+2y, y)", [[1, 2], [0, 1]]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Vertical shear", "Shifts y by 1.5x: (x,y) → (x, y+1.5x)", [[1, 0], [1.5, 1]], undefined, undefined, ["Vertical shear", "Horizontal shear", "Rotation", "Scaling"]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Scaling + shear", "Scales by 2 and shears", [[2, 1], [0, 2]], undefined, undefined, ["Scaling + shear", "Rotation + scaling", "Two shears", "Pure rotation"]));
-      pool.push(createQuest("calculate_matrix", "Create a matrix that reflects over y-axis", "-1,0,0,1", "Flips x-coordinate: (x,y) → (-x,y)", [[-1, 0], [0, 1]]));
-    }
-    
-    if (difficulty === "ELITE") {
-      pool.push(createQuest("calculate_matrix", "Create a matrix that rotates 90° CCW and scales by 2", "0,-2,2,0", "First rotate, then scale (or vice versa, they commute)", [[0, -2], [2, 0]]));
-      pool.push(createQuest("identify", "What transformation does this matrix represent?", "Rotation + scaling", "Combination of rotation and scaling", [[1.5, -0.5], [0.5, 1.5]], undefined, undefined, ["Rotation + scaling", "Pure shear", "Pure rotation", "Pure scaling"]));
-      pool.push(createQuest("calculate_matrix", "Create a matrix that scales by 0.5 (shrinks)", "0.5,0,0,0.5", "Inverse of scaling by 2", [[0.5, 0], [0, 0.5]]));
-      pool.push(createQuest("identify", "Is this matrix a rotation matrix?", "Yes, it's a rotation", "Columns are orthonormal, det=1", [[0.6, 0.8], [0.8, -0.6]], undefined, undefined, ["Yes, it's a rotation", "No, it's a shear", "No, it's a scaling", "No, it's a projection"]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Scaling x2", "Uniform scaling", [[2, 0], [0, 2]], undefined, undefined, ["Scaling x2", "Rotation 90", "Shear", "Reflection"]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Stretch X x3", "Stretch X", [[3, 0], [0, 1]], undefined, undefined, ["Stretch X x3", "Stretch Y x3", "Rotation", "Shear"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_scale", { k: 2 }), "2,0,0,2", "Diagonal 2,2", [[2, 0], [0, 2]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Reflection X", "Flip Y", [[1, 0], [0, -1]], undefined, undefined, ["Reflection X", "Reflection Y", "Rotation", "Identity"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_custom", { desc: "Identity" }), "1,0,0,1", "Identity", [[1, 0], [0, 1]]));
+    } else if (difficulty === "CORE") {
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_rot", { deg: 90 }), "0,-1,1,0", "CCW 90", [[0, -1], [1, 0]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Rotation 90 CCW", "Rot 90", [[0, -1], [1, 0]], undefined, undefined, ["Rotation 90 CCW", "Rotation 90 CW", "Scale", "Shear"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_rot", { deg: 180 }), "-1,0,0,-1", "Rot 180", [[-1, 0], [0, -1]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Rotation 180", "Flip X and Y", [[-1, 0], [0, -1]], undefined, undefined, ["Rotation 180", "Reflection", "Identity", "Shear"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_scale", { k: 0.5 }), "0.5,0,0,0.5", "Shrink", [[0.5, 0], [0, 0.5]]));
+    } else if (difficulty === "ADVANCED") {
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_shear", { k: 2 }), "1,2,0,1", "Shear X by 2Y", [[1, 2], [0, 1]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Vertical Shear", "Shear Y", [[1, 0], [1.5, 1]], undefined, undefined, ["Vertical Shear", "Horizontal Shear", "Rotation", "Scale"]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Scale + Shear", "Mixed", [[2, 1], [0, 2]], undefined, undefined, ["Scale + Shear", "Rotation", "Reflection", "Identity"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_reflect", { axis: "Y" }), "-1,0,0,1", "Flip X", [[-1, 0], [0, 1]]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_rot", { deg: 270 }), "0,1,-1,0", "CW 90", [[0, 1], [-1, 0]]));
+    } else { // ELITE
+      pool.push(createQuest("calculate_matrix", "Rot 90 then Scale 2", "0,-2,2,0", "Composite", [[0, -2], [2, 0]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_trans"), "Rotation + Scale", "Mixed", [[1.5, -0.5], [0.5, 1.5]], undefined, undefined, ["Rotation + Scale", "Shear", "Reflection", "Project"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.create_custom", { desc: "Inverse Scale 2" }), "0.5,0,0,0.5", "Inv", [[0.5, 0], [0, 0.5]]));
+      pool.push(createQuest("identify", "Is Rotation?", "Yes", "Orthonormal", [[0.6, 0.8], [-0.8, 0.6]], undefined, undefined, ["Yes", "No"]));
+      pool.push(createQuest("calculate_matrix", "Reflection y=x", "0,1,1,0", "Swap XY", [[0, 1], [1, 0]]));
     }
   }
 
   if (stage === "DETERMINANT") {
     if (difficulty === "BASIC") {
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 6, "det = 2×3 = 6", [[2, 0], [0, 3]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 16, "det = 4×4 = 16", [[4, 0], [0, 4]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 1, "Identity matrix has det = 1", [[1, 0], [0, 1]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 10, "det = 5×2 = 10", [[5, 0], [0, 2]]));
-    }
-    
-    if (difficulty === "CORE") {
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 10, "det = 3×4 - 1×2 = 12 - 2 = 10", [[3, 1], [2, 4]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 5, "det = 2×4 - 3×1 = 8 - 3 = 5", [[2, 3], [1, 4]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 1, "Rotation preserves area, det = 1", [[0, -1], [1, 0]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 1, "Shear preserves area, det = 1", [[1, 2], [0, 1]]));
-    }
-    
-    if (difficulty === "ADVANCED") {
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 0, "det = 2×6 - (-3)×(-4) = 12 - 12 = 0 (singular!)", [[2, -3], [-4, 6]]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 5, "det = (-2)×(-4) - 1×3 = 8 - 3 = 5", [[-2, 1], [3, -4]]));
-      pool.push(createQuest("identify", "What happens when det(A) = 0?", "Collapses to a line", "Singular matrix collapses 2D to 1D", [[1, 2], [2, 4]], undefined, undefined, ["Collapses to a line", "Preserves area", "Doubles area", "Inverts orientation"]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 0, "Rows are proportional: det = 0", [[1, 2], [2, 4]]));
-    }
-    
-    if (difficulty === "ELITE") {
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 1, "Rotation matrix: det = 0.8² + 0.6² = 1", [[0.8, 0.6], [-0.6, 0.8]]));
-      pool.push(createQuest("identify", "What is det(AB)?", "det(A) × det(B)", "Multiplicative property of determinants", undefined, [[2, 0], [0, 3]], [[1, 2], [0, 1]], ["det(A) × det(B)", "det(A) + det(B)", "det(B) × det(A)", "Cannot determine"]));
-      pool.push(createQuest("calculate_det", "Calculate the determinant", 0, "Columns are linearly dependent", [[3, -1], [-6, 2]]));
-      pool.push(createQuest("identify", "If det(A) = 5, what is det(A⁻¹)?", "1/5", "det(A⁻¹) = 1/det(A)", [[2, 1], [1, 3]], undefined, undefined, ["1/5", "5", "-5", "0"]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 6, "2*3=6", [[2, 0], [0, 3]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 16, "4*4=16", [[4, 0], [0, 4]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 1, "Identity", [[1, 0], [0, 1]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 10, "5*2=10", [[5, 0], [0, 2]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 4, "2*2=4", [[2, 0], [0, 2]]));
+    } else if (difficulty === "CORE") {
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 10, "3*4-1*2", [[3, 1], [2, 4]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 5, "2*4-3*1", [[2, 3], [1, 4]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 1, "Rot", [[0, -1], [1, 0]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 1, "Shear", [[1, 2], [0, 1]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), -2, "Flip", [[-2, 0], [0, 1]]));
+    } else if (difficulty === "ADVANCED") {
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 0, "Singular", [[2, -3], [-4, 6]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 5, "Negatives", [[-2, 1], [3, -4]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_prop", { desc: "det=0" }), "Line collapse", "Singular", [[1, 2], [2, 4]], undefined, undefined, ["Line collapse", "Preserve Area", "Double Area", "Invert"]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 0, "Prop rows", [[1, 2], [2, 4]]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), -1, "Reflection", [[0, 1], [1, 0]]));
+    } else { // ELITE
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 1, "Rot", [[0.8, 0.6], [-0.6, 0.8]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.property_det"), "det(A)det(B)", "Product", undefined, [[2, 0], [0, 3]], [[1, 2], [0, 1]], ["det(A)det(B)", "Sum", "Diff", "None"]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 0, "Dep cols", [[3, -1], [-6, 2]]));
+      pool.push(createQuest("identify", t("em2_01.prompts.identify_prop", { desc: "det(Inverse)" }), "1/det(A)", "Inverse", [[2, 1], [1, 3]], undefined, undefined, ["1/det(A)", "det(A)", "-det(A)", "0"]));
+      pool.push(createQuest("calculate_det", t("em2_01.prompts.calc_det"), 1, "Complex Rot", [[0.6, -0.8], [0.8, 0.6]]));
     }
   }
 
   if (stage === "COMPOSITION") {
     if (difficulty === "BASIC") {
-      pool.push(createQuest("calculate_matrix", "Calculate AB", "6,0,0,6", "Scaling by 2 then by 3 = scaling by 6", undefined, [[2, 0], [0, 2]], [[3, 0], [0, 3]]));
-      pool.push(createQuest("calculate_matrix", "Calculate AB", "2,0,0,3", "Horizontal stretch by 2, vertical by 3", undefined, [[2, 0], [0, 1]], [[1, 0], [0, 3]]));
-      pool.push(createQuest("identify", "What is I×A?", "Equals A", "Identity is neutral element", undefined, [[1, 0], [0, 1]], [[2, 0], [0, 2]], ["Equals A", "Equals I", "Equals zero", "Equals 2I"]));
-      pool.push(createQuest("calculate_matrix", "Calculate A×A (rotate 90° twice)", "-1,0,0,-1", "90° + 90° = 180° rotation", undefined, [[0, -1], [1, 0]], [[0, -1], [1, 0]]));
-    }
-    
-    if (difficulty === "CORE") {
-      pool.push(createQuest("calculate_matrix", "Calculate AB (rotate then scale)", "0,-2,2,0", "First rotate 90°, then scale by 2", undefined, [[0, -1], [1, 0]], [[2, 0], [0, 2]]));
-      pool.push(createQuest("calculate_matrix", "Calculate BA (scale then rotate)", "0,-2,2,0", "First scale by 2, then rotate 90°. Same result!", undefined, [[2, 0], [0, 2]], [[0, -1], [1, 0]]));
-      pool.push(createQuest("identify", "Does AB = BA for these shear matrices?", "No, AB ≠ BA", "Matrix multiplication is not commutative", undefined, [[1, 1], [0, 1]], [[1, 0], [1, 1]], ["No, AB ≠ BA", "Yes, AB = BA", "Both equal I", "Both equal zero"]));
-      pool.push(createQuest("calculate_matrix", "Calculate AB", "7,2,3,1", "Multiply: [1,2;0,1] × [1,0;3,1]", undefined, [[1, 2], [0, 1]], [[1, 0], [3, 1]]));
-    }
-    
-    if (difficulty === "ADVANCED") {
-      pool.push(createQuest("calculate_matrix", "Find A⁻¹ (inverse of scaling by 2)", "0.5,0,0,0.5", "Inverse of scaling by 2 is scaling by 0.5", [[0.5, 0], [0, 0.5]], [[2, 0], [0, 2]]));
-      pool.push(createQuest("calculate_matrix", "Find A⁻¹ (inverse of 90° CCW rotation)", "0,1,-1,0", "Inverse of 90° CCW is 90° CW", [[0, 1], [-1, 0]], [[0, -1], [1, 0]]));
-      pool.push(createQuest("identify", "If AB = I, what is B?", "B is the inverse of A", "AB = I means B = A⁻¹", undefined, [[1, 2], [3, 4]], [[-2, 1], [1.5, -0.5]], ["B is the inverse of A", "B is zero", "B equals A", "B equals I"]));
-      pool.push(createQuest("calculate_matrix", "Calculate A×I", "3,1,2,4", "Multiplying by identity doesn't change A", [[3, 1], [2, 4]], [[3, 1], [2, 4]], [[1, 0], [0, 1]]));
-    }
-    
-    if (difficulty === "ELITE") {
-      pool.push(createQuest("calculate_matrix", "Calculate AB", "2,-1,1,0", "Matrix multiplication: [1,2;0,1] × [0,-1;1,0]", undefined, [[1, 2], [0, 1]], [[0, -1], [1, 0]]));
-      pool.push(createQuest("identify", "Is (AB)C = A(BC)?", "Yes, associative", "Matrix multiplication is associative", undefined, [[1, 0], [0, 1]], [[1, 0], [0, 1]], ["Yes, associative", "No, must compute AB first", "No, must compute BC first", "Order matters"]));
-      pool.push(createQuest("calculate_matrix", "Find A⁻¹", "1,-1,-1,2", "Use formula: A⁻¹ = (1/det)×[d,-b;-c,a]", [[1, -1], [-1, 2]], [[2, 1], [1, 1]]));
-      pool.push(createQuest("identify", "Can this matrix be inverted?", "No, det = 0", "Singular matrix (det=0) has no inverse", [[1, 2], [2, 4]], undefined, undefined, ["No, det = 0", "Yes, always invertible", "Yes, inverse is itself", "Yes, inverse is transpose"]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.calc_prod"), "6,0,0,6", "Scale x Scale", undefined, [[2, 0], [0, 2]], [[3, 0], [0, 3]]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.calc_prod"), "2,0,0,3", "Stretch", undefined, [[2, 0], [0, 1]], [[1, 0], [0, 3]]));
+      pool.push(createQuest("identify", "I x A = ?", "A", "Identity", undefined, [[1, 0], [0, 1]], [[2, 0], [0, 2]], ["A", "I", "0", "2A"]));
+      pool.push(createQuest("calculate_matrix", "Rot 90 x Rot 90", "-1,0,0,-1", "180", undefined, [[0, -1], [1, 0]], [[0, -1], [1, 0]]));
+      pool.push(createQuest("calculate_matrix", "Scale 2 x I", "2,0,0,2", "Scale", undefined, [[2, 0], [0, 2]], [[1, 0], [0, 1]]));
+    } else if (difficulty === "CORE") {
+      pool.push(createQuest("calculate_matrix", "Rot 90 x Scale 2", "0,-2,2,0", "Comp", undefined, [[0, -1], [1, 0]], [[2, 0], [0, 2]]));
+      pool.push(createQuest("calculate_matrix", "Scale 2 x Rot 90", "0,-2,2,0", "Comp", undefined, [[2, 0], [0, 2]], [[0, -1], [1, 0]]));
+      pool.push(createQuest("identify", "AB = BA?", "No", "Non-comm", undefined, [[1, 1], [0, 1]], [[1, 0], [1, 1]], ["No", "Yes", "Often", "Never"]));
+      pool.push(createQuest("calculate_matrix", "A x B", "7,2,3,1", "Prod", undefined, [[1, 2], [0, 1]], [[1, 0], [3, 1]]));
+      pool.push(createQuest("calculate_matrix", "S x S", "4,0,0,4", "Sq", undefined, [[2, 0], [0, 2]], [[2, 0], [0, 2]]));
+    } else if (difficulty === "ADVANCED") {
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.calc_inv"), "0.5,0,0,0.5", "Inv Scale", [[0.5, 0], [0, 0.5]], [[2, 0], [0, 2]]));
+      pool.push(createQuest("calculate_matrix", t("em2_01.prompts.calc_inv"), "0,1,-1,0", "Inv Rot", [[0, 1], [-1, 0]], [[0, -1], [1, 0]]));
+      pool.push(createQuest("identify", "AB=I implies", "B=Inv(A)", "Inv", undefined, [[1, 2], [3, 4]], [[-2, 1], [1.5, -0.5]], ["B=Inv(A)", "B=A", "B=0", "B=I"]));
+      pool.push(createQuest("calculate_matrix", "A x I", "3,1,2,4", "Id", [[3, 1], [2, 4]], [[3, 1], [2, 4]], [[1, 0], [0, 1]]));
+      pool.push(createQuest("calculate_matrix", "Inv(Shear)", "1,-1,0,1", "Inv Shear", [[1, -1], [0, 1]], [[1, 1], [0, 1]]));
+    } else { // ELITE
+      pool.push(createQuest("calculate_matrix", "A x B", "2,-1,1,0", "Prod", undefined, [[1, 2], [0, 1]], [[0, -1], [1, 0]]));
+      pool.push(createQuest("identify", "(AB)C = A(BC)?", "Yes", "Assoc", undefined, [[1, 0], [0, 1]], [[1, 0], [0, 1]], ["Yes", "No", "Sometimes", "Never"]));
+      pool.push(createQuest("calculate_matrix", "Inv General", "1,-1,-1,2", "Formula", [[1, -1], [-1, 2]], [[2, 1], [1, 1]]));
+      pool.push(createQuest("identify", "Invertible?", "No", "Singular", [[1, 2], [2, 4]], undefined, undefined, ["No", "Yes"]));
+      pool.push(createQuest("calculate_matrix", "A^2", "1,2,0,1", "Power", undefined, [[1, 1], [0, 1]], [[1, 1], [0, 1]]));
     }
   }
 
   return pool;
 }
 
-export default function GM5_01_MatrixGeometry() {
+export default function EM201Page() {
   const { currentLanguage } = useAppStore();
-  const t = (translations[currentLanguage] as any)?.em2_01;
+  const { t: getT } = useLanguage();
+  const t = getT("em2_01");
 
   const {
     difficulty,
@@ -200,16 +183,22 @@ export default function GM5_01_MatrixGeometry() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<MatrixQuest, Stage>({
-    buildPool: (d, s) => buildMatrixPool(t, d, s),
+    buildPool: (d, s) => buildMatrixPool(getT, t, d, s),
     initialStage: "BASIC_TRANSFORMS",
   });
+
+  const stagesProps = useMemo(() => [
+    { id: "BASIC_TRANSFORMS" as Stage, label: t.stages.basic_transforms },
+    { id: "DETERMINANT" as Stage, label: t.stages.determinant },
+    { id: "COMPOSITION" as Stage, label: t.stages.composition },
+  ], [t.stages]);
 
   // Get display matrix for visualization
   const getDisplayMatrix = (): number[][] => {
     if (!currentQuest) return [[1, 0], [0, 1]];
     if (currentQuest.matrix) return currentQuest.matrix;
     if (currentQuest.matrixA) return currentQuest.matrixA;
-    
+
     // Try to parse user input for calculate_matrix type
     if (currentQuest.type === "calculate_matrix") {
       const a11 = parseFloat(inputs.a11 || "1");
@@ -220,43 +209,36 @@ export default function GM5_01_MatrixGeometry() {
         return [[a11, a12], [a21, a22]];
       }
     }
-    
+
     return [[1, 0], [0, 1]];
   };
 
   const displayMatrix = getDisplayMatrix();
 
+  if (!t || !t.stages) return null;
+
   return (
     <ChamberLayout
-      title={t?.title || "GM5.01 // MATRIX GEOMETRY"}
+      title={t.title}
       moduleCode="EM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BASIC_TRANSFORMS", label: t?.stages?.basic_transforms || "TRANSFORMS" },
-        { id: "DETERMINANT", label: t?.stages?.determinant || "DETERMINANT" },
-        { id: "COMPOSITION", label: t?.stages?.composition || "COMPOSITION" },
-      ]}
+      stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t?.footer_left || "GM5.01_MATRIX_GEOMETRY // NODE: BASEL"}
+      footerLeft={t.footer_left}
       translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GM5.01_MATRIX_MONITOR",
-        difficulty: {
-          basic: t?.difficulty?.basic || "BASIC",
-          core: t?.difficulty?.core || "CORE",
-          advanced: t?.difficulty?.advanced || "ADVANCED",
-          elite: t?.difficulty?.elite || "ELITE",
-        },
+        back: t.back,
+        check: t.check,
+        next: t.next,
+        correct: t.correct,
+        incorrect: t.incorrect,
+        ready: t.ready,
+        monitor_title: t.monitor_title,
+        difficulty: t.difficulty,
       }}
       monitorContent={
         <MatrixVisualization2D
@@ -270,12 +252,10 @@ export default function GM5_01_MatrixGeometry() {
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <div className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-              {t?.scenario_title || "BASEL ENGINEERING MISSION"}
+              {t.scenario_title}
             </div>
             <p className="text-sm text-white/80 font-mono max-w-2xl mx-auto leading-relaxed">
-              {stage === "BASIC_TRANSFORMS" && (t?.scenarios?.basic_transforms || "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.")}
-              {stage === "DETERMINANT" && (t?.scenarios?.determinant || "Novartis Crystal Structure: You are analyzing drug crystal unit cell structures at Novartis Basel. The determinant represents lattice volume change. det(A)=0 indicates crystal structure collapse, det(A)<0 indicates chirality inversion. Accurate determinant calculation is crucial for predicting drug bioactivity.")}
-              {stage === "COMPOSITION" && (t?.scenarios?.composition || "University of Basel Robotics: You are programming a robotic arm at Basel University robotics lab. Each joint's motion is represented by a transformation matrix. Composite transformation AB means executing joint A's motion first, then joint B's motion. Matrix multiplication order determines the robot arm's final position.")}
+              {t.scenarios[stage.toLowerCase() as keyof typeof t.scenarios]}
             </p>
           </div>
 
@@ -304,11 +284,10 @@ export default function GM5_01_MatrixGeometry() {
                   <button
                     key={idx}
                     onClick={() => setInputs({ answer: option })}
-                    className={`w-full px-6 py-4 border rounded-lg text-left text-sm transition-all ${
-                      inputs.answer === option
-                        ? "bg-neon-cyan/20 border-neon-cyan text-white"
+                    className={`w-full px-6 py-4 border rounded-lg text-left text-sm transition-all ${inputs.answer === option
+                        ? "bg-cyan-500/20 border-cyan-500 text-white"
                         : "border-white/20 text-white/80 hover:border-white/40 hover:bg-white/5"
-                    }`}
+                      }`}
                   >
                     {option}
                   </button>
@@ -319,7 +298,7 @@ export default function GM5_01_MatrixGeometry() {
                 {currentQuest.slots.map((slot) => (
                   <div key={slot.id} className="space-y-2">
                     <label className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-                      {slot.labelLatex}
+                      <InlineMath math={slot.labelLatex} />
                     </label>
                     <input
                       type="number"
@@ -329,7 +308,8 @@ export default function GM5_01_MatrixGeometry() {
                         setInputs({ ...inputs, [slot.id]: e.target.value })
                       }
                       placeholder={slot.placeholder}
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white font-mono text-lg focus:outline-none focus:border-neon-cyan transition-colors"
+                      className="w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white font-mono text-lg focus:outline-none focus:border-cyan-500 transition-colors"
+                      disabled={lastCheck?.ok}
                     />
                   </div>
                 ))}
@@ -340,7 +320,7 @@ export default function GM5_01_MatrixGeometry() {
             {lastCheck?.ok && currentQuest.explanation && (
               <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
                 <div className="text-xs text-green-400 mb-2 uppercase tracking-wider">
-                  {t?.explanation_label || "EXPLANATION"}
+                  {t.explanation_label}
                 </div>
                 <div className="text-sm text-green-300/90">
                   {currentQuest.explanation}

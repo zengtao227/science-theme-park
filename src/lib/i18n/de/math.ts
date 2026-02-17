@@ -116,6 +116,19 @@ export const deMath = {
             determinant: "DETERMINANTE",
             composition: "KOMPOSITION"
         },
+        prompts: {
+            identify_trans: "Identifiziere die durch die Matrix dargestellte Transformation.",
+            create_scale: "Erstelle eine Skalierungsmatrix mit Faktor {k}.",
+            create_rot: "Erstelle eine Rotationsmatrix für {deg}°.",
+            create_shear: "Erstelle eine Schermatrix: x -> x + {k}y.",
+            create_reflect: "Erstelle eine Spiegelungsmatrix an der {axis}-Achse.",
+            create_custom: "Erstelle eine Matrix: {desc}.",
+            calc_det: "Berechne die Determinante der Matrix.",
+            property_det: "Was ist die Eigenschaft dieser Determinante?",
+            calc_prod: "Berechne das Matrixprodukt AB.",
+            calc_inv: "Berechne die inverse Matrix A⁻¹.",
+            identify_prop: "Identifiziere die Eigenschaft: {desc}."
+        },
         scenario_title: "BASLER INGENIEURSMISSION",
         scenarios: {
             basic_transforms: "Roche Pharma-Molekülanalyse: Sie arbeiten in der Abteilung für Computerchemie von Roche Basel und verwenden lineare Transformationen zur Analyse der Symmetrie von Proteinmolekülen. Jede Matrix repräsentiert eine Symmetrieoperation (Rotation, Reflexion, Skalierung). Die Identifizierung von Transformationstypen ist entscheidend für die Vorhersage molekularer optischer Eigenschaften.",

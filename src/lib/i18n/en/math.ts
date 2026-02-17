@@ -116,6 +116,19 @@ export const enMath = {
             determinant: "DETERMINANT",
             composition: "COMPOSITION"
         },
+        prompts: {
+            identify_trans: "Identify the transformation represented by the matrix.",
+            create_scale: "Create a matrix that scales by factor {k}.",
+            create_rot: "Create a matrix that rotates {deg}° counter-clockwise.",
+            create_shear: "Create a shear matrix: x -> x + {k}y.",
+            create_reflect: "Create a reflection matrix over the {axis}-axis.",
+            create_custom: "Create a matrix: {desc}.",
+            calc_det: "Calculate the determinant of the matrix.",
+            property_det: "What is the property of this determinant?",
+            calc_prod: "Calculate the matrix product AB.",
+            calc_inv: "Calculate the inverse matrix A⁻¹.",
+            identify_prop: "Identify the property: {desc}."
+        },
         scenario_title: "BASEL ENGINEERING MISSION",
         scenarios: {
             basic_transforms: "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.",
