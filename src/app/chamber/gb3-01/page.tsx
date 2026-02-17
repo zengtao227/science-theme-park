@@ -34,32 +34,156 @@ export default function GB301Page() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB301Quest[] => {
         const quests: GB301Quest[] = [];
 
-        if (stage === "PAIRING") {
-            DNA_SEQUENCE.forEach((base, idx) => {
+        // Each stage × difficulty = 5 questions (60 total)
+        const questData: Record<Stage, Record<Difficulty, Array<{
+            base?: string;
+            b1?: string;
+            b2?: string;
+            seq?: string;
+            expected: string;
+            highlightIndex?: number;
+        }>>> = {
+            PAIRING: {
+                BASIC: [
+                    { base: "A", expected: "T", highlightIndex: 0 },
+                    { base: "T", expected: "A", highlightIndex: 1 },
+                    { base: "G", expected: "C", highlightIndex: 2 },
+                    { base: "C", expected: "G", highlightIndex: 3 },
+                    { base: "A", expected: "T", highlightIndex: 4 }
+                ],
+                CORE: [
+                    { base: "T", expected: "A", highlightIndex: 5 },
+                    { base: "C", expected: "G", highlightIndex: 6 },
+                    { base: "G", expected: "C", highlightIndex: 7 },
+                    { base: "T", expected: "A", highlightIndex: 8 },
+                    { base: "A", expected: "T", highlightIndex: 9 }
+                ],
+                ADVANCED: [
+                    { base: "G", expected: "C", highlightIndex: 0 },
+                    { base: "C", expected: "G", highlightIndex: 1 },
+                    { base: "A", expected: "T", highlightIndex: 2 },
+                    { base: "T", expected: "A", highlightIndex: 3 },
+                    { base: "G", expected: "C", highlightIndex: 4 }
+                ],
+                ELITE: [
+                    { base: "C", expected: "G", highlightIndex: 5 },
+                    { base: "G", expected: "C", highlightIndex: 6 },
+                    { base: "T", expected: "A", highlightIndex: 7 },
+                    { base: "A", expected: "T", highlightIndex: 8 },
+                    { base: "C", expected: "G", highlightIndex: 9 }
+                ]
+            },
+            BONDS: {
+                BASIC: [
+                    { b1: "A", b2: "T", expected: "2" },
+                    { b1: "T", b2: "A", expected: "2" },
+                    { b1: "G", b2: "C", expected: "3" },
+                    { b1: "C", b2: "G", expected: "3" },
+                    { b1: "A", b2: "T", expected: "2" }
+                ],
+                CORE: [
+                    { b1: "G", b2: "C", expected: "3" },
+                    { b1: "C", b2: "G", expected: "3" },
+                    { b1: "T", b2: "A", expected: "2" },
+                    { b1: "A", b2: "T", expected: "2" },
+                    { b1: "G", b2: "C", expected: "3" }
+                ],
+                ADVANCED: [
+                    { b1: "C", b2: "G", expected: "3" },
+                    { b1: "G", b2: "C", expected: "3" },
+                    { b1: "A", b2: "T", expected: "2" },
+                    { b1: "T", b2: "A", expected: "2" },
+                    { b1: "C", b2: "G", expected: "3" }
+                ],
+                ELITE: [
+                    { b1: "G", b2: "C", expected: "3" },
+                    { b1: "A", b2: "T", expected: "2" },
+                    { b1: "C", b2: "G", expected: "3" },
+                    { b1: "T", b2: "A", expected: "2" },
+                    { b1: "G", b2: "C", expected: "3" }
+                ]
+            },
+            SEQUENCE: {
+                BASIC: [
+                    { seq: "ATGC", expected: "TACG" },
+                    { seq: "CGTA", expected: "GCAT" },
+                    { seq: "AATT", expected: "TTAA" },
+                    { seq: "GGCC", expected: "CCGG" },
+                    { seq: "ATCG", expected: "TAGC" }
+                ],
+                CORE: [
+                    { seq: "ATGCAT", expected: "TACGTA" },
+                    { seq: "CGTACG", expected: "GCATGC" },
+                    { seq: "AATTGG", expected: "TTAACC" },
+                    { seq: "GGCCAA", expected: "CCGGTT" },
+                    { seq: "ATCGAT", expected: "TAGCTA" }
+                ],
+                ADVANCED: [
+                    { seq: "ATGCATGC", expected: "TACGTACG" },
+                    { seq: "CGTACGTA", expected: "GCATGCAT" },
+                    { seq: "AATTGGCC", expected: "TTAACCGG" },
+                    { seq: "GGCCAATT", expected: "CCGGTTAA" },
+                    { seq: "ATCGATCG", expected: "TAGCTAGC" }
+                ],
+                ELITE: [
+                    { seq: "ATGCATGCAT", expected: "TACGTACGTA" },
+                    { seq: "CGTACGTACG", expected: "GCATGCATGC" },
+                    { seq: "AATTGGCCAA", expected: "TTAACCGGTT" },
+                    { seq: "GGCCAATTGG", expected: "CCGGTTAACC" },
+                    { seq: "ATCGATCGAT", expected: "TAGCTAGCTA" }
+                ]
+            }
+        };
+
+        const dataList = questData[stage][difficulty];
+        dataList.forEach((data, idx) => {
+            if (stage === "PAIRING") {
+                const base = data.base!;
                 quests.push({
-                    id: `P-${idx}`, difficulty, stage, base, highlightIndex: idx,
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    base,
+                    highlightIndex: data.highlightIndex,
                     promptLatex: t("gb3_01.prompts.pairing_prompt", { base }),
                     expressionLatex: t("gb3_01.prompts.pairing_target", { base }),
-                    targetLatex: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G",
-                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.pairing_target", { base }), placeholder: "...", expected: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G" }],
-                    correctLatex: base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G",
+                    targetLatex: data.expected,
+                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.pairing_target", { base }), placeholder: "...", expected: data.expected }],
+                    correctLatex: data.expected,
                     hintLatex: [base === "A" || base === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
-            });
-        }
-
-        if (stage === "BONDS") {
-            const pairs = [["A", "T", 2], ["G", "C", 3], ["T", "A", 2], ["C", "G", 3]];
-            pairs.forEach((p, idx) => {
+            } else if (stage === "BONDS") {
+                const b1 = data.b1!;
+                const b2 = data.b2!;
                 quests.push({
-                    id: `B-${idx}`, difficulty, stage, b1: p[0] as string, b2: p[1] as string,
-                    promptLatex: t("gb3_01.prompts.bonds_prompt", { b1: p[0] as string, b2: p[1] as string }),
-                    expressionLatex: t("gb3_01.prompts.bonds_target"), targetLatex: p[2].toString(),
-                    slots: [{ id: "ans", labelLatex: "n_{H}", placeholder: "2-3", expected: p[2].toString() }],
-                    correctLatex: p[2].toString(), hintLatex: [p[0] === "A" || p[0] === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    b1,
+                    b2,
+                    promptLatex: t("gb3_01.prompts.bonds_prompt", { b1, b2 }),
+                    expressionLatex: t("gb3_01.prompts.bonds_target"),
+                    targetLatex: data.expected,
+                    slots: [{ id: "ans", labelLatex: "n_{H}", placeholder: "2-3", expected: data.expected }],
+                    correctLatex: data.expected,
+                    hintLatex: [b1 === "A" || b1 === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
-            });
-        }
+            } else {
+                const seq = data.seq!;
+                quests.push({
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    seq,
+                    promptLatex: t("gb3_01.prompts.sequence_prompt", { seq }),
+                    expressionLatex: t("gb3_01.prompts.sequence_target"),
+                    targetLatex: data.expected,
+                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.sequence_label"), placeholder: "...", expected: data.expected }],
+                    correctLatex: data.expected,
+                    hintLatex: [t("gb3_01.prompts.hint_sequence")]
+                });
+            }
+        });
 
         return quests;
     }, [t]);

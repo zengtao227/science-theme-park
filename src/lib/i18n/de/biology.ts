@@ -29,7 +29,14 @@ export const deBiology = {
             evidence: "Ein Fossil ist {age} Jahre alt. Mit C-14 Halbwertszeit {halflife} Jahre, finde den verbleibenden Anteil.",
             hint_fitness: "Fitness = Überlebende / Anfangspopulation",
             hint_divergence: "Divergenz = Generationen × Mutationsrate",
-            hint_halflife: "Verbleibend = (0.5)^(Alter/Halbwertszeit)"
+            hint_halflife: "Verbleibend = (0.5)^(Alter/Halbwertszeit)",
+            fitness_calc: "Anfangs {init}, Überlebende {surv}. Fitness w?",
+            hardy_p: "Allelfrequenz p={p}. Heterozygotenfrequenz 2pq?",
+            hardy_q: "Rezessive Phänotypfrequenz q^2={q2}. Finde Allelfrequenz q.",
+            drift_time: "Populationsgröße N={N}. Fixierungszeit (Gen.) ~ 4N?",
+            mutation_div: "Divergenz D={D}, Rate u={u}. Generationen t = D/2u?",
+            decay_age: "Verbleibender Anteil {f}. Halbwertszeit {h}. Alter?",
+            common_ancestor: "Arten A und B unterscheiden sich durch {n} Mutationen. Rate {r}/J. Zeit zum Vorfahren?"
         },
         feedback: {
             correct: "Natürliche Selektion bestätigt!",
@@ -716,77 +723,77 @@ export const deBiology = {
             digestive_b3: "Der Dünndarm nimmt Nährstoffe auf. Was ist seine Funktion?",
             digestive_b4: "Die Leber produziert Galle zur Fettverdauung. Was ist ihre Funktion?",
             digestive_b5: "Das Verdauungssystem hat 7 Hauptorgane. Zählen Sie:",
-            
+
             // VERDAUUNGSSYSTEM - KERN (5 Fragen)
             digestive_c1: "Welches Organ produziert Verdauungsenzyme und Insulin?",
             digestive_c2: "Der Magen verwendet Salzsäure (pH 1.5-3.5). Was ist seine Funktion?",
             digestive_c3: "Zotten im Dünndarm vergrößern die Oberfläche. Warum ist das wichtig?",
             digestive_c4: "Der Dickdarm nimmt Wasser auf. Was passiert, wenn dies fehlschlägt?",
             digestive_c5: "Peristaltik bewegt Nahrung durch den Verdauungstrakt. Was ist dieser Prozess?",
-            
+
             // VERDAUUNGSSYSTEM - FORTGESCHRITTEN (5 Fragen)
             digestive_a1: "Die Bauchspeicheldrüse sezerniert Bikarbonat zur Neutralisierung der Magensäure. Wie ändert sich der pH-Wert?",
             digestive_a2: "Galle emulgiert Fette zu kleineren Tröpfchen. Warum ist dies für die Verdauung notwendig?",
             digestive_a3: "Der Dünndarm ist 6-7 Meter lang. Wie beeinflusst die Länge die Absorptionseffizienz?",
             digestive_a4: "Magensäure tötet Bakterien in der Nahrung. Was passiert, wenn die Säureproduktion zu niedrig ist?",
             digestive_a5: "Die Leber verarbeitet Nährstoffe aus dem Dünndarm. Wie heißt dieser Prozess?",
-            
+
             // VERDAUUNGSSYSTEM - ELITE (5 Fragen)
             digestive_e1: "Morbus Crohn verursacht Entzündungen im Verdauungstrakt. Welche Organe sind am stärksten betroffen?",
             digestive_e2: "Laktoseintoleranz tritt auf, wenn dem Dünndarm ein Enzym fehlt. Welches Enzym?",
             digestive_e3: "Das enterische Nervensystem steuert die Verdauung unabhängig. Wie viele Neuronen enthält es?",
             digestive_e4: "Zöliakie schädigt die Zotten im Dünndarm. Was ist die Folge?",
             digestive_e5: "Das Verdauungssystem nutzt mechanische und chemische Verdauung. Vergleichen Sie ihre Rollen.",
-            
+
             // KREISLAUFSYSTEM - BASIS (5 Fragen)
             circulatory_b1: "Das Herz pumpt Blut durch den ganzen Körper. Was ist seine Funktion?",
             circulatory_b2: "Arterien transportieren Blut vom Herzen weg. Was machen Venen?",
             circulatory_b3: "Das Kreislaufsystem hat 3 Hauptkomponenten. Zählen Sie:",
             circulatory_b4: "Blut transportiert Sauerstoff zu den Zellen. Was transportiert es weg?",
             circulatory_b5: "Das Herz hat 4 Kammern. Zählen Sie:",
-            
+
             // KREISLAUFSYSTEM - KERN (5 Fragen)
             circulatory_c1: "Die rechte Herzseite pumpt Blut in die Lunge. Wie heißt dieser Kreislauf?",
             circulatory_c2: "Der linke Ventrikel hat dickere Wände als der rechte. Warum?",
             circulatory_c3: "Kapillaren sind mikroskopisch kleine Blutgefäße. Was ist ihre Funktion?",
             circulatory_c4: "Der Blutdruck wird als systolisch/diastolisch gemessen. Was ist normaler Blutdruck?",
             circulatory_c5: "Das Herz schlägt in Ruhe 60-100 Mal pro Minute. Wie nennt man das?",
-            
+
             // KREISLAUFSYSTEM - FORTGESCHRITTEN (5 Fragen)
             circulatory_a1: "Herzzeitvolumen = Herzfrequenz × Schlagvolumen. Berechnen Sie das Herzzeitvolumen in Ruhe:",
             circulatory_a2: "Arterien haben dicke elastische Wände. Wie hilft dies, dem Druck standzuhalten?",
             circulatory_a3: "Venen haben Einwegventile. Was passiert, wenn diese Ventile versagen?",
             circulatory_a4: "Rote Blutkörperchen transportieren Sauerstoff mit Hämoglobin. Wie viele Sauerstoffmoleküle pro Hämoglobin?",
             circulatory_a5: "Das elektrische System des Herzens steuert den Rhythmus. Wie heißt der Schrittmacher?",
-            
+
             // KREISLAUFSYSTEM - ELITE (5 Fragen)
             circulatory_e1: "Atherosklerose verengt Arterien mit Plaque. Was sind die Folgen?",
             circulatory_e2: "Der Frank-Starling-Mechanismus passt das Herzzeitvolumen an. Wie funktioniert er?",
             circulatory_e3: "Die Blutdruckregulation umfasst mehrere Systeme. Nennen Sie drei Mechanismen:",
             circulatory_e4: "Herzinsuffizienz reduziert das Herzzeitvolumen. Welche Kompensationsmechanismen treten auf?",
             circulatory_e5: "Das Kreislaufsystem liefert 5 L/min in Ruhe, 25 L/min bei Belastung. Berechnen Sie die Zunahme:",
-            
+
             // ATMUNGSSYSTEM - BASIS (5 Fragen)
             respiratory_b1: "Der Gasaustausch findet in winzigen Luftsäcken statt. Wie heißen sie?",
             respiratory_b2: "Das Atmungssystem tauscht Gase aus. Welches Gas gelangt ins Blut?",
             respiratory_b3: "Das Atmungssystem hat 5 Hauptorgane. Zählen Sie:",
             respiratory_b4: "Das Zwerchfell zieht sich zusammen, um die Lunge zu erweitern. Was ist seine Funktion?",
             respiratory_b5: "Luftweg: Nase → Rachen → ? → Luftröhre",
-            
+
             // ATMUNGSSYSTEM - KERN (5 Fragen)
             respiratory_c1: "Die Luftröhre hat C-förmige Knorpelringe. Warum ist diese Struktur wichtig?",
             respiratory_c2: "Bronchien verzweigen sich in kleinere Bronchiolen. Wie heißt diese Struktur?",
             respiratory_c3: "Alveolen haben extrem dünne Wände (0.5 Mikrometer). Warum ist das notwendig?",
             respiratory_c4: "Das Zwerchfell erzeugt beim Einatmen Unterdruck. Wie saugt dies Luft an?",
             respiratory_c5: "Ein gesunder Erwachsener atmet in Ruhe 12-20 Mal pro Minute. Wie nennt man diese Rate?",
-            
+
             // ATMUNGSSYSTEM - FORTGESCHRITTEN (5 Fragen)
             respiratory_a1: "Erwachsene Lungen enthalten etwa 300 Millionen Alveolen. Was ist die Gesamtoberfläche?",
             respiratory_a2: "Das Atemzugvolumen ist die pro Atemzug ausgetauschte Luft (~500 ml). Berechnen Sie das Minutenvolumen:",
             respiratory_a3: "Sauerstoff diffundiert von den Alveolen in die Kapillaren. Was treibt diese Diffusion an?",
             respiratory_a4: "Der Kehlkopf enthält Stimmbänder. Wie erzeugen sie Klang?",
             respiratory_a5: "Surfactant reduziert die Oberflächenspannung in den Alveolen. Was passiert bei Surfactant-Mangel?",
-            
+
             // ATMUNGSSYSTEM - ELITE (5 Fragen)
             respiratory_e1: "Asthma verursacht Bronchiolenverengung. Was sind die physiologischen Folgen?",
             respiratory_e2: "COPD reduziert die Gasaustauscheffizienz. Welche Kompensationsmechanismen treten auf?",

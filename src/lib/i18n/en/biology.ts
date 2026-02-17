@@ -29,7 +29,14 @@ export const enBiology = {
             evidence: "A fossil is {age} years old. With C-14 half-life {halflife} years, find remaining fraction.",
             hint_fitness: "Fitness = Survivors / Initial Population",
             hint_divergence: "Divergence = Generations × Mutation Rate",
-            hint_halflife: "Remaining = (0.5)^(age/half-life)"
+            hint_halflife: "Remaining = (0.5)^(age/half-life)",
+            fitness_calc: "Initial {init}, Survivors {surv}. Fitness w?",
+            hardy_p: "Allele freq p={p}. Heterozygote frequency 2pq?",
+            hardy_q: "Recessive phenotype q^2={q2}. Find allele freq q.",
+            drift_time: "Pop size N={N}. Expected fixation time in generations ~ 4N?",
+            mutation_div: "Divergence D={D}, Rate u={u}. Generations t = D/2u?",
+            decay_age: "Remaining fraction {f}. Half-life {h}. Age?",
+            common_ancestor: "Species A and B differ by {n} mutations. Rate {r}/yr. Time to ancestor?"
         },
         feedback: {
             correct: "Natural selection confirmed!",
@@ -84,7 +91,14 @@ export const enBiology = {
             hint_anatomy: "Look for the long fiber that carries impulses away from the cell body.",
             hint_sodium: "Sodium (Na⁺) rushes in during depolarization.",
             hint_calcium: "Calcium (Ca²⁺) entry triggers vesicle fusion.",
-            hint_nernst: "Use the Nernst Equation: E = 61 log10(C_out/C_in) at 37°C."
+            hint_nernst: "Use the Nernst Equation: E = 61 log10(C_out/C_in) at 37°C.",
+            func_struct: "Structure: {s}. Function?",
+            nernst_k: "K+ out={o}, in={i}. E_K?",
+            nernst_na: "Na+ out={o}, in={i}. E_Na?",
+            goldman: "Pk={pk}, Pna={pna}. Vm?",
+            phase_ion: "Phase: {p}. Permeability dominates for?",
+            synapse_step: "Step {n}: {desc}. Next step?",
+            drug_block: "Drug blocks {c}. Effect on AP?"
         },
         scenarios: {
             basel_biomedicine: "University of Basel - Biozentrum Neurobiology Department: At the Biozentrum, one of Europe's leading centers for molecular and cell biology, you work in Professor Silvia Arber's research group studying neural circuit assembly. The lab focuses on understanding how motor neurons in the spinal cord connect to specific muscle groups through precise axonal pathfinding. Using advanced imaging techniques and electrophysiology, you map the dendritic branching of pyramidal neurons and trace how action potentials propagate through myelinated axons at speeds up to 120 m/s. This research directly contributes to developing therapies for ALS (Amyotrophic Lateral Sclerosis) and spinal cord injuries. The Biozentrum's collaborative environment continues Basel's 150-year tradition in molecular life sciences—Friedrich Miescher first isolated nuclein (DNA) here in 1869. Understanding neuronal anatomy—from the protein synthesis machinery of the soma to the synaptic vesicles of the axon terminal—is essential for Basel's pharmaceutical industry and the University Hospital's neurology department.",
@@ -856,77 +870,77 @@ export const enBiology = {
             digestive_b3: "The small intestine absorbs nutrients. What is its function?",
             digestive_b4: "The liver produces bile for fat digestion. What is its function?",
             digestive_b5: "The digestive system has 7 major organs. Count them:",
-            
+
             // DIGESTIVE STAGE - CORE (5 questions)
             digestive_c1: "Which organ produces digestive enzymes and insulin?",
             digestive_c2: "The stomach uses hydrochloric acid (pH 1.5-3.5). What is its function?",
             digestive_c3: "Villi in the small intestine increase surface area. Why is this important?",
             digestive_c4: "The large intestine absorbs water. What happens if this fails?",
             digestive_c5: "Peristalsis moves food through the digestive tract. What is this process?",
-            
+
             // DIGESTIVE STAGE - ADVANCED (5 questions)
             digestive_a1: "The pancreas secretes bicarbonate to neutralize stomach acid. What is the pH change?",
             digestive_a2: "Bile emulsifies fats into smaller droplets. Why is this necessary for digestion?",
             digestive_a3: "The small intestine is 6-7 meters long. How does length affect absorption efficiency?",
             digestive_a4: "Gastric acid kills bacteria in food. What happens if acid production is too low?",
             digestive_a5: "The liver processes nutrients from the small intestine. What is this process called?",
-            
+
             // DIGESTIVE STAGE - ELITE (5 questions)
             digestive_e1: "Crohn's disease causes inflammation in the digestive tract. Which organs are most affected?",
             digestive_e2: "Lactose intolerance occurs when the small intestine lacks an enzyme. Which enzyme?",
             digestive_e3: "The enteric nervous system controls digestion independently. How many neurons does it contain?",
             digestive_e4: "Celiac disease damages villi in the small intestine. What is the consequence?",
             digestive_e5: "The digestive system uses mechanical and chemical digestion. Compare their roles.",
-            
+
             // CIRCULATORY STAGE - BASIC (5 questions)
             circulatory_b1: "The heart pumps blood throughout the body. What is its function?",
             circulatory_b2: "Arteries carry blood away from the heart. What do veins do?",
             circulatory_b3: "The circulatory system has 3 main components. Count them:",
             circulatory_b4: "Blood carries oxygen to cells. What does it carry away?",
             circulatory_b5: "The heart has 4 chambers. Count them:",
-            
+
             // CIRCULATORY STAGE - CORE (5 questions)
             circulatory_c1: "The right side of the heart pumps blood to the lungs. What is this circulation called?",
             circulatory_c2: "The left ventricle has thicker walls than the right. Why?",
             circulatory_c3: "Capillaries are microscopic blood vessels. What is their function?",
             circulatory_c4: "Blood pressure is measured as systolic/diastolic. What is normal blood pressure?",
             circulatory_c5: "The heart beats 60-100 times per minute at rest. What is this called?",
-            
+
             // CIRCULATORY STAGE - ADVANCED (5 questions)
             circulatory_a1: "Cardiac output is heart rate × stroke volume. Calculate cardiac output at rest:",
             circulatory_a2: "Arteries have thick elastic walls. How does this help withstand pressure?",
             circulatory_a3: "Veins have one-way valves. What happens if these valves fail?",
             circulatory_a4: "Red blood cells carry oxygen using hemoglobin. How many oxygen molecules per hemoglobin?",
             circulatory_a5: "The heart's electrical system controls rhythm. What is the pacemaker called?",
-            
+
             // CIRCULATORY STAGE - ELITE (5 questions)
             circulatory_e1: "Atherosclerosis narrows arteries with plaque. What are the consequences?",
             circulatory_e2: "The Frank-Starling mechanism adjusts cardiac output. How does it work?",
             circulatory_e3: "Blood pressure regulation involves multiple systems. Name three mechanisms:",
             circulatory_e4: "Heart failure reduces cardiac output. What compensatory mechanisms occur?",
             circulatory_e5: "The circulatory system delivers 5 L/min at rest, 25 L/min during exercise. Calculate the increase:",
-            
+
             // RESPIRATORY STAGE - BASIC (5 questions)
             respiratory_b1: "Gas exchange occurs in tiny air sacs. What are they called?",
             respiratory_b2: "The respiratory system exchanges gases. What gas enters the blood?",
             respiratory_b3: "The respiratory system has 5 major organs. Count them:",
             respiratory_b4: "The diaphragm contracts to expand the lungs. What is its function?",
             respiratory_b5: "Air pathway: Nose → Pharynx → ? → Trachea",
-            
+
             // RESPIRATORY STAGE - CORE (5 questions)
             respiratory_c1: "The trachea has C-shaped cartilage rings. Why is this structure important?",
             respiratory_c2: "Bronchi branch into smaller bronchioles. What is this structure called?",
             respiratory_c3: "Alveoli have extremely thin walls (0.5 micrometers). Why is this necessary?",
             respiratory_c4: "The diaphragm creates negative pressure during inhalation. How does this draw air in?",
             respiratory_c5: "A healthy adult breathes 12-20 times per minute. What is this rate called?",
-            
+
             // RESPIRATORY STAGE - ADVANCED (5 questions)
             respiratory_a1: "Adult lungs contain approximately 300 million alveoli. What is the total surface area?",
             respiratory_a2: "Tidal volume is the air exchanged per breath (~500 mL). Calculate minute ventilation:",
             respiratory_a3: "Oxygen diffuses from alveoli into capillaries. What drives this diffusion?",
             respiratory_a4: "The larynx contains vocal cords. How do they produce sound?",
             respiratory_a5: "Surfactant reduces surface tension in alveoli. What happens if surfactant is lacking?",
-            
+
             // RESPIRATORY STAGE - ELITE (5 questions)
             respiratory_e1: "Asthma causes bronchiole constriction. What are the physiological consequences?",
             respiratory_e2: "COPD reduces gas exchange efficiency. What compensatory mechanisms occur?",

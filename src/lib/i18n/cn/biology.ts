@@ -29,7 +29,14 @@ export const cnBiology = {
             evidence: "一块化石有{age}年历史。C-14半衰期为{halflife}年，求剩余分数。",
             hint_fitness: "适应度 = 存活数 / 初始种群数",
             hint_divergence: "分化度 = 世代数 × 突变率",
-            hint_halflife: "剩余量 = (0.5)^(年龄/半衰期)"
+            hint_halflife: "剩余量 = (0.5)^(年龄/半衰期)",
+            fitness_calc: "初始 {init}, 幸存 {surv}. 适应度 w?",
+            hardy_p: "等位基因频率 p={p}. 杂合子频率 2pq?",
+            hardy_q: "隐性表型频率 q^2={q2}. 求等位基因频率 q.",
+            drift_time: "种群大小 N={N}. 预期固定时间（代数）~ 4N?",
+            mutation_div: "差异 D={D}, 突变率 u={u}. 代数 t = D/2u?",
+            decay_age: "剩余分数 {f}. 半衰期 {h}. 年代?",
+            common_ancestor: "物种 A 和 B 差异 {n} 个突变. 速率 {r}/年. 距共同祖先时间?"
         },
         feedback: {
             correct: "自然选择已确认！",
@@ -84,7 +91,14 @@ export const cnBiology = {
             hint_anatomy: "寻找将冲动从胞体传导出去的长纤维。",
             hint_sodium: "钠离子 (Na⁺) 在去极化期间涌入。",
             hint_calcium: "钙离子 (Ca²⁺) 的进入触发囊泡融合。",
-            hint_nernst: "使用能斯特方程：E = 61 log10(C_out/C_in)，在37°C时。"
+            hint_nernst: "使用能斯特方程：E = 61 log10(C_out/C_in)，在37°C时。",
+            func_struct: "结构: {s}. 功能?",
+            nernst_k: "K+ 外={o}, 内={i}. E_K?",
+            nernst_na: "Na+ 外={o}, 内={i}. E_Na?",
+            goldman: "Pk={pk}, Pna={pna}. Vm?",
+            phase_ion: "阶段: {p}. 哪种渗透性占主导?",
+            synapse_step: "步骤 {n}: {desc}. 下一步?",
+            drug_block: "药物阻断 {c}. 对动作电位影响?"
         },
         scenarios: {
             basel_biomedicine: "巴塞尔大学 - 生物中心神经生物学系：在生物中心（Biozentrum）——欧洲领先的分子与细胞生物学中心之一，你正在与Silvia Arber教授的研究小组合作研究神经回路组装。该实验室专注于理解脊髓中的运动神经元如何通过精确的轴突导向连接到特定的肌肉群。使用先进的成像技术和电生理学方法，你绘制锥体神经元的树突分支，并追踪动作电位如何以高达120米/秒的速度通过有髓轴突传播。这项研究直接有助于开发治疗肌萎缩侧索硬化症（ALS）和脊髓损伤的疗法。生物中心的协作环境延续了巴塞尔150年的分子生命科学传统——弗雷德里希·米舍尔于1869年在此首次分离出核素（DNA）。理解神经元解剖结构——从胞体的蛋白质合成机制到轴突末梢的突触囊泡——对巴塞尔的制药工业和大学医院神经科至关重要。",
@@ -716,77 +730,77 @@ export const cnBiology = {
             digestive_b3: "小肠吸收营养。它的功能是什么？",
             digestive_b4: "肝脏产生胆汁以消化脂肪。它的功能是什么？",
             digestive_b5: "消化系统有7个主要器官。数一数：",
-            
+
             // 消化系统 - 核心 (5题)
             digestive_c1: "哪个器官产生消化酶和胰岛素？",
             digestive_c2: "胃使用盐酸（pH 1.5-3.5）。它的功能是什么？",
             digestive_c3: "小肠中的绒毛增加表面积。为什么这很重要？",
             digestive_c4: "大肠吸收水分。如果这个功能失败会怎样？",
             digestive_c5: "蠕动将食物推过消化道。这是什么过程？",
-            
+
             // 消化系统 - 进阶 (5题)
             digestive_a1: "胰腺分泌碳酸氢盐以中和胃酸。pH值如何变化？",
             digestive_a2: "胆汁将脂肪乳化成更小的液滴。为什么这对消化是必要的？",
             digestive_a3: "小肠长6-7米。长度如何影响吸收效率？",
             digestive_a4: "胃酸杀死食物中的细菌。如果酸产生过低会怎样？",
             digestive_a5: "肝脏处理来自小肠的营养物质。这个过程叫什么？",
-            
+
             // 消化系统 - 精英 (5题)
             digestive_e1: "克罗恩病导致消化道炎症。哪些器官最受影响？",
             digestive_e2: "乳糖不耐症发生在小肠缺乏一种酶时。是哪种酶？",
             digestive_e3: "肠神经系统独立控制消化。它包含多少神经元？",
             digestive_e4: "乳糜泻损害小肠中的绒毛。后果是什么？",
             digestive_e5: "消化系统使用机械和化学消化。比较它们的作用。",
-            
+
             // 循环系统 - 基础 (5题)
             circulatory_b1: "心脏将血液泵送到全身。它的功能是什么？",
             circulatory_b2: "动脉将血液从心脏带走。静脉做什么？",
             circulatory_b3: "循环系统有3个主要组成部分。数一数：",
             circulatory_b4: "血液将氧气输送到细胞。它带走什么？",
             circulatory_b5: "心脏有4个腔室。数一数：",
-            
+
             // 循环系统 - 核心 (5题)
             circulatory_c1: "心脏右侧将血液泵入肺部。这种循环叫什么？",
             circulatory_c2: "左心室的壁比右心室厚。为什么？",
             circulatory_c3: "毛细血管是微小的血管。它们的功能是什么？",
             circulatory_c4: "血压测量为收缩压/舒张压。正常血压是多少？",
             circulatory_c5: "心脏在静息时每分钟跳动60-100次。这叫什么？",
-            
+
             // 循环系统 - 进阶 (5题)
             circulatory_a1: "心输出量 = 心率 × 每搏输出量。计算静息时的心输出量：",
             circulatory_a2: "动脉有厚实的弹性壁。这如何帮助承受压力？",
             circulatory_a3: "静脉有单向瓣膜。如果这些瓣膜失效会怎样？",
             circulatory_a4: "红细胞使用血红蛋白携带氧气。每个血红蛋白携带多少氧分子？",
             circulatory_a5: "心脏的电系统控制节律。起搏器叫什么？",
-            
+
             // 循环系统 - 精英 (5题)
             circulatory_e1: "动脉粥样硬化用斑块使动脉变窄。后果是什么？",
             circulatory_e2: "Frank-Starling机制调节心输出量。它如何工作？",
             circulatory_e3: "血压调节涉及多个系统。说出三种机制：",
             circulatory_e4: "心力衰竭降低心输出量。发生什么补偿机制？",
             circulatory_e5: "循环系统在静息时输送5升/分钟，运动时25升/分钟。计算增加量：",
-            
+
             // 呼吸系统 - 基础 (5题)
             respiratory_b1: "气体交换发生在微小的气囊中。它们叫什么？",
             respiratory_b2: "呼吸系统交换气体。什么气体进入血液？",
             respiratory_b3: "呼吸系统有5个主要器官。数一数：",
             respiratory_b4: "横膈膜收缩以扩张肺部。它的功能是什么？",
             respiratory_b5: "空气路径：鼻 → 咽 → ? → 气管",
-            
+
             // 呼吸系统 - 核心 (5题)
             respiratory_c1: "气管有C形软骨环。为什么这种结构很重要？",
             respiratory_c2: "支气管分支成更小的细支气管。这种结构叫什么？",
             respiratory_c3: "肺泡有极薄的壁（0.5微米）。为什么这是必要的？",
             respiratory_c4: "横膈膜在吸气时产生负压。这如何吸入空气？",
             respiratory_c5: "健康成年人每分钟呼吸12-20次。这个速率叫什么？",
-            
+
             // 呼吸系统 - 进阶 (5题)
             respiratory_a1: "成年肺部包含约3亿个肺泡。总表面积是多少？",
             respiratory_a2: "潮气量是每次呼吸交换的空气（~500毫升）。计算分钟通气量：",
             respiratory_a3: "氧气从肺泡扩散到毛细血管。什么驱动这种扩散？",
             respiratory_a4: "喉包含声带。它们如何产生声音？",
             respiratory_a5: "表面活性剂降低肺泡中的表面张力。如果缺乏表面活性剂会怎样？",
-            
+
             // 呼吸系统 - 精英 (5题)
             respiratory_e1: "哮喘导致细支气管收缩。生理后果是什么？",
             respiratory_e2: "COPD降低气体交换效率。发生什么补偿机制？",

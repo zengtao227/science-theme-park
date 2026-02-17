@@ -26,117 +26,156 @@ export default function GB201Neurobiology() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB201Quest[] => {
         const quests: GB201Quest[] = [];
-        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
-        if (stage === "ANATOMY") {
-            const parts = [
-                { id: "axon", func: "signal transmission", name: gb2_01.labels.axon, scenario: "roche_neuroscience" },
-                { id: "soma", func: "metabolic processing", name: gb2_01.labels.cell_body, scenario: "basel_biomedicine" },
-                { id: "dendrites", func: "signal reception", name: gb2_01.labels.dendrites, scenario: "neural_plasticity" },
-                { id: "myelin", func: "insulation and saltatory conduction", name: gb2_01.labels.myelin_sheath, scenario: "roche_neuroscience" },
-                { id: "node", func: "ion exchange during propagation", name: gb2_01.labels.node_of_ranvier, scenario: "basel_biomedicine" }
-            ];
+        // Each stage × difficulty = 5 questions (60 total)
+        const questData: Record<Stage, Record<Difficulty, Array<{
+            part?: string;
+            func?: string;
+            name?: string;
+            ion?: string;
+            cout?: number;
+            cin?: number;
+            expected: string;
+            scenario: string;
+            nt_name?: string;
+            nt_type?: string;
+            nt_effect?: string;
+        }>>> = {
+            ANATOMY: {
+                BASIC: [
+                    { part: "axon", func: "signal transmission", name: "axon", expected: "axon", scenario: "roche_neuroscience" },
+                    { part: "soma", func: "metabolic processing", name: "cell body", expected: "cell body", scenario: "basel_biomedicine" },
+                    { part: "dendrites", func: "signal reception", name: "dendrites", expected: "dendrites", scenario: "neural_plasticity" },
+                    { part: "axon", func: "long-distance transmission", name: "axon", expected: "axon", scenario: "roche_neuroscience" },
+                    { part: "soma", func: "protein synthesis", name: "cell body", expected: "cell body", scenario: "basel_biomedicine" }
+                ],
+                CORE: [
+                    { part: "myelin", func: "insulation", name: "myelin sheath", expected: "myelin sheath", scenario: "roche_neuroscience" },
+                    { part: "node", func: "ion exchange", name: "node of Ranvier", expected: "node of Ranvier", scenario: "basel_biomedicine" },
+                    { part: "dendrites", func: "synaptic input", name: "dendrites", expected: "dendrites", scenario: "neural_plasticity" },
+                    { part: "axon", func: "action potential propagation", name: "axon", expected: "axon", scenario: "roche_neuroscience" },
+                    { part: "myelin", func: "saltatory conduction", name: "myelin sheath", expected: "myelin sheath", scenario: "basel_biomedicine" }
+                ],
+                ADVANCED: [
+                    { part: "node", func: "voltage-gated channel clustering", name: "node of Ranvier", expected: "node of Ranvier", scenario: "basel_biomedicine" },
+                    { part: "myelin", func: "capacitance reduction", name: "myelin sheath", expected: "myelin sheath", scenario: "roche_neuroscience" },
+                    { part: "axon hillock", func: "action potential initiation", name: "axon hillock", expected: "axon hillock", scenario: "neural_plasticity" },
+                    { part: "dendrites", func: "dendritic integration", name: "dendrites", expected: "dendrites", scenario: "basel_biomedicine" },
+                    { part: "soma", func: "gene expression regulation", name: "cell body", expected: "cell body", scenario: "roche_neuroscience" }
+                ],
+                ELITE: [
+                    { part: "node", func: "Na+ channel regeneration", name: "node of Ranvier", expected: "node of Ranvier", scenario: "basel_biomedicine" },
+                    { part: "myelin", func: "oligodendrocyte wrapping", name: "myelin sheath", expected: "myelin sheath", scenario: "roche_neuroscience" },
+                    { part: "axon terminal", func: "neurotransmitter vesicle docking", name: "axon terminal", expected: "axon terminal", scenario: "friedrich_miescher" },
+                    { part: "dendrites", func: "spine plasticity", name: "dendrites", expected: "dendrites", scenario: "neural_plasticity" },
+                    { part: "soma", func: "retrograde signaling", name: "cell body", expected: "cell body", scenario: "basel_biomedicine" }
+                ]
+            },
+            POTENTIAL: {
+                BASIC: [
+                    { ion: "K+", cout: 5, cin: 140, expected: "-88", scenario: "basel_biomedicine" },
+                    { ion: "K+", cout: 10, cin: 140, expected: "-70", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 145, cin: 15, expected: "60", scenario: "roche_neuroscience" },
+                    { ion: "K+", cout: 4, cin: 120, expected: "-90", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 150, cin: 12, expected: "67", scenario: "roche_neuroscience" }
+                ],
+                CORE: [
+                    { ion: "K+", cout: 2.5, cin: 150, expected: "-108", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 145, cin: 12, expected: "66", scenario: "roche_neuroscience" },
+                    { ion: "Cl-", cout: 100, cin: 10, expected: "-61", scenario: "basel_biomedicine" },
+                    { ion: "K+", cout: 3, cin: 135, expected: "-100", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 140, cin: 10, expected: "70", scenario: "roche_neuroscience" }
+                ],
+                ADVANCED: [
+                    { ion: "K+", cout: 2, cin: 160, expected: "-118", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 150, cin: 8, expected: "76", scenario: "roche_neuroscience" },
+                    { ion: "Cl-", cout: 120, cin: 8, expected: "-71", scenario: "basel_biomedicine" },
+                    { ion: "K+", cout: 1.5, cin: 150, expected: "-122", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 145, cin: 10, expected: "71", scenario: "roche_neuroscience" }
+                ],
+                ELITE: [
+                    { ion: "K+", cout: 1, cin: 150, expected: "-133", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 150, cin: 5, expected: "90", scenario: "roche_neuroscience" },
+                    { ion: "Cl-", cout: 110, cin: 5, expected: "-80", scenario: "basel_biomedicine" },
+                    { ion: "K+", cout: 0.5, cin: 140, expected: "-146", scenario: "basel_biomedicine" },
+                    { ion: "Na+", cout: 145, cin: 6, expected: "84", scenario: "roche_neuroscience" }
+                ]
+            },
+            SYNAPSE: {
+                BASIC: [
+                    { nt_name: "Acetylcholine", nt_type: "Excitatory", nt_effect: "Muscle contraction", expected: "Excitatory", scenario: "friedrich_miescher" },
+                    { nt_name: "GABA", nt_type: "Inhibitory", nt_effect: "Cl- influx", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Glutamate", nt_type: "Excitatory", nt_effect: "Na+ influx", expected: "Excitatory", scenario: "basel_biomedicine" },
+                    { nt_name: "Glycine", nt_type: "Inhibitory", nt_effect: "Cl- influx", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Dopamine", nt_type: "Excitatory", nt_effect: "Reward signaling", expected: "Excitatory", scenario: "basel_biomedicine" }
+                ],
+                CORE: [
+                    { nt_name: "Serotonin", nt_type: "Excitatory", nt_effect: "Mood regulation", expected: "Excitatory", scenario: "roche_neuroscience" },
+                    { nt_name: "Norepinephrine", nt_type: "Excitatory", nt_effect: "Alertness", expected: "Excitatory", scenario: "basel_biomedicine" },
+                    { nt_name: "GABA", nt_type: "Inhibitory", nt_effect: "Anxiety reduction", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Glutamate", nt_type: "Excitatory", nt_effect: "Learning and memory", expected: "Excitatory", scenario: "friedrich_miescher" },
+                    { nt_name: "Acetylcholine", nt_type: "Excitatory", nt_effect: "Attention", expected: "Excitatory", scenario: "basel_biomedicine" }
+                ],
+                ADVANCED: [
+                    { nt_name: "Endorphins", nt_type: "Inhibitory", nt_effect: "Pain relief", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Histamine", nt_type: "Excitatory", nt_effect: "Wakefulness", expected: "Excitatory", scenario: "basel_biomedicine" },
+                    { nt_name: "Substance P", nt_type: "Excitatory", nt_effect: "Pain transmission", expected: "Excitatory", scenario: "friedrich_miescher" },
+                    { nt_name: "Adenosine", nt_type: "Inhibitory", nt_effect: "Sleep promotion", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Nitric oxide", nt_type: "Excitatory", nt_effect: "Retrograde signaling", expected: "Excitatory", scenario: "basel_biomedicine" }
+                ],
+                ELITE: [
+                    { nt_name: "Anandamide", nt_type: "Inhibitory", nt_effect: "Cannabinoid signaling", expected: "Inhibitory", scenario: "roche_neuroscience" },
+                    { nt_name: "Orexin", nt_type: "Excitatory", nt_effect: "Arousal maintenance", expected: "Excitatory", scenario: "basel_biomedicine" },
+                    { nt_name: "Neuropeptide Y", nt_type: "Inhibitory", nt_effect: "Appetite regulation", expected: "Inhibitory", scenario: "friedrich_miescher" },
+                    { nt_name: "CCK", nt_type: "Excitatory", nt_effect: "Satiety signaling", expected: "Excitatory", scenario: "roche_neuroscience" },
+                    { nt_name: "Dynorphin", nt_type: "Inhibitory", nt_effect: "Stress response", expected: "Inhibitory", scenario: "basel_biomedicine" }
+                ]
+            }
+        };
 
-            const filteredParts = isAdvanced ? parts : parts.slice(0, 3);
-
-            filteredParts.forEach((p, idx) => {
+        const dataList = questData[stage][difficulty];
+        dataList.forEach((data, idx) => {
+            if (stage === "ANATOMY") {
                 quests.push({
-                    id: `AN-${difficulty}-${idx}`,
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    scenario: p.scenario,
-                    promptLatex: `\\text{${gb2_01.prompts.identify_part.replace("{function}", p.func)}}`,
+                    scenario: data.scenario,
+                    promptLatex: `\\text{${t('gb2_01.prompts.identify_part').replace("{function}", data.func!)}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${p.name}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: p.name }],
-                    correctLatex: p.name,
-                    hintLatex: [`\\text{${gb2_01.prompts.hint_anatomy}}`]
+                    targetLatex: `\\text{${data.expected}}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: data.expected }],
+                    correctLatex: data.expected,
+                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_anatomy')}}`]
                 });
-            });
-        }
-
-        if (stage === "POTENTIAL") {
-            const scenarios = isAdvanced ? [
-                { k_out: 2.5, k_in: 150, expected: "-108", scenario: "basel_biomedicine" },
-                { na_out: 145, na_in: 12, expected: "66", scenario: "roche_neuroscience" },
-                { cl_out: 100, cl_in: 10, expected: "-61", scenario: "basel_biomedicine" }
-            ] : [
-                { k_out: 5, k_in: 140, expected: "-88", scenario: "basel_biomedicine" },
-                { k_out: 10, k_in: 140, expected: "-70", scenario: "basel_biomedicine" },
-                { na_out: 145, na_in: 15, expected: "60", scenario: "roche_neuroscience" }
-            ];
-
-            scenarios.forEach((s, idx) => {
-                const ion = s.na_out ? "Na^+" : (s.cl_out ? "Cl^-" : "K^+");
-                const cout = (s.na_out || s.cl_out || s.k_out || 0).toString();
-                const cin = (s.na_in || s.cl_in || s.k_in || 0).toString();
-
+            } else if (stage === "POTENTIAL") {
                 quests.push({
-                    id: `EP-${difficulty}-${idx}`,
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    scenario: s.scenario,
-                    promptLatex: `\\text{${gb2_01.prompts.calc_potential.replace('{ion}', ion).replace('{cout}', cout).replace('{cin}', cin)}}`,
+                    scenario: data.scenario,
+                    promptLatex: `\\text{${t('gb2_01.prompts.calc_potential').replace('{ion}', data.ion!).replace('{cout}', data.cout!.toString()).replace('{cin}', data.cin!.toString())}}`,
                     expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
-                    targetLatex: s.expected,
-                    slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: s.expected }],
-                    correctLatex: `${s.expected}\\text{ mV}`,
-                    hintLatex: [`\\text{${gb2_01.prompts.hint_nernst}}`]
+                    targetLatex: data.expected,
+                    slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: data.expected }],
+                    correctLatex: `${data.expected}\\text{ mV}`,
+                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_nernst')}}`]
                 });
-            });
-
-            if (isAdvanced) {
+            } else {
                 quests.push({
-                    id: `AP-ION-ADV`,
+                    id: `${stage}_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
-                    scenario: "roche_neuroscience",
-                    promptLatex: `\\text{Identify the ion responsible for repolarization.}`,
+                    scenario: data.scenario,
+                    promptLatex: `\\text{Role: } \\text{${data.nt_effect}}. \\text{Type of } \\text{${data.nt_name}}?`,
                     expressionLatex: "",
-                    targetLatex: "K^+",
-                    slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "K+" }],
-                    correctLatex: "K^+",
-                    hintLatex: ["\\text{Potassium leaves the cell to restore negative potential.}"]
+                    targetLatex: `\\text{${data.expected}}`,
+                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: data.expected }],
+                    correctLatex: data.expected,
+                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_synapse')}}`]
                 });
             }
-        }
-
-        if (stage === "SYNAPSE") {
-            quests.push({
-                id: `SYN-ION`,
-                difficulty,
-                stage,
-                scenario: "friedrich_miescher",
-                promptLatex: `\\text{${gb2_01.prompts.synapse_mechanism}}`,
-                expressionLatex: "",
-                targetLatex: "Ca^{2+}",
-                slots: [{ id: "ans", labelLatex: "\\text{Ion}", placeholder: "...", expected: "Ca2+" }],
-                correctLatex: "Ca^{2+}",
-                hintLatex: [`\\text{${gb2_01.prompts.hint_calcium}}`]
-            });
-
-            const neurotransmitters = [
-                { name: "GABA", type: "Inhibitory", effect: "Cl- influx", scenario: "roche_neuroscience" },
-                { name: "Glutamate", type: "Excitatory", effect: "Na+ influx", scenario: "basel_biomedicine" },
-                { name: "Acetylcholine", type: "Excitatory", effect: "Muscle contraction", scenario: "friedrich_miescher" }
-            ];
-
-            const filteredNT = isAdvanced ? neurotransmitters : neurotransmitters.slice(0, 2);
-
-            filteredNT.forEach((nt, idx) => {
-                quests.push({
-                    id: `NT-${difficulty}-${idx}`,
-                    difficulty,
-                    stage,
-                    scenario: nt.scenario,
-                    promptLatex: `\\text{Role: } \\text{${nt.effect}}. \\text{Type of } \\text{${nt.name}}?`,
-                    expressionLatex: "",
-                    targetLatex: `\\text{${nt.type}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: nt.type }],
-                    correctLatex: nt.type
-                });
-            });
-        }
+        });
 
         return quests;
     }, [t]);
