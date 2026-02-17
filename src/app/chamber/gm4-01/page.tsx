@@ -1,7 +1,6 @@
 "use client";
 
-import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ComplexVisualization from "@/components/chamber/gm4-01/ComplexVisualization";
@@ -134,7 +133,7 @@ const polarDataElite = [
 ];
 
 function buildStagePool(
-  t: typeof translations.EN.gm4_01,
+  t: TranslationKeys['gm4_01'],
   difficulty: Difficulty,
   stage: Stage
 ): ComplexQuest[] {
@@ -273,8 +272,8 @@ function buildStagePool(
 }
 
 export default function GM401Page() {
-  const { currentLanguage } = useAppStore();
-  const t = translations[currentLanguage || "EN"].gm4_01;
+  const { t: getT, currentLanguage } = useLanguage();
+  const t = getT("gm4_01");
 
   const {
     difficulty,

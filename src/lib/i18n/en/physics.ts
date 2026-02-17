@@ -546,6 +546,23 @@ export const enPhysics = {
         monitor_title: "GP2.01_THERMO_MONITOR",
         footer_left: "GP2.01_THERMODYNAMICS // NODE: BASEL",
         stages: { ideal_gas: "IDEAL GAS", boyles: "BOYLE'S LAW", charles: "CHARLES'S LAW" },
+        prompts: {
+            find_p: "Ideal gas: n = {n} mol, T = {T} K, V = {V} m³. Find P.",
+            find_v: "Gas: n = {n} mol, P = {P} Pa, T = {T} K. Find V.",
+            find_n: "Gas: P = {P} Pa, V = {V} m³, T = {T} K. Find n.",
+            find_t: "Gas: P = {P} Pa, V = {V} m³, n = {n} mol. Find T.",
+            relation_pt: "Double the temperature at constant volume. Pressure changes by what factor?",
+            relation_vn: "Double the moles at constant P and T. Volume changes by what factor?",
+            boyle_find_p2: "Boyle's Law: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. Find P₂.",
+            boyle_find_v2: "Boyle's Law: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. Find V₂.",
+            boyle_relation: "Compress gas from {v1} L to {v2} L at constant T. Pressure multiplies by?",
+            boyle_condition: "Boyle's Law requires which quantity to remain constant?",
+            charles_find_v2: "Charles's Law: V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. Find V₂.",
+            charles_find_t2: "Charles's Law: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Find T₂.",
+            charles_relation: "Double the absolute temperature at constant P. Volume changes by what factor?",
+            charles_condition: "Charles's Law requires which quantity to remain constant?",
+            combined_law: "Combined Gas Law provided P, V, T changes. Solving for {target}."
+        },
         scenarios: {
             ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",
             boyles_law: "Boyle's Law: At constant temperature, volume is inversely proportional to pressure.",
@@ -579,7 +596,7 @@ export const enPhysics = {
         title: "GP2.04 // ENTROPY",
         stages: { entropy_concept: "ENTROPY", second_law: "SECOND LAW", arrow_of_time: "TIME ARROW" }
     },
-    
+
     // GP3.01: Wave Physics
     gp3_01: {
         back: "Back to Nexus",

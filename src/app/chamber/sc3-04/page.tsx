@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -19,11 +19,9 @@ interface SC304Quest extends Quest {
     propB?: string;
 }
 
-type SC304T = typeof translations.EN.sc3_04;
-
 export default function SC304Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sc3_04 || translations.EN.sc3_04) as SC304T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methanol");
     const [showHighlight, setShowHighlight] = useState(true);
 
@@ -67,7 +65,7 @@ export default function SC304Page() {
                     difficulty,
                     stage,
                     molecule: m.id,
-                    promptLatex: `\\text{${t.prompts.identify_group.replace('{molecule}', m.name)}}`,
+                    promptLatex: `\\text{${t("sc3_04.prompts.identify_group", { molecule: m.name })}}`,
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
                     slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
@@ -114,7 +112,7 @@ export default function SC304Page() {
                     difficulty,
                     stage,
                     molecule: m.id,
-                    promptLatex: `\\text{${t.prompts.identify_group.replace('{molecule}', m.name)}}`,
+                    promptLatex: `\\text{${t("sc3_04.prompts.identify_group", { molecule: m.name })}}`,
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
                     slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
@@ -127,29 +125,29 @@ export default function SC304Page() {
         if (stage === "ESTERS") {
             const comparisons = [
                 // BASIC (5 questions)
-                { a: "Methanol", b: "Methanoic Acid", type: "bp", expected: "methanoic acid", q: t.prompts.predict_bp },
-                { a: "Ethanol", b: "Ethanoic Acid", type: "bp", expected: "ethanoic acid", q: t.prompts.predict_bp },
-                { a: "Ethanal", b: "Ethanol", type: "bp", expected: "ethanol", q: t.prompts.predict_bp },
-                { a: "Methane", b: "Methanol", type: "sol", expected: "methanol", q: t.prompts.solubility_check.replace('{molecule}', 'methanol') },
-                { a: "Propanone", b: "Propan-1-ol", type: "bp", expected: "propan-1-ol", q: t.prompts.predict_bp },
+                { a: "Methanol", b: "Methanoic Acid", type: "bp", expected: "methanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Ethanol", b: "Ethanoic Acid", type: "bp", expected: "ethanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Ethanal", b: "Ethanol", type: "bp", expected: "ethanol", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Methane", b: "Methanol", type: "sol", expected: "methanol", q: t("sc3_04.prompts.solubility_check", { molecule: 'methanol' }) },
+                { a: "Propanone", b: "Propan-1-ol", type: "bp", expected: "propan-1-ol", q: t("sc3_04.prompts.predict_bp") },
                 // CORE (5 questions)
-                { a: "Propanol", b: "Propanoic Acid", type: "bp", expected: "propanoic acid", q: t.prompts.predict_bp },
-                { a: "Butanol", b: "Butanoic Acid", type: "bp", expected: "butanoic acid", q: t.prompts.predict_bp },
-                { a: "Propanal", b: "Propanol", type: "bp", expected: "propanol", q: t.prompts.predict_bp },
-                { a: "Ethane", b: "Ethanol", type: "sol", expected: "ethanol", q: t.prompts.solubility_check.replace('{molecule}', 'ethanol') },
-                { a: "Butanone", b: "Butan-1-ol", type: "bp", expected: "butan-1-ol", q: t.prompts.predict_bp },
+                { a: "Propanol", b: "Propanoic Acid", type: "bp", expected: "propanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Butanol", b: "Butanoic Acid", type: "bp", expected: "butanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Propanal", b: "Propanol", type: "bp", expected: "propanol", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Ethane", b: "Ethanol", type: "sol", expected: "ethanol", q: t("sc3_04.prompts.solubility_check", { molecule: 'ethanol' }) },
+                { a: "Butanone", b: "Butan-1-ol", type: "bp", expected: "butan-1-ol", q: t("sc3_04.prompts.predict_bp") },
                 // ADVANCED (5 questions)
-                { a: "Pentanol", b: "Pentanoic Acid", type: "bp", expected: "pentanoic acid", q: t.prompts.predict_bp },
-                { a: "Hexanol", b: "Hexanoic Acid", type: "bp", expected: "hexanoic acid", q: t.prompts.predict_bp },
-                { a: "Butanal", b: "Butanol", type: "bp", expected: "butanol", q: t.prompts.predict_bp },
-                { a: "Propane", b: "Propanol", type: "sol", expected: "propanol", q: t.prompts.solubility_check.replace('{molecule}', 'propanol') },
-                { a: "Pentanone", b: "Pentan-1-ol", type: "bp", expected: "pentan-1-ol", q: t.prompts.predict_bp },
+                { a: "Pentanol", b: "Pentanoic Acid", type: "bp", expected: "pentanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Hexanol", b: "Hexanoic Acid", type: "bp", expected: "hexanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Butanal", b: "Butanol", type: "bp", expected: "butanol", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Propane", b: "Propanol", type: "sol", expected: "propanol", q: t("sc3_04.prompts.solubility_check", { molecule: 'propanol' }) },
+                { a: "Pentanone", b: "Pentan-1-ol", type: "bp", expected: "pentan-1-ol", q: t("sc3_04.prompts.predict_bp") },
                 // ELITE (5 questions)
-                { a: "Heptanol", b: "Heptanoic Acid", type: "bp", expected: "heptanoic acid", q: t.prompts.predict_bp },
-                { a: "Octanol", b: "Octanoic Acid", type: "bp", expected: "octanoic acid", q: t.prompts.predict_bp },
-                { a: "Pentanal", b: "Pentanol", type: "bp", expected: "pentanol", q: t.prompts.predict_bp },
-                { a: "Butane", b: "Butanol", type: "sol", expected: "butanol", q: t.prompts.solubility_check.replace('{molecule}', 'butanol') },
-                { a: "Hexanone", b: "Hexan-1-ol", type: "bp", expected: "hexan-1-ol", q: t.prompts.predict_bp },
+                { a: "Heptanol", b: "Heptanoic Acid", type: "bp", expected: "heptanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Octanol", b: "Octanoic Acid", type: "bp", expected: "octanoic acid", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Pentanal", b: "Pentanol", type: "bp", expected: "pentanol", q: t("sc3_04.prompts.predict_bp") },
+                { a: "Butane", b: "Butanol", type: "sol", expected: "butanol", q: t("sc3_04.prompts.solubility_check", { molecule: 'butanol' }) },
+                { a: "Hexanone", b: "Hexan-1-ol", type: "bp", expected: "hexan-1-ol", q: t("sc3_04.prompts.predict_bp") },
             ];
 
             const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
@@ -203,9 +201,9 @@ export default function SC304Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "ALCOHOLS", label: t.stages.alcohols },
-        { id: "ACIDS", label: t.stages.acids },
-        { id: "ESTERS", label: t.stages.esters },
+        { id: "ALCOHOLS", label: t("sc3_04.stages.alcohols") },
+        { id: "ACIDS", label: t("sc3_04.stages.acids") },
+        { id: "ESTERS", label: t("sc3_04.stages.esters") },
     ], [t]);
 
     useEffect(() => {
@@ -221,7 +219,7 @@ export default function SC304Page() {
     return (
         <ChamberLayout
             moduleCode="SC3.04"
-            title={t.title}
+            title={t("sc3_04.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -230,20 +228,20 @@ export default function SC304Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
+            footerLeft={t("sc3_04.footer_left")}
             translations={{
-                back: t.back,
-                check: t.check,
-                next: t.next,
-                correct: t.correct,
-                incorrect: t.incorrect,
-                ready: t.ready,
-                monitor_title: t.monitor_title,
+                back: t("sc3_04.back"),
+                check: t("sc3_04.check"),
+                next: t("sc3_04.next"),
+                correct: t("sc3_04.correct"),
+                incorrect: t("sc3_04.incorrect"),
+                ready: t("sc3_04.ready"),
+                monitor_title: t("sc3_04.monitor_title"),
                 difficulty: {
-                    basic: t.difficulty.basic,
-                    core: t.difficulty.core,
-                    advanced: t.difficulty.advanced,
-                    elite: t.difficulty.elite,
+                    basic: t("sc3_04.difficulty.basic"),
+                    core: t("sc3_04.difficulty.core"),
+                    advanced: t("sc3_04.difficulty.advanced"),
+                    elite: t("sc3_04.difficulty.elite"),
                 },
             }}
             monitorContent={
@@ -258,7 +256,7 @@ export default function SC304Page() {
 
                     <div className="grid grid-cols-1 gap-2">
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.group_display}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t("sc3_04.labels.group_display")}</span>
                             <input
                                 type="checkbox"
                                 checked={showHighlight}
@@ -270,7 +268,7 @@ export default function SC304Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.property_stats}</span>
+                            <span>{t("sc3_04.labels.property_stats")}</span>
                             <span>{currentStageStats?.correct || 0} / {pool.length}</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -293,7 +291,7 @@ export default function SC304Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-blue uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {t("sc3_04.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -362,10 +360,10 @@ export default function SC304Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? t("sc3_04.correct") : t("sc3_04.incorrect")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? t("sc3_04.feedback.correct") : t("sc3_04.feedback.incorrect")}
                                                     </div>
                                                 </div>
                                             </div>
@@ -384,7 +382,7 @@ export default function SC304Page() {
                                                     onClick={next}
                                                     className="w-full md:w-auto px-10 py-4 bg-white text-black text-xs font-black tracking-[0.3em] uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
                                                 >
-                                                    {t.next}
+                                                    {t("sc3_04.next")}
                                                 </button>
                                             )}
                                         </motion.div>

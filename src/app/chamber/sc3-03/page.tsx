@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -18,11 +18,9 @@ interface SC303Quest extends Quest {
     scenario?: string;
 }
 
-type SC303T = typeof translations.EN.sc3_03;
-
 export default function SC303Page() {
-    const { currentLanguage, completeStage } = useAppStore();
-    const t = (translations[currentLanguage]?.sc3_03 || translations.EN.sc3_03) as SC303T;
+    const { completeStage } = useAppStore();
+    const { t } = useLanguage();
     const [animationSpeed, setAnimationSpeed] = useState(1);
     const [showMechanism, setShowMechanism] = useState(true);
 
@@ -67,12 +65,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "combustion",
                     scenario: comb.scenario,
-                    promptLatex: `\\text{${t.prompts.combustion.replace('{reactant}', comb.reactant)}}`,
+                    promptLatex: `\\text{${t("sc3_03.prompts.combustion", { reactant: comb.reactant })}}`,
                     expressionLatex: `\\ce{${comb.reactant} + O2 -> CO2 + H2O}`,
                     targetLatex: comb.co2.toString(),
                     slots: [{ id: "ans", labelLatex: "\\ce{CO2}\\text{ molecules}", placeholder: "...", expected: comb.co2.toString() }],
                     correctLatex: `${comb.co2}\\ce{CO2}`,
-                    hintLatex: [`\\text{${t.prompts.hint_combustion}}`]
+                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_combustion")}}`]
                 });
             });
         }
@@ -115,12 +113,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "substitution",
                     scenario: sub.scenario,
-                    promptLatex: `\\text{${t.prompts.substitution.replace('{alkane}', sub.alkane).replace('{halogen}', sub.halogen)}}`,
+                    promptLatex: `\\text{${t("sc3_03.prompts.substitution", { alkane: sub.alkane, halogen: sub.halogen })}}`,
                     expressionLatex: `\\ce{${sub.alkane} + ${sub.halogen}2 ->[light] ? + H${sub.halogen}}`,
                     targetLatex: sub.product,
                     slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: sub.product }],
                     correctLatex: `\\ce{${sub.product}}`,
-                    hintLatex: [`\\text{${t.prompts.hint_substitution}}`]
+                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_substitution")}}`]
                 });
             });
         }
@@ -163,12 +161,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "addition",
                     scenario: add.scenario,
-                    promptLatex: `\\text{${t.prompts.addition.replace('{alkene}', add.alkene).replace('{reagent}', add.reagent)}}`,
+                    promptLatex: `\\text{${t("sc3_03.prompts.addition", { alkene: add.alkene, reagent: add.reagent })}}`,
                     expressionLatex: `\\ce{${add.alkene} + ${add.reagent} -> ?}`,
                     targetLatex: add.product,
                     slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: add.product }],
                     correctLatex: `\\ce{${add.product}}`,
-                    hintLatex: [`\\text{${t.prompts.hint_addition}}`]
+                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_addition")}}`]
                 });
             });
         }
@@ -203,22 +201,23 @@ export default function SC303Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "COMBUSTION", label: t.stages.combustion },
-        { id: "SUBSTITUTION", label: t.stages.substitution },
-        { id: "ADDITION", label: t.stages.addition },
+        { id: "COMBUSTION", label: t("sc3_03.stages.combustion") },
+        { id: "SUBSTITUTION", label: t("sc3_03.stages.substitution") },
+        { id: "ADDITION", label: t("sc3_03.stages.addition") },
     ], [t]);
 
     const hint = getHint();
 
     const activeScenario = useMemo(() => {
         if (!currentQuest?.scenario) return null;
-        return t.scenarios?.[currentQuest.scenario as keyof typeof t.scenarios] || null;
+        const scenario = t(`sc3_03.scenarios.${currentQuest.scenario}`, { defaultValue: "" });
+        return scenario || null;
     }, [currentQuest, t]);
 
     return (
         <ChamberLayout
             moduleCode="SC3.03"
-            title={t.title}
+            title={t("sc3_03.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -227,8 +226,20 @@ export default function SC303Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
-            translations={t}
+            footerLeft={t("sc3_03.footer_left")}
+            translations={{
+                back: t("sc3_03.back"),
+                check: t("sc3_03.check"),
+                next: t("sc3_03.next"),
+                correct: t("sc3_03.correct"),
+                incorrect: t("sc3_03.incorrect"),
+                difficulty: {
+                    BASIC: t("sc3_03.difficulty.BASIC"),
+                    CORE: t("sc3_03.difficulty.CORE"),
+                    ADVANCED: t("sc3_03.difficulty.ADVANCED"),
+                    ELITE: t("sc3_03.difficulty.ELITE"),
+                },
+            }}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
@@ -242,7 +253,7 @@ export default function SC303Page() {
 
                     <div className="grid grid-cols-1 gap-2">
                         <div className="space-y-1">
-                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t.labels.animation_speed}</label>
+                            <label className="text-[9px] uppercase tracking-widest text-white/40">{t("sc3_03.labels.animation_speed")}</label>
                             <div className="flex items-center gap-3">
                                 <input
                                     type="range"
@@ -257,7 +268,7 @@ export default function SC303Page() {
                             </div>
                         </div>
                         <label className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
-                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t.labels.show_mechanism}</span>
+                            <span className="text-[10px] uppercase text-white/60 tracking-widest">{t("sc3_03.labels.show_mechanism")}</span>
                             <input
                                 type="checkbox"
                                 checked={showMechanism}
@@ -269,7 +280,7 @@ export default function SC303Page() {
 
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between">
-                            <span>{t.labels.chemistry_score}</span>
+                            <span>{t("sc3_03.labels.chemistry_score")}</span>
                             <span>{currentStageStats?.correct || 0} PTS</span>
                         </div>
                         <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -292,7 +303,7 @@ export default function SC303Page() {
                     <div className="space-y-12">
                         <div className="text-center space-y-6">
                             <h3 className="text-[10px] text-neon-purple uppercase tracking-[0.5em] font-black italic">
-                                {t.objective_title}
+                                {t("sc3_03.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
                                 <BlockMath>{currentQuest.promptLatex}</BlockMath>
@@ -303,7 +314,7 @@ export default function SC303Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-purple/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(255,0,255,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-purple/40 animate-pulse" />
                                 <span className="text-[10px] text-white/40 uppercase tracking-[0.6em] font-black block mb-6">
-                                    {t.labels.reaction_display}
+                                    {t("sc3_03.labels.reaction_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
                                     <InlineMath math={currentQuest.expressionLatex} />
@@ -316,7 +327,7 @@ export default function SC303Page() {
                             <div className="space-y-8">
                                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black flex items-center gap-2">
                                     <span className="w-8 h-px bg-neon-purple/30" />
-                                    {t.labels.input_terminal}
+                                    {t("sc3_03.labels.input_terminal")}
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
@@ -361,10 +372,10 @@ export default function SC303Page() {
                                                 </div>
                                                 <div>
                                                     <div className="font-black text-lg tracking-widest uppercase italic">
-                                                        {lastCheck.ok ? t.correct : t.incorrect}
+                                                        {lastCheck.ok ? t("sc3_03.correct") : t("sc3_03.incorrect")}
                                                     </div>
                                                     <div className="text-sm font-medium opacity-70">
-                                                        {lastCheck.ok ? t.feedback.correct : t.feedback.incorrect}
+                                                        {lastCheck.ok ? t("sc3_03.feedback.correct") : t("sc3_03.feedback.incorrect")}
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,7 +401,7 @@ export default function SC303Page() {
                                         : "bg-white/10 text-white hover:bg-white/20 border-2 border-white/5"
                                         }`}
                                 >
-                                    {lastCheck?.ok ? t.next : t.check}
+                                    {lastCheck?.ok ? t("sc3_03.next") : t("sc3_03.check")}
                                 </motion.button>
                             </div>
                         </div>
