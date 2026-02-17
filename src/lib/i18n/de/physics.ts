@@ -296,6 +296,44 @@ export const dePhysics = {
         scenarios: {
             rhein_hydro: "Rhinstromkraftwerk: Das Wasser des Rheins im Basler Kraftwerk wandelt potentielle Energie in sauberen Strom für die Stadt um.",
             tram_braking: "BVB Tram Rekuperation: Die Basler Trams nutzen kinetische Energie beim Bremsen, um Strom ins Netz zurückzuspeisen."
+        },
+        prompts: {
+            // POTENTIELLE ENERGIE
+            basic_ep: "Objekt m={m}kg in Höhe h={h}m. Berechne potentielle Energie Ep (g={g}m/s²).",
+            rhine_hydro: "Rheinwasser m={m}kg fließt von Höhe h={h}m. Potentielle Energie Ep?",
+            total_energy: "Objekt m={m}kg in h={h}m mit Geschwindigkeit v={v}m/s. Gesamtmechanische Energie?",
+            conservation: "Objekt m={m}kg fällt von h={h}m, erreicht v={v}m/s. Gesamtenergie an jedem Punkt?",
+
+            // KINETISCHE ENERGIE
+            basic_ek: "Objekt m={m}kg bewegt sich mit v={v}m/s. Berechne kinetische Energie Ek.",
+            tram_braking: "Basler Tram m={m}kg bremst von v={v}m/s. Zurückgewonnene kinetische Energie?",
+            velocity_at_bottom: "Objekt m={m}kg fällt von h={h}m mit Anfangsgeschwindigkeit v={v}m/s. Endgeschwindigkeit unten?",
+            work_energy: "Objekt m={m}kg mit v={v}m/s. Kraft F={f}N wirkt über d={d}m. Endkinetische Energie?",
+
+            // ARBEIT & LEISTUNG
+            basic_work: "Kraft F={f}N bewegt Objekt d={d}m. Berechne Arbeit W.",
+            basic_power: "Kraft F={f}N bewegt Objekt d={d}m in t={t}s. Berechne Leistung P.",
+            power_lifting: "Kran hebt m={m}kg auf Höhe h={h}m in t={t}s. Leistung P?",
+            rhine_power_station: "Rheinkraftwerk hebt Wasser m={m}kg um h={h}m in t={t}s. Leistung P?"
+        },
+        hints: {
+            // POTENTIELLE ENERGIE
+            basic_ep: "Verwende Ep = mgh",
+            rhine_hydro: "Potentielle Energie Ep = mgh, wobei g=9.8m/s²",
+            total_energy: "Gesamtenergie E = Ep + Ek = mgh + ½mv²",
+            conservation: "Energieerhaltung: E_gesamt = Ep + Ek = konstant",
+
+            // KINETISCHE ENERGIE
+            basic_ek: "Verwende Ek = ½mv²",
+            tram_braking: "Kinetische Energie Ek = ½mv²",
+            velocity_at_bottom: "Verwende Energieerhaltung: mgh + ½mv₀² = ½mv²",
+            work_energy: "Arbeit-Energie-Satz: W = ΔEk, also Ek_end = Ek_anfang + W",
+
+            // ARBEIT & LEISTUNG
+            basic_work: "Arbeit W = Fs (Kraft × Weg)",
+            basic_power: "Leistung P = W/t = Fs/t",
+            power_lifting: "P = W/t = mgh/t",
+            rhine_power_station: "Leistung P = mgh/t"
         }
     },
 

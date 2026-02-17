@@ -297,6 +297,44 @@ export const enPhysics = {
         scenarios: {
             rhein_hydro: "Rhine Hydroelectric Power: The flow of the Rhine at the Basel power station converts potential energy into clean electricity for the city.",
             tram_braking: "Basel Tram Energy Recovery: BVB trams use regenerative braking to feed kinetic energy back into the power grid."
+        },
+        prompts: {
+            // POTENTIAL ENERGY
+            basic_ep: "Object m={m}kg at height h={h}m. Calculate potential energy Ep (g={g}m/s²).",
+            rhine_hydro: "Rhine water m={m}kg flows from height h={h}m. Potential energy Ep?",
+            total_energy: "Object m={m}kg at h={h}m with velocity v={v}m/s. Total mechanical energy?",
+            conservation: "Object m={m}kg falls from h={h}m, reaching v={v}m/s. Total energy at any point?",
+
+            // KINETIC ENERGY
+            basic_ek: "Object m={m}kg moves at v={v}m/s. Calculate kinetic energy Ek.",
+            tram_braking: "Basel tram m={m}kg brakes from v={v}m/s. Kinetic energy recovered?",
+            velocity_at_bottom: "Object m={m}kg falls from h={h}m with initial v={v}m/s. Final velocity at bottom?",
+            work_energy: "Object m={m}kg at v={v}m/s. Force F={f}N acts over d={d}m. Final kinetic energy?",
+
+            // WORK & POWER
+            basic_work: "Force F={f}N moves object d={d}m. Calculate work W.",
+            basic_power: "Force F={f}N moves object d={d}m in t={t}s. Calculate power P.",
+            power_lifting: "Crane lifts m={m}kg to height h={h}m in t={t}s. Power output P?",
+            rhine_power_station: "Rhine station lifts water m={m}kg by h={h}m in t={t}s. Power P?"
+        },
+        hints: {
+            // POTENTIAL ENERGY
+            basic_ep: "Use Ep = mgh",
+            rhine_hydro: "Potential energy Ep = mgh, where g=9.8m/s²",
+            total_energy: "Total E = Ep + Ek = mgh + ½mv²",
+            conservation: "Energy is conserved: E_total = Ep + Ek = constant",
+
+            // KINETIC ENERGY
+            basic_ek: "Use Ek = ½mv²",
+            tram_braking: "Kinetic energy Ek = ½mv²",
+            velocity_at_bottom: "Use energy conservation: mgh + ½mv₀² = ½mv²",
+            work_energy: "Work-energy theorem: W = ΔEk, so Ek_final = Ek_initial + W",
+
+            // WORK & POWER
+            basic_work: "Work W = Fs (force × distance)",
+            basic_power: "Power P = W/t = Fs/t",
+            power_lifting: "P = W/t = mgh/t",
+            rhine_power_station: "Power P = mgh/t"
         }
     },
 

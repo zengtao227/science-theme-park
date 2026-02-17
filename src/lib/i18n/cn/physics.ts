@@ -297,6 +297,44 @@ export const cnPhysics = {
         scenarios: {
             rhein_hydro: "莱茵河水电站：巴塞尔电站利用莱茵河的水流将势能转化为源源不断的清洁电力。",
             tram_braking: "巴塞尔电车能量回收：BVB 电车在刹车时利用再生制动将动能回馈至城市电网。"
+        },
+        prompts: {
+            // 势能
+            basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s²)。",
+            rhine_hydro: "莱茵河水 m={m}kg 从高度 h={h}m 流下。势能 Ep？",
+            total_energy: "物体 m={m}kg 在 h={h}m 高度，速度 v={v}m/s。总机械能？",
+            conservation: "物体 m={m}kg 从 h={h}m 落下，达到 v={v}m/s。任意点的总能量？",
+
+            // 动能
+            basic_ek: "物体 m={m}kg 以 v={v}m/s 运动。计算动能 Ek。",
+            tram_braking: "巴塞尔电车 m={m}kg 从 v={v}m/s 刹车。回收的动能？",
+            velocity_at_bottom: "物体 m={m}kg 从 h={h}m 落下，初速度 v={v}m/s。底部的最终速度？",
+            work_energy: "物体 m={m}kg 速度 v={v}m/s。力 F={f}N 作用距离 d={d}m。最终动能？",
+
+            // 功与功率
+            basic_work: "力 F={f}N 移动物体 d={d}m。计算功 W。",
+            basic_power: "力 F={f}N 在 t={t}s 内移动物体 d={d}m。计算功率 P。",
+            power_lifting: "起重机在 t={t}s 内将 m={m}kg 提升到 h={h}m。功率 P？",
+            rhine_power_station: "莱茵河电站在 t={t}s 内将水 m={m}kg 提升 h={h}m。功率 P？"
+        },
+        hints: {
+            // 势能
+            basic_ep: "使用 Ep = mgh",
+            rhine_hydro: "势能 Ep = mgh，其中 g=9.8m/s²",
+            total_energy: "总能量 E = Ep + Ek = mgh + ½mv²",
+            conservation: "能量守恒：E_总 = Ep + Ek = 常数",
+
+            // 动能
+            basic_ek: "使用 Ek = ½mv²",
+            tram_braking: "动能 Ek = ½mv²",
+            velocity_at_bottom: "使用能量守恒：mgh + ½mv₀² = ½mv²",
+            work_energy: "功能定理：W = ΔEk，所以 Ek_末 = Ek_初 + W",
+
+            // 功与功率
+            basic_work: "功 W = Fs（力 × 距离）",
+            basic_power: "功率 P = W/t = Fs/t",
+            power_lifting: "P = W/t = mgh/t",
+            rhine_power_station: "功率 P = mgh/t"
         }
     },
 
