@@ -1009,3 +1009,504 @@ const { t } = useLanguage();
 - 如果另一个AI已经修复了某些模块（如 sb2-02-body-systems），跳过该模块
 - **每个模块修复时同时做 3 件事**: 补题目 + 迁移 i18n + 改进 LaTeX
 - 请参考 `CHAMBER_MODULE_STANDARDS.md` (1667行) 获取完整的设计标准和反例分析
+
+
+---
+
+## 📐 Sprint 5: 模式统一计划 — forEach + 结构化数据
+
+> **创建日期**: 2026-02-17  
+> **优先级**: P2 (Phase 2)  
+> **预计工作量**: 3-5天  
+> **前置条件**: Sprint 0-4 全部完成
+
+### 目标
+
+将所有模块的题目生成模式统一为 **forEach + 结构化数据** 混合模式，提高代码可维护性和可扩展性。
+
+### 当前模式分析
+
+根据 MODULE_AUDIT_LATEST.txt 的分析，项目中存在以下7种题目生成模式：
+
+| 模式 | 模块数量 | 代表模块 | 特点 | 问题 |
+|------|---------|---------|------|------|
+| **SWITCH(difficulty)** | ~15个 | GM1.01, GM1.02, SM1.01, SM2.03 | 使用switch语句区分难度 | 代码重复，难以维护 |
+| **RECORD<D,Q[]>** | ~10个 | SM1.03, SM1.04, SM2.04, SC2.01 | 使用Record类型组织 | 类型安全但结构复杂 |
+| **ELSE-IF-CHAIN** | ~15个 | SM1.02, SM1.05, SM2.01, GP2.01 | 使用if-else链 | 审查脚本无法检测 |
+| **PUSH(few)** | ~20个 | SP3.01, SB1.01, GB1.01 | 动态push生成 | 数据与逻辑混合 |
+| **PUSH(many)** | ~3个 | SM2.05, SP3.07 | 大量push语句 | 代码冗长 |
+| **SLICE** | ~8个 | SC1.02, SC2.02, SC3.02 | 先生成后切片 | 效率低，逻辑不清晰 |
+| **DYNAMIC** | ~5个 | SM3.01, SM3.02, GC1.02 | 动态计算生成 | 难以预测题目数 |
+
+### 目标模式：forEach + 结构化数据
+
+**核心原则**：
+1. **数据与逻辑分离** - 题目数据独立定义，生成逻辑统一
+2. **类型安全** - 使用TypeScript类型确保数据结构正确
+3. **易于维护** - 增删题目只需修改数据数组
+4. **可审查** - 审查脚本可准确统计题目数量
+
+**标准模板**：
+
+```typescript
+const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest[] => {
+  const quests: Quest[] = [];
+  
+  // ========== 数据定义区 ==========
+  // 使用 Record<Stage, Record<Difficulty, DataType[]>> 三层结构
+  type QuestionData = {
+    id: string;
+    // ... 其他题目特定字段
+  };
+  
+  const questionData: Record<Stage, Record<Difficulty, QuestionData[]>> = {
+    STAGE_1: {
+      BASIC: [
+        { id: "Q1", /* ... */ },
+        { id: "Q2", /* ... */ },
+        { id: "Q3", /* ... */ },
+        { id: "Q4", /* ... */ },
+        { id: "Q5", /* ... */ },
+      ],
+      CORE: [
+        { id: "Q1", /* ... */ },
+        { id: "Q2", /* ... */ },
+        { id: "Q3", /* ... */ },
+        { id: "Q4", /* ... */ },
+        { id: "Q5", /* ... */ },
+      ],
+      ADVANCED: [
+        { id: "Q1", /* ... */ },
+        { id: "Q2", /* ... */ },
+        { id: "Q3", /* ... */ },
+        { id: "Q4", /* ... */ },
+        { id: "Q5", /* ... */ },
+      ],
+      ELITE: [
+        { id: "Q1", /* ... */ },
+        { id: "Q2", /* ... */ },
+        { id: "Q3", /* ... */ },
+        { id: "Q4", /* ... */ },
+        { id: "Q5", /* ... */ },
+      ],
+    },
+    STAGE_2: {
+      // ... 同样结构
+    },
+    STAGE_3: {
+      // ... 同样结构
+    },
+  };
+  
+  // ========== 生成逻辑区 ==========
+  // 统一的forEach生成逻辑
+  const dataForStage = questionData[stage]?.[difficulty] || [];
+  
+  dataForStage.forEach((data, idx) => {
+    quests.push({
+      id: `${stage}_${difficulty[0]}${idx + 1}`,
+      difficulty,
+      stage,
+      // ... 使用data中的字段生成Quest对象
+    });
+  });
+  
+  return quests;
+}, []);
+```
+
+### 迁移策略
+
+**分阶段执行，避免一次性大规模重构**：
+
+#### Phase 5.1: 准备阶段（1天）
+
+- [ ] 5.1.1 创建模式统一工具脚本
+  - 创建 `scripts/unify-pattern.js` 用于自动化部分转换
+  - 创建 `scripts/validate-pattern.js` 用于验证转换后的模块
+  
+- [ ] 5.1.2 创建标准模板文件
+  - 创建 `templates/quest-module-template.tsx` 作为参考模板
+  - 包含完整的类型定义和注释说明
+  
+- [ ] 5.1.3 选择试点模块
+  - 选择3个不同模式的模块作为试点：
+    - SM2.03 (SWITCH模式) - 简单
+    - SC1.02 (SLICE模式) - 中等
+    - SM2.01 (ELSE-IF-CHAIN模式) - 复杂
+
+#### Phase 5.2: 试点转换（1天）
+
+- [ ] 5.2.1 转换 SM2.03 (SWITCH → forEach)
+  - 提取现有题目数据
+  - 重构为三层Record结构
+  - 验证：`npm run build` + 浏览器测试
+  
+- [ ] 5.2.2 转换 SC1.02 (SLICE → forEach)
+  - 分析slice逻辑，提取数据
+  - 重构为forEach模式
+  - 验证：构建 + 浏览器测试
+  
+- [ ] 5.2.3 转换 SM2.01 (ELSE-IF → forEach)
+  - 分析条件分支，提取数据
+  - 统一为forEach模式
+  - 验证：构建 + 浏览器测试
+  
+- [ ] 5.2.4 总结试点经验
+  - 记录遇到的问题和解决方案
+  - 优化转换流程
+  - 更新模板和工具脚本
+
+#### Phase 5.3: 批量转换 - 数学模块（1天）
+
+按模式分组，每组转换后立即验证：
+
+- [ ] 5.3.1 SWITCH模式数学模块（~5个）
+  - GM2.01, GM3.01, GM4.01, SM3.04, SP3.08
+  - 每转换1个立即验证
+  
+- [ ] 5.3.2 ELSE-IF模式数学模块（~6个）
+  - SM2.02, SM2.07, SM2.10, SM3.03, SM3.05
+  - 每转换1个立即验证
+  
+- [ ] 5.3.3 Checkpoint 数学模块
+  - 运行 `npm run build`
+  - 浏览器抽查5个模块
+  - `git commit -m "refactor(math): unify to forEach pattern"`
+
+#### Phase 5.4: 批量转换 - 物理模块（1天）
+
+- [ ] 5.4.1 ELSE-IF/PUSH模式物理模块（~8个）
+  - GP2.01, GP2.02, GP3.01, SP3.01, SP3.04, SP3.05, SP3.06
+  - 每转换1个立即验证
+  
+- [ ] 5.4.2 Checkpoint 物理模块
+  - 运行 `npm run build`
+  - 浏览器抽查3个模块
+  - `git commit -m "refactor(physics): unify to forEach pattern"`
+
+#### Phase 5.5: 批量转换 - 化学模块（1天）
+
+- [ ] 5.5.1 SLICE/PUSH模式化学模块（~8个）
+  - SC2.02, SC3.02, SC3.03, SC3.04, SC3.05, GC1.01, GC1.02, GC2.01, GC3.01, GC3.02
+  - 每转换1个立即验证
+  
+- [ ] 5.5.2 Checkpoint 化学模块
+  - 运行 `npm run build`
+  - 浏览器抽查3个模块
+  - `git commit -m "refactor(chemistry): unify to forEach pattern"`
+
+#### Phase 5.6: 批量转换 - 生物模块（半天）
+
+- [ ] 5.6.1 PUSH/ELSE-IF模式生物模块（~10个）
+  - EM1.01, EM2.01, GB1.01, GB2.01, GB3.01, GB3.02
+  - SB1.01-M, SB1.02, SB1.03, SB2.01-tissues, SB2.03, SB3.01
+  - 每转换1个立即验证
+  
+- [ ] 5.6.2 Checkpoint 生物模块
+  - 运行 `npm run build`
+  - 浏览器抽查3个模块
+  - `git commit -m "refactor(biology): unify to forEach pattern"`
+
+#### Phase 5.7: 最终验证（半天）
+
+- [ ] 5.7.1 全量构建测试
+  - `npm run build` - 确保0 errors
+  - `npm run lint` - 确保无新增warning
+  
+- [ ] 5.7.2 运行审查脚本
+  - `bash scripts/deep-audit.sh > MODULE_AUDIT_LATEST.txt`
+  - 验证所有模块都能被正确检测
+  
+- [ ] 5.7.3 浏览器全面测试
+  - 抽查每个学科2-3个模块
+  - 测试所有难度和Stage
+  - 测试三语切换
+  
+- [ ] 5.7.4 更新文档
+  - 更新 `CHAMBER_MODULE_STANDARDS.md` 中的模式说明
+  - 更新 `PROJECT_STATUS.md` 记录模式统一完成
+  - 在 `tasks.md` 中标记 Sprint 5 完成
+  
+- [ ] 5.7.5 最终提交
+  - `git add -A`
+  - `git commit -m "refactor: unify all modules to forEach + structured data pattern"`
+  - `git push`
+
+### 转换规则详解
+
+#### 规则1: SWITCH模式 → forEach模式
+
+**转换前**：
+```typescript
+const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest[] => {
+  const quests: Quest[] = [];
+  
+  switch (difficulty) {
+    case "BASIC":
+      quests.push({ id: "Q1", /* ... */ });
+      quests.push({ id: "Q2", /* ... */ });
+      // ...
+      break;
+    case "CORE":
+      quests.push({ id: "Q1", /* ... */ });
+      // ...
+      break;
+    // ...
+  }
+  
+  return quests;
+}, []);
+```
+
+**转换后**：
+```typescript
+const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): Quest[] => {
+  const quests: Quest[] = [];
+  
+  const questionData: Record<Stage, Record<Difficulty, DataType[]>> = {
+    [stage]: {
+      BASIC: [/* 5个数据对象 */],
+      CORE: [/* 5个数据对象 */],
+      ADVANCED: [/* 5个数据对象 */],
+      ELITE: [/* 5个数据对象 */],
+    }
+  };
+  
+  questionData[stage][difficulty].forEach((data, idx) => {
+    quests.push({
+      id: `${stage}_${difficulty[0]}${idx + 1}`,
+      // ... 使用data生成
+    });
+  });
+  
+  return quests;
+}, []);
+```
+
+#### 规则2: ELSE-IF-CHAIN模式 → forEach模式
+
+**转换前**：
+```typescript
+if (difficulty === "BASIC") {
+  // 生成BASIC题目
+} else if (difficulty === "CORE") {
+  // 生成CORE题目
+} else if (difficulty === "ADVANCED") {
+  // 生成ADVANCED题目
+} else {
+  // 生成ELITE题目
+}
+```
+
+**转换后**：
+```typescript
+const questionData: Record<Difficulty, DataType[]> = {
+  BASIC: [/* 数据 */],
+  CORE: [/* 数据 */],
+  ADVANCED: [/* 数据 */],
+  ELITE: [/* 数据 */],
+};
+
+questionData[difficulty].forEach((data, idx) => {
+  quests.push(/* 生成逻辑 */);
+});
+```
+
+#### 规则3: SLICE模式 → forEach模式
+
+**转换前**：
+```typescript
+const all: Quest[] = [q1, q2, q3, ..., q60];
+
+if (difficulty === "BASIC") return all.slice(0, 15);
+if (difficulty === "CORE") return all.slice(15, 30);
+if (difficulty === "ADVANCED") return all.slice(30, 45);
+return all.slice(45, 60);
+```
+
+**转换后**：
+```typescript
+// 1. 先将all数组按难度分组
+const questionData: Record<Difficulty, DataType[]> = {
+  BASIC: [/* 提取all[0-14]的数据 */],
+  CORE: [/* 提取all[15-29]的数据 */],
+  ADVANCED: [/* 提取all[30-44]的数据 */],
+  ELITE: [/* 提取all[45-59]的数据 */],
+};
+
+// 2. 使用forEach生成
+questionData[difficulty].forEach((data, idx) => {
+  quests.push(/* 生成逻辑 */);
+});
+```
+
+#### 规则4: PUSH(few)模式 → forEach模式
+
+**转换前**：
+```typescript
+const scenarios = [
+  { name: "A", value: 10 },
+  { name: "B", value: 20 },
+  { name: "C", value: 30 },
+];
+
+scenarios.forEach(scenario => {
+  quests.push({
+    id: `${stage}_${scenario.name}`,
+    // ... 使用scenario
+  });
+});
+```
+
+**转换后**：
+```typescript
+// 扩展scenarios为每个难度5个
+const questionData: Record<Difficulty, ScenarioType[]> = {
+  BASIC: [
+    { name: "A1", value: 10 },
+    { name: "A2", value: 15 },
+    { name: "A3", value: 20 },
+    { name: "A4", value: 25 },
+    { name: "A5", value: 30 },
+  ],
+  CORE: [/* 5个更复杂的场景 */],
+  ADVANCED: [/* 5个更复杂的场景 */],
+  ELITE: [/* 5个最复杂的场景 */],
+};
+
+questionData[difficulty].forEach((scenario, idx) => {
+  quests.push({
+    id: `${stage}_${difficulty[0]}${idx + 1}`,
+    // ... 使用scenario
+  });
+});
+```
+
+#### 规则5: RECORD<D,Q[]>模式 → 保持不变
+
+**当前模式已经很好，只需确保格式一致**：
+
+```typescript
+const questionData: Record<Stage, Record<Difficulty, Quest[]>> = {
+  STAGE_1: {
+    BASIC: [/* 5个Quest对象 */],
+    CORE: [/* 5个Quest对象 */],
+    ADVANCED: [/* 5个Quest对象 */],
+    ELITE: [/* 5个Quest对象 */],
+  },
+  // ...
+};
+
+return questionData[stage]?.[difficulty] || [];
+```
+
+### 质量保证
+
+每个转换后的模块必须通过以下检查：
+
+#### 自动化检查
+- [ ] `npm run build` 通过（0 errors）
+- [ ] `npm run lint` 无新增warning
+- [ ] `bash scripts/validate-pattern.js <module>` 通过
+- [ ] 审查脚本能正确检测题目数量
+
+#### 手动检查
+- [ ] 浏览器测试每个Stage
+- [ ] 浏览器测试每个Difficulty（确认各有5题）
+- [ ] 三语切换测试（EN/CN/DE）
+- [ ] 可视化正常显示
+- [ ] LaTeX公式正常渲染
+
+#### 代码质量检查
+- [ ] 数据与逻辑完全分离
+- [ ] 类型定义完整
+- [ ] 代码格式统一
+- [ ] 注释清晰（数据定义区、生成逻辑区）
+
+### 风险控制
+
+#### 风险1: 转换后题目数量或内容变化
+**缓解措施**：
+- 转换前先运行模块，记录题目ID和内容
+- 转换后对比，确保完全一致
+- 使用快照测试（如果有测试框架）
+
+#### 风险2: 转换引入新bug
+**缓解措施**：
+- 每转换1个模块立即验证
+- 发现问题立即回滚
+- 每完成一个学科就commit，便于回滚
+
+#### 风险3: 工作量超出预期
+**缓解措施**：
+- 可以分多个阶段执行
+- 优先转换最常修改的模块
+- 已完整且稳定的模块可以延后转换
+
+### 成功标准
+
+Sprint 5完成后，项目应达到：
+
+1. **代码一致性**
+   - 所有模块使用统一的forEach + 结构化数据模式
+   - 代码结构清晰，易于理解
+
+2. **可维护性**
+   - 增删题目只需修改数据数组
+   - 不需要修改生成逻辑
+
+3. **可审查性**
+   - 审查脚本能准确统计所有模块的题目数量
+   - 不再有"❓ VERIFY"状态的模块
+
+4. **功能完整性**
+   - 所有模块功能与转换前完全一致
+   - 无任何功能退化或bug
+
+5. **文档完善**
+   - 标准模板文档完整
+   - 转换指南清晰
+   - 新开发者能快速上手
+
+### 后续维护
+
+模式统一后的维护规范：
+
+1. **新增模块**
+   - 必须使用标准模板
+   - 参考 `templates/quest-module-template.tsx`
+
+2. **修改现有模块**
+   - 只修改数据数组，不修改生成逻辑
+   - 保持数据结构一致
+
+3. **代码审查**
+   - 确保新代码遵循统一模式
+   - 拒绝不符合标准的PR
+
+4. **定期检查**
+   - 每月运行一次审查脚本
+   - 确保所有模块保持标准格式
+
+---
+
+## 📊 Sprint 5 工作量估算
+
+| 阶段 | 模块数 | 预计时间 | 风险等级 |
+|------|--------|---------|---------|
+| 5.1 准备阶段 | 0 | 1天 | 低 |
+| 5.2 试点转换 | 3 | 1天 | 中 |
+| 5.3 数学模块 | ~11 | 1天 | 中 |
+| 5.4 物理模块 | ~8 | 1天 | 中 |
+| 5.5 化学模块 | ~10 | 1天 | 中 |
+| 5.6 生物模块 | ~12 | 0.5天 | 低 |
+| 5.7 最终验证 | 0 | 0.5天 | 低 |
+| **总计** | **~44模块** | **5天** | **中** |
+
+**注意**：
+- 已使用RECORD<D,Q[]>模式的模块（~10个）不需要转换
+- 实际工作量可能因模块复杂度而有所变化
+- 建议预留1-2天缓冲时间
+
+---
