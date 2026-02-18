@@ -19,6 +19,124 @@ interface SB201TissuesQuest extends Quest {
     systemName?: string;
 }
 
+interface TissueData {
+    type: string;
+    prompt: string;
+    expression: string;
+    answer: string;
+    hint: string;
+}
+
+interface OrganData {
+    name: string;
+    prompt: string;
+    expression: string;
+    answer: string;
+    hint: string;
+}
+
+interface SystemData {
+    name: string;
+    prompt: string;
+    expression: string;
+    answer: string;
+    hint: string;
+}
+
+// Structured data for all 60 questions (3 stages × 4 difficulties × 5 questions)
+const TISSUE_DATA: Record<Difficulty, TissueData[]> = {
+    BASIC: [
+        { type: "epithelial", prompt: "Epithelial tissue covers body surfaces. What is its primary function?", expression: "\\text{Location: Skin, intestines}", answer: "protection", hint: "Covers and protects surfaces" },
+        { type: "connective", prompt: "Connective tissue provides structural support. Name its function:", expression: "\\text{Location: Bone, cartilage}", answer: "support", hint: "Provides framework" },
+        { type: "muscle", prompt: "Muscle tissue enables body movement. What is its function?", expression: "\\text{Location: Heart, limbs}", answer: "movement", hint: "Contracts to move" },
+        { type: "nervous", prompt: "Nervous tissue transmits electrical signals. What is its function?", expression: "\\text{Location: Brain, nerves}", answer: "signaling", hint: "Sends electrical signals" },
+        { type: "epithelial", prompt: "Epithelial tissue in intestines absorbs nutrients. Function?", expression: "\\text{Location: Small intestine}", answer: "absorption", hint: "Takes in nutrients" }
+    ],
+    CORE: [
+        { type: "epithelial", prompt: "Stratified squamous epithelium protects the skin. What is its structure?", expression: "\\text{Location: Epidermis}", answer: "layered", hint: "Multiple layers of flat cells" },
+        { type: "connective", prompt: "Dense regular connective tissue forms tendons. What is its composition?", expression: "\\text{Location: Tendons}", answer: "collagen", hint: "Strong protein fibers" },
+        { type: "muscle", prompt: "Cardiac muscle has intercalated discs. What is their function?", expression: "\\text{Location: Heart}", answer: "connection", hint: "Connects cardiac cells" },
+        { type: "nervous", prompt: "Neurons conduct action potentials. What is the signal type?", expression: "\\text{Location: Nerves}", answer: "electrical", hint: "Electrochemical impulses" },
+        { type: "connective", prompt: "Adipose tissue stores energy. What does it store?", expression: "\\text{Location: Subcutaneous}", answer: "fat", hint: "Lipid storage" }
+    ],
+    ADVANCED: [
+        { type: "epithelial", prompt: "Columnar epithelium with microvilli increases surface area. By how much?", expression: "\\text{Microvilli factor}", answer: "20", hint: "Approximately 20-fold increase" },
+        { type: "connective", prompt: "Hyaline cartilage cushions joints. What is its main component?", expression: "\\text{Location: Joints}", answer: "chondrocytes", hint: "Cartilage cells in matrix" },
+        { type: "muscle", prompt: "Smooth muscle regulates organ function. Is it voluntary or involuntary?", expression: "\\text{Location: Digestive tract}", answer: "involuntary", hint: "Not under conscious control" },
+        { type: "nervous", prompt: "Glial cells support neurons. Name one type:", expression: "\\text{Location: Brain}", answer: "astrocytes", hint: "Star-shaped support cells" },
+        { type: "epithelial", prompt: "Simple squamous epithelium lines blood vessels. What is it called?", expression: "\\text{Location: Vessels}", answer: "endothelium", hint: "Inner lining of vessels" }
+    ],
+    ELITE: [
+        { type: "connective", prompt: "Compact bone has osteons with Haversian canals. What do they contain?", expression: "\\text{Location: Long bones}", answer: "vessels", hint: "Blood vessels and nerves" },
+        { type: "muscle", prompt: "Skeletal muscle has neuromuscular junctions. What neurotransmitter is used?", expression: "\\text{Location: Motor endplate}", answer: "acetylcholine", hint: "ACh at NMJ" },
+        { type: "nervous", prompt: "Oligodendrocytes provide myelin in the CNS. How many axons per cell?", expression: "\\text{Location: White matter}", answer: "multiple", hint: "One cell myelinates many axons" },
+        { type: "epithelial", prompt: "Parietal cells in gastric epithelium secrete HCl. What is the pH?", expression: "\\text{Location: Stomach}", answer: "2", hint: "Very acidic, pH around 2" },
+        { type: "connective", prompt: "Blood is a connective tissue. What is its extracellular matrix?", expression: "\\text{Location: Vessels}", answer: "plasma", hint: "Liquid matrix" }
+    ]
+};
+
+const ORGAN_DATA: Record<Difficulty, OrganData[]> = {
+    BASIC: [
+        { name: "heart", prompt: "The heart contains muscle, epithelial, connective, and nervous tissue. Count:", expression: "\\text{Organ: Heart}", answer: "4", hint: "All organs have multiple tissues" },
+        { name: "stomach", prompt: "The stomach contains muscle, epithelial, connective, and nervous tissue. Count:", expression: "\\text{Organ: Stomach}", answer: "4", hint: "All organs have multiple tissues" },
+        { name: "liver", prompt: "The liver contains epithelial, connective, and vascular tissue. Count:", expression: "\\text{Organ: Liver}", answer: "3", hint: "Count the tissue types" },
+        { name: "kidney", prompt: "The kidney contains epithelial, connective, vascular, and nervous tissue. Count:", expression: "\\text{Organ: Kidney}", answer: "4", hint: "All organs have multiple tissues" },
+        { name: "lung", prompt: "The lung contains epithelial, connective, vascular, and nervous tissue. Count:", expression: "\\text{Organ: Lung}", answer: "4", hint: "All organs have multiple tissues" }
+    ],
+    CORE: [
+        { name: "heart", prompt: "The heart's myocardium is which tissue type?", expression: "\\text{Organ: Heart wall}", answer: "muscle", hint: "Cardiac muscle tissue" },
+        { name: "stomach", prompt: "The stomach's mucosa secretes gastric juice. What tissue type?", expression: "\\text{Organ: Stomach lining}", answer: "epithelial", hint: "Secretory epithelium" },
+        { name: "liver", prompt: "Hepatocytes perform metabolic functions. What tissue type?", expression: "\\text{Organ: Liver cells}", answer: "epithelial", hint: "Specialized epithelial cells" },
+        { name: "kidney", prompt: "Nephron tubules filter blood. What tissue type?", expression: "\\text{Organ: Kidney tubules}", answer: "epithelial", hint: "Tubular epithelium" },
+        { name: "lung", prompt: "Alveoli enable gas exchange. What tissue type?", expression: "\\text{Organ: Lung sacs}", answer: "epithelial", hint: "Simple squamous epithelium" }
+    ],
+    ADVANCED: [
+        { name: "heart", prompt: "The heart has 4 chambers. How many valves?", expression: "\\text{Organ: Heart}", answer: "4", hint: "Tricuspid, pulmonary, mitral, aortic" },
+        { name: "stomach", prompt: "The stomach has 3 muscle layers. Name the pattern:", expression: "\\text{Organ: Stomach wall}", answer: "circular", hint: "Circular and longitudinal layers" },
+        { name: "liver", prompt: "The liver has how many lobes?", expression: "\\text{Organ: Liver}", answer: "4", hint: "Right, left, caudate, quadrate" },
+        { name: "kidney", prompt: "Each kidney has approximately how many nephrons?", expression: "\\text{Organ: Kidney}", answer: "1000000", hint: "About 1 million per kidney" },
+        { name: "lung", prompt: "Humans have how many lung lobes total?", expression: "\\text{Organ: Lungs}", answer: "5", hint: "3 right, 2 left" }
+    ],
+    ELITE: [
+        { name: "heart", prompt: "The cardiac skeleton is made of what connective tissue?", expression: "\\text{Organ: Heart framework}", answer: "fibrous", hint: "Dense irregular connective tissue" },
+        { name: "stomach", prompt: "The myenteric plexus controls peristalsis. What tissue type?", expression: "\\text{Organ: Stomach wall}", answer: "nervous", hint: "Autonomic nervous tissue" },
+        { name: "liver", prompt: "Liver sinusoids are lined with what specialized cells?", expression: "\\text{Organ: Liver capillaries}", answer: "endothelial", hint: "Fenestrated endothelium" },
+        { name: "kidney", prompt: "The juxtaglomerular apparatus regulates what?", expression: "\\text{Organ: Kidney}", answer: "pressure", hint: "Blood pressure regulation" },
+        { name: "lung", prompt: "Type II pneumocytes secrete what substance?", expression: "\\text{Organ: Alveoli}", answer: "surfactant", hint: "Reduces surface tension" }
+    ]
+};
+
+const SYSTEM_DATA: Record<Difficulty, SystemData[]> = {
+    BASIC: [
+        { name: "hierarchy", prompt: "Complete: Cell \\rightarrow Tissue \\rightarrow Organ \\rightarrow ?", expression: "\\text{Cell} \\rightarrow \\text{Tissue} \\rightarrow \\text{Organ} \\rightarrow ?", answer: "system", hint: "Groups of organs" },
+        { name: "organism", prompt: "Complete the hierarchy: Organ System \\rightarrow ?", expression: "\\text{System} \\rightarrow ?", answer: "organism", hint: "The complete living individual" },
+        { name: "cell_to_tissue", prompt: "What comes after Cell in the biological hierarchy?", expression: "\\text{Cell} \\rightarrow ?", answer: "tissue", hint: "Group of similar cells" },
+        { name: "tissue_to_organ", prompt: "What comes after Tissue in the biological hierarchy?", expression: "\\text{Tissue} \\rightarrow ?", answer: "organ", hint: "Multiple tissues integrated" },
+        { name: "full_hierarchy", prompt: "How many levels: Cell, Tissue, Organ, System, Organism?", expression: "\\text{Count hierarchy levels}", answer: "5", hint: "Count all the levels" }
+    ],
+    CORE: [
+        { name: "cardiovascular", prompt: "The cardiovascular system has heart and vessels. How many major organs?", expression: "\\text{System: Cardiovascular}", answer: "1", hint: "Heart is the main organ" },
+        { name: "digestive", prompt: "The digestive system includes stomach, intestines, liver. Count major organs:", expression: "\\text{System: Digestive}", answer: "6", hint: "Mouth, esophagus, stomach, intestines, liver, pancreas" },
+        { name: "respiratory", prompt: "The respiratory system has lungs and airways. Main organ?", expression: "\\text{System: Respiratory}", answer: "lungs", hint: "Gas exchange organs" },
+        { name: "nervous", prompt: "The nervous system has brain and spinal cord. How many divisions?", expression: "\\text{System: Nervous}", answer: "2", hint: "Central and peripheral" },
+        { name: "urinary", prompt: "The urinary system filters blood. Main organs?", expression: "\\text{System: Urinary}", answer: "kidneys", hint: "Paired filtering organs" }
+    ],
+    ADVANCED: [
+        { name: "cardiovascular", prompt: "The cardiovascular system transports oxygen. What carries it?", expression: "\\text{System: Cardiovascular}", answer: "hemoglobin", hint: "Protein in red blood cells" },
+        { name: "digestive", prompt: "The digestive system breaks down food. What are the products?", expression: "\\text{System: Digestive}", answer: "nutrients", hint: "Absorbed molecules" },
+        { name: "respiratory", prompt: "The respiratory system exchanges gases. What is expelled?", expression: "\\text{System: Respiratory}", answer: "co2", hint: "Carbon dioxide waste" },
+        { name: "nervous", prompt: "The nervous system processes information. What are the signals?", expression: "\\text{System: Nervous}", answer: "electrical", hint: "Action potentials" },
+        { name: "endocrine", prompt: "The endocrine system uses chemical messengers. What are they?", expression: "\\text{System: Endocrine}", answer: "hormones", hint: "Chemical signals in blood" }
+    ],
+    ELITE: [
+        { name: "cardiovascular", prompt: "The cardiovascular system has systemic and pulmonary circuits. Total?", expression: "\\text{System: Cardiovascular}", answer: "2", hint: "Two circulation loops" },
+        { name: "digestive", prompt: "The digestive system has enteric nervous system. How many neurons?", expression: "\\text{System: Digestive}", answer: "500000000", hint: "About 500 million neurons" },
+        { name: "respiratory", prompt: "The respiratory system has approximately how many alveoli?", expression: "\\text{System: Respiratory}", answer: "300000000", hint: "About 300 million alveoli" },
+        { name: "nervous", prompt: "The nervous system has somatic and autonomic divisions. Autonomic subdivisions?", expression: "\\text{System: Nervous}", answer: "2", hint: "Sympathetic and parasympathetic" },
+        { name: "immune", prompt: "The immune system has innate and adaptive responses. Which is faster?", expression: "\\text{System: Immune}", answer: "innate", hint: "Immediate response" }
+    ]
+};
+
 export default function SB201TissuesPage() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
@@ -27,166 +145,61 @@ export default function SB201TissuesPage() {
         const quests: SB201TissuesQuest[] = [];
 
         if (stage === "TISSUES") {
-            // 5 questions per difficulty level
-            const tissueQuests = [
-                {
-                    id: `T-${difficulty}-1`, difficulty, stage, tissueType: "epithelial",
-                    promptLatex: "Epithelial tissue covers body surfaces. What is its primary function?",
-                    expressionLatex: "\\text{Location: Skin, intestines}",
+            const dataList = TISSUE_DATA[difficulty] || [];
+            dataList.forEach((data, idx) => {
+                quests.push({
+                    id: `T_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    tissueType: data.type,
+                    promptLatex: data.prompt,
+                    expressionLatex: data.expression,
                     targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "protection", expected: "protection" }],
-                    correctLatex: "Protection",
-                    hintLatex: ["Covers and protects surfaces"]
-                },
-                {
-                    id: `T-${difficulty}-2`, difficulty, stage, tissueType: "connective",
-                    promptLatex: "Connective tissue provides structural support. Name its function:",
-                    expressionLatex: "\\text{Location: Bone, cartilage}",
-                    targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "support", expected: "support" }],
-                    correctLatex: "Support",
-                    hintLatex: ["Provides framework"]
-                },
-                {
-                    id: `T-${difficulty}-3`, difficulty, stage, tissueType: "muscle",
-                    promptLatex: "Muscle tissue enables body movement. What is its function?",
-                    expressionLatex: "\\text{Location: Heart, limbs}",
-                    targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "movement", expected: "movement" }],
-                    correctLatex: "Movement",
-                    hintLatex: ["Contracts to move"]
-                },
-                {
-                    id: `T-${difficulty}-4`, difficulty, stage, tissueType: "nervous",
-                    promptLatex: "Nervous tissue transmits electrical signals. What is its function?",
-                    expressionLatex: "\\text{Location: Brain, nerves}",
-                    targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "signaling", expected: "signaling" }],
-                    correctLatex: "Signaling",
-                    hintLatex: ["Sends electrical signals"]
-                },
-                {
-                    id: `T-${difficulty}-5`, difficulty, stage, tissueType: "epithelial",
-                    promptLatex: "Epithelial tissue in intestines absorbs nutrients. Function?",
-                    expressionLatex: "\\text{Location: Small intestine}",
-                    targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: "absorption", expected: "absorption" }],
-                    correctLatex: "Absorption",
-                    hintLatex: ["Takes in nutrients"]
-                }
-            ];
-
-            quests.push(...tissueQuests);
+                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: data.answer, expected: data.answer }],
+                    correctLatex: data.answer,
+                    hintLatex: [data.hint]
+                });
+            });
         }
 
         if (stage === "ORGANS") {
-            // 5 questions per difficulty level
-            const organQuests = [
-                {
-                    id: `O-${difficulty}-1`, difficulty, stage, organName: "heart",
-                    promptLatex: "The Heart contains muscle, epithelial, connective, and nervous tissue. Count:",
-                    expressionLatex: "\\text{Organ: Heart}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
-                    correctLatex: "n = 4",
-                    hintLatex: ["All organs have multiple tissues"]
-                },
-                {
-                    id: `O-${difficulty}-2`, difficulty, stage, organName: "stomach",
-                    promptLatex: "The Stomach contains muscle, epithelial, connective, and nervous tissue. Count:",
-                    expressionLatex: "\\text{Organ: Stomach}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
-                    correctLatex: "n = 4",
-                    hintLatex: ["All organs have multiple tissues"]
-                },
-                {
-                    id: `O-${difficulty}-3`, difficulty, stage, organName: "liver",
-                    promptLatex: "The Liver contains epithelial, connective, and vascular tissue. Count:",
-                    expressionLatex: "\\text{Organ: Liver}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "3", expected: "3" }],
-                    correctLatex: "n = 3",
-                    hintLatex: ["Count the tissue types"]
-                },
-                {
-                    id: `O-${difficulty}-4`, difficulty, stage, organName: "kidney",
-                    promptLatex: "The Kidney contains epithelial, connective, vascular, and nervous tissue. Count:",
-                    expressionLatex: "\\text{Organ: Kidney}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
-                    correctLatex: "n = 4",
-                    hintLatex: ["All organs have multiple tissues"]
-                },
-                {
-                    id: `O-${difficulty}-5`, difficulty, stage, organName: "lung",
-                    promptLatex: "The Lung contains epithelial, connective, vascular, and nervous tissue. Count:",
-                    expressionLatex: "\\text{Organ: Lung}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "4", expected: "4" }],
-                    correctLatex: "n = 4",
-                    hintLatex: ["All organs have multiple tissues"]
-                }
-            ];
-
-            quests.push(...organQuests);
+            const dataList = ORGAN_DATA[difficulty] || [];
+            dataList.forEach((data, idx) => {
+                quests.push({
+                    id: `O_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    organName: data.name,
+                    promptLatex: data.prompt,
+                    expressionLatex: data.expression,
+                    targetLatex: "\\text{Answer}",
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    correctLatex: data.answer,
+                    hintLatex: [data.hint]
+                });
+            });
         }
 
         if (stage === "SYSTEMS") {
-            // 5 questions per difficulty level
-            const systemQuests = [
-                {
-                    id: `S-${difficulty}-1`, difficulty, stage, systemName: "hierarchy",
-                    promptLatex: "Complete: Cell \\rightarrow Tissue \\rightarrow Organ \\rightarrow ?",
-                    expressionLatex: "\\text{Cell} \\rightarrow \\text{Tissue} \\rightarrow \\text{Organ} \\rightarrow ?",
-                    targetLatex: "\\text{Next level}",
-                    slots: [{ id: "level", labelLatex: "\\text{Next level}", placeholder: "system", expected: "system" }],
-                    correctLatex: "Organ System",
-                    hintLatex: ["Groups of organs"]
-                },
-                {
-                    id: `S-${difficulty}-2`, difficulty, stage, systemName: "organism",
-                    promptLatex: "Complete the hierarchy: Organ System \\rightarrow ?",
-                    expressionLatex: "\\text{System} \\rightarrow ?",
-                    targetLatex: "\\text{Next Level}",
-                    slots: [{ id: "level", labelLatex: "\\text{Level}", placeholder: "organism", expected: "organism" }],
-                    correctLatex: "Organism",
-                    hintLatex: ["The complete living individual"]
-                },
-                {
-                    id: `S-${difficulty}-3`, difficulty, stage, systemName: "cell_to_tissue",
-                    promptLatex: "What comes after Cell in the biological hierarchy?",
-                    expressionLatex: "\\text{Cell} \\rightarrow ?",
-                    targetLatex: "\\text{Next}",
-                    slots: [{ id: "level", labelLatex: "\\text{Next}", placeholder: "tissue", expected: "tissue" }],
-                    correctLatex: "Tissue",
-                    hintLatex: ["Group of similar cells"]
-                },
-                {
-                    id: `S-${difficulty}-4`, difficulty, stage, systemName: "tissue_to_organ",
-                    promptLatex: "What comes after Tissue in the biological hierarchy?",
-                    expressionLatex: "\\text{Tissue} \\rightarrow ?",
-                    targetLatex: "\\text{Next}",
-                    slots: [{ id: "level", labelLatex: "\\text{Next}", placeholder: "organ", expected: "organ" }],
-                    correctLatex: "Organ",
-                    hintLatex: ["Multiple tissues integrated"]
-                },
-                {
-                    id: `S-${difficulty}-5`, difficulty, stage, systemName: "full_hierarchy",
-                    promptLatex: "How many levels: Cell, Tissue, Organ, System, Organism?",
-                    expressionLatex: "\\text{Count hierarchy levels}",
-                    targetLatex: "n",
-                    slots: [{ id: "count", labelLatex: "n", placeholder: "5", expected: "5" }],
-                    correctLatex: "5",
-                    hintLatex: ["Count all the levels"]
-                }
-            ];
-
-            quests.push(...systemQuests);
+            const dataList = SYSTEM_DATA[difficulty] || [];
+            dataList.forEach((data, idx) => {
+                quests.push({
+                    id: `S_${difficulty[0]}${idx + 1}`,
+                    difficulty,
+                    stage,
+                    systemName: data.name,
+                    promptLatex: data.prompt,
+                    expressionLatex: data.expression,
+                    targetLatex: "\\text{Answer}",
+                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    correctLatex: data.answer,
+                    hintLatex: [data.hint]
+                });
+            });
         }
 
         return quests;
-    }, [t]);
+    }, []);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

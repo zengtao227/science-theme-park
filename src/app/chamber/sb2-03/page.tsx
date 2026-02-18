@@ -11,13 +11,107 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
-type Genotype = "RR" | "Rr" | "rr";
+type Genotype = "RR" | "Rr" | "rr" | "AA" | "Aa" | "aa" | "BB" | "Bb" | "bb";
 
 interface SB203Quest extends Quest {
     stage: Stage;
     p1: Genotype;
     p2: Genotype;
 }
+
+// Data structure for quest generation
+const QUEST_DATA: Record<Stage, Record<Difficulty, Array<{ p1: Genotype; p2: Genotype; answer: string; type: "ratio" | "percent" | "prob" }>>> = {
+    MONOHYBRID: {
+        BASIC: [
+            { p1: "Rr", p2: "Rr", answer: "3:1", type: "ratio" },
+            { p1: "RR", p2: "rr", answer: "100%", type: "percent" },
+            { p1: "Rr", p2: "rr", answer: "1:1", type: "ratio" },
+            { p1: "RR", p2: "Rr", answer: "100%", type: "percent" },
+            { p1: "AA", p2: "aa", answer: "100%", type: "percent" },
+        ],
+        CORE: [
+            { p1: "Rr", p2: "Rr", answer: "75%", type: "percent" },
+            { p1: "Aa", p2: "Aa", answer: "3:1", type: "ratio" },
+            { p1: "Rr", p2: "rr", answer: "50%", type: "percent" },
+            { p1: "AA", p2: "Aa", answer: "100%", type: "percent" },
+            { p1: "Bb", p2: "Bb", answer: "3:1", type: "ratio" },
+        ],
+        ADVANCED: [
+            { p1: "Rr", p2: "Rr", answer: "1:2:1", type: "ratio" },
+            { p1: "Aa", p2: "aa", answer: "1:1", type: "ratio" },
+            { p1: "Bb", p2: "Bb", answer: "25%", type: "percent" },
+            { p1: "RR", p2: "Rr", answer: "1:1", type: "ratio" },
+            { p1: "Aa", p2: "Aa", answer: "50%", type: "percent" },
+        ],
+        ELITE: [
+            { p1: "Rr", p2: "Rr", answer: "1:2:1", type: "ratio" },
+            { p1: "Aa", p2: "Aa", answer: "25%", type: "percent" },
+            { p1: "Bb", p2: "bb", answer: "1:1", type: "ratio" },
+            { p1: "RR", p2: "rr", answer: "0%", type: "percent" },
+            { p1: "Aa", p2: "aa", answer: "50%", type: "percent" },
+        ],
+    },
+    PROBABILITY: {
+        BASIC: [
+            { p1: "Rr", p2: "Rr", answer: "0.25", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.5", type: "prob" },
+            { p1: "Rr", p2: "rr", answer: "0.5", type: "prob" },
+            { p1: "RR", p2: "Rr", answer: "0.5", type: "prob" },
+            { p1: "Aa", p2: "aa", answer: "0.5", type: "prob" },
+        ],
+        CORE: [
+            { p1: "Rr", p2: "Rr", answer: "0.75", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.25", type: "prob" },
+            { p1: "Bb", p2: "Bb", answer: "0.5", type: "prob" },
+            { p1: "Rr", p2: "rr", answer: "0.5", type: "prob" },
+            { p1: "AA", p2: "Aa", answer: "1.0", type: "prob" },
+        ],
+        ADVANCED: [
+            { p1: "Rr", p2: "Rr", answer: "0.5", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.25", type: "prob" },
+            { p1: "Bb", p2: "bb", answer: "0.5", type: "prob" },
+            { p1: "Rr", p2: "Rr", answer: "0.25", type: "prob" },
+            { p1: "Aa", p2: "aa", answer: "0.5", type: "prob" },
+        ],
+        ELITE: [
+            { p1: "Rr", p2: "Rr", answer: "0.25", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.5", type: "prob" },
+            { p1: "Bb", p2: "Bb", answer: "0.75", type: "prob" },
+            { p1: "RR", p2: "rr", answer: "1.0", type: "prob" },
+            { p1: "Aa", p2: "aa", answer: "0.5", type: "prob" },
+        ],
+    },
+    DIHYBRID: {
+        BASIC: [
+            { p1: "RR", p2: "RR", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Rr", p2: "Rr", answer: "9:3:3:1", type: "ratio" },
+            { p1: "AA", p2: "AA", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Bb", p2: "Bb", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Rr", p2: "Rr", answer: "56.25%", type: "percent" },
+        ],
+        CORE: [
+            { p1: "Rr", p2: "Rr", answer: "56.25%", type: "percent" },
+            { p1: "Aa", p2: "Aa", answer: "18.75%", type: "percent" },
+            { p1: "Bb", p2: "Bb", answer: "6.25%", type: "percent" },
+            { p1: "Rr", p2: "Rr", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Aa", p2: "Aa", answer: "56.25%", type: "percent" },
+        ],
+        ADVANCED: [
+            { p1: "Rr", p2: "Rr", answer: "0.5625", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.1875", type: "prob" },
+            { p1: "Bb", p2: "Bb", answer: "0.0625", type: "prob" },
+            { p1: "Rr", p2: "Rr", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Aa", p2: "Aa", answer: "0.5625", type: "prob" },
+        ],
+        ELITE: [
+            { p1: "Rr", p2: "Rr", answer: "0.0625", type: "prob" },
+            { p1: "Aa", p2: "Aa", answer: "0.1875", type: "prob" },
+            { p1: "Bb", p2: "Bb", answer: "0.5625", type: "prob" },
+            { p1: "Rr", p2: "Rr", answer: "9:3:3:1", type: "ratio" },
+            { p1: "Aa", p2: "Aa", answer: "0.0625", type: "prob" },
+        ],
+    },
+};
 
 export default function SB203Page() {
     const { completeStage } = useAppStore();
@@ -27,37 +121,49 @@ export default function SB203Page() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB203Quest[] => {
         const quests: SB203Quest[] = [];
+        const dataList = QUEST_DATA[stage]?.[difficulty] || [];
 
-        if (stage === "MONOHYBRID") {
-            quests.push(
-                {
-                    id: "M-1", difficulty, stage, p1: "Rr", p2: "Rr",
-                    promptLatex: t("sb2_03.prompts.monohybrid_ratio", { p1: "Rr", p2: "Rr" }),
-                    expressionLatex: t("sb2_03.prompts.ratio_target"), targetLatex: "3:1",
-                    slots: [{ id: "ans", labelLatex: "\\text{Ratio}", placeholder: "X:Y", expected: "3:1" }],
-                    correctLatex: "3:1", hintLatex: [t("sb2_03.prompts.hint_square")]
-                },
-                {
-                    id: "M-2", difficulty, stage, p1: "RR", p2: "rr",
-                    promptLatex: t("sb2_03.prompts.monohybrid_percent", { p1: "RR", p2: "rr" }),
-                    expressionLatex: t("sb2_03.prompts.percent_target"), targetLatex: "100\\%",
-                    slots: [{ id: "ans", labelLatex: "\\text{Percentage}", placeholder: "X%", expected: "100%" }],
-                    correctLatex: "100%", hintLatex: [t("sb2_03.prompts.hint_all_rr")]
-                }
-            );
-        }
+        dataList.forEach((data, idx) => {
+            const id = `${stage[0]}${difficulty[0]}${idx + 1}`;
+            let promptLatex = "";
+            let expressionLatex = "";
+            let targetLatex = data.answer;
+            let placeholder = "";
+            let labelLatex = "";
 
-        if (stage === "PROBABILITY") {
-            quests.push(
-                {
-                    id: "P-1", difficulty, stage, p1: "Rr", p2: "Rr",
-                    promptLatex: t("sb2_03.prompts.prob_genotype", { p1: "Rr", p2: "Rr", genotype: "rr" }),
-                    expressionLatex: t("sb2_03.prompts.prob_target", { genotype: "rr" }), targetLatex: "0.25",
-                    slots: [{ id: "ans", labelLatex: "P", placeholder: "0.XX", expected: "0.25" }],
-                    correctLatex: "0.25", hintLatex: [t("sb2_03.prompts.hint_count", { count: 1 })]
-                }
-            );
-        }
+            if (data.type === "ratio") {
+                promptLatex = t("sb2_03.prompts.monohybrid_ratio", { p1: data.p1, p2: data.p2 });
+                expressionLatex = t("sb2_03.prompts.ratio_target");
+                placeholder = "X:Y";
+                labelLatex = "\\text{Ratio}";
+            } else if (data.type === "percent") {
+                promptLatex = t("sb2_03.prompts.monohybrid_percent", { p1: data.p1, p2: data.p2 });
+                expressionLatex = t("sb2_03.prompts.percent_target");
+                placeholder = "X%";
+                labelLatex = "\\text{Percentage}";
+                if (!targetLatex.includes("%")) targetLatex += "\\%";
+            } else if (data.type === "prob") {
+                const genotype = data.p1.includes("R") ? "rr" : (data.p1.includes("A") ? "aa" : "bb");
+                promptLatex = t("sb2_03.prompts.prob_genotype", { p1: data.p1, p2: data.p2, genotype });
+                expressionLatex = t("sb2_03.prompts.prob_target", { genotype });
+                placeholder = "0.XX";
+                labelLatex = "P";
+            }
+
+            quests.push({
+                id,
+                difficulty,
+                stage,
+                p1: data.p1,
+                p2: data.p2,
+                promptLatex,
+                expressionLatex,
+                targetLatex,
+                slots: [{ id: "ans", labelLatex, placeholder, expected: data.answer }],
+                correctLatex: data.answer,
+                hintLatex: [t("sb2_03.prompts.hint_square")],
+            });
+        });
 
         return quests;
     }, [t]);
