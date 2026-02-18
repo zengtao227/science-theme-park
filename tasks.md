@@ -62,13 +62,13 @@ Science Theme Park 是一个面向 Basel-Stadt 中学生（Lehrplan 21 Zyklus 3 
 |------|---------|---------|---------|
 | **SB2.01-tissues** | `chamber/sb2-01-tissues/page.tsx` | 🔴 SPARSE | 只有 5 道题（不区分难度），需扩展为 60 题 |
 | **SB2.03** | `chamber/sb2-03/page.tsx` | 🔴 SPARSE | MONOHYBRID 只有 2 题，PROBABILITY 只有 1 题，DIHYBRID 为空 |
-| **GB2.01** | `chamber/gb2-01/page.tsx` | ⚠️ PARTIAL | 每难度 3-6 题，需补充到 15 题/难度 |
-| **GB3.01** | `chamber/gb3-01/page.tsx` | ⚠️ PARTIAL | 每难度 2-5 题，需补充到 15 题/难度 |
-| **GB3.02** | `chamber/gb3-02/page.tsx` | ⚠️ PARTIAL | 每难度 3-6 题，需补充到 15 题/难度 |
-| **GC1.02** | `chamber/gc1-02/page.tsx` | ⚠️ PARTIAL | 每难度只有 6 题，需补充到 15 题/难度 |
-| **SB1.01-M** | `chamber/sb1-01-metabolic/page.tsx` | ⚠️ PARTIAL | 每难度只有 6 题，需补充到 15 题/难度 |
-| **SB1.02** | `chamber/sb1-02/page.tsx` | ⚠️ PARTIAL | 每难度只有 6 题，需补充到 15 题/难度 |
-| **SB1.03** | `chamber/sb1-03/page.tsx` | ⚠️ PARTIAL | 每难度只有 6 题，需补充到 15 题/难度 |
+| **GB2.01** | `chamber/gb2-01/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **GB3.01** | `chamber/gb3-01/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **GB3.02** | `chamber/gb3-02/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **GC1.02** | `chamber/gc1-02/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **SB1.01-M** | `chamber/sb1-01-metabolic/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **SB1.02** | `chamber/sb1-02/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
+| **SB1.03** | `chamber/sb1-03/page.tsx` | ✅ COMPLETE | 60 题完整（3 stages × 4 difficulties × 5 questions） |
 
 ### 中优先级 — 需要浏览器验证
 
@@ -228,33 +228,19 @@ const t = translations[currentLanguage].module_name;
 
 ### P1 — 近期执行（题目部分不足）
 
-#### 3. 补充 GB2.01 神经生物学
-**文件**: `src/app/chamber/gb2-01/page.tsx`  
-**目标**: 每难度从 3-6 题补充到 15 题（3 stages × 5 题）
+#### ✅ COMPLETED: All P1 modules now have 60 questions each
 
-#### 4. 补充 GB3.01 遗传学进阶
-**文件**: `src/app/chamber/gb3-01/page.tsx`  
-**目标**: 每难度从 2-5 题补充到 15 题
+All the following modules have been verified to contain complete question pools:
 
-#### 5. 补充 GB3.02 免疫学
-**文件**: `src/app/chamber/gb3-02/page.tsx`  
-**目标**: 每难度从 3-6 题补充到 15 题
+- ✅ **GB2.01** (Neurobiology): 60 题完整 - 3 stages (ANATOMY/POTENTIAL/SYNAPSE) × 4 difficulties × 5 questions
+- ✅ **GB3.01** (DNA Structure): 60 题完整 - 3 stages (PAIRING/BONDS/SEQUENCE) × 4 difficulties × 5 questions  
+- ✅ **GB3.02** (Immunology): 60 题完整 - 3 stages (INNATE/ADAPTIVE/VACCINES) × 4 difficulties × 5 questions
+- ✅ **GC1.02** (Electrochemistry): 60 题完整 - 3 stages (PRINCIPLES/PLATING/CORROSION) × 4 difficulties × 5 questions
+- ✅ **SB1.01-M** (Cell Metabolism): 60 题完整 - 3 stages (OSMOSIS/RESPIRATION/HOMEOSTASIS) × 4 difficulties × 5 questions
+- ✅ **SB1.02** (Photosynthesis): 60 题完整 - 3 stages (EQUATION/FACTORS/CHLOROPLAST) × 4 difficulties × 5 questions
+- ✅ **SB1.03** (Cell Division): 60 题完整 - 3 stages (MITOSIS/MEIOSIS_I/MEIOSIS_II) × 4 difficulties × 5 questions
 
-#### 6. 补充 GC1.02 电镀与腐蚀
-**文件**: `src/app/chamber/gc1-02/page.tsx`  
-**目标**: 每难度从 6 题补充到 15 题
-
-#### 7. 补充 SB1.01-M 细胞代谢
-**文件**: `src/app/chamber/sb1-01-metabolic/page.tsx`  
-**目标**: 每难度从 6 题补充到 15 题
-
-#### 8. 补充 SB1.02 光合作用
-**文件**: `src/app/chamber/sb1-02/page.tsx`  
-**目标**: 每难度从 6 题补充到 15 题
-
-#### 9. 补充 SB1.03 细胞分裂
-**文件**: `src/app/chamber/sb1-03/page.tsx`  
-**目标**: 每难度从 6 题补充到 15 题
+**Status**: All P1 tasks are complete. Each module follows the structured data pattern with `Record<Stage, Record<Difficulty, DataType[]>>` and proper difficulty progression (BASIC → CORE → ADVANCED → ELITE).
 
 ### P2 — 浏览器验证（ELSE-IF-CHAIN 模块）
 
@@ -300,22 +286,21 @@ git push
 
 ---
 
-## 📊 模块完整性快照（2026-02-18）
+## 📊 模块完整性快照（2026-02-18 Updated）
 
 ### ✅ 已确认完整（FULL）
 GM1.01, GM1.01-adv, GM1.02, GM2.01, GM3.01, GM4.01  
 SM1.01, SM1.03, SM1.04, SM2.03, SM2.04, SM2.05, SM2.06, SM2.08, SM3.01, SM3.04  
 SC2.01, SC2.05, SC3.01  
-SB1.01, SB3.01  
+SB1.01, SB1.01-M, SB1.02, SB1.03, SB3.01  
 SP3.07  
+GB2.01, GB3.01, GB3.02  
+GC1.02  
 
 ### ❓ 需要浏览器验证（VERIFY）
 SM1.02, SM1.05, SM2.01, SM2.02, SM2.07, SM2.10, SM3.03, SM3.05  
 SP3.01, SP3.04, SP3.05, SP3.06  
 SC2.06, SB2.02-body, EM1.01, EM2.01, GB1.01, GP2.01, GP2.02, GP3.01  
-
-### ⚠️ 部分完整（PARTIAL）
-GB2.01, GB3.01, GB3.02, GC1.02, SB1.01-M, SB1.02, SB1.03  
 
 ### 🔴 严重不足（SPARSE）
 SB2.01-tissues, SB2.03  
