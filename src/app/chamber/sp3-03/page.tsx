@@ -12,14 +12,14 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
 
 interface SP303Quest extends Quest {
-    stage: Stage;
-    mass?: number;
-    height?: number;
-    velocity?: number;
-    force?: number;
-    distance?: number;
-    time?: number;
-    power?: number;
+  stage: Stage;
+  mass?: number;
+  height?: number;
+  velocity?: number;
+  force?: number;
+  distance?: number;
+  time?: number;
+  power?: number;
 }
 
 // 数据类型定义
@@ -131,135 +131,135 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SP303QuestData[]>> = {
 };
 
 export default function SP303Page() {
-    const { completeStage } = useAppStore();
-    const { t } = useLanguage();
+  const { completeStage } = useAppStore();
+  const { t } = useLanguage();
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP303Quest[] => {
-        const quests: SP303Quest[] = [];
-        const dataList = QUEST_DATA[stage]?.[difficulty] || [];
+  const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP303Quest[] => {
+    const quests: SP303Quest[] = [];
+    const dataList = QUEST_DATA[stage]?.[difficulty] || [];
 
-        dataList.forEach((item, idx) => {
-            const promptKey = `sp3_03.prompts.${item.scen}`;
-            const hintKey = `sp3_03.hints.${item.scen}`;
-            
-            quests.push({
-                id: `${stage}_${difficulty[0]}${idx + 1}`,
-                difficulty,
-                stage,
-                mass: item.m,
-                height: item.h,
-                velocity: item.v,
-                force: item.f,
-                distance: item.d,
-                time: item.t,
-                power: item.p,
-                promptLatex: t(promptKey, { 
-                    m: item.m ?? 0, 
-                    h: item.h ?? 0, 
-                    v: item.v ?? 0,
-                    f: item.f ?? 0,
-                    d: item.d ?? 0,
-                    t: item.t ?? 0,
-                    g: 9.8
-                }),
-                expressionLatex: stage === "POTENTIAL" ? `E_p = mgh` : 
-                                stage === "KINETIC" ? `E_k = \\frac{1}{2}mv^2` : 
-                                `W = Fs, P = \\frac{W}{t}`,
-                targetLatex: item.expect.toFixed(2),
-                slots: [{
-                    id: "ans",
-                    labelLatex: stage === "POTENTIAL" ? `E_p \\text{ (J)}` :
-                               stage === "KINETIC" ? `E_k \\text{ (J)}` :
-                               `P \\text{ (W)}`,
-                    placeholder: "...",
-                    expected: item.expect.toFixed(2)
-                }],
-                correctLatex: `${item.expect.toFixed(2)}`,
-                hintLatex: [t(hintKey, { m: item.m ?? 0, h: item.h ?? 0, v: item.v ?? 0 })]
-            });
-        });
+    dataList.forEach((item, idx) => {
+      const promptKey = `sp3_03.prompts.${item.scen}`;
+      const hintKey = `sp3_03.hints.${item.scen}`;
 
-        return quests;
-    }, [t]);
-
-    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
-
-    const {
-        currentQuest,
+      quests.push({
+        id: `${stage}_${difficulty[0]}${idx + 1}`,
         difficulty,
         stage,
-        lastCheck,
-        inputs,
-        setInputs,
-        verify,
-        next,
-        handleDifficultyChange,
-        handleStageChange,
-    } = useQuestManager<SP303Quest, Stage>({
-        buildPool,
-        initialStage: "POTENTIAL",
+        mass: item.m,
+        height: item.h,
+        velocity: item.v,
+        force: item.f,
+        distance: item.d,
+        time: item.t,
+        power: item.p,
+        promptLatex: t(promptKey, {
+          m: item.m ?? 0,
+          h: item.h ?? 0,
+          v: item.v ?? 0,
+          f: item.f ?? 0,
+          d: item.d ?? 0,
+          t: item.t ?? 0,
+          g: 9.8
+        }),
+        expressionLatex: stage === "POTENTIAL" ? `E_p = mgh` :
+          stage === "KINETIC" ? `E_k = \\frac{1}{2}mv^2` :
+            `W = Fs, P = \\frac{W}{t}`,
+        targetLatex: item.expect.toFixed(2),
+        slots: [{
+          id: "ans",
+          labelLatex: stage === "POTENTIAL" ? `E_p \\text{ (J)}` :
+            stage === "KINETIC" ? `E_k \\text{ (J)}` :
+              `P \\text{ (W)}`,
+          placeholder: "...",
+          expected: item.expect.toFixed(2)
+        }],
+        correctLatex: `${item.expect.toFixed(2)}`,
+        hintLatex: [t(hintKey, { m: item.m ?? 0, h: item.h ?? 0, v: item.v ?? 0 })]
+      });
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sp3-03", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
+    return quests;
+  }, [t]);
 
-    const stagesProps = useMemo(() => [
-        { id: "POTENTIAL" as Stage, label: t("sp3_03.stages.potential") },
-        { id: "KINETIC" as Stage, label: t("sp3_03.stages.kinetic") },
-        { id: "POWER" as Stage, label: t("sp3_03.stages.work") },
-    ], [t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
-    if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
+  const {
+    currentQuest,
+    difficulty,
+    stage,
+    lastCheck,
+    inputs,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+  } = useQuestManager<SP303Quest, Stage>({
+    buildPool,
+    initialStage: "POTENTIAL",
+  });
 
-    return (
-        <ChamberLayout
-            title={t("sp3_03.title")}
-            moduleCode="SP3.03"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
-            stages={stagesProps}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
-            footerLeft={t("sp3_03.footer_left")}
-            translations={{
-                back: t("sp3_03.back"),
-                check: t("sp3_03.check"),
-                next: t("sp3_03.next"),
-                correct: t("sp3_03.correct"),
-                incorrect: t("sp3_03.incorrect"),
-                difficulty: t("sp3_03.difficulty"),
-            }}
-            monitorContent={<HydroCanvas stage={stage} />}
-        >
-            <div className="space-y-6">
-                <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
-                    <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
-                    </div>
-                    <div className="text-cyan-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
-                    </div>
-                    <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
-                            <div key={slot.id} className="flex items-center gap-3">
-                                <InlineMath math={slot.labelLatex} />
-                                <input
-                                    type="text"
-                                    value={inputs[slot.id] || ""}
-                                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                                    className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </ChamberLayout>
-    );
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("sp3-03", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
+
+  const stagesProps = useMemo(() => [
+    { id: "POTENTIAL" as Stage, label: t("sp3_03.stages.potential") },
+    { id: "KINETIC" as Stage, label: t("sp3_03.stages.kinetic") },
+    { id: "POWER" as Stage, label: t("sp3_03.stages.work") },
+  ], [t]);
+
+  if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
+
+  return (
+    <ChamberLayout
+      title={t("sp3_03.title")}
+      moduleCode="SP3.03"
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stagesProps}
+      currentStage={stage}
+      onStageChange={(s) => handleStageChange(s as Stage)}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
+      footerLeft={t("sp3_03.footer_left")}
+      translations={{
+        back: t("sp3_03.back"),
+        check: t("sp3_03.check"),
+        next: t("sp3_03.next"),
+        correct: t("sp3_03.correct"),
+        incorrect: t("sp3_03.incorrect"),
+        difficulty: t("sp3_03.difficulty"),
+      }}
+      monitorContent={<HydroCanvas stage={stage} />}
+    >
+      <div className="space-y-6">
+        <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
+          <div className="text-lg">
+            <InlineMath math={currentQuest.promptLatex} />
+          </div>
+          <div className="text-cyan-300">
+            <InlineMath math={currentQuest.expressionLatex} />
+          </div>
+          <div className="space-y-3">
+            {currentQuest.slots.map((slot) => (
+              <div key={slot.id} className="flex items-center gap-3">
+                <InlineMath math={slot.labelLatex} />
+                <input
+                  type="text"
+                  value={inputs[slot.id] || ""}
+                  onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                  className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </ChamberLayout>
+  );
 }

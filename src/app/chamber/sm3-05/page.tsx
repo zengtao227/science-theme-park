@@ -55,7 +55,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-B4", difficulty, stage, geometryType: "prism",
-                        promptLatex: `\\text{A prism has base area } 50\\text{m}^2 \\text{ and height } 12\\text{m. What is its volume?}`,
+                        promptLatex: `\\text{A prism has base area } 50\\text{ m}^2 \\text{ and height } 12\\text{m. What is its volume?}`,
                         expressionLatex: `V = A_{base} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^3\\text{)}`, placeholder: "600", expected: 600 }],
@@ -126,7 +126,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "ARCH-A1", difficulty, stage, geometryType: "roche2",
-                        promptLatex: `\\text{Roche Tower 2 is } 205\\text{m. It tapers. If the base is } 2400\\text{m}^2 \\text{ and top is } 1800\\text{m}^2, \\text{ use the average area for volume.}`,
+                        promptLatex: `\\text{Roche Tower 2 is } 205\\text{m. It tapers. If the base is } 2400\\text{ m}^2 \\text{ and top is } 1800\\text{ m}^2, \\text{ use the average area for volume.}`,
                         expressionLatex: `V \\approx \\frac{A_1 + A_2}{2} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V`, placeholder: "430500", expected: 430500 }],

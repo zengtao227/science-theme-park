@@ -150,18 +150,18 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
 
             if (data.expr) {
                 if (data.var2) {
-                    promptLatex = `\\text{If } ${data.var1}=${data.val1}, ${data.var2}=${data.val2}${data.var3 ? `, ${data.var3}=${data.val3}` : ''} \\text{, calculate } ${data.expr}`;
+                    promptLatex = `\\\\text{If } ${data.var1}=${data.val1}, ${data.var2}=${data.val2}${data.var3 ? `, ${data.var3}=${data.val3}` : ''} \\\\text{, calculate } ${data.expr}`;
                 } else {
-                    promptLatex = `\\text{If } ${data.var1}=${data.val1} \\text{, calculate } ${data.expr}`;
+                    promptLatex = `\\\\text{If } ${data.var1}=${data.val1} \\\\text{, calculate } ${data.expr}`;
                 }
                 expressionLatex = data.expr;
                 targetLatex = String(data.answer);
                 hintLatex = [`\\text{Evaluate the expression}`];
             } else {
-                promptLatex = `\\text{If } ${data.var1}=${data.val1} \\text{, what is } ${data.var1}?`;
+                promptLatex = `\\\\text{If } ${data.var1}=${data.val1} \\\\text{, what is } ${data.var1}?`;
                 expressionLatex = data.var1!;
                 targetLatex = String(data.answer);
-                hintLatex = [`\\text{The variable ${data.var1} holds the value ${data.val1}.}`];
+                hintLatex = [`\\\\text{The variable ${data.var1} holds the value ${data.val1}.}`];
             }
 
             quests.push({
@@ -184,34 +184,34 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 : [
                     { id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: String(parseInt(String(data.answer)) || 0) },
                     { id: "var", labelLatex: "Variable", placeholder: "x", expected: String(data.answer).replace(/[0-9]/g, '') }
-                  ];
+                ];
 
             quests.push({
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{${sm1_02_t.prompts.simplify} } ${data.expr}`,
+                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${data.expr}`,
                 expressionLatex: data.expr!,
                 targetLatex: String(data.answer),
                 visualMode: data.visualMode,
                 visualData: data.visualData,
                 slots,
                 correctLatex: String(data.answer),
-                hintLatex: [`\\text{${sm1_02_t.prompts.combine_like_terms}}`],
+                hintLatex: [`\\\\text{${sm1_02_t.prompts.combine_like_terms}}`],
             });
         } else if (stage === "SUBSTITUTION") {
             quests.push({
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{${sm1_02_t.prompts.simplify} } ${data.expr} \\text{ for } ${data.var1}=${data.val1}`,
+                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${data.expr} \\\\text{ for } ${data.var1}=${data.val1}`,
                 expressionLatex: data.expr!,
                 targetLatex: String(data.answer),
                 visualMode: data.visualMode,
                 visualData: data.visualData,
                 slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: data.answer }],
                 correctLatex: String(data.answer),
-                hintLatex: [`\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
+                hintLatex: [`\\\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
             });
         }
     });
@@ -222,7 +222,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
 export default function SM103Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-    
+
     const sm1_02_t = {
         title: t("sm1_02.title"),
         back: t("sm1_02.back"),

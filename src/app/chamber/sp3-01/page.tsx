@@ -23,7 +23,7 @@ interface SP301Quest extends Quest {
 export default function SP301Page() {
     const { currentLanguage, completeStage } = useAppStore();
     const { t } = useLanguage();
-    
+
     const sp3_01_t = {
         title: t("sp3_01.title"),
         back: t("sp3_01.back"),
@@ -71,7 +71,7 @@ export default function SP301Page() {
             description: t("sp3_01.mission.description")
         }
     };
-    
+
     const [selectedTool, setSelectedTool] = useState<string>("ruler");
     const [measurementValue, setMeasurementValue] = useState<number>(0);
 
@@ -82,16 +82,16 @@ export default function SP301Page() {
             SI_UNITS: {
                 BASIC: [
                     { measurement: "length", unit: "m", name: "meter" },
-                    { measurement: "mass", unit: "\text{kg}", name: "kilogram" },
+                    { measurement: "mass", unit: "\\\\text{kg}", name: "kilogram" },
                     { measurement: "time", unit: "s", name: "second" },
                     { measurement: "temperature", unit: "K", name: "kelvin" },
                     { measurement: "current", unit: "A", name: "ampere" }
                 ],
                 CORE: [
-                    { quantity: "force", unit: "\text{N}", formula: "kg·m/s²" },
-                    { quantity: "energy", unit: "\text{J}", formula: "N·m" },
-                    { quantity: "power", unit: "\text{W}", formula: "J/s" },
-                    { quantity: "pressure", unit: "\text{Pa}", formula: "N/m²" },
+                    { quantity: "force", unit: "\\\\text{N}", formula: "kg·m/s^2" },
+                    { quantity: "energy", unit: "\\\\text{J}", formula: "N·m" },
+                    { quantity: "power", unit: "\\\\text{W}", formula: "J/s" },
+                    { quantity: "pressure", unit: "\\\\text{Pa}", formula: "N/m^2" },
                     { quantity: "frequency", unit: "Hz", formula: "1/s" }
                 ],
                 ADVANCED: [
@@ -102,10 +102,10 @@ export default function SP301Page() {
                     { value: 250, from: "cm", to: "m", answer: "2.5" }
                 ],
                 ELITE: [
-                    { expr: "kg·m²/s²", unit: "\text{J}", name: "joule" },
-                    { expr: "kg·m/s²", unit: "\text{N}", name: "newton" },
-                    { expr: "kg/(m·s²)", unit: "\text{Pa}", name: "pascal" },
-                    { expr: "J/s", unit: "\text{W}", name: "watt" },
+                    { expr: "kg·m^2/s^2", unit: "\\\\text{J}", name: "joule" },
+                    { expr: "kg·m/s^2", unit: "\\\\text{N}", name: "newton" },
+                    { expr: "kg/(m·s^2)", unit: "\\\\text{Pa}", name: "pascal" },
+                    { expr: "J/s", unit: "\\\\text{W}", name: "watt" },
                     { expr: "C/s", unit: "A", name: "ampere" }
                 ]
             },
@@ -125,17 +125,17 @@ export default function SP301Page() {
                     { value: 1.5, from: "L", to: "mL", answer: "1500" }
                 ],
                 ADVANCED: [
-                    { value: 1, from: "m²", to: "cm²", answer: "10000" },
-                    { value: 2, from: "km²", to: "m²", answer: "2000000" },
-                    { value: 1, from: "m³", to: "L", answer: "1000" },
-                    { value: 0.5, from: "m³", to: "cm³", answer: "500000" },
-                    { value: 5000, from: "cm²", to: "m²", answer: "0.5" }
+                    { value: 1, from: "m^2", to: "cm^2", answer: "10000" },
+                    { value: 2, from: "km^2", to: "m^2", answer: "2000000" },
+                    { value: 1, from: "m^3", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m^3", to: "cm^3", answer: "500000" },
+                    { value: 5000, from: "cm^2", to: "m^2", answer: "0.5" }
                 ],
                 ELITE: [
                     { value: 72, from: "km/h", to: "m/s", answer: "20" },
                     { value: 10, from: "m/s", to: "km/h", answer: "36" },
-                    { value: 1000, from: "g/cm³", to: "kg/m³", answer: "1000000" },
-                    { value: 2, from: "kg/m³", to: "g/cm³", answer: "0.002" },
+                    { value: 1000, from: "g/cm^3", to: "kg/m^3", answer: "1000000" },
+                    { value: 2, from: "kg/m^3", to: "g/cm^3", answer: "0.002" },
                     { value: 100, from: "kPa", to: "Pa", answer: "100000" }
                 ]
             },
@@ -179,32 +179,32 @@ export default function SP301Page() {
                         difficulty,
                         stage,
                         measurement: u.measurement,
-                        promptLatex: `\\text{What is the SI unit for ${u.measurement}?}`,
-                        expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
+                        promptLatex: `\\\\text{What is the SI unit for ${u.measurement}?}`,
+                        expressionLatex: `\\\\text{${u.measurement}} \\\\rightarrow \\\\text{?}`,
                         targetLatex: u.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
-                        correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
-                        hintLatex: [`\\text{The base unit for ${u.measurement} is ${u.name}}`]
+                        slots: [{ id: "ans", labelLatex: "\\\\text{SI Unit}", placeholder: "...", expected: u.unit }],
+                        correctLatex: `\\\\text{${u.unit}} \\\\text{ (${u.name})}`,
+                        hintLatex: [`\\\\text{The base unit for ${u.measurement} is ${u.name}}`]
                     });
                 });
             }
-            
+
             if (difficulty === "CORE") {
                 QUEST_DATA.SI_UNITS.CORE.forEach((d, idx) => {
                     quests.push({
                         id: `SI-C${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{What is the SI unit for ${d.quantity}?}`,
-                        expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
+                        promptLatex: `\\\\text{What is the SI unit for ${d.quantity}?}`,
+                        expressionLatex: `\\\\text{${d.quantity}} = ${d.formula}`,
                         targetLatex: d.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: d.unit }],
-                        correctLatex: `\\text{${d.unit}}`,
-                        hintLatex: [`\\text{${d.formula}}`]
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Unit}", placeholder: "...", expected: d.unit }],
+                        correctLatex: `\\\\text{${d.unit}}`,
+                        hintLatex: [`\\\\text{${d.formula}}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ADVANCED") {
                 QUEST_DATA.SI_UNITS.ADVANCED.forEach((c, idx) => {
                     quests.push({
@@ -214,28 +214,28 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
-                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
-                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\\\,\\\\text{${c.from}} = \\\\text{?}\\\\,\\\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
-                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Use metric prefixes}`]
+                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\\\,\\\\text{${c.to}}`,
+                        hintLatex: [`\\\\text{Use metric prefixes}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ELITE") {
                 QUEST_DATA.SI_UNITS.ELITE.forEach((c, idx) => {
                     quests.push({
                         id: `SI-E${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{What unit is equivalent to ${c.expr}?}`,
-                        expressionLatex: `${c.expr} = \\text{?}`,
+                        promptLatex: `\\\\text{What unit is equivalent to ${c.expr}?}`,
+                        expressionLatex: `${c.expr} = \\\\text{?}`,
                         targetLatex: c.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: c.unit }],
-                        correctLatex: `\\text{${c.unit} (${c.name})}`,
-                        hintLatex: [`\\text{Simplify the base units}`]
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Unit}", placeholder: "...", expected: c.unit }],
+                        correctLatex: `\\\\text{${c.unit} (${c.name})}`,
+                        hintLatex: [`\\\\text{Simplify the base units}`]
                     });
                 });
             }
@@ -261,16 +261,16 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
-                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
-                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\\\,\\\\text{${c.from}} = \\\\text{?}\\\\,\\\\text{${c.to}}`,
                         targetLatex: result,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
-                        correctLatex: `${result}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Factor: ${c.factor}}`]
+                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: result }],
+                        correctLatex: `${result}\\\\,\\\\text{${c.to}}`,
+                        hintLatex: [`\\\\text{Factor: ${c.factor}}`]
                     });
                 });
             }
-            
+
             if (difficulty === "CORE") {
                 // Multi-step conversions
                 const conversions = [
@@ -289,24 +289,24 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
-                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
-                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\\\,\\\\text{${c.from}} = \\\\text{?}\\\\,\\\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
-                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Multiple steps needed}`]
+                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\\\,\\\\text{${c.to}}`,
+                        hintLatex: [`\\\\text{Multiple steps needed}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ADVANCED") {
                 // Area and volume conversions
                 const conversions = [
-                    { value: 1, from: "m²", to: "cm²", answer: "10000" },
-                    { value: 2, from: "km²", to: "m²", answer: "2000000" },
-                    { value: 1, from: "m³", to: "L", answer: "1000" },
-                    { value: 0.5, from: "m³", to: "cm³", answer: "500000" },
-                    { value: 5000, from: "cm²", to: "m²", answer: "0.5" }
+                    { value: 1, from: "m^2", to: "cm^2", answer: "10000" },
+                    { value: 2, from: "km^2", to: "m^2", answer: "2000000" },
+                    { value: 1, from: "m^3", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m^3", to: "cm^3", answer: "500000" },
+                    { value: 5000, from: "cm^2", to: "m^2", answer: "0.5" }
                 ];
 
                 conversions.forEach((c, idx) => {
@@ -317,23 +317,23 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
-                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
-                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\\\,\\\\text{${c.from}} = \\\\text{?}\\\\,\\\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
-                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Square or cube the conversion factor}`]
+                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\\\,\\\\text{${c.to}}`,
+                        hintLatex: [`\\\\text{Square or cube the conversion factor}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ELITE") {
                 // Compound unit conversions
                 const conversions = [
                     { value: 72, from: "km/h", to: "m/s", answer: "20" },
                     { value: 10, from: "m/s", to: "km/h", answer: "36" },
-                    { value: 1000, from: "g/cm³", to: "kg/m³", answer: "1000000" },
-                    { value: 2, from: "kg/m³", to: "g/cm³", answer: "0.002" },
+                    { value: 1000, from: "g/cm^3", to: "kg/m^3", answer: "1000000" },
+                    { value: 2, from: "kg/m^3", to: "g/cm^3", answer: "0.002" },
                     { value: 100, from: "kPa", to: "Pa", answer: "100000" }
                 ];
 
@@ -345,12 +345,12 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
-                        promptLatex: `\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
-                        expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
+                        promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
+                        expressionLatex: `${c.value}\\\\,\\\\text{${c.from}} = \\\\text{?}\\\\,\\\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
-                        correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Convert numerator and denominator separately}`]
+                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        correctLatex: `${c.answer}\\\\,\\\\text{${c.to}}`,
+                        hintLatex: [`\\\\text{Convert numerator and denominator separately}`]
                     });
                 });
             }
@@ -372,16 +372,16 @@ export default function SP301Page() {
                         id: `PREC-B${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{How many significant figures in ${p.value}?}`,
-                        expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
+                        promptLatex: `\\\\text{How many significant figures in ${p.value}?}`,
+                        expressionLatex: `${p.value} \\\\rightarrow \\\\text{? sig figs}`,
                         targetLatex: p.sigfigs,
-                        slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
-                        correctLatex: `${p.sigfigs}\\text{ significant figures}`,
-                        hintLatex: [`\\text{Count non-zero digits and trapped zeros}`]
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
+                        correctLatex: `${p.sigfigs}\\\\text{ significant figures}`,
+                        hintLatex: [`\\\\text{Count non-zero digits and trapped zeros}`]
                     });
                 });
             }
-            
+
             if (difficulty === "CORE") {
                 // Rounding to significant figures
                 const rounding = [
@@ -397,16 +397,16 @@ export default function SP301Page() {
                         id: `PREC-C${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{Round ${r.value} to ${r.sigfigs} significant figures}`,
-                        expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
+                        promptLatex: `\\\\text{Round ${r.value} to ${r.sigfigs} significant figures}`,
+                        expressionLatex: `${r.value} \\\\rightarrow ${r.sigfigs}\\\\text{ sig figs}`,
                         targetLatex: r.answer,
-                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: r.answer }],
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Result}", placeholder: "...", expected: r.answer }],
                         correctLatex: `${r.answer}`,
-                        hintLatex: [`\\text{Round at the ${r.sigfigs}th significant digit}`]
+                        hintLatex: [`\\\\text{Round at the ${r.sigfigs}th significant digit}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ADVANCED") {
                 // Calculations with significant figures
                 const calculations = [
@@ -422,16 +422,16 @@ export default function SP301Page() {
                         id: `PREC-A${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{Calculate ${c.expr} with proper sig figs}`,
+                        promptLatex: `\\\\text{Calculate ${c.expr} with proper sig figs}`,
                         expressionLatex: `${c.expr}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Result}", placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}`,
-                        hintLatex: [`\\text{Use ${c.rule} rule}`]
+                        hintLatex: [`\\\\text{Use ${c.rule} rule}`]
                     });
                 });
             }
-            
+
             if (difficulty === "ELITE") {
                 // Uncertainty and error analysis
                 const uncertainty = [
@@ -447,12 +447,12 @@ export default function SP301Page() {
                         id: `PREC-E${idx}`,
                         difficulty,
                         stage,
-                        promptLatex: `\\text{What is the percent uncertainty of ${u.measurement} ${u.unit}?}`,
-                        expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
+                        promptLatex: `\\\\text{What is the percent uncertainty of ${u.measurement} ${u.unit}?}`,
+                        expressionLatex: `\\\\frac{\\\\text{uncertainty}}{\\\\text{value}} \\\\times 100\\\\%`,
                         targetLatex: u.percent,
-                        slots: [{ id: "ans", labelLatex: "\\text{Percent}", placeholder: "...", expected: u.percent }],
-                        correctLatex: `${u.percent}\\%`,
-                        hintLatex: [`\\text{Divide uncertainty by measurement}`]
+                        slots: [{ id: "ans", labelLatex: "\\\\text{Percent}", placeholder: "...", expected: u.percent }],
+                        correctLatex: `${u.percent}\\\\%`,
+                        hintLatex: [`\\\\text{Divide uncertainty by measurement}`]
                     });
                 });
             }
@@ -483,7 +483,7 @@ export default function SP301Page() {
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("SP3.01", stage);
+            completeStage("sp3-01", stage);
         }
     }, [lastCheck, completeStage, stage]);
 

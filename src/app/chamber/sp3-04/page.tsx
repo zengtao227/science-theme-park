@@ -76,7 +76,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "CORE") {
                 quests.push(
                     {
@@ -126,7 +126,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ADVANCED") {
                 quests.push(
                     {
@@ -176,7 +176,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ELITE") {
                 quests.push(
                     {
@@ -278,7 +278,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "CORE") {
                 quests.push(
                     {
@@ -328,7 +328,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ADVANCED") {
                 quests.push(
                     {
@@ -378,7 +378,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ELITE") {
                 quests.push(
                     {
@@ -480,7 +480,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "CORE") {
                 quests.push(
                     {
@@ -530,7 +530,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ADVANCED") {
                 quests.push(
                     {
@@ -580,7 +580,7 @@ export default function SP304Page() {
                     }
                 );
             }
-            
+
             if (difficulty === "ELITE") {
                 quests.push(
                     {

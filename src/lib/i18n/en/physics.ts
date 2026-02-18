@@ -683,6 +683,60 @@ export const enPhysics = {
         mission: { title: "MISSION: RAY OPTICS", description: "Master the physics of light refraction and reflection using Basel's laboratory models." }
     },
 
+    // SP2.02: Ohm's Law & Circuits
+    sp2_02: {
+        title: "SP2.02 // OHM'S LAW & CIRCUITS",
+        back: "Back to Nexus",
+        footer_left: "SP2.02_CIRCUITS // NODE: BASEL",
+        check: "Verify",
+        next: "Next",
+        correct: "Circuit Verified",
+        incorrect: "Circuit Error",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            ohms_law: "OHM'S LAW",
+            series_circuits: "SERIES CIRCUITS",
+            parallel_circuits: "PARALLEL CIRCUITS"
+        },
+        scenarios: {
+            ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",
+            series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R₁ + R₂ + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",
+            parallel_circuits: "Roche Tower Lighting System: You are designing the emergency lighting system for Roche Tower in Basel. In parallel circuits, components share the same voltage, but current divides among branches. Your task is to calculate total current and equivalent resistance (1/R_total = 1/R₁ + 1/R₂ + ...). This design ensures that if one light fails, others continue working - critical for safety during power outages. The system must handle the building's 41 floors with thousands of LED lights operating efficiently."
+        }
+    },
+
+    // SP2.03: Electric Power & Energy
+    sp2_03: {
+        title: "SP2.03 // ELECTRIC POWER & ENERGY",
+        back: "Back to Nexus",
+        footer_left: "SP2.03_POWER // NODE: BASEL",
+        check: "Verify",
+        next: "Next",
+        correct: "Power Verified",
+        incorrect: "Power Error",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            power_basics: "POWER BASICS",
+            energy_consumption: "ENERGY CONSUMPTION",
+            efficiency: "EFFICIENCY"
+        },
+        scenarios: {
+            power_basics: "Basel Household Electricity: You are helping Basel's energy consulting company calculate power consumption for residential customers. Electric power (P = U × I) determines how much energy devices use per second, measured in Watts. Your task is to calculate power for various household appliances. Understanding this helps families reduce electricity bills and carbon footprint. For example, a typical Basel household uses about 4,500 kWh per year, costing around 1,125 CHF at 0.25 CHF/kWh. Accurate power calculations help identify energy-wasting devices.",
+            energy_consumption: "IWB Basel Energy Management: You work for IWB (Industrielle Werke Basel), Basel's main electricity provider. Your task is to calculate energy consumption (E = P × t) and costs for commercial customers. Energy is measured in kilowatt-hours (kWh), and Basel's electricity rate is approximately 0.25 CHF/kWh for households and 0.20 CHF/kWh for businesses. You're analyzing a Novartis laboratory that runs equipment 24/7. Accurate calculations ensure correct billing and help customers optimize energy usage to reduce costs and environmental impact.",
+            efficiency: "Basel Solar Panel Installation: You are an engineer at Solarville Basel, installing solar panels on residential rooftops. Efficiency (η = P_out/P_in × 100%) determines how much sunlight energy converts to electricity. Modern panels achieve 18-22% efficiency. Your task is to calculate power output, energy losses, and cost savings. A typical Basel home with 20 m² of panels (4 kW capacity) generates about 3,800 kWh/year, saving approximately 950 CHF annually. Understanding efficiency helps customers make informed investment decisions."
+        }
+    },
+
     // --- Thermodynamics (Legacy GP2 series) ---
     gp2_01: {
         back: "Return to Nexus",
@@ -918,5 +972,36 @@ export const enPhysics = {
             grating_resolution: "R = mN",
             blaze_angle: "Optimizes efficiency"
         }
+    },
+
+    // GP3.02: Electromagnetism Basics
+    gp3_02: {
+        back: "Back to Nexus",
+        title: "GP3.02 // ELECTROMAGNETISM BASICS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            electric_field: "ELECTRIC FIELDS",
+            magnetic_field: "MAGNETIC FIELDS",
+            particle_motion: "PARTICLE MOTION"
+        },
+        scenarios: {
+            electric_field: "You are a research engineer at Roche Tower Basel, designing an advanced electrostatic precipitator for air purification in pharmaceutical clean rooms. The system uses electric fields to remove airborne particles, ensuring sterile production environments for life-saving medications. Electric field strength E = kQ/r² (where k = 8.99×10⁹ N·m²/C²) determines the force on charged particles. A point charge Q creates an electric field that radiates outward, with field lines showing direction and strength. The force on a test charge q in this field is F = qE. Understanding electric fields is crucial for designing medical equipment, particle accelerators at CERN's Basel collaboration, and semiconductor manufacturing at local tech companies. These principles also explain lightning protection systems on Basel's historic buildings and the operation of touchscreens in smartphones.",
+            magnetic_field: "At Basel University Hospital's MRI department, you are calibrating magnetic field systems for medical imaging. Magnetic fields are created by electric currents and are measured in Tesla (T). A straight current-carrying wire produces a circular magnetic field with strength B = μ₀I/(2πr), where μ₀ = 4π×10⁻⁷ T·m/A is the permeability of free space. The right-hand rule determines field direction: thumb points along current, fingers curl in field direction. Solenoids (coils) create uniform fields B = μ₀nI inside, used in MRI machines to align hydrogen atoms in patients' bodies. The force on a current-carrying wire in a magnetic field is F = BILsinθ, enabling electric motors in Basel's trams and trains. Magnetic levitation (maglev) trains use these principles, and Basel's connection to the Swiss rail network relies on electromagnetic systems.",
+            particle_motion: "You are a physicist at CERN's Basel research facility, analyzing charged particle trajectories in electromagnetic fields for the Large Hadron Collider experiments. When a charged particle (charge q, mass m) enters an electric field E, it experiences force F = qE and acceleration a = qE/m, following a parabolic path like projectile motion. In a magnetic field B, a moving charged particle experiences the Lorentz force F = qvB perpendicular to both velocity and field, causing circular motion with radius r = mv/(qB). This principle enables mass spectrometers at Novartis and Roche quality control laboratories to identify molecular masses of pharmaceutical compounds. Velocity selectors use crossed electric and magnetic fields where particles travel straight only when v = E/B, separating ions by speed. Cyclotrons accelerate particles in spiral paths for cancer radiation therapy at Basel University Hospital. Understanding particle motion is essential for designing particle detectors, analyzing cosmic rays, and developing next-generation medical imaging technologies."
+        },
+        objective_title: "Electromagnetic Analysis",
+        complete: "Module Complete!",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Field Verified",
+        incorrect: "Check calculation",
+        ready: "Ready",
+        monitor_title: "GP3.02_EM_MONITOR",
+        footer_left: "GP3.02_ELECTROMAGNETISM // NODE: BASEL"
     },
 };

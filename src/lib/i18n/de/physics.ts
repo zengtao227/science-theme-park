@@ -167,6 +167,33 @@ export const dePhysics = {
         feedback: { correct: "Schaltungsanalyse bestätigt.", incorrect: "Schaltungskonfigurationsfehler erkannt." }
     },
 
+    // SP2.02: Ohmsches Gesetz & Schaltungen
+    sp2_02: {
+        title: "SP2.02 // OHMSCHES GESETZ & SCHALTUNGEN",
+        back: "Zurück zum Nexus",
+        footer_left: "SP2.02_SCHALTUNGEN // KNOTEN: BASEL",
+        check: "Verifizieren",
+        next: "Weiter",
+        correct: "Schaltung Bestätigt",
+        incorrect: "Schaltungsfehler",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            ohms_law: "OHMSCHES GESETZ",
+            series_circuits: "REIHENSCHALTUNG",
+            parallel_circuits: "PARALLELSCHALTUNG"
+        },
+        scenarios: {
+            ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",
+            series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R₁ + R₂ + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",
+            parallel_circuits: "Roche Tower Beleuchtungssystem: Sie entwerfen das Notbeleuchtungssystem für den Roche Tower in Basel. In Parallelschaltungen teilen sich Komponenten dieselbe Spannung, aber der Strom teilt sich auf die Zweige auf. Ihre Aufgabe ist es, den Gesamtstrom und den äquivalenten Widerstand (1/R_gesamt = 1/R₁ + 1/R₂ + ...) zu berechnen. Dieses Design stellt sicher, dass wenn ein Licht ausfällt, andere weiterarbeiten - kritisch für die Sicherheit bei Stromausfällen. Das System muss die 41 Stockwerke des Gebäudes mit Tausenden von LED-Leuchten effizient betreiben."
+        }
+    },
+
     // --- Basel Sek 3 Serie (Pädagogische Reihenfolge) ---
 
     // 1. MESSEN (Grundlage)
@@ -882,5 +909,36 @@ export const dePhysics = {
             grating_resolution: "R = mN",
             blaze_angle: "Optimiert Effizienz"
         }
+    },
+
+    // GP3.02: Elektromagnetismus Grundlagen
+    gp3_02: {
+        back: "Zurück zum Nexus",
+        title: "GP3.02 // ELEKTROMAGNETISMUS GRUNDLAGEN",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            electric_field: "ELEKTRISCHE FELDER",
+            magnetic_field: "MAGNETFELDER",
+            particle_motion: "TEILCHENBEWEGUNG"
+        },
+        scenarios: {
+            electric_field: "Sie sind Forschungsingenieur im Roche Tower Basel und entwickeln einen fortschrittlichen elektrostatischen Abscheider zur Luftreinigung in pharmazeutischen Reinräumen. Das System nutzt elektrische Felder, um Luftpartikel zu entfernen und sterile Produktionsumgebungen für lebensrettende Medikamente zu gewährleisten. Die elektrische Feldstärke E = kQ/r² (wobei k = 8,99×10⁹ N·m²/C²) bestimmt die Kraft auf geladene Teilchen. Eine Punktladung Q erzeugt ein nach außen strahlendes elektrisches Feld, wobei Feldlinien Richtung und Stärke zeigen. Die Kraft auf eine Testladung q in diesem Feld ist F = qE. Das Verständnis elektrischer Felder ist entscheidend für die Entwicklung medizinischer Geräte, Teilchenbeschleuniger bei CERNs Basel-Kollaboration und Halbleiterfertigung bei lokalen Technologieunternehmen. Diese Prinzipien erklären auch Blitzschutzsysteme an Basels historischen Gebäuden und die Funktionsweise von Touchscreens in Smartphones.",
+            magnetic_field: "In der MRT-Abteilung des Universitätsspitals Basel kalibrieren Sie Magnetfeldsysteme für medizinische Bildgebung. Magnetfelder werden durch elektrische Ströme erzeugt und in Tesla (T) gemessen. Ein gerader stromführender Draht erzeugt ein kreisförmiges Magnetfeld mit Stärke B = μ₀I/(2πr), wobei μ₀ = 4π×10⁻⁷ T·m/A die Permeabilität des Vakuums ist. Die Rechte-Hand-Regel bestimmt die Feldrichtung: Daumen zeigt entlang des Stroms, Finger krümmen sich in Feldrichtung. Spulen (Solenoide) erzeugen im Inneren ein gleichmäßiges Feld B = μ₀nI, das in MRT-Geräten verwendet wird, um Wasserstoffatome im Körper der Patienten auszurichten. Die Kraft auf einen stromführenden Draht in einem Magnetfeld ist F = BILsinθ, was Elektromotoren in Basels Straßenbahnen und Zügen ermöglicht. Magnetschwebetechnik (Maglev) nutzt diese Prinzipien, und Basels Anbindung an das Schweizer Bahnnetz basiert auf elektromagnetischen Systemen.",
+            particle_motion: "Sie sind Physiker an CERNs Basel-Forschungseinrichtung und analysieren Trajektorien geladener Teilchen in elektromagnetischen Feldern für Large Hadron Collider-Experimente. Wenn ein geladenes Teilchen (Ladung q, Masse m) in ein elektrisches Feld E eintritt, erfährt es Kraft F = qE und Beschleunigung a = qE/m und folgt einer parabolischen Bahn wie bei Wurfbewegungen. In einem Magnetfeld B erfährt ein bewegtes geladenes Teilchen die Lorentzkraft F = qvB senkrecht zu Geschwindigkeit und Feld, was zu Kreisbewegung mit Radius r = mv/(qB) führt. Dieses Prinzip ermöglicht Massenspektrometer in Novartis- und Roche-Qualitätskontrolllaboren, Molekülmassen pharmazeutischer Verbindungen zu identifizieren. Geschwindigkeitsselektoren verwenden gekreuzte elektrische und magnetische Felder, wobei Teilchen nur bei v = E/B geradeaus fliegen und Ionen nach Geschwindigkeit trennen. Zyklotrone beschleunigen Teilchen auf Spiralbahnen für Krebsstrahlentherapie im Universitätsspital Basel. Das Verständnis der Teilchenbewegung ist wesentlich für die Entwicklung von Teilchendetektoren, Analyse kosmischer Strahlung und Entwicklung medizinischer Bildgebungstechnologien der nächsten Generation."
+        },
+        objective_title: "Elektromagnetische Analyse",
+        complete: "Modul abgeschlossen!",
+        check: "Überprüfen",
+        next: "Nächste Herausforderung",
+        correct: "Feld verifiziert",
+        incorrect: "Berechnung prüfen",
+        ready: "Bereit",
+        monitor_title: "GP3.02_EM_MONITOR",
+        footer_left: "GP3.02_ELEKTROMAGNETISMUS // KNOTEN: BASEL"
     },
 };
