@@ -76,15 +76,15 @@ export default function Home() {
   };
 
   const mathModules = useMemo(() => ([
-    { code: "SM1.01", title: t("home.sm1_01_title"), desc: t("home.sm1_01_subtitle"), color: "neon-purple", href: "/chamber/sm1-01", tags: ["math", "socratic"] },
+    { code: "SM1.01", title: t("home.sm1_01_title"), desc: t("home.sm1_01_subtitle"), color: "neon-purple", href: "/chamber/sm1-01", tags: ["math"] },
     { code: "SM1.02", title: t("home.sm1_02_title"), desc: t("home.sm1_02_subtitle"), color: "neon-purple", href: "/chamber/sm1-02", tags: ["math"] },
     { code: "SM1.03", title: t("home.sm1_03_title"), desc: t("home.sm1_03_subtitle"), color: "neon-cyan", href: "/chamber/sm1-03", tags: ["math"] },
     { code: "SM1.04", title: t("home.sm1_04_title"), desc: t("home.sm1_04_subtitle"), color: "neon-green", href: "/chamber/sm1-04", tags: ["math"] },
     { code: "SM1.05", title: t("home.sm1_05_title"), desc: t("home.sm1_05_subtitle"), color: "neon-cyan", href: "/chamber/sm1-05", tags: ["math"] },
-    { code: "SM2.01", title: t("home.sm2_01_title"), desc: t("home.sm2_01_subtitle"), color: "neon-green", href: "/chamber/sm2-01", tags: ["math", "socratic"] },
+    { code: "SM2.01", title: t("home.sm2_01_title"), desc: t("home.sm2_01_subtitle"), color: "neon-green", href: "/chamber/sm2-01", tags: ["math"] },
     { code: "SM2.02", title: t("home.sm2_02_title"), desc: t("home.sm2_02_subtitle"), color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
     { code: "SM2.03", title: t("home.sm2_03_title"), desc: t("home.sm2_03_subtitle"), color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
-    { code: "SM2.04", title: t("home.sm2_04_title"), desc: t("home.sm2_04_subtitle"), color: "neon-cyan", href: "/chamber/sm2-04", tags: ["math", "socratic"] },
+    { code: "SM2.04", title: t("home.sm2_04_title"), desc: t("home.sm2_04_subtitle"), color: "neon-cyan", href: "/chamber/sm2-04", tags: ["math"] },
     { code: "SM2.05", title: t("home.sm2_05_title"), desc: t("home.sm2_05_subtitle"), color: "neon-cyan", href: "/chamber/sm2-05", tags: ["math"] },
     { code: "SM2.06", title: t("home.sm2_06_title"), desc: t("home.sm2_06_subtitle"), color: "neon-cyan", href: "/chamber/sm2-06", tags: ["math"] },
     { code: "SM2.07", title: t("home.sm2_07_title"), desc: t("home.sm2_07_subtitle"), color: "neon-green", href: "/chamber/sm2-07", tags: ["math"] },
@@ -92,16 +92,16 @@ export default function Home() {
     { code: "SM2.10", title: t("home.sm2_10_title"), desc: t("home.sm2_10_subtitle"), color: "neon-cyan", href: "/chamber/sm2-10", tags: ["math"] },
     { code: "SM2.11", title: t("home.sm2_11_title"), desc: t("home.sm2_11_subtitle"), color: "neon-green", href: "/chamber/sm2-11", tags: ["math"] },
     { code: "SM2.12", title: t("home.sm2_12_title"), desc: t("home.sm2_12_subtitle"), color: "neon-purple", href: "/chamber/sm2-12", tags: ["math"] },
-    { code: "SM3.01", title: t("home.sm3_01_title"), desc: t("home.sm3_01_subtitle"), color: "neon-purple", href: "/chamber/sm3-01", tags: ["math", "socratic"] },
+    { code: "SM3.01", title: t("home.sm3_01_title"), desc: t("home.sm3_01_subtitle"), color: "neon-purple", href: "/chamber/sm3-01", tags: ["math"] },
     { code: "SM3.02", title: t("home.sm3_02_title"), desc: t("home.sm3_02_subtitle"), color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
     { code: "SM3.03", title: t("home.sm3_03_title"), desc: t("home.sm3_03_subtitle"), color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
     { code: "SM3.04", title: t("home.sm3_04_title"), desc: t("home.sm3_04_subtitle"), color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
     { code: "SM3.05", title: t("home.sm3_05_title"), desc: t("home.sm3_05_subtitle"), color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
-    { code: "GM1.01", title: t("home.gm1_01_title"), desc: t("home.gm1_01_subtitle"), color: "neon-purple", href: "/chamber/gm1-01", tags: ["math", "socratic"] },
+    { code: "GM1.01", title: t("home.gm1_01_title"), desc: t("home.gm1_01_subtitle"), color: "neon-purple", href: "/chamber/gm1-01", tags: ["math"] },
     { code: "GM1.01-ADV", title: t("home.gm1_01_title") + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM1.02", title: t("home.gm1_02_title"), desc: t("home.gm1_02_subtitle"), color: "neon-green", href: "/chamber/gm1-02", tags: ["math"] },
     { code: "GM2.01", title: t("home.gm2_01_title"), desc: t("home.gm2_01_subtitle"), color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
-    { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math", "socratic"] },
+    { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math"] },
     { code: "GM4.01", title: t("home.gm4_01_title"), desc: t("home.gm4_01_subtitle"), color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
   ]), [t]);
 
@@ -172,7 +172,6 @@ export default function Home() {
     { id: "math", label: t("home.filter_tags.math") },
     { id: "chemistry", label: t("home.filter_tags.chemistry") },
     { id: "biology", label: t("home.filter_tags.biology") },
-    { id: "socratic", label: t("home.filter_tags.socratic") },
   ]), [t]);
 
   const toggleTag = (tagId: string) => {
