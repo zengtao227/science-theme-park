@@ -315,6 +315,9 @@ export const enChemistry = {
             identify: "IDENTIFY",
             properties: "PROPERTIES",
             reactions: "REACTIONS"
+        },
+        prompts: {
+            identify_powders: "Identify the three white powders"
         }
     },
     sc1_02: {

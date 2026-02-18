@@ -303,6 +303,9 @@ export const deChemistry = {
             identify: "IDENTIFIZIEREN",
             properties: "EIGENSCHAFTEN",
             reactions: "REAKTIONEN"
+        },
+        prompts: {
+            identify_powders: "Identifizieren Sie die drei weißen Pulver"
         }
     },
     sc1_02: {

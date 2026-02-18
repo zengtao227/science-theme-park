@@ -315,6 +315,9 @@ export const cnChemistry = {
             identify: "鉴定",
             properties: "性质",
             reactions: "反应"
+        },
+        prompts: {
+            identify_powders: "鉴定三种白色粉末"
         }
     },
     sc1_02: {

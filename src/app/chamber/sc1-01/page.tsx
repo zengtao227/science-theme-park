@@ -19,7 +19,7 @@ interface C101Quest extends Quest {
   correctIdentifications: Record<string, Substance>; // "A" -> "soda"
 }
 
-function buildStagePool(difficulty: Difficulty, stage: Stage): C101Quest[] {
+function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) => string): C101Quest[] {
   const quests: C101Quest[] = [];
 
   // Stage 1: IDENTIFY - Identify the three powders (5 questions per difficulty)
@@ -77,7 +77,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): C101Quest[] {
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: arrangement as Record<string, Substance>,
-        promptLatex: `\\text{Identify the three white powders}`,
+        promptLatex: t('sc1_01.prompts.identify_powders'),
         expressionLatex: `\\text{Use: Water, Vinegar, Fire, Iodine}`,
         targetLatex: `\\text{A, B, C}`,
         correctLatex: `\\text{A=${arrangement.A}, B=${arrangement.B}, C=${arrangement.C}}`,
@@ -321,7 +321,7 @@ export default function C101Page() {
     handleDifficultyChange,
     handleStageChange,
   } = useQuestManager<C101Quest, Stage>({
-    buildPool: (d, s) => buildStagePool(d, s),
+    buildPool: (d, s) => buildStagePool(d, s, t),
     initialStage: "IDENTIFY",
   });
 
