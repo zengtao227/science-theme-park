@@ -4,7 +4,7 @@ import { useEffect, useCallback } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import IntegerCanvas from "@/components/chamber/sm1-03/IntegerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -13,11 +13,10 @@ type Stage = "NUMBER_LINE" | "RATIONALS" | "QUADRANTS";
 type IntegerQuest = Quest & { stage: Stage; context?: string; scenario?: string; value?: number; x?: number; y?: number };
 
 export default function SM104Page() {
-  const { currentLanguage, completeStage } = useAppStore();
-  const locale = translations[currentLanguage as keyof typeof translations] as typeof translations.EN;
-  const t = locale.sm1_03 || translations.EN.sm1_03;
+  const { completeStage } = useAppStore();
+  const { t, currentLanguage } = useLanguage();
 
-  const buildStagePool = useCallback((t: typeof translations.EN.sm1_03, difficulty: Difficulty, stage: Stage): IntegerQuest[] => {
+  const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): IntegerQuest[] => {
     const pools: Record<Stage, Record<Difficulty, IntegerQuest[]>> = {
       NUMBER_LINE: {
         BASIC: [
@@ -25,8 +24,8 @@ export default function SM104Page() {
             id: "NL_B1",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_identify_neg3,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_identify_neg3"),
             promptLatex: "\\text{Position}",
             expressionLatex: "-3",
             targetLatex: "x",
@@ -38,8 +37,8 @@ export default function SM104Page() {
             id: "NL_B2",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_identify_5,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_identify_5"),
             promptLatex: "\\text{Position}",
             expressionLatex: "5",
             targetLatex: "x",
@@ -51,8 +50,8 @@ export default function SM104Page() {
             id: "NL_B3",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_temp_neg2,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_temp_neg2"),
             promptLatex: "\\text{Temperature}",
             expressionLatex: "-2°C",
             targetLatex: "T",
@@ -64,8 +63,8 @@ export default function SM104Page() {
             id: "NL_B4",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_depth_neg4,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_depth_neg4"),
             promptLatex: "\\text{Depth}",
             expressionLatex: "-4m",
             targetLatex: "d",
@@ -77,8 +76,8 @@ export default function SM104Page() {
             id: "NL_B5",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_identify_0,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_identify_0"),
             promptLatex: "\\text{Position}",
             expressionLatex: "0",
             targetLatex: "x",
@@ -92,8 +91,8 @@ export default function SM104Page() {
             id: "NL_C1",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_compare_neg5_neg2,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_compare_neg5_neg2"),
             promptLatex: "\\text{Which is colder?}",
             expressionLatex: "-5 < -2",
             targetLatex: "x",
@@ -105,8 +104,8 @@ export default function SM104Page() {
             id: "NL_C2",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_compare_neg3_1,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_compare_neg3_1"),
             promptLatex: "\\text{Which is smaller?}",
             expressionLatex: "-3 < 1",
             targetLatex: "x",
@@ -118,8 +117,8 @@ export default function SM104Page() {
             id: "NL_C3",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_order_three,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_order_three"),
             promptLatex: "\\text{Middle value}",
             expressionLatex: "-4, 0, 3",
             targetLatex: "x",
@@ -131,8 +130,8 @@ export default function SM104Page() {
             id: "NL_C4",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_rhine_level,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_rhine_level"),
             promptLatex: "\\text{Water level}",
             expressionLatex: "5 - 8 = -3",
             targetLatex: "L",
@@ -144,8 +143,8 @@ export default function SM104Page() {
             id: "NL_C5",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_temp_drop,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_temp_drop"),
             promptLatex: "\\text{Final temperature}",
             expressionLatex: "2 - 7 = -5",
             targetLatex: "T",
@@ -159,8 +158,8 @@ export default function SM104Page() {
             id: "NL_A1",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_distance_abs,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_distance_abs"),
             promptLatex: "\\text{Distance}",
             expressionLatex: "|-5 - 2| = 7",
             targetLatex: "d",
@@ -172,8 +171,8 @@ export default function SM104Page() {
             id: "NL_A2",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_abs_value,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_abs_value"),
             promptLatex: "\\text{Absolute value}",
             expressionLatex: "|-8| = 8",
             targetLatex: "x",
@@ -185,8 +184,8 @@ export default function SM104Page() {
             id: "NL_A3",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_distance_neg_neg,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_distance_neg_neg"),
             promptLatex: "\\text{Distance}",
             expressionLatex: "|-7 - (-3)| = 4",
             targetLatex: "d",
@@ -198,8 +197,8 @@ export default function SM104Page() {
             id: "NL_A4",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_midpoint,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_midpoint"),
             promptLatex: "\\text{Midpoint}",
             expressionLatex: "\\frac{-6 + 4}{2} = -1",
             targetLatex: "m",
@@ -211,8 +210,8 @@ export default function SM104Page() {
             id: "NL_A5",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_temp_range,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_temp_range"),
             promptLatex: "\\text{Temperature range}",
             expressionLatex: "|5 - (-8)| = 13",
             targetLatex: "R",
@@ -226,8 +225,8 @@ export default function SM104Page() {
             id: "NL_E1",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_operation_add,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_operation_add"),
             promptLatex: "\\text{Result}",
             expressionLatex: "-5 + 3 = -2",
             targetLatex: "x",
@@ -239,8 +238,8 @@ export default function SM104Page() {
             id: "NL_E2",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_operation_sub,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_operation_sub"),
             promptLatex: "\\text{Result}",
             expressionLatex: "-3 - 4 = -7",
             targetLatex: "x",
@@ -252,8 +251,8 @@ export default function SM104Page() {
             id: "NL_E3",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_operation_mult,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_operation_mult"),
             promptLatex: "\\text{Result}",
             expressionLatex: "-4 \\times 2 = -8",
             targetLatex: "x",
@@ -265,8 +264,8 @@ export default function SM104Page() {
             id: "NL_E4",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_multi_step,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_multi_step"),
             promptLatex: "\\text{Result}",
             expressionLatex: "-6 + 8 - 5 = -3",
             targetLatex: "x",
@@ -278,8 +277,8 @@ export default function SM104Page() {
             id: "NL_E5",
             difficulty,
             stage,
-            scenario: t.scenarios.number_line,
-            context: t.problems.nl_complex_op,
+            scenario: t("sm1_03.scenarios.number_line"),
+            context: t("sm1_03.problems.nl_complex_op"),
             promptLatex: "\\text{Result}",
             expressionLatex: "(-2 + 5) - (3 - 7) = 7",
             targetLatex: "x",
@@ -295,8 +294,8 @@ export default function SM104Page() {
             id: "R_B1",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_place_half,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_place_half"),
             promptLatex: "\\text{Position}",
             expressionLatex: "0.5",
             targetLatex: "x",
@@ -308,8 +307,8 @@ export default function SM104Page() {
             id: "R_B2",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_place_neg_half,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_place_neg_half"),
             promptLatex: "\\text{Position}",
             expressionLatex: "-0.5",
             targetLatex: "x",
@@ -321,8 +320,8 @@ export default function SM104Page() {
             id: "R_B3",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_place_1_5,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_place_1_5"),
             promptLatex: "\\text{Position}",
             expressionLatex: "1.5",
             targetLatex: "x",
@@ -334,8 +333,8 @@ export default function SM104Page() {
             id: "R_B4",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_place_neg2_5,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_place_neg2_5"),
             promptLatex: "\\text{Position}",
             expressionLatex: "-2.5",
             targetLatex: "x",
@@ -347,8 +346,8 @@ export default function SM104Page() {
             id: "R_B5",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_fraction_third,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_fraction_third"),
             promptLatex: "\\text{Decimal}",
             expressionLatex: "\\frac{1}{3} \\approx 0.33",
             targetLatex: "x",
@@ -362,8 +361,8 @@ export default function SM104Page() {
             id: "R_C1",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_compare_fractions,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_compare_fractions"),
             promptLatex: "\\text{Which is larger?}",
             expressionLatex: "-\\frac{1}{2} > -\\frac{1}{3}",
             targetLatex: "x",
@@ -375,8 +374,8 @@ export default function SM104Page() {
             id: "R_C2",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_compare_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_compare_decimals"),
             promptLatex: "\\text{Which is smaller?}",
             expressionLatex: "-0.75 < -0.5",
             targetLatex: "x",
@@ -388,8 +387,8 @@ export default function SM104Page() {
             id: "R_C3",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_order_mixed,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_order_mixed"),
             promptLatex: "\\text{Smallest value}",
             expressionLatex: "-1.5, -0.5, 0.5",
             targetLatex: "x",
@@ -401,8 +400,8 @@ export default function SM104Page() {
             id: "R_C4",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_add_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_add_decimals"),
             promptLatex: "\\text{Sum}",
             expressionLatex: "0.5 + 0.25 = 0.75",
             targetLatex: "x",
@@ -414,8 +413,8 @@ export default function SM104Page() {
             id: "R_C5",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_sub_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_sub_decimals"),
             promptLatex: "\\text{Difference}",
             expressionLatex: "1.5 - 2.25 = -0.75",
             targetLatex: "x",
@@ -429,8 +428,8 @@ export default function SM104Page() {
             id: "R_A1",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_compare_neg_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_compare_neg_decimals"),
             promptLatex: "\\text{Which is colder?}",
             expressionLatex: "-0.75 < -0.8",
             targetLatex: "T",
@@ -442,8 +441,8 @@ export default function SM104Page() {
             id: "R_A2",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_fraction_to_decimal,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_fraction_to_decimal"),
             promptLatex: "\\text{Decimal}",
             expressionLatex: "-\\frac{3}{4} = -0.75",
             targetLatex: "x",
@@ -455,8 +454,8 @@ export default function SM104Page() {
             id: "R_A3",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_mult_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_mult_decimals"),
             promptLatex: "\\text{Product}",
             expressionLatex: "0.5 \\times 1.5 = 0.75",
             targetLatex: "x",
@@ -468,8 +467,8 @@ export default function SM104Page() {
             id: "R_A4",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_div_decimals,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_div_decimals"),
             promptLatex: "\\text{Quotient}",
             expressionLatex: "1.5 \\div 0.5 = 3",
             targetLatex: "x",
@@ -481,8 +480,8 @@ export default function SM104Page() {
             id: "R_A5",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_mixed_operations,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_mixed_operations"),
             promptLatex: "\\text{Result}",
             expressionLatex: "0.5 + 1.25 - 0.75 = 1",
             targetLatex: "x",
@@ -496,8 +495,8 @@ export default function SM104Page() {
             id: "R_E1",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_order_complex,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_order_complex"),
             promptLatex: "\\text{Order from smallest}",
             expressionLatex: "-1.5, -\\frac{3}{2}, 0, 1.2",
             targetLatex: "x_1",
@@ -509,8 +508,8 @@ export default function SM104Page() {
             id: "R_E2",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_fraction_operations,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_fraction_operations"),
             promptLatex: "\\text{Result}",
             expressionLatex: "\\frac{1}{2} + \\frac{1}{4} = \\frac{3}{4}",
             targetLatex: "x",
@@ -522,8 +521,8 @@ export default function SM104Page() {
             id: "R_E3",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_neg_fraction_ops,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_neg_fraction_ops"),
             promptLatex: "\\text{Result}",
             expressionLatex: "-\\frac{1}{2} - \\frac{1}{4} = -\\frac{3}{4}",
             targetLatex: "x",
@@ -535,8 +534,8 @@ export default function SM104Page() {
             id: "R_E4",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_complex_decimal,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_complex_decimal"),
             promptLatex: "\\text{Result}",
             expressionLatex: "(0.5 - 1.25) \\times 2 = -1.5",
             targetLatex: "x",
@@ -548,8 +547,8 @@ export default function SM104Page() {
             id: "R_E5",
             difficulty,
             stage,
-            scenario: t.scenarios.rationals,
-            context: t.problems.r_repeating_decimal,
+            scenario: t("sm1_03.scenarios.rationals"),
+            context: t("sm1_03.problems.r_repeating_decimal"),
             promptLatex: "\\text{Decimal}",
             expressionLatex: "\\frac{2}{3} \\approx 0.67",
             targetLatex: "x",
@@ -565,8 +564,8 @@ export default function SM104Page() {
             id: "Q_B1",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_identify_point,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_identify_point"),
             promptLatex: "\\text{x-coordinate}",
             expressionLatex: "(2, 3)",
             targetLatex: "x",
@@ -579,8 +578,8 @@ export default function SM104Page() {
             id: "Q_B2",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_identify_y,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_identify_y"),
             promptLatex: "\\text{y-coordinate}",
             expressionLatex: "(3, 4)",
             targetLatex: "y",
@@ -593,8 +592,8 @@ export default function SM104Page() {
             id: "Q_B3",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_plot_positive,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_plot_positive"),
             promptLatex: "\\text{Plot point}",
             expressionLatex: "(1, 2)",
             targetLatex: "x",
@@ -607,8 +606,8 @@ export default function SM104Page() {
             id: "Q_B4",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_origin,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_origin"),
             promptLatex: "\\text{x-coordinate at origin}",
             expressionLatex: "(0, 0)",
             targetLatex: "x",
@@ -621,8 +620,8 @@ export default function SM104Page() {
             id: "Q_B5",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_axis_point,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_axis_point"),
             promptLatex: "\\text{y-coordinate}",
             expressionLatex: "(3, 0)",
             targetLatex: "y",
@@ -637,8 +636,8 @@ export default function SM104Page() {
             id: "Q_C1",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_quadrant_2,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_quadrant_2"),
             promptLatex: "\\text{Quadrant}",
             expressionLatex: "(-2, 5)",
             targetLatex: "Q",
@@ -651,8 +650,8 @@ export default function SM104Page() {
             id: "Q_C2",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_quadrant_3,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_quadrant_3"),
             promptLatex: "\\text{Quadrant}",
             expressionLatex: "(-3, -4)",
             targetLatex: "Q",
@@ -665,8 +664,8 @@ export default function SM104Page() {
             id: "Q_C3",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_quadrant_4,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_quadrant_4"),
             promptLatex: "\\text{Quadrant}",
             expressionLatex: "(4, -2)",
             targetLatex: "Q",
@@ -679,8 +678,8 @@ export default function SM104Page() {
             id: "Q_C4",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_basel_landmarks,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_basel_landmarks"),
             promptLatex: "\\text{x-coordinate of Kleinbasel}",
             expressionLatex: "(-3, 2)",
             targetLatex: "x",
@@ -693,8 +692,8 @@ export default function SM104Page() {
             id: "Q_C5",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_distance_horizontal,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_distance_horizontal"),
             promptLatex: "\\text{Distance}",
             expressionLatex: "|5 - 2| = 3",
             targetLatex: "d",
@@ -709,8 +708,8 @@ export default function SM104Page() {
             id: "Q_A1",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_reflect_x_axis,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_reflect_x_axis"),
             promptLatex: "\\text{y-coordinate after reflection}",
             expressionLatex: "(3, 4) \\to (3, -4)",
             targetLatex: "y'",
@@ -723,8 +722,8 @@ export default function SM104Page() {
             id: "Q_A2",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_reflect_y_axis,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_reflect_y_axis"),
             promptLatex: "\\text{x-coordinate after reflection}",
             expressionLatex: "(5, 2) \\to (-5, 2)",
             targetLatex: "x'",
@@ -737,8 +736,8 @@ export default function SM104Page() {
             id: "Q_A3",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_reflect_origin,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_reflect_origin"),
             promptLatex: "\\text{x-coordinate after reflection}",
             expressionLatex: "(3, 4) \\to (-3, -4)",
             targetLatex: "x'",
@@ -751,8 +750,8 @@ export default function SM104Page() {
             id: "Q_A4",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_translate,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_translate"),
             promptLatex: "\\text{x-coordinate after translation}",
             expressionLatex: "(2, 3) + (4, 0) = (6, 3)",
             targetLatex: "x'",
@@ -765,8 +764,8 @@ export default function SM104Page() {
             id: "Q_A5",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_midpoint_2d,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_midpoint_2d"),
             promptLatex: "\\text{x-coordinate of midpoint}",
             expressionLatex: "\\frac{2 + 6}{2} = 4",
             targetLatex: "x_m",
@@ -781,8 +780,8 @@ export default function SM104Page() {
             id: "Q_E1",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_distance_vertical,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_distance_vertical"),
             promptLatex: "\\text{Distance}",
             expressionLatex: "|5 - (-3)| = 8",
             targetLatex: "d",
@@ -795,8 +794,8 @@ export default function SM104Page() {
             id: "Q_E2",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_perimeter_rectangle,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_perimeter_rectangle"),
             promptLatex: "\\text{Perimeter}",
             expressionLatex: "2(4 + 3) = 14",
             targetLatex: "P",
@@ -809,8 +808,8 @@ export default function SM104Page() {
             id: "Q_E3",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_area_rectangle,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_area_rectangle"),
             promptLatex: "\\text{Area}",
             expressionLatex: "4 \\times 3 = 12",
             targetLatex: "A",
@@ -823,8 +822,8 @@ export default function SM104Page() {
             id: "Q_E4",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_diagonal_distance,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_diagonal_distance"),
             promptLatex: "\\text{Horizontal distance}",
             expressionLatex: "|6 - 2| = 4",
             targetLatex: "d_x",
@@ -837,8 +836,8 @@ export default function SM104Page() {
             id: "Q_E5",
             difficulty,
             stage,
-            scenario: t.scenarios.quadrants,
-            context: t.problems.q_complex_translation,
+            scenario: t("sm1_03.scenarios.quadrants"),
+            context: t("sm1_03.problems.q_complex_translation"),
             promptLatex: "\\text{Final x-coordinate}",
             expressionLatex: "2 + 3 - 1 = 4",
             targetLatex: "x'",
@@ -854,7 +853,7 @@ export default function SM104Page() {
     return pools[stage][difficulty] || [];
   }, []);
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(t, difficulty, stage), [t, buildStagePool]);
+  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(difficulty, stage), [buildStagePool]);
 
   const {
     currentQuest: quest,
@@ -881,34 +880,34 @@ export default function SM104Page() {
 
   return (
     <ChamberLayout
-      title={t.title}
+      title={t("sm1_03.title")}
       moduleCode="SM1.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "NUMBER_LINE", label: t.stages.number_line },
-        { id: "RATIONALS", label: t.stages.rationals },
-        { id: "QUADRANTS", label: t.stages.quadrants },
+        { id: "NUMBER_LINE", label: t("sm1_03.stages.number_line") },
+        { id: "RATIONALS", label: t("sm1_03.stages.rationals") },
+        { id: "QUADRANTS", label: t("sm1_03.stages.quadrants") },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
+      footerLeft={t("sm1_03.footer_left")}
       translations={{
-        back: t.back,
-        check: t.check,
-        next: t.next,
-        correct: t.correct,
-        incorrect: t.incorrect,
-        ready: t.ready,
-        monitor_title: t.monitor_title,
+        back: t("sm1_03.back"),
+        check: t("sm1_03.check"),
+        next: t("sm1_03.next"),
+        correct: t("sm1_03.correct"),
+        incorrect: t("sm1_03.incorrect"),
+        ready: t("sm1_03.ready"),
+        monitor_title: t("sm1_03.monitor_title"),
         difficulty: {
-          basic: t.difficulty.basic,
-          core: t.difficulty.core,
-          advanced: t.difficulty.advanced,
-          elite: t.difficulty.elite,
+          basic: t("sm1_03.difficulty.basic"),
+          core: t("sm1_03.difficulty.core"),
+          advanced: t("sm1_03.difficulty.advanced"),
+          elite: t("sm1_03.difficulty.elite"),
         },
       }}
       monitorContent={
@@ -925,7 +924,7 @@ export default function SM104Page() {
         {quest?.scenario && (
           <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
-              {t.basel_scenario}
+              {t("sm1_03.basel_scenario")}
             </div>
             <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
           </div>
@@ -934,7 +933,7 @@ export default function SM104Page() {
         {quest?.context && (
           <div className="p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
-              {t.scenario_title}
+              {t("sm1_03.scenario_title")}
             </div>
             <p className="text-white/80 leading-relaxed">{quest.context}</p>
           </div>
@@ -942,7 +941,7 @@ export default function SM104Page() {
 
         <div className="text-center space-y-4">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {t.calculate_title}
+            {t("sm1_03.calculate_title")}
           </div>
           <div className="text-3xl text-white font-black">
             <InlineMath math={quest?.promptLatex || ""} />
@@ -957,7 +956,7 @@ export default function SM104Page() {
 
         <div className="max-w-md mx-auto space-y-4">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white font-black text-center">
-            {t.answer_title}
+            {t("sm1_03.answer_title")}
           </div>
           {quest?.slots.map((slot) => (
             <div key={slot.id} className="space-y-2">
@@ -976,7 +975,7 @@ export default function SM104Page() {
 
         {lastCheck?.ok && quest?.correctLatex && (
           <div className="text-center p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
-            <div className="text-green-400 font-black mb-2">{t.solution_title}</div>
+            <div className="text-green-400 font-black mb-2">{t("sm1_03.solution_title")}</div>
             <BlockMath math={quest.correctLatex} />
           </div>
         )}
