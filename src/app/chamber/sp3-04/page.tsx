@@ -23,7 +23,7 @@ export default function SP304Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
-    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP304Quest[] => {
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage, t: (key: string) => string): SP304Quest[] => {
         const quests: SP304Quest[] = [];
 
         if (stage === "PRESSURE") {
@@ -31,8 +31,8 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "P-B1", difficulty, stage, depth: 10,
-                        promptLatex: `P = \\rho gh. \\text{ If } h = 10 \\text{ m, } \\rho = 1000 \\text{ kg/m}^3, \\text{ find gauge pressure } P.`,
-                        expressionLatex: `P = 1000 \\times 9.8 \\times 10`,
+                        promptLatex: t("sp3_04.prompts.pressure_basic_1"),
+                        expressionLatex: `P = \\rho \\times 9.8 \\times 10`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "98000", expected: 98000 }],
                         correctLatex: `P = 98000 \\text{ Pa}`,
@@ -40,7 +40,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-B2", difficulty, stage, depth: 5,
-                        promptLatex: `\\text{Water depth 5 m. Pressure? } (\\rho = 1000 \\text{ kg/m}^3, g = 10 \\text{ m/s}^2)`,
+                        promptLatex: t("sp3_04.prompts.pressure_basic_2"),
                         expressionLatex: `P = \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "50000", expected: 50000 }],
@@ -49,7 +49,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-B3", difficulty, stage, area: 2, force: 100,
-                        promptLatex: `\\text{Force 100 N on area 2 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_basic_3"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "50", expected: 50 }],
@@ -58,7 +58,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-B4", difficulty, stage, area: 0.5, force: 200,
-                        promptLatex: `\\text{Force 200 N on area 0.5 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_basic_4"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "400", expected: 400 }],
@@ -67,7 +67,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-B5", difficulty, stage, depth: 2,
-                        promptLatex: `\\text{Diver at 2 m depth. Gauge pressure? } (\\rho = 1000, g = 10)`,
+                        promptLatex: t("sp3_04.prompts.pressure_basic_5"),
                         expressionLatex: `P = \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "20000", expected: 20000 }],
@@ -81,7 +81,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "P-C1", difficulty, stage, depth: 15,
-                        promptLatex: `\\text{Submarine at 15 m depth. Total pressure? } (P_{atm} = 101000 \\text{ Pa})`,
+                        promptLatex: t("sp3_04.prompts.pressure_core_1"),
                         expressionLatex: `P_{total} = P_{atm} + \\rho gh`,
                         targetLatex: `P_{total}`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "248000", expected: 248000 }],
@@ -90,7 +90,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-C2", difficulty, stage, area: 0.01, force: 500,
-                        promptLatex: `\\text{Hydraulic press: 500 N on 0.01 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_core_2"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "50000", expected: 50000 }],
@@ -99,7 +99,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-C3", difficulty, stage, depth: 20,
-                        promptLatex: `\\text{Oil tank depth 20 m. Pressure at bottom? } (\\rho_{oil} = 800 \\text{ kg/m}^3)`,
+                        promptLatex: t("sp3_04.prompts.pressure_core_3"),
                         expressionLatex: `P = \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "156800", expected: 156800 }],
@@ -108,7 +108,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-C4", difficulty, stage, area: 0.02, force: 1000,
-                        promptLatex: `\\text{Piston: 1000 N on 0.02 m}^2. \\text{ Pressure transmitted?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_core_4"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "50000", expected: 50000 }],
@@ -117,7 +117,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-C5", difficulty, stage, depth: 100,
-                        promptLatex: `\\text{Ocean depth 100 m. Gauge pressure? } (\\rho = 1030 \\text{ kg/m}^3)`,
+                        promptLatex: t("sp3_04.prompts.pressure_core_5"),
                         expressionLatex: `P = \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "1009400", expected: 1009400 }],
@@ -131,7 +131,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "P-A1", difficulty, stage, depth: 50,
-                        promptLatex: `\\text{Two-layer fluid: 30 m water + 20 m oil } (\\rho_w = 1000, \\rho_o = 800). \\text{ Pressure at bottom?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_advanced_1"),
                         expressionLatex: `P = \\rho_w g h_w + \\rho_o g h_o`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "450800", expected: 450800 }],
@@ -140,7 +140,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-A2", difficulty, stage, area: 0.001, force: 100,
-                        promptLatex: `\\text{Hydraulic lift: small piston 0.001 m}^2, \\text{ large piston 0.1 m}^2. \\text{ Force 100 N on small. Force on large?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_advanced_2"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "10000", expected: 10000 }],
@@ -149,7 +149,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-A3", difficulty, stage, depth: 10,
-                        promptLatex: `\\text{U-tube: water on left, mercury on right. Water height 10 m. Mercury height? } (\\rho_w = 1000, \\rho_{Hg} = 13600)`,
+                        promptLatex: t("sp3_04.prompts.pressure_advanced_3"),
                         expressionLatex: `\\rho_w h_w = \\rho_{Hg} h_{Hg}`,
                         targetLatex: `h_{Hg}`,
                         slots: [{ id: "height", labelLatex: `h_{Hg} \\text{ (m)}`, placeholder: "0.735", expected: 0.735 }],
@@ -158,7 +158,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-A4", difficulty, stage, area: 0.05, force: 2000,
-                        promptLatex: `\\text{Hydraulic brake: master cylinder 0.01 m}^2, \\text{ slave cylinder 0.05 m}^2. \\text{ Force 200 N on master. Force on slave?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_advanced_4"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "1000", expected: 1000 }],
@@ -167,7 +167,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-A5", difficulty, stage, depth: 200,
-                        promptLatex: `\\text{Deep ocean: 200 m depth. Total pressure? } (P_{atm} = 101000, \\rho = 1030)`,
+                        promptLatex: t("sp3_04.prompts.pressure_advanced_5"),
                         expressionLatex: `P = P_{atm} + \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "2119800", expected: 2119800 }],
@@ -181,7 +181,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "P-E1", difficulty, stage, depth: 11000,
-                        promptLatex: `\\text{Mariana Trench: 11000 m depth. Pressure? } (\\rho = 1050, P_{atm} = 101000)`,
+                        promptLatex: t("sp3_04.prompts.pressure_elite_1"),
                         expressionLatex: `P = P_{atm} + \\rho gh`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (MPa)}`, placeholder: "113.1", expected: 113.1 }],
@@ -190,7 +190,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-E2", difficulty, stage, area: 0.0001, force: 50,
-                        promptLatex: `\\text{Hydraulic system: A}_1 = 0.0001 \\text{ m}^2, A_2 = 0.01 \\text{ m}^2. \\text{ Mechanical advantage?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_elite_2"),
                         expressionLatex: `MA = \\frac{A_2}{A_1}`,
                         targetLatex: `MA`,
                         slots: [{ id: "ma", labelLatex: `MA`, placeholder: "100", expected: 100 }],
@@ -199,7 +199,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-E3", difficulty, stage, depth: 5,
-                        promptLatex: `\\text{Three-layer fluid: 2 m water, 2 m oil } (\\rho = 800), \\text{ 1 m mercury } (\\rho = 13600). \\text{ Total pressure?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_elite_3"),
                         expressionLatex: `P = \\sum \\rho_i g h_i`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "168880", expected: 168880 }],
@@ -208,7 +208,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-E4", difficulty, stage, area: 0.002, force: 500,
-                        promptLatex: `\\text{Hydraulic jack: efficiency 80\\%. Input 500 N on 0.002 m}^2, \\text{ output area 0.2 m}^2. \\text{ Output force?}`,
+                        promptLatex: t("sp3_04.prompts.pressure_elite_4"),
                         expressionLatex: `F_2 = 0.8 \\times F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "40000", expected: 40000 }],
@@ -217,7 +217,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "P-E5", difficulty, stage, depth: 1000,
-                        promptLatex: `\\text{Submarine at 1000 m. Pressure difference across 1 m}^2 \\text{ hatch? } (\\rho = 1030)`,
+                        promptLatex: t("sp3_04.prompts.pressure_elite_5"),
                         expressionLatex: `F = (P_{water} - P_{atm}) \\times A`,
                         targetLatex: `F`,
                         slots: [{ id: "force", labelLatex: `F \\text{ (MN)}`, placeholder: "10.09", expected: 10.09 }],
@@ -233,7 +233,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "B-B1", difficulty, stage, volume: 0.1,
-                        promptLatex: `F_b = \\rho Vg. \\text{ If } V = 0.1 \\text{ m}^3, \\rho = 1000, \\text{ find buoyant force } F_b.`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_basic_1"),
                         expressionLatex: `F_b = 1000 \\times 0.1 \\times 9.8`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "980", expected: 980 }],
@@ -242,7 +242,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-B2", difficulty, stage, volume: 0.05,
-                        promptLatex: `\\text{Object volume 0.05 m}^3 \\text{ in water. Buoyant force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_basic_2"),
                         expressionLatex: `F_b = \\rho Vg`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "490", expected: 490 }],
@@ -251,7 +251,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-B3", difficulty, stage, volume: 0.2,
-                        promptLatex: `\\text{Balloon volume 0.2 m}^3 \\text{ in air } (\\rho = 1.2 \\text{ kg/m}^3). \\text{ Buoyant force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_basic_3"),
                         expressionLatex: `F_b = \\rho Vg`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "2.35", expected: 2.35 }],
@@ -260,7 +260,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-B4", difficulty, stage, volume: 0.01,
-                        promptLatex: `\\text{Rock volume 0.01 m}^3 \\text{ submerged in water. Buoyant force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_basic_4"),
                         expressionLatex: `F_b = \\rho Vg`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "98", expected: 98 }],
@@ -269,7 +269,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-B5", difficulty, stage, volume: 0.5,
-                        promptLatex: `\\text{Boat displaces 0.5 m}^3 \\text{ of water. Buoyant force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_basic_5"),
                         expressionLatex: `F_b = \\rho Vg`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "4900", expected: 4900 }],
@@ -283,7 +283,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "B-C1", difficulty, stage, volume: 0.02,
-                        promptLatex: `\\text{Wood block: mass 10 kg, volume 0.02 m}^3. \\text{ Will it float in water?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_core_1"),
                         expressionLatex: `\\rho_{wood} = m/V = 10/0.02 = 500 < 1000`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Float?}`, placeholder: "yes", expected: "yes" }],
@@ -292,7 +292,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-C2", difficulty, stage, volume: 0.1,
-                        promptLatex: `\\text{Object: weight 1500 N, volume 0.1 m}^3 \\text{ in water. Net force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_core_2"),
                         expressionLatex: `F_{net} = F_b - W = 980 - 1500`,
                         targetLatex: `F_{net}`,
                         slots: [{ id: "force", labelLatex: `F_{net} \\text{ (N)}`, placeholder: "-520", expected: -520 }],
@@ -301,7 +301,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-C3", difficulty, stage, volume: 0.05,
-                        promptLatex: `\\text{Ice cube: density 900 kg/m}^3, \\text{ volume 0.05 m}^3. \\text{ Fraction submerged in water?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_core_3"),
                         expressionLatex: `f = \\rho_{ice}/\\rho_{water}`,
                         targetLatex: `f`,
                         slots: [{ id: "frac", labelLatex: `f`, placeholder: "0.9", expected: 0.9 }],
@@ -310,7 +310,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-C4", difficulty, stage, volume: 0.03,
-                        promptLatex: `\\text{Aluminum block: mass 81 kg, volume 0.03 m}^3. \\text{ Apparent weight in water?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_core_4"),
                         expressionLatex: `W_{app} = W - F_b = mg - \\rho Vg`,
                         targetLatex: `W_{app}`,
                         slots: [{ id: "weight", labelLatex: `W_{app} \\text{ (N)}`, placeholder: "500", expected: 500 }],
@@ -319,7 +319,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-C5", difficulty, stage, volume: 1,
-                        promptLatex: `\\text{Hot air balloon: volume 1000 m}^3, \\rho_{air} = 1.2, \\rho_{hot} = 0.9. \\text{ Lift force?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_core_5"),
                         expressionLatex: `F_{lift} = (\\rho_{air} - \\rho_{hot}) Vg`,
                         targetLatex: `F_{lift}`,
                         slots: [{ id: "force", labelLatex: `F_{lift} \\text{ (N)}`, placeholder: "2940", expected: 2940 }],
@@ -333,7 +333,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "B-A1", difficulty, stage, volume: 0.04,
-                        promptLatex: `\\text{Hydrometer: mass 50 g, volume 40 cm}^3. \\text{ Depth submerged in water?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_advanced_1"),
                         expressionLatex: `V_{sub} = m/\\rho = 0.05/1000`,
                         targetLatex: `V_{sub}`,
                         slots: [{ id: "vol", labelLatex: `V_{sub} \\text{ (m}^3\\text{)}`, placeholder: "0.00005", expected: 0.00005 }],
@@ -342,7 +342,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-A2", difficulty, stage, volume: 0.1,
-                        promptLatex: `\\text{Ship: mass 50000 kg. Volume of water displaced?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_advanced_2"),
                         expressionLatex: `V = m/\\rho = 50000/1000`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V \\text{ (m}^3\\text{)}`, placeholder: "50", expected: 50 }],
@@ -351,7 +351,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-A3", difficulty, stage, volume: 0.02,
-                        promptLatex: `\\text{Cork: density 250 kg/m}^3, \\text{ volume 0.02 m}^3 \\text{ in water. Maximum load before sinking?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_advanced_3"),
                         expressionLatex: `m_{load} = (\\rho_w - \\rho_c) V`,
                         targetLatex: `m_{load}`,
                         slots: [{ id: "mass", labelLatex: `m_{load} \\text{ (kg)}`, placeholder: "15", expected: 15 }],
@@ -360,7 +360,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-A4", difficulty, stage, volume: 0.001,
-                        promptLatex: `\\text{Gold nugget: mass 19.3 kg, volume 0.001 m}^3. \\text{ Tension in string when submerged?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_advanced_4"),
                         expressionLatex: `T = W - F_b = mg - \\rho Vg`,
                         targetLatex: `T`,
                         slots: [{ id: "tension", labelLatex: `T \\text{ (N)}`, placeholder: "179.34", expected: 179.34 }],
@@ -369,7 +369,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-A5", difficulty, stage, volume: 500,
-                        promptLatex: `\\text{Submarine: volume 500 m}^3, \\text{ mass 400000 kg. Ballast water needed to submerge?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_advanced_5"),
                         expressionLatex: `m_{ballast} = \\rho V - m_{sub}`,
                         targetLatex: `m_{ballast}`,
                         slots: [{ id: "mass", labelLatex: `m_{ballast} \\text{ (kg)}`, placeholder: "100000", expected: 100000 }],
@@ -383,7 +383,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "B-E1", difficulty, stage, volume: 0.1,
-                        promptLatex: `\\text{Two-fluid system: object half in water, half in oil } (\\rho_o = 800). \\text{ Total buoyant force if } V = 0.1 \\text{ m}^3?`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_elite_1"),
                         expressionLatex: `F_b = (\\rho_w V_w + \\rho_o V_o) g`,
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "882", expected: 882 }],
@@ -392,7 +392,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-E2", difficulty, stage, volume: 0.05,
-                        promptLatex: `\\text{Hollow sphere: outer radius 0.2 m, inner radius 0.15 m, mass 10 kg. Will it float?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_elite_2"),
                         expressionLatex: `V = \\frac{4}{3}\\pi(R^3 - r^3), \\rho_{avg} = m/V`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Float?}`, placeholder: "yes", expected: "yes" }],
@@ -401,7 +401,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-E3", difficulty, stage, volume: 0.02,
-                        promptLatex: `\\text{Iceberg: density 900 kg/m}^3 \\text{ in seawater } (\\rho = 1030). \\text{ Fraction above water?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_elite_3"),
                         expressionLatex: `f_{above} = 1 - \\rho_{ice}/\\rho_{sea}`,
                         targetLatex: `f_{above}`,
                         slots: [{ id: "frac", labelLatex: `f_{above}`, placeholder: "0.126", expected: 0.126 }],
@@ -410,7 +410,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-E4", difficulty, stage, volume: 0.001,
-                        promptLatex: `\\text{Helium balloon: volume 1 m}^3, \\rho_{He} = 0.18, \\rho_{air} = 1.2, \\text{ balloon mass 0.5 kg. Max payload?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_elite_4"),
                         expressionLatex: `m_{payload} = (\\rho_{air} - \\rho_{He}) V - m_{balloon}`,
                         targetLatex: `m_{payload}`,
                         slots: [{ id: "mass", labelLatex: `m_{payload} \\text{ (kg)}`, placeholder: "0.52", expected: 0.52 }],
@@ -419,7 +419,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "B-E5", difficulty, stage, volume: 0.1,
-                        promptLatex: `\\text{Archimedes' crown: weight in air 10 N, in water 8.5 N. Density?}`,
+                        promptLatex: t("sp3_04.prompts.buoyancy_elite_5"),
                         expressionLatex: `\\rho = \\frac{W_{air}}{W_{air} - W_{water}} \\times \\rho_w`,
                         targetLatex: `\\rho`,
                         slots: [{ id: "density", labelLatex: `\\rho \\text{ (kg/m}^3\\text{)}`, placeholder: "6667", expected: 6667 }],
@@ -435,7 +435,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "H-B1", difficulty, stage, area: 0.01, force: 100,
-                        promptLatex: `P = F/A. \\text{ If } F = 100 \\text{ N on } A = 0.01 \\text{ m}^2, \\text{ find pressure } P.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_basic_1"),
                         expressionLatex: `P = 100 / 0.01`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
@@ -444,7 +444,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-B2", difficulty, stage, area: 0.02, force: 200,
-                        promptLatex: `\\text{Hydraulic press: 200 N on 0.02 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_basic_2"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
@@ -453,7 +453,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-B3", difficulty, stage, area: 0.05, force: 500,
-                        promptLatex: `\\text{Piston: 500 N on 0.05 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_basic_3"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
@@ -462,7 +462,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-B4", difficulty, stage, area: 0.1, force: 1000,
-                        promptLatex: `\\text{Hydraulic cylinder: 1000 N on 0.1 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_basic_4"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
@@ -471,7 +471,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-B5", difficulty, stage, area: 0.005, force: 50,
-                        promptLatex: `\\text{Small piston: 50 N on 0.005 m}^2. \\text{ Pressure?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_basic_5"),
                         expressionLatex: `P = F/A`,
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
@@ -485,7 +485,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "H-C1", difficulty, stage, area: 0.01, force: 100,
-                        promptLatex: `\\text{Hydraulic lift: } A_1 = 0.01 \\text{ m}^2, A_2 = 0.1 \\text{ m}^2, F_1 = 100 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_core_1"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "1000", expected: 1000 }],
@@ -494,7 +494,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-C2", difficulty, stage, area: 0.005, force: 50,
-                        promptLatex: `\\text{Hydraulic brake: } A_1 = 0.005 \\text{ m}^2, A_2 = 0.05 \\text{ m}^2, F_1 = 50 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_core_2"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "500", expected: 500 }],
@@ -503,7 +503,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-C3", difficulty, stage, area: 0.02, force: 200,
-                        promptLatex: `\\text{Hydraulic jack: } A_1 = 0.02 \\text{ m}^2, A_2 = 0.2 \\text{ m}^2, F_1 = 200 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_core_3"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "2000", expected: 2000 }],
@@ -512,7 +512,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-C4", difficulty, stage, area: 0.001, force: 10,
-                        promptLatex: `\\text{Hydraulic press: } A_1 = 0.001 \\text{ m}^2, A_2 = 0.1 \\text{ m}^2, F_1 = 10 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_core_4"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "1000", expected: 1000 }],
@@ -521,7 +521,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-C5", difficulty, stage, area: 0.03, force: 300,
-                        promptLatex: `\\text{Hydraulic system: } A_1 = 0.03 \\text{ m}^2, A_2 = 0.3 \\text{ m}^2, F_1 = 300 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_core_5"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "3000", expected: 3000 }],
@@ -535,7 +535,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "H-A1", difficulty, stage, area: 0.01, force: 100,
-                        promptLatex: `\\text{Hydraulic lift: } A_1 = 0.01 \\text{ m}^2, F_1 = 100 \\text{ N, } F_2 = 5000 \\text{ N. Find } A_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_advanced_1"),
                         expressionLatex: `A_2 = A_1 \\times \\frac{F_2}{F_1}`,
                         targetLatex: `A_2`,
                         slots: [{ id: "area", labelLatex: `A_2 \\text{ (m}^2\\text{)}`, placeholder: "0.5", expected: 0.5 }],
@@ -544,7 +544,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-A2", difficulty, stage, area: 0.002, force: 50,
-                        promptLatex: `\\text{Hydraulic system: } A_1 = 0.002 \\text{ m}^2, A_2 = 0.2 \\text{ m}^2, \\text{ piston 1 moves 10 cm. Piston 2 moves?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_advanced_2"),
                         expressionLatex: `d_2 = d_1 \\times \\frac{A_1}{A_2}`,
                         targetLatex: `d_2`,
                         slots: [{ id: "dist", labelLatex: `d_2 \\text{ (cm)}`, placeholder: "0.1", expected: 0.1 }],
@@ -553,7 +553,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-A3", difficulty, stage, area: 0.01, force: 200,
-                        promptLatex: `\\text{Hydraulic press: efficiency 90\\%. } A_1 = 0.01 \\text{ m}^2, A_2 = 0.1 \\text{ m}^2, F_1 = 200 \\text{ N. Find } F_2.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_advanced_3"),
                         expressionLatex: `F_2 = 0.9 \\times F_1 \\times \\frac{A_2}{A_1}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "1800", expected: 1800 }],
@@ -562,7 +562,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-A4", difficulty, stage, area: 0.005, force: 100,
-                        promptLatex: `\\text{Hydraulic jack: } A_1 = 0.005 \\text{ m}^2, A_2 = 0.5 \\text{ m}^2, F_1 = 100 \\text{ N. Mechanical advantage?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_advanced_4"),
                         expressionLatex: `MA = \\frac{A_2}{A_1}`,
                         targetLatex: `MA`,
                         slots: [{ id: "ma", labelLatex: `MA`, placeholder: "100", expected: 100 }],
@@ -571,7 +571,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-A5", difficulty, stage, area: 0.01, force: 150,
-                        promptLatex: `\\text{Hydraulic brake: } A_1 = 0.01 \\text{ m}^2, A_2 = 0.04 \\text{ m}^2, F_1 = 150 \\text{ N, } d_1 = 5 \\text{ cm. Work done?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_advanced_5"),
                         expressionLatex: `W = F_1 \\times d_1`,
                         targetLatex: `W`,
                         slots: [{ id: "work", labelLatex: `W \\text{ (J)}`, placeholder: "7.5", expected: 7.5 }],
@@ -585,7 +585,7 @@ export default function SP304Page() {
                 quests.push(
                     {
                         id: "H-E1", difficulty, stage, area: 0.001, force: 50,
-                        promptLatex: `\\text{Multi-stage hydraulic: } A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\text{ m}^2, F_1 = 50 \\text{ N. Find } F_3.`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_elite_1"),
                         expressionLatex: `F_3 = F_1 \\times \\frac{A_2}{A_1} \\times \\frac{A_3}{A_2}`,
                         targetLatex: `F_3`,
                         slots: [{ id: "force", labelLatex: `F_3 \\text{ (N)}`, placeholder: "5000", expected: 5000 }],
@@ -594,7 +594,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-E2", difficulty, stage, area: 0.01, force: 200,
-                        promptLatex: `\\text{Hydraulic system with friction: } A_1 = 0.01, A_2 = 0.1 \\text{ m}^2, F_1 = 200 \\text{ N, friction } = 100 \\text{ N. Net } F_2?`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_elite_2"),
                         expressionLatex: `F_2 = F_1 \\times \\frac{A_2}{A_1} - F_{friction}`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "1900", expected: 1900 }],
@@ -603,7 +603,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-E3", difficulty, stage, area: 0.005, force: 100,
-                        promptLatex: `\\text{Hydraulic accumulator: } A_1 = 0.005, A_2 = 0.05 \\text{ m}^2, \\text{ pressure } = 2 \\times 10^6 \\text{ Pa. Force on } A_2?`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_elite_3"),
                         expressionLatex: `F_2 = P \\times A_2`,
                         targetLatex: `F_2`,
                         slots: [{ id: "force", labelLatex: `F_2 \\text{ (N)}`, placeholder: "100000", expected: 100000 }],
@@ -612,7 +612,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-E4", difficulty, stage, area: 0.01, force: 500,
-                        promptLatex: `\\text{Hydraulic damper: } A = 0.01 \\text{ m}^2, \\text{ velocity } = 0.5 \\text{ m/s, viscosity creates } 200 \\text{ N resistance. Net force?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_elite_4"),
                         expressionLatex: `F_{net} = F_{applied} - F_{resistance}`,
                         targetLatex: `F_{net}`,
                         slots: [{ id: "force", labelLatex: `F_{net} \\text{ (N)}`, placeholder: "300", expected: 300 }],
@@ -621,7 +621,7 @@ export default function SP304Page() {
                     },
                     {
                         id: "H-E5", difficulty, stage, area: 0.002, force: 100,
-                        promptLatex: `\\text{Hydraulic circuit: } A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\text{ m}^2 \\text{ in series. } F_1 = 100 \\text{ N. Total MA?}`,
+                        promptLatex: t("sp3_04.prompts.hydraulics_elite_5"),
                         expressionLatex: `MA_{total} = \\frac{A_3}{A_1}`,
                         targetLatex: `MA`,
                         slots: [{ id: "ma", labelLatex: `MA`, placeholder: "100", expected: 100 }],
@@ -635,7 +635,7 @@ export default function SP304Page() {
         return quests;
     }, []);
 
-    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s, t), [buildStagePool, t]);
 
     const {
         currentQuest,

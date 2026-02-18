@@ -341,28 +341,103 @@ export const cnPhysics = {
     // SP3.04: 流体与压力 (映射自原 sp1_07)
     sp3_04: {
         back: "返回枢纽",
-        title: "SP3.04 // 压力与流体",
+        title: "SP3.04 // 压力与浮力",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
-        next: "执行下一步骤",
-        check: "验证数据",
-        correct: "计算正确",
-        incorrect: "参数失配",
-        ready: "就绪",
-        monitor_title: "SP3.04_流体监控站",
-        footer_left: "SP3.04_流体力学 // 节点：莱茵河",
-        objective_title: "当前任务目标",
-        stages: { pressure: "压强", buoyancy: "浮力", hydraulics: "液压传动" },
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        footer_left: "SP3.04_流体力学 // 节点：巴塞尔",
+        stages: {
+            pressure: "压力",
+            buoyancy: "浮力",
+            hydraulics: "液压"
+        },
         prompts: {
-            pressure_depth: "潜水员在莱茵河潜入 {depth} 米深处。计算总压强。",
-            buoyant_force: "一个体积为 {volume} m³ 的物体没入莱茵河中。计算其受到的浮力。",
-            hint_pressure: "使用公式：P = P₀ + ρgh",
-            hint_archimedes: "利用阿基米德原理：F_b = ρ_water × V × g"
-        },
-        scenarios: {
-            rhine_swimming: "莱茵河游泳：在巴塞尔中桥附近潜水。水的压强随深度线性增加，影响潜水设备的安全系数。",
-            rhine_boat: "莱茵河货运：了解浮力对于在巴塞尔与鹿特丹之间航行的驳船载重计算至关重要。"
-        },
-        feedback: { correct: "流体力学原理应用正确！", incorrect: "请重新核查阿基米德原理。" }
+            // 压力 - 基础 (5)
+            pressure_basic_1: "P = \\\\rho gh. \\\\text{ 若 } h = 10 \\\\text{ m, } \\\\rho = 1000 \\\\text{ kg/m}^3, \\\\text{ 求表压 } P.",
+            pressure_basic_2: "\\\\text{水深 5 m。压力？ } (\\\\rho = 1000 \\\\text{ kg/m}^3, g = 10 \\\\text{ m/s}^2)",
+            pressure_basic_3: "\\\\text{力 100 N 作用在面积 2 m}^2. \\\\text{ 压力？}",
+            pressure_basic_4: "\\\\text{力 200 N 作用在面积 0.5 m}^2. \\\\text{ 压力？}",
+            pressure_basic_5: "\\\\text{潜水员在 2 m 深度。表压？ } (\\\\rho = 1000, g = 10)",
+            
+            // 压力 - 核心 (5)
+            pressure_core_1: "\\\\text{潜艇在 15 m 深度。总压力？ } (P_{atm} = 101000 \\\\text{ Pa})",
+            pressure_core_2: "\\\\text{液压机：500 N 作用在 0.01 m}^2. \\\\text{ 压力？}",
+            pressure_core_3: "\\\\text{油箱深度 20 m。底部压力？ } (\\\\rho_{oil} = 800 \\\\text{ kg/m}^3)",
+            pressure_core_4: "\\\\text{活塞：1000 N 作用在 0.02 m}^2. \\\\text{ 传递的压力？}",
+            pressure_core_5: "\\\\text{海洋深度 100 m。表压？ } (\\\\rho = 1030 \\\\text{ kg/m}^3)",
+            
+            // 压力 - 进阶 (5)
+            pressure_advanced_1: "\\\\text{双层流体：30 m 水 + 20 m 油 } (\\\\rho_w = 1000, \\\\rho_o = 800). \\\\text{ 底部压力？}",
+            pressure_advanced_2: "\\\\text{液压升降机：小活塞 0.001 m}^2, \\\\text{ 大活塞 0.1 m}^2. \\\\text{ 小活塞上 100 N 力。大活塞上的力？}",
+            pressure_advanced_3: "\\\\text{U 型管：左侧水，右侧水银。水高 10 m。水银高度？ } (\\\\rho_w = 1000, \\\\rho_{Hg} = 13600)",
+            pressure_advanced_4: "\\\\text{液压制动：主缸 0.01 m}^2, \\\\text{ 从缸 0.05 m}^2. \\\\text{ 主缸上 200 N 力。从缸上的力？}",
+            pressure_advanced_5: "\\\\text{深海：200 m 深度。总压力？ } (P_{atm} = 101000, \\\\rho = 1030)",
+            
+            // 压力 - 精英 (5)
+            pressure_elite_1: "\\\\text{马里亚纳海沟：11000 m 深度。压力？ } (\\\\rho = 1050, P_{atm} = 101000)",
+            pressure_elite_2: "\\\\text{液压系统：A}_1 = 0.0001 \\\\text{ m}^2, A_2 = 0.01 \\\\text{ m}^2. \\\\text{ 机械优势？}",
+            pressure_elite_3: "\\\\text{三层流体：2 m 水，2 m 油 } (\\\\rho = 800), \\\\text{ 1 m 水银 } (\\\\rho = 13600). \\\\text{ 总压力？}",
+            pressure_elite_4: "\\\\text{液压千斤顶：效率 80\\\\%. 输入 500 N 在 0.002 m}^2, \\\\text{ 输出面积 0.2 m}^2. \\\\text{ 输出力？}",
+            pressure_elite_5: "\\\\text{潜艇在 1000 m。1 m}^2 \\\\text{ 舱门上的压力差？ } (\\\\rho = 1030)",
+            
+            // 浮力 - 基础 (5)
+            buoyancy_basic_1: "F_b = \\\\rho Vg. \\\\text{ 若 } V = 0.1 \\\\text{ m}^3, \\\\rho = 1000, \\\\text{ 求浮力 } F_b.",
+            buoyancy_basic_2: "\\\\text{物体体积 0.05 m}^3 \\\\text{ 在水中。浮力？}",
+            buoyancy_basic_3: "\\\\text{气球体积 0.2 m}^3 \\\\text{ 在空气中 } (\\\\rho = 1.2 \\\\text{ kg/m}^3). \\\\text{ 浮力？}",
+            buoyancy_basic_4: "\\\\text{岩石体积 0.01 m}^3 \\\\text{ 浸没在水中。浮力？}",
+            buoyancy_basic_5: "\\\\text{船排开 0.5 m}^3 \\\\text{ 的水。浮力？}",
+            
+            // 浮力 - 核心 (5)
+            buoyancy_core_1: "\\\\text{木块：质量 10 kg，体积 0.02 m}^3. \\\\text{ 会在水中漂浮吗？}",
+            buoyancy_core_2: "\\\\text{物体：重量 1500 N，体积 0.1 m}^3 \\\\text{ 在水中。净力？}",
+            buoyancy_core_3: "\\\\text{冰块：密度 900 kg/m}^3, \\\\text{ 体积 0.05 m}^3. \\\\text{ 在水中浸没的分数？}",
+            buoyancy_core_4: "\\\\text{铝块：质量 81 kg，体积 0.03 m}^3. \\\\text{ 在水中的表观重量？}",
+            buoyancy_core_5: "\\\\text{热气球：体积 1000 m}^3, \\\\rho_{air} = 1.2, \\\\rho_{hot} = 0.9. \\\\text{ 升力？}",
+            
+            // 浮力 - 进阶 (5)
+            buoyancy_advanced_1: "\\\\text{比重计：质量 50 g，体积 40 cm}^3. \\\\text{ 在水中浸没的深度？}",
+            buoyancy_advanced_2: "\\\\text{船：质量 50000 kg。排开的水的体积？}",
+            buoyancy_advanced_3: "\\\\text{软木：密度 250 kg/m}^3, \\\\text{ 体积 0.02 m}^3 \\\\text{ 在水中。下沉前的最大负载？}",
+            buoyancy_advanced_4: "\\\\text{金块：质量 19.3 kg，体积 0.001 m}^3. \\\\text{ 浸没时绳子的张力？}",
+            buoyancy_advanced_5: "\\\\text{潜艇：体积 500 m}^3, \\\\text{ 质量 400000 kg。下潜所需的压载水？}",
+            
+            // 浮力 - 精英 (5)
+            buoyancy_elite_1: "\\\\text{双流体系统：物体一半在水中，一半在油中 } (\\\\rho_o = 800). \\\\text{ 若 } V = 0.1 \\\\text{ m}^3 \\\\text{ 总浮力？}",
+            buoyancy_elite_2: "\\\\text{空心球：外半径 0.2 m，内半径 0.15 m，质量 10 kg。会漂浮吗？}",
+            buoyancy_elite_3: "\\\\text{冰山：密度 900 kg/m}^3 \\\\text{ 在海水中 } (\\\\rho = 1030). \\\\text{ 水面以上的分数？}",
+            buoyancy_elite_4: "\\\\text{氦气球：体积 1 m}^3, \\\\rho_{He} = 0.18, \\\\rho_{air} = 1.2, \\\\text{ 气球质量 0.5 kg。最大载荷？}",
+            buoyancy_elite_5: "\\\\text{阿基米德的王冠：空气中重 10 N，水中重 8.5 N。密度？}",
+            
+            // 液压 - 基础 (5)
+            hydraulics_basic_1: "P = F/A. \\\\text{ 若 } F = 100 \\\\text{ N 作用在 } A = 0.01 \\\\text{ m}^2, \\\\text{ 求压力 } P.",
+            hydraulics_basic_2: "\\\\text{液压机：200 N 作用在 0.02 m}^2. \\\\text{ 压力？}",
+            hydraulics_basic_3: "\\\\text{活塞：500 N 作用在 0.05 m}^2. \\\\text{ 压力？}",
+            hydraulics_basic_4: "\\\\text{液压缸：1000 N 作用在 0.1 m}^2. \\\\text{ 压力？}",
+            hydraulics_basic_5: "\\\\text{小活塞：50 N 作用在 0.005 m}^2. \\\\text{ 压力？}",
+            
+            // 液压 - 核心 (5)
+            hydraulics_core_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。求 } F_2.",
+            hydraulics_core_2: "\\\\text{液压制动：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.05 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_2.",
+            hydraulics_core_3: "\\\\text{液压千斤顶：} A_1 = 0.02 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
+            hydraulics_core_4: "\\\\text{液压机：} A_1 = 0.001 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 10 \\\\text{ N。求 } F_2.",
+            hydraulics_core_5: "\\\\text{液压系统：} A_1 = 0.03 \\\\text{ m}^2, A_2 = 0.3 \\\\text{ m}^2, F_1 = 300 \\\\text{ N。求 } F_2.",
+            
+            // 液压 - 进阶 (5)
+            hydraulics_advanced_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, F_1 = 100 \\\\text{ N, } F_2 = 5000 \\\\text{ N。求 } A_2.",
+            hydraulics_advanced_2: "\\\\text{液压系统：} A_1 = 0.002 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, \\\\text{ 活塞 1 移动 10 cm。活塞 2 移动？}",
+            hydraulics_advanced_3: "\\\\text{液压机：效率 90\\\\%. } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
+            hydraulics_advanced_4: "\\\\text{液压千斤顶：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.5 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。机械优势？}",
+            hydraulics_advanced_5: "\\\\text{液压制动：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.04 \\\\text{ m}^2, F_1 = 150 \\\\text{ N, } d_1 = 5 \\\\text{ cm。做功？}",
+            
+            // 液压 - 精英 (5)
+            hydraulics_elite_1: "\\\\text{多级液压：} A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_3.",
+            hydraulics_elite_2: "\\\\text{带摩擦的液压系统：} A_1 = 0.01, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N，摩擦力 } = 100 \\\\text{ N。净 } F_2?",
+            hydraulics_elite_3: "\\\\text{液压蓄能器：} A_1 = 0.005, A_2 = 0.05 \\\\text{ m}^2, \\\\text{ 压力 } = 2 \\\\times 10^6 \\\\text{ Pa。} A_2 \\\\text{ 上的力？}",
+            hydraulics_elite_4: "\\\\text{液压阻尼器：} A = 0.01 \\\\text{ m}^2, \\\\text{ 速度 } = 0.5 \\\\text{ m/s，粘度产生 } 200 \\\\text{ N 阻力。净力？}",
+            hydraulics_elite_5: "\\\\text{串联液压回路：} A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\\\text{ m}^2. F_1 = 100 \\\\text{ N。总机械优势？}"
+        }
     },
 
     // SP3.05: 简单机械 (映射自原 sp1_04 - 完整背景版)
@@ -879,5 +954,6 @@ export const cnPhysics = {
             grating_resolution: "R = mN",
             blaze_angle: "优化效率"
         }
-    }
+    },
+    
 };

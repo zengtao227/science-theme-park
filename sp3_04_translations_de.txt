@@ -1,0 +1,102 @@
+// SP3-04 German Translations - Add to src/lib/i18n/de/physics.ts
+
+sp3_04: {
+    back: "Zurück zum Nexus",
+    title: "SP3.04 // DRUCK & AUFTRIEB",
+    difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+    next: "Nächste Sequenz",
+    check: "Verifizieren",
+    correct: "Bestätigt",
+    incorrect: "Abweichung",
+    footer_left: "SP3.04_STRÖMUNGSMECHANIK // KNOTEN: BASEL",
+    stages: {
+        pressure: "DRUCK",
+        buoyancy: "AUFTRIEB",
+        hydraulics: "HYDRAULIK"
+    },
+    prompts: {
+        // DRUCK - BASIS (5)
+        pressure_basic_1: "P = \\\\rho gh. \\\\text{ Wenn } h = 10 \\\\text{ m, } \\\\rho = 1000 \\\\text{ kg/m}^3, \\\\text{ finde Überdruck } P.",
+        pressure_basic_2: "\\\\text{Wassertiefe 5 m. Druck? } (\\\\rho = 1000 \\\\text{ kg/m}^3, g = 10 \\\\text{ m/s}^2)",
+        pressure_basic_3: "\\\\text{Kraft 100 N auf Fläche 2 m}^2. \\\\text{ Druck?}",
+        pressure_basic_4: "\\\\text{Kraft 200 N auf Fläche 0.5 m}^2. \\\\text{ Druck?}",
+        pressure_basic_5: "\\\\text{Taucher in 2 m Tiefe. Überdruck? } (\\\\rho = 1000, g = 10)",
+        
+        // DRUCK - KERN (5)
+        pressure_core_1: "\\\\text{U-Boot in 15 m Tiefe. Gesamtdruck? } (P_{atm} = 101000 \\\\text{ Pa})",
+        pressure_core_2: "\\\\text{Hydraulikpresse: 500 N auf 0.01 m}^2. \\\\text{ Druck?}",
+        pressure_core_3: "\\\\text{Öltank Tiefe 20 m. Druck am Boden? } (\\\\rho_{oil} = 800 \\\\text{ kg/m}^3)",
+        pressure_core_4: "\\\\text{Kolben: 1000 N auf 0.02 m}^2. \\\\text{ Übertragener Druck?}",
+        pressure_core_5: "\\\\text{Meerestiefe 100 m. Überdruck? } (\\\\rho = 1030 \\\\text{ kg/m}^3)",
+        
+        // DRUCK - FORTGESCHRITTEN (5)
+        pressure_advanced_1: "\\\\text{Zweischicht-Fluid: 30 m Wasser + 20 m Öl } (\\\\rho_w = 1000, \\\\rho_o = 800). \\\\text{ Druck am Boden?}",
+        pressure_advanced_2: "\\\\text{Hydraulikheber: kleiner Kolben 0.001 m}^2, \\\\text{ großer Kolben 0.1 m}^2. \\\\text{ Kraft 100 N auf klein. Kraft auf groß?}",
+        pressure_advanced_3: "\\\\text{U-Rohr: Wasser links, Quecksilber rechts. Wasserhöhe 10 m. Quecksilberhöhe? } (\\\\rho_w = 1000, \\\\rho_{Hg} = 13600)",
+        pressure_advanced_4: "\\\\text{Hydraulikbremse: Hauptzylinder 0.01 m}^2, \\\\text{ Nebenzylinder 0.05 m}^2. \\\\text{ Kraft 200 N auf Haupt. Kraft auf Neben?}",
+        pressure_advanced_5: "\\\\text{Tiefsee: 200 m Tiefe. Gesamtdruck? } (P_{atm} = 101000, \\\\rho = 1030)",
+        
+        // DRUCK - ELITE (5)
+        pressure_elite_1: "\\\\text{Marianengraben: 11000 m Tiefe. Druck? } (\\\\rho = 1050, P_{atm} = 101000)",
+        pressure_elite_2: "\\\\text{Hydrauliksystem: A}_1 = 0.0001 \\\\text{ m}^2, A_2 = 0.01 \\\\text{ m}^2. \\\\text{ Mechanischer Vorteil?}",
+        pressure_elite_3: "\\\\text{Dreischicht-Fluid: 2 m Wasser, 2 m Öl } (\\\\rho = 800), \\\\text{ 1 m Quecksilber } (\\\\rho = 13600). \\\\text{ Gesamtdruck?}",
+        pressure_elite_4: "\\\\text{Hydraulikwagenheber: Wirkungsgrad 80\\\\%. Eingang 500 N auf 0.002 m}^2, \\\\text{ Ausgangsfläche 0.2 m}^2. \\\\text{ Ausgangskraft?}",
+        pressure_elite_5: "\\\\text{U-Boot bei 1000 m. Druckdifferenz über 1 m}^2 \\\\text{ Luke? } (\\\\rho = 1030)",
+        
+        // AUFTRIEB - BASIS (5)
+        buoyancy_basic_1: "F_b = \\\\rho Vg. \\\\text{ Wenn } V = 0.1 \\\\text{ m}^3, \\\\rho = 1000, \\\\text{ finde Auftriebskraft } F_b.",
+        buoyancy_basic_2: "\\\\text{Objektvolumen 0.05 m}^3 \\\\text{ in Wasser. Auftriebskraft?}",
+        buoyancy_basic_3: "\\\\text{Ballonvolumen 0.2 m}^3 \\\\text{ in Luft } (\\\\rho = 1.2 \\\\text{ kg/m}^3). \\\\text{ Auftriebskraft?}",
+        buoyancy_basic_4: "\\\\text{Felsvolumen 0.01 m}^3 \\\\text{ untergetaucht in Wasser. Auftriebskraft?}",
+        buoyancy_basic_5: "\\\\text{Boot verdrängt 0.5 m}^3 \\\\text{ Wasser. Auftriebskraft?}",
+        
+        // AUFTRIEB - KERN (5)
+        buoyancy_core_1: "\\\\text{Holzblock: Masse 10 kg, Volumen 0.02 m}^3. \\\\text{ Schwimmt es in Wasser?}",
+        buoyancy_core_2: "\\\\text{Objekt: Gewicht 1500 N, Volumen 0.1 m}^3 \\\\text{ in Wasser. Nettokraft?}",
+        buoyancy_core_3: "\\\\text{Eiswürfel: Dichte 900 kg/m}^3, \\\\text{ Volumen 0.05 m}^3. \\\\text{ Untergetauchter Anteil in Wasser?}",
+        buoyancy_core_4: "\\\\text{Aluminiumblock: Masse 81 kg, Volumen 0.03 m}^3. \\\\text{ Scheinbares Gewicht in Wasser?}",
+        buoyancy_core_5: "\\\\text{Heißluftballon: Volumen 1000 m}^3, \\\\rho_{air} = 1.2, \\\\rho_{hot} = 0.9. \\\\text{ Auftriebskraft?}",
+        
+        // AUFTRIEB - FORTGESCHRITTEN (5)
+        buoyancy_advanced_1: "\\\\text{Hydrometer: Masse 50 g, Volumen 40 cm}^3. \\\\text{ Eintauchtiefe in Wasser?}",
+        buoyancy_advanced_2: "\\\\text{Schiff: Masse 50000 kg. Verdrängtes Wasservolumen?}",
+        buoyancy_advanced_3: "\\\\text{Kork: Dichte 250 kg/m}^3, \\\\text{ Volumen 0.02 m}^3 \\\\text{ in Wasser. Maximale Last vor Sinken?}",
+        buoyancy_advanced_4: "\\\\text{Goldklumpen: Masse 19.3 kg, Volumen 0.001 m}^3. \\\\text{ Seilspannung beim Eintauchen?}",
+        buoyancy_advanced_5: "\\\\text{U-Boot: Volumen 500 m}^3, \\\\text{ Masse 400000 kg. Benötigtes Ballastwasser zum Tauchen?}",
+        
+        // AUFTRIEB - ELITE (5)
+        buoyancy_elite_1: "\\\\text{Zwei-Fluid-System: Objekt halb in Wasser, halb in Öl } (\\\\rho_o = 800). \\\\text{ Gesamtauftrieb wenn } V = 0.1 \\\\text{ m}^3?",
+        buoyancy_elite_2: "\\\\text{Hohlkugel: Außenradius 0.2 m, Innenradius 0.15 m, Masse 10 kg. Schwimmt sie?}",
+        buoyancy_elite_3: "\\\\text{Eisberg: Dichte 900 kg/m}^3 \\\\text{ in Meerwasser } (\\\\rho = 1030). \\\\text{ Anteil über Wasser?}",
+        buoyancy_elite_4: "\\\\text{Heliumballon: Volumen 1 m}^3, \\\\rho_{He} = 0.18, \\\\rho_{air} = 1.2, \\\\text{ Ballonmasse 0.5 kg. Max. Nutzlast?}",
+        buoyancy_elite_5: "\\\\text{Archimedes' Krone: Gewicht in Luft 10 N, in Wasser 8.5 N. Dichte?}",
+        
+        // HYDRAULIK - BASIS (5)
+        hydraulics_basic_1: "P = F/A. \\\\text{ Wenn } F = 100 \\\\text{ N auf } A = 0.01 \\\\text{ m}^2, \\\\text{ finde Druck } P.",
+        hydraulics_basic_2: "\\\\text{Hydraulikpresse: 200 N auf 0.02 m}^2. \\\\text{ Druck?}",
+        hydraulics_basic_3: "\\\\text{Kolben: 500 N auf 0.05 m}^2. \\\\text{ Druck?}",
+        hydraulics_basic_4: "\\\\text{Hydraulikzylinder: 1000 N auf 0.1 m}^2. \\\\text{ Druck?}",
+        hydraulics_basic_5: "\\\\text{Kleiner Kolben: 50 N auf 0.005 m}^2. \\\\text{ Druck?}",
+        
+        // HYDRAULIK - KERN (5)
+        hydraulics_core_1: "\\\\text{Hydraulikheber: } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 100 \\\\text{ N. Finde } F_2.",
+        hydraulics_core_2: "\\\\text{Hydraulikbremse: } A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.05 \\\\text{ m}^2, F_1 = 50 \\\\text{ N. Finde } F_2.",
+        hydraulics_core_3: "\\\\text{Hydraulikwagenheber: } A_1 = 0.02 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, F_1 = 200 \\\\text{ N. Finde } F_2.",
+        hydraulics_core_4: "\\\\text{Hydraulikpresse: } A_1 = 0.001 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 10 \\\\text{ N. Finde } F_2.",
+        hydraulics_core_5: "\\\\text{Hydrauliksystem: } A_1 = 0.03 \\\\text{ m}^2, A_2 = 0.3 \\\\text{ m}^2, F_1 = 300 \\\\text{ N. Finde } F_2.",
+        
+        // HYDRAULIK - FORTGESCHRITTEN (5)
+        hydraulics_advanced_1: "\\\\text{Hydraulikheber: } A_1 = 0.01 \\\\text{ m}^2, F_1 = 100 \\\\text{ N, } F_2 = 5000 \\\\text{ N. Finde } A_2.",
+        hydraulics_advanced_2: "\\\\text{Hydrauliksystem: } A_1 = 0.002 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, \\\\text{ Kolben 1 bewegt sich 10 cm. Kolben 2 bewegt sich?}",
+        hydraulics_advanced_3: "\\\\text{Hydraulikpresse: Wirkungsgrad 90\\\\%. } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N. Finde } F_2.",
+        hydraulics_advanced_4: "\\\\text{Hydraulikwagenheber: } A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.5 \\\\text{ m}^2, F_1 = 100 \\\\text{ N. Mechanischer Vorteil?}",
+        hydraulics_advanced_5: "\\\\text{Hydraulikbremse: } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.04 \\\\text{ m}^2, F_1 = 150 \\\\text{ N, } d_1 = 5 \\\\text{ cm. Geleistete Arbeit?}",
+        
+        // HYDRAULIK - ELITE (5)
+        hydraulics_elite_1: "\\\\text{Mehrstufige Hydraulik: } A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\\\text{ m}^2, F_1 = 50 \\\\text{ N. Finde } F_3.",
+        hydraulics_elite_2: "\\\\text{Hydrauliksystem mit Reibung: } A_1 = 0.01, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N, Reibung } = 100 \\\\text{ N. Netto } F_2?",
+        hydraulics_elite_3: "\\\\text{Hydraulikspeicher: } A_1 = 0.005, A_2 = 0.05 \\\\text{ m}^2, \\\\text{ Druck } = 2 \\\\times 10^6 \\\\text{ Pa. Kraft auf } A_2?",
+        hydraulics_elite_4: "\\\\text{Hydraulikdämpfer: } A = 0.01 \\\\text{ m}^2, \\\\text{ Geschwindigkeit } = 0.5 \\\\text{ m/s, Viskosität erzeugt } 200 \\\\text{ N Widerstand. Nettokraft?}",
+        hydraulics_elite_5: "\\\\text{Hydraulikkreis: } A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\\\text{ m}^2 \\\\text{ in Reihe. } F_1 = 100 \\\\text{ N. Gesamt-MV?}"
+    }
+},

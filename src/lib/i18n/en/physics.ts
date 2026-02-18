@@ -340,9 +340,6 @@ export const enPhysics = {
 
     // SP3.04: Fluids & Pressure (from sp1_07)
     sp3_04: {
-        back: "Return to Nexus",
-        title: "SP3.04 // PRESSURE & FLUIDS",
-        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         next: "Execute Next Sequence",
         check: "Verify",
         correct: "Verified",
@@ -893,5 +890,5 @@ export const enPhysics = {
             grating_resolution: "R = mN",
             blaze_angle: "Optimizes efficiency"
         }
-    }
+    },
 };

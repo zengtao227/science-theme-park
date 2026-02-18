@@ -339,9 +339,6 @@ export const dePhysics = {
 
     // 4. FLUIDE (Anwendung Mechanik)
     sp3_04: {
-        back: "Zurück zum Nexus",
-        title: "SP3.04 // DRUCK & FLUIDE",
-        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         next: "Nächste Sequenz",
         check: "Verifizieren",
         correct: "Bestätigt",
@@ -857,5 +854,5 @@ export const dePhysics = {
             grating_resolution: "R = mN",
             blaze_angle: "Optimiert Effizienz"
         }
-    }
+    },
 };
