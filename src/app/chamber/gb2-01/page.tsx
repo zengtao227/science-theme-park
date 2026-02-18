@@ -162,12 +162,13 @@ export default function GB201Neurobiology() {
                     hintLatex: [`\\text{${t('gb2_01.prompts.hint_nernst')}}`]
                 });
             } else {
+                const promptText = t('gb2_01.prompts.nt_role_type', { effect: data.nt_effect || '', name: data.nt_name || '' });
                 quests.push({
                     id: `${stage}_${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     scenario: data.scenario,
-                    promptLatex: `\\text{Role: } \\text{${data.nt_effect}}. \\text{Type of } \\text{${data.nt_name}}?`,
+                    promptLatex: `\\text{${promptText}}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${data.expected}}`,
                     slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: data.expected }],

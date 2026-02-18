@@ -91,7 +91,15 @@ export const deBiology = {
             hint_anatomy: "Suchen Sie nach der langen Faser, die Impulse vom Zellkörper weg leitet.",
             hint_sodium: "Natrium (Na⁺) strömt während der Depolarisation ein.",
             hint_calcium: "Calciumeinstrom (Ca²⁺) löst die Vesikelfusion aus.",
-            hint_nernst: "Verwenden Sie die Nernst-Gleichung: E = 61 log10(C_out/C_in) bei 37°C."
+            hint_nernst: "Verwenden Sie die Nernst-Gleichung: E = 61 log10(C_out/C_in) bei 37°C.",
+            func_struct: "Struktur: {s}. Funktion?",
+            nernst_k: "K+ außen={o}, innen={i}. E_K?",
+            nernst_na: "Na+ außen={o}, innen={i}. E_Na?",
+            goldman: "Pk={pk}, Pna={pna}. Vm?",
+            phase_ion: "Phase: {p}. Welche Permeabilität dominiert?",
+            synapse_step: "Schritt {n}: {desc}. Nächster Schritt?",
+            drug_block: "Medikament blockiert {c}. Effekt auf AP?",
+            nt_role_type: "Rolle: {effect}. Typ von {name}?"
         },
         scenarios: {
             basel_biomedicine: "Universität Basel - Biozentrum Abteilung für Neurobiologie: Am Biozentrum, einem der führenden europäischen Zentren für Molekular- und Zellbiologie, arbeiten Sie in der Forschungsgruppe von Professorin Silvia Arber an der neuronalen Schaltkreis-Assemblierung. Das Labor konzentriert sich darauf zu verstehen, wie Motoneuronen im Rückenmark durch präzise axonale Wegfindung mit spezifischen Muskelgruppen verbunden werden. Mit fortschrittlichen Bildgebungsverfahren und Elektrophysiologie kartieren Sie die dendritischen Verzweigungen von Pyramidenneuronen und verfolgen, wie Aktionspotentiale mit Geschwindigkeiten bis zu 120 m/s durch myelinisierte Axone propagieren. Diese Forschung trägt direkt zur Entwicklung von Therapien für ALS (Amyotrophe Lateralsklerose) und Rückenmarksverletzungen bei. Die kollaborative Umgebung des Biozentrums, wo Friedrich Miescher 1869 erstmals Nuclein (DNA) isolierte, setzt Basels 150-jährige Tradition in den molekularen Lebenswissenschaften fort. Das Verständnis der Neuronenanatomie – von der Proteinsynthese-Maschinerie des Somas bis zu den synaptischen Vesikeln des Axonterminals – ist essentiell für Basels Pharmaindustrie und die neurologische Abteilung des Universitätsspitals.",

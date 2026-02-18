@@ -98,7 +98,8 @@ export const enBiology = {
             goldman: "Pk={pk}, Pna={pna}. Vm?",
             phase_ion: "Phase: {p}. Permeability dominates for?",
             synapse_step: "Step {n}: {desc}. Next step?",
-            drug_block: "Drug blocks {c}. Effect on AP?"
+            drug_block: "Drug blocks {c}. Effect on AP?",
+            nt_role_type: "Role: {effect}. Type of {name}?"
         },
         scenarios: {
             basel_biomedicine: "University of Basel - Biozentrum Neurobiology Department: At the Biozentrum, one of Europe's leading centers for molecular and cell biology, you work in Professor Silvia Arber's research group studying neural circuit assembly. The lab focuses on understanding how motor neurons in the spinal cord connect to specific muscle groups through precise axonal pathfinding. Using advanced imaging techniques and electrophysiology, you map the dendritic branching of pyramidal neurons and trace how action potentials propagate through myelinated axons at speeds up to 120 m/s. This research directly contributes to developing therapies for ALS (Amyotrophic Lateral Sclerosis) and spinal cord injuries. The Biozentrum's collaborative environment continues Basel's 150-year tradition in molecular life sciences—Friedrich Miescher first isolated nuclein (DNA) here in 1869. Understanding neuronal anatomy—from the protein synthesis machinery of the soma to the synaptic vesicles of the axon terminal—is essential for Basel's pharmaceutical industry and the University Hospital's neurology department.",
