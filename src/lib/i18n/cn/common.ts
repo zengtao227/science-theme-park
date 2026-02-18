@@ -242,8 +242,7 @@ export const cnCommon = {
             physics: "物理",
             math: "数学",
             chemistry: "化学",
-            biology: "生物",
-            socratic: "苏格拉底式"
+            biology: "生物"
         },
         completed_badge: "已完成",
     },

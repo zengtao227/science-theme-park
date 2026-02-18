@@ -244,8 +244,7 @@ export const deCommon = {
             physics: "Physik",
             math: "Mathe",
             chemistry: "Chemie",
-            biology: "Biologie",
-            socratic: "Sokratisch"
+            biology: "Biologie"
         },
         completed_badge: "ABGESCHLOSSEN",
     },

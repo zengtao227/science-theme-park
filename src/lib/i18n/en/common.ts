@@ -243,8 +243,7 @@ export const enCommon = {
             physics: "Physics",
             math: "Math",
             chemistry: "Chemistry",
-            biology: "Biology",
-            socratic: "Socratic"
+            biology: "Biology"
         },
         completed_badge: "COMPLETED"
     },
