@@ -139,6 +139,34 @@ export const dePhysics = {
         }
     },
 
+    // --- Basel Sek 2 Serie (SP2 - Elektrizität) ---
+
+    // SP2.01: Stromkreis Grundlagen
+    sp2_01: {
+        back: "Zurück zum Nexus",
+        title: "SP2.01 // STROMKREIS GRUNDLAGEN",
+        check: "Verifizieren",
+        next: "Weiter",
+        correct: "Stromkreis Bestätigt",
+        incorrect: "Stromkreis Fehler",
+        ready: "Bereit",
+        monitor_title: "SP2.01_STROMKREIS_LABOR",
+        footer_left: "SP2.01_ELEKTRIZITÄT // KNOTEN: BASEL",
+        objective_title: "Stromkreis Ziel",
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE" },
+        stages: {
+            components: "BAUTEILE",
+            simple_circuits: "EINFACHE STROMKREISE",
+            circuit_diagrams: "SCHALTPLÄNE"
+        },
+        scenarios: {
+            components: "Basler Elektrische Sicherheit im Haushalt: Sie sind Auszubildender Elektriker an der Gewerbeschule Basel. Heute lernen Sie, Stromkreiskomponenten für Hausinstallationen zu identifizieren. Das Verständnis der Funktion jeder Komponente ist sicherheitskritisch - eine falsch identifizierte Komponente könnte Brände oder Stromschläge verursachen. In Basels historischen Gebäuden müssen elektrische Systeme strenge Schweizer Sicherheitsstandards (NIV 2020) erfüllen. Sie arbeiten mit Batterien (Stromquellen, die Spannung liefern), Glühbirnen (wandeln elektrische Energie in Licht um), Schaltern (steuern den Stromfluss), Drähten (leiten Elektrizität) und Widerständen (begrenzen den Strom). Jede Komponente hat eine spezifische Rolle beim Schutz von Häusern und der Gewährleistung zuverlässiger Stromversorgung. Dieses Wissen ist für Basels 170.000 Einwohner, die täglich auf sichere elektrische Systeme angewiesen sind, unerlässlich.",
+            simple_circuits: "Basler Weihnachtsbeleuchtung Installation: Sie helfen bei der Installation von Weihnachtslichtern entlang der Basler Freien Strasse. Die Stadt verlangt energieeffiziente LED-Lichterketten, die unabhängig gesteuert werden können. Sie müssen Reihenschaltungen (wo Glühbirnen in einem einzigen Pfad sind - wenn eine ausfällt, erlöschen alle) von Parallelschaltungen (wo Glühbirnen in separaten Pfaden sind - jede kann unabhängig gesteuert werden) verstehen. Reihenschaltungen sind einfacher, aber weniger zuverlässig. Parallelschaltungen verwenden mehr Draht, bieten aber Redundanz. Für Basels 2 km Weihnachtsbeleuchtung ermöglichen Parallelschaltungen mit individuellen Schaltern, Abschnitte tagsüber auszuschalten, um Energie zu sparen. Der Basler Weihnachtsmarkt verwendet über 50.000 LED-Glühbirnen, und ein ordnungsgemäßes Schaltungsdesign stellt sicher, dass sie sicher bei 230V AC betrieben werden und dabei minimalen Strom verbrauchen.",
+            circuit_diagrams: "Basler Elektrotechnik Ausbildung: Im ABB Schweiz Ausbildungszentrum Basel lernen Sie, Schaltpläne zu lesen und zu zeichnen - die universelle Sprache der Elektriker weltweit. Schaltungssymbole sind von der IEC (Internationale Elektrotechnische Kommission) standardisiert, sodass Ingenieure in Basel mit Kollegen in Tokio oder New York zusammenarbeiten können. Eine Batterie wird als zwei parallele Linien dargestellt (lange positive, kurze negative). Eine Glühbirne ist ein Kreis mit einem X darin. Ein Schalter ist eine Lücke in der Linie (offen) oder eine durchgehende Linie (geschlossen). Widerstände sind Rechtecke oder Zickzacklinien. Amperemeter (messen Strom in Ampere) und Voltmeter (messen Spannung in Volt) sind Kreise mit A oder V darin. Diese Symbole erscheinen in jedem elektrischen Schaltplan von einfachen Hausschaltungen bis zu komplexen Industriesystemen bei Basels Roche und Novartis Pharmaunternehmen. Die Beherrschung von Schaltplänen ist für Ihr Eidgenössisches Fähigkeitszeugnis (EFZ) in Elektrotechnik unerlässlich."
+        },
+        feedback: { correct: "Schaltungsanalyse bestätigt.", incorrect: "Schaltungskonfigurationsfehler erkannt." }
+    },
+
     // --- Basel Sek 3 Serie (Pädagogische Reihenfolge) ---
 
     // 1. MESSEN (Grundlage)

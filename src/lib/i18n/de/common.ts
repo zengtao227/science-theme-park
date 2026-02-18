@@ -127,6 +127,9 @@ export const deCommon = {
         sp3_08_title: "SP3.08 // GEOMETRISCHE OPTIK",
         sp3_08_subtitle: "Erforsche Reflexion, Brechung und Linsen in Basler Präzisionslaboren.",
 
+        sp2_01_title: "SP2.01 // STROMKREIS GRUNDLAGEN",
+        sp2_01_subtitle: "Meistere Stromkreiskomponenten, einfache Schaltungen und Schaltpläne mit Basler Sicherheitsstandards.",
+
         sp2_02_title: "SP2.02 // STROMKREIS-SANDBOX",
         sp2_02_subtitle: "Ingenieurwesen des Basler Stromnetzes. Ohm'sches Gesetz und Schaltungen.",
         sp2_03_title: "SP2.03 // MOTORLABOR",

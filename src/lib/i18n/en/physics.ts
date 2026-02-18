@@ -140,6 +140,34 @@ export const enPhysics = {
         }
     },
 
+    // --- Basel Sek 2 Series (SP2 - Electricity) ---
+
+    // SP2.01: Circuit Basics
+    sp2_01: {
+        back: "Back to Nexus",
+        title: "SP2.01 // CIRCUIT BASICS",
+        check: "Verify",
+        next: "Next",
+        correct: "Circuit Verified",
+        incorrect: "Circuit Error",
+        ready: "Ready",
+        monitor_title: "SP2.01_CIRCUIT_LAB",
+        footer_left: "SP2.01_ELECTRICITY // NODE: BASEL",
+        objective_title: "Circuit Objective",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        stages: {
+            components: "COMPONENTS",
+            simple_circuits: "SIMPLE CIRCUITS",
+            circuit_diagrams: "CIRCUIT DIAGRAMS"
+        },
+        scenarios: {
+            components: "Basel Home Electrical Safety: You are a trainee electrician at Basel's vocational school (Gewerbeschule Basel). Today you're learning to identify circuit components for home electrical installations. Understanding each component's function is critical for safety - a misidentified component could cause fires or electrical shocks. In Basel's historic buildings, electrical systems must meet strict Swiss safety standards (NIV 2020). You'll work with batteries (power sources providing voltage), bulbs (converting electrical energy to light), switches (controlling current flow), wires (conducting electricity), and resistors (limiting current). Each component has a specific role in protecting homes and ensuring reliable power delivery. This knowledge is essential for Basel's 170,000 residents who depend on safe electrical systems every day.",
+            simple_circuits: "Basel Christmas Light Installation: You're helping install Christmas lights along Basel's Freie Strasse shopping district. The city requires energy-efficient LED strings that can be controlled independently. You need to understand series circuits (where bulbs are in a single path - if one fails, all go dark) versus parallel circuits (where bulbs are in separate paths - each can be controlled independently). Series circuits are simpler but less reliable. Parallel circuits use more wire but provide redundancy. For Basel's 2km of Christmas lights, parallel circuits with individual switches allow sections to be turned off during the day to save energy. The Basel Christmas market uses over 50,000 LED bulbs, and proper circuit design ensures they operate safely at 230V AC while consuming minimal power.",
+            circuit_diagrams: "Basel Electrical Engineering Apprenticeship: At ABB Switzerland's Basel training center, you're learning to read and draw circuit diagrams - the universal language of electricians worldwide. Circuit symbols are standardized by IEC (International Electrotechnical Commission) so engineers in Basel can collaborate with colleagues in Tokyo or New York. A battery is shown as two parallel lines (long positive, short negative). A bulb is a circle with an X inside. A switch is a gap in the line (open) or continuous line (closed). Resistors are rectangles or zigzags. Ammeters (measuring current in amperes) and voltmeters (measuring voltage in volts) are circles with A or V inside. These symbols appear in every electrical schematic from simple home circuits to complex industrial systems at Basel's Roche and Novartis pharmaceutical plants. Mastering circuit diagrams is essential for your Swiss Federal Certificate of Proficiency (Eidgenössisches Fähigkeitszeugnis EFZ) in electrical engineering."
+        },
+        feedback: { correct: "Circuit analysis confirmed.", incorrect: "Circuit configuration error detected." }
+    },
+
     // --- Basel Sek 3 Series (Aligned SP3 Key Map) ---
 
     // SP3.01: Measurement (from sp1_01)

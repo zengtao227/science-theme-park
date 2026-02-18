@@ -131,6 +131,9 @@ export const enCommon = {
         sp3_08_title: "SP3.08 // GEOMETRICAL OPTICS",
         sp3_08_subtitle: "Explore light, lenses, and optical phenomena in Basel's precision labs.",
 
+        sp2_01_title: "SP2.01 // CIRCUIT BASICS",
+        sp2_01_subtitle: "Master circuit components, simple circuits, and circuit diagrams with Basel electrical safety standards.",
+
         sp2_02_title: "SP2.02 // CIRCUIT SANDBOX",
         sp2_02_subtitle: "Engineer Basel's power grid. Solve Ohm's Law and series/parallel circuits.",
         sp2_03_subtitle: "Electromagnetism and motor principles.",
