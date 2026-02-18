@@ -770,6 +770,12 @@ export const deMath = {
             terms_prompt: "Fasse gleichartige Terme zusammen, um den Ausdruck zu vereinfachen.",
             sub_prompt: "Werte den Ausdruck für den gegebenen Wert aus."
         },
+        prompts: {
+            simplify: "Vereinfachen:",
+            evaluate_for: "Werte {expr} für {var}={val} aus",
+            combine_like_terms: "Fasse gleichartige Terme zusammen",
+            substitute_and_evaluate: "Einsetzen und auswerten"
+        },
         scenarios: {
             variables: "Basler Rhybadhüsli Schliessfach: Du verwaltest Schliessfächer im berühmten Rheinbad. Jedes Fach (Variable 'x') enthält einen bestimmten Wert. Verstehe, dass 'x' nur ein Platzhalter ist.",
             terms: "Marktplatz Obststand: Du sortierst Lieferungen auf dem Basler Markt. Äpfel und Birnen kann man nicht mischen. Gruppiere gleiche Artikel: 3 Äpfel + 2 Äpfel = 5 Äpfel.",

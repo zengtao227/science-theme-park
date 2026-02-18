@@ -82,16 +82,16 @@ export default function SP301Page() {
             SI_UNITS: {
                 BASIC: [
                     { measurement: "length", unit: "m", name: "meter" },
-                    { measurement: "mass", unit: "kg", name: "kilogram" },
+                    { measurement: "mass", unit: "\text{kg}", name: "kilogram" },
                     { measurement: "time", unit: "s", name: "second" },
                     { measurement: "temperature", unit: "K", name: "kelvin" },
                     { measurement: "current", unit: "A", name: "ampere" }
                 ],
                 CORE: [
-                    { quantity: "force", unit: "N", formula: "kg·m/s²" },
-                    { quantity: "energy", unit: "J", formula: "N·m" },
-                    { quantity: "power", unit: "W", formula: "J/s" },
-                    { quantity: "pressure", unit: "Pa", formula: "N/m²" },
+                    { quantity: "force", unit: "\text{N}", formula: "kg·m/s²" },
+                    { quantity: "energy", unit: "\text{J}", formula: "N·m" },
+                    { quantity: "power", unit: "\text{W}", formula: "J/s" },
+                    { quantity: "pressure", unit: "\text{Pa}", formula: "N/m²" },
                     { quantity: "frequency", unit: "Hz", formula: "1/s" }
                 ],
                 ADVANCED: [
@@ -102,10 +102,10 @@ export default function SP301Page() {
                     { value: 250, from: "cm", to: "m", answer: "2.5" }
                 ],
                 ELITE: [
-                    { expr: "kg·m²/s²", unit: "J", name: "joule" },
-                    { expr: "kg·m/s²", unit: "N", name: "newton" },
-                    { expr: "kg/(m·s²)", unit: "Pa", name: "pascal" },
-                    { expr: "J/s", unit: "W", name: "watt" },
+                    { expr: "kg·m²/s²", unit: "\text{J}", name: "joule" },
+                    { expr: "kg·m/s²", unit: "\text{N}", name: "newton" },
+                    { expr: "kg/(m·s²)", unit: "\text{Pa}", name: "pascal" },
+                    { expr: "J/s", unit: "\text{W}", name: "watt" },
                     { expr: "C/s", unit: "A", name: "ampere" }
                 ]
             },

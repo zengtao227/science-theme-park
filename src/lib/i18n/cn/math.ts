@@ -741,6 +741,12 @@ export const cnMath = {
             terms_prompt: "合并同类项以化简表达式。",
             sub_prompt: "将给定的值代入表达式并计算结果。"
         },
+        prompts: {
+            simplify: "化简：",
+            evaluate_for: "计算 {expr} 当 {var}={val}",
+            combine_like_terms: "合并同类项",
+            substitute_and_evaluate: "代入并计算"
+        },
         scenarios: {
             variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
             terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",

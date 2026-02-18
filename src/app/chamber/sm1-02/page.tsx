@@ -190,28 +190,28 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{Simplify: } ${data.expr}`,
+                promptLatex: `\\text{${sm1_02_t.prompts.simplify} } ${data.expr}`,
                 expressionLatex: data.expr!,
                 targetLatex: String(data.answer),
                 visualMode: data.visualMode,
                 visualData: data.visualData,
                 slots,
                 correctLatex: String(data.answer),
-                hintLatex: [`\\text{Combine like terms}`],
+                hintLatex: [`\\text{${sm1_02_t.prompts.combine_like_terms}}`],
             });
         } else if (stage === "SUBSTITUTION") {
             quests.push({
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{Evaluate } ${data.expr} \\text{ for } ${data.var1}=${data.val1}`,
+                promptLatex: `\\text{${sm1_02_t.prompts.simplify} } ${data.expr} \\text{ for } ${data.var1}=${data.val1}`,
                 expressionLatex: data.expr!,
                 targetLatex: String(data.answer),
                 visualMode: data.visualMode,
                 visualData: data.visualData,
                 slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: data.answer }],
                 correctLatex: String(data.answer),
-                hintLatex: [`\\text{Substitute and evaluate}`],
+                hintLatex: [`\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
             });
         }
     });
@@ -246,6 +246,11 @@ export default function SM103Page() {
             variables: t("sm1_02.scenarios.variables"),
             terms: t("sm1_02.scenarios.terms"),
             substitution: t("sm1_02.scenarios.substitution")
+        },
+        prompts: {
+            simplify: t("sm1_02.prompts.simplify"),
+            combine_like_terms: t("sm1_02.prompts.combine_like_terms"),
+            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate")
         }
     };
 

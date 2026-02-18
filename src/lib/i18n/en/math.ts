@@ -761,6 +761,12 @@ export const enMath = {
             terms_prompt: "Combine like terms to simplify the expression.",
             sub_prompt: "Evaluate the expression for the given value."
         },
+        prompts: {
+            simplify: "Simplify:",
+            evaluate_for: "Evaluate {expr} for {var}={val}",
+            combine_like_terms: "Combine like terms",
+            substitute_and_evaluate: "Substitute and evaluate"
+        },
         scenarios: {
             variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
             terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
