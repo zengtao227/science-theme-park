@@ -941,4 +941,35 @@ export const dePhysics = {
         monitor_title: "GP3.02_EM_MONITOR",
         footer_left: "GP3.02_ELEKTROMAGNETISMUS // KNOTEN: BASEL"
     },
+
+    // GP3.03: Elektromagnetische Induktion
+    gp3_03: {
+        back: "Zurück zum Nexus",
+        title: "GP3.03 // ELEKTROMAGNETISCHE INDUKTION",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            faradays_law: "FARADAYSCHES GESETZ",
+            lenzs_law: "LENZSCHE REGEL",
+            generators: "GENERATOREN & MOTOREN"
+        },
+        scenarios: {
+            faradays_law: "Sie sind Elektroingenieur im Kraftwerk Birsfelden, einem Wasserkraftwerk am Rhein bei Basel, und analysieren elektromagnetische Induktion in den Generatoren der Anlage. Das Faradaysche Induktionsgesetz besagt, dass eine Änderung des magnetischen Flusses durch eine Spule eine elektromotorische Kraft (EMK) induziert: ε = -N(ΔΦ/Δt), wobei N die Windungszahl, Φ der magnetische Fluss (Φ = BA), B die magnetische Feldstärke und A die Spulenfläche ist. Wenn sich ein Magnet durch eine Spule bewegt oder eine Spule in einem Magnetfeld rotiert, induziert der sich ändernde Fluss einen Strom. Je schneller die Änderung, desto größer die induzierte EMK. Dieses Prinzip versorgt Basels Stromnetz mit Energie und wandelt die kinetische Energie des Rheins in Elektrizität für Haushalte, Krankenhäuser und Industrie um. Das Verständnis des Faradayschen Gesetzes ist wesentlich für die Entwicklung von Transformatoren bei ABB Schweiz, kabellosen Ladesystemen für Elektrofahrzeuge und Induktionskochfeldern in modernen Basler Küchen. Dieselbe Physik ermöglicht Metalldetektoren am Flughafen Basel und Magnetkartenleser im öffentlichen Verkehr.",
+            lenzs_law: "Im Physiklabor der Universität Basel demonstrieren Sie die Lenzsche Regel, die die Richtung des induzierten Stroms bestimmt. Die Lenzsche Regel besagt, dass der induzierte Strom in einer Richtung fließt, die der Änderung des magnetischen Flusses entgegenwirkt, die ihn verursacht hat, und so Energie erhält. Wenn sich der Nordpol eines Magneten einer Spule nähert, erzeugt der induzierte Strom ein Magnetfeld mit einem Nordpol, der dem Magneten zugewandt ist und ihn abstößt. Wenn sich der Magnet entfernt, zeigt der Südpol des induzierten Feldes zum Magneten und zieht ihn an. Dieser Widerstand erfordert Arbeit und wandelt mechanische Energie in elektrische Energie um. Die Lenzsche Regel erklärt elektromagnetisches Bremsen in Basels Straßenbahnen: Wenn Bremsen aktiviert werden, erzeugen induzierte Ströme in Metallscheiben entgegengesetzte Magnetkräfte, die das Fahrzeug ohne Reibung verlangsamen. Wirbelströme in Aluminiumblechen demonstrieren dieses Prinzip, das in Recyclinganlagen zur Metalltrennung verwendet wird. Das Verständnis der Lenzschen Regel ist entscheidend für die Entwicklung regenerativer Bremssysteme in Elektrofahrzeugen, magnetischer Dämpfer in Basels modernen Gebäuden zum Erdbebenschutz und berührungsloser Bremssysteme in Hochgeschwindigkeitszügen.",
+            generators: "Sie sind Energiesystemingenieur bei Axpo Energy und entwickeln und warten Generatoren für das mit Basel verbundene Schweizer Stromnetz. Elektrische Generatoren wandeln mechanische Energie mittels elektromagnetischer Induktion in elektrische Energie um. In einem Wechselstromgenerator rotiert eine Spule in einem Magnetfeld, ändert kontinuierlich den Fluss und induziert eine sinusförmige EMK: ε = NABω sin(ωt), wobei ω die Winkelgeschwindigkeit ist. Die Wasserkraftwerke des Rheins nutzen Turbinen, um Generatorspulen zu drehen und Wechselstrom mit 50 Hz für Basels Stromnetz zu erzeugen. Gleichstromgeneratoren verwenden Kommutatoren zur Erzeugung von Gleichstrom und versorgen Basels Straßenbahnsystem. Elektromotoren arbeiten umgekehrt: Elektrische Energie erzeugt magnetische Kräfte, die Rotation erzeugen, verwendet in allem von Basels Industriemaschinen bis zu Haushaltsgeräten. Transformatoren nutzen gegenseitige Induktion zur Änderung von Spannungsniveaus: Aufwärtstransformatoren erhöhen die Spannung für Fernübertragung von Birsfelden nach Basel, während Abwärtstransformatoren die Spannung für sichere Haushaltsnutzung reduzieren. Das Verständnis von Generatoren und Motoren ist wesentlich für erneuerbare Energiesysteme, Elektrofahrzeugdesign und die Wartung von Basels nachhaltiger Energieinfrastruktur."
+        },
+        objective_title: "Induktionsanalyse",
+        complete: "Modul abgeschlossen!",
+        check: "Überprüfen",
+        next: "Nächste Herausforderung",
+        correct: "Induktion verifiziert",
+        incorrect: "Berechnung prüfen",
+        ready: "Bereit",
+        monitor_title: "GP3.03_INDUKTION_MONITOR",
+        footer_left: "GP3.03_INDUKTION // KNOTEN: BASEL"
+    },
 };

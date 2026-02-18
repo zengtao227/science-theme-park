@@ -1004,4 +1004,35 @@ export const enPhysics = {
         monitor_title: "GP3.02_EM_MONITOR",
         footer_left: "GP3.02_ELECTROMAGNETISM // NODE: BASEL"
     },
+
+    // GP3.03: Electromagnetic Induction
+    gp3_03: {
+        back: "Back to Nexus",
+        title: "GP3.03 // ELECTROMAGNETIC INDUCTION",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            faradays_law: "FARADAY'S LAW",
+            lenzs_law: "LENZ'S LAW",
+            generators: "GENERATORS & MOTORS"
+        },
+        scenarios: {
+            faradays_law: "You are an electrical engineer at Kraftwerk Birsfelden, a hydroelectric power plant on the Rhine River near Basel, analyzing electromagnetic induction in the facility's generators. Faraday's Law of Electromagnetic Induction states that a changing magnetic flux through a coil induces an electromotive force (EMF): ε = -N(ΔΦ/Δt), where N is the number of turns, Φ is magnetic flux (Φ = BA), B is magnetic field strength, and A is the coil area. When a magnet moves through a coil or a coil rotates in a magnetic field, the changing flux induces a current. The faster the change, the greater the induced EMF. This principle powers Basel's electrical grid, converting the Rhine's kinetic energy into electricity for homes, hospitals, and industries. Understanding Faraday's Law is essential for designing transformers at ABB Switzerland, wireless charging systems for electric vehicles, and induction cooktops in modern Basel kitchens. The same physics enables metal detectors at Basel Airport and magnetic card readers in public transportation.",
+            lenzs_law: "At Basel University's physics laboratory, you are demonstrating Lenz's Law, which determines the direction of induced current. Lenz's Law states that the induced current flows in a direction to oppose the change in magnetic flux that caused it, conserving energy. When a magnet's north pole approaches a coil, the induced current creates a magnetic field with a north pole facing the magnet, repelling it. When the magnet moves away, the induced field's south pole faces the magnet, attracting it. This opposition requires work, converting mechanical energy to electrical energy. Lenz's Law explains electromagnetic braking in Basel's trams: when brakes engage, induced currents in metal discs create opposing magnetic forces, slowing the vehicle without friction. Eddy currents in aluminum sheets demonstrate this principle, used in recycling facilities to separate metals. Understanding Lenz's Law is crucial for designing regenerative braking systems in electric vehicles, magnetic dampers in Basel's modern buildings for earthquake protection, and non-contact braking systems in high-speed trains.",
+            generators: "You are a power systems engineer at Axpo Energy, designing and maintaining generators for Switzerland's electrical grid connected to Basel. Electric generators convert mechanical energy to electrical energy using electromagnetic induction. In an AC generator, a coil rotates in a magnetic field, continuously changing the flux and inducing a sinusoidal EMF: ε = NABω sin(ωt), where ω is angular velocity. The Rhine River's hydroelectric plants use turbines to rotate generator coils, producing alternating current at 50 Hz for Basel's power grid. DC generators use commutators to produce direct current, powering Basel's tram system. Electric motors work in reverse: electrical energy creates magnetic forces that produce rotation, used in everything from Basel's industrial machinery to household appliances. Transformers use mutual induction to change voltage levels: step-up transformers increase voltage for long-distance transmission from Birsfelden to Basel, while step-down transformers reduce voltage for safe household use. Understanding generators and motors is essential for renewable energy systems, electric vehicle design, and maintaining Basel's sustainable energy infrastructure."
+        },
+        objective_title: "Induction Analysis",
+        complete: "Module Complete!",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Induction Verified",
+        incorrect: "Check calculation",
+        ready: "Ready",
+        monitor_title: "GP3.03_INDUCTION_MONITOR",
+        footer_left: "GP3.03_INDUCTION // NODE: BASEL"
+    },
 };
