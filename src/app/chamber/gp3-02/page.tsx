@@ -7,6 +7,8 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectromagnetismVisualization from "@/components/chamber/gp3-02/ElectromagnetismVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
 
@@ -319,6 +321,13 @@ export default function GP302Electromagnetism() {
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">Question {currentQuest.id}</div>
                             <div className="text-white text-lg">{currentQuest.promptLatex}</div>
+                        </div>
+
+                        <div className="mb-4 p-4 bg-black/50 rounded-lg border border-cyan-500/30">
+                            <div className="text-white/60 text-xs uppercase tracking-wider mb-2">Formula</div>
+                            <div className="text-white text-xl">
+                                <InlineMath math={currentQuest.expressionLatex} />
+                            </div>
                         </div>
 
                         {currentQuest.slots.map((slot) => (

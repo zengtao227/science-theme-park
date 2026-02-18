@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 interface ElectromagnetismVisualizationProps {
     quest: any;
@@ -63,7 +65,7 @@ export default function ElectromagnetismVisualization({
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    E = kQ/r² (Coulomb's Law)
+                    <InlineMath math="E = \frac{kQ}{r^2}" />
                 </div>
             </div>
         );
@@ -108,7 +110,7 @@ export default function ElectromagnetismVisualization({
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    B = μ₀I/(2πr) (Ampère's Law)
+                    <InlineMath math="B = \frac{\mu_0 I}{2\pi r}" />
                 </div>
             </div>
         );
@@ -173,7 +175,7 @@ export default function ElectromagnetismVisualization({
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    F = qvB (Lorentz Force)
+                    <InlineMath math="F = qvB" />
                 </div>
             </div>
         );
