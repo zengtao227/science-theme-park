@@ -23,21 +23,43 @@ export default function SB301Page() {
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB301Quest[] => {
         const quests: SB301Quest[] = [];
-        const isAdvanced = difficulty === "ADVANCED" || difficulty === "ELITE";
 
         if (stage === "FOOD_CHAINS") {
-            const scenarios = [
-                { p: "Algae", c: "Zooplankton", next: "Silver Carp", scenario: "rhine_river" },
-                { p: "Waterweed", c: "Snails", next: "Tench", scenario: "rhine_river" },
-                { p: "Detritus", c: "Benthic Invertebrates", next: "Eel", scenario: "rhine_river" },
-                { p: "Phytoplankton", c: "Mussels", next: "Cormorant", scenario: "rhine_river" }
-            ];
+            const scenariosByDifficulty: Record<Difficulty, Array<{ p: string; c: string; next: string; scenario: string }>> = {
+                BASIC: [
+                    { p: "Algae", c: "Zooplankton", next: "Silver Carp", scenario: "rhine_river" },
+                    { p: "Waterweed", c: "Snails", next: "Tench", scenario: "rhine_river" },
+                    { p: "Grass", c: "Grasshopper", next: "Frog", scenario: "rhine_river" },
+                    { p: "Phytoplankton", c: "Krill", next: "Fish", scenario: "rhine_river" },
+                    { p: "Leaves", c: "Caterpillar", next: "Bird", scenario: "rhine_river" }
+                ],
+                CORE: [
+                    { p: "Detritus", c: "Benthic Invertebrates", next: "Eel", scenario: "rhine_river" },
+                    { p: "Phytoplankton", c: "Mussels", next: "Cormorant", scenario: "rhine_river" },
+                    { p: "Algae", c: "Water Flea", next: "Minnow", scenario: "rhine_river" },
+                    { p: "Aquatic Plants", c: "Tadpole", next: "Pike", scenario: "rhine_river" },
+                    { p: "Diatoms", c: "Copepods", next: "Herring", scenario: "rhine_river" }
+                ],
+                ADVANCED: [
+                    { p: "Seaweed", c: "Sea Urchin", next: "Sea Otter", scenario: "rhine_river" },
+                    { p: "Plankton", c: "Shrimp", next: "Salmon", scenario: "rhine_river" },
+                    { p: "Kelp", c: "Abalone", next: "Octopus", scenario: "rhine_river" },
+                    { p: "Microalgae", c: "Brine Shrimp", next: "Flamingo", scenario: "rhine_river" },
+                    { p: "Moss", c: "Snail", next: "Thrush", scenario: "rhine_river" }
+                ],
+                ELITE: [
+                    { p: "Chemosynthetic Bacteria", c: "Tube Worms", next: "Deep Sea Fish", scenario: "rhine_river" },
+                    { p: "Cyanobacteria", c: "Protists", next: "Jellyfish", scenario: "rhine_river" },
+                    { p: "Dinoflagellates", c: "Coral Polyps", next: "Parrotfish", scenario: "rhine_river" },
+                    { p: "Benthic Algae", c: "Sea Cucumber", next: "Triggerfish", scenario: "rhine_river" },
+                    { p: "Epiphytes", c: "Tree Frog", next: "Snake", scenario: "rhine_river" }
+                ]
+            };
 
-            const filtered = isAdvanced ? scenarios : scenarios.slice(0, 2);
-
-            filtered.forEach((item, idx) => {
+            const scenarios = scenariosByDifficulty[difficulty];
+            scenarios.forEach((item, idx) => {
                 quests.push({
-                    id: `FC-${difficulty}-${idx}`,
+                    id: `FC-${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     scenario: item.scenario,
@@ -52,17 +74,41 @@ export default function SB301Page() {
         }
 
         if (stage === "ENERGY_FLOW") {
-            const scenarios = isAdvanced ? [
-                { level: "Secondary", energy: 1250, expected: "125" },
-                { level: "Tertiary", energy: 85, expected: "8.5" }
-            ] : [
-                { level: "Primary", energy: 10000, expected: "1000" },
-                { level: "Primary", energy: 25000, expected: "2500" }
-            ];
+            const scenariosByDifficulty: Record<Difficulty, Array<{ level: string; energy: number; expected: string }>> = {
+                BASIC: [
+                    { level: "Primary", energy: 10000, expected: "1000" },
+                    { level: "Primary", energy: 25000, expected: "2500" },
+                    { level: "Primary", energy: 15000, expected: "1500" },
+                    { level: "Primary", energy: 20000, expected: "2000" },
+                    { level: "Primary", energy: 30000, expected: "3000" }
+                ],
+                CORE: [
+                    { level: "Secondary", energy: 1000, expected: "100" },
+                    { level: "Secondary", energy: 2500, expected: "250" },
+                    { level: "Secondary", energy: 1500, expected: "150" },
+                    { level: "Secondary", energy: 3000, expected: "300" },
+                    { level: "Secondary", energy: 2000, expected: "200" }
+                ],
+                ADVANCED: [
+                    { level: "Secondary", energy: 1250, expected: "125" },
+                    { level: "Tertiary", energy: 850, expected: "85" },
+                    { level: "Tertiary", energy: 1200, expected: "120" },
+                    { level: "Tertiary", energy: 750, expected: "75" },
+                    { level: "Tertiary", energy: 950, expected: "95" }
+                ],
+                ELITE: [
+                    { level: "Tertiary", energy: 85, expected: "8.5" },
+                    { level: "Quaternary", energy: 12, expected: "1.2" },
+                    { level: "Quaternary", energy: 25, expected: "2.5" },
+                    { level: "Quaternary", energy: 18, expected: "1.8" },
+                    { level: "Quaternary", energy: 32, expected: "3.2" }
+                ]
+            };
 
+            const scenarios = scenariosByDifficulty[difficulty];
             scenarios.forEach((item, idx) => {
                 quests.push({
-                    id: `EF-${difficulty}-${idx}`,
+                    id: `EF-${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     scenario: "energy_pyramid",
@@ -77,18 +123,41 @@ export default function SB301Page() {
         }
 
         if (stage === "CYCLES") {
-            const scenarios = [
-                { cycle: "Carbon", process: "Photosynthesis", out: "Oxygen", scenario: "carbon_cycle" },
-                { cycle: "Carbon", process: "Respiration", out: "CO2", scenario: "carbon_cycle" },
-                { cycle: "Nitrogen", process: "Nitrogen Fixation", out: "Ammonia", scenario: "nitrogen_cycle" },
-                { cycle: "Water", process: "Evaporation", out: "Water Vapor", scenario: "water_cycle" }
-            ];
+            const scenariosByDifficulty: Record<Difficulty, Array<{ cycle: string; process: string; out: string; scenario: string }>> = {
+                BASIC: [
+                    { cycle: "Carbon", process: "Photosynthesis", out: "Oxygen", scenario: "carbon_cycle" },
+                    { cycle: "Carbon", process: "Respiration", out: "CO2", scenario: "carbon_cycle" },
+                    { cycle: "Water", process: "Evaporation", out: "Water Vapor", scenario: "water_cycle" },
+                    { cycle: "Water", process: "Condensation", out: "Clouds", scenario: "water_cycle" },
+                    { cycle: "Water", process: "Precipitation", out: "Rain", scenario: "water_cycle" }
+                ],
+                CORE: [
+                    { cycle: "Nitrogen", process: "Nitrogen Fixation", out: "Ammonia", scenario: "nitrogen_cycle" },
+                    { cycle: "Nitrogen", process: "Nitrification", out: "Nitrate", scenario: "nitrogen_cycle" },
+                    { cycle: "Carbon", process: "Decomposition", out: "CO2", scenario: "carbon_cycle" },
+                    { cycle: "Carbon", process: "Combustion", out: "CO2", scenario: "carbon_cycle" },
+                    { cycle: "Nitrogen", process: "Assimilation", out: "Proteins", scenario: "nitrogen_cycle" }
+                ],
+                ADVANCED: [
+                    { cycle: "Nitrogen", process: "Denitrification", out: "N2", scenario: "nitrogen_cycle" },
+                    { cycle: "Phosphorus", process: "Weathering", out: "Phosphate", scenario: "phosphorus_cycle" },
+                    { cycle: "Phosphorus", process: "Uptake", out: "Organic P", scenario: "phosphorus_cycle" },
+                    { cycle: "Sulfur", process: "Mineralization", out: "Sulfate", scenario: "sulfur_cycle" },
+                    { cycle: "Carbon", process: "Fossilization", out: "Fossil Fuels", scenario: "carbon_cycle" }
+                ],
+                ELITE: [
+                    { cycle: "Nitrogen", process: "Anammox", out: "N2", scenario: "nitrogen_cycle" },
+                    { cycle: "Phosphorus", process: "Sedimentation", out: "Rock Phosphate", scenario: "phosphorus_cycle" },
+                    { cycle: "Sulfur", process: "Sulfate Reduction", out: "H2S", scenario: "sulfur_cycle" },
+                    { cycle: "Carbon", process: "Methanogenesis", out: "Methane", scenario: "carbon_cycle" },
+                    { cycle: "Nitrogen", process: "DNRA", out: "Ammonium", scenario: "nitrogen_cycle" }
+                ]
+            };
 
-            const filtered = isAdvanced ? scenarios : scenarios.slice(0, 2);
-
-            filtered.forEach((item, idx) => {
+            const scenarios = scenariosByDifficulty[difficulty];
+            scenarios.forEach((item, idx) => {
                 quests.push({
-                    id: `CYC-${difficulty}-${idx}`,
+                    id: `CYC-${difficulty[0]}${idx + 1}`,
                     difficulty,
                     stage,
                     scenario: item.scenario,
