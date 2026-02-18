@@ -505,6 +505,38 @@ export const deBiology = {
             next: "Nächste Phase"
         }
     },
+
+    // SB1.04: Pflanzenstruktur & Funktion
+    sb1_04: {
+        back: "Zurück zum Nexus",
+        title: "SB1.04 // PFLANZENSTRUKTUR & FUNKTION",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "FORTGESCHRITTEN",
+            elite: "ELITE"
+        },
+        stages: {
+            plant_structure: "PFLANZENSTRUKTUR",
+            water_transport: "WASSERTRANSPORT",
+            nutrient_transport: "NÄHRSTOFFTRANSPORT"
+        },
+        scenarios: {
+            plant_structure: "Botanischer Garten Basel - Pflanzenanatomieforschung: Sie sind Botaniker am Botanischen Garten der Universität Basel, einem der ältesten botanischen Gärten der Schweiz (gegründet 1589), und studieren Pflanzenstruktur und -funktion. Pflanzen haben drei Hauptorgansysteme: Wurzeln (verankern die Pflanze, absorbieren Wasser und Mineralien aus dem Boden, speichern Nährstoffe), Stängel (bieten strukturelle Unterstützung, transportieren Wasser und Nährstoffe zwischen Wurzeln und Blättern, können Nährstoffe speichern) und Blätter (Hauptort der Photosynthese, Gasaustausch durch Stomata, Transpiration). Jedes Organ hat spezialisierte Gewebe: Hautgewebe (Epidermis mit Kutikula zum Schutz, Wurzelhaare zur Absorption), Leitgewebe (Xylem transportiert Wasser aufwärts, Phloem transportiert Zucker bidirektional) und Grundgewebe (Parenchym für Speicherung und Photosynthese, Kollenchym für flexible Unterstützung, Sklerenchym für starre Unterstützung). Das Verständnis der Pflanzenstruktur ist essentiell für Basels Agrarforschung, städtische Forstwirtschaft entlang des Rheins und pharmazeutische Botanik bei Roche und Novartis, wo viele Medikamente aus Pflanzenverbindungen gewonnen werden. Der Botanische Garten Basel pflegt über 7.500 Pflanzenarten für Forschung und Bildung.",
+            water_transport: "Eidgenössische Forschungsanstalt für Wald, Schnee und Landschaft - Baumphysiologielabor: Sie studieren Wassertransport in Pflanzen an der WSL-Forschungsstation bei Basel und analysieren, wie Bäume entlang des Rheins Wasseraufnahme und Transpiration managen. Wasser bewegt sich von Wurzeln zu Blättern durch Xylemgefäße über drei Mechanismen: Wurzeldruck (aktiver Transport von Mineralien in Wurzeln erzeugt osmotischen Druck, der Wasser nach oben drückt), Kapillarwirkung (Wassermoleküle haften an Xylemwänden und kohärieren miteinander, wodurch kontinuierliche Wassersäulen entstehen) und Transpirationssog (Verdunstung von Wasser aus Blattstomata erzeugt Unterdruck, der Wasser von Wurzeln nach oben zieht). Diese Kohäsions-Spannungs-Theorie erklärt, wie hohe Bäume wie Basler Platanen Wasser über 30 Meter hoch transportieren können. Die Transpirationsrate wird von Temperatur, Luftfeuchtigkeit, Wind und Lichtintensität beeinflusst. Das Verständnis des Wassertransports ist entscheidend für die Verwaltung von Basels Stadtwäldern, die Vorhersage von Trockenstress in der Schweizer Landwirtschaft und die Entwicklung dürreresistenter Pflanzen für die Klimaanpassung.",
+            nutrient_transport: "Syngenta Pflanzenwissenschaftsforschung - Pflanzenernährungsabteilung: Sie arbeiten in Syngentas Forschungseinrichtung bei Basel und studieren Nährstofftransport in Nutzpflanzen zur Verbesserung der landwirtschaftlichen Produktivität. Während der Photosynthese in Blättern produzierte Zucker werden durch Phloemgewebe zu Wachstumsbereichen (Meristeme), Speicherorganen (Wurzeln, Knollen, Früchte) und metabolisch aktiven Geweben transportiert. Dieser Prozess, Translokation genannt, folgt der Druckstrom-Hypothese: Hohe Zuckerkonzentration in Quellgeweben (reife Blätter) erzeugt hohen osmotischen Druck, während niedrige Zuckerkonzentration in Senkengeweben (Wurzeln, Früchte, Wachstumsspitzen) niedrigen osmotischen Druck erzeugt, was den Massenstrom von Phloemsaft von Quelle zu Senke antreibt. Phloembeladung kann symplastisch (durch Plasmodesmen) oder apoplastisch (durch Membrantransporter) erfolgen. Das Verständnis des Nährstofftransports hilft Basels Agrarunternehmen, Düngemittel zu entwickeln, Ernteerträge zu optimieren und Pflanzen mit verbesserter Nährstoffverteilung zu züchten. Diese Forschung unterstützt die nachhaltige Landwirtschaft und Ernährungssicherheit der Schweiz."
+        },
+        objective_title: "Pflanzenanalyse",
+        complete: "Modul abgeschlossen!",
+        check: "Prüfen",
+        next: "Nächste Herausforderung",
+        correct: "Struktur verifiziert",
+        incorrect: "Antwort prüfen",
+        ready: "Bereit",
+        monitor_title: "SB1.04_PFLANZEN_MONITOR",
+        footer_left: "SB1.04_PFLANZENSTRUKTUR // KNOTEN: BASEL"
+    },
+
     sb2_01_tissues: {
         back: "Zurück zum Nexus",
         title: "SB2.01 // GEWEBE & ORGANE",

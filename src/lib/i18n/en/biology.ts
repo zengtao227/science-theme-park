@@ -645,6 +645,38 @@ export const enBiology = {
             next: "Next Phase"
         }
     },
+
+    // SB1.04: Plant Structure & Function
+    sb1_04: {
+        back: "Back to Nexus",
+        title: "SB1.04 // PLANT STRUCTURE & FUNCTION",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            plant_structure: "PLANT STRUCTURE",
+            water_transport: "WATER TRANSPORT",
+            nutrient_transport: "NUTRIENT TRANSPORT"
+        },
+        scenarios: {
+            plant_structure: "Basel Botanical Garden - Plant Anatomy Research: You are a botanist at the University of Basel's Botanical Garden, one of Switzerland's oldest botanical gardens (founded 1589), studying plant structure and function. Plants have three main organ systems: roots (anchor the plant, absorb water and minerals from soil, store nutrients), stems (provide structural support, transport water and nutrients between roots and leaves, may store nutrients), and leaves (primary site of photosynthesis, gas exchange through stomata, transpiration). Each organ has specialized tissues: dermal tissue (epidermis with cuticle for protection, root hairs for absorption), vascular tissue (xylem transports water upward, phloem transports sugars bidirectionally), and ground tissue (parenchyma for storage and photosynthesis, collenchyma for flexible support, sclerenchyma for rigid support). Understanding plant structure is essential for Basel's agricultural research, urban forestry along the Rhine River, and pharmaceutical botany at Roche and Novartis, where many drugs are derived from plant compounds. The Basel Botanical Garden maintains over 7,500 plant species for research and education.",
+            water_transport: "Swiss Federal Institute for Forest, Snow and Landscape Research - Tree Physiology Lab: You are studying water transport in plants at the WSL research station near Basel, analyzing how trees along the Rhine River manage water uptake and transpiration. Water moves from roots to leaves through xylem vessels via three mechanisms: root pressure (active transport of minerals into roots creates osmotic pressure pushing water upward), capillary action (water molecules adhere to xylem walls and cohere to each other, creating continuous water columns), and transpiration pull (evaporation of water from leaf stomata creates negative pressure that pulls water upward from roots). This cohesion-tension theory explains how tall trees like the Basel plane trees can transport water over 30 meters high. The rate of transpiration is affected by temperature, humidity, wind, and light intensity. Understanding water transport is crucial for managing Basel's urban forests, predicting drought stress in Swiss agriculture, and developing drought-resistant crops for climate change adaptation.",
+            nutrient_transport: "Syngenta Crop Science Research - Plant Nutrition Division: You are working at Syngenta's research facility near Basel, studying nutrient transport in crop plants to improve agricultural productivity. Sugars produced during photosynthesis in leaves are transported through phloem tissue to growing regions (meristems), storage organs (roots, tubers, fruits), and metabolically active tissues. This process, called translocation, follows the pressure-flow hypothesis: high sugar concentration in source tissues (mature leaves) creates high osmotic pressure, while low sugar concentration in sink tissues (roots, fruits, growing tips) creates low osmotic pressure, driving bulk flow of phloem sap from source to sink. Phloem loading can be symplastic (through plasmodesmata) or apoplastic (through membrane transporters). Understanding nutrient transport helps Basel's agricultural companies develop fertilizers, optimize crop yields, and engineer plants with improved nutrient distribution. This research supports Switzerland's sustainable agriculture and food security."
+        },
+        objective_title: "Plant Analysis",
+        complete: "Module Complete!",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Structure Verified",
+        incorrect: "Check answer",
+        ready: "Ready",
+        monitor_title: "SB1.04_PLANT_MONITOR",
+        footer_left: "SB1.04_PLANT_STRUCTURE // NODE: BASEL"
+    },
+
     sb2_01_tissues: {
         back: "Back to Nexus",
         title: "SB2.01 // TISSUES & ORGANS",
