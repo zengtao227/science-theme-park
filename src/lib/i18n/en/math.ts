@@ -1813,5 +1813,101 @@ export const enMath = {
             cross_sections: "Basel Medical Imaging - Diagnostic Geometry: At the Basel University Hospital (USB), radiologists use MRI and CT scans to generate 2D cross-sections of the human body. This mathematical abstraction allows doctors to see inside organs without surgery. In this stage, you'll analyze how different planes cutting through solids (like a cylinder representing a blood vessel or a sphere representing a cell) create specific 2D shapes. A diagonal cut through the Roche Tower's model might yield a complex polygon. Mastering cross-sections is essential for both medicine and architectural floor planning.",
             curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr³) and surface area (A = 4πr²) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
         }
+    },
+    sm2_11: {
+        title: "SM2.11 // SEQUENCES & SERIES",
+        back: "Back to Nexus",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        ready: "Ready",
+        monitor_title: "Sequences & Series Monitor",
+        footer_left: "SM2.11_SEQUENCES_SERIES // NODE: BASEL",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            arithmetic: "ARITHMETIC",
+            geometric: "GEOMETRIC",
+            series: "SERIES"
+        },
+        scenarios: {
+            arithmetic: "Arithmetic Sequence",
+            geometric: "Geometric Sequence",
+            series: "Series Sum"
+        },
+        prompts: {
+            find_nth_term: "Find the nth term",
+            find_sum: "Find the sum of the series"
+        },
+        hints: {
+            arithmetic_formula: "a_n = a_1 + (n-1)d",
+            geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
+            series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
+        },
+        labels: {
+            sequence_data: "SEQUENCE DATA",
+            progress: "PROGRESS",
+            formula: "FORMULA"
+        },
+        results: {
+            valid: "SEQUENCE VERIFIED",
+            invalid: "CALCULATION ERROR",
+            valid_desc: "Your answer is correct!",
+            invalid_desc: "Check your calculation",
+            next: "NEXT SEQUENCE"
+        }
+    },
+    sm2_12: {
+        title: "SM2.12 // COMBINATORICS",
+        back: "Back to Nexus",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        ready: "Ready",
+        monitor_title: "Combinatorics Monitor",
+        footer_left: "SM2.12_COMBINATORICS // NODE: BASEL",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            permutations: "PERMUTATIONS",
+            combinations: "COMBINATIONS",
+            probability: "PROBABILITY"
+        },
+        scenarios: {
+            permutations: "Permutation Calculation",
+            combinations: "Combination Calculation",
+            probability: "Probability Application"
+        },
+        prompts: {
+            calculate_permutation: "Calculate the permutation",
+            calculate_combination: "Calculate the combination",
+            calculate_probability: "Calculate the probability"
+        },
+        hints: {
+            permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",
+            combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
+            probability_formula: "P = \\frac{\\text{favorable}}{\\text{total}}"
+        },
+        labels: {
+            formula: "FORMULA",
+            progress: "PROGRESS"
+        },
+        results: {
+            valid: "CALCULATION VERIFIED",
+            invalid: "CALCULATION ERROR",
+            valid_desc: "Your answer is correct!",
+            invalid_desc: "Check your formula",
+            next: "NEXT PROBLEM"
+        }
     }
 };

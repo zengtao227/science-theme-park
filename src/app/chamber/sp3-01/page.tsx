@@ -78,18 +78,102 @@ export default function SP301Page() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP301Quest[] => {
         const quests: SP301Quest[] = [];
 
-        if (stage === "SI_UNITS") {
-            if (difficulty === "BASIC") {
-                // Basic SI unit identification
-                const units = [
+        const QUEST_DATA: Record<Stage, Record<Difficulty, any[]>> = {
+            SI_UNITS: {
+                BASIC: [
                     { measurement: "length", unit: "m", name: "meter" },
                     { measurement: "mass", unit: "kg", name: "kilogram" },
                     { measurement: "time", unit: "s", name: "second" },
                     { measurement: "temperature", unit: "K", name: "kelvin" },
                     { measurement: "current", unit: "A", name: "ampere" }
-                ];
+                ],
+                CORE: [
+                    { quantity: "force", unit: "N", formula: "kg·m/s²" },
+                    { quantity: "energy", unit: "J", formula: "N·m" },
+                    { quantity: "power", unit: "W", formula: "J/s" },
+                    { quantity: "pressure", unit: "Pa", formula: "N/m²" },
+                    { quantity: "frequency", unit: "Hz", formula: "1/s" }
+                ],
+                ADVANCED: [
+                    { value: 5000, from: "mm", to: "m", answer: "5" },
+                    { value: 2.5, from: "kg", to: "g", answer: "2500" },
+                    { value: 3600, from: "s", to: "h", answer: "1" },
+                    { value: 0.5, from: "km", to: "m", answer: "500" },
+                    { value: 250, from: "cm", to: "m", answer: "2.5" }
+                ],
+                ELITE: [
+                    { expr: "kg·m²/s²", unit: "J", name: "joule" },
+                    { expr: "kg·m/s²", unit: "N", name: "newton" },
+                    { expr: "kg/(m·s²)", unit: "Pa", name: "pascal" },
+                    { expr: "J/s", unit: "W", name: "watt" },
+                    { expr: "C/s", unit: "A", name: "ampere" }
+                ]
+            },
+            CONVERSION: {
+                BASIC: [
+                    { value: 1000, from: "m", to: "km", factor: 0.001, answer: "1" },
+                    { value: 5, from: "km", to: "m", factor: 1000, answer: "5000" },
+                    { value: 100, from: "cm", to: "m", factor: 0.01, answer: "1" },
+                    { value: 2.5, from: "kg", to: "g", factor: 1000, answer: "2500" },
+                    { value: 3600, from: "s", to: "h", factor: 1 / 3600, answer: "1" }
+                ],
+                CORE: [
+                    { value: 2.5, from: "km", to: "cm", answer: "250000" },
+                    { value: 0.5, from: "kg", to: "mg", answer: "500000" },
+                    { value: 2, from: "h", to: "s", answer: "7200" },
+                    { value: 500, from: "mm", to: "km", answer: "0.0005" },
+                    { value: 1.5, from: "L", to: "mL", answer: "1500" }
+                ],
+                ADVANCED: [
+                    { value: 1, from: "m²", to: "cm²", answer: "10000" },
+                    { value: 2, from: "km²", to: "m²", answer: "2000000" },
+                    { value: 1, from: "m³", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m³", to: "cm³", answer: "500000" },
+                    { value: 5000, from: "cm²", to: "m²", answer: "0.5" }
+                ],
+                ELITE: [
+                    { value: 72, from: "km/h", to: "m/s", answer: "20" },
+                    { value: 10, from: "m/s", to: "km/h", answer: "36" },
+                    { value: 1000, from: "g/cm³", to: "kg/m³", answer: "1000000" },
+                    { value: 2, from: "kg/m³", to: "g/cm³", answer: "0.002" },
+                    { value: 100, from: "kPa", to: "Pa", answer: "100000" }
+                ]
+            },
+            PRECISION: {
+                BASIC: [
+                    { value: "12.5", sigfigs: "3", measurement: "length" },
+                    { value: "0.0045", sigfigs: "2", measurement: "mass" },
+                    { value: "100", sigfigs: "1", measurement: "time" },
+                    { value: "3.14", sigfigs: "3", measurement: "distance" },
+                    { value: "0.500", sigfigs: "3", measurement: "volume" }
+                ],
+                CORE: [
+                    { value: "12.345", sigfigs: 3, answer: "12.3" },
+                    { value: "0.004567", sigfigs: 2, answer: "0.0046" },
+                    { value: "1234.5", sigfigs: 3, answer: "1230" },
+                    { value: "0.09876", sigfigs: 2, answer: "0.099" },
+                    { value: "567.89", sigfigs: 4, answer: "567.9" }
+                ],
+                ADVANCED: [
+                    { expr: "12.5 + 3.456", answer: "16.0", rule: "decimal places" },
+                    { expr: "4.5 × 2.34", answer: "11", rule: "sig figs" },
+                    { expr: "100.0 ÷ 3.0", answer: "33", rule: "sig figs" },
+                    { expr: "25.0 - 12.34", answer: "12.7", rule: "decimal places" },
+                    { expr: "2.5 × 3.14", answer: "7.9", rule: "sig figs" }
+                ],
+                ELITE: [
+                    { measurement: "12.5 ± 0.1", quantity: "length", unit: "cm", percent: "0.8" },
+                    { measurement: "100 ± 5", quantity: "mass", unit: "g", percent: "5" },
+                    { measurement: "25.0 ± 0.5", quantity: "time", unit: "s", percent: "2" },
+                    { measurement: "50 ± 2", quantity: "volume", unit: "mL", percent: "4" },
+                    { measurement: "200 ± 10", quantity: "distance", unit: "m", percent: "5" }
+                ]
+            }
+        };
 
-                units.forEach((u, idx) => {
+        if (stage === "SI_UNITS") {
+            if (difficulty === "BASIC") {
+                QUEST_DATA.SI_UNITS.BASIC.forEach((u, idx) => {
                     quests.push({
                         id: `SI-B${idx}`,
                         difficulty,
@@ -106,16 +190,7 @@ export default function SP301Page() {
             }
             
             if (difficulty === "CORE") {
-                // Derived units
-                const derived = [
-                    { quantity: "force", unit: "N", formula: "kg·m/s²" },
-                    { quantity: "energy", unit: "J", formula: "N·m" },
-                    { quantity: "power", unit: "W", formula: "J/s" },
-                    { quantity: "pressure", unit: "Pa", formula: "N/m²" },
-                    { quantity: "frequency", unit: "Hz", formula: "1/s" }
-                ];
-
-                derived.forEach((d, idx) => {
+                QUEST_DATA.SI_UNITS.CORE.forEach((d, idx) => {
                     quests.push({
                         id: `SI-C${idx}`,
                         difficulty,
@@ -131,16 +206,7 @@ export default function SP301Page() {
             }
             
             if (difficulty === "ADVANCED") {
-                // Unit conversions within SI
-                const conversions = [
-                    { value: 5000, from: "mm", to: "m", answer: "5" },
-                    { value: 2.5, from: "kg", to: "g", answer: "2500" },
-                    { value: 3600, from: "s", to: "h", answer: "1" },
-                    { value: 0.5, from: "km", to: "m", answer: "500" },
-                    { value: 250, from: "cm", to: "m", answer: "2.5" }
-                ];
-
-                conversions.forEach((c, idx) => {
+                QUEST_DATA.SI_UNITS.ADVANCED.forEach((c, idx) => {
                     quests.push({
                         id: `SI-A${idx}`,
                         difficulty,
@@ -159,16 +225,7 @@ export default function SP301Page() {
             }
             
             if (difficulty === "ELITE") {
-                // Complex unit analysis
-                const complex = [
-                    { expr: "kg·m²/s²", unit: "J", name: "joule" },
-                    { expr: "kg·m/s²", unit: "N", name: "newton" },
-                    { expr: "kg/(m·s²)", unit: "Pa", name: "pascal" },
-                    { expr: "J/s", unit: "W", name: "watt" },
-                    { expr: "C/s", unit: "A", name: "ampere" }
-                ];
-
-                complex.forEach((c, idx) => {
+                QUEST_DATA.SI_UNITS.ELITE.forEach((c, idx) => {
                     quests.push({
                         id: `SI-E${idx}`,
                         difficulty,

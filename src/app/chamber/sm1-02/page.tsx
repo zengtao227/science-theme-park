@@ -22,507 +22,199 @@ interface S103Quest extends Quest {
     };
 }
 
+// Data structure for quest generation
+interface AlgebraData {
+    var1?: string;
+    val1?: number;
+    var2?: string;
+    val2?: number;
+    var3?: string;
+    val3?: number;
+    expr?: string;
+    answer: number | string;
+    visualMode: AlgebraVisualMode;
+    visualData: {
+        variables?: { label: string; value: number | string; color: string }[];
+        expression?: string;
+        items?: { type: string; count: number; color: string }[];
+        inputValue?: number;
+        formula?: string;
+    };
+}
+
+const QUEST_DATA: Record<Stage, Record<Difficulty, AlgebraData[]>> = {
+    VARIABLES: {
+        BASIC: [
+            { var1: 'x', val1: 5, answer: 5, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }] } },
+            { var1: 'y', val1: 10, answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 10, color: '#3b82f6' }] } },
+            { var1: 'z', val1: 2, answer: 2, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'z', value: 2, color: '#22c55e' }] } },
+            { var1: 'a', val1: 7, answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 7, color: '#ef4444' }] } },
+            { var1: 'b', val1: 0, answer: 0, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 0, color: '#64748b' }] } },
+        ],
+        CORE: [
+            { var1: 'x', val1: 3, expr: 'x+x', answer: 6, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }] } },
+            { var1: 'y', val1: 4, expr: 'y+y+y', answer: 12, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }] } },
+            { var1: 'a', val1: 5, expr: '2a', answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 5, color: '#ef4444' }, { label: 'a', value: 5, color: '#ef4444' }] } },
+            { var1: 'x', val1: 2, expr: 'x+5', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: '1', value: 5, color: '#64748b' }] } },
+            { var1: 'b', val1: 6, expr: 'b-2', answer: 4, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 6, color: '#22c55e' }] } },
+        ],
+        ADVANCED: [
+            { var1: 'a', val1: 4, var2: 'b', val2: 2, expr: 'a+b', answer: 6, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }, { label: 'b', value: 2, color: '#22c55e' }] } },
+            { var1: 'x', val1: 5, var2: 'y', val2: 3, expr: 'x-y', answer: 2, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }] } },
+            { var1: 'a', val1: 3, var2: 'b', val2: 4, expr: '2a+b', answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 3, color: '#ef4444' }, { label: 'a', value: 3, color: '#ef4444' }, { label: 'b', value: 4, color: '#22c55e' }] } },
+            { var1: 'x', val1: 10, expr: 'x/2', answer: 5, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 10, color: '#a855f7' }] } },
+            { var1: 'p', val1: 3, var2: 'q', val2: 2, expr: '3p-q', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'q', value: 2, color: '#ec4899' }] } },
+        ],
+        ELITE: [
+            { var1: 'x', val1: 3, expr: '2x+1', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }, { label: '1', value: 1, color: '#64748b' }] } },
+            { var1: 'x', val1: 5, var2: 'y', val2: 2, expr: '2x-3y', answer: 4, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 2, color: '#3b82f6' }] } },
+            { var1: 'a', val1: 4, expr: 'a^2', answer: 16, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }] } },
+            { var1: 'x', val1: 2, var2: 'y', val2: 3, var3: 'z', val3: 4, expr: 'x+y+z', answer: 9, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }, { label: 'z', value: 4, color: '#22c55e' }] } },
+            { var1: 'k', val1: 10, expr: '2k+5', answer: 25, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'k', value: 10, color: '#eab308' }, { label: 'k', value: 10, color: '#eab308' }, { label: '5', value: 5, color: '#64748b' }] } },
+        ],
+    },
+    TERMS: {
+        BASIC: [
+            { expr: '3a+2a', answer: '5a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 2, color: '#ef4444' }] } },
+            { expr: '4x+x', answer: '5x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 4, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }] } },
+            { expr: '2y+5y', answer: '7y', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 2, color: '#eab308' }, { type: 'y', count: 5, color: '#eab308' }] } },
+            { expr: 'a+a', answer: '2a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 1, color: '#ef4444' }, { type: 'a', count: 1, color: '#ef4444' }] } },
+            { expr: '6b+2b', answer: '8b', visualMode: 'SORTING', visualData: { items: [{ type: 'b', count: 6, color: '#22c55e' }, { type: 'b', count: 2, color: '#22c55e' }] } },
+        ],
+        CORE: [
+            { expr: '5x-2x', answer: '3x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'x (remove)', count: -2, color: '#9ca3af' }] } },
+            { expr: '10y-4y', answer: '6y', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 10, color: '#eab308' }, { type: 'y', count: -4, color: '#9ca3af' }] } },
+            { expr: '3a+4a-2a', answer: '5a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 4, color: '#ef4444' }, { type: 'a', count: -2, color: '#9ca3af' }] } },
+            { expr: '8z-z', answer: '7z', visualMode: 'SORTING', visualData: { items: [{ type: 'z', count: 8, color: '#22c55e' }, { type: 'z', count: -1, color: '#9ca3af' }] } },
+            { expr: '2x+2x+2x', answer: '6x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }] } },
+        ],
+        ADVANCED: [
+            { expr: '2x+3y+x', answer: '3x+3y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'y', count: 3, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }] } },
+            { expr: '4a+2b+a', answer: '5a+2b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 1, color: '#ef4444' }] } },
+            { expr: '5x+5y-2x', answer: '3x+5y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'y', count: 5, color: '#eab308' }, { type: 'x', count: -2, color: '#9ca3af' }] } },
+            { expr: '3a+2b+3a+b', answer: '6a+3b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 1, color: '#22c55e' }] } },
+            { expr: 'x+y+x+y', answer: '2x+2y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }] } },
+        ],
+        ELITE: [
+            { expr: '4a+5-a+2', answer: '3a+7', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: '1', count: 5, color: '#64748b' }, { type: 'a', count: -1, color: '#fca5a5' }, { type: '1', count: 2, color: '#64748b' }] } },
+            { expr: '2x-3+5x+10', answer: '7x+7', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: '1', count: -3, color: '#64748b' }, { type: 'x', count: 5, color: '#3b82f6' }, { type: '1', count: 10, color: '#64748b' }] } },
+            { expr: '3y+2-y-5', answer: '2y-3', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 3, color: '#eab308' }, { type: '1', count: 2, color: '#64748b' }, { type: 'y', count: -1, color: '#fca5a5' }, { type: '1', count: -5, color: '#64748b' }] } },
+            { expr: '5a-2a+3b-b', answer: '3a+2b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 5, color: '#ef4444' }, { type: 'a', count: -2, color: '#fca5a5' }, { type: 'b', count: 3, color: '#22c55e' }, { type: 'b', count: -1, color: '#9ca3af' }] } },
+            { expr: 'x+x+x-3x', answer: '0', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: -3, color: '#fca5a5' }] } },
+        ],
+    },
+    SUBSTITUTION: {
+        BASIC: [
+            { var1: 'x', val1: 3, expr: '2x', answer: 6, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '2x' } },
+            { var1: 'x', val1: 2, expr: 'x+5', answer: 7, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: 'x+5' } },
+            { var1: 'x', val1: 10, expr: 'x-1', answer: 9, visualMode: 'MACHINE', visualData: { inputValue: 10, formula: 'x-1' } },
+            { var1: 'x', val1: 0, expr: '3x', answer: 0, visualMode: 'MACHINE', visualData: { inputValue: 0, formula: '3x' } },
+            { var1: 'x', val1: 8, expr: 'x/2', answer: 4, visualMode: 'MACHINE', visualData: { inputValue: 8, formula: 'x/2' } },
+        ],
+        CORE: [
+            { var1: 'x', val1: 4, expr: '3x+2', answer: 14, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: '3x+2' } },
+            { var1: 'x', val1: 5, expr: '2x-5', answer: 5, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: '2x-5' } },
+            { var1: 'x', val1: 1, expr: '4x+1', answer: 5, visualMode: 'MACHINE', visualData: { inputValue: 1, formula: '4x+1' } },
+            { var1: 'x', val1: 3, expr: '10-x', answer: 7, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '10-x' } },
+            { var1: 'x', val1: 1.5, expr: '5x', answer: 7.5, visualMode: 'MACHINE', visualData: { inputValue: 1.5, formula: '5x' } },
+        ],
+        ADVANCED: [
+            { var1: 'x', val1: 5, expr: 'x^2', answer: 25, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: 'x^2' } },
+            { var1: 'x', val1: 3, expr: 'x^2+2', answer: 11, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: 'x^2+2' } },
+            { var1: 'x', val1: 2, expr: '2x^2', answer: 8, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: '2x^2' } },
+            { var1: 'x', val1: 4, expr: '100-x^2', answer: 84, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: '100-x^2' } },
+            { var1: 'x', val1: 3, expr: '(x+1)^2', answer: 16, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '(x+1)^2' } },
+        ],
+        ELITE: [
+            { var1: 'x', val1: 3, expr: '2x^2+1', answer: 19, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '2x^2+1' } },
+            { var1: 'x', val1: 5, expr: 'x^2-3x', answer: 10, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: 'x^2-3x' } },
+            { var1: 'x', val1: 4, expr: 'x^2/2', answer: 8, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: 'x^2/2' } },
+            { var1: 'x', val1: 2, expr: '3x^2+x-10', answer: 4, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: '3x^2+x-10' } },
+            { var1: 'x', val1: 16, expr: '\\sqrt{x}+5', answer: 9, visualMode: 'MACHINE', visualData: { inputValue: 16, formula: '\\sqrt{x}+5' } },
+        ],
+    },
+};
+
 function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S103Quest[] {
-    const isBasic = difficulty === "BASIC";
-    const isCore = difficulty === "CORE";
-    const isAdv = difficulty === "ADVANCED";
-    const isElite = difficulty === "ELITE";
-
     const quests: S103Quest[] = [];
+    const dataList = QUEST_DATA[stage]?.[difficulty] || [];
 
-    // --- STAGE 1: VARIABLES ---
-    if (stage === "VARIABLES") {
-        if (isBasic) {
-            quests.push(
-                {
-                    id: "V1-B", difficulty, stage,
-                    promptLatex: "\\text{If } x=5 \\text{, what is the value inside the container?}",
-                    expressionLatex: "x", targetLatex: "5",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }] },
-                    slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 5 }],
-                    correctLatex: "x=5", hintLatex: ["\\text{The variable x holds the value 5.}"]
-                },
-                {
-                    id: "V2-B", difficulty, stage,
-                    promptLatex: "\\text{If } y=10 \\text{, what is } y?",
-                    expressionLatex: "y", targetLatex: "10",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 10, color: '#3b82f6' }] },
-                    slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 10 }],
-                    correctLatex: "y=10", hintLatex: ["\\text{The variable y holds the value 10.}"]
-                },
-                {
-                    id: "V3-B", difficulty, stage,
-                    promptLatex: "\\text{If } z=2 \\text{, identify } z",
-                    expressionLatex: "z", targetLatex: "2",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'z', value: 2, color: '#22c55e' }] },
-                    slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 2 }],
-                    correctLatex: "z=2", hintLatex: ["\\text{Variable z equals 2.}"]
-                },
-                {
-                    id: "V4-B", difficulty, stage,
-                    promptLatex: "\\text{If } a=7 \\text{, what is inside } a?",
-                    expressionLatex: "a", targetLatex: "7",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 7, color: '#ef4444' }] },
-                    slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 7 }],
-                    correctLatex: "a=7", hintLatex: ["\\text{The box 'a' contains 7.}"]
-                },
-                {
-                    id: "V5-B", difficulty, stage,
-                    promptLatex: "\\text{If } b=0 \\text{, what is } b?",
-                    expressionLatex: "b", targetLatex: "0",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 0, color: '#64748b' }] },
-                    slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: 0 }],
-                    correctLatex: "b=0", hintLatex: ["\\text{The container is empty, holding 0.}"]
-                }
-            );
-        } else if (isCore) {
-            quests.push(
-                {
-                    id: "V1-C", difficulty, stage,
-                    promptLatex: "\\text{If } x=3 \\text{, calculate } x + x",
-                    expressionLatex: "x+x", targetLatex: "6",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 6 }],
-                    correctLatex: "3+3=6", hintLatex: ["\\text{Add the two x values.}"]
-                },
-                {
-                    id: "V2-C", difficulty, stage,
-                    promptLatex: "\\text{If } y=4 \\text{, calculate } y + y + y",
-                    expressionLatex: "y+y+y", targetLatex: "12",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 12 }],
-                    correctLatex: "4+4+4=12", hintLatex: ["\\text{Sum of three y's.}"]
-                },
-                {
-                    id: "V3-C", difficulty, stage,
-                    promptLatex: "\\text{If } a=5 \\text{, calculate } 2a",
-                    expressionLatex: "2a", targetLatex: "10",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 5, color: '#ef4444' }, { label: 'a', value: 5, color: '#ef4444' }] },
-                    slots: [{ id: "ans", labelLatex: "Product", placeholder: "?", expected: 10 }],
-                    correctLatex: "2(5)=10", hintLatex: ["\\text{Two groups of a.}"]
-                },
-                {
-                    id: "V4-C", difficulty, stage,
-                    promptLatex: "\\text{If } x=2 \\text{, what is } x + 5?",
-                    expressionLatex: "x+5", targetLatex: "7",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: '1', value: 5, color: '#64748b' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 7 }],
-                    correctLatex: "2+5=7", hintLatex: ["\\text{Add constant to variable.}"]
-                },
-                {
-                    id: "V5-C", difficulty, stage,
-                    promptLatex: "\\text{If } b=6 \\text{, calculate } b - 2",
-                    expressionLatex: "b-2", targetLatex: "4",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 6, color: '#22c55e' }] }, // Visual simplification
-                    slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 4 }],
-                    correctLatex: "6-2=4", hintLatex: ["\\text{Subtract 2 from 6.}"]
-                }
-            );
-        } else if (isAdv) {
-            quests.push(
-                {
-                    id: "V1-A", difficulty, stage,
-                    promptLatex: "\\text{If } a=4, b=2 \\text{, calculate } a + b",
-                    expressionLatex: "a+b", targetLatex: "6",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }, { label: 'b', value: 2, color: '#22c55e' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 6 }],
-                    correctLatex: "4+2=6", hintLatex: ["\\text{Sum of variables.}"]
-                },
-                {
-                    id: "V2-A", difficulty, stage,
-                    promptLatex: "\\text{If } x=5, y=3 \\text{, calculate } x - y",
-                    expressionLatex: "x-y", targetLatex: "2",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }] },
-                    slots: [{ id: "ans", labelLatex: "Diff", placeholder: "?", expected: 2 }],
-                    correctLatex: "5-3=2", hintLatex: ["\\text{Difference between x and y.}"]
-                },
-                {
-                    id: "V3-A", difficulty, stage,
-                    promptLatex: "\\text{If } a=3, b=4 \\text{, calculate } 2a + b",
-                    expressionLatex: "2a+b", targetLatex: "10",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 3, color: '#ef4444' }, { label: 'a', value: 3, color: '#ef4444' }, { label: 'b', value: 4, color: '#22c55e' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 10 }],
-                    correctLatex: "2(3)+4=10", hintLatex: ["\\text{Two a's plus one b.}"]
-                },
-                {
-                    id: "V4-A", difficulty, stage,
-                    promptLatex: "\\text{If } x=10 \\text{, calculate } \\frac{x}{2}",
-                    expressionLatex: "\\frac{x}{2}", targetLatex: "5",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 10, color: '#a855f7' }] },
-                    slots: [{ id: "ans", labelLatex: "Quotient", placeholder: "?", expected: 5 }],
-                    correctLatex: "10/2=5", hintLatex: ["\\text{Half of x.}"]
-                },
-                {
-                    id: "V5-A", difficulty, stage,
-                    promptLatex: "\\text{If } p=3, q=2 \\text{, calculate } 3p - q",
-                    expressionLatex: "3p-q", targetLatex: "7",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'q', value: 2, color: '#ec4899' }] },
-                    slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 7 }],
-                    correctLatex: "3(3)-2=9-2=7", hintLatex: ["\\text{Three p's minus one q.}"]
-                }
-            );
-        } else {
-            // Elite
-            quests.push(
-                {
-                    id: "V1-E", difficulty, stage,
-                    promptLatex: "\\text{If } x=3 \\text{, calculate } 2x + 1",
-                    expressionLatex: "2x+1", targetLatex: "7",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }, { label: '1', value: 1, color: '#64748b' }] },
-                    slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 7 }],
-                    correctLatex: "2(3)+1=7", hintLatex: ["\\text{Linear expression.}"]
-                },
-                {
-                    id: "V2-E", difficulty, stage,
-                    promptLatex: "\\text{If } x=5, y=2 \\text{, calculate } 2x - 3y",
-                    expressionLatex: "2x-3y", targetLatex: "4",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 2, color: '#3b82f6' }] },
-                    slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 4 }],
-                    correctLatex: "2(5)-3(2)=10-6=4", hintLatex: ["\\text{Evaluate each term first.}"]
-                },
-                {
-                    id: "V3-E", difficulty, stage,
-                    promptLatex: "\\text{If } a=4 \\text{, calculate } a^2",
-                    expressionLatex: "a^2", targetLatex: "16",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }] },
-                    slots: [{ id: "ans", labelLatex: "Square", placeholder: "?", expected: 16 }],
-                    correctLatex: "4^2=16", hintLatex: ["\\text{Variable squared.}"]
-                },
-                {
-                    id: "V4-E", difficulty, stage,
-                    promptLatex: "\\text{If } x=2, y=3, z=4 \\text{, calculate } x+y+z",
-                    expressionLatex: "x+y+z", targetLatex: "9",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }, { label: 'z', value: 4, color: '#22c55e' }] },
-                    slots: [{ id: "ans", labelLatex: "Sum", placeholder: "?", expected: 9 }],
-                    correctLatex: "2+3+4=9", hintLatex: ["\\text{Sum of three variables.}"]
-                },
-                {
-                    id: "V5-E", difficulty, stage,
-                    promptLatex: "\\text{If } k=10 \\text{, calculate } 2k + 5",
-                    expressionLatex: "2k+5", targetLatex: "25",
-                    visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'k', value: 10, color: '#eab308' }, { label: 'k', value: 10, color: '#eab308' }, { label: '5', value: 5, color: '#64748b' }] },
-                    slots: [{ id: "ans", labelLatex: "Result", placeholder: "?", expected: 25 }],
-                    correctLatex: "2(10)+5=25", hintLatex: ["\\text{Complex linear term.}"]
-                }
-            );
-        }
-    }
+    dataList.forEach((data, idx) => {
+        const id = `${stage[0]}${idx + 1}-${difficulty[0]}`;
 
-    // --- STAGE 2: TERMS ---
-    if (stage === "TERMS") {
-        if (isBasic) {
-            quests.push(
-                {
-                    id: "T1-B", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 3a + 2a", expressionLatex: "3a + 2a", targetLatex: "5a",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 2, color: '#ef4444' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 5 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "a" }],
-                    correctLatex: "5a", hintLatex: ["3+2=5"]
-                },
-                {
-                    id: "T2-B", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 4x + x", expressionLatex: "4x + x", targetLatex: "5x",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 4, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 5 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "x" }],
-                    correctLatex: "5x", hintLatex: ["4+1=5"]
-                },
-                {
-                    id: "T3-B", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 2y + 5y", expressionLatex: "2y + 5y", targetLatex: "7y",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 2, color: '#eab308' }, { type: 'y', count: 5, color: '#eab308' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 7 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "y" }],
-                    correctLatex: "7y", hintLatex: ["2+5=7"]
-                },
-                {
-                    id: "T4-B", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } a + a", expressionLatex: "a + a", targetLatex: "2a",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 1, color: '#ef4444' }, { type: 'a', count: 1, color: '#ef4444' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 2 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "a" }],
-                    correctLatex: "2a", hintLatex: ["1+1=2"]
-                },
-                {
-                    id: "T5-B", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 6b + 2b", expressionLatex: "6b + 2b", targetLatex: "8b",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'b', count: 6, color: '#22c55e' }, { type: 'b', count: 2, color: '#22c55e' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 8 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "b" }],
-                    correctLatex: "8b", hintLatex: ["6+2=8"]
-                }
-            );
-        } else if (isCore) {
-            quests.push(
-                {
-                    id: "T1-C", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 5x - 2x", expressionLatex: "5x - 2x", targetLatex: "3x",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'x (remove)', count: -2, color: '#9ca3af' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 3 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "x" }],
-                    correctLatex: "3x", hintLatex: ["5-2=3"]
-                },
-                {
-                    id: "T2-C", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 10y - 4y", expressionLatex: "10y - 4y", targetLatex: "6y",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 10, color: '#eab308' }, { type: 'y', count: -4, color: '#9ca3af' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 6 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "y" }],
-                    correctLatex: "6y", hintLatex: ["10-4=6"]
-                },
-                {
-                    id: "T3-C", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 3a + 4a - 2a", expressionLatex: "3a + 4a - 2a", targetLatex: "5a",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 4, color: '#ef4444' }, { type: 'a', count: -2, color: '#9ca3af' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 5 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "a" }],
-                    correctLatex: "5a", hintLatex: ["(3+4)-2=5"]
-                },
-                {
-                    id: "T4-C", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 8z - z", expressionLatex: "8z - z", targetLatex: "7z",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'z', count: 8, color: '#22c55e' }, { type: 'z', count: -1, color: '#9ca3af' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 7 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "z" }],
-                    correctLatex: "7z", hintLatex: ["8-1=7"]
-                },
-                {
-                    id: "T5-C", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 2x + 2x + 2x", expressionLatex: "2x + 2x + 2x", targetLatex: "6x",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }] },
-                    slots: [{ id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: 6 }, { id: "var", labelLatex: "Variable", placeholder: "x", expected: "x" }],
-                    correctLatex: "6x", hintLatex: ["2+2+2=6"]
-                }
-            );
-        } else if (isAdv) {
-            quests.push(
-                {
-                    id: "T1-A", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 2x + 3y + x", expressionLatex: "3x + 3y", targetLatex: "Ax + By",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'y', count: 3, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }] },
-                    slots: [{ id: "x_term", labelLatex: "Term x", placeholder: "Ax", expected: "3x" }, { id: "y_term", labelLatex: "Term y", placeholder: "By", expected: "3y" }],
-                    correctLatex: "3x+3y", hintLatex: ["Combine x's"]
-                },
-                {
-                    id: "T2-A", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 4a + 2b + a", expressionLatex: "5a + 2b", targetLatex: "Aa + Bb",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 1, color: '#ef4444' }] },
-                    slots: [{ id: "a_term", labelLatex: "Term a", placeholder: "Aa", expected: "5a" }, { id: "b_term", labelLatex: "Term b", placeholder: "Bb", expected: "2b" }],
-                    correctLatex: "5a+2b", hintLatex: ["4a+a=5a"]
-                },
-                {
-                    id: "T3-A", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 5x + 5y - 2x", expressionLatex: "3x + 5y", targetLatex: "Ax + By",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'y', count: 5, color: '#eab308' }, { type: 'x', count: -2, color: '#9ca3af' }] },
-                    slots: [{ id: "x_term", labelLatex: "Term x", placeholder: "Ax", expected: "3x" }, { id: "y_term", labelLatex: "Term y", placeholder: "By", expected: "5y" }],
-                    correctLatex: "3x+5y", hintLatex: ["5x-2x=3x"]
-                },
-                {
-                    id: "T4-A", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 3a + 2b + 3a + b", expressionLatex: "6a + 3b", targetLatex: "Aa + Bb",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 1, color: '#22c55e' }] },
-                    slots: [{ id: "a_term", labelLatex: "Term a", placeholder: "Aa", expected: "6a" }, { id: "b_term", labelLatex: "Term b", placeholder: "Bb", expected: "3b" }],
-                    correctLatex: "6a+3b", hintLatex: ["Combine like terms."]
-                },
-                {
-                    id: "T5-A", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } x + y + x + y", expressionLatex: "2x + 2y", targetLatex: "Ax + By",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }] },
-                    slots: [{ id: "x_term", labelLatex: "Term x", placeholder: "Ax", expected: "2x" }, { id: "y_term", labelLatex: "Term y", placeholder: "By", expected: "2y" }],
-                    correctLatex: "2x+2y", hintLatex: ["Two x's and two y's."]
-                }
-            );
-        } else {
-            // Elite
-            quests.push(
-                {
-                    id: "T1-E", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 4a + 5 - a + 2", expressionLatex: "3a + 7", targetLatex: "Aa + B",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: '1', count: 5, color: '#64748b' }, { type: 'a', count: -1, color: '#fca5a5' }, { type: '1', count: 2, color: '#64748b' }] },
-                    slots: [{ id: "res", labelLatex: "Result", placeholder: "3a+7", expected: "3a+7" }],
-                    correctLatex: "3a+7", hintLatex: ["Combine terms and constants."]
-                },
-                {
-                    id: "T2-E", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 2x - 3 + 5x + 10", expressionLatex: "7x + 7", targetLatex: "Ax + B",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: '1', count: -3, color: '#64748b' }, { type: 'x', count: 5, color: '#3b82f6' }, { type: '1', count: 10, color: '#64748b' }] },
-                    slots: [{ id: "res", labelLatex: "Result", placeholder: "7x+7", expected: "7x+7" }],
-                    correctLatex: "7x+7", hintLatex: ["2x+5x=7x, -3+10=7"]
-                },
-                {
-                    id: "T3-E", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 3y + 2 - y - 5", expressionLatex: "2y - 3", targetLatex: "Ay - B",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 3, color: '#eab308' }, { type: '1', count: 2, color: '#64748b' }, { type: 'y', count: -1, color: '#fca5a5' }, { type: '1', count: -5, color: '#64748b' }] },
-                    slots: [{ id: "res", labelLatex: "Result", placeholder: "2y-3", expected: "2y-3" }],
-                    correctLatex: "2y-3", hintLatex: ["3y-y=2y, 2-5=-3"]
-                },
-                {
-                    id: "T4-E", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } 5a - 2a + 3b - b", expressionLatex: "3a + 2b", targetLatex: "Aa + Bb",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 5, color: '#ef4444' }, { type: 'a', count: -2, color: '#fca5a5' }, { type: 'b', count: 3, color: '#22c55e' }, { type: 'b', count: -1, color: '#9ca3af' }] },
-                    slots: [{ id: "res", labelLatex: "Result", placeholder: "3a+2b", expected: "3a+2b" }],
-                    correctLatex: "3a+2b", hintLatex: ["Simplify each variable group."]
-                },
-                {
-                    id: "T5-E", difficulty, stage,
-                    promptLatex: "\\text{Simplify: } x + x + x - 3x", expressionLatex: "0", targetLatex: "0",
-                    visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: -3, color: '#fca5a5' }] },
-                    slots: [{ id: "res", labelLatex: "Result", placeholder: "0", expected: "0" }],
-                    correctLatex: "0", hintLatex: ["3x - 3x = 0"]
-                }
-            );
-        }
-    }
+        if (stage === "VARIABLES") {
+            let promptLatex = "";
+            let expressionLatex = "";
+            let targetLatex = "";
+            let hintLatex = [""];
 
-    // --- STAGE 3: SUBSTITUTION ---
-    if (stage === "SUBSTITUTION") {
-        if (isBasic) {
-            quests.push(
-                {
-                    id: "S1-B", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 2x \\text{ for } x=3", expressionLatex: "2(3)", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 3, formula: "2x" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 6 }],
-                    correctLatex: "6", hintLatex: ["2 \\times 3"]
-                },
-                {
-                    id: "S2-B", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } x + 5 \\text{ for } x=2", expressionLatex: "2+5", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 2, formula: "x+5" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 7 }],
-                    correctLatex: "7", hintLatex: ["2+5"]
-                },
-                {
-                    id: "S3-B", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } x - 1 \\text{ for } x=10", expressionLatex: "10-1", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 10, formula: "x-1" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 9 }],
-                    correctLatex: "9", hintLatex: ["10-1"]
-                },
-                {
-                    id: "S4-B", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 3x \\text{ for } x=0", expressionLatex: "3(0)", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 0, formula: "3x" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 0 }],
-                    correctLatex: "0", hintLatex: ["Any number times 0 is 0"]
-                },
-                {
-                    id: "S5-B", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } \\frac{x}{2} \\text{ for } x=8", expressionLatex: "8/2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 8, formula: "x/2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 4 }],
-                    correctLatex: "4", hintLatex: ["Half of 8"]
+            if (data.expr) {
+                if (data.var2) {
+                    promptLatex = `\\text{If } ${data.var1}=${data.val1}, ${data.var2}=${data.val2}${data.var3 ? `, ${data.var3}=${data.val3}` : ''} \\text{, calculate } ${data.expr}`;
+                } else {
+                    promptLatex = `\\text{If } ${data.var1}=${data.val1} \\text{, calculate } ${data.expr}`;
                 }
-            );
-        } else if (isCore) {
-            quests.push(
-                {
-                    id: "S1-C", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 3x + 2 \\text{ for } x=4", expressionLatex: "3(4)+2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 4, formula: "3x+2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 14 }],
-                    correctLatex: "14", hintLatex: ["3*4=12, 12+2=14"]
-                },
-                {
-                    id: "S2-C", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 2x - 5 \\text{ for } x=5", expressionLatex: "2(5)-5", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 5, formula: "2x-5" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 5 }],
-                    correctLatex: "5", hintLatex: ["10-5=5"]
-                },
-                {
-                    id: "S3-C", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 4x + 1 \\text{ for } x=1", expressionLatex: "4(1)+1", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 1, formula: "4x+1" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 5 }],
-                    correctLatex: "5", hintLatex: ["4+1=5"]
-                },
-                {
-                    id: "S4-C", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 10 - x \\text{ for } x=3", expressionLatex: "10-3", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 3, formula: "10-x" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 7 }],
-                    correctLatex: "7", hintLatex: ["Subtract x from 10"]
-                },
-                {
-                    id: "S5-C", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 5x \\text{ for } x=1.5", expressionLatex: "5(1.5)", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 1.5, formula: "5x" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 7.5 }],
-                    correctLatex: "7.5", hintLatex: ["5 * 1.5"]
-                }
-            );
-        } else if (isAdv) {
-            quests.push(
-                {
-                    id: "S1-A", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } x^2 \\text{ for } x=5", expressionLatex: "5^2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 5, formula: "x^2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 25 }],
-                    correctLatex: "25", hintLatex: ["5 * 5"]
-                },
-                {
-                    id: "S2-A", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } x^2 + 2 \\text{ for } x=3", expressionLatex: "3^2+2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 3, formula: "x^2+2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 11 }],
-                    correctLatex: "11", hintLatex: ["9+2=11"]
-                },
-                {
-                    id: "S3-A", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 2x^2 \\text{ for } x=2", expressionLatex: "2(2^2)", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 2, formula: "2x^2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 8 }],
-                    correctLatex: "8", hintLatex: ["2*4=8"]
-                },
-                {
-                    id: "S4-A", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 100 - x^2 \\text{ for } x=4", expressionLatex: "100-4^2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 4, formula: "100-x^2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 84 }],
-                    correctLatex: "84", hintLatex: ["100-16"]
-                },
-                {
-                    id: "S5-A", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } (x+1)^2 \\text{ for } x=3", expressionLatex: "(3+1)^2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 3, formula: "(x+1)^2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 16 }],
-                    correctLatex: "16", hintLatex: ["4^2=16"]
-                }
-            );
-        } else {
-            // Elite
-            quests.push(
-                {
-                    id: "S1-E", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 2x^2 + 1 \\text{ for } x=3", expressionLatex: "2(3^2)+1", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 3, formula: "2x^2+1" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 19 }],
-                    correctLatex: "19", hintLatex: ["18+1=19"]
-                },
-                {
-                    id: "S2-E", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } x^2 - 3x \\text{ for } x=5", expressionLatex: "5^2 - 3(5)", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 5, formula: "x^2-3x" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 10 }],
-                    correctLatex: "10", hintLatex: ["25 - 15"]
-                },
-                {
-                    id: "S3-E", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } \\frac{x^2}{2} \\text{ for } x=4", expressionLatex: "4^2/2", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 4, formula: "x^2/2" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 8 }],
-                    correctLatex: "8", hintLatex: ["16/2"]
-                },
-                {
-                    id: "S4-E", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } 3x^2 + x - 10 \\text{ for } x=2", expressionLatex: "3(2^2)+2-10", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 2, formula: "3x^2+x-10" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 4 }],
-                    correctLatex: "4", hintLatex: ["12+2-10=4"]
-                },
-                {
-                    id: "S5-E", difficulty, stage,
-                    promptLatex: "\\text{Evaluate } \\sqrt{x} + 5 \\text{ for } x=16", expressionLatex: "\\sqrt{16}+5", targetLatex: "?",
-                    visualMode: 'MACHINE', visualData: { inputValue: 16, formula: "\\sqrt{x}+5" },
-                    slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: 9 }],
-                    correctLatex: "9", hintLatex: ["4+5=9"]
-                }
-            );
+                expressionLatex = data.expr;
+                targetLatex = String(data.answer);
+                hintLatex = [`\\text{Evaluate the expression}`];
+            } else {
+                promptLatex = `\\text{If } ${data.var1}=${data.val1} \\text{, what is } ${data.var1}?`;
+                expressionLatex = data.var1!;
+                targetLatex = String(data.answer);
+                hintLatex = [`\\text{The variable ${data.var1} holds the value ${data.val1}.}`];
+            }
+
+            quests.push({
+                id,
+                difficulty,
+                stage,
+                promptLatex,
+                expressionLatex,
+                targetLatex,
+                visualMode: data.visualMode,
+                visualData: data.visualData,
+                slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: data.answer }],
+                correctLatex: String(data.answer),
+                hintLatex,
+            });
+        } else if (stage === "TERMS") {
+            const isMultiVar = typeof data.answer === 'string' && (data.answer.includes('+') || data.answer.includes('-'));
+            const slots = isMultiVar
+                ? [{ id: "res", labelLatex: "Result", placeholder: String(data.answer), expected: String(data.answer) }]
+                : [
+                    { id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: String(parseInt(String(data.answer)) || 0) },
+                    { id: "var", labelLatex: "Variable", placeholder: "x", expected: String(data.answer).replace(/[0-9]/g, '') }
+                  ];
+
+            quests.push({
+                id,
+                difficulty,
+                stage,
+                promptLatex: `\\text{Simplify: } ${data.expr}`,
+                expressionLatex: data.expr!,
+                targetLatex: String(data.answer),
+                visualMode: data.visualMode,
+                visualData: data.visualData,
+                slots,
+                correctLatex: String(data.answer),
+                hintLatex: [`\\text{Combine like terms}`],
+            });
+        } else if (stage === "SUBSTITUTION") {
+            quests.push({
+                id,
+                difficulty,
+                stage,
+                promptLatex: `\\text{Evaluate } ${data.expr} \\text{ for } ${data.var1}=${data.val1}`,
+                expressionLatex: data.expr!,
+                targetLatex: String(data.answer),
+                visualMode: data.visualMode,
+                visualData: data.visualData,
+                slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: data.answer }],
+                correctLatex: String(data.answer),
+                hintLatex: [`\\text{Substitute and evaluate}`],
+            });
         }
-    }
+    });
 
     return quests;
 }

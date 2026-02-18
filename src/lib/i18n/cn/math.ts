@@ -1793,5 +1793,101 @@ export const cnMath = {
             cross_sections: "巴塞尔医学影像 - 诊断几何：在巴塞尔大学医院（USB），放射科医生使用 MRI 和 CT 扫描生成人体的二维截面。这种数学抽象使医生无需手术即可看到器官内部。在这个阶段，你将分析切过固体（如代表血管的圆柱体或代表细胞的球体）的不同平面如何创建特定的二维形状。罗氏塔模型的对角线切口可能会产生复杂的多边形。掌握截面不仅对医学至关重要，对建筑楼层规划也同样重要。",
             curved_solids: "巴塞尔生物技术研究 - 微观几何：在诺华（Novartis）的制药实验室中，科学家们正在研究用于新药投递的球形脂质体和圆柱形输送系统。计算球体的表面积对于确定药物释放率至关重要，而圆锥形储液罐的体积则影响剂量精度。这个阶段带你进入非多面体几何的世界——球体、圆锥和圆柱。你将应用球体体积（V = 4/3πr³）和表面积（A = 4πr²）的公式，以及圆锥和圆柱的类似高级公式，确保巴塞尔的药品以数学上的确定性完成交付。"
         }
+    },
+    sm2_11: {
+        title: "SM2.11 // 数列与级数",
+        back: "返回中枢",
+        check: "验证",
+        next: "下一题",
+        correct: "正确",
+        incorrect: "错误",
+        ready: "就绪",
+        monitor_title: "数列与级数监控器",
+        footer_left: "SM2.11_数列级数 // 节点：巴塞尔",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            arithmetic: "等差数列",
+            geometric: "等比数列",
+            series: "级数"
+        },
+        scenarios: {
+            arithmetic: "等差数列",
+            geometric: "等比数列",
+            series: "级数求和"
+        },
+        prompts: {
+            find_nth_term: "求第n项",
+            find_sum: "求级数和"
+        },
+        hints: {
+            arithmetic_formula: "a_n = a_1 + (n-1)d",
+            geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
+            series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
+        },
+        labels: {
+            sequence_data: "数列数据",
+            progress: "进度",
+            formula: "公式"
+        },
+        results: {
+            valid: "数列验证成功",
+            invalid: "计算错误",
+            valid_desc: "你的答案正确！",
+            invalid_desc: "检查你的计算",
+            next: "下一个数列"
+        }
+    },
+    sm2_12: {
+        title: "SM2.12 // 组合数学",
+        back: "返回中枢",
+        check: "验证",
+        next: "下一题",
+        correct: "正确",
+        incorrect: "错误",
+        ready: "就绪",
+        monitor_title: "组合数学监控器",
+        footer_left: "SM2.12_组合数学 // 节点：巴塞尔",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            permutations: "排列",
+            combinations: "组合",
+            probability: "概率"
+        },
+        scenarios: {
+            permutations: "排列计算",
+            combinations: "组合计算",
+            probability: "概率应用"
+        },
+        prompts: {
+            calculate_permutation: "计算排列数",
+            calculate_combination: "计算组合数",
+            calculate_probability: "计算概率"
+        },
+        hints: {
+            permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",
+            combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
+            probability_formula: "P = \\frac{\\text{有利结果}}{\\text{总结果}}"
+        },
+        labels: {
+            formula: "公式",
+            progress: "进度"
+        },
+        results: {
+            valid: "计算验证成功",
+            invalid: "计算错误",
+            valid_desc: "你的答案正确！",
+            invalid_desc: "检查你的公式",
+            next: "下一题"
+        }
     }
 };

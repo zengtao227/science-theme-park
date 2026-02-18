@@ -1830,5 +1830,101 @@ export const deMath = {
             cross_sections: "Basler Medizinische Bildgebung - Diagnostische Geometrie: Im Universitätsspital Basel (USB) verwenden Radiologen MRT- und CT-Scans, um 2D-Querschnitte des menschlichen Körpers zu erstellen. Diese mathematische Abstraktion ermöglicht es Ärzten, Organe ohne Operation zu sehen. In dieser Stufe analysieren Sie, wie verschiedene Ebenen, die durch Festkörper (wie ein Zylinder für ein Blutgefäß oder eine Kugel für eine Zelle) schneiden, spezifische 2D-Formen erzeugen. Ein diagonaler Schnitt durch das Modell des Roche-Turms könnte ein komplexes Polygon ergeben. Das Beherrschen von Querschnitten ist sowohl für die Medizin als auch für die architektonische Grundrissplanung unerlässlich.",
             curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr³) und die Oberfläche (A = 4πr²) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
         }
+    },
+    sm2_11: {
+        title: "SM2.11 // FOLGEN & REIHEN",
+        back: "Zurück zum Nexus",
+        check: "Überprüfen",
+        next: "Nächste Aufgabe",
+        correct: "Richtig",
+        incorrect: "Falsch",
+        ready: "Bereit",
+        monitor_title: "Folgen & Reihen Monitor",
+        footer_left: "SM2.11_FOLGEN_REIHEN // KNOTEN: BASEL",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            arithmetic: "ARITHMETISCH",
+            geometric: "GEOMETRISCH",
+            series: "REIHEN"
+        },
+        scenarios: {
+            arithmetic: "Arithmetische Folge",
+            geometric: "Geometrische Folge",
+            series: "Reihensumme"
+        },
+        prompts: {
+            find_nth_term: "Finde das n-te Glied",
+            find_sum: "Finde die Summe der Reihe"
+        },
+        hints: {
+            arithmetic_formula: "a_n = a_1 + (n-1)d",
+            geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
+            series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
+        },
+        labels: {
+            sequence_data: "FOLGENDATEN",
+            progress: "FORTSCHRITT",
+            formula: "FORMEL"
+        },
+        results: {
+            valid: "FOLGE VERIFIZIERT",
+            invalid: "BERECHNUNGSFEHLER",
+            valid_desc: "Ihre Antwort ist korrekt!",
+            invalid_desc: "Überprüfen Sie Ihre Berechnung",
+            next: "NÄCHSTE FOLGE"
+        }
+    },
+    sm2_12: {
+        title: "SM2.12 // KOMBINATORIK",
+        back: "Zurück zum Nexus",
+        check: "Überprüfen",
+        next: "Nächste Aufgabe",
+        correct: "Richtig",
+        incorrect: "Falsch",
+        ready: "Bereit",
+        monitor_title: "Kombinatorik Monitor",
+        footer_left: "SM2.12_KOMBINATORIK // KNOTEN: BASEL",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            permutations: "PERMUTATIONEN",
+            combinations: "KOMBINATIONEN",
+            probability: "WAHRSCHEINLICHKEIT"
+        },
+        scenarios: {
+            permutations: "Permutationsberechnung",
+            combinations: "Kombinationsberechnung",
+            probability: "Wahrscheinlichkeitsanwendung"
+        },
+        prompts: {
+            calculate_permutation: "Berechne die Permutation",
+            calculate_combination: "Berechne die Kombination",
+            calculate_probability: "Berechne die Wahrscheinlichkeit"
+        },
+        hints: {
+            permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",
+            combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
+            probability_formula: "P = \\frac{\\text{günstig}}{\\text{gesamt}}"
+        },
+        labels: {
+            formula: "FORMEL",
+            progress: "FORTSCHRITT"
+        },
+        results: {
+            valid: "BERECHNUNG VERIFIZIERT",
+            invalid: "BERECHNUNGSFEHLER",
+            valid_desc: "Ihre Antwort ist korrekt!",
+            invalid_desc: "Überprüfen Sie Ihre Formel",
+            next: "NÄCHSTES PROBLEM"
+        }
     }
 };
