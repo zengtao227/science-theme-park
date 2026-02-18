@@ -47,6 +47,10 @@ export default function SM106Page() {
             recipes: t("sm1_05.scenarios.recipes"),
             percent: t("sm1_05.scenarios.percent"),
             mixtures: t("sm1_05.scenarios.mixtures")
+        },
+        prompts: {
+            map_scale: t("sm1_05.prompts.map_scale"),
+            total_ratio_share: t("sm1_05.prompts.total_ratio_share")
         }
     };
 
@@ -202,7 +206,7 @@ export default function SM106Page() {
                     },
                     {
                         id: "R-E2", difficulty, stage, visualMode: "RECIPES",
-                        promptLatex: "\\text{Map 1:25000. 4cm on map is ?km}",
+                        promptLatex: `\\text{${sm1_05_t.prompts.map_scale}}`,
                         expressionLatex: "4 \\times 25000", targetLatex: "1",
                         visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 1 },
                         slots: [{ id: "ans", labelLatex: "km", placeholder: "?", expected: 1 }],
@@ -210,7 +214,7 @@ export default function SM106Page() {
                     },
                     {
                         id: "R-E3", difficulty, stage, visualMode: "RECIPES",
-                        promptLatex: "\\text{Total 360. Ratio 2:3:4. Find largest share}",
+                        promptLatex: `\\text{${sm1_05_t.prompts.total_ratio_share}}`,
                         expressionLatex: "\\frac{4}{9} \\times 360", targetLatex: "160",
                         visualData: { ingredient: "sugar", baseAmount: 2, targetAmount: 4 },
                         slots: [{ id: "ans", labelLatex: "Share", placeholder: "?", expected: 160 }],

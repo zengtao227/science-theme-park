@@ -1011,6 +1011,10 @@ export const deMath = {
             concentration: "Konzentration",
             solute: "Gelöster Stoff",
             solvent: "Lösungsmittel"
+        },
+        prompts: {
+            map_scale: "Karte 1:25000. 4cm auf der Karte sind ? km",
+            total_ratio_share: "Gesamt 360. Verhältnis 2:3:4. Finde größten Anteil"
         }
     },
     sm2_01: {

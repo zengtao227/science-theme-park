@@ -1002,6 +1002,10 @@ export const enMath = {
             concentration: "Concentration",
             solute: "Solute",
             solvent: "Solvent"
+        },
+        prompts: {
+            map_scale: "Map 1:25000. 4cm on map is ?km",
+            total_ratio_share: "Total 360. Ratio 2:3:4. Find largest share"
         }
     },
     sm2_01: {

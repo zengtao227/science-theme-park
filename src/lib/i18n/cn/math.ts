@@ -982,6 +982,10 @@ export const cnMath = {
             concentration: "浓度",
             solute: "溶质",
             solvent: "溶剂"
+        },
+        prompts: {
+            map_scale: "地图比例 1:25000。地图上 4cm 是多少 km",
+            total_ratio_share: "总数 360。比例 2:3:4。求最大份额"
         }
     },
     sm2_01: {
