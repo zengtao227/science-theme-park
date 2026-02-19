@@ -110,7 +110,7 @@ export interface DiagramState {
 export interface SP201Quest extends Quest {
   stage: Stage;
   type: QuestType;
-  
+
   // For IDENTIFY quests (COMPONENTS stage)
   targetComponent?: ComponentType;
   componentInfo?: {
@@ -118,23 +118,24 @@ export interface SP201Quest extends Quest {
     symbol: string;
     function: { en: string; cn: string; de: string };
   };
-  
+
   // For BUILD quests (CIRCUITS stage)
   requiredComponents?: ComponentType[];
   targetCircuit?: CircuitConfiguration;
   circuitType?: CircuitType;
-  
+
   // For DRAW quests (DIAGRAMS stage)
   targetDiagram?: DiagramConfiguration;
-  
+
   // For TROUBLESHOOT quests
   faultyCircuit?: CircuitConfiguration;
   fault?: FaultType;
-  
+
   // For DESIGN quests
   designRequirements?: string[];
   acceptableSolutions?: CircuitConfiguration[];
-  
+
+  answer: string;
   promptLatex: string;
   baselContext?: string;
   hints?: string[];

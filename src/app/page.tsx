@@ -76,11 +76,13 @@ export default function Home() {
   };
 
   const mathModules = useMemo(() => ([
+    // Year 1
     { code: "SM1.01", title: t("home.sm1_01_title"), desc: t("home.sm1_01_subtitle"), color: "neon-purple", href: "/chamber/sm1-01", tags: ["math"] },
     { code: "SM1.02", title: t("home.sm1_02_title"), desc: t("home.sm1_02_subtitle"), color: "neon-purple", href: "/chamber/sm1-02", tags: ["math"] },
     { code: "SM1.03", title: t("home.sm1_03_title"), desc: t("home.sm1_03_subtitle"), color: "neon-cyan", href: "/chamber/sm1-03", tags: ["math"] },
     { code: "SM1.04", title: t("home.sm1_04_title"), desc: t("home.sm1_04_subtitle"), color: "neon-green", href: "/chamber/sm1-04", tags: ["math"] },
     { code: "SM1.05", title: t("home.sm1_05_title"), desc: t("home.sm1_05_subtitle"), color: "neon-cyan", href: "/chamber/sm1-05", tags: ["math"] },
+    // Year 2
     { code: "SM2.01", title: t("home.sm2_01_title"), desc: t("home.sm2_01_subtitle"), color: "neon-green", href: "/chamber/sm2-01", tags: ["math"] },
     { code: "SM2.02", title: t("home.sm2_02_title"), desc: t("home.sm2_02_subtitle"), color: "neon-cyan", href: "/chamber/sm2-02", tags: ["math"] },
     { code: "SM2.03", title: t("home.sm2_03_title"), desc: t("home.sm2_03_subtitle"), color: "neon-green", href: "/chamber/sm2-03", tags: ["math"] },
@@ -89,17 +91,21 @@ export default function Home() {
     { code: "SM2.06", title: t("home.sm2_06_title"), desc: t("home.sm2_06_subtitle"), color: "neon-cyan", href: "/chamber/sm2-06", tags: ["math"] },
     { code: "SM2.07", title: t("home.sm2_07_title"), desc: t("home.sm2_07_subtitle"), color: "neon-green", href: "/chamber/sm2-07", tags: ["math"] },
     { code: "SM2.08", title: t("home.sm2_08_title"), desc: t("home.sm2_08_subtitle"), color: "neon-purple", href: "/chamber/sm2-08", tags: ["math"] },
+    { code: "SM2.09", title: t("home.sm2_09_title"), desc: t("home.sm2_09_subtitle"), color: "neon-amber", href: "/chamber/sm2-09", tags: ["math"] },
     { code: "SM2.10", title: t("home.sm2_10_title"), desc: t("home.sm2_10_subtitle"), color: "neon-cyan", href: "/chamber/sm2-10", tags: ["math"] },
     { code: "SM2.11", title: t("home.sm2_11_title"), desc: t("home.sm2_11_subtitle"), color: "neon-green", href: "/chamber/sm2-11", tags: ["math"] },
     { code: "SM2.12", title: t("home.sm2_12_title"), desc: t("home.sm2_12_subtitle"), color: "neon-purple", href: "/chamber/sm2-12", tags: ["math"] },
+    // Year 3
     { code: "SM3.01", title: t("home.sm3_01_title"), desc: t("home.sm3_01_subtitle"), color: "neon-purple", href: "/chamber/sm3-01", tags: ["math"] },
     { code: "SM3.02", title: t("home.sm3_02_title"), desc: t("home.sm3_02_subtitle"), color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },
     { code: "SM3.03", title: t("home.sm3_03_title"), desc: t("home.sm3_03_subtitle"), color: "neon-amber", href: "/chamber/sm3-03", tags: ["math", "biology"] },
     { code: "SM3.04", title: t("home.sm3_04_title"), desc: t("home.sm3_04_subtitle"), color: "neon-amber", href: "/chamber/sm3-04", tags: ["math"] },
     { code: "SM3.05", title: t("home.sm3_05_title"), desc: t("home.sm3_05_subtitle"), color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
+    // Gymnasium Track
     { code: "GM1.01", title: t("home.gm1_01_title"), desc: t("home.gm1_01_subtitle"), color: "neon-purple", href: "/chamber/gm1-01", tags: ["math"] },
     { code: "GM1.01-ADV", title: t("home.gm1_01_title") + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM1.02", title: t("home.gm1_02_title"), desc: t("home.gm1_02_subtitle"), color: "neon-green", href: "/chamber/gm1-02", tags: ["math"] },
+    { code: "GM1.03", title: t("home.gm1_03_title"), desc: t("home.gm1_03_subtitle"), color: "neon-cyan", href: "/chamber/gm1-03", tags: ["math"] },
     { code: "GM2.01", title: t("home.gm2_01_title"), desc: t("home.gm2_01_subtitle"), color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
     { code: "GM2.02", title: "GM2.02 // ANALYTICAL GEOMETRY", desc: "Lines, planes, and spatial relationships in 2D and 3D", color: "neon-green", href: "/chamber/gm2-02", tags: ["math"] },
     { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math"] },
@@ -107,7 +113,15 @@ export default function Home() {
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
+    // --- SEKUNDARSCHULE (Basics) ---
+    // Year 1
+    { code: "SP1.01", title: t("home.sp1_01_title"), desc: t("home.sp1_01_subtitle"), color: "neon-cyan", href: "/chamber/sp1-01", tags: ["physics"] },
     { code: "SP1.02", title: t("home.sp1_02_title"), desc: t("home.sp1_02_subtitle"), color: "neon-cyan", href: "/chamber/sp1-02", tags: ["physics"] },
+    // Year 2
+    { code: "SP2.01", title: t("home.sp2_01_title"), desc: t("home.sp2_01_subtitle"), color: "neon-green", href: "/chamber/sp2-01", tags: ["physics"] },
+    { code: "SP2.02", title: t("home.sp2_02_title"), desc: t("home.sp2_02_subtitle"), color: "neon-green", href: "/chamber/sp2-02", tags: ["physics"] },
+    { code: "SP2.03", title: t("home.sp2_03_title"), desc: t("home.sp2_03_subtitle"), color: "neon-amber", href: "/chamber/sp2-03", tags: ["physics"] },
+    // Year 3
     { code: "SP3.01", title: t("home.sp3_01_title"), desc: t("home.sp3_01_subtitle"), color: "neon-green", href: "/chamber/sp3-01", tags: ["physics"] },
     { code: "SP3.02", title: t("home.sp3_02_title"), desc: t("home.sp3_02_subtitle"), color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
     { code: "SP3.03", title: t("home.sp3_03_title"), desc: t("home.sp3_03_subtitle"), color: "neon-amber", href: "/chamber/sp3-03", tags: ["physics"] },
@@ -116,32 +130,46 @@ export default function Home() {
     { code: "SP3.06", title: t("home.sp3_06_title"), desc: t("home.sp3_06_subtitle"), color: "neon-green", href: "/chamber/sp3-06", tags: ["physics"] },
     { code: "SP3.07", title: t("home.sp3_07_title"), desc: t("home.sp3_07_subtitle"), color: "neon-cyan", href: "/chamber/sp3-07", tags: ["physics"] },
     { code: "SP3.08", title: t("home.sp3_08_title"), desc: t("home.sp3_08_subtitle"), color: "neon-purple", href: "/chamber/sp3-08", tags: ["physics"] },
-    { code: "GP2.01", title: t("home.gp2_01_title"), desc: t("home.gp2_01_subtitle"), color: "neon-amber", href: "/chamber/gp2-01", tags: ["physics"] },
-    { code: "GP2.02", title: t("home.gp2_02_title"), desc: t("home.gp2_02_subtitle"), color: "neon-green", href: "/chamber/gp2-02", tags: ["physics"] },
-    { code: "GP3.01", title: t("home.gp3_01_title"), desc: t("home.gp3_01_subtitle"), color: "neon-cyan", href: "/chamber/gp3-01", tags: ["physics"] },
+
+    // --- GYMNASIUM (Advanced) ---
+    // Year 1
     { code: "GP1.01", title: t("home.gp1_01_title"), desc: t("home.gp1_01_subtitle"), color: "neon-cyan", href: "/chamber/gp1-01", tags: ["physics"] },
     { code: "GP1.02", title: t("home.gp1_02_title"), desc: t("home.gp1_02_subtitle"), color: "neon-purple", href: "/chamber/gp1-02", tags: ["physics"] },
     { code: "GP1.03", title: t("home.gp1_03_title"), desc: t("home.gp1_03_subtitle"), color: "neon-amber", href: "/chamber/gp1-03", tags: ["physics"] },
     { code: "GP1.04", title: t("home.gp1_04_title"), desc: t("home.gp1_04_subtitle"), color: "neon-purple", href: "/chamber/gp1-04", tags: ["physics"] },
+    // Year 2
+    { code: "GP2.01", title: t("home.gp2_01_title"), desc: t("home.gp2_01_subtitle"), color: "neon-amber", href: "/chamber/gp2-01", tags: ["physics"] },
+    { code: "GP2.02", title: t("home.gp2_02_title"), desc: t("home.gp2_02_subtitle"), color: "neon-green", href: "/chamber/gp2-02", tags: ["physics"] },
+    { code: "GP2.03", title: t("home.gp2_03_title"), desc: t("home.gp2_03_subtitle"), color: "neon-cyan", href: "/chamber/gp2-03", tags: ["physics"] },
+    // Year 3
+    { code: "GP3.01", title: t("home.gp3_01_title"), desc: t("home.gp3_01_subtitle"), color: "neon-cyan", href: "/chamber/gp3-01", tags: ["physics"] },
+    { code: "GP3.02", title: t("home.gp3_02_title"), desc: t("home.gp3_02_subtitle"), color: "neon-amber", href: "/chamber/gp3-02", tags: ["physics"] },
+    { code: "GP3.03", title: t("home.gp3_03_title"), desc: t("home.gp3_03_subtitle"), color: "neon-purple", href: "/chamber/gp3-03", tags: ["physics"] },
   ]), [t]);
 
   const chemistryModules = useMemo(() => ([
+    // Year 1
     { code: "SC1.01", title: t("home.sc1_01_title"), desc: t("home.sc1_01_subtitle"), color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
     { code: "SC1.02", title: t("home.sc1_02_title"), desc: t("home.sc1_02_subtitle"), color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
     { code: "SC1.03", title: t("home.sc1_03_title") || "SC1.03 // ATOMS FORGE", desc: t("home.sc1_03_subtitle") || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
     { code: "SC1.04", title: t("home.sc1_04_title"), desc: t("home.sc1_04_subtitle"), color: "neon-cyan", href: "/chamber/sc1-04", tags: ["chemistry"] },
     { code: "SC1.05", title: t("home.sc1_05_title"), desc: t("home.sc1_05_subtitle"), color: "neon-purple", href: "/chamber/sc1-05", tags: ["chemistry"] },
+    { code: "SC1.06", title: t("home.sc1_06_title"), desc: t("home.sc1_06_subtitle"), color: "neon-purple", href: "/chamber/sc1-06", tags: ["chemistry"] },
+    // Year 2
     { code: "SC2.01", title: t("home.sc2_01_title"), desc: t("home.sc2_01_subtitle"), color: "neon-cyan", href: "/chamber/sc2-01", tags: ["chemistry"] },
     { code: "SC2.02", title: t("home.sc2_02_title"), desc: t("home.sc2_02_subtitle"), color: "neon-amber", href: "/chamber/sc2-02", tags: ["chemistry"] },
     { code: "SC2.03", title: t("home.sc2_03_title"), desc: t("home.sc2_03_subtitle"), color: "neon-green", href: "/chamber/sc2-03", tags: ["chemistry"] },
     { code: "SC2.04", title: t("home.sc2_04_title"), desc: t("home.sc2_04_subtitle"), color: "neon-cyan", href: "/chamber/sc2-04", tags: ["chemistry"] },
     { code: "SC2.05", title: t("home.sc2_05_title"), desc: t("home.sc2_05_subtitle"), color: "neon-purple", href: "/chamber/sc2-05", tags: ["chemistry"] },
     { code: "SC2.06", title: t("home.sc2_06_title"), desc: t("home.sc2_06_subtitle"), color: "neon-amber", href: "/chamber/sc2-06", tags: ["chemistry"] },
+    { code: "SC2.07", title: t("home.sc2_07_title"), desc: t("home.sc2_07_subtitle"), color: "neon-amber", href: "/chamber/sc2-07", tags: ["chemistry"] },
+    // Year 3
     { code: "SC3.01", title: t("home.sc3_01_title"), desc: t("home.sc3_01_subtitle"), color: "neon-purple", href: "/chamber/sc3-01", tags: ["chemistry"] },
     { code: "SC3.02", title: t("home.sc3_02_title"), desc: t("home.sc3_02_subtitle"), color: "neon-purple", href: "/chamber/sc3-02", tags: ["chemistry"] },
     { code: "SC3.03", title: t("home.sc3_03_title"), desc: t("home.sc3_03_subtitle"), color: "neon-purple", href: "/chamber/sc3-03", tags: ["chemistry"] },
     { code: "SC3.04", title: t("home.sc3_04_title"), desc: t("home.sc3_04_subtitle"), color: "neon-purple", href: "/chamber/sc3-04", tags: ["chemistry"] },
     { code: "SC3.05", title: t("home.sc3_05_title"), desc: t("home.sc3_05_subtitle"), color: "neon-green", href: "/chamber/sc3-05", tags: ["chemistry"] },
+    // Gymnasium Track Track
     { code: "GC1.01", title: t("home.gc1_01_title"), desc: t("home.gc1_01_subtitle"), color: "neon-amber", href: "/chamber/gc1-01", tags: ["chemistry"] },
     { code: "GC1.02", title: t("home.gc1_02_title"), desc: t("home.gc1_02_subtitle"), color: "neon-amber", href: "/chamber/gc1-02", tags: ["chemistry"] },
     { code: "GC2.01", title: t("home.gc2_01_title"), desc: t("home.gc2_01_subtitle"), color: "neon-green", href: "/chamber/gc2-01", tags: ["chemistry"] },
@@ -155,16 +183,30 @@ export default function Home() {
   ]), [t]);
 
   const biologyModules = useMemo(() => ([
+    // --- SEKUNDARSCHULE (Basics) ---
+    // Year 1
     { code: "SB1.01", title: t("home.sb1_01_title"), desc: t("home.sb1_01_subtitle"), color: "neon-green", href: "/chamber/sb1-01", tags: ["biology"] },
     { code: "SB1.01-M", title: t("home.sb1_01_met_title"), desc: t("home.sb1_01_met_subtitle"), color: "neon-amber", href: "/chamber/sb1-01-metabolic", tags: ["biology"] },
     { code: "SB1.02", title: t("home.sb1_02_title"), desc: t("home.sb1_02_subtitle"), color: "neon-green", href: "/chamber/sb1-02", tags: ["biology"] },
     { code: "SB1.03", title: t("home.sb1_03_title"), desc: t("home.sb1_03_subtitle"), color: "neon-cyan", href: "/chamber/sb1-03", tags: ["biology"] },
+    { code: "SB1.04", title: t("home.sb1_04_title"), desc: t("home.sb1_04_subtitle"), color: "neon-green", href: "/chamber/sb1-04", tags: ["biology"] },
+    { code: "SB1.05", title: t("home.sb1_05_title"), desc: t("home.sb1_05_subtitle"), color: "neon-amber", href: "/chamber/sb1-05", tags: ["biology"] },
+    // Year 2
     { code: "SB2.01", title: t("home.sb2_01_title"), desc: t("home.sb2_01_subtitle"), color: "neon-purple", href: "/chamber/sb2-01-tissues", tags: ["biology"] },
     { code: "SB2.02", title: t("home.sb2_02_title"), desc: t("home.sb2_02_subtitle"), color: "neon-cyan", href: "/chamber/sb2-02-body-systems", tags: ["biology"] },
     { code: "SB2.03", title: t("home.sb2_03_title"), desc: t("home.sb2_03_subtitle"), color: "neon-purple", href: "/chamber/sb2-03", tags: ["biology"] },
-    { code: "GB2.01", title: t("home.gb2_01_title"), desc: t("home.gb2_01_subtitle"), color: "neon-purple", href: "/chamber/gb2-01", tags: ["biology"] },
+    { code: "SB2.04", title: t("home.sb2_04_title"), desc: t("home.sb2_04_subtitle"), color: "neon-green", href: "/chamber/sb2-04", tags: ["biology"] },
+    // Year 3
     { code: "SB3.01", title: t("home.sb3_01_title"), desc: t("home.sb3_01_subtitle"), color: "neon-green", href: "/chamber/sb3-01", tags: ["biology"] },
+    { code: "SB3.02", title: t("home.sb3_02_title"), desc: t("home.sb3_02_subtitle"), color: "neon-amber", href: "/chamber/sb3-02", tags: ["biology"] },
+
+    // --- GYMNASIUM (Advanced) ---
+    // Year 1
     { code: "GB1.01", title: t("home.gb1_01_title"), desc: t("home.gb1_01_subtitle"), color: "neon-purple", href: "/chamber/gb1-01", tags: ["biology"] },
+    // Year 2
+    { code: "GB2.01", title: t("home.gb2_01_title"), desc: t("home.gb2_01_subtitle"), color: "neon-purple", href: "/chamber/gb2-01", tags: ["biology"] },
+    { code: "GB2.02", title: t("home.gb2_02_title"), desc: t("home.gb2_02_subtitle"), color: "neon-purple", href: "/chamber/gb2-02", tags: ["biology"] },
+    // Year 3
     { code: "GB3.01", title: t("home.gb3_01_title"), desc: t("home.gb3_01_subtitle"), color: "neon-cyan", href: "/chamber/gb3-01", tags: ["biology"] },
     { code: "GB3.02", title: t("home.gb3_02_title"), desc: t("home.gb3_02_subtitle"), color: "neon-amber", href: "/chamber/gb3-02", tags: ["biology"] },
   ]), [t]);
