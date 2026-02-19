@@ -143,7 +143,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
           slots: [],
           steps: [
             { id: "c2", labelLatex: `c^2=a^2+b^2`, input: "number", answer: c2 },
-            { id: "c", labelLatex: `c=\\\\sqrt{c^2}`, input: "number", answer: c },
+            { id: "c", labelLatex: `c=\\\\\sqrt{c^2}`, input: "number", answer: c },
           ],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
         });
@@ -261,7 +261,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         slots: [],
         steps: [
           { id: "d2", labelLatex: `d^2=(\\\\Delta x)^2+(\\\\Delta y)^2`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: exact },
+          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -293,7 +293,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         slots: [],
         steps: [
           { id: "d2", labelLatex: `d^2=a^2+b^2+c^2`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: exact },
+          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -323,7 +323,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       slots: [],
       steps: [
         { id: "d2", labelLatex: `d^2=w^2+h^2`, input: "number", answer: d2_cern },
-        { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: exact_cern },
+        { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact_cern },
       ],
       visual: { kind: "triangle", a: w, b: h, c: Math.sqrt(d2_cern) },
     });
@@ -343,7 +343,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       slots: [],
       steps: [
         { id: "r2", labelLatex: `r^2=a^2+b^2`, input: "number", answer: d2_grind },
-        { id: "r", labelLatex: `r=\\\\sqrt{r^2}`, input: "radical", answer: exact_grind },
+        { id: "r", labelLatex: `r=\\\\\sqrt{r^2}`, input: "radical", answer: exact_grind },
       ],
       visual: { kind: "triangle", a: a_grind, b: b_grind, c: Math.sqrt(d2_grind) },
     });
@@ -362,7 +362,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       slots: [],
       steps: [
         { id: "c2", labelLatex: `c^2=a^2+b^2`, input: "number", answer: d2_lucerne },
-        { id: "c", labelLatex: `c=\\\\sqrt{c^2}`, input: "number", answer: Math.sqrt(d2_lucerne) },
+        { id: "c", labelLatex: `c=\\\\\sqrt{c^2}`, input: "number", answer: Math.sqrt(d2_lucerne) },
       ],
       visual: { kind: "triangle", a: base_lucerne, b: height_lucerne, c: Math.sqrt(d2_lucerne) },
     });
@@ -390,7 +390,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         slots: [],
         steps: [
           { id: "d2", labelLatex: `d^2=(\\\\Delta x)^2+(\\\\Delta y)^2`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: exact },
+          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -418,9 +418,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       slots: [],
       steps: [
         { id: "s2", labelLatex: `s^2=a^2+b^2`, input: "number", answer: s2 },
-        { id: "s", labelLatex: `s=\\\\sqrt{s^2}`, input: "radical", answer: sExact },
+        { id: "s", labelLatex: `s=\\\\\sqrt{s^2}`, input: "radical", answer: sExact },
         { id: "d2", labelLatex: `d^2=s^2+c^2`, input: "number", answer: d2 },
-        { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: dExact },
+        { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: dExact },
       ],
       visual: { kind: "space", a, b, c },
     });
@@ -487,9 +487,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         slots: [],
         steps: [
           { id: "s2", labelLatex: `s^2=a^2+b^2`, input: "number", answer: s2 },
-          { id: "s", labelLatex: `s=\\\\sqrt{s^2}`, input: "radical", answer: sExact },
+          { id: "s", labelLatex: `s=\\\\\sqrt{s^2}`, input: "radical", answer: sExact },
           { id: "d2", labelLatex: `d^2=s^2+c^2`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\sqrt{d^2}`, input: "radical", answer: dExact },
+          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: dExact },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -511,12 +511,12 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|PERFECT|${difficulty}|${n}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.sqrt.perfect}:\\\\; \\\\sqrt{${n}}`,
-        expressionLatex: `\\\\sqrt{${n}}`,
-        targetLatex: `\\\\sqrt{${n}}`,
+        promptLatex: `${sm2_02_t.sqrt.perfect}:\\\\; \\\\\sqrt{${n}}`,
+        expressionLatex: `\\\\\sqrt{${n}}`,
+        targetLatex: `\\\\\sqrt{${n}}`,
         correctLatex: `${r}`,
         slots: [],
-        steps: [{ id: "sqrt", labelLatex: `\\\\sqrt{${n}}`, input: "number", answer: r }],
+        steps: [{ id: "sqrt", labelLatex: `\\\\\sqrt{${n}}`, input: "number", answer: r }],
         visual: { kind: "triangle", a: 3, b: 4, c: 5 },
       });
     }
@@ -535,12 +535,12 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `SQRT|SIMPLIFY|${difficulty}|${k}|${m}`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.sqrt.simplify}:\\\\; \\\\sqrt{${n}}`,
-          expressionLatex: `\\\\sqrt{${n}}=k\\\\sqrt{m}`,
-          targetLatex: `k\\\\sqrt{m}`,
+          promptLatex: `${sm2_02_t.sqrt.simplify}:\\\\; \\\\\sqrt{${n}}`,
+          expressionLatex: `\\\\\sqrt{${n}}=k\\\\\sqrt{m}`,
+          targetLatex: `k\\\\\sqrt{m}`,
           correctLatex: `${formatRadicalLatex({ k, m })}`,
           slots: [],
-          steps: [{ id: "simplify", labelLatex: `\\\\sqrt{${n}}=k\\\\sqrt{m}`, input: "radical", answer: { k, m } }],
+          steps: [{ id: "simplify", labelLatex: `\\\\\sqrt{${n}}=k\\\\\sqrt{m}`, input: "radical", answer: { k, m } }],
           visual: { kind: "triangle", a: 3, b: 4, c: 5 },
         });
       }
@@ -562,12 +562,12 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|ESTIMATE|${difficulty}|${n}|${interval[0]}|${interval[1]}|${isTrue ? 1 : 0}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.sqrt.estimate}:\\\\; \\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]\\\\,?`,
-        expressionLatex: `\\\\sqrt{${n}}`,
-        targetLatex: `\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]`,
+        promptLatex: `${sm2_02_t.sqrt.estimate}:\\\\; \\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]\\\\,?`,
+        expressionLatex: `\\\\\sqrt{${n}}`,
+        targetLatex: `\\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]`,
         correctLatex: isTrue ? sm2_02_t.yes : sm2_02_t.no,
         slots: [],
-        steps: [{ id: "judge", labelLatex: `\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]`, input: "boolean", answer: isTrue }],
+        steps: [{ id: "judge", labelLatex: `\\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]`, input: "boolean", answer: isTrue }],
         visual: { kind: "triangle", a: 3, b: 4, c: 5 },
       });
     }

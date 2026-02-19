@@ -78,13 +78,13 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         substances: ["soda", "salt", "starch"],
         correctIdentifications: arrangement as Record<string, Substance>,
         promptLatex: t('sc1_01.prompts.identify_powders'),
-        expressionLatex: `\\text{Use: Water, Vinegar, Fire, Iodine}`,
-        targetLatex: `\\text{A, B, C}`,
-        correctLatex: `\\text{A=${arrangement.A}, B=${arrangement.B}, C=${arrangement.C}}`,
+        expressionLatex: `\\\\text{Use: Water, Vinegar, Fire, Iodine}`,
+        targetLatex: `\\\\text{A, B, C}`,
+        correctLatex: `\\\\text{A=${arrangement.A}, B=${arrangement.B}, C=${arrangement.C}}`,
         slots: [
-          { id: "A", labelLatex: "\\text{Powder A is}", placeholder: "soda/salt/starch", expected: 0 },
-          { id: "B", labelLatex: "\\text{Powder B is}", placeholder: "soda/salt/starch", expected: 0 },
-          { id: "C", labelLatex: "\\text{Powder C is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "A", labelLatex: "\\\\text{Powder A is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "B", labelLatex: "\\\\text{Powder B is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "C", labelLatex: "\\\\text{Powder C is}", placeholder: "soda/salt/starch", expected: 0 },
         ],
       });
     }
@@ -134,12 +134,12 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: {},
-        promptLatex: `\\text{${prop.question}}`,
-        expressionLatex: `\\text{Test and observe}`,
-        targetLatex: `\\text{Answer}`,
-        correctLatex: `\\text{${prop.answer}}`,
+        promptLatex: `\\\\text{${prop.question}}`,
+        expressionLatex: `\\\\text{Test and observe}`,
+        targetLatex: `\\\\text{Answer}`,
+        correctLatex: `\\\\text{${prop.answer}}`,
         slots: [
-          { id: "answer", labelLatex: "\\text{Answer}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "answer", labelLatex: "\\\\text{Answer}", placeholder: "soda/salt/starch", expected: 0 },
         ],
       });
     }
@@ -289,12 +289,12 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: {},
-        promptLatex: `\\text{${rxn.question}}`,
+        promptLatex: `\\\\text{${rxn.question}}`,
         expressionLatex: rxn.equation,
-        targetLatex: `\\text{Product}`,
-        correctLatex: `\\text{${rxn.product}}`,
+        targetLatex: `\\\\text{Product}`,
+        correctLatex: `\\\\text{${rxn.product}}`,
         slots: [
-          { id: "product", labelLatex: "\\text{Main product}", placeholder: "Product", expected: 0 },
+          { id: "product", labelLatex: "\\\\text{Main product}", placeholder: "Product", expected: 0 },
         ],
       });
     }

@@ -42,7 +42,7 @@ export default function SB202Page() {
                     promptLatex: t("sb2_02.prompts.organ_function", { function: o.function }),
                     expressionLatex: `\\text{${o.name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
-                    slots: [{ id: "organ", labelLatex: "\\text{Organ}", placeholder: o.name, expected: o.name }],
+                    slots: [{ id: "organ", labelLatex: "\\\\text{Organ}", placeholder: o.name, expected: o.name }],
                     correctLatex: o.name,
                     hintLatex: [t("sb2_02.prompts.hint_organ", { name: o.name })]
                 });
@@ -61,9 +61,9 @@ export default function SB202Page() {
                 quests.push({
                     id: `C-${c.name}`, difficulty, stage, organ: c.name,
                     promptLatex: t("sb2_02.prompts.component_function", { function: c.function }),
-                    expressionLatex: `\\text{${c.name.charAt(0).toUpperCase() + c.name.slice(1)}}`,
+                    expressionLatex: `\\\\text{${c.name.charAt(0).toUpperCase() + c.name.slice(1)}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
-                    slots: [{ id: "comp", labelLatex: "\\text{Component}", placeholder: c.name, expected: c.name }],
+                    slots: [{ id: "comp", labelLatex: "\\\\text{Component}", placeholder: c.name, expected: c.name }],
                     correctLatex: c.name,
                     hintLatex: [t("sb2_02.prompts.hint_component", { name: c.name })]
                 });
@@ -82,9 +82,9 @@ export default function SB202Page() {
                 quests.push({
                     id: `R-${s.name}`, difficulty, stage, organ: s.name,
                     promptLatex: t("sb2_02.prompts.structure_function", { function: s.function }),
-                    expressionLatex: `\\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
+                    expressionLatex: `\\\\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
-                    slots: [{ id: "struct", labelLatex: "\\text{Structure}", placeholder: s.name, expected: s.name }],
+                    slots: [{ id: "struct", labelLatex: "\\\\text{Structure}", placeholder: s.name, expected: s.name }],
                     correctLatex: s.name,
                     hintLatex: [t("sb2_02.prompts.hint_structure", { name: s.name })]
                 });

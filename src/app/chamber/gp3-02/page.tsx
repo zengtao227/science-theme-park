@@ -97,7 +97,7 @@ export default function GP302Electromagnetism() {
                 charge: item.charge,
                 distance: item.distance,
                 promptLatex: item.prompt,
-                expressionLatex: `E = k \\frac{Q}{r^2}`,
+                expressionLatex: `E = k \\\\frac{Q}{r^2}`,
                 targetLatex: "answer",
                 slots: [
                     {
@@ -161,7 +161,7 @@ export default function GP302Electromagnetism() {
                         expected: item.field
                     }
                 ],
-                correctLatex: `\\text{B = } ${item.field} \\text{ T}`,
+                correctLatex: `\\\\text{B = } ${item.field} \\\\text{ T}`,
                 answer: item.field as string
             }));
         }

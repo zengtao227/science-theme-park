@@ -1,0 +1,134 @@
+[
+  {
+    "id": "SP1.01.025",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Three forces act on an object in equilibrium: 50 N to the right, 30 N upward, and an unknown force. What is the magnitude of the unknown force?",
+      "cn": "三个力作用在处于平衡状态的物体上：50 N 向右，30 N 向上，以及一个未知的力。未知力的大小是多少？",
+      "de": "Drei Kräfte wirken auf ein Objekt im Gleichgewicht: 50 N nach rechts, 30 N nach oben und eine unbekannte Kraft. Was ist der Betrag der unbekannten Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 58.31,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The unknown force must balance the other two: √(50² + 30²) = 58.31 N",
+        "cn": "正确！未知力必须平衡其他两个力：√(50² + 30²) = 58.31 N",
+        "de": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50² + 30²) = 58.31 N"
+      },
+      "incorrect": {
+        "en": "For equilibrium, the sum of all forces must be zero.",
+        "cn": "对于平衡，所有力的总和必须为零。",
+        "de": "Für das Gleichgewicht muss die Summe aller Kräfte Null sein."
+      }
+    },
+    "prerequisites": ["SP1.01.045"]
+  },
+  {
+    "id": "SP1.01.046",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Two forces of 40 N each act at 60° to each other. What is the magnitude of the third force needed for equilibrium?",
+      "cn": "两个各为 40 N 的力相互成 60° 角作用。达到平衡所需的第三个力的大小是多少？",
+      "de": "Zwei Kräfte von jeweils 40 N wirken in einem Winkel von 60° zueinander. Was ist der Betrag der dritten Kraft, die für das Gleichgewicht benötigt wird?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 69.28,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The resultant of the two forces is 69.28 N, so the equilibrant must be equal and opposite.",
+        "cn": "正确！两个力的合力是 69.28 N，所以平衡力必须大小相等方向相反。",
+        "de": "Richtig! Die Resultierende der beiden Kräfte beträgt 69.28 N, daher muss die Gleichgewichtskraft gleich und entgegengesetzt sein."
+      },
+      "incorrect": {
+        "en": "First find the resultant of the two forces, then the equilibrant equals it in magnitude.",
+        "cn": "首先找到两个力的合力，然后平衡力的大小与之相等。",
+        "de": "Finden Sie zuerst die Resultierende der beiden Kräfte, dann entspricht die Gleichgewichtskraft ihr im Betrag."
+      }
+    },
+    "prerequisites": ["SP1.01.025"]
+  },
+  {
+    "id": "SP1.01.047",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "An object is in equilibrium under three forces: 100 N at 0°, 80 N at 90°, and a third force. What is the magnitude of the third force?",
+      "cn": "一个物体在三个力的作用下处于平衡：100 N 在 0°，80 N 在 90°，以及第三个力。第三个力的大小是多少？",
+      "de": "Ein Objekt befindet sich im Gleichgewicht unter drei Kräften: 100 N bei 0°, 80 N bei 90° und eine dritte Kraft. Was ist der Betrag der dritten Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 128.06,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F = √(100² + 80²) = 128.06 N",
+        "cn": "正确！F = √(100² + 80²) = 128.06 N",
+        "de": "Richtig! F = √(100² + 80²) = 128.06 N"
+      },
+      "incorrect": {
+        "en": "The third force must balance the resultant of the first two.",
+        "cn": "第三个力必须平衡前两个力的合力。",
+        "de": "Die dritte Kraft muss die Resultierende der ersten beiden ausgleichen."
+      }
+    },
+    "prerequisites": ["SP1.01.046"]
+  },
+  {
+    "id": "SP1.01.048",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A sign hangs from two cables making 30° angles with the horizontal. If each cable has a tension of 200 N, what is the weight of the sign?",
+      "cn": "一个标志牌由两根与水平方向成 30° 角的缆绳悬挂。如果每根缆绳的张力为 200 N，标志牌的重量是多少？",
+      "de": "Ein Schild hängt an zwei Kabeln, die einen Winkel von 30° zur Horizontalen bilden. Wenn jedes Kabel eine Spannung von 200 N hat, wie schwer ist das Schild?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 200,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Weight = 2 × 200 × sin(30°) = 2 × 200 × 0.5 = 200 N",
+        "cn": "正确！重量 = 2 × 200 × sin(30°) = 2 × 200 × 0.5 = 200 N",
+        "de": "Richtig! Gewicht = 2 × 200 × sin(30°) = 2 × 200 × 0.5 = 200 N"
+      },
+      "incorrect": {
+        "en": "The vertical components of both cables must equal the weight.",
+        "cn": "两根缆绳的垂直分量之和必须等于重量。",
+        "de": "Die vertikalen Komponenten beider Kabel müssen dem Gewicht entsprechen."
+      }
+    },
+    "prerequisites": ["SP1.01.047"]
+  }
+]

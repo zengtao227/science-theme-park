@@ -205,13 +205,13 @@ function buildStagePool(
         slots: [
           {
             id: "real",
-            labelLatex: "\\text{Re}",
+            labelLatex: "\\\\text{Re}",
             placeholder: "real",
             expected: round2(resultRe),
           },
           {
             id: "imaginary",
-            labelLatex: "\\text{Im}",
+            labelLatex: "\\\\text{Im}",
             placeholder: "imaginary",
             expected: round2(resultIm),
           },
@@ -252,13 +252,13 @@ function buildStagePool(
       slots: [
         {
           id: "real",
-          labelLatex: "\\text{Re}",
+          labelLatex: "\\\\text{Re}",
           placeholder: "real",
           expected: round2(resultRe),
         },
         {
           id: "imaginary",
-          labelLatex: "\\text{Im}",
+          labelLatex: "\\\\text{Im}",
           placeholder: "imaginary",
           expected: round2(resultIm),
         },

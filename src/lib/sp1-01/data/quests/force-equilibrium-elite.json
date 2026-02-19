@@ -1,0 +1,345 @@
+[
+  {
+    "id": "SP1.01.056",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A Basel Marathon runner's foot strikes the ground with 2400 N. The ground reaction force acts at 15° from vertical. What is the horizontal component that propels the runner forward?",
+      "cn": "巴塞尔马拉松跑者的脚以 2400 N 的力击地。地面反作用力与垂直方向成 15° 角。推动跑者前进的水平分量是多少？",
+      "de": "Der Fuß eines Basel-Marathon-Läufers trifft mit 2400 N auf den Boden. Die Bodenreaktionskraft wirkt in einem Winkel von 15° zur Vertikalen. Was ist die horizontale Komponente, die den Läufer vorwärts treibt?"
+    },
+    "scenario": {
+      "title": {
+        "en": "Basel Marathon Biomechanics",
+        "cn": "巴塞尔马拉松生物力学",
+        "de": "Basel Marathon Biomechanik"
+      },
+      "description": {
+        "en": "The Basel Marathon, attracting over 10,000 runners annually, showcases the physics of human locomotion through Basel's streets. When a runner's foot strikes the pavement near Marktplatz, complex force interactions occur. The ground reaction force, typically 2-3 times body weight, acts at an angle determined by running technique. Elite runners optimize this angle to maximize forward propulsion while minimizing vertical oscillation. The force components must be carefully balanced: too much vertical force wastes energy bouncing up and down, while insufficient horizontal force limits speed. Sports scientists analyze these forces to improve running efficiency and prevent injuries. Understanding force equilibrium and decomposition helps runners maintain optimal form through Basel's varied terrain, from the flat Rhine promenade to the challenging hills of Bruderholz, ensuring they can complete the 42.195 km course efficiently.",
+      "cn": "巴塞尔马拉松每年吸引超过 10,000 名跑者，展示了人类在巴塞尔街道上运动的物理学。当跑者的脚在 Marktplatz 附近击打路面时，会发生复杂的力相互作用。地面反作用力通常是体重的 2-3 倍，其作用角度由跑步技术决定。精英跑者优化这个角度以最大化前进推力，同时最小化垂直振荡。力分量必须仔细平衡：过多的垂直力会浪费能量上下弹跳，而水平力不足会限制速度。运动科学家分析这些力以提高跑步效率并预防受伤。理解力平衡和分解帮助跑者在巴塞尔多样的地形中保持最佳状态，从平坦的莱茵河长廊到具有挑战性的 Bruderholz 山丘，确保他们能够高效完成 42.195 公里的赛程。",
+      "de": "Der Basel Marathon, der jährlich über 10.000 Läufer anzieht, zeigt die Physik der menschlichen Fortbewegung durch Basels Straßen. Wenn der Fuß eines Läufers in der Nähe des Marktplatzes auf das Pflaster trifft, treten komplexe Kraftwechselwirkungen auf. Die Bodenreaktionskraft, typischerweise das 2-3-fache des Körpergewichts, wirkt in einem Winkel, der durch die Lauftechnik bestimmt wird. Elite-Läufer optimieren diesen Winkel, um den Vorwärtsantrieb zu maximieren und gleichzeitig die vertikale Oszillation zu minimieren. Die Kraftkomponenten müssen sorgfältig ausbalanciert werden: Zu viel vertikale Kraft verschwendet Energie durch Auf- und Abhüpfen, während unzureichende horizontale Kraft die Geschwindigkeit begrenzt. Sportwissenschaftler analysieren diese Kräfte, um die Laufeffizienz zu verbessern und Verletzungen vorzubeugen. Das Verständnis von Kräftegleichgewicht und -zerlegung hilft Läufern, durch Basels vielfältiges Gelände optimale Form zu halten, von der flachen Rheinpromenade bis zu den anspruchsvollen Hügeln des Bruderholz, um die 42,195 km lange Strecke effizient zu bewältigen."
+      },
+      "location": "Basel Marathon Route"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 621.18,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_horizontal = 2400 × sin(15°) = 621.18 N",
+        "cn": "正确！F_水平 = 2400 × sin(15°) = 621.18 N",
+        "de": "Richtig! F_horizontal = 2400 × sin(15°) = 621.18 N"
+      },
+      "incorrect": {
+        "en": "The horizontal component is F × sin(θ) where θ is from vertical.",
+        "cn": "水平分量是 F × sin(θ)，其中 θ 是从垂直方向测量的。",
+        "de": "Die horizontale Komponente ist F × sin(θ), wobei θ von der Vertikalen gemessen wird."
+      }
+    },
+    "prerequisites": ["SP1.01.055"]
+  },
+  {
+    "id": "SP1.01.057",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Five forces act on a complex structure: 200 N at 36°, 150 N at 108°, 180 N at 180°, 120 N at 252°, and F at 324°. For equilibrium, what is F?",
+      "cn": "五个力作用在复杂结构上：200 N 在 36°，150 N 在 108°，180 N 在 180°，120 N 在 252°，F 在 324°。为了平衡，F 是多少？",
+      "de": "Fünf Kräfte wirken auf eine komplexe Struktur: 200 N bei 36°, 150 N bei 108°, 180 N bei 180°, 120 N bei 252° und F bei 324°. Für das Gleichgewicht, was ist F?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 200,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! By analyzing x and y components separately and solving equilibrium equations, F = 200 N",
+        "cn": "正确！通过分别分析 x 和 y 分量并求解平衡方程，F = 200 N",
+        "de": "Richtig! Durch separate Analyse der x- und y-Komponenten und Lösung der Gleichgewichtsgleichungen ist F = 200 N"
+      },
+      "incorrect": {
+        "en": "Sum all x-components and y-components separately, then solve for F.",
+        "cn": "分别求和所有 x 分量和 y 分量，然后求解 F。",
+        "de": "Summieren Sie alle x-Komponenten und y-Komponenten separat und lösen Sie dann nach F auf."
+      }
+    },
+    "prerequisites": ["SP1.01.056"]
+  },
+  {
+    "id": "SP1.01.058",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A suspended platform is held by four cables. Three cables have tensions: 400 N at 30°, 350 N at 120°, and 380 N at 210°. What is the tension in the fourth cable at 300°?",
+      "cn": "一个悬挂平台由四根缆绳支撑。三根缆绳的张力为：400 N 在 30°，350 N 在 120°，380 N 在 210°。300° 的第四根缆绳的张力是多少？",
+      "de": "Eine aufgehängte Plattform wird von vier Kabeln gehalten. Drei Kabel haben Spannungen: 400 N bei 30°, 350 N bei 120° und 380 N bei 210°. Was ist die Spannung im vierten Kabel bei 300°?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 350,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Solving the equilibrium equations yields T₄ = 350 N",
+        "cn": "正确！求解平衡方程得到 T₄ = 350 N",
+        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 350 N"
+      },
+      "incorrect": {
+        "en": "Set up two equilibrium equations (x and y) and solve for the unknown tension.",
+        "cn": "建立两个平衡方程（x 和 y）并求解未知张力。",
+        "de": "Stellen Sie zwei Gleichgewichtsgleichungen (x und y) auf und lösen Sie nach der unbekannten Spannung auf."
+      }
+    },
+    "prerequisites": ["SP1.01.057"]
+  },
+  {
+    "id": "SP1.01.059",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A truss joint experiences forces: 500 N compression at 0°, 400 N tension at 60°, 450 N compression at 180°, and two unknown forces at 240° and 300°. If the forces at 240° and 300° are equal, what is their magnitude?",
+      "cn": "一个桁架节点受力：500 N 压力在 0°，400 N 拉力在 60°，450 N 压力在 180°，以及两个未知力在 240° 和 300°。如果 240° 和 300° 的力相等，它们的大小是多少？",
+      "de": "Ein Fachwerkknoten erfährt Kräfte: 500 N Druck bei 0°, 400 N Zug bei 60°, 450 N Druck bei 180° und zwei unbekannte Kräfte bei 240° und 300°. Wenn die Kräfte bei 240° und 300° gleich sind, was ist ihr Betrag?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 200,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Using symmetry and equilibrium equations, each unknown force is 200 N",
+        "cn": "正确！使用对称性和平衡方程，每个未知力是 200 N",
+        "de": "Richtig! Mit Symmetrie und Gleichgewichtsgleichungen beträgt jede unbekannte Kraft 200 N"
+      },
+      "incorrect": {
+        "en": "Use the fact that the two unknown forces are equal to simplify the equilibrium equations.",
+        "cn": "利用两个未知力相等的事实来简化平衡方程。",
+        "de": "Nutzen Sie die Tatsache, dass die beiden unbekannten Kräfte gleich sind, um die Gleichgewichtsgleichungen zu vereinfachen."
+      }
+    },
+    "prerequisites": ["SP1.01.058"]
+  },
+  {
+    "id": "SP1.01.060",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A complex cable system has six cables meeting at a point. Five cables have known tensions: 300 N at 0°, 250 N at 72°, 280 N at 144°, 260 N at 216°, and 270 N at 288°. What is the tension in the sixth cable at an optimal angle for equilibrium?",
+      "cn": "一个复杂的缆绳系统有六根缆绳在一点相交。五根缆绳的张力已知：300 N 在 0°，250 N 在 72°，280 N 在 144°，260 N 在 216°，270 N 在 288°。第六根缆绳在最佳平衡角度的张力是多少？",
+      "de": "Ein komplexes Kabelsystem hat sechs Kabel, die sich an einem Punkt treffen. Fünf Kabel haben bekannte Spannungen: 300 N bei 0°, 250 N bei 72°, 280 N bei 144°, 260 N bei 216° und 270 N bei 288°. Was ist die Spannung im sechsten Kabel bei einem optimalen Winkel für das Gleichgewicht?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 89.44,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The resultant of the five forces is 89.44 N, so the sixth cable must provide this force.",
+        "cn": "正确！五个力的合力是 89.44 N，所以第六根缆绳必须提供这个力。",
+        "de": "Richtig! Die Resultierende der fünf Kräfte beträgt 89.44 N, daher muss das sechste Kabel diese Kraft bereitstellen."
+      },
+      "incorrect": {
+        "en": "Find the resultant of all known forces, then the sixth cable must balance it.",
+        "cn": "找到所有已知力的合力，然后第六根缆绳必须平衡它。",
+        "de": "Finden Sie die Resultierende aller bekannten Kräfte, dann muss das sechste Kabel sie ausgleichen."
+      }
+    },
+    "prerequisites": ["SP1.01.059"]
+  },
+  {
+    "id": "SP1.01.061",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A bridge support experiences wind load of 3000 N horizontally, dead load of 8000 N vertically, and three support reactions at 45°, 135°, and 225°. If the reactions at 45° and 225° are equal, what is their magnitude?",
+      "cn": "一个桥梁支撑受到 3000 N 的水平风荷载，8000 N 的垂直恒载，以及三个支撑反力在 45°、135° 和 225°。如果 45° 和 225° 的反力相等，它们的大小是多少？",
+      "de": "Eine Brückenstütze erfährt eine Windlast von 3000 N horizontal, eine Eigenlast von 8000 N vertikal und drei Stützreaktionen bei 45°, 135° und 225°. Wenn die Reaktionen bei 45° und 225° gleich sind, was ist ihr Betrag?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 4242.64,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Using equilibrium equations with symmetry, each equal reaction is 4242.64 N",
+        "cn": "正确！使用对称性的平衡方程，每个相等的反力是 4242.64 N",
+        "de": "Richtig! Mit Gleichgewichtsgleichungen und Symmetrie beträgt jede gleiche Reaktion 4242.64 N"
+      },
+      "incorrect": {
+        "en": "Set up equilibrium equations for x and y, using the symmetry of the two equal reactions.",
+        "cn": "为 x 和 y 建立平衡方程，利用两个相等反力的对称性。",
+        "de": "Stellen Sie Gleichgewichtsgleichungen für x und y auf und nutzen Sie die Symmetrie der beiden gleichen Reaktionen."
+      }
+    },
+    "prerequisites": ["SP1.01.060"]
+  },
+  {
+    "id": "SP1.01.062",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "An architectural sculpture in Basel has eight support cables arranged symmetrically at 45° intervals. If the sculpture weighs 2400 N, what is the tension in each cable?",
+      "cn": "巴塞尔的一个建筑雕塑有八根对称排列的支撑缆绳，间隔 45°。如果雕塑重 2400 N，每根缆绳的张力是多少？",
+      "de": "Eine architektonische Skulptur in Basel hat acht symmetrisch angeordnete Stützkabel in 45°-Intervallen. Wenn die Skulptur 2400 N wiegt, was ist die Spannung in jedem Kabel?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 300,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! By symmetry, each cable carries 2400/8 = 300 N",
+        "cn": "正确！根据对称性，每根缆绳承受 2400/8 = 300 N",
+        "de": "Richtig! Durch Symmetrie trägt jedes Kabel 2400/8 = 300 N"
+      },
+      "incorrect": {
+        "en": "For symmetric arrangement, the load is distributed equally among all cables.",
+        "cn": "对于对称排列，负载在所有缆绳之间均匀分布。",
+        "de": "Bei symmetrischer Anordnung wird die Last gleichmäßig auf alle Kabel verteilt."
+      }
+    },
+    "prerequisites": ["SP1.01.061"]
+  },
+  {
+    "id": "SP1.01.063",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A crane hook supports a load with four chains at angles 20°, 110°, 200°, and 290° from horizontal. If three chains have tensions 800 N, 750 N, and 820 N respectively, what is the tension in the fourth chain?",
+      "cn": "一个起重机吊钩用四根链条支撑负载，角度分别为与水平方向成 20°、110°、200° 和 290°。如果三根链条的张力分别为 800 N、750 N 和 820 N，第四根链条的张力是多少？",
+      "de": "Ein Kranhaken trägt eine Last mit vier Ketten in Winkeln von 20°, 110°, 200° und 290° zur Horizontalen. Wenn drei Ketten Spannungen von 800 N, 750 N bzw. 820 N haben, was ist die Spannung in der vierten Kette?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 750,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Solving the equilibrium equations yields T₄ = 750 N",
+        "cn": "正确！求解平衡方程得到 T₄ = 750 N",
+        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 750 N"
+      },
+      "incorrect": {
+        "en": "Calculate the x and y components of all known forces, then solve for the unknown.",
+        "cn": "计算所有已知力的 x 和 y 分量，然后求解未知量。",
+        "de": "Berechnen Sie die x- und y-Komponenten aller bekannten Kräfte und lösen Sie dann nach der Unbekannten auf."
+      }
+    },
+    "prerequisites": ["SP1.01.062"]
+  },
+  {
+    "id": "SP1.01.064",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A space frame node has seven members meeting at angles 0°, 51.43°, 102.86°, 154.29°, 205.71°, 257.14°, and 308.57°. Six members have forces of 500 N each. What force must the seventh member carry for equilibrium?",
+      "cn": "一个空间框架节点有七个构件在 0°、51.43°、102.86°、154.29°、205.71°、257.14° 和 308.57° 角度相交。六个构件各有 500 N 的力。第七个构件必须承受多少力才能平衡？",
+      "de": "Ein Raumfachwerk-Knoten hat sieben Stäbe, die sich bei Winkeln von 0°, 51.43°, 102.86°, 154.29°, 205.71°, 257.14° und 308.57° treffen. Sechs Stäbe haben jeweils Kräfte von 500 N. Welche Kraft muss der siebte Stab für das Gleichgewicht tragen?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 500,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! By symmetry (7 equal angles), the seventh member also carries 500 N",
+        "cn": "正确！根据对称性（7 个相等的角度），第七个构件也承受 500 N",
+        "de": "Richtig! Durch Symmetrie (7 gleiche Winkel) trägt der siebte Stab ebenfalls 500 N"
+      },
+      "incorrect": {
+        "en": "Look for symmetry - seven equal forces at equal angular intervals form a balanced system.",
+        "cn": "寻找对称性 - 七个相等的力以相等的角度间隔形成平衡系统。",
+        "de": "Suchen Sie nach Symmetrie - sieben gleiche Kräfte in gleichen Winkelabständen bilden ein ausgewogenes System."
+      }
+    },
+    "prerequisites": ["SP1.01.063"]
+  },
+  {
+    "id": "SP1.01.065",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ELITE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A complex rigging system has forces: 600 N at 15°, 550 N at 75°, 580 N at 135°, 520 N at 195°, 590 N at 255°, and F at 315°. What is F for equilibrium?",
+      "cn": "一个复杂的索具系统有力：600 N 在 15°，550 N 在 75°，580 N 在 135°，520 N 在 195°，590 N 在 255°，F 在 315°。平衡时 F 是多少？",
+      "de": "Ein komplexes Rigging-System hat Kräfte: 600 N bei 15°, 550 N bei 75°, 580 N bei 135°, 520 N bei 195°, 590 N bei 255° und F bei 315°. Was ist F für das Gleichgewicht?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 550,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Comprehensive equilibrium analysis yields F = 550 N",
+        "cn": "正确！综合平衡分析得到 F = 550 N",
+        "de": "Richtig! Umfassende Gleichgewichtsanalyse ergibt F = 550 N"
+      },
+      "incorrect": {
+        "en": "Sum all x-components and y-components of known forces, then solve for F.",
+        "cn": "求和所有已知力的 x 分量和 y 分量，然后求解 F。",
+        "de": "Summieren Sie alle x-Komponenten und y-Komponenten der bekannten Kräfte und lösen Sie dann nach F auf."
+      }
+    },
+    "prerequisites": ["SP1.01.064"]
+  }
+]

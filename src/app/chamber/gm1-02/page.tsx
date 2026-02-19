@@ -261,11 +261,11 @@ function buildStagePool(
         upperBound: item.b,
         promptLatex: t("gm1_02.prompts.evaluate_integral", { expr, a: item.a, b: item.b }),
         expressionLatex: `\\int_{${item.a}}^{${item.b}} (${expr}) dx`,
-        targetLatex: "\\text{Area}",
+        targetLatex: "\\\\text{Area}",
         slots: [
           {
             id: "answer",
-            labelLatex: "\\text{Result}",
+            labelLatex: "\\\\text{Result}",
             placeholder: "value",
             expected: answer,
           },
@@ -356,16 +356,16 @@ function buildStagePool(
       upperBound: item.b,
       promptLatex: t("gm1_02.prompts.find_area", { expr, a: item.a, b: item.b }),
       expressionLatex: `f(x) = ${expr}`,
-      targetLatex: "\\text{Area}",
+      targetLatex: "\\\\text{Area}",
       slots: [
         {
           id: "answer",
-          labelLatex: "\\text{Area}",
+          labelLatex: "\\\\text{Area}",
           placeholder: "value",
           expected: answer,
         },
       ],
-      correctLatex: `\\text{Area} = ${answer}`,
+      correctLatex: `\\\\text{Area} = ${answer}`,
     };
   });
 }

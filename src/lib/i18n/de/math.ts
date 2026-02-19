@@ -1995,5 +1995,174 @@ export const deMath = {
             invalid_desc: "Überprüfen Sie Ihre Formel",
             next: "NÄCHSTES PROBLEM"
         }
+    },
+    sm2_09: {
+        back: "Zurück zum Nexus",
+        title: "SM2.09 // UNGLEICHUNGEN",
+        difficulty: {
+            basic: "GRUNDLAGEN",
+            core: "KERN",
+            advanced: "FORTGESCHRITTEN",
+            elite: "ELITE"
+        },
+        stages: {
+            inequality_basics: "UNGLEICHUNGEN GRUNDLAGEN",
+            systems: "UNGLEICHUNGSSYSTEME",
+            absolute_value: "BETRAGSUNGLEICHUNGEN"
+        },
+        objective_title: "Aktives Missionsziel",
+        next: "Nächste Sequenz ausführen",
+        check: "Verifizieren",
+        show_steps: "Schritte anzeigen",
+        hide_steps: "Schritte verbergen",
+        correct: "Verifiziert",
+        incorrect: "Nicht übereinstimmend",
+        ready: "Bereit",
+        monitor_title: "SM2.09_UNGLEICHUNGEN_MONITOR",
+        footer_left: "SM2.09_UNGLEICHUNGEN // KNOTEN: BASEL",
+        labels: {
+            solution: "LÖSUNG",
+            interval_notation: "Intervallschreibweise",
+            set_builder: "Mengenschreibweise",
+            number_line: "ZAHLENSTRAHL",
+            graph: "GRAPH",
+            solution_set: "LÖSUNGSMENGE",
+            step: "SCHRITT",
+            justification: "BEGRÜNDUNG",
+            final_solution: "ENDGÜLTIGE LÖSUNG",
+            enter_solution: "Lösung eingeben",
+            placeholder_interval: "z.B. (-∞, 5] oder [2, 10)",
+            empty_set: "Keine Lösung (∅)",
+            all_reals: "Alle reellen Zahlen (ℝ)"
+        },
+        feedback: {
+            correct: "Lösung verifiziert! Die Ungleichung ist korrekt gelöst.",
+            incorrect: "Falsche Lösung. Überprüfen Sie Ihre Arbeit.",
+            invalid_format: "Ungültiges Format. Verwenden Sie Intervallschreibweise wie (-∞, 5] oder [2, 10)",
+            empty_input: "Bitte geben Sie eine Lösung ein, bevor Sie verifizieren.",
+            hint_direction: "Denken Sie daran: Multiplikation oder Division mit einer negativen Zahl kehrt das Ungleichheitszeichen um."
+        },
+        basel_scenarios: {
+            tram_title: "Basler Tramticket-Preise",
+            tram_context: "Das öffentliche Verkehrssystem von Basel (BVB/BLT) bietet verschiedene Ticketoptionen. Ein Einzelticket kostet CHF 3.80, während eine Tageskarte CHF 9.00 kostet. Sie planen Ihren täglichen Arbeitsweg und möchten bestimmen, wann der Kauf einer Tageskarte wirtschaftlicher ist als der Kauf von Einzeltickets. Sei x die Anzahl der Tramfahrten, die Sie an einem Tag unternehmen. Die Kosten für Einzeltickets betragen 3.80x CHF, während die Tageskarte pauschal 9.00 CHF kostet. Um herauszufinden, wann die Tageskarte günstiger ist, müssen wir die Ungleichung lösen: 3.80x > 9.00. Diese Ungleichung hilft Ihnen, eine fundierte Entscheidung darüber zu treffen, welche Ticketoption Ihnen Geld spart, basierend auf Ihren Reisemustern. Das Verständnis von Ungleichungen in diesem Kontext zeigt, wie Mathematik auf alltägliche finanzielle Entscheidungen im Basler Verkehrssystem angewendet wird.",
+            roche_title: "Roche Pharmazeutische Dosierung",
+            roche_context: "Roche, einer der größten Arbeitgeber Basels, entwickelt Medikamente, die präzise Dosierungsrichtlinien erfordern. Betrachten Sie ein Medikament, bei dem die therapeutische Dosis zwischen 50 mg und 200 mg pro Tag liegen muss, um wirksam und gleichzeitig sicher zu sein. Die Dosierung hängt vom Körpergewicht des Patienten ab. Für einen Patienten mit einem Gewicht von w Kilogramm beträgt die empfohlene Dosis 2.5w mg pro Tag. Um sicherzustellen, dass die Dosis im sicheren und wirksamen Bereich liegt, müssen wir die zusammengesetzte Ungleichung lösen: 50 ≤ 2.5w ≤ 200. Dies bedeutet, den Bereich der Patientengewichte zu bestimmen, für die diese Dosierungsformel geeignet ist. Das Lösen dieses Ungleichungssystems ergibt: 20 ≤ w ≤ 80, was bedeutet, dass die Formel für Patienten mit einem Gewicht zwischen 20 und 80 Kilogramm geeignet ist. Dieses Beispiel veranschaulicht, wie Pharmaunternehmen wie Roche mathematische Ungleichungen verwenden, um sichere Dosierungsrichtlinien festzulegen.",
+            marathon_title: "Basel Marathon Qualifikation",
+            marathon_context: "Der Basel Marathon (Basel Stadt Lauf) hat unterschiedliche Qualifikationsstandards für verschiedene Altersgruppen. Um sich für den Elite-Wellenstart zu qualifizieren, müssen Läufer einen vorherigen Marathon innerhalb bestimmter Zeitlimits absolviert haben, die auf ihrer Altersgruppe basieren. Für die Herren-Elite-Kategorie (18-39 Jahre) beträgt die Qualifikationszeit unter 3 Stunden 15 Minuten (195 Minuten). Für die Altersgruppe 40-49 verlängert sich die Zeit auf unter 3 Stunden 30 Minuten (210 Minuten). Sei t Ihre Marathonzeit in Minuten und a Ihr Alter. Die Qualifikationskriterien können als Ungleichungssystem ausgedrückt werden: Wenn 18 ≤ a ≤ 39, dann t < 195. Wenn 40 ≤ a ≤ 49, dann t < 210. Diese zusammengesetzten Ungleichungen helfen Läufern zu bestimmen, ob sie sich für die Elite-Wellenplatzierung qualifizieren. Das Verständnis der Arbeit mit Ungleichungssystemen ist für die Interpretation von Qualifikationsstandards bei Wettkampfsportveranstaltungen unerlässlich.",
+            university_title: "Universität Basel Zulassung",
+            university_context: "Die Universität Basel verwendet ein punktebasiertes Zulassungssystem für wettbewerbsfähige Programme wie Medizin und Psychologie. Bewerber werden nach mehreren Kriterien bewertet: Matura-Note (maximal 6.0 Punkte), Aufnahmeprüfungsergebnis (maximal 100 Punkte) und Interviewleistung (maximal 20 Punkte). Für das Medizinprogramm muss die Gesamtpunktzahl S erfüllen: S ≥ 110 Punkte für garantierte Zulassung. Zusätzlich darf keine einzelne Komponente unter Mindestschwellen fallen: Matura-Note M ≥ 5.0, Aufnahmeprüfung E ≥ 60, Interview I ≥ 12. Die Gesamtpunktzahl wird berechnet als: S = 10M + E + I. Um festzustellen, ob Sie sich für eine garantierte Zulassung qualifizieren, müssen Sie das Ungleichungssystem lösen: 10M + E + I ≥ 110, M ≥ 5.0, E ≥ 60, I ≥ 12. Dieses System hilft zukünftigen Studenten, die Mindestanforderungen über alle Bewertungskriterien hinweg zu verstehen."
+        },
+        step_justifications: {
+            add_both_sides: "Addiere {value} zu beiden Seiten",
+            subtract_both_sides: "Subtrahiere {value} von beiden Seiten",
+            multiply_both_sides: "Multipliziere beide Seiten mit {value}",
+            divide_both_sides: "Dividiere beide Seiten durch {value}",
+            multiply_negative: "Multipliziere beide Seiten mit {value} und kehre Ungleichung um",
+            divide_negative: "Dividiere beide Seiten durch {value} und kehre Ungleichung um",
+            simplify: "Vereinfachen",
+            combine_like_terms: "Fasse ähnliche Terme zusammen",
+            distribute: "Distributivgesetz anwenden",
+            split_absolute_value: "Teile Betrag in zwei Fälle",
+            case_positive: "Fall 1: Ausdruck innen ist positiv",
+            case_negative: "Fall 2: Ausdruck innen ist negativ",
+            combine_solutions: "Kombiniere Lösungen",
+            original_inequality: "Ursprüngliche Ungleichung"
+        }
+    },
+    gm1_03: {
+        back: "Zurück zum Nexus",
+        title: "GM1.03 // GRENZWERTE & STETIGKEIT",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        objective_title: "Aktives Missionsziel",
+        target_title: "Zielgrenzwert",
+        next: "Nächste Sequenz ausführen",
+        check: "Überprüfen",
+        correct: "Verifiziert",
+        incorrect: "Nicht übereinstimmend",
+        ready: "Bereit",
+        monitor_title: "GM1.03_GRENZWERT_MONITOR",
+        footer_left: "GM1.03_GRENZWERTE_STETIGKEIT // KNOTEN: BASEL",
+        stages: {
+            LIMIT_BASICS: "GRENZWERT-GRUNDLAGEN",
+            LIMIT_OPERATIONS: "GRENZWERT-OPERATIONEN",
+            CONTINUITY: "STETIGKEIT",
+            limit_basics: "Grenzwert-Grundlagen",
+            limit_operations: "Grenzwert-Operationen",
+            continuity: "Stetigkeit"
+        },
+        mission: {
+            title: "GRENZWERT- & STETIGKEITSANALYSE",
+            description: "Meistern Sie Funktionsgrenzwerte, Grenzwertoperationen und Stetigkeitserkennung durch Basel-Szenarien."
+        },
+        scenarios: {
+            limit_basics: "🚊 BASLER TRAM-GESCHWINDIGKEIT BEI ANNÄHERUNG AN STATION — Basels ikonische grüne Trams (BVB) verkehren in der ganzen Stadt und verbinden Quartiere von Riehen bis St. Johann. Wenn sich ein Tram der Haltestelle Barfüsserplatz nähert, muss es allmählich von 50 km/h auf einen vollständigen Stopp abbremsen. Die Geschwindigkeitsfunktion des Trams ist v(t) = 50(1 - t/10) km/h, wobei t die Zeit in Sekunden ist. Bei genau t = 10 Sekunden erreicht das Tram den Bahnsteig. Um die Sicherheit der Fahrgäste und ein sanftes Bremsen zu gewährleisten, müssen Ingenieure den Grenzwert der Geschwindigkeit berechnen, wenn sich die Zeit 10 Sekunden nähert: lim(t→10) v(t). Dieser Grenzwert repräsentiert die endgültige Annäherungsgeschwindigkeit des Trams. Das Verständnis von Grenzwerten hilft der Basler Verkehrsbetriebe (BVB), optimale Bremssysteme zu entwerfen, die komfortable Stopps bei gleichzeitiger Fahrplaneffizienz bieten. Das Konzept der Grenzwerte ist grundlegend für die Analyse jedes kontinuierlichen Bewegungssystems, von Trams bis zu Aufzügen in Basels modernen Gebäuden.",
+            limit_operations: "🏭 ROCHE PHARMAZEUTISCHE KONZENTRATIONSGRENZWERTE — Roche, Basels pharmazeutischer Riese mit Hauptsitz am Rhein, stellt Medikamente her, die präzise chemische Konzentrationen erfordern. Betrachten Sie zwei chemische Lösungen, die gemischt werden: Lösung A hat die Konzentration C₁(t) = 2t + 5 mg/L, und Lösung B hat die Konzentration C₂(t) = 3t - 1 mg/L, wobei t die Mischzeit in Minuten darstellt. Die kombinierte Konzentration ist C(t) = C₁(t) + C₂(t). Um die endgültige Konzentration vorherzusagen, wenn sich die Mischzeit 10 Minuten nähert, berechnen Chemiker: lim(t→10) [C₁(t) + C₂(t)]. Mit Grenzwert-Rechenregeln entspricht dies lim(t→10) C₁(t) + lim(t→10) C₂(t) = 25 + 29 = 54 mg/L. Diese Grenzwertoperationen sind für die pharmazeutische Herstellung unerlässlich und stellen sicher, dass Arzneimittelkonzentrationen innerhalb therapeutischer Bereiche bleiben. Roches Qualitätskontrollsysteme verlassen sich auf solche mathematische Präzision, um sichere, wirksame Medikamente zu produzieren, die internationalen Standards entsprechen.",
+            continuity: "🌊 RHEIN-WASSERSTANDS-STETIGKEITSÜBERWACHUNG — Der Rhein fließt durch Basel und teilt die Stadt in Grossbasel und Kleinbasel. Das Bundesamt für Umwelt überwacht kontinuierlich die Wasserstände an der Station Rheinhalle. Unter normalen Bedingungen ist die Wasserstandsfunktion h(t) stetig, was bedeutet, dass es keine plötzlichen Sprünge oder Lücken in den Messungen gibt. Wenn jedoch das Birsfelden-Stauwerk Wasser ablässt, kann die Pegelfunktion Unstetigkeiten aufweisen. Betrachten Sie eine Wasserstandsfunktion h(t) = (t² - 4)/(t - 2) Meter zum Zeitpunkt t = 2 Stunden. In diesem genauen Moment ist die Funktion undefiniert (Division durch Null), was eine hebbare Unstetigkeit erzeugt. Durch Faktorisierung: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 für t ≠ 2, finden wir lim(t→2) h(t) = 4 Meter. Dies bedeutet, dass sich der Wasserstand gleichmäßig 4 Metern nähert, auch wenn das Messgerät bei t = 2 kurzzeitig ausfällt. Das Verständnis von Stetigkeit hilft Basels Hochwasserüberwachungssystemen, echte Wasserstandsänderungen von Messfehlern zu unterscheiden und die Stadt vor Rhein-Hochwasserereignissen zu schützen.",
+            university_basel: "🎓 UNIVERSITÄT BASEL EINSCHREIBUNGSWACHSTUMSRATE — Die Universität Basel, gegründet 1460, ist die älteste Universität der Schweiz. Im letzten Jahrzehnt ist die Studentenzahl stetig gewachsen, insbesondere in MINT-Fächern wie Mathematik, Physik und Chemie. Die Einschreibungsfunktion E(t) = 12000 + 500t + 20t² repräsentiert die Anzahl der Studenten, wobei t die Jahre seit 2015 ist. Um zukünftige Wachstumstrends vorherzusagen, analysieren Universitätsverwalter die Einschreibungsänderungsrate mit Grenzwerten. Die durchschnittliche Änderungsrate zwischen den Jahren t = 5 und t = 10 ist [E(10) - E(5)] / (10 - 5). Um jedoch die momentane Wachstumsrate bei genau t = 8 (Jahr 2023) zu finden, benötigen wir den Grenzwert: lim(h→0) [E(8+h) - E(8)] / h. Dieser Grenzwert repräsentiert die Ableitung E'(8) und gibt die präzise Einschreibungswachstumsrate in Studenten pro Jahr an. Das Verständnis von Grenzwerten ermöglicht es der Universität, Infrastrukturerweiterungen zu planen, Fakultät einzustellen und Ressourcen effektiv zuzuweisen, um Basels wachsende Studentenpopulation in Mathematik und Naturwissenschaften aufzunehmen."
+        },
+        prompts: {
+            find_limit: "\\text{Finde } \\lim_{x \\to {limitPoint}} {expr}",
+            evaluate_limit: "\\text{Berechne den Grenzwert}",
+            check_continuity: "\\text{Ist die Funktion bei } x = {point} \\text{ stetig?}",
+            hint_direct: "\\text{Hinweis: Versuche direkte Substitution}",
+            hint_factor: "\\text{Hinweis: Faktorisiere und vereinfache}",
+            hint_infinity: "\\text{Hinweis: Teile durch höchste Potenz von } x",
+            hint_one_sided: "\\text{Hinweis: Prüfe links- und rechtsseitige Grenzwerte separat}",
+            hint_sum: "\\lim[f+g] = \\lim f + \\lim g",
+            hint_product: "\\lim[f \\cdot g] = \\lim f \\cdot \\lim g",
+            hint_quotient: "\\lim[f/g] = \\frac{\\lim f}{\\lim g} \\text{ wenn } \\lim g \\neq 0",
+            hint_continuity: "\\text{Prüfe: } \\lim_{x \\to a} f(x) = f(a)"
+        },
+        labels: {
+            limit_value: "Grenzwert",
+            left_limit: "Linksseitiger Grenzwert",
+            right_limit: "Rechtsseitiger Grenzwert",
+            continuous: "Stetig?",
+            discontinuity_type: "Unstetigkeitstyp",
+            function_value: "Funktionswert",
+            hints: "HINWEISE"
+        },
+        input_tip_2dp: "Tipp: Ergebnis auf 2 Dezimalstellen gerundet eingeben. Verwende 'DNE' für nicht existent.",
+        visualization: {
+            title: "GRENZWERT-VISUALISIERER",
+            approaching: "Annäherung an x = {point}",
+            limit_exists: "Grenzwert existiert: {value}",
+            limit_dne: "Grenzwert existiert nicht",
+            continuous_at: "Stetig bei x = {point}",
+            discontinuous_at: "Unstetig bei x = {point}",
+            removable: "Hebbare Unstetigkeit",
+            jump: "Sprungstelle",
+            infinite: "Unendliche Unstetigkeit"
+        }
+    },
+    gm2_02: {
+        title: "GM2.02 - Analytische Geometrie",
+        subtitle: "Geraden, Ebenen und räumliche Beziehungen",
+        line_equations: "Geradengleichungen",
+        plane_geometry: "Ebenengeometrie",
+        spatial_relationships: "Räumliche Beziehungen",
+        basic: "BASIS",
+        core: "KERN",
+        advanced: "ERWEITERT",
+        elite: "ELITE",
+        check: "Überprüfen",
+        next: "Weiter",
+        enter_answer: "Geben Sie Ihre Antwort ein",
+        correct: "Richtig! Gut gemacht.",
+        incorrect: "Nicht ganz. Versuchen Sie es erneut.",
+        hint: "Hinweis",
+        scenario_tram: "Basler Tramlinien-Routenplanung",
+        scenario_tram_desc: "Sie arbeiten mit den Basler Verkehrs-Betrieben (BVB) zusammen, um Tramlinienrouten auf einem Stadtplan zu analysieren. Die Karte verwendet ein Koordinatensystem, bei dem jede Einheit 100 Meter darstellt. Die Tramlinie 8 fährt von Kleinhüningen durch das Stadtzentrum zur Neuweilerstrasse, während die Linie 11 Aesch mit St. Louis (Frankreich) verbindet. Ihre Aufgabe ist es, die mathematischen Gleichungen zu bestimmen, die diese Tramrouten darstellen. Die Linie 8 führt durch den Claraplatz bei den Koordinaten (2, 3) und den Barfüsserplatz bei (5, 9). Die Linie 11 führt durch den Bahnhof Basel SBB bei (4, 2) mit einem Richtungsvektor von (3, 1). Die BVB benötigt diese Gleichungen, um optimale Haltestellenstandorte zu berechnen, zu bestimmen, wo neue Linien bestehende Routen kreuzen könnten, Wartungspläne zu planen, die Serviceunterbrechungen minimieren, und Deckungslücken im Netzwerk zu analysieren. Das Verständnis von Geradengleichungen hilft Stadtplanern, datengestützte Entscheidungen über die öffentliche Verkehrsinfrastruktur zu treffen und sicherzustellen, dass Basler Einwohner effizienten Zugang zu allen Teilen der Stadt haben.",
+        scenario_bridge: "Rheinbrückenbau",
+        scenario_bridge_desc: "Der Kanton Basel-Stadt plant eine neue Fussgänger- und Fahrradbrücke über den Rhein, um die Verbindung zwischen dem Campus der Universität Basel in Grossbasel und den Wohngebieten in Kleinbasel zu verbessern. Sie sind Teil des Ingenieurteams, das für die Strukturplanung verantwortlich ist. Die Brückenplatte wird als Ebene im 3D-Raum modelliert. Drei wichtige Stützpunkte wurden identifiziert: Punkt A (Grossbasel-Seite): (0, 0, 5) - 5 Meter über dem Wasserspiegel, Punkt B (Flussmitte-Stütze): (50, 0, 8) - 8 Meter über dem Wasserspiegel, Punkt C (Kleinbasel-Seite): (100, 0, 6) - 6 Meter über dem Wasserspiegel. Die Koordinaten verwenden Meter, wobei der Ursprung am Grossbasler Flussufer liegt, die x-Achse entlang der Flussquerungsrichtung, die y-Achse entlang der Flussströmung und die z-Achse die Höhe über dem Wasser darstellt. Ihre Aufgaben umfassen die Bestimmung der Ebenengleichung für die Brückenplatte, die Berechnung des Normalenvektors zur Gewährleistung einer ordnungsgemässen Entwässerung, das Auffinden der Schnittpunkte der Brücke mit den Flussufern und die Überprüfung, dass die Brückendurchfahrtshöhe den Navigationsanforderungen entspricht (mindestens 5 Meter über dem Wasser). Dieses Projekt zeigt, wie analytische Geometrie im Bauingenieurwesen unerlässlich ist und sicherstellt, dass Brücken sicher, funktional und ästhetisch in Basels historische Stadtlandschaft integriert sind.",
+        scenario_airport: "Basel-Mulhouse Flughafen Flugbahnanalyse",
+        scenario_airport_desc: "Der EuroAirport Basel-Mulhouse-Freiburg ist in Europa einzigartig und bedient die Schweiz, Frankreich und Deutschland. Fluglotsen verwenden analytische Geometrie, um Flugbahnen zu verwalten und sicherzustellen, dass Flugzeuge sichere Abstände einhalten und optimale Anflugwege befolgen. Sie arbeiten mit dem Luftverkehrsmanagement-Team des Flughafens zusammen, um Flugbahnen im 3D-Raum zu analysieren. Das Koordinatensystem hat seinen Ursprung am Flughafenkontrollturm, wobei die x-Achse nach Osten (Richtung Deutschland), die y-Achse nach Norden (Richtung Basler Stadtzentrum) und die z-Achse nach oben (Höhe in Metern) zeigt. Zwei Flugzeuge nähern sich dem Flughafen: Flug LX318 von Zürich: Position (5000, 8000, 1200), sinkend entlang des Richtungsvektors (-1, -2, -0.3), und Flug AF1642 von Paris: Position (3000, 6000, 1500), sinkend entlang des Richtungsvektors (1, -1, -0.4). Ihre Verantwortlichkeiten umfassen die Bestimmung, ob die Flugbahnen parallel, sich schneidend oder windschief sind, die Berechnung des Mindestabstands zwischen den beiden Flugzeugen, die Überprüfung, dass beide Flüge die erforderliche vertikale Trennung von 1000 Metern einhalten, das Auffinden des Schnittpunkts mit der Bodenebene (z = 0) für jede Flugbahn und die Sicherstellung, dass Flugbahnen lärmempfindliche Gebiete in Basler Quartieren vermeiden. Diese Analyse ist für die Flugsicherheit von entscheidender Bedeutung und zeigt, wie räumliche Geometrie moderne Flugsicherungssysteme in die Lage versetzt, täglich Hunderte von Flügen zu verwalten und dabei strenge Sicherheitsstandards einzuhalten.",
+        scenario_university: "Universität Basel Campus-Gebäudelayout",
+        scenario_university_desc: "Die Universität Basel plant ein neues Forschungsgebäude für das Departement Mathematik und Informatik. Sie sind Teil des Architekturteams, das analytische Geometrie verwendet, um die Position und Ausrichtung des Gebäudes zu optimieren. Der Campus verwendet ein 3D-Koordinatensystem mit dem Ursprung am historischen Kollegienhaus (Hauptgebäude). Das neue Gebäude muss so positioniert werden, dass es natürliches Licht maximiert, Sichtlinien zu historischen Gebäuden aufrechterhält, die Erreichbarkeit von bestehenden Wegen gewährleistet und Basels strenge Bauhöhenvorschriften einhält. Drei bestehende Gebäude definieren den verfügbaren Raum: Kollegienhaus: Ebenengleichung x + 2y = 100, Biozentrum: Ebenengleichung 2x - y = 50, Pharmazentrum: Ebenengleichung x + y + z = 150. Ihre Aufgaben umfassen die Berechnung von Abständen von vorgeschlagenen Gebäudestandorten zu bestehenden Strukturen, die Bestimmung, ob vorgeschlagene Wände parallel oder senkrecht zu bestehenden Gebäuden sind, das Auffinden von Schnittlinien zwischen Gebäudeebenen für gemeinsame Infrastruktur und die Optimierung der Gebäudegrundfläche, um den nutzbaren Raum zu maximieren und gleichzeitig Einschränkungen zu respektieren. Dieses Projekt veranschaulicht, wie analytische Geometrie das architektonische Design unterstützt und hilft, funktionale, ästhetisch ansprechende Räume zu schaffen, die sich in Basels reiches akademisches Erbe integrieren."
     }
 };

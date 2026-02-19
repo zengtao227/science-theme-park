@@ -101,6 +101,37 @@ const ConceptIcon: React.FC<ConceptIconProps> = ({ code, className }) => {
                     />
                 </svg>
             );
+        case 'GM2.02': // Analytical Geometry
+            return (
+                <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Coordinate axes */}
+                    <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
+                    <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
+                    {/* 3D plane */}
+                    <motion.path
+                        d="M30 35 L70 25 L80 60 L40 70 Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="currentColor"
+                        fillOpacity="0.1"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2 }}
+                    />
+                    {/* Line in 3D */}
+                    <motion.line
+                        x1="25" y1="75" x2="75" y2="25"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.4, delay: 0.3 }}
+                    />
+                    {/* Points */}
+                    <circle cx="25" cy="75" r="3" fill="currentColor" />
+                    <circle cx="75" cy="25" r="3" fill="currentColor" />
+                </svg>
+            );
         case 'SM2.04': // Similarity
             return (
                 <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">

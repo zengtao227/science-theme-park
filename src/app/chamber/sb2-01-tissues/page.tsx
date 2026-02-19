@@ -154,8 +154,8 @@ export default function SB201TissuesPage() {
                     tissueType: data.type,
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
-                    targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: data.answer, expected: data.answer }],
+                    targetLatex: "\\\\text{Function}",
+                    slots: [{ id: "func", labelLatex: "\\\\text{Function}", placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });
@@ -172,8 +172,8 @@ export default function SB201TissuesPage() {
                     organName: data.name,
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
-                    targetLatex: "\\text{Answer}",
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    targetLatex: "\\\\text{Answer}",
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Answer}", placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });
@@ -190,8 +190,8 @@ export default function SB201TissuesPage() {
                     systemName: data.name,
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
-                    targetLatex: "\\text{Answer}",
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    targetLatex: "\\\\text{Answer}",
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Answer}", placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });

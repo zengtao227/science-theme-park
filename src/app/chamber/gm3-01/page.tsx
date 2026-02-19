@@ -200,7 +200,7 @@ function buildStagePool(gm3_01_t: any, difficulty: Difficulty, stage: Stage): G3
         total: item.total,
         problemText,
         promptLatex: gm3_01_t.stages.basic_prob_prompt_latex,
-        expressionLatex: `\\text{Given: }${item.favorable}\\text{ favorable, }${item.total}\\text{ total}`,
+        expressionLatex: `\\\\text{Given: }${item.favorable}\\\\text{ favorable, }${item.total}\\\\text{ total}`,
         targetLatex: "P(E)",
         slots: [
           { id: "probability", labelLatex: "P(E)", placeholder: "0.0000", expected: probability },
@@ -233,7 +233,7 @@ function buildStagePool(gm3_01_t: any, difficulty: Difficulty, stage: Stage): G3
         p: item.p,
         problemText,
         promptLatex: gm3_01_t.stages.binomial_prompt_latex,
-        expressionLatex: `\\text{Given: }n=${item.n},\\;k=${item.k},\\;p=${item.p}`,
+        expressionLatex: `\\\\text{Given: }n=${item.n},\\;k=${item.k},\\;p=${item.p}`,
         targetLatex: "P(X=k)",
         slots: [
           { id: "probability", labelLatex: "P(X=k)", placeholder: "0.0000", expected: prob },
@@ -266,7 +266,7 @@ function buildStagePool(gm3_01_t: any, difficulty: Difficulty, stage: Stage): G3
         eventAB: item.eventAB,
         problemText,
         promptLatex: gm3_01_t.stages.conditional_prompt_latex,
-        expressionLatex: `\\text{Given: }P(A)=${item.eventA},\\;P(B)=${item.eventB},\\;P(A\\cap B)=${item.eventAB}`,
+        expressionLatex: `\\\\text{Given: }P(A)=${item.eventA},\\;P(B)=${item.eventB},\\;P(A\\cap B)=${item.eventAB}`,
         targetLatex: "P(A|B)",
         slots: [
           { id: "probability", labelLatex: "P(A|B)", placeholder: "0.0000", expected: condProb },

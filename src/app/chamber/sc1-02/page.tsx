@@ -503,7 +503,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         expressionLatex: `${formulaLatex},\\; ${breakdown}`,
         targetLatex: "M",
         slots: [{ id: "M", labelLatex: "M", placeholder: "molar mass", expected: rounded, unit: "g/mol" }],
-        correctLatex: `M=${display}\\;\\text{g/mol}`,
+        correctLatex: `M=${display}\\;\\\\text{g/mol}`,
         reagents: [
           { label: "FORMULA", value: formulaLatex },
           { label: "ATOMS", value: atoms },
@@ -528,7 +528,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
         targetLatex,
         slots: [{ id: "n", labelLatex: targetLatex, placeholder: "amount", expected: rounded, unit: "mol" }],
-        correctLatex: `${targetLatex}=${display}\\;\\text{mol}`,
+        correctLatex: `${targetLatex}=${display}\\;\\\\text{mol}`,
         reagents: [
           { label: "REACTION", value: reactionLatex },
           { label: "GIVEN", value: givenLatex },
@@ -553,7 +553,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
         targetLatex,
         slots: [{ id: "m", labelLatex: targetLatex, placeholder: "mass", expected: rounded, unit: "g" }],
-        correctLatex: `${targetLatex}=${display}\\;\\text{g}`,
+        correctLatex: `${targetLatex}=${display}\\;\\\\text{g}`,
         reagents: [
           { label: "REACTION", value: reactionLatex },
           { label: "GIVEN", value: givenLatex },

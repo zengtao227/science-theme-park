@@ -77,8 +77,8 @@ export default function GC102Page() {
                     time: data.time,
                     solution: `${data.metal}SO4`,
                     promptLatex: `I = ${data.current}A, t = ${data.time}s, M = ${data.M}g/mol, z = ${data.z}`,
-                    expressionLatex: `m = \\frac{I \\cdot t \\cdot M}{z \\cdot F}`,
-                    targetLatex: `m \\text{ (g)}`,
+                    expressionLatex: `m = \\\\frac{I \\cdot t \\cdot M}{z \\cdot F}`,
+                    targetLatex: `m \\\\text{ (g)}`,
                     slots: [
                         { id: "mass", labelLatex: "m", placeholder: "0.00", expected: parseFloat(expectedMass.toFixed(3)) }
                     ],
@@ -128,12 +128,12 @@ export default function GC102Page() {
                     time: 500,
                     solution: data.solution,
                     promptLatex: `Electrolysis of ${data.solution}`,
-                    expressionLatex: `\\text{Which electrode for object?}`,
-                    targetLatex: `\\text{1: Anode, 2: Cathode}`,
+                    expressionLatex: `\\\\text{Which electrode for object?}`,
+                    targetLatex: `\\\\text{1: Anode, 2: Cathode}`,
                     slots: [
-                        { id: "electrode", labelLatex: "\\text{Pos}", placeholder: "1 or 2", expected: data.expected }
+                        { id: "electrode", labelLatex: "\\\\text{Pos}", placeholder: "1 or 2", expected: data.expected }
                     ],
-                    correctLatex: `\\text{Cathode}`
+                    correctLatex: `\\\\text{Cathode}`
                 });
             });
         } else {
@@ -179,12 +179,12 @@ export default function GC102Page() {
                     time: 0,
                     solution: "Seawater",
                     promptLatex: `Protecting ${data.metal} from corrosion.`,
-                    expressionLatex: `\\text{Select sacrificial anode: 1: Mg, 2: Au, 3: Pt}`,
-                    targetLatex: `\\text{Option}`,
+                    expressionLatex: `\\\\text{Select sacrificial anode: 1: Mg, 2: Au, 3: Pt}`,
+                    targetLatex: `\\\\text{Option}`,
                     slots: [
-                        { id: "anode", labelLatex: "\\text{Choice}", placeholder: "1-3", expected: data.expected }
+                        { id: "anode", labelLatex: "\\\\text{Choice}", placeholder: "1-3", expected: data.expected }
                     ],
-                    correctLatex: `\\text{Magnesium (Mg)}`
+                    correctLatex: `\\\\text{Magnesium (Mg)}`
                 });
             });
         }

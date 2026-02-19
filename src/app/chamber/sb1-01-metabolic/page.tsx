@@ -71,9 +71,9 @@ export default function SB101MetabolicPage() {
                     statusKey: s.status,
                     targetOsmolarity: s.osmolarity,
                     promptLatex: t("sb1_01_metabolic.prompts.osmosis_prompt", { status: statusLabel, desc: s.desc }),
-                    expressionLatex: `\\text{${s.desc}}`,
+                    expressionLatex: `\\\\text{${s.desc}}`,
                     targetLatex: s.target,
-                    slots: [{ id: "ans", labelLatex: "\\text{Water Flow}", placeholder: "enter/leave/stable", expected: s.target }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Water Flow}", placeholder: "enter/leave/stable", expected: s.target }],
                     correctLatex: s.target,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${s.status === "hypertonic" ? "hyper" : s.status === "hypotonic" ? "hypo" : "iso"}`)]
                 });
@@ -122,7 +122,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t(`sb1_01_metabolic.prompts.resp_${item.q}`),
                     expressionLatex: item.equation,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Answer}", placeholder: "...", expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
                 });
@@ -171,7 +171,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t(`sb1_01_metabolic.prompts.home_${item.q}`),
                     expressionLatex: `\\text{${item.q.replace(/_/g, ' ')}}`,
                     targetLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Value}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Value}", placeholder: "...", expected: item.answer }],
                     correctLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
                 });

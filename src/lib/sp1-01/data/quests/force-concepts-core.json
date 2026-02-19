@@ -1,0 +1,265 @@
+[
+  {
+    "id": "SP1.01.016",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force of 80 N acts at an angle of 30° above the horizontal. What is the horizontal component of this force?",
+      "cn": "一个 80 N 的力以水平方向上方 30° 的角度作用。这个力的水平分量是多少？",
+      "de": "Eine Kraft von 80 N wirkt in einem Winkel von 30° über der Horizontalen. Was ist die horizontale Komponente dieser Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 69.28,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = F × cos(30°) = 80 × 0.866 = 69.28 N",
+        "cn": "正确！F_x = F × cos(30°) = 80 × 0.866 = 69.28 N",
+        "de": "Richtig! F_x = F × cos(30°) = 80 × 0.866 = 69.28 N"
+      },
+      "incorrect": {
+        "en": "Use F_x = F × cos(θ) to find the horizontal component.",
+        "cn": "使用 F_x = F × cos(θ) 来找到水平分量。",
+        "de": "Verwenden Sie F_x = F × cos(θ), um die horizontale Komponente zu finden."
+      }
+    },
+    "prerequisites": ["SP1.01.015"]
+  },
+  {
+    "id": "SP1.01.017",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force of 80 N acts at an angle of 30° above the horizontal. What is the vertical component of this force?",
+      "cn": "一个 80 N 的力以水平方向上方 30° 的角度作用。这个力的垂直分量是多少？",
+      "de": "Eine Kraft von 80 N wirkt in einem Winkel von 30° über der Horizontalen. Was ist die vertikale Komponente dieser Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 40,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_y = F × sin(30°) = 80 × 0.5 = 40 N",
+        "cn": "正确！F_y = F × sin(30°) = 80 × 0.5 = 40 N",
+        "de": "Richtig! F_y = F × sin(30°) = 80 × 0.5 = 40 N"
+      },
+      "incorrect": {
+        "en": "Use F_y = F × sin(θ) to find the vertical component.",
+        "cn": "使用 F_y = F × sin(θ) 来找到垂直分量。",
+        "de": "Verwenden Sie F_y = F × sin(θ), um die vertikale Komponente zu finden."
+      }
+    },
+    "prerequisites": ["SP1.01.016"]
+  },
+  {
+    "id": "SP1.01.018",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force has components F_x = 60 N and F_y = 80 N. What is the magnitude of the force?",
+      "cn": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。力的大小是多少？",
+      "de": "Eine Kraft hat die Komponenten F_x = 60 N und F_y = 80 N. Was ist der Betrag der Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 100,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F = √(60² + 80²) = √10000 = 100 N",
+        "cn": "正确！F = √(60² + 80²) = √10000 = 100 N",
+        "de": "Richtig! F = √(60² + 80²) = √10000 = 100 N"
+      },
+      "incorrect": {
+        "en": "Use the Pythagorean theorem: F = √(F_x² + F_y²)",
+        "cn": "使用勾股定理：F = √(F_x² + F_y²)",
+        "de": "Verwenden Sie den Satz des Pythagoras: F = √(F_x² + F_y²)"
+      }
+    },
+    "prerequisites": ["SP1.01.017"]
+  },
+  {
+    "id": "SP1.01.019",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force has components F_x = 60 N and F_y = 80 N. What angle does it make with the horizontal?",
+      "cn": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。它与水平方向成多少度角？",
+      "de": "Eine Kraft hat die Komponenten F_x = 60 N und F_y = 80 N. Welchen Winkel bildet sie mit der Horizontalen?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 53.13,
+        "units": "degrees"
+      },
+      "tolerance": 0.02
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! θ = arctan(80/60) = arctan(1.333) = 53.13°",
+        "cn": "正确！θ = arctan(80/60) = arctan(1.333) = 53.13°",
+        "de": "Richtig! θ = arctan(80/60) = arctan(1.333) = 53.13°"
+      },
+      "incorrect": {
+        "en": "Use θ = arctan(F_y/F_x) to find the angle.",
+        "cn": "使用 θ = arctan(F_y/F_x) 来找到角度。",
+        "de": "Verwenden Sie θ = arctan(F_y/F_x), um den Winkel zu finden."
+      }
+    },
+    "prerequisites": ["SP1.01.018"]
+  },
+  {
+    "id": "SP1.01.020",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A 50 N force acts at 45° above the horizontal. What is its horizontal component?",
+      "cn": "一个 50 N 的力以水平方向上方 45° 的角度作用。它的水平分量是多少？",
+      "de": "Eine 50 N Kraft wirkt in einem Winkel von 45° über der Horizontalen. Was ist ihre horizontale Komponente?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 35.36,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = 50 × cos(45°) = 50 × 0.707 = 35.36 N",
+        "cn": "正确！F_x = 50 × cos(45°) = 50 × 0.707 = 35.36 N",
+        "de": "Richtig! F_x = 50 × cos(45°) = 50 × 0.707 = 35.36 N"
+      },
+      "incorrect": {
+        "en": "At 45°, cos(45°) = sin(45°) = 0.707",
+        "cn": "在 45° 时，cos(45°) = sin(45°) = 0.707",
+        "de": "Bei 45° ist cos(45°) = sin(45°) = 0.707"
+      }
+    },
+    "prerequisites": ["SP1.01.019"]
+  },
+  {
+    "id": "SP1.01.021",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A 50 N force acts at 45° above the horizontal. What is its vertical component?",
+      "cn": "一个 50 N 的力以水平方向上方 45° 的角度作用。它的垂直分量是多少？",
+      "de": "Eine 50 N Kraft wirkt in einem Winkel von 45° über der Horizontalen. Was ist ihre vertikale Komponente?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 35.36,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_y = 50 × sin(45°) = 50 × 0.707 = 35.36 N",
+        "cn": "正确！F_y = 50 × sin(45°) = 50 × 0.707 = 35.36 N",
+        "de": "Richtig! F_y = 50 × sin(45°) = 50 × 0.707 = 35.36 N"
+      },
+      "incorrect": {
+        "en": "At 45°, the horizontal and vertical components are equal.",
+        "cn": "在 45° 时，水平和垂直分量相等。",
+        "de": "Bei 45° sind die horizontale und vertikale Komponente gleich."
+      }
+    },
+    "prerequisites": ["SP1.01.020"]
+  },
+  {
+    "id": "SP1.01.022",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force of 100 N acts at 60° above the horizontal. What is its vertical component?",
+      "cn": "一个 100 N 的力以水平方向上方 60° 的角度作用。它的垂直分量是多少？",
+      "de": "Eine Kraft von 100 N wirkt in einem Winkel von 60° über der Horizontalen. Was ist ihre vertikale Komponente?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 86.60,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_y = 100 × sin(60°) = 100 × 0.866 = 86.60 N",
+        "cn": "正确！F_y = 100 × sin(60°) = 100 × 0.866 = 86.60 N",
+        "de": "Richtig! F_y = 100 × sin(60°) = 100 × 0.866 = 86.60 N"
+      },
+      "incorrect": {
+        "en": "Remember: sin(60°) = 0.866",
+        "cn": "记住：sin(60°) = 0.866",
+        "de": "Denken Sie daran: sin(60°) = 0.866"
+      }
+    },
+    "prerequisites": ["SP1.01.021"]
+  },
+  {
+    "id": "SP1.01.023",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "CORE",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force of 100 N acts at 60° above the horizontal. What is its horizontal component?",
+      "cn": "一个 100 N 的力以水平方向上方 60° 的角度作用。它的水平分量是多少？",
+      "de": "Eine Kraft von 100 N wirkt in einem Winkel von 60° über der Horizontalen. Was ist ihre horizontale Komponente?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 50,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = 100 × cos(60°) = 100 × 0.5 = 50 N",
+        "cn": "正确！F_x = 100 × cos(60°) = 100 × 0.5 = 50 N",
+        "de": "Richtig! F_x = 100 × cos(60°) = 100 × 0.5 = 50 N"
+      },
+      "incorrect": {
+        "en": "Remember: cos(60°) = 0.5",
+        "cn": "记住：cos(60°) = 0.5",
+        "de": "Denken Sie daran: cos(60°) = 0.5"
+      }
+    },
+    "prerequisites": ["SP1.01.022"]
+  }
+]

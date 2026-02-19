@@ -102,7 +102,7 @@ export default function GP303Induction() {
                     placeholder: "type value",
                     expected: item.emf
                 }],
-                correctLatex: `\\text{EMF = } ${item.emf} \\text{ V}`,
+                correctLatex: `\\\\text{EMF = } ${item.emf} \\\\text{ V}`,
                 answer: item.emf as string
             }));
         }
@@ -152,7 +152,7 @@ export default function GP303Induction() {
                     placeholder: "type answer",
                     expected: item.direction
                 }],
-                correctLatex: `\\text{Answer: } ${item.direction}`,
+                correctLatex: `\\\\text{Answer: } ${item.direction}`,
                 answer: item.direction as string
             }));
         }

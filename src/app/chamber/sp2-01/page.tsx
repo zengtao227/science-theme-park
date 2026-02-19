@@ -100,7 +100,7 @@ export default function SP201CircuitBasics() {
                 stage,
                 component: item.component,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Component: } ${item.component}`,
+                expressionLatex: `\\\\text{Component: } ${item.component}`,
                 targetLatex: "answer",
                 slots: [
                     {
@@ -110,7 +110,7 @@ export default function SP201CircuitBasics() {
                         expected: item.answer
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `\\\\text{Answer: } ${item.answer}`,
                 answer: item.answer
             }));
         }
@@ -154,7 +154,7 @@ export default function SP201CircuitBasics() {
                 stage,
                 circuit: item.circuit,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Circuit: } ${item.circuit.battery}B + ${item.circuit.bulbs}L + ${item.circuit.switches}S`,
+                expressionLatex: `\\\\text{Circuit: } ${item.circuit.battery}B + ${item.circuit.bulbs}L + ${item.circuit.switches}S`,
                 targetLatex: "answer",
                 slots: [
                     {
@@ -164,7 +164,7 @@ export default function SP201CircuitBasics() {
                         expected: item.answer
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `\\\\text{Answer: } ${item.answer}`,
                 answer: item.answer
             }));
         }
@@ -208,7 +208,7 @@ export default function SP201CircuitBasics() {
                 stage,
                 symbol: item.symbol,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Symbol: } ${item.symbol}`,
+                expressionLatex: `\\\\text{Symbol: } ${item.symbol}`,
                 targetLatex: "answer",
                 slots: [
                     {
@@ -218,7 +218,7 @@ export default function SP201CircuitBasics() {
                         expected: item.answer
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `\\\\text{Answer: } ${item.answer}`,
                 answer: item.answer
             }));
         }

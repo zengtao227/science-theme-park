@@ -70,7 +70,7 @@ export default function SB102Page() {
                     promptLatex: t(`sb1_02.prompts.eq_${item.q}`),
                     expressionLatex: item.equation,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Answer}", placeholder: "...", expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_02.prompts.hint_${item.q}`)]
                 });
@@ -120,7 +120,7 @@ export default function SB102Page() {
                     promptLatex: t(`sb1_02.prompts.factor_${item.factor}`),
                     expressionLatex: `\\text{${item.factor.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\text{Effect}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Effect}", placeholder: "...", expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_02.prompts.hint_factor_${item.factor}`)]
                 });
@@ -168,9 +168,9 @@ export default function SB102Page() {
                     stage,
                     structure: item.name,
                     promptLatex: t(`sb1_02.prompts.struct_${item.name}`),
-                    expressionLatex: `\\text{${item.function}} \\rightarrow ?`,
+                    expressionLatex: `\\\\text{${item.function}} \\rightarrow ?`,
                     targetLatex: item.name,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: item.name }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Structure}", placeholder: "...", expected: item.name }],
                     correctLatex: item.name,
                     hintLatex: [t(`sb1_02.prompts.hint_struct_${item.name}`)]
                 });

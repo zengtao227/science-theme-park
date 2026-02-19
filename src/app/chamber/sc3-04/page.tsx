@@ -66,11 +66,11 @@ export default function SC304Page() {
                     stage,
                     molecule: m.id,
                     promptLatex: `\\text{${t("sc3_04.prompts.identify_group", { molecule: m.name })}}`,
-                    expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
+                    expressionLatex: `\\\\text{${m.name}} \\rightarrow \\\\text{?}`,
                     targetLatex: m.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
-                    hintLatex: [`\\text{Look for the characteristic group in } ${m.formula}`]
+                    hintLatex: [`\\\\text{Look for the characteristic group in } ${m.formula}`]
                 });
             });
         }
@@ -113,11 +113,11 @@ export default function SC304Page() {
                     stage,
                     molecule: m.id,
                     promptLatex: `\\text{${t("sc3_04.prompts.identify_group", { molecule: m.name })}}`,
-                    expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
+                    expressionLatex: `\\\\text{${m.name}} \\rightarrow \\\\text{?}`,
                     targetLatex: m.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Group}", placeholder: "...", expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
-                    hintLatex: [`\\text{Characteristic ending: -oic acid, -al, or -one}`]
+                    hintLatex: [`\\\\text{Characteristic ending: -oic acid, -al, or -one}`]
                 });
             });
         }
@@ -161,11 +161,11 @@ export default function SC304Page() {
                     propA: c.a,
                     propB: c.b,
                     promptLatex: `\\text{${c.q.replace('{a}', c.a).replace('{b}', c.b)}}`,
-                    expressionLatex: `\\text{A: } ${c.a} \\text{ vs B: } ${c.b}`,
+                    expressionLatex: `\\\\text{A: } ${c.a} \\\\text{ vs B: } ${c.b}`,
                     targetLatex: c.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: c.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Result}", placeholder: "...", expected: c.expected.toLowerCase() }],
                     correctLatex: c.expected,
-                    hintLatex: [`\\text{Consider hydrogen bonding potential.}`]
+                    hintLatex: [`\\\\text{Consider hydrogen bonding potential.}`]
                 });
             });
         }

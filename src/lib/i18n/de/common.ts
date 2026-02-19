@@ -77,6 +77,8 @@ export const deCommon = {
         sm2_07_subtitle: "Meistere Koordinatensysteme, Translationen und Zeichenpräzision im Basler Raster.",
         sm2_08_title: "SM2.08 // WAHRSCHEEINLICHKEIT",
         sm2_08_subtitle: "Meistern Sie die Grundlagen von Zufall und Wahrscheinlichkeit.",
+        sm2_09_title: "SM2.09 // UNGLEICHUNGEN",
+        sm2_09_subtitle: "Lösen Sie Ungleichungen, Systeme und Absolutwertprobleme mit Basel-Szenarien.",
         sm2_10_title: "SM2.10 // DATENANALYSE",
         sm2_10_subtitle: "Analysieren Sie Verteilungen, Boxplots und Korrelationsmuster.",
         sm2_11_title: "SM2.11 // FOLGEN & REIHEN",
@@ -126,6 +128,9 @@ export const deCommon = {
         sp3_07_subtitle: "Meistere die Basler Rheinfähre. Navigiere den Fluss nur mit der Strömung und Seilen.",
         sp3_08_title: "SP3.08 // GEOMETRISCHE OPTIK",
         sp3_08_subtitle: "Erforsche Reflexion, Brechung und Linsen in Basler Präzisionslaboren.",
+
+        sp1_02_title: "SP1.02 // NEWTONSCHE GESETZE",
+        sp1_02_subtitle: "Meistern Sie Trägheit, F=ma und Aktion-Reaktion durch Basler Trams, Rheinboote und Fasnachtswagen.",
 
         sp2_01_title: "SP2.01 // STROMKREIS GRUNDLAGEN",
         sp2_01_subtitle: "Meistere Stromkreiskomponenten, einfache Schaltungen und Schaltpläne mit Basler Sicherheitsstandards.",

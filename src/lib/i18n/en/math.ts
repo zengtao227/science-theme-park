@@ -1978,5 +1978,174 @@ export const enMath = {
             invalid_desc: "Check your formula",
             next: "NEXT PROBLEM"
         }
+    },
+    sm2_09: {
+        back: "Back to Nexus",
+        title: "SM2.09 // INEQUALITIES",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            inequality_basics: "INEQUALITY BASICS",
+            systems: "SYSTEMS",
+            absolute_value: "ABSOLUTE VALUE"
+        },
+        objective_title: "Active Mission Objective",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        show_steps: "Show Steps",
+        hide_steps: "Hide Steps",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SM2.09_INEQUALITY_MONITOR",
+        footer_left: "SM2.09_INEQUALITIES // NODE: BASEL",
+        labels: {
+            solution: "SOLUTION",
+            interval_notation: "Interval Notation",
+            set_builder: "Set-Builder Notation",
+            number_line: "NUMBER LINE",
+            graph: "GRAPH",
+            solution_set: "SOLUTION SET",
+            step: "STEP",
+            justification: "JUSTIFICATION",
+            final_solution: "FINAL SOLUTION",
+            enter_solution: "Enter solution",
+            placeholder_interval: "e.g., (-∞, 5] or [2, 10)",
+            empty_set: "No solution (∅)",
+            all_reals: "All real numbers (ℝ)"
+        },
+        feedback: {
+            correct: "Solution verified! The inequality is solved correctly.",
+            incorrect: "Incorrect solution. Check your work.",
+            invalid_format: "Invalid format. Use interval notation like (-∞, 5] or [2, 10)",
+            empty_input: "Please enter a solution before verifying.",
+            hint_direction: "Remember: multiplying or dividing by a negative reverses the inequality."
+        },
+        basel_scenarios: {
+            tram_title: "Basel Tram Ticket Pricing",
+            tram_context: "Basel's public transport system (BVB/BLT) offers various ticket options. A single ticket costs CHF 3.80, while a day pass costs CHF 9.00. You're planning your daily commute and want to determine when buying a day pass becomes more economical than buying individual tickets. Let x represent the number of tram rides you take in a day. The cost of individual tickets is 3.80x CHF, while the day pass costs a flat 9.00 CHF. To find when the day pass is cheaper, we need to solve the inequality: 3.80x > 9.00. This inequality helps you make an informed decision about which ticket option saves you money based on your travel patterns. Understanding inequalities in this context demonstrates how mathematics applies to everyday financial decisions in Basel's public transport system.",
+            roche_title: "Roche Pharmaceutical Dosage",
+            roche_context: "Roche, one of Basel's largest employers, develops medications that require precise dosing guidelines. Consider a medication where the therapeutic dose must be between 50mg and 200mg per day to be effective while remaining safe. The dosage depends on the patient's body weight. For a patient weighing w kilograms, the recommended dose is 2.5w mg per day. To ensure the dose falls within the safe and effective range, we need to solve the compound inequality: 50 ≤ 2.5w ≤ 200. This translates to determining the range of patient weights for which this dosing formula is appropriate. Solving this system of inequalities gives us: 20 ≤ w ≤ 80, meaning the formula is suitable for patients weighing between 20 and 80 kilograms. This example illustrates how pharmaceutical companies like Roche use mathematical inequalities to establish safe dosing guidelines.",
+            marathon_title: "Basel Marathon Qualification",
+            marathon_context: "The Basel Marathon (Basel Stadt Lauf) has different qualification standards for various age categories. To qualify for the elite wave start, runners must have completed a previous marathon within specific time limits based on their age group. For the men's elite category (ages 18-39), the qualification time is under 3 hours 15 minutes (195 minutes). For ages 40-49, the time extends to under 3 hours 30 minutes (210 minutes). Let t represent your marathon time in minutes, and let a represent your age. The qualification criteria can be expressed as a system of inequalities: If 18 ≤ a ≤ 39, then t < 195. If 40 ≤ a ≤ 49, then t < 210. These compound inequalities help runners determine whether they qualify for elite wave placement. Understanding how to work with systems of inequalities is essential for interpreting qualification standards in competitive sports events.",
+            university_title: "University Basel Admission",
+            university_context: "The University of Basel uses a points-based admission system for competitive programs like Medicine and Psychology. Applicants are evaluated on multiple criteria: Matura grade (maximum 6.0 points), entrance exam score (maximum 100 points), and interview performance (maximum 20 points). For the Medicine program, the total score S must satisfy: S ≥ 110 points for guaranteed admission. Additionally, no single component can fall below minimum thresholds: Matura grade M ≥ 5.0, entrance exam E ≥ 60, interview I ≥ 12. The total score is calculated as: S = 10M + E + I. To determine if you qualify for guaranteed admission, you must solve the system of inequalities: 10M + E + I ≥ 110, M ≥ 5.0, E ≥ 60, I ≥ 12. This system helps prospective students understand the minimum requirements across all evaluation criteria."
+        },
+        step_justifications: {
+            add_both_sides: "Add {value} to both sides",
+            subtract_both_sides: "Subtract {value} from both sides",
+            multiply_both_sides: "Multiply both sides by {value}",
+            divide_both_sides: "Divide both sides by {value}",
+            multiply_negative: "Multiply both sides by {value} and reverse inequality",
+            divide_negative: "Divide both sides by {value} and reverse inequality",
+            simplify: "Simplify",
+            combine_like_terms: "Combine like terms",
+            distribute: "Distribute",
+            split_absolute_value: "Split absolute value into two cases",
+            case_positive: "Case 1: Expression inside is positive",
+            case_negative: "Case 2: Expression inside is negative",
+            combine_solutions: "Combine solutions",
+            original_inequality: "Original inequality"
+        }
+    },
+    gm1_03: {
+        back: "Back to Nexus",
+        title: "GM1.03 // LIMITS & CONTINUITY",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Target Limit",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "GM1.03_LIMITS_MONITOR",
+        footer_left: "GM1.03_LIMITS_CONTINUITY // NODE: BASEL",
+        stages: {
+            LIMIT_BASICS: "LIMIT BASICS",
+            LIMIT_OPERATIONS: "LIMIT OPERATIONS",
+            CONTINUITY: "CONTINUITY",
+            limit_basics: "Limit Basics",
+            limit_operations: "Limit Operations",
+            continuity: "Continuity"
+        },
+        mission: {
+            title: "LIMITS & CONTINUITY ANALYSIS",
+            description: "Master function limits, limit operations, and continuity detection through Basel-themed scenarios."
+        },
+        scenarios: {
+            limit_basics: "🚊 BASEL TRAM SPEED APPROACHING STATION — Basel's iconic green trams (BVB) operate throughout the city, connecting neighborhoods from Riehen to St. Johann. As a tram approaches Barfüsserplatz station, it must gradually reduce speed from 50 km/h to a complete stop. The tram's velocity function is v(t) = 50(1 - t/10) km/h, where t is time in seconds. At exactly t = 10 seconds, the tram reaches the platform. To ensure passenger safety and smooth braking, engineers need to calculate the limit of velocity as time approaches 10 seconds: lim(t→10) v(t). This limit represents the tram's final approach speed. Understanding limits helps Basel's transport authority (BVB) design optimal braking systems that provide comfortable stops while maintaining schedule efficiency. The concept of limits is fundamental to analyzing any continuous motion system, from trams to elevators in Basel's modern buildings.",
+            limit_operations: "🏭 ROCHE PHARMACEUTICAL CONCENTRATION LIMITS — Roche, Basel's pharmaceutical giant headquartered near the Rhine, manufactures medications requiring precise chemical concentrations. Consider two chemical solutions being mixed: Solution A has concentration C₁(t) = 2t + 5 mg/L, and Solution B has concentration C₂(t) = 3t - 1 mg/L, where t represents mixing time in minutes. The combined concentration is C(t) = C₁(t) + C₂(t). To predict the final concentration as mixing time approaches 10 minutes, chemists calculate: lim(t→10) [C₁(t) + C₂(t)]. Using limit arithmetic rules, this equals lim(t→10) C₁(t) + lim(t→10) C₂(t) = 25 + 29 = 54 mg/L. These limit operations are essential for pharmaceutical manufacturing, ensuring that drug concentrations remain within therapeutic ranges. Roche's quality control systems rely on such mathematical precision to produce safe, effective medications that meet international standards.",
+            continuity: "🌊 RHINE RIVER WATER LEVEL CONTINUITY MONITORING — The Rhine River flows through Basel, dividing the city into Grossbasel and Kleinbasel. The Swiss Federal Office for the Environment monitors water levels continuously at the Rheinhalle station. During normal conditions, the water level function h(t) is continuous, meaning there are no sudden jumps or gaps in measurements. However, when the Birsfelden dam releases water, the level function may exhibit discontinuities. Consider a water level function h(t) = (t² - 4)/(t - 2) meters at time t = 2 hours. At this exact moment, the function is undefined (division by zero), creating a removable discontinuity. By factoring: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 for t ≠ 2, we find lim(t→2) h(t) = 4 meters. This means the water level approaches 4 meters smoothly, even though the measurement device briefly malfunctions at t = 2. Understanding continuity helps Basel's flood monitoring systems detect genuine water level changes versus measurement errors, protecting the city from Rhine flooding events.",
+            university_basel: "🎓 UNIVERSITY BASEL ENROLLMENT GROWTH RATE — The University of Basel, founded in 1460, is Switzerland's oldest university. Over the past decade, student enrollment has grown steadily, particularly in STEM fields like mathematics, physics, and chemistry. The enrollment function E(t) = 12000 + 500t + 20t² represents the number of students, where t is years since 2015. To predict future growth trends, university administrators analyze the rate of enrollment change using limits. The average rate of change between years t = 5 and t = 10 is [E(10) - E(5)] / (10 - 5). However, to find the instantaneous growth rate at exactly t = 8 (year 2023), we need the limit: lim(h→0) [E(8+h) - E(8)] / h. This limit represents the derivative E'(8), giving the precise enrollment growth rate in students per year. Understanding limits allows the university to plan infrastructure expansion, hire faculty, and allocate resources effectively to accommodate Basel's growing student population in mathematics and sciences."
+        },
+        prompts: {
+            find_limit: "\\text{Find } \\lim_{x \\to {limitPoint}} {expr}",
+            evaluate_limit: "\\text{Evaluate the limit}",
+            check_continuity: "\\text{Is the function continuous at } x = {point}?",
+            hint_direct: "\\text{Hint: Try direct substitution}",
+            hint_factor: "\\text{Hint: Factor and simplify}",
+            hint_infinity: "\\text{Hint: Divide by highest power of } x",
+            hint_one_sided: "\\text{Hint: Check left and right limits separately}",
+            hint_sum: "\\lim[f+g] = \\lim f + \\lim g",
+            hint_product: "\\lim[f \\cdot g] = \\lim f \\cdot \\lim g",
+            hint_quotient: "\\lim[f/g] = \\frac{\\lim f}{\\lim g} \\text{ if } \\lim g \\neq 0",
+            hint_continuity: "\\text{Check: } \\lim_{x \\to a} f(x) = f(a)"
+        },
+        labels: {
+            limit_value: "Limit Value",
+            left_limit: "Left Limit",
+            right_limit: "Right Limit",
+            continuous: "Continuous?",
+            discontinuity_type: "Discontinuity Type",
+            function_value: "Function Value",
+            hints: "HINTS"
+        },
+        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places. Use 'DNE' for does not exist.",
+        visualization: {
+            title: "LIMIT VISUALIZER",
+            approaching: "Approaching x = {point}",
+            limit_exists: "Limit exists: {value}",
+            limit_dne: "Limit does not exist",
+            continuous_at: "Continuous at x = {point}",
+            discontinuous_at: "Discontinuous at x = {point}",
+            removable: "Removable discontinuity",
+            jump: "Jump discontinuity",
+            infinite: "Infinite discontinuity"
+        }
+    },
+    gm2_02: {
+        title: "GM2.02 - Analytical Geometry",
+        subtitle: "Lines, Planes, and Spatial Relationships",
+        line_equations: "Line Equations",
+        plane_geometry: "Plane Geometry",
+        spatial_relationships: "Spatial Relationships",
+        basic: "BASIC",
+        core: "CORE",
+        advanced: "ADVANCED",
+        elite: "ELITE",
+        check: "Verify",
+        next: "Next",
+        enter_answer: "Enter your answer",
+        correct: "Correct! Well done.",
+        incorrect: "Not quite. Try again.",
+        hint: "Hint",
+        scenario_tram: "Basel Tram Line Route Planning",
+        scenario_tram_desc: "You are working with Basel's public transport authority (BVB) to analyze tram line routes on a city map. The map uses a coordinate system where each unit represents 100 meters. Tram Line 8 runs from Kleinhüningen through the city center to Neuweilerstrasse, while Line 11 connects Aesch to St. Louis (France). Your task is to determine the mathematical equations representing these tram routes. Line 8 passes through Claraplatz at coordinates (2, 3) and Barfüsserplatz at (5, 9). Line 11 passes through Basel SBB station at (4, 2) with a direction vector of (3, 1). The BVB needs these equations to calculate optimal stop locations, determine where new lines might intersect existing routes, plan maintenance schedules that minimize service disruptions, and analyze coverage gaps in the network. Understanding line equations helps urban planners make data-driven decisions about public transport infrastructure, ensuring Basel residents have efficient access to all parts of the city.",
+        scenario_bridge: "Rhine River Bridge Construction",
+        scenario_bridge_desc: "The Canton of Basel-Stadt is planning a new pedestrian and bicycle bridge across the Rhine River to improve connectivity between the University Basel campus in Grossbasel and the residential areas in Kleinbasel. You are part of the engineering team responsible for the structural design. The bridge deck will be modeled as a plane in 3D space. Three key support points have been identified: Point A (Grossbasel side): (0, 0, 5) - 5 meters above water level, Point B (Mid-river support): (50, 0, 8) - 8 meters above water level, Point C (Kleinbasel side): (100, 0, 6) - 6 meters above water level. The coordinates use meters, with the origin at the Grossbasel riverbank, x-axis along the river crossing direction, y-axis along the river flow, and z-axis representing height above water. Your tasks include determining the plane equation for the bridge deck, calculating the normal vector to ensure proper drainage, finding where the bridge intersects with the riverbanks, and verifying that the bridge clearance meets navigation requirements (minimum 5 meters above water). This project demonstrates how analytical geometry is essential in civil engineering, ensuring bridges are safe, functional, and aesthetically integrated into Basel's historic cityscape.",
+        scenario_airport: "Basel-Mulhouse Airport Flight Path Analysis",
+        scenario_airport_desc: "EuroAirport Basel-Mulhouse-Freiburg is unique in Europe, serving Switzerland, France, and Germany. Air traffic controllers use analytical geometry to manage flight paths, ensuring aircraft maintain safe distances and follow optimal approach routes. You are working with the airport's air traffic management team to analyze flight paths in 3D space. The coordinate system has its origin at the airport control tower, with x-axis pointing east (toward Germany), y-axis pointing north (toward Basel city center), and z-axis pointing upward (altitude in meters). Two aircraft are approaching the airport: Flight LX318 from Zurich: position (5000, 8000, 1200), descending along direction vector (-1, -2, -0.3), and Flight AF1642 from Paris: position (3000, 6000, 1500), descending along direction vector (1, -1, -0.4). Your responsibilities include determining if the flight paths are parallel, intersecting, or skew, calculating the minimum distance between the two aircraft, verifying that both flights maintain the required 1000-meter vertical separation, finding the intersection point with the ground plane (z = 0) for each flight path, and ensuring flight paths avoid noise-sensitive areas in Basel neighborhoods. This analysis is critical for aviation safety and demonstrates how spatial geometry enables modern air traffic control systems to manage hundreds of flights daily while maintaining strict safety standards.",
+        scenario_university: "University Basel Campus Building Layout",
+        scenario_university_desc: "The University of Basel is planning a new research building for the Department of Mathematics and Computer Science. You are part of the architectural team using analytical geometry to optimize the building's position and orientation. The campus uses a 3D coordinate system with the origin at the historic Kollegienhaus (main building). The new building must be positioned to maximize natural light, maintain sight lines to historic buildings, ensure accessibility from existing pathways, and comply with Basel's strict building height regulations. Three existing buildings define the available space: Kollegienhaus: plane equation x + 2y = 100, Biozentrum: plane equation 2x - y = 50, Pharmazentrum: plane equation x + y + z = 150. Your tasks include calculating distances from proposed building locations to existing structures, determining if proposed walls are parallel or perpendicular to existing buildings, finding intersection lines between building planes for shared infrastructure, and optimizing the building footprint to maximize usable space while respecting constraints. This project illustrates how analytical geometry supports architectural design, helping create functional, aesthetically pleasing spaces that integrate with Basel's rich academic heritage."
     }
 };

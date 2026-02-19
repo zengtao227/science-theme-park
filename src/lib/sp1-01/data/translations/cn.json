@@ -1,0 +1,47 @@
+{
+  "ui": {
+    "title": "力学基础",
+    "subtitle": "SP1.01 - 理解力",
+    "startQuest": "开始任务",
+    "nextQuest": "下一个任务",
+    "previousQuest": "上一个任务",
+    "submitAnswer": "提交答案",
+    "tryAgain": "再试一次",
+    "showSolution": "显示解决方案",
+    "progress": "进度",
+    "completed": "已完成",
+    "locked": "已锁定",
+    "unlocked": "已解锁"
+  },
+  "stages": {
+    "FORCE_CONCEPTS": "力的概念",
+    "FORCE_COMPOSITION": "力的合成",
+    "FORCE_EQUILIBRIUM": "力的平衡"
+  },
+  "difficulty": {
+    "BASIC": "基础",
+    "CORE": "核心",
+    "ADVANCED": "高级",
+    "ELITE": "精英"
+  },
+  "feedback": {
+    "correct": "正确！做得好！",
+    "incorrect": "不正确。请再试一次。",
+    "almostCorrect": "几乎正确！检查你的计算。",
+    "checkUnits": "检查你的单位。",
+    "checkMagnitude": "检查大小。",
+    "checkDirection": "检查方向。"
+  },
+  "instructions": {
+    "enterNumerical": "输入数值",
+    "enterVector": "输入大小和角度",
+    "selectAnswer": "选择正确答案",
+    "useVisualization": "使用交互式可视化"
+  },
+  "units": {
+    "N": "牛顿",
+    "kN": "千牛顿",
+    "MN": "兆牛顿",
+    "degrees": "度"
+  }
+}

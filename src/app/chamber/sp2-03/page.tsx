@@ -214,7 +214,7 @@ export default function SP203ElectricPower() {
                 difficulty,
                 stage,
                 promptLatex: item.prompt,
-                expressionLatex: `\\eta = \\frac{P_{out}}{P_{in}} \\times 100\\%`,
+                expressionLatex: `\\eta = \\\\frac{P_{out}}{P_{in}} \\times 100\\%`,
                 targetLatex: "answer",
                 slots: [
                     {

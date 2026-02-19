@@ -386,7 +386,7 @@ function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G1
         functionType: "quotient" as const,
         xPosition: item.x,
         promptLatex: gm1_01_t.stages.quotient_rule_prompt_latex,
-        expressionLatex: `f(x)=\\frac{x}{\\sin(x)},\\; x=${round2(item.x)}`,
+        expressionLatex: `f(x)=\\\\frac{x}{\\sin(x)},\\; x=${round2(item.x)}`,
         targetLatex: "f'(x)",
         slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
         correctLatex: `f'(${round2(item.x)})=${derivative}`,

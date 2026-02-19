@@ -71,9 +71,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): CrystalQu
       id: `${stage}_${difficulty[0]}${idx + 1}`,
       difficulty,
       stage,
-      promptLatex: `\\text{${t(`gc3_02.prompts.${data.key}`)}}`,
+      promptLatex: `\\\\text{${t(`gc3_02.prompts.${data.key}`)}}`,
       expressionLatex: "",
-      targetLatex: "\\text{Result}",
+      targetLatex: "\\\\text{Result}",
       slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
       correctLatex: data.expected,
       simConfig: config

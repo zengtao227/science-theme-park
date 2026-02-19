@@ -101,11 +101,13 @@ export default function Home() {
     { code: "GM1.01-ADV", title: t("home.gm1_01_title") + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM1.02", title: t("home.gm1_02_title"), desc: t("home.gm1_02_subtitle"), color: "neon-green", href: "/chamber/gm1-02", tags: ["math"] },
     { code: "GM2.01", title: t("home.gm2_01_title"), desc: t("home.gm2_01_subtitle"), color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
+    { code: "GM2.02", title: "GM2.02 // ANALYTICAL GEOMETRY", desc: "Lines, planes, and spatial relationships in 2D and 3D", color: "neon-green", href: "/chamber/gm2-02", tags: ["math"] },
     { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math"] },
     { code: "GM4.01", title: t("home.gm4_01_title"), desc: t("home.gm4_01_subtitle"), color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
   ]), [t]);
 
   const physicsModules = useMemo(() => ([
+    { code: "SP1.02", title: t("home.sp1_02_title"), desc: t("home.sp1_02_subtitle"), color: "neon-cyan", href: "/chamber/sp1-02", tags: ["physics"] },
     { code: "SP3.01", title: t("home.sp3_01_title"), desc: t("home.sp3_01_subtitle"), color: "neon-green", href: "/chamber/sp3-01", tags: ["physics"] },
     { code: "SP3.02", title: t("home.sp3_02_title"), desc: t("home.sp3_02_subtitle"), color: "neon-cyan", href: "/chamber/sp3-02", tags: ["physics"] },
     { code: "SP3.03", title: t("home.sp3_03_title"), desc: t("home.sp3_03_subtitle"), color: "neon-amber", href: "/chamber/sp3-03", tags: ["physics"] },

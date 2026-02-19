@@ -166,7 +166,7 @@ export default function SP202OhmsLaw() {
                         expected: item.answer
                     }
                 ],
-                correctLatex: `\\text{I = } ${item.answer} \\text{ A}`,
+                correctLatex: `\\\\text{I = } ${item.answer} \\\\text{ A}`,
                 answer: item.answer
             }));
         }
@@ -212,7 +212,7 @@ export default function SP202OhmsLaw() {
                 components: item.components,
                 voltage: item.voltage,
                 promptLatex: item.prompt,
-                expressionLatex: `\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...`,
+                expressionLatex: `\\\\frac{1}{R_{total}} = \\\\frac{1}{R_1} + \\\\frac{1}{R_2} + ...`,
                 targetLatex: "answer",
                 slots: [
                     {
@@ -222,7 +222,7 @@ export default function SP202OhmsLaw() {
                         expected: item.answer
                     }
                 ],
-                correctLatex: `\\text{I = } ${item.answer} \\text{ A}`,
+                correctLatex: `\\\\text{I = } ${item.answer} \\\\text{ A}`,
                 answer: item.answer
             }));
         }

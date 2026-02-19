@@ -1,0 +1,47 @@
+{
+  "ui": {
+    "title": "Forces Basics",
+    "subtitle": "SP1.01 - Understanding Forces",
+    "startQuest": "Start Quest",
+    "nextQuest": "Next Quest",
+    "previousQuest": "Previous Quest",
+    "submitAnswer": "Submit Answer",
+    "tryAgain": "Try Again",
+    "showSolution": "Show Solution",
+    "progress": "Progress",
+    "completed": "Completed",
+    "locked": "Locked",
+    "unlocked": "Unlocked"
+  },
+  "stages": {
+    "FORCE_CONCEPTS": "Force Concepts",
+    "FORCE_COMPOSITION": "Force Composition",
+    "FORCE_EQUILIBRIUM": "Force Equilibrium"
+  },
+  "difficulty": {
+    "BASIC": "Basic",
+    "CORE": "Core",
+    "ADVANCED": "Advanced",
+    "ELITE": "Elite"
+  },
+  "feedback": {
+    "correct": "Correct! Well done!",
+    "incorrect": "Incorrect. Please try again.",
+    "almostCorrect": "Almost correct! Check your calculation.",
+    "checkUnits": "Check your units.",
+    "checkMagnitude": "Check the magnitude.",
+    "checkDirection": "Check the direction."
+  },
+  "instructions": {
+    "enterNumerical": "Enter a numerical value",
+    "enterVector": "Enter magnitude and angle",
+    "selectAnswer": "Select the correct answer",
+    "useVisualization": "Use the interactive visualization"
+  },
+  "units": {
+    "N": "Newtons",
+    "kN": "Kilonewtons",
+    "MN": "Meganewtons",
+    "degrees": "degrees"
+  }
+}

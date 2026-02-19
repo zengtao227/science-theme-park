@@ -75,35 +75,35 @@ export default function SP307Page() {
                     {
                         id: "C-C1", difficulty, stage, vRiver: 3.0, vFerry: 4.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c1"),
-                        expressionLatex: "v_{net} = \\sqrt{v_f^2 + v_r^2}", targetLatex: "5.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{v_f^2 + v_r^2}", targetLatex: "5.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 5.0 }],
                         correctLatex: "5.0", hintLatex: [t("sp3_07.hints.c_c1")]
                     },
                     {
                         id: "C-C2", difficulty, stage, vRiver: 1.0, vFerry: 1.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c2"),
-                        expressionLatex: "v_{net} = \\sqrt{1^2 + 1^2}", targetLatex: "1.41",
+                        expressionLatex: "v_{net} = \\\\sqrt{1^2 + 1^2}", targetLatex: "1.41",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 1.41 }],
                         correctLatex: "1.41", hintLatex: [t("sp3_07.hints.c_c2")]
                     },
                     {
                         id: "C-C3", difficulty, stage, vRiver: 2.0, vFerry: 2.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c3"),
-                        expressionLatex: "v_{net} = \\sqrt{2^2 + 2^2}", targetLatex: "2.83",
+                        expressionLatex: "v_{net} = \\\\sqrt{2^2 + 2^2}", targetLatex: "2.83",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 2.83 }],
                         correctLatex: "2.83", hintLatex: [t("sp3_07.hints.c_c3")]
                     },
                     {
                         id: "C-C4", difficulty, stage, vRiver: 1.5, vFerry: 2.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c4"),
-                        expressionLatex: "v_{net} = \\sqrt{2^2 + 1.5^2}", targetLatex: "2.5",
+                        expressionLatex: "v_{net} = \\\\sqrt{2^2 + 1.5^2}", targetLatex: "2.5",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 2.5 }],
                         correctLatex: "2.5", hintLatex: [t("sp3_07.hints.c_c4")]
                     },
                     {
                         id: "C-C5", difficulty, stage, vRiver: 5.0, vFerry: 12.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c5"),
-                        expressionLatex: "v_{net} = \\sqrt{12^2 + 5^2}", targetLatex: "13.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{12^2 + 5^2}", targetLatex: "13.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 13.0 }],
                         correctLatex: "13.0", hintLatex: [t("sp3_07.hints.c_c5")]
                     }
@@ -155,35 +155,35 @@ export default function SP307Page() {
                     {
                         id: "C-E1", difficulty, stage, vRiver: 2.0, vFerry: 5.0, theta: 53,
                         promptLatex: t("sp3_07.prompts.c_e1"),
-                        expressionLatex: "v_{net} = \\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "6.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "6.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 6.0 }],
                         correctLatex: "6.0", hintLatex: [t("sp3_07.hints.c_e1")]
                     },
                     {
                         id: "C-E2", difficulty, stage, vRiver: 1.5, vFerry: 4.0, theta: 37,
                         promptLatex: t("sp3_07.prompts.c_e2"),
-                        expressionLatex: "v_{net} = \\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "4.92",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "4.92",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 4.92 }],
                         correctLatex: "4.92", hintLatex: [t("sp3_07.hints.c_e2")]
                     },
                     {
                         id: "C-E3", difficulty, stage, vRiver: 3.0, vFerry: 8.0, theta: 45,
                         promptLatex: t("sp3_07.prompts.c_e3"),
-                        expressionLatex: "\\theta_{net} = \\arctan\\left(\\frac{v_f\\sin\\theta + v_r}{v_f\\cos\\theta}\\right)", targetLatex: "56.3",
+                        expressionLatex: "\\theta_{net} = \\arctan\\left(\\\\frac{v_f\\sin\\theta + v_r}{v_f\\cos\\theta}\\right)", targetLatex: "56.3",
                         slots: [{ id: "ans", labelLatex: "\\theta_{net}", placeholder: "deg", expected: 56.3 }],
                         correctLatex: "56.3", hintLatex: [t("sp3_07.hints.c_e3")]
                     },
                     {
                         id: "C-E4", difficulty, stage, vRiver: 2.5, vFerry: 6.0, theta: 60,
                         promptLatex: t("sp3_07.prompts.c_e4"),
-                        expressionLatex: "v_{net} = \\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "7.81",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "7.81",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 7.81 }],
                         correctLatex: "7.81", hintLatex: [t("sp3_07.hints.c_e4")]
                     },
                     {
                         id: "C-E5", difficulty, stage, vRiver: 1.0, vFerry: 5.0, theta: 30,
                         promptLatex: t("sp3_07.prompts.c_e5"),
-                        expressionLatex: "\\theta_{net} = \\arctan\\left(\\frac{v_f\\sin\\theta + v_r}{v_f\\cos\\theta}\\right)", targetLatex: "40.9",
+                        expressionLatex: "\\theta_{net} = \\arctan\\left(\\\\frac{v_f\\sin\\theta + v_r}{v_f\\cos\\theta}\\right)", targetLatex: "40.9",
                         slots: [{ id: "ans", labelLatex: "\\theta_{net}", placeholder: "deg", expected: 40.9 }],
                         correctLatex: "40.9", hintLatex: [t("sp3_07.hints.c_e5")]
                     }
@@ -206,7 +206,7 @@ export default function SP307Page() {
                     {
                         id: "D-B2", difficulty, stage, vRiver: 1.5, vFerry: 3.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.d_b2"),
-                        expressionLatex: "\\cos(\\theta) = -\\frac{v_r}{v_f}", targetLatex: "120",
+                        expressionLatex: "\\cos(\\theta) = -\\\\frac{v_r}{v_f}", targetLatex: "120",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 120 }],
                         correctLatex: "120", hintLatex: [t("sp3_07.hints.d_b2")]
                     },
@@ -220,7 +220,7 @@ export default function SP307Page() {
                     {
                         id: "D-B4", difficulty, stage, vRiver: 0.5, vFerry: 1.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.d_b4"),
-                        expressionLatex: "\\cos(\\theta) = -\\frac{0.5}{1.0}", targetLatex: "120",
+                        expressionLatex: "\\cos(\\theta) = -\\\\frac{0.5}{1.0}", targetLatex: "120",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 120 }],
                         correctLatex: "120", hintLatex: [t("sp3_07.hints.d_b4")]
                     },
@@ -239,21 +239,21 @@ export default function SP307Page() {
                     {
                         id: "D-C1", difficulty, stage, vRiver: 1.0, vFerry: 1.73, theta: 125.3,
                         promptLatex: t("sp3_07.prompts.d_c1"),
-                        expressionLatex: "\\theta = \\arccos\\left(-\\frac{v_r}{v_f}\\right)", targetLatex: "125.3",
+                        expressionLatex: "\\theta = \\arccos\\left(-\\\\frac{v_r}{v_f}\\right)", targetLatex: "125.3",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 125.3 }],
                         correctLatex: "125.3", hintLatex: [t("sp3_07.hints.d_c1")]
                     },
                     {
                         id: "D-C2", difficulty, stage, vRiver: 2.0, vFerry: 2.83, theta: 135,
                         promptLatex: t("sp3_07.prompts.d_c2"),
-                        expressionLatex: "\\cos(\\theta) = -\\frac{2.0}{2.83}", targetLatex: "135",
+                        expressionLatex: "\\cos(\\theta) = -\\\\frac{2.0}{2.83}", targetLatex: "135",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 135 }],
                         correctLatex: "135", hintLatex: [t("sp3_07.hints.d_c2")]
                     },
                     {
                         id: "D-C3", difficulty, stage, vRiver: 1.5, vFerry: 2.12, theta: 135,
                         promptLatex: t("sp3_07.prompts.d_c3"),
-                        expressionLatex: "\\cos(\\theta) = -\\frac{1.5}{2.12}", targetLatex: "135",
+                        expressionLatex: "\\cos(\\theta) = -\\\\frac{1.5}{2.12}", targetLatex: "135",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 135 }],
                         correctLatex: "135", hintLatex: [t("sp3_07.hints.d_c3")]
                     },
@@ -267,7 +267,7 @@ export default function SP307Page() {
                     {
                         id: "D-C5", difficulty, stage, vRiver: 2.5, vFerry: 3.54, theta: 135,
                         promptLatex: t("sp3_07.prompts.d_c5"),
-                        expressionLatex: "\\cos(\\theta) = -\\frac{2.5}{3.54}", targetLatex: "135",
+                        expressionLatex: "\\cos(\\theta) = -\\\\frac{2.5}{3.54}", targetLatex: "135",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 135 }],
                         correctLatex: "135", hintLatex: [t("sp3_07.hints.d_c5")]
                     }
@@ -279,7 +279,7 @@ export default function SP307Page() {
                     {
                         id: "D-A1", difficulty, stage, vRiver: 1.2, vFerry: 2.0, theta: 126.9,
                         promptLatex: t("sp3_07.prompts.d_a1"),
-                        expressionLatex: "\\theta = \\arccos\\left(-\\frac{1.2}{2.0}\\right)", targetLatex: "126.9",
+                        expressionLatex: "\\theta = \\arccos\\left(-\\\\frac{1.2}{2.0}\\right)", targetLatex: "126.9",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 126.9 }],
                         correctLatex: "126.9", hintLatex: [t("sp3_07.hints.d_a1")]
                     },
@@ -319,7 +319,7 @@ export default function SP307Page() {
                     {
                         id: "D-E1", difficulty, stage, vRiver: 2.7, vFerry: 4.5, theta: 126.9,
                         promptLatex: t("sp3_07.prompts.d_e1"),
-                        expressionLatex: "\\theta = \\arccos\\left(-\\frac{2.7}{4.5}\\right)", targetLatex: "126.9",
+                        expressionLatex: "\\theta = \\arccos\\left(-\\\\frac{2.7}{4.5}\\right)", targetLatex: "126.9",
                         slots: [{ id: "ans", labelLatex: "\\theta", placeholder: "deg", expected: 126.9 }],
                         correctLatex: "126.9", hintLatex: [t("sp3_07.hints.d_e1")]
                     },
@@ -363,35 +363,35 @@ export default function SP307Page() {
                     {
                         id: "N-B1", difficulty, stage, vRiver: 1.0, vFerry: 2.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.n_b1"),
-                        expressionLatex: "t = \\frac{d}{v_f}", targetLatex: "10.0",
+                        expressionLatex: "t = \\\\frac{d}{v_f}", targetLatex: "10.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 10.0 }],
                         correctLatex: "10.0", hintLatex: [t("sp3_07.hints.n_b1")]
                     },
                     {
                         id: "N-B2", difficulty, stage, vRiver: 1.5, vFerry: 3.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.n_b2"),
-                        expressionLatex: "t = \\frac{30}{3.0}", targetLatex: "10.0",
+                        expressionLatex: "t = \\\\frac{30}{3.0}", targetLatex: "10.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 10.0 }],
                         correctLatex: "10.0", hintLatex: [t("sp3_07.hints.n_b2")]
                     },
                     {
                         id: "N-B3", difficulty, stage, vRiver: 0.5, vFerry: 4.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.n_b3"),
-                        expressionLatex: "t = \\frac{40}{4.0}", targetLatex: "10.0",
+                        expressionLatex: "t = \\\\frac{40}{4.0}", targetLatex: "10.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 10.0 }],
                         correctLatex: "10.0", hintLatex: [t("sp3_07.hints.n_b3")]
                     },
                     {
                         id: "N-B4", difficulty, stage, vRiver: 2.0, vFerry: 5.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.n_b4"),
-                        expressionLatex: "t = \\frac{25}{5.0}", targetLatex: "5.0",
+                        expressionLatex: "t = \\\\frac{25}{5.0}", targetLatex: "5.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 5.0 }],
                         correctLatex: "5.0", hintLatex: [t("sp3_07.hints.n_b4")]
                     },
                     {
                         id: "N-B5", difficulty, stage, vRiver: 1.0, vFerry: 2.5, theta: 90,
                         promptLatex: t("sp3_07.prompts.n_b5"),
-                        expressionLatex: "t = \\frac{50}{2.5}", targetLatex: "20.0",
+                        expressionLatex: "t = \\\\frac{50}{2.5}", targetLatex: "20.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 20.0 }],
                         correctLatex: "20.0", hintLatex: [t("sp3_07.hints.n_b5")]
                     }
@@ -403,35 +403,35 @@ export default function SP307Page() {
                     {
                         id: "N-C1", difficulty, stage, vRiver: 1.0, vFerry: 2.0, theta: 60,
                         promptLatex: t("sp3_07.prompts.n_c1"),
-                        expressionLatex: "t = \\frac{d}{v_f \\sin(\\theta)}", targetLatex: "11.55",
+                        expressionLatex: "t = \\\\frac{d}{v_f \\sin(\\theta)}", targetLatex: "11.55",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 11.55 }],
                         correctLatex: "11.55", hintLatex: [t("sp3_07.hints.n_c1")]
                     },
                     {
                         id: "N-C2", difficulty, stage, vRiver: 1.5, vFerry: 3.0, theta: 30,
                         promptLatex: t("sp3_07.prompts.n_c2"),
-                        expressionLatex: "t = \\frac{30}{3.0 \\times 0.5}", targetLatex: "20.0",
+                        expressionLatex: "t = \\\\frac{30}{3.0 \\times 0.5}", targetLatex: "20.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 20.0 }],
                         correctLatex: "20.0", hintLatex: [t("sp3_07.hints.n_c2")]
                     },
                     {
                         id: "N-C3", difficulty, stage, vRiver: 2.0, vFerry: 4.0, theta: 45,
                         promptLatex: t("sp3_07.prompts.n_c3"),
-                        expressionLatex: "t = \\frac{40}{4.0 \\times \\sin(45^\\circ)}", targetLatex: "14.14",
+                        expressionLatex: "t = \\\\frac{40}{4.0 \\times \\sin(45^\\circ)}", targetLatex: "14.14",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 14.14 }],
                         correctLatex: "14.14", hintLatex: [t("sp3_07.hints.n_c3")]
                     },
                     {
                         id: "N-C4", difficulty, stage, vRiver: 0.5, vFerry: 2.5, theta: 60,
                         promptLatex: t("sp3_07.prompts.n_c4"),
-                        expressionLatex: "t = \\frac{25}{2.5 \\times \\sin(60^\\circ)}", targetLatex: "11.55",
+                        expressionLatex: "t = \\\\frac{25}{2.5 \\times \\sin(60^\\circ)}", targetLatex: "11.55",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 11.55 }],
                         correctLatex: "11.55", hintLatex: [t("sp3_07.hints.n_c4")]
                     },
                     {
                         id: "N-C5", difficulty, stage, vRiver: 1.0, vFerry: 5.0, theta: 30,
                         promptLatex: t("sp3_07.prompts.n_c5"),
-                        expressionLatex: "t = \\frac{50}{5.0 \\times 0.5}", targetLatex: "20.0",
+                        expressionLatex: "t = \\\\frac{50}{5.0 \\times 0.5}", targetLatex: "20.0",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 20.0 }],
                         correctLatex: "20.0", hintLatex: [t("sp3_07.hints.n_c5")]
                     }
@@ -443,7 +443,7 @@ export default function SP307Page() {
                     {
                         id: "N-A1", difficulty, stage, vRiver: 1.2, vFerry: 2.4, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_a1"),
-                        expressionLatex: "t = \\frac{20}{v_f \\sin(120^\\circ)}", targetLatex: "9.62",
+                        expressionLatex: "t = \\\\frac{20}{v_f \\sin(120^\\circ)}", targetLatex: "9.62",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 9.62 }],
                         correctLatex: "9.62", hintLatex: [t("sp3_07.hints.n_a1")]
                     },
@@ -457,21 +457,21 @@ export default function SP307Page() {
                     {
                         id: "N-A3", difficulty, stage, vRiver: 2.0, vFerry: 4.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_a3"),
-                        expressionLatex: "t = \\frac{30}{4.0 \\times \\sin(120^\\circ)}", targetLatex: "8.66",
+                        expressionLatex: "t = \\\\frac{30}{4.0 \\times \\sin(120^\\circ)}", targetLatex: "8.66",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 8.66 }],
                         correctLatex: "8.66", hintLatex: [t("sp3_07.hints.n_a3")]
                     },
                     {
                         id: "N-A4", difficulty, stage, vRiver: 1.0, vFerry: 2.0, theta: 135,
                         promptLatex: t("sp3_07.prompts.n_a4"),
-                        expressionLatex: "t = \\frac{25}{2.0 \\times \\sin(135^\\circ)}", targetLatex: "17.68",
+                        expressionLatex: "t = \\\\frac{25}{2.0 \\times \\sin(135^\\circ)}", targetLatex: "17.68",
                         slots: [{ id: "ans", labelLatex: "t", placeholder: "s", expected: 17.68 }],
                         correctLatex: "17.68", hintLatex: [t("sp3_07.hints.n_a4")]
                     },
                     {
                         id: "N-A5", difficulty, stage, vRiver: 1.8, vFerry: 3.6, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_a5"),
-                        expressionLatex: "d_{drift} = 1.8 \\times \\frac{40}{3.6 \\times \\sin(120^\\circ)}", targetLatex: "23.09",
+                        expressionLatex: "d_{drift} = 1.8 \\times \\\\frac{40}{3.6 \\times \\sin(120^\\circ)}", targetLatex: "23.09",
                         slots: [{ id: "ans", labelLatex: "d_{drift}", placeholder: "m", expected: 23.09 }],
                         correctLatex: "23.09", hintLatex: [t("sp3_07.hints.n_a5")]
                     }
@@ -483,35 +483,35 @@ export default function SP307Page() {
                     {
                         id: "N-E1", difficulty, stage, vRiver: 2.5, vFerry: 5.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_e1"),
-                        expressionLatex: "v_{net} = \\sqrt{(v_f\\sin\\theta)^2 + (v_f\\cos\\theta + v_r)^2}", targetLatex: "4.33",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\sin\\theta)^2 + (v_f\\cos\\theta + v_r)^2}", targetLatex: "4.33",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 4.33 }],
                         correctLatex: "4.33", hintLatex: [t("sp3_07.hints.n_e1")]
                     },
                     {
                         id: "N-E2", difficulty, stage, vRiver: 1.5, vFerry: 4.0, theta: 135,
                         promptLatex: t("sp3_07.prompts.n_e2"),
-                        expressionLatex: "t_{total} = \\frac{d}{v_f\\sin\\theta} + \\frac{d_{drift}}{v_{net}}", targetLatex: "18.38",
+                        expressionLatex: "t_{total} = \\\\frac{d}{v_f\\sin\\theta} + \\\\frac{d_{drift}}{v_{net}}", targetLatex: "18.38",
                         slots: [{ id: "ans", labelLatex: "t_{total}", placeholder: "s", expected: 18.38 }],
                         correctLatex: "18.38", hintLatex: [t("sp3_07.hints.n_e2")]
                     },
                     {
                         id: "N-E3", difficulty, stage, vRiver: 3.0, vFerry: 6.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_e3"),
-                        expressionLatex: "d_{total} = \\sqrt{d^2 + d_{drift}^2}", targetLatex: "46.19",
+                        expressionLatex: "d_{total} = \\\\sqrt{d^2 + d_{drift}^2}", targetLatex: "46.19",
                         slots: [{ id: "ans", labelLatex: "d_{total}", placeholder: "m", expected: 46.19 }],
                         correctLatex: "46.19", hintLatex: [t("sp3_07.hints.n_e3")]
                     },
                     {
                         id: "N-E4", difficulty, stage, vRiver: 2.0, vFerry: 5.0, theta: 126.9,
                         promptLatex: t("sp3_07.prompts.n_e4"),
-                        expressionLatex: "\\theta_{path} = \\arctan\\left(\\frac{d_{drift}}{d}\\right)", targetLatex: "33.7",
+                        expressionLatex: "\\theta_{path} = \\arctan\\left(\\\\frac{d_{drift}}{d}\\right)", targetLatex: "33.7",
                         slots: [{ id: "ans", labelLatex: "\\theta_{path}", placeholder: "deg", expected: 33.7 }],
                         correctLatex: "33.7", hintLatex: [t("sp3_07.hints.n_e4")]
                     },
                     {
                         id: "N-E5", difficulty, stage, vRiver: 1.0, vFerry: 3.0, theta: 110,
                         promptLatex: t("sp3_07.prompts.n_e5"),
-                        expressionLatex: "E = \\frac{1}{2}m v_{net}^2", targetLatex: "4.5",
+                        expressionLatex: "E = \\\\frac{1}{2}m v_{net}^2", targetLatex: "4.5",
                         slots: [{ id: "ans", labelLatex: "E", placeholder: "J", expected: 4.5 }],
                         correctLatex: "4.5", hintLatex: [t("sp3_07.hints.n_e5")]
                     }

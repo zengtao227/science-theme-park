@@ -140,6 +140,35 @@ export const enPhysics = {
         }
     },
 
+    // --- Basel Sek 1 Series (SP1 - Mechanics) ---
+
+    // SP1.02: Newton's Laws
+    sp1_02: {
+        title: "SP1.02 // NEWTON'S LAWS",
+        back: "Back to Nexus",
+        footer_left: "SP1.02_MECHANICS // NODE: BASEL",
+        check: "Verify",
+        next: "Next",
+        correct: "Law Verified",
+        incorrect: "Law Error",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            first_law: "FIRST LAW (INERTIA)",
+            second_law: "SECOND LAW (F=ma)",
+            third_law: "THIRD LAW (ACTION-REACTION)"
+        },
+        scenarios: {
+            first_law: "Basel Fasnacht Parade Float Motion: During Basel's famous Fasnacht carnival at Marktplatz, elaborately decorated parade floats demonstrate Newton's First Law of inertia. A massive float with 3,000 kg mass sits at rest before the parade begins. Despite its colorful appearance, it stubbornly resists motion—it will remain at rest unless acted upon by an external force. When parade participants push with 2,000 N while friction opposes with 500 N, the net 1,500 N force overcomes inertia and accelerates the float at 0.5 m/s². Once moving at constant velocity through the parade route, if pushers maintain force equal to friction, the float continues at steady speed—demonstrating that objects in motion stay in motion with constant velocity when net force is zero.",
+            second_law: "Basel Tram Acceleration and Braking: Basel's iconic green trams navigate the city's streets, demonstrating Newton's Second Law in action. At Barfüsserplatz, a tram with mass 10,000 kg accelerates from rest to reach cruising speed. The electric motors apply a forward force of 15,000 N while friction and air resistance provide 3,000 N of opposing force. Using F=ma, we calculate the net force (12,000 N) produces an acceleration of 1.2 m/s². When approaching the next stop, the driver applies brakes generating -10,000 N, combined with -3,000 N friction, creating -13,000 N net force and -1.3 m/s² deceleration. This daily dance of forces and motion keeps Basel's public transport running smoothly.",
+            third_law: "Rhine River Boat Propulsion: Along Basel's Rhine River near Mittlere Brücke, passenger boats demonstrate Newton's Third Law through their propulsion systems. When a boat's propeller rotates, it pushes water backward with tremendous force—perhaps 3,000 N for a typical Rhine ferry. According to Newton's Third Law, the water simultaneously pushes the boat forward with an equal 3,000 N force in the opposite direction. This action-reaction pair acts on different objects: the propeller acts on the water, while the water acts on the boat. The boat's 1,500 kg mass accelerates forward at 2 m/s² as a result. This same principle powers everything from swimming to rocket propulsion."
+        }
+    },
+
     // --- Basel Sek 2 Series (SP2 - Electricity) ---
 
     // SP2.01: Circuit Basics

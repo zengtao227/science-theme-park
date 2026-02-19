@@ -84,12 +84,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
-                        promptLatex: `\\text{Lever: load ${lever.load} N at ${lever.loadArm} m, effort arm ${lever.effortArm} m. Effort force?}`,
+                        promptLatex: `\\\\text{Lever: load ${lever.load} N at ${lever.loadArm} m, effort arm ${lever.effortArm} m. Effort force?}`,
                         expressionLatex: `F_e \\times d_e = F_l \\times d_l`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                        correctLatex: `${lever.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{MA} = d_e/d_l = ${lever.effortArm}/${lever.loadArm}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{MA} = d_e/d_l = ${lever.effortArm}/${lever.loadArm}`]
                     });
                 });
             }
@@ -110,12 +110,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
-                        promptLatex: `\\text{Class ${lever.class} lever: load ${lever.load} N, effort arm ${lever.effortArm} m, load arm ${lever.loadArm} m. Effort?}`,
-                        expressionLatex: `F_e = F_l \\times \\frac{d_l}{d_e}`,
+                        promptLatex: `\\\\text{Class ${lever.class} lever: load ${lever.load} N, effort arm ${lever.effortArm} m, load arm ${lever.loadArm} m. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\\\frac{d_l}{d_e}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                        correctLatex: `${lever.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Class ${lever.class}: fulcrum position varies}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Class ${lever.class}: fulcrum position varies}`]
                     });
                 });
             }
@@ -136,12 +136,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
-                        promptLatex: `\\text{Lever with ${lever.efficiency * 100}\\% efficiency: load ${lever.load} N, MA = ${lever.effortArm}. Actual effort?}`,
-                        expressionLatex: `F_e = \\frac{F_l}{MA \\times \\eta}`,
+                        promptLatex: `\\\\text{Lever with ${lever.efficiency * 100}\\% efficiency: load ${lever.load} N, MA = ${lever.effortArm}. Actual effort?}`,
+                        expressionLatex: `F_e = \\\\frac{F_l}{MA \\times \\eta}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                        correctLatex: `${lever.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Account for friction losses}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Account for friction losses}`]
                     });
                 });
             }
@@ -162,12 +162,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
-                        promptLatex: `\\text{Two-stage lever system: each stage MA = ${lever.effortArm}, load ${lever.load} N. Input effort?}`,
-                        expressionLatex: `F_e = \\frac{F_l}{MA_1 \\times MA_2}`,
+                        promptLatex: `\\\\text{Two-stage lever system: each stage MA = ${lever.effortArm}, load ${lever.load} N. Input effort?}`,
+                        expressionLatex: `F_e = \\\\frac{F_l}{MA_1 \\times MA_2}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
-                        correctLatex: `${lever.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Compound MA} = MA_1 \\times MA_2`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        correctLatex: `${lever.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Compound MA} = MA_1 \\times MA_2`]
                     });
                 });
             }
@@ -190,12 +190,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
-                        promptLatex: `\\text{Pulley system: ${pulley.strands} supporting strands, load ${pulley.load} N. Effort force?}`,
-                        expressionLatex: `F_e = \\frac{F_l}{n}`,
+                        promptLatex: `\\\\text{Pulley system: ${pulley.strands} supporting strands, load ${pulley.load} N. Effort force?}`,
+                        expressionLatex: `F_e = \\\\frac{F_l}{n}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                        correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{MA} = n \\text{ (number of strands)}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{MA} = n \\\\text{ (number of strands)}`]
                     });
                 });
             }
@@ -216,12 +216,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
-                        promptLatex: `\\text{Pulley: ${pulley.movable} movable, ${pulley.fixed} fixed. Load ${pulley.load} N. Effort?}`,
-                        expressionLatex: `\\text{MA} = 2 \\times n_{movable}`,
+                        promptLatex: `\\\\text{Pulley: ${pulley.movable} movable, ${pulley.fixed} fixed. Load ${pulley.load} N. Effort?}`,
+                        expressionLatex: `\\\\text{MA} = 2 \\times n_{movable}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                        correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Movable pulleys double MA}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Movable pulleys double MA}`]
                     });
                 });
             }
@@ -242,12 +242,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
-                        promptLatex: `\\text{Pulley: ${pulley.strands} strands, ${pulley.efficiency * 100}\\% efficiency, load ${pulley.load} N. Actual effort?}`,
-                        expressionLatex: `F_e = \\frac{F_l}{n \\times \\eta}`,
+                        promptLatex: `\\\\text{Pulley: ${pulley.strands} strands, ${pulley.efficiency * 100}\\% efficiency, load ${pulley.load} N. Actual effort?}`,
+                        expressionLatex: `F_e = \\\\frac{F_l}{n \\times \\eta}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                        correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Account for friction}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Account for friction}`]
                     });
                 });
             }
@@ -268,12 +268,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
-                        promptLatex: `\\text{Block and tackle: ${pulley.blocks} blocks, ${pulley.strands} strands, load ${pulley.load} N. Effort?}`,
-                        expressionLatex: `F_e = \\frac{F_l}{n}`,
+                        promptLatex: `\\\\text{Block and tackle: ${pulley.blocks} blocks, ${pulley.strands} strands, load ${pulley.load} N. Effort?}`,
+                        expressionLatex: `F_e = \\\\frac{F_l}{n}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
-                        correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Count all supporting strands}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        correctLatex: `${pulley.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Count all supporting strands}`]
                     });
                 });
             }
@@ -296,12 +296,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
-                        promptLatex: `\\text{Inclined plane: height ${plane.height} m, length ${plane.length} m, load ${plane.load} N. Effort?}`,
-                        expressionLatex: `F_e = F_l \\times \\frac{h}{l}`,
+                        promptLatex: `\\\\text{Inclined plane: height ${plane.height} m, length ${plane.length} m, load ${plane.load} N. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\\\frac{h}{l}`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                        correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{MA} = l/h`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{MA} = l/h`]
                     });
                 });
             }
@@ -322,12 +322,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
-                        promptLatex: `\\text{Inclined plane: angle ${plane.angle}°, load ${plane.load} N. Effort parallel to plane?}`,
+                        promptLatex: `\\\\text{Inclined plane: angle ${plane.angle}°, load ${plane.load} N. Effort parallel to plane?}`,
                         expressionLatex: `F_e = F_l \\times \\sin(\\theta)`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                        correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Use } \\sin(${plane.angle}°)`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Use } \\sin(${plane.angle}°)`]
                     });
                 });
             }
@@ -348,12 +348,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
-                        promptLatex: `\\text{Inclined plane: h=${plane.height} m, l=${plane.length} m, load ${plane.load} N, friction μ=${plane.friction}. Effort?}`,
-                        expressionLatex: `F_e = F_l(\\frac{h}{l} + \\mu)`,
+                        promptLatex: `\\\\text{Inclined plane: h=${plane.height} m, l=${plane.length} m, load ${plane.load} N, friction μ=${plane.friction}. Effort?}`,
+                        expressionLatex: `F_e = F_l(\\\\frac{h}{l} + \\mu)`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                        correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Add friction component}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Add friction component}`]
                     });
                 });
             }
@@ -374,12 +374,12 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
-                        promptLatex: `\\text{Screw jack: pitch ${plane.pitch} cm, handle radius ${plane.radius} cm, load ${plane.load} N. Effort?}`,
-                        expressionLatex: `F_e = F_l \\times \\frac{p}{2\\pi r}`,
+                        promptLatex: `\\\\text{Screw jack: pitch ${plane.pitch} cm, handle radius ${plane.radius} cm, load ${plane.load} N. Effort?}`,
+                        expressionLatex: `F_e = F_l \\times \\\\frac{p}{2\\pi r}`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
-                        correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Screw is inclined plane wrapped around cylinder}`]
+                        slots: [{ id: "ans", labelLatex: "F_e\\\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        correctLatex: `${plane.effort}\\,\\\\text{N}`,
+                        hintLatex: [`\\\\text{Screw is inclined plane wrapped around cylinder}`]
                     });
                 });
             }

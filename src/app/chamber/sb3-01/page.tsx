@@ -64,9 +64,9 @@ export default function SB301Page() {
                     stage,
                     scenario: item.scenario,
                     promptLatex: t("sb3_01.prompts.food_chain", { producer: item.p, consumer: item.c }),
-                    expressionLatex: `\\text{${item.p}} \\rightarrow \\text{${item.c}} \\rightarrow ?`,
+                    expressionLatex: `\\\\text{${item.p}} \\rightarrow \\\\text{${item.c}} \\rightarrow ?`,
                     targetLatex: item.next,
-                    slots: [{ id: "ans", labelLatex: "\\text{Level 3}", placeholder: "...", expected: item.next.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Level 3}", placeholder: "...", expected: item.next.toLowerCase() }],
                     correctLatex: item.next,
                     hintLatex: [t("sb3_01.prompts.hint_trophic")]
                 });
@@ -115,8 +115,8 @@ export default function SB301Page() {
                     promptLatex: t("sb3_01.prompts.energy_transfer", { level: item.level, energy: item.energy.toString() }),
                     expressionLatex: `E_{next} = E_{current} \\times 10\\%`,
                     targetLatex: item.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Energy (kJ)}", placeholder: "0", expected: item.expected }],
-                    correctLatex: `${item.expected}\\text{ kJ}`,
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Energy (kJ)}", placeholder: "0", expected: item.expected }],
+                    correctLatex: `${item.expected}\\\\text{ kJ}`,
                     hintLatex: [t("sb3_01.prompts.hint_10percent")]
                 });
             });
@@ -162,9 +162,9 @@ export default function SB301Page() {
                     stage,
                     scenario: item.scenario,
                     promptLatex: t("sb3_01.prompts.cycle_process", { cycle: item.cycle, process: item.process }),
-                    expressionLatex: `\\text{${item.process}} \\rightarrow ?`,
+                    expressionLatex: `\\\\text{${item.process}} \\rightarrow ?`,
                     targetLatex: item.out,
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: item.out.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Product}", placeholder: "...", expected: item.out.toLowerCase() }],
                     correctLatex: item.out,
                     hintLatex: [t("sb3_01.prompts.hint_cycle")]
                 });

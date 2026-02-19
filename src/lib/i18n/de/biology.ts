@@ -537,6 +537,38 @@ export const deBiology = {
         footer_left: "SB1.04_PFLANZENSTRUKTUR // KNOTEN: BASEL"
     },
 
+    // SB1.05: Tierklassifikation & Anpassung
+    sb1_05: {
+        back: "Zurück zum Nexus",
+        title: "SB1.05 // TIERKLASSIFIKATION & ANPASSUNG",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "FORTGESCHRITTEN",
+            elite: "ELITE"
+        },
+        stages: {
+            animal_classification: "TIERKLASSIFIKATION",
+            adaptations: "ANPASSUNGEN",
+            behavior_evolution: "VERHALTEN & EVOLUTION"
+        },
+        scenarios: {
+            basel_zoo: "Zoo Basel Biodiversitätstour: Sie sind Studentenführer im Zoo Basel (Zolli) und bereiten eine Bildungstour über Tierklassifikation vor. Der Zoo beherbergt über 600 Arten aus allen wichtigen Tiergruppen. Ihre Aufgabe ist es, einen Klassifikationsleitfaden für Besucher zu erstellen. Heute konzentrieren Sie sich auf die Afrikanische Savanne, die Löwen (Panthera leo), Zebras (Equus quagga) und Strauße (Struthio camelus) umfasst. Sie müssen erklären, wie diese Tiere trotz des gleichen Lebensraums in verschiedene Gruppen klassifiziert werden. Das Bildungsprogramm des Zoos betont das Verständnis, dass Klassifikation auf evolutionären Beziehungen und gemeinsamen Merkmalen basiert, nicht nur darauf, wo Tiere leben. Dies hilft Besuchern, die Biodiversität und die Bedeutung von Naturschutzbemühungen zu schätzen. Ihre Aufgabe: Klassifizieren Sie jedes Tier in seine richtige Klasse (Mammalia, Aves oder Reptilia) und erklären Sie die Schlüsselmerkmale, die jede Gruppe definieren. Dieses Wissen hilft Zoobesuchern zu verstehen, warum Naturschutzstrategien die einzigartigen biologischen Bedürfnisse jeder Art basierend auf ihrer Klassifikation berücksichtigen müssen.",
+            rhine_river: "Rhein-Ökosystem-Forschung: Sie sind Teil eines Forschungsteams der Universität Basel, das das Rhein-Ökosystem untersucht. Der Rhein fließt durch Basel und unterstützt trotz seiner Rolle als eine der verkehrsreichsten Wasserstraßen Europas vielfältiges aquatisches und Uferlebewesen. Ihr Team dokumentiert, wie verschiedene Tiere sich an das Leben im und am Fluss angepasst haben. Sie vergleichen drei Arten: den Europäischen Aal (Anguilla anguilla), der Tausende von Kilometern wandert, den Graureiher (Ardea cinerea), der in flachem Wasser jagt, und den Europäischen Biber (Castor fiber), der kürzlich wieder eingeführt wurde. Jede Art hat einzigartige Anpassungen an die aquatische Umgebung. Der Aal kann sowohl in Süß- als auch in Salzwasser überleben, der Reiher hat spezialisierte Jagdanpassungen, und der Biber modifiziert seinen Lebensraum durch Dammbau. Ihre Aufgabe: Identifizieren und erklären Sie die spezifischen Anpassungen, die jedes Tier verwendet, um im Rhein-Ökosystem zu überleben, und erklären Sie, wie diese Anpassungen Überlebensvorteile bieten. Das Verständnis dieser Anpassungen hilft, Naturschutzbemühungen zur Erhaltung der Biodiversität im Rhein zu informieren, was für Basels Umweltgesundheit entscheidend ist.",
+            alpine_animals: "Schweizer Alpen Biodiversitätsstudie: Sie nehmen an einer Feldstudie über alpine Tiere in den Schweizer Bergen bei Basel teil. Die alpine Umgebung stellt extreme Herausforderungen dar: niedriger Sauerstoff, kalte Temperaturen, steiles Gelände und saisonale Nahrungsknappheit. Ihre Studie konzentriert sich auf drei ikonische Schweizer Alpenarten: den Alpensteinbock (Capra ibex) mit seiner bemerkenswerten Kletterfähigkeit, das Alpenmurmeltier (Marmota marmota), das 6-7 Monate Winterschlaf hält, und den Steinadler (Aquila chrysaetos), der über weite Territorien jagt. Jede Art hat spezifische Anpassungen für das alpine Überleben entwickelt. Der Steinbock hat gespaltene Hufe für Halt auf Felsen, das Murmeltier hat physiologische Anpassungen für den Winterschlaf, und der Adler hat außergewöhnliches Sehvermögen und Fluganpassungen für die Jagd in bergigem Gelände. Ihre Aufgabe: Analysieren Sie, wie die Anpassungen jedes Tieres speziell die Herausforderungen der alpinen Umgebung (niedriger Sauerstoff, Kälte, steiles Gelände, begrenzte Nahrung) bewältigen. Diese Forschung trägt zum Verständnis bei, wie der Klimawandel alpine Arten beeinflusst, und informiert Naturschutzstrategien für die Schweizer Bergökosysteme.",
+            wildlife_conservation: "Basel Region Wildtierschutzprojekt: Sie arbeiten mit dem Basler Kantonalen Naturschutzamt an einem Projekt zum Schutz und zur Wiederherstellung lokaler Wildtierpopulationen. Die Region Basel hat im letzten Jahrhundert aufgrund von Urbanisierung und Lebensraumverlust erhebliche Veränderungen in der Tierwelt erlebt. Ihr Projekt konzentriert sich auf drei Naturschutzerfolgsgeschichten: den Europäischen Biber (Castor fiber), der in den 1970er Jahren wieder eingeführt wurde und jetzt gedeiht, den Wanderfalken (Falco peregrinus), der sich an das Nisten auf Basels hohen Gebäuden angepasst hat, und den Europäischen Luchs (Lynx lynx), der langsam in Schweizer Wälder zurückkehrt. Jede Art demonstriert verschiedene Aspekte der Naturschutzbiologie. Der Biber zeigt erfolgreiche Wiedereinführung, der Falke zeigt urbane Anpassung, und der Luchs zeigt natürliche Wiederbesiedlung. Das Verständnis ihrer Verhaltensweisen und evolutionären Anpassungen ist entscheidend für die Naturschutzplanung. Ihre Aufgabe: Analysieren Sie, wie das Verhalten und die Evolutionsgeschichte jeder Art Naturschutzstrategien beeinflussen, und erklären Sie, warum das Verständnis der Evolution für effektives Wildtiermanagement unerlässlich ist. Diese Arbeit trägt direkt zu Basels Biodiversitätszielen bei und zeigt, wie wissenschaftliches Verständnis von Tierverhalten und Evolution reale Naturschutzentscheidungen informiert, die sowohl Wildtieren als auch menschlichen Gemeinschaften zugutekommen."
+        },
+        objective_title: "Tieranalyse",
+        complete: "Modul abgeschlossen!",
+        check: "Prüfen",
+        next: "Nächste Herausforderung",
+        correct: "Klassifikation verifiziert",
+        incorrect: "Antwort prüfen",
+        ready: "Bereit",
+        monitor_title: "SB1.05_TIER_MONITOR",
+        footer_left: "SB1.05_TIERKLASSIFIKATION // KNOTEN: BASEL"
+    },
+
     sb2_01_tissues: {
         back: "Zurück zum Nexus",
         title: "SB2.01 // GEWEBE & ORGANE",
@@ -1043,6 +1075,147 @@ export const deBiology = {
             hint_square: "Überprüfe das Punnett-Quadrat.",
             hint_all_rr: "Alle Nachkommen sind Rr.",
             hint_count: "{count} von 4 Quadraten."
+        }
+    },
+    sb2_04: {
+        back: "Zurück zum Nexus",
+        title: "SB2.04 // HUMANPHYSIOLOGIE",
+        difficulty: { basic: "GRUNDLAGEN", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        objective_title: "Aktives Missionsziel",
+        monitor_title: "Physiologie-Monitor",
+        footer_left: "SB2.04_HUMANPHYSIOLOGIE // KNOTEN: BASEL",
+        check: "Überprüfen",
+        next: "Nächstes System",
+        correct: "System Funktionsfähig",
+        incorrect: "Systemfehler",
+        ready: "Bereit",
+        stages: {
+            digestive_system: "VERDAUUNGSSYSTEM",
+            respiratory_system: "ATMUNGSSYSTEM",
+            circulatory_system: "KREISLAUFSYSTEM",
+            excretory_system: "AUSSCHEIDUNGSSYSTEM"
+        },
+        labels: {
+            anatomy_display: "Anatomie-Anzeige",
+            input_terminal: "Eingabeterminal",
+            hint: "HINWEIS",
+            analysis: "Systemanalyse",
+            mouth: "MUND",
+            esophagus: "SPEISERÖHRE",
+            stomach: "MAGEN",
+            liver: "LEBER",
+            pancreas: "BAUCHSPEICHELDRÜSE",
+            intestines: "DARM",
+            nose: "NASE",
+            trachea: "LUFTRÖHRE",
+            lungs: "LUNGEN",
+            diaphragm: "ZWERCHFELL",
+            heart: "HERZ",
+            arteries: "ARTERIEN",
+            veins: "VENEN",
+            capillaries: "KAPILLAREN",
+            kidneys: "NIEREN",
+            ureters: "HARNLEITER",
+            bladder: "BLASE",
+            urethra: "HARNRÖHRE"
+        },
+        results: {
+            valid: "System Validiert",
+            invalid: "Systemfehler",
+            valid_desc: "Physiologische Funktion bestätigt.",
+            invalid_desc: "Systemantwort neu berechnen.",
+            next: "Nächste Aufgabe"
+        },
+        quests: {
+            digestive: {
+                basic_1: "Welches Organ speichert und zersetzt Nahrung?",
+                basic_2: "Wo findet die meiste Nährstoffaufnahme statt?",
+                basic_3: "Welches Organ produziert Galle?",
+                basic_4: "Welches Organ produziert Verdauungsenzyme und Insulin?",
+                basic_5: "Welche Röhre verbindet den Mund mit dem Magen?",
+                core_1: "Welche Art der Verdauung findet im Mund durch Kauen statt?",
+                core_2: "Was baut Proteine im Magen ab?",
+                core_3: "Was macht Galle mit Fetten?",
+                core_4: "Welche Strukturen im Dünndarm vergrößern die Oberfläche für die Absorption?",
+                core_5: "Wo wird das meiste Wasser aus verdauter Nahrung absorbiert?",
+                core_6: "Wie heißt die wellenförmige Muskelkontraktion, die Nahrung durch den Verdauungstrakt bewegt?",
+                advanced_1: "Warum arbeiten verschiedene Verdauungsenzyme in verschiedenen Teilen des Verdauungssystems?",
+                advanced_2: "Was passiert, wenn Magensäure die Magenschleimhaut schädigt?",
+                advanced_3: "Wie signalisiert der Körper, wann Verdauungsenzyme freigesetzt werden sollen?",
+                advanced_4: "Welcher Enzymmangel verursacht Laktoseintoleranz?",
+                advanced_5: "Wie erreichen absorbierte Nährstoffe die Körperzellen?",
+                elite_1: "Ein Basel-Marathon-Läufer hat Verdauungsprobleme. Erklären Sie, wie die Umverteilung des Blutflusses die Verdauung während des Trainings beeinflusst.",
+                elite_2: "Entwerfen Sie einen Ernährungsplan, der die Enzymfunktion im gesamten Verdauungssystem optimiert."
+            },
+            respiratory: {
+                basic_1: "Welche Röhre transportiert Luft vom Rachen zu den Lungen?",
+                basic_2: "Wo findet der Gasaustausch in den Lungen statt?",
+                basic_3: "Welcher Muskel kontrolliert die Atmung?",
+                basic_4: "Wie heißen die beiden Äste der Luftröhre?",
+                basic_5: "Welches Organ filtert, erwärmt und befeuchtet einströmende Luft?",
+                core_1: "Was passiert mit dem Zwerchfell beim Einatmen?",
+                core_2: "Welches Gas bewegt sich von den Alveolen in die Blutkapillaren?",
+                core_3: "Was passiert mit dem Lungenvolumen beim Ausatmen?",
+                core_4: "Welches Protein in roten Blutkörperchen transportiert Sauerstoff?",
+                core_5: "Wie wird Kohlendioxid aus dem Körper entfernt?",
+                core_6: "Was löst eine Erhöhung der Atemfrequenz aus?",
+                advanced_1: "Wie reagiert das Atmungssystem auf erhöhten Sauerstoffbedarf während des Trainings?",
+                advanced_2: "Was passiert mit den Atemwegen während eines Asthmaanfalls?",
+                advanced_3: "Wie passt sich der Körper an niedrigen Sauerstoff in großer Höhe an?",
+                advanced_4: "Wie beeinflusst Flüssigkeit in den Alveolen den Gasaustausch?",
+                advanced_5: "Wie beeinflusst die Atemfrequenz den Blut-pH-Wert?",
+                elite_1: "Analysieren Sie, wie Kaltwasserschwimmen im Rhein die Atemfunktion und Sauerstoffversorgung beeinflusst.",
+                elite_2: "Ein Patient am Universitätsspital Basel hat niedrigen Blutsauerstoff. Diagnostizieren Sie mögliche Atemwegsversagen.",
+                elite_3: "Entwerfen Sie ein öffentliches Gesundheitsprogramm für Basel zur Verbesserung der Atemgesundheit durch Atemübungen und Luftqualitätsüberwachung."
+            },
+            circulatory: {
+                basic_1: "Welche Herzkammer pumpt Blut in den Körper?",
+                basic_2: "Welche Blutgefäße transportieren Blut vom Herzen weg?",
+                basic_3: "Welche Kammer empfängt sauerstoffarmes Blut aus dem Körper?",
+                basic_4: "Wo findet der Austausch von Nährstoffen und Abfallstoffen statt?",
+                basic_5: "Was verhindert, dass Blut im Herzen rückwärts fließt?",
+                core_1: "Wie heißt der Kreislaufweg vom Herzen zum Körper und zurück?",
+                core_2: "Wie heißt der Kreislaufweg vom Herzen zur Lunge und zurück?",
+                core_3: "Welche Blutzellen transportieren Sauerstoff?",
+                core_4: "Wie heißt die Kontraktionsphase des Herzschlags?",
+                core_5: "Was erzeugt den Blutdruck in den Arterien?",
+                core_6: "Welche Blutzellen bekämpfen Infektionen?",
+                core_7: "Welche Blutkomponente hilft bei der Gerinnselbildung?",
+                advanced_1: "Wie ändert sich die Herzfrequenz während des Trainings und warum?",
+                advanced_2: "Was passiert, wenn Arterien mit Plaque verstopft werden?",
+                advanced_3: "Wie verhindert der Körper Blutverlust aus einer Wunde?",
+                advanced_4: "Was verursacht Müdigkeit bei Anämie?",
+                advanced_5: "Wie hilft der Blutfluss bei der Regulierung der Körpertemperatur?",
+                elite_1: "Erklären Sie, wie sich das Kreislaufsystem während eines Basel-Marathons anpasst, um den erhöhten Sauerstoffbedarf zu decken.",
+                elite_2: "Ein Patient hat Bluthochdruck. Analysieren Sie die kardiovaskulären Faktoren und schlagen Sie Interventionen vor."
+            },
+            excretory: {
+                basic_1: "Welche Organe filtern Blut, um Abfallstoffe zu entfernen?",
+                basic_2: "Welches Organ speichert Urin?",
+                basic_3: "Welche Röhren transportieren Urin von den Nieren zur Blase?",
+                basic_4: "Welche Röhre transportiert Urin aus dem Körper?",
+                basic_5: "Was ist die funktionelle Einheit der Niere?",
+                core_1: "Was ist der erste Schritt der Urinbildung im Nephron?",
+                core_2: "Was passiert mit nützlichen Substanzen wie Glukose im Nephron?",
+                core_3: "Wie werden zusätzliche Abfallstoffe dem Urin hinzugefügt?",
+                core_4: "Welches Hormon reguliert die Wasserrückresorption in den Nieren?",
+                core_5: "Was ist der Hauptstickstoffabfall im Urin?",
+                core_6: "Wo wird Urin im Nephron konzentriert?",
+                advanced_1: "Wie helfen die Nieren bei der Regulierung des Blutdrucks?",
+                advanced_2: "Was verursacht die Bildung von Nierensteinen?",
+                advanced_3: "Wie halten die Nieren den Blut-pH-Wert aufrecht?",
+                advanced_4: "Warum verursacht unbehandelter Diabetes Glukose im Urin?",
+                advanced_5: "Wie reagieren die Nieren auf Dehydration?",
+                elite_1: "Ein Patient am Universitätsspital Basel hat Nierenversagen. Erklären Sie, wie dies die gesamte Körperhomöostase beeinflusst.",
+                elite_2: "Entwerfen Sie ein öffentliches Gesundheitsprogramm für Basel zur Vorbeugung von Nierenerkrankungen durch Ernährung und Hydratation.",
+                elite_3: "Schlagen Sie Behandlungsoptionen für einen Patienten mit chronischer Nierenerkrankung am Universitätsspital Basel vor."
+            }
+        },
+        scenarios: {
+            digestive_system: "Sie analysieren die Rolle des Verdauungssystems beim Abbau von Nahrung und der Aufnahme von Nährstoffen. Das Verständnis, wie Organe zusammenarbeiten, hilft, Ernährung und Gesundheit zu erklären.",
+            respiratory_system: "Sie untersuchen, wie das Atmungssystem Gase zwischen Luft und Blut austauscht. Dieser Prozess ist für die Zellatmung und Energieproduktion unerlässlich.",
+            circulatory_system: "Sie untersuchen, wie Herz und Blutgefäße Sauerstoff, Nährstoffe und Abfallstoffe im ganzen Körper transportieren. Dieses System erhält die Homöostase aufrecht.",
+            excretory_system: "Sie untersuchen, wie die Nieren Blut filtern und die Flüssigkeitsbalance aufrechterhalten. Das Ausscheidungssystem entfernt metabolische Abfallstoffe und reguliert die Körperchemie."
         }
     },
 };

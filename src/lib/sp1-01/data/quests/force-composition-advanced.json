@@ -1,0 +1,291 @@
+[
+  {
+    "id": "SP1.01.034",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "Three forces act on an object: 100 N at 0°, 80 N at 60°, and 60 N at 150°. What is the magnitude of the resultant force?",
+      "cn": "三个力作用在物体上：100 N 在 0°，80 N 在 60°，60 N 在 150°。合力的大小是多少？",
+      "de": "Drei Kräfte wirken auf ein Objekt: 100 N bei 0°, 80 N bei 60° und 60 N bei 150°. Was ist der Betrag der resultierenden Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 118.32,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = 100 + 80cos(60°) + 60cos(150°) = 88.04 N, F_y = 80sin(60°) + 60sin(150°) = 99.28 N. F = 118.32 N",
+        "cn": "正确！F_x = 100 + 80cos(60°) + 60cos(150°) = 88.04 N，F_y = 80sin(60°) + 60sin(150°) = 99.28 N。F = 118.32 N",
+        "de": "Richtig! F_x = 100 + 80cos(60°) + 60cos(150°) = 88.04 N, F_y = 80sin(60°) + 60sin(150°) = 99.28 N. F = 118.32 N"
+      },
+      "incorrect": {
+        "en": "Resolve all forces into x and y components, sum them, then find the magnitude.",
+        "cn": "将所有力分解为 x 和 y 分量，求和，然后找到大小。",
+        "de": "Zerlegen Sie alle Kräfte in x- und y-Komponenten, summieren Sie sie und finden Sie den Betrag."
+      }
+    },
+    "prerequisites": ["SP1.01.033"]
+  },
+  {
+    "id": "SP1.01.035",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "A Basel tram brakes with a force of 5000 N. If the track is inclined at 5° downward, what is the component of the braking force parallel to the track?",
+      "cn": "巴塞尔有轨电车以 5000 N 的力制动。如果轨道向下倾斜 5°，制动力平行于轨道的分量是多少？",
+      "de": "Eine Basler Straßenbahn bremst mit einer Kraft von 5000 N. Wenn die Strecke um 5° nach unten geneigt ist, was ist die Komponente der Bremskraft parallel zur Strecke?"
+    },
+    "scenario": {
+      "title": {
+        "en": "Basel Tram Braking",
+        "cn": "巴塞尔有轨电车制动",
+        "de": "Basler Straßenbahn Bremsung"
+      },
+      "description": {
+        "en": "Basel's iconic green trams navigate the city's hilly terrain, requiring careful force management. When a tram descends the slope near Barfüsserplatz, the driver must apply brakes to control speed. The braking force acts horizontally against the tram's motion, but the inclined track means only part of this force effectively opposes the tram's movement down the slope. Understanding force components is crucial for safe tram operation in Basel's urban landscape, where tracks wind through historic streets with varying gradients. The tram system, serving over 100,000 passengers daily, relies on precise force calculations to ensure smooth, safe stops at each station, from Aeschenplatz to Claraplatz.",
+        "cn": "巴塞尔标志性的绿色有轨电车穿梭于城市的丘陵地形，需要仔细的力管理。当电车在 Barfüsserplatz 附近下坡时，司机必须施加制动以控制速度。制动力水平作用于电车的运动，但倾斜的轨道意味着只有部分力有效地对抗电车沿坡道的运动。理解力的分量对于巴塞尔城市景观中的安全电车运营至关重要，轨道蜿蜒穿过具有不同坡度的历史街道。每天为超过 10 万名乘客服务的电车系统依赖于精确的力计算，以确保从 Aeschenplatz 到 Claraplatz 的每个车站都能平稳、安全地停车。",
+        "de": "Basels ikonische grüne Straßenbahnen navigieren durch das hügelige Stadtgelände und erfordern sorgfältiges Kraftmanagement. Wenn eine Straßenbahn die Steigung in der Nähe des Barfüsserplatzes hinunterfährt, muss der Fahrer bremsen, um die Geschwindigkeit zu kontrollieren. Die Bremskraft wirkt horizontal gegen die Bewegung der Straßenbahn, aber die geneigte Strecke bedeutet, dass nur ein Teil dieser Kraft effektiv der Bewegung der Straßenbahn den Hang hinunter entgegenwirkt. Das Verständnis von Kraftkomponenten ist entscheidend für den sicheren Straßenbahnbetrieb in Basels Stadtlandschaft, wo Gleise durch historische Straßen mit unterschiedlichen Steigungen verlaufen. Das Straßenbahnsystem, das täglich über 100.000 Passagiere befördert, verlässt sich auf präzise Kraftberechnungen, um an jeder Station von Aeschenplatz bis Claraplatz sanfte, sichere Stopps zu gewährleisten."
+      },
+      "location": "Basel Tram System"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 4981.13,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_parallel = 5000 × cos(5°) = 4981.13 N",
+        "cn": "正确！F_平行 = 5000 × cos(5°) = 4981.13 N",
+        "de": "Richtig! F_parallel = 5000 × cos(5°) = 4981.13 N"
+      },
+      "incorrect": {
+        "en": "The parallel component is F × cos(θ) where θ is the angle of inclination.",
+        "cn": "平行分量是 F × cos(θ)，其中 θ 是倾斜角。",
+        "de": "Die parallele Komponente ist F × cos(θ), wobei θ der Neigungswinkel ist."
+      }
+    },
+    "prerequisites": ["SP1.01.034"]
+  },
+  {
+    "id": "SP1.01.036",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "Five forces act on a point: 40 N at 0°, 30 N at 72°, 30 N at 144°, 30 N at 216°, and 30 N at 288°. What is the magnitude of the resultant?",
+      "cn": "五个力作用在一点上：40 N 在 0°，30 N 在 72°，30 N 在 144°，30 N 在 216°，30 N 在 288°。合力的大小是多少？",
+      "de": "Fünf Kräfte wirken auf einen Punkt: 40 N bei 0°, 30 N bei 72°, 30 N bei 144°, 30 N bei 216° und 30 N bei 288°. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 40,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The four 30 N forces are symmetrically arranged and cancel out, leaving only the 40 N force.",
+        "cn": "正确！四个 30 N 的力对称排列并相互抵消，只剩下 40 N 的力。",
+        "de": "Richtig! Die vier 30 N Kräfte sind symmetrisch angeordnet und heben sich auf, so dass nur die 40 N Kraft übrig bleibt."
+      },
+      "incorrect": {
+        "en": "Look for symmetry in the force arrangement.",
+        "cn": "寻找力排列中的对称性。",
+        "de": "Suchen Sie nach Symmetrie in der Kraftanordnung."
+      }
+    },
+    "prerequisites": ["SP1.01.035"]
+  },
+  {
+    "id": "SP1.01.037",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "A force of 200 N acts at 30° above horizontal and another 150 N acts at 45° below horizontal. What is the magnitude of the resultant?",
+      "cn": "一个 200 N 的力以水平方向上方 30° 作用，另一个 150 N 的力以水平方向下方 45° 作用。合力的大小是多少？",
+      "de": "Eine Kraft von 200 N wirkt in einem Winkel von 30° über der Horizontalen und eine weitere 150 N wirkt in einem Winkel von 45° unter der Horizontalen. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 199.25,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = 200cos(30°) + 150cos(-45°) = 279.28 N, F_y = 200sin(30°) + 150sin(-45°) = -6.07 N. F = 199.25 N",
+        "cn": "正确！F_x = 200cos(30°) + 150cos(-45°) = 279.28 N，F_y = 200sin(30°) + 150sin(-45°) = -6.07 N。F = 199.25 N",
+        "de": "Richtig! F_x = 200cos(30°) + 150cos(-45°) = 279.28 N, F_y = 200sin(30°) + 150sin(-45°) = -6.07 N. F = 199.25 N"
+      },
+      "incorrect": {
+        "en": "Remember that angles below horizontal are negative.",
+        "cn": "记住水平方向下方的角度是负的。",
+        "de": "Denken Sie daran, dass Winkel unter der Horizontalen negativ sind."
+      }
+    },
+    "prerequisites": ["SP1.01.036"]
+  },
+  {
+    "id": "SP1.01.038",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "A cable on the Mittlere Brücke supports a load with a tension of 50 kN at 60° from horizontal. What is the vertical component of this tension?",
+      "cn": "Mittlere Brücke 上的一根缆绳以与水平方向成 60° 的 50 kN 张力支撑负载。这个张力的垂直分量是多少？",
+      "de": "Ein Kabel auf der Mittleren Brücke trägt eine Last mit einer Spannung von 50 kN in einem Winkel von 60° zur Horizontalen. Was ist die vertikale Komponente dieser Spannung?"
+    },
+    "scenario": {
+      "title": {
+        "en": "Rhine Bridge Cable Tension",
+        "cn": "莱茵河桥缆绳张力",
+        "de": "Rheinbrücke Kabelspannung"
+      },
+      "description": {
+        "en": "The Mittlere Brücke, Basel's oldest Rhine crossing dating back to 1226, is an engineering marvel that relies on careful force distribution. Modern maintenance equipment suspended from cables must be analyzed for safety. When workers install temporary cables at various angles to support inspection platforms, understanding the vertical and horizontal components of cable tension becomes critical. The bridge spans 192 meters across the Rhine, connecting Grossbasel and Kleinbasel. Each cable must support not only the weight of equipment but also withstand wind forces from the river valley. Engineers calculate these force components to ensure the historic structure's integrity while accommodating modern maintenance needs. The bridge carries thousands of pedestrians, cyclists, and trams daily, making safety calculations paramount.",
+        "cn": "Mittlere Brücke 是巴塞尔最古老的莱茵河渡口，可追溯到 1226 年，是一项依赖于仔细力分布的工程奇迹。从缆绳悬挂的现代维护设备必须进行安全分析。当工人以各种角度安装临时缆绳以支撑检查平台时，理解缆绳张力的垂直和水平分量变得至关重要。这座桥横跨莱茵河 192 米，连接 Grossbasel 和 Kleinbasel。每根缆绳不仅必须支撑设备的重量，还必须承受来自河谷的风力。工程师计算这些力分量，以确保历史结构的完整性，同时满足现代维护需求。这座桥每天承载数千名行人、骑自行车的人和有轨电车，使安全计算至关重要。",
+        "de": "Die Mittlere Brücke, Basels älteste Rheinquerung aus dem Jahr 1226, ist ein technisches Wunderwerk, das auf sorgfältiger Kraftverteilung beruht. Moderne Wartungsausrüstung, die an Kabeln aufgehängt ist, muss auf Sicherheit analysiert werden. Wenn Arbeiter temporäre Kabel in verschiedenen Winkeln installieren, um Inspektionsplattformen zu stützen, wird das Verständnis der vertikalen und horizontalen Komponenten der Kabelspannung entscheidend. Die Brücke überspannt 192 Meter über den Rhein und verbindet Grossbasel und Kleinbasel. Jedes Kabel muss nicht nur das Gewicht der Ausrüstung tragen, sondern auch Windkräften aus dem Flusstal standhalten. Ingenieure berechnen diese Kraftkomponenten, um die Integrität der historischen Struktur zu gewährleisten und gleichzeitig moderne Wartungsbedürfnisse zu erfüllen. Die Brücke trägt täglich Tausende von Fußgängern, Radfahrern und Straßenbahnen, was Sicherheitsberechnungen von größter Bedeutung macht."
+      },
+      "location": "Mittlere Brücke, Basel"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 43.30,
+        "units": "kN"
+      },
+      "tolerance": 0.02,
+      "units": "kN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_y = 50 × sin(60°) = 43.30 kN",
+        "cn": "正确！F_y = 50 × sin(60°) = 43.30 kN",
+        "de": "Richtig! F_y = 50 × sin(60°) = 43.30 kN"
+      },
+      "incorrect": {
+        "en": "The vertical component is F × sin(θ).",
+        "cn": "垂直分量是 F × sin(θ)。",
+        "de": "Die vertikale Komponente ist F × sin(θ)."
+      }
+    },
+    "prerequisites": ["SP1.01.037"]
+  },
+  {
+    "id": "SP1.01.039",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "Three forces of 100 N each act at 0°, 120°, and 240°. What is the magnitude of the resultant force?",
+      "cn": "三个各为 100 N 的力分别作用在 0°、120° 和 240°。合力的大小是多少？",
+      "de": "Drei Kräfte von jeweils 100 N wirken bei 0°, 120° und 240°. Was ist der Betrag der resultierenden Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 0,
+        "units": "N"
+      },
+      "tolerance": 0.5,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! These three equal forces are symmetrically arranged at 120° intervals and cancel out completely.",
+        "cn": "正确！这三个相等的力以 120° 间隔对称排列，完全相互抵消。",
+        "de": "Richtig! Diese drei gleichen Kräfte sind symmetrisch in 120°-Intervallen angeordnet und heben sich vollständig auf."
+      },
+      "incorrect": {
+        "en": "Three equal forces at 120° intervals form a balanced system.",
+        "cn": "三个相等的力以 120° 间隔形成平衡系统。",
+        "de": "Drei gleiche Kräfte in 120°-Intervallen bilden ein ausgewogenes System."
+      }
+    },
+    "prerequisites": ["SP1.01.038"]
+  },
+  {
+    "id": "SP1.01.040",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "A force of 120 N acts at 25° and another 80 N acts at 155°. What angle does the resultant make with the horizontal?",
+      "cn": "一个 120 N 的力作用在 25°，另一个 80 N 的力作用在 155°。合力与水平方向成多少度角？",
+      "de": "Eine Kraft von 120 N wirkt bei 25° und eine weitere 80 N wirkt bei 155°. Welchen Winkel bildet die Resultierende mit der Horizontalen?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 52.13,
+        "units": "degrees"
+      },
+      "tolerance": 0.02
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F_x = 120cos(25°) + 80cos(155°) = 36.29 N, F_y = 120sin(25°) + 80sin(155°) = 84.51 N. θ = arctan(84.51/36.29) = 52.13°",
+        "cn": "正确！F_x = 120cos(25°) + 80cos(155°) = 36.29 N，F_y = 120sin(25°) + 80sin(155°) = 84.51 N。θ = arctan(84.51/36.29) = 52.13°",
+        "de": "Richtig! F_x = 120cos(25°) + 80cos(155°) = 36.29 N, F_y = 120sin(25°) + 80sin(155°) = 84.51 N. θ = arctan(84.51/36.29) = 52.13°"
+      },
+      "incorrect": {
+        "en": "Find the x and y components, then use arctan(F_y/F_x).",
+        "cn": "找到 x 和 y 分量，然后使用 arctan(F_y/F_x)。",
+        "de": "Finden Sie die x- und y-Komponenten und verwenden Sie dann arctan(F_y/F_x)."
+      }
+    },
+    "prerequisites": ["SP1.01.039"]
+  },
+  {
+    "id": "SP1.01.041",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "ADVANCED",
+    "type": "VECTOR",
+    "content": {
+      "en": "Six forces of 20 N each act at 0°, 60°, 120°, 180°, 240°, and 300°. What is the magnitude of the resultant?",
+      "cn": "六个各为 20 N 的力分别作用在 0°、60°、120°、180°、240° 和 300°。合力的大小是多少？",
+      "de": "Sechs Kräfte von jeweils 20 N wirken bei 0°, 60°, 120°, 180°, 240° und 300°. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 0,
+        "units": "N"
+      },
+      "tolerance": 0.5,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Six equal forces at 60° intervals form a perfectly balanced system with zero resultant.",
+        "cn": "正确！六个相等的力以 60° 间隔形成完全平衡的系统，合力为零。",
+        "de": "Richtig! Sechs gleiche Kräfte in 60°-Intervallen bilden ein perfekt ausgewogenes System mit null Resultierender."
+      },
+      "incorrect": {
+        "en": "Look for symmetry - forces arranged at equal intervals around a circle cancel out.",
+        "cn": "寻找对称性 - 围绕圆周以相等间隔排列的力相互抵消。",
+        "de": "Suchen Sie nach Symmetrie - Kräfte, die in gleichen Abständen um einen Kreis angeordnet sind, heben sich auf."
+      }
+    },
+    "prerequisites": ["SP1.01.040"]
+  }
+]

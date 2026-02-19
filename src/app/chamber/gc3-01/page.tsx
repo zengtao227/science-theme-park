@@ -62,9 +62,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): GC301Ques
       id: `${stage}_${difficulty[0]}${idx + 1}`,
       difficulty,
       stage,
-      promptLatex: `\\text{${t(`gc3_01.prompts.${data.key}`)}}`,
+      promptLatex: `\\\\text{${t(`gc3_01.prompts.${data.key}`)}}`,
       expressionLatex: "",
-      targetLatex: "\\text{Answer}",
+      targetLatex: "\\\\text{Answer}",
       slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
       correctLatex: data.expected,
       simConfig: { temp: data.temp, pressure: data.pressure, concA: data.concA }

@@ -1,0 +1,246 @@
+[
+  {
+    "id": "SP1.01.049",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Four forces act on a point in equilibrium: 60 N at 0°, 40 N at 90°, 50 N at 180°, and an unknown force. What is the magnitude of the unknown force?",
+      "cn": "四个力作用在处于平衡的点上：60 N 在 0°，40 N 在 90°，50 N 在 180°，以及一个未知的力。未知力的大小是多少？",
+      "de": "Vier Kräfte wirken auf einen Punkt im Gleichgewicht: 60 N bei 0°, 40 N bei 90°, 50 N bei 180° und eine unbekannte Kraft. Was ist der Betrag der unbekannten Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 41.23,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10² + 40²) = 41.23 N",
+        "cn": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10² + 40²) = 41.23 N",
+        "de": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10² + 40²) = 41.23 N"
+      },
+      "incorrect": {
+        "en": "Find the net force in x and y directions, then calculate the equilibrant.",
+        "cn": "找到 x 和 y 方向的净力，然后计算平衡力。",
+        "de": "Finden Sie die Nettokraft in x- und y-Richtung und berechnen Sie dann die Gleichgewichtskraft."
+      }
+    },
+    "prerequisites": ["SP1.01.048"]
+  },
+  {
+    "id": "SP1.01.050",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A traffic light hangs from two cables: one at 45° with tension T₁ and another at 60° with tension 150 N. If the system is in equilibrium, what is T₁?",
+      "cn": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T₁，另一根在 60° 张力为 150 N。如果系统处于平衡，T₁ 是多少？",
+      "de": "Eine Ampel hängt an zwei Kabeln: eines bei 45° mit Spannung T₁ und ein anderes bei 60° mit Spannung 150 N. Wenn das System im Gleichgewicht ist, was ist T₁?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 183.71,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! For horizontal equilibrium: T₁cos(45°) = 150cos(60°), so T₁ = 150×0.5/0.707 = 183.71 N",
+        "cn": "正确！对于水平平衡：T₁cos(45°) = 150cos(60°)，所以 T₁ = 150×0.5/0.707 = 183.71 N",
+        "de": "Richtig! Für horizontales Gleichgewicht: T₁cos(45°) = 150cos(60°), also T₁ = 150×0.5/0.707 = 183.71 N"
+      },
+      "incorrect": {
+        "en": "Use horizontal equilibrium: the horizontal components must balance.",
+        "cn": "使用水平平衡：水平分量必须平衡。",
+        "de": "Verwenden Sie horizontales Gleichgewicht: Die horizontalen Komponenten müssen sich ausgleichen."
+      }
+    },
+    "prerequisites": ["SP1.01.049"]
+  },
+  {
+    "id": "SP1.01.051",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "The Basel Münster tower experiences wind forces. If a 2000 N wind force acts horizontally and structural forces of 1500 N at 120° and F at 240° maintain equilibrium, what is F?",
+      "cn": "巴塞尔大教堂塔楼受到风力作用。如果 2000 N 的风力水平作用，120° 的 1500 N 结构力和 240° 的 F 力维持平衡，F 是多少？",
+      "de": "Der Basler Münsterturm erfährt Windkräfte. Wenn eine 2000 N Windkraft horizontal wirkt und Strukturkräfte von 1500 N bei 120° und F bei 240° das Gleichgewicht aufrechterhalten, was ist F?"
+    },
+    "scenario": {
+      "title": {
+        "en": "Basel Münster Tower Forces",
+        "cn": "巴塞尔大教堂塔楼受力",
+        "de": "Basler Münsterturm Kräfte"
+      },
+      "description": {
+        "en": "The Basel Münster, with its distinctive red sandstone towers rising 64.5 meters above the Rhine, has stood since 1019. The Gothic cathedral's twin towers must withstand significant wind forces from the Rhine valley. Engineers analyze the equilibrium of forces acting on the tower structure, where wind loads are balanced by internal structural forces distributed through the ancient masonry. The towers' stability depends on careful force distribution through buttresses and walls. Modern structural analysis ensures the medieval architecture can safely handle wind gusts exceeding 100 km/h that funnel through the Rhine valley. Understanding force equilibrium is essential for preserving this UNESCO World Heritage site while allowing visitors to climb the towers and enjoy panoramic views of Basel, the Rhine, and the Black Forest beyond.",
+      "cn": "巴塞尔大教堂的独特红砂岩塔楼高出莱茵河 64.5 米，自 1019 年以来一直屹立。哥特式大教堂的双塔必须承受来自莱茵河谷的巨大风力。工程师分析作用在塔楼结构上的力的平衡，其中风荷载由通过古老砖石分布的内部结构力平衡。塔楼的稳定性取决于通过扶壁和墙壁的仔细力分布。现代结构分析确保中世纪建筑能够安全地处理通过莱茵河谷的超过 100 公里/小时的阵风。理解力平衡对于保护这个联合国教科文组织世界遗产至关重要，同时允许游客攀登塔楼，欣赏巴塞尔、莱茵河和远处黑森林的全景。",
+      "de": "Das Basler Münster mit seinen markanten roten Sandsteintürmen, die 64,5 Meter über dem Rhein aufragen, steht seit 1019. Die Zwillingstürme der gotischen Kathedrale müssen erheblichen Windkräften aus dem Rheintal standhalten. Ingenieure analysieren das Gleichgewicht der Kräfte, die auf die Turmstruktur wirken, wobei Windlasten durch interne Strukturkräfte ausgeglichen werden, die durch das alte Mauerwerk verteilt sind. Die Stabilität der Türme hängt von einer sorgfältigen Kraftverteilung durch Strebepfeiler und Wände ab. Moderne Strukturanalysen stellen sicher, dass die mittelalterliche Architektur Windböen von über 100 km/h, die durch das Rheintal strömen, sicher bewältigen kann. Das Verständnis des Kräftegleichgewichts ist entscheidend für die Erhaltung dieser UNESCO-Welterbestätte und ermöglicht es Besuchern gleichzeitig, die Türme zu besteigen und Panoramablicke auf Basel, den Rhein und den Schwarzwald zu genießen."
+      },
+      "location": "Basel Münster"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 1500,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! By symmetry and equilibrium analysis, F = 1500 N",
+        "cn": "正确！通过对称性和平衡分析，F = 1500 N",
+        "de": "Richtig! Durch Symmetrie und Gleichgewichtsanalyse ist F = 1500 N"
+      },
+      "incorrect": {
+        "en": "Analyze the x and y components separately for equilibrium.",
+        "cn": "分别分析 x 和 y 分量以达到平衡。",
+        "de": "Analysieren Sie die x- und y-Komponenten separat für das Gleichgewicht."
+      }
+    },
+    "prerequisites": ["SP1.01.050"]
+  },
+  {
+    "id": "SP1.01.052",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Three forces maintain equilibrium: 100 N at 30°, 120 N at 150°, and F at 270°. What is F?",
+      "cn": "三个力维持平衡：100 N 在 30°，120 N 在 150°，F 在 270°。F 是多少？",
+      "de": "Drei Kräfte halten das Gleichgewicht: 100 N bei 30°, 120 N bei 150° und F bei 270°. Was ist F?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 110,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Sum of y-components: 100sin(30°) + 120sin(150°) - F = 0, so F = 110 N",
+        "cn": "正确！y 分量之和：100sin(30°) + 120sin(150°) - F = 0，所以 F = 110 N",
+        "de": "Richtig! Summe der y-Komponenten: 100sin(30°) + 120sin(150°) - F = 0, also F = 110 N"
+      },
+      "incorrect": {
+        "en": "The force at 270° acts purely in the negative y-direction.",
+        "cn": "270° 的力纯粹作用在负 y 方向。",
+        "de": "Die Kraft bei 270° wirkt rein in negativer y-Richtung."
+      }
+    },
+    "prerequisites": ["SP1.01.051"]
+  },
+  {
+    "id": "SP1.01.053",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A beam is supported by two cables at 40° and 50° from vertical. If the beam weighs 500 N, what is the tension in the cable at 40°?",
+      "cn": "一根梁由两根与垂直方向成 40° 和 50° 的缆绳支撑。如果梁重 500 N，40° 缆绳的张力是多少？",
+      "de": "Ein Balken wird von zwei Kabeln bei 40° und 50° von der Vertikalen gestützt. Wenn der Balken 500 N wiegt, was ist die Spannung im Kabel bei 40°?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 281.91,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Using equilibrium equations: T₁ = 281.91 N",
+        "cn": "正确！使用平衡方程：T₁ = 281.91 N",
+        "de": "Richtig! Mit Gleichgewichtsgleichungen: T₁ = 281.91 N"
+      },
+      "incorrect": {
+        "en": "Set up equilibrium equations for both horizontal and vertical components.",
+        "cn": "为水平和垂直分量建立平衡方程。",
+        "de": "Stellen Sie Gleichgewichtsgleichungen für horizontale und vertikale Komponenten auf."
+      }
+    },
+    "prerequisites": ["SP1.01.052"]
+  },
+  {
+    "id": "SP1.01.054",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Four forces act on a ring: 80 N at 0°, 60 N at 90°, 70 N at 180°, and F at an unknown angle. If the system is in equilibrium, what is F?",
+      "cn": "四个力作用在一个环上：80 N 在 0°，60 N 在 90°，70 N 在 180°，F 在未知角度。如果系统处于平衡，F 是多少？",
+      "de": "Vier Kräfte wirken auf einen Ring: 80 N bei 0°, 60 N bei 90°, 70 N bei 180° und F in einem unbekannten Winkel. Wenn das System im Gleichgewicht ist, was ist F?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 60.83,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10² + 60²) = 60.83 N",
+        "cn": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10² + 60²) = 60.83 N",
+        "de": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10² + 60²) = 60.83 N"
+      },
+      "incorrect": {
+        "en": "Find the resultant of the known forces, then F must equal it in magnitude.",
+        "cn": "找到已知力的合力，然后 F 的大小必须与之相等。",
+        "de": "Finden Sie die Resultierende der bekannten Kräfte, dann muss F ihr im Betrag entsprechen."
+      }
+    },
+    "prerequisites": ["SP1.01.053"]
+  },
+  {
+    "id": "SP1.01.055",
+    "stage": "FORCE_EQUILIBRIUM",
+    "difficulty": "ADVANCED",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A chandelier weighing 300 N hangs from three cables at 120° intervals. What is the tension in each cable?",
+      "cn": "一个重 300 N 的吊灯由三根以 120° 间隔的缆绳悬挂。每根缆绳的张力是多少？",
+      "de": "Ein Kronleuchter mit einem Gewicht von 300 N hängt an drei Kabeln in 120°-Intervallen. Was ist die Spannung in jedem Kabel?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 100,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! By symmetry, each cable carries 300/3 = 100 N",
+        "cn": "正确！根据对称性，每根缆绳承受 300/3 = 100 N",
+        "de": "Richtig! Durch Symmetrie trägt jedes Kabel 300/3 = 100 N"
+      },
+      "incorrect": {
+        "en": "For symmetric arrangement, the load is distributed equally.",
+        "cn": "对于对称排列，负载均匀分布。",
+        "de": "Bei symmetrischer Anordnung wird die Last gleichmäßig verteilt."
+      }
+    },
+    "prerequisites": ["SP1.01.054"]
+  }
+]

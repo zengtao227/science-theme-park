@@ -143,8 +143,8 @@ export default function GB201Neurobiology() {
                     scenario: data.scenario,
                     promptLatex: `\\text{${t('gb2_01.prompts.identify_part').replace("{function}", data.func!)}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.expected}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: data.expected }],
+                    targetLatex: `\\\\text{${data.expected}}`,
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Structure}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [`\\text{${t('gb2_01.prompts.hint_anatomy')}}`]
                 });
@@ -155,10 +155,10 @@ export default function GB201Neurobiology() {
                     stage,
                     scenario: data.scenario,
                     promptLatex: `\\text{${t('gb2_01.prompts.calc_potential').replace('{ion}', data.ion!).replace('{cout}', data.cout!.toString()).replace('{cin}', data.cin!.toString())}}`,
-                    expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
+                    expressionLatex: `E = 61 \\log_{10}\\left(\\\\frac{[C]_{out}}{[C]_{in}}\\right)`,
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: data.expected }],
-                    correctLatex: `${data.expected}\\text{ mV}`,
+                    slots: [{ id: "ans", labelLatex: "E \\\\text{ (mV)}", placeholder: "0", expected: data.expected }],
+                    correctLatex: `${data.expected}\\\\text{ mV}`,
                     hintLatex: [`\\text{${t('gb2_01.prompts.hint_nernst')}}`]
                 });
             } else {
@@ -168,10 +168,10 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
-                    promptLatex: `\\text{${promptText}}`,
+                    promptLatex: `\\\\text{${promptText}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.expected}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: data.expected }],
+                    targetLatex: `\\\\text{${data.expected}}`,
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Type}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [`\\text{${t('gb2_01.prompts.hint_synapse')}}`]
                 });

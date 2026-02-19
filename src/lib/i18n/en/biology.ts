@@ -677,6 +677,38 @@ export const enBiology = {
         footer_left: "SB1.04_PLANT_STRUCTURE // NODE: BASEL"
     },
 
+    // SB1.05: Animal Classification & Adaptation
+    sb1_05: {
+        back: "Back to Nexus",
+        title: "SB1.05 // ANIMAL CLASSIFICATION & ADAPTATION",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            animal_classification: "ANIMAL CLASSIFICATION",
+            adaptations: "ADAPTATIONS",
+            behavior_evolution: "BEHAVIOR & EVOLUTION"
+        },
+        scenarios: {
+            basel_zoo: "Basel Zoo Biodiversity Tour: You are a student guide at Basel Zoo (Zolli), preparing an educational tour about animal classification. The zoo houses over 600 species from all major animal groups. Your task is to create a classification guide for visitors. Today you're focusing on the African Savanna exhibit, which includes lions (Panthera leo), zebras (Equus quagga), and ostriches (Struthio camelus). You need to explain how these animals are classified into different groups despite living in the same habitat. The zoo's education program emphasizes understanding that classification is based on evolutionary relationships and shared characteristics, not just where animals live. This helps visitors appreciate biodiversity and the importance of conservation efforts. Your task: Classify each animal into its correct class (Mammalia, Aves, or Reptilia) and explain the key characteristics that define each group. This knowledge helps zoo visitors understand why conservation strategies must consider each species' unique biological needs based on their classification.",
+            rhine_river: "Rhine River Ecosystem Research: You are part of a Basel University research team studying the Rhine River ecosystem. The Rhine flows through Basel and supports diverse aquatic and riparian life despite being one of Europe's busiest waterways. Your team is documenting how different animals have adapted to life in and around the river. You're comparing three species: the European eel (Anguilla anguilla) that migrates thousands of kilometers, the grey heron (Ardea cinerea) that hunts in shallow water, and the European beaver (Castor fiber) that was recently reintroduced. Each species has unique adaptations for the aquatic environment. The eel can survive in both fresh and salt water, the heron has specialized hunting adaptations, and the beaver modifies its habitat through dam building. Your task: Identify and explain the specific adaptations each animal uses to survive in the Rhine River ecosystem, and explain how these adaptations provide survival advantages. Understanding these adaptations helps inform conservation efforts to maintain biodiversity in the Rhine, which is crucial for Basel's environmental health.",
+            alpine_animals: "Swiss Alps Biodiversity Study: You are participating in a field study of alpine animals in the Swiss mountains near Basel. The alpine environment presents extreme challenges: low oxygen, cold temperatures, steep terrain, and seasonal food scarcity. Your study focuses on three iconic Swiss alpine species: the Alpine ibex (Capra ibex) with its remarkable climbing ability, the Alpine marmot (Marmota marmota) that hibernates for 6-7 months, and the Golden eagle (Aquila chrysaetos) that hunts across vast territories. Each species has evolved specific adaptations for alpine survival. The ibex has split hooves for grip on rocks, the marmot has physiological adaptations for hibernation, and the eagle has exceptional vision and flight adaptations for hunting in mountainous terrain. Your task: Analyze how each animal's adaptations specifically address the challenges of the alpine environment (low oxygen, cold, steep terrain, limited food). This research contributes to understanding how climate change affects alpine species and informs conservation strategies for Switzerland's mountain ecosystems.",
+            wildlife_conservation: "Basel Region Wildlife Conservation Project: You are working with the Basel Cantonal Nature Conservation Office on a project to protect and restore local wildlife populations. The Basel region has seen significant changes in wildlife over the past century due to urbanization and habitat loss. Your project focuses on three conservation success stories: the European beaver (Castor fiber) reintroduced in the 1970s and now thriving, the peregrine falcon (Falco peregrinus) that has adapted to nesting on Basel's tall buildings, and the European lynx (Lynx lynx) slowly returning to Swiss forests. Each species demonstrates different aspects of conservation biology. The beaver shows successful reintroduction, the falcon shows urban adaptation, and the lynx shows natural recolonization. Understanding their behaviors and evolutionary adaptations is crucial for conservation planning. Your task: Analyze how each species' behavior and evolutionary history influences conservation strategies, and explain why understanding evolution is essential for effective wildlife management. This work directly contributes to Basel's biodiversity goals and demonstrates how scientific understanding of animal behavior and evolution informs real-world conservation decisions that benefit both wildlife and human communities."
+        },
+        objective_title: "Animal Analysis",
+        complete: "Module Complete!",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Classification Verified",
+        incorrect: "Check answer",
+        ready: "Ready",
+        monitor_title: "SB1.05_ANIMAL_MONITOR",
+        footer_left: "SB1.05_ANIMAL_CLASSIFICATION // NODE: BASEL"
+    },
+
     sb2_01_tissues: {
         back: "Back to Nexus",
         title: "SB2.01 // TISSUES & ORGANS",
@@ -1183,6 +1215,147 @@ export const enBiology = {
             hint_square: "Check the Punnett Square.",
             hint_all_rr: "All offspring are Rr.",
             hint_count: "{count} out of 4 squares."
+        }
+    },
+    sb2_04: {
+        back: "Back to Nexus",
+        title: "SB2.04 // HUMAN PHYSIOLOGY",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        objective_title: "Active Mission Objective",
+        monitor_title: "Physiology Monitor",
+        footer_left: "SB2.04_HUMAN_PHYSIOLOGY // NODE: BASEL",
+        check: "Verify",
+        next: "Next System",
+        correct: "System Functional",
+        incorrect: "System Malfunction",
+        ready: "Ready",
+        stages: {
+            digestive_system: "DIGESTIVE SYSTEM",
+            respiratory_system: "RESPIRATORY SYSTEM",
+            circulatory_system: "CIRCULATORY SYSTEM",
+            excretory_system: "EXCRETORY SYSTEM"
+        },
+        labels: {
+            anatomy_display: "Anatomy Display",
+            input_terminal: "Input Terminal",
+            hint: "HINT",
+            analysis: "System Analysis",
+            mouth: "MOUTH",
+            esophagus: "ESOPHAGUS",
+            stomach: "STOMACH",
+            liver: "LIVER",
+            pancreas: "PANCREAS",
+            intestines: "INTESTINES",
+            nose: "NOSE",
+            trachea: "TRACHEA",
+            lungs: "LUNGS",
+            diaphragm: "DIAPHRAGM",
+            heart: "HEART",
+            arteries: "ARTERIES",
+            veins: "VEINS",
+            capillaries: "CAPILLARIES",
+            kidneys: "KIDNEYS",
+            ureters: "URETERS",
+            bladder: "BLADDER",
+            urethra: "URETHRA"
+        },
+        results: {
+            valid: "System Validated",
+            invalid: "System Error",
+            valid_desc: "Physiological function confirmed.",
+            invalid_desc: "Recalculate the system response.",
+            next: "Next Quest"
+        },
+        quests: {
+            digestive: {
+                basic_1: "Which organ stores and breaks down food?",
+                basic_2: "Where does most nutrient absorption occur?",
+                basic_3: "Which organ produces bile?",
+                basic_4: "Which organ produces digestive enzymes and insulin?",
+                basic_5: "Which tube connects the mouth to the stomach?",
+                core_1: "What type of digestion occurs in the mouth through chewing?",
+                core_2: "What breaks down proteins in the stomach?",
+                core_3: "What does bile do to fats?",
+                core_4: "What structures in the small intestine increase surface area for absorption?",
+                core_5: "Where is most water absorbed from digested food?",
+                core_6: "What is the wave-like muscle contraction that moves food through the digestive tract?",
+                advanced_1: "Why do different digestive enzymes work in different parts of the digestive system?",
+                advanced_2: "What happens when stomach acid damages the stomach lining?",
+                advanced_3: "How does the body signal when to release digestive enzymes?",
+                advanced_4: "What enzyme deficiency causes lactose intolerance?",
+                advanced_5: "How do absorbed nutrients reach body cells?",
+                elite_1: "A Basel Marathon runner experiences digestive issues. Explain how blood flow redistribution affects digestion during exercise.",
+                elite_2: "Design a meal plan that optimizes enzyme function throughout the digestive system."
+            },
+            respiratory: {
+                basic_1: "Which tube carries air from the throat to the lungs?",
+                basic_2: "Where does gas exchange occur in the lungs?",
+                basic_3: "Which muscle controls breathing?",
+                basic_4: "What are the two branches of the trachea called?",
+                basic_5: "Which organ filters, warms, and moistens incoming air?",
+                core_1: "What happens to the diaphragm during inhalation?",
+                core_2: "Which gas moves from alveoli into blood capillaries?",
+                core_3: "What happens to lung volume during exhalation?",
+                core_4: "What protein in red blood cells carries oxygen?",
+                core_5: "How is carbon dioxide removed from the body?",
+                core_6: "What triggers an increase in breathing rate?",
+                advanced_1: "How does the respiratory system respond to increased oxygen demand during exercise?",
+                advanced_2: "What happens to airways during an asthma attack?",
+                advanced_3: "How does the body adapt to low oxygen at high altitude?",
+                advanced_4: "How does fluid in alveoli affect gas exchange?",
+                advanced_5: "How does breathing rate affect blood pH?",
+                elite_1: "Analyze how cold water swimming in the Rhine affects respiratory function and oxygen delivery.",
+                elite_2: "A patient at University Hospital Basel has low blood oxygen. Diagnose possible respiratory system failures.",
+                elite_3: "Design a public health program for Basel to improve respiratory health through breathing exercises and air quality monitoring."
+            },
+            circulatory: {
+                basic_1: "Which heart chamber pumps blood to the body?",
+                basic_2: "Which blood vessels carry blood away from the heart?",
+                basic_3: "Which chamber receives deoxygenated blood from the body?",
+                basic_4: "Where does exchange of nutrients and waste occur?",
+                basic_5: "What prevents blood from flowing backward in the heart?",
+                core_1: "What is the circulation pathway from heart to body and back called?",
+                core_2: "What is the circulation pathway from heart to lungs and back called?",
+                core_3: "Which blood cells carry oxygen?",
+                core_4: "What is the contraction phase of the heartbeat called?",
+                core_5: "What creates blood pressure in arteries?",
+                core_6: "Which blood cells fight infection?",
+                core_7: "What blood component helps form clots?",
+                advanced_1: "How does heart rate change during exercise and why?",
+                advanced_2: "What happens when arteries become clogged with plaque?",
+                advanced_3: "How does the body prevent blood loss from a cut?",
+                advanced_4: "What causes fatigue in anemia?",
+                advanced_5: "How does blood flow help regulate body temperature?",
+                elite_1: "Explain how the circulatory system adapts during a Basel Marathon to meet increased oxygen demands.",
+                elite_2: "A patient has high blood pressure. Analyze the cardiovascular factors and propose interventions."
+            },
+            excretory: {
+                basic_1: "Which organs filter blood to remove waste?",
+                basic_2: "Which organ stores urine?",
+                basic_3: "Which tubes carry urine from kidneys to bladder?",
+                basic_4: "Which tube carries urine out of the body?",
+                basic_5: "What is the functional unit of the kidney?",
+                core_1: "What is the first step of urine formation in the nephron?",
+                core_2: "What happens to useful substances like glucose in the nephron?",
+                core_3: "How are additional wastes added to urine?",
+                core_4: "Which hormone regulates water reabsorption in kidneys?",
+                core_5: "What is the main nitrogen waste in urine?",
+                core_6: "Where is urine concentrated in the nephron?",
+                advanced_1: "How do kidneys help regulate blood pressure?",
+                advanced_2: "What causes kidney stones to form?",
+                advanced_3: "How do kidneys maintain blood pH?",
+                advanced_4: "Why does untreated diabetes cause glucose in urine?",
+                advanced_5: "How do kidneys respond to dehydration?",
+                elite_1: "A patient at University Hospital Basel has kidney failure. Explain how this affects overall body homeostasis.",
+                elite_2: "Design a public health program for Basel to prevent kidney disease through nutrition and hydration.",
+                elite_3: "Propose treatment options for a patient with chronic kidney disease at University Hospital Basel."
+            }
+        },
+        scenarios: {
+            digestive_system: "You are analyzing the digestive system's role in breaking down food and absorbing nutrients. Understanding how organs work together helps explain nutrition and health.",
+            respiratory_system: "You are studying how the respiratory system exchanges gases between air and blood. This process is essential for cellular respiration and energy production.",
+            circulatory_system: "You are examining how the heart and blood vessels transport oxygen, nutrients, and waste throughout the body. This system maintains homeostasis.",
+            excretory_system: "You are investigating how kidneys filter blood and maintain fluid balance. The excretory system removes metabolic waste and regulates body chemistry."
         }
     },
 };

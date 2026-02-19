@@ -68,7 +68,7 @@ export default function SC303Page() {
                     promptLatex: `\\text{${t("sc3_03.prompts.combustion", { reactant: comb.reactant })}}`,
                     expressionLatex: `\\ce{${comb.reactant} + O2 -> CO2 + H2O}`,
                     targetLatex: comb.co2.toString(),
-                    slots: [{ id: "ans", labelLatex: "\\ce{CO2}\\text{ molecules}", placeholder: "...", expected: comb.co2.toString() }],
+                    slots: [{ id: "ans", labelLatex: "\\ce{CO2}\\\\text{ molecules}", placeholder: "...", expected: comb.co2.toString() }],
                     correctLatex: `${comb.co2}\\ce{CO2}`,
                     hintLatex: [`\\text{${t("sc3_03.prompts.hint_combustion")}}`]
                 });
@@ -116,7 +116,7 @@ export default function SC303Page() {
                     promptLatex: `\\text{${t("sc3_03.prompts.substitution", { alkane: sub.alkane, halogen: sub.halogen })}}`,
                     expressionLatex: `\\ce{${sub.alkane} + ${sub.halogen}2 ->[light] ? + H${sub.halogen}}`,
                     targetLatex: sub.product,
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: sub.product }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Product}", placeholder: "Formula", expected: sub.product }],
                     correctLatex: `\\ce{${sub.product}}`,
                     hintLatex: [`\\text{${t("sc3_03.prompts.hint_substitution")}}`]
                 });
@@ -164,7 +164,7 @@ export default function SC303Page() {
                     promptLatex: `\\text{${t("sc3_03.prompts.addition", { alkene: add.alkene, reagent: add.reagent })}}`,
                     expressionLatex: `\\ce{${add.alkene} + ${add.reagent} -> ?}`,
                     targetLatex: add.product,
-                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "Formula", expected: add.product }],
+                    slots: [{ id: "ans", labelLatex: "\\\\text{Product}", placeholder: "Formula", expected: add.product }],
                     correctLatex: `\\ce{${add.product}}`,
                     hintLatex: [`\\text{${t("sc3_03.prompts.hint_addition")}}`]
                 });

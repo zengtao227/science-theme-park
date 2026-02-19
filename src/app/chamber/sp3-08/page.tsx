@@ -54,14 +54,14 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
         scenario: "reflection",
         angle,
         targetAngle: reflectedAngle,
-        promptLatex: `\\text{Law of Reflection}\\\\\\theta_i=${angle}^\\circ`,
+        promptLatex: `\\\\text{Law of Reflection}\\\\\\theta_i=${angle}^\\circ`,
         expressionLatex: `\\theta_i=\\theta_r`,
         targetLatex: `\\theta_r`,
         correctLatex: `\\theta_r=${reflectedAngle}^\\circ`,
         slots: [
           { id: "theta_r", labelLatex: "\\theta_r", placeholder: "θᵣ (degrees)", expected: reflectedAngle },
         ],
-        hintLatex: [`\\text{Angle of incidence equals angle of reflection}`],
+        hintLatex: [`\\\\text{Angle of incidence equals angle of reflection}`],
       });
     }
     return quests;
@@ -219,15 +219,15 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
         angle: 0,
         focalLength: f,
         targetAngle: v,
-        promptLatex: `\\text{Converging Lens}\\\\f=${f}\\text{px},\\; u=${u}\\text{px}`,
-        expressionLatex: `\\frac{1}{f}=\\frac{1}{u}+\\frac{1}{v}`,
+        promptLatex: `\\\\text{Converging Lens}\\\\f=${f}\\\\text{px},\\; u=${u}\\\\text{px}`,
+        expressionLatex: `\\\\frac{1}{f}=\\\\frac{1}{u}+\\\\frac{1}{v}`,
         targetLatex: `v`,
-        correctLatex: `v=${v.toFixed(1)}\\text{px}`,
+        correctLatex: `v=${v.toFixed(1)}\\\\text{px}`,
         slots: [
-          { id: "v", labelLatex: "v\\text{ (image distance)}", placeholder: "v (px)", expected: parseFloat(v.toFixed(1)) },
-          { id: "m", labelLatex: "m\\text{ (magnification)}", placeholder: "m", expected: parseFloat(magnification.toFixed(2)) },
+          { id: "v", labelLatex: "v\\\\text{ (image distance)}", placeholder: "v (px)", expected: parseFloat(v.toFixed(1)) },
+          { id: "m", labelLatex: "m\\\\text{ (magnification)}", placeholder: "m", expected: parseFloat(magnification.toFixed(2)) },
         ],
-        hintLatex: [`\\text{Lens equation: } \\frac{1}{f}=\\frac{1}{u}+\\frac{1}{v}`],
+        hintLatex: [`\\\\text{Lens equation: } \\\\frac{1}{f}=\\\\frac{1}{u}+\\\\frac{1}{v}`],
       });
     }
     

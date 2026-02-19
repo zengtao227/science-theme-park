@@ -1,0 +1,167 @@
+[
+  {
+    "id": "SP1.01.024",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "BASIC",
+    "type": "VECTOR",
+    "content": {
+      "en": "Two forces act on an object: 30 N to the right and 40 N upward. What is the magnitude of the resultant force?",
+      "cn": "两个力作用在物体上：30 N 向右和 40 N 向上。合力的大小是多少？",
+      "de": "Zwei Kräfte wirken auf ein Objekt: 30 N nach rechts und 40 N nach oben. Was ist der Betrag der resultierenden Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 50,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F = √(30² + 40²) = 50 N",
+        "cn": "正确！F = √(30² + 40²) = 50 N",
+        "de": "Richtig! F = √(30² + 40²) = 50 N"
+      },
+      "incorrect": {
+        "en": "Use the Pythagorean theorem for perpendicular forces.",
+        "cn": "对于垂直的力使用勾股定理。",
+        "de": "Verwenden Sie den Satz des Pythagoras für senkrechte Kräfte."
+      }
+    },
+    "prerequisites": ["SP1.01.023"]
+  },
+  {
+    "id": "SP1.01.042",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "BASIC",
+    "type": "VECTOR",
+    "content": {
+      "en": "Two forces of 50 N each act at right angles. What is the magnitude of the resultant?",
+      "cn": "两个各为 50 N 的力相互垂直作用。合力的大小是多少？",
+      "de": "Zwei Kräfte von jeweils 50 N wirken rechtwinklig zueinander. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 70.71,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F = √(50² + 50²) = 70.71 N",
+        "cn": "正确！F = √(50² + 50²) = 70.71 N",
+        "de": "Richtig! F = √(50² + 50²) = 70.71 N"
+      },
+      "incorrect": {
+        "en": "For equal perpendicular forces, F = F₁√2",
+        "cn": "对于相等的垂直力，F = F₁√2",
+        "de": "Für gleiche senkrechte Kräfte gilt F = F₁√2"
+      }
+    },
+    "prerequisites": ["SP1.01.024"]
+  },
+  {
+    "id": "SP1.01.043",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "BASIC",
+    "type": "VECTOR",
+    "content": {
+      "en": "A force of 20 N acts east and another 15 N acts north. What is the magnitude of the resultant?",
+      "cn": "一个 20 N 的力向东作用，另一个 15 N 的力向北作用。合力的大小是多少？",
+      "de": "Eine Kraft von 20 N wirkt nach Osten und eine weitere 15 N wirkt nach Norden. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 25,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! F = √(20² + 15²) = 25 N",
+        "cn": "正确！F = √(20² + 15²) = 25 N",
+        "de": "Richtig! F = √(20² + 15²) = 25 N"
+      },
+      "incorrect": {
+        "en": "This is a 3-4-5 triangle scaled by 5.",
+        "cn": "这是一个放大 5 倍的 3-4-5 三角形。",
+        "de": "Dies ist ein 3-4-5-Dreieck, das um 5 skaliert ist."
+      }
+    },
+    "prerequisites": ["SP1.01.042"]
+  },
+  {
+    "id": "SP1.01.044",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "BASIC",
+    "type": "VECTOR",
+    "content": {
+      "en": "Two forces act in the same direction: 80 N and 120 N. What is the magnitude of the resultant?",
+      "cn": "两个力作用在同一方向：80 N 和 120 N。合力的大小是多少？",
+      "de": "Zwei Kräfte wirken in die gleiche Richtung: 80 N und 120 N. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 200,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Forces in the same direction add: 80 + 120 = 200 N",
+        "cn": "正确！同方向的力相加：80 + 120 = 200 N",
+        "de": "Richtig! Kräfte in die gleiche Richtung addieren sich: 80 + 120 = 200 N"
+      },
+      "incorrect": {
+        "en": "When forces act in the same direction, simply add them.",
+        "cn": "当力作用在同一方向时，只需将它们相加。",
+        "de": "Wenn Kräfte in die gleiche Richtung wirken, addieren Sie sie einfach."
+      }
+    },
+    "prerequisites": ["SP1.01.043"]
+  },
+  {
+    "id": "SP1.01.045",
+    "stage": "FORCE_COMPOSITION",
+    "difficulty": "BASIC",
+    "type": "VECTOR",
+    "content": {
+      "en": "Two forces act in opposite directions: 150 N to the right and 90 N to the left. What is the magnitude of the resultant?",
+      "cn": "两个力作用在相反方向：150 N 向右和 90 N 向左。合力的大小是多少？",
+      "de": "Zwei Kräfte wirken in entgegengesetzte Richtungen: 150 N nach rechts und 90 N nach links. Was ist der Betrag der Resultierenden?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 60,
+        "units": "N"
+      },
+      "tolerance": 0.02,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Forces in opposite directions subtract: 150 - 90 = 60 N",
+        "cn": "正确！相反方向的力相减：150 - 90 = 60 N",
+        "de": "Richtig! Kräfte in entgegengesetzte Richtungen subtrahieren sich: 150 - 90 = 60 N"
+      },
+      "incorrect": {
+        "en": "When forces oppose each other, subtract the smaller from the larger.",
+        "cn": "当力相互对抗时，从较大的力中减去较小的力。",
+        "de": "Wenn Kräfte einander entgegenwirken, subtrahieren Sie die kleinere von der größeren."
+      }
+    },
+    "prerequisites": ["SP1.01.044"]
+  }
+]

@@ -1,0 +1,485 @@
+[
+  {
+    "id": "SP1.01.001",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "MULTIPLE_CHOICE",
+    "content": {
+      "en": "What is a force?",
+      "cn": "什么是力？",
+      "de": "Was ist eine Kraft?"
+    },
+    "validation": {
+      "type": "exact",
+      "correctAnswer": {
+        "value": "A push or pull that can change an object's motion"
+      }
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! A force is a push or pull that can change motion.",
+        "cn": "正确！力是可以改变运动的推或拉。",
+        "de": "Richtig! Eine Kraft ist ein Stoß oder Zug, der die Bewegung ändern kann."
+      },
+      "incorrect": {
+        "en": "Not quite. Think about what happens when you push or pull something.",
+        "cn": "不太对。想想当你推或拉某物时会发生什么。",
+        "de": "Nicht ganz. Denken Sie darüber nach, was passiert, wenn Sie etwas schieben oder ziehen."
+      }
+    },
+    "prerequisites": []
+  },
+  {
+    "id": "SP1.01.002",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "What is the SI unit of force?",
+      "cn": "力的国际单位是什么？",
+      "de": "Was ist die SI-Einheit der Kraft?"
+    },
+    "validation": {
+      "type": "exact",
+      "correctAnswer": {
+        "value": "Newton",
+        "units": "N"
+      }
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The Newton (N) is the SI unit of force.",
+        "cn": "正确！牛顿（N）是力的国际单位。",
+        "de": "Richtig! Das Newton (N) ist die SI-Einheit der Kraft."
+      },
+      "incorrect": {
+        "en": "The SI unit of force is the Newton (N).",
+        "cn": "力的国际单位是牛顿（N）。",
+        "de": "Die SI-Einheit der Kraft ist das Newton (N)."
+      }
+    },
+    "prerequisites": ["SP1.01.001"]
+  },
+  {
+    "id": "SP1.01.003",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 5000 N to kN.",
+      "cn": "将 5000 N 转换为 kN。",
+      "de": "Wandeln Sie 5000 N in kN um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 5,
+        "units": "kN"
+      },
+      "tolerance": 0.01,
+      "units": "kN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Excellent! 5000 N = 5 kN",
+        "cn": "太好了！5000 N = 5 kN",
+        "de": "Ausgezeichnet! 5000 N = 5 kN"
+      },
+      "incorrect": {
+        "en": "Remember: 1 kN = 1000 N",
+        "cn": "记住：1 kN = 1000 N",
+        "de": "Denken Sie daran: 1 kN = 1000 N"
+      }
+    },
+    "prerequisites": ["SP1.01.002"]
+  },
+  {
+    "id": "SP1.01.004",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 2.5 MN to N.",
+      "cn": "将 2.5 MN 转换为 N。",
+      "de": "Wandeln Sie 2.5 MN in N um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 2500000,
+        "units": "N"
+      },
+      "tolerance": 0.01,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Perfect! 2.5 MN = 2,500,000 N",
+        "cn": "完美！2.5 MN = 2,500,000 N",
+        "de": "Perfekt! 2.5 MN = 2.500.000 N"
+      },
+      "incorrect": {
+        "en": "Remember: 1 MN = 1,000,000 N",
+        "cn": "记住：1 MN = 1,000,000 N",
+        "de": "Denken Sie daran: 1 MN = 1.000.000 N"
+      }
+    },
+    "prerequisites": ["SP1.01.003"]
+  },
+  {
+    "id": "SP1.01.005",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "MULTIPLE_CHOICE",
+    "content": {
+      "en": "What are the three elements that define a force?",
+      "cn": "定义力的三个要素是什么？",
+      "de": "Was sind die drei Elemente, die eine Kraft definieren?"
+    },
+    "validation": {
+      "type": "exact",
+      "correctAnswer": {
+        "value": "Magnitude, direction, and point of application"
+      }
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! A force has magnitude, direction, and point of application.",
+        "cn": "正确！力有大小、方向和作用点。",
+        "de": "Richtig! Eine Kraft hat Betrag, Richtung und Angriffspunkt."
+      },
+      "incorrect": {
+        "en": "A force is defined by its magnitude, direction, and point of application.",
+        "cn": "力由其大小、方向和作用点定义。",
+        "de": "Eine Kraft wird durch ihren Betrag, ihre Richtung und ihren Angriffspunkt definiert."
+      }
+    },
+    "prerequisites": ["SP1.01.002"]
+  },
+  {
+    "id": "SP1.01.006",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force of 50 N acts on an object. What is the magnitude of this force?",
+      "cn": "一个 50 N 的力作用在物体上。这个力的大小是多少？",
+      "de": "Eine Kraft von 50 N wirkt auf ein Objekt. Was ist der Betrag dieser Kraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 50,
+        "units": "N"
+      },
+      "tolerance": 0.01,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The magnitude is 50 N.",
+        "cn": "正确！大小是 50 N。",
+        "de": "Richtig! Der Betrag ist 50 N."
+      },
+      "incorrect": {
+        "en": "The magnitude is the numerical value: 50 N.",
+        "cn": "大小是数值：50 N。",
+        "de": "Der Betrag ist der numerische Wert: 50 N."
+      }
+    },
+    "prerequisites": ["SP1.01.005"]
+  },
+  {
+    "id": "SP1.01.007",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 750 kN to MN.",
+      "cn": "将 750 kN 转换为 MN。",
+      "de": "Wandeln Sie 750 kN in MN um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 0.75,
+        "units": "MN"
+      },
+      "tolerance": 0.01,
+      "units": "MN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Great! 750 kN = 0.75 MN",
+        "cn": "太好了！750 kN = 0.75 MN",
+        "de": "Großartig! 750 kN = 0.75 MN"
+      },
+      "incorrect": {
+        "en": "Remember: 1000 kN = 1 MN",
+        "cn": "记住：1000 kN = 1 MN",
+        "de": "Denken Sie daran: 1000 kN = 1 MN"
+      }
+    },
+    "prerequisites": ["SP1.01.004"]
+  },
+  {
+    "id": "SP1.01.008",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A book rests on a table. If the book weighs 20 N, what is the magnitude of the normal force from the table?",
+      "cn": "一本书放在桌子上。如果书重 20 N，桌子的支持力大小是多少？",
+      "de": "Ein Buch liegt auf einem Tisch. Wenn das Buch 20 N wiegt, wie groß ist die Normalkraft vom Tisch?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 20,
+        "units": "N"
+      },
+      "tolerance": 0.01,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The normal force equals the weight: 20 N.",
+        "cn": "正确！支持力等于重量：20 N。",
+        "de": "Richtig! Die Normalkraft entspricht dem Gewicht: 20 N."
+      },
+      "incorrect": {
+        "en": "The table pushes up with the same force as the book's weight.",
+        "cn": "桌子向上推的力与书的重量相同。",
+        "de": "Der Tisch drückt mit der gleichen Kraft nach oben wie das Gewicht des Buches."
+      }
+    },
+    "prerequisites": ["SP1.01.006"]
+  },
+  {
+    "id": "SP1.01.009",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 0.025 MN to kN.",
+      "cn": "将 0.025 MN 转换为 kN。",
+      "de": "Wandeln Sie 0.025 MN in kN um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 25,
+        "units": "kN"
+      },
+      "tolerance": 0.01,
+      "units": "kN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Excellent! 0.025 MN = 25 kN",
+        "cn": "太好了！0.025 MN = 25 kN",
+        "de": "Ausgezeichnet! 0.025 MN = 25 kN"
+      },
+      "incorrect": {
+        "en": "Remember: 1 MN = 1000 kN",
+        "cn": "记住：1 MN = 1000 kN",
+        "de": "Denken Sie daran: 1 MN = 1000 kN"
+      }
+    },
+    "prerequisites": ["SP1.01.007"]
+  },
+  {
+    "id": "SP1.01.010",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "You push a box with a force of 100 N to the right. What is the direction of the force?",
+      "cn": "你用 100 N 的力向右推一个箱子。力的方向是什么？",
+      "de": "Sie schieben eine Kiste mit einer Kraft von 100 N nach rechts. Was ist die Richtung der Kraft?"
+    },
+    "validation": {
+      "type": "exact",
+      "correctAnswer": {
+        "value": "Right (0 degrees)"
+      }
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! The force is directed to the right.",
+        "cn": "正确！力指向右边。",
+        "de": "Richtig! Die Kraft ist nach rechts gerichtet."
+      },
+      "incorrect": {
+        "en": "The direction is to the right (0 degrees from horizontal).",
+        "cn": "方向是向右（水平方向 0 度）。",
+        "de": "Die Richtung ist nach rechts (0 Grad von der Horizontalen)."
+      }
+    },
+    "prerequisites": ["SP1.01.005"]
+  },
+  {
+    "id": "SP1.01.011",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 3500 N to kN.",
+      "cn": "将 3500 N 转换为 kN。",
+      "de": "Wandeln Sie 3500 N in kN um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 3.5,
+        "units": "kN"
+      },
+      "tolerance": 0.01,
+      "units": "kN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Perfect! 3500 N = 3.5 kN",
+        "cn": "完美！3500 N = 3.5 kN",
+        "de": "Perfekt! 3500 N = 3.5 kN"
+      },
+      "incorrect": {
+        "en": "Divide by 1000 to convert N to kN.",
+        "cn": "除以 1000 将 N 转换为 kN。",
+        "de": "Teilen Sie durch 1000, um N in kN umzuwandeln."
+      }
+    },
+    "prerequisites": ["SP1.01.009"]
+  },
+  {
+    "id": "SP1.01.012",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "A force acts vertically upward. What angle does it make with the horizontal?",
+      "cn": "一个力垂直向上作用。它与水平方向成多少度角？",
+      "de": "Eine Kraft wirkt vertikal nach oben. Welchen Winkel bildet sie mit der Horizontalen?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 90,
+        "units": "degrees"
+      },
+      "tolerance": 0.01
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! Vertical upward is 90 degrees from horizontal.",
+        "cn": "正确！垂直向上与水平方向成 90 度。",
+        "de": "Richtig! Vertikal nach oben ist 90 Grad von der Horizontalen."
+      },
+      "incorrect": {
+        "en": "Vertical upward is perpendicular to horizontal: 90 degrees.",
+        "cn": "垂直向上与水平方向垂直：90 度。",
+        "de": "Vertikal nach oben ist senkrecht zur Horizontalen: 90 Grad."
+      }
+    },
+    "prerequisites": ["SP1.01.010"]
+  },
+  {
+    "id": "SP1.01.013",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 1.2 MN to N.",
+      "cn": "将 1.2 MN 转换为 N。",
+      "de": "Wandeln Sie 1.2 MN in N um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 1200000,
+        "units": "N"
+      },
+      "tolerance": 0.01,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Great! 1.2 MN = 1,200,000 N",
+        "cn": "太好了！1.2 MN = 1,200,000 N",
+        "de": "Großartig! 1.2 MN = 1.200.000 N"
+      },
+      "incorrect": {
+        "en": "Multiply by 1,000,000 to convert MN to N.",
+        "cn": "乘以 1,000,000 将 MN 转换为 N。",
+        "de": "Multiplizieren Sie mit 1.000.000, um MN in N umzuwandeln."
+      }
+    },
+    "prerequisites": ["SP1.01.011"]
+  },
+  {
+    "id": "SP1.01.014",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Two people push a car. Person A applies 200 N and Person B applies 150 N in the same direction. What is the total force?",
+      "cn": "两个人推一辆车。A 施加 200 N，B 施加 150 N，方向相同。总力是多少？",
+      "de": "Zwei Personen schieben ein Auto. Person A wendet 200 N und Person B 150 N in die gleiche Richtung an. Was ist die Gesamtkraft?"
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 350,
+        "units": "N"
+      },
+      "tolerance": 0.01,
+      "units": "N"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Correct! 200 N + 150 N = 350 N",
+        "cn": "正确！200 N + 150 N = 350 N",
+        "de": "Richtig! 200 N + 150 N = 350 N"
+      },
+      "incorrect": {
+        "en": "Add the forces when they act in the same direction.",
+        "cn": "当力作用在同一方向时，将它们相加。",
+        "de": "Addieren Sie die Kräfte, wenn sie in die gleiche Richtung wirken."
+      }
+    },
+    "prerequisites": ["SP1.01.008"]
+  },
+  {
+    "id": "SP1.01.015",
+    "stage": "FORCE_CONCEPTS",
+    "difficulty": "BASIC",
+    "type": "NUMERICAL",
+    "content": {
+      "en": "Convert 450 kN to MN.",
+      "cn": "将 450 kN 转换为 MN。",
+      "de": "Wandeln Sie 450 kN in MN um."
+    },
+    "validation": {
+      "type": "tolerance",
+      "correctAnswer": {
+        "value": 0.45,
+        "units": "MN"
+      },
+      "tolerance": 0.01,
+      "units": "MN"
+    },
+    "feedback": {
+      "correct": {
+        "en": "Excellent! 450 kN = 0.45 MN",
+        "cn": "太好了！450 kN = 0.45 MN",
+        "de": "Ausgezeichnet! 450 kN = 0.45 MN"
+      },
+      "incorrect": {
+        "en": "Divide by 1000 to convert kN to MN.",
+        "cn": "除以 1000 将 kN 转换为 MN。",
+        "de": "Teilen Sie durch 1000, um kN in MN umzuwandeln."
+      }
+    },
+    "prerequisites": ["SP1.01.013"]
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "ui": {
+    "title": "Grundlagen der Kräfte",
+    "subtitle": "SP1.01 - Kräfte verstehen",
+    "startQuest": "Quest starten",
+    "nextQuest": "Nächste Quest",
+    "previousQuest": "Vorherige Quest",
+    "submitAnswer": "Antwort einreichen",
+    "tryAgain": "Erneut versuchen",
+    "showSolution": "Lösung anzeigen",
+    "progress": "Fortschritt",
+    "completed": "Abgeschlossen",
+    "locked": "Gesperrt",
+    "unlocked": "Freigeschaltet"
+  },
+  "stages": {
+    "FORCE_CONCEPTS": "Kraftkonzepte",
+    "FORCE_COMPOSITION": "Kraftzusammensetzung",
+    "FORCE_EQUILIBRIUM": "Kräftegleichgewicht"
+  },
+  "difficulty": {
+    "BASIC": "Grundlegend",
+    "CORE": "Kern",
+    "ADVANCED": "Fortgeschritten",
+    "ELITE": "Elite"
+  },
+  "feedback": {
+    "correct": "Richtig! Gut gemacht!",
+    "incorrect": "Falsch. Bitte versuchen Sie es erneut.",
+    "almostCorrect": "Fast richtig! Überprüfen Sie Ihre Berechnung.",
+    "checkUnits": "Überprüfen Sie Ihre Einheiten.",
+    "checkMagnitude": "Überprüfen Sie den Betrag.",
+    "checkDirection": "Überprüfen Sie die Richtung."
+  },
+  "instructions": {
+    "enterNumerical": "Geben Sie einen numerischen Wert ein",
+    "enterVector": "Geben Sie Betrag und Winkel ein",
+    "selectAnswer": "Wählen Sie die richtige Antwort",
+    "useVisualization": "Verwenden Sie die interaktive Visualisierung"
+  },
+  "units": {
+    "N": "Newton",
+    "kN": "Kilonewton",
+    "MN": "Meganewton",
+    "degrees": "Grad"
+  }
+}

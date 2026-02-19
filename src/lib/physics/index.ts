@@ -10,3 +10,7 @@ export * from './quantum';
 export * from './thermodynamics';
 export * from './kinematics';
 export * from './electromagnetism';
+export * from './constants';
+export * from './electricField';
+export * from './magneticField';
+export * from './particleMotion';

@@ -87,6 +87,8 @@ export const enCommon = {
         sm2_07_subtitle: "Coordinate planes, translations, and plotting precision in the Basel grid.",
         sm2_08_title: "SM2.08 // PROBABILITY BASICS",
         sm2_08_subtitle: "Master the fundamentals of chance and random events.",
+        sm2_09_title: "SM2.09 // INEQUALITIES",
+        sm2_09_subtitle: "Solve inequalities, systems, and absolute value problems with Basel scenarios.",
         sm2_10_title: "SM2.10 // DATA ANALYSIS",
         sm2_10_subtitle: "Analyze distributions, box plots, and correlation patterns.",
         sm2_11_title: "SM2.11 // SEQUENCES & SERIES",
@@ -130,6 +132,9 @@ export const enCommon = {
         sp3_07_subtitle: "Master the Basel Rhine ferry. Navigating the river using only current and cables.",
         sp3_08_title: "SP3.08 // GEOMETRICAL OPTICS",
         sp3_08_subtitle: "Explore light, lenses, and optical phenomena in Basel's precision labs.",
+
+        sp1_02_title: "SP1.02 // NEWTON'S LAWS",
+        sp1_02_subtitle: "Master inertia, F=ma, and action-reaction through Basel trams, Rhine boats, and Fasnacht floats.",
 
         sp2_01_title: "SP2.01 // CIRCUIT BASICS",
         sp2_01_subtitle: "Master circuit components, simple circuits, and circuit diagrams with Basel electrical safety standards.",
