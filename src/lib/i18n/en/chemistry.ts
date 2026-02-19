@@ -53,6 +53,44 @@ export const enChemistry = {
             temperature_hint: "Higher temperature increases particle kinetic energy",
             pressure_hint: "Higher pressure decreases container volume"
         },
+        lab_ui: {
+            "mystery_lab": "Mystery Lab",
+            "select_tool": "Select Tool",
+            "lab_notes": "Lab Notes",
+            "no_tests": "No tests performed yet...",
+            "tests_count": "tests",
+            "protocol": "Detective Protocol:",
+            "instruction": "Select a tool, then click on a powder to test. Use the reactions to identify which is Baking Soda, Salt, or Starch!",
+            "tools": {
+                "water": "Water",
+                "vinegar": "Vinegar",
+                "fire": "Fire",
+                "iodine": "Iodine"
+            },
+            "substances": {
+                "soda": "Baking Soda (NaHCO₃)",
+                "salt": "Salt (NaCl)",
+                "starch": "Starch (C₆H₁₀O₅)ₙ",
+                "powder_a": "Powder A",
+                "powder_b": "Powder B",
+                "powder_c": "Powder C"
+            },
+            "results": {
+                "soda_water": "Dissolves slightly",
+                "soda_vinegar": "Fizzes! CO₂ bubbles!",
+                "soda_fire": "No visible change",
+                "soda_iodine": "No color change",
+                "salt_water": "Dissolves completely",
+                "salt_vinegar": "Dissolves, no fizz",
+                "salt_fire": "Melts at high temp",
+                "salt_iodine": "No color change",
+                "starch_water": "Forms cloudy mixture",
+                "starch_vinegar": "No reaction",
+                "starch_fire": "Burns/chars",
+                "starch_iodine": "Turns BLUE-BLACK!",
+                "no_reaction": "No reaction"
+            }
+        },
         prompts: {
             shift_dir: "The reaction A + B ⇌ C + D is at equilibrium. If we increase the concentration of A, in which direction does the system shift? (Right=1, Left=2).",
             temp_exothermic: "An exothermic reaction releases heat. If we increase the temperature in such a system, which way does the equilibrium shift? (Right=1, Left=2).",
@@ -293,6 +331,26 @@ export const enChemistry = {
         ready: "Ready",
         monitor_title: "SC1.01_LAB_MONITOR",
         footer_left: "SC1.01_MYSTERY_LAB // NODE: BASEL",
+        lab_ui: {
+            mystery_lab: "Mystery Lab",
+            select_tool: "Select Tool",
+            lab_notes: "Lab Notes",
+            no_tests: "No tests performed yet...",
+            tests_count: "tests",
+            protocol: "Detective Protocol:",
+            instruction: "Select a tool, then click on a powder to test. Use the reactions to identify which is Baking Soda, Salt, or Starch!",
+            tools: { water: "Water", vinegar: "Vinegar", fire: "Fire", iodine: "Iodine" },
+            substances: {
+                soda: "Baking Soda (NaHCO₃)", salt: "Salt (NaCl)", starch: "Starch (C₆H₁₀O₅)ₙ",
+                powder_a: "Powder A", powder_b: "Powder B", powder_c: "Powder C"
+            },
+            results: {
+                soda_water: "Dissolves slightly", soda_vinegar: "Fizzes! CO₂ bubbles!", soda_fire: "No visible change", soda_iodine: "No color change",
+                salt_water: "Dissolves completely", salt_vinegar: "Dissolves, no fizz", salt_fire: "Melts at high temp", salt_iodine: "No color change",
+                starch_water: "Forms cloudy mixture", starch_vinegar: "No reaction", starch_fire: "Burns/chars", starch_iodine: "Turns BLUE-BLACK!",
+                no_reaction: "No reaction"
+            }
+        },
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -318,7 +376,61 @@ export const enChemistry = {
             experiment: "EXPERIMENT"
         },
         prompts: {
-            identify_powders: "Identify the three white powders"
+            identify_powders: "Identify the three white powders",
+            use_tools: "Use: Water, Vinegar, Fire, Iodine",
+            test_observe: "Test and observe",
+            answer: "Answer",
+            powder_a: "Powder A is",
+            powder_b: "Powder B is",
+            powder_c: "Powder C is",
+            product: "Main product",
+            review_design: "Review the experimental design.",
+            understood: "Understood?",
+            confirm_1: "Type 1 to confirm"
+        },
+        properties_q: {
+            basic_0: "Which powder fizzes with vinegar?",
+            basic_1: "Which powder turns blue-black with iodine?",
+            basic_2: "Which powder dissolves completely in water?",
+            basic_3: "Which powder is white and crystalline?",
+            basic_4: "Which powder produces bubbles with acid?",
+            core_0: "Which powder produces CO₂ gas?",
+            core_1: "Which powder forms a colloidal suspension?",
+            core_2: "Which powder has the highest solubility?",
+            core_3: "Which powder reacts with acetic acid?",
+            core_4: "Which powder is a polysaccharide?",
+            advanced_0: "Which powder is sodium bicarbonate?",
+            advanced_1: "Which powder is sodium chloride?",
+            advanced_2: "Which powder is a carbohydrate polymer?",
+            advanced_3: "Which powder releases carbonic acid?",
+            advanced_4: "Which powder forms an ionic solution?",
+            elite_0: "Which powder has formula NaHCO₃?",
+            elite_1: "Which powder has formula NaCl?",
+            elite_2: "Which powder has formula (C₆H₁₀O₅)ₙ?",
+            elite_3: "Which powder undergoes acid-base neutralization?",
+            elite_4: "Which powder forms a triiodide complex?"
+        },
+        reactions_q: {
+            basic_0: "Baking soda + Vinegar reaction",
+            basic_1: "Starch + Iodine test",
+            basic_2: "Salt dissolving in water",
+            basic_3: "Baking soda heating",
+            basic_4: "Starch hydrolysis",
+            core_0: "Complete neutralization of baking soda",
+            core_1: "Starch-iodine complex formation",
+            core_2: "Salt crystallization",
+            core_3: "Baking soda decomposition temperature",
+            core_4: "Enzymatic breakdown of starch",
+            advanced_0: "Baking soda with strong acid",
+            advanced_1: "Starch complete hydrolysis",
+            advanced_2: "Salt electrolysis",
+            advanced_3: "Baking soda buffer system",
+            advanced_4: "Starch gelatinization",
+            elite_0: "Baking soda in blood pH regulation",
+            elite_1: "Starch-iodine complex structure",
+            elite_2: "Salt in Solvay process",
+            elite_3: "Baking soda thermal decomposition kinetics",
+            elite_4: "Starch retrogradation"
         },
         experiments: {
             ph_analysis: {
@@ -328,7 +440,9 @@ export const enChemistry = {
                 materials: ["Rhine water sample", "Universal indicator", "0.1M HCl", "0.1M NaOH", "Beakers"],
                 procedure: ["1. Pour 50mL of sample into beaker.", "2. Add 2 drops of indicator.", "3. Titrate with HCl dropwise.", "4. Record drops until color changes."],
                 expectedResults: "The local limestone should provide mild buffering capacity.",
-                safetyWarning: "Wear safety goggles. Acids and bases are corrosive."
+                safetyWarning: "Wear safety goggles. Acids and bases are corrosive.",
+                action: "Analyze the Rhine water sample.",
+                target: "Buffer Capacity"
             },
             salt_purification: {
                 title: "Schweizerhalle Salt Purification",
@@ -337,7 +451,9 @@ export const enChemistry = {
                 materials: ["Rock salt", "Water", "Filter paper", "Funnel", "Evaporating dish", "Bunsen burner"],
                 procedure: ["1. Crush rock salt.", "2. Dissolve in warm water.", "3. Filter insoluble impurities.", "4. Evaporate filtrate until crystallization."],
                 expectedResults: "White, cubic NaCl crystals remain after evaporation.",
-                safetyWarning: "Burn hazard from hot evaporating dish."
+                safetyWarning: "Burn hazard from hot evaporating dish.",
+                action: "Purify rock salt.",
+                target: "Crystallization"
             }
         }
     },

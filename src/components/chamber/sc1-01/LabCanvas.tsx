@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { clsx } from "clsx";
+import { useLanguage } from "@/lib/i18n";
 
 export type Substance = "soda" | "salt" | "starch";
 export type Tool = "water" | "vinegar" | "fire" | "iodine";
@@ -42,6 +43,7 @@ export default function C101LabCanvas({
   testedReactions,
   showAnswer,
 }: C101LabCanvasProps) {
+  const { t } = useLanguage();
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
   const [animating, setAnimating] = useState<{ substance: Substance; visual: string } | null>(null);
 
@@ -64,21 +66,20 @@ export default function C101LabCanvas({
     const tested = testedReactions.find(t => t.substance === substance && t.tool === tool);
     if (!tested) return null;
 
-    const reaction = reactions.find(r => r.substance === substance && r.tool === tool);
-    return reaction?.result || "No reaction";
+    return t(`sc1_01.lab_ui.results.${substance}_${tool}`) || t('sc1_01.lab_ui.results.no_reaction');
   };
 
   const tools: Array<{ id: Tool; label: string; icon: string; color: string }> = [
-    { id: "water", label: "Water", icon: "💧", color: "neon-cyan" },
-    { id: "vinegar", label: "Vinegar", icon: "🧪", color: "neon-green" },
-    { id: "fire", label: "Fire", icon: "🔥", color: "orange-500" },
-    { id: "iodine", label: "Iodine", icon: "🟤", color: "yellow-600" },
+    { id: "water", label: t('sc1_01.lab_ui.tools.water'), icon: "💧", color: "neon-cyan" },
+    { id: "vinegar", label: t('sc1_01.lab_ui.tools.vinegar'), icon: "🧪", color: "neon-green" },
+    { id: "fire", label: t('sc1_01.lab_ui.tools.fire'), icon: "🔥", color: "orange-500" },
+    { id: "iodine", label: t('sc1_01.lab_ui.tools.iodine'), icon: "🟤", color: "yellow-600" },
   ];
 
   const substances: Array<{ id: Substance; label: string; realName: string }> = [
-    { id: "soda", label: "Powder A", realName: "Baking Soda (NaHCO₃)" },
-    { id: "salt", label: "Powder B", realName: "Salt (NaCl)" },
-    { id: "starch", label: "Powder C", realName: "Starch (C₆H₁₀O₅)ₙ" },
+    { id: "soda", label: t('sc1_01.lab_ui.substances.powder_a'), realName: t('sc1_01.lab_ui.substances.soda') },
+    { id: "salt", label: t('sc1_01.lab_ui.substances.powder_b'), realName: t('sc1_01.lab_ui.substances.salt') },
+    { id: "starch", label: t('sc1_01.lab_ui.substances.powder_c'), realName: t('sc1_01.lab_ui.substances.starch') },
   ];
 
   return (
@@ -86,7 +87,7 @@ export default function C101LabCanvas({
       {/* Lab Bench */}
       <div className="relative p-8 bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 rounded-2xl">
         <div className="absolute top-2 right-2 text-[9px] font-mono text-white/70 uppercase tracking-wider">
-          Mystery Lab
+          {t('sc1_01.lab_ui.mystery_lab')}
         </div>
 
         {/* Substances */}
@@ -144,7 +145,7 @@ export default function C101LabCanvas({
                   )}
                   {hasTests && (
                     <div className="mt-2 text-[10px] text-white/90">
-                      {testedReactions.filter(t => t.substance === sub.id).length} tests
+                      {testedReactions.filter(t => t.substance === sub.id).length} {t('sc1_01.lab_ui.tests_count')}
                     </div>
                   )}
                 </div>
@@ -156,7 +157,7 @@ export default function C101LabCanvas({
         {/* Tool Selection */}
         <div className="border-t border-white/10 pt-6">
           <div className="text-xs text-white/60 uppercase tracking-wider mb-4 text-center">
-            Select Tool
+            {t('sc1_01.lab_ui.select_tool')}
           </div>
           <div className="grid grid-cols-4 gap-4">
             {tools.map((tool) => (
@@ -180,10 +181,10 @@ export default function C101LabCanvas({
 
       {/* Test Results Log */}
       <div className="p-6 bg-black/50 border border-white/10 rounded-xl">
-        <div className="text-xs text-white/60 uppercase tracking-wider mb-4">Lab Notes</div>
+        <div className="text-xs text-white/60 uppercase tracking-wider mb-4">{t('sc1_01.lab_ui.lab_notes')}</div>
         <div className="space-y-2 max-h-40 overflow-y-auto">
           {testedReactions.length === 0 ? (
-            <div className="text-sm text-white/90 italic">No tests performed yet...</div>
+            <div className="text-sm text-white/90 italic">{t('sc1_01.lab_ui.no_tests')}</div>
           ) : (
             testedReactions.map((test, i) => {
               const sub = substances.find(s => s.id === test.substance);
@@ -204,8 +205,7 @@ export default function C101LabCanvas({
       {/* Instructions */}
       <div className="p-4 bg-neon-cyan/5 border border-neon-cyan/20 rounded-xl">
         <div className="text-xs text-neon-cyan/80 font-mono">
-          <strong>Detective Protocol:</strong> Select a tool, then click on a powder to test.
-          Use the reactions to identify which is Baking Soda, Salt, or Starch!
+          <strong>{t('sc1_01.lab_ui.protocol')}</strong> {t('sc1_01.lab_ui.instruction')}
         </div>
       </div>
     </div>

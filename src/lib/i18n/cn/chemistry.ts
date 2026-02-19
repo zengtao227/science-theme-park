@@ -53,6 +53,44 @@ export const cnChemistry = {
             temperature_hint: "高温增加粒子的动能",
             pressure_hint: "高压减小容器体积"
         },
+        lab_ui: {
+            "mystery_lab": "神秘实验室",
+            "select_tool": "选择工具",
+            "lab_notes": "实验记录",
+            "no_tests": "暂无测试记录...",
+            "tests_count": "次测试",
+            "protocol": "侦探协议:",
+            "instruction": "先选择工具，再点击粉末进行测试。根据反应现象判断哪一个是小苏打、食盐或淀粉！",
+            "tools": {
+                "water": "水",
+                "vinegar": "醋",
+                "fire": "火",
+                "iodine": "碘液"
+            },
+            "substances": {
+                "soda": "小苏打 (NaHCO₃)",
+                "salt": "食盐 (NaCl)",
+                "starch": "淀粉 (C₆H₁₀O₅)ₙ",
+                "powder_a": "粉末 A",
+                "powder_b": "粉末 B",
+                "powder_c": "粉末 C"
+            },
+            "results": {
+                "soda_water": "微溶于水",
+                "soda_vinegar": "产生大量气泡 (CO₂)!",
+                "soda_fire": "无明显变化",
+                "soda_iodine": "无颜色变化",
+                "salt_water": "完全溶解",
+                "salt_vinegar": "溶解，无气泡",
+                "salt_fire": "高温下熔化",
+                "salt_iodine": "无颜色变化",
+                "starch_water": "形成浑浊混合物",
+                "starch_vinegar": "无反应",
+                "starch_fire": "燃烧/碳化",
+                "starch_iodine": "变成蓝黑色！",
+                "no_reaction": "无反应"
+            }
+        },
         prompts: {
             shift_dir: "反应 A + B ⇌ C + D 处于平衡状态。如果我们增加 A 的浓度，系统向哪个方向移动？（右=1，左=2）。",
             temp_exothermic: "放热反应释放热量。如果我们增加此类系统的温度，平衡向哪个方向移动？（右=1，左=2）。",
@@ -293,6 +331,26 @@ export const cnChemistry = {
         ready: "就绪",
         monitor_title: "SC1.01_实验室监控器",
         footer_left: "SC1.01_神秘实验室 // 节点：巴塞尔",
+        lab_ui: {
+            mystery_lab: "神秘实验室",
+            select_tool: "选择工具",
+            lab_notes: "实验记录",
+            no_tests: "暂无测试记录...",
+            tests_count: "次测试",
+            protocol: "侦探协议:",
+            instruction: "先选择工具，再点击粉末进行测试。根据反应现象判断哪一个是小苏打、食盐或淀粉！",
+            tools: { water: "水", vinegar: "醋", fire: "火", iodine: "碘液" },
+            substances: {
+                soda: "小苏打 (NaHCO₃)", salt: "食盐 (NaCl)", starch: "淀粉 (C₆H₁₀O₅)ₙ",
+                powder_a: "粉末 A", powder_b: "粉末 B", powder_c: "粉末 C"
+            },
+            results: {
+                soda_water: "微溶于水", soda_vinegar: "产生大量气泡 (CO₂)!", soda_fire: "无明显变化", soda_iodine: "无颜色变化",
+                salt_water: "完全溶解", salt_vinegar: "溶解，无气泡", salt_fire: "高温下熔化", salt_iodine: "无颜色变化",
+                starch_water: "形成浑浊混合物", starch_vinegar: "无反应", starch_fire: "燃烧/碳化", starch_iodine: "变成蓝黑色！",
+                no_reaction: "无反应"
+            }
+        },
         labels: {
             input: "输入",
             hints: "提示",
@@ -318,7 +376,61 @@ export const cnChemistry = {
             experiment: "实验设计"
         },
         prompts: {
-            identify_powders: "鉴定三种白色粉末"
+            identify_powders: "鉴定三种白色粉末",
+            use_tools: "使用工具：水、醋、火、碘液",
+            test_observe: "测试并观察结论",
+            answer: "答案内容",
+            powder_a: "粉末 A 属于",
+            powder_b: "粉末 B 属于",
+            powder_c: "粉末 C 属于",
+            product: "主要反应产物",
+            review_design: "查阅右侧实验设计方案。",
+            understood: "明白了吗？",
+            confirm_1: "输入 1 确认"
+        },
+        properties_q: {
+            basic_0: "哪种粉末与醋反应产生气泡？",
+            basic_1: "哪种粉末遇碘变蓝黑色？",
+            basic_2: "哪种粉末在水中完全溶解？",
+            basic_3: "哪种粉末是白色的结晶体？",
+            basic_4: "哪种粉末遇酸会产生气泡？",
+            core_0: "哪种粉末会产生二氧化碳(CO₂)气体？",
+            core_1: "哪种粉末会形成胶体悬浮液？",
+            core_2: "哪种粉末的溶解度最高？",
+            core_3: "哪种粉末与乙酸(醋酸)反应？",
+            core_4: "哪种粉末是多糖？",
+            advanced_0: "哪种粉末是碳酸氢钠？",
+            advanced_1: "哪种粉末是氯化钠？",
+            advanced_2: "哪种粉末是碳水化合物聚合物？",
+            advanced_3: "哪种粉末会释放碳酸？",
+            advanced_4: "哪种粉末形成离子溶液？",
+            elite_0: "哪种粉末的化学式为NaHCO₃？",
+            elite_1: "哪种粉末的化学式为NaCl？",
+            elite_2: "哪种粉末的化学式为(C₆H₁₀O₅)ₙ？",
+            elite_3: "哪种粉末经历酸碱中和反应？",
+            elite_4: "哪种粉末形成三碘络合物？"
+        },
+        reactions_q: {
+            basic_0: "小苏打 + 醋的反应",
+            basic_1: "淀粉 + 碘测试",
+            basic_2: "食盐溶于水",
+            basic_3: "小苏打加热",
+            basic_4: "淀粉水解",
+            core_0: "小苏打的完全中和",
+            core_1: "淀粉-碘络合物的形成",
+            core_2: "食盐结晶",
+            core_3: "小苏打的分解温度",
+            core_4: "淀粉的酶解过程",
+            advanced_0: "小苏打与强酸反应",
+            advanced_1: "淀粉的完全水解",
+            advanced_2: "食盐溶液电解",
+            advanced_3: "小苏打缓冲系统",
+            advanced_4: "淀粉糊化",
+            elite_0: "小苏打在血液pH调节中的作用",
+            elite_1: "淀粉-碘络合物结构",
+            elite_2: "食盐在索尔维制碱法中的应用",
+            elite_3: "小苏打的热分解动力学",
+            elite_4: "淀粉的老化过程"
         },
         experiments: {
             ph_analysis: {
@@ -328,7 +440,9 @@ export const cnChemistry = {
                 materials: ["莱茵河水样", "通用指示剂", "0.1M 盐酸", "0.1M 氢氧化钠", "烧杯"],
                 procedure: ["1. 将50mL水样倒入烧杯。", "2. 加入2滴通用指示剂。", "3. 逐滴加入HCl进行滴定。", "4. 记录颜色变化所需的滴数。"],
                 expectedResults: "含有碳酸钙的本地水应该提供中等程度的缓冲能力。",
-                safetyWarning: "请佩戴护目镜。强酸强碱具有腐蚀性。"
+                safetyWarning: "请佩戴护目镜。强酸强碱具有腐蚀性。",
+                action: "分析莱茵河水样。",
+                target: "缓冲能力"
             },
             salt_purification: {
                 title: "Schweizerhalle 盐矿提纯",
@@ -337,7 +451,9 @@ export const cnChemistry = {
                 materials: ["粗盐", "水", "滤纸", "漏斗", "蒸发皿", "本生灯"],
                 procedure: ["1. 研磨粗盐以增加表面积。", "2. 溶于温水中以充分溶解食盐。", "3. 过滤去除不溶性杂质（泥沙等）。", "4. 将滤液倒入蒸发皿中加热至结晶。"],
                 expectedResults: "水分蒸发后，蒸发皿中将留下白色的立方体NaCl晶体。",
-                safetyWarning: "热蒸发皿有烫伤危险，请使用实验钳操作。"
+                safetyWarning: "热蒸发皿有烫伤危险，请使用实验钳操作。",
+                action: "提纯岩盐。",
+                target: "结晶"
             }
         }
     },

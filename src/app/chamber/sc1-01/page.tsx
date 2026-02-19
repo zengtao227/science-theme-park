@@ -78,14 +78,14 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: arrangement as Record<string, Substance>,
-        promptLatex: t('sc1_01.prompts.identify_powders'),
-        expressionLatex: `\\\\text{Use: Water, Vinegar, Fire, Iodine}`,
+        promptLatex: `\\\\text{${t('sc1_01.prompts.identify_powders')}}`,
+        expressionLatex: `\\\\text{${t('sc1_01.prompts.use_tools')}}`,
         targetLatex: `\\\\text{A, B, C}`,
         correctLatex: `\\\\text{A=${arrangement.A}, B=${arrangement.B}, C=${arrangement.C}}`,
         slots: [
-          { id: "A", labelLatex: "\\\\text{Powder A is}", placeholder: "soda/salt/starch", expected: 0 },
-          { id: "B", labelLatex: "\\\\text{Powder B is}", placeholder: "soda/salt/starch", expected: 0 },
-          { id: "C", labelLatex: "\\\\text{Powder C is}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "A", labelLatex: `\\\\text{${t('sc1_01.prompts.powder_a')}}`, placeholder: "soda/salt/starch", expected: 0 },
+          { id: "B", labelLatex: `\\\\text{${t('sc1_01.prompts.powder_b')}}`, placeholder: "soda/salt/starch", expected: 0 },
+          { id: "C", labelLatex: `\\\\text{${t('sc1_01.prompts.powder_c')}}`, placeholder: "soda/salt/starch", expected: 0 },
         ],
       });
     }
@@ -95,33 +95,26 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
   // Stage 2: PROPERTIES - Identify based on specific property (5 questions per difficulty)
   if (stage === "PROPERTIES") {
     const allProperties = [
-      // BASIC - Direct observations
-      { question: "Which powder fizzes with vinegar?", answer: "soda", difficulty: "BASIC" },
-      { question: "Which powder turns blue-black with iodine?", answer: "starch", difficulty: "BASIC" },
-      { question: "Which powder dissolves completely in water?", answer: "salt", difficulty: "BASIC" },
-      { question: "Which powder is white and crystalline?", answer: "salt", difficulty: "BASIC" },
-      { question: "Which powder produces bubbles with acid?", answer: "soda", difficulty: "BASIC" },
-
-      // CORE - Requires understanding
-      { question: "Which powder produces CO₂ gas?", answer: "soda", difficulty: "CORE" },
-      { question: "Which powder forms a colloidal suspension?", answer: "starch", difficulty: "CORE" },
-      { question: "Which powder has the highest solubility?", answer: "salt", difficulty: "CORE" },
-      { question: "Which powder reacts with acetic acid?", answer: "soda", difficulty: "CORE" },
-      { question: "Which powder is a polysaccharide?", answer: "starch", difficulty: "CORE" },
-
-      // ADVANCED - Chemical understanding
-      { question: "Which powder is sodium bicarbonate?", answer: "soda", difficulty: "ADVANCED" },
-      { question: "Which powder is sodium chloride?", answer: "salt", difficulty: "ADVANCED" },
-      { question: "Which powder is a carbohydrate polymer?", answer: "starch", difficulty: "ADVANCED" },
-      { question: "Which powder releases carbonic acid?", answer: "soda", difficulty: "ADVANCED" },
-      { question: "Which powder forms an ionic solution?", answer: "salt", difficulty: "ADVANCED" },
-
-      // ELITE - Deep chemical knowledge
-      { question: "Which powder has formula NaHCO₃?", answer: "soda", difficulty: "ELITE" },
-      { question: "Which powder has formula NaCl?", answer: "salt", difficulty: "ELITE" },
-      { question: "Which powder has formula (C₆H₁₀O₅)ₙ?", answer: "starch", difficulty: "ELITE" },
-      { question: "Which powder undergoes acid-base neutralization?", answer: "soda", difficulty: "ELITE" },
-      { question: "Which powder forms a triiodide complex?", answer: "starch", difficulty: "ELITE" },
+      { key: "basic_0", answer: "soda", difficulty: "BASIC" },
+      { key: "basic_1", answer: "starch", difficulty: "BASIC" },
+      { key: "basic_2", answer: "salt", difficulty: "BASIC" },
+      { key: "basic_3", answer: "salt", difficulty: "BASIC" },
+      { key: "basic_4", answer: "soda", difficulty: "BASIC" },
+      { key: "core_0", answer: "soda", difficulty: "CORE" },
+      { key: "core_1", answer: "starch", difficulty: "CORE" },
+      { key: "core_2", answer: "salt", difficulty: "CORE" },
+      { key: "core_3", answer: "soda", difficulty: "CORE" },
+      { key: "core_4", answer: "starch", difficulty: "CORE" },
+      { key: "advanced_0", answer: "soda", difficulty: "ADVANCED" },
+      { key: "advanced_1", answer: "salt", difficulty: "ADVANCED" },
+      { key: "advanced_2", answer: "starch", difficulty: "ADVANCED" },
+      { key: "advanced_3", answer: "soda", difficulty: "ADVANCED" },
+      { key: "advanced_4", answer: "salt", difficulty: "ADVANCED" },
+      { key: "elite_0", answer: "soda", difficulty: "ELITE" },
+      { key: "elite_1", answer: "salt", difficulty: "ELITE" },
+      { key: "elite_2", answer: "starch", difficulty: "ELITE" },
+      { key: "elite_3", answer: "soda", difficulty: "ELITE" },
+      { key: "elite_4", answer: "starch", difficulty: "ELITE" },
     ];
 
     const filteredProperties = allProperties.filter(p => p.difficulty === difficulty);
@@ -135,12 +128,12 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: {},
-        promptLatex: `\\\\text{${prop.question}}`,
-        expressionLatex: `\\\\text{Test and observe}`,
-        targetLatex: `\\\\text{Answer}`,
+        promptLatex: `\\\\text{${t(`sc1_01.properties_q.${prop.key}`)}}`,
+        expressionLatex: `\\\\text{${t('sc1_01.prompts.test_observe')}}`,
+        targetLatex: `\\\\text{${t('sc1_01.prompts.answer')}}`,
         correctLatex: `\\\\text{${prop.answer}}`,
         slots: [
-          { id: "answer", labelLatex: "\\\\text{Answer}", placeholder: "soda/salt/starch", expected: 0 },
+          { id: "answer", labelLatex: `\\\\text{${t('sc1_01.prompts.answer')}}`, placeholder: t('sc1_01.prompts.answer'), expected: 0 },
         ],
       });
     }
@@ -150,133 +143,26 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
   // Stage 3: REACTIONS - Chemical equations (5 questions per difficulty)
   if (stage === "REACTIONS") {
     const allReactions = [
-      // BASIC - Simple observations
-      {
-        question: "Baking soda + Vinegar reaction",
-        equation: "NaHCO_3 + CH_3COOH \\rightarrow CO_2 + H_2O + CH_3COONa",
-        product: "CO₂",
-        difficulty: "BASIC"
-      },
-      {
-        question: "Starch + Iodine test",
-        equation: "\\text{Starch} + I_2 \\rightarrow \\text{Blue-black complex}",
-        product: "Blue-black",
-        difficulty: "BASIC"
-      },
-      {
-        question: "Salt dissolving in water",
-        equation: "NaCl \\rightarrow Na^+ + Cl^-",
-        product: "Ions",
-        difficulty: "BASIC"
-      },
-      {
-        question: "Baking soda heating",
-        equation: "2NaHCO_3 \\rightarrow Na_2CO_3 + H_2O + CO_2",
-        product: "CO₂",
-        difficulty: "BASIC"
-      },
-      {
-        question: "Starch hydrolysis",
-        equation: "\\text{Starch} + H_2O \\rightarrow \\text{Glucose}",
-        product: "Glucose",
-        difficulty: "BASIC"
-      },
-
-      // CORE - Understanding reactions
-      {
-        question: "Complete neutralization of baking soda",
-        equation: "NaHCO_3 + HCl \\rightarrow NaCl + H_2O + CO_2",
-        product: "NaCl",
-        difficulty: "CORE"
-      },
-      {
-        question: "Starch-iodine complex formation",
-        equation: "\\text{Starch} + I_3^- \\rightarrow \\text{Starch-I}_3^- \\text{ complex}",
-        product: "Complex",
-        difficulty: "CORE"
-      },
-      {
-        question: "Salt crystallization",
-        equation: "Na^+ + Cl^- \\rightarrow NaCl_{(s)}",
-        product: "Crystal",
-        difficulty: "CORE"
-      },
-      {
-        question: "Baking soda decomposition temperature",
-        equation: "NaHCO_3 \\xrightarrow{\\Delta} Na_2CO_3 + H_2O + CO_2",
-        product: "Na₂CO₃",
-        difficulty: "CORE"
-      },
-      {
-        question: "Starch enzymatic breakdown",
-        equation: "\\text{Starch} \\xrightarrow{\\text{amylase}} \\text{Maltose}",
-        product: "Maltose",
-        difficulty: "CORE"
-      },
-
-      // ADVANCED - Complex reactions
-      {
-        question: "Baking soda with strong acid",
-        equation: "NaHCO_3 + H_2SO_4 \\rightarrow Na_2SO_4 + H_2O + CO_2",
-        product: "Na₂SO₄",
-        difficulty: "ADVANCED"
-      },
-      {
-        question: "Starch complete hydrolysis",
-        equation: "(C_6H_{10}O_5)_n + nH_2O \\rightarrow nC_6H_{12}O_6",
-        product: "C₆H₁₂O₆",
-        difficulty: "ADVANCED"
-      },
-      {
-        question: "Salt electrolysis",
-        equation: "2NaCl + 2H_2O \\rightarrow 2NaOH + H_2 + Cl_2",
-        product: "Cl₂",
-        difficulty: "ADVANCED"
-      },
-      {
-        question: "Baking soda buffer system",
-        equation: "HCO_3^- + H^+ \\rightleftharpoons H_2CO_3 \\rightleftharpoons H_2O + CO_2",
-        product: "Buffer",
-        difficulty: "ADVANCED"
-      },
-      {
-        question: "Starch gelatinization",
-        equation: "\\text{Starch}_{(s)} + \\text{Heat} + H_2O \\rightarrow \\text{Starch gel}",
-        product: "Gel",
-        difficulty: "ADVANCED"
-      },
-
-      // ELITE - Advanced chemistry
-      {
-        question: "Baking soda in blood pH regulation",
-        equation: "HCO_3^- + H^+ \\rightleftharpoons H_2CO_3 \\rightleftharpoons CO_2 + H_2O",
-        product: "CO₂",
-        difficulty: "ELITE"
-      },
-      {
-        question: "Starch-iodine complex structure",
-        equation: "\\text{Amylose helix} + I_3^- \\rightarrow \\text{Inclusion complex}",
-        product: "Inclusion",
-        difficulty: "ELITE"
-      },
-      {
-        question: "Salt in Solvay process",
-        equation: "NaCl + NH_3 + CO_2 + H_2O \\rightarrow NaHCO_3 + NH_4Cl",
-        product: "NaHCO₃",
-        difficulty: "ELITE"
-      },
-      {
-        question: "Baking soda thermal decomposition kinetics",
-        equation: "2NaHCO_3 \\xrightarrow{k} Na_2CO_3 + H_2O + CO_2",
-        product: "Na₂CO₃",
-        difficulty: "ELITE"
-      },
-      {
-        question: "Starch retrogradation",
-        equation: "\\text{Amylose}_{(aq)} \\rightarrow \\text{Amylose}_{(crystalline)}",
-        product: "Crystal",
-        difficulty: "ELITE"
-      },
+      { key: "basic_0", equation: "NaHCO_3 + CH_3COOH \\rightarrow CO_2 + H_2O + CH_3COONa", product: "CO₂", difficulty: "BASIC" },
+      { key: "basic_1", equation: "\\text{Starch} + I_2 \\rightarrow \\text{Blue-black complex}", product: "Blue-black", difficulty: "BASIC" },
+      { key: "basic_2", equation: "NaCl \\rightarrow Na^+ + Cl^-", product: "Ions", difficulty: "BASIC" },
+      { key: "basic_3", equation: "2NaHCO_3 \\rightarrow Na_2CO_3 + H_2O + CO_2", product: "CO₂", difficulty: "BASIC" },
+      { key: "basic_4", equation: "\\text{Starch} + H_2O \\rightarrow \\text{Glucose}", product: "Glucose", difficulty: "BASIC" },
+      { key: "core_0", equation: "NaHCO_3 + HCl \\rightarrow NaCl + H_2O + CO_2", product: "NaCl", difficulty: "CORE" },
+      { key: "core_1", equation: "\\text{Starch} + I_3^- \\rightarrow \\text{Starch-I}_3^- \\text{ complex}", product: "Complex", difficulty: "CORE" },
+      { key: "core_2", equation: "Na^+ + Cl^- \\rightarrow NaCl_{(s)}", product: "Crystal", difficulty: "CORE" },
+      { key: "core_3", equation: "NaHCO_3 \\xrightarrow{\\Delta} Na_2CO_3 + H_2O + CO_2", product: "Na₂CO₃", difficulty: "CORE" },
+      { key: "core_4", equation: "\\text{Starch} \\xrightarrow{\\text{amylase}} \\text{Maltose}", product: "Maltose", difficulty: "CORE" },
+      { key: "advanced_0", equation: "NaHCO_3 + H_2SO_4 \\rightarrow Na_2SO_4 + H_2O + CO_2", product: "Na₂SO₄", difficulty: "ADVANCED" },
+      { key: "advanced_1", equation: "(C_6H_{10}O_5)_n + nH_2O \\rightarrow nC_6H_{12}O_6", product: "C₆H₁₂O₆", difficulty: "ADVANCED" },
+      { key: "advanced_2", equation: "2NaCl + 2H_2O \\rightarrow 2NaOH + H_2 + Cl_2", product: "Cl₂", difficulty: "ADVANCED" },
+      { key: "advanced_3", equation: "HCO_3^- + H^+ \\rightleftharpoons H_2CO_3 \\rightleftharpoons H_2O + CO_2", product: "Buffer", difficulty: "ADVANCED" },
+      { key: "advanced_4", equation: "\\text{Starch}_{(s)} + \\text{Heat} + H_2O \\rightarrow \\text{Starch gel}", product: "Gel", difficulty: "ADVANCED" },
+      { key: "elite_0", equation: "HCO_3^- + H^+ \\rightleftharpoons H_2CO_3 \\rightleftharpoons CO_2 + H_2O", product: "CO₂", difficulty: "ELITE" },
+      { key: "elite_1", equation: "\\text{Amylose helix} + I_3^- \\rightarrow \\text{Inclusion complex}", product: "Inclusion", difficulty: "ELITE" },
+      { key: "elite_2", equation: "NaCl + NH_3 + CO_2 + H_2O \\rightarrow NaHCO_3 + NH_4Cl", product: "NaHCO₃", difficulty: "ELITE" },
+      { key: "elite_3", equation: "2NaHCO_3 \\xrightarrow{k} Na_2CO_3 + H_2O + CO_2", product: "Na₂CO₃", difficulty: "ELITE" },
+      { key: "elite_4", equation: "\\text{Amylose}_{(aq)} \\rightarrow \\text{Amylose}_{(crystalline)}", product: "Crystal", difficulty: "ELITE" },
     ];
 
     const filteredReactions = allReactions.filter(r => r.difficulty === difficulty);
@@ -290,12 +176,12 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         stage,
         substances: ["soda", "salt", "starch"],
         correctIdentifications: {},
-        promptLatex: `\\\\text{${rxn.question}}`,
+        promptLatex: `\\\\text{${t(`sc1_01.reactions_q.${rxn.key}`)}}`,
         expressionLatex: rxn.equation,
-        targetLatex: `\\\\text{Product}`,
+        targetLatex: `\\\\text{${t('sc1_01.prompts.product')}}`,
         correctLatex: `\\\\text{${rxn.product}}`,
         slots: [
-          { id: "product", labelLatex: "\\\\text{Main product}", placeholder: "Product", expected: 0 },
+          { id: "product", labelLatex: `\\\\text{${t('sc1_01.prompts.product')}}`, placeholder: t('sc1_01.prompts.product'), expected: 0 },
         ],
       });
     }
@@ -311,11 +197,11 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
       substances: [],
       correctIdentifications: {},
       experimentKey: "ph_analysis",
-      promptLatex: "\\text{Review the experimental design.}",
-      expressionLatex: "\\text{Analyze the Rhine water sample.}",
-      targetLatex: "\\text{Buffer Capacity}",
+      promptLatex: `\\\\text{${t('sc1_01.prompts.review_design')}}`,
+      expressionLatex: `\\\\text{${t('sc1_01.experiments.ph_analysis.action')}}`,
+      targetLatex: `\\\\text{${t('sc1_01.experiments.ph_analysis.target')}}`,
       correctLatex: "\\text{1}",
-      slots: [{ id: "acknowledge", labelLatex: "\\text{Understood?}", placeholder: "Type 1 to confirm", expected: 1 }]
+      slots: [{ id: "acknowledge", labelLatex: `\\\\text{${t('sc1_01.prompts.understood')}}`, placeholder: t('sc1_01.prompts.confirm_1'), expected: 1 }]
     });
 
     experimentQuests.push({
@@ -325,11 +211,11 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
       substances: [],
       correctIdentifications: {},
       experimentKey: "salt_purification",
-      promptLatex: "\\text{Review the experimental design.}",
-      expressionLatex: "\\text{Purify rock salt.}",
-      targetLatex: "\\text{Crystallization}",
+      promptLatex: `\\\\text{${t('sc1_01.prompts.review_design')}}`,
+      expressionLatex: `\\\\text{${t('sc1_01.experiments.salt_purification.action')}}`,
+      targetLatex: `\\\\text{${t('sc1_01.experiments.salt_purification.target')}}`,
       correctLatex: "\\text{1}",
-      slots: [{ id: "acknowledge", labelLatex: "\\text{Understood?}", placeholder: "Type 1 to confirm", expected: 1 }]
+      slots: [{ id: "acknowledge", labelLatex: `\\\\text{${t('sc1_01.prompts.understood')}}`, placeholder: t('sc1_01.prompts.confirm_1'), expected: 1 }]
     });
 
     return experimentQuests;
@@ -359,6 +245,11 @@ export default function C101Page() {
     initialStage: "IDENTIFY",
   });
 
+  const handleNextQuest = () => {
+    setTestedReactions([]);
+    next();
+  };
+
   useEffect(() => {
     if (lastCheck?.ok) {
       completeStage("sc1-01", stage);
@@ -378,10 +269,7 @@ export default function C101Page() {
     setTestedReactions(prev => [...prev, { substance, tool }]);
   };
 
-  const handleNextQuest = () => {
-    setTestedReactions([]);
-    next();
-  };
+
 
   return (
     <ChamberLayout
@@ -391,7 +279,10 @@ export default function C101Page() {
       onDifficultyChange={handleDifficultyChange}
       stages={stages}
       currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
+      onStageChange={(s) => {
+        handleStageChange(s as Stage);
+        setTestedReactions([]);
+      }}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={handleNextQuest}
@@ -401,6 +292,8 @@ export default function C101Page() {
         next: t("sc1_01.next"),
         correct: t("sc1_01.correct"),
         incorrect: t("sc1_01.incorrect"),
+        ready: t("sc1_01.ready"),
+        monitor_title: t("sc1_01.monitor_title"),
         difficulty: {
           basic: t("sc1_01.difficulty.basic"),
           core: t("sc1_01.difficulty.core"),
@@ -408,6 +301,7 @@ export default function C101Page() {
           elite: t("sc1_01.difficulty.elite"),
         },
       }}
+      footerLeft={t("sc1_01.footer_left")}
       monitorContent={
         stage === "EXPERIMENT" ? (
           <ExperimentDesignCard

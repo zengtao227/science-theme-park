@@ -53,6 +53,44 @@ export const deChemistry = {
             temperature_hint: "Höhere Temperatur erhöht kinetische Energie der Teilchen",
             pressure_hint: "Höherer Druck verringert das Behältervolumen"
         },
+        lab_ui: {
+            "mystery_lab": "Geheimlabor",
+            "select_tool": "Werkzeug wählen",
+            "lab_notes": "Labornotizen",
+            "no_tests": "Noch keine Tests durchgeführt...",
+            "tests_count": "Tests",
+            "protocol": "Detektiv-Protokoll:",
+            "instruction": "Wählen Sie ein Werkzeug und klicken Sie auf ein Pulver zum Testen. Identifizieren Sie Backpulver, Salz und Stärke!",
+            "tools": {
+                "water": "Wasser",
+                "vinegar": "Essig",
+                "fire": "Feuer",
+                "iodine": "Jod"
+            },
+            "substances": {
+                "soda": "Natron (NaHCO₃)",
+                "salt": "Salz (NaCl)",
+                "starch": "Stärke (C₆H₁₀O₅)ₙ",
+                "powder_a": "Pulver A",
+                "powder_b": "Pulver B",
+                "powder_c": "Pulver C"
+            },
+            "results": {
+                "soda_water": "Löst sich leicht",
+                "soda_vinegar": "Sprudelt! CO₂-Blasen!",
+                "soda_fire": "Keine Veränderung",
+                "soda_iodine": "Keine Farbänderung",
+                "salt_water": "Löst sich vollständig auf",
+                "salt_vinegar": "Löst sich auf, kein Sprudeln",
+                "salt_fire": "Schmilzt",
+                "salt_iodine": "Keine Farbänderung",
+                "starch_water": "Bildet trübe Mischung",
+                "starch_vinegar": "Keine Reaktion",
+                "starch_fire": "Verbrennt",
+                "starch_iodine": "Wird BLAU-SCHWARZ!",
+                "no_reaction": "Keine Reaktion"
+            }
+        },
         prompts: {
             shift_dir: "Die Reaktion A + B ⇌ C + D ist im Gleichgewicht. Wenn wir die Konzentration von A erhöhen, in welche Richtung verschiebt sich das System? (Rechts=1, Links=2).",
             temp_exothermic: "Eine exotherme Reaktion setzt Wärme frei. Wenn wir die Temperatur in einem solchen System erhöhen, in welche Richtung verschiebt sich das Gleichgewicht? (Rechts=1, Links=2).",
@@ -281,6 +319,26 @@ export const deChemistry = {
         ready: "Bereit",
         monitor_title: "SC1.01_LABOR_MONITOR",
         footer_left: "SC1.01_GEHEIM_LABOR // KNOTEN: BASEL",
+        lab_ui: {
+            mystery_lab: "Geheimlabor",
+            select_tool: "Werkzeug wählen",
+            lab_notes: "Labornotizen",
+            no_tests: "Noch keine Tests durchgeführt...",
+            tests_count: "Tests",
+            protocol: "Detektiv-Protokoll:",
+            instruction: "Wählen Sie ein Werkzeug und klicken Sie auf ein Pulver zum Testen. Identifizieren Sie Backpulver, Salz und Stärke!",
+            tools: { water: "Wasser", vinegar: "Essig", fire: "Feuer", iodine: "Jod" },
+            substances: {
+                soda: "Natron (NaHCO₃)", salt: "Salz (NaCl)", starch: "Stärke (C₆H₁₀O₅)ₙ",
+                powder_a: "Pulver A", powder_b: "Pulver B", powder_c: "Pulver C"
+            },
+            results: {
+                soda_water: "Löst sich leicht", soda_vinegar: "Sprudelt! CO₂-Blasen!", soda_fire: "Keine Veränderung", soda_iodine: "Keine Farbänderung",
+                salt_water: "Löst sich vollständig auf", salt_vinegar: "Löst sich auf, kein Sprudeln", salt_fire: "Schmilzt", salt_iodine: "Keine Farbänderung",
+                starch_water: "Bildet trübe Mischung", starch_vinegar: "Keine Reaktion", starch_fire: "Verbrennt", starch_iodine: "Wird BLAU-SCHWARZ!",
+                no_reaction: "Keine Reaktion"
+            }
+        },
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -306,7 +364,61 @@ export const deChemistry = {
             experiment: "EXPERIMENT"
         },
         prompts: {
-            identify_powders: "Identifizieren Sie die drei weißen Pulver"
+            identify_powders: "Identifizieren Sie die drei weißen Pulver",
+            use_tools: "Mittel: Wasser, Essig, Feuer, Jod",
+            test_observe: "Testen und beobachten",
+            answer: "Antwort",
+            powder_a: "Pulver A ist",
+            powder_b: "Pulver B ist",
+            powder_c: "Pulver C ist",
+            product: "Hauptprodukt",
+            review_design: "Überprüfen Sie das experimentelle Design.",
+            understood: "Verstanden?",
+            confirm_1: "Tipper 1 zur Bestätigung"
+        },
+        properties_q: {
+            basic_0: "Welches Pulver sprudelt mit Essig?",
+            basic_1: "Welches Pulver wird mit Jod blau-schwarz?",
+            basic_2: "Welches Pulver löst sich vollständig in Wasser?",
+            basic_3: "Welches Pulver ist weiß und kristallin?",
+            basic_4: "Welches Pulver produziert Blasen mit Säure?",
+            core_0: "Welches Pulver produziert CO₂-Gas?",
+            core_1: "Welches Pulver bildet eine kolloidale Suspension?",
+            core_2: "Welches Pulver hat die höchste Löslichkeit?",
+            core_3: "Welches Pulver reagiert mit Essigsäure?",
+            core_4: "Welches Pulver ist ein Polysaccharid?",
+            advanced_0: "Welches Pulver ist Natriumbicarbonat?",
+            advanced_1: "Welches Pulver ist Natriumchlorid?",
+            advanced_2: "Welches Pulver ist ein Kohlenhydratpolymer?",
+            advanced_3: "Welches Pulver setzt Kohlensäure frei?",
+            advanced_4: "Welches Pulver bildet eine ionische Lösung?",
+            elite_0: "Welches Pulver hat die Formel NaHCO₃?",
+            elite_1: "Welches Pulver hat die Formel NaCl?",
+            elite_2: "Welches Pulver hat die Formel (C₆H₁₀O₅)ₙ?",
+            elite_3: "Welches Pulver durchläuft eine Säure-Base-Neutralisation?",
+            elite_4: "Welches Pulver bildet einen Triiodid-Komplex?"
+        },
+        reactions_q: {
+            basic_0: "Backpulver + Essig Reaktion",
+            basic_1: "Stärke + Jod-Test",
+            basic_2: "Salz löst sich in Wasser",
+            basic_3: "Backpulver erhitzen",
+            basic_4: "Stärke-Hydrolyse",
+            core_0: "Vollständige Neutralisation von Backpulver",
+            core_1: "Stärke-Jod-Komplex-Bildung",
+            core_2: "Salzkristallisation",
+            core_3: "Zersetzungstemperatur von Backpulver",
+            core_4: "Enzymatischer Abbau von Stärke",
+            advanced_0: "Backpulver mit starker Säure",
+            advanced_1: "Vollständige Hydrolyse von Stärke",
+            advanced_2: "Salzelektrolyse",
+            advanced_3: "Backpulver-Puffersystem",
+            advanced_4: "Stärkeverkleisterung",
+            elite_0: "Backpulver in der Blut-pH-Regulation",
+            elite_1: "Stärke-Jod-Komplexstruktur",
+            elite_2: "Salz im Solvay-Verfahren",
+            elite_3: "Kinetik der thermischen Zersetzung von Natron",
+            elite_4: "Stärke-Retrogradation"
         },
         experiments: {
             ph_analysis: {
@@ -316,7 +428,9 @@ export const deChemistry = {
                 materials: ["Rheinwasserprobe", "Universalindikator", "0.1M HCl", "0.1M NaOH", "Bechergläser"],
                 procedure: ["1. 50 ml der Probe in ein Becherglas gießen.", "2. 2 Tropfen Indikator hinzufügen.", "3. Mit HCl tropfenweise titrieren.", "4. Tropfen bis zur Farbänderung aufzeichnen."],
                 expectedResults: "Der lokale Kalkstein sollte eine milde Pufferkapazität bieten.",
-                safetyWarning: "Schutzbrille tragen. Säuren und Basen sind ätzend."
+                safetyWarning: "Schutzbrille tragen. Säuren und Basen sind ätzend.",
+                action: "Analysieren Sie die Rheinwasserprobe.",
+                target: "Pufferkapazität"
             },
             salt_purification: {
                 title: "Schweizerhalle Salzreinigung",
@@ -325,7 +439,9 @@ export const deChemistry = {
                 materials: ["Steinsalz", "Wasser", "Filterpapier", "Trichter", "Abdampfschale", "Bunsenbrenner"],
                 procedure: ["1. Steinsalz zerkleinern.", "2. In warmem Wasser auflösen.", "3. Unlösliche Verunreinigungen filtern.", "4. Filtrat bis zur Kristallisation verdampfen."],
                 expectedResults: "Nach der Verdampfung bleiben weiße, kubische NaCl-Kristalle zurück.",
-                safetyWarning: "Verbrennungsgefahr durch heiße Abdampfschale."
+                safetyWarning: "Verbrennungsgefahr durch heiße Abdampfschale.",
+                action: "Steinsalz reinigen.",
+                target: "Kristallisation"
             }
         }
     },
