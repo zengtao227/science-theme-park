@@ -1,0 +1,42 @@
+{
+  "back": "Back to Nexus",
+  "title": "GB2.02 // ENDOCRINE SYSTEM",
+  "difficulty": {
+    "basic": "BASIC",
+    "core": "CORE",
+    "advanced": "ADVANCED",
+    "elite": "ELITE"
+  },
+  "objective_title": "Active Mission Objective",
+  "monitor_title": "Hormone Monitor",
+  "footer_left": "GB2.02_ENDOCRINE // NODE: BASEL",
+  "check": "Verify",
+  "next": "Next Quest",
+  "correct": "Correct",
+  "incorrect": "Incorrect",
+  "ready": "Ready",
+  "stages": {
+    "hormone_identification": "HORMONE IDENTIFICATION",
+    "feedback_mechanisms": "FEEDBACK MECHANISMS",
+    "clinical_applications": "CLINICAL APPLICATIONS"
+  },
+  "labels": {
+    "hormone_type": "Hormone Type",
+    "gland": "Gland",
+    "target_organs": "Target Organs",
+    "function": "Function",
+    "feedback_type": "Feedback Type",
+    "diagnosis": "Diagnosis",
+    "lab_results": "Lab Results",
+    "symptoms": "Symptoms"
+  },
+  "hormone_types": {
+    "peptide": "Peptide",
+    "steroid": "Steroid",
+    "amino_acid_derived": "Amino Acid-Derived"
+  },
+  "feedback": {
+    "correct": "Hormone identification verified!",
+    "incorrect": "Incorrect classification. Review hormone properties."
+  }
+}

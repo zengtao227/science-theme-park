@@ -1218,11 +1218,18 @@ export const deChemistry = {
             unbalanced: "Nicht ausgeglichen",
             atom_count_table: "Atomzahltabelle"
         },
-        instructions: {
-            reaction_types: "Untersuchen Sie die chemische Gleichung und identifizieren Sie den Reaktionstyp. Berücksichtigen Sie das Muster von Reaktanten und Produkten.",
-            equation_balancing: "Geben Sie Koeffizienten ein, um die chemische Gleichung auszugleichen. Stellen Sie sicher, dass die Anzahl der Atome jedes Elements auf beiden Seiten gleich ist.",
-            reaction_simulation: "Beobachten Sie die molekulare Animation, um zu sehen, wie Bindungen während der Reaktion brechen und sich bilden. Verwenden Sie die Steuerelemente zum Abspielen, Pausieren oder Neustarten."
+        prompts: {
+            classify_reaction: "Untersuchen Sie die chemische Gleichung und identifizieren Sie den Reaktionstyp. Berücksichtigen Sie das Muster von Reaktanten und Produkten.",
+            balance_equation: "Geben Sie Koeffizienten ein, um die chemische Gleichung auszugleichen. Stellen Sie sicher, dass die Anzahl der Atome jedes Elements auf beiden Seiten gleich ist.",
+            observe_simulation: "Beobachten Sie die molekulare Animation, um zu sehen, wie Bindungen während der Reaktion brechen und sich bilden. Verwenden Sie die Steuerelemente zum Abspielen, Pausieren oder Neustarten.",
+            analyze_reaction: "Analysieren Sie die chemischen Reaktionsparameter und überprüfen Sie die stöchiometrischen Beziehungen."
         },
+        visualization: {
+            title: "Molekulare Visualisierung",
+            description: "Beobachten Sie die Molekülstruktur und Reaktionsdynamik",
+            current_equation: "Aktuelle chemische Gleichung"
+        },
+        loading: "Chemische Reaktionssimulation wird initialisiert...",
         hints: {
             synthesis_hint: "Suchen Sie nach mehreren Reaktanten, die sich zu einem einzigen Produkt verbinden",
             decomposition_hint: "Suchen Sie nach einem einzelnen Reaktanten, der in mehrere Produkte zerfällt",

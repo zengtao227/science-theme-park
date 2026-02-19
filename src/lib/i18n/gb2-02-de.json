@@ -1,0 +1,42 @@
+{
+  "back": "Zurück zum Nexus",
+  "title": "GB2.02 // ENDOKRINES SYSTEM",
+  "difficulty": {
+    "basic": "BASIS",
+    "core": "KERN",
+    "advanced": "ERWEITERT",
+    "elite": "ELITE"
+  },
+  "objective_title": "Aktives Missionsziel",
+  "monitor_title": "Hormon-Monitor",
+  "footer_left": "GB2.02_ENDOKRIN // KNOTEN: BASEL",
+  "check": "Überprüfen",
+  "next": "Nächste Aufgabe",
+  "correct": "Richtig",
+  "incorrect": "Falsch",
+  "ready": "Bereit",
+  "stages": {
+    "hormone_identification": "HORMONIDENTIFIKATION",
+    "feedback_mechanisms": "RÜCKKOPPLUNGSMECHANISMEN",
+    "clinical_applications": "KLINISCHE ANWENDUNGEN"
+  },
+  "labels": {
+    "hormone_type": "Hormontyp",
+    "gland": "Drüse",
+    "target_organs": "Zielorgane",
+    "function": "Funktion",
+    "feedback_type": "Rückkopplungstyp",
+    "diagnosis": "Diagnose",
+    "lab_results": "Laborergebnisse",
+    "symptoms": "Symptome"
+  },
+  "hormone_types": {
+    "peptide": "Peptid",
+    "steroid": "Steroid",
+    "amino_acid_derived": "Aminosäure-abgeleitet"
+  },
+  "feedback": {
+    "correct": "Hormonidentifikation verifiziert!",
+    "incorrect": "Falsche Klassifizierung. Überprüfen Sie die Hormoneigenschaften."
+  }
+}
