@@ -37,6 +37,8 @@ export const cnChemistry = {
             add_reactant: "添加反应物 A",
             system_temperature: "系统温度",
             system_pressure: "系统压强"
+            input_answer: "输入答案",
+            placeholder: "输入 1 或 2",
         },
         mission: {
             title: "任务: 化学平衡",
@@ -484,9 +486,16 @@ export const cnChemistry = {
             stoichiometry_prompt_latex: "\\text{利用化学计量关系求产物物质的量。}",
             yield_prompt_latex: "\\text{根据给定质量计算理论产量。}"
         },
+        
         labels: {
-            input: "输入",
-            scale: "称重读数"
+            scale: "天平读数",
+            formula: "化学式",
+            atoms: "原子量",
+            reaction: "化学反应",
+            given: "已知条件",
+            amount: "物质的量",
+            mass: "质量",
+            molar: "摩尔质量"
         },
         mission: {
             title: "任务：诺华合成舱",

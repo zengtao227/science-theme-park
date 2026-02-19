@@ -37,6 +37,8 @@ export const enChemistry = {
             add_reactant: "ADD REACTANT A",
             system_temperature: "SYSTEM TEMPERATURE",
             system_pressure: "SYSTEM PRESSURE"
+            input_answer: "Input Answer",
+            placeholder: "Type 1 or 2",
         },
         mission: {
             title: "MISSION: CHEMICAL EQUILIBRIUM",
@@ -484,9 +486,16 @@ export const enChemistry = {
             stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
             yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
         },
+        
         labels: {
-            input: "INPUT",
-            scale: "SCALE READOUT"
+            scale: "天平读数",
+            formula: "Formula",
+            atoms: "Atomic Weights",
+            reaction: "Reaction",
+            given: "Given",
+            amount: "Amount (n)",
+            mass: "Mass (m)",
+            molar: "Molar Mass (M)"
         },
         mission: {
             title: "MISSION: NOVARTIS SYNTHESIS BAY",

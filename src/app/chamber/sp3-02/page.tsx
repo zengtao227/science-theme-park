@@ -147,7 +147,7 @@ export default function SP302Page() {
     dataList.forEach((item, idx) => {
       const promptKey = `sp3_02.prompts.${item.scen}`;
       const hintKey = `sp3_02.hints.${item.scen}`;
-      
+
       quests.push({
         id: `${stage}_${difficulty[0]}${idx + 1}`,
         difficulty,
@@ -158,9 +158,9 @@ export default function SP302Page() {
         frictionCoeff: item.mu,
         theta: item.theta,
         velocity: item.v,
-        promptLatex: t(promptKey, { 
-          m: item.m, 
-          f: item.f ?? 0, 
+        promptLatex: `\\\\text{${t(promptKey, {
+          m: item.m,
+          f: item.f ?? 0,
           mu: item.mu ?? 0,
           a: item.a ?? 0,
           v: item.v ?? 0,
@@ -170,19 +170,19 @@ export default function SP302Page() {
           fr: item.mu ? (item.m * 9.8 * item.mu).toFixed(2) : 0,
           t: 5,
           g: 9.8
-        }),
-        expressionLatex: stage === "NEWTON_1" ? `\\sum F = 0` : 
-                        stage === "NEWTON_2" ? `F = ma` : 
-                        `f = \\mu N`,
-        targetLatex: item.expect.toFixed(2),
+        })}}`,
+        expressionLatex: stage === "NEWTON_1" ? `\\sum F = 0` :
+          stage === "NEWTON_2" ? `F = ma` :
+            `f = \\mu N`,
+        targetLatex: `\\\\text{${item.expect.toFixed(2)}}`,
         slots: [{
           id: "ans",
-          labelLatex: t("sp3_02.labels.force"),
-          placeholder: "...",
+          labelLatex: `\\\\text{${t("sp3_02.labels.force")}}`,
+          placeholder: t("sp3_02.labels.input"),
           expected: item.expect.toFixed(2)
         }],
-        correctLatex: `${item.expect.toFixed(2)}`,
-        hintLatex: [t(hintKey, { m: item.m, f: item.f ?? 0, mu: item.mu ?? 0 })]
+        correctLatex: `\\\\text{${item.expect.toFixed(2)}}`,
+        hintLatex: [`\\\\text{${t(hintKey, { m: item.m, f: item.f ?? 0, mu: item.mu ?? 0 })}}`]
       });
     });
 
@@ -240,7 +240,13 @@ export default function SP302Page() {
         next: t("sp3_02.next"),
         correct: t("sp3_02.correct"),
         incorrect: t("sp3_02.incorrect"),
-        difficulty: t("sp3_02.difficulty"),
+        difficulty: {
+          basic: t("sp3_02.difficulty.basic"),
+          core: t("sp3_02.difficulty.core"),
+          advanced: t("sp3_02.difficulty.advanced"),
+          elite: t("sp3_02.difficulty.elite"),
+        },
+        monitor_title: t("sp3_02.monitor_title"),
       }}
       monitorContent={
         <LawsCanvas

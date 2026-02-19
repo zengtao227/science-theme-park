@@ -64,9 +64,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): GC301Ques
       stage,
       promptLatex: `\\\\text{${t(`gc3_01.prompts.${data.key}`)}}`,
       expressionLatex: "",
-      targetLatex: "\\\\text{Answer}",
-      slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
-      correctLatex: data.expected,
+      targetLatex: `\\\\text{${t("gc3_01.labels.input_answer")}}`,
+      slots: [{ id: "ans", labelLatex: `\\\\text{${t("gc3_01.labels.input_answer")}}`, placeholder: t("gc3_01.labels.placeholder"), expected: data.expected }],
+      correctLatex: `\\\\text{${data.expected}}`,
       simConfig: { temp: data.temp, pressure: data.pressure, concA: data.concA }
     });
   });
@@ -132,11 +132,13 @@ export default function GC301Page() {
         correct: t("gc3_01.correct"),
         incorrect: t("gc3_01.incorrect"),
         difficulty: {
-          BASIC: t("gc3_01.difficulty.BASIC"),
-          CORE: t("gc3_01.difficulty.CORE"),
-          ADVANCED: t("gc3_01.difficulty.ADVANCED"),
-          ELITE: t("gc3_01.difficulty.ELITE"),
+          BASIC: t("gc3_01.difficulty.basic"),
+          CORE: t("gc3_01.difficulty.core"),
+          ADVANCED: t("gc3_01.difficulty.advanced"),
+          ELITE: t("gc3_01.difficulty.elite"),
         },
+        ready: t("gc3_01.ready"),
+        monitor_title: t("gc3_01.monitor_title"),
       }}
       monitorContent={
         <div className="space-y-4">
@@ -189,7 +191,7 @@ export default function GC301Page() {
               value={inputs["ans"] || ""}
               onChange={(e) => setInputs({ ans: e.target.value })}
               className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
-              placeholder="1 / 2"
+              placeholder={t("gc3_01.labels.placeholder")}
             />
           </div>
 

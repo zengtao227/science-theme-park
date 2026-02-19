@@ -48,7 +48,7 @@ type ReactionSide = { formula: string; coefficient: number };
 type Reaction = { reactants: ReactionSide[]; products: ReactionSide[] };
 
 // Type for question data
-type QuestionData = 
+type QuestionData =
   | { type: "MOLAR_MASS"; formula: string }
   | { type: "STOICHIOMETRY"; id: string; reaction: Reaction; given: { formula: string; moles: number }; target: string }
   | { type: "YIELD"; id: string; reaction: Reaction; reactants: Array<{ formula: string; mass: number }>; target: string };
@@ -481,10 +481,10 @@ function computeTheoreticalYield(reaction: Reaction, reactants: Array<{ formula:
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest[] {
   const quests: C102Quest[] = [];
-  
+
   // Get data for the current stage and difficulty
   const dataList = QUESTION_DATA[stage]?.[difficulty] || [];
-  
+
   dataList.forEach((item, idx) => {
     if (item.type === "MOLAR_MASS") {
       // ── Molar Mass Calculation ──
@@ -493,7 +493,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
       const molarMass = computeMolarMass(item.formula);
       const rounded = roundValue(molarMass, 2);
       const display = formatValue(molarMass, 2);
-      
+
       quests.push({
         id: `M${idx + 1}`,
         difficulty,
@@ -501,12 +501,12 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         reactionLatex: formulaLatex,
         promptLatex: t.stages.molar_mass_prompt_latex,
         expressionLatex: `${formulaLatex},\\; ${breakdown}`,
-        targetLatex: "M",
-        slots: [{ id: "M", labelLatex: "M", placeholder: "molar mass", expected: rounded, unit: "g/mol" }],
+        targetLatex: "\\\\text{M}",
+        slots: [{ id: "M", labelLatex: "\\\\text{M}", placeholder: t.labels.molar_mass, expected: rounded, unit: "g/mol" }],
         correctLatex: `M=${display}\\;\\\\text{g/mol}`,
         reagents: [
-          { label: "FORMULA", value: formulaLatex },
-          { label: "ATOMS", value: atoms },
+          { label: t.labels.formula, value: formulaLatex },
+          { label: t.labels.atoms, value: atoms },
         ],
         scaleReading: `${display}\\;\\text{g/mol}`,
       });
@@ -518,7 +518,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
       const answer = computeStoichiometryAnswer(item.reaction, item.given.formula, item.target, item.given.moles);
       const rounded = roundValue(answer, 2);
       const display = formatValue(answer, 2);
-      
+
       quests.push({
         id: item.id,
         difficulty,
@@ -527,11 +527,11 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         promptLatex: t.stages.stoichiometry_prompt_latex,
         expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
         targetLatex,
-        slots: [{ id: "n", labelLatex: targetLatex, placeholder: "amount", expected: rounded, unit: "mol" }],
+        slots: [{ id: "n", labelLatex: targetLatex, placeholder: t.labels.amount, expected: rounded, unit: "mol" }],
         correctLatex: `${targetLatex}=${display}\\;\\\\text{mol}`,
         reagents: [
-          { label: "REACTION", value: reactionLatex },
-          { label: "GIVEN", value: givenLatex },
+          { label: t.labels.reaction, value: reactionLatex },
+          { label: t.labels.given, value: givenLatex },
         ],
         scaleReading: `${display}\\;\\text{mol}`,
       });
@@ -543,7 +543,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
       const answer = computeTheoreticalYield(item.reaction, item.reactants, item.target);
       const rounded = roundValue(answer, 2);
       const display = formatValue(answer, 2);
-      
+
       quests.push({
         id: item.id,
         difficulty,
@@ -552,17 +552,17 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): C102Quest
         promptLatex: t.stages.yield_prompt_latex,
         expressionLatex: `${reactionLatex},\\; ${givenLatex}`,
         targetLatex,
-        slots: [{ id: "m", labelLatex: targetLatex, placeholder: "mass", expected: rounded, unit: "g" }],
+        slots: [{ id: "m", labelLatex: targetLatex, placeholder: t.labels.mass, expected: rounded, unit: "g" }],
         correctLatex: `${targetLatex}=${display}\\;\\\\text{g}`,
         reagents: [
-          { label: "REACTION", value: reactionLatex },
-          { label: "GIVEN", value: givenLatex },
+          { label: t.labels.reaction, value: reactionLatex },
+          { label: t.labels.given, value: givenLatex },
         ],
         scaleReading: `${display}\\;\\text{g}`,
       });
     }
   });
-  
+
   return quests;
 }
 
@@ -599,6 +599,12 @@ export default function C102Page() {
     },
     labels: {
       scale: t("sc1_02.labels.scale"),
+      formula: t("sc1_02.labels.formula"),
+      atoms: t("sc1_02.labels.atoms"),
+      reaction: t("sc1_02.labels.reaction"),
+      given: t("sc1_02.labels.given"),
+      amount: t("sc1_02.labels.amount"),
+      mass: t("sc1_02.labels.mass"),
     },
     mission: {
       title: t("sc1_02.mission.title"),

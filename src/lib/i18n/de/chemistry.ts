@@ -37,6 +37,8 @@ export const deChemistry = {
             add_reactant: "REAKTANT A HINZUFÜGEN",
             system_temperature: "SYSTEMTEMPERATUR",
             system_pressure: "SYSTEMDRUCK"
+            input_answer: "Antwort eingeben",
+            placeholder: "Tippen Sie 1 oder 2",
         },
         mission: {
             title: "MISSION: CHEMISCHES GLEICHGEWICHT",
@@ -472,9 +474,16 @@ export const deChemistry = {
             stoichiometry_prompt_latex: "\\text{Nutze stöchiometrische Verhältnisse für die Produktmenge.}",
             yield_prompt_latex: "\\text{Berechne die theoretische Ausbeute aus den gegebenen Massen.}"
         },
+        
         labels: {
-            input: "EINGABE",
-            scale: "WAAGENANZEIGE"
+            scale: "天平读数",
+            formula: "Formel",
+            atoms: "Atomgewichte",
+            reaction: "Reaktion",
+            given: "Gegeben",
+            amount: "Menge (n)",
+            mass: "Masse (m)",
+            molar: "Molare Masse (M)"
         },
         mission: {
             title: "MISSION: NOVARTIS-SYNTHESEBAY",
