@@ -1142,5 +1142,186 @@ export const cnChemistry = {
         ready: "就绪",
         monitor_title: "SC2.06_氧化还原监控",
         footer_left: "SC2.06_氧化还原 // 节点: 巴塞尔"
+    },
+    sc1_06: {
+        back: "返回枢纽",
+        title: "SC1.06 // 化学反应基础",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "化学反应",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "匹配失败",
+        ready: "就绪",
+        monitor_title: "SC1.06_反应监视器",
+        footer_left: "SC1.06_化学反应 // 节点：巴塞尔",
+        stages: {
+            reaction_types: "反应类型",
+            equation_balancing: "方程式配平",
+            reaction_simulation: "反应模拟",
+            reaction_types_desc: "按类型分类化学反应",
+            equation_balancing_desc: "使用系数平衡化学方程式",
+            reaction_simulation_desc: "观察分子级反应动画"
+        },
+        reactionTypes: {
+            synthesis: "化合反应",
+            decomposition: "分解反应",
+            single_replacement: "置换反应",
+            double_replacement: "复分解反应",
+            combustion: "燃烧反应"
+        },
+        reactionTypePatterns: {
+            synthesis: "A + B → AB",
+            decomposition: "AB → A + B",
+            single_replacement: "A + BC → AC + B",
+            double_replacement: "AB + CD → AD + CB",
+            combustion: "CₓHᵧ + O₂ → CO₂ + H₂O"
+        },
+        reactionTypeDescriptions: {
+            synthesis: "两种或多种物质结合形成单一产物",
+            decomposition: "单一化合物分解成两种或多种更简单的物质",
+            single_replacement: "一种元素取代化合物中的另一种元素",
+            double_replacement: "两种化合物交换离子形成两种新化合物",
+            combustion: "碳氢化合物与氧气反应生成二氧化碳和水"
+        },
+        ui: {
+            submit: "提交",
+            reset: "重置",
+            next: "下一个",
+            verify: "验证",
+            play: "播放",
+            pause: "暂停",
+            restart: "重新开始",
+            speed: "速度",
+            hint: "提示",
+            show_atom_counts: "显示原子计数",
+            hide_atom_counts: "隐藏原子计数",
+            coefficient: "系数",
+            select_reaction_type: "选择反应类型"
+        },
+        feedback: {
+            correct: "正确！做得好。",
+            incorrect: "不正确。再试一次。",
+            try_again: "再试一次",
+            hint_available: "提示可用",
+            balanced: "方程式已平衡！",
+            unbalanced: "方程式未平衡",
+            check_elements: "检查以下元素："
+        },
+        energy: {
+            energy_released: "能量释放",
+            energy_absorbed: "能量吸收",
+            exothermic: "放热",
+            endothermic: "吸热",
+            energy_diagram: "能量图"
+        },
+        atomCount: {
+            reactants: "反应物",
+            products: "生成物",
+            element: "元素",
+            count: "数量",
+            balanced: "已平衡",
+            unbalanced: "未平衡",
+            atom_count_table: "原子计数表"
+        },
+        instructions: {
+            reaction_types: "检查化学方程式并识别反应类型。考虑反应物和生成物的模式。",
+            equation_balancing: "输入系数以平衡化学方程式。确保每种元素的原子数在两侧相等。",
+            reaction_simulation: "观看分子动画，了解反应过程中化学键如何断裂和形成。使用控件播放、暂停或重新开始。"
+        },
+        hints: {
+            synthesis_hint: "寻找多个反应物结合成单一产物",
+            decomposition_hint: "寻找单一反应物分解成多个产物",
+            single_replacement_hint: "寻找一种元素取代化合物中的另一种元素",
+            double_replacement_hint: "寻找两种化合物交换离子",
+            combustion_hint: "寻找碳氢化合物与氧气反应生成 CO₂ 和 H₂O",
+            balancing_hint: "首先平衡仅出现在一种反应物和一种生成物中的元素",
+            coefficient_hint: "尝试调整 {compound} 的系数",
+            unbalanced_element_hint: "元素 {element} 未平衡：左侧 {reactantCount}，右侧 {productCount}"
+        },
+        mission: {
+            title: "任务：化学反应",
+            description: "掌握化学反应类型、方程式配平和反应的分子级理解。"
+        },
+        labels: {
+            equation: "化学方程式",
+            reaction_type: "反应类型",
+            coefficients: "系数",
+            atom_counts: "原子计数",
+            energy_change: "能量变化",
+            molecular_view: "分子视图",
+            pattern: "模式",
+            example: "示例"
+        },
+        equation_balancer: {
+            title: "配平化学方程式",
+            element: "元素",
+            reactants: "反应物",
+            products: "生成物",
+            status: "状态",
+            balanced: "✓ 方程式已配平！",
+            unbalanced: "✗ 方程式未配平",
+            correct: "正确！方程式已配平。",
+            incorrect: "不正确。方程式未配平。请检查原子计数。",
+            hint: "提示",
+            show_hint: "显示提示",
+            hide_hint: "隐藏提示",
+            reset: "重置",
+            submit: "提交",
+            already_balanced: "方程式已经配平！",
+            no_hint: "没有可用的提示。",
+            hint_increase_products: "尝试增加包含 {element} 的生成物的系数",
+            hint_increase_reactants: "尝试增加包含 {element} 的反应物的系数"
+        }
+    },
+    sc2_07: {
+        back: "返回枢纽",
+        title: "SC2.07 // 焓与能量学",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        objective_title: "当前任务目标",
+        target_title: "热化学",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "已验证",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "SC2.07_焓监视器",
+        footer_left: "SC2.07_焓与能量学 // 节点：巴塞尔",
+        stages: {
+            energy_changes: "能量变化",
+            hess_law: "赫斯定律",
+            calorimetry: "量热法"
+        },
+        prompts: {
+            calculate_enthalpy: "计算此反应的焓变 (ΔH)",
+            apply_hess_law: "应用赫斯定律确定 ΔH",
+            calculate_heat: "使用 q = mcΔT 计算热量变化",
+            solve_problem: "解决热化学问题"
+        },
+        feedback: {
+            correct: "正确！您的计算准确。",
+            incorrect: "不正确。预期值：{expected} kJ",
+            invalid_number: "请输入有效数字"
+        },
+        mission: {
+            title: "任务：热化学",
+            description: "掌握制药环境中的焓计算、赫斯定律和量热法。"
+        },
+        visualization: {
+            title: "能量图",
+            description: "焓变的可视化表示",
+            current_equation: "当前反应"
+        }
     }
 };

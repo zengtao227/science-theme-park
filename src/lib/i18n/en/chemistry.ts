@@ -1142,5 +1142,186 @@ export const enChemistry = {
         ready: "Ready",
         monitor_title: "SC2.06_REDOX_MONITOR",
         footer_left: "SC2.06_REDOX // NODE: BASEL"
+    },
+    sc1_06: {
+        back: "Back to Nexus",
+        title: "SC1.06 // CHEMICAL REACTIONS BASICS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Chemical Reactions",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC1.06_REACTIONS_MONITOR",
+        footer_left: "SC1.06_CHEMICAL_REACTIONS // NODE: BASEL",
+        stages: {
+            reaction_types: "REACTION TYPES",
+            equation_balancing: "EQUATION BALANCING",
+            reaction_simulation: "REACTION SIMULATION",
+            reaction_types_desc: "Classify chemical reactions by type",
+            equation_balancing_desc: "Balance chemical equations using coefficients",
+            reaction_simulation_desc: "Observe molecular-level reaction animations"
+        },
+        reactionTypes: {
+            synthesis: "Synthesis",
+            decomposition: "Decomposition",
+            single_replacement: "Single Replacement",
+            double_replacement: "Double Replacement",
+            combustion: "Combustion"
+        },
+        reactionTypePatterns: {
+            synthesis: "A + B → AB",
+            decomposition: "AB → A + B",
+            single_replacement: "A + BC → AC + B",
+            double_replacement: "AB + CD → AD + CB",
+            combustion: "CₓHᵧ + O₂ → CO₂ + H₂O"
+        },
+        reactionTypeDescriptions: {
+            synthesis: "Two or more substances combine to form a single product",
+            decomposition: "A single compound breaks down into two or more simpler substances",
+            single_replacement: "One element replaces another in a compound",
+            double_replacement: "Two compounds exchange ions to form two new compounds",
+            combustion: "A hydrocarbon reacts with oxygen to produce carbon dioxide and water"
+        },
+        ui: {
+            submit: "Submit",
+            reset: "Reset",
+            next: "Next",
+            verify: "Verify",
+            play: "Play",
+            pause: "Pause",
+            restart: "Restart",
+            speed: "Speed",
+            hint: "Hint",
+            show_atom_counts: "Show Atom Counts",
+            hide_atom_counts: "Hide Atom Counts",
+            coefficient: "Coefficient",
+            select_reaction_type: "Select Reaction Type"
+        },
+        feedback: {
+            correct: "Correct! Well done.",
+            incorrect: "Incorrect. Try again.",
+            try_again: "Try again",
+            hint_available: "Hint available",
+            balanced: "Equation is balanced!",
+            unbalanced: "Equation is not balanced",
+            check_elements: "Check the following elements:"
+        },
+        energy: {
+            energy_released: "Energy Released",
+            energy_absorbed: "Energy Absorbed",
+            exothermic: "Exothermic",
+            endothermic: "Endothermic",
+            energy_diagram: "Energy Diagram"
+        },
+        atomCount: {
+            reactants: "Reactants",
+            products: "Products",
+            element: "Element",
+            count: "Count",
+            balanced: "Balanced",
+            unbalanced: "Unbalanced",
+            atom_count_table: "Atom Count Table"
+        },
+        instructions: {
+            reaction_types: "Examine the chemical equation and identify the type of reaction. Consider the pattern of reactants and products.",
+            equation_balancing: "Enter coefficients to balance the chemical equation. Ensure the number of atoms of each element is equal on both sides.",
+            reaction_simulation: "Watch the molecular animation to observe how bonds break and form during the reaction. Use the controls to play, pause, or restart."
+        },
+        hints: {
+            synthesis_hint: "Look for multiple reactants combining into a single product",
+            decomposition_hint: "Look for a single reactant breaking into multiple products",
+            single_replacement_hint: "Look for one element replacing another in a compound",
+            double_replacement_hint: "Look for two compounds exchanging ions",
+            combustion_hint: "Look for a hydrocarbon reacting with oxygen to produce CO₂ and H₂O",
+            balancing_hint: "Start by balancing elements that appear in only one reactant and one product",
+            coefficient_hint: "Try adjusting the coefficient for {compound}",
+            unbalanced_element_hint: "The element {element} is unbalanced: {reactantCount} on the left, {productCount} on the right"
+        },
+        mission: {
+            title: "MISSION: CHEMICAL REACTIONS",
+            description: "Master chemical reaction types, equation balancing, and molecular-level understanding of reactions."
+        },
+        labels: {
+            equation: "CHEMICAL EQUATION",
+            reaction_type: "REACTION TYPE",
+            coefficients: "COEFFICIENTS",
+            atom_counts: "ATOM COUNTS",
+            energy_change: "ENERGY CHANGE",
+            molecular_view: "MOLECULAR VIEW",
+            pattern: "PATTERN",
+            example: "EXAMPLE"
+        },
+        equation_balancer: {
+            title: "Balance the Chemical Equation",
+            element: "Element",
+            reactants: "Reactants",
+            products: "Products",
+            status: "Status",
+            balanced: "✓ Equation is balanced!",
+            unbalanced: "✗ Equation is not balanced",
+            correct: "Correct! The equation is balanced.",
+            incorrect: "Incorrect. The equation is not balanced. Check the atom counts.",
+            hint: "Hint",
+            show_hint: "Show Hint",
+            hide_hint: "Hide Hint",
+            reset: "Reset",
+            submit: "Submit",
+            already_balanced: "The equation is already balanced!",
+            no_hint: "No hint available.",
+            hint_increase_products: "Try increasing the coefficient for a product containing {element}",
+            hint_increase_reactants: "Try increasing the coefficient for a reactant containing {element}"
+        }
+    },
+    sc2_07: {
+        back: "Back to Nexus",
+        title: "SC2.07 // ENTHALPY & ENERGETICS",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        objective_title: "Active Mission Objective",
+        target_title: "Thermochemistry",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "SC2.07_ENTHALPY_MONITOR",
+        footer_left: "SC2.07_ENTHALPY_ENERGETICS // NODE: BASEL",
+        stages: {
+            energy_changes: "ENERGY CHANGES",
+            hess_law: "HESS'S LAW",
+            calorimetry: "CALORIMETRY"
+        },
+        prompts: {
+            calculate_enthalpy: "Calculate the enthalpy change (ΔH) for this reaction",
+            apply_hess_law: "Apply Hess's Law to determine ΔH",
+            calculate_heat: "Calculate the heat change using q = mcΔT",
+            solve_problem: "Solve the thermochemistry problem"
+        },
+        feedback: {
+            correct: "Correct! Your calculation is accurate.",
+            incorrect: "Incorrect. Expected: {expected} kJ",
+            invalid_number: "Please enter a valid number"
+        },
+        mission: {
+            title: "MISSION: THERMOCHEMISTRY",
+            description: "Master enthalpy calculations, Hess's Law, and calorimetry in pharmaceutical contexts."
+        },
+        visualization: {
+            title: "Energy Diagram",
+            description: "Visual representation of enthalpy changes",
+            current_equation: "Current Reaction"
+        }
     }
 };

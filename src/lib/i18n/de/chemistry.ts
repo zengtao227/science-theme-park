@@ -1130,5 +1130,186 @@ export const deChemistry = {
         ready: "Bereit",
         monitor_title: "SC2.06_REDOX_MONITOR",
         footer_left: "SC2.06_REDOX // KNOTEN: BASEL"
+    },
+    sc1_06: {
+        back: "Zurück zum Nexus",
+        title: "SC1.06 // CHEMISCHE REAKTIONEN GRUNDLAGEN",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "FORTGESCHRITTEN",
+            elite: "ELITE"
+        },
+        objective_title: "Aktuelles Missionsziel",
+        target_title: "Chemische Reaktionen",
+        next: "Nächste Sequenz ausführen",
+        check: "Prüfen",
+        correct: "Verifiziert",
+        incorrect: "Fehlanpassung",
+        ready: "Bereit",
+        monitor_title: "SC1.06_REAKTIONEN_MONITOR",
+        footer_left: "SC1.06_CHEMISCHE_REAKTIONEN // KNOTEN: BASEL",
+        stages: {
+            reaction_types: "REAKTIONSTYPEN",
+            equation_balancing: "GLEICHUNGSAUSGLEICH",
+            reaction_simulation: "REAKTIONSSIMULATION",
+            reaction_types_desc: "Chemische Reaktionen nach Typ klassifizieren",
+            equation_balancing_desc: "Chemische Gleichungen mit Koeffizienten ausgleichen",
+            reaction_simulation_desc: "Molekulare Reaktionsanimationen beobachten"
+        },
+        reactionTypes: {
+            synthesis: "Synthese",
+            decomposition: "Zersetzung",
+            single_replacement: "Einfachersatz",
+            double_replacement: "Doppelaustausch",
+            combustion: "Verbrennung"
+        },
+        reactionTypePatterns: {
+            synthesis: "A + B → AB",
+            decomposition: "AB → A + B",
+            single_replacement: "A + BC → AC + B",
+            double_replacement: "AB + CD → AD + CB",
+            combustion: "CₓHᵧ + O₂ → CO₂ + H₂O"
+        },
+        reactionTypeDescriptions: {
+            synthesis: "Zwei oder mehr Stoffe verbinden sich zu einem einzigen Produkt",
+            decomposition: "Eine einzelne Verbindung zerfällt in zwei oder mehr einfachere Stoffe",
+            single_replacement: "Ein Element ersetzt ein anderes in einer Verbindung",
+            double_replacement: "Zwei Verbindungen tauschen Ionen aus, um zwei neue Verbindungen zu bilden",
+            combustion: "Ein Kohlenwasserstoff reagiert mit Sauerstoff zu Kohlendioxid und Wasser"
+        },
+        ui: {
+            submit: "Absenden",
+            reset: "Zurücksetzen",
+            next: "Weiter",
+            verify: "Überprüfen",
+            play: "Abspielen",
+            pause: "Pause",
+            restart: "Neu starten",
+            speed: "Geschwindigkeit",
+            hint: "Hinweis",
+            show_atom_counts: "Atomzahlen anzeigen",
+            hide_atom_counts: "Atomzahlen ausblenden",
+            coefficient: "Koeffizient",
+            select_reaction_type: "Reaktionstyp auswählen"
+        },
+        feedback: {
+            correct: "Richtig! Gut gemacht.",
+            incorrect: "Falsch. Versuchen Sie es erneut.",
+            try_again: "Erneut versuchen",
+            hint_available: "Hinweis verfügbar",
+            balanced: "Gleichung ist ausgeglichen!",
+            unbalanced: "Gleichung ist nicht ausgeglichen",
+            check_elements: "Überprüfen Sie die folgenden Elemente:"
+        },
+        energy: {
+            energy_released: "Energie freigesetzt",
+            energy_absorbed: "Energie absorbiert",
+            exothermic: "Exotherm",
+            endothermic: "Endotherm",
+            energy_diagram: "Energiediagramm"
+        },
+        atomCount: {
+            reactants: "Reaktanten",
+            products: "Produkte",
+            element: "Element",
+            count: "Anzahl",
+            balanced: "Ausgeglichen",
+            unbalanced: "Nicht ausgeglichen",
+            atom_count_table: "Atomzahltabelle"
+        },
+        instructions: {
+            reaction_types: "Untersuchen Sie die chemische Gleichung und identifizieren Sie den Reaktionstyp. Berücksichtigen Sie das Muster von Reaktanten und Produkten.",
+            equation_balancing: "Geben Sie Koeffizienten ein, um die chemische Gleichung auszugleichen. Stellen Sie sicher, dass die Anzahl der Atome jedes Elements auf beiden Seiten gleich ist.",
+            reaction_simulation: "Beobachten Sie die molekulare Animation, um zu sehen, wie Bindungen während der Reaktion brechen und sich bilden. Verwenden Sie die Steuerelemente zum Abspielen, Pausieren oder Neustarten."
+        },
+        hints: {
+            synthesis_hint: "Suchen Sie nach mehreren Reaktanten, die sich zu einem einzigen Produkt verbinden",
+            decomposition_hint: "Suchen Sie nach einem einzelnen Reaktanten, der in mehrere Produkte zerfällt",
+            single_replacement_hint: "Suchen Sie nach einem Element, das ein anderes in einer Verbindung ersetzt",
+            double_replacement_hint: "Suchen Sie nach zwei Verbindungen, die Ionen austauschen",
+            combustion_hint: "Suchen Sie nach einem Kohlenwasserstoff, der mit Sauerstoff zu CO₂ und H₂O reagiert",
+            balancing_hint: "Beginnen Sie mit dem Ausgleichen von Elementen, die nur in einem Reaktanten und einem Produkt vorkommen",
+            coefficient_hint: "Versuchen Sie, den Koeffizienten für {compound} anzupassen",
+            unbalanced_element_hint: "Das Element {element} ist nicht ausgeglichen: {reactantCount} auf der linken Seite, {productCount} auf der rechten Seite"
+        },
+        mission: {
+            title: "MISSION: CHEMISCHE REAKTIONEN",
+            description: "Meistern Sie chemische Reaktionstypen, Gleichungsausgleich und molekulares Verständnis von Reaktionen."
+        },
+        labels: {
+            equation: "CHEMISCHE GLEICHUNG",
+            reaction_type: "REAKTIONSTYP",
+            coefficients: "KOEFFIZIENTEN",
+            atom_counts: "ATOMZAHLEN",
+            energy_change: "ENERGIEÄNDERUNG",
+            molecular_view: "MOLEKULARE ANSICHT",
+            pattern: "MUSTER",
+            example: "BEISPIEL"
+        },
+        equation_balancer: {
+            title: "Chemische Gleichung ausgleichen",
+            element: "Element",
+            reactants: "Reaktanten",
+            products: "Produkte",
+            status: "Status",
+            balanced: "✓ Gleichung ist ausgeglichen!",
+            unbalanced: "✗ Gleichung ist nicht ausgeglichen",
+            correct: "Richtig! Die Gleichung ist ausgeglichen.",
+            incorrect: "Falsch. Die Gleichung ist nicht ausgeglichen. Überprüfen Sie die Atomzahlen.",
+            hint: "Hinweis",
+            show_hint: "Hinweis anzeigen",
+            hide_hint: "Hinweis ausblenden",
+            reset: "Zurücksetzen",
+            submit: "Absenden",
+            already_balanced: "Die Gleichung ist bereits ausgeglichen!",
+            no_hint: "Kein Hinweis verfügbar.",
+            hint_increase_products: "Versuchen Sie, den Koeffizienten für ein Produkt mit {element} zu erhöhen",
+            hint_increase_reactants: "Versuchen Sie, den Koeffizienten für einen Reaktanten mit {element} zu erhöhen"
+        }
+    },
+    sc2_07: {
+        back: "Zurück zum Nexus",
+        title: "SC2.07 // ENTHALPIE & ENERGETIK",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        objective_title: "Aktives Missionsziel",
+        target_title: "Thermochemie",
+        next: "Nächste Sequenz ausführen",
+        check: "Überprüfen",
+        correct: "Verifiziert",
+        incorrect: "Fehlanpassung",
+        ready: "Bereit",
+        monitor_title: "SC2.07_ENTHALPIE_MONITOR",
+        footer_left: "SC2.07_ENTHALPIE_ENERGETIK // KNOTEN: BASEL",
+        stages: {
+            energy_changes: "ENERGIEÄNDERUNGEN",
+            hess_law: "HESS'SCHES GESETZ",
+            calorimetry: "KALORIMETRIE"
+        },
+        prompts: {
+            calculate_enthalpy: "Berechnen Sie die Enthalpieänderung (ΔH) für diese Reaktion",
+            apply_hess_law: "Wenden Sie das Hess'sche Gesetz an, um ΔH zu bestimmen",
+            calculate_heat: "Berechnen Sie die Wärmeänderung mit q = mcΔT",
+            solve_problem: "Lösen Sie das thermochemische Problem"
+        },
+        feedback: {
+            correct: "Richtig! Ihre Berechnung ist korrekt.",
+            incorrect: "Falsch. Erwartet: {expected} kJ",
+            invalid_number: "Bitte geben Sie eine gültige Zahl ein"
+        },
+        mission: {
+            title: "MISSION: THERMOCHEMIE",
+            description: "Meistern Sie Enthalpieberechnungen, Hess'sches Gesetz und Kalorimetrie in pharmazeutischen Kontexten."
+        },
+        visualization: {
+            title: "Energiediagramm",
+            description: "Visuelle Darstellung von Enthalpieänderungen",
+            current_equation: "Aktuelle Reaktion"
+        }
     }
 };
