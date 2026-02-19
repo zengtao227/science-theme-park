@@ -9,14 +9,15 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import C101LabCanvas, { Substance, Tool } from "@/components/chamber/sc1-01/LabCanvas";
+import ExperimentDesignCard from "@/components/chamber/shared/ExperimentDesignCard";
 
-type Stage = "IDENTIFY" | "PROPERTIES" | "REACTIONS";
-// type Substance = "soda" | "salt" | "starch"; // Removed locally defined type
+type Stage = "IDENTIFY" | "PROPERTIES" | "REACTIONS" | "EXPERIMENT";
 
 interface C101Quest extends Quest {
   stage: Stage;
   substances: Substance[];
-  correctIdentifications: Record<string, Substance>; // "A" -> "soda"
+  correctIdentifications: Record<string, Substance>;
+  experimentKey?: string;
 }
 
 function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) => string): C101Quest[] {
@@ -48,7 +49,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
     ];
 
     let selectedArrangements: typeof arrangements = [];
-    
+
     switch (difficulty) {
       case "BASIC":
         // Simple identification with clear hints
@@ -100,21 +101,21 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
       { question: "Which powder dissolves completely in water?", answer: "salt", difficulty: "BASIC" },
       { question: "Which powder is white and crystalline?", answer: "salt", difficulty: "BASIC" },
       { question: "Which powder produces bubbles with acid?", answer: "soda", difficulty: "BASIC" },
-      
+
       // CORE - Requires understanding
       { question: "Which powder produces CO₂ gas?", answer: "soda", difficulty: "CORE" },
       { question: "Which powder forms a colloidal suspension?", answer: "starch", difficulty: "CORE" },
       { question: "Which powder has the highest solubility?", answer: "salt", difficulty: "CORE" },
       { question: "Which powder reacts with acetic acid?", answer: "soda", difficulty: "CORE" },
       { question: "Which powder is a polysaccharide?", answer: "starch", difficulty: "CORE" },
-      
+
       // ADVANCED - Chemical understanding
       { question: "Which powder is sodium bicarbonate?", answer: "soda", difficulty: "ADVANCED" },
       { question: "Which powder is sodium chloride?", answer: "salt", difficulty: "ADVANCED" },
       { question: "Which powder is a carbohydrate polymer?", answer: "starch", difficulty: "ADVANCED" },
       { question: "Which powder releases carbonic acid?", answer: "soda", difficulty: "ADVANCED" },
       { question: "Which powder forms an ionic solution?", answer: "salt", difficulty: "ADVANCED" },
-      
+
       // ELITE - Deep chemical knowledge
       { question: "Which powder has formula NaHCO₃?", answer: "soda", difficulty: "ELITE" },
       { question: "Which powder has formula NaCl?", answer: "salt", difficulty: "ELITE" },
@@ -180,7 +181,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         product: "Glucose",
         difficulty: "BASIC"
       },
-      
+
       // CORE - Understanding reactions
       {
         question: "Complete neutralization of baking soda",
@@ -212,7 +213,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         product: "Maltose",
         difficulty: "CORE"
       },
-      
+
       // ADVANCED - Complex reactions
       {
         question: "Baking soda with strong acid",
@@ -244,7 +245,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
         product: "Gel",
         difficulty: "ADVANCED"
       },
-      
+
       // ELITE - Advanced chemistry
       {
         question: "Baking soda in blood pH regulation",
@@ -301,6 +302,39 @@ function buildStagePool(difficulty: Difficulty, stage: Stage, t: (key: string) =
     return quests;
   }
 
+  if (stage === "EXPERIMENT") {
+    const experimentQuests: C101Quest[] = [];
+    experimentQuests.push({
+      id: "EXP_1",
+      difficulty,
+      stage,
+      substances: [],
+      correctIdentifications: {},
+      experimentKey: "ph_analysis",
+      promptLatex: "\\text{Review the experimental design.}",
+      expressionLatex: "\\text{Analyze the Rhine water sample.}",
+      targetLatex: "\\text{Buffer Capacity}",
+      correctLatex: "\\text{1}",
+      slots: [{ id: "acknowledge", labelLatex: "\\text{Understood?}", placeholder: "Type 1 to confirm", expected: 1 }]
+    });
+
+    experimentQuests.push({
+      id: "EXP_2",
+      difficulty,
+      stage,
+      substances: [],
+      correctIdentifications: {},
+      experimentKey: "salt_purification",
+      promptLatex: "\\text{Review the experimental design.}",
+      expressionLatex: "\\text{Purify rock salt.}",
+      targetLatex: "\\text{Crystallization}",
+      correctLatex: "\\text{1}",
+      slots: [{ id: "acknowledge", labelLatex: "\\text{Understood?}", placeholder: "Type 1 to confirm", expected: 1 }]
+    });
+
+    return experimentQuests;
+  }
+
   return [];
 }
 
@@ -337,6 +371,7 @@ export default function C101Page() {
     { id: "IDENTIFY", label: t("sc1_01.stages.identify") },
     { id: "PROPERTIES", label: t("sc1_01.stages.properties") },
     { id: "REACTIONS", label: t("sc1_01.stages.reactions") },
+    { id: "EXPERIMENT", label: t("sc1_01.stages.experiment") || "EXPERIMENT" },
   ];
 
   const handleTest = (substance: Substance, tool: Tool) => {
@@ -374,11 +409,23 @@ export default function C101Page() {
         },
       }}
       monitorContent={
-        <C101LabCanvas
-          onTest={handleTest}
-          testedReactions={testedReactions}
-          showAnswer={lastCheck?.ok === true}
-        />
+        stage === "EXPERIMENT" ? (
+          <ExperimentDesignCard
+            scenarioTitle={t(`sc1_01.experiments.${currentQuest.experimentKey}.title`)}
+            scenarioContext={t(`sc1_01.experiments.${currentQuest.experimentKey}.context`)}
+            purpose={t(`sc1_01.experiments.${currentQuest.experimentKey}.purpose`)}
+            materials={(t(`sc1_01.experiments.${currentQuest.experimentKey}.materials`) as unknown as string[]) || []}
+            procedure={(t(`sc1_01.experiments.${currentQuest.experimentKey}.procedure`) as unknown as string[]) || []}
+            expectedResults={t(`sc1_01.experiments.${currentQuest.experimentKey}.expectedResults`)}
+            safetyWarning={t(`sc1_01.experiments.${currentQuest.experimentKey}.safetyWarning`)}
+          />
+        ) : (
+          <C101LabCanvas
+            onTest={handleTest}
+            testedReactions={testedReactions}
+            showAnswer={lastCheck?.ok === true}
+          />
+        )
       }
     >
       <div className="space-y-6">

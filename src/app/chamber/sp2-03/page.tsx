@@ -104,14 +104,14 @@ export default function SP203ElectricPower() {
                         id: "answer",
                         labelLatex: "Answer",
                         placeholder: "type value",
-                        expected: typeof item.power === 'string' ? item.power : 
-                                 typeof item.current === 'string' ? item.current : item.voltage
+                        expected: typeof item.power === 'string' ? item.power :
+                            typeof item.current === 'string' ? item.current : item.voltage
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${typeof item.power === 'string' ? item.power : 
-                              typeof item.current === 'string' ? item.current : item.voltage}`,
-                answer: typeof item.power === 'string' ? item.power : 
-                       typeof item.current === 'string' ? item.current : item.voltage as string
+                correctLatex: `\\text{Answer: } ${typeof item.power === 'string' ? item.power :
+                    typeof item.current === 'string' ? item.current : item.voltage}`,
+                answer: typeof item.power === 'string' ? item.power :
+                    typeof item.current === 'string' ? item.current : item.voltage as string
             }));
         }
 
@@ -140,11 +140,11 @@ export default function SP203ElectricPower() {
                     { power: 3000, time: 10, cost: 0.20, answer: "6", prompt: "P=3kW, 10 days, 0.20 CHF/kWh, find cost" }
                 ],
                 ELITE: [
-                    { power: 5000, time: 365, cost: 0.25, answer: "10950", prompt: "P=5kW, 1 year, 0.25 CHF/kWh, annual cost" },
-                    { power: 10000, time: 180, cost: 0.20, answer: "8640", prompt: "P=10kW, 6 months, 0.20 CHF/kWh, cost" },
-                    { power: 2500, time: 730, cost: 0.30, answer: "13140", prompt: "P=2.5kW, 2 years, 0.30 CHF/kWh, cost" },
-                    { power: 7500, time: 90, cost: 0.25, answer: "4050", prompt: "P=7.5kW, 3 months, 0.25 CHF/kWh, cost" },
-                    { power: 15000, time: 60, cost: 0.20, answer: "4320", prompt: "P=15kW, 60 days, 0.20 CHF/kWh, cost" }
+                    { power: 3000, time: 500, cost: 0.28, answer: "420", prompt: t("sp2_03.prompts.e1") || "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?" },
+                    { power: 1500, time: 100, cost: 0.28, answer: "42", prompt: t("sp2_03.prompts.e2") || "Summer AC: P=1.5kW for 100h. Rate: 0.28 CHF/kWh. Cost?" },
+                    { power: 2000, time: 5, cost: 0.28, answer: "2.8", prompt: t("sp2_03.prompts.e3") || "Basler Läckerli Oven: P=2kW for 5h. Rate: 0.28 CHF/kWh. Cost?" },
+                    { power: 11000, time: 50, cost: 0.24, answer: "132", prompt: t("sp2_03.prompts.e4") || "EV Charging (Off-peak): P=11kW for 50h. Rate: 0.24 CHF/kWh. Cost?" },
+                    { power: 500, time: 72, cost: 0.28, answer: "10.08", prompt: t("sp2_03.prompts.e5") || "Fasnacht Lanterns: P=0.5kW for 72h. Rate: 0.28 CHF/kWh. Cost?" }
                 ]
             };
 
@@ -156,23 +156,23 @@ export default function SP203ElectricPower() {
                 time: item.time,
                 cost: 'cost' in item ? item.cost : undefined,
                 promptLatex: item.prompt,
-                expressionLatex: difficulty === "BASIC" || difficulty === "CORE" ? 
+                expressionLatex: difficulty === "BASIC" || difficulty === "CORE" ?
                     `E = P \\times t` : `\\text{Cost} = E \\times \\text{rate}`,
                 targetLatex: "answer",
                 slots: [
                     {
                         id: "answer",
-                        labelLatex: difficulty === "BASIC" ? "Energy (Wh)" : 
-                                   difficulty === "CORE" ? "Energy (kWh)" : "Cost (CHF)",
+                        labelLatex: difficulty === "BASIC" ? "Energy (Wh)" :
+                            difficulty === "CORE" ? "Energy (kWh)" : "Cost (CHF)",
                         placeholder: "type value",
-                        expected: ('energy' in item ? item.energy : undefined) || 
-                                 ('answer' in item ? item.answer : undefined) || "0"
+                        expected: ('energy' in item ? item.energy : undefined) ||
+                            ('answer' in item ? item.answer : undefined) || "0"
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${('energy' in item ? item.energy : undefined) || 
-                             ('answer' in item ? item.answer : undefined) || "0"}`,
-                answer: (('energy' in item ? item.energy : undefined) || 
-                        ('answer' in item ? item.answer : undefined) || "0") as string
+                correctLatex: `\\text{Answer: } ${('energy' in item ? item.energy : undefined) ||
+                    ('answer' in item ? item.answer : undefined) || "0"}`,
+                answer: (('energy' in item ? item.energy : undefined) ||
+                    ('answer' in item ? item.answer : undefined) || "0") as string
             }));
         }
 
@@ -220,23 +220,23 @@ export default function SP203ElectricPower() {
                     {
                         id: "answer",
                         labelLatex: difficulty === "BASIC" ? "Efficiency (%)" :
-                                   difficulty === "CORE" ? (('output' in item && typeof item.output === 'string') ? "Output (W)" : "Input (W)") :
-                                   difficulty === "ADVANCED" ? "Power Loss (W)" : "Efficiency (%)",
+                            difficulty === "CORE" ? (('output' in item && typeof item.output === 'string') ? "Output (W)" : "Input (W)") :
+                                difficulty === "ADVANCED" ? "Power Loss (W)" : "Efficiency (%)",
                         placeholder: "type value",
-                        expected: ('efficiency' in item ? item.efficiency : undefined) || 
-                                 ('output' in item ? item.output : undefined) || 
-                                 ('input' in item ? item.input : undefined) || 
-                                 ('loss' in item ? item.loss : undefined) || "0"
+                        expected: ('efficiency' in item ? item.efficiency : undefined) ||
+                            ('output' in item ? item.output : undefined) ||
+                            ('input' in item ? item.input : undefined) ||
+                            ('loss' in item ? item.loss : undefined) || "0"
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${('efficiency' in item ? item.efficiency : undefined) || 
-                              ('output' in item ? item.output : undefined) || 
-                              ('input' in item ? item.input : undefined) || 
-                              ('loss' in item ? item.loss : undefined) || "0"}`,
-                answer: (('efficiency' in item ? item.efficiency : undefined) || 
-                        ('output' in item ? item.output : undefined) || 
-                        ('input' in item ? item.input : undefined) || 
-                        ('loss' in item ? item.loss : undefined) || "0") as string
+                correctLatex: `\\text{Answer: } ${('efficiency' in item ? item.efficiency : undefined) ||
+                    ('output' in item ? item.output : undefined) ||
+                    ('input' in item ? item.input : undefined) ||
+                    ('loss' in item ? item.loss : undefined) || "0"}`,
+                answer: (('efficiency' in item ? item.efficiency : undefined) ||
+                    ('output' in item ? item.output : undefined) ||
+                    ('input' in item ? item.input : undefined) ||
+                    ('loss' in item ? item.loss : undefined) || "0") as string
             }));
         }
 

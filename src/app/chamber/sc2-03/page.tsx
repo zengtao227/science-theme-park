@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -8,103 +8,157 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
 import { idealGasPressure } from "@/lib/physics";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
-type Stage = "boyle" | "charles" | "combined";
+type Stage = "boyle" | "charles" | "combined" | "elite";
+
+interface SC203Quest extends Quest {
+  stage: Stage;
+}
 
 export default function SC203Page() {
-  const { t } = useLanguage();
-  const sc2_03_t = {
-    title: t("sc2_03.title"),
-    footer_left: t("sc2_03.footer_left"),
-    back: t("sc2_03.back"),
-    check: t("sc2_03.check"),
-    next: t("sc2_03.next"),
-    correct: t("sc2_03.correct"),
-    incorrect: t("sc2_03.incorrect"),
-    ready: t("sc2_03.ready"),
-    monitor_title: t("sc2_03.monitor_title"),
-    target_title: t("sc2_03.target_title"),
-    objective_title: t("sc2_03.objective_title"),
-    stages: {
-      boyle: t("sc2_03.stages.boyle"),
-      charles: t("sc2_03.stages.charles"),
-      combined: t("sc2_03.stages.combined"),
-      boyle_desc: t("sc2_03.stages.boyle_desc"),
-      charles_desc: t("sc2_03.stages.charles_desc"),
-      combined_desc: t("sc2_03.stages.combined_desc"),
-      boyle_hint: t("sc2_03.stages.boyle_hint"),
-      charles_hint: t("sc2_03.stages.charles_hint"),
-      combined_hint: t("sc2_03.stages.combined_hint"),
-    },
-    scenarios: {
-      gas_compression: t("sc2_03.scenarios.gas_compression"),
-      weather_balloons: t("sc2_03.scenarios.weather_balloons"),
-      chemical_reactors: t("sc2_03.scenarios.chemical_reactors"),
-    },
-    labels: {
-      pressure: t("sc2_03.labels.pressure"),
-      state_variables: t("sc2_03.labels.state_variables"),
-      formulas: t("sc2_03.labels.formulas"),
-      volume: t("sc2_03.labels.volume"),
-      temperature: t("sc2_03.labels.temperature"),
-      moles: t("sc2_03.labels.moles"),
-    },
-    mission: {
-      title: t("sc2_03.mission.title"),
-      description: t("sc2_03.mission.description"),
-    },
-    difficulty: {
-      basic: "BASIC",
-      core: "CORE",
-      advanced: "ADVANCED",
-      elite: "ELITE",
-    },
-  };
+  const { t: getT } = useLanguage();
+  const t = getT("sc2_03");
+  const { completeStage } = useAppStore();
 
-  const [stage, setStage] = useState<Stage>("boyle");
   const [volume, setVolume] = useState(5); // L
   const [temperature, setTemperature] = useState(300); // K
   const [moles, setMoles] = useState(1); // mol
 
-  const handleStageChange = (newStage: Stage) => {
-    setStage(newStage);
+  const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC203Quest[] => {
+    const quests: SC203Quest[] = [];
 
-    // Reset to default values for each stage
-    if (newStage === "boyle") {
-      setVolume(5);
-      setTemperature(300);
-      setMoles(1);
-    } else if (newStage === "charles") {
-      setVolume(5);
-      setTemperature(300);
-      setMoles(1);
-    } else if (newStage === "combined") {
-      setVolume(5);
-      setTemperature(300);
-      setMoles(1);
+    if (stage === "elite") {
+      quests.push(
+        {
+          id: "ELITE-1", difficulty, stage,
+          promptLatex: getT("sc2_03.prompts.bvb_brake", { V: 100, P: 1, V2: 20 }),
+          expressionLatex: "P_1 V_1 = P_2 V_2",
+          targetLatex: "P_2",
+          slots: [{ id: "p2", labelLatex: "P_2 \\\\text{ (bar)}", placeholder: "5", expected: 5 }],
+          correctLatex: "5 \\\\text{ bar}",
+          hintLatex: ["Boyle's Law"]
+        },
+        {
+          id: "ELITE-2", difficulty, stage,
+          promptLatex: getT("sc2_03.prompts.euroairport", { t1: 300, p1: 100, t2: 270, p2: 50 }),
+          expressionLatex: "\\\\frac{P_1 V_1}{T_1} = \\\\frac{P_2 V_2}{T_2}",
+          targetLatex: "\\\\frac{V_2}{V_1}",
+          slots: [{ id: "ratio", labelLatex: "Ratio", placeholder: "1.8", expected: 1.8 }],
+          correctLatex: "1.8",
+          hintLatex: ["V2/V1 = (P1/P2) * (T2/T1)"]
+        },
+        {
+          id: "ELITE-3", difficulty, stage,
+          promptLatex: getT("sc2_03.prompts.wickelfisch", { v1: 20, t1: 300, t2: 285 }),
+          expressionLatex: "\\\\frac{V_1}{T_1} = \\\\frac{V_2}{T_2}",
+          targetLatex: "V_2",
+          slots: [{ id: "v2", labelLatex: "V_2 \\\\text{ (L)}", placeholder: "19", expected: 19 }],
+          correctLatex: "19 \\\\text{ L}",
+          hintLatex: ["Charles Law"]
+        },
+        {
+          id: "ELITE-4", difficulty, stage,
+          promptLatex: getT("sc2_03.prompts.fire_dept", { V: 10, P: 200, r: 50 }),
+          expressionLatex: "\\\\text{Total Vol} = V \\times P", // approx
+          targetLatex: "t",
+          slots: [{ id: "t", labelLatex: "t \\\\text{ (min)}", placeholder: "40", expected: 40 }],
+          correctLatex: "40 \\\\text{ min}",
+          hintLatex: ["Total Liters = 200 * 10 = 2000L"]
+        },
+        {
+          id: "ELITE-5", difficulty, stage,
+          promptLatex: getT("sc2_03.prompts.geothermal", { p1: 500, t1: 400, t2: 300 }),
+          expressionLatex: "\\\\frac{P_1 V_1}{T_1} = \\\\frac{P_2 V_2}{T_2}",
+          targetLatex: "\\\\frac{V_2}{V_1}",
+          slots: [{ id: "f", labelLatex: "Factor", placeholder: "375", expected: 375 }],
+          correctLatex: "375",
+          hintLatex: ["(500/1) * (300/400)"]
+        }
+      );
+    } else {
+      // Basic placeholder for other stages to avoid empty state
+      quests.push({
+        id: `${stage}-1`, difficulty, stage,
+        promptLatex: `${stage.toUpperCase()} Law Exploration`,
+        expressionLatex: "PV=nRT",
+        targetLatex: "Check",
+        slots: [{ id: "check", labelLatex: "Type 1", placeholder: "1", expected: 1 }],
+        correctLatex: "1",
+        hintLatex: ["Just type 1"]
+      });
     }
-  };
+
+    return quests;
+  }, [getT]);
+
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
+
+  const {
+    currentQuest,
+    difficulty,
+    stage,
+    lastCheck,
+    inputs,
+    setInputs,
+    verify,
+    next,
+    handleDifficultyChange,
+    handleStageChange,
+  } = useQuestManager<SC203Quest, Stage>({
+    buildPool,
+    initialStage: "boyle",
+  });
+
+  useEffect(() => {
+    if (lastCheck?.ok) {
+      completeStage("sc2-03", stage);
+    }
+  }, [lastCheck, completeStage, stage]);
+
+  useEffect(() => {
+    // Reset simulation on stage change
+    if (stage === "boyle") {
+      setVolume(5); setTemperature(300); setMoles(1);
+    } else if (stage === "charles") {
+      setVolume(5); setTemperature(300); setMoles(1);
+    } else if (stage === "combined") {
+      setVolume(5); setTemperature(300); setMoles(1);
+    }
+  }, [stage]);
 
   const pressure = idealGasPressure(moles, temperature, volume);
 
+  const stagesProps = useMemo(() => [
+    { id: "boyle" as Stage, label: t.stages.boyle },
+    { id: "charles" as Stage, label: t.stages.charles },
+    { id: "combined" as Stage, label: t.stages.combined },
+    { id: "elite" as Stage, label: t.difficulty.elite },
+  ], [t]);
+
+  if (!currentQuest) return null;
+
   return (
     <ChamberLayout
-      title={sc2_03_t.title}
+      title={t.title}
       moduleCode="SC2.03"
-      difficulty="CORE"
-      onDifficultyChange={() => { }}
-      stages={[
-        { id: "boyle", label: sc2_03_t.stages.boyle },
-        { id: "charles", label: sc2_03_t.stages.charles },
-        { id: "combined", label: sc2_03_t.stages.combined },
-      ]}
+      difficulty={difficulty}
+      onDifficultyChange={handleDifficultyChange}
+      stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={() => { }}
-      onNext={() => { }}
-      checkStatus={null}
-      footerLeft={sc2_03_t.footer_left}
-      translations={sc2_03_t}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
+      footerLeft={t.footer_left}
+      translations={{
+        back: t.back,
+        check: t.check,
+        next: t.next,
+        correct: t.correct,
+        incorrect: t.incorrect,
+        difficulty: t.difficulty,
+      }}
       monitorContent={
         <div className="space-y-4">
           <GasTankCanvas
@@ -114,12 +168,12 @@ export default function SC203Page() {
             particleCount={100}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {sc2_03_t.target_title}
+            {t.target_title}
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {sc2_03_t.labels.pressure}
+              {t.labels.pressure}
             </div>
             <div className="text-4xl text-neon-cyan font-black text-center">
               P = {pressure.toFixed(2)} atm
@@ -128,7 +182,7 @@ export default function SC203Page() {
 
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {sc2_03_t.labels.state_variables}
+              {t.labels.state_variables}
             </div>
             <div className="grid grid-cols-3 gap-2 text-sm">
               <div className="flex flex-col items-center">
@@ -145,44 +199,53 @@ export default function SC203Page() {
               </div>
             </div>
           </div>
-
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {sc2_03_t.labels.formulas}
-            </div>
-            <div className="text-white font-black text-sm space-y-2">
-              <div><InlineMath math="PV = nRT" /></div>
-              {stage === "boyle" && <div><InlineMath math="P_1V_1 = P_2V_2 \text{ (constant T)}" /></div>}
-              {stage === "charles" && <div><InlineMath math="\frac{V_1}{T_1} = \frac{V_2}{T_2} \text{ (constant P)}" /></div>}
-              {stage === "combined" && <div><InlineMath math="\frac{P_1V_1}{T_1} = \frac{P_2V_2}{T_2}" /></div>}
-            </div>
-          </div>
         </div>
       }
     >
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-            {sc2_03_t.mission.title}
+            {t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {sc2_03_t.mission.description}
+            {currentQuest.promptLatex || t.mission.description}
           </p>
         </div>
-        <div className="text-center">
-          <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-            {sc2_03_t.objective_title}
-          </h3>
-          <p className="text-3xl text-white font-black italic">
-            {stage === "boyle" && sc2_03_t.stages.boyle_desc}
-            {stage === "charles" && sc2_03_t.stages.charles_desc}
-            {stage === "combined" && sc2_03_t.stages.combined_desc}
-          </p>
+
+        {/* Input Section */}
+        <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
+          <div className="text-lg">
+            <InlineMath math={currentQuest.promptLatex} />
+          </div>
+
+          <div className="text-neon-cyan">
+            <InlineMath math={currentQuest.expressionLatex} />
+          </div>
+
+          <div className="space-y-3">
+            {currentQuest.slots.map((slot) => (
+              <div key={slot.id} className="flex items-center gap-3">
+                <InlineMath math={slot.labelLatex} />
+                <input
+                  type="text"
+                  value={inputs[slot.id] || ""}
+                  onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
+                  placeholder={slot.placeholder}
+                  className="px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white"
+                  disabled={lastCheck?.ok}
+                  onKeyDown={(e) => { if (e.key === 'Enter') verify(); }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Simulation Controls - Still active for visualization */}
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
+          <div className="text-[10px] uppercase tracking-widest text-white/40 mb-2">Simulation Control</div>
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {sc2_03_t.labels.volume}
+              {t.labels.volume}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -201,7 +264,7 @@ export default function SC203Page() {
 
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {sc2_03_t.labels.temperature}
+              {t.labels.temperature}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -220,7 +283,7 @@ export default function SC203Page() {
 
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
-              {sc2_03_t.labels.moles}
+              {t.labels.moles}
             </div>
             <div className="flex items-center gap-4">
               <input
@@ -235,34 +298,22 @@ export default function SC203Page() {
               <span className="text-white font-black w-20 text-right">{moles.toFixed(1)} mol</span>
             </div>
           </div>
-
-          <div className="text-center pt-4 border-t border-white/10">
-            <div className="text-[10px] text-white/90 font-mono italic">
-              {stage === "boyle" && sc2_03_t.stages.boyle_hint}
-              {stage === "charles" && sc2_03_t.stages.charles_hint}
-              {stage === "combined" && sc2_03_t.stages.combined_hint}
-            </div>
-          </div>
         </div>
 
         {/* Scenario Display */}
         <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-neon-purple/20 rounded-lg text-neon-purple shadow-[0_0_15px_rgba(255,0,255,0.1)]">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div className="space-y-2">
-                <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
-                <p className="text-sm text-white/50 leading-relaxed italic">
-                  {stage === "boyle" && sc2_03_t.scenarios.gas_compression}
-                  {stage === "charles" && sc2_03_t.scenarios.weather_balloons}
-                  {stage === "combined" && sc2_03_t.scenarios.chemical_reactors}
-                </p>
-              </div>
+          <div className="flex items-start gap-4">
+            <div className="space-y-2">
+              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+              <p className="text-sm text-white/50 leading-relaxed italic">
+                {stage === "boyle" && t.scenarios.gas_compression}
+                {stage === "charles" && t.scenarios.weather_balloons}
+                {stage === "combined" && t.scenarios.chemical_reactors}
+                {stage === "elite" && "Basel Elite Physics/Chemistry Integration"}
+              </p>
             </div>
           </div>
+        </div>
       </div>
     </ChamberLayout>
   );

@@ -10,7 +10,7 @@ import EcosystemVisualization from "@/components/chamber/sb3-01/EcosystemVisuali
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
-type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES";
+type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES" | "ELITE";
 
 interface SB301Quest extends Quest {
     stage: Stage;
@@ -171,6 +171,84 @@ export default function SB301Page() {
             });
         }
 
+        if (stage === "ELITE") {
+            if (difficulty === "BASIC") {
+                quests.push(
+                    {
+                        id: "ELITE-B1", difficulty, stage, scenario: "kannenfeldpark",
+                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m²/year. Herbivores consume mean = 850 kcal/m²/year. Calculate energy transfer efficiency (\\%).}`,
+                        expressionLatex: `\\\\text{Efficiency} = \\\\frac{\\\\text{Energy consumed}}{\\\\text{Energy available}} \\\\times 100\\\\%`,
+                        targetLatex: `\\\\text{Efficiency}`,
+                        slots: [{ id: "eff", labelLatex: `\\\\text{Efficiency (\\%)}`, placeholder: "10", expected: "10" }],
+                        correctLatex: `10\\\\%`,
+                        hintLatex: [
+                            `\\\\frac{850}{8500} \\\\times 100\\\\% = 10\\\\%`,
+                            `\\\\text{Matches theoretical 10\\% rule}`,
+                            `\\\\text{Energy loss through respiration, heat, incomplete consumption}`
+                        ]
+                    },
+                    {
+                        id: "ELITE-B2", difficulty, stage, scenario: "rhine_river",
+                        promptLatex: `\\\\text{Rhine macroinvertebrates (n=200): Mayfly 80 (p=0.40), Caddisfly 60 (p=0.30), Stonefly 40 (p=0.20), Dragonfly 20 (p=0.10). Calculate Shannon index } H' = -\\\\sum p_i \\\\ln(p_i).`,
+                        expressionLatex: `H' = -[p_1\\\\ln(p_1) + p_2\\\\ln(p_2) + p_3\\\\ln(p_3) + p_4\\\\ln(p_4)]`,
+                        targetLatex: `H'`,
+                        slots: [{ id: "h", labelLatex: `H'`, placeholder: "1.28", expected: "1.28" }],
+                        correctLatex: `1.28`,
+                        hintLatex: [
+                            `\\\\ln(0.40)=-0.916, \\\\ln(0.30)=-1.204, \\\\ln(0.20)=-1.609, \\\\ln(0.10)=-2.303`,
+                            `H' = -[0.40(-0.916) + 0.30(-1.204) + 0.20(-1.609) + 0.10(-2.303)]`,
+                            `H' = -[-0.366 - 0.361 - 0.322 - 0.230] = 1.28`
+                        ]
+                    }
+                );
+            } else if (difficulty === "CORE") {
+                quests.push(
+                    {
+                        id: "ELITE-C1", difficulty, stage, scenario: "basel_parks",
+                        promptLatex: `\\\\text{Basel blackbird population: 2020 = 450, 2024 = 520 (4 years). Using } N_t = N_0 \\\\times e^{rt}, \\\\text{ calculate annual growth rate } r.`,
+                        expressionLatex: `520 = 450 \\\\times e^{4r}, \\\\text{ solve for } r`,
+                        targetLatex: `r`,
+                        slots: [{ id: "r", labelLatex: `r`, placeholder: "0.036", expected: "0.036" }],
+                        correctLatex: `r = 0.036`,
+                        hintLatex: [
+                            `\\\\frac{520}{450} = 1.156 = e^{4r}`,
+                            `\\\\ln(1.156) = 0.145 = 4r`,
+                            `r = \\\\frac{0.145}{4} = 0.036 \\\\text{ or } 3.6\\\\% \\\\text{ per year}`
+                        ]
+                    },
+                    {
+                        id: "ELITE-C2", difficulty, stage, scenario: "rhine_river",
+                        promptLatex: `\\\\text{Rhine biomass (kg/ha): Producers mean = 12,000, Primary consumers = 1,200, Secondary consumers = 120. Calculate biomass ratio (producers:secondary).}`,
+                        expressionLatex: `\\\\text{Ratio} = \\\\frac{\\\\text{Producer biomass}}{\\\\text{Secondary consumer biomass}}`,
+                        targetLatex: `\\\\text{Ratio}`,
+                        slots: [{ id: "ratio", labelLatex: `\\\\text{Ratio}`, placeholder: "100", expected: "100" }],
+                        correctLatex: `100:1`,
+                        hintLatex: [
+                            `\\\\frac{12000}{120} = 100`,
+                            `\\\\text{Each trophic level: } 10\\\\% \\\\text{ energy retained}`,
+                            `\\\\text{Two levels: } 10 \\\\times 10 = 100\\\\times \\\\text{ reduction}`
+                        ]
+                    }
+                );
+            } else if (difficulty === "ADVANCED") {
+                quests.push(
+                    {
+                        id: "ELITE-A1", difficulty, stage, scenario: "basel_green_corridors",
+                        promptLatex: `\\\\text{Basel urban deer: logistic growth } \\\\frac{dN}{dt} = rN(1 - \\\\frac{N}{K}), \\\\text{ where } r = 0.18/\\\\text{year}, K = 200, N = 150. \\\\text{ Calculate } \\\\frac{dN}{dt}.`,
+                        expressionLatex: `\\\\frac{dN}{dt} = 0.18 \\\\times 150 \\\\times (1 - \\\\frac{150}{200})`,
+                        targetLatex: `\\\\frac{dN}{dt}`,
+                        slots: [{ id: "dndt", labelLatex: `\\\\frac{dN}{dt}`, placeholder: "6.8", expected: "6.8" }],
+                        correctLatex: `6.8 \\\\text{ individuals/year}`,
+                        hintLatex: [
+                            `1 - \\\\frac{150}{200} = 1 - 0.75 = 0.25`,
+                            `\\\\frac{dN}{dt} = 0.18 \\\\times 150 \\\\times 0.25`,
+                            `\\\\frac{dN}{dt} = 6.75 \\\\approx 6.8 \\\\text{ individuals/year}`
+                        ]
+                    }
+                );
+            }
+        }
+
         return quests;
     }, [t]);
 
@@ -204,6 +282,7 @@ export default function SB301Page() {
         { id: "FOOD_CHAINS" as Stage, label: t("sb3_01.stages.food_chains") },
         { id: "ENERGY_FLOW" as Stage, label: t("sb3_01.stages.energy_flow") },
         { id: "CYCLES" as Stage, label: t("sb3_01.stages.cycles") },
+        { id: "ELITE" as Stage, label: t("sb3_01.stages.elite") },
     ], [t]);
 
     const hint = getHint();

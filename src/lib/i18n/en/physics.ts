@@ -288,6 +288,13 @@ export const enPhysics = {
             slope_friction: "Box m={m}kg on slope (θ={theta}°) with μ={mu}. Friction force?",
             critical: "Box m={m}kg pulled by F={f}N with μ={mu}. At critical point, net force?",
 
+            // Cross-disciplinary ELITE scenarios with vector mathematics
+            rhine_bridge_3d: "Rhine Bridge structural analysis: Cable system supports mass m={m}kg with tension F={f}N at angle θ={theta}° from horizontal. Friction coefficient μ={mu} at anchor point. Calculate the net force component along the bridge deck using 3D vector decomposition (\\\\vec{{F}} = F_x\\\\hat{{i}} + F_y\\\\hat{{j}} + F_z\\\\hat{{k}}).",
+            basel_tram_equilibrium: "Basel Tram BVB Line 8: Tram car m={m}kg on inclined track (θ={theta}°) experiences motor force F={f}N upward along track. Track friction μ={mu}. For equilibrium on the slope, calculate the net force. Use 3D vector analysis with \\\\vec{{F}}_{{net}} = \\\\vec{{F}}_{{motor}} + \\\\vec{{F}}_{{gravity}} + \\\\vec{{f}}_{{friction}}.",
+            roche_tower_structural: "Roche Tower structural load: Building component m={m}kg experiences wind force F={f}N at angle θ={theta}° from vertical. Structural friction μ={mu} at connection joint. Calculate acceleration using vector force decomposition F = ma with \\\\vec{{F}} = (F\\\\cos\\\\theta, F\\\\sin\\\\theta, 0).",
+            basel_port_crane: "Basel Port Rhine crane: Cargo container m={m}kg lifted by crane cable with tension F={f}N at angle θ={theta}° from vertical. Cable friction μ={mu} at pulley. Find acceleration using 3D vector analysis: \\\\vec{{a}} = \\\\vec{{F}}_{{net}}/m where \\\\vec{{F}}_{{net}} = \\\\vec{{T}} + \\\\vec{{W}} + \\\\vec{{f}}.",
+            hospital_equipment_3d: "University Hospital Basel equipment: Medical device m={m}kg on inclined ramp (θ={theta}°) with friction μ={mu}. Applied force F={f}N parallel to ramp surface. Calculate friction force using 3D vector decomposition: \\\\vec{{f}} = \\\\mu\\\\vec{{N}} where \\\\vec{{N}} = mg\\\\cos\\\\theta\\\\hat{{n}}.",
+
             // Legacy keys for compatibility
             n1_const_vel: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
             n1_equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
@@ -334,7 +341,14 @@ export const enPhysics = {
             max_static: "Maximum static friction before motion starts",
             kinetic_vs_static: "Static friction is usually larger than kinetic",
             slope_friction: "f = μN = μ(mg cos θ)",
-            critical: "At critical point, F_applied = f_max"
+            critical: "At critical point, F_applied = f_max",
+
+            // Cross-disciplinary ELITE hints
+            rhine_bridge_3d: "Decompose tension into components: F_x = F cos θ, F_y = F sin θ. Consider friction force f = μN. Net force: F_net = F_x - f - mg sin θ (along deck).",
+            basel_tram_equilibrium: "For equilibrium on slope: ΣF = 0. Decompose forces into parallel and perpendicular components. F_motor must balance mg sin θ + f where f = μN = μ(mg cos θ).",
+            roche_tower_structural: "Use F = ma with vector decomposition. F_net = F - f where f = μN. Decompose wind force: F_x = F sin θ, F_y = F cos θ. Then a = F_net/m.",
+            basel_port_crane: "Vector sum: F_net = T - W - f. Decompose tension at angle θ: T_y = T cos θ (vertical), T_x = T sin θ (horizontal). Friction f = μT. Acceleration a = F_net/m.",
+            hospital_equipment_3d: "On inclined plane: N = mg cos θ (normal force perpendicular to surface). Friction force f = μN = μ(mg cos θ) acts parallel to surface, opposing motion.",
         }
     },
 
@@ -763,6 +777,13 @@ export const enPhysics = {
             power_basics: "Basel Household Electricity: You are helping Basel's energy consulting company calculate power consumption for residential customers. Electric power (P = U × I) determines how much energy devices use per second, measured in Watts. Your task is to calculate power for various household appliances. Understanding this helps families reduce electricity bills and carbon footprint. For example, a typical Basel household uses about 4,500 kWh per year, costing around 1,125 CHF at 0.25 CHF/kWh. Accurate power calculations help identify energy-wasting devices.",
             energy_consumption: "IWB Basel Energy Management: You work for IWB (Industrielle Werke Basel), Basel's main electricity provider. Your task is to calculate energy consumption (E = P × t) and costs for commercial customers. Energy is measured in kilowatt-hours (kWh), and Basel's electricity rate is approximately 0.25 CHF/kWh for households and 0.20 CHF/kWh for businesses. You're analyzing a Novartis laboratory that runs equipment 24/7. Accurate calculations ensure correct billing and help customers optimize energy usage to reduce costs and environmental impact.",
             efficiency: "Basel Solar Panel Installation: You are an engineer at Solarville Basel, installing solar panels on residential rooftops. Efficiency (η = P_out/P_in × 100%) determines how much sunlight energy converts to electricity. Modern panels achieve 18-22% efficiency. Your task is to calculate power output, energy losses, and cost savings. A typical Basel home with 20 m² of panels (4 kW capacity) generates about 3,800 kWh/year, saving approximately 950 CHF annually. Understanding efficiency helps customers make informed investment decisions."
+        },
+        prompts: {
+            e1: "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?",
+            e2: "Summer AC: P=1.5kW for 100h. Rate: 0.28 CHF/kWh. Cost?",
+            e3: "Basler Läckerli Oven: P=2kW for 5h. Rate: 0.28 CHF/kWh. Cost?",
+            e4: "EV Charging (Off-peak): P=11kW for 50h. Rate: 0.24 CHF/kWh. Cost?",
+            e5: "Fasnacht Lanterns: P=0.5kW for 72h. Rate: 0.28 CHF/kWh. Cost?"
         }
     },
 
@@ -796,7 +817,12 @@ export const enPhysics = {
             charles_find_t2: "Charles's Law: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Find T₂.",
             charles_relation: "Double the absolute temperature at constant P. Volume changes by what factor?",
             charles_condition: "Charles's Law requires which quantity to remain constant?",
-            combined_law: "Combined Gas Law provided P, V, T changes. Solving for {target}."
+            combined_law: "Combined Gas Law provided P, V, T changes. Solving for {target}.",
+            iwb_steam: "IWB District Heating: Steam at T={T} K, V={V} m³, n={n} mol. Calculate Pressure P (Ideal Gas assumption).",
+            roche_tower: "Roche Tower Floor 40: Room V={V} m³, T={T} K, P={P} Pa. Calculate moles of air n.",
+            rhine_bubble: "Rhine Diver at depth (P1={p1} kPa) exhales bubble V1={v1} mL. Volume at surface (P2={p2} kPa)?",
+            weather_balloon: "Basel Weather Balloon: Ground V={v1} m³, T1={t1} K. Stratosphere T2={t2} K (assume constant P for Charles' Law). New Volume?",
+            novartis_reactor: "Novartis Reactor V={V} m³. Purge with N2 at P={P} Pa, T={T} K. Calculate mass of N2 (M=0.028 kg/mol)."
         },
         scenarios: {
             ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",

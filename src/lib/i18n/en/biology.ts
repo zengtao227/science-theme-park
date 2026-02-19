@@ -1285,7 +1285,10 @@ export const enBiology = {
                 advanced_4: "What enzyme deficiency causes lactose intolerance?",
                 advanced_5: "How do absorbed nutrients reach body cells?",
                 elite_1: "A Basel Marathon runner experiences digestive issues. Explain how blood flow redistribution affects digestion during exercise.",
-                elite_2: "Design a meal plan that optimizes enzyme function throughout the digestive system."
+                elite_2: "Design a meal plan that optimizes enzyme function throughout the digestive system.",
+                elite_3: "Intestinal Absorption: Identify the primary active transport mechanism (SGLT1) for glucose uptake in the small intestine.",
+                elite_4: "System Efficiency: Explain how the 'enterohepatic circulation' maximizes the utility of bile salts in digestion.",
+                elite_5: "Microbiome Balance: Identify the metabolic byproducts (short-chain fatty acids) of fiber fermentation in the large intestine."
             },
             respiratory: {
                 basic_1: "Which tube carries air from the throat to the lungs?",
@@ -1306,7 +1309,9 @@ export const enBiology = {
                 advanced_5: "How does breathing rate affect blood pH?",
                 elite_1: "Analyze how cold water swimming in the Rhine affects respiratory function and oxygen delivery.",
                 elite_2: "A patient at University Hospital Basel has low blood oxygen. Diagnose possible respiratory system failures.",
-                elite_3: "Design a public health program for Basel to improve respiratory health through breathing exercises and air quality monitoring."
+                elite_3: "Design a public health program for Basel to improve respiratory health through breathing exercises and air quality monitoring.",
+                elite_4: "Equilibrium Logic: If a Basel Rhine swimmer hyperventilates, how does the $[H^+]$ concentration change relative to $CO_2$ loss?",
+                elite_5: "Respiratory Acidosis: When $CO_2$ is retained, identify the immediate chemical buffer response to maintain homeostasis."
             },
             circulatory: {
                 basic_1: "Which heart chamber pumps blood to the body?",
@@ -1327,7 +1332,10 @@ export const enBiology = {
                 advanced_4: "What causes fatigue in anemia?",
                 advanced_5: "How does blood flow help regulate body temperature?",
                 elite_1: "Explain how the circulatory system adapts during a Basel Marathon to meet increased oxygen demands.",
-                elite_2: "A patient has high blood pressure. Analyze the cardiovascular factors and propose interventions."
+                elite_2: "A patient has high blood pressure. Analyze the cardiovascular factors and propose interventions.",
+                elite_3: "System Coordination: Order the physiological responses to a sudden pH drop from fastest to slowest.",
+                elite_4: "Cardiac Mechanics: Describe the 'Frank-Starling law' and its role in matching cardiac output to venous return.",
+                elite_5: "Vascular Physics: Explain how a small change in vessel radius drastically affects resistance (radius to the fourth power)."
             },
             excretory: {
                 basic_1: "Which organs filter blood to remove waste?",
@@ -1348,7 +1356,9 @@ export const enBiology = {
                 advanced_5: "How do kidneys respond to dehydration?",
                 elite_1: "A patient at University Hospital Basel has kidney failure. Explain how this affects overall body homeostasis.",
                 elite_2: "Design a public health program for Basel to prevent kidney disease through nutrition and hydration.",
-                elite_3: "Propose treatment options for a patient with chronic kidney disease at University Hospital Basel."
+                elite_3: "Propose treatment options for a patient with chronic kidney disease at University Hospital Basel.",
+                elite_4: "Renal Homeostasis: In metabolic acidosis (low pH), which cell type in the collecting duct increases $H^+$ secretion?",
+                elite_5: "Interdisciplinary: Use the Henderson-Hasselbalch equation to explain why kidneys reabsorb $HCO_3^-$ instead of $CO_3^{2-}$ for precise pH control."
             }
         },
         scenarios: {

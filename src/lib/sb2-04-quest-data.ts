@@ -35,11 +35,11 @@ function createQuest(
     promptLatex: promptKey,
     expressionLatex: "",
     targetLatex: "",
-    slots: [{ 
-      id: "answer", 
-      labelLatex: "\\text{Answer}", 
-      placeholder: correctAnswer.toLowerCase(), 
-      expected: correctAnswer.toLowerCase() 
+    slots: [{
+      id: "answer",
+      labelLatex: "\\text{Answer}",
+      placeholder: correctAnswer.toLowerCase(),
+      expected: correctAnswer.toLowerCase()
     }],
     correctLatex: correctAnswer.toLowerCase(),
     hintLatex: [],
@@ -259,6 +259,42 @@ export const digestiveEliteQuests: SB204Quest[] = [
     undefined,
     undefined,
     "nutrition_program"
+  ),
+  createQuest(
+    "DIGESTIVE_ELITE_3",
+    "ELITE",
+    "DIGESTIVE_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.digestive.elite_3",
+    "sglt1",
+    undefined,
+    undefined,
+    undefined,
+    "intestinal_absorption"
+  ),
+  createQuest(
+    "DIGESTIVE_ELITE_4",
+    "ELITE",
+    "DIGESTIVE_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.digestive.elite_4",
+    "enterohepatic circulation",
+    undefined,
+    undefined,
+    undefined,
+    "bile_recycling"
+  ),
+  createQuest(
+    "DIGESTIVE_ELITE_5",
+    "ELITE",
+    "DIGESTIVE_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.digestive.elite_5",
+    "short-chain fatty acids",
+    undefined,
+    undefined,
+    undefined,
+    "microbiome_metabolism"
   ),
 ];
 
@@ -483,6 +519,30 @@ export const respiratoryEliteQuests: SB204Quest[] = [
     undefined,
     "public_health"
   ),
+  createQuest(
+    "RESPIRATORY_ELITE_4",
+    "ELITE",
+    "RESPIRATORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.respiratory.elite_4",
+    "decreases",
+    undefined,
+    undefined,
+    undefined,
+    "equilibrium_logic"
+  ),
+  createQuest(
+    "RESPIRATORY_ELITE_5",
+    "ELITE",
+    "RESPIRATORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.respiratory.elite_5",
+    "bicarbonate buffer",
+    undefined,
+    undefined,
+    undefined,
+    "acidosis_response"
+  ),
 ];
 
 // ============================================================================
@@ -704,6 +764,42 @@ export const circulatoryEliteQuests: SB204Quest[] = [
     undefined,
     undefined,
     "hospital_case"
+  ),
+  createQuest(
+    "CIRCULATORY_ELITE_3",
+    "ELITE",
+    "CIRCULATORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.circulatory.elite_3",
+    "buffers > breathing > kidneys",
+    undefined,
+    undefined,
+    undefined,
+    "system_coordination"
+  ),
+  createQuest(
+    "CIRCULATORY_ELITE_4",
+    "ELITE",
+    "CIRCULATORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.circulatory.elite_4",
+    "frank-starling law",
+    undefined,
+    undefined,
+    undefined,
+    "cardiac_efficiency"
+  ),
+  createQuest(
+    "CIRCULATORY_ELITE_5",
+    "ELITE",
+    "CIRCULATORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.circulatory.elite_5",
+    "radius to the fourth power",
+    undefined,
+    undefined,
+    undefined,
+    "blood_flow_physics"
   ),
 ];
 
@@ -927,6 +1023,30 @@ export const excretoryEliteQuests: SB204Quest[] = [
     undefined,
     undefined,
     "hospital_treatment"
+  ),
+  createQuest(
+    "EXCRETORY_ELITE_4",
+    "ELITE",
+    "EXCRETORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.excretory.elite_4",
+    "intercalated cells",
+    undefined,
+    undefined,
+    undefined,
+    "renal_homeostasis"
+  ),
+  createQuest(
+    "EXCRETORY_ELITE_5",
+    "ELITE",
+    "EXCRETORY_SYSTEM",
+    "comprehensive",
+    "sb2_04.quests.excretory.elite_5",
+    "higher buffer capacity at blood ph",
+    undefined,
+    undefined,
+    undefined,
+    "interdisciplinary_analysis"
   ),
 ];
 

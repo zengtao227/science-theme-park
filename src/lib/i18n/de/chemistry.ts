@@ -302,10 +302,31 @@ export const deChemistry = {
         stages: {
             identify: "IDENTIFIZIEREN",
             properties: "EIGENSCHAFTEN",
-            reactions: "REAKTIONEN"
+            reactions: "REAKTIONEN",
+            experiment: "EXPERIMENT"
         },
         prompts: {
             identify_powders: "Identifizieren Sie die drei weißen Pulver"
+        },
+        experiments: {
+            ph_analysis: {
+                title: "Rhein-Wasser Puffer-Analyse",
+                context: "Basler Amt für Umwelt: Analyse der Pufferkapazität des Rheins...",
+                purpose: "Bestimmen Sie, ob lokale Wasserproben pH-Wert-Änderungen widerstehen können.",
+                materials: ["Rheinwasserprobe", "Universalindikator", "0.1M HCl", "0.1M NaOH", "Bechergläser"],
+                procedure: ["1. 50 ml der Probe in ein Becherglas gießen.", "2. 2 Tropfen Indikator hinzufügen.", "3. Mit HCl tropfenweise titrieren.", "4. Tropfen bis zur Farbänderung aufzeichnen."],
+                expectedResults: "Der lokale Kalkstein sollte eine milde Pufferkapazität bieten.",
+                safetyWarning: "Schutzbrille tragen. Säuren und Basen sind ätzend."
+            },
+            salt_purification: {
+                title: "Schweizerhalle Salzreinigung",
+                context: "Schweizerhalle Salinen: Reinigung des aus den tiefen Bohrlöchern extrahierten Steinsalzes...",
+                purpose: "Reines NaCl aus der Steinsalzmischung extrahieren.",
+                materials: ["Steinsalz", "Wasser", "Filterpapier", "Trichter", "Abdampfschale", "Bunsenbrenner"],
+                procedure: ["1. Steinsalz zerkleinern.", "2. In warmem Wasser auflösen.", "3. Unlösliche Verunreinigungen filtern.", "4. Filtrat bis zur Kristallisation verdampfen."],
+                expectedResults: "Nach der Verdampfung bleiben weiße, kubische NaCl-Kristalle zurück.",
+                safetyWarning: "Verbrennungsgefahr durch heiße Abdampfschale."
+            }
         }
     },
     sc1_02: {
@@ -701,6 +722,13 @@ export const deChemistry = {
             gas_compression: "Basler Industriegas-Service: Optimierung der Lagerung von komprimierten Gasen für Industrie und Medizin in der Nordwestschweiz.",
             weather_balloons: "Meteorologie der Universität Basel: Anwendung des Charles-Gesetzes zur Vorhersage der Ausdehnung von Forschungsballons.",
             chemical_reactors: "Lonza Chemical Engineering: Die präzise Steuerung der Druck-Volumen-Beziehungen in Reaktoren ist entscheidend für die Sicherheit."
+        },
+        prompts: {
+            bvb_brake: "BVB Trambremse: Luft V={V} L bei P={P} bar. Komprimiert auf V2={V2} L. Neuer Druck P2?",
+            euroairport: "EuroAirport Kabine: Luftprobe bei T1={t1} K, P1={p1} kPa. Auf Höhe T2={t2} K, P2={p2} kPa. Volumenverhältnis V2/V1?",
+            wickelfisch: "Rhein-Wickelfisch: Luft V={v1} L bei T1={t1} K (Sonne). Untergetaucht in T2={t2} K Wasser. Neues Volumen V2?",
+            fire_dept: "Berufsfeuerwehr Basel: O2-Tank V={V} L, P={P} bar. Verbrauch {r} L/min (bei 1 bar). Dauer in Minuten?",
+            geothermal: "Geopower Basel: Methanblase steigt aus Tiefe (P1={p1} bar, T1={t1} K) zur Oberfläche (P2=1 bar, T2={t2} K). Expansionsfaktor?"
         }
     },
     sc2_04: {

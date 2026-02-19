@@ -314,10 +314,31 @@ export const enChemistry = {
         stages: {
             identify: "IDENTIFY",
             properties: "PROPERTIES",
-            reactions: "REACTIONS"
+            reactions: "REACTIONS",
+            experiment: "EXPERIMENT"
         },
         prompts: {
             identify_powders: "Identify the three white powders"
+        },
+        experiments: {
+            ph_analysis: {
+                title: "Rhine Water Buffer Analysis",
+                context: "Basel Environmental Agency: Analyzing the buffering capacity of the Rhine...",
+                purpose: "Determine if local water samples can resist pH changes.",
+                materials: ["Rhine water sample", "Universal indicator", "0.1M HCl", "0.1M NaOH", "Beakers"],
+                procedure: ["1. Pour 50mL of sample into beaker.", "2. Add 2 drops of indicator.", "3. Titrate with HCl dropwise.", "4. Record drops until color changes."],
+                expectedResults: "The local limestone should provide mild buffering capacity.",
+                safetyWarning: "Wear safety goggles. Acids and bases are corrosive."
+            },
+            salt_purification: {
+                title: "Schweizerhalle Salt Purification",
+                context: "Schweizerhalle Salt Works: Purifying rock salt extracted from the deep boreholes...",
+                purpose: "Extract pure NaCl from rock salt mixture.",
+                materials: ["Rock salt", "Water", "Filter paper", "Funnel", "Evaporating dish", "Bunsen burner"],
+                procedure: ["1. Crush rock salt.", "2. Dissolve in warm water.", "3. Filter insoluble impurities.", "4. Evaporate filtrate until crystallization."],
+                expectedResults: "White, cubic NaCl crystals remain after evaporation.",
+                safetyWarning: "Burn hazard from hot evaporating dish."
+            }
         }
     },
     sc1_02: {
@@ -713,6 +734,13 @@ export const enChemistry = {
             gas_compression: "Basel Industrial Gas Services: Optimizing the storage of compressed gases for industrial and medical use across Northern Switzerland.",
             weather_balloons: "University of Basel Meteorology: Using Charles' Law to predict the expansion of high-altitude research balloons launched from the city.",
             chemical_reactors: "Lonza Chemical Engineering: Precise control of pressure-volume relationships in reactors is crucial for safe high-pressure synthesis."
+        },
+        prompts: {
+            bvb_brake: "BVB Tram Brake: Air V={V} L at P={P} bar. Compressed to V2={V2} L. Calculate new Pressure P2.",
+            euroairport: "EuroAirport Cabin: Air sample at T1={t1} K, P1={p1} kPa. At altitude T2={t2} K, P2={p2} kPa. Find Volume Ratio V2/V1.",
+            wickelfisch: "Rhine Wickelfisch: Air V={v1} L at T1={t1} K (Sun). Submerged in water at T2={t2} K. New Volume V2?",
+            fire_dept: "Basel Fire Dept: O2 Tank V={V} L, P={P} bar. Usage rate {r} L/min (at 1 bar). Duration in minutes?",
+            geothermal: "Geopower Basel: Methane bubble rises from depth (P1={p1} bar, T1={t1} K) to surface (P2=1 bar, T2={t2} K). Expansion Factor?"
         }
     },
     sc2_04: {

@@ -64,6 +64,9 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SP302QuestData[]>> = {
       { id: "Q3", m: 12, f: 60, mu: 0.2, scen: "complex", expect: 36.48 },
       { id: "Q4", m: 15, f: 75, mu: 0.5, scen: "complex", expect: 1.5 },
       { id: "Q5", m: 20, f: 100, mu: 0.3, scen: "complex", expect: 41.2 },
+      // Cross-disciplinary ELITE questions with 3D vector equilibrium
+      { id: "Q6", m: 12.5, f: 65, mu: 0.35, theta: 25, scen: "rhine_bridge_3d", expect: 22.89 },
+      { id: "Q7", m: 18.3, f: 85, mu: 0.28, theta: 30, scen: "basel_tram_equilibrium", expect: 35.42 },
     ],
   },
   NEWTON_2: {
@@ -94,6 +97,9 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SP302QuestData[]>> = {
       { id: "Q3", m: 12, f: 60, scen: "variable_mass", expect: 5 },
       { id: "Q4", m: 15, f: 75, scen: "coupled", expect: 2.5 },
       { id: "Q5", m: 20, f: 100, scen: "variable_mass", expect: 5 },
+      // Cross-disciplinary ELITE questions with vector force decomposition
+      { id: "Q6", m: 14.8, f: 92, mu: 0.32, theta: 35, scen: "roche_tower_structural", expect: 3.15 },
+      { id: "Q7", m: 22.6, f: 125, mu: 0.25, theta: 28, scen: "basel_port_crane", expect: 3.68 },
     ],
   },
   FRICTION: {
@@ -124,6 +130,8 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SP302QuestData[]>> = {
       { id: "Q3", m: 12, mu: 0.2, f: 60, scen: "critical", expect: 36.48 },
       { id: "Q4", m: 15, mu: 0.5, f: 75, scen: "critical", expect: 1.5 },
       { id: "Q5", m: 20, mu: 0.3, f: 100, scen: "critical", expect: 41.2 },
+      // Cross-disciplinary ELITE question with 3D vector friction analysis
+      { id: "Q6", m: 16.4, mu: 0.38, f: 95, theta: 32, scen: "hospital_equipment_3d", expect: 28.76 },
     ],
   },
 };

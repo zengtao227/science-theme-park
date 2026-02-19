@@ -187,49 +187,48 @@ function buildStagePool(
             quests.push(
                 {
                     id: "IG-E1", difficulty, stage, gasType: "ideal",
-                    promptLatex: "\\\\text{Van der Waals (Concept): Real gases deviation.}",
-                    expressionLatex: "\\left(P + a\\\\frac{n^2}{V^2}\\right)(V-nb) = nRT",
-                    targetLatex: "\\\\text{Ideal if}",
-                    slots: [{ id: "cond", labelLatex: "a,b \\to", placeholder: "0", expected: 0 }],
-                    correctLatex: "a, b \\to 0",
-                    hintLatex: ["Ideal gas has no volume/forces"]
+                    promptLatex: t("gp2_01.prompts.iwb_steam", { T: 450, V: 50, n: 2000 }),
+                    expressionLatex: "P = \\\\frac{nRT}{V}",
+                    targetLatex: "P",
+                    slots: [{ id: "p", labelLatex: "P \\\\text{ (Pa)}", placeholder: "149652", expected: 149652 }],
+                    correctLatex: "P \\approx 150 \\\\text{ kPa}",
+                    hintLatex: ["R = 8.314 J/mol·K"]
                 },
                 {
                     id: "IG-E2", difficulty, stage, gasType: "ideal",
-                    promptLatex: t("gp2_01.prompts.find_p", { n: 100, T: 1000, V: 1 }),
-                    expressionLatex: "P = nRT/V",
-                    targetLatex: "P",
-                    slots: [{ id: "p", labelLatex: "P", placeholder: "831400", expected: 831400 }],
-                    correctLatex: "P \\approx 831.4 \\\\text{ kPa}",
-                    hintLatex: ["Large scale"]
+                    promptLatex: t("gp2_01.prompts.roche_tower", { V: 500, T: 300, P: 100000 }),
+                    expressionLatex: "n = \\\\frac{PV}{RT}",
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n \\\\text{ (mol)}", placeholder: "20046", expected: 20046 }],
+                    correctLatex: "n \\approx 20050 \\\\text{ mol}",
+                    hintLatex: ["P in Pa, V in m³"]
                 },
-                // Additional Elite
                 {
                     id: "IG-E3", difficulty, stage, gasType: "ideal",
-                    promptLatex: "n=1, T=300, V=0.0249. Solve PV/nRT.",
-                    expressionLatex: "Z = \\\\frac{PV}{nRT}",
-                    targetLatex: "Z",
-                    slots: [{ id: "z", labelLatex: "Z", placeholder: "1", expected: 1 }],
-                    correctLatex: "Z = 1 \\\\text{ for ideal gas}",
-                    hintLatex: ["Compressibility factor"]
+                    promptLatex: t("gp2_01.prompts.rhine_bubble", { p1: 200, v1: 20, p2: 100 }),
+                    expressionLatex: "P_1 V_1 = P_2 V_2",
+                    targetLatex: "V_2",
+                    slots: [{ id: "v", labelLatex: "V_2 \\\\text{ (mL)}", placeholder: "40", expected: 40 }],
+                    correctLatex: "40 \\\\text{ mL}",
+                    hintLatex: ["Pressure halves, Volume doubles"]
                 },
                 {
                     id: "IG-E4", difficulty, stage, gasType: "ideal",
-                    promptLatex: "Density \\rho = PM/RT. If M=0.028 (N2), P=101325, T=298. Find \\rho.",
-                    expressionLatex: "\\rho = \\\\frac{101325 \\times 0.028}{8.314 \\times 298}",
-                    targetLatex: "\\rho",
-                    slots: [{ id: "rho", labelLatex: "\\rho", placeholder: "1.14", expected: 1.14 }],
-                    correctLatex: "\\rho \\approx 1.14 \\\\text{ kg/m}^3",
-                    hintLatex: ["Use SI units"]
+                    promptLatex: t("gp2_01.prompts.weather_balloon", { v1: 10, t1: 300, t2: 240 }),
+                    expressionLatex: "\\\\frac{V_1}{T_1} = \\\\frac{V_2}{T_2}",
+                    targetLatex: "V_2",
+                    slots: [{ id: "v", labelLatex: "V_2 \\\\text{ (m}^3)", placeholder: "8", expected: 8 }],
+                    correctLatex: "8 \\\\text{ m}^3",
+                    hintLatex: ["Cooling shrinks volume"]
                 },
                 {
                     id: "IG-E5", difficulty, stage, gasType: "ideal",
-                    promptLatex: "Molar volume at STP (P=101325, T=273.15).",
-                    expressionLatex: "V_m = RT/P",
-                    targetLatex: "V_m",
-                    slots: [{ id: "v", labelLatex: "V_m", placeholder: "0.0224", expected: 0.0224 }],
-                    correctLatex: "22.4 \\\\text{ L/mol}",
-                    hintLatex: ["Standard value"]
+                    promptLatex: t("gp2_01.prompts.novartis_reactor", { V: 10, P: 200000, T: 300 }),
+                    expressionLatex: "m = n \\times M = \\frac{PV}{RT} \\times M",
+                    targetLatex: "m",
+                    slots: [{ id: "m", labelLatex: "m \\\\text{ (kg)}", placeholder: "22.45", expected: 22.45 }],
+                    correctLatex: "m \\approx 22.5 \\\\text{ kg}",
+                    hintLatex: ["Calc n first, then × 0.028"]
                 }
             );
         }

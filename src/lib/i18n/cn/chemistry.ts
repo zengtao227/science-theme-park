@@ -314,10 +314,31 @@ export const cnChemistry = {
         stages: {
             identify: "鉴定",
             properties: "性质",
-            reactions: "反应"
+            reactions: "反应",
+            experiment: "实验设计"
         },
         prompts: {
             identify_powders: "鉴定三种白色粉末"
+        },
+        experiments: {
+            ph_analysis: {
+                title: "莱茵河水体缓冲能力分析",
+                context: "巴塞尔环境局：分析莱茵河水体的pH缓冲能力...",
+                purpose: "测定本地水样是否能抵抗pH值的变化。",
+                materials: ["莱茵河水样", "通用指示剂", "0.1M 盐酸", "0.1M 氢氧化钠", "烧杯"],
+                procedure: ["1. 将50mL水样倒入烧杯。", "2. 加入2滴通用指示剂。", "3. 逐滴加入HCl进行滴定。", "4. 记录颜色变化所需的滴数。"],
+                expectedResults: "含有碳酸钙的本地水应该提供中等程度的缓冲能力。",
+                safetyWarning: "请佩戴护目镜。强酸强碱具有腐蚀性。"
+            },
+            salt_purification: {
+                title: "Schweizerhalle 盐矿提纯",
+                context: "Schweizerhalle 盐矿：提纯从深井中提取的岩盐混合物...",
+                purpose: "从粗盐混合物中提取高纯度的氯化钠(NaCl)。",
+                materials: ["粗盐", "水", "滤纸", "漏斗", "蒸发皿", "本生灯"],
+                procedure: ["1. 研磨粗盐以增加表面积。", "2. 溶于温水中以充分溶解食盐。", "3. 过滤去除不溶性杂质（泥沙等）。", "4. 将滤液倒入蒸发皿中加热至结晶。"],
+                expectedResults: "水分蒸发后，蒸发皿中将留下白色的立方体NaCl晶体。",
+                safetyWarning: "热蒸发皿有烫伤危险，请使用实验钳操作。"
+            }
         }
     },
     sc1_02: {
@@ -713,6 +734,13 @@ export const cnChemistry = {
             gas_compression: "巴塞尔工业气体服务：优化瑞士北部工业和医疗用压缩气体的储存。",
             weather_balloons: "巴塞尔大学气象学：利用查理定律预测从该市发射的高空研究气球的膨胀情况。",
             chemical_reactors: "龙沙 (Lonza) 化学工程：在反应器中精确控制压强-体积关系对于安全的高压合成至关重要。"
+        },
+        prompts: {
+            bvb_brake: "BVB 电车制动：空气 V={V} L 在 P={P} bar。压缩至 V2={V2} L。计算新压力 P2。",
+            euroairport: "EuroAirport 机舱：T1={t1} K, P1={p1} kPa 的空气样本。在高度 T2={t2} K, P2={p2} kPa 下。求体积比 V2/V1。",
+            wickelfisch: "莱茵河游泳袋 (Wickelfisch)：空气 V={v1} L 在 T1={t1} K (阳光下)。浸入 T2={t2} K 水中。新体积 V2？",
+            fire_dept: "巴塞尔消防队：氧气罐 V={V} L, P={P} bar。消耗率 {r} L/min (1 bar 下)。持续时间 (分钟)？",
+            geothermal: "巴塞尔地热：甲烷气泡从深处 (P1={p1} bar, T1={t1} K) 升至表面 (P2=1 bar, T2={t2} K)。膨胀倍数？"
         }
     },
     sc2_04: {

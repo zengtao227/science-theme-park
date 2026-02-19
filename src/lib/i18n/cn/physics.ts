@@ -248,6 +248,13 @@ export const cnPhysics = {
             power_basics: "巴塞尔家庭用电：你正在帮助巴塞尔的能源咨询公司为居民客户计算用电功率。电功率（P = U × I）决定了设备每秒消耗多少能量，单位为瓦特。你的任务是计算各种家用电器的功率。理解这一点有助于家庭减少电费和碳足迹。例如，一个典型的巴塞尔家庭每年使用约4,500千瓦时，按0.25瑞士法郎/千瓦时计算，费用约为1,125瑞士法郎。准确的功率计算有助于识别浪费能源的设备。",
             energy_consumption: "IWB巴塞尔能源管理：你在IWB（巴塞尔工业公司）工作，这是巴塞尔的主要电力供应商。你的任务是为商业客户计算能量消耗（E = P × t）和费用。能量以千瓦时（kWh）为单位测量，巴塞尔的电价约为家庭0.25瑞士法郎/千瓦时，企业0.20瑞士法郎/千瓦时。你正在分析一个诺华实验室，该实验室全天候运行设备。准确的计算确保正确计费，并帮助客户优化能源使用以降低成本和环境影响。",
             efficiency: "巴塞尔太阳能电池板安装：你是Solarville Basel的工程师，在住宅屋顶上安装太阳能电池板。效率（η = P_out/P_in × 100%）决定了多少太阳光能量转化为电能。现代电池板的效率达到18-22%。你的任务是计算功率输出、能量损失和成本节省。一个典型的巴塞尔家庭拥有20平方米的电池板（4千瓦容量），每年产生约3,800千瓦时，每年节省约950瑞士法郎。理解效率有助于客户做出明智的投资决策。"
+        },
+        prompts: {
+            e1: "IWB 热泵: P=3kW 运行 500h。费率: 0.28 CHF/kWh。总费用？",
+            e2: "夏季空调: P=1.5kW 运行 100h。费率: 0.28 CHF/kWh。总费用？",
+            e3: "巴塞尔 Läckerli 饼干烤箱: P=2kW 运行 5h。费率: 0.28 CHF/kWh。总费用？",
+            e4: "电动车充电 (谷电): P=11kW 运行 50h。费率: 0.24 CHF/kWh。总费用？",
+            e5: "巴塞尔狂欢节 (Fasnacht) 彩灯: P=0.5kW 运行 72h。费率: 0.28 CHF/kWh。总费用？"
         }
     },
 
@@ -342,6 +349,13 @@ export const cnPhysics = {
             slope_friction: "箱子 m={m}kg 在斜面上 (θ={theta}°)，μ={mu}。摩擦力？",
             critical: "箱子 m={m}kg 被力 F={f}N 拉动，μ={mu}。临界点的合力？",
 
+            // 跨学科精英场景（结合向量数学）
+            rhine_bridge_3d: "莱茵河大桥结构分析：缆索系统支撑质量 m={m}kg，张力 F={f}N，与水平面成角 θ={theta}°。锚点摩擦系数 μ={mu}。使用三维向量分解计算沿桥面的净力分量（\\\\vec{{F}} = F_x\\\\hat{{i}} + F_y\\\\hat{{j}} + F_z\\\\hat{{k}}）。",
+            basel_tram_equilibrium: "巴塞尔有轨电车 BVB 8号线：电车 m={m}kg 在倾斜轨道上（θ={theta}°），电机力 F={f}N 沿轨道向上。轨道摩擦 μ={mu}。为在斜坡上达到平衡，计算净力。使用三维向量分析：\\\\vec{{F}}_{{net}} = \\\\vec{{F}}_{{motor}} + \\\\vec{{F}}_{{gravity}} + \\\\vec{{f}}_{{friction}}。",
+            roche_tower_structural: "罗氏大厦结构载荷：建筑构件 m={m}kg 受风力 F={f}N，与垂直方向成角 θ={theta}°。连接处结构摩擦 μ={mu}。使用向量力分解计算加速度 F = ma，其中 \\\\vec{{F}} = (F\\\\cos\\\\theta, F\\\\sin\\\\theta, 0)。",
+            basel_port_crane: "巴塞尔港口莱茵河起重机：货柜 m={m}kg 由起重机缆索提升，张力 F={f}N，与垂直方向成角 θ={theta}°。滑轮处缆索摩擦 μ={mu}。使用三维向量分析求加速度：\\\\vec{{a}} = \\\\vec{{F}}_{{net}}/m，其中 \\\\vec{{F}}_{{net}} = \\\\vec{{T}} + \\\\vec{{W}} + \\\\vec{{f}}。",
+            hospital_equipment_3d: "巴塞尔大学医院设备：医疗设备 m={m}kg 在倾斜坡道上（θ={theta}°），摩擦系数 μ={mu}。施加力 F={f}N 平行于坡道表面。使用三维向量分解计算摩擦力：\\\\vec{{f}} = \\\\mu\\\\vec{{N}}，其中 \\\\vec{{N}} = mg\\\\cos\\\\theta\\\\hat{{n}}。",
+
             // 兼容旧键
             n1_const_vel: "物体 (m={m}kg) 以恒定速度 {v}m/s 运动。合力 ΣF？",
             n1_equilibrium: "力 F₁={f1}N (向右) 和 F₂={f2}N (向左) 作用于物体。为达到平衡，F₃？",
@@ -388,7 +402,14 @@ export const cnPhysics = {
             max_static: "运动开始前的最大静摩擦",
             kinetic_vs_static: "静摩擦通常大于动摩擦",
             slope_friction: "f = μN = μ(mg cos θ)",
-            critical: "临界点时，F_applied = f_max"
+            critical: "临界点时，F_applied = f_max",
+
+            // 跨学科精英提示
+            rhine_bridge_3d: "将张力分解为分量：F_x = F cos θ，F_y = F sin θ。考虑摩擦力 f = μN。净力：F_net = F_x - f - mg sin θ（沿桥面）。",
+            basel_tram_equilibrium: "斜坡上的平衡：ΣF = 0。将力分解为平行和垂直分量。F_motor 必须平衡 mg sin θ + f，其中 f = μN = μ(mg cos θ)。",
+            roche_tower_structural: "使用 F = ma 和向量分解。F_net = F - f，其中 f = μN。分解风力：F_x = F sin θ，F_y = F cos θ。然后 a = F_net/m。",
+            basel_port_crane: "向量和：F_net = T - W - f。分解角度 θ 的张力：T_y = T cos θ（垂直），T_x = T sin θ（水平）。摩擦 f = μT。加速度 a = F_net/m。",
+            hospital_equipment_3d: "在斜面上：N = mg cos θ（垂直于表面的支持力）。摩擦力 f = μN = μ(mg cos θ) 平行于表面，阻碍运动。",
         }
     },
 
@@ -471,77 +492,77 @@ export const cnPhysics = {
             pressure_basic_3: "\\\\text{力 100 N 作用在面积 2 m}^2. \\\\text{ 压力？}",
             pressure_basic_4: "\\\\text{力 200 N 作用在面积 0.5 m}^2. \\\\text{ 压力？}",
             pressure_basic_5: "\\\\text{潜水员在 2 m 深度。表压？ } (\\\\rho = 1000, g = 10)",
-            
+
             // 压力 - 核心 (5)
             pressure_core_1: "\\\\text{潜艇在 15 m 深度。总压力？ } (P_{atm} = 101000 \\\\text{ Pa})",
             pressure_core_2: "\\\\text{液压机：500 N 作用在 0.01 m}^2. \\\\text{ 压力？}",
             pressure_core_3: "\\\\text{油箱深度 20 m。底部压力？ } (\\\\rho_{oil} = 800 \\\\text{ kg/m}^3)",
             pressure_core_4: "\\\\text{活塞：1000 N 作用在 0.02 m}^2. \\\\text{ 传递的压力？}",
             pressure_core_5: "\\\\text{海洋深度 100 m。表压？ } (\\\\rho = 1030 \\\\text{ kg/m}^3)",
-            
+
             // 压力 - 进阶 (5)
             pressure_advanced_1: "\\\\text{双层流体：30 m 水 + 20 m 油 } (\\\\rho_w = 1000, \\\\rho_o = 800). \\\\text{ 底部压力？}",
             pressure_advanced_2: "\\\\text{液压升降机：小活塞 0.001 m}^2, \\\\text{ 大活塞 0.1 m}^2. \\\\text{ 小活塞上 100 N 力。大活塞上的力？}",
             pressure_advanced_3: "\\\\text{U 型管：左侧水，右侧水银。水高 10 m。水银高度？ } (\\\\rho_w = 1000, \\\\rho_{Hg} = 13600)",
             pressure_advanced_4: "\\\\text{液压制动：主缸 0.01 m}^2, \\\\text{ 从缸 0.05 m}^2. \\\\text{ 主缸上 200 N 力。从缸上的力？}",
             pressure_advanced_5: "\\\\text{深海：200 m 深度。总压力？ } (P_{atm} = 101000, \\\\rho = 1030)",
-            
+
             // 压力 - 精英 (5)
             pressure_elite_1: "\\\\text{马里亚纳海沟：11000 m 深度。压力？ } (\\\\rho = 1050, P_{atm} = 101000)",
             pressure_elite_2: "\\\\text{液压系统：A}_1 = 0.0001 \\\\text{ m}^2, A_2 = 0.01 \\\\text{ m}^2. \\\\text{ 机械优势？}",
             pressure_elite_3: "\\\\text{三层流体：2 m 水，2 m 油 } (\\\\rho = 800), \\\\text{ 1 m 水银 } (\\\\rho = 13600). \\\\text{ 总压力？}",
             pressure_elite_4: "\\\\text{液压千斤顶：效率 80\\\\%. 输入 500 N 在 0.002 m}^2, \\\\text{ 输出面积 0.2 m}^2. \\\\text{ 输出力？}",
             pressure_elite_5: "\\\\text{潜艇在 1000 m。1 m}^2 \\\\text{ 舱门上的压力差？ } (\\\\rho = 1030)",
-            
+
             // 浮力 - 基础 (5)
             buoyancy_basic_1: "F_b = \\\\rho Vg. \\\\text{ 若 } V = 0.1 \\\\text{ m}^3, \\\\rho = 1000, \\\\text{ 求浮力 } F_b.",
             buoyancy_basic_2: "\\\\text{物体体积 0.05 m}^3 \\\\text{ 在水中。浮力？}",
             buoyancy_basic_3: "\\\\text{气球体积 0.2 m}^3 \\\\text{ 在空气中 } (\\\\rho = 1.2 \\\\text{ kg/m}^3). \\\\text{ 浮力？}",
             buoyancy_basic_4: "\\\\text{岩石体积 0.01 m}^3 \\\\text{ 浸没在水中。浮力？}",
             buoyancy_basic_5: "\\\\text{船排开 0.5 m}^3 \\\\text{ 的水。浮力？}",
-            
+
             // 浮力 - 核心 (5)
             buoyancy_core_1: "\\\\text{木块：质量 10 kg，体积 0.02 m}^3. \\\\text{ 会在水中漂浮吗？}",
             buoyancy_core_2: "\\\\text{物体：重量 1500 N，体积 0.1 m}^3 \\\\text{ 在水中。净力？}",
             buoyancy_core_3: "\\\\text{冰块：密度 900 kg/m}^3, \\\\text{ 体积 0.05 m}^3. \\\\text{ 在水中浸没的分数？}",
             buoyancy_core_4: "\\\\text{铝块：质量 81 kg，体积 0.03 m}^3. \\\\text{ 在水中的表观重量？}",
             buoyancy_core_5: "\\\\text{热气球：体积 1000 m}^3, \\\\rho_{air} = 1.2, \\\\rho_{hot} = 0.9. \\\\text{ 升力？}",
-            
+
             // 浮力 - 进阶 (5)
             buoyancy_advanced_1: "\\\\text{比重计：质量 50 g，体积 40 cm}^3. \\\\text{ 在水中浸没的深度？}",
             buoyancy_advanced_2: "\\\\text{船：质量 50000 kg。排开的水的体积？}",
             buoyancy_advanced_3: "\\\\text{软木：密度 250 kg/m}^3, \\\\text{ 体积 0.02 m}^3 \\\\text{ 在水中。下沉前的最大负载？}",
             buoyancy_advanced_4: "\\\\text{金块：质量 19.3 kg，体积 0.001 m}^3. \\\\text{ 浸没时绳子的张力？}",
             buoyancy_advanced_5: "\\\\text{潜艇：体积 500 m}^3, \\\\text{ 质量 400000 kg。下潜所需的压载水？}",
-            
+
             // 浮力 - 精英 (5)
             buoyancy_elite_1: "\\\\text{双流体系统：物体一半在水中，一半在油中 } (\\\\rho_o = 800). \\\\text{ 若 } V = 0.1 \\\\text{ m}^3 \\\\text{ 总浮力？}",
             buoyancy_elite_2: "\\\\text{空心球：外半径 0.2 m，内半径 0.15 m，质量 10 kg。会漂浮吗？}",
             buoyancy_elite_3: "\\\\text{冰山：密度 900 kg/m}^3 \\\\text{ 在海水中 } (\\\\rho = 1030). \\\\text{ 水面以上的分数？}",
             buoyancy_elite_4: "\\\\text{氦气球：体积 1 m}^3, \\\\rho_{He} = 0.18, \\\\rho_{air} = 1.2, \\\\text{ 气球质量 0.5 kg。最大载荷？}",
             buoyancy_elite_5: "\\\\text{阿基米德的王冠：空气中重 10 N，水中重 8.5 N。密度？}",
-            
+
             // 液压 - 基础 (5)
             hydraulics_basic_1: "P = F/A. \\\\text{ 若 } F = 100 \\\\text{ N 作用在 } A = 0.01 \\\\text{ m}^2, \\\\text{ 求压力 } P.",
             hydraulics_basic_2: "\\\\text{液压机：200 N 作用在 0.02 m}^2. \\\\text{ 压力？}",
             hydraulics_basic_3: "\\\\text{活塞：500 N 作用在 0.05 m}^2. \\\\text{ 压力？}",
             hydraulics_basic_4: "\\\\text{液压缸：1000 N 作用在 0.1 m}^2. \\\\text{ 压力？}",
             hydraulics_basic_5: "\\\\text{小活塞：50 N 作用在 0.005 m}^2. \\\\text{ 压力？}",
-            
+
             // 液压 - 核心 (5)
             hydraulics_core_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。求 } F_2.",
             hydraulics_core_2: "\\\\text{液压制动：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.05 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_2.",
             hydraulics_core_3: "\\\\text{液压千斤顶：} A_1 = 0.02 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
             hydraulics_core_4: "\\\\text{液压机：} A_1 = 0.001 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 10 \\\\text{ N。求 } F_2.",
             hydraulics_core_5: "\\\\text{液压系统：} A_1 = 0.03 \\\\text{ m}^2, A_2 = 0.3 \\\\text{ m}^2, F_1 = 300 \\\\text{ N。求 } F_2.",
-            
+
             // 液压 - 进阶 (5)
             hydraulics_advanced_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, F_1 = 100 \\\\text{ N, } F_2 = 5000 \\\\text{ N。求 } A_2.",
             hydraulics_advanced_2: "\\\\text{液压系统：} A_1 = 0.002 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, \\\\text{ 活塞 1 移动 10 cm。活塞 2 移动？}",
             hydraulics_advanced_3: "\\\\text{液压机：效率 90\\\\%. } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
             hydraulics_advanced_4: "\\\\text{液压千斤顶：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.5 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。机械优势？}",
             hydraulics_advanced_5: "\\\\text{液压制动：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.04 \\\\text{ m}^2, F_1 = 150 \\\\text{ N, } d_1 = 5 \\\\text{ cm。做功？}",
-            
+
             // 液压 - 精英 (5)
             hydraulics_elite_1: "\\\\text{多级液压：} A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_3.",
             hydraulics_elite_2: "\\\\text{带摩擦的液压系统：} A_1 = 0.01, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N，摩擦力 } = 100 \\\\text{ N。净 } F_2?",
@@ -859,7 +880,12 @@ export const cnPhysics = {
             charles_find_t2: "查理定律: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. 求 T₂.",
             charles_relation: "恒压下绝对温度加倍，体积变为原来的几倍？",
             charles_condition: "查理定律要求哪个量保持不变？",
-            combined_law: "联合气体定律：已知 P, V, T 变化，求 {target}。"
+            combined_law: "联合气体定律：已知 P, V, T 变化，求 {target}。",
+            iwb_steam: "IWB 区域供热：蒸汽 T={T} K, V={V} m³, n={n} mol。计算压强 P (理想气体)。",
+            roche_tower: "Roche 大厦 40 层：房间 V={V} m³, T={T} K, P={P} Pa。计算空气摩尔数 n。",
+            rhine_bubble: "莱茵河潜水员在深度 (P1={p1} kPa) 呼出气泡 V1={v1} mL。到达水面 (P2={p2} kPa) 时的体积？",
+            weather_balloon: "巴塞尔气象气球：地面 V={v1} m³, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
+            novartis_reactor: "Novartis 反应釜 V={V} m³。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
         },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
@@ -1128,5 +1154,5 @@ export const cnPhysics = {
         monitor_title: "GP3.03_感应监视器",
         footer_left: "GP3.03_电磁感应 // 节点：巴塞尔"
     },
-    
+
 };

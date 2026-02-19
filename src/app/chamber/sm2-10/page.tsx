@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import DataVisualization from "@/components/chamber/sm2-10/DataVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
-type Stage = "BOX_PLOTS" | "SCATTER_PLOTS" | "CORRELATION";
+type Stage = "BOX_PLOTS" | "SCATTER_PLOTS" | "CORRELATION" | "ELITE";
 
 interface SM210Quest extends Quest {
     stage: Stage;
@@ -611,6 +611,84 @@ export default function SM210Page() {
             }
         }
 
+        if (stage === "ELITE") {
+            if (difficulty === "BASIC") {
+                quests.push(
+                    {
+                        id: "ELITE-B1", difficulty, stage, dataType: "rhine_temp_fish",
+                        promptLatex: `\\\\text{Basel Rhine River: summer temp } \\\\mu = 21.5°\\\\text{C, } \\\\sigma = 2.3°\\\\text{C (normal). Fish diversity correlates } r = -0.72. \\\\text{ Calculate } P(T > 24°\\\\text{C}).`,
+                        expressionLatex: `z = \\\\frac{x - \\\\mu}{\\\\sigma}, \\\\text{ then use normal distribution}`,
+                        targetLatex: `P(T > 24)`,
+                        slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
+                        correctLatex: `0.138 \\\\text{ or } 13.8\\\\%`,
+                        hintLatex: [
+                            `z = \\\\frac{24 - 21.5}{2.3} = 1.087`,
+                            `P(z > 1.087) \\\\approx 0.138`,
+                            `\\\\text{Strong negative correlation means higher temp reduces diversity}`
+                        ]
+                    },
+                    {
+                        id: "ELITE-B2", difficulty, stage, dataType: "park_biodiversity",
+                        promptLatex: `\\\\text{Kannenfeldpark birds (n=20): mean=32, SD=4.2. Novartis Campus (n=20): mean=28, SD=3.8. Find lower bound of 95\\% CI for difference.}`,
+                        expressionLatex: `\\\\text{SE}_{\\\\text{diff}} = \\\\sqrt{\\\\frac{s_1^2}{n_1} + \\\\frac{s_2^2}{n_2}}, \\\\text{ CI: diff } \\\\pm 1.96(\\\\text{SE})`,
+                        targetLatex: `\\\\text{Lower bound}`,
+                        slots: [{ id: "lower", labelLatex: `\\\\text{Lower}`, placeholder: "1.52", expected: 1.52 }],
+                        correctLatex: `1.52 \\\\text{ species}`,
+                        hintLatex: [
+                            `\\\\text{Difference} = 32 - 28 = 4`,
+                            `\\\\text{SE} = \\\\sqrt{\\\\frac{4.2^2}{20} + \\\\frac{3.8^2}{20}} = 1.267`,
+                            `\\\\text{CI: } 4 \\\\pm 1.96(1.267) = (1.52, 6.48)`
+                        ]
+                    }
+                );
+            } else if (difficulty === "CORE") {
+                quests.push(
+                    {
+                        id: "ELITE-C1", difficulty, stage, dataType: "climate_trend",
+                        promptLatex: `\\\\text{Basel temp: 9.2°C (1990) to 11.0°C (2024), 34 years. Growing season was 165 days (1990), increases 8 days per °C. Calculate 2024 growing season.}`,
+                        expressionLatex: `\\\\text{Temp increase} \\\\times \\\\text{days per °C} + \\\\text{baseline}`,
+                        targetLatex: `\\\\text{Days in 2024}`,
+                        slots: [{ id: "days", labelLatex: `\\\\text{Days}`, placeholder: "179", expected: 179 }],
+                        correctLatex: `179 \\\\text{ days}`,
+                        hintLatex: [
+                            `\\\\text{Temp increase} = 11.0 - 9.2 = 1.8°\\\\text{C}`,
+                            `\\\\text{Growing season increase} = 1.8 \\\\times 8 = 14.4 \\\\text{ days}`,
+                            `2024: 165 + 14.4 = 179.4 \\\\approx 179 \\\\text{ days}`
+                        ]
+                    },
+                    {
+                        id: "ELITE-C2", difficulty, stage, dataType: "fox_population",
+                        promptLatex: `\\\\text{Basel urban fox: mean K=150, SD=18 (normal). Safe range: 120-180. Calculate } P(\\\\text{outside safe range}).`,
+                        expressionLatex: `P(X < 120) + P(X > 180)`,
+                        targetLatex: `P(\\\\text{outside})`,
+                        slots: [{ id: "prob", labelLatex: `P(\\\\text{out})`, placeholder: "0.096", expected: 0.096 }],
+                        correctLatex: `0.096 \\\\text{ or } 9.6\\\\%`,
+                        hintLatex: [
+                            `z_1 = \\\\frac{120-150}{18} = -1.667, P(X<120) = 0.048`,
+                            `z_2 = \\\\frac{180-150}{18} = 1.667, P(X>180) = 0.048`,
+                            `P(\\\\text{outside}) = 0.048 + 0.048 = 0.096`
+                        ]
+                    }
+                );
+            } else if (difficulty === "ADVANCED") {
+                quests.push(
+                    {
+                        id: "ELITE-A1", difficulty, stage, dataType: "dissolved_oxygen",
+                        promptLatex: `\\\\text{Rhine dissolved oxygen (n=25): mean=9.8 mg/L, SD=1.4. Fish need } \\\\geq 8.0 \\\\text{ mg/L. Find lower bound of 90\\% CI.}`,
+                        expressionLatex: `\\\\text{SE} = \\\\frac{s}{\\\\sqrt{n}}, \\\\text{ 90\\% CI: } \\\\mu \\\\pm 1.645(\\\\text{SE})`,
+                        targetLatex: `\\\\text{Lower bound}`,
+                        slots: [{ id: "lower", labelLatex: `\\\\text{Lower}`, placeholder: "9.34", expected: 9.34 }],
+                        correctLatex: `9.34 \\\\text{ mg/L}`,
+                        hintLatex: [
+                            `\\\\text{SE} = \\\\frac{1.4}{\\\\sqrt{25}} = \\\\frac{1.4}{5} = 0.28`,
+                            `\\\\text{90\\% CI: } 9.8 \\\\pm 1.645(0.28) = 9.8 \\\\pm 0.461`,
+                            `\\\\text{Lower bound} = 9.34 > 8.0 \\\\text{ (safe for fish)}`
+                        ]
+                    }
+                );
+            }
+        }
+
         return quests;
     }, []);
 
@@ -642,6 +720,7 @@ export default function SM210Page() {
         { id: "BOX_PLOTS" as Stage, label: t("sm2_10.stages.box_plots") },
         { id: "SCATTER_PLOTS" as Stage, label: t("sm2_10.stages.scatter_plots") },
         { id: "CORRELATION" as Stage, label: t("sm2_10.stages.correlation") },
+        { id: "ELITE" as Stage, label: t("sm2_10.stages.elite") },
     ], [t]);
 
     if (!currentQuest) {

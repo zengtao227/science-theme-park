@@ -52,6 +52,9 @@ const navigationDataElite = [
   { id: "N_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number] },
   { id: "N_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number] },
   { id: "N_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number] },
+  // Cross-disciplinary physics integration: Force vector decomposition
+  { id: "N_E6", A: [12.5, 8.3, 15.7] as [number, number, number], B: [45.8, 32.6, 48.9] as [number, number, number] }, // Rhine bridge cable tension force
+  { id: "N_E7", A: [5.2, 18.4, 3.6] as [number, number, number], B: [28.7, 52.9, 15.3] as [number, number, number] }, // Basel tram acceleration force
 ];
 
 // DOT stage: Calculate dot product between two vectors
@@ -84,6 +87,9 @@ const dotDataElite = [
   { id: "D_E3", v: [4.1, 3.3, 2.7] as [number, number, number], w: [1.9, 2.5, 3.4] as [number, number, number] },
   { id: "D_E4", v: [3.8, 2.6, 5.2] as [number, number, number], w: [2.1, 3.7, 1.4] as [number, number, number] },
   { id: "D_E5", v: [5.3, 1.7, 3.9] as [number, number, number], w: [1.2, 4.6, 2.3] as [number, number, number] },
+  // Cross-disciplinary physics integration: Work = Force · Displacement
+  { id: "D_E6", v: [125.3, 87.6, 156.8] as [number, number, number], w: [45.7, 32.4, 68.9] as [number, number, number] }, // Roche Tower elevator work calculation
+  { id: "D_E7", v: [78.4, 112.5, 43.2] as [number, number, number], w: [34.6, 52.8, 28.7] as [number, number, number] }, // Basel Port cargo crane work
 ];
 
 // MISSION stage: Combined operations
@@ -116,6 +122,8 @@ const missionDataElite = [
   { id: "M_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number], s: [1.5, 1.7, 1.9] as [number, number, number] },
   { id: "M_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number], s: [2.2, 1.9, 1.3] as [number, number, number] },
   { id: "M_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number], s: [1.8, 2.5, 2.1] as [number, number, number] },
+  // Cross-disciplinary physics integration: University Hospital drone delivery with wind force
+  { id: "M_E6", A: [8.7, 15.3, 42.5] as [number, number, number], B: [56.4, 73.8, 125.7] as [number, number, number], s: [12.6, 18.9, 25.3] as [number, number, number] },
 ];
 
 function buildStagePool(gm2_01_t: any, difficulty: Difficulty, stage: Stage): G201Quest[] {

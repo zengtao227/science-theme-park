@@ -247,6 +247,13 @@ export const dePhysics = {
             power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO₂-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
             energy_consumption: "IWB Basel Energiemanagement: Sie arbeiten für IWB (Industrielle Werke Basel), Basels Hauptstromversorger. Ihre Aufgabe ist es, Energieverbrauch (E = P × t) und Kosten für Geschäftskunden zu berechnen. Energie wird in Kilowattstunden (kWh) gemessen, und Basels Stromtarif beträgt etwa 0,25 CHF/kWh für Haushalte und 0,20 CHF/kWh für Unternehmen. Sie analysieren ein Novartis-Labor, das Geräte rund um die Uhr betreibt. Genaue Berechnungen gewährleisten korrekte Abrechnung und helfen Kunden, den Energieverbrauch zu optimieren, um Kosten und Umweltauswirkungen zu reduzieren.",
             efficiency: "Basler Solaranlagen-Installation: Sie sind Ingenieur bei Solarville Basel und installieren Solarpaneele auf Wohndächern. Der Wirkungsgrad (η = P_aus/P_ein × 100%) bestimmt, wie viel Sonnenenergie in Elektrizität umgewandelt wird. Moderne Paneele erreichen 18-22% Wirkungsgrad. Ihre Aufgabe ist es, Leistungsabgabe, Energieverluste und Kosteneinsparungen zu berechnen. Ein typisches Basler Haus mit 20 m² Paneelen (4 kW Kapazität) erzeugt etwa 3.800 kWh/Jahr und spart jährlich etwa 950 CHF. Das Verständnis des Wirkungsgrads hilft Kunden, fundierte Investitionsentscheidungen zu treffen."
+        },
+        prompts: {
+            e1: "IWB Wärmepumpe: P=3kW für 500h. Tarif: 0.28 CHF/kWh. Kosten?",
+            e2: "Sommer-Klimaanlage: P=1.5kW für 100h. Tarif: 0.28 CHF/kWh. Kosten?",
+            e3: "Basler Läckerli Ofen: P=2kW für 5h. Tarif: 0.28 CHF/kWh. Kosten?",
+            e4: "E-Auto Laden (Niedertarif): P=11kW für 50h. Tarif: 0.24 CHF/kWh. Kosten?",
+            e5: "Fasnachtslaternen: P=0.5kW für 72h. Tarif: 0.28 CHF/kWh. Kosten?"
         }
     },
 
@@ -341,6 +348,13 @@ export const dePhysics = {
             slope_friction: "Kiste m={m}kg auf Hang (θ={theta}°) mit μ={mu}. Reibungskraft?",
             critical: "Kiste m={m}kg gezogen mit F={f}N mit μ={mu}. Am kritischen Punkt, Nettokraft?",
 
+            // Interdisziplinäre ELITE-Szenarien mit Vektormathematik
+            rhine_bridge_3d: "Rheinbrücke Strukturanalyse: Kabelsystem trägt Masse m={m}kg mit Spannung F={f}N im Winkel θ={theta}° zur Horizontalen. Reibungskoeffizient μ={mu} am Ankerpunkt. Berechnen Sie die Nettokraftkomponente entlang des Brückendecks mit 3D-Vektorzerlegung (\\\\vec{{F}} = F_x\\\\hat{{i}} + F_y\\\\hat{{j}} + F_z\\\\hat{{k}}).",
+            basel_tram_equilibrium: "Basler Tram BVB Linie 8: Tramwagen m={m}kg auf geneigter Strecke (θ={theta}°) erfährt Motorkraft F={f}N aufwärts entlang der Strecke. Streckenreibung μ={mu}. Für Gleichgewicht am Hang, berechnen Sie die Nettokraft. Verwenden Sie 3D-Vektoranalyse mit \\\\vec{{F}}_{{net}} = \\\\vec{{F}}_{{Motor}} + \\\\vec{{F}}_{{Schwerkraft}} + \\\\vec{{f}}_{{Reibung}}.",
+            roche_tower_structural: "Roche Tower Strukturlast: Gebäudekomponente m={m}kg erfährt Windkraft F={f}N im Winkel θ={theta}° zur Vertikalen. Strukturreibung μ={mu} an Verbindungsstelle. Berechnen Sie Beschleunigung mit Vektorkraftzerlegung F = ma mit \\\\vec{{F}} = (F\\\\cos\\\\theta, F\\\\sin\\\\theta, 0).",
+            basel_port_crane: "Basler Hafen Rheinkran: Frachtcontainer m={m}kg wird von Krankabel mit Spannung F={f}N im Winkel θ={theta}° zur Vertikalen gehoben. Kabelreibung μ={mu} an Rolle. Finden Sie Beschleunigung mit 3D-Vektoranalyse: \\\\vec{{a}} = \\\\vec{{F}}_{{net}}/m wobei \\\\vec{{F}}_{{net}} = \\\\vec{{T}} + \\\\vec{{W}} + \\\\vec{{f}}.",
+            hospital_equipment_3d: "Universitätsspital Basel Ausrüstung: Medizinisches Gerät m={m}kg auf geneigter Rampe (θ={theta}°) mit Reibung μ={mu}. Angewandte Kraft F={f}N parallel zur Rampenoberfläche. Berechnen Sie Reibungskraft mit 3D-Vektorzerlegung: \\\\vec{{f}} = \\\\mu\\\\vec{{N}} wobei \\\\vec{{N}} = mg\\\\cos\\\\theta\\\\hat{{n}}.",
+
             // Kompatibilitätsschlüssel
             n1_const_vel: "Objekt (m={m}kg) bewegt sich mit konstanter Geschwindigkeit {v}m/s. Nettokraft ΣF?",
             n1_equilibrium: "Kräfte F₁={f1}N (rechts) und F₂={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F₃?",
@@ -387,7 +401,14 @@ export const dePhysics = {
             max_static: "Maximale Haftreibung vor Bewegungsbeginn",
             kinetic_vs_static: "Haftreibung ist normalerweise größer als Gleitreibung",
             slope_friction: "f = μN = μ(mg cos θ)",
-            critical: "Am kritischen Punkt, F_angewandt = f_max"
+            critical: "Am kritischen Punkt, F_angewandt = f_max",
+
+            // Interdisziplinäre ELITE-Hinweise
+            rhine_bridge_3d: "Zerlegen Sie Spannung in Komponenten: F_x = F cos θ, F_y = F sin θ. Berücksichtigen Sie Reibungskraft f = μN. Nettokraft: F_net = F_x - f - mg sin θ (entlang Deck).",
+            basel_tram_equilibrium: "Für Gleichgewicht am Hang: ΣF = 0. Zerlegen Sie Kräfte in parallele und senkrechte Komponenten. F_Motor muss mg sin θ + f ausgleichen, wobei f = μN = μ(mg cos θ).",
+            roche_tower_structural: "Verwenden Sie F = ma mit Vektorzerlegung. F_net = F - f wobei f = μN. Zerlegen Sie Windkraft: F_x = F sin θ, F_y = F cos θ. Dann a = F_net/m.",
+            basel_port_crane: "Vektorsumme: F_net = T - W - f. Zerlegen Sie Spannung im Winkel θ: T_y = T cos θ (vertikal), T_x = T sin θ (horizontal). Reibung f = μT. Beschleunigung a = F_net/m.",
+            hospital_equipment_3d: "Auf geneigter Ebene: N = mg cos θ (Normalkraft senkrecht zur Oberfläche). Reibungskraft f = μN = μ(mg cos θ) wirkt parallel zur Oberfläche, entgegen der Bewegung.",
         }
     },
 
@@ -764,7 +785,12 @@ export const dePhysics = {
             charles_find_t2: "Gay-Lussac (Charles): V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Finde T₂.",
             charles_relation: "Absolute Temperatur bei konstantem P verdoppeln. Um welchen Faktor ändert sich das Volumen?",
             charles_condition: "Welche Größe muss beim Gesetz von Charles (Gay-Lussac) konstant bleiben?",
-            combined_law: "Allgemeines Gasgesetz bei P, V, T Änderung. Suche nach {target}."
+            combined_law: "Allgemeines Gasgesetz bei P, V, T Änderung. Suche nach {target}.",
+            iwb_steam: "IWB Fernwärme: Dampf bei T={T} K, V={V} m³, n={n} mol. Berechne Druck P (Ideal).",
+            roche_tower: "Roche-Turm 40. Stock: Raum V={V} m³, T={T} K, P={P} Pa. Berechne Luftmenge n.",
+            rhine_bubble: "Rhein-Taucher in der Tiefe (P1={p1} kPa) atmet Blase V1={v1} mL aus. Volumen an Oberfläche (P2={p2} kPa)?",
+            weather_balloon: "Basel Wetterballon: Boden V={v1} m³, T1={t1} K. Stratosphäre T2={t2} K (P konstant). Neues Volumen?",
+            novartis_reactor: "Novartis-Reaktor V={V} m³. Spüle mit N2 bei P={P} Pa, T={T} K. Berechne Masse N2 (M=0.028 kg/mol)."
         },
         scenarios: {
             ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",

@@ -1145,7 +1145,10 @@ export const deBiology = {
                 advanced_4: "Welcher Enzymmangel verursacht Laktoseintoleranz?",
                 advanced_5: "Wie erreichen absorbierte Nährstoffe die Körperzellen?",
                 elite_1: "Ein Basel-Marathon-Läufer hat Verdauungsprobleme. Erklären Sie, wie die Umverteilung des Blutflusses die Verdauung während des Trainings beeinflusst.",
-                elite_2: "Entwerfen Sie einen Ernährungsplan, der die Enzymfunktion im gesamten Verdauungssystem optimiert."
+                elite_2: "Entwerfen Sie einen Ernährungsplan, der die Enzymfunktion im gesamten Verdauungssystem optimiert.",
+                elite_3: "Intestinale Absorption: Identifizieren Sie den primären aktiven Transportmechanismus (SGLT1) für die Glukoseaufnahme im Dünndarm.",
+                elite_4: "Systemeffizienz: Erklären Sie, wie der 'enterohepatische Kreislauf' den Nutzen von Gallensalzen bei der Verdauung maximiert.",
+                elite_5: "Mikrobiom-Gleichgewicht: Identifizieren Sie die Stoffwechselnebenprodukte (kurzkettige Fettsäuren) der Ballaststofffermentation im Dickdarm."
             },
             respiratory: {
                 basic_1: "Welche Röhre transportiert Luft vom Rachen zu den Lungen?",
@@ -1166,7 +1169,9 @@ export const deBiology = {
                 advanced_5: "Wie beeinflusst die Atemfrequenz den Blut-pH-Wert?",
                 elite_1: "Analysieren Sie, wie Kaltwasserschwimmen im Rhein die Atemfunktion und Sauerstoffversorgung beeinflusst.",
                 elite_2: "Ein Patient am Universitätsspital Basel hat niedrigen Blutsauerstoff. Diagnostizieren Sie mögliche Atemwegsversagen.",
-                elite_3: "Entwerfen Sie ein öffentliches Gesundheitsprogramm für Basel zur Verbesserung der Atemgesundheit durch Atemübungen und Luftqualitätsüberwachung."
+                elite_3: "Entwerfen Sie ein öffentliches Gesundheitsprogramm für Basel zur Verbesserung der Atemgesundheit durch Atemübungen und Luftqualitätsüberwachung.",
+                elite_4: "Gleichgewichtslogik: Wenn ein Basler Rheinschwimmer hyperventiliert, wie verändert sich die $[H^+]$-Konzentration im Verhältnis zum $CO_2$-Verlust?",
+                elite_5: "Respiratorische Azidose: Wenn $CO_2$ zurückgehalten wird, identifizieren Sie die sofortige chemische Pufferreaktion zur Aufrechterhaltung der Homöostase."
             },
             circulatory: {
                 basic_1: "Welche Herzkammer pumpt Blut in den Körper?",
@@ -1187,7 +1192,10 @@ export const deBiology = {
                 advanced_4: "Was verursacht Müdigkeit bei Anämie?",
                 advanced_5: "Wie hilft der Blutfluss bei der Regulierung der Körpertemperatur?",
                 elite_1: "Erklären Sie, wie sich das Kreislaufsystem während eines Basel-Marathons anpasst, um den erhöhten Sauerstoffbedarf zu decken.",
-                elite_2: "Ein Patient hat Bluthochdruck. Analysieren Sie die kardiovaskulären Faktoren und schlagen Sie Interventionen vor."
+                elite_2: "Ein Patient hat Bluthochdruck. Analysieren Sie die kardiovaskulären Faktoren und schlagen Sie Interventionen vor.",
+                elite_3: "Systemkoordination: Ordnen Sie die physiologischen Reaktionen auf einen plötzlichen pH-Abfall von der schnellsten zur langsamsten.",
+                elite_4: "Herzmechanik: Beschreiben Sie das 'Frank-Starling-Gesetz' und seine Rolle bei der Anpassung des Herzzeitvolumens an den venösen Rückfluss.",
+                elite_5: "Gefäßphysik: Erklären Sie, wie eine kleine Änderung des Gefäßradius den Widerstand drastisch beeinflusst (Radius zur vierten Potenz)."
             },
             excretory: {
                 basic_1: "Welche Organe filtern Blut, um Abfallstoffe zu entfernen?",
@@ -1208,7 +1216,9 @@ export const deBiology = {
                 advanced_5: "Wie reagieren die Nieren auf Dehydration?",
                 elite_1: "Ein Patient am Universitätsspital Basel hat Nierenversagen. Erklären Sie, wie dies die gesamte Körperhomöostase beeinflusst.",
                 elite_2: "Entwerfen Sie ein öffentliches Gesundheitsprogramm für Basel zur Vorbeugung von Nierenerkrankungen durch Ernährung und Hydratation.",
-                elite_3: "Schlagen Sie Behandlungsoptionen für einen Patienten mit chronischer Nierenerkrankung am Universitätsspital Basel vor."
+                elite_3: "Schlagen Sie Behandlungsoptionen für einen Patienten mit chronischer Nierenerkrankung am Universitätsspital Basel vor.",
+                elite_4: "Renale Homöostase: Welcher Zelltyp im Sammelrohr erhöht bei metabolischer Azidose (niedriger pH) die $H^+$-Sekretion?",
+                elite_5: "Interdisziplinär: Nutzen Sie die Henderson-Hasselbalch-Gleichung, um zu erklären, warum die Nieren $HCO_3^-$ anstelle von $CO_3^{2-}$ zur präzisen pH-Kontrolle reabsorbieren."
             }
         },
         scenarios: {
