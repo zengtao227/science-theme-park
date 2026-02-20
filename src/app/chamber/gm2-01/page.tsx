@@ -8,226 +8,23 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import VectorVisualization from "@/components/chamber/gm2-01/VectorVisualization";
+import {
+  Stage,
+  G201Quest,
+  generateNavigationQuests,
+  generateDotQuests,
+  generateMissionQuests,
+} from "@/lib/gm2-01/quests";
 
-type Stage = "NAVIGATION" | "DOT" | "MISSION";
 
-interface G201Quest extends Quest {
-  stage: Stage;
-  pointA?: [number, number, number];
-  pointB?: [number, number, number];
-  vectorV?: [number, number, number];
-  vectorW?: [number, number, number];
-  showDotProduct?: boolean;
-}
 
-const round2 = (v: number) => Math.round(v * 100) / 100;
 
-// NAVIGATION stage: Calculate vector from points and magnitude
-const navigationDataBasic = [
-  { id: "N_B1", A: [0, 0, 0] as [number, number, number], B: [3, 0, 0] as [number, number, number] },
-  { id: "N_B2", A: [0, 0, 0] as [number, number, number], B: [0, 4, 0] as [number, number, number] },
-  { id: "N_B3", A: [0, 0, 0] as [number, number, number], B: [0, 0, 5] as [number, number, number] },
-  { id: "N_B4", A: [1, 1, 1] as [number, number, number], B: [4, 1, 1] as [number, number, number] },
-];
-
-const navigationDataCore = [
-  { id: "N_C1", A: [0, 0, 0] as [number, number, number], B: [3, 4, 0] as [number, number, number] },
-  { id: "N_C2", A: [1, 2, 0] as [number, number, number], B: [4, 6, 0] as [number, number, number] },
-  { id: "N_C3", A: [0, 0, 0] as [number, number, number], B: [2, 2, 2] as [number, number, number] },
-  { id: "N_C4", A: [1, 1, 1] as [number, number, number], B: [3, 4, 1] as [number, number, number] },
-  { id: "N_C5", A: [2, 1, 0] as [number, number, number], B: [5, 5, 0] as [number, number, number] },
-];
-
-const navigationDataAdvanced = [
-  { id: "N_A1", A: [1, 2, 3] as [number, number, number], B: [4, 6, 7] as [number, number, number] },
-  { id: "N_A2", A: [0, 0, 0] as [number, number, number], B: [3, 4, 5] as [number, number, number] },
-  { id: "N_A3", A: [2, 1, 3] as [number, number, number], B: [5, 5, 6] as [number, number, number] },
-  { id: "N_A4", A: [1, 1, 2] as [number, number, number], B: [4, 5, 6] as [number, number, number] },
-  { id: "N_A5", A: [0, 2, 1] as [number, number, number], B: [3, 6, 5] as [number, number, number] },
-];
-
-const navigationDataElite = [
-  { id: "N_E1", A: [1.5, 2.5, 3.5] as [number, number, number], B: [4.5, 6.5, 7.5] as [number, number, number] },
-  { id: "N_E2", A: [0.5, 1.5, 2.5] as [number, number, number], B: [3.5, 5.5, 7.5] as [number, number, number] },
-  { id: "N_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number] },
-  { id: "N_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number] },
-  { id: "N_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number] },
-  // Cross-disciplinary physics integration: Force vector decomposition
-  { id: "N_E6", A: [12.5, 8.3, 15.7] as [number, number, number], B: [45.8, 32.6, 48.9] as [number, number, number] }, // Rhine bridge cable tension force
-  { id: "N_E7", A: [5.2, 18.4, 3.6] as [number, number, number], B: [28.7, 52.9, 15.3] as [number, number, number] }, // Basel tram acceleration force
-];
-
-// DOT stage: Calculate dot product between two vectors
-const dotDataBasic = [
-  { id: "D_B1", v: [3, 0, 0] as [number, number, number], w: [2, 0, 0] as [number, number, number] },
-  { id: "D_B2", v: [0, 4, 0] as [number, number, number], w: [0, 3, 0] as [number, number, number] },
-  { id: "D_B3", v: [2, 0, 0] as [number, number, number], w: [0, 3, 0] as [number, number, number] },
-  { id: "D_B4", v: [1, 1, 0] as [number, number, number], w: [1, 1, 0] as [number, number, number] },
-];
-
-const dotDataCore = [
-  { id: "D_C1", v: [3, 4, 0] as [number, number, number], w: [2, 1, 0] as [number, number, number] },
-  { id: "D_C2", v: [2, 3, 0] as [number, number, number], w: [1, 2, 0] as [number, number, number] },
-  { id: "D_C3", v: [1, 2, 2] as [number, number, number], w: [2, 1, 1] as [number, number, number] },
-  { id: "D_C4", v: [3, 2, 1] as [number, number, number], w: [1, 3, 2] as [number, number, number] },
-  { id: "D_C5", v: [2, 2, 0] as [number, number, number], w: [3, 1, 0] as [number, number, number] },
-];
-
-const dotDataAdvanced = [
-  { id: "D_A1", v: [3, 4, 5] as [number, number, number], w: [2, 1, 3] as [number, number, number] },
-  { id: "D_A2", v: [2, 3, 4] as [number, number, number], w: [1, 2, 2] as [number, number, number] },
-  { id: "D_A3", v: [4, 3, 2] as [number, number, number], w: [1, 2, 3] as [number, number, number] },
-  { id: "D_A4", v: [3, 2, 5] as [number, number, number], w: [2, 3, 1] as [number, number, number] },
-  { id: "D_A5", v: [5, 1, 3] as [number, number, number], w: [1, 4, 2] as [number, number, number] },
-];
-
-const dotDataElite = [
-  { id: "D_E1", v: [3.5, 4.2, 5.1] as [number, number, number], w: [2.3, 1.8, 3.6] as [number, number, number] },
-  { id: "D_E2", v: [2.7, 3.9, 4.5] as [number, number, number], w: [1.5, 2.2, 2.8] as [number, number, number] },
-  { id: "D_E3", v: [4.1, 3.3, 2.7] as [number, number, number], w: [1.9, 2.5, 3.4] as [number, number, number] },
-  { id: "D_E4", v: [3.8, 2.6, 5.2] as [number, number, number], w: [2.1, 3.7, 1.4] as [number, number, number] },
-  { id: "D_E5", v: [5.3, 1.7, 3.9] as [number, number, number], w: [1.2, 4.6, 2.3] as [number, number, number] },
-  // Cross-disciplinary physics integration: Work = Force · Displacement
-  { id: "D_E6", v: [125.3, 87.6, 156.8] as [number, number, number], w: [45.7, 32.4, 68.9] as [number, number, number] }, // Roche Tower elevator work calculation
-  { id: "D_E7", v: [78.4, 112.5, 43.2] as [number, number, number], w: [34.6, 52.8, 28.7] as [number, number, number] }, // Basel Port cargo crane work
-];
-
-// MISSION stage: Combined operations
-const missionDataBasic = [
-  { id: "M_B1", A: [0, 0, 0] as [number, number, number], B: [3, 0, 0] as [number, number, number], s: [1, 0, 0] as [number, number, number] },
-  { id: "M_B2", A: [0, 0, 0] as [number, number, number], B: [0, 4, 0] as [number, number, number], s: [0, 1, 0] as [number, number, number] },
-  { id: "M_B3", A: [1, 1, 0] as [number, number, number], B: [4, 1, 0] as [number, number, number], s: [1, 0, 0] as [number, number, number] },
-  { id: "M_B4", A: [0, 0, 0] as [number, number, number], B: [2, 2, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
-];
-
-const missionDataCore = [
-  { id: "M_C1", A: [0, 0, 0] as [number, number, number], B: [3, 4, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
-  { id: "M_C2", A: [1, 2, 0] as [number, number, number], B: [4, 6, 0] as [number, number, number], s: [2, 1, 0] as [number, number, number] },
-  { id: "M_C3", A: [0, 0, 0] as [number, number, number], B: [2, 2, 2] as [number, number, number], s: [1, 1, 1] as [number, number, number] },
-  { id: "M_C4", A: [1, 1, 1] as [number, number, number], B: [3, 4, 1] as [number, number, number], s: [1, 2, 0] as [number, number, number] },
-  { id: "M_C5", A: [2, 1, 0] as [number, number, number], B: [5, 5, 0] as [number, number, number], s: [1, 1, 0] as [number, number, number] },
-];
-
-const missionDataAdvanced = [
-  { id: "M_A1", A: [1, 2, 3] as [number, number, number], B: [4, 6, 7] as [number, number, number], s: [1, 2, 1] as [number, number, number] },
-  { id: "M_A2", A: [0, 0, 0] as [number, number, number], B: [3, 4, 5] as [number, number, number], s: [2, 1, 2] as [number, number, number] },
-  { id: "M_A3", A: [2, 1, 3] as [number, number, number], B: [5, 5, 6] as [number, number, number], s: [1, 1, 1] as [number, number, number] },
-  { id: "M_A4", A: [1, 1, 2] as [number, number, number], B: [4, 5, 6] as [number, number, number], s: [2, 2, 1] as [number, number, number] },
-  { id: "M_A5", A: [0, 2, 1] as [number, number, number], B: [3, 6, 5] as [number, number, number], s: [1, 2, 2] as [number, number, number] },
-];
-
-const missionDataElite = [
-  { id: "M_E1", A: [1.5, 2.5, 3.5] as [number, number, number], B: [4.5, 6.5, 7.5] as [number, number, number], s: [1.2, 2.3, 1.5] as [number, number, number] },
-  { id: "M_E2", A: [0.5, 1.5, 2.5] as [number, number, number], B: [3.5, 5.5, 7.5] as [number, number, number], s: [2.1, 1.8, 2.4] as [number, number, number] },
-  { id: "M_E3", A: [2.2, 1.8, 3.1] as [number, number, number], B: [5.7, 5.3, 6.9] as [number, number, number], s: [1.5, 1.7, 1.9] as [number, number, number] },
-  { id: "M_E4", A: [1.3, 2.7, 1.9] as [number, number, number], B: [4.8, 6.2, 5.4] as [number, number, number], s: [2.2, 1.9, 1.3] as [number, number, number] },
-  { id: "M_E5", A: [0.8, 1.2, 2.4] as [number, number, number], B: [3.3, 4.7, 6.1] as [number, number, number], s: [1.8, 2.5, 2.1] as [number, number, number] },
-  // Cross-disciplinary physics integration: University Hospital drone delivery with wind force
-  { id: "M_E6", A: [8.7, 15.3, 42.5] as [number, number, number], B: [56.4, 73.8, 125.7] as [number, number, number], s: [12.6, 18.9, 25.3] as [number, number, number] },
-];
 
 function buildStagePool(gm2_01_t: any, difficulty: Difficulty, stage: Stage): G201Quest[] {
-  if (stage === "NAVIGATION") {
-    let dataSet;
-    switch (difficulty) {
-      case "BASIC": dataSet = navigationDataBasic; break;
-      case "CORE": dataSet = navigationDataCore; break;
-      case "ADVANCED": dataSet = navigationDataAdvanced; break;
-      case "ELITE": dataSet = navigationDataElite; break;
-      default: dataSet = navigationDataBasic;
-    }
-    
-    return dataSet.map((item) => {
-      const v = [item.B[0] - item.A[0], item.B[1] - item.A[1], item.B[2] - item.A[2]];
-      const magnitude = round2(Math.sqrt(v[0] ** 2 + v[1] ** 2 + v[2] ** 2));
-      
-      return {
-        id: item.id,
-        difficulty,
-        stage,
-        pointA: item.A,
-        pointB: item.B,
-        promptLatex: gm2_01_t.stages.navigation_prompt_latex,
-        expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')})`,
-        targetLatex: "\\vec v,\\;|\\vec v|",
-        slots: [
-          { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
-          { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
-          { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
-          { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
-        ],
-        correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;|\\vec v|=${magnitude}`,
-      };
-    });
-  }
-
-  if (stage === "DOT") {
-    let dataSet;
-    switch (difficulty) {
-      case "BASIC": dataSet = dotDataBasic; break;
-      case "CORE": dataSet = dotDataCore; break;
-      case "ADVANCED": dataSet = dotDataAdvanced; break;
-      case "ELITE": dataSet = dotDataElite; break;
-      default: dataSet = dotDataBasic;
-    }
-    
-    return dataSet.map((item) => {
-      const dotProduct = round2(item.v[0] * item.w[0] + item.v[1] * item.w[1] + item.v[2] * item.w[2]);
-      
-      return {
-        id: item.id,
-        difficulty,
-        stage,
-        vectorV: item.v,
-        vectorW: item.w,
-        showDotProduct: true,
-        promptLatex: gm2_01_t.stages.dot_prompt_latex,
-        expressionLatex: `\\vec v=(${item.v.join(',')}),\\;\\vec w=(${item.w.join(',')})`,
-        targetLatex: "\\vec v\\cdot\\vec w",
-        slots: [
-          { id: "dot", labelLatex: "\\vec v\\cdot\\vec w", placeholder: "dot product", expected: dotProduct },
-        ],
-        correctLatex: `\\vec v\\cdot\\vec w=${dotProduct}`,
-      };
-    });
-  }
-
-  // MISSION stage
-  let dataSet;
-  switch (difficulty) {
-    case "BASIC": dataSet = missionDataBasic; break;
-    case "CORE": dataSet = missionDataCore; break;
-    case "ADVANCED": dataSet = missionDataAdvanced; break;
-    case "ELITE": dataSet = missionDataElite; break;
-    default: dataSet = missionDataBasic;
-  }
-  
-  return dataSet.map((item) => {
-    const v = [item.B[0] - item.A[0], item.B[1] - item.A[1], item.B[2] - item.A[2]];
-    const magnitude = round2(Math.sqrt(v[0] ** 2 + v[1] ** 2 + v[2] ** 2));
-    const dotProduct = round2(v[0] * item.s[0] + v[1] * item.s[1] + v[2] * item.s[2]);
-    
-    return {
-      id: item.id,
-      difficulty,
-      stage,
-      pointA: item.A,
-      pointB: item.B,
-      vectorW: item.s,
-      showDotProduct: true,
-      promptLatex: gm2_01_t.stages.mission_prompt_latex,
-      expressionLatex: `A(${item.A.join(',')})\\;\\text{to}\\;B(${item.B.join(',')}),\\;\\vec s=(${item.s.join(',')})`,
-      targetLatex: "\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|",
-      slots: [
-        { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
-        { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
-        { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
-        { id: "dot", labelLatex: "\\vec v\\cdot\\vec s", placeholder: "dot", expected: dotProduct },
-        { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
-      ],
-      correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;\\vec v\\cdot\\vec s=${dotProduct},\\;|\\vec v|=${magnitude}`,
-    };
-  });
+  if (stage === "NAVIGATION") return generateNavigationQuests(gm2_01_t, difficulty);
+  if (stage === "DOT") return generateDotQuests(gm2_01_t, difficulty);
+  if (stage === "MISSION") return generateMissionQuests(gm2_01_t, difficulty);
+  return [];
 }
 
 export default function G201Page() {
