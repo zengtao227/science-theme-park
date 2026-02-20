@@ -427,19 +427,19 @@ export default function SP306Page() {
                     {
                         id: "LI-B1", difficulty, stage, soundType: "whisper",
                         promptLatex: `\\\\text{Whisper is about 30 dB. Normal conversation is 60 dB. How many times more intense?}`,
-                        expressionLatex: `\\Delta L = 30 \\\\text{ dB} \\Rightarrow 10^3 = 1000\\times`,
+                        expressionLatex: `\\Delta L = 30 \\\\text{ dB} \\Rightarrow 10^{3} = 1000\\times`,
                         targetLatex: `\\\\text{Ratio}`,
                         slots: [{ id: "ratio", labelLatex: `\\\\text{Ratio}`, placeholder: "1000", expected: 1000 }],
                         correctLatex: `1000\\times`,
-                        hintLatex: [`10 \\\\text{ dB} = 10\\times, \\quad 30 \\\\text{ dB} = 10^3 = 1000\\times`]
+                        hintLatex: [`10 \\\\text{ dB} = 10\\times, \\quad 30 \\\\text{ dB} = 10^{3} = 1000\\times`]
                     },
                     {
                         id: "LI-B2", difficulty, stage, soundType: "hearing_threshold",
                         promptLatex: `\\\\text{Threshold of hearing is 0 dB. What is the intensity?}`,
-                        expressionLatex: `I_0 = 10^{-12} \\\\text{ W/m}^2`,
+                        expressionLatex: `I_0 = 10^{-12} \\\\text{ W/m}^{2}`,
                         targetLatex: `I_0`,
-                        slots: [{ id: "intensity", labelLatex: `I_0\\\\text{ (W/m}^2\\\\text{)}`, placeholder: "1e-12", expected: 1e-12 }],
-                        correctLatex: `10^{-12}\\\\text{ W/m}^2`,
+                        slots: [{ id: "intensity", labelLatex: `I_0\\\\text{ (W/m}^{2}\\\\text{)}`, placeholder: "1e-12", expected: 1e-12 }],
+                        correctLatex: `10^{-12}\\\\text{ W/m}^{2}`,
                         hintLatex: [`\\\\text{Reference intensity}`]
                     },
                     {
@@ -484,7 +484,7 @@ export default function SP306Page() {
                     },
                     {
                         id: "LI-C2", difficulty, stage, soundType: "intensity_to_db",
-                        promptLatex: `\\\\text{Intensity } 10^{-10} \\\\text{ W/m}^2. \\\\text{ What is loudness in dB?}`,
+                        promptLatex: `\\\\text{Intensity } 10^{-10} \\\\text{ W/m}^{2}. \\\\text{ What is loudness in dB?}`,
                         expressionLatex: `L = 10 \\log_{10}(I/I_0)`,
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\\\text{ (dB)}`, placeholder: "20", expected: 20 }],
@@ -503,20 +503,20 @@ export default function SP306Page() {
                     {
                         id: "LI-C4", difficulty, stage, soundType: "rock_concert",
                         promptLatex: `\\\\text{Rock concert: 110 dB. Vacuum cleaner: 70 dB. How many times more intense is concert?}`,
-                        expressionLatex: `\\Delta L = 40 \\\\text{ dB} \\Rightarrow 10^4 = 10{,}000\\times`,
+                        expressionLatex: `\\Delta L = 40 \\\\text{ dB} \\Rightarrow 10^{4} = 10{,}000\\times`,
                         targetLatex: `\\\\text{Ratio}`,
                         slots: [{ id: "ratio", labelLatex: `\\\\text{Ratio}`, placeholder: "10000", expected: 10000 }],
                         correctLatex: `10{,}000\\times`,
-                        hintLatex: [`40 \\\\text{ dB} = 10^4 = 10{,}000\\times`]
+                        hintLatex: [`40 \\\\text{ dB} = 10^{4} = 10{,}000\\times`]
                     },
                     {
                         id: "LI-C5", difficulty, stage, soundType: "db_to_intensity",
                         promptLatex: `\\\\text{Loudness 30 dB. What is intensity?}`,
                         expressionLatex: `I = I_0 \\times 10^{L/10}`,
                         targetLatex: `I`,
-                        slots: [{ id: "intensity", labelLatex: `I\\\\text{ (W/m}^2\\\\text{)}`, placeholder: "1e-9", expected: 1e-9 }],
-                        correctLatex: `10^{-9}\\\\text{ W/m}^2`,
-                        hintLatex: [`10^{-12} \\times 10^{30/10} = 10^{-12} \\times 10^3 = 10^{-9}`]
+                        slots: [{ id: "intensity", labelLatex: `I\\\\text{ (W/m}^{2}\\\\text{)}`, placeholder: "1e-9", expected: 1e-9 }],
+                        correctLatex: `10^{-9}\\\\text{ W/m}^{2}`,
+                        hintLatex: [`10^{-12} \\times 10^{30/10} = 10^{-12} \\times 10^{3} = 10^{-9}`]
                     }
                 );
             }

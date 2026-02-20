@@ -75,35 +75,35 @@ export default function SP307Page() {
                     {
                         id: "C-C1", difficulty, stage, vRiver: 3.0, vFerry: 4.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c1"),
-                        expressionLatex: "v_{net} = \\\\sqrt{v_f^2 + v_r^2}", targetLatex: "5.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{v_f^{2} + v_r^2}", targetLatex: "5.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 5.0 }],
                         correctLatex: "5.0", hintLatex: [t("sp3_07.hints.c_c1")]
                     },
                     {
                         id: "C-C2", difficulty, stage, vRiver: 1.0, vFerry: 1.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c2"),
-                        expressionLatex: "v_{net} = \\\\sqrt{1^2 + 1^2}", targetLatex: "1.41",
+                        expressionLatex: "v_{net} = \\\\sqrt{1^{2} + 1^2}", targetLatex: "1.41",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 1.41 }],
                         correctLatex: "1.41", hintLatex: [t("sp3_07.hints.c_c2")]
                     },
                     {
                         id: "C-C3", difficulty, stage, vRiver: 2.0, vFerry: 2.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c3"),
-                        expressionLatex: "v_{net} = \\\\sqrt{2^2 + 2^2}", targetLatex: "2.83",
+                        expressionLatex: "v_{net} = \\\\sqrt{2^{2} + 2^2}", targetLatex: "2.83",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 2.83 }],
                         correctLatex: "2.83", hintLatex: [t("sp3_07.hints.c_c3")]
                     },
                     {
                         id: "C-C4", difficulty, stage, vRiver: 1.5, vFerry: 2.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c4"),
-                        expressionLatex: "v_{net} = \\\\sqrt{2^2 + 1.5^2}", targetLatex: "2.5",
+                        expressionLatex: "v_{net} = \\\\sqrt{2^{2} + 1.5^2}", targetLatex: "2.5",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 2.5 }],
                         correctLatex: "2.5", hintLatex: [t("sp3_07.hints.c_c4")]
                     },
                     {
                         id: "C-C5", difficulty, stage, vRiver: 5.0, vFerry: 12.0, theta: 90,
                         promptLatex: t("sp3_07.prompts.c_c5"),
-                        expressionLatex: "v_{net} = \\\\sqrt{12^2 + 5^2}", targetLatex: "13.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{12^{2} + 5^2}", targetLatex: "13.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 13.0 }],
                         correctLatex: "13.0", hintLatex: [t("sp3_07.hints.c_c5")]
                     }
@@ -155,14 +155,14 @@ export default function SP307Page() {
                     {
                         id: "C-E1", difficulty, stage, vRiver: 2.0, vFerry: 5.0, theta: 53,
                         promptLatex: t("sp3_07.prompts.c_e1"),
-                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "6.0",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^{2} + (v_f\\sin\\theta + v_r)^2}", targetLatex: "6.0",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 6.0 }],
                         correctLatex: "6.0", hintLatex: [t("sp3_07.hints.c_e1")]
                     },
                     {
                         id: "C-E2", difficulty, stage, vRiver: 1.5, vFerry: 4.0, theta: 37,
                         promptLatex: t("sp3_07.prompts.c_e2"),
-                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "4.92",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^{2} + (v_f\\sin\\theta + v_r)^2}", targetLatex: "4.92",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 4.92 }],
                         correctLatex: "4.92", hintLatex: [t("sp3_07.hints.c_e2")]
                     },
@@ -176,7 +176,7 @@ export default function SP307Page() {
                     {
                         id: "C-E4", difficulty, stage, vRiver: 2.5, vFerry: 6.0, theta: 60,
                         promptLatex: t("sp3_07.prompts.c_e4"),
-                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}", targetLatex: "7.81",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\cos\\theta)^{2} + (v_f\\sin\\theta + v_r)^2}", targetLatex: "7.81",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 7.81 }],
                         correctLatex: "7.81", hintLatex: [t("sp3_07.hints.c_e4")]
                     },
@@ -483,7 +483,7 @@ export default function SP307Page() {
                     {
                         id: "N-E1", difficulty, stage, vRiver: 2.5, vFerry: 5.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_e1"),
-                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\sin\\theta)^2 + (v_f\\cos\\theta + v_r)^2}", targetLatex: "4.33",
+                        expressionLatex: "v_{net} = \\\\sqrt{(v_f\\sin\\theta)^{2} + (v_f\\cos\\theta + v_r)^2}", targetLatex: "4.33",
                         slots: [{ id: "ans", labelLatex: "v_{net}", placeholder: "m/s", expected: 4.33 }],
                         correctLatex: "4.33", hintLatex: [t("sp3_07.hints.n_e1")]
                     },
@@ -497,7 +497,7 @@ export default function SP307Page() {
                     {
                         id: "N-E3", difficulty, stage, vRiver: 3.0, vFerry: 6.0, theta: 120,
                         promptLatex: t("sp3_07.prompts.n_e3"),
-                        expressionLatex: "d_{total} = \\\\sqrt{d^2 + d_{drift}^2}", targetLatex: "46.19",
+                        expressionLatex: "d_{total} = \\\\sqrt{d^{2} + d_{drift}^2}", targetLatex: "46.19",
                         slots: [{ id: "ans", labelLatex: "d_{total}", placeholder: "m", expected: 46.19 }],
                         correctLatex: "46.19", hintLatex: [t("sp3_07.hints.n_e3")]
                     },
@@ -511,7 +511,7 @@ export default function SP307Page() {
                     {
                         id: "N-E5", difficulty, stage, vRiver: 1.0, vFerry: 3.0, theta: 110,
                         promptLatex: t("sp3_07.prompts.n_e5"),
-                        expressionLatex: "E = \\\\frac{1}{2}m v_{net}^2", targetLatex: "4.5",
+                        expressionLatex: "E = \\\\frac{1}{2}m v_{net}^{2}", targetLatex: "4.5",
                         slots: [{ id: "ans", labelLatex: "E", placeholder: "J", expected: 4.5 }],
                         correctLatex: "4.5", hintLatex: [t("sp3_07.hints.n_e5")]
                     }

@@ -175,7 +175,7 @@ export default function SC205Page() {
             {
               id: "PH_A1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Polyprotic acid H2SO4: first dissociation complete, second Ka2 = 1.2×10^-^2",
+              context: "Polyprotic acid H2SO4: first dissociation complete, second Ka2 = 1.2×10^-^{2}",
               promptLatex: "\\\\text{pH (polyprotic)}",
               expressionLatex: "[H_2SO_4] = 0.1\\\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -213,7 +213,7 @@ export default function SC205Page() {
             {
               id: "PH_A4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.05M H3PO4 (Ka1 = 7.5×10^-^3)",
+              context: "Calculate pH of 0.05M H3PO4 (Ka1 = 7.5×10^-^{3})",
               promptLatex: "\\\\text{pH (triprotic)}",
               expressionLatex: "K_{a1} = 7.5 \\times 10^{-3}",
               targetLatex: "\\\\text{pH}",

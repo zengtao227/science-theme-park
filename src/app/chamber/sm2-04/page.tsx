@@ -586,7 +586,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 1.2 }],
                     correctLatex: `d=\\\\sqrt{36-23.04}=3.6,\\; w=6-3.6=2.4`,
-                    hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.4`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.4`],
                     visual: { kind: "ring", a: 2.4, b: 6, r: 6, l: 9.6 },
                 },
                 {
@@ -596,7 +596,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.2 }],
                     correctLatex: `d=\\\\sqrt{64-40.96}=4.8,\\; w=8-4.8=3.2`,
-                    hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.2`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.2`],
                     visual: { kind: "ring", a: 3.2, b: 8, r: 8, l: 12.8 },
                 },
                 {
@@ -606,7 +606,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4 }],
                     correctLatex: `d=\\\\sqrt{100-64}=6,\\; w=10-6=4`,
-                    hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4`],
                     visual: { kind: "ring", a: 4, b: 10, r: 10, l: 16 },
                 },
                 {
@@ -616,7 +616,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 2.8 }],
                     correctLatex: `d=\\\\sqrt{49-31.36}=4.2,\\; w=7-4.2=2.8`,
-                    hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.8`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.8`],
                     visual: { kind: "ring", a: 2.8, b: 7, r: 7, l: 11.2 },
                 },
                 {
@@ -626,7 +626,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.6 }],
                     correctLatex: `d=\\\\sqrt{81-51.84}=5.4,\\; w=9-5.4=3.6`,
-                    hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.6`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.6`],
                     visual: { kind: "ring", a: 3.6, b: 9, r: 9, l: 14.4 },
                 },
             ];
@@ -641,7 +641,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.8 }],
                 correctLatex: `d=\\\\sqrt{144-92.16}=7.2,\\; w=12-7.2=4.8`,
-                hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.8`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.8`],
                 visual: { kind: "ring", a: 4.8, b: 12, r: 12, l: 19.2 },
             },
             {
@@ -651,7 +651,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.6 }],
                 correctLatex: `d=\\\\sqrt{196-125.44}=8.4,\\; w=14-8.4=5.6`,
-                hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.6`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.6`],
                 visual: { kind: "ring", a: 5.6, b: 14, r: 14, l: 22.4 },
             },
             {
@@ -661,7 +661,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.4 }],
                 correctLatex: `d=\\\\sqrt{121-77.44}=6.6,\\; w=11-6.6=4.4`,
-                hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.4`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.4`],
                 visual: { kind: "ring", a: 4.4, b: 11, r: 11, l: 17.6 },
             },
             {
@@ -671,7 +671,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.2 }],
                 correctLatex: `d=\\\\sqrt{169-108.16}=7.8,\\; w=13-7.8=5.2`,
-                hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.2`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.2`],
                 visual: { kind: "ring", a: 5.2, b: 13, r: 13, l: 20.8 },
             },
             {
@@ -681,7 +681,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 6 }],
                 correctLatex: `d=\\\\sqrt{225-144}=9,\\; w=15-9=6`,
-                hintLatex: [`d=\\\\sqrt{R^2-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=6`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=6`],
                 visual: { kind: "ring", a: 6, b: 15, r: 15, l: 24 },
             },
         ];

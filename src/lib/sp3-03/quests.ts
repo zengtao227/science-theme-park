@@ -102,7 +102,7 @@ export function generateKineticQuests(t: any, difficulty: Difficulty): SP303Ques
         } else if (difficulty === "ADVANCED") {
             m = randomInt(5, 20); v = 0; let h = randomInt(10, 30);
             scen = "velocity_at_bottom";
-            // Combined energy: 0.5mv^2 = mgh => v = sqrt(2gh)
+            // Combined energy: 0.5mv^2 = mgh => v = \\sqrt{2gh}
             expected = round2(Math.sqrt(2 * 9.8 * h));
         } else { // ELITE
             m = randomInt(50, 100); v = randomInt(20, 40);
@@ -119,7 +119,7 @@ export function generateKineticQuests(t: any, difficulty: Difficulty): SP303Ques
             mass: m,
             velocity: v,
             promptLatex: t(`sp3_03.prompts.${scen}`, { m, v, h: 20, f: 10, d: 50 }),
-            expressionLatex: "E_k = \\frac{1}{2}mv^2",
+            expressionLatex: "E_k = \\frac{1}{2}mv^{2}",
             targetLatex: expected > 50 ? (scen === "velocity_at_bottom" ? "v" : "E_k") : "E_k",
             slots: [{ id: "ans", labelLatex: "Result", placeholder: "val", expected: expected.toString() }],
             correctLatex: `Result = ${expected}`,

@@ -169,8 +169,8 @@ export default function P104Page() {
               {gp1_04_t.labels?.formulas}
             </div>
             <div className="text-white font-black text-sm space-y-2">
-              <div><InlineMath math="-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V(x)\psi = E\psi" /></div>
-              <div><InlineMath math="T = \frac{1}{1 + \frac{V_0^2 \sinh^2(\kappa a)}{4E(V_0-E)}}" /></div>
+              <div><InlineMath math="-\frac{\hbar^2}{2m}\frac{d^{2}\psi}{dx^2} + V(x)\psi = E\psi" /></div>
+              <div><InlineMath math="T = \frac{1}{1 + \frac{V_0^{2} \sinh^{2}(\kappa a)}{4E(V_0-E)}}" /></div>
               <div><InlineMath math="\kappa = \sqrt{\frac{2m(V_0-E)}{\hbar^2}}" /></div>
             </div>
           </div>

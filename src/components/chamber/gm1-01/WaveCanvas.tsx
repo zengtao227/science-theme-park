@@ -22,7 +22,7 @@ const palette = {
 
 // Function definitions
 const functions = {
-  power: (x: number) => 0.5 * x * x, // f(x) = 0.5x^2
+  power: (x: number) => 0.5 * x * x, // f(x) = 0.5x^{2}
   powerDerivative: (x: number) => x, // f'(x) = x
   product: (x: number) => x * Math.sin(x), // f(x) = x·sin(x)
   productDerivative: (x: number) => Math.sin(x) + x * Math.cos(x), // f'(x) = sin(x) + x·cos(x)
@@ -279,7 +279,7 @@ export default function WaveCanvas({
           CALCULUS COAST
         </Text>
         <Text position={[0, 5.3, 0]} fontSize={0.25} color={palette.cyan}>
-          {functionType === "power" && "f(x) = 0.5x^2"}
+          {functionType === "power" && "f(x) = 0.5x^{2}"}
           {functionType === "product" && "f(x) = x·sin(x)"}
           {functionType === "chain" && "f(x) = sin(2x)"}
         </Text>

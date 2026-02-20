@@ -70,18 +70,18 @@ export default function GP303Induction() {
                     { turns: 300, flux: 0.01, time: 0.3, emf: "10", prompt: "N=300, ΔΦ=0.01Wb, Δt=0.3s, find EMF" }
                 ],
                 ADVANCED: [
-                    { turns: 500, area: 0.01, field: 0.5, time: 0.1, emf: "25", prompt: "N=500, A=0.01m^2, ΔB=0.5T, Δt=0.1s" },
-                    { turns: 1000, area: 0.005, field: 0.2, time: 0.1, emf: "10", prompt: "N=1000, A=0.005m^2, ΔB=0.2T, Δt=0.1s" },
-                    { turns: 200, area: 0.02, field: 1, time: 0.2, emf: "20", prompt: "N=200, A=0.02m^2, ΔB=1T, Δt=0.2s" },
-                    { turns: 800, area: 0.01, field: 0.25, time: 0.1, emf: "20", prompt: "N=800, A=0.01m^2, ΔB=0.25T, Δt=0.1s" },
-                    { turns: 400, area: 0.015, field: 0.5, time: 0.15, emf: "20", prompt: "N=400, A=0.015m^2, ΔB=0.5T, Δt=0.15s" }
+                    { turns: 500, area: 0.01, field: 0.5, time: 0.1, emf: "25", prompt: "N=500, A=0.01m^{2}, ΔB=0.5T, Δt=0.1s" },
+                    { turns: 1000, area: 0.005, field: 0.2, time: 0.1, emf: "10", prompt: "N=1000, A=0.005m^{2}, ΔB=0.2T, Δt=0.1s" },
+                    { turns: 200, area: 0.02, field: 1, time: 0.2, emf: "20", prompt: "N=200, A=0.02m^{2}, ΔB=1T, Δt=0.2s" },
+                    { turns: 800, area: 0.01, field: 0.25, time: 0.1, emf: "20", prompt: "N=800, A=0.01m^{2}, ΔB=0.25T, Δt=0.1s" },
+                    { turns: 400, area: 0.015, field: 0.5, time: 0.15, emf: "20", prompt: "N=400, A=0.015m^{2}, ΔB=0.5T, Δt=0.15s" }
                 ],
                 ELITE: [
-                    { turns: 1000, area: 0.01, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=1000, A=0.01m^2, B=1T, f=50Hz" },
-                    { turns: 500, area: 0.02, field: 0.5, freq: 60, emf: "1885", prompt: "Generator: N=500, A=0.02m^2, B=0.5T, f=60Hz" },
-                    { turns: 2000, area: 0.005, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=2000, A=0.005m^2, B=1T, f=50Hz" },
-                    { turns: 800, area: 0.01, field: 0.8, freq: 50, emf: "2011", prompt: "Generator: N=800, A=0.01m^2, B=0.8T, f=50Hz" },
-                    { turns: 1500, area: 0.008, field: 0.6, freq: 60, emf: "2714", prompt: "Generator: N=1500, A=0.008m^2, B=0.6T, f=60Hz" }
+                    { turns: 1000, area: 0.01, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=1000, A=0.01m^{2}, B=1T, f=50Hz" },
+                    { turns: 500, area: 0.02, field: 0.5, freq: 60, emf: "1885", prompt: "Generator: N=500, A=0.02m^{2}, B=0.5T, f=60Hz" },
+                    { turns: 2000, area: 0.005, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=2000, A=0.005m^{2}, B=1T, f=50Hz" },
+                    { turns: 800, area: 0.01, field: 0.8, freq: 50, emf: "2011", prompt: "Generator: N=800, A=0.01m^{2}, B=0.8T, f=50Hz" },
+                    { turns: 1500, area: 0.008, field: 0.6, freq: 60, emf: "2714", prompt: "Generator: N=1500, A=0.008m^{2}, B=0.6T, f=60Hz" }
                 ]
             };
 
@@ -167,11 +167,11 @@ export default function GP303Induction() {
                     { type: "power", output: "current", prompt: "Generator power depends on?" }
                 ],
                 CORE: [
-                    { turns: 100, area: 0.1, field: 0.5, speed: 60, voltage: "188", prompt: "N=100, A=0.1m^2, B=0.5T, 60rpm, find V" },
-                    { turns: 200, area: 0.05, field: 1, speed: 120, voltage: "377", prompt: "N=200, A=0.05m^2, B=1T, 120rpm, find V" },
-                    { turns: 150, area: 0.08, field: 0.8, speed: 90, voltage: "339", prompt: "N=150, A=0.08m^2, B=0.8T, 90rpm, find V" },
-                    { turns: 250, area: 0.04, field: 0.6, speed: 100, voltage: "377", prompt: "N=250, A=0.04m^2, B=0.6T, 100rpm, find V" },
-                    { turns: 300, area: 0.03, field: 0.7, speed: 80, voltage: "396", prompt: "N=300, A=0.03m^2, B=0.7T, 80rpm, find V" }
+                    { turns: 100, area: 0.1, field: 0.5, speed: 60, voltage: "188", prompt: "N=100, A=0.1m^{2}, B=0.5T, 60rpm, find V" },
+                    { turns: 200, area: 0.05, field: 1, speed: 120, voltage: "377", prompt: "N=200, A=0.05m^{2}, B=1T, 120rpm, find V" },
+                    { turns: 150, area: 0.08, field: 0.8, speed: 90, voltage: "339", prompt: "N=150, A=0.08m^{2}, B=0.8T, 90rpm, find V" },
+                    { turns: 250, area: 0.04, field: 0.6, speed: 100, voltage: "377", prompt: "N=250, A=0.04m^{2}, B=0.6T, 100rpm, find V" },
+                    { turns: 300, area: 0.03, field: 0.7, speed: 80, voltage: "396", prompt: "N=300, A=0.03m^{2}, B=0.7T, 80rpm, find V" }
                 ],
                 ADVANCED: [
                     { power: 1000, voltage: 220, current: "4.55", prompt: "P=1000W, V=220V, find I" },

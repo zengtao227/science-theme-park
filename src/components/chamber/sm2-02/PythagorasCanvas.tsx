@@ -160,7 +160,7 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
         </group>
       )}
 
-      {/* a^2 voxel grid (red/orange) */}
+      {/* a^{2} voxel grid (red/orange) */}
       <group position={aSquarePos}>
         <VoxelGrid
           count={a * a}
@@ -171,11 +171,11 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={0}
         />
         <Text position={[a * 0.2, -0.8, 0]} fontSize={0.4} color="#ff4444" anchorX="center">
-          a^2 = {a * a}
+          a^{2} = {a * a}
         </Text>
       </group>
 
-      {/* b^2 voxel grid (blue/cyan) */}
+      {/* b^{2} voxel grid (blue/cyan) */}
       <group position={bSquarePos}>
         <VoxelGrid
           count={b * b}
@@ -186,11 +186,11 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={1}
         />
         <Text position={[b * 0.2, -0.8, 0]} fontSize={0.4} color="#4488ff" anchorX="center">
-          b^2 = {b * b}
+          b^{2} = {b * b}
         </Text>
       </group>
 
-      {/* c^2 voxel grid (purple/magenta) - animated merge position */}
+      {/* c^{2} voxel grid (purple/magenta) - animated merge position */}
       <group ref={mergeGroupRef}>
         <VoxelGrid
           count={Math.round(c * c)}
@@ -201,13 +201,13 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={2}
         />
         <Text position={[c * 0.2, -0.8, 0]} fontSize={0.4} color="#ff00ff" anchorX="center">
-          c^2 = {(c * c).toFixed(1)}
+          c^{2} = {(c * c).toFixed(1)}
         </Text>
       </group>
 
       {/* Equation display */}
       <Text position={[0, b * 0.8 + 1, 0]} fontSize={0.5} color="#ffffff" anchorX="center">
-        a^2 + b^2 = c^2
+        a^{2} + b^{2} = c^{2}
       </Text>
 
       {/* Triangle labels */}

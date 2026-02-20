@@ -63,8 +63,8 @@ function buildStagePool(
                     promptLatex: t("gp2_01.prompts.find_v", { n: 1, P: 101325, T: 273 }),
                     expressionLatex: `V = \\\\frac{nRT}{P}`,
                     targetLatex: "V",
-                    slots: [{ id: "v", labelLatex: "V \\\\text{ (m}^3)", placeholder: "0.0224", expected: 0.0224 }],
-                    correctLatex: "V \\approx 0.0224 \\\\text{ m}^3",
+                    slots: [{ id: "v", labelLatex: "V \\\\text{ (m}^{3})", placeholder: "0.0224", expected: 0.0224 }],
+                    correctLatex: "V \\approx 0.0224 \\\\text{ m}^{3}",
                     hintLatex: [`\\\\text{STP conditions}`]
                 },
                 {
@@ -113,7 +113,7 @@ function buildStagePool(
                     expressionLatex: `V = \\\\frac{nRT}{P}`,
                     targetLatex: "V",
                     slots: [{ id: "v", labelLatex: "V", placeholder: "0.166", expected: 0.166 }],
-                    correctLatex: "V \\approx 0.166 \\\\text{ m}^3",
+                    correctLatex: "V \\approx 0.166 \\\\text{ m}^{3}",
                     hintLatex: ["Standard calculation"]
                 },
                 {
@@ -170,7 +170,7 @@ function buildStagePool(
                     expressionLatex: "V = \\\\frac{nRT}{P}",
                     targetLatex: "V",
                     slots: [{ id: "v", labelLatex: "V", placeholder: "0.00025", expected: 0.00025 }],
-                    correctLatex: "V \\approx 2.5 \\times 10^{-4} \\\\text{ m}^3",
+                    correctLatex: "V \\approx 2.5 \\times 10^{-4} \\\\text{ m}^{3}",
                     hintLatex: ["High pressure"]
                 },
                 {
@@ -201,7 +201,7 @@ function buildStagePool(
                     targetLatex: "n",
                     slots: [{ id: "n", labelLatex: "n \\\\text{ (mol)}", placeholder: "20046", expected: 20046 }],
                     correctLatex: "n \\approx 20050 \\\\text{ mol}",
-                    hintLatex: ["P in Pa, V in m^3"]
+                    hintLatex: ["P in Pa, V in m^{3}"]
                 },
                 {
                     id: "IG-E3", difficulty, stage, gasType: "ideal",
@@ -217,8 +217,8 @@ function buildStagePool(
                     promptLatex: t("gp2_01.prompts.weather_balloon", { v1: 10, t1: 300, t2: 240 }),
                     expressionLatex: "\\\\frac{V_1}{T_1} = \\\\frac{V_2}{T_2}",
                     targetLatex: "V_2",
-                    slots: [{ id: "v", labelLatex: "V_2 \\\\text{ (m}^3)", placeholder: "8", expected: 8 }],
-                    correctLatex: "8 \\\\text{ m}^3",
+                    slots: [{ id: "v", labelLatex: "V_2 \\\\text{ (m}^{3})", placeholder: "8", expected: 8 }],
+                    correctLatex: "8 \\\\text{ m}^{3}",
                     hintLatex: ["Cooling shrinks volume"]
                 },
                 {
@@ -335,7 +335,7 @@ function buildStagePool(
             quests.push(
                 { id: "B-A1", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 300, v1: 0.5, v2: 0.1 }), expressionLatex: "300 \\times 0.5 = P_2 \\times 0.1", targetLatex: "P_2", slots: [{ id: "p", labelLatex: "P", placeholder: "1500", expected: 1500 }], correctLatex: "1500 kPa", hintLatex: ["x5"] },
                 { id: "B-A2", difficulty, stage, lawType: "boyle", promptLatex: "Pressure increases by 25%. New Volume factor?", expressionLatex: "P_2 = 1.25 P_1 \\implies V_2 = V_1 / 1.25", targetLatex: "\\\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.8", expected: 0.8 }], correctLatex: "0.8", hintLatex: ["1/1.25"] },
-                { id: "B-A3", difficulty, stage, lawType: "boyle", promptLatex: "P V = 5000 J (energy density). If V=0.01 m^3, P?", expressionLatex: "P = 5000/0.01", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "500000", expected: 500000 }], correctLatex: "500 kPa", hintLatex: ["J/m^3 = Pa"] },
+                { id: "B-A3", difficulty, stage, lawType: "boyle", promptLatex: "P V = 5000 J (energy density). If V=0.01 m^{3}, P?", expressionLatex: "P = 5000/0.01", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "500000", expected: 500000 }], correctLatex: "500 kPa", hintLatex: ["J/m^{3} = Pa"] },
                 { id: "B-A4", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 400, v1: 2.5, p2: 1000 }), expressionLatex: "400(2.5)=1000 V_2", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["1000/1000"] },
                 { id: "B-A5", difficulty, stage, lawType: "boyle", promptLatex: "Graph P vs V is a hyperbola. P(V) = k/V. If k=100, P at V=5?", expressionLatex: "P=100/5", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "20", expected: 20 }], correctLatex: "20", hintLatex: ["Inverse"] }
             );

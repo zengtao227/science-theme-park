@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export type CanvasQuest = {
   id: string;
@@ -20,21 +22,21 @@ export type CanvasQuest = {
 const hintPanelI18n: Record<string, Record<string, { title: string; items: string[] }>> = {
   EN: {
     TERMS: { title: "Combining Like Terms", items: ["ax + bx = (a+b)x", "Group same variables", "Watch signs: -(a-b) = -a+b", "Distribute: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)", "(a+b)^2 = a^2 + 2ab + b^2", "Always check: GCF first"] },
-    FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a^2−b^2 = (a−b)(a+b)", "Check domain restrictions"] },
-    EQUATIONS: { title: "Solving Equations", items: ["Zero Product: if pq=0, then p=0 or q=0", "Quadratic formula: x = (−b ± √Δ) / 2a", "Δ = b^2 − 4ac", "Complete the square for vertex form"] },
+    FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Always check: GCF first"] },
+    FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a^{2} - b^{2} = (a-b)(a+b)", "Check domain restrictions"] },
+    EQUATIONS: { title: "Solving Equations", items: ["Zero Product: if pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "Complete the square for vertex form"] },
   },
   CN: {
     TERMS: { title: "合并同类项", items: ["ax + bx = (a+b)x", "同类项：变量和次数相同的项", "注意符号：-(a-b) = -a+b", "分配律：c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)  平方差公式", "(a+b)^2 = a^2 + 2ab + b^2  完全平方", "先提取公因式"] },
-    FRACTIONS: { title: "分式化简", items: ["分别对分子、分母进行因式分解", "约去公因式", "a^2−b^2 = (a−b)(a+b)", "注意定义域限制"] },
-    EQUATIONS: { title: "解方程", items: ["零因式定理：若 pq=0，则 p=0 或 q=0", "求根公式：x = (−b ± √Δ) / 2a", "判别式 Δ = b^2 − 4ac", "配方法可求顶点式"] },
+    FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "先提取公因式"] },
+    FRACTIONS: { title: "分式化简", items: ["对分子分母进行因式分解", "约去公因式", "a^{2} - b^{2} = (a-b)(a+b)", "注意定义域限制"] },
+    EQUATIONS: { title: "解方程", items: ["零因式定理：若 pq=0 \\implies p=0 \\vee q=0", "求根公式：x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}", "\\Delta = b^{2} - 4ac", "配方法可求顶点式"] },
   },
   DE: {
     TERMS: { title: "Gleichartige Terme", items: ["ax + bx = (a+b)x", "Gleiche Variablen zusammenfassen", "Vorzeichen: -(a-b) = -a+b", "Ausmultiplizieren: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)", "(a+b)^2 = a^2 + 2ab + b^2", "Immer zuerst: Gemeinsamer Faktor"] },
-    FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^2−b^2 = (a−b)(a+b)", "Definitionsmenge beachten"] },
-    EQUATIONS: { title: "Gleichungen Lösen", items: ["Nullproduktsatz: wenn pq=0, dann p=0 oder q=0", "Mitternachtsformel: x = (−b ± √Δ) / 2a", "Δ = b^2 − 4ac", "Quadratische Ergänzung für Scheitelpunktform"] },
+    FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Immer zuerst: Gemeinsamer Faktor"] },
+    FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^{2}-b^{2} = (a-b)(a+b)", "Definitionsmenge beachten"] },
+    EQUATIONS: { title: "Gleichungen Lösen", items: ["Nullproduktsatz: wenn pq=0 \\implies p=0 \\vee q=0", "Mitternachtsformel: x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}", "\\Delta = b^{2} - 4ac", "Quadratische Ergänzung"] },
   },
 };
 
@@ -106,10 +108,16 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
       <text x={svx + 10} y={svy - 8} fill="#ff00ff" fontSize="11" fontWeight="bold">V({vx.toFixed(1)}, {vy.toFixed(1)})</text>
       {/* Roots */}
       {roots.map((r, i) => { const [rx, ry] = toSvg(r, 0); return (<g key={i}><circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" /><text x={rx} y={ry + 18} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">x={r.toFixed(1)}</text></g>); })}
-      {disc < 0 && <text x={W / 2} y={30} fill="#ff4444" fontSize="12" textAnchor="middle" fontWeight="bold">Δ &lt; 0</text>}
-      <text x={W / 2} y={H - 10} fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" opacity="0.7">
-        y = {a === 1 ? '' : a === -1 ? '-' : a}x^2 {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
-      </text>
+      {disc < 0 && (
+        <foreignObject x={W / 2 - 50} y={10} width="100" height="40">
+          <div className="flex justify-center"><InlineMath math="\Delta < 0" /></div>
+        </foreignObject>
+      )}
+      <foreignObject x={0} y={H - 40} width={W} height={40}>
+        <div className="flex justify-center text-white/70 text-sm">
+          <InlineMath math={`y = ${a === 1 ? '' : a === -1 ? '-' : a}x^{2} ${b >= 0 ? '+' : ''}${b}x ${c >= 0 ? '+' : ''}${c}`} />
+        </div>
+      </foreignObject>
     </svg>
   );
 }
@@ -125,11 +133,13 @@ function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; la
       <div className="px-4 py-3 border-b border-white/10 bg-white/[0.02]">
         <div className="text-[9px] uppercase tracking-[0.4em] font-black text-cyan-400/80">{data.title}</div>
       </div>
-      <div className="p-4 space-y-2">
+      <div className="p-4 space-y-3">
         {data.items.map((item, i) => (
           <div key={i} className="flex items-start gap-2">
             <span className="text-cyan-400/40 text-xs mt-0.5">▸</span>
-            <span className="text-white/70 font-mono text-xs leading-relaxed">{item}</span>
+            <span className="text-white/80 text-sm">
+              <InlineMath math={item} />
+            </span>
           </div>
         ))}
       </div>
@@ -137,9 +147,11 @@ function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; la
         <div className="border-t border-white/5 p-4 space-y-2">
           <div className="text-[8px] uppercase tracking-[0.3em] font-black text-yellow-400/70 mb-2">{hintStepLabel[lang] || hintStepLabel.EN}</div>
           {hints.map((h, i) => (
-            <div key={i} className="flex items-start gap-2">
-              <span className="text-yellow-400/50 text-[10px] font-black mt-0.5">{i + 1}.</span>
-              <span className="text-white/60 font-mono text-[11px] leading-relaxed">{h}</span>
+            <div key={i} className="flex items-start gap-3">
+              <span className="text-yellow-400/50 text-[10px] font-black mt-1">{i + 1}.</span>
+              <span className="text-white/70 text-sm">
+                <InlineMath math={h} />
+              </span>
             </div>
           ))}
         </div>

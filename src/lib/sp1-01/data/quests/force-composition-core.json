@@ -20,9 +20,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(60^2 + 80^2) = 100 N",
-        "cn": "正确！F = √(60^2 + 80^2) = 100 N",
-        "de": "Richtig! F = √(60^2 + 80^2) = 100 N"
+        "en": "Correct! F = √(60^{2} + 80^{2}) = 100 N",
+        "cn": "正确！F = √(60^{2} + 80^{2}) = 100 N",
+        "de": "Richtig! F = √(60^{2} + 80^{2}) = 100 N"
       },
       "incorrect": {
         "en": "Use the Pythagorean theorem for perpendicular forces.",
@@ -85,9 +85,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net horizontal: 20-10=10 N, vertical: 30 N. F = √(10^2 + 30^2) = 31.62 N",
-        "cn": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10^2 + 30^2) = 31.62 N",
-        "de": "Richtig! Netto horizontal: 20-10=10 N, vertikal: 30 N. F = √(10^2 + 30^2) = 31.62 N"
+        "en": "Correct! Net horizontal: 20-10=10 N, vertical: 30 N. F = √(10^{2} + 30^{2}) = 31.62 N",
+        "cn": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10^{2} + 30^{2}) = 31.62 N",
+        "de": "Richtig! Netto horizontal: 20-10=10 N, vertikal: 30 N. F = √(10^{2} + 30^{2}) = 31.62 N"
       },
       "incorrect": {
         "en": "First find the net force in each direction, then use Pythagorean theorem.",
@@ -184,9 +184,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^2 + 86.6^2) = 100 N",
-        "cn": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50^2 + 86.6^2) = 100 N",
-        "de": "Richtig! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^2 + 86.6^2) = 100 N"
+        "en": "Correct! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^{2} + 86.6^{2}) = 100 N",
+        "cn": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50^{2} + 86.6^{2}) = 100 N",
+        "de": "Richtig! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^{2} + 86.6^{2}) = 100 N"
       },
       "incorrect": {
         "en": "Resolve each force into components, then add and find the magnitude.",
@@ -217,9 +217,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net: 20 N north, 20 N east. F = √(20^2 + 20^2) = 28.28 N",
-        "cn": "正确！净力：20 N 向北，20 N 向东。F = √(20^2 + 20^2) = 28.28 N",
-        "de": "Richtig! Netto: 20 N nach Norden, 20 N nach Osten. F = √(20^2 + 20^2) = 28.28 N"
+        "en": "Correct! Net: 20 N north, 20 N east. F = √(20^{2} + 20^{2}) = 28.28 N",
+        "cn": "正确！净力：20 N 向北，20 N 向东。F = √(20^{2} + 20^{2}) = 28.28 N",
+        "de": "Richtig! Netto: 20 N nach Norden, 20 N nach Osten. F = √(20^{2} + 20^{2}) = 28.28 N"
       },
       "incorrect": {
         "en": "Find the net force in each direction first.",

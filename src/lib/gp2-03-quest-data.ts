@@ -300,7 +300,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Find Pressure"),
-    description: L("Calculate pressure for 2.0 mol gas at 300 K in 0.05 m^3. Use R = 8.314 J/(mol·K)."),
+    description: L("Calculate pressure for 2.0 mol gas at 300 K in 0.05 m^{3}. Use R = 8.314 J/(mol·K)."),
     problem: L("Use PV = nRT, solve for P"),
     solution: {
       type: "numerical",
@@ -322,9 +322,9 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     solution: {
       type: "numerical",
       correctAnswer: 0.0224,
-      unit: "m^3",
+      unit: "m^{3}",
       tolerance: 0.02,
-      explanation: L("V = nRT/P = (1.0)(8.314)(273.15)/101325 = 0.0224 m^3 = 22.4 L"),
+      explanation: L("V = nRT/P = (1.0)(8.314)(273.15)/101325 = 0.0224 m^{3} = 22.4 L"),
     },
     hints: [L("This is the molar volume at STP")],
     requiredQuests: [],
@@ -334,7 +334,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Find Moles"),
-    description: L("How many moles in 0.1 m^3 at 100,000 Pa and 400 K?"),
+    description: L("How many moles in 0.1 m^{3} at 100,000 Pa and 400 K?"),
     problem: L("Solve for n"),
     solution: {
       type: "numerical",
@@ -351,7 +351,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Find Temperature"),
-    description: L("Find temperature for 2.0 mol at 200,000 Pa in 0.02 m^3."),
+    description: L("Find temperature for 2.0 mol at 200,000 Pa in 0.02 m^{3}."),
     problem: L("Solve for T"),
     solution: {
       type: "numerical",
@@ -368,7 +368,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: High Pressure"),
-    description: L("Calculate pressure for 5.0 mol at 350 K in 0.1 m^3."),
+    description: L("Calculate pressure for 5.0 mol at 350 K in 0.1 m^{3}."),
     problem: L("Use PV = nRT"),
     solution: {
       type: "numerical",
@@ -385,7 +385,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Small Volume"),
-    description: L("Find pressure for 0.5 mol at 298 K in 0.01 m^3."),
+    description: L("Find pressure for 0.5 mol at 298 K in 0.01 m^{3}."),
     problem: L("Calculate P"),
     solution: {
       type: "numerical",
@@ -407,9 +407,9 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     solution: {
       type: "numerical",
       correctAnswer: 0.166,
-      unit: "m^3",
+      unit: "m^{3}",
       tolerance: 0.02,
-      explanation: L("V = (2.5)(8.314)(400)/50000 = 0.166 m^3"),
+      explanation: L("V = (2.5)(8.314)(400)/50000 = 0.166 m^{3}"),
     },
     hints: [L("Low pressure allows larger volume")],
     requiredQuests: [],
@@ -419,7 +419,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: High Temperature"),
-    description: L("Find temperature for 1.0 mol at 300,000 Pa in 0.01 m^3."),
+    description: L("Find temperature for 1.0 mol at 300,000 Pa in 0.01 m^{3}."),
     problem: L("Calculate T"),
     solution: {
       type: "numerical",
@@ -436,16 +436,16 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Unit Conversion"),
-    description: L("Convert 0.0224 m^3 to liters. (1 m^3 = 1000 L)"),
+    description: L("Convert 0.0224 m^{3} to liters. (1 m^{3} = 1000 L)"),
     problem: L("Multiply by 1000"),
     solution: {
       type: "numerical",
       correctAnswer: 22.4,
       unit: "L",
       tolerance: 0.02,
-      explanation: L("0.0224 m^3 × 1000 = 22.4 L"),
+      explanation: L("0.0224 m^{3} × 1000 = 22.4 L"),
     },
-    hints: [L("1 m^3 = 1000 L")],
+    hints: [L("1 m^{3} = 1000 L")],
     requiredQuests: [],
   },
   {
@@ -470,7 +470,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Multiple Variables"),
-    description: L("A gas at 150,000 Pa, 0.05 m^3, 300 K. Find moles."),
+    description: L("A gas at 150,000 Pa, 0.05 m^{3}, 300 K. Find moles."),
     problem: L("Use n = PV/RT"),
     solution: {
       type: "numerical",
@@ -492,9 +492,9 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     solution: {
       type: "numerical",
       correctAnswer: 1.43,
-      unit: "kg/m^3",
+      unit: "kg/m^{3}",
       tolerance: 0.02,
-      explanation: L("ρ = (101325)(0.032)/(8.314)(273) = 1.43 kg/m^3"),
+      explanation: L("ρ = (101325)(0.032)/(8.314)(273) = 1.43 kg/m^{3}"),
     },
     hints: [L("Density formula: ρ = PM/RT")],
     requiredQuests: [],
@@ -504,7 +504,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Combined Calculation"),
-    description: L("Find P for 10 mol at 500 K in 0.1 m^3."),
+    description: L("Find P for 10 mol at 500 K in 0.1 m^{3}."),
     problem: L("Calculate pressure"),
     solution: {
       type: "numerical",
@@ -521,7 +521,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Low Temperature"),
-    description: L("Find moles for gas at 10,000 Pa, 2.0 m^3, 100 K."),
+    description: L("Find moles for gas at 10,000 Pa, 2.0 m^{3}, 100 K."),
     problem: L("Solve for n"),
     solution: {
       type: "numerical",
@@ -543,9 +543,9 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     solution: {
       type: "numerical",
       correctAnswer: 0.00025,
-      unit: "m^3",
+      unit: "m^{3}",
       tolerance: 0.02,
-      explanation: L("V = (0.1)(8.314)(300)/1000000 = 0.00025 m^3"),
+      explanation: L("V = (0.1)(8.314)(300)/1000000 = 0.00025 m^{3}"),
     },
     hints: [L("Very high pressure compresses gas")],
     requiredQuests: [],
@@ -560,9 +560,9 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     solution: {
       type: "numerical",
       correctAnswer: 0.0248,
-      unit: "m^3",
+      unit: "m^{3}",
       tolerance: 0.02,
-      explanation: L("V = (1.0)(8.314)(298)/100000 = 0.0248 m^3 = 24.8 L"),
+      explanation: L("V = (1.0)(8.314)(298)/100000 = 0.0248 m^{3} = 24.8 L"),
     },
     hints: [L("SATP: 25°C and 1 bar")],
     requiredQuests: [],
@@ -587,7 +587,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
     stageId: "IDEAL_GAS_EQUATION",
     difficulty: "CORE",
     title: L("Ideal Gas: Molar Mass"),
-    description: L("If 0.032 kg gas occupies 0.0224 m^3 at STP, find molar mass M = m/n."),
+    description: L("If 0.032 kg gas occupies 0.0224 m^{3} at STP, find molar mass M = m/n."),
     problem: L("First find n, then M"),
     solution: {
       type: "numerical",
@@ -596,7 +596,7 @@ export const IDEAL_GAS_EQUATION_QUESTS: Quest[] = [
       tolerance: 0.02,
       explanation: L("n = 1.0 mol at STP, so M = 0.032/1.0 = 0.032 kg/mol (O_2)"),
     },
-    hints: [L("At STP, 0.0224 m^3 = 1 mol")],
+    hints: [L("At STP, 0.0224 m^{3} = 1 mol")],
     requiredQuests: [],
   },
   {
@@ -780,7 +780,7 @@ export const GAS_MIXTURES_QUESTS: Quest[] = [
     stageId: "GAS_MIXTURES",
     difficulty: "ADVANCED",
     title: L("Mixture Calculation"),
-    description: L("1 mol He and 2 mol Ne at 300 K in 0.1 m^3. Find total pressure."),
+    description: L("1 mol He and 2 mol Ne at 300 K in 0.1 m^{3}. Find total pressure."),
     problem: L("Use PV = n_total RT"),
     solution: {
       type: "numerical",
@@ -962,7 +962,7 @@ export const GAS_MIXTURES_QUESTS: Quest[] = [
     stageId: "GAS_MIXTURES",
     difficulty: "ELITE",
     title: L("Van der Waals Equation"),
-    description: L("(P + a/V^2)(V - b) = RT for 1 mol. What do 'a' and 'b' represent?"),
+    description: L("(P + a/V^{2})(V - b) = RT for 1 mol. What do 'a' and 'b' represent?"),
     problem: L("Identify correction terms"),
     solution: {
       type: "multiple-choice",

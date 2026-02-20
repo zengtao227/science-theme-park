@@ -224,13 +224,13 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 val = Math.floor(Math.random() * 5) + 2;
                 const k = Math.floor(Math.random() * 3) + 1;
                 const sign = Math.random() > 0.5 ? '+' : '-';
-                expr = `${v1}^2${sign}${k}`;
+                expr = `${v1}^{2}${sign}${k}`;
                 answer = sign === '+' ? val * val + k : val * val - k;
             } else if (difficulty === "ELITE") {
                 val = Math.floor(Math.random() * 4) + 2;
                 const c = Math.floor(Math.random() * 3) + 2;
                 const k = Math.floor(Math.random() * 5) + 2;
-                expr = `${c}${v1}^2 - ${v1} + ${k}`;
+                expr = `${c}${v1}^{2} - ${v1} + ${k}`;
                 answer = c * val * val - val + k;
             }
 

@@ -99,7 +99,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
               <>
                 <div className="text-white">Roche Tower Analogy</div>
                 <div>Structure: Stacked Prisms</div>
-                <div>Area: 2400m^2-1800m^2</div>
+                <div>Area: 2400m^{2}-1800m^{2}</div>
                 <div>Height: 205m</div>
               </>
             )}
@@ -108,7 +108,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>Faces: 6</div>
                 <div>Vertices: 8</div>
                 <div>Edges: 12</div>
-                <div>V = a^3</div>
+                <div>V = a^{3}</div>
               </>
             )}
             {selectedShape === 'pyramid' && (
@@ -123,15 +123,15 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
               <>
                 <div>Curved surface</div>
                 <div>No edges/vertices</div>
-                <div>V = (4/3)πr^3</div>
-                <div>A = 4πr^2</div>
+                <div>V = (4/3)πr^{3}</div>
+                <div>A = 4πr^{2}</div>
               </>
             )}
             {selectedShape === 'cylinder' && (
               <>
                 <div>Faces: 3</div>
-                <div>V = πr^2h</div>
-                <div>A = 2πr^2 + 2πrh</div>
+                <div>V = πr^{2}h</div>
+                <div>A = 2πr^{2} + 2πrh</div>
               </>
             )}
           </div>
@@ -229,7 +229,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="mt-4 space-y-2 text-sm">
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Distance Formula:</div>
-            <div className="text-lg">d = √[(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2]</div>
+            <div className="text-lg">d = √[(x_2-x_1)^{2} + (y_2-y_1)^{2} + (z_2-z_1)^{2}]</div>
           </div>
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Midpoint Formula:</div>

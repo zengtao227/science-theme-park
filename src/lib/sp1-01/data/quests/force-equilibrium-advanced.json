@@ -20,9 +20,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10^2 + 40^2) = 41.23 N",
-        "cn": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^2 + 40^2) = 41.23 N",
-        "de": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10^2 + 40^2) = 41.23 N"
+        "en": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10^{2} + 40^{2}) = 41.23 N",
+        "cn": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^{2} + 40^{2}) = 41.23 N",
+        "de": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10^{2} + 40^{2}) = 41.23 N"
       },
       "incorrect": {
         "en": "Find the net force in x and y directions, then calculate the equilibrant.",
@@ -198,9 +198,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10^2 + 60^2) = 60.83 N",
-        "cn": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^2 + 60^2) = 60.83 N",
-        "de": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10^2 + 60^2) = 60.83 N"
+        "en": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10^{2} + 60^{2}) = 60.83 N",
+        "cn": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^{2} + 60^{2}) = 60.83 N",
+        "de": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10^{2} + 60^{2}) = 60.83 N"
       },
       "incorrect": {
         "en": "Find the resultant of the known forces, then F must equal it in magnitude.",

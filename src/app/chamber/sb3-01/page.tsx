@@ -178,7 +178,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, scenario: "kannenfeldpark",
-                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^2/year. Herbivores consume mean = 850 kcal/m^2/year. Calculate energy transfer efficiency (\\%).}`,
+                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^{2}/year. Herbivores consume mean = 850 kcal/m^{2}/year. Calculate energy transfer efficiency (\\%).}`,
                         expressionLatex: `\\\\text{Efficiency} = \\\\frac{\\\\text{Energy consumed}}{\\\\text{Energy available}} \\\\times 100\\\\%`,
                         targetLatex: `\\\\text{Efficiency}`,
                         slots: [{ id: "eff", labelLatex: `\\\\text{Efficiency (\\%)}`, placeholder: "10", expected: "10" }],
@@ -265,8 +265,8 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-E1", difficulty, stage, scenario: "rhine_river",
-                        promptLatex: `\\\\text{Simpson's Index } D = \\\\sum (n/N)^2 \\\\text{ for Rhine fish: } \\\\text{Eel 50, Salmon 30, Carp 20. Total } N=100. \\\\text{ Calculate } 1 - D \\\\text{ (Diversity).}`,
-                        expressionLatex: `D = (0.5)^2 + (0.3)^2 + (0.2)^2, \\\\text{ Diversity} = 1 - D`,
+                        promptLatex: `\\\\text{Simpson's Index } D = \\\\sum (n/N)^{2} \\\\text{ for Rhine fish: } \\\\text{Eel 50, Salmon 30, Carp 20. Total } N=100. \\\\text{ Calculate } 1 - D \\\\text{ (Diversity).}`,
+                        expressionLatex: `D = (0.5)^{2} + (0.3)^{2} + (0.2)^{2}, \\\\text{ Diversity} = 1 - D`,
                         targetLatex: `1-D`,
                         slots: [{ id: "div", labelLatex: `1-D`, placeholder: "0.62", expected: "0.62" }],
                         correctLatex: `0.62`,
@@ -298,12 +298,12 @@ export default function SB301Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback
     } = useQuestManager<SB301Quest, Stage>({
-    moduleCode: "sb3-01",
+        moduleCode: "sb3-01",
         buildPool,
         initialStage: "FOOD_CHAINS",
     });
@@ -325,11 +325,11 @@ export default function SB301Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      moduleCode="SB3.01"
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
+            moduleCode="SB3.01"
             title={t("sb3_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -402,7 +402,7 @@ export default function SB301Page() {
                                 {t("sb3_01.labels.trophic_level")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm text-center">
-                                <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/^2/g, '^2')}}`} />
+                                <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/\^2/g, '^{2}')}}`} />
                             </div>
                         </div>
 

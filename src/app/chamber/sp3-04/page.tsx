@@ -336,8 +336,8 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.buoyancy_advanced_1"),
                         expressionLatex: `V_{sub} = m/\\rho = 0.05/1000`,
                         targetLatex: `V_{sub}`,
-                        slots: [{ id: "vol", labelLatex: `V_{sub} \\\\text{ (m}^3\\\\text{)}`, placeholder: "0.00005", expected: 0.00005 }],
-                        correctLatex: `V_{sub} = 5 \\times 10^{-5} \\\\text{ m}^3`,
+                        slots: [{ id: "vol", labelLatex: `V_{sub} \\\\text{ (m}^{3}\\\\text{)}`, placeholder: "0.00005", expected: 0.00005 }],
+                        correctLatex: `V_{sub} = 5 \\times 10^{-5} \\\\text{ m}^{3}`,
                         hintLatex: [`\\\\text{At equilibrium: } W = F_b`]
                     },
                     {
@@ -345,8 +345,8 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.buoyancy_advanced_2"),
                         expressionLatex: `V = m/\\rho = 50000/1000`,
                         targetLatex: `V`,
-                        slots: [{ id: "vol", labelLatex: `V \\\\text{ (m}^3\\\\text{)}`, placeholder: "50", expected: 50 }],
-                        correctLatex: `V = 50 \\\\text{ m}^3`,
+                        slots: [{ id: "vol", labelLatex: `V \\\\text{ (m}^{3}\\\\text{)}`, placeholder: "50", expected: 50 }],
+                        correctLatex: `V = 50 \\\\text{ m}^{3}`,
                         hintLatex: [`\\\\text{Weight = Buoyant force}`]
                     },
                     {
@@ -393,11 +393,11 @@ export default function SP304Page() {
                     {
                         id: "B-E2", difficulty, stage, volume: 0.05,
                         promptLatex: t("sp3_04.prompts.buoyancy_elite_2"),
-                        expressionLatex: `V = \\\\frac{4}{3}\\pi(R^3 - r^3), \\rho_{avg} = m/V`,
+                        expressionLatex: `V = \\\\frac{4}{3}\\pi(R^{3} - r^{3}), \\rho_{avg} = m/V`,
                         targetLatex: `\\\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{Float?}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\\\text{Yes (} \\rho_{avg} < 1000 \\\\text{)}`,
-                        hintLatex: [`V \\approx 0.0196 \\\\text{ m}^3, \\rho \\approx 510 \\\\text{ kg/m}^3`]
+                        hintLatex: [`V \\approx 0.0196 \\\\text{ m}^{3}, \\rho \\approx 510 \\\\text{ kg/m}^{3}`]
                     },
                     {
                         id: "B-E3", difficulty, stage, volume: 0.02,
@@ -422,8 +422,8 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.buoyancy_elite_5"),
                         expressionLatex: `\\rho = \\\\frac{W_{air}}{W_{air} - W_{water}} \\times \\rho_w`,
                         targetLatex: `\\rho`,
-                        slots: [{ id: "density", labelLatex: `\\rho \\\\text{ (kg/m}^3\\\\text{)}`, placeholder: "6667", expected: 6667 }],
-                        correctLatex: `\\rho = 6667 \\\\text{ kg/m}^3`,
+                        slots: [{ id: "density", labelLatex: `\\rho \\\\text{ (kg/m}^{3}\\\\text{)}`, placeholder: "6667", expected: 6667 }],
+                        correctLatex: `\\rho = 6667 \\\\text{ kg/m}^{3}`,
                         hintLatex: [`10/(10-8.5) \\times 1000`]
                     }
                 );
@@ -538,8 +538,8 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.hydraulics_advanced_1"),
                         expressionLatex: `A_2 = A_1 \\times \\\\frac{F_2}{F_1}`,
                         targetLatex: `A_2`,
-                        slots: [{ id: "area", labelLatex: `A_2 \\\\text{ (m}^2\\\\text{)}`, placeholder: "0.5", expected: 0.5 }],
-                        correctLatex: `A_2 = 0.5 \\\\text{ m}^2`,
+                        slots: [{ id: "area", labelLatex: `A_2 \\\\text{ (m}^{2}\\\\text{)}`, placeholder: "0.5", expected: 0.5 }],
+                        correctLatex: `A_2 = 0.5 \\\\text{ m}^{2}`,
                         hintLatex: [`0.01 \\times (5000/100)`]
                     },
                     {

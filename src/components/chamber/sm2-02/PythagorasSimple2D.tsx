@@ -130,23 +130,23 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle }: Pyt
         <div className="text-red-400">
           <div className="text-[10px] opacity-50 uppercase">Side a</div>
           <div className="text-xl font-bold">{a}</div>
-          <div className="text-xs">a^2 = {a * a}</div>
+          <div className="text-xs">a^{2} = {a * a}</div>
         </div>
         <div className="text-blue-400">
           <div className="text-[10px] opacity-50 uppercase">Side b</div>
           <div className="text-xl font-bold">{b}</div>
-          <div className="text-xs">b^2 = {b * b}</div>
+          <div className="text-xs">b^{2} = {b * b}</div>
         </div>
         <div className="text-neon-green">
           <div className="text-[10px] opacity-50 uppercase">Hypotenuse c</div>
           <div className="text-xl font-bold">{c.toFixed(2)}</div>
-          <div className="text-xs">c^2 ≈ {(c * c).toFixed(0)}</div>
+          <div className="text-xs">c^{2} ≈ {(c * c).toFixed(0)}</div>
         </div>
       </div>
 
       <div className="absolute top-4 left-4 bg-black/80 px-3 py-1.5 rounded-full border border-white/10 text-[10px] text-white/60 font-mono flex items-center gap-2">
         <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-        {a}^2 + {b}^2 = {(a * a + b * b)}
+        {a}^{2} + {b}^{2} = {(a * a + b * b)}
       </div>
     </div>
   );

@@ -102,7 +102,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: reduction, scenarioKey: "decibel_elite",
                 promptLatex: `\\text{${t("sm3_04.stages.decibel_reduction") || "Calculate dB reduction"}}`,
-                expressionLatex: `I_1=${intensity.toExponential(0)}\\;W/m^2,\\; I_2=${intensity2.toExponential(0)}\\;W/m^2`,
+                expressionLatex: `I_1=${intensity.toExponential(0)}\\;W/m^{2},\\; I_2=${intensity2.toExponential(0)}\\;W/m^{2}`,
                 targetLatex: "\\Delta L",
                 slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: "dB reduction", expected: reduction, unit: "dB" }],
                 correctLatex: `\\Delta L=${reduction}\\;dB`,
@@ -134,7 +134,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: dB, scenarioKey,
                 promptLatex: t("sm3_04.stages.decibel_prompt_latex") || "\\text{Calculate decibel}",
-                expressionLatex: `I=${intensity.toExponential(0)}\\;W/m^2,\\; I_0=10^{-12}\\;W/m^2`,
+                expressionLatex: `I=${intensity.toExponential(0)}\\;W/m^{2},\\; I_0=10^{-12}\\;W/m^{2}`,
                 targetLatex: "L",
                 slots: [{ id: "L", labelLatex: "L", placeholder: "decibels", expected: dB, unit: "dB" }],
                 correctLatex: `L=${dB}\\;dB`

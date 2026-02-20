@@ -27,7 +27,7 @@ export const limitBasicsDataBasic: LimitBasicsData[] = [
   },
   {
     id: "LB_B3",
-    functionExpr: "x^2",
+    functionExpr: "x^{2}",
     limitPoint: 2,
     limitValue: 4,
     type: "direct",
@@ -41,7 +41,7 @@ export const limitBasicsDataBasic: LimitBasicsData[] = [
   },
   {
     id: "LB_B5",
-    functionExpr: "x^2 + 1",
+    functionExpr: "x^{2} + 1",
     limitPoint: 1,
     limitValue: 2,
     type: "direct",
@@ -52,35 +52,35 @@ export const limitBasicsDataBasic: LimitBasicsData[] = [
 export const limitBasicsDataCore: LimitBasicsData[] = [
   {
     id: "LB_C1",
-    functionExpr: "(x^2 - 4) / (x - 2)",
+    functionExpr: "(x^{2} - 4) / (x - 2)",
     limitPoint: 2,
     limitValue: 4,
     type: "indeterminate",
   },
   {
     id: "LB_C2",
-    functionExpr: "(x^2 - 9) / (x - 3)",
+    functionExpr: "(x^{2} - 9) / (x - 3)",
     limitPoint: 3,
     limitValue: 6,
     type: "indeterminate",
   },
   {
     id: "LB_C3",
-    functionExpr: "(x^2 - 1) / (x - 1)",
+    functionExpr: "(x^{2} - 1) / (x - 1)",
     limitPoint: 1,
     limitValue: 2,
     type: "indeterminate",
   },
   {
     id: "LB_C4",
-    functionExpr: "(x^2 + 3x + 2) / (x + 1)",
+    functionExpr: "(x^{2} + 3x + 2) / (x + 1)",
     limitPoint: -1,
     limitValue: 1,
     type: "indeterminate",
   },
   {
     id: "LB_C5",
-    functionExpr: "(x^2 - 16) / (x - 4)",
+    functionExpr: "(x^{2} - 16) / (x - 4)",
     limitPoint: 4,
     limitValue: 8,
     type: "indeterminate",
@@ -91,35 +91,35 @@ export const limitBasicsDataCore: LimitBasicsData[] = [
 export const limitBasicsDataAdvanced: LimitBasicsData[] = [
   {
     id: "LB_A1",
-    functionExpr: "(3x^2 + 2x) / (x^2 - 1)",
+    functionExpr: "(3x^{2} + 2x) / (x^{2} - 1)",
     limitPoint: Infinity,
     limitValue: 3,
     type: "infinity",
   },
   {
     id: "LB_A2",
-    functionExpr: "(2x^2 - 5) / (x^2 + 3)",
+    functionExpr: "(2x^{2} - 5) / (x^{2} + 3)",
     limitPoint: Infinity,
     limitValue: 2,
     type: "infinity",
   },
   {
     id: "LB_A3",
-    functionExpr: "(x^2 + 4x) / (2x^2 - 1)",
+    functionExpr: "(x^{2} + 4x) / (2x^{2} - 1)",
     limitPoint: Infinity,
     limitValue: 0.5,
     type: "infinity",
   },
   {
     id: "LB_A4",
-    functionExpr: "(4x^2 + x) / (x^2 + 2)",
+    functionExpr: "(4x^{2} + x) / (x^{2} + 2)",
     limitPoint: Infinity,
     limitValue: 4,
     type: "infinity",
   },
   {
     id: "LB_A5",
-    functionExpr: "(x^2 - 3x) / (3x^2 + 1)",
+    functionExpr: "(x^{2} - 3x) / (3x^{2} + 1)",
     limitPoint: Infinity,
     limitValue: 0.33,
     type: "infinity",
@@ -191,7 +191,7 @@ export const limitOperationsDataBasic: LimitOperationsData[] = [
   },
   {
     id: "LO_B2",
-    f: "x^2",
+    f: "x^{2}",
     g: "x",
     limitPoint: 1,
     operation: "sum",
@@ -227,7 +227,7 @@ export const limitOperationsDataBasic: LimitOperationsData[] = [
 export const limitOperationsDataCore: LimitOperationsData[] = [
   {
     id: "LO_C1",
-    f: "x^2",
+    f: "x^{2}",
     g: "x + 1",
     limitPoint: 2,
     operation: "product",
@@ -243,7 +243,7 @@ export const limitOperationsDataCore: LimitOperationsData[] = [
   },
   {
     id: "LO_C3",
-    f: "x^2 + 1",
+    f: "x^{2} + 1",
     g: "x",
     limitPoint: 2,
     operation: "quotient",
@@ -259,7 +259,7 @@ export const limitOperationsDataCore: LimitOperationsData[] = [
   },
   {
     id: "LO_C5",
-    f: "x^2 - 1",
+    f: "x^{2} - 1",
     g: "x - 1",
     limitPoint: 2,
     operation: "quotient",
@@ -271,7 +271,7 @@ export const limitOperationsDataCore: LimitOperationsData[] = [
 export const limitOperationsDataAdvanced: LimitOperationsData[] = [
   {
     id: "LO_A1",
-    f: "x^2 + 1",
+    f: "x^{2} + 1",
     g: "sqrt(x)",
     limitPoint: 4,
     operation: "composition",
@@ -280,7 +280,7 @@ export const limitOperationsDataAdvanced: LimitOperationsData[] = [
   {
     id: "LO_A2",
     f: "x + 2",
-    g: "x^2",
+    g: "x^{2}",
     limitPoint: 2,
     operation: "composition",
     answer: 6,
@@ -295,7 +295,7 @@ export const limitOperationsDataAdvanced: LimitOperationsData[] = [
   },
   {
     id: "LO_A4",
-    f: "x^2",
+    f: "x^{2}",
     g: "x - 1",
     limitPoint: 3,
     operation: "composition",
@@ -333,7 +333,7 @@ export const limitOperationsDataElite: LimitOperationsData[] = [
   },
   {
     id: "LO_E3",
-    f: "(x^2 - 1) / (x - 1)",
+    f: "(x^{2} - 1) / (x - 1)",
     g: "",
     limitPoint: 1,
     operation: "quotient",
@@ -342,7 +342,7 @@ export const limitOperationsDataElite: LimitOperationsData[] = [
   },
   {
     id: "LO_E4",
-    f: "(1 - cos(x)) / x^2",
+    f: "(1 - cos(x)) / x^{2}",
     g: "",
     limitPoint: 0,
     operation: "quotient",
@@ -368,7 +368,7 @@ export const limitOperationsDataElite: LimitOperationsData[] = [
 export const continuityDataBasic: ContinuityData[] = [
   {
     id: "C_B1",
-    functionExpr: "x^2 + 3x - 2",
+    functionExpr: "x^{2} + 3x - 2",
     point: 2,
     isContinuous: true,
     discontinuityType: null,
@@ -384,7 +384,7 @@ export const continuityDataBasic: ContinuityData[] = [
   },
   {
     id: "C_B3",
-    functionExpr: "x^2",
+    functionExpr: "x^{2}",
     point: 3,
     isContinuous: true,
     discontinuityType: null,
@@ -400,7 +400,7 @@ export const continuityDataBasic: ContinuityData[] = [
   },
   {
     id: "C_B5",
-    functionExpr: "x^2 + 2x",
+    functionExpr: "x^{2} + 2x",
     point: 1,
     isContinuous: true,
     discontinuityType: null,
@@ -412,7 +412,7 @@ export const continuityDataBasic: ContinuityData[] = [
 export const continuityDataCore: ContinuityData[] = [
   {
     id: "C_C1",
-    functionExpr: "(x^2 - 1) / (x - 1)",
+    functionExpr: "(x^{2} - 1) / (x - 1)",
     point: 1,
     isContinuous: false,
     discontinuityType: "removable",
@@ -423,7 +423,7 @@ export const continuityDataCore: ContinuityData[] = [
   },
   {
     id: "C_C2",
-    functionExpr: "(x^2 - 4) / (x - 2)",
+    functionExpr: "(x^{2} - 4) / (x - 2)",
     point: 2,
     isContinuous: false,
     discontinuityType: "removable",
@@ -434,7 +434,7 @@ export const continuityDataCore: ContinuityData[] = [
   },
   {
     id: "C_C3",
-    functionExpr: "(x^2 - 9) / (x - 3)",
+    functionExpr: "(x^{2} - 9) / (x - 3)",
     point: 3,
     isContinuous: false,
     discontinuityType: "removable",
@@ -445,7 +445,7 @@ export const continuityDataCore: ContinuityData[] = [
   },
   {
     id: "C_C4",
-    functionExpr: "(x^2 + 2x) / x",
+    functionExpr: "(x^{2} + 2x) / x",
     point: 0,
     isContinuous: false,
     discontinuityType: "removable",
@@ -456,7 +456,7 @@ export const continuityDataCore: ContinuityData[] = [
   },
   {
     id: "C_C5",
-    functionExpr: "(x^2 - 16) / (x - 4)",
+    functionExpr: "(x^{2} - 16) / (x - 4)",
     point: 4,
     isContinuous: false,
     discontinuityType: "removable",
@@ -545,7 +545,7 @@ export const continuityDataElite: ContinuityData[] = [
   },
   {
     id: "C_E3",
-    functionExpr: "1 / (x - 2)^2",
+    functionExpr: "1 / (x - 2)^{2}",
     point: 2,
     isContinuous: false,
     discontinuityType: "infinite",

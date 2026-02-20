@@ -35,11 +35,11 @@ const palette = {
 
 // Function definitions
 const functions = {
-  power: (x: number) => x * x, // f(x) = x^2
+  power: (x: number) => x * x, // f(x) = x^{2}
   powerDerivative: (x: number) => 2 * x, // f'(x) = 2x
-  factor: (x: number) => 3 * x * x, // f(x) = 3x^2
+  factor: (x: number) => 3 * x * x, // f(x) = 3x^{2}
   factorDerivative: (x: number) => 6 * x, // f'(x) = 6x
-  sum: (x: number) => x * x + x, // f(x) = x^2 + x
+  sum: (x: number) => x * x + x, // f(x) = x^{2} + x
   sumDerivative: (x: number) => 2 * x + 1, // f'(x) = 2x + 1
   product: (x: number) => x * Math.sin(x), // f(x) = x·sin(x)
   productDerivative: (x: number) => Math.sin(x) + x * Math.cos(x), // f'(x) = sin(x) + x·cos(x)
@@ -47,7 +47,7 @@ const functions = {
   quotientDerivative: (x: number) => {
     const sinX = Math.sin(x);
     const cosX = Math.cos(x);
-    return (sinX - x * cosX) / (sinX * sinX); // f'(x) = [sin(x) - x·cos(x)] / sin^2(x)
+    return (sinX - x * cosX) / (sinX * sinX); // f'(x) = [sin(x) - x·cos(x)] / sin^{2}(x)
   },
   chain: (x: number) => Math.sin(2 * x), // f(x) = sin(2x)
   chainDerivative: (x: number) => 2 * Math.cos(2 * x), // f'(x) = 2·cos(2x)

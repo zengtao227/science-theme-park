@@ -121,7 +121,7 @@ export function generateSecondLawQuests(t: any, difficulty: Difficulty): SP102Qu
             expressionLatex: "F_{net} = ma \\Rightarrow (F_{applied} - F_{friction}) = ma",
             targetLatex: "a",
             slots: [{ id: "answer", labelLatex: "a", placeholder: "m/s²", expected: round2(a) }],
-            correctLatex: `a = ${round2(a)} \\text{ m/s}^2`,
+            correctLatex: `a = ${round2(a)} \\text{ m/s}^{2}`,
         });
     }
     return quests;

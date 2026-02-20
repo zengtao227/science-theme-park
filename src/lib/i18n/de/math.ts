@@ -148,7 +148,7 @@ export const deMath = {
             elite: "ELITE"
         },
         explore_title: "00 // Interaktive Erkundung",
-        explore_instruction: "Ziehe den Punkt P entlang der Parabel y = x^2 und beobachte, wie sich die Tangente verändert. Die Steigung m repräsentiert die momentane Änderungsrate.",
+        explore_instruction: "Ziehe den Punkt P entlang der Parabel y = x^{2} und beobachte, wie sich die Tangente verändert. Die Steigung m repräsentiert die momentane Änderungsrate.",
         explore_hint: "Ziehe Punkt P im visuellen Monitor →",
         current_point: "Aktueller Punkt",
         slope_label: "Tangentensteigung",
@@ -217,18 +217,18 @@ export const deMath = {
             chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
         },
         scenarios: {
-            power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = x^2. Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
-            factor_rule: "🏗️ SZENARIO: Bauskalierung — Ein Architekt entwirft ein Gebäude mit Höhe h(x) = x^2. Wenn die Stadt verlangt, dass alle Dimensionen mit Faktor 3 skaliert werden, wird die neue Höhe H(x) = 3x^2. Die Ableitung sagt dir, wie sich die Steigung des skalierten Gebäudes ändert. Verwende die Faktorregel: Wenn f(x) = a·g(x), dann f'(x) = a·g'(x). Der konstante Faktor 3 bleibt außerhalb der Ableitung, was die Berechnungen vereinfacht!",
-            sum_rule: "🌊 SZENARIO: Ozeanwellen-Überlagerung — Zwei Ozeanwellen überlagern sich: Welle A hat Höhe h_1(x) = x^2 und Welle B hat Höhe h_2(x) = 3x. Die Gesamtwellenhöhe ist H(x) = x^2 + 3x. Um vorherzusagen, wie schnell die kombinierte Welle steigt, verwende die Summenregel: (f + g)' = f' + g'. Berechne die Steigung jeder Welle separat und addiere sie dann. So sagen Ozeanographen das Verhalten von Tsunami-Wellen voraus!",
+            power_rule: "🚗 SZENARIO: Auto-Beschleunigung auf einem Hügel — Du fährst einen Tesla einen kurvigen Hügel hinauf. Die Straßenhöhe folgt h(x) = x^{2}. Die Ableitung h'(x) sagt dir die Steilheit der Straße an jedem Punkt. Wenn du das Auto im falschen Winkel neigst, schleift es auf dem Boden oder kippt um! Berechne die korrekte Steigung (Ableitung), damit das Fahrgestell des Autos perfekt zur Straßenoberfläche passt. Genau so berechnen selbstfahrende Autos Geländewinkel in Echtzeit.",
+            factor_rule: "🏗️ SZENARIO: Bauskalierung — Ein Architekt entwirft ein Gebäude mit Höhe h(x) = x^{2}. Wenn die Stadt verlangt, dass alle Dimensionen mit Faktor 3 skaliert werden, wird die neue Höhe H(x) = 3x^{2}. Die Ableitung sagt dir, wie sich die Steigung des skalierten Gebäudes ändert. Verwende die Faktorregel: Wenn f(x) = a·g(x), dann f'(x) = a·g'(x). Der konstante Faktor 3 bleibt außerhalb der Ableitung, was die Berechnungen vereinfacht!",
+            sum_rule: "🌊 SZENARIO: Ozeanwellen-Überlagerung — Zwei Ozeanwellen überlagern sich: Welle A hat Höhe h_1(x) = x^{2} und Welle B hat Höhe h_2(x) = 3x. Die Gesamtwellenhöhe ist H(x) = x^{2} + 3x. Um vorherzusagen, wie schnell die kombinierte Welle steigt, verwende die Summenregel: (f + g)' = f' + g'. Berechne die Steigung jeder Welle separat und addiere sie dann. So sagen Ozeanographen das Verhalten von Tsunami-Wellen voraus!",
             product_rule: "🌊 SZENARIO: Surfbrett auf einer Welle — Ein Surfer reitet auf einer Welle, die durch h(x) = x·sin(x) beschrieben wird. Die Wellenhöhe hängt sowohl von der Position (x) als auch vom Sinuswellenmuster ab. Um das Gleichgewicht zu halten, muss der Surfer die Steigung der Welle an jedem Punkt kennen. Verwende die Produktregel: Wenn f(x) = u(x)·v(x), dann f'(x) = u'·v + u·v'. Dies sagt dir, wie schnell die Welle steigt oder fällt und hilft dem Surfer, seine Haltung anzupassen.",
-            quotient_rule: "📊 SZENARIO: Börsen-Effizienzquote — Ein Finanzanalyst verfolgt die Effizienzquote eines Unternehmens: Gewinn(x) / Kosten(x). Wenn sich die Marktbedingungen ändern (x = Zeit in Monaten), ändern sich sowohl Gewinn als auch Kosten. Um vorherzusagen, ob die Effizienz steigt oder sinkt, benötigst du die Ableitung dieses Verhältnisses. Verwende die Quotientenregel: Wenn f(x) = u(x)/v(x), dann f'(x) = [u'·v - u·v'] / v^2. Dies zeigt Investoren, ob das Unternehmen im Laufe der Zeit effizienter oder weniger effizient wird.",
+            quotient_rule: "📊 SZENARIO: Börsen-Effizienzquote — Ein Finanzanalyst verfolgt die Effizienzquote eines Unternehmens: Gewinn(x) / Kosten(x). Wenn sich die Marktbedingungen ändern (x = Zeit in Monaten), ändern sich sowohl Gewinn als auch Kosten. Um vorherzusagen, ob die Effizienz steigt oder sinkt, benötigst du die Ableitung dieses Verhältnisses. Verwende die Quotientenregel: Wenn f(x) = u(x)/v(x), dann f'(x) = [u'·v - u·v'] / v^{2}. Dies zeigt Investoren, ob das Unternehmen im Laufe der Zeit effizienter oder weniger effizient wird.",
             chain_rule: "⚙️ SZENARIO: Fahrrad-Getriebesystem — Du fährst mit dem Fahrrad einen Berg hinauf. Die Pedaldrehung erzeugt eine Kettenbewegung: Pedalwinkel → Kettengeschwindigkeit → Radumdrehung. Wenn sich die Kette doppelt so schnell um das Zahnrad wickelt (Faktor 2), dann f(x) = sin(2x). Die Kettenregel sagt dir: Wenn sich die äußere Funktion ändert, multipliziere mit der Rate der inneren Funktion. So berechnen Fahrradcomputer deine tatsächliche Geschwindigkeit aus den Pedalumdrehungen!"
         },
         canvas: {
             title: "ABLEITUNGS-STRASSE",
-            subtitle_power: "f(x) = x^2",
-            subtitle_factor: "f(x) = ax^2",
-            subtitle_sum: "f(x) = x^2 + x",
+            subtitle_power: "f(x) = x^{2}",
+            subtitle_factor: "f(x) = ax^{2}",
+            subtitle_sum: "f(x) = x^{2} + x",
             subtitle_product: "f(x) = x·sin(x)",
             subtitle_quotient: "f(x) = x/sin(x)",
             subtitle_chain: "f(x) = sin(2x)",
@@ -274,15 +274,15 @@ export const deMath = {
             analysis: "ANALYSE"
         },
         scenarios: {
-            composite_1: "🎢 SZENARIO: Achterbahn-Design — Ein Ingenieur entwirft einen Achterbahn-Abschnitt, bei dem die Höhe h(t) = (2t^2 + 3t)·sin(t) folgt. Die Geschwindigkeit ist die Ableitung h'(t). Berechne bei t=2 Sekunden die Geschwindigkeit, um die Sicherheit der Passagiere zu gewährleisten. Dies erfordert sowohl die Produktregel ALS AUCH die Potenzregel!",
-            composite_2: "📡 SZENARIO: Signalverarbeitung — Die Amplitude eines Funksignals ist A(t) = (t^2 + 1)/sin(t). Die Änderungsrate der Amplitude ist A'(t). Berechne bei t=1 Sekunde diese Rate, um den Empfänger anzupassen. Dies erfordert die Quotientenregel kombiniert mit der Potenzregel!",
-            composite_3: "🌊 SZENARIO: Welleninterferenz — Zwei Meereswellen überlagern sich: h(x) = (x^3 - 2x)·cos(x). Bei x=1 finde die Änderungsrate der Höhe h'(1), um das Wellenverhalten vorherzusagen. Verwende die Produktregel mit trigonometrischen Funktionen!",
-            modeling_1: "🚗 SZENARIO: Auto-Beschleunigung — Ein Tesla beschleunigt aus dem Stand. Seine Position ist s(t) = 2t^3 - 3t^2 + 5t Meter. Finde die Geschwindigkeit v(t) = s'(t) bei t=3 Sekunden, um zu prüfen, ob sie innerhalb der Geschwindigkeitsbegrenzung liegt.",
-            modeling_2: "🎈 SZENARIO: Ballon-Start — Ein Wetterballon steigt mit der Höhe h(t) = -5t^2 + 20t + 2 Meter. Bei t=2 Sekunden berechne die Geschwindigkeit v(t) = h'(t), um eine sichere Aufstiegsrate zu gewährleisten.",
+            composite_1: "🎢 SZENARIO: Achterbahn-Design — Ein Ingenieur entwirft einen Achterbahn-Abschnitt, bei dem die Höhe h(t) = (2t^{2} + 3t)·sin(t) folgt. Die Geschwindigkeit ist die Ableitung h'(t). Berechne bei t=2 Sekunden die Geschwindigkeit, um die Sicherheit der Passagiere zu gewährleisten. Dies erfordert sowohl die Produktregel ALS AUCH die Potenzregel!",
+            composite_2: "📡 SZENARIO: Signalverarbeitung — Die Amplitude eines Funksignals ist A(t) = (t^{2} + 1)/sin(t). Die Änderungsrate der Amplitude ist A'(t). Berechne bei t=1 Sekunde diese Rate, um den Empfänger anzupassen. Dies erfordert die Quotientenregel kombiniert mit der Potenzregel!",
+            composite_3: "🌊 SZENARIO: Welleninterferenz — Zwei Meereswellen überlagern sich: h(x) = (x^{3} - 2x)·cos(x). Bei x=1 finde die Änderungsrate der Höhe h'(1), um das Wellenverhalten vorherzusagen. Verwende die Produktregel mit trigonometrischen Funktionen!",
+            modeling_1: "🚗 SZENARIO: Auto-Beschleunigung — Ein Tesla beschleunigt aus dem Stand. Seine Position ist s(t) = 2t^{3} - 3t^{2} + 5t Meter. Finde die Geschwindigkeit v(t) = s'(t) bei t=3 Sekunden, um zu prüfen, ob sie innerhalb der Geschwindigkeitsbegrenzung liegt.",
+            modeling_2: "🎈 SZENARIO: Ballon-Start — Ein Wetterballon steigt mit der Höhe h(t) = -5t^{2} + 20t + 2 Meter. Bei t=2 Sekunden berechne die Geschwindigkeit v(t) = h'(t), um eine sichere Aufstiegsrate zu gewährleisten.",
             optimization_1: "📦 SZENARIO: Karton-Design — Ein Unternehmen stellt Kartons aus rechteckiger Pappe her. Die Fläche ist A(x) = x(10-x). Finde den Wert von x, der die Fläche maximiert, um die Materialnutzung zu optimieren.",
-            optimization_2: "💰 SZENARIO: Gewinnmaximierung — Der Tagesgewinn einer Basler Bäckerei ist P(x) = -2x^2 + 12x - 10 (in Hundert CHF), wobei x die Produktionsstunden sind. Finde x, das den Gewinn maximiert.",
-            analysis_1: "📊 SZENARIO: Marktanalyse — Ein Aktienkurs folgt f(x) = x^3 - 3x^2 + 2. Finde alle kritischen Punkte (wo f'(x) = 0), um potenzielle Kauf-/Verkaufsmomente zu identifizieren.",
-            analysis_2: "🚀 SZENARIO: Raketen-Flugbahn — Die Höhe einer Rakete ist f(x) = 2x^3 - 6x + 1. Bei x=1 finde die zweite Ableitung f''(1), um zu bestimmen, ob die Rakete beschleunigt oder abbremst."
+            optimization_2: "💰 SZENARIO: Gewinnmaximierung — Der Tagesgewinn einer Basler Bäckerei ist P(x) = -2x^{2} + 12x - 10 (in Hundert CHF), wobei x die Produktionsstunden sind. Finde x, das den Gewinn maximiert.",
+            analysis_1: "📊 SZENARIO: Marktanalyse — Ein Aktienkurs folgt f(x) = x^{3} - 3x^{2} + 2. Finde alle kritischen Punkte (wo f'(x) = 0), um potenzielle Kauf-/Verkaufsmomente zu identifizieren.",
+            analysis_2: "🚀 SZENARIO: Raketen-Flugbahn — Die Höhe einer Rakete ist f(x) = 2x^{3} - 6x + 1. Bei x=1 finde die zweite Ableitung f''(1), um zu bestimmen, ob die Rakete beschleunigt oder abbremst."
         },
         questions: {
             find_derivative: "Berechne die Ableitung am gegebenen Punkt",
@@ -294,7 +294,7 @@ export const deMath = {
         },
         hints: {
             use_product_rule: "Verwende Produktregel: (uv)' = u'v + uv'. Finde zuerst u' und v' separat.",
-            use_quotient_rule: "Verwende Quotientenregel: (u/v)' = (u'v - uv')/v^2. Denke daran, den Nenner zu quadrieren!",
+            use_quotient_rule: "Verwende Quotientenregel: (u/v)' = (u'v - uv')/v^{2}. Denke daran, den Nenner zu quadrieren!",
             use_chain_rule: "Verwende Kettenregel: (f(g(x)))' = f'(g(x))·g'(x). Arbeite von außen nach innen.",
             take_first_derivative: "Bilde die erste Ableitung: Wenn s(t) die Position ist, dann ist v(t) = s'(t) die Geschwindigkeit.",
             take_second_derivative: "Finde zuerst f'(x), dann leite erneut ab, um f''(x) zu erhalten.",
@@ -383,7 +383,7 @@ export const deMath = {
         scenarios: {
             antiderivative: "Roche Pharmalabor - Arzneimittelkonzentrationsanalyse: Sie arbeiten in Roches Basler Forschungseinrichtung und analysieren, wie sich die Arzneimittelkonzentration im Blutkreislauf über die Zeit verändert. Die Änderungsrate der Konzentration ist durch f(t) = Ableitung gegeben. Um die gesamte akkumulierte Konzentration (die Stammfunktion F(t)) zu finden, müssen Sie die Ratenfunktion integrieren. Diese Stammfunktion gibt Ihnen die Arzneimittelkonzentration zu jedem Zeitpunkt t, was für die Bestimmung sicherer Dosierungsniveaus entscheidend ist. Die Integrationskonstante C repräsentiert die Anfangskonzentration bei t=0. Genaue Integration gewährleistet Patientensicherheit durch Vorhersage der Arzneimittelspiegel im Körper über die Zeit.",
             definite_integral: "Rhein-Durchflussanalyse - Gesamtwasservolumen: Basels Umweltüberwachungsstation verfolgt die Durchflussrate des Rheins (Kubikmeter pro Sekunde) über den Tag. Die Durchflussrate variiert mit der Zeit: f(t) repräsentiert die momentane Durchflussrate. Um das Gesamtvolumen des Wassers zu berechnen, das zwischen Zeit a und Zeit b durch Basel geflossen ist, müssen Sie das bestimmte Integral ∫[a,b] f(t) dt auswerten. Dieses Integral gibt das akkumulierte Volumen in Kubikmetern. Das Ergebnis hilft der Basler Hafenbehörde, Schifffahrtspläne zu verwalten und Hochwasserrisiken vorherzusagen. Im Gegensatz zu Stammfunktionen geben bestimmte Integrale eine spezifische numerische Antwort, die die Gesamtakkumulation darstellt.",
-            application: "Novartis Gebäudedesign - Berechnung der gekrümmten Dachfläche: Novartis baut ein neues Forschungsgebäude in Basel mit einem gekrümmten Dach, das der Funktion f(x) folgt. Das Architekturteam muss die exakte Oberfläche unter der Kurve von x=a bis x=b berechnen, um die richtige Menge an Dachmaterial zu bestellen. Die Fläche entspricht dem bestimmten Integral ∫[a,b] f(x) dx. Für komplexere Anwendungen könnten Sie das Volumen einer Rotationsstruktur mit V = π∫[a,b] [f(x)]^2 dx (Scheibenmethode) berechnen. Genaue Integration verhindert Materialverschwendung und gewährleistet strukturelle Integrität. So übersetzen Ingenieure mathematische Kurven in reale Bauspezifikationen."
+            application: "Novartis Gebäudedesign - Berechnung der gekrümmten Dachfläche: Novartis baut ein neues Forschungsgebäude in Basel mit einem gekrümmten Dach, das der Funktion f(x) folgt. Das Architekturteam muss die exakte Oberfläche unter der Kurve von x=a bis x=b berechnen, um die richtige Menge an Dachmaterial zu bestellen. Die Fläche entspricht dem bestimmten Integral ∫[a,b] f(x) dx. Für komplexere Anwendungen könnten Sie das Volumen einer Rotationsstruktur mit V = π∫[a,b] [f(x)]^{2} dx (Scheibenmethode) berechnen. Genaue Integration verhindert Materialverschwendung und gewährleistet strukturelle Integrität. So übersetzen Ingenieure mathematische Kurven in reale Bauspezifikationen."
         },
         prompts: {
             find_antiderivative: "Finde die Stammfunktion F(x) von f(x) = {expr}.",
@@ -507,19 +507,19 @@ export const deMath = {
             mission_core_5: "Swiss Lotto Mission: 5 Ziehungen, 60% Gewinnchance, P(X=3)?\n\nGegeben: n=5, k=3, p=0.6\nFinden: P(X=3)",
 
             // BINOMIAL - BASIC: Grundkonzept verstehen
-            coin_4_2: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal Kopf zu erhalten?\n\nGegeben: n=4 Versuche, k=2 Erfolge, p=0.5\nGesucht: P(X=2) = C(4,2) × 0.5^2 × 0.5^2\nKonzept: Grundlegende Binomialverteilung",
-            coin_3_all: "Sie werfen eine faire Münze 3 Mal. Wie hoch ist die Wahrscheinlichkeit, nur Kopf zu erhalten?\n\nGegeben: n=3 Versuche, k=3 Erfolge, p=0.5\nGesucht: P(X=3) = C(3,3) × 0.5^3 × 0.5⁰\nKonzept: Verstehen dass C(n,n) = 1",
-            coin_4_none: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, keinen Kopf zu erhalten (nur Zahl)?\n\nGegeben: n=4 Versuche, k=0 Erfolge, p=0.5\nGesucht: P(X=0) = C(4,0) × 0.5⁰ × 0.5^4\nKonzept: Verstehen dass C(n,0) = 1",
+            coin_4_2: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal Kopf zu erhalten?\n\nGegeben: n=4 Versuche, k=2 Erfolge, p=0.5\nGesucht: P(X=2) = C(4,2) × 0.5^{2} × 0.5^{2}\nKonzept: Grundlegende Binomialverteilung",
+            coin_3_all: "Sie werfen eine faire Münze 3 Mal. Wie hoch ist die Wahrscheinlichkeit, nur Kopf zu erhalten?\n\nGegeben: n=3 Versuche, k=3 Erfolge, p=0.5\nGesucht: P(X=3) = C(3,3) × 0.5^{3} × 0.5⁰\nKonzept: Verstehen dass C(n,n) = 1",
+            coin_4_none: "Sie werfen eine faire Münze 4 Mal. Wie hoch ist die Wahrscheinlichkeit, keinen Kopf zu erhalten (nur Zahl)?\n\nGegeben: n=4 Versuche, k=0 Erfolge, p=0.5\nGesucht: P(X=0) = C(4,0) × 0.5⁰ × 0.5^{4}\nKonzept: Verstehen dass C(n,0) = 1",
 
             // BINOMIAL - CORE: C(n,k) Bedeutung verstehen
-            lottery_5_3: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 50% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=5, k=3, p=0.5\nGesucht: P(X=3) = C(5,3) × 0.5^3 × 0.5^2\nKonzept: C(5,3) = 10 repräsentiert die 10 verschiedenen Möglichkeiten, welche 3 Ziehungen Sie gewinnen",
+            lottery_5_3: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 50% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=5, k=3, p=0.5\nGesucht: P(X=3) = C(5,3) × 0.5^{3} × 0.5^{2}\nKonzept: C(5,3) = 10 repräsentiert die 10 verschiedenen Möglichkeiten, welche 3 Ziehungen Sie gewinnen",
             lottery_6_3: "Schweizer Lotto: Sie spielen 6 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=6, k=3, p=0.5\nGesucht: P(X=3), wobei C(6,3) = 20\nKonzept: Verstehen warum wir mit C(n,k) multiplizieren",
             lottery_5_2: "Schweizer Lotto: Sie spielen 5 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal zu gewinnen?\n\nGegeben: n=5, k=2, p=0.5\nGesucht: P(X=2), wobei C(5,2) = 10\nKonzept: Binomialkoeffizient repräsentiert Anordnungen",
             lottery_7_3: "Schweizer Lotto: Sie spielen 7 Ziehungen mit 50% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 3 Mal zu gewinnen?\n\nGegeben: n=7, k=3, p=0.5\nGesucht: P(X=3), wobei C(7,3) = 35\nKonzept: Größeres n bedeutet mehr Anordnungen",
 
             // BINOMIAL - ADVANCED: Asymmetrische Wahrscheinlichkeit (p ≠ 0.5)
-            lottery_6_2_low: "Schweizer Lotto: Sie spielen 6 Ziehungen mit nur 30% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal zu gewinnen?\n\nGegeben: n=6, k=2, p=0.3 (niedrige Wahrscheinlichkeit)\nGesucht: P(X=2) = C(6,2) × 0.3^2 × 0.7^4\nKonzept: Niedriges p bedeutet linksschief verteilte Verteilung",
-            lottery_8_6_high: "Schweizer Lotto: Sie spielen 8 Ziehungen mit 70% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 6 Mal zu gewinnen?\n\nGegeben: n=8, k=6, p=0.7 (hohe Wahrscheinlichkeit)\nGesucht: P(X=6) = C(8,6) × 0.7^6 × 0.3^2\nKonzept: Hohes p bedeutet rechtsschief verteilte Verteilung",
+            lottery_6_2_low: "Schweizer Lotto: Sie spielen 6 Ziehungen mit nur 30% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 2 Mal zu gewinnen?\n\nGegeben: n=6, k=2, p=0.3 (niedrige Wahrscheinlichkeit)\nGesucht: P(X=2) = C(6,2) × 0.3^{2} × 0.7^{4}\nKonzept: Niedriges p bedeutet linksschief verteilte Verteilung",
+            lottery_8_6_high: "Schweizer Lotto: Sie spielen 8 Ziehungen mit 70% Gewinnwahrscheinlichkeit pro Ziehung. Wie hoch ist die Wahrscheinlichkeit, genau 6 Mal zu gewinnen?\n\nGegeben: n=8, k=6, p=0.7 (hohe Wahrscheinlichkeit)\nGesucht: P(X=6) = C(8,6) × 0.7^6 × 0.3^{2}\nKonzept: Hohes p bedeutet rechtsschief verteilte Verteilung",
             lottery_7_4_biased: "Schweizer Lotto: Sie spielen 7 Ziehungen mit 60% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 4 Mal zu gewinnen?\n\nGegeben: n=7, k=4, p=0.6\nGesucht: P(X=4)\nKonzept: Asymmetrische Verteilungen verstehen",
             lottery_10_7_biased: "Schweizer Lotto: Sie spielen 10 Ziehungen mit 65% Gewinnwahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, genau 7 Mal zu gewinnen?\n\nGegeben: n=10, k=7, p=0.65\nGesucht: P(X=7)\nKonzept: Berechnung mit nicht-standardisierten Wahrscheinlichkeiten",
 
@@ -694,7 +694,7 @@ export const deMath = {
             basel_water_tank: "Basel Wassertank (Zylinder)",
             basel_museum: "Basel Museum Würfelanzeige",
             basel_sbb_cargo: "Basel SBB Frachtcontainer",
-            basel_storage_sa: "Basel Lagerwürfel, Oberfläche 150 m^2",
+            basel_storage_sa: "Basel Lagerwürfel, Oberfläche 150 m^{2}",
             novartis_lab: "Novartis Laborbehälter, Basis 6×8 m, Höhe 10 m",
             basel_rhine_pipe: "Basel Rhein Wasserrohr, Durchmesser 8 m, Länge 12 m",
             roche_cube: "Roche Tower Würfelraum, Kante 9 m",
@@ -703,12 +703,12 @@ export const deMath = {
             novartis_plaza: "Novartis Trapezplatz, Umfang 50 m",
             basel_rhine_cyl: "Basel Rhein zylindrisches Rohr, Durchmesser 10 m, Länge 15 m",
             roche_prism: "Roche Tower Prisma, Basis 12×10 m, Höhe 20 m",
-            basel_sbb_storage: "Basel SBB Würfellager, Oberfläche 294 m^2",
-            basel_museum_vol: "Basel Museum Würfel, Volumen 512 m^3, finde Diagonale",
-            novartis_tank: "Novartis Zylindertank, Mantelfläche 314.16 m^2, Radius 5 m",
-            basel_bridge_area: "Basel Rheinbrücke Trapez, Fläche 180 m^2, a=10, b=20, finde h",
-            roche_prism_vol: "Roche Tower Prisma, Volumen 1200 m^3, Basis 10×8 m, finde Höhe",
-            basel_water_cyl: "Basel Wassertank Zylinder, Volumen 1570.8 m^3, Höhe 20 m, finde Radius",
+            basel_sbb_storage: "Basel SBB Würfellager, Oberfläche 294 m^{2}",
+            basel_museum_vol: "Basel Museum Würfel, Volumen 512 m^{3}, finde Diagonale",
+            novartis_tank: "Novartis Zylindertank, Mantelfläche 314.16 m^{2}, Radius 5 m",
+            basel_bridge_area: "Basel Rheinbrücke Trapez, Fläche 180 m^{2}, a=10, b=20, finde h",
+            roche_prism_vol: "Roche Tower Prisma, Volumen 1200 m^{3}, Basis 10×8 m, finde Höhe",
+            basel_water_cyl: "Basel Wassertank Zylinder, Volumen 1570.8 m^{3}, Höhe 20 m, finde Radius",
             basel_park_path: "Basel Park rechteckiger Weg",
             basel_cathedral_roof: "Basler Münster dreieckiger Dachabschnitt",
             novartis_logo: "Novartis kreisförmiges Logo",
@@ -723,8 +723,8 @@ export const deMath = {
 
             // Zusätzliche Szenarien
             basel_messe_trap: "Basel Messe Ausstellungstrapezstand",
-            basel_uni_lab_vol: "Universität Basel Würfellabor, Volumen 1000 m^3",
-            novartis_tank_vol: "Novartis Zylindertank, Radius 6 m, Volumen 678.6 m^3",
+            basel_uni_lab_vol: "Universität Basel Würfellabor, Volumen 1000 m^{3}",
+            novartis_tank_vol: "Novartis Zylindertank, Radius 6 m, Volumen 678.6 m^{3}",
 
             // Monitor-Labels
             realtime_geo: "ECHTZEIT-GEOMETRIE",
@@ -1027,22 +1027,22 @@ export const deMath = {
             advanced: "FORTGESCHRITTEN",
             elite: "ELITE"
         },
-        mode_1: "1. Formel: (a+b)^2",
-        mode_2: "2. Formel: (a-b)^2",
+        mode_1: "1. Formel: (a+b)^{2}",
+        mode_2: "2. Formel: (a-b)^{2}",
         param_a: "Parameter a",
         param_b: "Parameter b",
         lock: "PARAMETER FIXIEREN",
         unlock: "PARAMETER ÄNDERN",
         instruction_setup: "Passe die Schieberegler für a und b an.",
-        instruction_solve: "Ziehe die Flächenanteile in das Zielfeld $(a+b)^2$.",
+        instruction_solve: "Ziehe die Flächenanteile in das Zielfeld $(a+b)^{2}$.",
         solve_success: "IDENTITÄT BEWIESEN",
         solve_fail: "FLÄCHENFEHLER",
         terms: {
-            a2: "a^2",
-            b2: "b^2",
+            a2: "a^{2}",
+            b2: "b^{2}",
             ab: "ab",
-            target_plus: "(a+b)^2",
-            target_minus: "(a-b)^2",
+            target_plus: "(a+b)^{2}",
+            target_minus: "(a-b)^{2}",
         },
         scenarios: {
             architect_title: "Szenario A: Gartenerweiterung",
@@ -1050,12 +1050,12 @@ export const deMath = {
             architect_context: "Du besitzt ein quadratisches Gartenbeet am Zürichsee mit Seitenlänge 'a' Meter. Die Stadt erlaubt dir, es um 'b' Meter auf zwei Seiten zu erweitern. Um die richtige Menge Erde und Samen zu kaufen, musst du die neue Gesamtfläche kennen.",
             scrapper_title: "Szenario B: Fliesenfabrik",
             scrapper_desc: "Eine Fabrik hat drei Fliesenformen produziert. Setze sie zu einem perfekten Quadrat zusammen.",
-            scrapper_context: "Eine Schweizer Fliesenfabrik produziert drei Arten von Fliesen: ein grosses Quadrat (a^2), zwei rechteckige Streifen (je a×b) und ein kleines Quadrat (b^2). Deine Aufgabe ist es zu überprüfen, dass diese vier Teile perfekt zu einem grossen Quadrat der Seitenlänge (a+b) zusammengesetzt werden können.",
+            scrapper_context: "Eine Schweizer Fliesenfabrik produziert drei Arten von Fliesen: ein grosses Quadrat (a^{2}), zwei rechteckige Streifen (je a×b) und ein kleines Quadrat (b^{2}). Deine Aufgabe ist es zu überprüfen, dass diese vier Teile perfekt zu einem grossen Quadrat der Seitenlänge (a+b) zusammengesetzt werden können.",
             speedster_title: "Szenario C: Kopfrechen-Sprint",
-            speedster_desc: "Berechne grosse Quadratzahlen sofort durch Aufteilen in (Runde+Rest)^2.",
-            speedster_context: "Im Schweizer Mathe-Olympiad musst du Zahlen wie 103 oder 47 im Kopf quadrieren. Der Trick: 103 = (100+3), dann (a+b)^2 = 10000 + 600 + 9 = 10609.",
+            speedster_desc: "Berechne grosse Quadratzahlen sofort durch Aufteilen in (Runde+Rest)^{2}.",
+            speedster_context: "Im Schweizer Mathe-Olympiad musst du Zahlen wie 103 oder 47 im Kopf quadrieren. Der Trick: 103 = (100+3), dann (a+b)^{2} = 10000 + 600 + 9 = 10609.",
             voyager_context: "Zwei quadratische Felder teilen eine gemeinsame Grenze. Eines hat die Seitenlänge a, das andere b.",
-            architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit (a+b)^2 = a^2 + 2ab + b^2.",
+            architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit (a+b)^{2} = a^{2} + 2ab + b^{2}.",
             architect_advanced_prompt: "Termidentifikation & Faktorisierungsübung",
             architect_elite_prompt: "Zweivariablen-Faktorisierungsherausforderung",
             scrapper_mission: "Aufgabe: Identifiziere a und b aus der expandierten Form und rekonstruiere das Quadrat.",
@@ -1063,7 +1063,7 @@ export const deMath = {
             voyager_mission: "Aufgabe: Nutze die dritte binomische Formel zur Flächendifferenz.",
             elite_mission: "Aufgabe: Faktorisiere das komplexe Polynom in binomischer Produktform."
         },
-        speedster_hint: "Verwenden Sie die binomische Formel (a±b)^2 zur Vereinfachung",
+        speedster_hint: "Verwenden Sie die binomische Formel (a±b)^{2} zur Vereinfachung",
         elite_tips_title: "TIPPS: Binomiale Isolationsstrategie",
         elite_tips_target: "Zielformat:",
         scrapper_step01: "SCHRITT 01: Wurzel isolieren (a)",
@@ -1080,9 +1080,9 @@ export const deMath = {
             elite: "ELITE"
         },
         ui: {
-            part_1_a2: "Teil 1 (a^2)",
+            part_1_a2: "Teil 1 (a^{2})",
             part_2_2ab: "Teil 2 (2ab)",
-            part_3_b2: "Teil 3 (b^2)",
+            part_3_b2: "Teil 3 (b^{2})",
             identify_root_a: "Wurzel a bestimmen",
             identify_root_b: "Wurzel b bestimmen",
             elite_step_1: "Schritt 1: Binomisches Quadrat isolieren",
@@ -1099,9 +1099,9 @@ export const deMath = {
             logic_voyager_derivation_title: "HERLEITUNG:",
             link_established: "VERBINDUNG_HERGESTELLT",
             axiomatic_constraints_title: "Axiomatische Randbedingungen",
-            constraints_architect: "Die Ecke b^2 ist der Offset zum Vervollständigen des großen Quadrats; ihr Wert ist entscheidend für die Präzision.",
+            constraints_architect: "Die Ecke b^{2} ist der Offset zum Vervollständigen des großen Quadrats; ihr Wert ist entscheidend für die Präzision.",
             constraints_scrapper: "Faktorisieren zerlegt die Struktur zurück in geordnete Terme; die Wurzelisolation ist das Hauptziel.",
-            constraints_speedster: "Kopfrechnen nutzt Basiszerlegung: Verschiebe die Aufgabe in ein (Basis+N)^2‑Schema.",
+            constraints_speedster: "Kopfrechnen nutzt Basiszerlegung: Verschiebe die Aufgabe in ein (Basis+N)^{2}‑Schema.",
             constraints_elite: "Erweiterte Umformung für mehrdimensionale Koeffizienten, wobei C ein zusammengesetzter Skalierungsfaktor ist.",
             constraints_voyager: "Symmetrie erfordert strikte Vorzeichen. Die Differenz beschreibt den Nettoverlust in der Projektion.",
             visual_reference_position: "Visuelle_Referenz_Position [FIX_REF.01]",
@@ -1117,17 +1117,17 @@ export const deMath = {
         placeholders: {
             ax: "ax",
             b: "b",
-            a_squared: "a^2",
+            a_squared: "a^{2}",
             two_ab: "2ab",
-            b_squared: "b^2",
+            b_squared: "b^{2}",
             cxy: "Cxy",
             v: "V",
             two_cvxy: "2CVxy",
-            v_squared: "V^2",
+            v_squared: "V^{2}",
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "Zerlegungsmuster: a^2 + 2ab + b^2"
+        decomposition_pattern: "Zerlegungsmuster: a^{2} + 2ab + b^{2}"
     },
     sm2_02: {
         back: "Zurück zum Nexus",
@@ -1171,7 +1171,7 @@ export const deMath = {
             elite_space: " CERN-Labor: Raumdiagonale berechnen",
             explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten.",
             fluid_title: "Fluid-Volumenerhaltung",
-            fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie A^2 + B^2 exakt C^2 füllen. Dies visualisiert die Flächenerhaltung."
+            fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie A^{2} + B^{2} exakt C^{2} füllen. Dies visualisiert die Flächenerhaltung."
         },
         sqrt: {
             perfect: "Quadratzahlen",
@@ -1425,7 +1425,7 @@ export const deMath = {
             slope_prompt_latex: "\\text{Berechnen Sie die Steigung }m\\text{ der Geraden durch A und B.}"
         },
         formulas: {
-            distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+            distance: "d = \\sqrt{(x_2-x_1)^{2} + (y_2-y_1)^2}",
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
         },
@@ -1633,8 +1633,8 @@ export const deMath = {
         },
         hints: {
             identities: {
-                trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
-                diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                trinomial_expand_latex: "(x+A)(x+B)=x^{2}+(A+B)x+AB",
+                diff_squares_latex: "u^{2}-v^{2}=(u-v)(u+v)"
             },
             rules: {
                 factor_common_latex: "\\text{Gemeinsamen Faktor ausklammern.}",
@@ -1782,7 +1782,7 @@ export const deMath = {
             app_med: "💊 SZENARIO: Medikamenten-Dosierungszeit — Dein Arzt verschreibt ein Schmerzmittel. Du nimmst um 8:00 Uhr 400 mg ein. Das Medikament hat eine Halbwertszeit von 6 Stunden, was bedeutet, dass alle 6 Stunden die Hälfte davon aus deinem Körper eliminiert wird. Um 14:00 Uhr (6 Stunden später) bleiben 200 mg. Um 20:00 Uhr bleiben 100 mg. Der Arzt sagt, das Medikament wirkt unter 50 mg nicht mehr. Frage: Zu welcher Uhrzeit kannst du sicher die nächste Dosis nehmen? Verwende die Formel: N(t) = N₀ × (1/2)^(t/6).",
             app_bank: "🏦 SZENARIO: Sparkonten vergleichen — Du hast 5.000 CHF für die Universität zu sparen. Bank A bietet 3% einfache Zinsen (du verdienst immer 150 CHF pro Jahr). Bank B bietet 3% Zinseszins (jedes Jahr verdienst du Zinsen auf deine Zinsen). Nach 10 Jahren: Bank A gibt dir 5.000 + 10×150 = 6.500 CHF. Bank B gibt dir 5.000 × (1,03)^10 = 6.720 CHF. Frage: Nach wie vielen Jahren gibt dir Bank B 1.000 CHF mehr als Bank A? Löse mit exponentiellen Gleichungen!",
             app_pop: "🏙️ SZENARIO: Zürich Bevölkerungswachstum — Im Jahr 2000 hatte Zürich 340.000 Einwohner. Die Stadt wächst mit 1,2% pro Jahr (exponentielles Wachstum). Bis 2020 erreichte die Bevölkerung 420.000. Stadtplaner müssen vorhersagen: Wann wird Zürich 500.000 erreichen? Dies bestimmt, wann neue Schulen, Trams und Wohnungen gebaut werden müssen. Verwende die Formel: P(t) = P₀ × (1,012)^t. Löse nach t, wenn P(t) = 500.000.",
-            app_carbon: "🦴 SZENARIO: Archäologische Datierung — Archäologen finden ein Holzwerkzeug in einer Schweizer Höhle. Alle Lebewesen enthalten Kohlenstoff-14 (¹^4C), das mit einer Halbwertszeit von 5.730 Jahren zerfällt. Als der Baum starb, hörte er auf, neues ¹^4C aufzunehmen. Durch Messung, wie viel ¹^4C übrig ist, können Wissenschaftler das Alter berechnen. Wenn das Werkzeug 25% des ursprünglichen ¹^4C hat, wie alt ist es? Verwende: 0,25 = (1/2)^(t/5730). Löse nach t mit Logarithmen. So wissen wir das Alter antiker Artefakte!"
+            app_carbon: "🦴 SZENARIO: Archäologische Datierung — Archäologen finden ein Holzwerkzeug in einer Schweizer Höhle. Alle Lebewesen enthalten Kohlenstoff-14 (¹^{4}C), das mit einer Halbwertszeit von 5.730 Jahren zerfällt. Als der Baum starb, hörte er auf, neues ¹^{4}C aufzunehmen. Durch Messung, wie viel ¹^{4}C übrig ist, können Wissenschaftler das Alter berechnen. Wenn das Werkzeug 25% des ursprünglichen ¹^{4}C hat, wie alt ist es? Verwende: 0,25 = (1/2)^(t/5730). Löse nach t mit Logarithmen. So wissen wir das Alter antiker Artefakte!"
         }
     },
     sm3_04: {
@@ -1828,18 +1828,18 @@ export const deMath = {
             richter: "M = \\log_{10}(A)"
         },
         scenarios: {
-            ph_basic: "🧪 SZENARIO: Schulchemielabor — Dein Chemielehrer gibt dir eine klare Flüssigkeit zum Testen. Du verwendest ein pH-Meter und findest die Wasserstoffionenkonzentration [H^+] = 0,001 mol/L (das ist 10^-^3 in wissenschaftlicher Notation). Um die Säure richtig zu melden, musst du den pH-Wert berechnen. Denk daran: pH = -log_1₀[H^+]. Ein pH unter 7 ist sauer, pH 7 ist neutral (reines Wasser), und über 7 ist basisch. Diese Flüssigkeit ist Zitronensaft!",
+            ph_basic: "🧪 SZENARIO: Schulchemielabor — Dein Chemielehrer gibt dir eine klare Flüssigkeit zum Testen. Du verwendest ein pH-Meter und findest die Wasserstoffionenkonzentration [H^+] = 0,001 mol/L (das ist 10^-^{3} in wissenschaftlicher Notation). Um die Säure richtig zu melden, musst du den pH-Wert berechnen. Denk daran: pH = -log_1₀[H^+]. Ein pH unter 7 ist sauer, pH 7 ist neutral (reines Wasser), und über 7 ist basisch. Diese Flüssigkeit ist Zitronensaft!",
             ph_core: "🧪 SZENARIO: Schwimmbad-Wasserqualität — Du arbeitest Teilzeit im Basler Hallenbad. Der Gesundheitsinspektor verlangt tägliche pH-Tests. Die heutige Wasserprobe zeigt [H^+] = 10^-^8 mol/L. Du musst den pH-Wert berechnen, um zu überprüfen, ob er im sicheren Bereich liegt (7,2-7,8). Wenn der pH zu niedrig ist (sauer), reizt es die Augen der Schwimmer. Wenn zu hoch (basisch), funktioniert Chlor nicht richtig. Deine Berechnung bestimmt, ob das Bad heute öffnen kann!",
             ph_advanced: "🧪 SZENARIO: Pharmazeutische Qualitätskontrolle — Du bist Praktikant bei Roche in Basel. Eine neue Arzneimittelformulierung muss eine präzise pH-Kontrolle für Stabilität haben. Das Labor misst [H^+] = 3,16 × 10^-^5 mol/L. Berechne den pH-Wert auf 2 Dezimalstellen. Wenn der pH außerhalb des Zielbereichs (4,3-4,7) driftet, muss die gesamte Charge (Millionen wert) entsorgt werden. Logarithmische Präzision ist in der Pharmazie entscheidend!",
-            ph_elite: "🧪 SZENARIO: Umwelt-Saurer-Regen-Studie — Universität Basel Forscher untersuchen die Auswirkungen von saurem Regen auf Schweizer Wälder. Regenwasserproben zeigen [H^+] = 10^-^4·^5 mol/L (beachte den Bruchexponenten!). Berechne den pH-Wert. Normaler Regen ist pH 5,6, aber saurer Regen kann pH 4,0 oder niedriger sein. Jede pH-Einheit repräsentiert eine 10-fache Änderung der Säure, also ist pH 4 Regen 100× saurer als pH 6 Regen. Deine Berechnung hilft, Umweltschäden zu bewerten.",
-            decibel_basic: "🔊 SZENARIO: Schulbibliothek Lärmcheck — Der Bibliothekar bittet dich zu messen, ob der Lernbereich ruhig genug ist. Du verwendest ein Schallmessgerät: die Intensität ist I = 10^-¹⁰ W/m^2. Die Referenzintensität (Hörschwelle) ist I₀ = 10^-¹^2 W/m^2. Berechne den Schallpegel in Dezibel mit L = 10·log_1₀(I/I₀). Zur Referenz: Flüstern = 30 dB, normale Konversation = 60 dB, Bibliothek sollte unter 40 dB sein.",
-            decibel_core: "🔊 SZENARIO: Konzert-Tontechniker — Du richtest ein Schulrockkonzert in der Aula ein. Das Soundsystem erzeugt eine Intensität I = 10^-^4 W/m^2 in der ersten Reihe. Berechne den Dezibelpegel. Sicherheitsvorschriften erfordern Gehörschutz über 85 dB, und längere Exposition über 100 dB verursacht Hörschäden. Deine Berechnung bestimmt, ob du die Lautstärke reduzieren oder dem Publikum Ohrstöpsel geben musst.",
-            decibel_advanced: "🔊 SZENARIO: Flughafen-Lärmverschmutzungsstudie — Der Basel-Mulhouse Flughafen expandiert, und Anwohner beschweren sich über Lärm. Du misst ein startendes Flugzeug: I = 1 W/m^2 in 100 Metern Entfernung. Berechne den Dezibelpegel. Stadtvorschriften begrenzen Flughafenlärm auf 65 dB tagsüber. Bei 120 dB (Düsentriebwerk) ist Schall schmerzhaft. Die logarithmische Skala bedeutet, dass 120 dB nicht 'doppelt so laut' wie 60 dB ist — es ist 1.000.000-mal intensiver!",
-            decibel_elite: "🔊 SZENARIO: Akustik-Engineering-Herausforderung — Ein Basler Konzertsaal wird entworfen. Der Architekt muss die Schallabsorption berechnen. Wenn die ursprüngliche Intensität I_1 = 10^-^3 W/m^2 ist und nach Akustikpaneelen auf I_2 = 10^-^6 W/m^2 sinkt, wie groß ist die Dezibelreduktion? Berechne L_1 - L_2. Dies beinhaltet das Verständnis, dass Dezibeldifferenzen Intensitätsverhältnisse darstellen: ein 10 dB Abfall bedeutet 10× weniger intensiv, 20 dB Abfall bedeutet 100× weniger intensiv.",
+            ph_elite: "🧪 SZENARIO: Umwelt-Saurer-Regen-Studie — Universität Basel Forscher untersuchen die Auswirkungen von saurem Regen auf Schweizer Wälder. Regenwasserproben zeigen [H^+] = 10^-^{4}·^5 mol/L (beachte den Bruchexponenten!). Berechne den pH-Wert. Normaler Regen ist pH 5,6, aber saurer Regen kann pH 4,0 oder niedriger sein. Jede pH-Einheit repräsentiert eine 10-fache Änderung der Säure, also ist pH 4 Regen 100× saurer als pH 6 Regen. Deine Berechnung hilft, Umweltschäden zu bewerten.",
+            decibel_basic: "🔊 SZENARIO: Schulbibliothek Lärmcheck — Der Bibliothekar bittet dich zu messen, ob der Lernbereich ruhig genug ist. Du verwendest ein Schallmessgerät: die Intensität ist I = 10^-¹⁰ W/m^{2}. Die Referenzintensität (Hörschwelle) ist I₀ = 10^-¹^{2} W/m^{2}. Berechne den Schallpegel in Dezibel mit L = 10·log_1₀(I/I₀). Zur Referenz: Flüstern = 30 dB, normale Konversation = 60 dB, Bibliothek sollte unter 40 dB sein.",
+            decibel_core: "🔊 SZENARIO: Konzert-Tontechniker — Du richtest ein Schulrockkonzert in der Aula ein. Das Soundsystem erzeugt eine Intensität I = 10^-^{4} W/m^{2} in der ersten Reihe. Berechne den Dezibelpegel. Sicherheitsvorschriften erfordern Gehörschutz über 85 dB, und längere Exposition über 100 dB verursacht Hörschäden. Deine Berechnung bestimmt, ob du die Lautstärke reduzieren oder dem Publikum Ohrstöpsel geben musst.",
+            decibel_advanced: "🔊 SZENARIO: Flughafen-Lärmverschmutzungsstudie — Der Basel-Mulhouse Flughafen expandiert, und Anwohner beschweren sich über Lärm. Du misst ein startendes Flugzeug: I = 1 W/m^{2} in 100 Metern Entfernung. Berechne den Dezibelpegel. Stadtvorschriften begrenzen Flughafenlärm auf 65 dB tagsüber. Bei 120 dB (Düsentriebwerk) ist Schall schmerzhaft. Die logarithmische Skala bedeutet, dass 120 dB nicht 'doppelt so laut' wie 60 dB ist — es ist 1.000.000-mal intensiver!",
+            decibel_elite: "🔊 SZENARIO: Akustik-Engineering-Herausforderung — Ein Basler Konzertsaal wird entworfen. Der Architekt muss die Schallabsorption berechnen. Wenn die ursprüngliche Intensität I_1 = 10^-^{3} W/m^{2} ist und nach Akustikpaneelen auf I_2 = 10^-^6 W/m^{2} sinkt, wie groß ist die Dezibelreduktion? Berechne L_1 - L_2. Dies beinhaltet das Verständnis, dass Dezibeldifferenzen Intensitätsverhältnisse darstellen: ein 10 dB Abfall bedeutet 10× weniger intensiv, 20 dB Abfall bedeutet 100× weniger intensiv.",
             richter_basic: "🌍 SZENARIO: Erdbebenüberwachungsstation — Du bist Freiwilliger im Seismologielabor der Universität Basel. Ein kleines Erdbeben trifft in der Nähe von Basel. Das Seismograph zeichnet eine Bodenbewegungsamplitude A = 100 Mikrometer auf. Berechne die Richtermagnitude mit M = log_1₀(A). Zur Referenz: M < 2 wird nicht gefühlt, M 3-4 ist gering, M 5-6 ist moderat, M 7+ ist schwer. Deine Berechnung hilft, die Erdbebenschwere zu klassifizieren.",
             richter_core: "🌍 SZENARIO: Historische Erdbebenanalyse — 1356 erlebte Basel das stärkste aufgezeichnete Erdbeben der Schweiz. Moderne Analysen schätzen die Bodenamplitude auf A = 100.000 Mikrometer. Berechne die Richtermagnitude. Vergleiche dies mit dem Erdbeben in Japan 2011 (M 9,0), das eine Amplitude von 1.000.000.000 Mikrometern hatte. Die logarithmische Skala komprimiert diesen milliardenfachen Bereich in handhabbare Zahlen (1 bis 9).",
             richter_advanced: "🌍 SZENARIO: Erdbeben-Frühwarnsystem — Die Schweiz entwickelt eine Erdbeben-Warn-App. Zwei Erdbeben treten auf: Erdbeben A hat Amplitude 31.600 μm, Erdbeben B hat Amplitude 1.000 μm. Berechne beide Magnituden auf 2 Dezimalstellen. Die App muss zwischen 'leichtem Beben' (M < 4,0) und 'signifikantem Beben' (M ≥ 4,0) unterscheiden, um zu entscheiden, ob Notfallwarnungen an Millionen von Telefonen gesendet werden.",
-            richter_elite: "🌍 SZENARIO: Seismischer Energievergleich — Fortgeschrittene Seismologie: Die von einem Erdbeben freigesetzte Energie steigt um das 31,6-fache für jede Magnitudeneinheit. Wenn Erdbeben A M 5,0 ist und Erdbeben B M 7,0 ist, wie viel mehr Energie setzt B frei? Verstehe zuerst, dass M 7,0 bedeutet, dass die Amplitude 100× größer ist als M 5,0 (weil 10^2 = 100). Aber Energie skaliert als Amplitude^1,5, also ist das Energieverhältnis 100^1,5 = 1.000×. Deshalb sind M 7 Beben katastrophal, während M 5 nur 'moderat' sind."
+            richter_elite: "🌍 SZENARIO: Seismischer Energievergleich — Fortgeschrittene Seismologie: Die von einem Erdbeben freigesetzte Energie steigt um das 31,6-fache für jede Magnitudeneinheit. Wenn Erdbeben A M 5,0 ist und Erdbeben B M 7,0 ist, wie viel mehr Energie setzt B frei? Verstehe zuerst, dass M 7,0 bedeutet, dass die Amplitude 100× größer ist als M 5,0 (weil 10^{2} = 100). Aber Energie skaliert als Amplitude^1,5, also ist das Energieverhältnis 100^1,5 = 1.000×. Deshalb sind M 7 Beben katastrophal, während M 5 nur 'moderat' sind."
         },
         canvas: {
             ph_title: "pH-SKALA",
@@ -1897,7 +1897,7 @@ export const deMath = {
         scenarios: {
             basel_arch: "Basler Architektur - Geometrische Ikonen: Sie sind ein Lehrling im Architekturbüro und analysieren die moderne Skyline von Basel. Der Roche-Turm (Bau 1 und 2) kann als eine Serie von gestapelten trapezförmigen Prismen und Zylindern modelliert werden. Der Messeturm Basel ist ein weiteres Wahrzeichen mit seinen markanten rechteckigen und zylindrischen Abschnitten. Ihre Aufgabe ist es, die Volumina und Oberflächen dieser ikonischen Strukturen zu berechnen, indem Sie sie in geometrische Grundkörper abstrahieren. Stufe 1 konzentriert sich auf die Berechnung des Gesamtvolumens des Roche-Turm-Komplexes. Das Verständnis dieser Beziehungen ist lebenswichtig für die Materialplanung (Beton, Glas) und die strukturelle Integrität.",
             cross_sections: "Basler Medizinische Bildgebung - Diagnostische Geometrie: Im Universitätsspital Basel (USB) verwenden Radiologen MRT- und CT-Scans, um 2D-Querschnitte des menschlichen Körpers zu erstellen. Diese mathematische Abstraktion ermöglicht es Ärzten, Organe ohne Operation zu sehen. In dieser Stufe analysieren Sie, wie verschiedene Ebenen, die durch Festkörper (wie ein Zylinder für ein Blutgefäß oder eine Kugel für eine Zelle) schneiden, spezifische 2D-Formen erzeugen. Ein diagonaler Schnitt durch das Modell des Roche-Turms könnte ein komplexes Polygon ergeben. Das Beherrschen von Querschnitten ist sowohl für die Medizin als auch für die architektonische Grundrissplanung unerlässlich.",
-            curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr^3) und die Oberfläche (A = 4πr^2) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
+            curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr^{3}) und die Oberfläche (A = 4πr^{2}) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
         }
     },
     sm2_11: {
@@ -2102,8 +2102,8 @@ export const deMath = {
         scenarios: {
             limit_basics: "🚊 BASLER TRAM-GESCHWINDIGKEIT BEI ANNÄHERUNG AN STATION — Basels ikonische grüne Trams (BVB) verkehren in der ganzen Stadt und verbinden Quartiere von Riehen bis St. Johann. Wenn sich ein Tram der Haltestelle Barfüsserplatz nähert, muss es allmählich von 50 km/h auf einen vollständigen Stopp abbremsen. Die Geschwindigkeitsfunktion des Trams ist v(t) = 50(1 - t/10) km/h, wobei t die Zeit in Sekunden ist. Bei genau t = 10 Sekunden erreicht das Tram den Bahnsteig. Um die Sicherheit der Fahrgäste und ein sanftes Bremsen zu gewährleisten, müssen Ingenieure den Grenzwert der Geschwindigkeit berechnen, wenn sich die Zeit 10 Sekunden nähert: lim(t→10) v(t). Dieser Grenzwert repräsentiert die endgültige Annäherungsgeschwindigkeit des Trams. Das Verständnis von Grenzwerten hilft der Basler Verkehrsbetriebe (BVB), optimale Bremssysteme zu entwerfen, die komfortable Stopps bei gleichzeitiger Fahrplaneffizienz bieten. Das Konzept der Grenzwerte ist grundlegend für die Analyse jedes kontinuierlichen Bewegungssystems, von Trams bis zu Aufzügen in Basels modernen Gebäuden.",
             limit_operations: "🏭 ROCHE PHARMAZEUTISCHE KONZENTRATIONSGRENZWERTE — Roche, Basels pharmazeutischer Riese mit Hauptsitz am Rhein, stellt Medikamente her, die präzise chemische Konzentrationen erfordern. Betrachten Sie zwei chemische Lösungen, die gemischt werden: Lösung A hat die Konzentration C_1(t) = 2t + 5 mg/L, und Lösung B hat die Konzentration C_2(t) = 3t - 1 mg/L, wobei t die Mischzeit in Minuten darstellt. Die kombinierte Konzentration ist C(t) = C_1(t) + C_2(t). Um die endgültige Konzentration vorherzusagen, wenn sich die Mischzeit 10 Minuten nähert, berechnen Chemiker: lim(t→10) [C_1(t) + C_2(t)]. Mit Grenzwert-Rechenregeln entspricht dies lim(t→10) C_1(t) + lim(t→10) C_2(t) = 25 + 29 = 54 mg/L. Diese Grenzwertoperationen sind für die pharmazeutische Herstellung unerlässlich und stellen sicher, dass Arzneimittelkonzentrationen innerhalb therapeutischer Bereiche bleiben. Roches Qualitätskontrollsysteme verlassen sich auf solche mathematische Präzision, um sichere, wirksame Medikamente zu produzieren, die internationalen Standards entsprechen.",
-            continuity: "🌊 RHEIN-WASSERSTANDS-STETIGKEITSÜBERWACHUNG — Der Rhein fließt durch Basel und teilt die Stadt in Grossbasel und Kleinbasel. Das Bundesamt für Umwelt überwacht kontinuierlich die Wasserstände an der Station Rheinhalle. Unter normalen Bedingungen ist die Wasserstandsfunktion h(t) stetig, was bedeutet, dass es keine plötzlichen Sprünge oder Lücken in den Messungen gibt. Wenn jedoch das Birsfelden-Stauwerk Wasser ablässt, kann die Pegelfunktion Unstetigkeiten aufweisen. Betrachten Sie eine Wasserstandsfunktion h(t) = (t^2 - 4)/(t - 2) Meter zum Zeitpunkt t = 2 Stunden. In diesem genauen Moment ist die Funktion undefiniert (Division durch Null), was eine hebbare Unstetigkeit erzeugt. Durch Faktorisierung: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 für t ≠ 2, finden wir lim(t→2) h(t) = 4 Meter. Dies bedeutet, dass sich der Wasserstand gleichmäßig 4 Metern nähert, auch wenn das Messgerät bei t = 2 kurzzeitig ausfällt. Das Verständnis von Stetigkeit hilft Basels Hochwasserüberwachungssystemen, echte Wasserstandsänderungen von Messfehlern zu unterscheiden und die Stadt vor Rhein-Hochwasserereignissen zu schützen.",
-            university_basel: "🎓 UNIVERSITÄT BASEL EINSCHREIBUNGSWACHSTUMSRATE — Die Universität Basel, gegründet 1460, ist die älteste Universität der Schweiz. Im letzten Jahrzehnt ist die Studentenzahl stetig gewachsen, insbesondere in MINT-Fächern wie Mathematik, Physik und Chemie. Die Einschreibungsfunktion E(t) = 12000 + 500t + 20t^2 repräsentiert die Anzahl der Studenten, wobei t die Jahre seit 2015 ist. Um zukünftige Wachstumstrends vorherzusagen, analysieren Universitätsverwalter die Einschreibungsänderungsrate mit Grenzwerten. Die durchschnittliche Änderungsrate zwischen den Jahren t = 5 und t = 10 ist [E(10) - E(5)] / (10 - 5). Um jedoch die momentane Wachstumsrate bei genau t = 8 (Jahr 2023) zu finden, benötigen wir den Grenzwert: lim(h→0) [E(8+h) - E(8)] / h. Dieser Grenzwert repräsentiert die Ableitung E'(8) und gibt die präzise Einschreibungswachstumsrate in Studenten pro Jahr an. Das Verständnis von Grenzwerten ermöglicht es der Universität, Infrastrukturerweiterungen zu planen, Fakultät einzustellen und Ressourcen effektiv zuzuweisen, um Basels wachsende Studentenpopulation in Mathematik und Naturwissenschaften aufzunehmen."
+            continuity: "🌊 RHEIN-WASSERSTANDS-STETIGKEITSÜBERWACHUNG — Der Rhein fließt durch Basel und teilt die Stadt in Grossbasel und Kleinbasel. Das Bundesamt für Umwelt überwacht kontinuierlich die Wasserstände an der Station Rheinhalle. Unter normalen Bedingungen ist die Wasserstandsfunktion h(t) stetig, was bedeutet, dass es keine plötzlichen Sprünge oder Lücken in den Messungen gibt. Wenn jedoch das Birsfelden-Stauwerk Wasser ablässt, kann die Pegelfunktion Unstetigkeiten aufweisen. Betrachten Sie eine Wasserstandsfunktion h(t) = (t^{2} - 4)/(t - 2) Meter zum Zeitpunkt t = 2 Stunden. In diesem genauen Moment ist die Funktion undefiniert (Division durch Null), was eine hebbare Unstetigkeit erzeugt. Durch Faktorisierung: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 für t ≠ 2, finden wir lim(t→2) h(t) = 4 Meter. Dies bedeutet, dass sich der Wasserstand gleichmäßig 4 Metern nähert, auch wenn das Messgerät bei t = 2 kurzzeitig ausfällt. Das Verständnis von Stetigkeit hilft Basels Hochwasserüberwachungssystemen, echte Wasserstandsänderungen von Messfehlern zu unterscheiden und die Stadt vor Rhein-Hochwasserereignissen zu schützen.",
+            university_basel: "🎓 UNIVERSITÄT BASEL EINSCHREIBUNGSWACHSTUMSRATE — Die Universität Basel, gegründet 1460, ist die älteste Universität der Schweiz. Im letzten Jahrzehnt ist die Studentenzahl stetig gewachsen, insbesondere in MINT-Fächern wie Mathematik, Physik und Chemie. Die Einschreibungsfunktion E(t) = 12000 + 500t + 20t^{2} repräsentiert die Anzahl der Studenten, wobei t die Jahre seit 2015 ist. Um zukünftige Wachstumstrends vorherzusagen, analysieren Universitätsverwalter die Einschreibungsänderungsrate mit Grenzwerten. Die durchschnittliche Änderungsrate zwischen den Jahren t = 5 und t = 10 ist [E(10) - E(5)] / (10 - 5). Um jedoch die momentane Wachstumsrate bei genau t = 8 (Jahr 2023) zu finden, benötigen wir den Grenzwert: lim(h→0) [E(8+h) - E(8)] / h. Dieser Grenzwert repräsentiert die Ableitung E'(8) und gibt die präzise Einschreibungswachstumsrate in Studenten pro Jahr an. Das Verständnis von Grenzwerten ermöglicht es der Universität, Infrastrukturerweiterungen zu planen, Fakultät einzustellen und Ressourcen effektiv zuzuweisen, um Basels wachsende Studentenpopulation in Mathematik und Naturwissenschaften aufzunehmen."
         },
         prompts: {
             find_limit: "\\text{Finde } \\lim_{x \\to {limitPoint}} {expr}",

@@ -94,7 +94,7 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
         q("E-A4", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=1280,\\; N_0=10", "n", [{ id: "n", l: "n", e: 7 }], "2^7=128 \\implies n=7", { initialCount: 10, doublingTime: 2, time: 14, scenarioKey: "exp_virus" }),
         q("E-A5", "ADVANCED", "EXPONENTIAL", pAdv, "N_0=100,\\; N(t)=25", "n", [{ id: "n", l: "n", e: -2 }], "2^n=0.25 \\implies n=-2", { initialCount: 100, doublingTime: 2, time: -4, scenarioKey: "exp_virus" }),
         q("E-A6", "ADVANCED", "EXPONENTIAL", pAdv, "N_0=500,\\; N(t)=125", "n", [{ id: "n", l: "n", e: -2 }], "n=-2", { initialCount: 500, doublingTime: 3, time: -6, scenarioKey: "exp_virus" }),
-        q("E-A7", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=200,\\; N_0=50,\\; t=4\\;h", "d", [{ id: "d", l: "d", e: 2, u: "h" }], "2^2=4 \\implies n=2, d=4/2=2", { initialCount: 50, doublingTime: 2, time: 4, scenarioKey: "exp_virus" }), // Solve for d
+        q("E-A7", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=200,\\; N_0=50,\\; t=4\\;h", "d", [{ id: "d", l: "d", e: 2, u: "h" }], "2^{2}=4 \\implies n=2, d=4/2=2", { initialCount: 50, doublingTime: 2, time: 4, scenarioKey: "exp_virus" }), // Solve for d
         q("E-A8", "ADVANCED", "EXPONENTIAL", pAdv, "N(t)=80,\\; N_0=10,\\; d=3\\;h", "t", [{ id: "t", l: "t", e: 9, u: "h" }], "2^n=8 \\implies n=3, t=3d=9", { initialCount: 10, doublingTime: 3, time: 9, scenarioKey: "exp_virus" })
       );
     } else { // ELITE
@@ -124,12 +124,12 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
       quests.push(
         q("L-B1", "BASIC", "LOGARITHM", pBasic, "N_0=100,\\; N=800,\\; d=2\\;h", "t", [{ id: "t", l: "t", e: 6, u: "h" }], "t=2 \\cdot 3 = 6", { initialCount: 100, finalCount: 800, doublingTime: 2, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-B2", "BASIC", "LOGARITHM", pBasic, "N_0=10,\\; N=320,\\; d=1\\;h", "t", [{ id: "t", l: "t", e: 5, u: "h" }], "320/10=32=2^5 \\implies t=5", { initialCount: 10, finalCount: 320, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
-        q("L-B3", "BASIC", "LOGARITHM", pBasic, "N_0=50,\\; N=200,\\; d=0.5\\;h", "t", [{ id: "t", l: "t", e: 1, u: "h" }], "200/50=4=2^2 \\implies t=1", { initialCount: 50, finalCount: 200, doublingTime: 0.5, chartMode: "logarithm", scenarioKey: "log_invest" }),
+        q("L-B3", "BASIC", "LOGARITHM", pBasic, "N_0=50,\\; N=200,\\; d=0.5\\;h", "t", [{ id: "t", l: "t", e: 1, u: "h" }], "200/50=4=2^{2} \\implies t=1", { initialCount: 50, finalCount: 200, doublingTime: 0.5, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-B4", "BASIC", "LOGARITHM", pBasic, "N_0=1,\\; N=1024,\\; d=1\\;min", "t", [{ id: "t", l: "t", e: 10, u: "min" }], "2^{10}=1024", { initialCount: 1, finalCount: 1024, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
-        q("L-B5", "BASIC", "LOGARITHM", pBasic, "N_0=1000,\\; N=8000,\\; d=10\\;h", "t", [{ id: "t", l: "t", e: 30, u: "h" }], "8=2^3 \\implies t=30", { initialCount: 1000, finalCount: 8000, doublingTime: 10, chartMode: "logarithm", scenarioKey: "log_invest" }),
+        q("L-B5", "BASIC", "LOGARITHM", pBasic, "N_0=1000,\\; N=8000,\\; d=10\\;h", "t", [{ id: "t", l: "t", e: 30, u: "h" }], "8=2^{3} \\implies t=30", { initialCount: 1000, finalCount: 8000, doublingTime: 10, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-B6", "BASIC", "LOGARITHM", pBasic, "N_0=64,\\; N=16,\\; d=2\\;h", "t", [{ id: "t", l: "t", e: -4, u: "h" }], "16/64=1/4=2^{-2} \\implies n=-2, t=-4", { initialCount: 64, finalCount: 16, doublingTime: 2, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-B7", "BASIC", "LOGARITHM", pBasic, "N_0=25,\\; N=25,\\; d=5\\;h", "t", [{ id: "t", l: "t", e: 0, u: "h" }], "t=0", { initialCount: 25, finalCount: 25, doublingTime: 5, chartMode: "logarithm", scenarioKey: "log_invest" }),
-        q("L-B8", "BASIC", "LOGARITHM", pBasic, "N_0=12.5,\\; N=100,\\; d=4\\;h", "t", [{ id: "t", l: "t", e: 12, u: "h" }], "8=2^3 \\implies t=12", { initialCount: 12.5, finalCount: 100, doublingTime: 4, chartMode: "logarithm", scenarioKey: "log_invest" })
+        q("L-B8", "BASIC", "LOGARITHM", pBasic, "N_0=12.5,\\; N=100,\\; d=4\\;h", "t", [{ id: "t", l: "t", e: 12, u: "h" }], "8=2^{3} \\implies t=12", { initialCount: 12.5, finalCount: 100, doublingTime: 4, chartMode: "logarithm", scenarioKey: "log_invest" })
       );
     } else if (d === "CORE") {
       quests.push(
@@ -137,15 +137,15 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
         q("L-C2", "CORE", "LOGARITHM", pCore, "\\log_2(128)", "v", [{ id: "v", l: "v", e: 7 }], "2^7=128", { initialCount: 1, finalCount: 128, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-C3", "CORE", "LOGARITHM", pCore, "\\log_2(0.5)", "v", [{ id: "v", l: "v", e: -1 }], "2^{-1}=0.5", { initialCount: 1, finalCount: 0.5, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
         q("L-C4", "CORE", "LOGARITHM", pCore, "\\log_2(1/16)", "v", [{ id: "v", l: "v", e: -4 }], "2^{-4}=1/16", { initialCount: 16, finalCount: 1, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
-        q("L-C5", "CORE", "LOGARITHM", pCore, "\\log_{10}(1000)", "v", [{ id: "v", l: "v", e: 3 }], "10^3=1000", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_sound" }), // Visual is binary but q works
+        q("L-C5", "CORE", "LOGARITHM", pCore, "\\log_{10}(1000)", "v", [{ id: "v", l: "v", e: 3 }], "10^{3}=1000", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_sound" }), // Visual is binary but q works
         q("L-C6", "CORE", "LOGARITHM", pCore, "\\log_{10}(0.01)", "v", [{ id: "v", l: "v", e: -2 }], "10^{-2}=0.01", { initialCount: 1, finalCount: 4, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_sound" }),
         q("L-C7", "CORE", "LOGARITHM", pCore, "\\log_2(\\sqrt{2})", "v", [{ id: "v", l: "v", e: 0.5 }], "2^{0.5}=\\sqrt{2}", { initialCount: 1, finalCount: 1.41, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" }),
-        q("L-C8", "CORE", "LOGARITHM", pCore, "\\log_3(27)", "v", [{ id: "v", l: "v", e: 3 }], "3^3=27", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" })
+        q("L-C8", "CORE", "LOGARITHM", pCore, "\\log_3(27)", "v", [{ id: "v", l: "v", e: 3 }], "3^{3}=27", { initialCount: 1, finalCount: 8, doublingTime: 1, chartMode: "logarithm", scenarioKey: "log_invest" })
       );
     } else if (d === "ADVANCED") {
       quests.push(
         q("L-A1", "ADVANCED", "LOGARITHM", pAdv, "\\log_3(81)", "v", [{ id: "v", l: "v", e: 4 }], "\\log_3(81)=4", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
-        q("L-A2", "ADVANCED", "LOGARITHM", pAdv, "\\log_5(125)", "v", [{ id: "v", l: "v", e: 3 }], "5^3=125", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
+        q("L-A2", "ADVANCED", "LOGARITHM", pAdv, "\\log_5(125)", "v", [{ id: "v", l: "v", e: 3 }], "5^{3}=125", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
         q("L-A3", "ADVANCED", "LOGARITHM", pAdv, "\\log_4(2)", "v", [{ id: "v", l: "v", e: 0.5 }], "\\sqrt{4}=2", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
         q("L-A4", "ADVANCED", "LOGARITHM", pAdv, "\\log_8(4)", "v", [{ id: "v", l: "v", e: 0.67 }], "2/3 \\approx 0.67", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
         q("L-A5", "ADVANCED", "LOGARITHM", pAdv, "\\ln(e^5)", "v", [{ id: "v", l: "v", e: 5 }], "5", { initialCount: 1, doublingTime: 1, scenarioKey: "log_security" }),
@@ -191,11 +191,11 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
       quests.push(
         q("A-C1", "CORE", "APPLICATIONS", pComp, "P=1000,\\; r=5\\%,\\; t=10", "A", [{ id: "A", l: "A", e: 1629 }], "1.05^{10} \\approx 1.629", { initialCount: 1000, doublingTime: 14, time: 10, chartMode: "compound", scenarioKey: "app_bank" }), // doubling time approx 70/5 = 14
         q("A-C2", "CORE", "APPLICATIONS", pComp, "P=100,\\; r=10\\%,\\; t=2", "A", [{ id: "A", l: "A", e: 121 }], "121", { initialCount: 100, doublingTime: 7.2, time: 2, chartMode: "compound", scenarioKey: "app_bank" }),
-        q("A-C3", "CORE", "APPLICATIONS", pComp, "P=500,\\; r=100\\%,\\; t=3", "A", [{ id: "A", l: "A", e: 4000 }], "2^3 \\cdot 500", { initialCount: 500, doublingTime: 1, time: 3, chartMode: "compound", scenarioKey: "app_bank" }),
+        q("A-C3", "CORE", "APPLICATIONS", pComp, "P=500,\\; r=100\\%,\\; t=3", "A", [{ id: "A", l: "A", e: 4000 }], "2^{3} \\cdot 500", { initialCount: 500, doublingTime: 1, time: 3, chartMode: "compound", scenarioKey: "app_bank" }),
         q("A-C4", "CORE", "APPLICATIONS", pComp, "P=200,\\; r=20\\%,\\; t=5", "A", [{ id: "A", l: "A", e: 497.7 }], "497.7", { initialCount: 200, doublingTime: 3.8, time: 5, chartMode: "compound", scenarioKey: "app_bank" }),
         q("A-C5", "CORE", "APPLICATIONS", pComp, "P=1,\\; r=3\\%,\\; t=24", "A", [{ id: "A", l: "A", e: 2 }], "Doubling!", { initialCount: 1, doublingTime: 23.4, time: 24, chartMode: "compound", scenarioKey: "app_bank" }), // rule of 72
         q("A-C6", "CORE", "APPLICATIONS", pComp, "P=1000,\\; A=2000,\\; r=7\\%", "t", [{ id: "t", l: "t", e: 10.2 }], "t \\approx 10", { initialCount: 1000, doublingTime: 10, finalCount: 2000, chartMode: "compound", scenarioKey: "app_bank" }),
-        q("A-C7", "CORE", "APPLICATIONS", pComp, "P=1000,\\; r=100\\%,\\; t=0.5", "A", [{ id: "A", l: "A", e: 1414 }], "sqrt(2)*1000", { initialCount: 1000, doublingTime: 1, time: 0.5, chartMode: "compound", scenarioKey: "app_bank" }),
+        q("A-C7", "CORE", "APPLICATIONS", pComp, "P=1000,\\; r=100\\%,\\; t=0.5", "A", [{ id: "A", l: "A", e: 1414 }], "\\sqrt{2}*1000", { initialCount: 1000, doublingTime: 1, time: 0.5, chartMode: "compound", scenarioKey: "app_bank" }),
         q("A-C8", "CORE", "APPLICATIONS", pComp, "P=50,\\; r=4\\%,\\; t=18", "A", [{ id: "A", l: "A", e: 101 }], "A \\approx 100", { initialCount: 50, doublingTime: 17.6, time: 18, chartMode: "compound", scenarioKey: "app_bank" })
       );
     } else if (d === "ADVANCED") { // Growth Rates

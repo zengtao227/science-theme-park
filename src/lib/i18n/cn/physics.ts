@@ -111,7 +111,7 @@ export const cnPhysics = {
         "SP1.01.024": {
             "prompt": "两个力作用在物体上：30 N 向右和 40 N 向上。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(30^2 + 40^2) = 50 N",
+                "correct": "正确！F = √(30^{2} + 40^{2}) = 50 N",
                 "incorrect": "对于垂直的力使用勾股定理。"
             },
             "scenario_desc": "",
@@ -120,7 +120,7 @@ export const cnPhysics = {
         "SP1.01.042": {
             "prompt": "两个各为 50 N 的力相互垂直作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(50^2 + 50^2) = 70.71 N",
+                "correct": "正确！F = √(50^{2} + 50^{2}) = 70.71 N",
                 "incorrect": "对于相等的垂直力，F = F_1√2"
             },
             "scenario_desc": "",
@@ -129,7 +129,7 @@ export const cnPhysics = {
         "SP1.01.043": {
             "prompt": "一个 20 N 的力向东作用，另一个 15 N 的力向北作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(20^2 + 15^2) = 25 N",
+                "correct": "正确！F = √(20^{2} + 15^{2}) = 25 N",
                 "incorrect": "这是一个放大 5 倍的 3-4-5 三角形。"
             },
             "scenario_desc": "",
@@ -156,7 +156,7 @@ export const cnPhysics = {
         "SP1.01.026": {
             "prompt": "两个 60 N 和 80 N 的力相互垂直作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(60^2 + 80^2) = 100 N",
+                "correct": "正确！F = √(60^{2} + 80^{2}) = 100 N",
                 "incorrect": "对于垂直的力使用勾股定理。"
             },
             "scenario_desc": "",
@@ -174,7 +174,7 @@ export const cnPhysics = {
         "SP1.01.028": {
             "prompt": "三个力作用在物体上：20 N 向东，30 N 向北，10 N 向西。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10^2 + 30^2) = 31.62 N",
+                "correct": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10^{2} + 30^{2}) = 31.62 N",
                 "incorrect": "首先找到每个方向的净力，然后使用勾股定理。"
             },
             "scenario_desc": "",
@@ -201,7 +201,7 @@ export const cnPhysics = {
         "SP1.01.031": {
             "prompt": "两个力作用在一点上：100 N 在 0° 和 100 N 在 120°。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50^2 + 86.6^2) = 100 N",
+                "correct": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50^{2} + 86.6^{2}) = 100 N",
                 "incorrect": "将每个力分解为分量，然后相加并找到大小。"
             },
             "scenario_desc": "",
@@ -210,7 +210,7 @@ export const cnPhysics = {
         "SP1.01.032": {
             "prompt": "四个力作用在物体上：50 N 向北，30 N 向南，40 N 向东，20 N 向西。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！净力：20 N 向北，20 N 向东。F = √(20^2 + 20^2) = 28.28 N",
+                "correct": "正确！净力：20 N 向北，20 N 向东。F = √(20^{2} + 20^{2}) = 28.28 N",
                 "incorrect": "首先找到每个方向的净力。"
             },
             "scenario_desc": "",
@@ -393,8 +393,8 @@ export const cnPhysics = {
         "SP1.01.018": {
             "prompt": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(60^2 + 80^2) = √10000 = 100 N",
-                "incorrect": "使用勾股定理：F = √(F_x^2 + F_y^2)"
+                "correct": "正确！F = √(60^{2} + 80^{2}) = √10000 = 100 N",
+                "incorrect": "使用勾股定理：F = √(F_x^{2} + F_y^{2})"
             },
             "scenario_desc": "",
             "unit": "N"
@@ -447,7 +447,7 @@ export const cnPhysics = {
         "SP1.01.049": {
             "prompt": "四个力作用在处于平衡的点上：60 N 在 0°，40 N 在 90°，50 N 在 180°，以及一个未知的力。未知力的大小是多少？",
             "feedback": {
-                "correct": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^2 + 40^2) = 41.23 N",
+                "correct": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^{2} + 40^{2}) = 41.23 N",
                 "incorrect": "找到 x 和 y 方向的净力，然后计算平衡力。"
             },
             "scenario_desc": "",
@@ -492,7 +492,7 @@ export const cnPhysics = {
         "SP1.01.054": {
             "prompt": "四个力作用在一个环上：80 N 在 0°，60 N 在 90°，70 N 在 180°，F 在未知角度。如果系统处于平衡，F 是多少？",
             "feedback": {
-                "correct": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^2 + 60^2) = 60.83 N",
+                "correct": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^{2} + 60^{2}) = 60.83 N",
                 "incorrect": "找到已知力的合力，然后 F 的大小必须与之相等。"
             },
             "scenario_desc": "",
@@ -510,7 +510,7 @@ export const cnPhysics = {
         "SP1.01.025": {
             "prompt": "三个力作用在处于平衡状态的物体上：50 N 向右，30 N 向上，以及一个未知的力。未知力的大小是多少？",
             "feedback": {
-                "correct": "正确！未知力必须平衡其他两个力：√(50^2 + 30^2) = 58.31 N",
+                "correct": "正确！未知力必须平衡其他两个力：√(50^{2} + 30^{2}) = 58.31 N",
                 "incorrect": "对于平衡，所有力的总和必须为零。"
             },
             "scenario_desc": "",
@@ -528,7 +528,7 @@ export const cnPhysics = {
         "SP1.01.047": {
             "prompt": "一个物体在三个力的作用下处于平衡：100 N 在 0°，80 N 在 90°，以及第三个力。第三个力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(100^2 + 80^2) = 128.06 N",
+                "correct": "正确！F = √(100^{2} + 80^{2}) = 128.06 N",
                 "incorrect": "第三个力必须平衡前两个力的合力。"
             },
             "scenario_desc": "",
@@ -754,7 +754,7 @@ export const cnPhysics = {
             barrier_width: "势垒宽度 (a)",
             transmission: "透射系数",
             wave_function: "波函数",
-            probability_density: "概率密度 |ψ|^2",
+            probability_density: "概率密度 |ψ|^{2}",
             incident: "入射",
             reflected: "反射",
             transmitted: "透射",
@@ -831,38 +831,38 @@ export const cnPhysics = {
             },
             "SECOND_LAW": {
                 "BASIC": [
-                    "F=10 N, m=2 kg. Find a (m/s^2)",
-                    "F=20 N, m=5 kg. Find a (m/s^2)",
-                    "F=15 N, m=3 kg. Find a (m/s^2)",
-                    "m=10 kg, a=2 m/s^2. Find F (N)",
-                    "m=5 kg, a=4 m/s^2. Find F (N)",
-                    "F=30 N, a=6 m/s^2. Find m (kg)",
-                    "F=40 N, a=8 m/s^2. Find m (kg)"
+                    "F=10 N, m=2 kg. Find a (m/s^{2})",
+                    "F=20 N, m=5 kg. Find a (m/s^{2})",
+                    "F=15 N, m=3 kg. Find a (m/s^{2})",
+                    "m=10 kg, a=2 m/s^{2}. Find F (N)",
+                    "m=5 kg, a=4 m/s^{2}. Find F (N)",
+                    "F=30 N, a=6 m/s^{2}. Find m (kg)",
+                    "F=40 N, a=8 m/s^{2}. Find m (kg)"
                 ],
                 "CORE": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s^2. Find F (N)",
-                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^2)",
-                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^2)",
-                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s^2)",
-                    "Tram 12000 kg needs 2 m/s^2 acceleration. Find F (N)",
-                    "Car 1000 kg, net force 2000 N. Find a (m/s^2)",
-                    "Basel bus 8000 kg accelerates at 1 m/s^2. Find F (N)",
-                    "Bicycle 80 kg, force 160 N. Find a (m/s^2)",
-                    "Truck 5000 kg, acceleration 0.5 m/s^2. Find F (N)"
+                    "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Find F (N)",
+                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^{2})",
+                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^{2})",
+                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s^{2})",
+                    "Tram 12000 kg needs 2 m/s^{2} acceleration. Find F (N)",
+                    "Car 1000 kg, net force 2000 N. Find a (m/s^{2})",
+                    "Basel bus 8000 kg accelerates at 1 m/s^{2}. Find F (N)",
+                    "Bicycle 80 kg, force 160 N. Find a (m/s^{2})",
+                    "Truck 5000 kg, acceleration 0.5 m/s^{2}. Find F (N)"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^2)",
-                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^2)",
-                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^2)",
-                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^2)",
-                    "Tram 15000 kg needs 1.8 m/s^2 with friction 2000 N. Find applied force (N)",
-                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^2)",
-                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^2)"
+                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
+                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^{2})",
+                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^{2})",
+                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^{2})",
+                    "Tram 15000 kg needs 1.8 m/s^{2} with friction 2000 N. Find applied force (N)",
+                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^{2})",
+                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^{2})"
                 ],
                 "ELITE": [
-                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^2. Total force?",
+                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^{2}. Total force?",
                     "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^2)"
+                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^{2})"
                 ]
             },
             "THIRD_LAW": {
@@ -885,19 +885,19 @@ export const cnPhysics = {
                     "Person pushes wall with 200 N. Wall pushes person with how many N?"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s^2. Force on track?",
-                    "Rhine boat 2000 kg accelerates at 2 m/s^2. Force on water?",
-                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^2. Force on ground?",
-                    "SBB train 50000 kg decelerates at -0.2 m/s^2. Force on track?",
-                    "Rocket 5000 kg accelerates at 10 m/s^2. Force on exhaust gas?",
-                    "Car 1200 kg accelerates at 3 m/s^2. Force on road?",
-                    "Basel bus 8000 kg accelerates at 1 m/s^2. Force on road?"
+                    "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",
+                    "Rhine boat 2000 kg accelerates at 2 m/s^{2}. Force on water?",
+                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^{2}. Force on ground?",
+                    "SBB train 50000 kg decelerates at -0.2 m/s^{2}. Force on track?",
+                    "Rocket 5000 kg accelerates at 10 m/s^{2}. Force on exhaust gas?",
+                    "Car 1200 kg accelerates at 3 m/s^{2}. Force on road?",
+                    "Basel bus 8000 kg accelerates at 1 m/s^{2}. Force on road?"
                 ],
                 "ELITE": [
                     "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^2. Water mass pushed?",
-                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^2. Friction force?",
-                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^2. Verify F=ma?"
+                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^{2}. Water mass pushed?",
+                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^{2}. Friction force?",
+                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^{2}. Verify F=ma?"
                 ]
             }
         },
@@ -906,9 +906,9 @@ export const cnPhysics = {
             "placeholder": "在此输入"
         },
         scenarios: {
-            first_law: "巴塞尔狂欢节游行花车运动：在巴塞尔著名的Fasnacht狂欢节期间，在Marktplatz，精心装饰的游行花车展示了牛顿第一惯性定律。一个质量为3,000公斤的巨大花车在游行开始前静止不动。尽管外观色彩缤纷，它顽固地抵抗运动——除非受到外力作用，否则它将保持静止。当游行参与者以2,000牛顿推动而摩擦力以500牛顿反对时，净1,500牛顿力克服惯性并以0.5米/秒^2加速花车。一旦以恒定速度沿游行路线移动，如果推动者保持与摩擦力相等的力，花车将以稳定速度继续前进——证明当净力为零时，运动中的物体以恒定速度保持运动。",
-            second_law: "巴塞尔有轨电车加速与制动：巴塞尔标志性的绿色有轨电车穿梭于城市街道，展示了牛顿第二定律的实际应用。在Barfüsserplatz，一辆质量为10,000公斤的电车从静止开始加速至巡航速度。电动机施加15,000牛顿的向前力，而摩擦力和空气阻力提供3,000牛顿的反向力。使用F=ma，我们计算净力（12,000牛顿）产生1.2米/秒^2的加速度。当接近下一站时，司机施加制动产生-10,000牛顿，加上-3,000牛顿摩擦力，产生-13,000牛顿净力和-1.3米/秒^2的减速度。这种力与运动的日常舞蹈使巴塞尔的公共交通顺畅运行。",
-            third_law: "莱茵河船只推进：在巴塞尔莱茵河沿岸的Mittlere Brücke附近，客船通过其推进系统展示了牛顿第三定律。当船的螺旋桨旋转时，它以巨大的力向后推水——典型的莱茵河渡轮可能为3,000牛顿。根据牛顿第三定律，水同时以相等的3,000牛顿力向相反方向推动船只。这对作用-反作用力作用于不同的物体：螺旋桨作用于水，而水作用于船。船的1,500公斤质量因此以2米/秒^2向前加速。这一原理为从游泳到火箭推进的一切提供动力。"
+            first_law: "巴塞尔狂欢节游行花车运动：在巴塞尔著名的Fasnacht狂欢节期间，在Marktplatz，精心装饰的游行花车展示了牛顿第一惯性定律。一个质量为3,000公斤的巨大花车在游行开始前静止不动。尽管外观色彩缤纷，它顽固地抵抗运动——除非受到外力作用，否则它将保持静止。当游行参与者以2,000牛顿推动而摩擦力以500牛顿反对时，净1,500牛顿力克服惯性并以0.5米/秒^{2}加速花车。一旦以恒定速度沿游行路线移动，如果推动者保持与摩擦力相等的力，花车将以稳定速度继续前进——证明当净力为零时，运动中的物体以恒定速度保持运动。",
+            second_law: "巴塞尔有轨电车加速与制动：巴塞尔标志性的绿色有轨电车穿梭于城市街道，展示了牛顿第二定律的实际应用。在Barfüsserplatz，一辆质量为10,000公斤的电车从静止开始加速至巡航速度。电动机施加15,000牛顿的向前力，而摩擦力和空气阻力提供3,000牛顿的反向力。使用F=ma，我们计算净力（12,000牛顿）产生1.2米/秒^{2}的加速度。当接近下一站时，司机施加制动产生-10,000牛顿，加上-3,000牛顿摩擦力，产生-13,000牛顿净力和-1.3米/秒^{2}的减速度。这种力与运动的日常舞蹈使巴塞尔的公共交通顺畅运行。",
+            third_law: "莱茵河船只推进：在巴塞尔莱茵河沿岸的Mittlere Brücke附近，客船通过其推进系统展示了牛顿第三定律。当船的螺旋桨旋转时，它以巨大的力向后推水——典型的莱茵河渡轮可能为3,000牛顿。根据牛顿第三定律，水同时以相等的3,000牛顿力向相反方向推动船只。这对作用-反作用力作用于不同的物体：螺旋桨作用于水，而水作用于船。船的1,500公斤质量因此以2米/秒^{2}向前加速。这一原理为从游泳到火箭推进的一切提供动力。"
         }
     },
 
@@ -1075,9 +1075,9 @@ export const cnPhysics = {
             complex: "物体 (m={m}kg) 被力 F={f}N 拉动，对抗摩擦 μ={mu}。合力？",
 
             // 牛顿第二定律 - F=ma
-            find_f: "质量 m={m}kg 以加速度 a={a}m/s^2 运动。求合力 F。",
+            find_f: "质量 m={m}kg 以加速度 a={a}m/s^{2} 运动。求合力 F。",
             find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
-            gravity: "物体 m={m}kg 在行星上 (g={g}m/s^2)。重力 W=mg？",
+            gravity: "物体 m={m}kg 在行星上 (g={g}m/s^{2})。重力 W=mg？",
             net_force: "力 F={f}N 作用于 m={m}kg。摩擦力 f={fr}N 阻碍。合加速度？",
             friction: "力 F={f}N 拉动 m={m}kg，摩擦系数 μ={mu}。加速度？",
             pulley: "滑轮系统：质量 m={m}kg，施加力 F={f}N，摩擦 μ={mu}。加速度？",
@@ -1105,11 +1105,11 @@ export const cnPhysics = {
             n1_rest: "物体 (m={m}kg) 静止。力 F={f}N 向右推。摩擦力 f={fr}N 向左。加速度？",
             n1_space: "在深空中（无摩擦），物体 (m={m}kg) 被力 F={f}N 推动 {t}秒后释放。释放后的力？",
             n1_inertia: "什么性质阻止 {m}kg 物体的运动状态改变？",
-            n2_find_f: "质量 m={m}kg 以加速度 a={a}m/s^2 运动。求合力 F。",
+            n2_find_f: "质量 m={m}kg 以加速度 a={a}m/s^{2} 运动。求合力 F。",
             n2_find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
-            n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s^2。求质量 m。",
+            n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s^{2}。求质量 m。",
             n2_complex: "力 F={f}N 拉动质量 m={m}kg 对抗摩擦力 f={fr}N。求加速度。",
-            n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s^2)。重力 Fg？",
+            n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s^{2})。重力 Fg？",
             fr_static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
             fr_kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
             fr_norm: "箱子 m={m}kg 被力 F={f}N 压在墙上。支持力？",
@@ -1124,7 +1124,7 @@ export const cnPhysics = {
             space: "释放后，无力作用（太空中 F=0）",
             inertia: "惯性是阻止运动状态改变的性质",
             "2d_balance": "对垂直的力使用勾股定理",
-            vector_add: "使用矢量加法：|F_net| = √(F_1^2 + F_2^2)",
+            vector_add: "使用矢量加法：|F_net| = √(F_1^{2} + F_2^{2})",
             slope: "支持力 N = mg cos(θ)",
             space_friction: "太空中无摩擦（无大气）",
             complex: "F_net = F_applied - f_friction",
@@ -1176,7 +1176,7 @@ export const cnPhysics = {
         },
         prompts: {
             // 势能
-            basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s^2)。",
+            basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s^{2})。",
             rhine_hydro: "莱茵河水 m={m}kg 从高度 h={h}m 流下。势能 Ep？",
             total_energy: "物体 m={m}kg 在 h={h}m 高度，速度 v={v}m/s。总机械能？",
             conservation: "物体 m={m}kg 从 h={h}m 落下，达到 v={v}m/s。任意点的总能量？",
@@ -1192,21 +1192,21 @@ export const cnPhysics = {
             basic_power: "力 F={f}N 在 t={t}s 内移动物体 d={d}m。计算功率 P。",
             power_lifting: "起重机在 t={t}s 内将 m={m}kg 提升到 h={h}m。功率 P？",
             rhine_power_station: "莱茵河电站在 t={t}s 内将水 m={m}kg 提升 h={h}m。功率 P？",
-            energy_audit_solar: "巴塞尔屋顶 A={m}m^2。光强 I={f}W/m^2，效率 {v}%。输出功率 P？",
+            energy_audit_solar: "巴塞尔屋顶 A={m}m^{2}。光强 I={f}W/m^{2}，效率 {v}%。输出功率 P？",
             energy_audit_heatpump: "热泵需提供 {m}kW 热量，COP={v}。所需电功率 P？",
             iwb_grid_load: "巴塞尔高峰负载 {m}MW。若由 {v} 台 {f}MW 风机供电，缺口百分比？"
         },
         hints: {
             // 势能
             basic_ep: "使用 Ep = mgh",
-            rhine_hydro: "势能 Ep = mgh，其中 g=9.8m/s^2",
-            total_energy: "总能量 E = Ep + Ek = mgh + ½mv^2",
+            rhine_hydro: "势能 Ep = mgh，其中 g=9.8m/s^{2}",
+            total_energy: "总能量 E = Ep + Ek = mgh + ½mv^{2}",
             conservation: "能量守恒：E_总 = Ep + Ek = 常数",
 
             // 动能
-            basic_ek: "使用 Ek = ½mv^2",
-            tram_braking: "动能 Ek = ½mv^2",
-            velocity_at_bottom: "使用能量守恒：mgh + ½mv₀^2 = ½mv^2",
+            basic_ek: "使用 Ek = ½mv^{2}",
+            tram_braking: "动能 Ek = ½mv^{2}",
+            velocity_at_bottom: "使用能量守恒：mgh + ½mv₀^{2} = ½mv^{2}",
             work_energy: "功能定理：W = ΔEk，所以 Ek_末 = Ek_初 + W",
 
             // 功与功率
@@ -1234,88 +1234,88 @@ export const cnPhysics = {
         },
         prompts: {
             // 压力 - 基础 (5)
-            pressure_basic_1: "P = \\\\rho gh. \\\\text{ 若 } h = 10 \\\\text{ m, } \\\\rho = 1000 \\\\text{ kg/m}^3, \\\\text{ 求表压 } P.",
-            pressure_basic_2: "\\\\text{水深 5 m。压力？ } (\\\\rho = 1000 \\\\text{ kg/m}^3, g = 10 \\\\text{ m/s}^2)",
-            pressure_basic_3: "\\\\text{力 100 N 作用在面积 2 m}^2. \\\\text{ 压力？}",
-            pressure_basic_4: "\\\\text{力 200 N 作用在面积 0.5 m}^2. \\\\text{ 压力？}",
+            pressure_basic_1: "P = \\\\rho gh. \\\\text{ 若 } h = 10 \\\\text{ m, } \\\\rho = 1000 \\\\text{ kg/m}^{3}, \\\\text{ 求表压 } P.",
+            pressure_basic_2: "\\\\text{水深 5 m。压力？ } (\\\\rho = 1000 \\\\text{ kg/m}^{3}, g = 10 \\\\text{ m/s}^{2})",
+            pressure_basic_3: "\\\\text{力 100 N 作用在面积 2 m}^{2}. \\\\text{ 压力？}",
+            pressure_basic_4: "\\\\text{力 200 N 作用在面积 0.5 m}^{2}. \\\\text{ 压力？}",
             pressure_basic_5: "\\\\text{潜水员在 2 m 深度。表压？ } (\\\\rho = 1000, g = 10)",
 
             // 压力 - 核心 (5)
             pressure_core_1: "\\\\text{潜艇在 15 m 深度。总压力？ } (P_{atm} = 101000 \\\\text{ Pa})",
-            pressure_core_2: "\\\\text{液压机：500 N 作用在 0.01 m}^2. \\\\text{ 压力？}",
-            pressure_core_3: "\\\\text{油箱深度 20 m。底部压力？ } (\\\\rho_{oil} = 800 \\\\text{ kg/m}^3)",
-            pressure_core_4: "\\\\text{活塞：1000 N 作用在 0.02 m}^2. \\\\text{ 传递的压力？}",
-            pressure_core_5: "\\\\text{海洋深度 100 m。表压？ } (\\\\rho = 1030 \\\\text{ kg/m}^3)",
+            pressure_core_2: "\\\\text{液压机：500 N 作用在 0.01 m}^{2}. \\\\text{ 压力？}",
+            pressure_core_3: "\\\\text{油箱深度 20 m。底部压力？ } (\\\\rho_{oil} = 800 \\\\text{ kg/m}^{3})",
+            pressure_core_4: "\\\\text{活塞：1000 N 作用在 0.02 m}^{2}. \\\\text{ 传递的压力？}",
+            pressure_core_5: "\\\\text{海洋深度 100 m。表压？ } (\\\\rho = 1030 \\\\text{ kg/m}^{3})",
 
             // 压力 - 进阶 (5)
             pressure_advanced_1: "\\\\text{双层流体：30 m 水 + 20 m 油 } (\\\\rho_w = 1000, \\\\rho_o = 800). \\\\text{ 底部压力？}",
-            pressure_advanced_2: "\\\\text{液压升降机：小活塞 0.001 m}^2, \\\\text{ 大活塞 0.1 m}^2. \\\\text{ 小活塞上 100 N 力。大活塞上的力？}",
+            pressure_advanced_2: "\\\\text{液压升降机：小活塞 0.001 m}^{2}, \\\\text{ 大活塞 0.1 m}^{2}. \\\\text{ 小活塞上 100 N 力。大活塞上的力？}",
             pressure_advanced_3: "\\\\text{U 型管：左侧水，右侧水银。水高 10 m。水银高度？ } (\\\\rho_w = 1000, \\\\rho_{Hg} = 13600)",
-            pressure_advanced_4: "\\\\text{液压制动：主缸 0.01 m}^2, \\\\text{ 从缸 0.05 m}^2. \\\\text{ 主缸上 200 N 力。从缸上的力？}",
+            pressure_advanced_4: "\\\\text{液压制动：主缸 0.01 m}^{2}, \\\\text{ 从缸 0.05 m}^{2}. \\\\text{ 主缸上 200 N 力。从缸上的力？}",
             pressure_advanced_5: "\\\\text{深海：200 m 深度。总压力？ } (P_{atm} = 101000, \\\\rho = 1030)",
 
             // 压力 - 精英 (5)
             pressure_elite_1: "\\\\text{马里亚纳海沟：11000 m 深度。压力？ } (\\\\rho = 1050, P_{atm} = 101000)",
-            pressure_elite_2: "\\\\text{液压系统：A}_1 = 0.0001 \\\\text{ m}^2, A_2 = 0.01 \\\\text{ m}^2. \\\\text{ 机械优势？}",
+            pressure_elite_2: "\\\\text{液压系统：A}_1 = 0.0001 \\\\text{ m}^{2}, A_2 = 0.01 \\\\text{ m}^{2}. \\\\text{ 机械优势？}",
             pressure_elite_3: "\\\\text{三层流体：2 m 水，2 m 油 } (\\\\rho = 800), \\\\text{ 1 m 水银 } (\\\\rho = 13600). \\\\text{ 总压力？}",
-            pressure_elite_4: "\\\\text{液压千斤顶：效率 80\\\\%. 输入 500 N 在 0.002 m}^2, \\\\text{ 输出面积 0.2 m}^2. \\\\text{ 输出力？}",
-            pressure_elite_5: "\\\\text{潜艇在 1000 m。1 m}^2 \\\\text{ 舱门上的压力差？ } (\\\\rho = 1030)",
+            pressure_elite_4: "\\\\text{液压千斤顶：效率 80\\\\%. 输入 500 N 在 0.002 m}^{2}, \\\\text{ 输出面积 0.2 m}^{2}. \\\\text{ 输出力？}",
+            pressure_elite_5: "\\\\text{潜艇在 1000 m。1 m}^{2} \\\\text{ 舱门上的压力差？ } (\\\\rho = 1030)",
 
             // 浮力 - 基础 (5)
-            buoyancy_basic_1: "F_b = \\\\rho Vg. \\\\text{ 若 } V = 0.1 \\\\text{ m}^3, \\\\rho = 1000, \\\\text{ 求浮力 } F_b.",
-            buoyancy_basic_2: "\\\\text{物体体积 0.05 m}^3 \\\\text{ 在水中。浮力？}",
-            buoyancy_basic_3: "\\\\text{气球体积 0.2 m}^3 \\\\text{ 在空气中 } (\\\\rho = 1.2 \\\\text{ kg/m}^3). \\\\text{ 浮力？}",
-            buoyancy_basic_4: "\\\\text{岩石体积 0.01 m}^3 \\\\text{ 浸没在水中。浮力？}",
-            buoyancy_basic_5: "\\\\text{船排开 0.5 m}^3 \\\\text{ 的水。浮力？}",
+            buoyancy_basic_1: "F_b = \\\\rho Vg. \\\\text{ 若 } V = 0.1 \\\\text{ m}^{3}, \\\\rho = 1000, \\\\text{ 求浮力 } F_b.",
+            buoyancy_basic_2: "\\\\text{物体体积 0.05 m}^{3} \\\\text{ 在水中。浮力？}",
+            buoyancy_basic_3: "\\\\text{气球体积 0.2 m}^{3} \\\\text{ 在空气中 } (\\\\rho = 1.2 \\\\text{ kg/m}^{3}). \\\\text{ 浮力？}",
+            buoyancy_basic_4: "\\\\text{岩石体积 0.01 m}^{3} \\\\text{ 浸没在水中。浮力？}",
+            buoyancy_basic_5: "\\\\text{船排开 0.5 m}^{3} \\\\text{ 的水。浮力？}",
 
             // 浮力 - 核心 (5)
-            buoyancy_core_1: "\\\\text{木块：质量 10 kg，体积 0.02 m}^3. \\\\text{ 会在水中漂浮吗？}",
-            buoyancy_core_2: "\\\\text{物体：重量 1500 N，体积 0.1 m}^3 \\\\text{ 在水中。净力？}",
-            buoyancy_core_3: "\\\\text{冰块：密度 900 kg/m}^3, \\\\text{ 体积 0.05 m}^3. \\\\text{ 在水中浸没的分数？}",
-            buoyancy_core_4: "\\\\text{铝块：质量 81 kg，体积 0.03 m}^3. \\\\text{ 在水中的表观重量？}",
-            buoyancy_core_5: "\\\\text{热气球：体积 1000 m}^3, \\\\rho_{air} = 1.2, \\\\rho_{hot} = 0.9. \\\\text{ 升力？}",
+            buoyancy_core_1: "\\\\text{木块：质量 10 kg，体积 0.02 m}^{3}. \\\\text{ 会在水中漂浮吗？}",
+            buoyancy_core_2: "\\\\text{物体：重量 1500 N，体积 0.1 m}^{3} \\\\text{ 在水中。净力？}",
+            buoyancy_core_3: "\\\\text{冰块：密度 900 kg/m}^{3}, \\\\text{ 体积 0.05 m}^{3}. \\\\text{ 在水中浸没的分数？}",
+            buoyancy_core_4: "\\\\text{铝块：质量 81 kg，体积 0.03 m}^{3}. \\\\text{ 在水中的表观重量？}",
+            buoyancy_core_5: "\\\\text{热气球：体积 1000 m}^{3}, \\\\rho_{air} = 1.2, \\\\rho_{hot} = 0.9. \\\\text{ 升力？}",
 
             // 浮力 - 进阶 (5)
-            buoyancy_advanced_1: "\\\\text{比重计：质量 50 g，体积 40 cm}^3. \\\\text{ 在水中浸没的深度？}",
+            buoyancy_advanced_1: "\\\\text{比重计：质量 50 g，体积 40 cm}^{3}. \\\\text{ 在水中浸没的深度？}",
             buoyancy_advanced_2: "\\\\text{船：质量 50000 kg。排开的水的体积？}",
-            buoyancy_advanced_3: "\\\\text{软木：密度 250 kg/m}^3, \\\\text{ 体积 0.02 m}^3 \\\\text{ 在水中。下沉前的最大负载？}",
-            buoyancy_advanced_4: "\\\\text{金块：质量 19.3 kg，体积 0.001 m}^3. \\\\text{ 浸没时绳子的张力？}",
-            buoyancy_advanced_5: "\\\\text{潜艇：体积 500 m}^3, \\\\text{ 质量 400000 kg。下潜所需的压载水？}",
+            buoyancy_advanced_3: "\\\\text{软木：密度 250 kg/m}^{3}, \\\\text{ 体积 0.02 m}^{3} \\\\text{ 在水中。下沉前的最大负载？}",
+            buoyancy_advanced_4: "\\\\text{金块：质量 19.3 kg，体积 0.001 m}^{3}. \\\\text{ 浸没时绳子的张力？}",
+            buoyancy_advanced_5: "\\\\text{潜艇：体积 500 m}^{3}, \\\\text{ 质量 400000 kg。下潜所需的压载水？}",
 
             // 浮力 - 精英 (5)
-            buoyancy_elite_1: "\\\\text{双流体系统：物体一半在水中，一半在油中 } (\\\\rho_o = 800). \\\\text{ 若 } V = 0.1 \\\\text{ m}^3 \\\\text{ 总浮力？}",
+            buoyancy_elite_1: "\\\\text{双流体系统：物体一半在水中，一半在油中 } (\\\\rho_o = 800). \\\\text{ 若 } V = 0.1 \\\\text{ m}^{3} \\\\text{ 总浮力？}",
             buoyancy_elite_2: "\\\\text{空心球：外半径 0.2 m，内半径 0.15 m，质量 10 kg。会漂浮吗？}",
-            buoyancy_elite_3: "\\\\text{冰山：密度 900 kg/m}^3 \\\\text{ 在海水中 } (\\\\rho = 1030). \\\\text{ 水面以上的分数？}",
-            buoyancy_elite_4: "\\\\text{氦气球：体积 1 m}^3, \\\\rho_{He} = 0.18, \\\\rho_{air} = 1.2, \\\\text{ 气球质量 0.5 kg。最大载荷？}",
+            buoyancy_elite_3: "\\\\text{冰山：密度 900 kg/m}^{3} \\\\text{ 在海水中 } (\\\\rho = 1030). \\\\text{ 水面以上的分数？}",
+            buoyancy_elite_4: "\\\\text{氦气球：体积 1 m}^{3}, \\\\rho_{He} = 0.18, \\\\rho_{air} = 1.2, \\\\text{ 气球质量 0.5 kg。最大载荷？}",
             buoyancy_elite_5: "\\\\text{阿基米德的王冠：空气中重 10 N，水中重 8.5 N。密度？}",
 
             // 液压 - 基础 (5)
-            hydraulics_basic_1: "P = F/A. \\\\text{ 若 } F = 100 \\\\text{ N 作用在 } A = 0.01 \\\\text{ m}^2, \\\\text{ 求压力 } P.",
-            hydraulics_basic_2: "\\\\text{液压机：200 N 作用在 0.02 m}^2. \\\\text{ 压力？}",
-            hydraulics_basic_3: "\\\\text{活塞：500 N 作用在 0.05 m}^2. \\\\text{ 压力？}",
-            hydraulics_basic_4: "\\\\text{液压缸：1000 N 作用在 0.1 m}^2. \\\\text{ 压力？}",
-            hydraulics_basic_5: "\\\\text{小活塞：50 N 作用在 0.005 m}^2. \\\\text{ 压力？}",
+            hydraulics_basic_1: "P = F/A. \\\\text{ 若 } F = 100 \\\\text{ N 作用在 } A = 0.01 \\\\text{ m}^{2}, \\\\text{ 求压力 } P.",
+            hydraulics_basic_2: "\\\\text{液压机：200 N 作用在 0.02 m}^{2}. \\\\text{ 压力？}",
+            hydraulics_basic_3: "\\\\text{活塞：500 N 作用在 0.05 m}^{2}. \\\\text{ 压力？}",
+            hydraulics_basic_4: "\\\\text{液压缸：1000 N 作用在 0.1 m}^{2}. \\\\text{ 压力？}",
+            hydraulics_basic_5: "\\\\text{小活塞：50 N 作用在 0.005 m}^{2}. \\\\text{ 压力？}",
 
             // 液压 - 核心 (5)
-            hydraulics_core_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。求 } F_2.",
-            hydraulics_core_2: "\\\\text{液压制动：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.05 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_2.",
-            hydraulics_core_3: "\\\\text{液压千斤顶：} A_1 = 0.02 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
-            hydraulics_core_4: "\\\\text{液压机：} A_1 = 0.001 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 10 \\\\text{ N。求 } F_2.",
-            hydraulics_core_5: "\\\\text{液压系统：} A_1 = 0.03 \\\\text{ m}^2, A_2 = 0.3 \\\\text{ m}^2, F_1 = 300 \\\\text{ N。求 } F_2.",
+            hydraulics_core_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^{2}, A_2 = 0.1 \\\\text{ m}^{2}, F_1 = 100 \\\\text{ N。求 } F_2.",
+            hydraulics_core_2: "\\\\text{液压制动：} A_1 = 0.005 \\\\text{ m}^{2}, A_2 = 0.05 \\\\text{ m}^{2}, F_1 = 50 \\\\text{ N。求 } F_2.",
+            hydraulics_core_3: "\\\\text{液压千斤顶：} A_1 = 0.02 \\\\text{ m}^{2}, A_2 = 0.2 \\\\text{ m}^{2}, F_1 = 200 \\\\text{ N。求 } F_2.",
+            hydraulics_core_4: "\\\\text{液压机：} A_1 = 0.001 \\\\text{ m}^{2}, A_2 = 0.1 \\\\text{ m}^{2}, F_1 = 10 \\\\text{ N。求 } F_2.",
+            hydraulics_core_5: "\\\\text{液压系统：} A_1 = 0.03 \\\\text{ m}^{2}, A_2 = 0.3 \\\\text{ m}^{2}, F_1 = 300 \\\\text{ N。求 } F_2.",
 
             // 液压 - 进阶 (5)
-            hydraulics_advanced_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^2, F_1 = 100 \\\\text{ N, } F_2 = 5000 \\\\text{ N。求 } A_2.",
-            hydraulics_advanced_2: "\\\\text{液压系统：} A_1 = 0.002 \\\\text{ m}^2, A_2 = 0.2 \\\\text{ m}^2, \\\\text{ 活塞 1 移动 10 cm。活塞 2 移动？}",
-            hydraulics_advanced_3: "\\\\text{液压机：效率 90\\\\%. } A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N。求 } F_2.",
-            hydraulics_advanced_4: "\\\\text{液压千斤顶：} A_1 = 0.005 \\\\text{ m}^2, A_2 = 0.5 \\\\text{ m}^2, F_1 = 100 \\\\text{ N。机械优势？}",
-            hydraulics_advanced_5: "\\\\text{液压制动：} A_1 = 0.01 \\\\text{ m}^2, A_2 = 0.04 \\\\text{ m}^2, F_1 = 150 \\\\text{ N, } d_1 = 5 \\\\text{ cm。做功？}",
+            hydraulics_advanced_1: "\\\\text{液压升降机：} A_1 = 0.01 \\\\text{ m}^{2}, F_1 = 100 \\\\text{ N, } F_2 = 5000 \\\\text{ N。求 } A_2.",
+            hydraulics_advanced_2: "\\\\text{液压系统：} A_1 = 0.002 \\\\text{ m}^{2}, A_2 = 0.2 \\\\text{ m}^{2}, \\\\text{ 活塞 1 移动 10 cm。活塞 2 移动？}",
+            hydraulics_advanced_3: "\\\\text{液压机：效率 90\\\\%. } A_1 = 0.01 \\\\text{ m}^{2}, A_2 = 0.1 \\\\text{ m}^{2}, F_1 = 200 \\\\text{ N。求 } F_2.",
+            hydraulics_advanced_4: "\\\\text{液压千斤顶：} A_1 = 0.005 \\\\text{ m}^{2}, A_2 = 0.5 \\\\text{ m}^{2}, F_1 = 100 \\\\text{ N。机械优势？}",
+            hydraulics_advanced_5: "\\\\text{液压制动：} A_1 = 0.01 \\\\text{ m}^{2}, A_2 = 0.04 \\\\text{ m}^{2}, F_1 = 150 \\\\text{ N, } d_1 = 5 \\\\text{ cm。做功？}",
 
             // 液压 - 精英 (5)
-            hydraulics_elite_1: "\\\\text{多级液压：} A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\\\text{ m}^2, F_1 = 50 \\\\text{ N。求 } F_3.",
-            hydraulics_elite_2: "\\\\text{带摩擦的液压系统：} A_1 = 0.01, A_2 = 0.1 \\\\text{ m}^2, F_1 = 200 \\\\text{ N，摩擦力 } = 100 \\\\text{ N。净 } F_2?",
-            hydraulics_elite_3: "\\\\text{液压蓄能器：} A_1 = 0.005, A_2 = 0.05 \\\\text{ m}^2, \\\\text{ 压力 } = 2 \\\\times 10^6 \\\\text{ Pa。} A_2 \\\\text{ 上的力？}",
-            hydraulics_elite_4: "\\\\text{液压阻尼器：} A = 0.01 \\\\text{ m}^2, \\\\text{ 速度 } = 0.5 \\\\text{ m/s，粘度产生 } 200 \\\\text{ N 阻力。净力？}",
-            hydraulics_elite_5: "\\\\text{串联液压回路：} A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\\\text{ m}^2. F_1 = 100 \\\\text{ N。总机械优势？}"
+            hydraulics_elite_1: "\\\\text{多级液压：} A_1 = 0.001, A_2 = 0.01, A_3 = 0.1 \\\\text{ m}^{2}, F_1 = 50 \\\\text{ N。求 } F_3.",
+            hydraulics_elite_2: "\\\\text{带摩擦的液压系统：} A_1 = 0.01, A_2 = 0.1 \\\\text{ m}^{2}, F_1 = 200 \\\\text{ N，摩擦力 } = 100 \\\\text{ N。净 } F_2?",
+            hydraulics_elite_3: "\\\\text{液压蓄能器：} A_1 = 0.005, A_2 = 0.05 \\\\text{ m}^{2}, \\\\text{ 压力 } = 2 \\\\times 10^6 \\\\text{ Pa。} A_2 \\\\text{ 上的力？}",
+            hydraulics_elite_4: "\\\\text{液压阻尼器：} A = 0.01 \\\\text{ m}^{2}, \\\\text{ 速度 } = 0.5 \\\\text{ m/s，粘度产生 } 200 \\\\text{ N 阻力。净力？}",
+            hydraulics_elite_5: "\\\\text{串联液压回路：} A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\\\text{ m}^{2}. F_1 = 100 \\\\text{ N。总机械优势？}"
         }
     },
 
@@ -1468,11 +1468,11 @@ export const cnPhysics = {
             c_b3: "\\text{相加速度：}3 + 0.5 = 3.5",
             c_b4: "\\text{相减：}3 - 2 = 1",
             c_b5: "\\text{相加速度：}4 + 1 = 5",
-            c_c1: "\\text{勾股定理：}\\sqrt{4^2 + 3^2} = 5",
-            c_c2: "\\text{勾股定理：}\\sqrt{1^2 + 1^2} = \\sqrt{2} \\approx 1.41",
-            c_c3: "\\text{勾股定理：}\\sqrt{2^2 + 2^2} = 2\\sqrt{2} \\approx 2.83",
-            c_c4: "\\text{勾股定理：}\\sqrt{2^2 + 1.5^2} = 2.5",
-            c_c5: "\\text{勾股定理：}\\sqrt{12^2 + 5^2} = 13",
+            c_c1: "\\text{勾股定理：}\\sqrt{4^{2} + 3^2} = 5",
+            c_c2: "\\text{勾股定理：}\\sqrt{1^{2} + 1^2} = \\sqrt{2} \\approx 1.41",
+            c_c3: "\\text{勾股定理：}\\sqrt{2^{2} + 2^2} = 2\\sqrt{2} \\approx 2.83",
+            c_c4: "\\text{勾股定理：}\\sqrt{2^{2} + 1.5^2} = 2.5",
+            c_c5: "\\text{勾股定理：}\\sqrt{12^{2} + 5^2} = 13",
             c_a1: "\\cos(60^\\circ) = 0.5, \\text{所以 }4 \\times 0.5 = 2",
             c_a2: "\\sin(30^\\circ) = 0.5, \\text{所以 }2 \\times 0.5 + 1 = 2",
             c_a3: "\\cos(45^\\circ) = 0.707, \\text{所以 }3 \\times 0.707 \\approx 2.12",
@@ -1518,11 +1518,11 @@ export const cnPhysics = {
             n_a3: "t = \\frac{30}{4 \\times \\sin(120^\\circ)} \\approx 8.66\\text{ s}",
             n_a4: "t = \\frac{25}{2 \\times \\sin(135^\\circ)} \\approx 17.68\\text{ s}",
             n_a5: "t = \\frac{40}{3.6 \\times \\sin(120^\\circ)}, d = 1.8 \\times t \\approx 23.09\\text{ m}",
-            n_e1: "v_{net} = \\sqrt{(5\\sin(120^\\circ))^2 + (5\\cos(120^\\circ) + 2.5)^2} \\approx 4.33\\text{ m/s}",
+            n_e1: "v_{net} = \\sqrt{(5\\sin(120^\\circ))^{2} + (5\\cos(120^\\circ) + 2.5)^2} \\approx 4.33\\text{ m/s}",
             n_e2: "\\text{计算横渡时间，然后返回时间，求和}",
-            n_e3: "d_{total} = \\sqrt{40^2 + (3 \\times t)^2} \\text{其中 }t = \\frac{40}{6\\sin(120^\\circ)}",
+            n_e3: "d_{total} = \\sqrt{40^{2} + (3 \\times t)^2} \\text{其中 }t = \\frac{40}{6\\sin(120^\\circ)}",
             n_e4: "\\theta = \\arctan\\left(\\frac{d_{drift}}{30}\\right) \\text{其中偏航来自河流流速}",
-            n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^2, \\text{先求 }v_{net}",
+            n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{先求 }v_{net}",
         },
         results: {
             valid: "计算有效",
@@ -1613,10 +1613,10 @@ export const cnPhysics = {
         footer_left: "GP2.01_热力学 // 节点：巴塞尔",
         stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" },
         prompts: {
-            find_p: "理想气体: n = {n} mol, T = {T} K, V = {V} m^3. 求 P.",
+            find_p: "理想气体: n = {n} mol, T = {T} K, V = {V} m^{3}. 求 P.",
             find_v: "气体: n = {n} mol, P = {P} Pa, T = {T} K. 求 V.",
-            find_n: "气体: P = {P} Pa, V = {V} m^3, T = {T} K. 求 n.",
-            find_t: "气体: P = {P} Pa, V = {V} m^3, n = {n} mol. 求 T.",
+            find_n: "气体: P = {P} Pa, V = {V} m^{3}, T = {T} K. 求 n.",
+            find_t: "气体: P = {P} Pa, V = {V} m^{3}, n = {n} mol. 求 T.",
             relation_pt: "体积恒定时温度加倍，压强变为原来的几倍？",
             relation_vn: "恒温恒压下摩尔数加倍，体积变为原来的几倍？",
             boyle_find_p2: "波义耳定律: P_1 = {p1} kPa, V_1 = {v1} L, V_2 = {v2} L. 求 P_2.",
@@ -1628,11 +1628,11 @@ export const cnPhysics = {
             charles_relation: "恒压下绝对温度加倍，体积变为原来的几倍？",
             charles_condition: "查理定律要求哪个量保持不变？",
             combined_law: "联合气体定律：已知 P, V, T 变化，求 {target}。",
-            iwb_steam: "IWB 区域供热：蒸汽 T={T} K, V={V} m^3, n={n} mol。计算压强 P (理想气体)。",
-            roche_tower: "Roche 大厦 40 层：房间 V={V} m^3, T={T} K, P={P} Pa。计算空气摩尔数 n。",
+            iwb_steam: "IWB 区域供热：蒸汽 T={T} K, V={V} m^{3}, n={n} mol。计算压强 P (理想气体)。",
+            roche_tower: "Roche 大厦 40 层：房间 V={V} m^{3}, T={T} K, P={P} Pa。计算空气摩尔数 n。",
             rhine_bubble: "莱茵河潜水员在深度 (P1={p1} kPa) 呼出气泡 V1={v1} mL。到达水面 (P2={p2} kPa) 时的体积？",
-            weather_balloon: "巴塞尔气象气球：地面 V={v1} m^3, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
-            novartis_reactor: "Novartis 反应釜 V={V} m^3。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
+            weather_balloon: "巴塞尔气象气球：地面 V={v1} m^{3}, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
+            novartis_reactor: "Novartis 反应釜 V={V} m^{3}。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
         },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
@@ -1665,7 +1665,7 @@ export const cnPhysics = {
             ie_diatomic: "双原子气体 (f=5): n={n}, T={t}. 计算内能 U.",
             ie_change_t: "理想气体 (n={n}, Cv={cv} J/molK) 从 {t1} K 加热到 {t2} K. 求 ΔU.",
             ie_state_func: "内能是状态函数。一个循环中的变化量是？",
-            wh_isobaric: "等压膨胀：P = {p} Pa, ΔV = {dv} m^3. 求功 W.",
+            wh_isobaric: "等压膨胀：P = {p} Pa, ΔV = {dv} m^{3}. 求功 W.",
             wh_isochoric: "等容加热 (体积恒定). 功 W 是多少？",
             wh_isothermal_w: "理想气体的等温膨胀. Q = {q} J. 求 W.",
             wh_area: "PV 图下的面积代表什么物理量？",
@@ -1732,9 +1732,9 @@ export const cnPhysics = {
             constructive_interference: "两个波（各 A = 2 m）相长干涉。总振幅？",
             destructive_interference: "两个波（各 A = 3 m）相消干涉。总振幅？",
             beat_frequency: "两个音叉：440 Hz 和 444 Hz。拍频？",
-            de_broglie: "电子（m = 9.1×10^-^3¹ kg，v = 1 m/s）。德布罗意波长？（h = 6.63×10^-^3^4）",
+            de_broglie: "电子（m = 9.1×10^-^{3}¹ kg，v = 1 m/s）。德布罗意波长？（h = 6.63×10^-^{3}^{4}）",
             wave_particle_duality: "光同时表现出波动性和粒子性。对还是错？",
-            photon_energy: "频率 f = 5×10¹^4 Hz 的光子。能量 E = hf？（h = 6.63×10^-^3^4）",
+            photon_energy: "频率 f = 5×10¹^{4} Hz 的光子。能量 E = hf？（h = 6.63×10^-^{3}^{4}）",
             matter_wave: "电子波长 λ = h/mv。对于典型电子，λ ≈ ？",
             uncertainty: "海森堡不确定性：ΔxΔp ≥ h/4π。我们能同时精确知道两者吗？",
             same_phase_add: "两个波（A = 2 m）同相。总振幅？",
@@ -1856,7 +1856,7 @@ export const cnPhysics = {
             particle_motion: "粒子运动"
         },
         scenarios: {
-            electric_field: "你是巴塞尔罗氏大厦的研究工程师，正在设计用于制药洁净室空气净化的先进静电除尘器。该系统利用电场去除空气中的颗粒物，确保救命药物的无菌生产环境。电场强度 E = kQ/r^2（其中 k = 8.99×10^9 N·m^2/C^2）决定了带电粒子所受的力。点电荷 Q 产生向外辐射的电场，电场线显示方向和强度。测试电荷 q 在此电场中受到的力为 F = qE。理解电场对于设计医疗设备、CERN 巴塞尔合作项目的粒子加速器以及本地科技公司的半导体制造至关重要。这些原理还解释了巴塞尔历史建筑的防雷系统以及智能手机触摸屏的工作原理。",
+            electric_field: "你是巴塞尔罗氏大厦的研究工程师，正在设计用于制药洁净室空气净化的先进静电除尘器。该系统利用电场去除空气中的颗粒物，确保救命药物的无菌生产环境。电场强度 E = kQ/r^{2}（其中 k = 8.99×10^9 N·m^{2}/C^{2}）决定了带电粒子所受的力。点电荷 Q 产生向外辐射的电场，电场线显示方向和强度。测试电荷 q 在此电场中受到的力为 F = qE。理解电场对于设计医疗设备、CERN 巴塞尔合作项目的粒子加速器以及本地科技公司的半导体制造至关重要。这些原理还解释了巴塞尔历史建筑的防雷系统以及智能手机触摸屏的工作原理。",
             magnetic_field: "在巴塞尔大学医院的 MRI 部门，你正在校准用于医学成像的磁场系统。磁场由电流产生，以特斯拉（T）为单位测量。载流直导线产生圆形磁场，强度为 B = μ₀I/(2πr)，其中 μ₀ = 4π×10^-^7 T·m/A 是真空磁导率。右手定则确定磁场方向：拇指指向电流方向，手指弯曲指向磁场方向。螺线管（线圈）内部产生均匀磁场 B = μ₀nI，用于 MRI 机器中对齐患者体内的氢原子。磁场中载流导线受到的力为 F = BILsinθ，这使得巴塞尔的有轨电车和火车中的电动机得以运转。磁悬浮列车利用这些原理，巴塞尔与瑞士铁路网络的连接依赖于电磁系统。",
             particle_motion: "你是 CERN 巴塞尔研究设施的物理学家，正在分析大型强子对撞机实验中带电粒子在电磁场中的轨迹。当带电粒子（电荷 q，质量 m）进入电场 E 时，它受到力 F = qE 和加速度 a = qE/m，沿抛物线路径运动，类似于抛体运动。在磁场 B 中，运动的带电粒子受到垂直于速度和磁场的洛伦兹力 F = qvB，导致圆周运动，半径为 r = mv/(qB)。这一原理使诺华和罗氏质量控制实验室的质谱仪能够识别药物化合物的分子质量。速度选择器使用交叉的电场和磁场，只有当 v = E/B 时粒子才能直线运动，从而按速度分离离子。回旋加速器在螺旋路径中加速粒子，用于巴塞尔大学医院的癌症放射治疗。理解粒子运动对于设计粒子探测器、分析宇宙射线以及开发下一代医学成像技术至关重要。"
         },

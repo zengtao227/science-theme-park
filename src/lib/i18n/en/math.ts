@@ -148,7 +148,7 @@ export const enMath = {
             elite: "ELITE"
         },
         explore_title: "00 // Interactive Exploration",
-        explore_instruction: "Drag the point P along the parabola y = x^2 and observe how the tangent line changes. The slope m represents the instantaneous rate of change.",
+        explore_instruction: "Drag the point P along the parabola y = x^{2} and observe how the tangent line changes. The slope m represents the instantaneous rate of change.",
         explore_hint: "Drag point P in the visual monitor →",
         current_point: "Current Point",
         slope_label: "Tangent Slope",
@@ -217,18 +217,18 @@ export const enMath = {
             chain_rule: "\\frac{dy}{dx} = \\frac{dy}{du}\\cdot\\frac{du}{dx}"
         },
         scenarios: {
-            power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = x^2. The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
-            factor_rule: "🏗️ SCENARIO: Construction Scaling — An architect designs a building with height h(x) = x^2. When the city requires all dimensions to be scaled by factor 3, the new height becomes H(x) = 3x^2. The derivative tells you how the scaled building's slope changes. Use the factor rule: if f(x) = a·g(x), then f'(x) = a·g'(x). The constant factor 3 stays outside the derivative, making calculations easier!",
-            sum_rule: "🌊 SCENARIO: Ocean Wave Superposition — Two ocean waves combine: wave A has height h_1(x) = x^2 and wave B has height h_2(x) = 3x. The total wave height is H(x) = x^2 + 3x. To predict how fast the combined wave rises, use the sum rule: (f + g)' = f' + g'. Calculate each wave's slope separately, then add them. This is how oceanographers predict tsunami wave behavior!",
+            power_rule: "🚗 SCENARIO: Car Acceleration on a Hill — You're driving a Tesla up a curved hill. The road height follows h(x) = x^{2}. The derivative h'(x) tells you the road's steepness at each point. If you tilt the car at the wrong angle, it will scrape the ground or tip over! Calculate the correct slope (derivative) so the car's chassis aligns perfectly with the road surface. This is exactly how self-driving cars calculate terrain angles in real-time.",
+            factor_rule: "🏗️ SCENARIO: Construction Scaling — An architect designs a building with height h(x) = x^{2}. When the city requires all dimensions to be scaled by factor 3, the new height becomes H(x) = 3x^{2}. The derivative tells you how the scaled building's slope changes. Use the factor rule: if f(x) = a·g(x), then f'(x) = a·g'(x). The constant factor 3 stays outside the derivative, making calculations easier!",
+            sum_rule: "🌊 SCENARIO: Ocean Wave Superposition — Two ocean waves combine: wave A has height h_1(x) = x^{2} and wave B has height h_2(x) = 3x. The total wave height is H(x) = x^{2} + 3x. To predict how fast the combined wave rises, use the sum rule: (f + g)' = f' + g'. Calculate each wave's slope separately, then add them. This is how oceanographers predict tsunami wave behavior!",
             product_rule: "🌊 SCENARIO: Surfboard on a Wave — A surfer rides a wave described by h(x) = x·sin(x). The wave height depends on both position (x) and the sine wave pattern. To stay balanced, the surfer needs to know the wave's slope at each point. Use the product rule: if f(x) = u(x)·v(x), then f'(x) = u'·v + u·v'. This tells you how fast the wave is rising or falling, helping the surfer adjust their stance.",
-            quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v^2. This tells investors whether the company is becoming more or less efficient over time.",
+            quotient_rule: "📊 SCENARIO: Stock Market Efficiency Ratio — A financial analyst tracks a company's efficiency ratio: profit(x) / cost(x). As market conditions change (x = time in months), both profit and cost change. To predict if efficiency is improving or declining, you need the derivative of this ratio. Use the quotient rule: if f(x) = u(x)/v(x), then f'(x) = [u'·v - u·v'] / v^{2}. This tells investors whether the company is becoming more or less efficient over time.",
             chain_rule: "⚙️ SCENARIO: Bicycle Gear System — You're cycling up a mountain. The pedal rotation creates a chain motion: pedal angle → chain speed → wheel rotation. If the chain wraps around the gear twice as fast (factor of 2), then f(x) = sin(2x). The chain rule tells you: if the outer function changes, multiply by the inner function's rate. This is how bicycle computers calculate your actual speed from pedal rotations!"
         },
         canvas: {
             title: "DERIVATIVE ROAD",
-            subtitle_power: "f(x) = x^2",
-            subtitle_factor: "f(x) = ax^2",
-            subtitle_sum: "f(x) = x^2 + x",
+            subtitle_power: "f(x) = x^{2}",
+            subtitle_factor: "f(x) = ax^{2}",
+            subtitle_sum: "f(x) = x^{2} + x",
             subtitle_product: "f(x) = x·sin(x)",
             subtitle_quotient: "f(x) = x/sin(x)",
             subtitle_chain: "f(x) = sin(2x)",
@@ -274,15 +274,15 @@ export const enMath = {
             analysis: "ANALYSIS"
         },
         scenarios: {
-            composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t^2 + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
-            composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t^2 + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
-            composite_3: "🌊 SCENARIO: Wave Interference — Two ocean waves combine: h(x) = (x^3 - 2x)·cos(x). At x=1, find the rate of height change h'(1) to predict wave behavior. Use product rule with trigonometric functions!",
-            modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t^3 - 3t^2 + 5t meters. Find the velocity v(t) = s'(t) at t=3 seconds to check if it's within speed limits.",
-            modeling_2: "🎈 SCENARIO: Balloon Launch — A weather balloon rises with height h(t) = -5t^2 + 20t + 2 meters. At t=2 seconds, calculate the velocity v(t) = h'(t) to ensure safe ascent rate.",
+            composite_1: "🎢 SCENARIO: Roller Coaster Design — An engineer designs a roller coaster section where the height follows h(t) = (2t^{2} + 3t)·sin(t). The velocity is the derivative h'(t). At t=2 seconds, calculate the velocity to ensure passenger safety. This requires both the product rule AND the power rule!",
+            composite_2: "📡 SCENARIO: Signal Processing — A radio signal's amplitude is A(t) = (t^{2} + 1)/sin(t). The rate of amplitude change is A'(t). At t=1 second, calculate this rate to adjust the receiver. This requires the quotient rule combined with power rule!",
+            composite_3: "🌊 SCENARIO: Wave Interference — Two ocean waves combine: h(x) = (x^{3} - 2x)·cos(x). At x=1, find the rate of height change h'(1) to predict wave behavior. Use product rule with trigonometric functions!",
+            modeling_1: "🚗 SCENARIO: Car Acceleration — A Tesla accelerates from rest. Its position is s(t) = 2t^{3} - 3t^{2} + 5t meters. Find the velocity v(t) = s'(t) at t=3 seconds to check if it's within speed limits.",
+            modeling_2: "🎈 SCENARIO: Balloon Launch — A weather balloon rises with height h(t) = -5t^{2} + 20t + 2 meters. At t=2 seconds, calculate the velocity v(t) = h'(t) to ensure safe ascent rate.",
             optimization_1: "📦 SCENARIO: Box Design — A company makes boxes from rectangular cardboard. The area is A(x) = x(10-x). Find the value of x that maximizes the area for optimal material usage.",
-            optimization_2: "💰 SCENARIO: Profit Maximization — A Basel bakery's daily profit is P(x) = -2x^2 + 12x - 10 (in hundreds of CHF), where x is production hours. Find x that maximizes profit.",
-            analysis_1: "📊 SCENARIO: Market Analysis — A stock price follows f(x) = x^3 - 3x^2 + 2. Find all critical points (where f'(x) = 0) to identify potential buy/sell moments.",
-            analysis_2: "🚀 SCENARIO: Rocket Trajectory — A rocket's height is f(x) = 2x^3 - 6x + 1. At x=1, find the second derivative f''(1) to determine if the rocket is accelerating or decelerating."
+            optimization_2: "💰 SCENARIO: Profit Maximization — A Basel bakery's daily profit is P(x) = -2x^{2} + 12x - 10 (in hundreds of CHF), where x is production hours. Find x that maximizes profit.",
+            analysis_1: "📊 SCENARIO: Market Analysis — A stock price follows f(x) = x^{3} - 3x^{2} + 2. Find all critical points (where f'(x) = 0) to identify potential buy/sell moments.",
+            analysis_2: "🚀 SCENARIO: Rocket Trajectory — A rocket's height is f(x) = 2x^{3} - 6x + 1. At x=1, find the second derivative f''(1) to determine if the rocket is accelerating or decelerating."
         },
         questions: {
             find_derivative: "Calculate the derivative at the given point",
@@ -294,7 +294,7 @@ export const enMath = {
         },
         hints: {
             use_product_rule: "Use product rule: (uv)' = u'v + uv'. First find u' and v' separately.",
-            use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v^2. Remember to square the denominator!",
+            use_quotient_rule: "Use quotient rule: (u/v)' = (u'v - uv')/v^{2}. Remember to square the denominator!",
             use_chain_rule: "Use chain rule: (f(g(x)))' = f'(g(x))·g'(x). Work from outside to inside.",
             take_first_derivative: "Take the first derivative: if s(t) is position, then v(t) = s'(t) is velocity.",
             take_second_derivative: "First find f'(x), then differentiate again to get f''(x).",
@@ -383,7 +383,7 @@ export const enMath = {
         scenarios: {
             antiderivative: "Roche Pharmaceutical Laboratory - Drug Concentration Analysis: You are working at Roche's Basel research facility analyzing how drug concentration changes over time in the bloodstream. The rate of concentration change is given by f(t) = derivative. To find the total accumulated concentration (the antiderivative F(t)), you must integrate the rate function. This antiderivative tells you the drug concentration at any time t, which is critical for determining safe dosage levels. The integration constant C represents the initial concentration at t=0. Accurate integration ensures patient safety by predicting drug levels in the body over time.",
             definite_integral: "Rhine River Flow Analysis - Total Water Volume: Basel's environmental monitoring station tracks the Rhine River's flow rate (cubic meters per second) throughout the day. The flow rate varies with time: f(t) represents the instantaneous flow rate. To calculate the total volume of water that passed through Basel between time a and time b, you must evaluate the definite integral ∫[a,b] f(t) dt. This integral gives the accumulated volume in cubic meters. The result helps Basel Port Authority manage shipping schedules and predict flood risks. Unlike antiderivatives, definite integrals give a specific numerical answer representing total accumulation.",
-            application: "Novartis Building Design - Curved Roof Area Calculation: Novartis is constructing a new research building in Basel with a curved roof following the function f(x). The architecture team needs to calculate the exact surface area under the curve from x=a to x=b to order the correct amount of roofing material. The area equals the definite integral ∫[a,b] f(x) dx. For more complex applications, you might calculate the volume of a rotational structure using V = π∫[a,b] [f(x)]^2 dx (disk method). Accurate integration prevents material waste and ensures structural integrity. This is how engineers translate mathematical curves into real-world construction specifications."
+            application: "Novartis Building Design - Curved Roof Area Calculation: Novartis is constructing a new research building in Basel with a curved roof following the function f(x). The architecture team needs to calculate the exact surface area under the curve from x=a to x=b to order the correct amount of roofing material. The area equals the definite integral ∫[a,b] f(x) dx. For more complex applications, you might calculate the volume of a rotational structure using V = π∫[a,b] [f(x)]^{2} dx (disk method). Accurate integration prevents material waste and ensures structural integrity. This is how engineers translate mathematical curves into real-world construction specifications."
         },
         prompts: {
             find_antiderivative: "Find the antiderivative F(x) of f(x) = {expr}.",
@@ -473,22 +473,22 @@ export const enMath = {
             quality_control_1789: "Novartis Basel large-scale quality control: In a production run of 2000 medication samples, 1789 passed all tests. Calculate P(E).\n\nGiven: 1789 samples passed, 2000 total samples\nFind: P(E) = favorable / total",
 
             // BINOMIAL - BASIC: Understanding basic concept
-            coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(3,2) × 0.5^2 × 0.5¹\nConcept: Understanding 'exactly k successes'",
-            coin_4_2: "You flip a fair coin 4 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=4 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(4,2) × 0.5^2 × 0.5^2\nConcept: Basic binomial calculation",
-            coin_3_all: "You flip a fair coin 3 times. What is the probability of getting all heads?\n\nGiven: n=3 trials, k=3 successes, p=0.5\nFind: P(X=3) = C(3,3) × 0.5^3 × 0.5⁰\nConcept: Understanding C(n,n) = 1",
-            coin_4_none: "You flip a fair coin 4 times. What is the probability of getting no heads (all tails)?\n\nGiven: n=4 trials, k=0 successes, p=0.5\nFind: P(X=0) = C(4,0) × 0.5⁰ × 0.5^4\nConcept: Understanding C(n,0) = 1",
+            coin_3_2: "You flip a fair coin 3 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=3 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(3,2) × 0.5^{2} × 0.5¹\nConcept: Understanding 'exactly k successes'",
+            coin_4_2: "You flip a fair coin 4 times. What is the probability of getting exactly 2 heads?\n\nGiven: n=4 trials, k=2 successes, p=0.5\nFind: P(X=2) = C(4,2) × 0.5^{2} × 0.5^{2}\nConcept: Basic binomial calculation",
+            coin_3_all: "You flip a fair coin 3 times. What is the probability of getting all heads?\n\nGiven: n=3 trials, k=3 successes, p=0.5\nFind: P(X=3) = C(3,3) × 0.5^{3} × 0.5⁰\nConcept: Understanding C(n,n) = 1",
+            coin_4_none: "You flip a fair coin 4 times. What is the probability of getting no heads (all tails)?\n\nGiven: n=4 trials, k=0 successes, p=0.5\nFind: P(X=0) = C(4,0) × 0.5⁰ × 0.5^{4}\nConcept: Understanding C(n,0) = 1",
 
             // BINOMIAL - CORE: Understanding C(n,k) meaning
-            lottery_5_3: "Swiss Lotto: You play 5 lottery draws with 50% win probability each. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.5\nFind: P(X=3) = C(5,3) × 0.5^3 × 0.5^2\nConcept: C(5,3) = 10 represents the 10 different ways to choose which 3 draws you win",
+            lottery_5_3: "Swiss Lotto: You play 5 lottery draws with 50% win probability each. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.5\nFind: P(X=3) = C(5,3) × 0.5^{3} × 0.5^{2}\nConcept: C(5,3) = 10 represents the 10 different ways to choose which 3 draws you win",
             lottery_6_3: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=6, k=3, p=0.5\nFind: P(X=3), where C(6,3) = 20\nConcept: Understanding why we multiply by C(n,k)",
             lottery_5_2: "Swiss Lotto: You play 5 draws with 50% win probability. What is the probability of winning exactly 2 times?\n\nGiven: n=5, k=2, p=0.5\nFind: P(X=2), where C(5,2) = 10\nConcept: Binomial coefficient represents arrangements",
             lottery_6_4: "Swiss Lotto: You play 6 draws with 50% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=6, k=4, p=0.5\nFind: P(X=4), where C(6,4) = 15\nConcept: Counting favorable arrangements",
             lottery_7_3: "Swiss Lotto: You play 7 draws with 50% win probability. What is the probability of winning exactly 3 times?\n\nGiven: n=7, k=3, p=0.5\nFind: P(X=3), where C(7,3) = 35\nConcept: Larger n means more arrangements",
 
             // BINOMIAL - ADVANCED: Asymmetric probability (p ≠ 0.5)
-            lottery_5_3_biased: "Swiss Lotto: You play 5 draws with 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6 (biased probability)\nFind: P(X=3) = C(5,3) × 0.6^3 × 0.4^2\nConcept: Distribution is skewed when p ≠ 0.5",
-            lottery_6_2_low: "Swiss Lotto: You play 6 draws with only 30% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.3 (low probability)\nFind: P(X=2) = C(6,2) × 0.3^2 × 0.7^4\nConcept: Low p means distribution skewed left",
-            lottery_8_6_high: "Swiss Lotto: You play 8 draws with 70% win probability per draw. What is the probability of winning exactly 6 times?\n\nGiven: n=8, k=6, p=0.7 (high probability)\nFind: P(X=6) = C(8,6) × 0.7^6 × 0.3^2\nConcept: High p means distribution skewed right",
+            lottery_5_3_biased: "Swiss Lotto: You play 5 draws with 60% win probability per draw. What is the probability of winning exactly 3 times?\n\nGiven: n=5, k=3, p=0.6 (biased probability)\nFind: P(X=3) = C(5,3) × 0.6^{3} × 0.4^{2}\nConcept: Distribution is skewed when p ≠ 0.5",
+            lottery_6_2_low: "Swiss Lotto: You play 6 draws with only 30% win probability per draw. What is the probability of winning exactly 2 times?\n\nGiven: n=6, k=2, p=0.3 (low probability)\nFind: P(X=2) = C(6,2) × 0.3^{2} × 0.7^{4}\nConcept: Low p means distribution skewed left",
+            lottery_8_6_high: "Swiss Lotto: You play 8 draws with 70% win probability per draw. What is the probability of winning exactly 6 times?\n\nGiven: n=8, k=6, p=0.7 (high probability)\nFind: P(X=6) = C(8,6) × 0.7^6 × 0.3^{2}\nConcept: High p means distribution skewed right",
             lottery_7_4_biased: "Swiss Lotto: You play 7 draws with 60% win probability. What is the probability of winning exactly 4 times?\n\nGiven: n=7, k=4, p=0.6\nFind: P(X=4)\nConcept: Understanding asymmetric distributions",
             lottery_10_7_biased: "Swiss Lotto: You play 10 draws with 65% win probability. What is the probability of winning exactly 7 times?\n\nGiven: n=10, k=7, p=0.65\nFind: P(X=7)\nConcept: Calculating with non-standard probabilities",
 
@@ -685,7 +685,7 @@ export const enMath = {
             basel_water_tank: "Basel water tank (cylinder)",
             basel_museum: "Basel Museum cube display",
             basel_sbb_cargo: "Basel SBB cargo container",
-            basel_storage_sa: "Basel storage cube, surface area 150 m^2",
+            basel_storage_sa: "Basel storage cube, surface area 150 m^{2}",
             novartis_lab: "Novartis lab container, base 6×8 m, height 10 m",
             basel_rhine_pipe: "Basel Rhine water pipe, diameter 8 m, length 12 m",
             roche_cube: "Roche Tower cube room, edge 9 m",
@@ -694,12 +694,12 @@ export const enMath = {
             novartis_plaza: "Novartis trapezoid plaza, perimeter 50 m",
             basel_rhine_cyl: "Basel Rhine cylindrical pipe, diameter 10 m, length 15 m",
             roche_prism: "Roche Tower prism, base 12×10 m, height 20 m",
-            basel_sbb_storage: "Basel SBB cube storage, surface area 294 m^2",
-            basel_museum_vol: "Basel Museum cube, volume 512 m^3, find diagonal",
-            novartis_tank: "Novartis cylinder tank, lateral area 314.16 m^2, radius 5 m",
-            basel_bridge_area: "Basel Rhine bridge trapezoid, area 180 m^2, a=10, b=20, find h",
-            roche_prism_vol: "Roche Tower prism, volume 1200 m^3, base 10×8 m, find height",
-            basel_water_cyl: "Basel water tank cylinder, volume 1570.8 m^3, height 20 m, find radius",
+            basel_sbb_storage: "Basel SBB cube storage, surface area 294 m^{2}",
+            basel_museum_vol: "Basel Museum cube, volume 512 m^{3}, find diagonal",
+            novartis_tank: "Novartis cylinder tank, lateral area 314.16 m^{2}, radius 5 m",
+            basel_bridge_area: "Basel Rhine bridge trapezoid, area 180 m^{2}, a=10, b=20, find h",
+            roche_prism_vol: "Roche Tower prism, volume 1200 m^{3}, base 10×8 m, find height",
+            basel_water_cyl: "Basel water tank cylinder, volume 1570.8 m^{3}, height 20 m, find radius",
             basel_park_path: "Basel park rectangular path",
             basel_cathedral_roof: "Basel Cathedral triangular roof section",
             novartis_logo: "Novartis circular logo",
@@ -714,8 +714,8 @@ export const enMath = {
 
             // Additional scenarios
             basel_messe_trap: "Basel Messe exhibition trapezoid booth",
-            basel_uni_lab_vol: "Basel University cube lab, volume 1000 m^3",
-            novartis_tank_vol: "Novartis cylindrical tank, radius 6 m, volume 678.6 m^3",
+            basel_uni_lab_vol: "Basel University cube lab, volume 1000 m^{3}",
+            novartis_tank_vol: "Novartis cylindrical tank, radius 6 m, volume 678.6 m^{3}",
 
             // Monitor labels
             realtime_geo: "REAL-TIME GEOMETRY",
@@ -1018,35 +1018,35 @@ export const enMath = {
             advanced: "ADVANCED",
             elite: "ELITE"
         },
-        mode_1: "1st Formula: (a+b)^2",
-        mode_2: "2nd Formula: (a-b)^2",
+        mode_1: "1st Formula: (a+b)^{2}",
+        mode_2: "2nd Formula: (a-b)^{2}",
         param_a: "Parameter a",
         param_b: "Parameter b",
         lock: "LOCK PARAMETERS",
         unlock: "UNLOCK PARAMETERS",
         instruction_setup: "Adjust sliders to define lengths a and b.",
-        instruction_solve: "Drag and snap areas to fill the target $(a+b)^2$.",
+        instruction_solve: "Drag and snap areas to fill the target $(a+b)^{2}$.",
         solve_success: "IDENTITY PROVED",
         solve_fail: "AREA MISMATCH",
         terms: {
-            a2: "a^2",
-            b2: "b^2",
+            a2: "a^{2}",
+            b2: "b^{2}",
             ab: "ab",
-            target_plus: "(a+b)^2",
-            target_minus: "(a-b)^2",
+            target_plus: "(a+b)^{2}",
+            target_minus: "(a-b)^{2}",
         },
         scenarios: {
             architect_title: "Scenario A: Garden Extension",
             architect_desc: "Your lakeside garden (a×a) is being extended by b meters on each side. Calculate the new total area.",
-            architect_context: "You own a square garden plot by Lake Zurich with side length 'a' meters. The city allows you to extend it by 'b' meters on two sides. To buy the right amount of soil and seeds, you need to know the new total area. Notice: the total area is NOT simply a^2 + b^2 — the two rectangular strips and the corner square matter!",
+            architect_context: "You own a square garden plot by Lake Zurich with side length 'a' meters. The city allows you to extend it by 'b' meters on two sides. To buy the right amount of soil and seeds, you need to know the new total area. Notice: the total area is NOT simply a^{2} + b^{2} — the two rectangular strips and the corner square matter!",
             scrapper_title: "Scenario B: Tile Factory",
             scrapper_desc: "A factory produced tiles in three shapes. Reassemble them into a perfect square.",
-            scrapper_context: "A Swiss tile factory produces three types of tiles: one large square (a^2), two rectangular strips (a×b each), and one small square (b^2). Your job is to verify that these four pieces can be perfectly assembled into a single large square of side (a+b). This proves the binomial identity geometrically.",
+            scrapper_context: "A Swiss tile factory produces three types of tiles: one large square (a^{2}), two rectangular strips (a×b each), and one small square (b^{2}). Your job is to verify that these four pieces can be perfectly assembled into a single large square of side (a+b). This proves the binomial identity geometrically.",
             speedster_title: "Scenario C: Mental Math Sprint",
-            speedster_desc: "Compute large squares instantly by splitting them into (round + offset)^2.",
-            speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)^2 = a^2 + 2ab + b^2 = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
-            voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a^2 - b^2.",
-            architect_mission: "Task: Calculate the expanded garden area using (a+b)^2 = a^2 + 2ab + b^2.",
+            speedster_desc: "Compute large squares instantly by splitting them into (round + offset)^{2}.",
+            speedster_context: "In a Swiss math olympiad, you need to square numbers like 103 or 47 in your head. The trick: split 103 into (100+3), then use (a+b)^{2} = a^{2} + 2ab + b^{2} = 10000 + 600 + 9 = 10609. Much faster than multiplying 103×103 directly!",
+            voyager_context: "Two square fields share a common boundary. One has side 'a', the other side 'b'. A surveyor measures the combined area vs the individual areas to verify the difference formula (a+b)(a-b) = a^{2} - b^{2}.",
+            architect_mission: "Task: Calculate the expanded garden area using (a+b)^{2} = a^{2} + 2ab + b^{2}.",
             architect_advanced_prompt: "Term Identification & Factoring Practice",
             architect_elite_prompt: "Two-Variable Factoring Challenge",
             scrapper_mission: "Task: Identify a and b from the expanded form and reconstruct the perfect square.",
@@ -1054,7 +1054,7 @@ export const enMath = {
             voyager_mission: "Task: Use the difference of squares formula to find the area difference.",
             elite_mission: "Task: Factor the complex polynomial into binomial product form."
         },
-        speedster_hint: "Use binomial expansion (a±b)^2 to simplify calculation",
+        speedster_hint: "Use binomial expansion (a±b)^{2} to simplify calculation",
         elite_tips_title: "TIPS: Binomial Isolation Strategy",
         elite_tips_target: "Target format:",
         scrapper_step01: "STEP 01: Isolate root (a)",
@@ -1071,9 +1071,9 @@ export const enMath = {
             elite: "ELITE"
         },
         ui: {
-            part_1_a2: "Part 1 (a^2)",
+            part_1_a2: "Part 1 (a^{2})",
             part_2_2ab: "Part 2 (2ab)",
-            part_3_b2: "Part 3 (b^2)",
+            part_3_b2: "Part 3 (b^{2})",
             identify_root_a: "Identify Root a",
             identify_root_b: "Identify Root b",
             elite_step_1: "Step 1: Isolate Binomial Square",
@@ -1090,9 +1090,9 @@ export const enMath = {
             logic_voyager_derivation_title: "DERIVATION:",
             link_established: "LINK_ESTABLISHED",
             axiomatic_constraints_title: "Axiomatic Constraints",
-            constraints_architect: "The corner 'b^2' is the offset required to complete the major quadratic square. Its value is critical for blueprint precision.",
+            constraints_architect: "The corner 'b^{2}' is the offset required to complete the major quadratic square. Its value is critical for blueprint precision.",
             constraints_scrapper: "Factoring decomposes global entropy back into ordered symbolic structures. Root isolation is the primary objective.",
-            constraints_speedster: "Mental approximation relies on binary base decomposition. Shift the problem into a (Base+N)^2 framework.",
+            constraints_speedster: "Mental approximation relies on binary base decomposition. Shift the problem into a (Base+N)^{2} framework.",
             constraints_elite: "Advanced Refactoring handles multi-dimensional coefficients where C is a composite scaling factor.",
             constraints_voyager: "Identity symmetry requires strict sign adherence. The difference represents the net loss of area in 1D projection.",
             visual_reference_position: "Visual_Reference_Position [FIX_REF.01]",
@@ -1108,17 +1108,17 @@ export const enMath = {
         placeholders: {
             ax: "ax",
             b: "b",
-            a_squared: "a^2",
+            a_squared: "a^{2}",
             two_ab: "2ab",
-            b_squared: "b^2",
+            b_squared: "b^{2}",
             cxy: "Cxy",
             v: "V",
             two_cvxy: "2CVxy",
-            v_squared: "V^2",
+            v_squared: "V^{2}",
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "Decomposition Pattern: a^2 + 2ab + b^2"
+        decomposition_pattern: "Decomposition Pattern: a^{2} + 2ab + b^{2}"
     },
     sm2_02: {
         back: "Back to Nexus",
@@ -1162,7 +1162,7 @@ export const enMath = {
             elite_space: " CERN lab: Find the space diagonal",
             explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
             fluid_title: "Fluid Volume Conservation",
-            fluid_desc: "Tilt to see A^2 + B^2 flow into C^2. This visualizes area conservation: the geometry sum remains constant."
+            fluid_desc: "Tilt to see A^{2} + B^{2} flow into C^{2}. This visualizes area conservation: the geometry sum remains constant."
         },
         sqrt: {
             perfect: "Perfect squares",
@@ -1416,7 +1416,7 @@ export const enMath = {
             slope_prompt_latex: "\\text{Calculate the slope }m\\text{ of the line passing through A and B.}"
         },
         formulas: {
-            distance: "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}",
+            distance: "d = \\sqrt{(x_2-x_1)^{2} + (y_2-y_1)^2}",
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
         },
@@ -1624,8 +1624,8 @@ export const enMath = {
         },
         hints: {
             identities: {
-                trinomial_expand_latex: "(x+A)(x+B)=x^2+(A+B)x+AB",
-                diff_squares_latex: "u^2-v^2=(u-v)(u+v)"
+                trinomial_expand_latex: "(x+A)(x+B)=x^{2}+(A+B)x+AB",
+                diff_squares_latex: "u^{2}-v^{2}=(u-v)(u+v)"
             },
             rules: {
                 factor_common_latex: "\\text{Factor out the common factor.}",
@@ -1765,7 +1765,7 @@ export const enMath = {
             app_med: "💊 SCENARIO: Medicine Dosage Timing — Your doctor prescribes a painkiller. You take 400 mg at 8:00 AM. The drug has a half-life of 6 hours, meaning every 6 hours, half of it is eliminated from your body. At 2:00 PM (6 hours later), 200 mg remains. At 8:00 PM, 100 mg remains. The doctor says the drug stops working below 50 mg. Question: at what time can you safely take the next dose? Use the formula: N(t) = N₀ × (1/2)^(t/6).",
             app_bank: "🏦 SCENARIO: Comparing Savings Accounts — You have 5,000 CHF to save for university. Bank A offers 3% simple interest (you earn 150 CHF per year, always). Bank B offers 3% compound interest (each year, you earn interest on your interest too). After 10 years: Bank A gives you 5,000 + 10×150 = 6,500 CHF. Bank B gives you 5,000 × (1.03)^10 = 6,720 CHF. Question: after how many years does Bank B give you 1,000 CHF more than Bank A? Use exponential equations to solve!",
             app_pop: "🏙️ SCENARIO: Zurich Population Growth — In 2000, Zurich had 340,000 residents. The city grows at 1.2% per year (exponential growth). By 2020, the population reached 420,000. Urban planners need to predict: when will Zurich reach 500,000? This determines when to build new schools, trams, and housing. Use the formula: P(t) = P₀ × (1.012)^t. Solve for t when P(t) = 500,000.",
-            app_carbon: "🦴 SCENARIO: Archaeological Dating — Archaeologists find a wooden tool in a Swiss cave. All living things contain Carbon-14 (¹^4C), which decays with a half-life of 5,730 years. When the tree died, it stopped absorbing new ¹^4C. By measuring how much ¹^4C remains, scientists can calculate the age. If the tool has 25% of the original ¹^4C, how old is it? Use: 0.25 = (1/2)^(t/5730). Solve for t using logarithms. This is how we know the age of ancient artifacts!"
+            app_carbon: "🦴 SCENARIO: Archaeological Dating — Archaeologists find a wooden tool in a Swiss cave. All living things contain Carbon-14 (¹^{4}C), which decays with a half-life of 5,730 years. When the tree died, it stopped absorbing new ¹^{4}C. By measuring how much ¹^{4}C remains, scientists can calculate the age. If the tool has 25% of the original ¹^{4}C, how old is it? Use: 0.25 = (1/2)^(t/5730). Solve for t using logarithms. This is how we know the age of ancient artifacts!"
         }
     },
     sm3_04: {
@@ -1811,18 +1811,18 @@ export const enMath = {
             richter: "M = \\log_{10}(A)"
         },
         scenarios: {
-            ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H^+] = 0.001 mol/L (which is 10^-^3 in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log_1₀[H^+]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
+            ph_basic: "🧪 SCENARIO: School Chemistry Lab — Your chemistry teacher gives you a clear liquid to test. You use a pH meter and find the hydrogen ion concentration [H^+] = 0.001 mol/L (which is 10^-^{3} in scientific notation). To report the acidity properly, you need to calculate the pH value. Remember: pH = -log_1₀[H^+]. A pH below 7 is acidic, pH 7 is neutral (pure water), and above 7 is basic. This liquid turns out to be lemon juice!",
             ph_core: "🧪 SCENARIO: Swimming Pool Water Quality — You work part-time at the Basel public pool. The health inspector requires daily pH testing. Today's water sample shows [H^+] = 10^-^8 mol/L. You need to calculate the pH to verify it's in the safe range (7.2-7.8). If pH is too low (acidic), it irritates swimmers' eyes. If too high (basic), chlorine doesn't work properly. Your calculation determines whether the pool can open today!",
             ph_advanced: "🧪 SCENARIO: Pharmaceutical Quality Control — You're an intern at Roche in Basel. A new drug formulation must have precise pH control for stability. The lab measures [H^+] = 3.16 × 10^-^5 mol/L. Calculate the pH to 2 decimal places. If pH drifts outside the target range (4.3-4.7), the entire batch (worth millions) must be discarded. Logarithmic precision matters in pharma!",
-            ph_elite: "🧪 SCENARIO: Environmental Acid Rain Study — University of Basel researchers are studying acid rain effects on Swiss forests. Rainwater samples show [H^+] = 10^-^4·^5 mol/L (note the fractional exponent!). Calculate the pH. Normal rain is pH 5.6, but acid rain can be pH 4.0 or lower. Each pH unit represents a 10× change in acidity, so pH 4 rain is 100× more acidic than pH 6 rain. Your calculation helps assess environmental damage.",
-            decibel_basic: "🔊 SCENARIO: School Library Noise Check — The librarian asks you to measure if the study area is quiet enough. You use a sound meter: the intensity is I = 10^-¹⁰ W/m^2. The reference intensity (threshold of hearing) is I₀ = 10^-¹^2 W/m^2. Calculate the sound level in decibels using L = 10·log_1₀(I/I₀). For reference: whisper = 30 dB, normal conversation = 60 dB, library should be under 40 dB.",
-            decibel_core: "🔊 SCENARIO: Concert Sound Engineer — You're setting up for a school rock concert in the auditorium. The sound system produces intensity I = 10^-^4 W/m^2 at the front row. Calculate the decibel level. Safety regulations require ear protection above 85 dB, and prolonged exposure above 100 dB causes hearing damage. Your calculation determines whether you need to reduce the volume or provide earplugs to the audience.",
-            decibel_advanced: "🔊 SCENARIO: Airport Noise Pollution Study — Basel-Mulhouse Airport is expanding, and residents complain about noise. You measure a jet taking off: I = 1 W/m^2 at 100 meters distance. Calculate the decibel level. City regulations limit airport noise to 65 dB during daytime. At 120 dB (jet engine), sound is painful. The logarithmic scale means 120 dB is not 'twice as loud' as 60 dB — it's 1,000,000 times more intense!",
-            decibel_elite: "🔊 SCENARIO: Acoustic Engineering Challenge — A Basel concert hall is being designed. The architect needs to calculate sound absorption. If the original intensity is I_1 = 10^-^3 W/m^2 and after acoustic panels it drops to I_2 = 10^-^6 W/m^2, what's the decibel reduction? Calculate L_1 - L_2. This involves understanding that decibel differences represent intensity ratios: a 10 dB drop means 10× less intense, 20 dB drop means 100× less intense.",
+            ph_elite: "🧪 SCENARIO: Environmental Acid Rain Study — University of Basel researchers are studying acid rain effects on Swiss forests. Rainwater samples show [H^+] = 10^-^{4}·^5 mol/L (note the fractional exponent!). Calculate the pH. Normal rain is pH 5.6, but acid rain can be pH 4.0 or lower. Each pH unit represents a 10× change in acidity, so pH 4 rain is 100× more acidic than pH 6 rain. Your calculation helps assess environmental damage.",
+            decibel_basic: "🔊 SCENARIO: School Library Noise Check — The librarian asks you to measure if the study area is quiet enough. You use a sound meter: the intensity is I = 10^-¹⁰ W/m^{2}. The reference intensity (threshold of hearing) is I₀ = 10^-¹^{2} W/m^{2}. Calculate the sound level in decibels using L = 10·log_1₀(I/I₀). For reference: whisper = 30 dB, normal conversation = 60 dB, library should be under 40 dB.",
+            decibel_core: "🔊 SCENARIO: Concert Sound Engineer — You're setting up for a school rock concert in the auditorium. The sound system produces intensity I = 10^-^{4} W/m^{2} at the front row. Calculate the decibel level. Safety regulations require ear protection above 85 dB, and prolonged exposure above 100 dB causes hearing damage. Your calculation determines whether you need to reduce the volume or provide earplugs to the audience.",
+            decibel_advanced: "🔊 SCENARIO: Airport Noise Pollution Study — Basel-Mulhouse Airport is expanding, and residents complain about noise. You measure a jet taking off: I = 1 W/m^{2} at 100 meters distance. Calculate the decibel level. City regulations limit airport noise to 65 dB during daytime. At 120 dB (jet engine), sound is painful. The logarithmic scale means 120 dB is not 'twice as loud' as 60 dB — it's 1,000,000 times more intense!",
+            decibel_elite: "🔊 SCENARIO: Acoustic Engineering Challenge — A Basel concert hall is being designed. The architect needs to calculate sound absorption. If the original intensity is I_1 = 10^-^{3} W/m^{2} and after acoustic panels it drops to I_2 = 10^-^6 W/m^{2}, what's the decibel reduction? Calculate L_1 - L_2. This involves understanding that decibel differences represent intensity ratios: a 10 dB drop means 10× less intense, 20 dB drop means 100× less intense.",
             richter_basic: "🌍 SCENARIO: Earthquake Monitoring Station — You volunteer at University of Basel's seismology lab. A small earthquake hits near Basel. The seismograph records ground motion amplitude A = 100 micrometers. Calculate the Richter magnitude using M = log_1₀(A). For reference: M < 2 is not felt, M 3-4 is minor, M 5-6 is moderate, M 7+ is major. Your calculation helps classify the earthquake severity.",
             richter_core: "🌍 SCENARIO: Historical Earthquake Analysis — In 1356, Basel experienced Switzerland's strongest recorded earthquake. Modern analysis estimates the ground amplitude was A = 100,000 micrometers. Calculate the Richter magnitude. Compare this to the 2011 Japan earthquake (M 9.0) which had amplitude 1,000,000,000 micrometers. The logarithmic scale compresses this billion-fold range into manageable numbers (1 to 9).",
             richter_advanced: "🌍 SCENARIO: Earthquake Early Warning System — Switzerland is developing an earthquake alert app. Two earthquakes occur: Earthquake A has amplitude 31,600 μm, Earthquake B has amplitude 1,000 μm. Calculate both magnitudes to 2 decimal places. The app needs to distinguish between 'minor tremor' (M < 4.0) and 'significant quake' (M ≥ 4.0) to decide whether to send emergency alerts to millions of phones.",
-            richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10^2 = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
+            richter_elite: "🌍 SCENARIO: Seismic Energy Comparison — Advanced seismology: The energy released by an earthquake increases by 31.6× for each magnitude unit. If Earthquake A is M 5.0 and Earthquake B is M 7.0, how many times more energy does B release? First, understand that M 7.0 means amplitude is 100× larger than M 5.0 (because 10^{2} = 100). But energy scales as amplitude^1.5, so energy ratio is 100^1.5 = 1,000×. This is why M 7 quakes are catastrophic while M 5 are just 'moderate'."
         },
         canvas: {
             ph_title: "pH SCALE",
@@ -1880,7 +1880,7 @@ export const enMath = {
         scenarios: {
             basel_arch: "Basel Architecture - Geometric Icons: You are an apprentice architect in Basel, analyzing the city's modern skyline. The Roche Tower (Building 1 and 2) can be modeled as a series of stacked trapezoidal prisms and cylinders. The Messeturm Basel is another landmark with its distinct rectangular and cylindrical sections. Your task is to calculate the volumes and surface areas of these iconic structures by abstracting them into basic geometric solids. For example, Stage 1 focuses on calculating the total volume of the Roche Tower complex by breaking it down into its constituent prisms. Understanding these relationships is vital for material planning (concrete, glass) and structural integrity.",
             cross_sections: "Basel Medical Imaging - Diagnostic Geometry: At the Basel University Hospital (USB), radiologists use MRI and CT scans to generate 2D cross-sections of the human body. This mathematical abstraction allows doctors to see inside organs without surgery. In this stage, you'll analyze how different planes cutting through solids (like a cylinder representing a blood vessel or a sphere representing a cell) create specific 2D shapes. A diagonal cut through the Roche Tower's model might yield a complex polygon. Mastering cross-sections is essential for both medicine and architectural floor planning.",
-            curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr^3) and surface area (A = 4πr^2) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
+            curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr^{3}) and surface area (A = 4πr^{2}) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
         }
     },
     sm2_11: {
@@ -2085,8 +2085,8 @@ export const enMath = {
         scenarios: {
             limit_basics: "🚊 BASEL TRAM SPEED APPROACHING STATION — Basel's iconic green trams (BVB) operate throughout the city, connecting neighborhoods from Riehen to St. Johann. As a tram approaches Barfüsserplatz station, it must gradually reduce speed from 50 km/h to a complete stop. The tram's velocity function is v(t) = 50(1 - t/10) km/h, where t is time in seconds. At exactly t = 10 seconds, the tram reaches the platform. To ensure passenger safety and smooth braking, engineers need to calculate the limit of velocity as time approaches 10 seconds: lim(t→10) v(t). This limit represents the tram's final approach speed. Understanding limits helps Basel's transport authority (BVB) design optimal braking systems that provide comfortable stops while maintaining schedule efficiency. The concept of limits is fundamental to analyzing any continuous motion system, from trams to elevators in Basel's modern buildings.",
             limit_operations: "🏭 ROCHE PHARMACEUTICAL CONCENTRATION LIMITS — Roche, Basel's pharmaceutical giant headquartered near the Rhine, manufactures medications requiring precise chemical concentrations. Consider two chemical solutions being mixed: Solution A has concentration C_1(t) = 2t + 5 mg/L, and Solution B has concentration C_2(t) = 3t - 1 mg/L, where t represents mixing time in minutes. The combined concentration is C(t) = C_1(t) + C_2(t). To predict the final concentration as mixing time approaches 10 minutes, chemists calculate: lim(t→10) [C_1(t) + C_2(t)]. Using limit arithmetic rules, this equals lim(t→10) C_1(t) + lim(t→10) C_2(t) = 25 + 29 = 54 mg/L. These limit operations are essential for pharmaceutical manufacturing, ensuring that drug concentrations remain within therapeutic ranges. Roche's quality control systems rely on such mathematical precision to produce safe, effective medications that meet international standards.",
-            continuity: "🌊 RHINE RIVER WATER LEVEL CONTINUITY MONITORING — The Rhine River flows through Basel, dividing the city into Grossbasel and Kleinbasel. The Swiss Federal Office for the Environment monitors water levels continuously at the Rheinhalle station. During normal conditions, the water level function h(t) is continuous, meaning there are no sudden jumps or gaps in measurements. However, when the Birsfelden dam releases water, the level function may exhibit discontinuities. Consider a water level function h(t) = (t^2 - 4)/(t - 2) meters at time t = 2 hours. At this exact moment, the function is undefined (division by zero), creating a removable discontinuity. By factoring: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 for t ≠ 2, we find lim(t→2) h(t) = 4 meters. This means the water level approaches 4 meters smoothly, even though the measurement device briefly malfunctions at t = 2. Understanding continuity helps Basel's flood monitoring systems detect genuine water level changes versus measurement errors, protecting the city from Rhine flooding events.",
-            university_basel: "🎓 UNIVERSITY BASEL ENROLLMENT GROWTH RATE — The University of Basel, founded in 1460, is Switzerland's oldest university. Over the past decade, student enrollment has grown steadily, particularly in STEM fields like mathematics, physics, and chemistry. The enrollment function E(t) = 12000 + 500t + 20t^2 represents the number of students, where t is years since 2015. To predict future growth trends, university administrators analyze the rate of enrollment change using limits. The average rate of change between years t = 5 and t = 10 is [E(10) - E(5)] / (10 - 5). However, to find the instantaneous growth rate at exactly t = 8 (year 2023), we need the limit: lim(h→0) [E(8+h) - E(8)] / h. This limit represents the derivative E'(8), giving the precise enrollment growth rate in students per year. Understanding limits allows the university to plan infrastructure expansion, hire faculty, and allocate resources effectively to accommodate Basel's growing student population in mathematics and sciences."
+            continuity: "🌊 RHINE RIVER WATER LEVEL CONTINUITY MONITORING — The Rhine River flows through Basel, dividing the city into Grossbasel and Kleinbasel. The Swiss Federal Office for the Environment monitors water levels continuously at the Rheinhalle station. During normal conditions, the water level function h(t) is continuous, meaning there are no sudden jumps or gaps in measurements. However, when the Birsfelden dam releases water, the level function may exhibit discontinuities. Consider a water level function h(t) = (t^{2} - 4)/(t - 2) meters at time t = 2 hours. At this exact moment, the function is undefined (division by zero), creating a removable discontinuity. By factoring: h(t) = (t + 2)(t - 2)/(t - 2) = t + 2 for t ≠ 2, we find lim(t→2) h(t) = 4 meters. This means the water level approaches 4 meters smoothly, even though the measurement device briefly malfunctions at t = 2. Understanding continuity helps Basel's flood monitoring systems detect genuine water level changes versus measurement errors, protecting the city from Rhine flooding events.",
+            university_basel: "🎓 UNIVERSITY BASEL ENROLLMENT GROWTH RATE — The University of Basel, founded in 1460, is Switzerland's oldest university. Over the past decade, student enrollment has grown steadily, particularly in STEM fields like mathematics, physics, and chemistry. The enrollment function E(t) = 12000 + 500t + 20t^{2} represents the number of students, where t is years since 2015. To predict future growth trends, university administrators analyze the rate of enrollment change using limits. The average rate of change between years t = 5 and t = 10 is [E(10) - E(5)] / (10 - 5). However, to find the instantaneous growth rate at exactly t = 8 (year 2023), we need the limit: lim(h→0) [E(8+h) - E(8)] / h. This limit represents the derivative E'(8), giving the precise enrollment growth rate in students per year. Understanding limits allows the university to plan infrastructure expansion, hire faculty, and allocate resources effectively to accommodate Basel's growing student population in mathematics and sciences."
         },
         prompts: {
             find_limit: "\\text{Find } \\lim_{x \\to {limitPoint}} {expr}",

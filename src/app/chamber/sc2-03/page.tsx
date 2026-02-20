@@ -8,13 +8,15 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
 import { idealGasPressure } from "@/lib/physics";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-
-type Stage = "boyle" | "charles" | "combined" | "elite";
-
-interface SC203Quest extends Quest {
-  stage: Stage;
-}
+import { useQuestManager } from "@/hooks/useQuestManager";
+import {
+  Stage,
+  SC203Quest as SC203QuestType,
+  generateBoyleQuests,
+  generateCharlesQuests,
+  generateCombinedQuests,
+  generateEliteQuests,
+} from "@/lib/sc2-03/quests";
 
 export default function SC203Page() {
   const { t: getT } = useLanguage();
@@ -24,75 +26,6 @@ export default function SC203Page() {
   const [volume, setVolume] = useState(5); // L
   const [temperature, setTemperature] = useState(300); // K
   const [moles, setMoles] = useState(1); // mol
-
-  const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC203Quest[] => {
-    const quests: SC203Quest[] = [];
-
-    if (stage === "elite") {
-      quests.push(
-        {
-          id: "ELITE-1", difficulty, stage,
-          promptLatex: getT("sc2_03.prompts.bvb_brake", { V: 100, P: 1, V2: 20 }),
-          expressionLatex: "P_1 V_1 = P_2 V_2",
-          targetLatex: "P_2",
-          slots: [{ id: "p2", labelLatex: "P_2 \\\\text{ (bar)}", placeholder: "5", expected: 5 }],
-          correctLatex: "5 \\\\text{ bar}",
-          hintLatex: ["Boyle's Law"]
-        },
-        {
-          id: "ELITE-2", difficulty, stage,
-          promptLatex: getT("sc2_03.prompts.euroairport", { t1: 300, p1: 100, t2: 270, p2: 50 }),
-          expressionLatex: "\\\\frac{P_1 V_1}{T_1} = \\\\frac{P_2 V_2}{T_2}",
-          targetLatex: "\\\\frac{V_2}{V_1}",
-          slots: [{ id: "ratio", labelLatex: "Ratio", placeholder: "1.8", expected: 1.8 }],
-          correctLatex: "1.8",
-          hintLatex: ["V2/V1 = (P1/P2) * (T2/T1)"]
-        },
-        {
-          id: "ELITE-3", difficulty, stage,
-          promptLatex: getT("sc2_03.prompts.wickelfisch", { v1: 20, t1: 300, t2: 285 }),
-          expressionLatex: "\\\\frac{V_1}{T_1} = \\\\frac{V_2}{T_2}",
-          targetLatex: "V_2",
-          slots: [{ id: "v2", labelLatex: "V_2 \\\\text{ (L)}", placeholder: "19", expected: 19 }],
-          correctLatex: "19 \\\\text{ L}",
-          hintLatex: ["Charles Law"]
-        },
-        {
-          id: "ELITE-4", difficulty, stage,
-          promptLatex: getT("sc2_03.prompts.fire_dept", { V: 10, P: 200, r: 50 }),
-          expressionLatex: "\\\\text{Total Vol} = V \\times P", // approx
-          targetLatex: "t",
-          slots: [{ id: "t", labelLatex: "t \\\\text{ (min)}", placeholder: "40", expected: 40 }],
-          correctLatex: "40 \\\\text{ min}",
-          hintLatex: ["Total Liters = 200 * 10 = 2000L"]
-        },
-        {
-          id: "ELITE-5", difficulty, stage,
-          promptLatex: getT("sc2_03.prompts.geothermal", { p1: 500, t1: 400, t2: 300 }),
-          expressionLatex: "\\\\frac{P_1 V_1}{T_1} = \\\\frac{P_2 V_2}{T_2}",
-          targetLatex: "\\\\frac{V_2}{V_1}",
-          slots: [{ id: "f", labelLatex: "Factor", placeholder: "375", expected: 375 }],
-          correctLatex: "375",
-          hintLatex: ["(500/1) * (300/400)"]
-        }
-      );
-    } else {
-      // Basic placeholder for other stages to avoid empty state
-      quests.push({
-        id: `${stage}-1`, difficulty, stage,
-        promptLatex: `${stage.toUpperCase()} Law Exploration`,
-        expressionLatex: "PV=nRT",
-        targetLatex: "Check",
-        slots: [{ id: "check", labelLatex: "Type 1", placeholder: "1", expected: 1 }],
-        correctLatex: "1",
-        hintLatex: ["Just type 1"]
-      });
-    }
-
-    return quests;
-  }, [getT]);
-
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
   const {
     currentQuest,
@@ -106,12 +39,18 @@ export default function SC203Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<SC203Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback,
+  } = useQuestManager<SC203QuestType, Stage>({
     moduleCode: "sc2-03",
-    buildPool,
+    buildPool: (d, s) => {
+      if (s === "boyle") return generateBoyleQuests(t, d);
+      if (s === "charles") return generateCharlesQuests(t, d);
+      if (s === "combined") return generateCombinedQuests(t, d);
+      if (s === "elite") return generateEliteQuests(getT, d);
+      return [];
+    },
     initialStage: "boyle",
   });
 
@@ -122,7 +61,6 @@ export default function SC203Page() {
   }, [lastCheck, completeStage, stage]);
 
   useEffect(() => {
-    // Reset simulation on stage change
     if (stage === "boyle") {
       setVolume(5); setTemperature(300); setMoles(1);
     } else if (stage === "charles") {
@@ -221,7 +159,6 @@ export default function SC203Page() {
           </p>
         </div>
 
-        {/* Input Section */}
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-lg">
             <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -249,7 +186,6 @@ export default function SC203Page() {
           </div>
         </div>
 
-        {/* Simulation Controls - Still active for visualization */}
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="text-[10px] uppercase tracking-widest text-white/40 mb-2">Simulation Control</div>
           <div className="space-y-4">
@@ -309,7 +245,6 @@ export default function SC203Page() {
           </div>
         </div>
 
-        {/* Scenario Display */}
         <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
           <div className="flex items-start gap-4">
             <div className="space-y-2">

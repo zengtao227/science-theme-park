@@ -25,7 +25,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "R1-B", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `2^3 \\cdot 2^2`,
+                expressionLatex: `2^{3} \\cdot 2^{2}`,
                 targetLatex: `2^x`,
                 visual: { mode: 'MULTIPLY', base: 2, m: 3, n: 2 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5 }],
@@ -35,17 +35,17 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "R2-B", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `3^6 \\div 3^2`,
+                expressionLatex: `3^6 \\div 3^{2}`,
                 targetLatex: `3^x`,
                 visual: { mode: 'DIVIDE', base: 3, m: 6, n: 2 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4 }],
-                correctLatex: `3^4`,
-                hintLatex: [`a^m \\div a^n = a^{m-n}`, `3^{6-2}=3^4`],
+                correctLatex: `3^{4}`,
+                hintLatex: [`a^m \\div a^n = a^{m-n}`, `3^{6-2}=3^{4}`],
             });
             quests.push({
                 id: "R3-B", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `5^4 \\cdot 5^3`,
+                expressionLatex: `5^{4} \\cdot 5^{3}`,
                 targetLatex: `5^x`,
                 visual: { mode: 'MULTIPLY', base: 5, m: 4, n: 3 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7 }],
@@ -59,13 +59,13 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `7^x`,
                 visual: { mode: 'DIVIDE', base: 7, m: 8, n: 5 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3 }],
-                correctLatex: `7^3`,
-                hintLatex: [`a^m \\div a^n = a^{m-n}`, `7^{8-5}=7^3`],
+                correctLatex: `7^{3}`,
+                hintLatex: [`a^m \\div a^n = a^{m-n}`, `7^{8-5}=7^{3}`],
             });
             quests.push({
                 id: "R5-B", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(4^2)^3`,
+                expressionLatex: `(4^{2})^{3}`,
                 targetLatex: `4^x`,
                 visual: { mode: 'POWER', base: 4, m: 2, n: 3 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6 }],
@@ -77,103 +77,103 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "R1-C", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `x^5 \\cdot x^4`,
+                expressionLatex: `x^5 \\cdot x^{4}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'MULTIPLY', base: 'x', m: 5, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 9 }],
                 correctLatex: `x^9`,
-                hintLatex: [`x^5 \\cdot x^4 = x^{5+4}`],
+                hintLatex: [`x^5 \\cdot x^{4} = x^{5+4}`],
             });
             quests.push({
                 id: "R2-C", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(z^4)^2`,
+                expressionLatex: `(z^{4})^{2}`,
                 targetLatex: `z^n`,
                 visual: { mode: 'POWER', base: 'z', m: 4, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
                 correctLatex: `z^8`,
-                hintLatex: [`(z^4)^2 = z^{4 \\cdot 2}`],
+                hintLatex: [`(z^{4})^{2} = z^{4 \\cdot 2}`],
             });
             quests.push({
                 id: "R3-C", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `a^7 \\div a^3`,
+                expressionLatex: `a^7 \\div a^{3}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'DIVIDE', base: 'a', m: 7, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
-                correctLatex: `a^4`,
-                hintLatex: [`a^7 \\div a^3 = a^{7-3}`],
+                correctLatex: `a^{4}`,
+                hintLatex: [`a^7 \\div a^{3} = a^{7-3}`],
             });
             quests.push({
                 id: "R4-C", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(y^3)^4`,
+                expressionLatex: `(y^{3})^{4}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'POWER', base: 'y', m: 3, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 12 }],
                 correctLatex: `y^{12}`,
-                hintLatex: [`(y^3)^4 = y^{3 \\cdot 4}`],
+                hintLatex: [`(y^{3})^{4} = y^{3 \\cdot 4}`],
             });
             quests.push({
                 id: "R5-C", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `m^6 \\cdot m^2`,
+                expressionLatex: `m^6 \\cdot m^{2}`,
                 targetLatex: `m^n`,
                 visual: { mode: 'MULTIPLY', base: 'm', m: 6, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
                 correctLatex: `m^8`,
-                hintLatex: [`m^6 \\cdot m^2 = m^{6+2}`],
+                hintLatex: [`m^6 \\cdot m^{2} = m^{6+2}`],
             });
         } else if (difficulty === "ADVANCED") {
             // ADVANCED: Combined rules
             quests.push({
                 id: "R1-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `a^2 \\cdot (a^3)^2`,
+                expressionLatex: `a^{2} \\cdot (a^{3})^{2}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'POWER', base: 'a', m: 3, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
-                correctLatex: `a^2 \\cdot a^6 = a^8`,
+                correctLatex: `a^{2} \\cdot a^6 = a^8`,
                 hintLatex: [`Apply (a^m)^n first`, `Then a^m \\cdot a^n`],
             });
             quests.push({
                 id: "R2-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(b^4 \\cdot b^2)^3`,
+                expressionLatex: `(b^{4} \\cdot b^{2})^{3}`,
                 targetLatex: `b^n`,
                 visual: { mode: 'MULTIPLY', base: 'b', m: 4, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 18 }],
-                correctLatex: `(b^{4+2})^3 = (b^6)^3 = b^{18}`,
+                correctLatex: `(b^{4+2})^{3} = (b^6)^{3} = b^{18}`,
                 hintLatex: [`Apply a^m \\cdot a^n inside parentheses first`],
             });
             quests.push({
                 id: "R3-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(x^5)^2 \\div x^3`,
+                expressionLatex: `(x^5)^{2} \\div x^{3}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: 'x', m: 5, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
-                correctLatex: `x^{10} \\div x^3 = x^7`,
+                correctLatex: `x^{10} \\div x^{3} = x^7`,
                 hintLatex: [`Apply (x^m)^n first`, `Then x^m \\div x^n`],
             });
             quests.push({
                 id: "R4-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `c^3 \\cdot (c^2)^3 \\div c^4`,
+                expressionLatex: `c^{3} \\cdot (c^{2})^{3} \\div c^{4}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'POWER', base: 'c', m: 2, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
-                correctLatex: `c^3 \\cdot c^6 \\div c^4 = c^5`,
+                correctLatex: `c^{3} \\cdot c^6 \\div c^{4} = c^5`,
                 hintLatex: [`Apply power rule first`, `Then multiply and divide`],
             });
             quests.push({
                 id: "R5-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(d^2)^4 \\cdot d^3`,
+                expressionLatex: `(d^{2})^{4} \\cdot d^{3}`,
                 targetLatex: `d^n`,
                 visual: { mode: 'POWER', base: 'd', m: 2, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 11 }],
-                correctLatex: `d^8 \\cdot d^3 = d^{11}`,
+                correctLatex: `d^8 \\cdot d^{3} = d^{11}`,
                 hintLatex: [`Apply (d^m)^n first`, `Then d^m \\cdot d^n`],
             });
         } else if (difficulty === "ELITE") {
@@ -181,52 +181,52 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "R1-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(2x^3)^2 \\div 4x^2`,
+                expressionLatex: `(2x^{3})^{2} \\div 4x^{2}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: '2x', m: 3, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
-                correctLatex: `4x^6 \\div 4x^2 = x^4`,
+                correctLatex: `4x^6 \\div 4x^{2} = x^{4}`,
                 hintLatex: [`(cx^m)^n = c^n \\cdot x^{mn}`, `Then divide`],
             });
             quests.push({
                 id: "R2-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(3a^2)^3 \\cdot 2a^4`,
+                expressionLatex: `(3a^{2})^{3} \\cdot 2a^{4}`,
                 targetLatex: `54a^n`,
                 visual: { mode: 'POWER', base: '3a', m: 2, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 10 }],
-                correctLatex: `27a^6 \\cdot 2a^4 = 54a^{10}`,
-                hintLatex: [`(3a^2)^3 = 27a^6`, `Then multiply`],
+                correctLatex: `27a^6 \\cdot 2a^{4} = 54a^{10}`,
+                hintLatex: [`(3a^{2})^{3} = 27a^6`, `Then multiply`],
             });
             quests.push({
                 id: "R3-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(5y^4)^2 \\div (5y^2)`,
+                expressionLatex: `(5y^{4})^{2} \\div (5y^{2})`,
                 targetLatex: `5y^n`,
                 visual: { mode: 'POWER', base: '5y', m: 4, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
-                correctLatex: `25y^8 \\div 5y^2 = 5y^6`,
-                hintLatex: [`Expand (5y^4)^2 first`, `Then divide`],
+                correctLatex: `25y^8 \\div 5y^{2} = 5y^6`,
+                hintLatex: [`Expand (5y^{4})^{2} first`, `Then divide`],
             });
             quests.push({
                 id: "R4-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(2m^3)^2 \\cdot (3m^2)^2`,
+                expressionLatex: `(2m^{3})^{2} \\cdot (3m^{2})^{2}`,
                 targetLatex: `36m^n`,
                 visual: { mode: 'POWER', base: '2m', m: 3, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 10 }],
-                correctLatex: `4m^6 \\cdot 9m^4 = 36m^{10}`,
+                correctLatex: `4m^6 \\cdot 9m^{4} = 36m^{10}`,
                 hintLatex: [`Expand both powers`, `Then multiply`],
             });
             quests.push({
                 id: "R5-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `(4n^2)^3 \\div 8n^3`,
+                expressionLatex: `(4n^{2})^{3} \\div 8n^{3}`,
                 targetLatex: `8n^n`,
                 visual: { mode: 'POWER', base: '4n', m: 2, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `64n^6 \\div 8n^3 = 8n^3`,
-                hintLatex: [`(4n^2)^3 = 64n^6`, `Then divide`],
+                correctLatex: `64n^6 \\div 8n^{3} = 8n^{3}`,
+                hintLatex: [`(4n^{2})^{3} = 64n^6`, `Then divide`],
             });
         }
         return quests;
@@ -343,7 +343,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `a^n`,
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `a^3`,
+                correctLatex: `a^{3}`,
                 hintLatex: [`\\\\frac{1}{a^{-n}} = a^n`],
             });
             quests.push({
@@ -363,13 +363,13 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `x^n`,
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `x^{-2+5} = x^3`,
+                correctLatex: `x^{-2+5} = x^{3}`,
                 hintLatex: [`a^m \\cdot a^n = a^{m+n}`],
             });
             quests.push({
                 id: "N4-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.negative_prompt_latex"),
-                expressionLatex: `y^3 \\div y^{-2}`,
+                expressionLatex: `y^{3} \\div y^{-2}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
@@ -379,7 +379,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "N5-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.negative_prompt_latex"),
-                expressionLatex: `(c^{-2})^3`,
+                expressionLatex: `(c^{-2})^{3}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'NEGATIVE', base: 'c', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -6 }],
@@ -394,7 +394,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `\\\\frac{8}{x^n}`,
                 visual: { mode: 'NEGATIVE', base: 'x/2', m: 1, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `(\\\\frac{2}{x})^3 = \\\\frac{8}{x^3}`,
+                correctLatex: `(\\\\frac{2}{x})^{3} = \\\\frac{8}{x^3}`,
                 hintLatex: [`(\\\\frac{a}{b})^{-n} = (\\\\frac{b}{a})^n`],
             });
             quests.push({
@@ -404,7 +404,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `\\\\frac{y^n}{9}`,
                 visual: { mode: 'NEGATIVE', base: '3/y', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
-                correctLatex: `(\\\\frac{y}{3})^2 = \\\\frac{y^2}{9}`,
+                correctLatex: `(\\\\frac{y}{3})^{2} = \\\\frac{y^2}{9}`,
                 hintLatex: [`(\\\\frac{a}{b})^{-n} = (\\\\frac{b}{a})^n`],
             });
             quests.push({
@@ -420,12 +420,12 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "N4-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.negative_prompt_latex"),
-                expressionLatex: `(3m^2)^{-2} \\cdot 9m^5`,
+                expressionLatex: `(3m^{2})^{-2} \\cdot 9m^5`,
                 targetLatex: `m^n`,
                 visual: { mode: 'NEGATIVE', base: '3m', m: 2, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 1 }],
                 correctLatex: `\\\\frac{1}{9m^4} \\cdot 9m^5 = m`,
-                hintLatex: [`Expand (3m^2)^{-2}`, `Then multiply`],
+                hintLatex: [`Expand (3m^{2})^{-2}`, `Then multiply`],
             });
             quests.push({
                 id: "N5-E", difficulty, stage,
@@ -450,7 +450,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `7.2 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 7.2, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
-                correctLatex: `7.2 \\cdot 10^4`,
+                correctLatex: `7.2 \\cdot 10^{4}`,
                 hintLatex: [`Move decimal 4 places left`],
             });
             quests.push({
@@ -460,7 +460,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `5.6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 5.6, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `5.6 \\cdot 10^3`,
+                correctLatex: `5.6 \\cdot 10^{3}`,
                 hintLatex: [`Move decimal 3 places left`],
             });
             quests.push({
@@ -480,7 +480,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `3.4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.4, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
-                correctLatex: `3.4 \\cdot 10^2`,
+                correctLatex: `3.4 \\cdot 10^{2}`,
                 hintLatex: [`Move decimal 2 places left`],
             });
             quests.push({
@@ -568,7 +568,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "S3-A", difficulty, stage,
                 promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
-                expressionLatex: `8.9 \\cdot 10^3`,
+                expressionLatex: `8.9 \\cdot 10^{3}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.9, n: 3 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 8900 }],
@@ -599,7 +599,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "S1-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
-                expressionLatex: `(3 \\cdot 10^4) \\cdot (2 \\cdot 10^3)`,
+                expressionLatex: `(3 \\cdot 10^{4}) \\cdot (2 \\cdot 10^{3})`,
                 targetLatex: `6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6, n: 7 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
@@ -609,21 +609,21 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             quests.push({
                 id: "S2-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
-                expressionLatex: `(8 \\cdot 10^6) \\div (2 \\cdot 10^2)`,
+                expressionLatex: `(8 \\cdot 10^6) \\div (2 \\cdot 10^{2})`,
                 targetLatex: `4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 4, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
-                correctLatex: `(8\\div 2) \\cdot 10^{6-2} = 4 \\cdot 10^4`,
+                correctLatex: `(8\\div 2) \\cdot 10^{6-2} = 4 \\cdot 10^{4}`,
                 hintLatex: [`Divide coefficients, subtract exponents`],
             });
             quests.push({
                 id: "S3-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
-                expressionLatex: `(5 \\cdot 10^3)^2`,
+                expressionLatex: `(5 \\cdot 10^{3})^{2}`,
                 targetLatex: `25 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 25, n: 6 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
-                correctLatex: `5^2 \\cdot (10^3)^2 = 25 \\cdot 10^6`,
+                correctLatex: `5^{2} \\cdot (10^{3})^{2} = 25 \\cdot 10^6`,
                 hintLatex: [`Square coefficient and multiply exponent by 2`],
             });
             quests.push({
@@ -633,13 +633,13 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 targetLatex: `36 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 36, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
-                correctLatex: `(9\\cdot 4) \\cdot 10^{5+(-2)} = 36 \\cdot 10^3`,
+                correctLatex: `(9\\cdot 4) \\cdot 10^{5+(-2)} = 36 \\cdot 10^{3}`,
                 hintLatex: [`Multiply coefficients, add exponents (including negative)`],
             });
             quests.push({
                 id: "S5-E", difficulty, stage,
                 promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
-                expressionLatex: `(1.5 \\cdot 10^4) \\div (3 \\cdot 10^{-3})`,
+                expressionLatex: `(1.5 \\cdot 10^{4}) \\div (3 \\cdot 10^{-3})`,
                 targetLatex: `0.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 0.5, n: 7 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],

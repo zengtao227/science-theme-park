@@ -85,10 +85,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         const vb = randInt(2, 12);
         return {
           id: `ARCH_B_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb,
-          formula: `(x + ${vb})^2`, promptLatex: t.scenarios.architect_mission,
+          formula: `(x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
           expressionLatex: `(x + ${vb})^2`, targetLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
           slots: [
-            { id: "a2", labelLatex: "x^2", placeholder: "1", expected: 1 },
+            { id: "a2", labelLatex: "x^{2}", placeholder: "1", expected: 1 },
             { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * vb },
             { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
           ],
@@ -98,7 +98,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         const ca = randInt(2, 6); const vb = randInt(3, 9);
         return {
           id: `ARCH_C_${i}`, difficulty, stage, type: "EXPAND", ca, vb,
-          formula: `(${ca}x + ${vb})^2`, promptLatex: t.scenarios.architect_mission,
+          formula: `(${ca}x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
           expressionLatex: `(${ca}x + ${vb})^2`, targetLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
           slots: [
             { id: "a2", labelLatex: "x^2", placeholder: "coeff", expected: ca ** 2 },
@@ -113,7 +113,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           id: `ARCH_A_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb, isFactor: true,
           formula: `x^2 + ${2 * vb}x + ${vb ** 2}`, promptLatex: t.scenarios.architect_advanced_prompt,
           expressionLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
-          targetLatex: `(x)^2 + 2(x)(${vb}) + (${vb})^2`,
+          targetLatex: `(x)^{2} + 2(x)(${vb}) + (${vb})^{2}`,
           slots: [
             { id: "a_root", labelLatex: "a", placeholder: "x", expected: "x" },
             { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb.toString() },
@@ -128,7 +128,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           id: `ARCH_E_${i}`, difficulty, stage, type: "EXPAND", ca, vb, isFactor: true,
           formula: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`, promptLatex: t.scenarios.architect_elite_prompt,
           expressionLatex: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`,
-          targetLatex: `(${aTerm})^2 + 2(${aTerm})(${bTerm}) + (${bTerm})^2`,
+          targetLatex: `(${aTerm})^{2} + 2(${aTerm})(${bTerm}) + (${bTerm})^{2}`,
           slots: [
             { id: "a_root", labelLatex: "a", placeholder: "ax", expected: aTerm },
             { id: "b_root", labelLatex: "b", placeholder: "by", expected: bTerm },
@@ -157,12 +157,12 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
       return {
         id: `SCRAP_${difficulty}_${i}`, difficulty, stage, type: "SCRAPPER", ca, vb, variant, isFactor: true,
         promptLatex: t.scenarios.scrapper_mission, expressionLatex: expr,
-        targetLatex: `(${aTerm} + ${bTerm})^2`,
+        targetLatex: `(${aTerm} + ${bTerm})^{2}`,
         slots: [
-          { id: "a", labelLatex: "root a", placeholder: vA === "x^2" ? "ax^2" : "ax", expected: aTerm },
-          { id: "b", labelLatex: "root b", placeholder: vB ? (vB === "y^2" ? "by^2" : "by") : "b", expected: bTerm },
+          { id: "a", labelLatex: "root a", placeholder: vA === "x^{2}" ? "ax^{2}" : "ax", expected: aTerm },
+          { id: "b", labelLatex: "root b", placeholder: vB ? (vB === "y^{2}" ? "by^{2}" : "by") : "b", expected: bTerm },
         ],
-        correctLatex: `(${aTerm} + ${bTerm})^2`,
+        correctLatex: `(${aTerm} + ${bTerm})^{2}`,
       };
     });
   }
@@ -202,8 +202,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         id: `SPEED_${difficulty}_${i}`, difficulty, stage, type: "SPEEDSTER",
         base: val, roundBase: rb, offset: off, sign: sn,
         a2: parseFloat((rb ** 2).toFixed(2)), middle: parseFloat(mid.toFixed(2)), b2: parseFloat((off ** 2).toFixed(2)), target: parseFloat((val ** 2).toFixed(2)),
-        promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}^2`,
-        targetLatex: `${rb}^2 ${sn} 2(${rb})(${off}) + ${off}^2`,
+        promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}^{2}`,
+        targetLatex: `${rb}^{2} ${sn} 2(${rb})(${off}) + ${off}^{2}`,
         slots: [
           { id: "part1", labelLatex: "a^2", placeholder: "a^2", expected: rb ** 2 },
           { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: mid },
@@ -485,7 +485,7 @@ export default function S201Page() {
         ab: `${voyagerQuest.ca * voyagerQuest.vb}x`,
       };
     }
-    return { a2: sm2_01_t.terms?.a2 ?? "a^2", b2: sm2_01_t.terms?.b2 ?? "b^2", ab: sm2_01_t.terms?.ab ?? "ab" };
+    return { a2: sm2_01_t.terms?.a2 ?? "a^{2}", b2: sm2_01_t.terms?.b2 ?? "b^{2}", ab: sm2_01_t.terms?.ab ?? "ab" };
   };
 
   const getCanvasTitleText = () => {
@@ -497,7 +497,7 @@ export default function S201Page() {
     }
     if (questMode === "ELITE" && eliteQuest) return `${eliteQuest.C ** 2}x^2y^2 - ${eliteQuest.V ** 2}`;
     if (questMode === "VOYAGER" && voyagerQuest) return voyagerQuest.expr;
-    return sm2_01_t.terms?.target_plus ?? "(a + b)^2";
+    return sm2_01_t.terms?.target_plus ?? "(a + b)^{2}";
   };
 
   const handleSidebarKeyDown = (e: React.KeyboardEvent) => {
@@ -712,7 +712,7 @@ export default function S201Page() {
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                         />
-                        <span className="text-white/80">)^2</span>
+                        <span className="text-white/80">)^{2}</span>
 
                         <span className="text-neon-cyan mx-2">+</span>
 
@@ -742,11 +742,11 @@ export default function S201Page() {
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.b ?? "b"}
                         />
-                        <span className="text-white/80">)^2</span>
+                        <span className="text-white/80">)^{2}</span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a^2 + 2ab + b^2"}
+                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a^{2} + 2ab + b^{2}"}
                       </div>
                     </div>
                   ) : (
@@ -760,7 +760,7 @@ export default function S201Page() {
                         />
                         <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
-                      <span className="text-4xl font-black text-white/80">x^2</span>
+                      <InlineMath math="x^{2}" />
                       <span className="text-4xl font-black text-neon-cyan">+</span>
                       <div className="flex flex-col gap-3">
                         <input
@@ -797,8 +797,8 @@ export default function S201Page() {
                         <InlineMath
                           math={
                             scrapperQuest?.variant === "XY"
-                              ? `\\\\sqrt{${scrapperQuest.ca ** 2}x^2} = ${scrapperQuest.ca}x`
-                              : `\\\\sqrt{${scrapperQuest?.ca ? scrapperQuest.ca ** 2 : ""}x^2} = ${scrapperQuest?.ca ?? ""}x`
+                              ? `\\\\sqrt{${scrapperQuest.ca ** 2}x^{2}} = ${scrapperQuest.ca}x`
+                              : `\\\\sqrt{${scrapperQuest?.ca ? scrapperQuest.ca ** 2 : ""}x^{2}} = ${scrapperQuest?.ca ?? ""}x`
                           }
                         />
                       </div>
@@ -837,7 +837,7 @@ export default function S201Page() {
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={sm2_01_t.placeholders?.a_squared ?? "a^2"}
+                      placeholder="a^{2}"
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
@@ -851,7 +851,7 @@ export default function S201Page() {
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b^2"}
+                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b^{2}"}
                     />
                   </div>
                 </div>
@@ -881,7 +881,7 @@ export default function S201Page() {
                             <span className="text-white/60">•</span>
                             <span>
                               {sm2_01_t.elite_tips_target}{" "}
-                              <InlineMath math={`(${eliteQuest?.C ?? ""}xy - ${eliteQuest?.V ?? ""})^2`} />
+                              <InlineMath math={`(${eliteQuest?.C ?? ""}xy - ${eliteQuest?.V ?? ""})^{2}`} />
                             </span>
                           </div>
                         </div>
@@ -907,7 +907,7 @@ export default function S201Page() {
                         className="w-24 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
                         placeholder={sm2_01_t.placeholders?.v ?? "V"}
                       />
-                      <span className="text-3xl text-white font-black">)^2</span>
+                      <span className="text-3xl text-white font-black"><InlineMath math=")^{2}" /></span>
                     </div>
 
                     <div className="text-white/60 text-xs font-mono uppercase tracking-widest mt-4 mb-2">
@@ -926,7 +926,7 @@ export default function S201Page() {
                         value={inputs.const_term || ""}
                         onChange={(e) => setInputs({ ...inputs, const_term: e.target.value })}
                         className="w-32 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder={sm2_01_t.placeholders?.v_squared ?? "V^2"}
+                        placeholder="V^{2}"
                       />
                     </div>
                   </div>
@@ -965,7 +965,7 @@ export default function S201Page() {
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
                           placeholder={sm2_01_t.placeholders?.question ?? "?"}
                         />
-                        <span className="text-white ml-2">x^2</span>
+                        <span className="text-white ml-2"><InlineMath math="x^{2}" /></span>
                       </div>
                       <span className="text-white">-</span>
                       <div className="flex items-center">
@@ -1008,7 +1008,7 @@ export default function S201Page() {
                   </div>
                   <div className="text-white font-black">
                     {architectQuest
-                      ? `(${architectQuest.ca * architectQuest.ca}x^2) + (${architectQuest.ca * architectQuest.vb}x) + (${architectQuest.vb * architectQuest.ca
+                      ? `(${architectQuest.ca * architectQuest.ca}x^{2}) + (${architectQuest.ca * architectQuest.vb}x) + (${architectQuest.vb * architectQuest.ca
                       }x) + (${architectQuest.vb * architectQuest.vb})`
                       : ""}
                   </div>
@@ -1020,7 +1020,7 @@ export default function S201Page() {
                     {sm2_01_t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
-                    {scrapperQuest ? `\\\\sqrt{${scrapperQuest.ca * scrapperQuest.ca}x^2} = ${scrapperQuest.ca}x` : ""}
+                    <InlineMath math={scrapperQuest ? `\\\\sqrt{${scrapperQuest.ca * scrapperQuest.ca}x^{2}} = ${scrapperQuest.ca}x` : ""} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {sm2_01_t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
@@ -1036,13 +1036,13 @@ export default function S201Page() {
                     {sm2_01_t.ui?.logic_voyager_axiom_title ?? "AXIOM"}
                   </div>
                   <div className="text-white font-black flex items-center h-6">
-                    <InlineMath math={sm2_01_t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A^2 - B^2"} />
+                    <InlineMath math={sm2_01_t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A^{2} - B^{2}"} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {sm2_01_t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
                   </div>
                   <div className="text-white font-black flex items-center h-6">
-                    <InlineMath math={`A^2 + AB - AB - B^2 \\\\equiv A^2 - B^2`} />
+                    <InlineMath math={`A^{2} + AB - AB - B^{2} \\\\equiv A^{2} - B^{2}`} />
                   </div>
                 </>
               )}

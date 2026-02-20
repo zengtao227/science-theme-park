@@ -29,10 +29,10 @@ const palette = {
 // Parse simple function expressions for visualization
 function parseFunction(latex: string): (x: number) => number {
   // Handle common patterns
-  if (latex.includes("(2x^2 + 3x)") && latex.includes("sin(x)")) {
+  if (latex.includes("(2x^{2} + 3x)") && latex.includes("sin(x)")) {
     return (x: number) => (2 * x * x + 3 * x) * Math.sin(x);
   }
-  if (latex.includes("x^2 + 1") && latex.includes("sin(x)")) {
+  if (latex.includes("x^{2} + 1") && latex.includes("sin(x)")) {
     return (x: number) => (x * x + 1) / Math.sin(x);
   }
   // Default: simple parabola

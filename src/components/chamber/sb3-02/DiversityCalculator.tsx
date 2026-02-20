@@ -182,7 +182,7 @@ export function DiversityCalculator({ language }: DiversityCalculatorProps) {
           </div>
           <div>
             <p className="text-sm text-gray-700 mb-1">Simpson Index:</p>
-            <LaTeXRenderer formula="D = 1 - \\sum_{i=1}^{S} p_i^2" display={true} />
+            <LaTeXRenderer formula="D = 1 - \\sum_{i=1}^{S} p_i^{2}" display={true} />
           </div>
           <div>
             <p className="text-sm text-gray-700 mb-1">Evenness:</p>

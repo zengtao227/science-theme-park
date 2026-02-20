@@ -102,10 +102,10 @@ export const buildOlympiadPool = (difficulty: Difficulty, stage: string): Olympi
             difficulty: "ADVANCED",
             stage: "logic",
             promptLatex: "The number $2^{2024}$ is divided by 7. What is the remainder?",
-            expressionLatex: "2^3 \\equiv 1 \\pmod 7",
+            expressionLatex: "2^{3} \\equiv 1 \\pmod 7",
             targetLatex: "r",
             slots: [{ id: "ans", labelLatex: "Remainder:", placeholder: "r", expected: 4 }],
-            correctLatex: "4 \\text{ (because } 2024 = 3 \\times 674 + 2, \\text{ so } 2^{2024} = (2^3)^{674} \\times 2^2 \\equiv 1 \\times 4 = 4)",
+            correctLatex: "4 \\text{ (because } 2024 = 3 \\times 674 + 2, \\text{ so } 2^{2024} = (2^{3})^{674} \\times 2^{2} \\equiv 1 \\times 4 = 4)",
             category: "Arithmetic"
         });
     }

@@ -637,9 +637,9 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
           />
           {(() => {
             const offset = getLabelOffset(result.re, result.im);
-            const powerText = quest.power === 2 ? "z^2" : 
-                             quest.power === 3 ? "z^3" : 
-                             quest.power === 4 ? "z^4" : 
+            const powerText = quest.power === 2 ? "z^{2}" : 
+                             quest.power === 3 ? "z^{3}" : 
+                             quest.power === 4 ? "z^{4}" : 
                              quest.power === 5 ? "z^5" : 
                              `z^${quest.power}`;
             return (
@@ -739,7 +739,7 @@ export default function ComplexVisualization({ quest, checkStatus, language = "E
             {t.pythagorean}
           </div>
           <div className="text-white font-mono text-sm">
-            <BlockMath math={`|z|^2 = a^2 + b^2 = ${quest.z1.re}^2 + ${quest.z1.im}^2 = ${(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im).toFixed(2)}`} />
+            <BlockMath math={`|z|^{2} = a^{2} + b^{2} = ${quest.z1.re}^{2} + ${quest.z1.im}^{2} = ${(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im).toFixed(2)}`} />
             <BlockMath math={`|z| = \\sqrt{${(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im).toFixed(2)}} = ${r.toFixed(3)}`} />
           </div>
         </div>

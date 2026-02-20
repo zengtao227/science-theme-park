@@ -260,7 +260,7 @@ function PolarizationPattern({ angle }: { angle: number }) {
       
       {/* Intensity indicator */}
       <Text position={[8, 0, 0]} fontSize={0.5} color={palette.white}>
-        I = I₀ cos^2θ
+        I = I₀ cos^{2}θ
       </Text>
       <Text position={[8, -1, 0]} fontSize={0.4} color={palette.green}>
         {(intensity * 100).toFixed(0)}%

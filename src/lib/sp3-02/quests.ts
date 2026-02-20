@@ -131,7 +131,7 @@ export function generateNewton2Quests(t: any, difficulty: Difficulty): SP302Ques
             expressionLatex: "F = ma",
             targetLatex: "a",
             slots: [{ id: "ans", labelLatex: "a", placeholder: "m/s²", expected: a.toString() }],
-            correctLatex: `a = ${a} \\text{ m/s}^2`,
+            correctLatex: `a = ${a} \\text{ m/s}^{2}`,
         });
     }
     return quests;

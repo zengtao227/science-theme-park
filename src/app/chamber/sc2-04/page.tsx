@@ -7,13 +7,13 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BeakerCanvas from "@/components/chamber/sc2-04/BeakerCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-
-type Stage = "dissolve" | "saturate" | "crystallize" | "elite";
-
-interface SC204Quest extends Quest {
-  stage: Stage;
-}
+import { useQuestManager } from "@/hooks/useQuestManager";
+import {
+  Stage,
+  SC204Quest as SC204QuestType,
+  generateSolubilityQuests,
+  generateEliteQuests,
+} from "@/lib/sc2-04/quests";
 
 // Solubility curve data (g/100mL water)
 function getSolubility(temperature: number): number {
@@ -31,73 +31,6 @@ export default function SC204Page() {
   const [temperature, setTemperature] = useState(25); // °C
   const [soluteAmount, setSoluteAmount] = useState(20); // g
 
-  const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC204Quest[] => {
-    const quests: SC204Quest[] = [];
-
-    if (stage === "elite") {
-      quests.push(
-        {
-          id: "ELITE-1", difficulty, stage,
-          promptLatex: "Rhine Water Sample A: Mass before evaporation = 100g, after = 99.8g. Find dissolved solids in g/100g water.",
-          expressionLatex: "S = \\frac{m_{solute}}{m_{water}} \\times 100",
-          targetLatex: "S",
-          slots: [{ id: "s", labelLatex: "S \\text{ (g)}", placeholder: "0.20", expected: 0.20 }],
-          correctLatex: "0.20 \\text{ g/100g}",
-          hintLatex: ["0.2g solute in 99.8g water"]
-        },
-        {
-          id: "ELITE-2", difficulty, stage,
-          promptLatex: "Solubility of O2 in Rhine at 15°C is 10mg/L. If water warms to 25°C, solubility drops by 1.7mg/L. New solubility?",
-          expressionLatex: "S_{new} = S_{old} - \\Delta S",
-          targetLatex: "S_{new}",
-          slots: [{ id: "o2", labelLatex: "S_{new} \\text{ (mg/L)}", placeholder: "8.3", expected: 8.3 }],
-          correctLatex: "8.3 \\text{ mg/L}",
-          hintLatex: ["Subtract the drop"]
-        },
-        {
-          id: "ELITE-3", difficulty, stage,
-          promptLatex: "Basel waste water plant discharges 5kg of salt into 1000L of Rhine water. Concentration in g/L?",
-          expressionLatex: "C = \\frac{m}{V}",
-          targetLatex: "C",
-          slots: [{ id: "c", labelLatex: "C \\text{ (g/L)}", placeholder: "5", expected: 5 }],
-          correctLatex: "5 \\text{ g/L}",
-          hintLatex: ["5000g / 1000L"]
-        },
-        {
-          id: "ELITE-4", difficulty, stage,
-          promptLatex: "Heavy metal precipitate PbCl2 (Ksp=1.6e-5) in Rhine. If [Cl-]=0.01M, find max [Pb2+] in M.",
-          expressionLatex: "K_{sp} = [Pb^{2+}][Cl^-]^2",
-          targetLatex: "[Pb^{2+}]",
-          slots: [{ id: "pb", labelLatex: "[Pb^{2+}]", placeholder: "0.16", expected: 0.16 }],
-          correctLatex: "0.16 \\text{ M}",
-          hintLatex: ["1.6e-5 / (0.01)^2"]
-        },
-        {
-          id: "ELITE-5", difficulty, stage,
-          promptLatex: "A 500mL Rhine water sample contains 2.48g of nitrates (NO3-, 62 g/mol). Calculate Molarity.",
-          expressionLatex: "M = \\frac{n}{V} = \\frac{m/MW}{V}",
-          targetLatex: "M",
-          slots: [{ id: "m", labelLatex: "M \\text{ (mol/L)}", placeholder: "0.08", expected: 0.08 }],
-          correctLatex: "0.08 \\text{ M}",
-          hintLatex: ["2.48/62 = 0.04 mol. V=0.5L"]
-        }
-      );
-    } else {
-      quests.push({
-        id: `${stage}-1`, difficulty, stage,
-        promptLatex: `Explore ${stage.toUpperCase()} characteristics in the simulation.`,
-        expressionLatex: "Q_c \\text{ vs } K_{sp}",
-        targetLatex: "Confirm",
-        slots: [{ id: "chk", labelLatex: "Confirm (Type 1)", placeholder: "1", expected: 1 }],
-        correctLatex: "1",
-        hintLatex: ["Type 1"]
-      });
-    }
-    return quests;
-  }, []);
-
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
-
   const {
     currentQuest,
     difficulty,
@@ -110,12 +43,15 @@ export default function SC204Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<SC204Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback,
+  } = useQuestManager<SC204QuestType, Stage>({
     moduleCode: "sc2-04",
-    buildPool,
+    buildPool: (d, s) => {
+      if (s === "elite") return generateEliteQuests(t, d);
+      return generateSolubilityQuests(t, d, s);
+    },
     initialStage: "dissolve",
   });
 
@@ -238,7 +174,6 @@ export default function SC204Page() {
           </p>
         </div>
 
-        {/* Input Section */}
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-lg">
             <InlineMath math={currentQuest?.promptLatex || ""} />
@@ -266,7 +201,6 @@ export default function SC204Page() {
           </div>
         </div>
 
-        {/* Simulation Section */}
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
@@ -314,7 +248,6 @@ export default function SC204Page() {
           </div>
         </div>
 
-        {/* Scenario Display */}
         <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
           <div className="flex items-start gap-4">
             <div className="space-y-2">

@@ -101,7 +101,7 @@ export default function PVDiagram({
 
         {/* Axis labels */}
         <text x={width / 2} y={height - 10} textAnchor="middle" fill="white" fontSize="14">
-          Volume (m^3)
+          Volume (m^{3})
         </text>
         <text x={20} y={height / 2} textAnchor="middle" fill="white" fontSize="14" transform={`rotate(-90, 20, ${height / 2})`}>
           Pressure (Pa)

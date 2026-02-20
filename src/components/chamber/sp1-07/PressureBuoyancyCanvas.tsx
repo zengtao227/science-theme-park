@@ -218,7 +218,7 @@ export default function PressureBuoyancyCanvas({
         // Density display
         ctx.fillStyle = "#ffffff";
         ctx.font = "14px monospace";
-        ctx.fillText(`ρ = ${density} kg/m^3`, w / 2, objectY - 20);
+        ctx.fillText(`ρ = ${density} kg/m^{3}`, w / 2, objectY - 20);
         ctx.fillText(floats ? "FLOATS" : "SINKS", w / 2, objectY - 40);
     };
 

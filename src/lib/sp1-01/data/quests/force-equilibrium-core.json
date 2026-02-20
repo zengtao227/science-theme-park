@@ -20,9 +20,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! The unknown force must balance the other two: √(50^2 + 30^2) = 58.31 N",
-        "cn": "正确！未知力必须平衡其他两个力：√(50^2 + 30^2) = 58.31 N",
-        "de": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50^2 + 30^2) = 58.31 N"
+        "en": "Correct! The unknown force must balance the other two: √(50^{2} + 30^{2}) = 58.31 N",
+        "cn": "正确！未知力必须平衡其他两个力：√(50^{2} + 30^{2}) = 58.31 N",
+        "de": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50^{2} + 30^{2}) = 58.31 N"
       },
       "incorrect": {
         "en": "For equilibrium, the sum of all forces must be zero.",
@@ -86,9 +86,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(100^2 + 80^2) = 128.06 N",
-        "cn": "正确！F = √(100^2 + 80^2) = 128.06 N",
-        "de": "Richtig! F = √(100^2 + 80^2) = 128.06 N"
+        "en": "Correct! F = √(100^{2} + 80^{2}) = 128.06 N",
+        "cn": "正确！F = √(100^{2} + 80^{2}) = 128.06 N",
+        "de": "Richtig! F = √(100^{2} + 80^{2}) = 128.06 N"
       },
       "incorrect": {
         "en": "The third force must balance the resultant of the first two.",

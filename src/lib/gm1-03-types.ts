@@ -11,7 +11,7 @@ export type DiscontinuityType = "removable" | "jump" | "infinite" | null;
 
 export interface GM103Quest extends Quest {
   stage: Stage;
-  functionExpr: string;          // Function expression (e.g., "x^2 + 3x - 2")
+  functionExpr: string;          // Function expression (e.g., "x^{2} + 3x - 2")
   limitPoint: number;            // x-value where limit is evaluated
   limitValue?: number | string;  // Expected limit value ("DNE" for does not exist)
   leftLimit?: number | string;   // Left-hand limit

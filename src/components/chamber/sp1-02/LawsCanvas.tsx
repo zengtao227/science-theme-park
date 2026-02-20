@@ -289,7 +289,7 @@ function PhysicsCrate({
         direction={[kinematics.acceleration >= 0 ? 1 : -1, 0, 0]}
         magnitude={Math.abs(kinematics.acceleration) * 120}
         color="#c4b5fd"
-        label={`a ${kinematics.acceleration.toFixed(2)} m/s^2`}
+        label={`a ${kinematics.acceleration.toFixed(2)} m/s^{2}`}
         position={[0, 2.4, 0]}
       />
     </group>
@@ -414,7 +414,7 @@ export default function P102LawsCanvas(props: P102CanvasProps) {
         <div className="text-green-400">μ: {props.friction}</div>
         <div className="text-purple-300">x: {telemetry.positionX.toFixed(2)} m</div>
         <div className="text-purple-300">v: {telemetry.velocity.toFixed(2)} m/s</div>
-        <div className="text-purple-300">a: {telemetry.acceleration.toFixed(2)} m/s^2</div>
+        <div className="text-purple-300">a: {telemetry.acceleration.toFixed(2)} m/s^{2}</div>
         <div className="text-cyan-300">F = ma: {telemetry.netForce.toFixed(2)} N</div>
         <div className="text-yellow-300">Friction: {Math.abs(telemetry.frictionForce).toFixed(0)} N</div>
         <div className="text-yellow-300">State: {telemetry.frictionState}</div>

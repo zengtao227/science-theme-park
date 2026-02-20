@@ -450,7 +450,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
         coefficients: [A, B, C]
       },
       promptLatex: `Calculate the distance from point (${point.x}, ${point.y}) to the line ${equation}.`,
-      expressionLatex: `d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}`,
+      expressionLatex: `d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^{2} + B^2}}`,
       targetLatex: `d`,
       slots: [
         {
@@ -557,7 +557,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
         coefficients: [A, B, C, D]
       },
       promptLatex: `Calculate the distance from point (${point.x}, ${point.y}, ${point.z}) to the plane ${plane.equation}.`,
-      expressionLatex: `d = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^2 + B^2 + C^2}}`,
+      expressionLatex: `d = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^{2} + B^{2} + C^2}}`,
       targetLatex: `d`,
       slots: [
         {
@@ -600,7 +600,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
       difficulty: "ADVANCED",
       stage: "SPATIAL_RELATIONSHIPS",
       promptLatex: `Calculate the distance between parallel lines ${eq1} and ${eq2}.`,
-      expressionLatex: `d = \\frac{|C_1 - C_2|}{\\sqrt{A^2 + B^2}}`,
+      expressionLatex: `d = \\frac{|C_1 - C_2|}{\\sqrt{A^{2} + B^2}}`,
       targetLatex: `d`,
       slots: [
         {
@@ -648,7 +648,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
       difficulty: "ADVANCED",
       stage: "SPATIAL_RELATIONSHIPS",
       promptLatex: `Calculate the distance between parallel planes ${p1.equation} and ${p2.equation}.`,
-      expressionLatex: `d = \\frac{|D_1 - D_2|}{\\sqrt{A^2 + B^2 + C^2}}`,
+      expressionLatex: `d = \\frac{|D_1 - D_2|}{\\sqrt{A^{2} + B^{2} + C^2}}`,
       targetLatex: `d`,
       slots: [
         {

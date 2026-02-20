@@ -8,7 +8,7 @@ import * as THREE from "three";
 interface PendulumCanvasProps {
     length: number; // in meters
     initialAngle: number; // in radians
-    gravity: number; // m/s^2
+    gravity: number; // m/s^{2}
     damping: number; // damping coefficient
     showPhaseSpace: boolean;
     showEnergy: boolean;

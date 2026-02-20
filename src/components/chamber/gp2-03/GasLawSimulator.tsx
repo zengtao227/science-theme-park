@@ -17,7 +17,7 @@ export default function GasLawSimulator({
 }: GasLawSimulatorProps) {
   // State for gas parameters
   const [pressure, setPressure] = useState(101325); // Pa
-  const [volume, setVolume] = useState(0.0224); // m^3
+  const [volume, setVolume] = useState(0.0224); // m^{3}
   const [temperature, setTemperature] = useState(273.15); // K
   const [moles, setMoles] = useState(1.0); // mol
 

@@ -88,10 +88,10 @@ export default function SP301Page() {
                     { measurement: "current", unit: "A", name: "ampere" }
                 ],
                 CORE: [
-                    { quantity: "force", unit: "\\\\text{N}", formula: "kg·m/s^2" },
+                    { quantity: "force", unit: "\\\\text{N}", formula: "kg·m/s^{2}" },
                     { quantity: "energy", unit: "\\\\text{J}", formula: "N·m" },
                     { quantity: "power", unit: "\\\\text{W}", formula: "J/s" },
-                    { quantity: "pressure", unit: "\\\\text{Pa}", formula: "N/m^2" },
+                    { quantity: "pressure", unit: "\\\\text{Pa}", formula: "N/m^{2}" },
                     { quantity: "frequency", unit: "Hz", formula: "1/s" }
                 ],
                 ADVANCED: [
@@ -102,9 +102,9 @@ export default function SP301Page() {
                     { value: 250, from: "cm", to: "m", answer: "2.5" }
                 ],
                 ELITE: [
-                    { expr: "kg·m^2/s^2", unit: "\\\\text{J}", name: "joule" },
-                    { expr: "kg·m/s^2", unit: "\\\\text{N}", name: "newton" },
-                    { expr: "kg/(m·s^2)", unit: "\\\\text{Pa}", name: "pascal" },
+                    { expr: "kg·m^{2}/s^{2}", unit: "\\\\text{J}", name: "joule" },
+                    { expr: "kg·m/s^{2}", unit: "\\\\text{N}", name: "newton" },
+                    { expr: "kg/(m·s^{2})", unit: "\\\\text{Pa}", name: "pascal" },
                     { expr: "J/s", unit: "\\\\text{W}", name: "watt" },
                     { expr: "C/s", unit: "A", name: "ampere" }
                 ]
@@ -125,17 +125,17 @@ export default function SP301Page() {
                     { value: 1.5, from: "L", to: "mL", answer: "1500" }
                 ],
                 ADVANCED: [
-                    { value: 1, from: "m^2", to: "cm^2", answer: "10000" },
-                    { value: 2, from: "km^2", to: "m^2", answer: "2000000" },
-                    { value: 1, from: "m^3", to: "L", answer: "1000" },
-                    { value: 0.5, from: "m^3", to: "cm^3", answer: "500000" },
-                    { value: 5000, from: "cm^2", to: "m^2", answer: "0.5" }
+                    { value: 1, from: "m^{2}", to: "cm^{2}", answer: "10000" },
+                    { value: 2, from: "km^{2}", to: "m^{2}", answer: "2000000" },
+                    { value: 1, from: "m^{3}", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m^{3}", to: "cm^{3}", answer: "500000" },
+                    { value: 5000, from: "cm^{2}", to: "m^{2}", answer: "0.5" }
                 ],
                 ELITE: [
                     { value: 72, from: "km/h", to: "m/s", answer: "20" },
                     { value: 10, from: "m/s", to: "km/h", answer: "36" },
-                    { value: 1000, from: "g/cm^3", to: "kg/m^3", answer: "1000000" },
-                    { value: 2, from: "kg/m^3", to: "g/cm^3", answer: "0.002" },
+                    { value: 1000, from: "g/cm^{3}", to: "kg/m^{3}", answer: "1000000" },
+                    { value: 2, from: "kg/m^{3}", to: "g/cm^{3}", answer: "0.002" },
                     { value: 100, from: "kPa", to: "Pa", answer: "100000" }
                 ]
             },
@@ -302,11 +302,11 @@ export default function SP301Page() {
             if (difficulty === "ADVANCED") {
                 // Area and volume conversions
                 const conversions = [
-                    { value: 1, from: "m^2", to: "cm^2", answer: "10000" },
-                    { value: 2, from: "km^2", to: "m^2", answer: "2000000" },
-                    { value: 1, from: "m^3", to: "L", answer: "1000" },
-                    { value: 0.5, from: "m^3", to: "cm^3", answer: "500000" },
-                    { value: 5000, from: "cm^2", to: "m^2", answer: "0.5" }
+                    { value: 1, from: "m^{2}", to: "cm^{2}", answer: "10000" },
+                    { value: 2, from: "km^{2}", to: "m^{2}", answer: "2000000" },
+                    { value: 1, from: "m^{3}", to: "L", answer: "1000" },
+                    { value: 0.5, from: "m^{3}", to: "cm^{3}", answer: "500000" },
+                    { value: 5000, from: "cm^{2}", to: "m^{2}", answer: "0.5" }
                 ];
 
                 conversions.forEach((c, idx) => {
@@ -332,8 +332,8 @@ export default function SP301Page() {
                 const conversions = [
                     { value: 72, from: "km/h", to: "m/s", answer: "20" },
                     { value: 10, from: "m/s", to: "km/h", answer: "36" },
-                    { value: 1000, from: "g/cm^3", to: "kg/m^3", answer: "1000000" },
-                    { value: 2, from: "kg/m^3", to: "g/cm^3", answer: "0.002" },
+                    { value: 1000, from: "g/cm^{3}", to: "kg/m^{3}", answer: "1000000" },
+                    { value: 2, from: "kg/m^{3}", to: "g/cm^{3}", answer: "0.002" },
                     { value: 100, from: "kPa", to: "Pa", answer: "100000" }
                 ];
 

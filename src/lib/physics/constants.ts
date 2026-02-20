@@ -7,7 +7,7 @@
  * Physical constants used in electromagnetic calculations
  */
 export const PHYSICAL_CONSTANTS = {
-  /** Coulomb's constant (N·m^2/C^2) */
+  /** Coulomb's constant (N·m^{2}/C^{2}) */
   k: 8.99e9,
   
   /** Permeability of free space (T·m/A) */

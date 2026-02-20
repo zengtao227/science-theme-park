@@ -153,8 +153,8 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_tra_eli_${i}`,
                     difficulty: "ELITE",
                     stage: "translation",
-                    promptLatex: `Circle $(x - ${x})^2 + (y - ${y})^2 = ${r * r}$ is translated by $\\vec{v} = \\binom{${dx}}{${dy}}$. Find the distance from the new center to the origin. (1 dec)`,
-                    expressionLatex: `C' = (${new_cx}, ${new_cy}), d = \\sqrt{${new_cx}^2 + ${new_cy}^2}`,
+                    promptLatex: `Circle $(x - ${x})^{2} + (y - ${y})^{2} = ${r * r}$ is translated by $\\vec{v} = \\binom{${dx}}{${dy}}$. Find the distance from the new center to the origin. (1 dec)`,
+                    expressionLatex: `C' = (${new_cx}, ${new_cy}), d = \\sqrt{${new_cx}^{2} + ${new_cy}^2}`,
                     targetLatex: "d",
                     slots: [
                         { id: "d", labelLatex: "d\\approx", placeholder: "d", expected: Math.round(dist * 10) / 10 }

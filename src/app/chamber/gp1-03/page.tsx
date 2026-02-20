@@ -84,7 +84,7 @@ export default function P103Page() {
   };
 
   // Calculate relativistic mass increase
-  const restMass = 0.938; // GeV/c^2 (proton rest mass)
+  const restMass = 0.938; // GeV/c^{2} (proton rest mass)
   const gamma = energy * 1000 / restMass; // Lorentz factor
   const relativisticMass = gamma * restMass;
 
@@ -151,7 +151,7 @@ export default function P103Page() {
               </div>
               <div className="flex justify-between">
                 <span className="text-white/60 font-mono">m (effective):</span>
-                <span className="text-neon-amber font-black">{relativisticMass.toFixed(1)} GeV/c^2</span>
+                <span className="text-neon-amber font-black">{relativisticMass.toFixed(1)} GeV/c^{2}</span>
               </div>
             </div>
           </div>
@@ -161,8 +161,8 @@ export default function P103Page() {
               {gp1_03_t.labels?.formulas}
             </div>
             <div className="text-white font-black text-sm space-y-2">
-              <div><InlineMath math="E = \gamma mc^2" /></div>
-              <div><InlineMath math="\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}" /></div>
+              <div><InlineMath math="E = \gamma mc^{2}" /></div>
+              <div><InlineMath math="\gamma = \frac{1}{\sqrt{1 - v^{2}/c^2}}" /></div>
               <div><InlineMath math="F = qvB \text{ (Lorentz force)}" /></div>
             </div>
           </div>

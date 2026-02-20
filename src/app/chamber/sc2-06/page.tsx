@@ -86,11 +86,11 @@ export default function SC206Page() {
         } else if (difficulty === "ADVANCED") {
           // Complex transition metal compounds
           const data = [
-            { formula: "[Fe(CN)_6]^3^-", element: "Fe", answer: 3, ox: { Fe: 3, C: 2, N: -3 } as { [key: string]: number } },
+            { formula: "[Fe(CN)_6]^{3}^-", element: "Fe", answer: 3, ox: { Fe: 3, C: 2, N: -3 } as { [key: string]: number } },
             { formula: "Na_2S_4O_6", element: "S", answer: 2.5, ox: { Na: 1, S: 2.5, O: -2 } as { [key: string]: number } },
-            { formula: "[Co(NH_3)_6]^3^+", element: "Co", answer: 3, ox: { Co: 3, N: -3, H: 1 } as { [key: string]: number } },
+            { formula: "[Co(NH_3)_6]^{3}^+", element: "Co", answer: 3, ox: { Co: 3, N: -3, H: 1 } as { [key: string]: number } },
             { formula: "Fe_3O_4", element: "Fe", answer: 2.67, ox: { Fe: 2.67, O: -2 } as { [key: string]: number } },
-            { formula: "Cr_2O_7^2^-", element: "Cr", answer: 6, ox: { Cr: 6, O: -2 } as { [key: string]: number } },
+            { formula: "Cr_2O_7^{2}^-", element: "Cr", answer: 6, ox: { Cr: 6, O: -2 } as { [key: string]: number } },
           ];
           data.forEach((item, idx) => {
             quests.push({
@@ -141,7 +141,7 @@ export default function SC206Page() {
         if (difficulty === "BASIC") {
           // Identify oxidizing/reducing agents
           const data = [
-            { reaction: "Zn + Cu^2^+ → Zn^2^+ + Cu", question: "oxidizing_agent", answer: "Cu2+", electrons: 2 },
+            { reaction: "Zn + Cu^{2}^+ → Zn^{2}^+ + Cu", question: "oxidizing_agent", answer: "Cu2+", electrons: 2 },
             { reaction: "2Na + Cl_2 → 2NaCl", question: "reducing_agent", answer: "Na", electrons: 1 },
             { reaction: "Mg + 2HCl → MgCl_2 + H_2", question: "oxidizing_agent", answer: "H+", electrons: 2 },
             { reaction: "Fe + S → FeS", question: "reducing_agent", answer: "Fe", electrons: 2 },
@@ -166,10 +166,10 @@ export default function SC206Page() {
         } else if (difficulty === "CORE") {
           // Balance simple redox equations (electrons transferred)
           const data = [
-            { reaction: "Fe^2^+ → Fe^3^+", electrons: 1 },
+            { reaction: "Fe^{2}^+ → Fe^{3}^+", electrons: 1 },
             { reaction: "Cl_2 → 2Cl^-", electrons: 2 },
-            { reaction: "MnO_4^- → Mn^2^+", electrons: 5 },
-            { reaction: "Cr_2O_7^2^- → 2Cr^3^+", electrons: 6 },
+            { reaction: "MnO_4^- → Mn^{2}^+", electrons: 5 },
+            { reaction: "Cr_2O_7^{2}^- → 2Cr^{3}^+", electrons: 6 },
             { reaction: "NO_3^- → NO", electrons: 3 },
           ];
           data.forEach((item, idx) => {
@@ -191,8 +191,8 @@ export default function SC206Page() {
         } else if (difficulty === "ADVANCED") {
           // Half-reactions in acidic/basic solutions
           const data = [
-            { half: "MnO_4^- → Mn^2^+ (acidic)", h2o: 4, h: 8, electrons: 5 },
-            { half: "Cr_2O_7^2^- → 2Cr^3^+ (acidic)", h2o: 7, h: 14, electrons: 6 },
+            { half: "MnO_4^- → Mn^{2}^+ (acidic)", h2o: 4, h: 8, electrons: 5 },
+            { half: "Cr_2O_7^{2}^- → 2Cr^{3}^+ (acidic)", h2o: 7, h: 14, electrons: 6 },
             { half: "NO_3^- → NH_4^+ (acidic)", h2o: 3, h: 10, electrons: 8 },
             { half: "MnO_4^- → MnO_2 (basic)", h2o: 2, oh: 4, electrons: 3 },
             { half: "ClO^- → Cl^- (basic)", h2o: 1, oh: 2, electrons: 2 },
@@ -219,7 +219,7 @@ export default function SC206Page() {
             { reaction: "Cl_2 → Cl^- + ClO^-", electrons: 2, type: "disproportionation" },
             { reaction: "3Br_2 → 5Br^- + BrO_3^-", electrons: 10, type: "disproportionation" },
             { reaction: "4P → PH_3 + 3H_2PO_2^-", electrons: 6, type: "disproportionation" },
-            { reaction: "S_2O_3^2^- → S + SO_4^2^-", electrons: 8, type: "disproportionation" },
+            { reaction: "S_2O_3^{2}^- → S + SO_4^{2}^-", electrons: 8, type: "disproportionation" },
             { reaction: "2H_2O_2 → 2H_2O + O_2", electrons: 2, type: "disproportionation" },
           ];
           data.forEach((item, idx) => {
@@ -263,7 +263,7 @@ export default function SC206Page() {
               slots: [{ id: "ans", labelLatex: "\\\\text{Answer}", placeholder: "...", expected: item.answer }],
               correctLatex: `\\\\text{${item.answer}}`,
               reactants: [{ formula: "Zn", oxidationState: 0 }],
-              products: [{ formula: "Zn^2^+", oxidationState: 2 }],
+              products: [{ formula: "Zn^{2}^+", oxidationState: 2 }],
               oxidationStates: { Zn: 0, Cu: 0 },
               electronsTransferred: 2,
               cellPotential: 1.10,
@@ -272,11 +272,11 @@ export default function SC206Page() {
         } else if (difficulty === "CORE") {
           // Standard electrode potentials
           const data = [
-            { cell: "Zn|Zn^2^+||Cu^2^+|Cu", e0: 1.10, zn: -0.76, cu: 0.34 },
-            { cell: "Mg|Mg^2^+||Ag^+|Ag", e0: 3.17, mg: -2.37, ag: 0.80 },
-            { cell: "Fe|Fe^2^+||Cu^2^+|Cu", e0: 0.78, fe: -0.44, cu: 0.34 },
-            { cell: "Al|Al^3^+||Ni^2^+|Ni", e0: 1.41, al: -1.66, ni: -0.25 },
-            { cell: "Pb|Pb^2^+||Ag^+|Ag", e0: 0.93, pb: -0.13, ag: 0.80 },
+            { cell: "Zn|Zn^{2}^+||Cu^{2}^+|Cu", e0: 1.10, zn: -0.76, cu: 0.34 },
+            { cell: "Mg|Mg^{2}^+||Ag^+|Ag", e0: 3.17, mg: -2.37, ag: 0.80 },
+            { cell: "Fe|Fe^{2}^+||Cu^{2}^+|Cu", e0: 0.78, fe: -0.44, cu: 0.34 },
+            { cell: "Al|Al^{3}^+||Ni^{2}^+|Ni", e0: 1.41, al: -1.66, ni: -0.25 },
+            { cell: "Pb|Pb^{2}^+||Ag^+|Ag", e0: 0.93, pb: -0.13, ag: 0.80 },
           ];
           data.forEach((item, idx) => {
             quests.push({
@@ -298,11 +298,11 @@ export default function SC206Page() {
         } else if (difficulty === "ADVANCED") {
           // Nernst equation
           const data = [
-            { cell: "Zn|Zn^2^+(0.1M)||Cu^2^+(1M)|Cu", e0: 1.10, q: 0.1, n: 2, e: 1.13 },
-            { cell: "Zn|Zn^2^+(1M)||Cu^2^+(0.01M)|Cu", e0: 1.10, q: 100, n: 2, e: 1.04 },
-            { cell: "Mg|Mg^2^+(0.5M)||Ag^+(2M)|Ag", e0: 3.17, q: 0.125, n: 2, e: 3.20 },
-            { cell: "Fe|Fe^2^+(2M)||Cu^2^+(0.1M)|Cu", e0: 0.78, q: 20, n: 2, e: 0.74 },
-            { cell: "Al|Al^3^+(0.1M)||Ni^2^+(1M)|Ni", e0: 1.41, q: 0.001, n: 6, e: 1.43 },
+            { cell: "Zn|Zn^{2}^+(0.1M)||Cu^{2}^+(1M)|Cu", e0: 1.10, q: 0.1, n: 2, e: 1.13 },
+            { cell: "Zn|Zn^{2}^+(1M)||Cu^{2}^+(0.01M)|Cu", e0: 1.10, q: 100, n: 2, e: 1.04 },
+            { cell: "Mg|Mg^{2}^+(0.5M)||Ag^+(2M)|Ag", e0: 3.17, q: 0.125, n: 2, e: 3.20 },
+            { cell: "Fe|Fe^{2}^+(2M)||Cu^{2}^+(0.1M)|Cu", e0: 0.78, q: 20, n: 2, e: 0.74 },
+            { cell: "Al|Al^{3}^+(0.1M)||Ni^{2}^+(1M)|Ni", e0: 1.41, q: 0.001, n: 6, e: 1.43 },
           ];
           data.forEach((item, idx) => {
             quests.push({

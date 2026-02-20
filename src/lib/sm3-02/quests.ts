@@ -154,10 +154,10 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
         if (difficulty === "BASIC") {
             const map = [
                 { f: "sin", a: 30, ans: "1/2", cl: "1/2" },
-                { f: "sin", a: 45, ans: "sqrt(2)/2", cl: "\\frac{\\sqrt{2}}{2}" },
-                { f: "sin", a: 60, ans: "sqrt(3)/2", cl: "\\frac{\\sqrt{3}}{2}" },
-                { f: "cos", a: 30, ans: "sqrt(3)/2", cl: "\\frac{\\sqrt{3}}{2}" },
-                { f: "cos", a: 45, ans: "sqrt(2)/2", cl: "\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 45, ans: "\\sqrt{2}/2", cl: "\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 60, ans: "\\sqrt{3}/2", cl: "\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 30, ans: "\\sqrt{3}/2", cl: "\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 45, ans: "\\sqrt{2}/2", cl: "\\frac{\\sqrt{2}}{2}" },
                 { f: "cos", a: 60, ans: "1/2", cl: "1/2" },
                 { f: "sin", a: 0, ans: "0", cl: "0" },
                 { f: "cos", a: 0, ans: "1", cl: "1" },
@@ -178,12 +178,12 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
         else if (difficulty === "CORE") {
             // Quadrant II exact values
             const map = [
-                { f: "sin", a: 120, ans: "sqrt(3)/2", cl: "\\frac{\\sqrt{3}}{2}" },
-                { f: "sin", a: 135, ans: "sqrt(2)/2", cl: "\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 120, ans: "\\sqrt{3}/2", cl: "\\frac{\\sqrt{3}}{2}" },
+                { f: "sin", a: 135, ans: "\\sqrt{2}/2", cl: "\\frac{\\sqrt{2}}{2}" },
                 { f: "sin", a: 150, ans: "1/2", cl: "1/2" },
                 { f: "cos", a: 120, ans: "-1/2", cl: "-\\frac{1}{2}" },
-                { f: "cos", a: 135, ans: "-sqrt(2)/2", cl: "-\\frac{\\sqrt{2}}{2}" },
-                { f: "cos", a: 150, ans: "-sqrt(3)/2", cl: "-\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 135, ans: "-\\sqrt{2}/2", cl: "-\\frac{\\sqrt{2}}{2}" },
+                { f: "cos", a: 150, ans: "-\\sqrt{3}/2", cl: "-\\frac{\\sqrt{3}}{2}" },
                 { f: "sin", a: 180, ans: "0", cl: "0" },
                 { f: "cos", a: 180, ans: "-1", cl: "-1" },
             ];
@@ -202,17 +202,17 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
             // Quadrant III & IV
             const map = [
                 { f: "sin", a: 210, ans: "-1/2", cl: "-\\frac{1}{2}" },
-                { f: "sin", a: 225, ans: "-sqrt(2)/2", cl: "-\\frac{\\sqrt{2}}{2}" },
-                { f: "sin", a: 240, ans: "-sqrt(3)/2", cl: "-\\frac{\\sqrt{3}}{2}" },
-                { f: "cos", a: 210, ans: "-sqrt(3)/2", cl: "-\\frac{\\sqrt{3}}{2}" },
-                { f: "cos", a: 225, ans: "-sqrt(2)/2", cl: "-\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 225, ans: "-\\sqrt{2}/2", cl: "-\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 240, ans: "-\\sqrt{3}/2", cl: "-\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 210, ans: "-\\sqrt{3}/2", cl: "-\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 225, ans: "-\\sqrt{2}/2", cl: "-\\frac{\\sqrt{2}}{2}" },
                 { f: "cos", a: 240, ans: "-1/2", cl: "-\\frac{1}{2}" },
-                { f: "sin", a: 300, ans: "-sqrt(3)/2", cl: "-\\frac{\\sqrt{3}}{2}" },
-                { f: "sin", a: 315, ans: "-sqrt(2)/2", cl: "-\\frac{\\sqrt{2}}{2}" },
+                { f: "sin", a: 300, ans: "-\\sqrt{3}/2", cl: "-\\frac{\\sqrt{3}}{2}" },
+                { f: "sin", a: 315, ans: "-\\sqrt{2}/2", cl: "-\\frac{\\sqrt{2}}{2}" },
                 { f: "sin", a: 330, ans: "-1/2", cl: "-\\frac{1}{2}" },
                 { f: "cos", a: 300, ans: "1/2", cl: "\\frac{1}{2}" },
-                { f: "cos", a: 315, ans: "sqrt(2)/2", cl: "\\frac{\\sqrt{2}}{2}" },
-                { f: "cos", a: 330, ans: "sqrt(3)/2", cl: "\\frac{\\sqrt{3}}{2}" },
+                { f: "cos", a: 315, ans: "\\sqrt{2}/2", cl: "\\frac{\\sqrt{2}}{2}" },
+                { f: "cos", a: 330, ans: "\\sqrt{3}/2", cl: "\\frac{\\sqrt{3}}{2}" },
                 { f: "sin", a: 270, ans: "-1", cl: "-1" },
                 { f: "cos", a: 270, ans: "0", cl: "0" },
                 { f: "sin", a: 360, ans: "0", cl: "0" },
@@ -232,18 +232,18 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
         else {
             // Tangent over all quadrants
             const map = [
-                { a: 30, ans: "sqrt(3)/3", cl: "\\frac{\\sqrt{3}}{3}" },
+                { a: 30, ans: "\\sqrt{3}/3", cl: "\\frac{\\sqrt{3}}{3}" },
                 { a: 45, ans: "1", cl: "1" },
-                { a: 60, ans: "sqrt(3)", cl: "\\sqrt{3}" },
-                { a: 120, ans: "-sqrt(3)", cl: "-\\sqrt{3}" },
+                { a: 60, ans: "\\sqrt{3}", cl: "\\sqrt{3}" },
+                { a: 120, ans: "-\\sqrt{3}", cl: "-\\sqrt{3}" },
                 { a: 135, ans: "-1", cl: "-1" },
-                { a: 150, ans: "-sqrt(3)/3", cl: "-\\frac{\\sqrt{3}}{3}" },
-                { a: 210, ans: "sqrt(3)/3", cl: "\\frac{\\sqrt{3}}{3}" },
+                { a: 150, ans: "-\\sqrt{3}/3", cl: "-\\frac{\\sqrt{3}}{3}" },
+                { a: 210, ans: "\\sqrt{3}/3", cl: "\\frac{\\sqrt{3}}{3}" },
                 { a: 225, ans: "1", cl: "1" },
-                { a: 240, ans: "sqrt(3)", cl: "\\sqrt{3}" },
-                { a: 300, ans: "-sqrt(3)", cl: "-\\sqrt{3}" },
+                { a: 240, ans: "\\sqrt{3}", cl: "\\sqrt{3}" },
+                { a: 300, ans: "-\\sqrt{3}", cl: "-\\sqrt{3}" },
                 { a: 315, ans: "-1", cl: "-1" },
-                { a: 330, ans: "-sqrt(3)/3", cl: "-\\frac{\\sqrt{3}}{3}" },
+                { a: 330, ans: "-\\sqrt{3}/3", cl: "-\\frac{\\sqrt{3}}{3}" },
                 { a: 0, ans: "0", cl: "0" },
                 { a: 180, ans: "0", cl: "0" },
                 { a: 360, ans: "0", cl: "0" },
@@ -347,10 +347,10 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 let ans = "0"; let cl = "0";
                 if (Math.abs(valMath - 0.5) < 0.01) { ans = "1/2"; cl = "1/2"; }
                 else if (Math.abs(valMath - (-0.5)) < 0.01) { ans = "-1/2"; cl = "-1/2"; }
-                else if (Math.abs(valMath - (0.866)) < 0.01) { ans = "sqrt(3)/2"; cl = "\\frac{\\sqrt{3}}{2}"; }
-                else if (Math.abs(valMath - (-0.866)) < 0.01) { ans = "-sqrt(3)/2"; cl = "-\\frac{\\sqrt{3}}{2}"; }
-                else if (Math.abs(valMath - (0.707)) < 0.01) { ans = "sqrt(2)/2"; cl = "\\frac{\\sqrt{2}}{2}"; }
-                else if (Math.abs(valMath - (-0.707)) < 0.01) { ans = "-sqrt(2)/2"; cl = "-\\frac{\\sqrt{2}}{2}"; }
+                else if (Math.abs(valMath - (0.866)) < 0.01) { ans = "\\sqrt{3}/2"; cl = "\\frac{\\sqrt{3}}{2}"; }
+                else if (Math.abs(valMath - (-0.866)) < 0.01) { ans = "-\\sqrt{3}/2"; cl = "-\\frac{\\sqrt{3}}{2}"; }
+                else if (Math.abs(valMath - (0.707)) < 0.01) { ans = "\\sqrt{2}/2"; cl = "\\frac{\\sqrt{2}}{2}"; }
+                else if (Math.abs(valMath - (-0.707)) < 0.01) { ans = "-\\sqrt{2}/2"; cl = "-\\frac{\\sqrt{2}}{2}"; }
                 else if (Math.abs(valMath - 1) < 0.01) { ans = "1"; cl = "1"; }
                 else if (Math.abs(valMath - (-1)) < 0.01) { ans = "-1"; cl = "-1"; }
                 

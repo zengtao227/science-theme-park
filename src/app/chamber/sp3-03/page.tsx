@@ -111,7 +111,7 @@ export default function SP303Page() {
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
           <div className="text-2xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm flex justify-center">
-            <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/^2/g, '^2')}}`} />
+            <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/\^2/g, '^{2}')}}`} />
           </div>
           <div className="text-cyan-300">
             <InlineMath math={currentQuest?.expressionLatex || ""} />

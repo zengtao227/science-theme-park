@@ -528,8 +528,8 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
                         targetLatex: `\\\\text{Area}`,
-                        slots: [{ id: "area", labelLatex: `\\\\text{Area (m}^2\\\\text{)}`, placeholder: "70", expected: 70 }],
-                        correctLatex: `\\approx 70 \\\\text{ m}^2`,
+                        slots: [{ id: "area", labelLatex: `\\\\text{Area (m}^{2}\\\\text{)}`, placeholder: "70", expected: 70 }],
+                        correctLatex: `\\approx 70 \\\\text{ m}^{2}`,
                         hintLatex: [`\\\\text{Tennis court size}`]
                     },
                     {

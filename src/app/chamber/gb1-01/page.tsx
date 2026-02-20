@@ -67,11 +67,11 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         } else { // ELITE
             // Delta p = spq / (1-sq^2) approx spq
             quests.push(
-                { id: `NS-E1`, difficulty, stage, promptLatex: "Selection s=0.1 against recessive. p=0.5, q=0.5. Delta p approx spq^2?", expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: "0.0125", expected: 0.0125 }], correctLatex: "0.0125", hintLatex: ["s p q^2"] },
+                { id: `NS-E1`, difficulty, stage, promptLatex: "Selection s=0.1 against recessive. p=0.5, q=0.5. Delta p approx spq^{2}?", expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: "0.0125", expected: 0.0125 }], correctLatex: "0.0125", hintLatex: ["s p q^{2}"] },
                 create("hardy_p", { p: 0.99 }, "2(0.99)(0.01)", "2pq", "0.0198", ["Rare alleles"]),
-                { id: `NS-E3`, difficulty, stage, promptLatex: "Fitness wAA=1, wAa=1, waa=0.5. q=0.1. Mean fitness W = 1 - s q^2?", expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "0.995", expected: 0.995 }], correctLatex: "0.995", hintLatex: ["Mean fitness"] },
+                { id: `NS-E3`, difficulty, stage, promptLatex: "Fitness wAA=1, wAa=1, waa=0.5. q=0.1. Mean fitness W = 1 - s q^{2}?", expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "0.995", expected: 0.995 }], correctLatex: "0.995", hintLatex: ["Mean fitness"] },
                 { id: `NS-E4`, difficulty, stage, promptLatex: "Heterozygote Advantage. wAA=0.8, wAa=1, waa=0.5. Equilibrium q?", expressionLatex: "q = s1/(s1+s2) = 0.2/(0.2+0.5)", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.286", expected: 0.286 }], correctLatex: "0.286", hintLatex: ["Balanced poly"] },
-                { id: `NS-E5`, difficulty, stage, promptLatex: "Mutation-Selection Balance. u=1e-5, s=0.1. q = sqrt(u/s)?", expressionLatex: "\\\\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.01", expected: 0.01 }], correctLatex: "0.01", hintLatex: ["Equilibrium"] }
+                { id: `NS-E5`, difficulty, stage, promptLatex: "Mutation-Selection Balance. u=1e-5, s=0.1. q = \\sqrt{u/s}?", expressionLatex: "\\\\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.01", expected: 0.01 }], correctLatex: "0.01", hintLatex: ["Equilibrium"] }
             );
         }
     }
@@ -105,7 +105,7 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         } else { // ELITE
             quests.push(
                 { id: `SP-E1`, difficulty, stage, promptLatex: "Drift vs Selection. s=0.01, N=10. Ns=0.1 < 1. Drift dominates?", expressionLatex: "\\\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
-                { id: `SP-E2`, difficulty, stage, promptLatex: "Founder Effect. k individuals. Allele lost prob (1-p)^2k. p=0.5, k=1. Prob?", expressionLatex: "0.5^2", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
+                { id: `SP-E2`, difficulty, stage, promptLatex: "Founder Effect. k individuals. Allele lost prob (1-p)^{2}k. p=0.5, k=1. Prob?", expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
                 { id: `SP-E3`, difficulty, stage, promptLatex: "Fst Index. Ht=0.5, Hs=0.4. Fst = (Ht-Hs)/Ht?", expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: "0.2", expected: 0.2 }], correctLatex: "0.2", hintLatex: ["Structure"] },
                 { id: `SP-E4`, difficulty, stage, promptLatex: "Coalescence Time. k lineages. Expectation 4N / k(k-1). k=2?", expressionLatex: "4N/2 = 2N", targetLatex: "\\\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: "2", expected: 2 }], correctLatex: "2N", hintLatex: ["Pairwise"] },
                 { id: `SP-E5`, difficulty, stage, promptLatex: "Neutral Theory. Rate of substitution = Mutation rate u?", expressionLatex: "\\\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }

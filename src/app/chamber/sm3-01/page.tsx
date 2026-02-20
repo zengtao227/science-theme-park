@@ -72,15 +72,15 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
         const a1 = randInt(1, 4), b1 = randInt(-4, 4), c1 = randInt(-5, 5);
         const a2 = randInt(-3, 3), b2 = randInt(-4, 4), c2 = randInt(-5, 5);
         const rA = a1 + a2, rB = b1 + b2, rC = c1 + c2;
-        return q(id, difficulty, stage, tp, `(${fmt(a1, "x^2", true)}${fmt(b1, "x")}${fmt(c1, "")}) + (${fmt(a2, "x^2", true)}${fmt(b2, "x")}${fmt(c2, "")})`, "ax^2+bx+c", [
+        return q(id, difficulty, stage, tp, `(${fmt(a1, "x^{2}", true)}${fmt(b1, "x")}${fmt(c1, "")}) + (${fmt(a2, "x^{2}", true)}${fmt(b2, "x")}${fmt(c2, "")})`, "ax^{2}+bx+c", [
           { id: "a", l: "a", e: rA }, { id: "b", l: "b", e: rB }, { id: "c", l: "c", e: rC }
-        ], `${fmt(rA, "x^2", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
+        ], `${fmt(rA, "x^{2}", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
       } else {
         const a = randInt(2, 4), b = randInt(1, 4), c = randInt(2, 5);
         const rA = a * a - c, rB = 2 * a * b, rC = b * b;
-        return q(id, difficulty, stage, tp, `(${fmt(a, "x", true)}${fmt(b, "")})^2 - ${c}x^2`, "ax^2+bx+c", [
+        return q(id, difficulty, stage, tp, `(${fmt(a, "x", true)}${fmt(b, "")})^{2} - ${c}x^{2}`, "ax^{2}+bx+c", [
           { id: "a", l: "a", e: rA }, { id: "b", l: "b", e: rB }, { id: "c", l: "c", e: rC }
-        ], `${fmt(rA, "x^2", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
+        ], `${fmt(rA, "x^{2}", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
       }
     });
   }
@@ -92,37 +92,37 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
       if (difficulty === "BASIC") {
         const r1 = randInt(1, 5), r2 = randInt(1, 5);
         const b = r1 + r2, c = r1 * r2;
-        return q(id, difficulty, stage, fp, `x^2+${b}x+${c}`, "(x+A)(x+B)", [
+        return q(id, difficulty, stage, fp, `x^{2}+${b}x+${c}`, "(x+A)(x+B)", [
           { id: "A", l: "A", e: r1 }, { id: "B", l: "B", e: r2 }
         ], `(x+${r1})(x+${r2})`, { a: 1, b, c, vizMode: "AREA", hintLatex: [`A+B=${b}`, `A\\times B=${c}`] });
       } else if (difficulty === "CORE") {
         if (Math.random() > 0.5) {
           const r = randInt(2, 7);
-          return q(id, difficulty, stage, fp, `x^2-${r * r}`, "(x+A)(x+B)", [
+          return q(id, difficulty, stage, fp, `x^{2}-${r * r}`, "(x+A)(x+B)", [
             { id: "A", l: "A", e: -r }, { id: "B", l: "B", e: r }
-          ], `(x-${r})(x+${r})`, { a: 1, b: 0, c: -r * r, vizMode: "AREA", hintLatex: ["a^2-b^2=(a-b)(a+b)"] });
+          ], `(x-${r})(x+${r})`, { a: 1, b: 0, c: -r * r, vizMode: "AREA", hintLatex: ["a^{2}-b^{2}=(a-b)(a+b)"] });
         } else {
           const r1 = randInt(1, 6) * getSign(), r2 = randInt(1, 6) * getSign();
           const b = r1 + r2, c = r1 * r2;
-          return q(id, difficulty, stage, fp, `x^2${fmt(b, "x")}${fmt(c, "")}`, "(x+A)(x+B)", [
+          return q(id, difficulty, stage, fp, `x^{2}${fmt(b, "x")}${fmt(c, "")}`, "(x+A)(x+B)", [
             { id: "A", l: "A", e: Math.min(r1, r2) }, { id: "B", l: "B", e: Math.max(r1, r2) }
           ], `(x${fmt(Math.min(r1, r2), "")})(x${fmt(Math.max(r1, r2), "")})`, { a: 1, b, c, vizMode: "AREA" });
         }
       } else if (difficulty === "ADVANCED") {
         const a = randInt(2, 5), r1 = randInt(1, 4) * getSign(), r2 = randInt(1, 4) * getSign();
         const b = a * r2 + r1, c = r1 * r2;
-        return q(id, difficulty, stage, fp, `${a}x^2${fmt(b, "x")}${fmt(c, "")}`, "({a}x+A)(x+B)", [
+        return q(id, difficulty, stage, fp, `${a}x^{2}${fmt(b, "x")}${fmt(c, "")}`, "({a}x+A)(x+B)", [
           { id: "A", l: "A", e: r1 }, { id: "B", l: "B", e: r2 }
         ], `(${a}x${fmt(r1, "")})(x${fmt(r2, "")})`, { a, b, c });
       } else {
         if (Math.random() > 0.5) {
           const a = randInt(2, 5), b = randInt(1, 5) * getSign();
-          return q(id, difficulty, stage, fp, `${a * a}x^2${fmt(2 * a * b, "x")}${fmt(b * b, "")}`, "(ax+b)^2", [
+          return q(id, difficulty, stage, fp, `${a * a}x^{2}${fmt(2 * a * b, "x")}${fmt(b * b, "")}`, "(ax+b)^{2}", [
             { id: "a", l: "a", e: a }, { id: "b", l: "b", e: b }
-          ], `(${a}x${fmt(b, "")})^2`, { a: a * a, b: 2 * a * b, c: b * b });
+          ], `(${a}x${fmt(b, "")})^{2}`, { a: a * a, b: 2 * a * b, c: b * b });
         } else {
           const a = randInt(2, 5), b = randInt(1, 5);
-          return q(id, difficulty, stage, fp, `${a * a}x^2-${b * b}`, "(ax+b)(ax-b)", [
+          return q(id, difficulty, stage, fp, `${a * a}x^{2}-${b * b}`, "(ax+b)(ax-b)", [
             { id: "a", l: "a", e: a }, { id: "b", l: "b", e: b }
           ], `(${a}x+${b})(${a}x-${b})`, { a: a * a, b: 0, c: -b * b });
         }
@@ -147,19 +147,19 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
         }
       } else if (difficulty === "CORE") {
         const b = randInt(2, 8) * getSign();
-        return q(id, difficulty, stage, rp, `\\frac{x^2${fmt(b, "x")}}{x}`, "x+b", [
+        return q(id, difficulty, stage, rp, `\\frac{x^{2}${fmt(b, "x")}}{x}`, "x+b", [
           { id: "b", l: "b", e: b }
         ], `x${fmt(b, "")}`);
       } else if (difficulty === "ADVANCED") {
         const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
         const b = r1 + r2, c = r1 * r2;
-        return q(id, difficulty, stage, rp, `\\frac{x^2${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r1, "")}}`, "x+b", [
+        return q(id, difficulty, stage, rp, `\\frac{x^{2}${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r1, "")}}`, "x+b", [
           { id: "b", l: "b", e: r2 }
         ], `x${fmt(r2, "")}`);
       } else {
         const a = randInt(2, 4), r1 = randInt(1, 4) * getSign(), r2 = randInt(1, 4) * getSign();
         const b = a * r2 + r1, c = r1 * r2;
-        return q(id, difficulty, stage, rp, `\\frac{${a}x^2${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r2, "")}}`, "ax+b", [
+        return q(id, difficulty, stage, rp, `\\frac{${a}x^{2}${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r2, "")}}`, "ax+b", [
           { id: "a", l: "a", e: a }, { id: "b", l: "b", e: r1 }
         ], `${a}x${fmt(r1, "")}`);
       }
@@ -174,7 +174,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
       if (difficulty === "BASIC") {
         if (Math.random() > 0.5) {
           const r = randInt(1, 6);
-          return q(id, difficulty, stage, ep, `x^2=${r * r}`, "x=\\pm k", [
+          return q(id, difficulty, stage, ep, `x^{2}=${r * r}`, "x=\\pm k", [
             { id: "k", l: "k", e: r }
           ], `x=\\pm ${r}`, { a: 1, b: 0, c: -r * r, vizMode: P });
         } else {
@@ -186,27 +186,27 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
       } else if (difficulty === "CORE") {
         const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
         const b = -(r1 + r2), c = r1 * r2;
-        return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
+        return q(id, difficulty, stage, ep, `x^{2}${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
           { id: "x1", l: "x_1", e: Math.min(r1, r2) }, { id: "x2", l: "x_2", e: Math.max(r1, r2) }
         ], `${Math.min(r1, r2)}, ${Math.max(r1, r2)}`, { a: 1, b, c, vizMode: P });
       } else if (difficulty === "ADVANCED") {
         const a = randInt(1, 3);
         const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
         const b = -a * (r1 + r2), c = a * r1 * r2;
-        return q(id, difficulty, stage, ep, `${a === 1 ? "" : a}x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
+        return q(id, difficulty, stage, ep, `${a === 1 ? "" : a}x^{2}${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
           { id: "x1", l: "x_1", e: Math.min(r1, r2) }, { id: "x2", l: "x_2", e: Math.max(r1, r2) }
         ], `${Math.min(r1, r2)}, ${Math.max(r1, r2)}`, { a, b, c, vizMode: P });
       } else {
         if (Math.random() > 0.5) {
           const r = randInt(1, 5) * getSign();
           const b = -2 * r, c = r * r;
-          return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}+k=0,\\;x=${r}`, "k", [
+          return q(id, difficulty, stage, ep, `x^{2}${fmt(b, "x")}+k=0,\\;x=${r}`, "k", [
             { id: "k", l: "k", e: c }
           ], `k=${c}`, { a: 1, b, c, vizMode: P });
         } else {
           const r = randInt(1, 5) * getSign();
           const b = -2 * r, c = r * r;
-          return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x", [
+          return q(id, difficulty, stage, ep, `x^{2}${fmt(b, "x")}${fmt(c, "")}=0`, "x", [
             { id: "x", l: "x", e: r }
           ], `x=${r}`, { a: 1, b, c, vizMode: P });
         }

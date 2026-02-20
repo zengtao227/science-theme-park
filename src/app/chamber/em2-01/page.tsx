@@ -159,7 +159,7 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
       pool.push(createQuest("identify", "(AB)C = A(BC)?", "Yes", "Assoc", undefined, [[1, 0], [0, 1]], [[1, 0], [0, 1]], ["Yes", "No", "Sometimes", "Never"]));
       pool.push(createQuest("calculate_matrix", "Inv General", "1,-1,-1,2", "Formula", [[1, -1], [-1, 2]], [[2, 1], [1, 1]]));
       pool.push(createQuest("identify", "Invertible?", "No", "Singular", [[1, 2], [2, 4]], undefined, undefined, ["No", "Yes"]));
-      pool.push(createQuest("calculate_matrix", "A^2", "1,2,0,1", "Power", undefined, [[1, 1], [0, 1]], [[1, 1], [0, 1]]));
+      pool.push(createQuest("calculate_matrix", "A^{2}", "1,2,0,1", "Power", undefined, [[1, 1], [0, 1]], [[1, 1], [0, 1]]));
     }
   }
 

@@ -262,7 +262,7 @@ export default function SC305MolecularForge() {
                             <div className="absolute top-4 left-4 p-4 bg-black/60 border border-white/10 backdrop-blur-md rounded-lg">
                                 <div className="text-[8px] uppercase tracking-widest text-white/40 mb-2">HYBRID TYPE</div>
                                 <div className="text-2xl font-mono text-cyan-400">
-                                    {stage === "HYBRIDIZATION" ? "sp^3" : stage === "VSEPR" ? "VSEPR" : "MO"}
+                                    {stage === "HYBRIDIZATION" ? "sp^{3}" : stage === "VSEPR" ? "VSEPR" : "MO"}
                                 </div>
                             </div>
                         </div>
