@@ -89,8 +89,8 @@ export const deBiology = {
             action_potential: "Welches Ion ist primär für die Depolarisation während der Anstiegsphase verantwortlich?",
             synapse_mechanism: "Welcher Ioneneinstrom löst die Freisetzung von Neurotransmittern in den synaptischen Spalt aus?",
             hint_anatomy: "Suchen Sie nach der langen Faser, die Impulse vom Zellkörper weg leitet.",
-            hint_sodium: "Natrium (Na⁺) strömt während der Depolarisation ein.",
-            hint_calcium: "Calciumeinstrom (Ca²⁺) löst die Vesikelfusion aus.",
+            hint_sodium: "Natrium (Na^+) strömt während der Depolarisation ein.",
+            hint_calcium: "Calciumeinstrom (Ca^2^+) löst die Vesikelfusion aus.",
             hint_nernst: "Verwenden Sie die Nernst-Gleichung: E = 61 log10(C_out/C_in) bei 37°C.",
             func_struct: "Struktur: {s}. Funktion?",
             nernst_k: "K+ außen={o}, innen={i}. E_K?",
@@ -103,9 +103,9 @@ export const deBiology = {
         },
         scenarios: {
             basel_biomedicine: "Universität Basel - Biozentrum Abteilung für Neurobiologie: Am Biozentrum, einem der führenden europäischen Zentren für Molekular- und Zellbiologie, arbeiten Sie in der Forschungsgruppe von Professorin Silvia Arber an der neuronalen Schaltkreis-Assemblierung. Das Labor konzentriert sich darauf zu verstehen, wie Motoneuronen im Rückenmark durch präzise axonale Wegfindung mit spezifischen Muskelgruppen verbunden werden. Mit fortschrittlichen Bildgebungsverfahren und Elektrophysiologie kartieren Sie die dendritischen Verzweigungen von Pyramidenneuronen und verfolgen, wie Aktionspotentiale mit Geschwindigkeiten bis zu 120 m/s durch myelinisierte Axone propagieren. Diese Forschung trägt direkt zur Entwicklung von Therapien für ALS (Amyotrophe Lateralsklerose) und Rückenmarksverletzungen bei. Die kollaborative Umgebung des Biozentrums, wo Friedrich Miescher 1869 erstmals Nuclein (DNA) isolierte, setzt Basels 150-jährige Tradition in den molekularen Lebenswissenschaften fort. Das Verständnis der Neuronenanatomie – von der Proteinsynthese-Maschinerie des Somas bis zu den synaptischen Vesikeln des Axonterminals – ist essentiell für Basels Pharmaindustrie und die neurologische Abteilung des Universitätsspitals.",
-            roche_neuroscience: "Roche Pharma Research - Abteilung für Neurodegeneration & Seltene Krankheiten: Sie sind leitender Neurowissenschaftler am Basler Hauptsitz von Roche und arbeiten an Behandlungen der nächsten Generation für Alzheimer und Parkinson. Ihr Team verwendet Patch-Clamp-Elektrophysiologie, um zu messen, wie experimentelle Verbindungen spannungsgesteuerte Natrium- und Kaliumkanäle in kultivierten Hippocampus-Neuronen beeinflussen. Durch Analyse der Kinetik der Aktionspotential-Generierung – Depolarisation (Na⁺-Einstrom), Repolarisation (K⁺-Ausstrom) und Hyperpolarisation – identifizieren Sie Medikamente, die normale neuronale Feuermuster in erkrankten Gehirnen wiederherstellen können. Basels Pharma-Cluster, einschließlich Roche und Novartis, investiert jährlich über CHF 10 Milliarden in F&E, wobei Neurowissenschaften eine strategische Priorität darstellen. Ihre Arbeit baut auf Jahrzehnten Basler Forschung auf, von der Entdeckung der Benzodiazepine bis zu modernen Biologika, die Amyloid-Beta-Plaques angreifen. Diese Präzisions-Neuropharmakologie könnte den 50 Millionen Menschen weltweit mit Demenz helfen.",
+            roche_neuroscience: "Roche Pharma Research - Abteilung für Neurodegeneration & Seltene Krankheiten: Sie sind leitender Neurowissenschaftler am Basler Hauptsitz von Roche und arbeiten an Behandlungen der nächsten Generation für Alzheimer und Parkinson. Ihr Team verwendet Patch-Clamp-Elektrophysiologie, um zu messen, wie experimentelle Verbindungen spannungsgesteuerte Natrium- und Kaliumkanäle in kultivierten Hippocampus-Neuronen beeinflussen. Durch Analyse der Kinetik der Aktionspotential-Generierung – Depolarisation (Na^+-Einstrom), Repolarisation (K^+-Ausstrom) und Hyperpolarisation – identifizieren Sie Medikamente, die normale neuronale Feuermuster in erkrankten Gehirnen wiederherstellen können. Basels Pharma-Cluster, einschließlich Roche und Novartis, investiert jährlich über CHF 10 Milliarden in F&E, wobei Neurowissenschaften eine strategische Priorität darstellen. Ihre Arbeit baut auf Jahrzehnten Basler Forschung auf, von der Entdeckung der Benzodiazepine bis zu modernen Biologika, die Amyloid-Beta-Plaques angreifen. Diese Präzisions-Neuropharmakologie könnte den 50 Millionen Menschen weltweit mit Demenz helfen.",
             neural_plasticity: "Universität Basel - Interfakultäre Forschungsplattform Molekulare & Kognitive Neurowissenschaften: An der Schnittstelle zwischen Biozentrum und Psychologischem Institut untersuchen Sie synaptische Plastizitätsmechanismen, die Lernen und Gedächtnis zugrunde liegen. Ihre Forschung konzentriert sich auf Langzeitpotenzierung (LTP) in hippocampalen CA1-Neuronen, wo hochfrequente Stimulation (100 Hz) synaptische Verbindungen durch NMDA-Rezeptor-Aktivierung und kalziumabhängige Signalkaskaden verstärkt. Mit Ganzzell-Patch-Clamp-Aufzeichnungen messen Sie exzitatorische postsynaptische Potentiale (EPSPs) und verfolgen, wie wiederholte Stimulation die AMPA-Rezeptordichte an der postsynaptischen Membran erhöht. Diese Arbeit hat direkte Anwendungen für das Verständnis altersbedingten kognitiven Abbaus und die Entwicklung kognitiver Verbesserungsstrategien. Basels einzigartige interdisziplinäre Umgebung, die Molekularbiologie mit kognitiven Neurowissenschaften verbindet, macht es zu einem europäischen Zentrum für translationale Hirnforschung. Die Memory Clinic des Universitätsspitals arbeitet eng mit Ihrem Labor zusammen, um Erkenntnisse in klinische Interventionen zu übersetzen.",
-            friedrich_miescher: "Friedrich Miescher Institut für Biomedizinische Forschung (FMI) - Neuronale Entwicklung & Epigenetik: Am FMI, einem von Novartis finanzierten Forschungsinstitut, arbeiten Sie daran zu verstehen, wie sich neuronale Schaltkreise während der Entwicklung selbst zusammensetzen. Ihr Projekt untersucht die Rolle der Kalziumsignalisierung bei der Neurotransmitter-Freisetzung an der neuromuskulären Endplatte. Mit fluoreszierenden Kalziumindikatoren und Hochgeschwindigkeits-Bildgebung visualisieren Sie, wie Ca²⁺-Einstrom durch spannungsgesteuerte Kalziumkanäle die Fusion synaptischer Vesikel auslöst und Acetylcholin in den synaptischen Spalt (20-40 nm breit) freisetzt. Sie messen quantale Freisetzungsereignisse und berechnen die Freisetzungswahrscheinlichkeit unter verschiedenen Stimulationsprotokollen. Diese Grundlagenforschung ehrt Friedrich Mieschers Vermächtnis – er entdeckte 1869 in Basel die DNA, während er weiße Blutzellkerne aus chirurgischen Verbänden am Universitätsspital untersuchte. Heute setzt das FMI diese Tradition bahnbrechender Molekularbiologie fort, mit Erkenntnissen, die die Medikamentenentwicklung bei Roche und Novartis informieren. Das Verständnis synaptischer Übertragung auf molekularer Ebene ist entscheidend für die Behandlung von Myasthenia gravis, Lambert-Eaton-Syndrom und anderen neuromuskulären Erkrankungen."
+            friedrich_miescher: "Friedrich Miescher Institut für Biomedizinische Forschung (FMI) - Neuronale Entwicklung & Epigenetik: Am FMI, einem von Novartis finanzierten Forschungsinstitut, arbeiten Sie daran zu verstehen, wie sich neuronale Schaltkreise während der Entwicklung selbst zusammensetzen. Ihr Projekt untersucht die Rolle der Kalziumsignalisierung bei der Neurotransmitter-Freisetzung an der neuromuskulären Endplatte. Mit fluoreszierenden Kalziumindikatoren und Hochgeschwindigkeits-Bildgebung visualisieren Sie, wie Ca^2^+-Einstrom durch spannungsgesteuerte Kalziumkanäle die Fusion synaptischer Vesikel auslöst und Acetylcholin in den synaptischen Spalt (20-40 nm breit) freisetzt. Sie messen quantale Freisetzungsereignisse und berechnen die Freisetzungswahrscheinlichkeit unter verschiedenen Stimulationsprotokollen. Diese Grundlagenforschung ehrt Friedrich Mieschers Vermächtnis – er entdeckte 1869 in Basel die DNA, während er weiße Blutzellkerne aus chirurgischen Verbänden am Universitätsspital untersuchte. Heute setzt das FMI diese Tradition bahnbrechender Molekularbiologie fort, mit Erkenntnissen, die die Medikamentenentwicklung bei Roche und Novartis informieren. Das Verständnis synaptischer Übertragung auf molekularer Ebene ist entscheidend für die Behandlung von Myasthenia gravis, Lambert-Eaton-Syndrom und anderen neuromuskulären Erkrankungen."
         },
         feedback: {
             correct: "Aktionspotential-Fortleitung erfolgreich verifiziert!",
@@ -379,7 +379,7 @@ export const deBiology = {
         },
         prompts: {
             osmosis_prompt: "Die Zelle befindet sich in einer {status} Umgebung. Was passiert mit dem Wasser?",
-            respiration_prompt: "Vervollständigen Sie den Reaktanten: C₆H₁₂O₆ + 6{reactant} → ...",
+            respiration_prompt: "Vervollständigen Sie den Reaktanten: C_6H_1_2O_6 + 6{reactant} → ...",
             product_prompt: "Was ist das primäre Energieprodukt der Zellatmung?",
             homeostasis_target: "Gleichen Sie die Umgebung aus, um den isotonischen Zustand zu erreichen.",
             hint_hyper: "Hoher Salzgehalt außen! Wasser verlässt die Zelle.",
@@ -434,14 +434,14 @@ export const deBiology = {
             rate: "Rate",
             thylakoid: "THYLAKOID",
             stroma: "STROMA",
-            co2_label: "CO₂",
+            co2_label: "CO_2",
             temp_label: "Temp"
         },
         prompts: {
-            reactant: "Vervollständigen Sie die Gleichung: 6CO₂ + 6H₂O + Licht → C₆H₁₂O₆ + 6{O₂}. Wie viele fehlende Reaktanten?",
+            reactant: "Vervollständigen Sie die Gleichung: 6CO_2 + 6H_2O + Licht → C_6H_1_2O_6 + 6{O_2}. Wie viele fehlende Reaktanten?",
             hint_oxygen: "Zählen Sie die Sauerstoffatome auf beiden Seiten der Gleichung",
-            glucose: "Wie viele Glucosemoleküle werden aus {co2} CO₂-Molekülen produziert?",
-            hint_glucose: "Das Verhältnis von CO₂ zu Glucose beträgt 6:1",
+            glucose: "Wie viele Glucosemoleküle werden aus {co2} CO_2-Molekülen produziert?",
+            hint_glucose: "Das Verhältnis von CO_2 zu Glucose beträgt 6:1",
             water_count: "Wie viele Wassermoleküle werden benötigt, um {glucose} Glucosemoleküle zu produzieren?",
             hint_balance: "Gleichung ausbalancieren: 6 Wassermoleküle pro Glucosemolekül",
             factor_effect: "Wenn {factor} um die Hälfte sinkt, was passiert mit der Photosyntheserate?",
@@ -982,7 +982,7 @@ export const deBiology = {
                 carbon_cycle: "KOHLENSTOFFKREISLAUF",
                 nitrogen_cycle: "N-KREISLAUF",
                 water_cycle: "WASSERKREISLAUF",
-                co2_air: "CO₂ in der Luft",
+                co2_air: "CO_2 in der Luft",
                 plants: "Pflanzen",
                 animals: "Tiere",
                 river: "Rhein",

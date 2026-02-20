@@ -27,7 +27,7 @@ type SP302QuestData = {
   m: number;      // 质量 (kg)
   f?: number;     // 力 (N)
   mu?: number;    // 摩擦系数
-  a?: number;     // 加速度 (m/s²)
+  a?: number;     // 加速度 (m/s^2)
   theta?: number; // 斜面角度 (度)
   v?: number;     // 速度 (m/s)
   scen: string;   // 场景描述键

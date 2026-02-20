@@ -20,9 +20,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(30² + 40²) = 50 N",
-        "cn": "正确！F = √(30² + 40²) = 50 N",
-        "de": "Richtig! F = √(30² + 40²) = 50 N"
+        "en": "Correct! F = √(30^2 + 40^2) = 50 N",
+        "cn": "正确！F = √(30^2 + 40^2) = 50 N",
+        "de": "Richtig! F = √(30^2 + 40^2) = 50 N"
       },
       "incorrect": {
         "en": "Use the Pythagorean theorem for perpendicular forces.",
@@ -53,14 +53,14 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(50² + 50²) = 70.71 N",
-        "cn": "正确！F = √(50² + 50²) = 70.71 N",
-        "de": "Richtig! F = √(50² + 50²) = 70.71 N"
+        "en": "Correct! F = √(50^2 + 50^2) = 70.71 N",
+        "cn": "正确！F = √(50^2 + 50^2) = 70.71 N",
+        "de": "Richtig! F = √(50^2 + 50^2) = 70.71 N"
       },
       "incorrect": {
-        "en": "For equal perpendicular forces, F = F₁√2",
-        "cn": "对于相等的垂直力，F = F₁√2",
-        "de": "Für gleiche senkrechte Kräfte gilt F = F₁√2"
+        "en": "For equal perpendicular forces, F = F_1√2",
+        "cn": "对于相等的垂直力，F = F_1√2",
+        "de": "Für gleiche senkrechte Kräfte gilt F = F_1√2"
       }
     },
     "prerequisites": ["SP1.01.024"]
@@ -86,9 +86,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(20² + 15²) = 25 N",
-        "cn": "正确！F = √(20² + 15²) = 25 N",
-        "de": "Richtig! F = √(20² + 15²) = 25 N"
+        "en": "Correct! F = √(20^2 + 15^2) = 25 N",
+        "cn": "正确！F = √(20^2 + 15^2) = 25 N",
+        "de": "Richtig! F = √(20^2 + 15^2) = 25 N"
       },
       "incorrect": {
         "en": "This is a 3-4-5 triangle scaled by 5.",

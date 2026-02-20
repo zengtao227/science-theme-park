@@ -9,7 +9,7 @@ import { k } from './constants';
  * Calculate electric field strength from a point charge
  * 计算点电荷的电场强度
  * 
- * Formula: E = kQ/r²
+ * Formula: E = kQ/r^2
  * 
  * @param charge - Charge in Coulombs (C)
  * @param distance - Distance from charge in meters (m)

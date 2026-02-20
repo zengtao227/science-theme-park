@@ -117,7 +117,7 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
                 anchorX="center"
                 anchorY="middle"
             >
-                θ₁ = {incidentAngle.toFixed(1)}°
+                θ_1 = {incidentAngle.toFixed(1)}°
             </Text>
             
             {!totalReflection && (
@@ -128,7 +128,7 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
                     anchorX="center"
                     anchorY="middle"
                 >
-                    θ₂ = {theta2Deg.toFixed(1)}°
+                    θ_2 = {theta2Deg.toFixed(1)}°
                 </Text>
             )}
             
@@ -152,7 +152,7 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
                 anchorX="left"
                 anchorY="middle"
             >
-                n₁ = {n1.toFixed(2)}
+                n_1 = {n1.toFixed(2)}
             </Text>
             <Text
                 position={[-3, -2, 0]}
@@ -161,7 +161,7 @@ function Interface({ n1, n2, incidentAngle }: { n1: number; n2: number; incident
                 anchorX="left"
                 anchorY="middle"
             >
-                n₂ = {n2.toFixed(2)}
+                n_2 = {n2.toFixed(2)}
             </Text>
         </group>
     );

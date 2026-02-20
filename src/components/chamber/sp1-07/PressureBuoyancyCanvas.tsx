@@ -218,7 +218,7 @@ export default function PressureBuoyancyCanvas({
         // Density display
         ctx.fillStyle = "#ffffff";
         ctx.font = "14px monospace";
-        ctx.fillText(`ρ = ${density} kg/m³`, w / 2, objectY - 20);
+        ctx.fillText(`ρ = ${density} kg/m^3`, w / 2, objectY - 20);
         ctx.fillText(floats ? "FLOATS" : "SINKS", w / 2, objectY - 40);
     };
 
@@ -298,15 +298,15 @@ export default function PressureBuoyancyCanvas({
         ctx.font = "12px monospace";
         ctx.textAlign = "center";
         ctx.fillStyle = "#ff0000";
-        ctx.fillText(`F₁ = ${force}N`, smallPistonX, smallPistonY - 50);
+        ctx.fillText(`F_1 = ${force}N`, smallPistonX, smallPistonY - 50);
         ctx.fillStyle = "#00ff00";
-        ctx.fillText(`F₂ = ${outputForce.toFixed(0)}N`, largePistonX, largePistonY - 70);
+        ctx.fillText(`F_2 = ${outputForce.toFixed(0)}N`, largePistonX, largePistonY - 70);
 
         // Area labels
         ctx.fillStyle = "#ffffff";
         ctx.font = "10px monospace";
-        ctx.fillText(`A₁`, smallPistonX, baseY + 30);
-        ctx.fillText(`A₂`, largePistonX, baseY + 30);
+        ctx.fillText(`A_1`, smallPistonX, baseY + 30);
+        ctx.fillText(`A_2`, largePistonX, baseY + 30);
     };
 
     return (

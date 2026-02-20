@@ -34,7 +34,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                     opacity="0.3"
                 />
 
-                {/* a² - Top Left */}
+                {/* a^2 - Top Left */}
                 <g transform={`translate(${padding}, ${padding})`}>
                     <rect
                         width={aw} height={aw}
@@ -45,7 +45,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={aw / 2} y={aw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >a²</text>
+                    >a^2</text>
                     <text x={aw / 2} y={aw / 2 + 20} fill="#ff3131" fontSize="10" textAnchor="middle">{a * a}</text>
                 </g>
 
@@ -79,7 +79,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                     <text x={aw / 2} y={bw / 2 + 20} fill="#ffaa00" fontSize="10" textAnchor="middle">{a * b}</text>
                 </g>
 
-                {/* b² - Bottom Right */}
+                {/* b^2 - Bottom Right */}
                 <g transform={`translate(${padding + aw}, ${padding + aw})`}>
                     <rect
                         width={bw} height={bw}
@@ -90,7 +90,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={bw / 2} y={bw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >b²</text>
+                    >b^2</text>
                     <text x={bw / 2} y={bw / 2 + 20} fill="#39ff14" fontSize="10" textAnchor="middle">{b * b}</text>
                 </g>
 
@@ -103,11 +103,11 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
 
             {/* Legend Overlay */}
             <div className="absolute top-4 left-4 bg-black/60 p-3 rounded-lg border border-white/10 backdrop-blur-md">
-                <div className="text-neon-cyan font-black text-xs mb-2">(a+b)² = a² + 2ab + b²</div>
+                <div className="text-neon-cyan font-black text-xs mb-2">(a+b)^2 = a^2 + 2ab + b^2</div>
                 <div className="flex items-center gap-4 text-[10px] font-mono">
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#ff3131]" />
-                        <span className="text-white/60">a²={a * a}</span>
+                        <span className="text-white/60">a^2={a * a}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#ffaa00]" />
@@ -115,7 +115,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                     </div>
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#39ff14]" />
-                        <span className="text-white/60">b²={b * b}</span>
+                        <span className="text-white/60">b^2={b * b}</span>
                     </div>
                 </div>
             </div>

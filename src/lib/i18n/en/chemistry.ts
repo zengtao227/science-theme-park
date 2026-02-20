@@ -70,16 +70,16 @@ export const enChemistry = {
                 "iodine": "Iodine"
             },
             "substances": {
-                "soda": "Baking Soda (NaHCO₃)",
+                "soda": "Baking Soda (NaHCO_3)",
                 "salt": "Salt (NaCl)",
-                "starch": "Starch (C₆H₁₀O₅)ₙ",
+                "starch": "Starch (C_6H_1₀O_5)ₙ",
                 "powder_a": "Powder A",
                 "powder_b": "Powder B",
                 "powder_c": "Powder C"
             },
             "results": {
                 "soda_water": "Dissolves slightly",
-                "soda_vinegar": "Fizzes! CO₂ bubbles!",
+                "soda_vinegar": "Fizzes! CO_2 bubbles!",
                 "soda_fire": "No visible change",
                 "soda_iodine": "No color change",
                 "salt_water": "Dissolves completely",
@@ -191,8 +191,8 @@ export const enChemistry = {
         footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
         labels: {
             cell_potential: "CELL POTENTIAL",
-            zn_concentration: "Zn²⁺ CONCENTRATION",
-            cu_concentration: "Cu²⁺ CONCENTRATION",
+            zn_concentration: "Zn^2^+ CONCENTRATION",
+            cu_concentration: "Cu^2^+ CONCENTRATION",
             temperature: "TEMPERATURE",
             show_electrons: "Show Electron Flow",
             show_ions: "Show Ion Migration",
@@ -213,7 +213,7 @@ export const enChemistry = {
             build_desc: "Construct Zn-Cu galvanic cell",
             measure_desc: "Calculate cell potential with Nernst equation",
             analyze_desc: "Observe redox reactions and electron flow",
-            build_hint: "Zn is oxidized at anode, Cu²⁺ reduced at cathode",
+            build_hint: "Zn is oxidized at anode, Cu^2^+ reduced at cathode",
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "Salt bridge maintains electrical neutrality"
         },
@@ -343,11 +343,11 @@ export const enChemistry = {
             instruction: "Select a tool, then click on a powder to test. Use the reactions to identify which is Baking Soda, Salt, or Starch!",
             tools: { water: "Water", vinegar: "Vinegar", fire: "Fire", iodine: "Iodine" },
             substances: {
-                soda: "Baking Soda (NaHCO₃)", salt: "Salt (NaCl)", starch: "Starch (C₆H₁₀O₅)ₙ",
+                soda: "Baking Soda (NaHCO_3)", salt: "Salt (NaCl)", starch: "Starch (C_6H_1₀O_5)ₙ",
                 powder_a: "Powder A", powder_b: "Powder B", powder_c: "Powder C"
             },
             results: {
-                soda_water: "Dissolves slightly", soda_vinegar: "Fizzes! CO₂ bubbles!", soda_fire: "No visible change", soda_iodine: "No color change",
+                soda_water: "Dissolves slightly", soda_vinegar: "Fizzes! CO_2 bubbles!", soda_fire: "No visible change", soda_iodine: "No color change",
                 salt_water: "Dissolves completely", salt_vinegar: "Dissolves, no fizz", salt_fire: "Melts at high temp", salt_iodine: "No color change",
                 starch_water: "Forms cloudy mixture", starch_vinegar: "No reaction", starch_fire: "Burns/chars", starch_iodine: "Turns BLUE-BLACK!",
                 no_reaction: "No reaction"
@@ -363,7 +363,7 @@ export const enChemistry = {
             hint: "Hint"
         },
         hints: {
-            soda: "Baking Soda: Fizzes with vinegar (CO₂)",
+            soda: "Baking Soda: Fizzes with vinegar (CO_2)",
             starch: "Starch: Turns blue-black with iodine",
             salt: "Salt: Dissolves completely in water"
         },
@@ -396,7 +396,7 @@ export const enChemistry = {
             basic_2: "Which powder dissolves completely in water?",
             basic_3: "Which powder is white and crystalline?",
             basic_4: "Which powder produces bubbles with acid?",
-            core_0: "Which powder produces CO₂ gas?",
+            core_0: "Which powder produces CO_2 gas?",
             core_1: "Which powder forms a colloidal suspension?",
             core_2: "Which powder has the highest solubility?",
             core_3: "Which powder reacts with acetic acid?",
@@ -406,9 +406,9 @@ export const enChemistry = {
             advanced_2: "Which powder is a carbohydrate polymer?",
             advanced_3: "Which powder releases carbonic acid?",
             advanced_4: "Which powder forms an ionic solution?",
-            elite_0: "Which powder has formula NaHCO₃?",
+            elite_0: "Which powder has formula NaHCO_3?",
             elite_1: "Which powder has formula NaCl?",
-            elite_2: "Which powder has formula (C₆H₁₀O₅)ₙ?",
+            elite_2: "Which powder has formula (C_6H_1₀O_5)ₙ?",
             elite_3: "Which powder undergoes acid-base neutralization?",
             elite_4: "Which powder forms a triiodide complex?"
         },
@@ -529,9 +529,9 @@ export const enChemistry = {
             mass_number: "Mass Number (A)",
             charge: "Charge",
             periodic_table: "PERIODIC TABLE",
-            protons: "PROTONS (p⁺)",
+            protons: "PROTONS (p^+)",
             neutrons: "NEUTRONEN (n⁰)",
-            electrons: "ELEKTRONEN (e⁻)"
+            electrons: "ELEKTRONEN (e^-)"
         },
         mission: {
             title: "MISSION: CYBER FORGE",
@@ -705,7 +705,7 @@ export const enChemistry = {
         scenarios: {
             arrhenius: "Novartis Kinetics Lab: Study how temperature and activation energy affect reaction rates. The Arrhenius equation k = A·exp(-Ea/RT) describes the temperature dependence of rate constants. Higher temperatures increase molecular kinetic energy, leading to more successful collisions.",
             rate_law: "Roche Pharmaceutical Research: Determine reaction orders and rate laws from experimental data. The rate law expresses how reaction rate depends on reactant concentrations. Understanding rate laws is crucial for optimizing drug synthesis and predicting reaction behavior.",
-            half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t₁/₂ = ln(2)/k."
+            half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t_1/_2 = ln(2)/k."
         },
         problems: {
             arr_temp_300_ea_50: "Novartis reactor at T=300K, activation energy Ea=50 kJ/mol. Calculate relative rate constant k.",
@@ -718,29 +718,29 @@ export const enChemistry = {
             arr_ln_form: "Use logarithmic form: ln(k) = ln(A) - Ea/RT. Calculate ln(k) for Ea=50 kJ/mol, T=300K.",
             arr_activation: "Two rate constants differ by factor of 10 over 50K temperature range. Find Ea.",
             arr_catalyst: "Catalyst reduces Ea by 20 kJ/mol (from 80 to 60). Calculate k ratio at 300K.",
-            arr_two_temps: "Measure k at 300K and 350K. Use ln(k₂/k₁) = -Ea/R(1/T₂ - 1/T₁) to find Ea=52 kJ/mol.",
+            arr_two_temps: "Measure k at 300K and 350K. Use ln(k_2/k_1) = -Ea/R(1/T_2 - 1/T_1) to find Ea=52 kJ/mol.",
             arr_plot: "Arrhenius plot has slope -7800 K. Calculate Ea (slope = -Ea/R).",
-            arr_frequency: "Given k=1.5×10⁻⁹, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
-            arr_temp_for_k: "Target rate constant k=10⁶ s⁻¹, Ea=60 kJ/mol. What temperature is needed?",
+            arr_frequency: "Given k=1.5×10^-^9, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
+            arr_temp_for_k: "Target rate constant k=10^6 s^-¹, Ea=60 kJ/mol. What temperature is needed?",
             arr_enzyme: "Enzyme-catalyzed reaction: Ea=40 kJ/mol, body temperature T=310K. Calculate k.",
             arr_complex: "Two-step mechanism: Ea1=50, Ea2=30 kJ/mol. Overall Ea=40 kJ/mol. Find k at 300K.",
-            arr_pressure: "Pressure effect: activation volume ΔV‡=-10 cm³/mol. Calculate k ratio.",
+            arr_pressure: "Pressure effect: activation volume ΔV‡=-10 cm^3/mol. Calculate k ratio.",
             arr_quantum: "Quantum tunneling correction factor κ=2.5. Find effective k.",
             arr_isotope: "Kinetic isotope effect: H vs D substitution. Calculate kH/kD for Ea=50 kJ/mol.",
-            arr_transition: "Transition state theory: k=10⁶ s⁻¹ at 300K. Calculate ΔG‡.",
-            rl_first_order: "First-order reaction: rate = k[A]. Given [A]=2.0 M, k=0.5 s⁻¹, find rate.",
-            rl_second_order: "Second-order: rate = k[A]². [A]=1.5 M, k=0.4 M⁻¹s⁻¹. Calculate rate.",
+            arr_transition: "Transition state theory: k=10^6 s^-¹ at 300K. Calculate ΔG‡.",
+            rl_first_order: "First-order reaction: rate = k[A]. Given [A]=2.0 M, k=0.5 s^-¹, find rate.",
+            rl_second_order: "Second-order: rate = k[A]^2. [A]=1.5 M, k=0.4 M^-¹s^-¹. Calculate rate.",
             rl_zero_order: "Zero-order reaction: rate = k (independent of [A]). k=0.8 M/s. Find rate.",
             rl_concentration: "First-order reaction: [A] doubles. By what factor does rate increase?",
-            rl_initial: "Initial rate method: [A]₀=1.0 M, k=0.6 s⁻¹. Calculate initial rate.",
-            rl_mixed: "Mixed order: rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M⁻²s⁻¹. Find rate.",
+            rl_initial: "Initial rate method: [A]₀=1.0 M, k=0.6 s^-¹. Calculate initial rate.",
+            rl_mixed: "Mixed order: rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M^-^2s^-¹. Find rate.",
             rl_order: "Doubling [A] quadruples rate. What is the reaction order n?",
-            rl_integrated: "Integrated first-order: [A]t = [A]₀·e⁻ᵏᵗ. [A]₀=1 M, k=0.1 s⁻¹, t=10 s. Find [A].",
-            rl_time: "First-order half-life: t₁/₂ = ln(2)/k. Given k=0.05 s⁻¹, find t₁/₂.",
+            rl_integrated: "Integrated first-order: [A]t = [A]₀·e^-ᵏᵗ. [A]₀=1 M, k=0.1 s^-¹, t=10 s. Find [A].",
+            rl_time: "First-order half-life: t_1/_2 = ln(2)/k. Given k=0.05 s^-¹, find t_1/_2.",
             rl_constant: "From rate=2 M/s and [A]=4 M (first-order), determine k.",
             rl_complex_order: "Fractional order: rate = k[A]^1.5[B]^0.5. [A]=4, [B]=9, k=0.2. Find rate.",
-            rl_mechanism: "Multi-step: overall rate = k₁k₂/(k₁+k₂). k₁=0.5, k₂=0.3. Calculate rate.",
-            rl_steady_state: "Steady-state approximation: [I]ss = k₁[A]/k₂. k₁=0.5, k₂=0.2. Find [I].",
+            rl_mechanism: "Multi-step: overall rate = k_1k_2/(k_1+k_2). k_1=0.5, k_2=0.3. Calculate rate.",
+            rl_steady_state: "Steady-state approximation: [I]ss = k_1[A]/k_2. k_1=0.5, k_2=0.2. Find [I].",
             rl_pre_equilibrium: "Pre-equilibrium: Keq = kf/kr. kf=0.8, kr=0.2. Calculate Keq.",
             rl_inhibition: "Competitive inhibition: rate reduced by factor (1+[I]/KI). [I]=2, KI=1. Find rate factor.",
             rl_oscillating: "Belousov-Zhabotinsky oscillating reaction. Maximum [A] in cycle.",
@@ -748,26 +748,26 @@ export const enChemistry = {
             rl_chain: "Chain reaction: chain length ν = kp/kt. kp/kt=100. Find ν.",
             rl_photochemical: "Photochemical quantum yield Φ = molecules reacted / photons absorbed = 0.8.",
             rl_enzyme_complex: "Michaelis-Menten: V = Vmax[S]/(KM+[S]). KM=1, [S]=5. Find V/Vmax.",
-            hl_first_order: "First-order half-life: t₁/₂ = ln(2)/k = 0.693/k. k=0.1 s⁻¹. Find t₁/₂.",
-            hl_second_order: "Second-order: t₁/₂ = 1/(k[A]₀). k=0.5 M⁻¹s⁻¹, [A]₀=2 M. Calculate t₁/₂.",
-            hl_zero_order: "Zero-order: t₁/₂ = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Find t₁/₂.",
+            hl_first_order: "First-order half-life: t_1/_2 = ln(2)/k = 0.693/k. k=0.1 s^-¹. Find t_1/_2.",
+            hl_second_order: "Second-order: t_1/_2 = 1/(k[A]₀). k=0.5 M^-¹s^-¹, [A]₀=2 M. Calculate t_1/_2.",
+            hl_zero_order: "Zero-order: t_1/_2 = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Find t_1/_2.",
             hl_remaining: "After 2 half-lives, what fraction remains? [A]₀=8 M → [A]=?",
-            hl_time: "75% decay means 2 half-lives. If t₁/₂=10s, total time = 20s.",
-            hl_find_k: "From t₁/₂=5s (first-order), calculate k = ln(2)/t₁/₂.",
-            hl_fraction: "After 3 half-lives: fraction = (1/2)³ = 1/8 = 0.125.",
-            hl_radioactive: "Radioactive decay: N = N₀(1/2)^(t/t₁/₂). N₀=1000, t=20s, t₁/₂=10s. Find N.",
-            hl_drug: "Drug elimination: [D]₀=100 mg/L, t₁/₂=4h, t=12h (3 half-lives). [D]=12.5 mg/L.",
+            hl_time: "75% decay means 2 half-lives. If t_1/_2=10s, total time = 20s.",
+            hl_find_k: "From t_1/_2=5s (first-order), calculate k = ln(2)/t_1/_2.",
+            hl_fraction: "After 3 half-lives: fraction = (1/2)^3 = 1/8 = 0.125.",
+            hl_radioactive: "Radioactive decay: N = N₀(1/2)^(t/t_1/_2). N₀=1000, t=20s, t_1/_2=10s. Find N.",
+            hl_drug: "Drug elimination: [D]₀=100 mg/L, t_1/_2=4h, t=12h (3 half-lives). [D]=12.5 mg/L.",
             hl_compare: "Compare two reactions: kA=0.2, kB=0.4. Ratio of half-lives = kB/kA = 2.",
-            hl_consecutive: "Consecutive A→B→C: maximum [B] at tmax = ln(k₁/k₂)/(k₁-k₂). k₁=0.5, k₂=0.2.",
-            hl_parallel: "Parallel paths: koverall = k₁+k₂. k₁=0.3, k₂=0.2, t₁/₂ = ln(2)/0.5.",
+            hl_consecutive: "Consecutive A→B→C: maximum [B] at tmax = ln(k_1/k_2)/(k_1-k_2). k_1=0.5, k_2=0.2.",
+            hl_parallel: "Parallel paths: koverall = k_1+k_2. k_1=0.3, k_2=0.2, t_1/_2 = ln(2)/0.5.",
             hl_reversible: "Reversible: [A]eq = [A]₀·kr/(kf+kr). kf=0.5, kr=0.1.",
-            hl_temperature: "t₁/₂ decreases with temperature. At 350K vs 300K with Ea=50 kJ/mol.",
-            hl_enzyme: "Enzyme turnover: kcat=100 s⁻¹. t₁/₂ = ln(2)/kcat = 0.007s.",
-            hl_isotope_dating: "Carbon-14 dating: N/N₀=0.25 = (1/2)². Age = 2×5730 = 11460 years.",
+            hl_temperature: "t_1/_2 decreases with temperature. At 350K vs 300K with Ea=50 kJ/mol.",
+            hl_enzyme: "Enzyme turnover: kcat=100 s^-¹. t_1/_2 = ln(2)/kcat = 0.007s.",
+            hl_isotope_dating: "Carbon-14 dating: N/N₀=0.25 = (1/2)^2. Age = 2×5730 = 11460 years.",
             hl_branching: "Branching decay: α and β paths. kα/kβ=2, so fα = 2/3 = 0.67.",
-            hl_secular: "Secular equilibrium: parent t₁/₂ >> daughter t₁/₂. Activity ratio → 1.",
-            hl_transient: "Transient equilibrium: tmax when daughter activity peaks. t₁/₂,1=10, t₁/₂,2=2.",
-            hl_cosmogenic: "¹⁰Be cosmogenic dating: t₁/₂=1.39×10⁶ years. N/N₀=0.5 → age = t₁/₂."
+            hl_secular: "Secular equilibrium: parent t_1/_2 >> daughter t_1/_2. Activity ratio → 1.",
+            hl_transient: "Transient equilibrium: tmax when daughter activity peaks. t_1/_2,1=10, t_1/_2,2=2.",
+            hl_cosmogenic: "¹⁰Be cosmogenic dating: t_1/_2=1.39×10^6 years. N/N₀=0.5 → age = t_1/_2."
         }
     },
     sc2_02: {
@@ -1033,7 +1033,7 @@ export const enChemistry = {
             chemistry_score: "Chemistry Score"
         },
         prompts: {
-            combustion: "Complete combustion of {reactant} produces CO₂ and H₂O. How many CO₂ molecules?",
+            combustion: "Complete combustion of {reactant} produces CO_2 and H_2O. How many CO_2 molecules?",
             substitution: "When {alkane} reacts with {halogen} under UV light, what is the main product?",
             addition: "When {alkene} reacts with {reagent}, what is the product?",
             hint_combustion: "Count carbon atoms in the reactant",
@@ -1209,7 +1209,7 @@ export const enChemistry = {
         },
         scenarios: {
             ph_basics: "Novartis Pharmaceutical pH Control: You are a formulation scientist at Novartis Basel, developing a new oral medication. The drug's stability and bioavailability critically depend on pH. In the stomach (pH 1.5), the active ingredient must remain stable, while in the bloodstream (pH 7.4), it must dissolve rapidly. You are testing buffer systems to maintain the optimal pH range during manufacturing and storage. Using precision pH meters and Henderson-Hasselbalch calculations, you adjust the ratio of weak acid to conjugate base. A deviation of just 0.2 pH units could render the entire batch ineffective, affecting thousands of patients across Switzerland. This pharmaceutical pH control is similar to how your body's blood maintains a narrow pH range to keep you healthy.",
-            neutralization: "University Hospital Basel Gastric Treatment: You are a clinical pharmacist at the Universitätsspital Basel, preparing antacid formulations for patients with severe acid reflux. The stomach produces hydrochloric acid (HCl) at pH 1-2, causing painful symptoms. Your task is to calculate the exact amount of sodium bicarbonate (NaHCO₃) needed to neutralize the excess acid without overshooting to alkaline pH, which could cause different complications. You must consider the patient's stomach volume (approximately 50mL when empty) and the acid concentration. The neutralization reaction produces CO₂ gas, which patients experience as burping. Precise stoichiometric calculations ensure effective relief while minimizing side effects. This is exactly like adding baking soda to vinegar in your kitchen, but with medical precision.",
+            neutralization: "University Hospital Basel Gastric Treatment: You are a clinical pharmacist at the Universitätsspital Basel, preparing antacid formulations for patients with severe acid reflux. The stomach produces hydrochloric acid (HCl) at pH 1-2, causing painful symptoms. Your task is to calculate the exact amount of sodium bicarbonate (NaHCO_3) needed to neutralize the excess acid without overshooting to alkaline pH, which could cause different complications. You must consider the patient's stomach volume (approximately 50mL when empty) and the acid concentration. The neutralization reaction produces CO_2 gas, which patients experience as burping. Precise stoichiometric calculations ensure effective relief while minimizing side effects. This is exactly like adding baking soda to vinegar in your kitchen, but with medical precision.",
             titration: "Roche Quality Control Laboratory: You are a quality control analyst at Roche's Basel headquarters, performing titration analysis to verify the purity of a new drug compound. Using a calibrated burette, you add standardized NaOH solution dropwise to a sample of the drug dissolved in water. A pH electrode continuously monitors the solution, generating a titration curve on your computer screen. The sharp pH jump at the equivalence point indicates complete neutralization, and the volume of titrant used reveals the drug's exact concentration. Any deviation from the specified purity (99.5% minimum) triggers a full batch investigation. This analytical precision ensures that every Roche medication meets Swiss pharmaceutical standards. It's like using a precise measuring cup to ensure your recipe turns out perfect every time."
         },
         prompts: {
@@ -1255,8 +1255,8 @@ export const enChemistry = {
             electrochemistry: "ELECTROCHEMISTRY"
         },
         scenarios: {
-            oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn⁷⁺) converting to brown manganese dioxide (Mn⁴⁺). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
-            electron_transfer: "Roche Battery Technology Development: You are a materials scientist at Roche's energy research division in Basel, developing next-generation lithium-ion batteries for medical devices. The battery's cathode material (LiCoO₂) undergoes reversible electron transfer during charging and discharging cycles. Cobalt alternates between +3 and +4 oxidation states as lithium ions shuttle in and out. You must balance the redox equations to optimize energy density and cycle life. Each battery cell must deliver exactly 3.7V for 500+ charge cycles to power portable insulin pumps and cardiac monitors reliably. Electron transfer efficiency directly impacts patient safety—a failing battery in a critical medical device could be life-threatening. This is similar to a rechargeable phone battery, but with medical-grade precision and reliability requirements.",
+            oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn^7^+) converting to brown manganese dioxide (Mn^4^+). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
+            electron_transfer: "Roche Battery Technology Development: You are a materials scientist at Roche's energy research division in Basel, developing next-generation lithium-ion batteries for medical devices. The battery's cathode material (LiCoO_2) undergoes reversible electron transfer during charging and discharging cycles. Cobalt alternates between +3 and +4 oxidation states as lithium ions shuttle in and out. You must balance the redox equations to optimize energy density and cycle life. Each battery cell must deliver exactly 3.7V for 500+ charge cycles to power portable insulin pumps and cardiac monitors reliably. Electron transfer efficiency directly impacts patient safety—a failing battery in a critical medical device could be life-threatening. This is similar to a rechargeable phone battery, but with medical-grade precision and reliability requirements.",
             electrochemistry: "Basel Industrial Electroplating Heritage: You are a process engineer at a Basel metal finishing company, continuing the city's 500-year tradition of precision metalworking. Today, you're electroplating surgical instruments with a thin gold layer for corrosion resistance and biocompatibility. Using the Nernst equation, you calculate the cell potential needed to deposit exactly 2.5 micrometers of gold onto stainless steel forceps. The electrochemical cell operates at 1.5V with carefully controlled current density. Too much current causes rough, porous deposits; too little extends processing time uneconomically. You apply Faraday's laws to determine that 3.2 amperes for 45 minutes will deposit the required mass. This electrochemical precision ensures Basel-made surgical tools meet international medical standards and maintain the city's reputation for quality craftsmanship."
         },
         prompts: {
@@ -1323,10 +1323,10 @@ export const enChemistry = {
             EB_BASIC_3: "At the Basel Materials Science Laboratory, researcher Dr. Schmidt studies iron oxidation—the rusting process that affects pharmaceutical equipment. When iron reacts with oxygen, it forms iron(III) oxide (rust). Balancing this equation shows that 4 iron atoms react with 3 oxygen molecules to produce 2 formula units of iron oxide. This reaction costs Basel's pharmaceutical industry millions annually in equipment maintenance and replacement. Dr. Schmidt's research focuses on protective coatings to prevent rust in Roche's and Novartis's manufacturing facilities. The laboratory tests over 200 different coating materials monthly, seeking solutions that withstand harsh chemical environments in pharmaceutical production. Understanding this oxidation reaction helps students appreciate why pharmaceutical companies invest heavily in stainless steel equipment—the chromium in stainless steel forms a protective oxide layer that prevents iron oxidation, ensuring equipment longevity and product purity.",
             EB_BASIC_4: "In the Roche Equipment Manufacturing Workshop, engineer Lisa explains aluminum oxidation to apprentice chemists. When aluminum reacts with oxygen, it forms a protective aluminum oxide layer that prevents further corrosion. Balancing this equation requires 4 aluminum atoms and 3 oxygen molecules to produce 2 formula units of aluminum oxide. This self-protecting property makes aluminum ideal for pharmaceutical equipment—Roche uses aluminum reactors for synthesizing acid-sensitive compounds. The workshop manufactures custom aluminum equipment for Roche's Basel facilities, producing 50 specialized reactors annually. Lisa demonstrates that despite aluminum being more reactive than iron, its oxide layer makes it more corrosion-resistant. This principle guides equipment selection in pharmaceutical manufacturing, where material compatibility with reactive chemicals is crucial. Understanding equation balancing helps chemists calculate the aluminum thickness needed to ensure adequate protection after oxide layer formation.",
             EB_BASIC_5: "At Basel's Natural Gas Distribution Center in Kleinhüningen, safety inspector Andreas teaches students about methane combustion. Natural gas, which is primarily methane, heats 40% of Basel's buildings. Balancing the combustion equation shows that 1 methane molecule requires 2 oxygen molecules to produce 1 carbon dioxide and 2 water molecules. The center distributes 120 million cubic meters of natural gas annually to Basel residents and industries, including pharmaceutical facilities. Andreas emphasizes that proper equation balancing is crucial for safety—insufficient oxygen leads to incomplete combustion, producing toxic carbon monoxide. The center's monitoring systems ensure optimal combustion in Basel's heating systems. Understanding this balanced equation helps students appreciate why proper ventilation is essential when using gas appliances, preventing carbon monoxide poisoning that affects dozens of Swiss residents annually due to inadequate ventilation.",
-            EB_CORE_1: "At the Basel Water Treatment Plant's Phosphate Removal Facility, chemist Dr. Weber demonstrates how calcium hydroxide removes phosphates from wastewater. This double replacement reaction forms insoluble calcium phosphate, which precipitates out of solution. Balancing this equation with polyatomic ions requires 3 calcium hydroxide molecules and 2 phosphoric acid molecules to produce 1 calcium phosphate and 6 water molecules. The facility treats 180,000 cubic meters of water daily, removing phosphates that would otherwise cause algae blooms in the Rhine River. Dr. Weber explains that balancing equations with polyatomic ions is easier when treating groups like phosphate (PO₄³⁻) as single units. This process protects Basel's Rhine riverfront, where 50,000 residents enjoy recreational activities annually. Understanding polyatomic ion balancing is essential for pharmaceutical wastewater treatment at Novartis and Roche facilities.",
+            EB_CORE_1: "At the Basel Water Treatment Plant's Phosphate Removal Facility, chemist Dr. Weber demonstrates how calcium hydroxide removes phosphates from wastewater. This double replacement reaction forms insoluble calcium phosphate, which precipitates out of solution. Balancing this equation with polyatomic ions requires 3 calcium hydroxide molecules and 2 phosphoric acid molecules to produce 1 calcium phosphate and 6 water molecules. The facility treats 180,000 cubic meters of water daily, removing phosphates that would otherwise cause algae blooms in the Rhine River. Dr. Weber explains that balancing equations with polyatomic ions is easier when treating groups like phosphate (PO_4^3^-) as single units. This process protects Basel's Rhine riverfront, where 50,000 residents enjoy recreational activities annually. Understanding polyatomic ion balancing is essential for pharmaceutical wastewater treatment at Novartis and Roche facilities.",
             EB_CORE_2: "In the Basel Industrial Chemistry Museum, curator Dr. Hoffmann explains iron ore reduction—the process that enabled the Industrial Revolution. When carbon monoxide reduces iron(III) oxide, it produces pure iron and carbon dioxide. Balancing this equation requires 1 iron oxide molecule, 3 carbon monoxide molecules, producing 2 iron atoms and 3 carbon dioxide molecules. While Basel no longer has steel mills, this reaction's principles apply to pharmaceutical chemistry. Novartis uses similar reduction reactions to synthesize pharmaceutical compounds, replacing oxygen with other functional groups. The museum, located in Basel's former industrial district, attracts 5,000 visitors annually. Dr. Hoffmann emphasizes that understanding reduction reactions is fundamental to pharmaceutical synthesis—many drug molecules require selective reduction of specific functional groups, using the same chemical principles that once produced steel for Basel's industrial economy.",
             EB_CORE_3: "At the Novartis Nitric Acid Production Facility, process engineer Dr. Chen oversees the Ostwald process for producing nitric acid, which begins with ammonia oxidation. This reaction requires precise balancing: 4 ammonia molecules react with 5 oxygen molecules to produce 4 nitrogen monoxide molecules and 6 water molecules. The facility produces 200 tons of nitric acid monthly for pharmaceutical synthesis. Dr. Chen explains that this reaction occurs at 900°C over a platinum-rhodium catalyst, with 95% conversion efficiency. Nitric acid is essential for synthesizing many pharmaceutical compounds, including antibiotics and cardiovascular medications. Understanding this complex equation balancing is crucial for process engineers who must calculate reactant flows to maintain optimal production rates. The facility's sophisticated control systems monitor reaction stoichiometry in real-time, ensuring consistent product quality for Novartis's pharmaceutical manufacturing operations.",
-            EB_CORE_4: "In the Roche Analytical Chemistry Laboratory, analyst Maria demonstrates aluminum's reaction with sulfuric acid. This single replacement reaction produces aluminum sulfate and hydrogen gas. Balancing this equation with polyatomic sulfate ions requires 2 aluminum atoms and 3 sulfuric acid molecules to produce 1 aluminum sulfate molecule and 3 hydrogen molecules. The laboratory uses this reaction to prepare aluminum sulfate for water purification tests. Maria explains that treating sulfate (SO₄²⁻) as a single unit simplifies balancing—count 3 sulfate groups on each side. This principle is essential for pharmaceutical chemists working with polyatomic ions in drug synthesis. The laboratory conducts 500 analytical tests weekly, ensuring pharmaceutical products meet purity standards. Understanding polyatomic ion balancing helps students appreciate the complexity of pharmaceutical quality control, where precise stoichiometry ensures medication safety for patients worldwide.",
+            EB_CORE_4: "In the Roche Analytical Chemistry Laboratory, analyst Maria demonstrates aluminum's reaction with sulfuric acid. This single replacement reaction produces aluminum sulfate and hydrogen gas. Balancing this equation with polyatomic sulfate ions requires 2 aluminum atoms and 3 sulfuric acid molecules to produce 1 aluminum sulfate molecule and 3 hydrogen molecules. The laboratory uses this reaction to prepare aluminum sulfate for water purification tests. Maria explains that treating sulfate (SO_4^2^-) as a single unit simplifies balancing—count 3 sulfate groups on each side. This principle is essential for pharmaceutical chemists working with polyatomic ions in drug synthesis. The laboratory conducts 500 analytical tests weekly, ensuring pharmaceutical products meet purity standards. Understanding polyatomic ion balancing helps students appreciate the complexity of pharmaceutical quality control, where precise stoichiometry ensures medication safety for patients worldwide.",
             EB_CORE_5: "At Basel University's Combustion Research Laboratory, Professor Müller teaches students to balance ethane combustion equations. Ethane, a component of natural gas, requires careful balancing: 2 ethane molecules react with 7 oxygen molecules to produce 4 carbon dioxide and 6 water molecules. The laboratory studies combustion efficiency for Basel's heating systems, which consume 120 million cubic meters of natural gas annually. Professor Müller emphasizes that balancing combustion equations is challenging because multiple elements must be balanced simultaneously. Students learn to balance carbon first, then hydrogen, and finally oxygen. This systematic approach is essential for pharmaceutical chemists who balance complex organic reactions. The university's combustion research contributes to Basel's sustainability goals—improving combustion efficiency reduces natural gas consumption and carbon emissions, supporting the city's target of carbon neutrality by 2050.",
             EB_ADVANCED_1: "In the Basel Chemistry Institute's Advanced Combustion Laboratory, Dr. Weber challenges students with propane combustion balancing. This equation requires 1 propane molecule and 5 oxygen molecules to produce 3 carbon dioxide and 4 water molecules. The laboratory uses propane in Bunsen burners for heating experiments, consuming 200 kg monthly. Dr. Weber teaches a systematic approach: balance carbon atoms first (3 on each side), then hydrogen (8 on each side), and finally oxygen (10 on each side). This method is crucial for pharmaceutical chemists who balance complex organic synthesis reactions. The institute, founded in 1460, has trained generations of chemists who contributed to Basel's pharmaceutical industry. Understanding combustion stoichiometry helps students calculate oxygen requirements for laboratory safety—insufficient oxygen produces toxic carbon monoxide, a hazard in enclosed laboratory spaces.",
             EB_ADVANCED_2: "At the Roche Laboratory Safety Training Center, instructor Dr. Zimmermann uses butane combustion to teach equation balancing and safety. Butane, used in laboratory burners and portable heaters, requires complex balancing: 2 butane molecules need 13 oxygen molecules to produce 8 carbon dioxide and 10 water molecules. The center trains 500 chemists annually in laboratory safety protocols. Dr. Zimmermann emphasizes that balancing combustion equations helps chemists calculate ventilation requirements—each mole of butane consumes 6.5 moles of oxygen from the air. Inadequate ventilation leads to incomplete combustion and carbon monoxide production. Roche's Basel facilities have maintained zero fire incidents for 15 years through rigorous safety training. Understanding combustion stoichiometry is essential for pharmaceutical chemists who work with flammable organic solvents daily, ensuring safe laboratory operations and protecting the 500 chemists working in Roche's Basel research facilities.",
@@ -1396,7 +1396,7 @@ export const enChemistry = {
             decomposition: "AB → A + B",
             single_replacement: "A + BC → AC + B",
             double_replacement: "AB + CD → AD + CB",
-            combustion: "CₓHᵧ + O₂ → CO₂ + H₂O"
+            combustion: "CₓHᵧ + O_2 → CO_2 + H_2O"
         },
         reactionTypeDescriptions: {
             synthesis: "Two or more substances combine to form a single product",
@@ -1462,7 +1462,7 @@ export const enChemistry = {
             decomposition_hint: "Look for a single reactant breaking into multiple products",
             single_replacement_hint: "Look for one element replacing another in a compound",
             double_replacement_hint: "Look for two compounds exchanging ions",
-            combustion_hint: "Look for a hydrocarbon reacting with oxygen to produce CO₂ and H₂O",
+            combustion_hint: "Look for a hydrocarbon reacting with oxygen to produce CO_2 and H_2O",
             balancing_hint: "Start by balancing elements that appear in only one reactant and one product",
             coefficient_hint: "Try adjusting the coefficient for {compound}",
             unbalanced_element_hint: "The element {element} is unbalanced: {reactantCount} on the left, {productCount} on the right"

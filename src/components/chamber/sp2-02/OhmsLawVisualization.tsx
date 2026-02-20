@@ -86,7 +86,7 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Series Circuit: R_total = R₁ + R₂ + ...
+                    Series Circuit: R_total = R_1 + R_2 + ...
                 </div>
                 
                 <div className="flex items-center gap-4">
@@ -120,7 +120,7 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Parallel Circuit: 1/R_total = 1/R₁ + 1/R₂ + ...
+                    Parallel Circuit: 1/R_total = 1/R_1 + 1/R_2 + ...
                 </div>
                 
                 <div className="flex flex-col gap-4">

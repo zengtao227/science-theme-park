@@ -111,7 +111,7 @@ export const cnPhysics = {
         "SP1.01.024": {
             "prompt": "两个力作用在物体上：30 N 向右和 40 N 向上。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(30² + 40²) = 50 N",
+                "correct": "正确！F = √(30^2 + 40^2) = 50 N",
                 "incorrect": "对于垂直的力使用勾股定理。"
             },
             "scenario_desc": "",
@@ -120,8 +120,8 @@ export const cnPhysics = {
         "SP1.01.042": {
             "prompt": "两个各为 50 N 的力相互垂直作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(50² + 50²) = 70.71 N",
-                "incorrect": "对于相等的垂直力，F = F₁√2"
+                "correct": "正确！F = √(50^2 + 50^2) = 70.71 N",
+                "incorrect": "对于相等的垂直力，F = F_1√2"
             },
             "scenario_desc": "",
             "unit": "N"
@@ -129,7 +129,7 @@ export const cnPhysics = {
         "SP1.01.043": {
             "prompt": "一个 20 N 的力向东作用，另一个 15 N 的力向北作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(20² + 15²) = 25 N",
+                "correct": "正确！F = √(20^2 + 15^2) = 25 N",
                 "incorrect": "这是一个放大 5 倍的 3-4-5 三角形。"
             },
             "scenario_desc": "",
@@ -156,7 +156,7 @@ export const cnPhysics = {
         "SP1.01.026": {
             "prompt": "两个 60 N 和 80 N 的力相互垂直作用。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(60² + 80²) = 100 N",
+                "correct": "正确！F = √(60^2 + 80^2) = 100 N",
                 "incorrect": "对于垂直的力使用勾股定理。"
             },
             "scenario_desc": "",
@@ -174,7 +174,7 @@ export const cnPhysics = {
         "SP1.01.028": {
             "prompt": "三个力作用在物体上：20 N 向东，30 N 向北，10 N 向西。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10² + 30²) = 31.62 N",
+                "correct": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10^2 + 30^2) = 31.62 N",
                 "incorrect": "首先找到每个方向的净力，然后使用勾股定理。"
             },
             "scenario_desc": "",
@@ -183,7 +183,7 @@ export const cnPhysics = {
         "SP1.01.029": {
             "prompt": "两个大小相等的力相互成 60° 角作用。如果每个力是 50 N，合力的大小是多少？",
             "feedback": {
-                "correct": "正确！对于成 60° 角的相等力：F = 2F₁cos(30°) = 2(50)(0.866) = 86.60 N",
+                "correct": "正确！对于成 60° 角的相等力：F = 2F_1cos(30°) = 2(50)(0.866) = 86.60 N",
                 "incorrect": "使用平行四边形法则或分解为分量。"
             },
             "scenario_desc": "",
@@ -201,7 +201,7 @@ export const cnPhysics = {
         "SP1.01.031": {
             "prompt": "两个力作用在一点上：100 N 在 0° 和 100 N 在 120°。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50² + 86.6²) = 100 N",
+                "correct": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50^2 + 86.6^2) = 100 N",
                 "incorrect": "将每个力分解为分量，然后相加并找到大小。"
             },
             "scenario_desc": "",
@@ -210,7 +210,7 @@ export const cnPhysics = {
         "SP1.01.032": {
             "prompt": "四个力作用在物体上：50 N 向北，30 N 向南，40 N 向东，20 N 向西。合力的大小是多少？",
             "feedback": {
-                "correct": "正确！净力：20 N 向北，20 N 向东。F = √(20² + 20²) = 28.28 N",
+                "correct": "正确！净力：20 N 向北，20 N 向东。F = √(20^2 + 20^2) = 28.28 N",
                 "incorrect": "首先找到每个方向的净力。"
             },
             "scenario_desc": "",
@@ -393,8 +393,8 @@ export const cnPhysics = {
         "SP1.01.018": {
             "prompt": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(60² + 80²) = √10000 = 100 N",
-                "incorrect": "使用勾股定理：F = √(F_x² + F_y²)"
+                "correct": "正确！F = √(60^2 + 80^2) = √10000 = 100 N",
+                "incorrect": "使用勾股定理：F = √(F_x^2 + F_y^2)"
             },
             "scenario_desc": "",
             "unit": "N"
@@ -447,16 +447,16 @@ export const cnPhysics = {
         "SP1.01.049": {
             "prompt": "四个力作用在处于平衡的点上：60 N 在 0°，40 N 在 90°，50 N 在 180°，以及一个未知的力。未知力的大小是多少？",
             "feedback": {
-                "correct": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10² + 40²) = 41.23 N",
+                "correct": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^2 + 40^2) = 41.23 N",
                 "incorrect": "找到 x 和 y 方向的净力，然后计算平衡力。"
             },
             "scenario_desc": "",
             "unit": "N"
         },
         "SP1.01.050": {
-            "prompt": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T₁，另一根在 60° 张力为 150 N。如果系统处于平衡，T₁ 是多少？",
+            "prompt": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T_1，另一根在 60° 张力为 150 N。如果系统处于平衡，T_1 是多少？",
             "feedback": {
-                "correct": "正确！对于水平平衡：T₁cos(45°) = 150cos(60°)，所以 T₁ = 150×0.5/0.707 = 183.71 N",
+                "correct": "正确！对于水平平衡：T_1cos(45°) = 150cos(60°)，所以 T_1 = 150×0.5/0.707 = 183.71 N",
                 "incorrect": "使用水平平衡：水平分量必须平衡。"
             },
             "scenario_desc": "",
@@ -483,7 +483,7 @@ export const cnPhysics = {
         "SP1.01.053": {
             "prompt": "一根梁由两根与垂直方向成 40° 和 50° 的缆绳支撑。如果梁重 500 N，40° 缆绳的张力是多少？",
             "feedback": {
-                "correct": "正确！使用平衡方程：T₁ = 281.91 N",
+                "correct": "正确！使用平衡方程：T_1 = 281.91 N",
                 "incorrect": "为水平和垂直分量建立平衡方程。"
             },
             "scenario_desc": "",
@@ -492,7 +492,7 @@ export const cnPhysics = {
         "SP1.01.054": {
             "prompt": "四个力作用在一个环上：80 N 在 0°，60 N 在 90°，70 N 在 180°，F 在未知角度。如果系统处于平衡，F 是多少？",
             "feedback": {
-                "correct": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10² + 60²) = 60.83 N",
+                "correct": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^2 + 60^2) = 60.83 N",
                 "incorrect": "找到已知力的合力，然后 F 的大小必须与之相等。"
             },
             "scenario_desc": "",
@@ -510,7 +510,7 @@ export const cnPhysics = {
         "SP1.01.025": {
             "prompt": "三个力作用在处于平衡状态的物体上：50 N 向右，30 N 向上，以及一个未知的力。未知力的大小是多少？",
             "feedback": {
-                "correct": "正确！未知力必须平衡其他两个力：√(50² + 30²) = 58.31 N",
+                "correct": "正确！未知力必须平衡其他两个力：√(50^2 + 30^2) = 58.31 N",
                 "incorrect": "对于平衡，所有力的总和必须为零。"
             },
             "scenario_desc": "",
@@ -528,7 +528,7 @@ export const cnPhysics = {
         "SP1.01.047": {
             "prompt": "一个物体在三个力的作用下处于平衡：100 N 在 0°，80 N 在 90°，以及第三个力。第三个力的大小是多少？",
             "feedback": {
-                "correct": "正确！F = √(100² + 80²) = 128.06 N",
+                "correct": "正确！F = √(100^2 + 80^2) = 128.06 N",
                 "incorrect": "第三个力必须平衡前两个力的合力。"
             },
             "scenario_desc": "",
@@ -564,7 +564,7 @@ export const cnPhysics = {
         "SP1.01.058": {
             "prompt": "一个悬挂平台由四根缆绳支撑。三根缆绳的张力为：400 N 在 30°，350 N 在 120°，380 N 在 210°。300° 的第四根缆绳的张力是多少？",
             "feedback": {
-                "correct": "正确！求解平衡方程得到 T₄ = 350 N",
+                "correct": "正确！求解平衡方程得到 T_4 = 350 N",
                 "incorrect": "建立两个平衡方程（x 和 y）并求解未知张力。"
             },
             "scenario_desc": "",
@@ -609,7 +609,7 @@ export const cnPhysics = {
         "SP1.01.063": {
             "prompt": "一个起重机吊钩用四根链条支撑负载，角度分别为与水平方向成 20°、110°、200° 和 290°。如果三根链条的张力分别为 800 N、750 N 和 820 N，第四根链条的张力是多少？",
             "feedback": {
-                "correct": "正确！求解平衡方程得到 T₄ = 750 N",
+                "correct": "正确！求解平衡方程得到 T_4 = 750 N",
                 "incorrect": "计算所有已知力的 x 和 y 分量，然后求解未知量。"
             },
             "scenario_desc": "",
@@ -754,7 +754,7 @@ export const cnPhysics = {
             barrier_width: "势垒宽度 (a)",
             transmission: "透射系数",
             wave_function: "波函数",
-            probability_density: "概率密度 |ψ|²",
+            probability_density: "概率密度 |ψ|^2",
             incident: "入射",
             reflected: "反射",
             transmitted: "透射",
@@ -831,38 +831,38 @@ export const cnPhysics = {
             },
             "SECOND_LAW": {
                 "BASIC": [
-                    "F=10 N, m=2 kg. Find a (m/s²)",
-                    "F=20 N, m=5 kg. Find a (m/s²)",
-                    "F=15 N, m=3 kg. Find a (m/s²)",
-                    "m=10 kg, a=2 m/s². Find F (N)",
-                    "m=5 kg, a=4 m/s². Find F (N)",
-                    "F=30 N, a=6 m/s². Find m (kg)",
-                    "F=40 N, a=8 m/s². Find m (kg)"
+                    "F=10 N, m=2 kg. Find a (m/s^2)",
+                    "F=20 N, m=5 kg. Find a (m/s^2)",
+                    "F=15 N, m=3 kg. Find a (m/s^2)",
+                    "m=10 kg, a=2 m/s^2. Find F (N)",
+                    "m=5 kg, a=4 m/s^2. Find F (N)",
+                    "F=30 N, a=6 m/s^2. Find m (kg)",
+                    "F=40 N, a=8 m/s^2. Find m (kg)"
                 ],
                 "CORE": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s². Find F (N)",
-                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s²)",
-                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s²)",
-                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s²)",
-                    "Tram 12000 kg needs 2 m/s² acceleration. Find F (N)",
-                    "Car 1000 kg, net force 2000 N. Find a (m/s²)",
-                    "Basel bus 8000 kg accelerates at 1 m/s². Find F (N)",
-                    "Bicycle 80 kg, force 160 N. Find a (m/s²)",
-                    "Truck 5000 kg, acceleration 0.5 m/s². Find F (N)"
+                    "Basel tram 10000 kg accelerates at 1.5 m/s^2. Find F (N)",
+                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^2)",
+                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^2)",
+                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s^2)",
+                    "Tram 12000 kg needs 2 m/s^2 acceleration. Find F (N)",
+                    "Car 1000 kg, net force 2000 N. Find a (m/s^2)",
+                    "Basel bus 8000 kg accelerates at 1 m/s^2. Find F (N)",
+                    "Bicycle 80 kg, force 160 N. Find a (m/s^2)",
+                    "Truck 5000 kg, acceleration 0.5 m/s^2. Find F (N)"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s²)",
-                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s²)",
-                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s²)",
-                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s²)",
-                    "Tram 15000 kg needs 1.8 m/s² with friction 2000 N. Find applied force (N)",
-                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s²)",
-                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s²)"
+                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^2)",
+                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^2)",
+                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^2)",
+                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^2)",
+                    "Tram 15000 kg needs 1.8 m/s^2 with friction 2000 N. Find applied force (N)",
+                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^2)",
+                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^2)"
                 ],
                 "ELITE": [
-                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s². Total force?",
+                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^2. Total force?",
                     "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s²)"
+                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^2)"
                 ]
             },
             "THIRD_LAW": {
@@ -885,19 +885,19 @@ export const cnPhysics = {
                     "Person pushes wall with 200 N. Wall pushes person with how many N?"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s². Force on track?",
-                    "Rhine boat 2000 kg accelerates at 2 m/s². Force on water?",
-                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s². Force on ground?",
-                    "SBB train 50000 kg decelerates at -0.2 m/s². Force on track?",
-                    "Rocket 5000 kg accelerates at 10 m/s². Force on exhaust gas?",
-                    "Car 1200 kg accelerates at 3 m/s². Force on road?",
-                    "Basel bus 8000 kg accelerates at 1 m/s². Force on road?"
+                    "Basel tram 10000 kg accelerates at 1.5 m/s^2. Force on track?",
+                    "Rhine boat 2000 kg accelerates at 2 m/s^2. Force on water?",
+                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^2. Force on ground?",
+                    "SBB train 50000 kg decelerates at -0.2 m/s^2. Force on track?",
+                    "Rocket 5000 kg accelerates at 10 m/s^2. Force on exhaust gas?",
+                    "Car 1200 kg accelerates at 3 m/s^2. Force on road?",
+                    "Basel bus 8000 kg accelerates at 1 m/s^2. Force on road?"
                 ],
                 "ELITE": [
                     "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s². Water mass pushed?",
-                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s². Friction force?",
-                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s². Verify F=ma?"
+                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^2. Water mass pushed?",
+                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^2. Friction force?",
+                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^2. Verify F=ma?"
                 ]
             }
         },
@@ -906,9 +906,9 @@ export const cnPhysics = {
             "placeholder": "在此输入"
         },
         scenarios: {
-            first_law: "巴塞尔狂欢节游行花车运动：在巴塞尔著名的Fasnacht狂欢节期间，在Marktplatz，精心装饰的游行花车展示了牛顿第一惯性定律。一个质量为3,000公斤的巨大花车在游行开始前静止不动。尽管外观色彩缤纷，它顽固地抵抗运动——除非受到外力作用，否则它将保持静止。当游行参与者以2,000牛顿推动而摩擦力以500牛顿反对时，净1,500牛顿力克服惯性并以0.5米/秒²加速花车。一旦以恒定速度沿游行路线移动，如果推动者保持与摩擦力相等的力，花车将以稳定速度继续前进——证明当净力为零时，运动中的物体以恒定速度保持运动。",
-            second_law: "巴塞尔有轨电车加速与制动：巴塞尔标志性的绿色有轨电车穿梭于城市街道，展示了牛顿第二定律的实际应用。在Barfüsserplatz，一辆质量为10,000公斤的电车从静止开始加速至巡航速度。电动机施加15,000牛顿的向前力，而摩擦力和空气阻力提供3,000牛顿的反向力。使用F=ma，我们计算净力（12,000牛顿）产生1.2米/秒²的加速度。当接近下一站时，司机施加制动产生-10,000牛顿，加上-3,000牛顿摩擦力，产生-13,000牛顿净力和-1.3米/秒²的减速度。这种力与运动的日常舞蹈使巴塞尔的公共交通顺畅运行。",
-            third_law: "莱茵河船只推进：在巴塞尔莱茵河沿岸的Mittlere Brücke附近，客船通过其推进系统展示了牛顿第三定律。当船的螺旋桨旋转时，它以巨大的力向后推水——典型的莱茵河渡轮可能为3,000牛顿。根据牛顿第三定律，水同时以相等的3,000牛顿力向相反方向推动船只。这对作用-反作用力作用于不同的物体：螺旋桨作用于水，而水作用于船。船的1,500公斤质量因此以2米/秒²向前加速。这一原理为从游泳到火箭推进的一切提供动力。"
+            first_law: "巴塞尔狂欢节游行花车运动：在巴塞尔著名的Fasnacht狂欢节期间，在Marktplatz，精心装饰的游行花车展示了牛顿第一惯性定律。一个质量为3,000公斤的巨大花车在游行开始前静止不动。尽管外观色彩缤纷，它顽固地抵抗运动——除非受到外力作用，否则它将保持静止。当游行参与者以2,000牛顿推动而摩擦力以500牛顿反对时，净1,500牛顿力克服惯性并以0.5米/秒^2加速花车。一旦以恒定速度沿游行路线移动，如果推动者保持与摩擦力相等的力，花车将以稳定速度继续前进——证明当净力为零时，运动中的物体以恒定速度保持运动。",
+            second_law: "巴塞尔有轨电车加速与制动：巴塞尔标志性的绿色有轨电车穿梭于城市街道，展示了牛顿第二定律的实际应用。在Barfüsserplatz，一辆质量为10,000公斤的电车从静止开始加速至巡航速度。电动机施加15,000牛顿的向前力，而摩擦力和空气阻力提供3,000牛顿的反向力。使用F=ma，我们计算净力（12,000牛顿）产生1.2米/秒^2的加速度。当接近下一站时，司机施加制动产生-10,000牛顿，加上-3,000牛顿摩擦力，产生-13,000牛顿净力和-1.3米/秒^2的减速度。这种力与运动的日常舞蹈使巴塞尔的公共交通顺畅运行。",
+            third_law: "莱茵河船只推进：在巴塞尔莱茵河沿岸的Mittlere Brücke附近，客船通过其推进系统展示了牛顿第三定律。当船的螺旋桨旋转时，它以巨大的力向后推水——典型的莱茵河渡轮可能为3,000牛顿。根据牛顿第三定律，水同时以相等的3,000牛顿力向相反方向推动船只。这对作用-反作用力作用于不同的物体：螺旋桨作用于水，而水作用于船。船的1,500公斤质量因此以2米/秒^2向前加速。这一原理为从游泳到火箭推进的一切提供动力。"
         }
     },
 
@@ -962,8 +962,8 @@ export const cnPhysics = {
         },
         scenarios: {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",
-            series_circuits: "诺华制药设备设计：你正在与诺华巴塞尔的电气工程团队合作，为新实验室设备设计配电系统。在串联电路中，元件共享相同的电流，但电压在它们之间分配。你的任务是计算总电阻（R_总 = R₁ + R₂ + ...）和电流。这对于确保敏感的分析仪器接收正确的电压水平至关重要。计算错误可能会损坏价值数百万瑞士法郎的设备或影响药物质量测试结果。",
-            parallel_circuits: "罗氏大厦照明系统：你正在为巴塞尔罗氏大厦设计应急照明系统。在并联电路中，元件共享相同的电压，但电流在各分支之间分配。你的任务是计算总电流和等效电阻（1/R_总 = 1/R₁ + 1/R₂ + ...）。这种设计确保如果一盏灯失效，其他灯继续工作——这对于停电期间的安全至关重要。该系统必须处理大楼41层数千个LED灯的高效运行。"
+            series_circuits: "诺华制药设备设计：你正在与诺华巴塞尔的电气工程团队合作，为新实验室设备设计配电系统。在串联电路中，元件共享相同的电流，但电压在它们之间分配。你的任务是计算总电阻（R_总 = R_1 + R_2 + ...）和电流。这对于确保敏感的分析仪器接收正确的电压水平至关重要。计算错误可能会损坏价值数百万瑞士法郎的设备或影响药物质量测试结果。",
+            parallel_circuits: "罗氏大厦照明系统：你正在为巴塞尔罗氏大厦设计应急照明系统。在并联电路中，元件共享相同的电压，但电流在各分支之间分配。你的任务是计算总电流和等效电阻（1/R_总 = 1/R_1 + 1/R_2 + ...）。这种设计确保如果一盏灯失效，其他灯继续工作——这对于停电期间的安全至关重要。该系统必须处理大楼41层数千个LED灯的高效运行。"
         }
     },
 
@@ -1065,24 +1065,24 @@ export const cnPhysics = {
             // 牛顿第一定律 - 惯性与平衡
             rest: "物体 (m={m}kg) 处于静止状态。合力 ΣF？",
             const_v: "物体 (m={m}kg) 以恒定速度 {v}m/s 运动。合力 ΣF？",
-            equilibrium: "力 F₁={f1}N (向右) 和 F₂={f2}N (向左) 作用于物体。为达到平衡，F₃？",
+            equilibrium: "力 F_1={f1}N (向右) 和 F_2={f2}N (向左) 作用于物体。为达到平衡，F_3？",
             space: "在深空中（无摩擦），物体 (m={m}kg) 被力 F={f}N 推动 {t}秒后释放。释放后的力？",
             inertia: "物体 (m={m}kg) 静止。什么性质阻止运动状态改变？",
             "2d_balance": "两个垂直的力作用于物体 (m={m}kg)。合力大小？",
-            vector_add: "力 F₁={f}N (向东) 和 F₂={f}N (向北) 作用于物体。合力大小？",
+            vector_add: "力 F_1={f}N (向东) 和 F_2={f}N (向北) 作用于物体。合力大小？",
             slope: "物体 (m={m}kg) 在斜面上 (θ={theta}°)，摩擦系数 μ={mu}。支持力分量？",
             space_friction: "在太空中，物体 (m={m}kg) 受摩擦力 μ={mu}。这现实吗？",
             complex: "物体 (m={m}kg) 被力 F={f}N 拉动，对抗摩擦 μ={mu}。合力？",
 
             // 牛顿第二定律 - F=ma
-            find_f: "质量 m={m}kg 以加速度 a={a}m/s² 运动。求合力 F。",
+            find_f: "质量 m={m}kg 以加速度 a={a}m/s^2 运动。求合力 F。",
             find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
-            gravity: "物体 m={m}kg 在行星上 (g={g}m/s²)。重力 W=mg？",
+            gravity: "物体 m={m}kg 在行星上 (g={g}m/s^2)。重力 W=mg？",
             net_force: "力 F={f}N 作用于 m={m}kg。摩擦力 f={fr}N 阻碍。合加速度？",
             friction: "力 F={f}N 拉动 m={m}kg，摩擦系数 μ={mu}。加速度？",
             pulley: "滑轮系统：质量 m={m}kg，施加力 F={f}N，摩擦 μ={mu}。加速度？",
             variable_mass: "力 F={f}N 作用于变质量系统 m={m}kg。有效加速度？",
-            coupled: "两个质量耦合：m₁={m}kg，施加 F={f}N。系统加速度？",
+            coupled: "两个质量耦合：m_1={m}kg，施加 F={f}N。系统加速度？",
 
             // 摩擦力
             static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
@@ -1101,15 +1101,15 @@ export const cnPhysics = {
 
             // 兼容旧键
             n1_const_vel: "物体 (m={m}kg) 以恒定速度 {v}m/s 运动。合力 ΣF？",
-            n1_equilibrium: "力 F₁={f1}N (向右) 和 F₂={f2}N (向左) 作用于物体。为达到平衡，F₃？",
+            n1_equilibrium: "力 F_1={f1}N (向右) 和 F_2={f2}N (向左) 作用于物体。为达到平衡，F_3？",
             n1_rest: "物体 (m={m}kg) 静止。力 F={f}N 向右推。摩擦力 f={fr}N 向左。加速度？",
             n1_space: "在深空中（无摩擦），物体 (m={m}kg) 被力 F={f}N 推动 {t}秒后释放。释放后的力？",
             n1_inertia: "什么性质阻止 {m}kg 物体的运动状态改变？",
-            n2_find_f: "质量 m={m}kg 以加速度 a={a}m/s² 运动。求合力 F。",
+            n2_find_f: "质量 m={m}kg 以加速度 a={a}m/s^2 运动。求合力 F。",
             n2_find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
-            n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s²。求质量 m。",
+            n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s^2。求质量 m。",
             n2_complex: "力 F={f}N 拉动质量 m={m}kg 对抗摩擦力 f={fr}N。求加速度。",
-            n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s²)。重力 Fg？",
+            n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s^2)。重力 Fg？",
             fr_static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
             fr_kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
             fr_norm: "箱子 m={m}kg 被力 F={f}N 压在墙上。支持力？",
@@ -1120,11 +1120,11 @@ export const cnPhysics = {
             // 牛顿第一定律
             rest: "静止意味着 v=0，所以 ΣF=0（牛顿第一定律）",
             const_v: "恒定速度意味着 a=0，所以 ΣF=0",
-            equilibrium: "平衡时，所有力必须平衡：F₁ + F₃ = F₂",
+            equilibrium: "平衡时，所有力必须平衡：F_1 + F_3 = F_2",
             space: "释放后，无力作用（太空中 F=0）",
             inertia: "惯性是阻止运动状态改变的性质",
             "2d_balance": "对垂直的力使用勾股定理",
-            vector_add: "使用矢量加法：|F_net| = √(F₁² + F₂²)",
+            vector_add: "使用矢量加法：|F_net| = √(F_1^2 + F_2^2)",
             slope: "支持力 N = mg cos(θ)",
             space_friction: "太空中无摩擦（无大气）",
             complex: "F_net = F_applied - f_friction",
@@ -1176,7 +1176,7 @@ export const cnPhysics = {
         },
         prompts: {
             // 势能
-            basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s²)。",
+            basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s^2)。",
             rhine_hydro: "莱茵河水 m={m}kg 从高度 h={h}m 流下。势能 Ep？",
             total_energy: "物体 m={m}kg 在 h={h}m 高度，速度 v={v}m/s。总机械能？",
             conservation: "物体 m={m}kg 从 h={h}m 落下，达到 v={v}m/s。任意点的总能量？",
@@ -1192,21 +1192,21 @@ export const cnPhysics = {
             basic_power: "力 F={f}N 在 t={t}s 内移动物体 d={d}m。计算功率 P。",
             power_lifting: "起重机在 t={t}s 内将 m={m}kg 提升到 h={h}m。功率 P？",
             rhine_power_station: "莱茵河电站在 t={t}s 内将水 m={m}kg 提升 h={h}m。功率 P？",
-            energy_audit_solar: "巴塞尔屋顶 A={m}m²。光强 I={f}W/m²，效率 {v}%。输出功率 P？",
+            energy_audit_solar: "巴塞尔屋顶 A={m}m^2。光强 I={f}W/m^2，效率 {v}%。输出功率 P？",
             energy_audit_heatpump: "热泵需提供 {m}kW 热量，COP={v}。所需电功率 P？",
             iwb_grid_load: "巴塞尔高峰负载 {m}MW。若由 {v} 台 {f}MW 风机供电，缺口百分比？"
         },
         hints: {
             // 势能
             basic_ep: "使用 Ep = mgh",
-            rhine_hydro: "势能 Ep = mgh，其中 g=9.8m/s²",
-            total_energy: "总能量 E = Ep + Ek = mgh + ½mv²",
+            rhine_hydro: "势能 Ep = mgh，其中 g=9.8m/s^2",
+            total_energy: "总能量 E = Ep + Ek = mgh + ½mv^2",
             conservation: "能量守恒：E_总 = Ep + Ek = 常数",
 
             // 动能
-            basic_ek: "使用 Ek = ½mv²",
-            tram_braking: "动能 Ek = ½mv²",
-            velocity_at_bottom: "使用能量守恒：mgh + ½mv₀² = ½mv²",
+            basic_ek: "使用 Ek = ½mv^2",
+            tram_braking: "动能 Ek = ½mv^2",
+            velocity_at_bottom: "使用能量守恒：mgh + ½mv₀^2 = ½mv^2",
             work_energy: "功能定理：W = ΔEk，所以 Ek_末 = Ek_初 + W",
 
             // 功与功率
@@ -1577,12 +1577,12 @@ export const cnPhysics = {
         },
         labels: {
             show_prism: "开启棱镜色散",
-            medium_1: "介质 1 (n₁)",
-            medium_2: "介质 2 (n₂)",
+            medium_1: "介质 1 (n_1)",
+            medium_2: "介质 2 (n_2)",
             incident_angle: "入射角",
             focal_length: "焦距",
             refraction_title: "折射分析",
-            refracted_angle: "折射角 (θ₂)：",
+            refracted_angle: "折射角 (θ_2)：",
             critical_angle: "全反射临界角：",
             total_internal_reflection: "当前状态：全内反射",
             angle_value: "{value}°",
@@ -1591,9 +1591,9 @@ export const cnPhysics = {
             hint: "提示"
         },
         hints: {
-            refraction: "光从光疏介质进入光密介质时向法线方向偏折 (n₂ > n₁)"
+            refraction: "光从光疏介质进入光密介质时向法线方向偏折 (n_2 > n_1)"
         },
-        snell: { title: "斯涅尔定律", line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)", line_2: "θ_c = arcsin(n₂/n₁)", line_3: "v = c/n" },
+        snell: { title: "斯涅尔定律", line_1: "n_1 sin(θ_1) = n_2 sin(θ_2)", line_2: "θ_c = arcsin(n_2/n_1)", line_3: "v = c/n" },
         mission: { title: "任务：光路追踪", description: "掌握折射与反射定律。观察巴塞尔实验室精密光学元件中的色散现象。" }
     },
 
@@ -1613,26 +1613,26 @@ export const cnPhysics = {
         footer_left: "GP2.01_热力学 // 节点：巴塞尔",
         stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" },
         prompts: {
-            find_p: "理想气体: n = {n} mol, T = {T} K, V = {V} m³. 求 P.",
+            find_p: "理想气体: n = {n} mol, T = {T} K, V = {V} m^3. 求 P.",
             find_v: "气体: n = {n} mol, P = {P} Pa, T = {T} K. 求 V.",
-            find_n: "气体: P = {P} Pa, V = {V} m³, T = {T} K. 求 n.",
-            find_t: "气体: P = {P} Pa, V = {V} m³, n = {n} mol. 求 T.",
+            find_n: "气体: P = {P} Pa, V = {V} m^3, T = {T} K. 求 n.",
+            find_t: "气体: P = {P} Pa, V = {V} m^3, n = {n} mol. 求 T.",
             relation_pt: "体积恒定时温度加倍，压强变为原来的几倍？",
             relation_vn: "恒温恒压下摩尔数加倍，体积变为原来的几倍？",
-            boyle_find_p2: "波义耳定律: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. 求 P₂.",
-            boyle_find_v2: "波义耳定律: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. 求 V₂.",
+            boyle_find_p2: "波义耳定律: P_1 = {p1} kPa, V_1 = {v1} L, V_2 = {v2} L. 求 P_2.",
+            boyle_find_v2: "波义耳定律: P_1 = {p1} kPa, V_1 = {v1} L, P_2 = {p2} kPa. 求 V_2.",
             boyle_relation: "恒温下将气体从 {v1} L 压缩到 {v2} L，压强变为原来的几倍？",
             boyle_condition: "波义耳定律要求哪个量保持不变？",
-            charles_find_v2: "查理定律: V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. 求 V₂.",
-            charles_find_t2: "查理定律: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. 求 T₂.",
+            charles_find_v2: "查理定律: V_1 = {v1} L, T_1 = {t1} K, T_2 = {t2} K. 求 V_2.",
+            charles_find_t2: "查理定律: V_1 = {v1} L, T_1 = {t1} K, V_2 = {v2} L. 求 T_2.",
             charles_relation: "恒压下绝对温度加倍，体积变为原来的几倍？",
             charles_condition: "查理定律要求哪个量保持不变？",
             combined_law: "联合气体定律：已知 P, V, T 变化，求 {target}。",
-            iwb_steam: "IWB 区域供热：蒸汽 T={T} K, V={V} m³, n={n} mol。计算压强 P (理想气体)。",
-            roche_tower: "Roche 大厦 40 层：房间 V={V} m³, T={T} K, P={P} Pa。计算空气摩尔数 n。",
+            iwb_steam: "IWB 区域供热：蒸汽 T={T} K, V={V} m^3, n={n} mol。计算压强 P (理想气体)。",
+            roche_tower: "Roche 大厦 40 层：房间 V={V} m^3, T={T} K, P={P} Pa。计算空气摩尔数 n。",
             rhine_bubble: "莱茵河潜水员在深度 (P1={p1} kPa) 呼出气泡 V1={v1} mL。到达水面 (P2={p2} kPa) 时的体积？",
-            weather_balloon: "巴塞尔气象气球：地面 V={v1} m³, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
-            novartis_reactor: "Novartis 反应釜 V={V} m³。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
+            weather_balloon: "巴塞尔气象气球：地面 V={v1} m^3, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
+            novartis_reactor: "Novartis 反应釜 V={V} m^3。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
         },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
@@ -1665,7 +1665,7 @@ export const cnPhysics = {
             ie_diatomic: "双原子气体 (f=5): n={n}, T={t}. 计算内能 U.",
             ie_change_t: "理想气体 (n={n}, Cv={cv} J/molK) 从 {t1} K 加热到 {t2} K. 求 ΔU.",
             ie_state_func: "内能是状态函数。一个循环中的变化量是？",
-            wh_isobaric: "等压膨胀：P = {p} Pa, ΔV = {dv} m³. 求功 W.",
+            wh_isobaric: "等压膨胀：P = {p} Pa, ΔV = {dv} m^3. 求功 W.",
             wh_isochoric: "等容加热 (体积恒定). 功 W 是多少？",
             wh_isothermal_w: "理想气体的等温膨胀. Q = {q} J. 求 W.",
             wh_area: "PV 图下的面积代表什么物理量？",
@@ -1705,7 +1705,7 @@ export const cnPhysics = {
         scenarios: {
             wave_properties: "您正在分析巴塞尔中桥（Mittlere Brücke）附近莱茵河上的波动。河流产生不同频率和波长的表面波。理解波的性质对巴塞尔河流航行安全和新莱茵港设施的设计至关重要。基本波动方程 v = fλ 将速度、频率和波长联系起来。声波在空气中传播速度为 340 m/s，而在水中传播速度为 1500 m/s。这种差异影响巴塞尔河流监测站使用的水下通信系统。波的周期 T = 1/f 描述振荡时间。这些原理适用于从水波到电磁辐射的所有波动现象。",
             superposition: "在巴塞尔市政音乐厅（Stadtcasino），声学工程师研究波的干涉模式以优化音质。当两个波相遇时，它们会叠加——振幅代数相加。当波同相时发生相长干涉，产生更响的声音。当波反相时发生相消干涉，导致抵消。当反射波与入射波干涉时，音乐厅中形成驻波，产生波节（零振幅）和波腹（最大振幅）。双缝实验展示了光的波动干涉，产生明暗条纹。薄膜干涉在肥皂泡和油膜中产生彩色图案，这些现象在巴塞尔大学物理系进行研究。",
-            optics: "CERN 的巴塞尔合作项目使用先进的光学系统进行粒子探测。光遵循反射定律（θᵢ = θᵣ）和斯涅尔折射定律（n₁sinθ₁ = n₂sinθ₂）。当光从密介质传播到疏介质且角度超过临界角时发生全内反射，这使得巴塞尔电信基础设施中的光纤通信成为可能。单缝衍射在 asinθ = mλ 处产生特征性的极小值图案。衍射光栅方程 d·sinθ = mλ 用于罗氏和诺华的化学分析光谱仪。瑞利判据确定巴塞尔天文台望远镜的光学分辨率极限。"
+            optics: "CERN 的巴塞尔合作项目使用先进的光学系统进行粒子探测。光遵循反射定律（θᵢ = θᵣ）和斯涅尔折射定律（n_1sinθ_1 = n_2sinθ_2）。当光从密介质传播到疏介质且角度超过临界角时发生全内反射，这使得巴塞尔电信基础设施中的光纤通信成为可能。单缝衍射在 asinθ = mλ 处产生特征性的极小值图案。衍射光栅方程 d·sinθ = mλ 用于罗氏和诺华的化学分析光谱仪。瑞利判据确定巴塞尔天文台望远镜的光学分辨率极限。"
         },
         objective_title: "波动分析",
         complete: "模块完成！",
@@ -1732,49 +1732,49 @@ export const cnPhysics = {
             constructive_interference: "两个波（各 A = 2 m）相长干涉。总振幅？",
             destructive_interference: "两个波（各 A = 3 m）相消干涉。总振幅？",
             beat_frequency: "两个音叉：440 Hz 和 444 Hz。拍频？",
-            de_broglie: "电子（m = 9.1×10⁻³¹ kg，v = 1 m/s）。德布罗意波长？（h = 6.63×10⁻³⁴）",
+            de_broglie: "电子（m = 9.1×10^-^3¹ kg，v = 1 m/s）。德布罗意波长？（h = 6.63×10^-^3^4）",
             wave_particle_duality: "光同时表现出波动性和粒子性。对还是错？",
-            photon_energy: "频率 f = 5×10¹⁴ Hz 的光子。能量 E = hf？（h = 6.63×10⁻³⁴）",
+            photon_energy: "频率 f = 5×10¹^4 Hz 的光子。能量 E = hf？（h = 6.63×10^-^3^4）",
             matter_wave: "电子波长 λ = h/mv。对于典型电子，λ ≈ ？",
             uncertainty: "海森堡不确定性：ΔxΔp ≥ h/4π。我们能同时精确知道两者吗？",
             same_phase_add: "两个波（A = 2 m）同相。总振幅？",
             opposite_phase_cancel: "两个波（A = 3 m）反相。总振幅？",
             constructive_max: "两个波（A = 1 m）相长干涉。最大振幅？",
-            partial_destructive: "波 A₁ = 5 m，A₂ = 3 m 相消干涉。总振幅？",
+            partial_destructive: "波 A_1 = 5 m，A_2 = 3 m 相消干涉。总振幅？",
             interference_type: "两个同相波叠加。干涉类型？",
-            standing_wave_node: "驻波 λ = 2 m。第一个波节位置 x₁？",
-            standing_wave_antinode: "驻波 λ = 4 m。第一个波腹位置 x₁？",
+            standing_wave_node: "驻波 λ = 2 m。第一个波节位置 x_1？",
+            standing_wave_antinode: "驻波 λ = 4 m。第一个波腹位置 x_1？",
             node_count: "弦长 5 m，λ = 2 m。波节数量？",
             string_fundamental: "弦基频模式：L = λ/2。如果 λ = 1 m，求 L。",
-            harmonic_wavelength: "基频 λ₁ = 2 m。二次谐波波长 λ₂？",
+            harmonic_wavelength: "基频 λ_1 = 2 m。二次谐波波长 λ_2？",
             double_slit_spacing: "双缝：λ = 500 nm，L = 2 m，d = 1 mm。条纹间距 Δy？",
-            fringe_order: "双缝：λ = 600 nm，L = 2 m，d = 1.2 mm。第三亮条纹 y₃？",
+            fringe_order: "双缝：λ = 600 nm，L = 2 m，d = 1.2 mm。第三亮条纹 y_3？",
             slit_separation: "双缝：λ = 500 nm，L = 1 m，Δy = 1 mm。缝间距 d？",
             wavelength_from_fringes: "双缝：Δy = 0.8 mm，d = 0.5 mm，L = 1 m。波长 λ？",
             central_maximum: "双缝：中央极大位置 y₀？",
             thin_film_constructive: "薄膜（n = 2）：λ = 500 nm，m = 1 的相长干涉。厚度 t？",
             thin_film_destructive: "薄膜（n = 2）：λ = 600 nm，m = 0 的相消干涉。厚度 t？",
-            newton_rings: "牛顿环：λ = 500 nm，R = 1 m。第一亮环半径 r₁？",
+            newton_rings: "牛顿环：λ = 500 nm，R = 1 m。第一亮环半径 r_1？",
             soap_bubble: "肥皂泡（n = 1.33，t = 300 nm）强烈反射哪种颜色？",
             anti_reflection: "增透膜（n = 2）：λ = 400 nm。最小厚度 t？",
             reflection_angle: "光以 30° 入射。反射角 θᵣ？",
-            refraction_basic: "光从空气（n = 1）以 30° 入射到玻璃（n = 1.5）。折射角 θ₂？",
+            refraction_basic: "光从空气（n = 1）以 30° 入射到玻璃（n = 1.5）。折射角 θ_2？",
             light_speed_medium: "玻璃中的光（n = 1.5）。速度 v = c/n？",
-            refractive_index: "介质中光速：v = 2×10⁸ m/s。折射率 n？",
+            refractive_index: "介质中光速：v = 2×10^8 m/s。折射率 n？",
             normal_incidence: "光垂直入射表面。折射角 θᵣ？",
             critical_angle: "玻璃（n = 1.5）到空气（n = 1）。临界角 θc？",
             total_internal_reflection: "光从玻璃以 50° 入射到空气（θc = 42°）。全内反射？",
             fiber_optics: "光纤使用哪个原理来捕获光？",
             prism_dispersion: "棱镜将白光分离成颜色。这种效应称为？",
-            brewster_angle: "玻璃（n = 1.5）到空气的布儒斯特角。tan θB = n₂/n₁。求 θB。",
-            single_slit_minima: "单缝（a = 1 mm）：λ = 500 nm 的第一极小。角度 θ₁？",
+            brewster_angle: "玻璃（n = 1.5）到空气的布儒斯特角。tan θB = n_2/n_1。求 θB。",
+            single_slit_minima: "单缝（a = 1 mm）：λ = 500 nm 的第一极小。角度 θ_1？",
             diffraction_width: "单缝（a = 0.6 mm）：λ = 600 nm，L = 1 m。中央极大宽度 w？",
             rayleigh_criterion: "望远镜（D = 0.5 m）：λ = 500 nm。最小可分辨角 θmin？",
             circular_aperture: "圆孔（D = 10 mm，f = 100 mm）：λ = 500 nm。艾里斑半径 r？",
             resolving_power: "望远镜直径 D = 0.5 m，λ = 500 nm。分辨本领 R？",
-            grating_equation: "衍射光栅（d = 1 μm）：λ = 500 nm，m = 1。角度 θ₁？",
+            grating_equation: "衍射光栅（d = 1 μm）：λ = 500 nm，m = 1。角度 θ_1？",
             grating_order: "光栅（d = 2 μm）：λ = 600 nm。最大级次 mmax？",
-            grating_spacing: "光栅：λ = 500 nm，θ₁ = 30°，m = 1。线间距 d？",
+            grating_spacing: "光栅：λ = 500 nm，θ_1 = 30°，m = 1。线间距 d？",
             spectral_resolution: "光栅：m = 2，N = 5000 条线。光谱分辨率 R？",
             blazed_grating: "闪耀光栅优化特定波长的效率。目的？"
         },
@@ -1791,7 +1791,7 @@ export const cnPhysics = {
             doppler_recede: "远离的声源：频率更低",
             constructive: "同相：振幅相加",
             destructive: "反相：振幅相减",
-            beats: "拍频 = |f₁ - f₂|",
+            beats: "拍频 = |f_1 - f_2|",
             de_broglie: "λ = h/mv",
             duality: "光既是波又是粒子",
             photon_energy: "E = hf",
@@ -1799,14 +1799,14 @@ export const cnPhysics = {
             uncertainty: "不能同时精确知道两者",
             in_phase: "同相：振幅相加",
             out_of_phase: "反相：振幅相减",
-            max_amplitude: "相长：A₁ + A₂",
-            partial_cancel: "部分相消：|A₁ - A₂|",
+            max_amplitude: "相长：A_1 + A_2",
+            partial_cancel: "部分相消：|A_1 - A_2|",
             interference_types: "同相 = 相长",
             node_position: "波节：x = nλ/2",
             antinode_position: "波腹：x = (n + 1/2)λ/2",
             node_count: "计算 λ/2 间隔",
             fundamental_mode: "基频：L = λ/2",
-            second_harmonic: "二次谐波：λ₂ = λ₁/2",
+            second_harmonic: "二次谐波：λ_2 = λ_1/2",
             double_slit: "Δy = λL/d",
             fringe_position: "ym = mλL/d",
             slit_distance: "d = λL/Δy",
@@ -1818,15 +1818,15 @@ export const cnPhysics = {
             soap_colors: "干涉产生颜色",
             anti_reflection: "四分之一波长膜：t = λ/4n",
             law_of_reflection: "θᵢ = θᵣ",
-            snells_law: "n₁sinθ₁ = n₂sinθ₂",
+            snells_law: "n_1sinθ_1 = n_2sinθ_2",
             light_speed: "v = c/n",
             index_calc: "n = c/v",
             normal_ray: "垂直：无弯曲",
-            critical_angle: "sinθc = n₂/n₁",
+            critical_angle: "sinθc = n_2/n_1",
             tir_condition: "θ > θc 导致全内反射",
             fiber_principle: "全内反射",
             dispersion: "不同 λ 折射不同",
-            brewster: "tanθB = n₂/n₁",
+            brewster: "tanθB = n_2/n_1",
             single_slit: "极小：asinθ = mλ",
             central_width: "w = 2λL/a",
             rayleigh: "θmin = 1.22λ/D",
@@ -1856,8 +1856,8 @@ export const cnPhysics = {
             particle_motion: "粒子运动"
         },
         scenarios: {
-            electric_field: "你是巴塞尔罗氏大厦的研究工程师，正在设计用于制药洁净室空气净化的先进静电除尘器。该系统利用电场去除空气中的颗粒物，确保救命药物的无菌生产环境。电场强度 E = kQ/r²（其中 k = 8.99×10⁹ N·m²/C²）决定了带电粒子所受的力。点电荷 Q 产生向外辐射的电场，电场线显示方向和强度。测试电荷 q 在此电场中受到的力为 F = qE。理解电场对于设计医疗设备、CERN 巴塞尔合作项目的粒子加速器以及本地科技公司的半导体制造至关重要。这些原理还解释了巴塞尔历史建筑的防雷系统以及智能手机触摸屏的工作原理。",
-            magnetic_field: "在巴塞尔大学医院的 MRI 部门，你正在校准用于医学成像的磁场系统。磁场由电流产生，以特斯拉（T）为单位测量。载流直导线产生圆形磁场，强度为 B = μ₀I/(2πr)，其中 μ₀ = 4π×10⁻⁷ T·m/A 是真空磁导率。右手定则确定磁场方向：拇指指向电流方向，手指弯曲指向磁场方向。螺线管（线圈）内部产生均匀磁场 B = μ₀nI，用于 MRI 机器中对齐患者体内的氢原子。磁场中载流导线受到的力为 F = BILsinθ，这使得巴塞尔的有轨电车和火车中的电动机得以运转。磁悬浮列车利用这些原理，巴塞尔与瑞士铁路网络的连接依赖于电磁系统。",
+            electric_field: "你是巴塞尔罗氏大厦的研究工程师，正在设计用于制药洁净室空气净化的先进静电除尘器。该系统利用电场去除空气中的颗粒物，确保救命药物的无菌生产环境。电场强度 E = kQ/r^2（其中 k = 8.99×10^9 N·m^2/C^2）决定了带电粒子所受的力。点电荷 Q 产生向外辐射的电场，电场线显示方向和强度。测试电荷 q 在此电场中受到的力为 F = qE。理解电场对于设计医疗设备、CERN 巴塞尔合作项目的粒子加速器以及本地科技公司的半导体制造至关重要。这些原理还解释了巴塞尔历史建筑的防雷系统以及智能手机触摸屏的工作原理。",
+            magnetic_field: "在巴塞尔大学医院的 MRI 部门，你正在校准用于医学成像的磁场系统。磁场由电流产生，以特斯拉（T）为单位测量。载流直导线产生圆形磁场，强度为 B = μ₀I/(2πr)，其中 μ₀ = 4π×10^-^7 T·m/A 是真空磁导率。右手定则确定磁场方向：拇指指向电流方向，手指弯曲指向磁场方向。螺线管（线圈）内部产生均匀磁场 B = μ₀nI，用于 MRI 机器中对齐患者体内的氢原子。磁场中载流导线受到的力为 F = BILsinθ，这使得巴塞尔的有轨电车和火车中的电动机得以运转。磁悬浮列车利用这些原理，巴塞尔与瑞士铁路网络的连接依赖于电磁系统。",
             particle_motion: "你是 CERN 巴塞尔研究设施的物理学家，正在分析大型强子对撞机实验中带电粒子在电磁场中的轨迹。当带电粒子（电荷 q，质量 m）进入电场 E 时，它受到力 F = qE 和加速度 a = qE/m，沿抛物线路径运动，类似于抛体运动。在磁场 B 中，运动的带电粒子受到垂直于速度和磁场的洛伦兹力 F = qvB，导致圆周运动，半径为 r = mv/(qB)。这一原理使诺华和罗氏质量控制实验室的质谱仪能够识别药物化合物的分子质量。速度选择器使用交叉的电场和磁场，只有当 v = E/B 时粒子才能直线运动，从而按速度分离离子。回旋加速器在螺旋路径中加速粒子，用于巴塞尔大学医院的癌症放射治疗。理解粒子运动对于设计粒子探测器、分析宇宙射线以及开发下一代医学成像技术至关重要。"
         },
         objective_title: "电磁分析",

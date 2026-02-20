@@ -22,7 +22,7 @@ function calculateEigen(matrix: number[][]): { values: number[]; vectors: THREE.
     const d = matrix[1][1];
     
     // Characteristic equation: det(A - λI) = 0
-    // λ² - (a+d)λ + (ad-bc) = 0
+    // λ^2 - (a+d)λ + (ad-bc) = 0
     const trace = a + d;
     const det = a * d - b * c;
     

@@ -35,7 +35,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
     mismatch: "MISMATCH",
     geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
     polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
-    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
+    parallelogram_rule: "Parallelogram rule: from origin to z_1, then translate z_2 from z_1"
   };
   
   // Calculate bounds based on the complex numbers
@@ -367,7 +367,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₁
+                z_1
               </text>
             );
           })()}
@@ -399,7 +399,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₂
+                z_2
               </text>
             );
           })()}
@@ -443,7 +443,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₁ + z₂
+                z_1 + z_2
               </text>
             );
           })()}
@@ -480,7 +480,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₁
+                z_1
               </text>
             );
           })()}
@@ -527,7 +527,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₂
+                z_2
               </text>
             );
           })()}
@@ -559,7 +559,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
                 fontWeight="bold"
                 textAnchor="middle"
               >
-                z₁ × z₂
+                z_1 × z_2
               </text>
             );
           })()}
@@ -637,10 +637,10 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
           />
           {(() => {
             const offset = getLabelOffset(result.re, result.im);
-            const powerText = quest.power === 2 ? "z²" : 
-                             quest.power === 3 ? "z³" : 
-                             quest.power === 4 ? "z⁴" : 
-                             quest.power === 5 ? "z⁵" : 
+            const powerText = quest.power === 2 ? "z^2" : 
+                             quest.power === 3 ? "z^3" : 
+                             quest.power === 4 ? "z^4" : 
+                             quest.power === 5 ? "z^5" : 
                              `z^${quest.power}`;
             return (
               <text
@@ -719,7 +719,7 @@ export default function ComplexVisualization({ quest, checkStatus, language = "E
     mismatch: "MISMATCH",
     geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
     polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
-    parallelogram_rule: "Parallelogram rule: from origin to z₁, then translate z₂ from z₁"
+    parallelogram_rule: "Parallelogram rule: from origin to z_1, then translate z_2 from z_1"
   };
   const r = Math.sqrt(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im);
   const theta = Math.atan2(quest.z1.im, quest.z1.re);

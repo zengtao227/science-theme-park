@@ -317,7 +317,7 @@ export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
 
         {/* Title */}
         <Text position={[0, 5, 0]} fontSize={0.4} color={palette.cyan}>
-          {target === "ASPIRIN" ? "ASPIRIN (C₉H₈O₄)" : target === "CAFFEINE" ? "CAFFEINE (C₈H₁₀N₄O₂)" : "ADRENALINE (C₉H₁₃NO₃)"}
+          {target === "ASPIRIN" ? "ASPIRIN (C_9H_8O_4)" : target === "CAFFEINE" ? "CAFFEINE (C_8H_1₀N_4O_2)" : "ADRENALINE (C_9H_1_3NO_3)"}
         </Text>
 
         {/* Legend */}
@@ -378,7 +378,7 @@ export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
           Molecular Formula
         </div>
         <div className="text-[11px] font-mono text-white">
-          {target === "ASPIRIN" ? "C₉H₈O₄" : target === "CAFFEINE" ? "C₈H₁₀N₄O₂" : "C₉H₁₃NO₃"}
+          {target === "ASPIRIN" ? "C_9H_8O_4" : target === "CAFFEINE" ? "C_8H_1₀N_4O_2" : "C_9H_1_3NO_3"}
         </div>
       </div>
 

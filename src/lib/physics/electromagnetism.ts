@@ -12,7 +12,7 @@
  * @returns Electric field (N/C)
  */
 export function electricField(q: number, r: number): number {
-  const k = 8.99e9; // Coulomb constant (N·m²/C²)
+  const k = 8.99e9; // Coulomb constant (N·m^2/C^2)
   return (k * q) / (r * r);
 }
 
@@ -25,7 +25,7 @@ export function electricField(q: number, r: number): number {
  * @returns Electric potential (V)
  */
 export function electricPotential(q: number, r: number): number {
-  const k = 8.99e9; // Coulomb constant (N·m²/C²)
+  const k = 8.99e9; // Coulomb constant (N·m^2/C^2)
   return (k * q) / r;
 }
 
@@ -39,7 +39,7 @@ export function electricPotential(q: number, r: number): number {
  * @returns Force (N)
  */
 export function coulombForce(q1: number, q2: number, r: number): number {
-  const k = 8.99e9; // Coulomb constant (N·m²/C²)
+  const k = 8.99e9; // Coulomb constant (N·m^2/C^2)
   return (k * q1 * q2) / (r * r);
 }
 

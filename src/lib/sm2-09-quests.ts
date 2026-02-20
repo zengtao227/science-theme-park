@@ -637,9 +637,9 @@ export const systemsAdvanced: Partial<SM209Quest>[] = [
         difficulty: "ADVANCED",
         stage: "SYSTEMS",
         inequalityType: "SYSTEM",
-        expression: "x² + y² ≤ 16 AND y ≥ 0",
+        expression: "x^2 + y^2 ≤ 16 AND y ≥ 0",
         variable: "x,y",
-        systemInequalities: ["x² + y² ≤ 16", "y ≥ 0"],
+        systemInequalities: ["x^2 + y^2 ≤ 16", "y ≥ 0"],
         solutionType: "INTERVAL",
         answer: "Semicircular region"
     }

@@ -247,7 +247,7 @@ export function parseNumericalAnswer(answer: string): number {
   // Remove whitespace
   const cleaned = answer.trim();
   
-  // Handle scientific notation (e.g., "1.5e3", "1.5×10³")
+  // Handle scientific notation (e.g., "1.5e3", "1.5×10^3")
   const scientificMatch = cleaned.match(/^([+-]?\d+\.?\d*)[eE×]([+-]?\d+)$/);
   if (scientificMatch) {
     const base = parseFloat(scientificMatch[1]);

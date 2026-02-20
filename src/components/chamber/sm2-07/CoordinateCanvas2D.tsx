@@ -230,7 +230,7 @@ export default function CoordinateCanvas2D({
       {showFormula && (
         <div className="absolute top-4 left-4 bg-black/80 border border-white/10 rounded-lg p-5 backdrop-blur-md max-w-[240px] shadow-xl">
           <div className="text-[10px] text-cyan-400 font-black uppercase mb-3 tracking-widest opacity-70">Analysis Terminal</div>
-          {stage === "DISTANCE" && <div className="text-white/90 font-mono text-sm leading-relaxed italic">Find distance <span className="text-green-400">d</span> using:<br />d = √[Δx² + Δy²]</div>}
+          {stage === "DISTANCE" && <div className="text-white/90 font-mono text-sm leading-relaxed italic">Find distance <span className="text-green-400">d</span> using:<br />d = √[Δx^2 + Δy^2]</div>}
           {stage === "MIDPOINT" && <div className="text-white/90 font-mono text-sm leading-relaxed italic">Find mid <span className="text-pink-400">M</span>:<br />M = (Σx/2, Σy/2)</div>}
           {stage === "SLOPE" && <div className="text-white/90 font-mono text-sm leading-relaxed italic">Find slope <span className="text-cyan-400">m</span>:<br />m = Δy / Δx</div>}
         </div>

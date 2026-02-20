@@ -99,9 +99,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Solving the equilibrium equations yields T₄ = 350 N",
-        "cn": "正确！求解平衡方程得到 T₄ = 350 N",
-        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 350 N"
+        "en": "Correct! Solving the equilibrium equations yields T_4 = 350 N",
+        "cn": "正确！求解平衡方程得到 T_4 = 350 N",
+        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 350 N"
       },
       "incorrect": {
         "en": "Set up two equilibrium equations (x and y) and solve for the unknown tension.",
@@ -264,9 +264,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Solving the equilibrium equations yields T₄ = 750 N",
-        "cn": "正确！求解平衡方程得到 T₄ = 750 N",
-        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 750 N"
+        "en": "Correct! Solving the equilibrium equations yields T_4 = 750 N",
+        "cn": "正确！求解平衡方程得到 T_4 = 750 N",
+        "de": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 750 N"
       },
       "incorrect": {
         "en": "Calculate the x and y components of all known forces, then solve for the unknown.",

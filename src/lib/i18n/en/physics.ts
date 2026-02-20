@@ -222,8 +222,8 @@ export const enPhysics = {
                 "SP1.01.018": {
                         "prompt": "A force has components F_x = 60 N and F_y = 80 N. What is the magnitude of the force?",
                         "feedback": {
-                                "correct": "Correct! F = √(60² + 80²) = √10000 = 100 N",
-                                "incorrect": "Use the Pythagorean theorem: F = √(F_x² + F_y²)"
+                                "correct": "Correct! F = √(60^2 + 80^2) = √10000 = 100 N",
+                                "incorrect": "Use the Pythagorean theorem: F = √(F_x^2 + F_y^2)"
                         },
                         "scenario": "",
                         "scenario_desc": "",
@@ -282,7 +282,7 @@ export const enPhysics = {
                 "SP1.01.024": {
                         "prompt": "Two forces act on an object: 30 N to the right and 40 N upward. What is the magnitude of the resultant force?",
                         "feedback": {
-                                "correct": "Correct! F = √(30² + 40²) = 50 N",
+                                "correct": "Correct! F = √(30^2 + 40^2) = 50 N",
                                 "incorrect": "Use the Pythagorean theorem for perpendicular forces."
                         },
                         "scenario": "",
@@ -292,8 +292,8 @@ export const enPhysics = {
                 "SP1.01.042": {
                         "prompt": "Two forces of 50 N each act at right angles. What is the magnitude of the resultant?",
                         "feedback": {
-                                "correct": "Correct! F = √(50² + 50²) = 70.71 N",
-                                "incorrect": "For equal perpendicular forces, F = F₁√2"
+                                "correct": "Correct! F = √(50^2 + 50^2) = 70.71 N",
+                                "incorrect": "For equal perpendicular forces, F = F_1√2"
                         },
                         "scenario": "",
                         "scenario_desc": "",
@@ -302,7 +302,7 @@ export const enPhysics = {
                 "SP1.01.043": {
                         "prompt": "A force of 20 N acts east and another 15 N acts north. What is the magnitude of the resultant?",
                         "feedback": {
-                                "correct": "Correct! F = √(20² + 15²) = 25 N",
+                                "correct": "Correct! F = √(20^2 + 15^2) = 25 N",
                                 "incorrect": "This is a 3-4-5 triangle scaled by 5."
                         },
                         "scenario": "",
@@ -332,7 +332,7 @@ export const enPhysics = {
                 "SP1.01.026": {
                         "prompt": "Two forces of 60 N and 80 N act at right angles to each other. What is the magnitude of the resultant force?",
                         "feedback": {
-                                "correct": "Correct! F = √(60² + 80²) = 100 N",
+                                "correct": "Correct! F = √(60^2 + 80^2) = 100 N",
                                 "incorrect": "Use the Pythagorean theorem for perpendicular forces."
                         },
                         "scenario": "",
@@ -352,7 +352,7 @@ export const enPhysics = {
                 "SP1.01.028": {
                         "prompt": "Three forces act on an object: 20 N east, 30 N north, and 10 N west. What is the magnitude of the resultant force?",
                         "feedback": {
-                                "correct": "Correct! Net horizontal: 20-10=10 N, vertical: 30 N. F = √(10² + 30²) = 31.62 N",
+                                "correct": "Correct! Net horizontal: 20-10=10 N, vertical: 30 N. F = √(10^2 + 30^2) = 31.62 N",
                                 "incorrect": "First find the net force in each direction, then use Pythagorean theorem."
                         },
                         "scenario": "",
@@ -362,7 +362,7 @@ export const enPhysics = {
                 "SP1.01.029": {
                         "prompt": "Two forces of equal magnitude act at 60° to each other. If each force is 50 N, what is the magnitude of the resultant?",
                         "feedback": {
-                                "correct": "Correct! For equal forces at 60°: F = 2F₁cos(30°) = 2(50)(0.866) = 86.60 N",
+                                "correct": "Correct! For equal forces at 60°: F = 2F_1cos(30°) = 2(50)(0.866) = 86.60 N",
                                 "incorrect": "Use the parallelogram law or resolve into components."
                         },
                         "scenario": "",
@@ -382,7 +382,7 @@ export const enPhysics = {
                 "SP1.01.031": {
                         "prompt": "Two forces act on a point: 100 N at 0° and 100 N at 120°. What is the magnitude of the resultant force?",
                         "feedback": {
-                                "correct": "Correct! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50² + 86.6²) = 100 N",
+                                "correct": "Correct! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^2 + 86.6^2) = 100 N",
                                 "incorrect": "Resolve each force into components, then add and find the magnitude."
                         },
                         "scenario": "",
@@ -392,7 +392,7 @@ export const enPhysics = {
                 "SP1.01.032": {
                         "prompt": "Four forces act on an object: 50 N north, 30 N south, 40 N east, and 20 N west. What is the magnitude of the resultant?",
                         "feedback": {
-                                "correct": "Correct! Net: 20 N north, 20 N east. F = √(20² + 20²) = 28.28 N",
+                                "correct": "Correct! Net: 20 N north, 20 N east. F = √(20^2 + 20^2) = 28.28 N",
                                 "incorrect": "Find the net force in each direction first."
                         },
                         "scenario": "",
@@ -492,7 +492,7 @@ export const enPhysics = {
                 "SP1.01.025": {
                         "prompt": "Three forces act on an object in equilibrium: 50 N to the right, 30 N upward, and an unknown force. What is the magnitude of the unknown force?",
                         "feedback": {
-                                "correct": "Correct! The unknown force must balance the other two: √(50² + 30²) = 58.31 N",
+                                "correct": "Correct! The unknown force must balance the other two: √(50^2 + 30^2) = 58.31 N",
                                 "incorrect": "For equilibrium, the sum of all forces must be zero."
                         },
                         "scenario": "",
@@ -512,7 +512,7 @@ export const enPhysics = {
                 "SP1.01.047": {
                         "prompt": "An object is in equilibrium under three forces: 100 N at 0°, 80 N at 90°, and a third force. What is the magnitude of the third force?",
                         "feedback": {
-                                "correct": "Correct! F = √(100² + 80²) = 128.06 N",
+                                "correct": "Correct! F = √(100^2 + 80^2) = 128.06 N",
                                 "incorrect": "The third force must balance the resultant of the first two."
                         },
                         "scenario": "",
@@ -532,7 +532,7 @@ export const enPhysics = {
                 "SP1.01.049": {
                         "prompt": "Four forces act on a point in equilibrium: 60 N at 0°, 40 N at 90°, 50 N at 180°, and an unknown force. What is the magnitude of the unknown force?",
                         "feedback": {
-                                "correct": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10² + 40²) = 41.23 N",
+                                "correct": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10^2 + 40^2) = 41.23 N",
                                 "incorrect": "Find the net force in x and y directions, then calculate the equilibrant."
                         },
                         "scenario": "",
@@ -540,9 +540,9 @@ export const enPhysics = {
                         "unit": "N"
                 },
                 "SP1.01.050": {
-                        "prompt": "A traffic light hangs from two cables: one at 45° with tension T₁ and another at 60° with tension 150 N. If the system is in equilibrium, what is T₁?",
+                        "prompt": "A traffic light hangs from two cables: one at 45° with tension T_1 and another at 60° with tension 150 N. If the system is in equilibrium, what is T_1?",
                         "feedback": {
-                                "correct": "Correct! For horizontal equilibrium: T₁cos(45°) = 150cos(60°), so T₁ = 150×0.5/0.707 = 183.71 N",
+                                "correct": "Correct! For horizontal equilibrium: T_1cos(45°) = 150cos(60°), so T_1 = 150×0.5/0.707 = 183.71 N",
                                 "incorrect": "Use horizontal equilibrium: the horizontal components must balance."
                         },
                         "scenario": "",
@@ -572,7 +572,7 @@ export const enPhysics = {
                 "SP1.01.053": {
                         "prompt": "A beam is supported by two cables at 40° and 50° from vertical. If the beam weighs 500 N, what is the tension in the cable at 40°?",
                         "feedback": {
-                                "correct": "Correct! Using equilibrium equations: T₁ = 281.91 N",
+                                "correct": "Correct! Using equilibrium equations: T_1 = 281.91 N",
                                 "incorrect": "Set up equilibrium equations for both horizontal and vertical components."
                         },
                         "scenario": "",
@@ -582,7 +582,7 @@ export const enPhysics = {
                 "SP1.01.054": {
                         "prompt": "Four forces act on a ring: 80 N at 0°, 60 N at 90°, 70 N at 180°, and F at an unknown angle. If the system is in equilibrium, what is F?",
                         "feedback": {
-                                "correct": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10² + 60²) = 60.83 N",
+                                "correct": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10^2 + 60^2) = 60.83 N",
                                 "incorrect": "Find the resultant of the known forces, then F must equal it in magnitude."
                         },
                         "scenario": "",
@@ -622,7 +622,7 @@ export const enPhysics = {
                 "SP1.01.058": {
                         "prompt": "A suspended platform is held by four cables. Three cables have tensions: 400 N at 30°, 350 N at 120°, and 380 N at 210°. What is the tension in the fourth cable at 300°?",
                         "feedback": {
-                                "correct": "Correct! Solving the equilibrium equations yields T₄ = 350 N",
+                                "correct": "Correct! Solving the equilibrium equations yields T_4 = 350 N",
                                 "incorrect": "Set up two equilibrium equations (x and y) and solve for the unknown tension."
                         },
                         "scenario": "",
@@ -672,7 +672,7 @@ export const enPhysics = {
                 "SP1.01.063": {
                         "prompt": "A crane hook supports a load with four chains at angles 20°, 110°, 200°, and 290° from horizontal. If three chains have tensions 800 N, 750 N, and 820 N respectively, what is the tension in the fourth chain?",
                         "feedback": {
-                                "correct": "Correct! Solving the equilibrium equations yields T₄ = 750 N",
+                                "correct": "Correct! Solving the equilibrium equations yields T_4 = 750 N",
                                 "incorrect": "Calculate the x and y components of all known forces, then solve for the unknown."
                         },
                         "scenario": "",
@@ -820,7 +820,7 @@ export const enPhysics = {
                         barrier_width: "BARRIER WIDTH (a)",
                         transmission: "TRANSMISSION COEFFICIENT",
                         wave_function: "WAVE FUNCTION",
-                        probability_density: "PROBABILITY DENSITY |ψ|²",
+                        probability_density: "PROBABILITY DENSITY |ψ|^2",
                         incident: "Incident",
                         reflected: "Reflected",
                         transmitted: "Transmitted",
@@ -897,38 +897,38 @@ export const enPhysics = {
                         },
                         "SECOND_LAW": {
                                 "BASIC": [
-                                        "F=10 N, m=2 kg. Find a (m/s²)",
-                                        "F=20 N, m=5 kg. Find a (m/s²)",
-                                        "F=15 N, m=3 kg. Find a (m/s²)",
-                                        "m=10 kg, a=2 m/s². Find F (N)",
-                                        "m=5 kg, a=4 m/s². Find F (N)",
-                                        "F=30 N, a=6 m/s². Find m (kg)",
-                                        "F=40 N, a=8 m/s². Find m (kg)"
+                                        "F=10 N, m=2 kg. Find a (m/s^2)",
+                                        "F=20 N, m=5 kg. Find a (m/s^2)",
+                                        "F=15 N, m=3 kg. Find a (m/s^2)",
+                                        "m=10 kg, a=2 m/s^2. Find F (N)",
+                                        "m=5 kg, a=4 m/s^2. Find F (N)",
+                                        "F=30 N, a=6 m/s^2. Find m (kg)",
+                                        "F=40 N, a=8 m/s^2. Find m (kg)"
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s². Find F (N)",
-                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s²)",
-                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s²)",
-                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s²)",
-                                        "Tram 12000 kg needs 2 m/s² acceleration. Find F (N)",
-                                        "Car 1000 kg, net force 2000 N. Find a (m/s²)",
-                                        "Basel bus 8000 kg accelerates at 1 m/s². Find F (N)",
-                                        "Bicycle 80 kg, force 160 N. Find a (m/s²)",
-                                        "Truck 5000 kg, acceleration 0.5 m/s². Find F (N)"
+                                        "Basel tram 10000 kg accelerates at 1.5 m/s^2. Find F (N)",
+                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^2)",
+                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^2)",
+                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s^2)",
+                                        "Tram 12000 kg needs 2 m/s^2 acceleration. Find F (N)",
+                                        "Car 1000 kg, net force 2000 N. Find a (m/s^2)",
+                                        "Basel bus 8000 kg accelerates at 1 m/s^2. Find F (N)",
+                                        "Bicycle 80 kg, force 160 N. Find a (m/s^2)",
+                                        "Truck 5000 kg, acceleration 0.5 m/s^2. Find F (N)"
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s²)",
-                                        "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s²)",
-                                        "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s²)",
-                                        "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s²)",
-                                        "Tram 15000 kg needs 1.8 m/s² with friction 2000 N. Find applied force (N)",
-                                        "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s²)",
-                                        "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s²)"
+                                        "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^2)",
+                                        "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^2)",
+                                        "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^2)",
+                                        "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^2)",
+                                        "Tram 15000 kg needs 1.8 m/s^2 with friction 2000 N. Find applied force (N)",
+                                        "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^2)",
+                                        "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^2)"
                                 ],
                                 "ELITE": [
-                                        "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s². Total force?",
+                                        "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^2. Total force?",
                                         "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                                        "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s²)"
+                                        "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^2)"
                                 ]
                         },
                         "THIRD_LAW": {
@@ -951,19 +951,19 @@ export const enPhysics = {
                                         "Person pushes wall with 200 N. Wall pushes person with how many N?"
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s². Force on track?",
-                                        "Rhine boat 2000 kg accelerates at 2 m/s². Force on water?",
-                                        "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s². Force on ground?",
-                                        "SBB train 50000 kg decelerates at -0.2 m/s². Force on track?",
-                                        "Rocket 5000 kg accelerates at 10 m/s². Force on exhaust gas?",
-                                        "Car 1200 kg accelerates at 3 m/s². Force on road?",
-                                        "Basel bus 8000 kg accelerates at 1 m/s². Force on road?"
+                                        "Basel tram 10000 kg accelerates at 1.5 m/s^2. Force on track?",
+                                        "Rhine boat 2000 kg accelerates at 2 m/s^2. Force on water?",
+                                        "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^2. Force on ground?",
+                                        "SBB train 50000 kg decelerates at -0.2 m/s^2. Force on track?",
+                                        "Rocket 5000 kg accelerates at 10 m/s^2. Force on exhaust gas?",
+                                        "Car 1200 kg accelerates at 3 m/s^2. Force on road?",
+                                        "Basel bus 8000 kg accelerates at 1 m/s^2. Force on road?"
                                 ],
                                 "ELITE": [
                                         "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                                        "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s². Water mass pushed?",
-                                        "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s². Friction force?",
-                                        "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s². Verify F=ma?"
+                                        "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^2. Water mass pushed?",
+                                        "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^2. Friction force?",
+                                        "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^2. Verify F=ma?"
                                 ]
                         }
                 },
@@ -972,9 +972,9 @@ export const enPhysics = {
                         "placeholder": "type here"
                 },
                 scenarios: {
-                        first_law: "Basel Fasnacht Parade Float Motion: During Basel's famous Fasnacht carnival at Marktplatz, elaborately decorated parade floats demonstrate Newton's First Law of inertia. A massive float with 3,000 kg mass sits at rest before the parade begins. Despite its colorful appearance, it stubbornly resists motion—it will remain at rest unless acted upon by an external force. When parade participants push with 2,000 N while friction opposes with 500 N, the net 1,500 N force overcomes inertia and accelerates the float at 0.5 m/s². Once moving at constant velocity through the parade route, if pushers maintain force equal to friction, the float continues at steady speed—demonstrating that objects in motion stay in motion with constant velocity when net force is zero.",
-                        second_law: "Basel Tram Acceleration and Braking: Basel's iconic green trams navigate the city's streets, demonstrating Newton's Second Law in action. At Barfüsserplatz, a tram with mass 10,000 kg accelerates from rest to reach cruising speed. The electric motors apply a forward force of 15,000 N while friction and air resistance provide 3,000 N of opposing force. Using F=ma, we calculate the net force (12,000 N) produces an acceleration of 1.2 m/s². When approaching the next stop, the driver applies brakes generating -10,000 N, combined with -3,000 N friction, creating -13,000 N net force and -1.3 m/s² deceleration. This daily dance of forces and motion keeps Basel's public transport running smoothly.",
-                        third_law: "Rhine River Boat Propulsion: Along Basel's Rhine River near Mittlere Brücke, passenger boats demonstrate Newton's Third Law through their propulsion systems. When a boat's propeller rotates, it pushes water backward with tremendous force—perhaps 3,000 N for a typical Rhine ferry. According to Newton's Third Law, the water simultaneously pushes the boat forward with an equal 3,000 N force in the opposite direction. This action-reaction pair acts on different objects: the propeller acts on the water, while the water acts on the boat. The boat's 1,500 kg mass accelerates forward at 2 m/s² as a result. This same principle powers everything from swimming to rocket propulsion."
+                        first_law: "Basel Fasnacht Parade Float Motion: During Basel's famous Fasnacht carnival at Marktplatz, elaborately decorated parade floats demonstrate Newton's First Law of inertia. A massive float with 3,000 kg mass sits at rest before the parade begins. Despite its colorful appearance, it stubbornly resists motion—it will remain at rest unless acted upon by an external force. When parade participants push with 2,000 N while friction opposes with 500 N, the net 1,500 N force overcomes inertia and accelerates the float at 0.5 m/s^2. Once moving at constant velocity through the parade route, if pushers maintain force equal to friction, the float continues at steady speed—demonstrating that objects in motion stay in motion with constant velocity when net force is zero.",
+                        second_law: "Basel Tram Acceleration and Braking: Basel's iconic green trams navigate the city's streets, demonstrating Newton's Second Law in action. At Barfüsserplatz, a tram with mass 10,000 kg accelerates from rest to reach cruising speed. The electric motors apply a forward force of 15,000 N while friction and air resistance provide 3,000 N of opposing force. Using F=ma, we calculate the net force (12,000 N) produces an acceleration of 1.2 m/s^2. When approaching the next stop, the driver applies brakes generating -10,000 N, combined with -3,000 N friction, creating -13,000 N net force and -1.3 m/s^2 deceleration. This daily dance of forces and motion keeps Basel's public transport running smoothly.",
+                        third_law: "Rhine River Boat Propulsion: Along Basel's Rhine River near Mittlere Brücke, passenger boats demonstrate Newton's Third Law through their propulsion systems. When a boat's propeller rotates, it pushes water backward with tremendous force—perhaps 3,000 N for a typical Rhine ferry. According to Newton's Third Law, the water simultaneously pushes the boat forward with an equal 3,000 N force in the opposite direction. This action-reaction pair acts on different objects: the propeller acts on the water, while the water acts on the boat. The boat's 1,500 kg mass accelerates forward at 2 m/s^2 as a result. This same principle powers everything from swimming to rocket propulsion."
                 }
         },
 
@@ -1070,24 +1070,24 @@ export const enPhysics = {
                         // NEWTON 1 - Inertia & Equilibrium
                         rest: "Object (m={m}kg) is at rest. Net force ΣF?",
                         const_v: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
-                        equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
+                        equilibrium: "Forces F_1={f1}N (right) and F_2={f2}N (left) act on object. For equilibrium, F_3?",
                         space: "In deep space (no friction), object (m={m}kg) is pushed with F={f}N for {t}s, then released. Force after release?",
                         inertia: "Object (m={m}kg) at rest. What property resists change in motion?",
                         "2d_balance": "Two perpendicular forces act on object (m={m}kg). Resultant force magnitude?",
-                        vector_add: "Forces F₁={f}N (east) and F₂={f}N (north) act on object. Net force magnitude?",
+                        vector_add: "Forces F_1={f}N (east) and F_2={f}N (north) act on object. Net force magnitude?",
                         slope: "Object (m={m}kg) on slope (θ={theta}°) with friction μ={mu}. Normal force component?",
                         space_friction: "In space, object (m={m}kg) experiences friction μ={mu}. Is this realistic?",
                         complex: "Object (m={m}kg) pulled by F={f}N against friction μ={mu}. Net force?",
 
                         // NEWTON 2 - F=ma
-                        find_f: "Mass m={m}kg accelerates at a={a}m/s². Find net force F.",
+                        find_f: "Mass m={m}kg accelerates at a={a}m/s^2. Find net force F.",
                         find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
-                        gravity: "Object m={m}kg on planet (g={g}m/s²). Weight force W=mg?",
+                        gravity: "Object m={m}kg on planet (g={g}m/s^2). Weight force W=mg?",
                         net_force: "Force F={f}N acts on m={m}kg. Friction f={fr}N opposes. Net acceleration?",
                         friction: "Force F={f}N pulls m={m}kg with friction μ={mu}. Acceleration?",
                         pulley: "Pulley system: mass m={m}kg, applied force F={f}N, friction μ={mu}. Acceleration?",
                         variable_mass: "Force F={f}N acts on variable mass system m={m}kg. Effective acceleration?",
-                        coupled: "Two masses coupled: m₁={m}kg, applied F={f}N. System acceleration?",
+                        coupled: "Two masses coupled: m_1={m}kg, applied F={f}N. System acceleration?",
 
                         // FRICTION
                         static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
@@ -1106,15 +1106,15 @@ export const enPhysics = {
 
                         // Legacy keys for compatibility
                         n1_const_vel: "Object (m={m}kg) moves at constant velocity {v}m/s. Net force ΣF?",
-                        n1_equilibrium: "Forces F₁={f1}N (right) and F₂={f2}N (left) act on object. For equilibrium, F₃?",
+                        n1_equilibrium: "Forces F_1={f1}N (right) and F_2={f2}N (left) act on object. For equilibrium, F_3?",
                         n1_rest: "Object (m={m}kg) is at rest. Force F={f}N pushes right. Friction f={fr}N acts left. Acceleration?",
                         n1_space: "In deep space (no friction), object (m={m}kg) is pushed with F={f}N for {t}s, then released. Force after release?",
                         n1_inertia: "Which property resists change in motion for a {m}kg object?",
-                        n2_find_f: "Mass m={m}kg accelerates at a={a}m/s². Find net force F.",
+                        n2_find_f: "Mass m={m}kg accelerates at a={a}m/s^2. Find net force F.",
                         n2_find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
-                        n2_find_m: "Net force F={f}N causes acceleration a={a}m/s². Find mass m.",
+                        n2_find_m: "Net force F={f}N causes acceleration a={a}m/s^2. Find mass m.",
                         n2_complex: "Force F={f}N pulls mass m={m}kg against friction f={fr}N. Find acceleration.",
-                        n2_gravity: "Object m={m}kg falls on planet (g={g}m/s²). Weight force Fg?",
+                        n2_gravity: "Object m={m}kg falls on planet (g={g}m/s^2). Weight force Fg?",
                         fr_static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
                         fr_kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
                         fr_norm: "Box m={m}kg pressed against wall with F={f}N. Normal force?",
@@ -1125,11 +1125,11 @@ export const enPhysics = {
                         // NEWTON 1
                         rest: "At rest means v=0, so ΣF=0 (Newton's First Law)",
                         const_v: "Constant velocity means a=0, so ΣF=0",
-                        equilibrium: "For equilibrium, all forces must balance: F₁ + F₃ = F₂",
+                        equilibrium: "For equilibrium, all forces must balance: F_1 + F_3 = F_2",
                         space: "After release, no force acts (F=0 in space)",
                         inertia: "Inertia is the property that resists changes in motion",
                         "2d_balance": "Use Pythagorean theorem for perpendicular forces",
-                        vector_add: "Use vector addition: |F_net| = √(F₁² + F₂²)",
+                        vector_add: "Use vector addition: |F_net| = √(F_1^2 + F_2^2)",
                         slope: "Normal force N = mg cos(θ)",
                         space_friction: "No friction in space (no atmosphere)",
                         complex: "F_net = F_applied - f_friction",
@@ -1180,7 +1180,7 @@ export const enPhysics = {
                 },
                 prompts: {
                         // POTENTIAL ENERGY
-                        basic_ep: "Object m={m}kg at height h={h}m. Calculate potential energy Ep (g={g}m/s²).",
+                        basic_ep: "Object m={m}kg at height h={h}m. Calculate potential energy Ep (g={g}m/s^2).",
                         rhine_hydro: "Rhine water m={m}kg flows from height h={h}m. Potential energy Ep?",
                         total_energy: "Object m={m}kg at h={h}m with velocity v={v}m/s. Total mechanical energy?",
                         conservation: "Object m={m}kg falls from h={h}m, reaching v={v}m/s. Total energy at any point?",
@@ -1200,14 +1200,14 @@ export const enPhysics = {
                 hints: {
                         // POTENTIAL ENERGY
                         basic_ep: "Use Ep = mgh",
-                        rhine_hydro: "Potential energy Ep = mgh, where g=9.8m/s²",
-                        total_energy: "Total E = Ep + Ek = mgh + ½mv²",
+                        rhine_hydro: "Potential energy Ep = mgh, where g=9.8m/s^2",
+                        total_energy: "Total E = Ep + Ek = mgh + ½mv^2",
                         conservation: "Energy is conserved: E_total = Ep + Ek = constant",
 
                         // KINETIC ENERGY
-                        basic_ek: "Use Ek = ½mv²",
-                        tram_braking: "Kinetic energy Ek = ½mv²",
-                        velocity_at_bottom: "Use energy conservation: mgh + ½mv₀² = ½mv²",
+                        basic_ek: "Use Ek = ½mv^2",
+                        tram_braking: "Kinetic energy Ek = ½mv^2",
+                        velocity_at_bottom: "Use energy conservation: mgh + ½mv₀^2 = ½mv^2",
                         work_energy: "Work-energy theorem: W = ΔEk, so Ek_final = Ek_initial + W",
 
                         // WORK & POWER
@@ -1231,7 +1231,7 @@ export const enPhysics = {
                 stages: { pressure: "PRESSURE", buoyancy: "BUOYANCY", hydraulics: "HYDRAULICS" },
                 prompts: {
                         pressure_depth: "A swimmer dives to {depth} m in the Rhine. Calculate total pressure.",
-                        buoyant_force: "An object with {volume} m³ is submerged in the Rhine. Calculate buoyancy.",
+                        buoyant_force: "An object with {volume} m^3 is submerged in the Rhine. Calculate buoyancy.",
                         hint_pressure: "Use P = P₀ + ρgh",
                         hint_archimedes: "Use F_b = ρ_water × V × g"
                 },
@@ -1515,12 +1515,12 @@ export const enPhysics = {
                 },
                 labels: {
                         show_prism: "Show Prism Dispersion",
-                        medium_1: "MEDIUM 1 (n₁)",
-                        medium_2: "MEDIUM 2 (n₂)",
+                        medium_1: "MEDIUM 1 (n_1)",
+                        medium_2: "MEDIUM 2 (n_2)",
                         incident_angle: "Incident Angle",
                         focal_length: "Focal Length",
                         refraction_title: "REFRACTION",
-                        refracted_angle: "Refracted Angle (θ₂):",
+                        refracted_angle: "Refracted Angle (θ_2):",
                         critical_angle: "Critical Angle:",
                         total_internal_reflection: "TOTAL INTERNAL REFLECTION",
                         angle_value: "{value}°",
@@ -1529,9 +1529,9 @@ export const enPhysics = {
                         hint: "Hint"
                 },
                 hints: {
-                        refraction: "Light bends toward the normal when entering a denser medium (n₂ > n₁)"
+                        refraction: "Light bends toward the normal when entering a denser medium (n_2 > n_1)"
                 },
-                snell: { title: "SNELL'S LAW", line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)", line_2: "θ_c = arcsin(n₂/n₁)", line_3: "v = c/n" },
+                snell: { title: "SNELL'S LAW", line_1: "n_1 sin(θ_1) = n_2 sin(θ_2)", line_2: "θ_c = arcsin(n_2/n_1)", line_3: "v = c/n" },
                 mission: { title: "MISSION: RAY OPTICS", description: "Master the physics of light refraction and reflection using Basel's laboratory models." }
         },
 
@@ -1557,8 +1557,8 @@ export const enPhysics = {
                 },
                 scenarios: {
                         ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",
-                        series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R₁ + R₂ + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",
-                        parallel_circuits: "Roche Tower Lighting System: You are designing the emergency lighting system for Roche Tower in Basel. In parallel circuits, components share the same voltage, but current divides among branches. Your task is to calculate total current and equivalent resistance (1/R_total = 1/R₁ + 1/R₂ + ...). This design ensures that if one light fails, others continue working - critical for safety during power outages. The system must handle the building's 41 floors with thousands of LED lights operating efficiently."
+                        series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R_1 + R_2 + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",
+                        parallel_circuits: "Roche Tower Lighting System: You are designing the emergency lighting system for Roche Tower in Basel. In parallel circuits, components share the same voltage, but current divides among branches. Your task is to calculate total current and equivalent resistance (1/R_total = 1/R_1 + 1/R_2 + ...). This design ensures that if one light fails, others continue working - critical for safety during power outages. The system must handle the building's 41 floors with thousands of LED lights operating efficiently."
                 }
         },
 
@@ -1585,7 +1585,7 @@ export const enPhysics = {
                 scenarios: {
                         power_basics: "Basel Household Electricity: You are helping Basel's energy consulting company calculate power consumption for residential customers. Electric power (P = U × I) determines how much energy devices use per second, measured in Watts. Your task is to calculate power for various household appliances. Understanding this helps families reduce electricity bills and carbon footprint. For example, a typical Basel household uses about 4,500 kWh per year, costing around 1,125 CHF at 0.25 CHF/kWh. Accurate power calculations help identify energy-wasting devices.",
                         energy_consumption: "IWB Basel Energy Management: You work for IWB (Industrielle Werke Basel), Basel's main electricity provider. Your task is to calculate energy consumption (E = P × t) and costs for commercial customers. Energy is measured in kilowatt-hours (kWh), and Basel's electricity rate is approximately 0.25 CHF/kWh for households and 0.20 CHF/kWh for businesses. You're analyzing a Novartis laboratory that runs equipment 24/7. Accurate calculations ensure correct billing and help customers optimize energy usage to reduce costs and environmental impact.",
-                        efficiency: "Basel Solar Panel Installation: You are an engineer at Solarville Basel, installing solar panels on residential rooftops. Efficiency (η = P_out/P_in × 100%) determines how much sunlight energy converts to electricity. Modern panels achieve 18-22% efficiency. Your task is to calculate power output, energy losses, and cost savings. A typical Basel home with 20 m² of panels (4 kW capacity) generates about 3,800 kWh/year, saving approximately 950 CHF annually. Understanding efficiency helps customers make informed investment decisions."
+                        efficiency: "Basel Solar Panel Installation: You are an engineer at Solarville Basel, installing solar panels on residential rooftops. Efficiency (η = P_out/P_in × 100%) determines how much sunlight energy converts to electricity. Modern panels achieve 18-22% efficiency. Your task is to calculate power output, energy losses, and cost savings. A typical Basel home with 20 m^2 of panels (4 kW capacity) generates about 3,800 kWh/year, saving approximately 950 CHF annually. Understanding efficiency helps customers make informed investment decisions."
                 },
                 prompts: {
                         e1: "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?",
@@ -1612,26 +1612,26 @@ export const enPhysics = {
                 footer_left: "GP2.01_THERMODYNAMICS // NODE: BASEL",
                 stages: { ideal_gas: "IDEAL GAS", boyles: "BOYLE'S LAW", charles: "CHARLES'S LAW" },
                 prompts: {
-                        find_p: "Ideal gas: n = {n} mol, T = {T} K, V = {V} m³. Find P.",
+                        find_p: "Ideal gas: n = {n} mol, T = {T} K, V = {V} m^3. Find P.",
                         find_v: "Gas: n = {n} mol, P = {P} Pa, T = {T} K. Find V.",
-                        find_n: "Gas: P = {P} Pa, V = {V} m³, T = {T} K. Find n.",
-                        find_t: "Gas: P = {P} Pa, V = {V} m³, n = {n} mol. Find T.",
+                        find_n: "Gas: P = {P} Pa, V = {V} m^3, T = {T} K. Find n.",
+                        find_t: "Gas: P = {P} Pa, V = {V} m^3, n = {n} mol. Find T.",
                         relation_pt: "Double the temperature at constant volume. Pressure changes by what factor?",
                         relation_vn: "Double the moles at constant P and T. Volume changes by what factor?",
-                        boyle_find_p2: "Boyle's Law: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. Find P₂.",
-                        boyle_find_v2: "Boyle's Law: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. Find V₂.",
+                        boyle_find_p2: "Boyle's Law: P_1 = {p1} kPa, V_1 = {v1} L, V_2 = {v2} L. Find P_2.",
+                        boyle_find_v2: "Boyle's Law: P_1 = {p1} kPa, V_1 = {v1} L, P_2 = {p2} kPa. Find V_2.",
                         boyle_relation: "Compress gas from {v1} L to {v2} L at constant T. Pressure multiplies by?",
                         boyle_condition: "Boyle's Law requires which quantity to remain constant?",
-                        charles_find_v2: "Charles's Law: V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. Find V₂.",
-                        charles_find_t2: "Charles's Law: V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Find T₂.",
+                        charles_find_v2: "Charles's Law: V_1 = {v1} L, T_1 = {t1} K, T_2 = {t2} K. Find V_2.",
+                        charles_find_t2: "Charles's Law: V_1 = {v1} L, T_1 = {t1} K, V_2 = {v2} L. Find T_2.",
                         charles_relation: "Double the absolute temperature at constant P. Volume changes by what factor?",
                         charles_condition: "Charles's Law requires which quantity to remain constant?",
                         combined_law: "Combined Gas Law provided P, V, T changes. Solving for {target}.",
-                        iwb_steam: "IWB District Heating: Steam at T={T} K, V={V} m³, n={n} mol. Calculate Pressure P (Ideal Gas assumption).",
-                        roche_tower: "Roche Tower Floor 40: Room V={V} m³, T={T} K, P={P} Pa. Calculate moles of air n.",
+                        iwb_steam: "IWB District Heating: Steam at T={T} K, V={V} m^3, n={n} mol. Calculate Pressure P (Ideal Gas assumption).",
+                        roche_tower: "Roche Tower Floor 40: Room V={V} m^3, T={T} K, P={P} Pa. Calculate moles of air n.",
                         rhine_bubble: "Rhine Diver at depth (P1={p1} kPa) exhales bubble V1={v1} mL. Volume at surface (P2={p2} kPa)?",
-                        weather_balloon: "Basel Weather Balloon: Ground V={v1} m³, T1={t1} K. Stratosphere T2={t2} K (assume constant P for Charles' Law). New Volume?",
-                        novartis_reactor: "Novartis Reactor V={V} m³. Purge with N2 at P={P} Pa, T={T} K. Calculate mass of N2 (M=0.028 kg/mol)."
+                        weather_balloon: "Basel Weather Balloon: Ground V={v1} m^3, T1={t1} K. Stratosphere T2={t2} K (assume constant P for Charles' Law). New Volume?",
+                        novartis_reactor: "Novartis Reactor V={V} m^3. Purge with N2 at P={P} Pa, T={T} K. Calculate mass of N2 (M=0.028 kg/mol)."
                 },
                 scenarios: {
                         ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",
@@ -1664,7 +1664,7 @@ export const enPhysics = {
                         ie_diatomic: "Diatomic gas (f=5): n={n}, T={t}. Calculate internal energy U.",
                         ie_change_t: "Ideal gas (n={n}, Cv={cv} J/molK) heated from {t1} K to {t2} K. Find ΔU.",
                         ie_state_func: "Internal energy is a state function. Change in a cycle is?",
-                        wh_isobaric: "Isobaric expansion: P = {p} Pa, ΔV = {dv} m³. Find Work W.",
+                        wh_isobaric: "Isobaric expansion: P = {p} Pa, ΔV = {dv} m^3. Find Work W.",
                         wh_isochoric: "Isochoric heating (constant Volume). What is Work W?",
                         wh_isothermal_w: "Isothermal expansion of ideal gas. Q = {q} J. Find W.",
                         wh_area: "PV Diagram area represents what quantity?",
@@ -1703,7 +1703,7 @@ export const enPhysics = {
                 scenarios: {
                         wave_properties: "You are analyzing wave motion on the Rhine River near Basel's Mittlere Brücke. The river generates surface waves with varying frequencies and wavelengths. Understanding wave properties is crucial for Basel's river navigation safety and the design of the new Rhine harbor facilities. The fundamental wave equation v = fλ relates velocity, frequency, and wavelength. Sound waves in air travel at 340 m/s, while in water they travel at 1500 m/s. This difference affects underwater communication systems used by Basel's river monitoring stations. Wave period T = 1/f describes oscillation time. These principles apply to all wave phenomena from water waves to electromagnetic radiation.",
                         superposition: "At Basel's Stadtcasino concert hall, acoustic engineers study wave interference patterns to optimize sound quality. When two waves meet, they superpose - their amplitudes add algebraically. Constructive interference occurs when waves are in phase, creating louder sound. Destructive interference happens when waves are out of phase, causing cancellation. Standing waves form in the concert hall when reflected waves interfere with incident waves, creating nodes (zero amplitude) and antinodes (maximum amplitude). The double-slit experiment demonstrates wave interference with light, producing bright and dark fringes. Thin film interference creates colorful patterns in soap bubbles and oil slicks, phenomena studied at Basel University's physics department.",
-                        optics: "CERN's Basel collaboration uses advanced optical systems for particle detection. Light obeys the law of reflection (θᵢ = θᵣ) and Snell's law of refraction (n₁sinθ₁ = n₂sinθ₂). Total internal reflection occurs when light travels from denser to less dense medium at angles exceeding the critical angle, enabling fiber optic communication in Basel's telecommunications infrastructure. Single-slit diffraction creates characteristic patterns with minima at asinθ = mλ. Diffraction gratings with equation d·sinθ = mλ are used in spectrometers at Roche and Novartis for chemical analysis. The Rayleigh criterion determines optical resolution limits for Basel's astronomical observatory telescopes."
+                        optics: "CERN's Basel collaboration uses advanced optical systems for particle detection. Light obeys the law of reflection (θᵢ = θᵣ) and Snell's law of refraction (n_1sinθ_1 = n_2sinθ_2). Total internal reflection occurs when light travels from denser to less dense medium at angles exceeding the critical angle, enabling fiber optic communication in Basel's telecommunications infrastructure. Single-slit diffraction creates characteristic patterns with minima at asinθ = mλ. Diffraction gratings with equation d·sinθ = mλ are used in spectrometers at Roche and Novartis for chemical analysis. The Rayleigh criterion determines optical resolution limits for Basel's astronomical observatory telescopes."
                 },
                 objective_title: "Wave Analysis",
                 complete: "Module Complete!",
@@ -1730,49 +1730,49 @@ export const enPhysics = {
                         constructive_interference: "Two waves (A = 2 m each) interfere constructively. Total amplitude?",
                         destructive_interference: "Two waves (A = 3 m each) interfere destructively. Total amplitude?",
                         beat_frequency: "Two tuning forks: 440 Hz and 444 Hz. Beat frequency?",
-                        de_broglie: "Electron (m = 9.1×10⁻³¹ kg, v = 1 m/s). De Broglie wavelength? (h = 6.63×10⁻³⁴)",
+                        de_broglie: "Electron (m = 9.1×10^-^3¹ kg, v = 1 m/s). De Broglie wavelength? (h = 6.63×10^-^3^4)",
                         wave_particle_duality: "Light exhibits both wave and particle properties. True or false?",
-                        photon_energy: "Photon with f = 5×10¹⁴ Hz. Energy E = hf? (h = 6.63×10⁻³⁴)",
+                        photon_energy: "Photon with f = 5×10¹^4 Hz. Energy E = hf? (h = 6.63×10^-^3^4)",
                         matter_wave: "Electron wavelength λ = h/mv. For typical electron, λ ≈ ?",
                         uncertainty: "Heisenberg uncertainty: ΔxΔp ≥ h/4π. Can we know both exactly?",
                         same_phase_add: "Two waves (A = 2 m) in phase. Total amplitude?",
                         opposite_phase_cancel: "Two waves (A = 3 m) opposite phase. Total amplitude?",
                         constructive_max: "Two waves (A = 1 m) constructive interference. Maximum amplitude?",
-                        partial_destructive: "Waves A₁ = 5 m, A₂ = 3 m interfere destructively. Total amplitude?",
+                        partial_destructive: "Waves A_1 = 5 m, A_2 = 3 m interfere destructively. Total amplitude?",
                         interference_type: "Two waves in phase combine. Interference type?",
-                        standing_wave_node: "Standing wave λ = 2 m. First node position x₁?",
-                        standing_wave_antinode: "Standing wave λ = 4 m. First antinode position x₁?",
+                        standing_wave_node: "Standing wave λ = 2 m. First node position x_1?",
+                        standing_wave_antinode: "Standing wave λ = 4 m. First antinode position x_1?",
                         node_count: "String length 5 m, λ = 2 m. Number of nodes?",
                         string_fundamental: "String fundamental mode: L = λ/2. If λ = 1 m, find L.",
-                        harmonic_wavelength: "Fundamental λ₁ = 2 m. Second harmonic wavelength λ₂?",
+                        harmonic_wavelength: "Fundamental λ_1 = 2 m. Second harmonic wavelength λ_2?",
                         double_slit_spacing: "Double slit: λ = 500 nm, L = 2 m, d = 1 mm. Fringe spacing Δy?",
-                        fringe_order: "Double slit: λ = 600 nm, L = 2 m, d = 1.2 mm. Third bright fringe y₃?",
+                        fringe_order: "Double slit: λ = 600 nm, L = 2 m, d = 1.2 mm. Third bright fringe y_3?",
                         slit_separation: "Double slit: λ = 500 nm, L = 1 m, Δy = 1 mm. Slit separation d?",
                         wavelength_from_fringes: "Double slit: Δy = 0.8 mm, d = 0.5 mm, L = 1 m. Wavelength λ?",
                         central_maximum: "Double slit: central maximum position y₀?",
                         thin_film_constructive: "Thin film (n = 2): constructive interference for λ = 500 nm, m = 1. Thickness t?",
                         thin_film_destructive: "Thin film (n = 2): destructive interference for λ = 600 nm, m = 0. Thickness t?",
-                        newton_rings: "Newton rings: λ = 500 nm, R = 1 m. First bright ring radius r₁?",
+                        newton_rings: "Newton rings: λ = 500 nm, R = 1 m. First bright ring radius r_1?",
                         soap_bubble: "Soap bubble (n = 1.33, t = 300 nm) reflects which color strongly?",
                         anti_reflection: "Anti-reflection coating (n = 2): λ = 400 nm. Minimum thickness t?",
                         reflection_angle: "Light incident at 30°. Reflection angle θᵣ?",
-                        refraction_basic: "Light from air (n = 1) to glass (n = 1.5) at 30°. Refraction angle θ₂?",
+                        refraction_basic: "Light from air (n = 1) to glass (n = 1.5) at 30°. Refraction angle θ_2?",
                         light_speed_medium: "Light in glass (n = 1.5). Speed v = c/n?",
-                        refractive_index: "Light speed in medium: v = 2×10⁸ m/s. Refractive index n?",
+                        refractive_index: "Light speed in medium: v = 2×10^8 m/s. Refractive index n?",
                         normal_incidence: "Light perpendicular to surface. Refraction angle θᵣ?",
                         critical_angle: "Glass (n = 1.5) to air (n = 1). Critical angle θc?",
                         total_internal_reflection: "Light at 50° from glass to air (θc = 42°). Total internal reflection?",
                         fiber_optics: "Fiber optics use which principle to trap light?",
                         prism_dispersion: "Prism separates white light into colors. This effect is called?",
-                        brewster_angle: "Brewster angle for glass (n = 1.5) to air. tan θB = n₂/n₁. Find θB.",
-                        single_slit_minima: "Single slit (a = 1 mm): first minimum for λ = 500 nm. Angle θ₁?",
+                        brewster_angle: "Brewster angle for glass (n = 1.5) to air. tan θB = n_2/n_1. Find θB.",
+                        single_slit_minima: "Single slit (a = 1 mm): first minimum for λ = 500 nm. Angle θ_1?",
                         diffraction_width: "Single slit (a = 0.6 mm): λ = 600 nm, L = 1 m. Central maximum width w?",
                         rayleigh_criterion: "Telescope (D = 0.5 m): λ = 500 nm. Minimum resolvable angle θmin?",
                         circular_aperture: "Circular aperture (D = 10 mm, f = 100 mm): λ = 500 nm. Airy disk radius r?",
                         resolving_power: "Telescope diameter D = 0.5 m, λ = 500 nm. Resolving power R?",
-                        grating_equation: "Diffraction grating (d = 1 μm): λ = 500 nm, m = 1. Angle θ₁?",
+                        grating_equation: "Diffraction grating (d = 1 μm): λ = 500 nm, m = 1. Angle θ_1?",
                         grating_order: "Grating (d = 2 μm): λ = 600 nm. Maximum order mmax?",
-                        grating_spacing: "Grating: λ = 500 nm, θ₁ = 30°, m = 1. Line spacing d?",
+                        grating_spacing: "Grating: λ = 500 nm, θ_1 = 30°, m = 1. Line spacing d?",
                         spectral_resolution: "Grating: m = 2, N = 5000 lines. Spectral resolution R?",
                         blazed_grating: "Blazed grating optimizes efficiency for specific wavelength. Purpose?"
                 },
@@ -1789,7 +1789,7 @@ export const enPhysics = {
                         doppler_recede: "Receding source: lower frequency",
                         constructive: "In phase: amplitudes add",
                         destructive: "Out of phase: amplitudes subtract",
-                        beats: "Beat frequency = |f₁ - f₂|",
+                        beats: "Beat frequency = |f_1 - f_2|",
                         de_broglie: "λ = h/mv",
                         duality: "Light is both wave and particle",
                         photon_energy: "E = hf",
@@ -1797,14 +1797,14 @@ export const enPhysics = {
                         uncertainty: "Cannot know both exactly",
                         in_phase: "Same phase: add amplitudes",
                         out_of_phase: "Opposite phase: subtract",
-                        max_amplitude: "Constructive: A₁ + A₂",
-                        partial_cancel: "Partial destructive: |A₁ - A₂|",
+                        max_amplitude: "Constructive: A_1 + A_2",
+                        partial_cancel: "Partial destructive: |A_1 - A_2|",
                         interference_types: "In phase = constructive",
                         node_position: "Node: x = nλ/2",
                         antinode_position: "Antinode: x = (n + 1/2)λ/2",
                         node_count: "Count λ/2 intervals",
                         fundamental_mode: "Fundamental: L = λ/2",
-                        second_harmonic: "Second harmonic: λ₂ = λ₁/2",
+                        second_harmonic: "Second harmonic: λ_2 = λ_1/2",
                         double_slit: "Δy = λL/d",
                         fringe_position: "ym = mλL/d",
                         slit_distance: "d = λL/Δy",
@@ -1816,15 +1816,15 @@ export const enPhysics = {
                         soap_colors: "Interference creates colors",
                         anti_reflection: "Quarter-wave coating: t = λ/4n",
                         law_of_reflection: "θᵢ = θᵣ",
-                        snells_law: "n₁sinθ₁ = n₂sinθ₂",
+                        snells_law: "n_1sinθ_1 = n_2sinθ_2",
                         light_speed: "v = c/n",
                         index_calc: "n = c/v",
                         normal_ray: "Perpendicular: no bending",
-                        critical_angle: "sinθc = n₂/n₁",
+                        critical_angle: "sinθc = n_2/n_1",
                         tir_condition: "θ > θc causes TIR",
                         fiber_principle: "Total internal reflection",
                         dispersion: "Different λ refract differently",
-                        brewster: "tanθB = n₂/n₁",
+                        brewster: "tanθB = n_2/n_1",
                         single_slit: "Minima: asinθ = mλ",
                         central_width: "w = 2λL/a",
                         rayleigh: "θmin = 1.22λ/D",
@@ -1854,8 +1854,8 @@ export const enPhysics = {
                         particle_motion: "PARTICLE MOTION"
                 },
                 scenarios: {
-                        electric_field: "You are a research engineer at Roche Tower Basel, designing an advanced electrostatic precipitator for air purification in pharmaceutical clean rooms. The system uses electric fields to remove airborne particles, ensuring sterile production environments for life-saving medications. Electric field strength E = kQ/r² (where k = 8.99×10⁹ N·m²/C²) determines the force on charged particles. A point charge Q creates an electric field that radiates outward, with field lines showing direction and strength. The force on a test charge q in this field is F = qE. Understanding electric fields is crucial for designing medical equipment, particle accelerators at CERN's Basel collaboration, and semiconductor manufacturing at local tech companies. These principles also explain lightning protection systems on Basel's historic buildings and the operation of touchscreens in smartphones.",
-                        magnetic_field: "At Basel University Hospital's MRI department, you are calibrating magnetic field systems for medical imaging. Magnetic fields are created by electric currents and are measured in Tesla (T). A straight current-carrying wire produces a circular magnetic field with strength B = μ₀I/(2πr), where μ₀ = 4π×10⁻⁷ T·m/A is the permeability of free space. The right-hand rule determines field direction: thumb points along current, fingers curl in field direction. Solenoids (coils) create uniform fields B = μ₀nI inside, used in MRI machines to align hydrogen atoms in patients' bodies. The force on a current-carrying wire in a magnetic field is F = BILsinθ, enabling electric motors in Basel's trams and trains. Magnetic levitation (maglev) trains use these principles, and Basel's connection to the Swiss rail network relies on electromagnetic systems.",
+                        electric_field: "You are a research engineer at Roche Tower Basel, designing an advanced electrostatic precipitator for air purification in pharmaceutical clean rooms. The system uses electric fields to remove airborne particles, ensuring sterile production environments for life-saving medications. Electric field strength E = kQ/r^2 (where k = 8.99×10^9 N·m^2/C^2) determines the force on charged particles. A point charge Q creates an electric field that radiates outward, with field lines showing direction and strength. The force on a test charge q in this field is F = qE. Understanding electric fields is crucial for designing medical equipment, particle accelerators at CERN's Basel collaboration, and semiconductor manufacturing at local tech companies. These principles also explain lightning protection systems on Basel's historic buildings and the operation of touchscreens in smartphones.",
+                        magnetic_field: "At Basel University Hospital's MRI department, you are calibrating magnetic field systems for medical imaging. Magnetic fields are created by electric currents and are measured in Tesla (T). A straight current-carrying wire produces a circular magnetic field with strength B = μ₀I/(2πr), where μ₀ = 4π×10^-^7 T·m/A is the permeability of free space. The right-hand rule determines field direction: thumb points along current, fingers curl in field direction. Solenoids (coils) create uniform fields B = μ₀nI inside, used in MRI machines to align hydrogen atoms in patients' bodies. The force on a current-carrying wire in a magnetic field is F = BILsinθ, enabling electric motors in Basel's trams and trains. Magnetic levitation (maglev) trains use these principles, and Basel's connection to the Swiss rail network relies on electromagnetic systems.",
                         particle_motion: "You are a physicist at CERN's Basel research facility, analyzing charged particle trajectories in electromagnetic fields for the Large Hadron Collider experiments. When a charged particle (charge q, mass m) enters an electric field E, it experiences force F = qE and acceleration a = qE/m, following a parabolic path like projectile motion. In a magnetic field B, a moving charged particle experiences the Lorentz force F = qvB perpendicular to both velocity and field, causing circular motion with radius r = mv/(qB). This principle enables mass spectrometers at Novartis and Roche quality control laboratories to identify molecular masses of pharmaceutical compounds. Velocity selectors use crossed electric and magnetic fields where particles travel straight only when v = E/B, separating ions by speed. Cyclotrons accelerate particles in spiral paths for cancer radiation therapy at Basel University Hospital. Understanding particle motion is essential for designing particle detectors, analyzing cosmic rays, and developing next-generation medical imaging technologies."
                 },
                 objective_title: "Electromagnetic Analysis",

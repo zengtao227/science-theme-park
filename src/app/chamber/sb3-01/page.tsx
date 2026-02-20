@@ -178,7 +178,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, scenario: "kannenfeldpark",
-                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m²/year. Herbivores consume mean = 850 kcal/m²/year. Calculate energy transfer efficiency (\\%).}`,
+                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^2/year. Herbivores consume mean = 850 kcal/m^2/year. Calculate energy transfer efficiency (\\%).}`,
                         expressionLatex: `\\\\text{Efficiency} = \\\\frac{\\\\text{Energy consumed}}{\\\\text{Energy available}} \\\\times 100\\\\%`,
                         targetLatex: `\\\\text{Efficiency}`,
                         slots: [{ id: "eff", labelLatex: `\\\\text{Efficiency (\\%)}`, placeholder: "10", expected: "10" }],
@@ -402,7 +402,7 @@ export default function SB301Page() {
                                 {t("sb3_01.labels.trophic_level")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm text-center">
-                                <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
+                                <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/^2/g, '^2')}}`} />
                             </div>
                         </div>
 

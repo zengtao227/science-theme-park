@@ -28,7 +28,7 @@ interface Bond {
 // Molecular data
 const molecules: Record<string, { atoms: Atom[]; bonds: Bond[]; formula: string }> = {
     methane: {
-        formula: "CH₄",
+        formula: "CH_4",
         atoms: [
             { element: "C", position: new THREE.Vector3(0, 0, 0), color: "#808080", radius: 0.3 },
             { element: "H", position: new THREE.Vector3(0.63, 0.63, 0.63), color: "#ffffff", radius: 0.2 },
@@ -44,7 +44,7 @@ const molecules: Record<string, { atoms: Atom[]; bonds: Bond[]; formula: string 
         ],
     },
     ethane: {
-        formula: "C₂H₆",
+        formula: "C_2H_6",
         atoms: [
             { element: "C", position: new THREE.Vector3(-0.75, 0, 0), color: "#808080", radius: 0.3 },
             { element: "C", position: new THREE.Vector3(0.75, 0, 0), color: "#808080", radius: 0.3 },
@@ -66,7 +66,7 @@ const molecules: Record<string, { atoms: Atom[]; bonds: Bond[]; formula: string 
         ],
     },
     benzene: {
-        formula: "C₆H₆",
+        formula: "C_6H_6",
         atoms: [
             { element: "C", position: new THREE.Vector3(1, 0, 0), color: "#808080", radius: 0.3 },
             { element: "C", position: new THREE.Vector3(0.5, 0.866, 0), color: "#808080", radius: 0.3 },
@@ -97,7 +97,7 @@ const molecules: Record<string, { atoms: Atom[]; bonds: Bond[]; formula: string 
         ],
     },
     glucose: {
-        formula: "C₆H₁₂O₆",
+        formula: "C_6H_1_2O_6",
         atoms: [
             { element: "C", position: new THREE.Vector3(0, 0, 0), color: "#808080", radius: 0.3 },
             { element: "C", position: new THREE.Vector3(1, 0.5, 0), color: "#808080", radius: 0.3 },
@@ -126,7 +126,7 @@ const molecules: Record<string, { atoms: Atom[]; bonds: Bond[]; formula: string 
         ],
     },
     alanine: {
-        formula: "C₃H₇NO₂",
+        formula: "C_3H_7NO_2",
         atoms: [
             { element: "C", position: new THREE.Vector3(0, 0, 0), color: "#808080", radius: 0.3 },
             { element: "C", position: new THREE.Vector3(1.5, 0, 0), color: "#808080", radius: 0.3 },

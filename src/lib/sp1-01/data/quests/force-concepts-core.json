@@ -86,14 +86,14 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! F = √(60² + 80²) = √10000 = 100 N",
-        "cn": "正确！F = √(60² + 80²) = √10000 = 100 N",
-        "de": "Richtig! F = √(60² + 80²) = √10000 = 100 N"
+        "en": "Correct! F = √(60^2 + 80^2) = √10000 = 100 N",
+        "cn": "正确！F = √(60^2 + 80^2) = √10000 = 100 N",
+        "de": "Richtig! F = √(60^2 + 80^2) = √10000 = 100 N"
       },
       "incorrect": {
-        "en": "Use the Pythagorean theorem: F = √(F_x² + F_y²)",
-        "cn": "使用勾股定理：F = √(F_x² + F_y²)",
-        "de": "Verwenden Sie den Satz des Pythagoras: F = √(F_x² + F_y²)"
+        "en": "Use the Pythagorean theorem: F = √(F_x^2 + F_y^2)",
+        "cn": "使用勾股定理：F = √(F_x^2 + F_y^2)",
+        "de": "Verwenden Sie den Satz des Pythagoras: F = √(F_x^2 + F_y^2)"
       }
     },
     "prerequisites": ["SP1.01.017"]

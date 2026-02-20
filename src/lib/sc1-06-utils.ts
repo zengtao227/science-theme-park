@@ -482,7 +482,7 @@ export function validateCoefficient(input: string | number): CoefficientValidati
  * 2. Decomposition: AB → A + B (one reactant breaks into two or more products)
  * 3. Single Replacement: A + BC → AC + B (one element replaces another)
  * 4. Double Replacement: AB + CD → AD + CB (two compounds exchange parts)
- * 5. Combustion: CₓHᵧ + O₂ → CO₂ + H₂O (hydrocarbon burns with oxygen)
+ * 5. Combustion: CₓHᵧ + O_2 → CO_2 + H_2O (hydrocarbon burns with oxygen)
  * 
  * Requirements: 3.2, 3.3, 10.3
  * 
@@ -676,7 +676,7 @@ export function analyzeReactionPattern(equation: {
       break;
       
     case 'combustion':
-      pattern = 'CₓHᵧ + O₂ → CO₂ + H₂O';
+      pattern = 'CₓHᵧ + O_2 → CO_2 + H_2O';
       description = 'Hydrocarbon burns with oxygen';
       confidence = 0.95;
       break;

@@ -145,7 +145,7 @@ function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
         targetLatex: `\\theta_2`,
         correctLatex: `\\theta_2=${theta2.toFixed(1)}^\\circ`,
         slots: [
-          { id: "theta_2", labelLatex: "\\theta_2", placeholder: "θ₂ (degrees)", expected: parseFloat(theta2.toFixed(1)) },
+          { id: "theta_2", labelLatex: "\\theta_2", placeholder: "θ_2 (degrees)", expected: parseFloat(theta2.toFixed(1)) },
         ],
         hintLatex: [`\\text{Use Snell's Law: } n_1\\sin\\theta_1=n_2\\sin\\theta_2`],
       });
@@ -324,7 +324,7 @@ export default function P301Page() {
             )}
             {currentQuest?.scenario === "refraction" && (
               <>
-                <div>n₁ = {currentQuest?.n1?.toFixed(2)} → n₂ = {currentQuest?.n2?.toFixed(2)}</div>
+                <div>n_1 = {currentQuest?.n1?.toFixed(2)} → n_2 = {currentQuest?.n2?.toFixed(2)}</div>
                 <div>{t("sp3_08.labels.incident_angle")}: {currentQuest?.angle}°</div>
               </>
             )}

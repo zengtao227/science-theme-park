@@ -660,7 +660,7 @@ export default function P308OpticsCanvas({
         {scenario !== "lens" && scenario !== "prism" && (
           <>
             <div className="text-pink-400">Angle: {angle}°</div>
-            <div className="text-white">n₁: {n1} | n₂: {n2}</div>
+            <div className="text-white">n_1: {n1} | n_2: {n2}</div>
           </>
         )}
         {scenario === "lens" && (

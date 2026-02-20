@@ -25,8 +25,8 @@ export default function PhotosynthesisCanvas({
         ctx.font = "14px monospace";
         ctx.fillStyle = "#00ffff";
         ctx.textAlign = "center";
-        ctx.fillText("6CO₂", w * 0.15, centerY - 20);
-        ctx.fillText("6H₂O", w * 0.15, centerY + 20);
+        ctx.fillText("6CO_2", w * 0.15, centerY - 20);
+        ctx.fillText("6H_2O", w * 0.15, centerY + 20);
 
         const lightAlpha = light / 100;
         ctx.strokeStyle = `rgba(255, 255, 0, ${lightAlpha})`;
@@ -61,8 +61,8 @@ export default function PhotosynthesisCanvas({
 
         ctx.fillStyle = "#00ff00";
         ctx.font = "14px monospace";
-        ctx.fillText("C₆H₁₂O₆", w * 0.85, centerY - 20);
-        ctx.fillText("6O₂", w * 0.85, centerY + 20);
+        ctx.fillText("C_6H_1_2O_6", w * 0.85, centerY - 20);
+        ctx.fillText("6O_2", w * 0.85, centerY + 20);
 
         ctx.strokeStyle = "#00ff00";
         ctx.lineWidth = 2;
@@ -95,7 +95,7 @@ export default function PhotosynthesisCanvas({
 
         const bars = [
             { x: spacing * 2, value: light, color: "#ffff00", label: translations?.canvas_labels?.light ?? "Light" },
-            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO₂" },
+            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO_2" },
             { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations?.canvas_labels?.temp_label ?? "Temp" }
         ];
 

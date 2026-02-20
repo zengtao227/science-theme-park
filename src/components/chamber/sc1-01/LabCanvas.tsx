@@ -15,7 +15,7 @@ export interface Reaction {
 const reactions: Reaction[] = [
   // Baking Soda reactions
   { substance: "soda", tool: "water", result: "Dissolves slightly", visual: "dissolve" },
-  { substance: "soda", tool: "vinegar", result: "Fizzes! CO₂ bubbles!", visual: "bubbles" },
+  { substance: "soda", tool: "vinegar", result: "Fizzes! CO_2 bubbles!", visual: "bubbles" },
   { substance: "soda", tool: "fire", result: "No visible change", visual: "none" },
   { substance: "soda", tool: "iodine", result: "No color change", visual: "none" },
 

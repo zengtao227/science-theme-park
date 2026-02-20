@@ -12,7 +12,7 @@
  * @param charge - Charge in Coulombs (C)
  * @param mass - Mass in kilograms (kg)
  * @param field - Electric field strength in N/C
- * @returns Acceleration in m/s²
+ * @returns Acceleration in m/s^2
  */
 export function calculateAcceleration(
   charge: number,

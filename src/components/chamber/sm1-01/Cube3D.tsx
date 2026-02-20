@@ -146,7 +146,7 @@ export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps
       <div className="absolute bottom-4 left-4 bg-black/80 p-4 rounded border border-white/60 backdrop-blur-sm">
         <div className="text-white font-mono text-sm">
           <div className="text-neon-green mb-2">立方体体积</div>
-          <div>V = a³ = {sideLength}³ = {sideLength ** 3} cm³</div>
+          <div>V = a^3 = {sideLength}^3 = {sideLength ** 3} cm^3</div>
           {showDiagonal && (
             <div className="mt-2 text-neon-cyan">
               <div>空间对角线</div>

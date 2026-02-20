@@ -404,7 +404,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-E5", difficulty, stage, dataType: "r_squared",
-                        promptLatex: `\\\\text{r² = 0.81 means what percent of variation is explained?}`,
+                        promptLatex: `\\\\text{r^2 = 0.81 means what percent of variation is explained?}`,
                         expressionLatex: `r^2 \\times 100\\% = \\\\text{percent explained}`,
                         targetLatex: `\\\\text{Percent}`,
                         slots: [{ id: "pct", labelLatex: `\\\\text{Percent}`, placeholder: "81", expected: 81 }],
@@ -600,7 +600,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-E5", difficulty, stage, dataType: "coefficient_determination",
-                        promptLatex: `\\\\text{r² is called what?}`,
+                        promptLatex: `\\\\text{r^2 is called what?}`,
                         expressionLatex: `r^2 = \\\\text{coefficient of determination}`,
                         targetLatex: `\\\\text{Name}`,
                         slots: [{ id: "name", labelLatex: `\\\\text{Name}`, placeholder: "determination", expected: "determination" }],

@@ -69,12 +69,12 @@ export default function OrganicReactionCanvas({
 
         // Methane molecule (CH4)
         const ch4X = w * 0.2;
-        drawMolecule(ctx, ch4X, centerY, "CH₄", "#00ff00");
+        drawMolecule(ctx, ch4X, centerY, "CH_4", "#00ff00");
 
         // Oxygen molecules
         const o2X = w * 0.4;
-        drawMolecule(ctx, o2X, centerY - 30, "O₂", "#00ffff");
-        drawMolecule(ctx, o2X, centerY + 30, "O₂", "#00ffff");
+        drawMolecule(ctx, o2X, centerY - 30, "O_2", "#00ffff");
+        drawMolecule(ctx, o2X, centerY + 30, "O_2", "#00ffff");
 
         // Reaction arrow
         const arrowX = w * 0.5;
@@ -99,9 +99,9 @@ export default function OrganicReactionCanvas({
 
         // Products
         const co2X = w * 0.7;
-        drawMolecule(ctx, co2X, centerY - 30, "CO₂", "#ff0000");
+        drawMolecule(ctx, co2X, centerY - 30, "CO_2", "#ff0000");
         const h2oX = w * 0.75;
-        drawMolecule(ctx, h2oX, centerY + 30, "H₂O", "#0088ff");
+        drawMolecule(ctx, h2oX, centerY + 30, "H_2O", "#0088ff");
 
         // Energy release
         if (showMech) {
@@ -121,11 +121,11 @@ export default function OrganicReactionCanvas({
 
         // Alkane (CH4)
         const alkaneX = w * 0.2;
-        drawMolecule(ctx, alkaneX, centerY, "CH₄", "#00ff00");
+        drawMolecule(ctx, alkaneX, centerY, "CH_4", "#00ff00");
 
         // Halogen (Cl2)
         const halogenX = w * 0.4;
-        drawMolecule(ctx, halogenX, centerY, "Cl₂", "#ffff00");
+        drawMolecule(ctx, halogenX, centerY, "Cl_2", "#ffff00");
 
         // Light/UV
         if (showMech) {
@@ -152,7 +152,7 @@ export default function OrganicReactionCanvas({
 
         // Products
         const productX = w * 0.7;
-        drawMolecule(ctx, productX, centerY - 25, "CH₃Cl", "#ff00ff");
+        drawMolecule(ctx, productX, centerY - 25, "CH_3Cl", "#ff00ff");
         drawMolecule(ctx, productX, centerY + 25, "HCl", "#00ffff");
 
         // Free radical mechanism
@@ -162,8 +162,8 @@ export default function OrganicReactionCanvas({
             ctx.fillStyle = "#ff0000";
             ctx.font = "12px monospace";
             ctx.textAlign = "center";
-            ctx.fillText("Cl• + CH₄ → CH₃• + HCl", radicalX, radicalY);
-            ctx.fillText("CH₃• + Cl₂ → CH₃Cl + Cl•", radicalX, radicalY + 15);
+            ctx.fillText("Cl• + CH_4 → CH_3• + HCl", radicalX, radicalY);
+            ctx.fillText("CH_3• + Cl_2 → CH_3Cl + Cl•", radicalX, radicalY + 15);
         }
     }, [drawMolecule, drawArrow]);
 
@@ -172,7 +172,7 @@ export default function OrganicReactionCanvas({
 
         // Alkene (C2H4) with double bond
         const alkeneX = w * 0.25;
-        drawMolecule(ctx, alkeneX, centerY, "C₂H₄", "#00ff00");
+        drawMolecule(ctx, alkeneX, centerY, "C_2H_4", "#00ff00");
 
         // Double bond indicator
         ctx.strokeStyle = "#00ff00";
@@ -188,7 +188,7 @@ export default function OrganicReactionCanvas({
 
         // Reagent (H2 or Br2)
         const reagentX = w * 0.45;
-        drawMolecule(ctx, reagentX, centerY, "H₂", "#00ffff");
+        drawMolecule(ctx, reagentX, centerY, "H_2", "#00ffff");
 
         // Reaction arrow
         const arrowX = w * 0.55;
@@ -204,7 +204,7 @@ export default function OrganicReactionCanvas({
 
         // Product (C2H6) - single bond
         const productX = w * 0.75;
-        drawMolecule(ctx, productX, centerY, "C₂H₆", "#ff00ff");
+        drawMolecule(ctx, productX, centerY, "C_2H_6", "#ff00ff");
 
         // Single bond indicator
         ctx.strokeStyle = "#ff00ff";

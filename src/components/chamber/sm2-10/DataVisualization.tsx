@@ -50,13 +50,13 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                     Min
                                 </text>
                                 <text x={110} y={75} textAnchor="middle" fill="#a78bfa" fontSize="9">
-                                    Q₁
+                                    Q_1
                                 </text>
                                 <text x={150} y={75} textAnchor="middle" fill="#ffd93d" fontSize="9" fontWeight="bold">
                                     Median
                                 </text>
                                 <text x={190} y={75} textAnchor="middle" fill="#a78bfa" fontSize="9">
-                                    Q₃
+                                    Q_3
                                 </text>
                                 <text x={230} y={75} textAnchor="middle" fill="#a78bfa" fontSize="9">
                                     Max
@@ -65,7 +65,7 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                 {/* IQR bracket */}
                                 <line x1={110} y1={130} x2={190} y2={130} stroke="#00e5ff" strokeWidth={1} strokeDasharray="2,2" />
                                 <text x={150} y={145} textAnchor="middle" fill="#00e5ff" fontSize="9">
-                                    IQR = Q₃ - Q₁
+                                    IQR = Q_3 - Q_1
                                 </text>
                             </g>
 
@@ -79,7 +79,7 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                     • Median: Middle value (50th percentile)
                                 </text>
                                 <text x={10} y={56} fill="white" fontSize="9">
-                                    • Q₁: 25th percentile, Q₃: 75th percentile
+                                    • Q_1: 25th percentile, Q_3: 75th percentile
                                 </text>
                                 <text x={10} y={72} fill="white" fontSize="9">
                                     • IQR: Spread of middle 50% of data

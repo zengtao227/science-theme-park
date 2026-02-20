@@ -248,7 +248,7 @@ describe('Reaction Type Classification', () => {
       const analysis = analyzeReactionPattern(equation);
       
       expect(analysis.type).toBe('combustion');
-      expect(analysis.pattern).toBe('CₓHᵧ + O₂ → CO₂ + H₂O');
+      expect(analysis.pattern).toBe('CₓHᵧ + O_2 → CO_2 + H_2O');
       expect(analysis.confidence).toBeGreaterThan(0.9);
       expect(analysis.description).toContain('oxygen');
     });

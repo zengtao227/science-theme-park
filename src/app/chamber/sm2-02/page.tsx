@@ -843,7 +843,7 @@ export default function S202Page() {
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>Base Leg a: {explorerA}</span>
-                    <span className="text-neon-cyan">a² = {explorerA * explorerA}</span>
+                    <span className="text-neon-cyan">a^2 = {explorerA * explorerA}</span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -854,7 +854,7 @@ export default function S202Page() {
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>Base Leg b: {explorerB}</span>
-                    <span className="text-neon-blue">b² = {explorerB * explorerB}</span>
+                    <span className="text-neon-blue">b^2 = {explorerB * explorerB}</span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -913,7 +913,7 @@ export default function S202Page() {
                 <div className="text-[9px] text-white/90 uppercase font-mono tracking-widest">Similarity Theorem</div>
                 <p className="text-[11px] text-white/70 leading-relaxed italic">
                   Scaled triangles (ka, kb, kc) are similar to (a, b, c).
-                  The relationship <span className="text-neon-cyan">a²+b²=c²</span> remains invariant under any positive scale factor <span className="text-neon-purple">k</span>.
+                  The relationship <span className="text-neon-cyan">a^2+b^2=c^2</span> remains invariant under any positive scale factor <span className="text-neon-purple">k</span>.
                 </p>
               </div>
             </div>
@@ -925,9 +925,9 @@ export default function S202Page() {
                 Real-time Geometry Engine
               </div>
               <div className="text-3xl font-black text-white tracking-tighter">
-                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}²</span>
+                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}^2</span>
                 <span className="mx-3 opacity-30">+</span>
-                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}²</span>
+                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}^2</span>
                 <span className="mx-3 opacity-30">=</span>
                 <span className="text-neon-green">{(explorerA * explorerA * explorerK * explorerK + explorerB * explorerB * explorerK * explorerK).toFixed(1)}</span>
               </div>

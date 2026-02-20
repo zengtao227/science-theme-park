@@ -20,21 +20,21 @@ export type CanvasQuest = {
 const hintPanelI18n: Record<string, Record<string, { title: string; items: string[] }>> = {
   EN: {
     TERMS: { title: "Combining Like Terms", items: ["ax + bx = (a+b)x", "Group same variables", "Watch signs: -(a-b) = -a+b", "Distribute: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x² + (A+B)x + AB", "u² − v² = (u−v)(u+v)", "(a+b)² = a² + 2ab + b²", "Always check: GCF first"] },
-    FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a²−b² = (a−b)(a+b)", "Check domain restrictions"] },
-    EQUATIONS: { title: "Solving Equations", items: ["Zero Product: if pq=0, then p=0 or q=0", "Quadratic formula: x = (−b ± √Δ) / 2a", "Δ = b² − 4ac", "Complete the square for vertex form"] },
+    FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)", "(a+b)^2 = a^2 + 2ab + b^2", "Always check: GCF first"] },
+    FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a^2−b^2 = (a−b)(a+b)", "Check domain restrictions"] },
+    EQUATIONS: { title: "Solving Equations", items: ["Zero Product: if pq=0, then p=0 or q=0", "Quadratic formula: x = (−b ± √Δ) / 2a", "Δ = b^2 − 4ac", "Complete the square for vertex form"] },
   },
   CN: {
     TERMS: { title: "合并同类项", items: ["ax + bx = (a+b)x", "同类项：变量和次数相同的项", "注意符号：-(a-b) = -a+b", "分配律：c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x² + (A+B)x + AB", "u² − v² = (u−v)(u+v)  平方差公式", "(a+b)² = a² + 2ab + b²  完全平方", "先提取公因式"] },
-    FRACTIONS: { title: "分式化简", items: ["分别对分子、分母进行因式分解", "约去公因式", "a²−b² = (a−b)(a+b)", "注意定义域限制"] },
-    EQUATIONS: { title: "解方程", items: ["零因式定理：若 pq=0，则 p=0 或 q=0", "求根公式：x = (−b ± √Δ) / 2a", "判别式 Δ = b² − 4ac", "配方法可求顶点式"] },
+    FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)  平方差公式", "(a+b)^2 = a^2 + 2ab + b^2  完全平方", "先提取公因式"] },
+    FRACTIONS: { title: "分式化简", items: ["分别对分子、分母进行因式分解", "约去公因式", "a^2−b^2 = (a−b)(a+b)", "注意定义域限制"] },
+    EQUATIONS: { title: "解方程", items: ["零因式定理：若 pq=0，则 p=0 或 q=0", "求根公式：x = (−b ± √Δ) / 2a", "判别式 Δ = b^2 − 4ac", "配方法可求顶点式"] },
   },
   DE: {
     TERMS: { title: "Gleichartige Terme", items: ["ax + bx = (a+b)x", "Gleiche Variablen zusammenfassen", "Vorzeichen: -(a-b) = -a+b", "Ausmultiplizieren: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x² + (A+B)x + AB", "u² − v² = (u−v)(u+v)", "(a+b)² = a² + 2ab + b²", "Immer zuerst: Gemeinsamer Faktor"] },
-    FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a²−b² = (a−b)(a+b)", "Definitionsmenge beachten"] },
-    EQUATIONS: { title: "Gleichungen Lösen", items: ["Nullproduktsatz: wenn pq=0, dann p=0 oder q=0", "Mitternachtsformel: x = (−b ± √Δ) / 2a", "Δ = b² − 4ac", "Quadratische Ergänzung für Scheitelpunktform"] },
+    FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x^2 + (A+B)x + AB", "u^2 − v^2 = (u−v)(u+v)", "(a+b)^2 = a^2 + 2ab + b^2", "Immer zuerst: Gemeinsamer Faktor"] },
+    FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^2−b^2 = (a−b)(a+b)", "Definitionsmenge beachten"] },
+    EQUATIONS: { title: "Gleichungen Lösen", items: ["Nullproduktsatz: wenn pq=0, dann p=0 oder q=0", "Mitternachtsformel: x = (−b ± √Δ) / 2a", "Δ = b^2 − 4ac", "Quadratische Ergänzung für Scheitelpunktform"] },
   },
 };
 
@@ -108,7 +108,7 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
       {roots.map((r, i) => { const [rx, ry] = toSvg(r, 0); return (<g key={i}><circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" /><text x={rx} y={ry + 18} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">x={r.toFixed(1)}</text></g>); })}
       {disc < 0 && <text x={W / 2} y={30} fill="#ff4444" fontSize="12" textAnchor="middle" fontWeight="bold">Δ &lt; 0</text>}
       <text x={W / 2} y={H - 10} fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" opacity="0.7">
-        y = {a === 1 ? '' : a === -1 ? '-' : a}x² {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
+        y = {a === 1 ? '' : a === -1 ? '-' : a}x^2 {b >= 0 ? '+' : ''}{b}x {c >= 0 ? '+' : ''}{c}
       </text>
     </svg>
   );

@@ -119,7 +119,7 @@ export interface Concept {
 
 export interface GasParameters {
   pressure: number; // Pa
-  volume: number; // m³
+  volume: number; // m^3
   temperature: number; // K
   moles: number; // mol
 }

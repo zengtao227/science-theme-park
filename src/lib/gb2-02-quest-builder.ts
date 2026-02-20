@@ -113,7 +113,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "thyroxine")!,
-        promptLatex: "Classify the hormone thyroxine (T₄) by its chemical structure.",
+        promptLatex: "Classify the hormone thyroxine (T_4) by its chemical structure.",
         expressionLatex: "T_4",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{amino acid-derived}",

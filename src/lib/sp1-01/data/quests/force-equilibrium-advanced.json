@@ -20,9 +20,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10² + 40²) = 41.23 N",
-        "cn": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10² + 40²) = 41.23 N",
-        "de": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10² + 40²) = 41.23 N"
+        "en": "Correct! Net x: 60-50=10 N, Net y: 40 N. Unknown force: √(10^2 + 40^2) = 41.23 N",
+        "cn": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10^2 + 40^2) = 41.23 N",
+        "de": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10^2 + 40^2) = 41.23 N"
       },
       "incorrect": {
         "en": "Find the net force in x and y directions, then calculate the equilibrant.",
@@ -38,9 +38,9 @@
     "difficulty": "ADVANCED",
     "type": "NUMERICAL",
     "content": {
-      "en": "A traffic light hangs from two cables: one at 45° with tension T₁ and another at 60° with tension 150 N. If the system is in equilibrium, what is T₁?",
-      "cn": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T₁，另一根在 60° 张力为 150 N。如果系统处于平衡，T₁ 是多少？",
-      "de": "Eine Ampel hängt an zwei Kabeln: eines bei 45° mit Spannung T₁ und ein anderes bei 60° mit Spannung 150 N. Wenn das System im Gleichgewicht ist, was ist T₁?"
+      "en": "A traffic light hangs from two cables: one at 45° with tension T_1 and another at 60° with tension 150 N. If the system is in equilibrium, what is T_1?",
+      "cn": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T_1，另一根在 60° 张力为 150 N。如果系统处于平衡，T_1 是多少？",
+      "de": "Eine Ampel hängt an zwei Kabeln: eines bei 45° mit Spannung T_1 und ein anderes bei 60° mit Spannung 150 N. Wenn das System im Gleichgewicht ist, was ist T_1?"
     },
     "validation": {
       "type": "tolerance",
@@ -53,9 +53,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! For horizontal equilibrium: T₁cos(45°) = 150cos(60°), so T₁ = 150×0.5/0.707 = 183.71 N",
-        "cn": "正确！对于水平平衡：T₁cos(45°) = 150cos(60°)，所以 T₁ = 150×0.5/0.707 = 183.71 N",
-        "de": "Richtig! Für horizontales Gleichgewicht: T₁cos(45°) = 150cos(60°), also T₁ = 150×0.5/0.707 = 183.71 N"
+        "en": "Correct! For horizontal equilibrium: T_1cos(45°) = 150cos(60°), so T_1 = 150×0.5/0.707 = 183.71 N",
+        "cn": "正确！对于水平平衡：T_1cos(45°) = 150cos(60°)，所以 T_1 = 150×0.5/0.707 = 183.71 N",
+        "de": "Richtig! Für horizontales Gleichgewicht: T_1cos(45°) = 150cos(60°), also T_1 = 150×0.5/0.707 = 183.71 N"
       },
       "incorrect": {
         "en": "Use horizontal equilibrium: the horizontal components must balance.",
@@ -165,9 +165,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Using equilibrium equations: T₁ = 281.91 N",
-        "cn": "正确！使用平衡方程：T₁ = 281.91 N",
-        "de": "Richtig! Mit Gleichgewichtsgleichungen: T₁ = 281.91 N"
+        "en": "Correct! Using equilibrium equations: T_1 = 281.91 N",
+        "cn": "正确！使用平衡方程：T_1 = 281.91 N",
+        "de": "Richtig! Mit Gleichgewichtsgleichungen: T_1 = 281.91 N"
       },
       "incorrect": {
         "en": "Set up equilibrium equations for both horizontal and vertical components.",
@@ -198,9 +198,9 @@
     },
     "feedback": {
       "correct": {
-        "en": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10² + 60²) = 60.83 N",
-        "cn": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10² + 60²) = 60.83 N",
-        "de": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10² + 60²) = 60.83 N"
+        "en": "Correct! Net x: 80-70=10 N, Net y: 60 N. F = √(10^2 + 60^2) = 60.83 N",
+        "cn": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10^2 + 60^2) = 60.83 N",
+        "de": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10^2 + 60^2) = 60.83 N"
       },
       "incorrect": {
         "en": "Find the resultant of the known forces, then F must equal it in magnitude.",

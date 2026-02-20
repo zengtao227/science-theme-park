@@ -187,11 +187,11 @@ export default function GC101Page() {
                     <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 font-mono text-[9px] space-y-2">
                         <div className="flex justify-between">
                             <span className="text-white/40">ANODE:</span>
-                            <span className="text-neon-cyan">Zn → Zn²⁺ + 2e⁻</span>
+                            <span className="text-neon-cyan">Zn → Zn^2^+ + 2e^-</span>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-white/40">CATHODE:</span>
-                            <span className="text-neon-purple">Cu²⁺ + 2e⁻ → Cu</span>
+                            <span className="text-neon-purple">Cu^2^+ + 2e^- → Cu</span>
                         </div>
                         <div className="pt-2 border-t border-white/5 text-center italic text-white/30">
                             Q = {Q.toFixed(2)} | T = {temp}K

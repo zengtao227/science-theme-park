@@ -236,7 +236,7 @@ function calculateDiversity(species: SpeciesEntry[]): DiversityMetrics {
     return sum + p * Math.log(p);
   }, 0);
 
-  // Simpson Index: D = 1 - Σ(pi²)
+  // Simpson Index: D = 1 - Σ(pi^2)
   const simpsonIndex = 1 - proportions.reduce((sum, p) => sum + p * p, 0);
 
   // Evenness: J' = H' / ln(S)

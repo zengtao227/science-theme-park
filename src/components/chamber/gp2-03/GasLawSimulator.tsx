@@ -17,7 +17,7 @@ export default function GasLawSimulator({
 }: GasLawSimulatorProps) {
   // State for gas parameters
   const [pressure, setPressure] = useState(101325); // Pa
-  const [volume, setVolume] = useState(0.0224); // m³
+  const [volume, setVolume] = useState(0.0224); // m^3
   const [temperature, setTemperature] = useState(273.15); // K
   const [moles, setMoles] = useState(1.0); // mol
 
@@ -190,9 +190,9 @@ export default function GasLawSimulator({
       {/* Law Formula */}
       <div className="mt-4 p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
         <p className="text-cyan-300 text-center font-mono">
-          {law === "boyle" && "P₁V₁ = P₂V₂ (T constant)"}
-          {law === "charles" && "V₁/T₁ = V₂/T₂ (P constant)"}
-          {law === "avogadro" && "V₁/n₁ = V₂/n₂ (P, T constant)"}
+          {law === "boyle" && "P_1V_1 = P_2V_2 (T constant)"}
+          {law === "charles" && "V_1/T_1 = V_2/T_2 (P constant)"}
+          {law === "avogadro" && "V_1/n_1 = V_2/n_2 (P, T constant)"}
         </p>
       </div>
     </div>

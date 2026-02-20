@@ -208,10 +208,10 @@ export default function WaveVisualization({
                         
                         {/* Medium labels */}
                         <text x="20" y="30" fill="rgba(255,255,255,0.6)" fontSize="12">
-                            Medium 1 (n₁)
+                            Medium 1 (n_1)
                         </text>
                         <text x={centerX + 20} y="30" fill="rgba(255,255,255,0.6)" fontSize="12">
-                            Medium 2 (n₂)
+                            Medium 2 (n_2)
                         </text>
                         
                         {/* Angle markers */}

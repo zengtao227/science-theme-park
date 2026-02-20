@@ -47,7 +47,7 @@ export function ReactionTypeSelector({ quest, onComplete, t }: ReactionTypeSelec
       },
       {
         type: 'combustion',
-        pattern: 'CₓHᵧ + O₂ → CO₂ + H₂O',
+        pattern: 'CₓHᵧ + O_2 → CO_2 + H_2O',
         description: t('sc1_06.reactionTypeDescriptions.combustion')
       }
     ];

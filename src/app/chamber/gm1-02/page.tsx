@@ -24,75 +24,75 @@ const round2 = (v: number) => Math.round(v * 100) / 100;
 // ANTIDERIVATIVE (不定积分) 数据池
 // BASIC: 基本幂函数 ∫x^n dx (n=1,2,3,4,5)
 const antiderivativeDataBasic = [
-  { id: "A_B1", coeffs: [0, 1], n: 1 }, // ∫x dx = x²/2 + C
-  { id: "A_B2", coeffs: [0, 0, 1], n: 2 }, // ∫x² dx = x³/3 + C
-  { id: "A_B3", coeffs: [0, 0, 0, 1], n: 3 }, // ∫x³ dx = x⁴/4 + C
-  { id: "A_B4", coeffs: [0, 0, 0, 0, 1], n: 4 }, // ∫x⁴ dx = x⁵/5 + C
-  { id: "A_B5", coeffs: [0, 0, 0, 0, 0, 1], n: 5 }, // ∫x⁵ dx = x⁶/6 + C
+  { id: "A_B1", coeffs: [0, 1], n: 1 }, // ∫x dx = x^2/2 + C
+  { id: "A_B2", coeffs: [0, 0, 1], n: 2 }, // ∫x^2 dx = x^3/3 + C
+  { id: "A_B3", coeffs: [0, 0, 0, 1], n: 3 }, // ∫x^3 dx = x^4/4 + C
+  { id: "A_B4", coeffs: [0, 0, 0, 0, 1], n: 4 }, // ∫x^4 dx = x^5/5 + C
+  { id: "A_B5", coeffs: [0, 0, 0, 0, 0, 1], n: 5 }, // ∫x^5 dx = x^6/6 + C
 ];
 
 // CORE: 系数幂函数和多项式
 const antiderivativeDataCore = [
-  { id: "A_C1", coeffs: [0, 2], n: 1 }, // ∫2x dx = x² + C
-  { id: "A_C2", coeffs: [0, 0, 3], n: 2 }, // ∫3x² dx = x³ + C
-  { id: "A_C3", coeffs: [1, 3, 1], n: 2 }, // ∫(x²+3x+1) dx
-  { id: "A_C4", coeffs: [2, 1, 2], n: 2 }, // ∫(2x²+x+2) dx
-  { id: "A_C5", coeffs: [0, 4, 2], n: 2 }, // ∫(2x²+4x) dx
+  { id: "A_C1", coeffs: [0, 2], n: 1 }, // ∫2x dx = x^2 + C
+  { id: "A_C2", coeffs: [0, 0, 3], n: 2 }, // ∫3x^2 dx = x^3 + C
+  { id: "A_C3", coeffs: [1, 3, 1], n: 2 }, // ∫(x^2+3x+1) dx
+  { id: "A_C4", coeffs: [2, 1, 2], n: 2 }, // ∫(2x^2+x+2) dx
+  { id: "A_C5", coeffs: [0, 4, 2], n: 2 }, // ∫(2x^2+4x) dx
 ];
 
 // ADVANCED: 更复杂的多项式
 const antiderivativeDataAdvanced = [
-  { id: "A_A1", coeffs: [1, -2, 3], n: 2 }, // ∫(3x²-2x+1) dx
-  { id: "A_A2", coeffs: [0, 0, 2, 3], n: 3 }, // ∫(3x³+2x²) dx
-  { id: "A_A3", coeffs: [-1, 2, 1], n: 2 }, // ∫(x²+2x-1) dx
-  { id: "A_A4", coeffs: [3, -4, 2], n: 2 }, // ∫(2x²-4x+3) dx
-  { id: "A_A5", coeffs: [0, 0, 0, 1, 2], n: 4 }, // ∫(2x⁴+x³) dx
+  { id: "A_A1", coeffs: [1, -2, 3], n: 2 }, // ∫(3x^2-2x+1) dx
+  { id: "A_A2", coeffs: [0, 0, 2, 3], n: 3 }, // ∫(3x^3+2x^2) dx
+  { id: "A_A3", coeffs: [-1, 2, 1], n: 2 }, // ∫(x^2+2x-1) dx
+  { id: "A_A4", coeffs: [3, -4, 2], n: 2 }, // ∫(2x^2-4x+3) dx
+  { id: "A_A5", coeffs: [0, 0, 0, 1, 2], n: 4 }, // ∫(2x^4+x^3) dx
 ];
 
 // ELITE: 高次多项式
 const antiderivativeDataElite = [
-  { id: "A_E1", coeffs: [1, -3, 2, 1], n: 3 }, // ∫(x³+2x²-3x+1) dx
-  { id: "A_E2", coeffs: [0, 0, 0, 0, 1, 3], n: 5 }, // ∫(3x⁵+x⁴) dx
-  { id: "A_E3", coeffs: [2, -1, 3, -2], n: 3 }, // ∫(-2x³+3x²-x+2) dx
-  { id: "A_E4", coeffs: [0, 0, 0, 2, -3, 1], n: 5 }, // ∫(x⁵-3x⁴+2x³) dx
-  { id: "A_E5", coeffs: [-2, 4, -3, 2], n: 3 }, // ∫(2x³-3x²+4x-2) dx
+  { id: "A_E1", coeffs: [1, -3, 2, 1], n: 3 }, // ∫(x^3+2x^2-3x+1) dx
+  { id: "A_E2", coeffs: [0, 0, 0, 0, 1, 3], n: 5 }, // ∫(3x^5+x^4) dx
+  { id: "A_E3", coeffs: [2, -1, 3, -2], n: 3 }, // ∫(-2x^3+3x^2-x+2) dx
+  { id: "A_E4", coeffs: [0, 0, 0, 2, -3, 1], n: 5 }, // ∫(x^5-3x^4+2x^3) dx
+  { id: "A_E5", coeffs: [-2, 4, -3, 2], n: 3 }, // ∫(2x^3-3x^2+4x-2) dx
 ];
 
 // DEFINITE_INTEGRAL (定积分) 数据池
 // BASIC: 简单区间
 const definiteDataBasic = [
   { id: "D_B1", coeffs: [0, 1], a: 0, b: 1 }, // ∫₀¹ x dx
-  { id: "D_B2", coeffs: [0, 0, 1], a: 0, b: 2 }, // ∫₀² x² dx
-  { id: "D_B3", coeffs: [0, 1], a: 0, b: 2 }, // ∫₀² x dx
-  { id: "D_B4", coeffs: [0, 0, 1], a: 0, b: 1 }, // ∫₀¹ x² dx
-  { id: "D_B5", coeffs: [0, 0, 0, 1], a: 0, b: 1 }, // ∫₀¹ x³ dx
+  { id: "D_B2", coeffs: [0, 0, 1], a: 0, b: 2 }, // ∫₀^2 x^2 dx
+  { id: "D_B3", coeffs: [0, 1], a: 0, b: 2 }, // ∫₀^2 x dx
+  { id: "D_B4", coeffs: [0, 0, 1], a: 0, b: 1 }, // ∫₀¹ x^2 dx
+  { id: "D_B5", coeffs: [0, 0, 0, 1], a: 0, b: 1 }, // ∫₀¹ x^3 dx
 ];
 
 // CORE: 包含负区间和对称区间
 const definiteDataCore = [
-  { id: "D_C1", coeffs: [0, 0, 1], a: -1, b: 1 }, // ∫₋₁¹ x² dx
-  { id: "D_C2", coeffs: [0, 2], a: 1, b: 3 }, // ∫₁³ 2x dx
-  { id: "D_C3", coeffs: [1, 1], a: 0, b: 2 }, // ∫₀² (x+1) dx
-  { id: "D_C4", coeffs: [0, 0, 1], a: 1, b: 2 }, // ∫₁² x² dx
-  { id: "D_C5", coeffs: [0, 0, 2], a: 0, b: 2 }, // ∫₀² 2x² dx
+  { id: "D_C1", coeffs: [0, 0, 1], a: -1, b: 1 }, // ∫₋_1¹ x^2 dx
+  { id: "D_C2", coeffs: [0, 2], a: 1, b: 3 }, // ∫_1^3 2x dx
+  { id: "D_C3", coeffs: [1, 1], a: 0, b: 2 }, // ∫₀^2 (x+1) dx
+  { id: "D_C4", coeffs: [0, 0, 1], a: 1, b: 2 }, // ∫_1^2 x^2 dx
+  { id: "D_C5", coeffs: [0, 0, 2], a: 0, b: 2 }, // ∫₀^2 2x^2 dx
 ];
 
 // ADVANCED: 更复杂的函数和区间
 const definiteDataAdvanced = [
-  { id: "D_A1", coeffs: [1, 2, 1], a: 0, b: 1 }, // ∫₀¹ (x²+2x+1) dx
-  { id: "D_A2", coeffs: [0, -1, 1], a: 0, b: 2 }, // ∫₀² (x²-x) dx
-  { id: "D_A3", coeffs: [2, 1, 1], a: 1, b: 2 }, // ∫₁² (x²+x+2) dx
-  { id: "D_A4", coeffs: [0, 0, 0, 1], a: -1, b: 1 }, // ∫₋₁¹ x³ dx
-  { id: "D_A5", coeffs: [0, 0, 1, 2], a: 0, b: 1 }, // ∫₀¹ (2x³+x²) dx
+  { id: "D_A1", coeffs: [1, 2, 1], a: 0, b: 1 }, // ∫₀¹ (x^2+2x+1) dx
+  { id: "D_A2", coeffs: [0, -1, 1], a: 0, b: 2 }, // ∫₀^2 (x^2-x) dx
+  { id: "D_A3", coeffs: [2, 1, 1], a: 1, b: 2 }, // ∫_1^2 (x^2+x+2) dx
+  { id: "D_A4", coeffs: [0, 0, 0, 1], a: -1, b: 1 }, // ∫₋_1¹ x^3 dx
+  { id: "D_A5", coeffs: [0, 0, 1, 2], a: 0, b: 1 }, // ∫₀¹ (2x^3+x^2) dx
 ];
 
 // ELITE: 复杂区间和高次函数
 const definiteDataElite = [
-  { id: "D_E1", coeffs: [1, -2, 3], a: 0, b: 2 }, // ∫₀² (3x²-2x+1) dx
-  { id: "D_E2", coeffs: [0, 0, 0, 1, 1], a: -1, b: 1 }, // ∫₋₁¹ (x⁴+x³) dx
-  { id: "D_E3", coeffs: [-1, 3, -2, 1], a: 1, b: 3 }, // ∫₁³ (x³-2x²+3x-1) dx
-  { id: "D_E4", coeffs: [0, 0, 2, -1], a: 0, b: 2 }, // ∫₀² (-x³+2x²) dx
-  { id: "D_E5", coeffs: [2, -3, 1, 2], a: -1, b: 2 }, // ∫₋₁² (2x³+x²-3x+2) dx
+  { id: "D_E1", coeffs: [1, -2, 3], a: 0, b: 2 }, // ∫₀^2 (3x^2-2x+1) dx
+  { id: "D_E2", coeffs: [0, 0, 0, 1, 1], a: -1, b: 1 }, // ∫₋_1¹ (x^4+x^3) dx
+  { id: "D_E3", coeffs: [-1, 3, -2, 1], a: 1, b: 3 }, // ∫_1^3 (x^3-2x^2+3x-1) dx
+  { id: "D_E4", coeffs: [0, 0, 2, -1], a: 0, b: 2 }, // ∫₀^2 (-x^3+2x^2) dx
+  { id: "D_E5", coeffs: [2, -3, 1, 2], a: -1, b: 2 }, // ∫₋_1^2 (2x^3+x^2-3x+2) dx
 ];
 
 // APPLICATION (应用) 数据池
@@ -107,20 +107,20 @@ const applicationDataBasic = [
 
 // CORE: 抛物线下面积
 const applicationDataCore = [
-  { id: "AP_C1", coeffs: [0, 0, 1], a: 0, b: 2, context: "parabola" as const }, // y=x²
-  { id: "AP_C2", coeffs: [0, 0, 2], a: 0, b: 1, context: "parabola" as const }, // y=2x²
-  { id: "AP_C3", coeffs: [1, 0, 1], a: 0, b: 1, context: "parabola" as const }, // y=x²+1
-  { id: "AP_C4", coeffs: [0, 0, 1], a: 1, b: 3, context: "parabola" as const }, // y=x²
-  { id: "AP_C5", coeffs: [0, 1, 1], a: 0, b: 2, context: "parabola" as const }, // y=x²+x
+  { id: "AP_C1", coeffs: [0, 0, 1], a: 0, b: 2, context: "parabola" as const }, // y=x^2
+  { id: "AP_C2", coeffs: [0, 0, 2], a: 0, b: 1, context: "parabola" as const }, // y=2x^2
+  { id: "AP_C3", coeffs: [1, 0, 1], a: 0, b: 1, context: "parabola" as const }, // y=x^2+1
+  { id: "AP_C4", coeffs: [0, 0, 1], a: 1, b: 3, context: "parabola" as const }, // y=x^2
+  { id: "AP_C5", coeffs: [0, 1, 1], a: 0, b: 2, context: "parabola" as const }, // y=x^2+x
 ];
 
 // ADVANCED: 两曲线间面积
 const applicationDataAdvanced = [
-  { id: "AP_A1", coeffs: [0, 0, 1], a: 0, b: 2, context: "between" as const, upper: [0, 4] }, // 4 - x²
-  { id: "AP_A2", coeffs: [0, 0, 1], a: 0, b: 1, context: "between" as const, upper: [0, 2] }, // 2 - x²
-  { id: "AP_A3", coeffs: [0, 0, 2], a: 0, b: 1, context: "between" as const, upper: [0, 3] }, // 3 - 2x²
+  { id: "AP_A1", coeffs: [0, 0, 1], a: 0, b: 2, context: "between" as const, upper: [0, 4] }, // 4 - x^2
+  { id: "AP_A2", coeffs: [0, 0, 1], a: 0, b: 1, context: "between" as const, upper: [0, 2] }, // 2 - x^2
+  { id: "AP_A3", coeffs: [0, 0, 2], a: 0, b: 1, context: "between" as const, upper: [0, 3] }, // 3 - 2x^2
   { id: "AP_A4", coeffs: [0, 1], a: 0, b: 2, context: "between" as const, upper: [0, 4] }, // 4 - x
-  { id: "AP_A5", coeffs: [0, 0, 1], a: 1, b: 2, context: "between" as const, upper: [0, 5] }, // 5 - x²
+  { id: "AP_A5", coeffs: [0, 0, 1], a: 1, b: 2, context: "between" as const, upper: [0, 5] }, // 5 - x^2
 ];
 
 // ELITE: 综合应用
@@ -327,7 +327,7 @@ function buildStagePool(
       const area2 = antiderivative(item.b, item.coeffs) - antiderivative(item.a, item.coeffs);
       answer = round2(area1 - area2);
     } else if (item.context === "volume") {
-      // 旋转体体积 V = π∫[a,b] f²(x) dx
+      // 旋转体体积 V = π∫[a,b] f^2(x) dx
       const integrand = item.coeffs.map((c, i) => {
         const newCoeffs = new Array(2 * i + 1).fill(0);
         newCoeffs[2 * i] = c * c;

@@ -132,7 +132,7 @@ export default function EcosystemCanvas({
         const radius = Math.min(w, h) * 0.3;
 
         const nodes = [
-            { name: "CO₂", angle: 0, color: "#ff0000" },
+            { name: "CO_2", angle: 0, color: "#ff0000" },
             { name: "Plants", angle: Math.PI / 2, color: "#00ff00" },
             { name: "Animals", angle: Math.PI, color: "#00ffff" },
             { name: "Decomposers", angle: (3 * Math.PI) / 2, color: "#ffff00" }

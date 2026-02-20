@@ -164,19 +164,19 @@ export default function AcidBaseVisualization({
           <div className="flex justify-center gap-8 mt-4">
             {pH < 7 && (
               <div className="text-center">
-                <div className="text-red-400 text-lg font-mono">H₃O⁺</div>
+                <div className="text-red-400 text-lg font-mono">H_3O^+</div>
                 <div className="text-xs text-white/60">Hydronium</div>
               </div>
             )}
             {pH > 7 && (
               <div className="text-center">
-                <div className="text-blue-400 text-lg font-mono">OH⁻</div>
+                <div className="text-blue-400 text-lg font-mono">OH^-</div>
                 <div className="text-xs text-white/60">Hydroxide</div>
               </div>
             )}
             {pH === 7 && (
               <div className="text-center">
-                <div className="text-green-400 text-lg font-mono">H₂O</div>
+                <div className="text-green-400 text-lg font-mono">H_2O</div>
                 <div className="text-xs text-white/60">Water</div>
               </div>
             )}

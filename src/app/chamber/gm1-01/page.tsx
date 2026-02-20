@@ -24,100 +24,100 @@ const round2 = (v: number) => Math.round(v * 100) / 100;
 // Power rule data: f(x) = x^n => f'(x) = n·x^(n-1)
 // Pure power functions without coefficients (for learning the basic pattern)
 const powerDataBasic = [
-  { id: "P_B1", a: 1, n: 2, b: 0, c: 0, x: 1 }, // f(x) = x²
-  { id: "P_B2", a: 1, n: 2, b: 0, c: 0, x: 2 }, // f(x) = x²
-  { id: "P_B3", a: 1, n: 3, b: 0, c: 0, x: 1 }, // f(x) = x³
-  { id: "P_B4", a: 1, n: 3, b: 0, c: 0, x: 2 }, // f(x) = x³
+  { id: "P_B1", a: 1, n: 2, b: 0, c: 0, x: 1 }, // f(x) = x^2
+  { id: "P_B2", a: 1, n: 2, b: 0, c: 0, x: 2 }, // f(x) = x^2
+  { id: "P_B3", a: 1, n: 3, b: 0, c: 0, x: 1 }, // f(x) = x^3
+  { id: "P_B4", a: 1, n: 3, b: 0, c: 0, x: 2 }, // f(x) = x^3
 ];
 
 const powerDataCore = [
-  { id: "P_C1", a: 1, n: 4, b: 0, c: 0, x: 1 }, // f(x) = x⁴
-  { id: "P_C2", a: 1, n: 4, b: 0, c: 0, x: 2 }, // f(x) = x⁴
-  { id: "P_C3", a: 1, n: 5, b: 0, c: 0, x: 1 }, // f(x) = x⁵
-  { id: "P_C4", a: 1, n: 5, b: 0, c: 0, x: 2 }, // f(x) = x⁵
-  { id: "P_C5", a: 1, n: 2, b: 0, c: 0, x: 3 }, // f(x) = x²
+  { id: "P_C1", a: 1, n: 4, b: 0, c: 0, x: 1 }, // f(x) = x^4
+  { id: "P_C2", a: 1, n: 4, b: 0, c: 0, x: 2 }, // f(x) = x^4
+  { id: "P_C3", a: 1, n: 5, b: 0, c: 0, x: 1 }, // f(x) = x^5
+  { id: "P_C4", a: 1, n: 5, b: 0, c: 0, x: 2 }, // f(x) = x^5
+  { id: "P_C5", a: 1, n: 2, b: 0, c: 0, x: 3 }, // f(x) = x^2
 ];
 
 const powerDataAdvanced = [
-  { id: "P_A1", a: 1, n: 6, b: 0, c: 0, x: 1 }, // f(x) = x⁶
-  { id: "P_A2", a: 1, n: 6, b: 0, c: 0, x: 2 }, // f(x) = x⁶
-  { id: "P_A3", a: 1, n: 7, b: 0, c: 0, x: 1 }, // f(x) = x⁷
-  { id: "P_A4", a: 1, n: 3, b: 0, c: 0, x: 3 }, // f(x) = x³
-  { id: "P_A5", a: 1, n: 4, b: 0, c: 0, x: 3 }, // f(x) = x⁴
+  { id: "P_A1", a: 1, n: 6, b: 0, c: 0, x: 1 }, // f(x) = x^6
+  { id: "P_A2", a: 1, n: 6, b: 0, c: 0, x: 2 }, // f(x) = x^6
+  { id: "P_A3", a: 1, n: 7, b: 0, c: 0, x: 1 }, // f(x) = x^7
+  { id: "P_A4", a: 1, n: 3, b: 0, c: 0, x: 3 }, // f(x) = x^3
+  { id: "P_A5", a: 1, n: 4, b: 0, c: 0, x: 3 }, // f(x) = x^4
 ];
 
 const powerDataElite = [
-  { id: "P_E1", a: 1, n: 8, b: 0, c: 0, x: 1.5 }, // f(x) = x⁸
-  { id: "P_E2", a: 1, n: 5, b: 0, c: 0, x: 2.5 }, // f(x) = x⁵
-  { id: "P_E3", a: 1, n: 6, b: 0, c: 0, x: 1.2 }, // f(x) = x⁶
-  { id: "P_E4", a: 1, n: 7, b: 0, c: 0, x: 1.8 }, // f(x) = x⁷
-  { id: "P_E5", a: 1, n: 4, b: 0, c: 0, x: 2.3 }, // f(x) = x⁴
+  { id: "P_E1", a: 1, n: 8, b: 0, c: 0, x: 1.5 }, // f(x) = x^8
+  { id: "P_E2", a: 1, n: 5, b: 0, c: 0, x: 2.5 }, // f(x) = x^5
+  { id: "P_E3", a: 1, n: 6, b: 0, c: 0, x: 1.2 }, // f(x) = x^6
+  { id: "P_E4", a: 1, n: 7, b: 0, c: 0, x: 1.8 }, // f(x) = x^7
+  { id: "P_E5", a: 1, n: 4, b: 0, c: 0, x: 2.3 }, // f(x) = x^4
 ];
 
 // Factor rule data: f(x) = a·x^n => f'(x) = a·n·x^(n-1)
 // Focus on constant factor multiplication
 const factorDataBasic = [
-  { id: "F_B1", a: 2, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 2x²
-  { id: "F_B2", a: 3, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 3x²
-  { id: "F_B3", a: 2, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 2x³
-  { id: "F_B4", a: 4, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 4x²
+  { id: "F_B1", a: 2, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 2x^2
+  { id: "F_B2", a: 3, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 3x^2
+  { id: "F_B3", a: 2, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 2x^3
+  { id: "F_B4", a: 4, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 4x^2
 ];
 
 const factorDataCore = [
-  { id: "F_C1", a: 2, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 2x²
-  { id: "F_C2", a: 3, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 3x²
-  { id: "F_C3", a: 5, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 5x²
-  { id: "F_C4", a: 2, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 2x³
-  { id: "F_C5", a: 3, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 3x³
+  { id: "F_C1", a: 2, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 2x^2
+  { id: "F_C2", a: 3, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 3x^2
+  { id: "F_C3", a: 5, n: 2, b: 0, c: 0, x: 1 }, // f(x) = 5x^2
+  { id: "F_C4", a: 2, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 2x^3
+  { id: "F_C5", a: 3, n: 3, b: 0, c: 0, x: 1 }, // f(x) = 3x^3
 ];
 
 const factorDataAdvanced = [
-  { id: "F_A1", a: 4, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 4x³
-  { id: "F_A2", a: 5, n: 2, b: 0, c: 0, x: 3 }, // f(x) = 5x²
-  { id: "F_A3", a: 6, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 6x²
-  { id: "F_A4", a: 3, n: 4, b: 0, c: 0, x: 1 }, // f(x) = 3x⁴
-  { id: "F_A5", a: 2, n: 4, b: 0, c: 0, x: 2 }, // f(x) = 2x⁴
+  { id: "F_A1", a: 4, n: 3, b: 0, c: 0, x: 2 }, // f(x) = 4x^3
+  { id: "F_A2", a: 5, n: 2, b: 0, c: 0, x: 3 }, // f(x) = 5x^2
+  { id: "F_A3", a: 6, n: 2, b: 0, c: 0, x: 2 }, // f(x) = 6x^2
+  { id: "F_A4", a: 3, n: 4, b: 0, c: 0, x: 1 }, // f(x) = 3x^4
+  { id: "F_A5", a: 2, n: 4, b: 0, c: 0, x: 2 }, // f(x) = 2x^4
 ];
 
 const factorDataElite = [
-  { id: "F_E1", a: 4, n: 3, b: 0, c: 0, x: 1.5 }, // f(x) = 4x³
-  { id: "F_E2", a: 5, n: 4, b: 0, c: 0, x: 1.2 }, // f(x) = 5x⁴
-  { id: "F_E3", a: 3, n: 5, b: 0, c: 0, x: 1.5 }, // f(x) = 3x⁵
-  { id: "F_E4", a: 6, n: 3, b: 0, c: 0, x: 2.5 }, // f(x) = 6x³
-  { id: "F_E5", a: 7, n: 2, b: 0, c: 0, x: 1.8 }, // f(x) = 7x²
+  { id: "F_E1", a: 4, n: 3, b: 0, c: 0, x: 1.5 }, // f(x) = 4x^3
+  { id: "F_E2", a: 5, n: 4, b: 0, c: 0, x: 1.2 }, // f(x) = 5x^4
+  { id: "F_E3", a: 3, n: 5, b: 0, c: 0, x: 1.5 }, // f(x) = 3x^5
+  { id: "F_E4", a: 6, n: 3, b: 0, c: 0, x: 2.5 }, // f(x) = 6x^3
+  { id: "F_E5", a: 7, n: 2, b: 0, c: 0, x: 1.8 }, // f(x) = 7x^2
 ];
 
 // Sum rule data: f(x) = g(x) + h(x) => f'(x) = g'(x) + h'(x)
 // Polynomials with multiple terms
 const sumDataBasic = [
-  { id: "S_B1", a: 1, n: 2, b: 1, c: 0, x: 1 }, // f(x) = x² + x
-  { id: "S_B2", a: 1, n: 2, b: 2, c: 0, x: 1 }, // f(x) = x² + 2x
-  { id: "S_B3", a: 1, n: 3, b: 1, c: 0, x: 1 }, // f(x) = x³ + x
-  { id: "S_B4", a: 1, n: 2, b: 3, c: 0, x: 1 }, // f(x) = x² + 3x
+  { id: "S_B1", a: 1, n: 2, b: 1, c: 0, x: 1 }, // f(x) = x^2 + x
+  { id: "S_B2", a: 1, n: 2, b: 2, c: 0, x: 1 }, // f(x) = x^2 + 2x
+  { id: "S_B3", a: 1, n: 3, b: 1, c: 0, x: 1 }, // f(x) = x^3 + x
+  { id: "S_B4", a: 1, n: 2, b: 3, c: 0, x: 1 }, // f(x) = x^2 + 3x
 ];
 
 const sumDataCore = [
-  { id: "S_C1", a: 2, n: 2, b: 3, c: 0, x: 1 }, // f(x) = 2x² + 3x
-  { id: "S_C2", a: 1, n: 2, b: 4, c: 0, x: 2 }, // f(x) = x² + 4x
-  { id: "S_C3", a: 3, n: 2, b: 2, c: 0, x: 1 }, // f(x) = 3x² + 2x
-  { id: "S_C4", a: 1, n: 3, b: 2, c: 0, x: 1 }, // f(x) = x³ + 2x
-  { id: "S_C5", a: 2, n: 2, b: 1, c: 0, x: 2 }, // f(x) = 2x² + x
+  { id: "S_C1", a: 2, n: 2, b: 3, c: 0, x: 1 }, // f(x) = 2x^2 + 3x
+  { id: "S_C2", a: 1, n: 2, b: 4, c: 0, x: 2 }, // f(x) = x^2 + 4x
+  { id: "S_C3", a: 3, n: 2, b: 2, c: 0, x: 1 }, // f(x) = 3x^2 + 2x
+  { id: "S_C4", a: 1, n: 3, b: 2, c: 0, x: 1 }, // f(x) = x^3 + 2x
+  { id: "S_C5", a: 2, n: 2, b: 1, c: 0, x: 2 }, // f(x) = 2x^2 + x
 ];
 
 const sumDataAdvanced = [
-  { id: "S_A1", a: 2, n: 2, b: 3, c: 1, x: 1 }, // f(x) = 2x² + 3x + 1
-  { id: "S_A2", a: 1, n: 2, b: -4, c: 2, x: 2 }, // f(x) = x² - 4x + 2
-  { id: "S_A3", a: 3, n: 2, b: 2, c: -1, x: 1 }, // f(x) = 3x² + 2x - 1
-  { id: "S_A4", a: 1, n: 3, b: -2, c: 3, x: 1 }, // f(x) = x³ - 2x + 3
-  { id: "S_A5", a: 2, n: 3, b: 3, c: -2, x: 1 }, // f(x) = 2x³ + 3x - 2
+  { id: "S_A1", a: 2, n: 2, b: 3, c: 1, x: 1 }, // f(x) = 2x^2 + 3x + 1
+  { id: "S_A2", a: 1, n: 2, b: -4, c: 2, x: 2 }, // f(x) = x^2 - 4x + 2
+  { id: "S_A3", a: 3, n: 2, b: 2, c: -1, x: 1 }, // f(x) = 3x^2 + 2x - 1
+  { id: "S_A4", a: 1, n: 3, b: -2, c: 3, x: 1 }, // f(x) = x^3 - 2x + 3
+  { id: "S_A5", a: 2, n: 3, b: 3, c: -2, x: 1 }, // f(x) = 2x^3 + 3x - 2
 ];
 
 const sumDataElite = [
-  { id: "S_E1", a: 2, n: 2, b: 3, c: 1, x: 1.5 }, // f(x) = 2x² + 3x + 1
-  { id: "S_E2", a: 1, n: 2, b: -4, c: 2, x: 2.5 }, // f(x) = x² - 4x + 2
-  { id: "S_E3", a: 3, n: 2, b: 2, c: -1, x: 1.2 }, // f(x) = 3x² + 2x - 1
-  { id: "S_E4", a: 1, n: 3, b: -2, c: 3, x: 1.5 }, // f(x) = x³ - 2x + 3
-  { id: "S_E5", a: 2, n: 3, b: 3, c: -2, x: 0.8 }, // f(x) = 2x³ + 3x - 2
+  { id: "S_E1", a: 2, n: 2, b: 3, c: 1, x: 1.5 }, // f(x) = 2x^2 + 3x + 1
+  { id: "S_E2", a: 1, n: 2, b: -4, c: 2, x: 2.5 }, // f(x) = x^2 - 4x + 2
+  { id: "S_E3", a: 3, n: 2, b: 2, c: -1, x: 1.2 }, // f(x) = 3x^2 + 2x - 1
+  { id: "S_E4", a: 1, n: 3, b: -2, c: 3, x: 1.5 }, // f(x) = x^3 - 2x + 3
+  { id: "S_E5", a: 2, n: 3, b: 3, c: -2, x: 0.8 }, // f(x) = 2x^3 + 3x - 2
 ];
 
 // Product rule data: f(x) = u(x)·v(x) => f'(x) = u'·v + u·v'
@@ -187,8 +187,8 @@ const chainDataElite = [
   { id: "C_E5", k: 5, x: 1.8 },
 ];
 
-// Quotient rule data: f(x) = u(x)/v(x) => f'(x) = [u'(x)·v(x) - u(x)·v'(x)] / [v(x)]²
-// Using f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin²(x)
+// Quotient rule data: f(x) = u(x)/v(x) => f'(x) = [u'(x)·v(x) - u(x)·v'(x)] / [v(x)]^2
+// Using f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin^2(x)
 // Difficulty: varies by x position (avoid x where sin(x) ≈ 0)
 
 const quotientDataBasic = [
@@ -374,7 +374,7 @@ function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G1
     }
     
     return dataSet.map((item) => {
-      // f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin²(x)
+      // f(x) = x/sin(x) => f'(x) = [sin(x) - x·cos(x)] / sin^2(x)
       const sinX = Math.sin(item.x);
       const cosX = Math.cos(item.x);
       const derivative = round2((sinX - item.x * cosX) / (sinX * sinX));

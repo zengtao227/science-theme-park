@@ -89,8 +89,8 @@ export const enBiology = {
             action_potential: "What is the primary ion responsible for depolarization during the rising phase?",
             synapse_mechanism: "Which ion influx triggers the release of neurotransmitters into the synaptic cleft?",
             hint_anatomy: "Look for the long fiber that carries impulses away from the cell body.",
-            hint_sodium: "Sodium (Na⁺) rushes in during depolarization.",
-            hint_calcium: "Calcium (Ca²⁺) entry triggers vesicle fusion.",
+            hint_sodium: "Sodium (Na^+) rushes in during depolarization.",
+            hint_calcium: "Calcium (Ca^2^+) entry triggers vesicle fusion.",
             hint_nernst: "Use the Nernst Equation: E = 61 log10(C_out/C_in) at 37°C.",
             func_struct: "Structure: {s}. Function?",
             nernst_k: "K+ out={o}, in={i}. E_K?",
@@ -103,9 +103,9 @@ export const enBiology = {
         },
         scenarios: {
             basel_biomedicine: "University of Basel - Biozentrum Neurobiology Department: At the Biozentrum, one of Europe's leading centers for molecular and cell biology, you work in Professor Silvia Arber's research group studying neural circuit assembly. The lab focuses on understanding how motor neurons in the spinal cord connect to specific muscle groups through precise axonal pathfinding. Using advanced imaging techniques and electrophysiology, you map the dendritic branching of pyramidal neurons and trace how action potentials propagate through myelinated axons at speeds up to 120 m/s. This research directly contributes to developing therapies for ALS (Amyotrophic Lateral Sclerosis) and spinal cord injuries. The Biozentrum's collaborative environment continues Basel's 150-year tradition in molecular life sciences—Friedrich Miescher first isolated nuclein (DNA) here in 1869. Understanding neuronal anatomy—from the protein synthesis machinery of the soma to the synaptic vesicles of the axon terminal—is essential for Basel's pharmaceutical industry and the University Hospital's neurology department.",
-            roche_neuroscience: "Roche Pharma Research - Neurodegeneration & Rare Diseases Division: You are a senior neuroscientist at Roche's Basel headquarters, working on next-generation treatments for Alzheimer's and Parkinson's disease. Your team uses patch-clamp electrophysiology to measure how experimental compounds affect voltage-gated sodium and potassium channels in cultured hippocampal neurons. By analyzing the kinetics of action potential generation—depolarization (Na⁺ influx), repolarization (K⁺ efflux), and hyperpolarization—you identify drugs that can restore normal neuronal firing patterns in diseased brains. Basel's pharma cluster, including Roche and Novartis, invests over CHF 10 billion annually in R&D, with neuroscience as a strategic priority. Your work builds on decades of Basel research, from the discovery of benzodiazepines to modern biologics targeting amyloid-beta plaques. This precision neuropharmacology could help the 50 million people worldwide living with dementia.",
+            roche_neuroscience: "Roche Pharma Research - Neurodegeneration & Rare Diseases Division: You are a senior neuroscientist at Roche's Basel headquarters, working on next-generation treatments for Alzheimer's and Parkinson's disease. Your team uses patch-clamp electrophysiology to measure how experimental compounds affect voltage-gated sodium and potassium channels in cultured hippocampal neurons. By analyzing the kinetics of action potential generation—depolarization (Na^+ influx), repolarization (K^+ efflux), and hyperpolarization—you identify drugs that can restore normal neuronal firing patterns in diseased brains. Basel's pharma cluster, including Roche and Novartis, invests over CHF 10 billion annually in R&D, with neuroscience as a strategic priority. Your work builds on decades of Basel research, from the discovery of benzodiazepines to modern biologics targeting amyloid-beta plaques. This precision neuropharmacology could help the 50 million people worldwide living with dementia.",
             neural_plasticity: "University of Basel - Interfaculty Research Platform Molecular & Cognitive Neuroscience: Working at the intersection of the Biozentrum and the Psychology Department, you study synaptic plasticity mechanisms underlying learning and memory. Your research focuses on Long-Term Potentiation (LTP) in hippocampal CA1 neurons, where high-frequency stimulation (100 Hz) strengthens synaptic connections through NMDA receptor activation and calcium-dependent signaling cascades. Using whole-cell patch-clamp recordings, you measure excitatory postsynaptic potentials (EPSPs) and track how repeated stimulation increases AMPA receptor density at the postsynaptic membrane. This work has direct applications for understanding age-related cognitive decline and developing cognitive enhancement strategies. Basel's unique interdisciplinary environment, combining molecular biology with cognitive neuroscience, makes it a European hub for translational brain research. The University Hospital's Memory Clinic works closely with your lab to translate findings into clinical interventions.",
-            friedrich_miescher: "Friedrich Miescher Institute for Biomedical Research (FMI) - Neural Development & Epigenetics: At the FMI, a Novartis-funded research institute, you work to understand how neural circuits self-assemble during development. Your project investigates the role of calcium signaling in neurotransmitter release at the neuromuscular junction. Using fluorescent calcium indicators and high-speed imaging, you visualize how Ca²⁺ influx through voltage-gated calcium channels triggers synaptic vesicle fusion, releasing acetylcholine into the synaptic cleft (20-40 nm wide). You measure quantal release events and calculate release probability under different stimulation protocols. This fundamental research honors Friedrich Miescher's legacy—he discovered DNA in Basel in 1869 while studying white blood cell nuclei from surgical bandages at the University Hospital. Today, the FMI continues this tradition of groundbreaking molecular biology, with insights that inform drug development at Roche and Novartis. Understanding synaptic transmission at the molecular level is crucial for treating myasthenia gravis, Lambert-Eaton syndrome, and other neuromuscular disorders."
+            friedrich_miescher: "Friedrich Miescher Institute for Biomedical Research (FMI) - Neural Development & Epigenetics: At the FMI, a Novartis-funded research institute, you work to understand how neural circuits self-assemble during development. Your project investigates the role of calcium signaling in neurotransmitter release at the neuromuscular junction. Using fluorescent calcium indicators and high-speed imaging, you visualize how Ca^2^+ influx through voltage-gated calcium channels triggers synaptic vesicle fusion, releasing acetylcholine into the synaptic cleft (20-40 nm wide). You measure quantal release events and calculate release probability under different stimulation protocols. This fundamental research honors Friedrich Miescher's legacy—he discovered DNA in Basel in 1869 while studying white blood cell nuclei from surgical bandages at the University Hospital. Today, the FMI continues this tradition of groundbreaking molecular biology, with insights that inform drug development at Roche and Novartis. Understanding synaptic transmission at the molecular level is crucial for treating myasthenia gravis, Lambert-Eaton syndrome, and other neuromuscular disorders."
         },
         feedback: {
             correct: "Action potential propagation successfully verified!",
@@ -439,7 +439,7 @@ export const enBiology = {
         },
         prompts: {
             osmosis_prompt: "The cell is in a {status} environment ({desc}). What happens to the water?",
-            respiration_prompt: "Complete the respiration reactant: C₆H₁₂O₆ + 6{reactant} → ...",
+            respiration_prompt: "Complete the respiration reactant: C_6H_1_2O_6 + 6{reactant} → ...",
             product_prompt: "What is the primary energy product of respiration?",
             homeostasis_target: "Balance the environment to achieve Isotonic state.",
             hint_hyper: "High salt outside! Water leaves the cell.",
@@ -574,14 +574,14 @@ export const enBiology = {
             rate: "Rate",
             thylakoid: "THYLAKOID",
             stroma: "STROMA",
-            co2_label: "CO₂",
+            co2_label: "CO_2",
             temp_label: "Temp"
         },
         prompts: {
-            reactant: "Complete the equation: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6{O₂}. What is the missing reactant count?",
+            reactant: "Complete the equation: 6CO_2 + 6H_2O + light → C_6H_1_2O_6 + 6{O_2}. What is the missing reactant count?",
             hint_oxygen: "Count the oxygen atoms on both sides of the equation",
-            glucose: "How many glucose molecules are produced from {co2} CO₂ molecules?",
-            hint_glucose: "The ratio of CO₂ to glucose is 6:1",
+            glucose: "How many glucose molecules are produced from {co2} CO_2 molecules?",
+            hint_glucose: "The ratio of CO_2 to glucose is 6:1",
             water_count: "How many water molecules are needed to produce {glucose} glucose molecules?",
             hint_balance: "Balance the equation: 6 water molecules per glucose molecule",
             factor_effect: "If {factor} decreases by half, what happens to the rate of photosynthesis?",

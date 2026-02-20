@@ -99,7 +99,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
               <>
                 <div className="text-white">Roche Tower Analogy</div>
                 <div>Structure: Stacked Prisms</div>
-                <div>Area: 2400m²-1800m²</div>
+                <div>Area: 2400m^2-1800m^2</div>
                 <div>Height: 205m</div>
               </>
             )}
@@ -108,7 +108,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>Faces: 6</div>
                 <div>Vertices: 8</div>
                 <div>Edges: 12</div>
-                <div>V = a³</div>
+                <div>V = a^3</div>
               </>
             )}
             {selectedShape === 'pyramid' && (
@@ -123,15 +123,15 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
               <>
                 <div>Curved surface</div>
                 <div>No edges/vertices</div>
-                <div>V = (4/3)πr³</div>
-                <div>A = 4πr²</div>
+                <div>V = (4/3)πr^3</div>
+                <div>A = 4πr^2</div>
               </>
             )}
             {selectedShape === 'cylinder' && (
               <>
                 <div>Faces: 3</div>
-                <div>V = πr²h</div>
-                <div>A = 2πr² + 2πrh</div>
+                <div>V = πr^2h</div>
+                <div>A = 2πr^2 + 2πrh</div>
               </>
             )}
           </div>
@@ -229,11 +229,11 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="mt-4 space-y-2 text-sm">
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Distance Formula:</div>
-            <div className="text-lg">d = √[(x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²]</div>
+            <div className="text-lg">d = √[(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2]</div>
           </div>
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">Midpoint Formula:</div>
-            <div className="text-lg">M = ((x₁+x₂)/2, (y₁+y₂)/2, (z₁+z₂)/2)</div>
+            <div className="text-lg">M = ((x_1+x_2)/2, (y_1+y_2)/2, (z_1+z_2)/2)</div>
           </div>
         </div>
       </div>

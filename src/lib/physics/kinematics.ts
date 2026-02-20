@@ -10,7 +10,7 @@ import * as THREE from "three";
  * 从加速度计算速度
  * 
  * @param v0 - Initial velocity (m/s)
- * @param a - Acceleration (m/s²)
+ * @param a - Acceleration (m/s^2)
  * @param t - Time (s)
  * @returns Final velocity (m/s)
  */
@@ -28,7 +28,7 @@ export function velocityFromAcceleration(
  * 
  * @param x0 - Initial position (m)
  * @param v0 - Initial velocity (m/s)
- * @param a - Acceleration (m/s²)
+ * @param a - Acceleration (m/s^2)
  * @param t - Time (s)
  * @returns Final position (m)
  */
@@ -59,7 +59,7 @@ export function kineticEnergy(m: number, v: number): number {
  * 
  * @param m - Mass (kg)
  * @param h - Height (m)
- * @param g - Gravitational acceleration (m/s²), default 9.81
+ * @param g - Gravitational acceleration (m/s^2), default 9.81
  * @returns Potential energy (J)
  */
 export function potentialEnergy(m: number, h: number, g: number = 9.81): number {
@@ -84,7 +84,7 @@ export function momentum(m: number, v: number): number {
  * 
  * @param v - Velocity (m/s)
  * @param r - Radius (m)
- * @returns Centripetal acceleration (m/s²)
+ * @returns Centripetal acceleration (m/s^2)
  */
 export function centripetalAcceleration(v: number, r: number): number {
   return (v * v) / r;
@@ -97,7 +97,7 @@ export function centripetalAcceleration(v: number, r: number): number {
  * @param v0 - Initial velocity (m/s)
  * @param angle - Launch angle (radians)
  * @param t - Time (s)
- * @param g - Gravitational acceleration (m/s²), default 9.81
+ * @param g - Gravitational acceleration (m/s^2), default 9.81
  * @returns Position {x, y} (m)
  */
 export function projectileMotion(
@@ -154,7 +154,7 @@ export function frictionForce(mu: number, N: number): number {
  * 计算单摆周期
  * 
  * @param L - Length (m)
- * @param g - Gravitational acceleration (m/s²), default 9.81
+ * @param g - Gravitational acceleration (m/s^2), default 9.81
  * @returns Period (s)
  */
 export function pendulumPeriod(L: number, g: number = 9.81): number {

@@ -102,10 +102,10 @@ describe('SC1.06 Integration Tests', () => {
       
       quests.forEach(quest => {
         // Check for common Unicode chemical symbols
-        expect(quest.equationLatex).not.toMatch(/[₀-₉]/); // Subscript numbers
-        expect(quest.equationLatex).not.toMatch(/[⁰-⁹]/); // Superscript numbers
+        expect(quest.equationLatex).not.toMatch(/[₀-_9]/); // Subscript numbers
+        expect(quest.equationLatex).not.toMatch(/[⁰-^9]/); // Superscript numbers
         expect(quest.equationLatex).not.toMatch(/→/); // Arrow
-        expect(quest.equationLatex).not.toMatch(/[⁺⁻]/); // Plus/minus superscripts
+        expect(quest.equationLatex).not.toMatch(/[^+^-]/); // Plus/minus superscripts
       });
     });
   });

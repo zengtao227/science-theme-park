@@ -15,25 +15,25 @@ interface OrbitalCanvasProps {
 // Electron configuration data
 const electronConfigs: Record<number, string> = {
     1: "1s¹",
-    2: "1s²",
+    2: "1s^2",
     3: "[He] 2s¹",
-    4: "[He] 2s²",
-    5: "[He] 2s² 2p¹",
-    6: "[He] 2s² 2p²",
-    7: "[He] 2s² 2p³",
-    8: "[He] 2s² 2p⁴",
-    9: "[He] 2s² 2p⁵",
-    10: "[He] 2s² 2p⁶",
+    4: "[He] 2s^2",
+    5: "[He] 2s^2 2p¹",
+    6: "[He] 2s^2 2p^2",
+    7: "[He] 2s^2 2p^3",
+    8: "[He] 2s^2 2p^4",
+    9: "[He] 2s^2 2p^5",
+    10: "[He] 2s^2 2p^6",
     11: "[Ne] 3s¹",
-    12: "[Ne] 3s²",
-    13: "[Ne] 3s² 3p¹",
-    14: "[Ne] 3s² 3p²",
-    15: "[Ne] 3s² 3p³",
-    16: "[Ne] 3s² 3p⁴",
-    17: "[Ne] 3s² 3p⁵",
-    18: "[Ne] 3s² 3p⁶",
+    12: "[Ne] 3s^2",
+    13: "[Ne] 3s^2 3p¹",
+    14: "[Ne] 3s^2 3p^2",
+    15: "[Ne] 3s^2 3p^3",
+    16: "[Ne] 3s^2 3p^4",
+    17: "[Ne] 3s^2 3p^5",
+    18: "[Ne] 3s^2 3p^6",
     19: "[Ar] 4s¹",
-    20: "[Ar] 4s²",
+    20: "[Ar] 4s^2",
 };
 
 // S orbital - spherical probability cloud
@@ -52,7 +52,7 @@ function SOrbital({ scale = 1, color = "#00e5ff" }: { scale?: number; color?: st
         };
         
         for (let i = 0; i < count; i++) {
-            // Radial probability distribution for 1s orbital: P(r) = 4πr²|ψ|²
+            // Radial probability distribution for 1s orbital: P(r) = 4πr^2|ψ|^2
             // Using exponential decay: ψ(r) ∝ exp(-r/a₀)
             const r = -Math.log(random(i * 3)) * 0.5 * scale;
             const theta = Math.acos(2 * random(i * 3 + 1) - 1);
@@ -110,7 +110,7 @@ function POrbital({ axis = "z", scale = 1, color = "#a855f7" }: { axis?: "x" | "
             const theta = Math.acos(2 * random(i * 3 + 1) - 1);
             const phi = random(i * 3 + 2) * Math.PI * 2;
             
-            // Angular part: cos²(θ) for pz
+            // Angular part: cos^2(θ) for pz
             const angularProb = Math.abs(Math.cos(theta));
             if (random(i * 3 + 3) > angularProb) continue;
             
@@ -179,10 +179,10 @@ function DOrbital({ type = "dz2", scale = 1, color = "#ff2d7d" }: { type?: "dz2"
             let angularProb = 0;
             
             if (type === "dz2") {
-                // dz²: (3cos²θ - 1)²
+                // dz^2: (3cos^2θ - 1)^2
                 angularProb = Math.pow(3 * Math.cos(theta) * Math.cos(theta) - 1, 2);
             } else {
-                // dxy: sin²θ·sin²(2φ)
+                // dxy: sin^2θ·sin^2(2φ)
                 angularProb = Math.pow(Math.sin(theta), 2) * Math.pow(Math.sin(2 * phi), 2);
             }
             

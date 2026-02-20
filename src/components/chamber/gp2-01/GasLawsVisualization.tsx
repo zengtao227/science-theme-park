@@ -72,7 +72,7 @@ export default function GasLawsVisualization({ quest, stage }: GasLawsVisualizat
                             </g>
                             
                             <text x={200} y={330} textAnchor="middle" fill="#00e5ff" fontSize="14" fontWeight="bold">
-                                P₁V₁ = P₂V₂
+                                P_1V_1 = P_2V_2
                             </text>
                             <text x={200} y={350} textAnchor="middle" fill="white" fontSize="11">
                                 (constant T)
@@ -127,7 +127,7 @@ export default function GasLawsVisualization({ quest, stage }: GasLawsVisualizat
                             </g>
                             
                             <text x={200} y={385} textAnchor="middle" fill="#00e5ff" fontSize="14" fontWeight="bold">
-                                V₁/T₁ = V₂/T₂
+                                V_1/T_1 = V_2/T_2
                             </text>
                         </g>
                         

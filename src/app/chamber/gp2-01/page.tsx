@@ -201,7 +201,7 @@ function buildStagePool(
                     targetLatex: "n",
                     slots: [{ id: "n", labelLatex: "n \\\\text{ (mol)}", placeholder: "20046", expected: 20046 }],
                     correctLatex: "n \\approx 20050 \\\\text{ mol}",
-                    hintLatex: ["P in Pa, V in m³"]
+                    hintLatex: ["P in Pa, V in m^3"]
                 },
                 {
                     id: "IG-E3", difficulty, stage, gasType: "ideal",

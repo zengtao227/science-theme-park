@@ -80,7 +80,7 @@ export function calculateWaveFunction(
 }
 
 /**
- * Calculate probability density |ψ|²
+ * Calculate probability density |ψ|^2
  * 计算概率密度
  */
 export function calculateProbabilityDensity(

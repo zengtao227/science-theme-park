@@ -199,7 +199,7 @@ describe('ReactionTypeSelector Component', () => {
     expect(screen.getByText('AB → A + B')).toBeInTheDocument();
     expect(screen.getByText('A + BC → AC + B')).toBeInTheDocument();
     expect(screen.getByText('AB + CD → AD + CB')).toBeInTheDocument();
-    expect(screen.getByText('CₓHᵧ + O₂ → CO₂ + H₂O')).toBeInTheDocument();
+    expect(screen.getByText('CₓHᵧ + O_2 → CO_2 + H_2O')).toBeInTheDocument();
   });
 
   test('displays examples for each reaction type', () => {

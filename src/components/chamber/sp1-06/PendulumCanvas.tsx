@@ -8,7 +8,7 @@ import * as THREE from "three";
 interface PendulumCanvasProps {
     length: number; // in meters
     initialAngle: number; // in radians
-    gravity: number; // m/s²
+    gravity: number; // m/s^2
     damping: number; // damping coefficient
     showPhaseSpace: boolean;
     showEnergy: boolean;
@@ -22,7 +22,7 @@ function Pendulum({ length, initialAngle, gravity, damping, onUpdate }: Pendulum
     const [time, setTime] = useState(0);
 
     useFrame((_, delta) => {
-        // Nonlinear pendulum equation: d²θ/dt² = -(g/L)sin(θ) - γ(dθ/dt)
+        // Nonlinear pendulum equation: d^2θ/dt^2 = -(g/L)sin(θ) - γ(dθ/dt)
         // Using Runge-Kutta 4th order for accuracy
         const dt = Math.min(delta, 0.016); // Cap at 60 FPS
 

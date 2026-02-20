@@ -466,8 +466,8 @@ export default function S201Page() {
     }
     if (questMode === "SCRAPPER" && scrapperQuest) {
       return {
-        a2: `${scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2}x²`,
-        b2: `${scrapperQuest.vb ** 2}${scrapperQuest.variant === "XY" ? "y²" : ""}`,
+        a2: `${scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2}x^2`,
+        b2: `${scrapperQuest.vb ** 2}${scrapperQuest.variant === "XY" ? "y^2" : ""}`,
         ab: `${scrapperQuest.ca * scrapperQuest.vb}${scrapperQuest.variant === "XY" ? "xy" : "x"}`,
       };
     }
@@ -712,7 +712,7 @@ export default function S201Page() {
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                         />
-                        <span className="text-white/80">)²</span>
+                        <span className="text-white/80">)^2</span>
 
                         <span className="text-neon-cyan mx-2">+</span>
 
@@ -742,11 +742,11 @@ export default function S201Page() {
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.b ?? "b"}
                         />
-                        <span className="text-white/80">)²</span>
+                        <span className="text-white/80">)^2</span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a² + 2ab + b²"}
+                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a^2 + 2ab + b^2"}
                       </div>
                     </div>
                   ) : (
@@ -760,7 +760,7 @@ export default function S201Page() {
                         />
                         <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
                       </div>
-                      <span className="text-4xl font-black text-white/80">x²</span>
+                      <span className="text-4xl font-black text-white/80">x^2</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
                       <div className="flex flex-col gap-3">
                         <input

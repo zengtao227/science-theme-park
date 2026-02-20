@@ -59,7 +59,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "thyroxine"),
-    promptLatex: "Classify the hormone thyroxine (T₄) by its chemical structure.",
+    promptLatex: "Classify the hormone thyroxine (T_4) by its chemical structure.",
     slots: [
       {
         id: "type",
@@ -70,7 +70,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
         expected: "amino_acid_derived"
       }
     ],
-    baselContext: "At Basel University Hospital's Thyroid Clinic, endocrinologists treat hundreds of thyroid disorder patients annually using levothyroxine, synthetic T₄. The clinic, located in Basel's Petersgraben medical district, collaborates with Roche on thyroid function testing. Thyroxine, synthesized from the amino acid tyrosine, contains four iodine atoms. Its unique structure makes it the primary thyroid hormone regulating metabolism. Basel's pharmaceutical industry produces levothyroxine tablets, one of the most prescribed medications worldwide. The city's expertise in organic chemistry enables precise synthesis of thyroid hormones. Understanding T₄'s amino acid-derived structure explains why iodine deficiency causes thyroid disorders—a condition rare in Switzerland due to iodized salt programs. Basel's thyroid specialists emphasize the importance of consistent levothyroxine dosing, as even small variations affect metabolism. The clinic's research focuses on optimizing thyroid hormone replacement, ensuring patients achieve euthyroid status. This fundamental knowledge of thyroid hormone structure underpins all thyroid disorder management in Basel's healthcare system."
+    baselContext: "At Basel University Hospital's Thyroid Clinic, endocrinologists treat hundreds of thyroid disorder patients annually using levothyroxine, synthetic T_4. The clinic, located in Basel's Petersgraben medical district, collaborates with Roche on thyroid function testing. Thyroxine, synthesized from the amino acid tyrosine, contains four iodine atoms. Its unique structure makes it the primary thyroid hormone regulating metabolism. Basel's pharmaceutical industry produces levothyroxine tablets, one of the most prescribed medications worldwide. The city's expertise in organic chemistry enables precise synthesis of thyroid hormones. Understanding T_4's amino acid-derived structure explains why iodine deficiency causes thyroid disorders—a condition rare in Switzerland due to iodized salt programs. Basel's thyroid specialists emphasize the importance of consistent levothyroxine dosing, as even small variations affect metabolism. The clinic's research focuses on optimizing thyroid hormone replacement, ensuring patients achieve euthyroid status. This fundamental knowledge of thyroid hormone structure underpins all thyroid disorder management in Basel's healthcare system."
   },
   {
     id: "HORMONE_ID_BASIC_4",

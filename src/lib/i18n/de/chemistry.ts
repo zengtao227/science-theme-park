@@ -70,16 +70,16 @@ export const deChemistry = {
                 "iodine": "Jod"
             },
             "substances": {
-                "soda": "Natron (NaHCO₃)",
+                "soda": "Natron (NaHCO_3)",
                 "salt": "Salz (NaCl)",
-                "starch": "Stärke (C₆H₁₀O₅)ₙ",
+                "starch": "Stärke (C_6H_1₀O_5)ₙ",
                 "powder_a": "Pulver A",
                 "powder_b": "Pulver B",
                 "powder_c": "Pulver C"
             },
             "results": {
                 "soda_water": "Löst sich leicht",
-                "soda_vinegar": "Sprudelt! CO₂-Blasen!",
+                "soda_vinegar": "Sprudelt! CO_2-Blasen!",
                 "soda_fire": "Keine Veränderung",
                 "soda_iodine": "Keine Farbänderung",
                 "salt_water": "Löst sich vollständig auf",
@@ -185,8 +185,8 @@ export const deChemistry = {
         footer_left: "GC1.01_REDOX_TITAN // KNOTEN: BASEL",
         labels: {
             cell_potential: "ZELLPOTENTIAL",
-            zn_concentration: "Zn²⁺-KONZENTRATION",
-            cu_concentration: "Cu²⁺-KONZENTRATION",
+            zn_concentration: "Zn^2^+-KONZENTRATION",
+            cu_concentration: "Cu^2^+-KONZENTRATION",
             temperature: "TEMPERATUR",
             show_electrons: "Elektronenfluss anzeigen",
             show_ions: "Ionenmigration anzeigen",
@@ -207,7 +207,7 @@ export const deChemistry = {
             build_desc: "Zn-Cu-Galvanische Zelle konstruieren",
             measure_desc: "Zellpotential mit Nernst-Gleichung berechnen",
             analyze_desc: "Redoxreaktionen und Elektronenfluss beobachten",
-            build_hint: "Zn wird an der Anode oxidiert, Cu²⁺ an der Kathode reduziert",
+            build_hint: "Zn wird an der Anode oxidiert, Cu^2^+ an der Kathode reduziert",
             measure_hint: "E = E° - (RT/nF)ln(Q)",
             analyze_hint: "Salzbrücke erhält elektrische Neutralität"
         },
@@ -331,11 +331,11 @@ export const deChemistry = {
             instruction: "Wählen Sie ein Werkzeug und klicken Sie auf ein Pulver zum Testen. Identifizieren Sie Backpulver, Salz und Stärke!",
             tools: { water: "Wasser", vinegar: "Essig", fire: "Feuer", iodine: "Jod" },
             substances: {
-                soda: "Natron (NaHCO₃)", salt: "Salz (NaCl)", starch: "Stärke (C₆H₁₀O₅)ₙ",
+                soda: "Natron (NaHCO_3)", salt: "Salz (NaCl)", starch: "Stärke (C_6H_1₀O_5)ₙ",
                 powder_a: "Pulver A", powder_b: "Pulver B", powder_c: "Pulver C"
             },
             results: {
-                soda_water: "Löst sich leicht", soda_vinegar: "Sprudelt! CO₂-Blasen!", soda_fire: "Keine Veränderung", soda_iodine: "Keine Farbänderung",
+                soda_water: "Löst sich leicht", soda_vinegar: "Sprudelt! CO_2-Blasen!", soda_fire: "Keine Veränderung", soda_iodine: "Keine Farbänderung",
                 salt_water: "Löst sich vollständig auf", salt_vinegar: "Löst sich auf, kein Sprudeln", salt_fire: "Schmilzt", salt_iodine: "Keine Farbänderung",
                 starch_water: "Bildet trübe Mischung", starch_vinegar: "Keine Reaktion", starch_fire: "Verbrennt", starch_iodine: "Wird BLAU-SCHWARZ!",
                 no_reaction: "Keine Reaktion"
@@ -351,7 +351,7 @@ export const deChemistry = {
             hint: "Hinweis"
         },
         hints: {
-            soda: "Natron: Sprudelt mit Essig (CO₂)",
+            soda: "Natron: Sprudelt mit Essig (CO_2)",
             starch: "Stärke: Wird blau-schwarz mit Jod",
             salt: "Salz: Löst sich vollständig in Wasser"
         },
@@ -384,7 +384,7 @@ export const deChemistry = {
             basic_2: "Welches Pulver löst sich vollständig in Wasser?",
             basic_3: "Welches Pulver ist weiß und kristallin?",
             basic_4: "Welches Pulver produziert Blasen mit Säure?",
-            core_0: "Welches Pulver produziert CO₂-Gas?",
+            core_0: "Welches Pulver produziert CO_2-Gas?",
             core_1: "Welches Pulver bildet eine kolloidale Suspension?",
             core_2: "Welches Pulver hat die höchste Löslichkeit?",
             core_3: "Welches Pulver reagiert mit Essigsäure?",
@@ -394,9 +394,9 @@ export const deChemistry = {
             advanced_2: "Welches Pulver ist ein Kohlenhydratpolymer?",
             advanced_3: "Welches Pulver setzt Kohlensäure frei?",
             advanced_4: "Welches Pulver bildet eine ionische Lösung?",
-            elite_0: "Welches Pulver hat die Formel NaHCO₃?",
+            elite_0: "Welches Pulver hat die Formel NaHCO_3?",
             elite_1: "Welches Pulver hat die Formel NaCl?",
-            elite_2: "Welches Pulver hat die Formel (C₆H₁₀O₅)ₙ?",
+            elite_2: "Welches Pulver hat die Formel (C_6H_1₀O_5)ₙ?",
             elite_3: "Welches Pulver durchläuft eine Säure-Base-Neutralisation?",
             elite_4: "Welches Pulver bildet einen Triiodid-Komplex?"
         },
@@ -517,9 +517,9 @@ export const deChemistry = {
             mass_number: "Massenzahl (A)",
             charge: "Ladung",
             periodic_table: "PERIODENSYSTEM",
-            protons: "PROTONEN (p⁺)",
+            protons: "PROTONEN (p^+)",
             neutrons: "NEUTRONEN (n⁰)",
-            electrons: "ELEKTRONEN (e⁻)"
+            electrons: "ELEKTRONEN (e^-)"
         },
         mission: {
             title: "MISSION: CYBER-SCHMIEDE",
@@ -693,7 +693,7 @@ export const deChemistry = {
         scenarios: {
             arrhenius: "Novartis Kinetik-Labor: Untersuchen Sie, wie Temperatur und Aktivierungsenergie die Reaktionsgeschwindigkeiten beeinflussen. Die Arrhenius-Gleichung k = A·exp(-Ea/RT) beschreibt die Temperaturabhängigkeit von Geschwindigkeitskonstanten. Höhere Temperaturen erhöhen die kinetische Energie der Moleküle und führen zu mehr erfolgreichen Kollisionen.",
             rate_law: "Roche Pharmaforschung: Bestimmen Sie Reaktionsordnungen und Geschwindigkeitsgesetze aus experimentellen Daten. Das Geschwindigkeitsgesetz drückt aus, wie die Reaktionsgeschwindigkeit von den Konzentrationen der Reaktanten abhängt. Das Verständnis von Geschwindigkeitsgesetzen ist entscheidend für die Optimierung der Arzneimittelsynthese und die Vorhersage des Reaktionsverhaltens.",
-            half_life: "Universitätsspital Basel: Berechnen Sie Arzneimittel-Eliminationshalbwertszeiten für die Pharmakokinetik. Die Halbwertszeit ist die Zeit, die benötigt wird, damit eine Menge auf die Hälfte ihres Anfangswerts reduziert wird. Kinetik erster Ordnung ist bei der Arzneimittelmetabolisierung üblich, wobei t₁/₂ = ln(2)/k."
+            half_life: "Universitätsspital Basel: Berechnen Sie Arzneimittel-Eliminationshalbwertszeiten für die Pharmakokinetik. Die Halbwertszeit ist die Zeit, die benötigt wird, damit eine Menge auf die Hälfte ihres Anfangswerts reduziert wird. Kinetik erster Ordnung ist bei der Arzneimittelmetabolisierung üblich, wobei t_1/_2 = ln(2)/k."
         },
         problems: {
             arr_temp_300_ea_50: "Novartis-Reaktor bei T=300K, Aktivierungsenergie Ea=50 kJ/mol. Berechnen Sie relative Geschwindigkeitskonstante k.",
@@ -706,29 +706,29 @@ export const deChemistry = {
             arr_ln_form: "Verwenden Sie logarithmische Form: ln(k) = ln(A) - Ea/RT. Berechnen Sie ln(k) für Ea=50 kJ/mol, T=300K.",
             arr_activation: "Zwei Geschwindigkeitskonstanten unterscheiden sich um Faktor 10 über 50K Temperaturbereich. Finden Sie Ea.",
             arr_catalyst: "Katalysator reduziert Ea um 20 kJ/mol (von 80 auf 60). Berechnen Sie k-Verhältnis bei 300K.",
-            arr_two_temps: "Messen Sie k bei 300K und 350K. Verwenden Sie ln(k₂/k₁) = -Ea/R(1/T₂ - 1/T₁) um Ea=52 kJ/mol zu finden.",
+            arr_two_temps: "Messen Sie k bei 300K und 350K. Verwenden Sie ln(k_2/k_1) = -Ea/R(1/T_2 - 1/T_1) um Ea=52 kJ/mol zu finden.",
             arr_plot: "Arrhenius-Diagramm hat Steigung -7800 K. Berechnen Sie Ea (Steigung = -Ea/R).",
-            arr_frequency: "Gegeben k=1.5×10⁻⁹, Ea=50 kJ/mol, T=300K. Finden Sie präexponentiellen Faktor A.",
-            arr_temp_for_k: "Ziel-Geschwindigkeitskonstante k=10⁶ s⁻¹, Ea=60 kJ/mol. Welche Temperatur wird benötigt?",
+            arr_frequency: "Gegeben k=1.5×10^-^9, Ea=50 kJ/mol, T=300K. Finden Sie präexponentiellen Faktor A.",
+            arr_temp_for_k: "Ziel-Geschwindigkeitskonstante k=10^6 s^-¹, Ea=60 kJ/mol. Welche Temperatur wird benötigt?",
             arr_enzyme: "Enzymkatalysierte Reaktion: Ea=40 kJ/mol, Körpertemperatur T=310K. Berechnen Sie k.",
             arr_complex: "Zweistufiger Mechanismus: Ea1=50, Ea2=30 kJ/mol. Gesamt-Ea=40 kJ/mol. Finden Sie k bei 300K.",
-            arr_pressure: "Druckeffekt: Aktivierungsvolumen ΔV‡=-10 cm³/mol. Berechnen Sie k-Verhältnis.",
+            arr_pressure: "Druckeffekt: Aktivierungsvolumen ΔV‡=-10 cm^3/mol. Berechnen Sie k-Verhältnis.",
             arr_quantum: "Quantentunnelkorrektur κ=2.5. Finden Sie effektives k.",
             arr_isotope: "Kinetischer Isotopeneffekt: H vs D Substitution. Berechnen Sie kH/kD für Ea=50 kJ/mol.",
-            arr_transition: "Übergangszustandstheorie: k=10⁶ s⁻¹ bei 300K. Berechnen Sie ΔG‡.",
-            rl_first_order: "Reaktion erster Ordnung: Rate = k[A]. Gegeben [A]=2.0 M, k=0.5 s⁻¹, finden Sie Rate.",
-            rl_second_order: "Zweiter Ordnung: Rate = k[A]². [A]=1.5 M, k=0.4 M⁻¹s⁻¹. Berechnen Sie Rate.",
+            arr_transition: "Übergangszustandstheorie: k=10^6 s^-¹ bei 300K. Berechnen Sie ΔG‡.",
+            rl_first_order: "Reaktion erster Ordnung: Rate = k[A]. Gegeben [A]=2.0 M, k=0.5 s^-¹, finden Sie Rate.",
+            rl_second_order: "Zweiter Ordnung: Rate = k[A]^2. [A]=1.5 M, k=0.4 M^-¹s^-¹. Berechnen Sie Rate.",
             rl_zero_order: "Nullter Ordnung: Rate = k (unabhängig von [A]). k=0.8 M/s. Finden Sie Rate.",
             rl_concentration: "Reaktion erster Ordnung: [A] verdoppelt sich. Um welchen Faktor steigt die Rate?",
-            rl_initial: "Anfangsgeschwindigkeitsmethode: [A]₀=1.0 M, k=0.6 s⁻¹. Berechnen Sie Anfangsrate.",
-            rl_mixed: "Gemischte Ordnung: Rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M⁻²s⁻¹. Finden Sie Rate.",
+            rl_initial: "Anfangsgeschwindigkeitsmethode: [A]₀=1.0 M, k=0.6 s^-¹. Berechnen Sie Anfangsrate.",
+            rl_mixed: "Gemischte Ordnung: Rate = k[A][B]. [A]=2 M, [B]=3 M, k=0.5 M^-^2s^-¹. Finden Sie Rate.",
             rl_order: "Verdopplung von [A] vervierfacht Rate. Was ist die Reaktionsordnung n?",
-            rl_integrated: "Integrierte erste Ordnung: [A]t = [A]₀·e⁻ᵏᵗ. [A]₀=1 M, k=0.1 s⁻¹, t=10 s. Finden Sie [A].",
-            rl_time: "Halbwertszeit erster Ordnung: t₁/₂ = ln(2)/k. Gegeben k=0.05 s⁻¹, finden Sie t₁/₂.",
+            rl_integrated: "Integrierte erste Ordnung: [A]t = [A]₀·e^-ᵏᵗ. [A]₀=1 M, k=0.1 s^-¹, t=10 s. Finden Sie [A].",
+            rl_time: "Halbwertszeit erster Ordnung: t_1/_2 = ln(2)/k. Gegeben k=0.05 s^-¹, finden Sie t_1/_2.",
             rl_constant: "Aus Rate=2 M/s und [A]=4 M (erste Ordnung), bestimmen Sie k.",
             rl_complex_order: "Gebrochene Ordnung: Rate = k[A]^1.5[B]^0.5. [A]=4, [B]=9, k=0.2. Finden Sie Rate.",
-            rl_mechanism: "Mehrstufig: Gesamtrate = k₁k₂/(k₁+k₂). k₁=0.5, k₂=0.3. Berechnen Sie Rate.",
-            rl_steady_state: "Stationäre Näherung: [I]ss = k₁[A]/k₂. k₁=0.5, k₂=0.2. Finden Sie [I].",
+            rl_mechanism: "Mehrstufig: Gesamtrate = k_1k_2/(k_1+k_2). k_1=0.5, k_2=0.3. Berechnen Sie Rate.",
+            rl_steady_state: "Stationäre Näherung: [I]ss = k_1[A]/k_2. k_1=0.5, k_2=0.2. Finden Sie [I].",
             rl_pre_equilibrium: "Vorgleichgewicht: Keq = kf/kr. kf=0.8, kr=0.2. Berechnen Sie Keq.",
             rl_inhibition: "Kompetitive Hemmung: Rate reduziert um Faktor (1+[I]/KI). [I]=2, KI=1. Finden Sie Ratefaktor.",
             rl_oscillating: "Belousov-Zhabotinsky oszillierende Reaktion. Maximum [A] im Zyklus.",
@@ -736,26 +736,26 @@ export const deChemistry = {
             rl_chain: "Kettenreaktion: Kettenlänge ν = kp/kt. kp/kt=100. Finden Sie ν.",
             rl_photochemical: "Photochemische Quantenausbeute Φ = reagierte Moleküle / absorbierte Photonen = 0.8.",
             rl_enzyme_complex: "Michaelis-Menten: V = Vmax[S]/(KM+[S]). KM=1, [S]=5. Finden Sie V/Vmax.",
-            hl_first_order: "Halbwertszeit erster Ordnung: t₁/₂ = ln(2)/k = 0.693/k. k=0.1 s⁻¹. Finden Sie t₁/₂.",
-            hl_second_order: "Zweiter Ordnung: t₁/₂ = 1/(k[A]₀). k=0.5 M⁻¹s⁻¹, [A]₀=2 M. Berechnen Sie t₁/₂.",
-            hl_zero_order: "Nullter Ordnung: t₁/₂ = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Finden Sie t₁/₂.",
+            hl_first_order: "Halbwertszeit erster Ordnung: t_1/_2 = ln(2)/k = 0.693/k. k=0.1 s^-¹. Finden Sie t_1/_2.",
+            hl_second_order: "Zweiter Ordnung: t_1/_2 = 1/(k[A]₀). k=0.5 M^-¹s^-¹, [A]₀=2 M. Berechnen Sie t_1/_2.",
+            hl_zero_order: "Nullter Ordnung: t_1/_2 = [A]₀/(2k). k=0.4 M/s, [A]₀=4 M. Finden Sie t_1/_2.",
             hl_remaining: "Nach 2 Halbwertszeiten, welcher Bruchteil bleibt? [A]₀=8 M → [A]=?",
-            hl_time: "75% Zerfall bedeutet 2 Halbwertszeiten. Wenn t₁/₂=10s, Gesamtzeit = 20s.",
-            hl_find_k: "Aus t₁/₂=5s (erste Ordnung), berechnen Sie k = ln(2)/t₁/₂.",
-            hl_fraction: "Nach 3 Halbwertszeiten: Bruchteil = (1/2)³ = 1/8 = 0.125.",
-            hl_radioactive: "Radioaktiver Zerfall: N = N₀(1/2)^(t/t₁/₂). N₀=1000, t=20s, t₁/₂=10s. Finden Sie N.",
-            hl_drug: "Arzneimittelausscheidung: [D]₀=100 mg/L, t₁/₂=4h, t=12h (3 Halbwertszeiten). [D]=12.5 mg/L.",
+            hl_time: "75% Zerfall bedeutet 2 Halbwertszeiten. Wenn t_1/_2=10s, Gesamtzeit = 20s.",
+            hl_find_k: "Aus t_1/_2=5s (erste Ordnung), berechnen Sie k = ln(2)/t_1/_2.",
+            hl_fraction: "Nach 3 Halbwertszeiten: Bruchteil = (1/2)^3 = 1/8 = 0.125.",
+            hl_radioactive: "Radioaktiver Zerfall: N = N₀(1/2)^(t/t_1/_2). N₀=1000, t=20s, t_1/_2=10s. Finden Sie N.",
+            hl_drug: "Arzneimittelausscheidung: [D]₀=100 mg/L, t_1/_2=4h, t=12h (3 Halbwertszeiten). [D]=12.5 mg/L.",
             hl_compare: "Vergleichen Sie zwei Reaktionen: kA=0.2, kB=0.4. Verhältnis der Halbwertszeiten = kB/kA = 2.",
-            hl_consecutive: "Aufeinanderfolgende A→B→C: Maximum [B] bei tmax = ln(k₁/k₂)/(k₁-k₂). k₁=0.5, k₂=0.2.",
-            hl_parallel: "Parallele Pfade: kgesamt = k₁+k₂. k₁=0.3, k₂=0.2, t₁/₂ = ln(2)/0.5.",
+            hl_consecutive: "Aufeinanderfolgende A→B→C: Maximum [B] bei tmax = ln(k_1/k_2)/(k_1-k_2). k_1=0.5, k_2=0.2.",
+            hl_parallel: "Parallele Pfade: kgesamt = k_1+k_2. k_1=0.3, k_2=0.2, t_1/_2 = ln(2)/0.5.",
             hl_reversible: "Reversibel: [A]eq = [A]₀·kr/(kf+kr). kf=0.5, kr=0.1.",
-            hl_temperature: "t₁/₂ nimmt mit Temperatur ab. Bei 350K vs 300K mit Ea=50 kJ/mol.",
-            hl_enzyme: "Enzym-Turnover: kcat=100 s⁻¹. t₁/₂ = ln(2)/kcat = 0.007s.",
-            hl_isotope_dating: "Kohlenstoff-14-Datierung: N/N₀=0.25 = (1/2)². Alter = 2×5730 = 11460 Jahre.",
+            hl_temperature: "t_1/_2 nimmt mit Temperatur ab. Bei 350K vs 300K mit Ea=50 kJ/mol.",
+            hl_enzyme: "Enzym-Turnover: kcat=100 s^-¹. t_1/_2 = ln(2)/kcat = 0.007s.",
+            hl_isotope_dating: "Kohlenstoff-14-Datierung: N/N₀=0.25 = (1/2)^2. Alter = 2×5730 = 11460 Jahre.",
             hl_branching: "Verzweigter Zerfall: α und β Pfade. kα/kβ=2, also fα = 2/3 = 0.67.",
-            hl_secular: "Säkulares Gleichgewicht: Mutter t₁/₂ >> Tochter t₁/₂. Aktivitätsverhältnis → 1.",
-            hl_transient: "Transientes Gleichgewicht: tmax wenn Tochteraktivität Spitze erreicht. t₁/₂,1=10, t₁/₂,2=2.",
-            hl_cosmogenic: "¹⁰Be kosmogene Datierung: t₁/₂=1.39×10⁶ Jahre. N/N₀=0.5 → Alter = t₁/₂."
+            hl_secular: "Säkulares Gleichgewicht: Mutter t_1/_2 >> Tochter t_1/_2. Aktivitätsverhältnis → 1.",
+            hl_transient: "Transientes Gleichgewicht: tmax wenn Tochteraktivität Spitze erreicht. t_1/_2,1=10, t_1/_2,2=2.",
+            hl_cosmogenic: "¹⁰Be kosmogene Datierung: t_1/_2=1.39×10^6 Jahre. N/N₀=0.5 → Alter = t_1/_2."
         }
     },
     sc2_02: {
@@ -1021,7 +1021,7 @@ export const deChemistry = {
             chemistry_score: "Chemie-Punktzahl"
         },
         prompts: {
-            combustion: "Vollständige Verbrennung von {reactant} produziert CO₂ und H₂O. Wie viele CO₂-Moleküle?",
+            combustion: "Vollständige Verbrennung von {reactant} produziert CO_2 und H_2O. Wie viele CO_2-Moleküle?",
             substitution: "Wenn {alkane} mit {halogen} unter UV-Licht reagiert, was ist das Hauptprodukt?",
             addition: "Wenn {alkene} mit {reagent} reagiert, was ist das Produkt?",
             hint_combustion: "Zähle die Kohlenstoffatome im Reaktanten",
@@ -1197,7 +1197,7 @@ export const deChemistry = {
         },
         scenarios: {
             ph_basics: "Novartis Pharmazeutische pH-Kontrolle: Sie sind Formulierungswissenschaftler bei Novartis Basel und entwickeln ein neues orales Medikament. Die Stabilität und Bioverfügbarkeit des Arzneimittels hängen entscheidend vom pH-Wert ab. Im Magen (pH 1,5) muss der Wirkstoff stabil bleiben, während er im Blutkreislauf (pH 7,4) schnell gelöst werden muss. Sie testen Puffersysteme, um den optimalen pH-Bereich während der Herstellung und Lagerung aufrechtzuerhalten. Mit Präzisions-pH-Metern und Henderson-Hasselbalch-Berechnungen passen Sie das Verhältnis von schwacher Säure zu konjugierter Base an. Eine Abweichung von nur 0,2 pH-Einheiten könnte die gesamte Charge unwirksam machen und Tausende von Patienten in der Schweiz betreffen. Diese pharmazeutische pH-Kontrolle ähnelt der Art und Weise, wie das Blut Ihres Körpers einen engen pH-Bereich aufrechterhält, um Sie gesund zu halten.",
-            neutralization: "Universitätsspital Basel Magenbehandlung: Sie sind klinischer Apotheker am Universitätsspital Basel und bereiten Antazida-Formulierungen für Patienten mit schwerem Säurereflux vor. Der Magen produziert Salzsäure (HCl) bei pH 1-2, was schmerzhafte Symptome verursacht. Ihre Aufgabe ist es, die genaue Menge an Natriumbicarbonat (NaHCO₃) zu berechnen, die benötigt wird, um die überschüssige Säure zu neutralisieren, ohne auf alkalischen pH zu überschießen, was andere Komplikationen verursachen könnte. Sie müssen das Magenvolumen des Patienten (ca. 50 ml bei leerem Magen) und die Säurekonzentration berücksichtigen. Die Neutralisationsreaktion produziert CO₂-Gas, das Patienten als Aufstoßen erleben. Präzise stöchiometrische Berechnungen gewährleisten wirksame Linderung bei minimalen Nebenwirkungen. Dies ist genau wie das Hinzufügen von Backpulver zu Essig in Ihrer Küche, aber mit medizinischer Präzision.",
+            neutralization: "Universitätsspital Basel Magenbehandlung: Sie sind klinischer Apotheker am Universitätsspital Basel und bereiten Antazida-Formulierungen für Patienten mit schwerem Säurereflux vor. Der Magen produziert Salzsäure (HCl) bei pH 1-2, was schmerzhafte Symptome verursacht. Ihre Aufgabe ist es, die genaue Menge an Natriumbicarbonat (NaHCO_3) zu berechnen, die benötigt wird, um die überschüssige Säure zu neutralisieren, ohne auf alkalischen pH zu überschießen, was andere Komplikationen verursachen könnte. Sie müssen das Magenvolumen des Patienten (ca. 50 ml bei leerem Magen) und die Säurekonzentration berücksichtigen. Die Neutralisationsreaktion produziert CO_2-Gas, das Patienten als Aufstoßen erleben. Präzise stöchiometrische Berechnungen gewährleisten wirksame Linderung bei minimalen Nebenwirkungen. Dies ist genau wie das Hinzufügen von Backpulver zu Essig in Ihrer Küche, aber mit medizinischer Präzision.",
             titration: "Roche Qualitätskontrolllabor: Sie sind Qualitätskontrollanalyst im Basler Hauptsitz von Roche und führen Titrationsanalysen durch, um die Reinheit einer neuen Arzneimittelverbindung zu überprüfen. Mit einer kalibrierten Bürette fügen Sie tropfenweise standardisierte NaOH-Lösung zu einer in Wasser gelösten Probe des Arzneimittels hinzu. Eine pH-Elektrode überwacht kontinuierlich die Lösung und erzeugt eine Titrationskurve auf Ihrem Computerbildschirm. Der scharfe pH-Sprung am Äquivalenzpunkt zeigt vollständige Neutralisation an, und das verwendete Volumen des Titriermittels zeigt die genaue Konzentration des Arzneimittels. Jede Abweichung von der angegebenen Reinheit (mindestens 99,5%) löst eine vollständige Chargenuntersuchung aus. Diese analytische Präzision stellt sicher, dass jedes Roche-Medikament den Schweizer Pharmastandards entspricht. Es ist wie die Verwendung eines präzisen Messbechers, um sicherzustellen, dass Ihr Rezept jedes Mal perfekt wird."
         },
         prompts: {
@@ -1243,8 +1243,8 @@ export const deChemistry = {
             electrochemistry: "ELEKTROCHEMIE"
         },
         scenarios: {
-            oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn⁷⁺), die sich in braunes Mangandioxid (Mn⁴⁺) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
-            electron_transfer: "Roche Batterietechnologieentwicklung: Sie sind Materialwissenschaftler in der Energieforschungsabteilung von Roche in Basel und entwickeln Lithium-Ionen-Batterien der nächsten Generation für medizinische Geräte. Das Kathodenmaterial der Batterie (LiCoO₂) durchläuft während der Lade- und Entladezyklen reversiblen Elektronentransfer. Kobalt wechselt zwischen +3 und +4 Oxidationsstufen, während Lithiumionen ein- und ausströmen. Sie müssen die Redoxgleichungen ausgleichen, um Energiedichte und Zykluslebensdauer zu optimieren. Jede Batteriezelle muss genau 3,7 V für über 500 Ladezyklen liefern, um tragbare Insulinpumpen und Herzmonitore zuverlässig mit Strom zu versorgen. Die Effizienz des Elektronentransfers wirkt sich direkt auf die Patientensicherheit aus – eine ausfallende Batterie in einem kritischen medizinischen Gerät könnte lebensbedrohlich sein. Dies ähnelt einer wiederaufladbaren Telefonbatterie, jedoch mit medizinischer Präzision und Zuverlässigkeitsanforderungen.",
+            oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn^7^+), die sich in braunes Mangandioxid (Mn^4^+) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
+            electron_transfer: "Roche Batterietechnologieentwicklung: Sie sind Materialwissenschaftler in der Energieforschungsabteilung von Roche in Basel und entwickeln Lithium-Ionen-Batterien der nächsten Generation für medizinische Geräte. Das Kathodenmaterial der Batterie (LiCoO_2) durchläuft während der Lade- und Entladezyklen reversiblen Elektronentransfer. Kobalt wechselt zwischen +3 und +4 Oxidationsstufen, während Lithiumionen ein- und ausströmen. Sie müssen die Redoxgleichungen ausgleichen, um Energiedichte und Zykluslebensdauer zu optimieren. Jede Batteriezelle muss genau 3,7 V für über 500 Ladezyklen liefern, um tragbare Insulinpumpen und Herzmonitore zuverlässig mit Strom zu versorgen. Die Effizienz des Elektronentransfers wirkt sich direkt auf die Patientensicherheit aus – eine ausfallende Batterie in einem kritischen medizinischen Gerät könnte lebensbedrohlich sein. Dies ähnelt einer wiederaufladbaren Telefonbatterie, jedoch mit medizinischer Präzision und Zuverlässigkeitsanforderungen.",
             electrochemistry: "Basler Industriegalvanik-Erbe: Sie sind Verfahrensingenieur in einem Basler Metallveredelungsunternehmen und setzen die 500-jährige Tradition der Stadt in präziser Metallbearbeitung fort. Heute galvanisieren Sie chirurgische Instrumente mit einer dünnen Goldschicht für Korrosionsbeständigkeit und Biokompatibilität. Mit der Nernst-Gleichung berechnen Sie das Zellpotential, das erforderlich ist, um genau 2,5 Mikrometer Gold auf Edelstahlpinzetten abzuscheiden. Die elektrochemische Zelle arbeitet bei 1,5 V mit sorgfältig kontrollierter Stromdichte. Zu viel Strom verursacht raue, poröse Ablagerungen; zu wenig verlängert die Verarbeitungszeit unwirtschaftlich. Sie wenden die Faradayschen Gesetze an, um festzustellen, dass 3,2 Ampere für 45 Minuten die erforderliche Masse abscheiden. Diese elektrochemische Präzision stellt sicher, dass in Basel hergestellte chirurgische Werkzeuge internationalen medizinischen Standards entsprechen und den Ruf der Stadt für Qualitätshandwerk aufrechterhalten."
         },
         prompts: {
@@ -1311,10 +1311,10 @@ export const deChemistry = {
             EB_BASIC_3: "Im Basler Materialforschungslabor untersucht der Forscher Dr. Schmidt die Eisenoxidation – den Rostprozess, der pharmazeutische Geräte beeinträchtigt. Wenn Eisen mit Sauerstoff reagiert, bildet es Eisen(III)-oxid (Rost). Das Ausgleichen dieser Gleichung zeigt, dass 4 Eisenatome mit 3 Sauerstoffmolekülen reagieren, um 2 Formeleinheiten Eisenoxid zu bilden. Diese Reaktion kostet die Basler Pharmaindustrie jährlich Millionen für die Wartung und den Ersatz von Geräten. Dr. Schmidts Forschung konzentriert sich auf Schutzbeschichtungen, um Rost in den Fertigungsanlagen von Roche und Novartis zu verhindern. Das Labor testem monatlich über 200 verschiedene Beschichtungsmaterialien und sucht nach Lösungen, die rauen chemischen Umgebungen in der pharmazeutischen Produktion standhalten. Das Verständnis dieser Oxidationsreaktion hilft den Studierenden zu schätzen, warum Pharmaunternehmen massiv in Edelstahlgeräte investieren – das Chrom im Edelstahl bildet eine schützende Oxidschicht, die die Eisenoxidation verhindert und so die Langlebigkeit der Geräte sowie die Reinheit der Produkte gewährleistet.",
             EB_BASIC_4: "In der Werkstatt für Gerätebau von Roche erklärt die Ingenieurin Lisa angehenden Chemikern die Aluminiumoxidation. Wenn Aluminium mit Sauerstoff reagiert, bildet es eine schützende Aluminiumoxidschicht, die weitere Korrosion verhindert. Das Ausgleichen dieser Gleichung erfordert 4 Aluminiumatome und 3 Sauerstoffmoleküle, um 2 Formeleinheiten Aluminiumoxid zu bilden. Diese selbstschützende Eigenschaft macht Aluminium ideal für pharmazeutische Geräte – Roche verwendet Aluminiumreaktoren für die Synthese säureempfindlicher Verbindungen. Die Werkstatt fertigt massgeschneiderte Aluminiumgeräte für die Basler Standorte von Roche und produziert jährlich 50 spezialisierte Reaktoren. Lisa demonstriert, dass Aluminium trotz seiner höheren Reaktivität gegenüber Eisen dank seiner Oxidschicht korrosionsbeständiger ist. Dieses Prinzip leitet die Geräteauswahl in der pharmazeutischen Herstellung, wo die Materialverträglichkeit mit reaktiven Chemikalien entscheidend ist. Das Verständnis des Ausgleichens von Gleichungen hilft Chemikern, die benötigte Aluminiumdicke zu berechnen, um nach der Bildung der Oxidschicht einen angemessenen Schutz zu gewährleisten.",
             EB_BASIC_5: "Im Erdgaskonstrollzentrum Basel in Kleinhüningen unterrichtet der Sicherheitsinspektor Andreas Schüler über die Methanverbrennung. Erdgas, das primär aus Methan besteht, heizt 40 % der Basler Gebäude. Das Ausgleichen der Verbrennungsgleichung zeigt, dass 1 Methanmolekül 2 Sauerstoffmoleküle benötigt, um 1 Kohlendioxid- und 2 Wassermoleküle zu produzieren. Das Zentrum verteilt jährlich 120 Millionen Kubikmeter Erdgas an Basler Einwohner und Industrien, einschliesslich pharmazeutischer Anlagen. Andreas betont, dass das korrekte Ausgleichen von Gleichungen für die Sicherheit entscheidend ist – ungenügender Sauerstoff führt zu unvollständiger Verbrennung und erzeugt giftiges Kohlenmonoxid. Die Überwachungssysteme des Zentrums gewährleisten eine optimale Verbrennung in den Basler Heizsystemen. Das Verständnis dieser ausgeglichenen Gleichung hilft den Schülern zu schätzen, warum eine angemessene Belüftung bei der Verwendung von Gasgeräten unerlässlich ist, um Kohlenmonoxidvergiftungen zu vermeiden, von denen jährlich Dutzende Schweizer Einwohner aufgrund unzureichender Belüftung betroffen sind.",
-            EB_CORE_1: "In der Phosphat-Eliminationsanlage des Basler Wasserklärwerks demonstriert der Chemiker Dr. Weber, wie Kalziumhydroxid Phosphate aus dem Abwasser entfernt. Bei dieser doppelten Substitutionsreaktion entsteht unlösliches Kalziumphosphat, das aus der Lösung ausfällt. Das Ausgleichen dieser Gleichung mit mehratomigen Ionen erfordert 3 Kalziumhydroxidmoleküle und 2 Phosphorsäuremoleküle, um 1 Kalziumphosphat und 6 Wassermoleküle zu bilden. Die Anlage bereitet täglich 180.000 Kubikmeter Wasser auf und entfernt Phosphate, die ansonsten Algenblüten im Rhein verursachen würden. Dr. Weber erklärt, dass das Ausgleichen von Gleichungen mit mehratomigen Ionen einfacher ist, wenn man Gruppen wie Phosphat (PO₄³⁻) als einzelne Einheiten betrachtet. Dieser Prozess schützt das Basler Rheinufer, an dem jährlich 50.000 Einwohner Freizeitaktivitäten nachgehen. Das Verständnis des Ausgleichens mehratomiger Ionen ist essentiell für die pharmazeutische Abwasserreinigung in den Anlagen von Novartis und Roche.",
+            EB_CORE_1: "In der Phosphat-Eliminationsanlage des Basler Wasserklärwerks demonstriert der Chemiker Dr. Weber, wie Kalziumhydroxid Phosphate aus dem Abwasser entfernt. Bei dieser doppelten Substitutionsreaktion entsteht unlösliches Kalziumphosphat, das aus der Lösung ausfällt. Das Ausgleichen dieser Gleichung mit mehratomigen Ionen erfordert 3 Kalziumhydroxidmoleküle und 2 Phosphorsäuremoleküle, um 1 Kalziumphosphat und 6 Wassermoleküle zu bilden. Die Anlage bereitet täglich 180.000 Kubikmeter Wasser auf und entfernt Phosphate, die ansonsten Algenblüten im Rhein verursachen würden. Dr. Weber erklärt, dass das Ausgleichen von Gleichungen mit mehratomigen Ionen einfacher ist, wenn man Gruppen wie Phosphat (PO_4^3^-) als einzelne Einheiten betrachtet. Dieser Prozess schützt das Basler Rheinufer, an dem jährlich 50.000 Einwohner Freizeitaktivitäten nachgehen. Das Verständnis des Ausgleichens mehratomiger Ionen ist essentiell für die pharmazeutische Abwasserreinigung in den Anlagen von Novartis und Roche.",
             EB_CORE_2: "Im Basler Museum für industrielle Chemie erklärt der Kurator Dr. Hoffmann die Eisenerzreduktion – den Prozess, der die Industrielle Revolution ermöglichte. Wenn Kohlenmonoxid Eisen(III)-oxid reduziert, entstehen reines Eisen und Kohlendioxid. Das Ausgleichen dieser Gleichung erfordert 1 Eisenoxidmolekül, 3 Kohlenmonoxidmoleküle und ergibt 2 Eisenatome sowie 3 Kohlendioxidmoleküle. Obwohl Basel keine Stahlwerke mehr besitzt, finden die Prinzipien dieser Reaktion in der pharmazeutischen Chemie Anwendung. Novartis nutzt ähnliche Reduktionsreaktionen zur Synthese pharmazeutischer Verbindungen, wobei Sauerstoff durch andere funktionelle Gruppen ersetzt wird. Das Museum im ehemaligen Basler Industriequartier zieht jährlich 5.000 Besucher an. Dr. Hoffmann betont, dass das Verständnis von Reduktionsreaktionen grundlegend für die pharmazeutische Synthese ist – viele Arzneimittelmoleküle erfordern die selektive Reduktion spezifischer funktioneller Gruppen unter Verwendung derselben chemischen Prinzipien, die einst Stahl für Basels Industriewirtschaft lieferten.",
             EB_CORE_3: "In der Nitriersäure-Anlage von Novartis überwacht der Prozessingenieur Dr. Chen das Ostwald-Verfahren zur Herstellung von Salpetersäure, das mit der Ammoniakoxidation beginnt. Diese Reaktion erfordert präzises Ausgleichen: 4 Ammoniakmoleküle reagieren mit 5 Sauerstoffmolekülen zu 4 Stickstoffmonoxidmolekülen und 6 Wassermolekülen. Die Anlage produziert monatlich 200 Tonnen Salpetersäure für die pharmazeutische Synthese. Dr. Chen erklärt, dass diese Reaktion bei 900 °C an einem Platin-Rhodium-Katalysator mit einer Umwandlungseffizienz von 95 % stattfindet. Salpetersäure ist essentiell für die Synthese vieler pharmazeutischer Verbindungen, einschliesslich Antibiotika und Herz-Kreislauf-Medikamenten. Das Verständnis dieser komplexen Gleichung ist entscheidend für Prozessingenieure, die Reaktantenströme berechnen müssen, um optimale Produktionsraten aufrechtzuerhalten. Die hochentwickelten Steuerungssysteme der Anlage überwachen die Reaktionsstöchiometrie in Echtzeit und gewährleisten eine gleichbleibende Produktqualität für die pharmazeutische Herstellung von Novartis.",
-            EB_CORE_4: "Im analytischen Chemielabor von Roche demonstriert die Analytikerin Maria die Reaktion von Aluminium mit Schwefelsäure. Bei dieser einfachen Substitutionsreaktion entstehen Aluminiumsulfat und Wasserstoffgas. Das Ausgleichen dieser Gleichung mit mehratomigen Sulfationen erfordert 2 Aluminiumatome und 3 Schwefelsäuremoleküle, um 1 Aluminiumsulfatmolekül und 3 Wasserstoffmoleküle zu bilden. Das Labor nutzt diese Reaktion zur Herstellung von Aluminiumsulfat für Wasserreinigungstests. Maria erklärt, dass die Betrachtung von Sulfat (SO₄²⁻) als eine Einheit das Ausgleichen vereinfacht – zählen Sie 3 Sulfatgruppen auf jeder Seite. Dieses Prinzip ist für pharmazeutische Chemiker, die bei der Arzneimittelsynthese mit mehratomigen Ionen arbeiten, unerlässlich. Das Labor führt wöchentlich 500 Analysetests durch, um sicherzustellen, dass pharmazeutische Produkte die Reinheitsstandards erfüllen. Das Verständnis des Ausgleichens mehratomiger Ionen hilft Studierenden, die Komplexität der pharmazeutischen Qualitätskontrolle zu schätzen, bei der präzise Stöchiometrie die Arzneimittelsicherheit für Patienten weltweit gewährleistet.",
+            EB_CORE_4: "Im analytischen Chemielabor von Roche demonstriert die Analytikerin Maria die Reaktion von Aluminium mit Schwefelsäure. Bei dieser einfachen Substitutionsreaktion entstehen Aluminiumsulfat und Wasserstoffgas. Das Ausgleichen dieser Gleichung mit mehratomigen Sulfationen erfordert 2 Aluminiumatome und 3 Schwefelsäuremoleküle, um 1 Aluminiumsulfatmolekül und 3 Wasserstoffmoleküle zu bilden. Das Labor nutzt diese Reaktion zur Herstellung von Aluminiumsulfat für Wasserreinigungstests. Maria erklärt, dass die Betrachtung von Sulfat (SO_4^2^-) als eine Einheit das Ausgleichen vereinfacht – zählen Sie 3 Sulfatgruppen auf jeder Seite. Dieses Prinzip ist für pharmazeutische Chemiker, die bei der Arzneimittelsynthese mit mehratomigen Ionen arbeiten, unerlässlich. Das Labor führt wöchentlich 500 Analysetests durch, um sicherzustellen, dass pharmazeutische Produkte die Reinheitsstandards erfüllen. Das Verständnis des Ausgleichens mehratomiger Ionen hilft Studierenden, die Komplexität der pharmazeutischen Qualitätskontrolle zu schätzen, bei der präzise Stöchiometrie die Arzneimittelsicherheit für Patienten weltweit gewährleistet.",
             EB_CORE_5: "Im Labor für Verbrennungsforschung der Universität Basel lehrt Professorin Müller Studierende das Ausgleichen der Ethunverbrennungsgleichung. Ethan, ein Bestandteil von Erdgas, erfordert sorgfältiges Ausgleichen: 2 Ethanmoleküle reagieren mit 7 Sauerstoffmolekülen zu 4 Kohlendioxid- und 6 Wassermolekülen. Das Labor untersucht die Verbrennungseffizienz für Basler Heizsysteme, die jährlich 120 Millionen Kubikmeter Erdgas verbrauchen. Professorin Müller betont, dass das Ausgleichen von Verbrennungsgleichungen herausfordernd ist, da mehrere Elemente gleichzeitig ausgeglichen werden müssen. Die Studierenden lernen, zuerst Kohlenstoff, dann Wasserstoff und schliesslich Sauerstoff auszugleichen. Dieser systematische Ansatz ist essentiell für pharmazeutische Chemiker, die komplexe organische Reaktionen ausgleichen. Die Verbrennungsforschung der Universität trägt zu Basels Nachhaltigkeitszielen bei – die Verbesserung der Verbrennungseffizienz reduziert den Erdgasverbrauch und die CO2-Emissionen und unterstützt das Ziel der Stadt, bis 2050 klimaneutral zu werden.",
             EB_ADVANCED_1: "Im fortgeschrittenen Verbrennungslabor des Basler Chemie-Instituts fordert Dr. Weber Studierende mit dem Ausgleichen der Propanverbrennung heraus. Diese Gleichung erfordert 1 Propanmolekül und 5 Sauerstoffmoleküle, um 3 Kohlendioxid- und 4 Wassermoleküle zu bilden. Das Labor nutzt Propan in Bunsenbrennern für Heizexperimente und verbraucht monatlich 200 kg. Dr. Weber lehrt einen systematischen Ansatz: Zuerst werden die Kohlenstoffatome ausgeglichen (3 auf jeder Seite), dann der Wasserstoff (8 auf jeder Seite) und schliesslich der Sauerstoff (10 auf jeder Seite). Diese Methode ist entscheidend für pharmazeutische Chemiker, die komplexe organische Synthesereaktionen ausgleichen. Das 1460 gegründete Institut hat Generationen von Chemikern ausgebildet, die zur Basler Pharmaindustrie beigetragen haben. Das Verständnis der Verbrennungsstöchiometrie hilft den Studierenden, den Sauerstoffbedarf für die Laborsicherheit zu berechnen – ungenügender Sauerstoff erzeugt giftiges Kohlenmonoxid, eine Gefahr in geschlossenen Laborräumen.",
             EB_ADVANCED_2: "Im Roche-Trainingszentrum für Laborsicherheit nutzt der Ausbilder Dr. Zimmermann die Butanverbrennung, um das Ausgleichen von Gleichungen und Sicherheit zu lehren. Butan, das in Laborbrennern und tragbaren Heizgeräten verwendet wird, erfordert ein komplexes Ausgleichen: 2 Butanmoleküle benötigen 13 Sauerstoffmoleküle, um 8 Kohlendioxid- und 10 Wassermoleküle zu produzieren. Das Zentrum bildet jährlich 500 Chemiker in Sicherheitsprotokollen für Labore aus. Dr. Zimmermann betont, dass das Ausgleichen von Verbrennungsgleichungen Chemikern hilft, den Belüftungsbedarf zu berechnen – jedes Mol Butan verbraucht 6,5 Mol Sauerstoff aus der Luft. Unzureichende Belüftung führt zu unvollständiger Verbrennung und Kohlenmonoxidproduktion. Die Basler Standorte von Roche weisen seit 15 Jahren infolge strenger Sicherheitstrainings keine Brandereignisse auf. Das Verständnis der Verbrennungsstöchiometrie ist für pharmazeutische Chemiker unerlässlich, die täglich mit brennbaren organischen Lösungsmitteln arbeiten, um einen sicheren Laborbetrieb zu gewährleisten und die 500 Chemiker zu schützen, die in den Basler Forschungsanlagen von Roche arbeiten.",
@@ -1372,7 +1372,7 @@ export const deChemistry = {
             decomposition: "AB → A + B",
             single_replacement: "A + BC → AC + B",
             double_replacement: "AB + CD → AD + CB",
-            combustion: "CₓHᵧ + O₂ → CO₂ + H₂O"
+            combustion: "CₓHᵧ + O_2 → CO_2 + H_2O"
         },
         reactionTypeDescriptions: {
             synthesis: "Zwei oder mehr Stoffe verbinden sich zu einem einzigen Produkt",
@@ -1438,7 +1438,7 @@ export const deChemistry = {
             decomposition_hint: "Suchen Sie nach einem einzelnen Reaktanten, der in mehrere Produkte zerfällt",
             single_replacement_hint: "Suchen Sie nach einem Element, das ein anderes in einer Verbindung ersetzt",
             double_replacement_hint: "Suchen Sie nach zwei Verbindungen, die Ionen austauschen",
-            combustion_hint: "Suchen Sie nach einem Kohlenwasserstoff, der mit Sauerstoff zu CO₂ und H₂O reagiert",
+            combustion_hint: "Suchen Sie nach einem Kohlenwasserstoff, der mit Sauerstoff zu CO_2 und H_2O reagiert",
             balancing_hint: "Beginnen Sie mit dem Ausgleichen von Elementen, die nur in einem Reaktanten und einem Produkt vorkommen",
             coefficient_hint: "Versuchen Sie, den Koeffizienten für {compound} anzupassen",
             unbalanced_element_hint: "Das Element {element} ist nicht ausgeglichen: {reactantCount} auf der linken Seite, {productCount} auf der rechten Seite"

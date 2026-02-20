@@ -107,7 +107,7 @@ export default function SC205Page() {
             {
               id: "PH_C1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of weak acid CH3COOH (Ka = 1.8×10⁻⁵, C = 0.1M)",
+              context: "Calculate pH of weak acid CH3COOH (Ka = 1.8×10^-^5, C = 0.1M)",
               promptLatex: "\\\\text{pH} = \\\\frac{1}{2}(\\\\text{pKa} - \\log C)",
               expressionLatex: "K_a = 1.8 \\times 10^{-5}, C = 0.1\\\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -133,7 +133,7 @@ export default function SC205Page() {
             {
               id: "PH_C3", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.01M NH3 solution (Kb = 1.8×10⁻⁵)",
+              context: "Calculate pH of 0.01M NH3 solution (Kb = 1.8×10^-^5)",
               promptLatex: "\\\\text{pOH} = \\\\frac{1}{2}(\\\\text{pKb} - \\log C)",
               expressionLatex: "K_b = 1.8 \\times 10^{-5}, C = 0.01\\\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -147,7 +147,7 @@ export default function SC205Page() {
             {
               id: "PH_C4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Mixed buffer: 0.2M HA + 0.1M A⁻, pKa = 5.0",
+              context: "Mixed buffer: 0.2M HA + 0.1M A^-, pKa = 5.0",
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\\\text{pKa} = 5.0, \\\\frac{[A^-]}{[HA]} = \\\\frac{0.1}{0.2}",
               targetLatex: "\\\\text{pH}",
@@ -175,7 +175,7 @@ export default function SC205Page() {
             {
               id: "PH_A1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Polyprotic acid H2SO4: first dissociation complete, second Ka2 = 1.2×10⁻²",
+              context: "Polyprotic acid H2SO4: first dissociation complete, second Ka2 = 1.2×10^-^2",
               promptLatex: "\\\\text{pH (polyprotic)}",
               expressionLatex: "[H_2SO_4] = 0.1\\\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -189,7 +189,7 @@ export default function SC205Page() {
             {
               id: "PH_A2", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Henderson-Hasselbalch: pH = 5.5, pKa = 4.76, find [A⁻]/[HA]",
+              context: "Henderson-Hasselbalch: pH = 5.5, pKa = 4.76, find [A^-]/[HA]",
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\\\text{pH} = 5.5, \\\\text{pKa} = 4.76",
               targetLatex: "\\\\frac{[A^-]}{[HA]}",
@@ -213,7 +213,7 @@ export default function SC205Page() {
             {
               id: "PH_A4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.05M H3PO4 (Ka1 = 7.5×10⁻³)",
+              context: "Calculate pH of 0.05M H3PO4 (Ka1 = 7.5×10^-^3)",
               promptLatex: "\\\\text{pH (triprotic)}",
               expressionLatex: "K_{a1} = 7.5 \\times 10^{-3}",
               targetLatex: "\\\\text{pH}",
@@ -543,7 +543,7 @@ export default function SC205Page() {
             {
               id: "TT_B1", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "C₁V₁ = C₂V₂. Find volume of 0.2M NaOH to neutralize 25mL 0.1M HCl.",
+              context: "C_1V_1 = C_2V_2. Find volume of 0.2M NaOH to neutralize 25mL 0.1M HCl.",
               promptLatex: "V_2 = \\\\frac{C_1V_1}{C_2}",
               expressionLatex: "C_1 = 0.1, V_1 = 25, C_2 = 0.2",
               targetLatex: "V_2",

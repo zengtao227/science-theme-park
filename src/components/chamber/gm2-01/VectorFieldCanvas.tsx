@@ -47,7 +47,7 @@ function Projection({ vectorA, vectorB }: { vectorA: [number, number, number]; v
     const vA = useMemo(() => new THREE.Vector3(...vectorA), [vectorA]);
     const vB = useMemo(() => new THREE.Vector3(...vectorB), [vectorB]);
     
-    // Project A onto B: proj_B(A) = (A·B / |B|²) * B
+    // Project A onto B: proj_B(A) = (A·B / |B|^2) * B
     const dotProduct = vA.dot(vB);
     const bLengthSq = vB.lengthSq();
     const projectionScalar = dotProduct / bLengthSq;

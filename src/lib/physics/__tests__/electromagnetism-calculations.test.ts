@@ -12,7 +12,7 @@ describe('Physical Constants', () => {
     expect(k).toBeCloseTo(8.99e9, -6);
   });
 
-  test('Permeability mu0 should be 4π×10⁻⁷', () => {
+  test('Permeability mu0 should be 4π×10^-^7', () => {
     expect(mu0).toBeCloseTo(4 * Math.PI * 1e-7, -10);
   });
 

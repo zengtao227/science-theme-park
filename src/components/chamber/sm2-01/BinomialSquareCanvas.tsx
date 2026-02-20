@@ -71,7 +71,7 @@ function Rectangle({
   );
 }
 
-// (a+b)² 的4个区域
+// (a+b)^2 的4个区域
 function BinomialSquare({ a, b, exploded }: { a: number; b: number; exploded: boolean }) {
   const explosionFactor = exploded ? 2.5 : 0;
   const thickness = 0.2;
@@ -81,13 +81,13 @@ function BinomialSquare({ a, b, exploded }: { a: number; b: number; exploded: bo
 
   // 4个区域的定义
   const regions = [
-    // a² - 左上角 (红色)
+    // a^2 - 左上角 (红色)
     {
       id: 'a2',
       position: [offset + a / 2, offset + a / 2, 0] as [number, number, number],
       size: [a, a, thickness] as [number, number, number],
       color: '#ff3131',
-      label: 'a²',
+      label: 'a^2',
       explosionOffset: [-explosionFactor, explosionFactor, 0] as [number, number, number]
     },
     // ab - 右上角 (橙色)
@@ -108,13 +108,13 @@ function BinomialSquare({ a, b, exploded }: { a: number; b: number; exploded: bo
       label: 'ab',
       explosionOffset: [-explosionFactor, -explosionFactor, 0] as [number, number, number]
     },
-    // b² - 右下角 (绿色)
+    // b^2 - 右下角 (绿色)
     {
       id: 'b2',
       position: [offset + a + b / 2, offset + a + b / 2, 0] as [number, number, number],
       size: [b, b, thickness] as [number, number, number],
       color: '#39ff14',
-      label: 'b²',
+      label: 'b^2',
       explosionOffset: [explosionFactor, -explosionFactor, 0] as [number, number, number]
     }
   ];
@@ -149,11 +149,11 @@ function Legend({ a, b }: { a: number; b: number }) {
   return (
     <group position={[6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.35} color="#ffffff" anchorX="left">
-        (a+b)² 展开
+        (a+b)^2 展开
       </Text>
 
       <Text position={[0, 2.2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">
-        1× a² = {a * a}
+        1× a^2 = {a * a}
       </Text>
 
       <Text position={[0, 1.7, 0]} fontSize={0.25} color="#ffaa00" anchorX="left">
@@ -161,7 +161,7 @@ function Legend({ a, b }: { a: number; b: number }) {
       </Text>
 
       <Text position={[0, 1.2, 0]} fontSize={0.25} color="#39ff14" anchorX="left">
-        1× b² = {b * b}
+        1× b^2 = {b * b}
       </Text>
 
       <Text position={[0, 0.5, 0]} fontSize={0.2} color="#ffffff" anchorX="left">
@@ -253,7 +253,7 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
       {/* 固定公式显示 */}
       <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
         <div className="text-white font-mono text-sm space-y-2">
-          <div className="text-neon-cyan font-bold text-base">(a+b)² = a² + 2ab + b²</div>
+          <div className="text-neon-cyan font-bold text-base">(a+b)^2 = a^2 + 2ab + b^2</div>
           <div className="text-white/60 text-xs">
             {exploded ? "展开视图" : "组合视图"}
           </div>
@@ -265,7 +265,7 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
         <div className="text-white/60 font-bold mb-2">颜色编码</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
-          <span className="text-[#ff3131]">a² = {a * a}</span>
+          <span className="text-[#ff3131]">a^2 = {a * a}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
@@ -273,7 +273,7 @@ export default function BinomialSquareCanvas({ a, b }: BinomialSquareCanvasProps
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
-          <span className="text-[#39ff14]">b² = {b * b}</span>
+          <span className="text-[#39ff14]">b^2 = {b * b}</span>
         </div>
         <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
           总计: {(a + b) ** 2}

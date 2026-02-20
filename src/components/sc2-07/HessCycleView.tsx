@@ -6,7 +6,7 @@
  * - Highlights selected pathway on click
  * - Consistent arrow notation (down for exo, up for endo)
  * - Direct and indirect pathways
- * - Calculation display: ΔH(total) = ΔH₁ + ΔH₂ + ΔH₃
+ * - Calculation display: ΔH(total) = ΔH_1 + ΔH_2 + ΔH_3
  * 
  * Requirements: 7.1, 7.2, 7.3, 7.4, 7.6
  */

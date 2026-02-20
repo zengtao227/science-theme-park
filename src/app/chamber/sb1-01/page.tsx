@@ -154,7 +154,7 @@ export default function SB101Page() {
                     { q: "ribosome_diameter", answer: "25", unit: "nm" }
                 ],
                 ELITE: [
-                    { q: "cristae_surface_area", answer: "40", unit: "μm²" },
+                    { q: "cristae_surface_area", answer: "40", unit: "μm^2" },
                     { q: "nuclear_dna_length", answer: "2", unit: "m" },
                     { q: "golgi_transit_time", answer: "30", unit: "min" },
                     { q: "lysosome_ph", answer: "4.5", unit: "" },

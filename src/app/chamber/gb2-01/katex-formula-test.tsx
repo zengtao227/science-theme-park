@@ -119,7 +119,7 @@ export default function KaTeXFormulaTest() {
                     <h2 className="text-xl font-semibold mb-4 text-green-400">✓ Verification Status</h2>
                     <ul className="space-y-2 text-sm">
                         <li>✓ Nernst equation renders correctly with log subscript</li>
-                        <li>✓ Ion superscripts (Na⁺, K⁺, Ca²⁺, Cl⁻) display properly</li>
+                        <li>✓ Ion superscripts (Na^+, K^+, Ca^2^+, Cl^-) display properly</li>
                         <li>✓ Fractions with proper parentheses render correctly</li>
                         <li>✓ Concentration subscripts (out/in) work as expected</li>
                         <li>✓ Formulas integrate seamlessly with multilingual text</li>

@@ -172,7 +172,7 @@ export default function RedoxVisualization({
             textAnchor="middle"
             className="text-xs fill-red-400"
           >
-            (loses e⁻)
+            (loses e^-)
           </text>
         </g>
 
@@ -200,7 +200,7 @@ export default function RedoxVisualization({
             textAnchor="middle"
             className="text-xs fill-blue-400"
           >
-            (gains e⁻)
+            (gains e^-)
           </text>
         </g>
 
@@ -236,7 +236,7 @@ export default function RedoxVisualization({
                 dominantBaseline="middle"
                 className="text-[8px] font-bold fill-white"
               >
-                e⁻
+                e^-
               </text>
             </g>
           );
@@ -275,7 +275,7 @@ export default function RedoxVisualization({
             dominantBaseline="middle"
             className="text-sm font-bold fill-white"
           >
-            {electronsTransferred}e⁻ transferred
+            {electronsTransferred}e^- transferred
           </text>
         </g>
       </svg>
@@ -409,7 +409,7 @@ export default function RedoxVisualization({
                 dominantBaseline="middle"
                 className="text-[8px] font-bold fill-white"
               >
-                e⁻
+                e^-
               </text>
             </g>
           ))}

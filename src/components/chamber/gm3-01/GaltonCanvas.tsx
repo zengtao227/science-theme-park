@@ -376,7 +376,7 @@ export default function GaltonCanvas({
         </div>
         <div className="text-[10px] font-mono text-white space-y-1">
           <div>Binomial: B(n={rows}, p={probability.toFixed(2)})</div>
-          <div>σ² = np(1-p) = {(rows * probability * (1 - probability)).toFixed(2)}</div>
+          <div>σ^2 = np(1-p) = {(rows * probability * (1 - probability)).toFixed(2)}</div>
         </div>
       </div>
       

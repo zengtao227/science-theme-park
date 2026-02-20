@@ -105,11 +105,11 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
   // No auto-rotation - only manual user control
 
   // Calculate positions for the 8 components
-  // The cube (a+b)³ is divided into:
-  // 1x a³ (red)
-  // 3x a²b (orange)
-  // 3x ab² (blue)
-  // 1x b³ (green)
+  // The cube (a+b)^3 is divided into:
+  // 1x a^3 (red)
+  // 3x a^2b (orange)
+  // 3x ab^2 (blue)
+  // 1x b^3 (green)
 
   const explosionFactor = exploded ? 2 : 0;
 
@@ -118,25 +118,25 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
     const offset = -(a + b) / 2; // Center the cube
 
     return [
-      // a³ - bottom-left-back corner (RED)
+      // a^3 - bottom-left-back corner (RED)
       {
         id: 'a3',
         position: [offset + a / 2, offset + a / 2, offset + a / 2] as [number, number, number],
         size: [a, a, a] as [number, number, number],
         color: '#ff3131',
         emissive: '#ff3131',
-        label: 'a³',
+        label: 'a^3',
         explosionOffset: [-explosionFactor, -explosionFactor, -explosionFactor] as [number, number, number]
       },
 
-      // a²b - three pieces (ORANGE)
+      // a^2b - three pieces (ORANGE)
       {
         id: 'a2b_1',
         position: [offset + a / 2, offset + a / 2, offset + a + b / 2] as [number, number, number],
         size: [a, a, b] as [number, number, number],
         color: '#ffaa00',
         emissive: '#ffaa00',
-        label: 'a²b',
+        label: 'a^2b',
         explosionOffset: [-explosionFactor * 0.8, -explosionFactor * 0.8, explosionFactor] as [number, number, number]
       },
       {
@@ -145,7 +145,7 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         size: [a, b, a] as [number, number, number],
         color: '#ffaa00',
         emissive: '#ffaa00',
-        label: 'a²b',
+        label: 'a^2b',
         explosionOffset: [-explosionFactor * 0.8, explosionFactor, -explosionFactor * 0.8] as [number, number, number]
       },
       {
@@ -154,18 +154,18 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         size: [b, a, a] as [number, number, number],
         color: '#ffaa00',
         emissive: '#ffaa00',
-        label: 'a²b',
+        label: 'a^2b',
         explosionOffset: [explosionFactor, -explosionFactor * 0.8, -explosionFactor * 0.8] as [number, number, number]
       },
 
-      // ab² - three pieces (BLUE)
+      // ab^2 - three pieces (BLUE)
       {
         id: 'ab2_1',
         position: [offset + a + b / 2, offset + a + b / 2, offset + a / 2] as [number, number, number],
         size: [b, b, a] as [number, number, number],
         color: '#4444ff',
         emissive: '#4444ff',
-        label: 'ab²',
+        label: 'ab^2',
         explosionOffset: [explosionFactor, explosionFactor, -explosionFactor * 0.8] as [number, number, number]
       },
       {
@@ -174,7 +174,7 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         size: [b, a, b] as [number, number, number],
         color: '#4444ff',
         emissive: '#4444ff',
-        label: 'ab²',
+        label: 'ab^2',
         explosionOffset: [explosionFactor, -explosionFactor * 0.8, explosionFactor] as [number, number, number]
       },
       {
@@ -183,18 +183,18 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
         size: [a, b, b] as [number, number, number],
         color: '#4444ff',
         emissive: '#4444ff',
-        label: 'ab²',
+        label: 'ab^2',
         explosionOffset: [-explosionFactor * 0.8, explosionFactor, explosionFactor] as [number, number, number]
       },
 
-      // b³ - top-right-front corner (GREEN)
+      // b^3 - top-right-front corner (GREEN)
       {
         id: 'b3',
         position: [offset + a + b / 2, offset + a + b / 2, offset + a + b / 2] as [number, number, number],
         size: [b, b, b] as [number, number, number],
         color: '#39ff14',
         emissive: '#39ff14',
-        label: 'b³',
+        label: 'b^3',
         explosionOffset: [explosionFactor, explosionFactor, explosionFactor] as [number, number, number]
       }
     ];
@@ -231,23 +231,23 @@ function Legend({ a, b }: { a: number; b: number }) {
   return (
     <group position={[-6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.4} color="#ffffff" anchorX="left">
-        (a+b)³ Decomposition
+        (a+b)^3 Decomposition
       </Text>
 
       <Text position={[0, 2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">
-        1× a³ = {a ** 3}
+        1× a^3 = {a ** 3}
       </Text>
 
       <Text position={[0, 1.5, 0]} fontSize={0.25} color="#ffaa00" anchorX="left">
-        3× a²b = {3 * a * a * b}
+        3× a^2b = {3 * a * a * b}
       </Text>
 
       <Text position={[0, 1, 0]} fontSize={0.25} color="#4444ff" anchorX="left">
-        3× ab² = {3 * a * b * b}
+        3× ab^2 = {3 * a * b * b}
       </Text>
 
       <Text position={[0, 0.5, 0]} fontSize={0.25} color="#39ff14" anchorX="left">
-        1× b³ = {b ** 3}
+        1× b^3 = {b ** 3}
       </Text>
 
       <Text position={[0, -0.3, 0]} fontSize={0.2} color="#ffffff" anchorX="left">
@@ -358,7 +358,7 @@ export default function S201BinomialCanvas({
       {/* Fixed Formula Display - Does NOT rotate with 3D */}
       <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
         <div className="text-white font-mono text-sm space-y-2">
-          <div className="text-neon-cyan font-bold text-base">(a+b)³ = a³ + 3a²b + 3ab² + b³</div>
+          <div className="text-neon-cyan font-bold text-base">(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3</div>
           <div className="text-white/60 text-xs">
             {exploded ? "展开视图" : "组合视图"}
           </div>
@@ -370,22 +370,22 @@ export default function S201BinomialCanvas({
         <div className="text-white/60 font-bold mb-2">颜色编码</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
-          <span className="text-[#ff3131]">a³ = {a ** 3} units³</span>
+          <span className="text-[#ff3131]">a^3 = {a ** 3} units^3</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
-          <span className="text-[#ffaa00]">3a²b = {3 * a * a * b} units³</span>
+          <span className="text-[#ffaa00]">3a^2b = {3 * a * a * b} units^3</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#4444ff] rounded"></div>
-          <span className="text-[#4444ff]">3ab² = {3 * a * b * b} units³</span>
+          <span className="text-[#4444ff]">3ab^2 = {3 * a * b * b} units^3</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
-          <span className="text-[#39ff14]">b³ = {b ** 3} units³</span>
+          <span className="text-[#39ff14]">b^3 = {b ** 3} units^3</span>
         </div>
         <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
-          总计: {(a + b) ** 3} units³
+          总计: {(a + b) ** 3} units^3
         </div>
       </div>
 

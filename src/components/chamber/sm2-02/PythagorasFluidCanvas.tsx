@@ -12,7 +12,7 @@ interface PythagorasFluidCanvasProps {
 
 /**
  * Fluid-based Pythagoras visualization using Matter.js
- * Demonstrates a² + b² = c² through liquid flow between containers
+ * Demonstrates a^2 + b^2 = c^2 through liquid flow between containers
  */
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";

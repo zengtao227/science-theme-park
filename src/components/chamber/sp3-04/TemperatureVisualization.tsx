@@ -156,13 +156,13 @@ export default function TemperatureVisualization({ quest, stage }: TemperatureVi
                                 </text>
                                 
                                 <text x={10} y={60} fill="white" fontSize="10">Heat lost (hot):</text>
-                                <text x={10} y={80} fill="#ff6b6b" fontSize="10">Q₁ = m₁c(T₁ - Tf)</text>
+                                <text x={10} y={80} fill="#ff6b6b" fontSize="10">Q_1 = m_1c(T_1 - Tf)</text>
                                 
                                 <text x={10} y={110} fill="white" fontSize="10">Heat gained (cold):</text>
-                                <text x={10} y={130} fill="#4da6ff" fontSize="10">Q₂ = m₂c(Tf - T₂)</text>
+                                <text x={10} y={130} fill="#4da6ff" fontSize="10">Q_2 = m_2c(Tf - T_2)</text>
                                 
                                 <text x={75} y={160} textAnchor="middle" fill="#00e5ff" fontSize="11" fontWeight="bold">
-                                    Q₁ = Q₂
+                                    Q_1 = Q_2
                                 </text>
                                 
                                 <text x={75} y={185} textAnchor="middle" fill="white" fontSize="9">

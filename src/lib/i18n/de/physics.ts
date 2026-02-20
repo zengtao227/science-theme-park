@@ -221,8 +221,8 @@ export const dePhysics = {
                 "SP1.01.018": {
                         "prompt": "Eine Kraft hat die Komponenten F_x = 60 N und F_y = 80 N. Was ist der Betrag der Kraft?",
                         "feedback": {
-                                "correct": "Richtig! F = √(60² + 80²) = √10000 = 100 N",
-                                "incorrect": "Verwenden Sie den Satz des Pythagoras: F = √(F_x² + F_y²)"
+                                "correct": "Richtig! F = √(60^2 + 80^2) = √10000 = 100 N",
+                                "incorrect": "Verwenden Sie den Satz des Pythagoras: F = √(F_x^2 + F_y^2)"
                         },
                         "scenario": "",
                         "scenario_desc": "",
@@ -281,7 +281,7 @@ export const dePhysics = {
                 "SP1.01.024": {
                         "prompt": "Zwei Kräfte wirken auf ein Objekt: 30 N nach rechts und 40 N nach oben. Was ist der Betrag der resultierenden Kraft?",
                         "feedback": {
-                                "correct": "Richtig! F = √(30² + 40²) = 50 N",
+                                "correct": "Richtig! F = √(30^2 + 40^2) = 50 N",
                                 "incorrect": "Verwenden Sie den Satz des Pythagoras für senkrechte Kräfte."
                         },
                         "scenario": "",
@@ -291,8 +291,8 @@ export const dePhysics = {
                 "SP1.01.042": {
                         "prompt": "Zwei Kräfte von jeweils 50 N wirken rechtwinklig zueinander. Was ist der Betrag der Resultierenden?",
                         "feedback": {
-                                "correct": "Richtig! F = √(50² + 50²) = 70.71 N",
-                                "incorrect": "Für gleiche senkrechte Kräfte gilt F = F₁√2"
+                                "correct": "Richtig! F = √(50^2 + 50^2) = 70.71 N",
+                                "incorrect": "Für gleiche senkrechte Kräfte gilt F = F_1√2"
                         },
                         "scenario": "",
                         "scenario_desc": "",
@@ -301,7 +301,7 @@ export const dePhysics = {
                 "SP1.01.043": {
                         "prompt": "Eine Kraft von 20 N wirkt nach Osten und eine weitere 15 N wirkt nach Norden. Was ist der Betrag der Resultierenden?",
                         "feedback": {
-                                "correct": "Richtig! F = √(20² + 15²) = 25 N",
+                                "correct": "Richtig! F = √(20^2 + 15^2) = 25 N",
                                 "incorrect": "Dies ist ein 3-4-5-Dreieck, das um 5 skaliert ist."
                         },
                         "scenario": "",
@@ -331,7 +331,7 @@ export const dePhysics = {
                 "SP1.01.026": {
                         "prompt": "Zwei Kräfte von 60 N und 80 N wirken rechtwinklig zueinander. Was ist der Betrag der resultierenden Kraft?",
                         "feedback": {
-                                "correct": "Richtig! F = √(60² + 80²) = 100 N",
+                                "correct": "Richtig! F = √(60^2 + 80^2) = 100 N",
                                 "incorrect": "Verwenden Sie den Satz des Pythagoras für senkrechte Kräfte."
                         },
                         "scenario": "",
@@ -351,7 +351,7 @@ export const dePhysics = {
                 "SP1.01.028": {
                         "prompt": "Drei Kräfte wirken auf ein Objekt: 20 N nach Osten, 30 N nach Norden und 10 N nach Westen. Was ist der Betrag der resultierenden Kraft?",
                         "feedback": {
-                                "correct": "Richtig! Netto horizontal: 20-10=10 N, vertikal: 30 N. F = √(10² + 30²) = 31.62 N",
+                                "correct": "Richtig! Netto horizontal: 20-10=10 N, vertikal: 30 N. F = √(10^2 + 30^2) = 31.62 N",
                                 "incorrect": "Finden Sie zuerst die Nettokraft in jede Richtung, dann verwenden Sie den Satz des Pythagoras."
                         },
                         "scenario": "",
@@ -361,7 +361,7 @@ export const dePhysics = {
                 "SP1.01.029": {
                         "prompt": "Zwei Kräfte gleicher Größe wirken in einem Winkel von 60° zueinander. Wenn jede Kraft 50 N beträgt, was ist der Betrag der Resultierenden?",
                         "feedback": {
-                                "correct": "Richtig! Für gleiche Kräfte bei 60°: F = 2F₁cos(30°) = 2(50)(0.866) = 86.60 N",
+                                "correct": "Richtig! Für gleiche Kräfte bei 60°: F = 2F_1cos(30°) = 2(50)(0.866) = 86.60 N",
                                 "incorrect": "Verwenden Sie das Parallelogrammgesetz oder zerlegen Sie in Komponenten."
                         },
                         "scenario": "",
@@ -381,7 +381,7 @@ export const dePhysics = {
                 "SP1.01.031": {
                         "prompt": "Zwei Kräfte wirken auf einen Punkt: 100 N bei 0° und 100 N bei 120°. Was ist der Betrag der resultierenden Kraft?",
                         "feedback": {
-                                "correct": "Richtig! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50² + 86.6²) = 100 N",
+                                "correct": "Richtig! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^2 + 86.6^2) = 100 N",
                                 "incorrect": "Zerlegen Sie jede Kraft in Komponenten, addieren Sie sie und finden Sie den Betrag."
                         },
                         "scenario": "",
@@ -391,7 +391,7 @@ export const dePhysics = {
                 "SP1.01.032": {
                         "prompt": "Vier Kräfte wirken auf ein Objekt: 50 N nach Norden, 30 N nach Süden, 40 N nach Osten und 20 N nach Westen. Was ist der Betrag der Resultierenden?",
                         "feedback": {
-                                "correct": "Richtig! Netto: 20 N nach Norden, 20 N nach Osten. F = √(20² + 20²) = 28.28 N",
+                                "correct": "Richtig! Netto: 20 N nach Norden, 20 N nach Osten. F = √(20^2 + 20^2) = 28.28 N",
                                 "incorrect": "Finden Sie zuerst die Nettokraft in jede Richtung."
                         },
                         "scenario": "",
@@ -491,7 +491,7 @@ export const dePhysics = {
                 "SP1.01.025": {
                         "prompt": "Drei Kräfte wirken auf ein Objekt im Gleichgewicht: 50 N nach rechts, 30 N nach oben und eine unbekannte Kraft. Was ist der Betrag der unbekannten Kraft?",
                         "feedback": {
-                                "correct": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50² + 30²) = 58.31 N",
+                                "correct": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50^2 + 30^2) = 58.31 N",
                                 "incorrect": "Für das Gleichgewicht muss die Summe aller Kräfte Null sein."
                         },
                         "scenario": "",
@@ -511,7 +511,7 @@ export const dePhysics = {
                 "SP1.01.047": {
                         "prompt": "Ein Objekt befindet sich im Gleichgewicht unter drei Kräften: 100 N bei 0°, 80 N bei 90° und eine dritte Kraft. Was ist der Betrag der dritten Kraft?",
                         "feedback": {
-                                "correct": "Richtig! F = √(100² + 80²) = 128.06 N",
+                                "correct": "Richtig! F = √(100^2 + 80^2) = 128.06 N",
                                 "incorrect": "Die dritte Kraft muss die Resultierende der ersten beiden ausgleichen."
                         },
                         "scenario": "",
@@ -531,7 +531,7 @@ export const dePhysics = {
                 "SP1.01.049": {
                         "prompt": "Vier Kräfte wirken auf einen Punkt im Gleichgewicht: 60 N bei 0°, 40 N bei 90°, 50 N bei 180° und eine unbekannte Kraft. Was ist der Betrag der unbekannten Kraft?",
                         "feedback": {
-                                "correct": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10² + 40²) = 41.23 N",
+                                "correct": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10^2 + 40^2) = 41.23 N",
                                 "incorrect": "Finden Sie die Nettokraft in x- und y-Richtung und berechnen Sie dann die Gleichgewichtskraft."
                         },
                         "scenario": "",
@@ -539,9 +539,9 @@ export const dePhysics = {
                         "unit": "N"
                 },
                 "SP1.01.050": {
-                        "prompt": "Eine Ampel hängt an zwei Kabeln: eines bei 45° mit Spannung T₁ und ein anderes bei 60° mit Spannung 150 N. Wenn das System im Gleichgewicht ist, was ist T₁?",
+                        "prompt": "Eine Ampel hängt an zwei Kabeln: eines bei 45° mit Spannung T_1 und ein anderes bei 60° mit Spannung 150 N. Wenn das System im Gleichgewicht ist, was ist T_1?",
                         "feedback": {
-                                "correct": "Richtig! Für horizontales Gleichgewicht: T₁cos(45°) = 150cos(60°), also T₁ = 150×0.5/0.707 = 183.71 N",
+                                "correct": "Richtig! Für horizontales Gleichgewicht: T_1cos(45°) = 150cos(60°), also T_1 = 150×0.5/0.707 = 183.71 N",
                                 "incorrect": "Verwenden Sie horizontales Gleichgewicht: Die horizontalen Komponenten müssen sich ausgleichen."
                         },
                         "scenario": "",
@@ -571,7 +571,7 @@ export const dePhysics = {
                 "SP1.01.053": {
                         "prompt": "Ein Balken wird von zwei Kabeln bei 40° und 50° von der Vertikalen gestützt. Wenn der Balken 500 N wiegt, was ist die Spannung im Kabel bei 40°?",
                         "feedback": {
-                                "correct": "Richtig! Mit Gleichgewichtsgleichungen: T₁ = 281.91 N",
+                                "correct": "Richtig! Mit Gleichgewichtsgleichungen: T_1 = 281.91 N",
                                 "incorrect": "Stellen Sie Gleichgewichtsgleichungen für horizontale und vertikale Komponenten auf."
                         },
                         "scenario": "",
@@ -581,7 +581,7 @@ export const dePhysics = {
                 "SP1.01.054": {
                         "prompt": "Vier Kräfte wirken auf einen Ring: 80 N bei 0°, 60 N bei 90°, 70 N bei 180° und F in einem unbekannten Winkel. Wenn das System im Gleichgewicht ist, was ist F?",
                         "feedback": {
-                                "correct": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10² + 60²) = 60.83 N",
+                                "correct": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10^2 + 60^2) = 60.83 N",
                                 "incorrect": "Finden Sie die Resultierende der bekannten Kräfte, dann muss F ihr im Betrag entsprechen."
                         },
                         "scenario": "",
@@ -621,7 +621,7 @@ export const dePhysics = {
                 "SP1.01.058": {
                         "prompt": "Eine aufgehängte Plattform wird von vier Kabeln gehalten. Drei Kabel haben Spannungen: 400 N bei 30°, 350 N bei 120° und 380 N bei 210°. Was ist die Spannung im vierten Kabel bei 300°?",
                         "feedback": {
-                                "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 350 N",
+                                "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 350 N",
                                 "incorrect": "Stellen Sie zwei Gleichgewichtsgleichungen (x und y) auf und lösen Sie nach der unbekannten Spannung auf."
                         },
                         "scenario": "",
@@ -671,7 +671,7 @@ export const dePhysics = {
                 "SP1.01.063": {
                         "prompt": "Ein Kranhaken trägt eine Last mit vier Ketten in Winkeln von 20°, 110°, 200° und 290° zur Horizontalen. Wenn drei Ketten Spannungen von 800 N, 750 N bzw. 820 N haben, was ist die Spannung in der vierten Kette?",
                         "feedback": {
-                                "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T₄ = 750 N",
+                                "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 750 N",
                                 "incorrect": "Berechnen Sie die x- und y-Komponenten aller bekannten Kräfte und lösen Sie dann nach der Unbekannten auf."
                         },
                         "scenario": "",
@@ -819,7 +819,7 @@ export const dePhysics = {
                         barrier_width: "BARRIERENBREITE (a)",
                         transmission: "TRANSMISSIONSKOEFFIZIENT",
                         wave_function: "WELLENFUNKTION",
-                        probability_density: "WAHRSCHEINLICHKEITSDICHTE |ψ|²",
+                        probability_density: "WAHRSCHEINLICHKEITSDICHTE |ψ|^2",
                         incident: "Einfahrend",
                         reflected: "Reflektiert",
                         transmitted: "Transmittiert",
@@ -896,38 +896,38 @@ export const dePhysics = {
                         },
                         "SECOND_LAW": {
                                 "BASIC": [
-                                        "F=10 N, m=2 kg. Find a (m/s²)",
-                                        "F=20 N, m=5 kg. Find a (m/s²)",
-                                        "F=15 N, m=3 kg. Find a (m/s²)",
-                                        "m=10 kg, a=2 m/s². Find F (N)",
-                                        "m=5 kg, a=4 m/s². Find F (N)",
-                                        "F=30 N, a=6 m/s². Find m (kg)",
-                                        "F=40 N, a=8 m/s². Find m (kg)"
+                                        "F=10 N, m=2 kg. Find a (m/s^2)",
+                                        "F=20 N, m=5 kg. Find a (m/s^2)",
+                                        "F=15 N, m=3 kg. Find a (m/s^2)",
+                                        "m=10 kg, a=2 m/s^2. Find F (N)",
+                                        "m=5 kg, a=4 m/s^2. Find F (N)",
+                                        "F=30 N, a=6 m/s^2. Find m (kg)",
+                                        "F=40 N, a=8 m/s^2. Find m (kg)"
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s². Find F (N)",
-                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s²)",
-                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s²)",
-                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s²)",
-                                        "Tram 12000 kg needs 2 m/s² acceleration. Find F (N)",
-                                        "Car 1000 kg, net force 2000 N. Find a (m/s²)",
-                                        "Basel bus 8000 kg accelerates at 1 m/s². Find F (N)",
-                                        "Bicycle 80 kg, force 160 N. Find a (m/s²)",
-                                        "Truck 5000 kg, acceleration 0.5 m/s². Find F (N)"
+                                        "Basel tram 10000 kg accelerates at 1.5 m/s^2. Find F (N)",
+                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^2)",
+                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^2)",
+                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s^2)",
+                                        "Tram 12000 kg needs 2 m/s^2 acceleration. Find F (N)",
+                                        "Car 1000 kg, net force 2000 N. Find a (m/s^2)",
+                                        "Basel bus 8000 kg accelerates at 1 m/s^2. Find F (N)",
+                                        "Bicycle 80 kg, force 160 N. Find a (m/s^2)",
+                                        "Truck 5000 kg, acceleration 0.5 m/s^2. Find F (N)"
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s²)",
-                                        "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s²)",
-                                        "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s²)",
-                                        "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s²)",
-                                        "Tram 15000 kg needs 1.8 m/s² with friction 2000 N. Find applied force (N)",
-                                        "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s²)",
-                                        "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s²)"
+                                        "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^2)",
+                                        "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^2)",
+                                        "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^2)",
+                                        "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^2)",
+                                        "Tram 15000 kg needs 1.8 m/s^2 with friction 2000 N. Find applied force (N)",
+                                        "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^2)",
+                                        "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^2)"
                                 ],
                                 "ELITE": [
-                                        "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s². Total force?",
+                                        "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^2. Total force?",
                                         "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                                        "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s²)"
+                                        "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^2)"
                                 ]
                         },
                         "THIRD_LAW": {
@@ -950,19 +950,19 @@ export const dePhysics = {
                                         "Person pushes wall with 200 N. Wall pushes person with how many N?"
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s². Force on track?",
-                                        "Rhine boat 2000 kg accelerates at 2 m/s². Force on water?",
-                                        "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s². Force on ground?",
-                                        "SBB train 50000 kg decelerates at -0.2 m/s². Force on track?",
-                                        "Rocket 5000 kg accelerates at 10 m/s². Force on exhaust gas?",
-                                        "Car 1200 kg accelerates at 3 m/s². Force on road?",
-                                        "Basel bus 8000 kg accelerates at 1 m/s². Force on road?"
+                                        "Basel tram 10000 kg accelerates at 1.5 m/s^2. Force on track?",
+                                        "Rhine boat 2000 kg accelerates at 2 m/s^2. Force on water?",
+                                        "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^2. Force on ground?",
+                                        "SBB train 50000 kg decelerates at -0.2 m/s^2. Force on track?",
+                                        "Rocket 5000 kg accelerates at 10 m/s^2. Force on exhaust gas?",
+                                        "Car 1200 kg accelerates at 3 m/s^2. Force on road?",
+                                        "Basel bus 8000 kg accelerates at 1 m/s^2. Force on road?"
                                 ],
                                 "ELITE": [
                                         "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                                        "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s². Water mass pushed?",
-                                        "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s². Friction force?",
-                                        "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s². Verify F=ma?"
+                                        "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^2. Water mass pushed?",
+                                        "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^2. Friction force?",
+                                        "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^2. Verify F=ma?"
                                 ]
                         }
                 },
@@ -971,9 +971,9 @@ export const dePhysics = {
                         "placeholder": "hier eingeben"
                 },
                 scenarios: {
-                        first_law: "Basel Fasnacht Umzugswagen Bewegung: Während Basels berühmter Fasnacht am Marktplatz demonstrieren aufwendig dekorierte Umzugswagen Newtons Erstes Gesetz der Trägheit. Ein massiver Wagen mit 3.000 kg Masse ruht vor Beginn des Umzugs. Trotz seines farbenfrohen Aussehens widersteht er hartnäckig der Bewegung – er bleibt in Ruhe, es sei denn, eine äußere Kraft wirkt auf ihn ein. Wenn Umzugsteilnehmer mit 2.000 N schieben, während Reibung mit 500 N entgegenwirkt, überwindet die Nettokraft von 1.500 N die Trägheit und beschleunigt den Wagen mit 0,5 m/s². Sobald er sich mit konstanter Geschwindigkeit durch die Umzugsroute bewegt, fährt der Wagen mit gleichmäßiger Geschwindigkeit weiter, wenn die Schieber eine Kraft gleich der Reibung aufrechterhalten.",
-                        second_law: "Basel Tram Beschleunigung und Bremsen: Basels ikonische grüne Trams navigieren durch die Straßen der Stadt und demonstrieren Newtons Zweites Gesetz in Aktion. Am Barfüsserplatz beschleunigt eine Tram mit einer Masse von 10.000 kg aus dem Stillstand, um Reisegeschwindigkeit zu erreichen. Die Elektromotoren erzeugen eine Vorwärtskraft von 15.000 N, während Reibung und Luftwiderstand 3.000 N Gegenkraft liefern. Mit F=ma berechnen wir, dass die Nettokraft (12.000 N) eine Beschleunigung von 1,2 m/s² erzeugt. Beim Annähern an die nächste Haltestelle betätigt der Fahrer die Bremsen mit -10.000 N, kombiniert mit -3.000 N Reibung, was -13.000 N Nettokraft und -1,3 m/s² Verzögerung erzeugt.",
-                        third_law: "Rhein Schiffspropulsion: Entlang des Basler Rheins in der Nähe der Mittleren Brücke demonstrieren Passagierschiffe Newtons Drittes Gesetz durch ihre Antriebssysteme. Wenn sich der Propeller eines Bootes dreht, drückt er das Wasser mit enormer Kraft nach hinten – vielleicht 3.000 N für eine typische Rheinfähre. Gemäß Newtons Drittem Gesetz drückt das Wasser gleichzeitig das Boot mit einer gleichen Kraft von 3.000 N in die entgegengesetzte Richtung nach vorne. Dieses Aktions-Reaktions-Paar wirkt auf verschiedene Objekte: Der Propeller wirkt auf das Wasser, während das Wasser auf das Boot wirkt. Die 1.500 kg Masse des Bootes beschleunigt dadurch mit 2 m/s² nach vorne."
+                        first_law: "Basel Fasnacht Umzugswagen Bewegung: Während Basels berühmter Fasnacht am Marktplatz demonstrieren aufwendig dekorierte Umzugswagen Newtons Erstes Gesetz der Trägheit. Ein massiver Wagen mit 3.000 kg Masse ruht vor Beginn des Umzugs. Trotz seines farbenfrohen Aussehens widersteht er hartnäckig der Bewegung – er bleibt in Ruhe, es sei denn, eine äußere Kraft wirkt auf ihn ein. Wenn Umzugsteilnehmer mit 2.000 N schieben, während Reibung mit 500 N entgegenwirkt, überwindet die Nettokraft von 1.500 N die Trägheit und beschleunigt den Wagen mit 0,5 m/s^2. Sobald er sich mit konstanter Geschwindigkeit durch die Umzugsroute bewegt, fährt der Wagen mit gleichmäßiger Geschwindigkeit weiter, wenn die Schieber eine Kraft gleich der Reibung aufrechterhalten.",
+                        second_law: "Basel Tram Beschleunigung und Bremsen: Basels ikonische grüne Trams navigieren durch die Straßen der Stadt und demonstrieren Newtons Zweites Gesetz in Aktion. Am Barfüsserplatz beschleunigt eine Tram mit einer Masse von 10.000 kg aus dem Stillstand, um Reisegeschwindigkeit zu erreichen. Die Elektromotoren erzeugen eine Vorwärtskraft von 15.000 N, während Reibung und Luftwiderstand 3.000 N Gegenkraft liefern. Mit F=ma berechnen wir, dass die Nettokraft (12.000 N) eine Beschleunigung von 1,2 m/s^2 erzeugt. Beim Annähern an die nächste Haltestelle betätigt der Fahrer die Bremsen mit -10.000 N, kombiniert mit -3.000 N Reibung, was -13.000 N Nettokraft und -1,3 m/s^2 Verzögerung erzeugt.",
+                        third_law: "Rhein Schiffspropulsion: Entlang des Basler Rheins in der Nähe der Mittleren Brücke demonstrieren Passagierschiffe Newtons Drittes Gesetz durch ihre Antriebssysteme. Wenn sich der Propeller eines Bootes dreht, drückt er das Wasser mit enormer Kraft nach hinten – vielleicht 3.000 N für eine typische Rheinfähre. Gemäß Newtons Drittem Gesetz drückt das Wasser gleichzeitig das Boot mit einer gleichen Kraft von 3.000 N in die entgegengesetzte Richtung nach vorne. Dieses Aktions-Reaktions-Paar wirkt auf verschiedene Objekte: Der Propeller wirkt auf das Wasser, während das Wasser auf das Boot wirkt. Die 1.500 kg Masse des Bootes beschleunigt dadurch mit 2 m/s^2 nach vorne."
                 }
         },
 
@@ -1027,8 +1027,8 @@ export const dePhysics = {
                 },
                 scenarios: {
                         ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",
-                        series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R₁ + R₂ + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",
-                        parallel_circuits: "Roche Tower Beleuchtungssystem: Sie entwerfen das Notbeleuchtungssystem für den Roche Tower in Basel. In Parallelschaltungen teilen sich Komponenten dieselbe Spannung, aber der Strom teilt sich auf die Zweige auf. Ihre Aufgabe ist es, den Gesamtstrom und den äquivalenten Widerstand (1/R_gesamt = 1/R₁ + 1/R₂ + ...) zu berechnen. Dieses Design stellt sicher, dass wenn ein Licht ausfällt, andere weiterarbeiten - kritisch für die Sicherheit bei Stromausfällen. Das System muss die 41 Stockwerke des Gebäudes mit Tausenden von LED-Leuchten effizient betreiben."
+                        series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R_1 + R_2 + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",
+                        parallel_circuits: "Roche Tower Beleuchtungssystem: Sie entwerfen das Notbeleuchtungssystem für den Roche Tower in Basel. In Parallelschaltungen teilen sich Komponenten dieselbe Spannung, aber der Strom teilt sich auf die Zweige auf. Ihre Aufgabe ist es, den Gesamtstrom und den äquivalenten Widerstand (1/R_gesamt = 1/R_1 + 1/R_2 + ...) zu berechnen. Dieses Design stellt sicher, dass wenn ein Licht ausfällt, andere weiterarbeiten - kritisch für die Sicherheit bei Stromausfällen. Das System muss die 41 Stockwerke des Gebäudes mit Tausenden von LED-Leuchten effizient betreiben."
                 }
         },
 
@@ -1053,9 +1053,9 @@ export const dePhysics = {
                         efficiency: "WIRKUNGSGRAD"
                 },
                 scenarios: {
-                        power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO₂-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
+                        power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO_2-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
                         energy_consumption: "IWB Basel Energiemanagement: Sie arbeiten für IWB (Industrielle Werke Basel), Basels Hauptstromversorger. Ihre Aufgabe ist es, Energieverbrauch (E = P × t) und Kosten für Geschäftskunden zu berechnen. Energie wird in Kilowattstunden (kWh) gemessen, und Basels Stromtarif beträgt etwa 0,25 CHF/kWh für Haushalte und 0,20 CHF/kWh für Unternehmen. Sie analysieren ein Novartis-Labor, das Geräte rund um die Uhr betreibt. Genaue Berechnungen gewährleisten korrekte Abrechnung und helfen Kunden, den Energieverbrauch zu optimieren, um Kosten und Umweltauswirkungen zu reduzieren.",
-                        efficiency: "Basler Solaranlagen-Installation: Sie sind Ingenieur bei Solarville Basel und installieren Solarpaneele auf Wohndächern. Der Wirkungsgrad (η = P_aus/P_ein × 100%) bestimmt, wie viel Sonnenenergie in Elektrizität umgewandelt wird. Moderne Paneele erreichen 18-22% Wirkungsgrad. Ihre Aufgabe ist es, Leistungsabgabe, Energieverluste und Kosteneinsparungen zu berechnen. Ein typisches Basler Haus mit 20 m² Paneelen (4 kW Kapazität) erzeugt etwa 3.800 kWh/Jahr und spart jährlich etwa 950 CHF. Das Verständnis des Wirkungsgrads hilft Kunden, fundierte Investitionsentscheidungen zu treffen."
+                        efficiency: "Basler Solaranlagen-Installation: Sie sind Ingenieur bei Solarville Basel und installieren Solarpaneele auf Wohndächern. Der Wirkungsgrad (η = P_aus/P_ein × 100%) bestimmt, wie viel Sonnenenergie in Elektrizität umgewandelt wird. Moderne Paneele erreichen 18-22% Wirkungsgrad. Ihre Aufgabe ist es, Leistungsabgabe, Energieverluste und Kosteneinsparungen zu berechnen. Ein typisches Basler Haus mit 20 m^2 Paneelen (4 kW Kapazität) erzeugt etwa 3.800 kWh/Jahr und spart jährlich etwa 950 CHF. Das Verständnis des Wirkungsgrads hilft Kunden, fundierte Investitionsentscheidungen zu treffen."
                 },
                 prompts: {
                         e1: "IWB Wärmepumpe: P=3kW für 500h. Tarif: 0.28 CHF/kWh. Kosten?",
@@ -1130,24 +1130,24 @@ export const dePhysics = {
                         // NEWTON 1 - Trägheit & Gleichgewicht
                         rest: "Objekt (m={m}kg) ist in Ruhe. Nettokraft ΣF?",
                         const_v: "Objekt (m={m}kg) bewegt sich mit konstanter Geschwindigkeit {v}m/s. Nettokraft ΣF?",
-                        equilibrium: "Kräfte F₁={f1}N (rechts) und F₂={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F₃?",
+                        equilibrium: "Kräfte F_1={f1}N (rechts) und F_2={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F_3?",
                         space: "Im Weltraum (keine Reibung), Objekt (m={m}kg) wird mit F={f}N für {t}s geschoben, dann losgelassen. Kraft nach Loslassen?",
                         inertia: "Objekt (m={m}kg) in Ruhe. Welche Eigenschaft widersetzt sich Bewegungsänderung?",
                         "2d_balance": "Zwei senkrechte Kräfte wirken auf Objekt (m={m}kg). Resultierende Kraft?",
-                        vector_add: "Kräfte F₁={f}N (Ost) und F₂={f}N (Nord) wirken auf Objekt. Nettokraft?",
+                        vector_add: "Kräfte F_1={f}N (Ost) und F_2={f}N (Nord) wirken auf Objekt. Nettokraft?",
                         slope: "Objekt (m={m}kg) auf Hang (θ={theta}°) mit Reibung μ={mu}. Normalkomponente?",
                         space_friction: "Im Weltraum, Objekt (m={m}kg) erfährt Reibung μ={mu}. Ist das realistisch?",
                         complex: "Objekt (m={m}kg) gezogen mit F={f}N gegen Reibung μ={mu}. Nettokraft?",
 
                         // NEWTON 2 - F=ma
-                        find_f: "Masse m={m}kg beschleunigt mit a={a}m/s². Finde Nettokraft F.",
+                        find_f: "Masse m={m}kg beschleunigt mit a={a}m/s^2. Finde Nettokraft F.",
                         find_a: "Nettokraft F={f}N wirkt auf Masse m={m}kg. Finde Beschleunigung a.",
-                        gravity: "Objekt m={m}kg auf Planet (g={g}m/s²). Gewichtskraft W=mg?",
+                        gravity: "Objekt m={m}kg auf Planet (g={g}m/s^2). Gewichtskraft W=mg?",
                         net_force: "Kraft F={f}N wirkt auf m={m}kg. Reibung f={fr}N wirkt entgegen. Nettobeschleunigung?",
                         friction: "Kraft F={f}N zieht m={m}kg mit Reibung μ={mu}. Beschleunigung?",
                         pulley: "Flaschenzugsystem: Masse m={m}kg, angewandte Kraft F={f}N, Reibung μ={mu}. Beschleunigung?",
                         variable_mass: "Kraft F={f}N wirkt auf variables Massensystem m={m}kg. Effektive Beschleunigung?",
-                        coupled: "Zwei gekoppelte Massen: m₁={m}kg, angewandt F={f}N. Systembeschleunigung?",
+                        coupled: "Zwei gekoppelte Massen: m_1={m}kg, angewandt F={f}N. Systembeschleunigung?",
 
                         // REIBUNG
                         static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
@@ -1166,15 +1166,15 @@ export const dePhysics = {
 
                         // Kompatibilitätsschlüssel
                         n1_const_vel: "Objekt (m={m}kg) bewegt sich mit konstanter Geschwindigkeit {v}m/s. Nettokraft ΣF?",
-                        n1_equilibrium: "Kräfte F₁={f1}N (rechts) und F₂={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F₃?",
+                        n1_equilibrium: "Kräfte F_1={f1}N (rechts) und F_2={f2}N (links) wirken auf Objekt. Für Gleichgewicht, F_3?",
                         n1_rest: "Objekt (m={m}kg) ist in Ruhe. Kraft F={f}N schiebt rechts. Reibung f={fr}N wirkt links. Beschleunigung?",
                         n1_space: "Im Weltraum (keine Reibung), Objekt (m={m}kg) wird mit F={f}N für {t}s geschoben, dann losgelassen. Kraft nach Loslassen?",
                         n1_inertia: "Welche Eigenschaft widersetzt sich Bewegungsänderung für ein {m}kg Objekt?",
-                        n2_find_f: "Masse m={m}kg beschleunigt mit a={a}m/s². Finde Nettokraft F.",
+                        n2_find_f: "Masse m={m}kg beschleunigt mit a={a}m/s^2. Finde Nettokraft F.",
                         n2_find_a: "Nettokraft F={f}N wirkt auf Masse m={m}kg. Finde Beschleunigung a.",
-                        n2_find_m: "Nettokraft F={f}N verursacht Beschleunigung a={a}m/s². Finde Masse m.",
+                        n2_find_m: "Nettokraft F={f}N verursacht Beschleunigung a={a}m/s^2. Finde Masse m.",
                         n2_complex: "Kraft F={f}N zieht Masse m={m}kg gegen Reibung f={fr}N. Finde Beschleunigung.",
-                        n2_gravity: "Objekt m={m}kg fällt auf Planet (g={g}m/s²). Gewichtskraft Fg?",
+                        n2_gravity: "Objekt m={m}kg fällt auf Planet (g={g}m/s^2). Gewichtskraft Fg?",
                         fr_static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
                         fr_kinetic: "Kiste m={m}kg rutscht (μk={mu}). Gleitreibung?",
                         fr_norm: "Kiste m={m}kg gegen Wand gedrückt mit F={f}N. Normalkraft?",
@@ -1185,11 +1185,11 @@ export const dePhysics = {
                         // NEWTON 1
                         rest: "In Ruhe bedeutet v=0, also ΣF=0 (Newtons Erstes Gesetz)",
                         const_v: "Konstante Geschwindigkeit bedeutet a=0, also ΣF=0",
-                        equilibrium: "Für Gleichgewicht müssen alle Kräfte ausgeglichen sein: F₁ + F₃ = F₂",
+                        equilibrium: "Für Gleichgewicht müssen alle Kräfte ausgeglichen sein: F_1 + F_3 = F_2",
                         space: "Nach Loslassen wirkt keine Kraft (F=0 im Weltraum)",
                         inertia: "Trägheit ist die Eigenschaft, die Bewegungsänderungen widersetzt",
                         "2d_balance": "Verwenden Sie Pythagoras für senkrechte Kräfte",
-                        vector_add: "Verwenden Sie Vektoraddition: |F_net| = √(F₁² + F₂²)",
+                        vector_add: "Verwenden Sie Vektoraddition: |F_net| = √(F_1^2 + F_2^2)",
                         slope: "Normalkraft N = mg cos(θ)",
                         space_friction: "Keine Reibung im Weltraum (keine Atmosphäre)",
                         complex: "F_net = F_angewandt - f_reibung",
@@ -1240,7 +1240,7 @@ export const dePhysics = {
                 },
                 prompts: {
                         // POTENTIELLE ENERGIE
-                        basic_ep: "Objekt m={m}kg in Höhe h={h}m. Berechne potentielle Energie Ep (g={g}m/s²).",
+                        basic_ep: "Objekt m={m}kg in Höhe h={h}m. Berechne potentielle Energie Ep (g={g}m/s^2).",
                         rhine_hydro: "Rheinwasser m={m}kg fließt von Höhe h={h}m. Potentielle Energie Ep?",
                         total_energy: "Objekt m={m}kg in h={h}m mit Geschwindigkeit v={v}m/s. Gesamtmechanische Energie?",
                         conservation: "Objekt m={m}kg fällt von h={h}m, erreicht v={v}m/s. Gesamtenergie an jedem Punkt?",
@@ -1260,14 +1260,14 @@ export const dePhysics = {
                 hints: {
                         // POTENTIELLE ENERGIE
                         basic_ep: "Verwende Ep = mgh",
-                        rhine_hydro: "Potentielle Energie Ep = mgh, wobei g=9.8m/s²",
-                        total_energy: "Gesamtenergie E = Ep + Ek = mgh + ½mv²",
+                        rhine_hydro: "Potentielle Energie Ep = mgh, wobei g=9.8m/s^2",
+                        total_energy: "Gesamtenergie E = Ep + Ek = mgh + ½mv^2",
                         conservation: "Energieerhaltung: E_gesamt = Ep + Ek = konstant",
 
                         // KINETISCHE ENERGIE
-                        basic_ek: "Verwende Ek = ½mv²",
-                        tram_braking: "Kinetische Energie Ek = ½mv²",
-                        velocity_at_bottom: "Verwende Energieerhaltung: mgh + ½mv₀² = ½mv²",
+                        basic_ek: "Verwende Ek = ½mv^2",
+                        tram_braking: "Kinetische Energie Ek = ½mv^2",
+                        velocity_at_bottom: "Verwende Energieerhaltung: mgh + ½mv₀^2 = ½mv^2",
                         work_energy: "Arbeit-Energie-Satz: W = ΔEk, also Ek_end = Ek_anfang + W",
 
                         // ARBEIT & LEISTUNG
@@ -1291,7 +1291,7 @@ export const dePhysics = {
                 stages: { pressure: "DRUCK", buoyancy: "AUFTRIEB", hydraulics: "HYDRAULIK" },
                 prompts: {
                         pressure_depth: "Ein Schwimmer taucht auf {depth} m im Rhein. Berechnen Sie den Gesamtdruck.",
-                        buoyant_force: "Ein Objekt mit {volume} m³ ist im Rhein untergetaucht. Berechnen Sie den Auftrieb.",
+                        buoyant_force: "Ein Objekt mit {volume} m^3 ist im Rhein untergetaucht. Berechnen Sie den Auftrieb.",
                         hint_pressure: "P = P₀ + ρgh",
                         hint_archimedes: "F_a = ρ_wasser × V × g"
                 },
@@ -1544,12 +1544,12 @@ export const dePhysics = {
                 },
                 labels: {
                         show_prism: "Prismendispersion zeigen",
-                        medium_1: "MEDIUM 1 (n₁)",
-                        medium_2: "MEDIUM 2 (n₂)",
+                        medium_1: "MEDIUM 1 (n_1)",
+                        medium_2: "MEDIUM 2 (n_2)",
                         incident_angle: "Einfallswinkel",
                         focal_length: "Brennweite",
                         refraction_title: "BRECHUNG",
-                        refracted_angle: "Brechungswinkel (θ₂):",
+                        refracted_angle: "Brechungswinkel (θ_2):",
                         critical_angle: "Grenzwinkel:",
                         total_internal_reflection: "TOTALREFLEXION",
                         angle_value: "{value}°",
@@ -1558,9 +1558,9 @@ export const dePhysics = {
                         hint: "Hinweis"
                 },
                 hints: {
-                        refraction: "Licht wird zum Lot hin gebrochen, wenn es in ein dichteres Medium eintritt (n₂ > n₁)"
+                        refraction: "Licht wird zum Lot hin gebrochen, wenn es in ein dichteres Medium eintritt (n_2 > n_1)"
                 },
-                snell: { title: "SNELLIUS-GESETZ", line_1: "n₁ sin(θ₁) = n₂ sin(θ₂)", line_2: "θ_c = arcsin(n₂/n₁)", line_3: "v = c/n" },
+                snell: { title: "SNELLIUS-GESETZ", line_1: "n_1 sin(θ_1) = n_2 sin(θ_2)", line_2: "θ_c = arcsin(n_2/n_1)", line_3: "v = c/n" },
                 mission: { title: "MISSION: LICHTBRECHUNG", description: "Meistern Sie die Gesetze der Reflexion und Brechung in den optischen Labors von Basel." }
         },
 
@@ -1580,26 +1580,26 @@ export const dePhysics = {
                 footer_left: "GP2.01_THERMODYNAMIK // KNOTEN: BASEL",
                 stages: { ideal_gas: "IDEALES GAS", boyles: "BOYLE-MARIOTTE", charles: "GAY-LUSSAC" },
                 prompts: {
-                        find_p: "Ideales Gas: n = {n} mol, T = {T} K, V = {V} m³. Finde P.",
+                        find_p: "Ideales Gas: n = {n} mol, T = {T} K, V = {V} m^3. Finde P.",
                         find_v: "Gas: n = {n} mol, P = {P} Pa, T = {T} K. Finde V.",
-                        find_n: "Gas: P = {P} Pa, V = {V} m³, T = {T} K. Finde n.",
-                        find_t: "Gas: P = {P} Pa, V = {V} m³, n = {n} mol. Finde T.",
+                        find_n: "Gas: P = {P} Pa, V = {V} m^3, T = {T} K. Finde n.",
+                        find_t: "Gas: P = {P} Pa, V = {V} m^3, n = {n} mol. Finde T.",
                         relation_pt: "Temperatur bei konstantem Volumen verdoppeln. Um welchen Faktor ändert sich der Druck?",
                         relation_vn: "Molzahl bei konstantem P und T verdoppeln. Um welchen Faktor ändert sich das Volumen?",
-                        boyle_find_p2: "Boyle-Mariotte: P₁ = {p1} kPa, V₁ = {v1} L, V₂ = {v2} L. Finde P₂.",
-                        boyle_find_v2: "Boyle-Mariotte: P₁ = {p1} kPa, V₁ = {v1} L, P₂ = {p2} kPa. Finde V₂.",
+                        boyle_find_p2: "Boyle-Mariotte: P_1 = {p1} kPa, V_1 = {v1} L, V_2 = {v2} L. Finde P_2.",
+                        boyle_find_v2: "Boyle-Mariotte: P_1 = {p1} kPa, V_1 = {v1} L, P_2 = {p2} kPa. Finde V_2.",
                         boyle_relation: "Komprimiere Gas von {v1} L auf {v2} L bei konst. T. Druck vervielfacht sich um?",
                         boyle_condition: "Welche Größe muss beim Gesetz von Boyle-Mariotte konstant bleiben?",
-                        charles_find_v2: "Gay-Lussac (Charles): V₁ = {v1} L, T₁ = {t1} K, T₂ = {t2} K. Finde V₂.",
-                        charles_find_t2: "Gay-Lussac (Charles): V₁ = {v1} L, T₁ = {t1} K, V₂ = {v2} L. Finde T₂.",
+                        charles_find_v2: "Gay-Lussac (Charles): V_1 = {v1} L, T_1 = {t1} K, T_2 = {t2} K. Finde V_2.",
+                        charles_find_t2: "Gay-Lussac (Charles): V_1 = {v1} L, T_1 = {t1} K, V_2 = {v2} L. Finde T_2.",
                         charles_relation: "Absolute Temperatur bei konstantem P verdoppeln. Um welchen Faktor ändert sich das Volumen?",
                         charles_condition: "Welche Größe muss beim Gesetz von Charles (Gay-Lussac) konstant bleiben?",
                         combined_law: "Allgemeines Gasgesetz bei P, V, T Änderung. Suche nach {target}.",
-                        iwb_steam: "IWB Fernwärme: Dampf bei T={T} K, V={V} m³, n={n} mol. Berechne Druck P (Ideal).",
-                        roche_tower: "Roche-Turm 40. Stock: Raum V={V} m³, T={T} K, P={P} Pa. Berechne Luftmenge n.",
+                        iwb_steam: "IWB Fernwärme: Dampf bei T={T} K, V={V} m^3, n={n} mol. Berechne Druck P (Ideal).",
+                        roche_tower: "Roche-Turm 40. Stock: Raum V={V} m^3, T={T} K, P={P} Pa. Berechne Luftmenge n.",
                         rhine_bubble: "Rhein-Taucher in der Tiefe (P1={p1} kPa) atmet Blase V1={v1} mL aus. Volumen an Oberfläche (P2={p2} kPa)?",
-                        weather_balloon: "Basel Wetterballon: Boden V={v1} m³, T1={t1} K. Stratosphäre T2={t2} K (P konstant). Neues Volumen?",
-                        novartis_reactor: "Novartis-Reaktor V={V} m³. Spüle mit N2 bei P={P} Pa, T={T} K. Berechne Masse N2 (M=0.028 kg/mol)."
+                        weather_balloon: "Basel Wetterballon: Boden V={v1} m^3, T1={t1} K. Stratosphäre T2={t2} K (P konstant). Neues Volumen?",
+                        novartis_reactor: "Novartis-Reaktor V={V} m^3. Spüle mit N2 bei P={P} Pa, T={T} K. Berechne Masse N2 (M=0.028 kg/mol)."
                 },
                 scenarios: {
                         ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
@@ -1632,7 +1632,7 @@ export const dePhysics = {
                         ie_diatomic: "Zweiatomiges Gas (f=5): n={n}, T={t}. Berechne innere Energie U.",
                         ie_change_t: "Ideales Gas (n={n}, Cv={cv} J/molK) von {t1} K bis {t2} K erhitzt. Finde ΔU.",
                         ie_state_func: "Innere Energie ist eine Zustandsgröße. Änderung im Kreisprozess?",
-                        wh_isobaric: "Isobare Expansion: P = {p} Pa, ΔV = {dv} m³. Finde Arbeit W.",
+                        wh_isobaric: "Isobare Expansion: P = {p} Pa, ΔV = {dv} m^3. Finde Arbeit W.",
                         wh_isochoric: "Isochore Erwärmung (konstantes Volumen). Was ist die Arbeit W?",
                         wh_isothermal_w: "Isotherme Expansion eines idealen Gases. Q = {q} J. Finde W.",
                         wh_area: "Was repräsentiert die Fläche im PV-Diagramm?",
@@ -1667,7 +1667,7 @@ export const dePhysics = {
                 scenarios: {
                         wave_properties: "Sie analysieren Wellenbewegungen auf dem Rhein in der Nähe der Basler Mittleren Brücke. Der Fluss erzeugt Oberflächenwellen mit unterschiedlichen Frequenzen und Wellenlängen. Das Verständnis der Welleneigenschaften ist entscheidend für die Sicherheit der Basler Rheinschifffahrt und die Planung der neuen Rheinhafenanlagen. Die fundamentale Wellengleichung v = fλ verknüpft Geschwindigkeit, Frequenz und Wellenlänge. Schallwellen breiten sich in Luft mit 340 m/s aus, in Wasser mit 1500 m/s. Dieser Unterschied beeinflusst die Unterwasserkommunikationssysteme der Basler Flussüberwachungsstationen. Die Wellenperiode T = 1/f beschreibt die Schwingungsdauer. Diese Prinzipien gelten für alle Wellenphänomene von Wasserwellen bis zur elektromagnetischen Strahlung.",
                         superposition: "Im Basler Stadtcasino untersuchen Akustikingenieure Welleninterferenzmuster zur Optimierung der Klangqualität. Wenn sich zwei Wellen treffen, überlagern sie sich – ihre Amplituden addieren sich algebraisch. Konstruktive Interferenz tritt auf, wenn Wellen in Phase sind und erzeugt lauteren Klang. Destruktive Interferenz entsteht, wenn Wellen gegenphasig sind und führt zur Auslöschung. Stehende Wellen bilden sich im Konzertsaal, wenn reflektierte Wellen mit einfallenden Wellen interferieren und Knoten (Nullamplitude) sowie Bäuche (maximale Amplitude) erzeugen. Das Doppelspaltexperiment demonstriert Welleninterferenz mit Licht und erzeugt helle und dunkle Streifen. Dünnschichtinterferenz erzeugt farbige Muster in Seifenblasen und Ölfilmen, Phänomene, die am Physik-Department der Universität Basel erforscht werden.",
-                        optics: "Die CERN-Basel-Kollaboration nutzt fortschrittliche optische Systeme zur Teilchendetektion. Licht gehorcht dem Reflexionsgesetz (θᵢ = θᵣ) und dem Snelliusschen Brechungsgesetz (n₁sinθ₁ = n₂sinθ₂). Totalreflexion tritt auf, wenn Licht vom dichteren ins dünnere Medium bei Winkeln über dem kritischen Winkel übergeht und ermöglicht die Glasfaserkommunikation in Basels Telekommunikationsinfrastruktur. Einzelspaltbeugung erzeugt charakteristische Muster mit Minima bei asinθ = mλ. Beugungsgitter mit der Gleichung d·sinθ = mλ werden in Spektrometern bei Roche und Novartis für chemische Analysen eingesetzt. Das Rayleigh-Kriterium bestimmt die optischen Auflösungsgrenzen für die Teleskope der Basler Sternwarte."
+                        optics: "Die CERN-Basel-Kollaboration nutzt fortschrittliche optische Systeme zur Teilchendetektion. Licht gehorcht dem Reflexionsgesetz (θᵢ = θᵣ) und dem Snelliusschen Brechungsgesetz (n_1sinθ_1 = n_2sinθ_2). Totalreflexion tritt auf, wenn Licht vom dichteren ins dünnere Medium bei Winkeln über dem kritischen Winkel übergeht und ermöglicht die Glasfaserkommunikation in Basels Telekommunikationsinfrastruktur. Einzelspaltbeugung erzeugt charakteristische Muster mit Minima bei asinθ = mλ. Beugungsgitter mit der Gleichung d·sinθ = mλ werden in Spektrometern bei Roche und Novartis für chemische Analysen eingesetzt. Das Rayleigh-Kriterium bestimmt die optischen Auflösungsgrenzen für die Teleskope der Basler Sternwarte."
                 },
                 objective_title: "Wellenanalyse",
                 complete: "Modul abgeschlossen!",
@@ -1694,49 +1694,49 @@ export const dePhysics = {
                         constructive_interference: "Zwei Wellen (je A = 2 m) interferieren konstruktiv. Gesamtamplitude?",
                         destructive_interference: "Zwei Wellen (je A = 3 m) interferieren destruktiv. Gesamtamplitude?",
                         beat_frequency: "Zwei Stimmgabeln: 440 Hz und 444 Hz. Schwebungsfrequenz?",
-                        de_broglie: "Elektron (m = 9,1×10⁻³¹ kg, v = 1 m/s). De-Broglie-Wellenlänge? (h = 6,63×10⁻³⁴)",
+                        de_broglie: "Elektron (m = 9,1×10^-^3¹ kg, v = 1 m/s). De-Broglie-Wellenlänge? (h = 6,63×10^-^3^4)",
                         wave_particle_duality: "Licht zeigt sowohl Wellen- als auch Teilcheneigenschaften. Wahr oder falsch?",
-                        photon_energy: "Photon mit f = 5×10¹⁴ Hz. Energie E = hf? (h = 6,63×10⁻³⁴)",
+                        photon_energy: "Photon mit f = 5×10¹^4 Hz. Energie E = hf? (h = 6,63×10^-^3^4)",
                         matter_wave: "Elektronenwellenlänge λ = h/mv. Für typisches Elektron, λ ≈ ?",
                         uncertainty: "Heisenbergsche Unschärfe: ΔxΔp ≥ h/4π. Können wir beide genau kennen?",
                         same_phase_add: "Zwei Wellen (A = 2 m) in Phase. Gesamtamplitude?",
                         opposite_phase_cancel: "Zwei Wellen (A = 3 m) gegenphasig. Gesamtamplitude?",
                         constructive_max: "Zwei Wellen (A = 1 m) konstruktive Interferenz. Maximale Amplitude?",
-                        partial_destructive: "Wellen A₁ = 5 m, A₂ = 3 m interferieren destruktiv. Gesamtamplitude?",
+                        partial_destructive: "Wellen A_1 = 5 m, A_2 = 3 m interferieren destruktiv. Gesamtamplitude?",
                         interference_type: "Zwei Wellen in Phase kombinieren. Interferenztyp?",
-                        standing_wave_node: "Stehende Welle λ = 2 m. Erste Knotenposition x₁?",
-                        standing_wave_antinode: "Stehende Welle λ = 4 m. Erste Bauchposition x₁?",
+                        standing_wave_node: "Stehende Welle λ = 2 m. Erste Knotenposition x_1?",
+                        standing_wave_antinode: "Stehende Welle λ = 4 m. Erste Bauchposition x_1?",
                         node_count: "Saitenlänge 5 m, λ = 2 m. Anzahl der Knoten?",
                         string_fundamental: "Saiten-Grundmode: L = λ/2. Wenn λ = 1 m, finde L.",
-                        harmonic_wavelength: "Grundton λ₁ = 2 m. Zweite Oberschwingung Wellenlänge λ₂?",
+                        harmonic_wavelength: "Grundton λ_1 = 2 m. Zweite Oberschwingung Wellenlänge λ_2?",
                         double_slit_spacing: "Doppelspalt: λ = 500 nm, L = 2 m, d = 1 mm. Streifenabstand Δy?",
-                        fringe_order: "Doppelspalt: λ = 600 nm, L = 2 m, d = 1,2 mm. Dritter heller Streifen y₃?",
+                        fringe_order: "Doppelspalt: λ = 600 nm, L = 2 m, d = 1,2 mm. Dritter heller Streifen y_3?",
                         slit_separation: "Doppelspalt: λ = 500 nm, L = 1 m, Δy = 1 mm. Spaltabstand d?",
                         wavelength_from_fringes: "Doppelspalt: Δy = 0,8 mm, d = 0,5 mm, L = 1 m. Wellenlänge λ?",
                         central_maximum: "Doppelspalt: Position des zentralen Maximums y₀?",
                         thin_film_constructive: "Dünnschicht (n = 2): konstruktive Interferenz für λ = 500 nm, m = 1. Dicke t?",
                         thin_film_destructive: "Dünnschicht (n = 2): destruktive Interferenz für λ = 600 nm, m = 0. Dicke t?",
-                        newton_rings: "Newtonsche Ringe: λ = 500 nm, R = 1 m. Erster heller Ring Radius r₁?",
+                        newton_rings: "Newtonsche Ringe: λ = 500 nm, R = 1 m. Erster heller Ring Radius r_1?",
                         soap_bubble: "Seifenblase (n = 1,33, t = 300 nm) reflektiert welche Farbe stark?",
                         anti_reflection: "Entspiegelungsschicht (n = 2): λ = 400 nm. Minimale Dicke t?",
                         reflection_angle: "Licht fällt unter 30° ein. Reflexionswinkel θᵣ?",
-                        refraction_basic: "Licht von Luft (n = 1) zu Glas (n = 1,5) bei 30°. Brechungswinkel θ₂?",
+                        refraction_basic: "Licht von Luft (n = 1) zu Glas (n = 1,5) bei 30°. Brechungswinkel θ_2?",
                         light_speed_medium: "Licht in Glas (n = 1,5). Geschwindigkeit v = c/n?",
-                        refractive_index: "Lichtgeschwindigkeit im Medium: v = 2×10⁸ m/s. Brechungsindex n?",
+                        refractive_index: "Lichtgeschwindigkeit im Medium: v = 2×10^8 m/s. Brechungsindex n?",
                         normal_incidence: "Licht senkrecht zur Oberfläche. Brechungswinkel θᵣ?",
                         critical_angle: "Glas (n = 1,5) zu Luft (n = 1). Kritischer Winkel θc?",
                         total_internal_reflection: "Licht bei 50° von Glas zu Luft (θc = 42°). Totalreflexion?",
                         fiber_optics: "Glasfasern nutzen welches Prinzip, um Licht einzufangen?",
                         prism_dispersion: "Prisma trennt weißes Licht in Farben. Dieser Effekt heißt?",
-                        brewster_angle: "Brewster-Winkel für Glas (n = 1,5) zu Luft. tan θB = n₂/n₁. Finde θB.",
-                        single_slit_minima: "Einzelspalt (a = 1 mm): erstes Minimum für λ = 500 nm. Winkel θ₁?",
+                        brewster_angle: "Brewster-Winkel für Glas (n = 1,5) zu Luft. tan θB = n_2/n_1. Finde θB.",
+                        single_slit_minima: "Einzelspalt (a = 1 mm): erstes Minimum für λ = 500 nm. Winkel θ_1?",
                         diffraction_width: "Einzelspalt (a = 0,6 mm): λ = 600 nm, L = 1 m. Breite des zentralen Maximums w?",
                         rayleigh_criterion: "Teleskop (D = 0,5 m): λ = 500 nm. Minimal auflösbarer Winkel θmin?",
                         circular_aperture: "Kreisblende (D = 10 mm, f = 100 mm): λ = 500 nm. Airy-Scheibe Radius r?",
                         resolving_power: "Teleskop Durchmesser D = 0,5 m, λ = 500 nm. Auflösungsvermögen R?",
-                        grating_equation: "Beugungsgitter (d = 1 μm): λ = 500 nm, m = 1. Winkel θ₁?",
+                        grating_equation: "Beugungsgitter (d = 1 μm): λ = 500 nm, m = 1. Winkel θ_1?",
                         grating_order: "Gitter (d = 2 μm): λ = 600 nm. Maximale Ordnung mmax?",
-                        grating_spacing: "Gitter: λ = 500 nm, θ₁ = 30°, m = 1. Linienabstand d?",
+                        grating_spacing: "Gitter: λ = 500 nm, θ_1 = 30°, m = 1. Linienabstand d?",
                         spectral_resolution: "Gitter: m = 2, N = 5000 Linien. Spektrale Auflösung R?",
                         blazed_grating: "Blazegitter optimiert Effizienz für spezifische Wellenlänge. Zweck?"
                 },
@@ -1753,7 +1753,7 @@ export const dePhysics = {
                         doppler_recede: "Entfernende Quelle: niedrigere Frequenz",
                         constructive: "In Phase: Amplituden addieren",
                         destructive: "Gegenphasig: Amplituden subtrahieren",
-                        beats: "Schwebungsfrequenz = |f₁ - f₂|",
+                        beats: "Schwebungsfrequenz = |f_1 - f_2|",
                         de_broglie: "λ = h/mv",
                         duality: "Licht ist sowohl Welle als auch Teilchen",
                         photon_energy: "E = hf",
@@ -1761,14 +1761,14 @@ export const dePhysics = {
                         uncertainty: "Beide können nicht genau bekannt sein",
                         in_phase: "Gleiche Phase: Amplituden addieren",
                         out_of_phase: "Gegenphase: Amplituden subtrahieren",
-                        max_amplitude: "Konstruktiv: A₁ + A₂",
-                        partial_cancel: "Teilweise destruktiv: |A₁ - A₂|",
+                        max_amplitude: "Konstruktiv: A_1 + A_2",
+                        partial_cancel: "Teilweise destruktiv: |A_1 - A_2|",
                         interference_types: "In Phase = konstruktiv",
                         node_position: "Knoten: x = nλ/2",
                         antinode_position: "Bauch: x = (n + 1/2)λ/2",
                         node_count: "Zähle λ/2 Intervalle",
                         fundamental_mode: "Grundton: L = λ/2",
-                        second_harmonic: "Zweite Oberschwingung: λ₂ = λ₁/2",
+                        second_harmonic: "Zweite Oberschwingung: λ_2 = λ_1/2",
                         double_slit: "Δy = λL/d",
                         fringe_position: "ym = mλL/d",
                         slit_distance: "d = λL/Δy",
@@ -1780,15 +1780,15 @@ export const dePhysics = {
                         soap_colors: "Interferenz erzeugt Farben",
                         anti_reflection: "Viertelwellenschicht: t = λ/4n",
                         law_of_reflection: "θᵢ = θᵣ",
-                        snells_law: "n₁sinθ₁ = n₂sinθ₂",
+                        snells_law: "n_1sinθ_1 = n_2sinθ_2",
                         light_speed: "v = c/n",
                         index_calc: "n = c/v",
                         normal_ray: "Senkrecht: keine Brechung",
-                        critical_angle: "sinθc = n₂/n₁",
+                        critical_angle: "sinθc = n_2/n_1",
                         tir_condition: "θ > θc verursacht Totalreflexion",
                         fiber_principle: "Totalreflexion",
                         dispersion: "Verschiedene λ brechen unterschiedlich",
-                        brewster: "tanθB = n₂/n₁",
+                        brewster: "tanθB = n_2/n_1",
                         single_slit: "Minima: asinθ = mλ",
                         central_width: "w = 2λL/a",
                         rayleigh: "θmin = 1,22λ/D",
@@ -1818,8 +1818,8 @@ export const dePhysics = {
                         particle_motion: "TEILCHENBEWEGUNG"
                 },
                 scenarios: {
-                        electric_field: "Sie sind Forschungsingenieur im Roche Tower Basel und entwickeln einen fortschrittlichen elektrostatischen Abscheider zur Luftreinigung in pharmazeutischen Reinräumen. Das System nutzt elektrische Felder, um Luftpartikel zu entfernen und sterile Produktionsumgebungen für lebensrettende Medikamente zu gewährleisten. Die elektrische Feldstärke E = kQ/r² (wobei k = 8,99×10⁹ N·m²/C²) bestimmt die Kraft auf geladene Teilchen. Eine Punktladung Q erzeugt ein nach außen strahlendes elektrisches Feld, wobei Feldlinien Richtung und Stärke zeigen. Die Kraft auf eine Testladung q in diesem Feld ist F = qE. Das Verständnis elektrischer Felder ist entscheidend für die Entwicklung medizinischer Geräte, Teilchenbeschleuniger bei CERNs Basel-Kollaboration und Halbleiterfertigung bei lokalen Technologieunternehmen. Diese Prinzipien erklären auch Blitzschutzsysteme an Basels historischen Gebäuden und die Funktionsweise von Touchscreens in Smartphones.",
-                        magnetic_field: "In der MRT-Abteilung des Universitätsspitals Basel kalibrieren Sie Magnetfeldsysteme für medizinische Bildgebung. Magnetfelder werden durch elektrische Ströme erzeugt und in Tesla (T) gemessen. Ein gerader stromführender Draht erzeugt ein kreisförmiges Magnetfeld mit Stärke B = μ₀I/(2πr), wobei μ₀ = 4π×10⁻⁷ T·m/A die Permeabilität des Vakuums ist. Die Rechte-Hand-Regel bestimmt die Feldrichtung: Daumen zeigt entlang des Stroms, Finger krümmen sich in Feldrichtung. Spulen (Solenoide) erzeugen im Inneren ein gleichmäßiges Feld B = μ₀nI, das in MRT-Geräten verwendet wird, um Wasserstoffatome im Körper der Patienten auszurichten. Die Kraft auf einen stromführenden Draht in einem Magnetfeld ist F = BILsinθ, was Elektromotoren in Basels Straßenbahnen und Zügen ermöglicht. Magnetschwebetechnik (Maglev) nutzt diese Prinzipien, und Basels Anbindung an das Schweizer Bahnnetz basiert auf elektromagnetischen Systemen.",
+                        electric_field: "Sie sind Forschungsingenieur im Roche Tower Basel und entwickeln einen fortschrittlichen elektrostatischen Abscheider zur Luftreinigung in pharmazeutischen Reinräumen. Das System nutzt elektrische Felder, um Luftpartikel zu entfernen und sterile Produktionsumgebungen für lebensrettende Medikamente zu gewährleisten. Die elektrische Feldstärke E = kQ/r^2 (wobei k = 8,99×10^9 N·m^2/C^2) bestimmt die Kraft auf geladene Teilchen. Eine Punktladung Q erzeugt ein nach außen strahlendes elektrisches Feld, wobei Feldlinien Richtung und Stärke zeigen. Die Kraft auf eine Testladung q in diesem Feld ist F = qE. Das Verständnis elektrischer Felder ist entscheidend für die Entwicklung medizinischer Geräte, Teilchenbeschleuniger bei CERNs Basel-Kollaboration und Halbleiterfertigung bei lokalen Technologieunternehmen. Diese Prinzipien erklären auch Blitzschutzsysteme an Basels historischen Gebäuden und die Funktionsweise von Touchscreens in Smartphones.",
+                        magnetic_field: "In der MRT-Abteilung des Universitätsspitals Basel kalibrieren Sie Magnetfeldsysteme für medizinische Bildgebung. Magnetfelder werden durch elektrische Ströme erzeugt und in Tesla (T) gemessen. Ein gerader stromführender Draht erzeugt ein kreisförmiges Magnetfeld mit Stärke B = μ₀I/(2πr), wobei μ₀ = 4π×10^-^7 T·m/A die Permeabilität des Vakuums ist. Die Rechte-Hand-Regel bestimmt die Feldrichtung: Daumen zeigt entlang des Stroms, Finger krümmen sich in Feldrichtung. Spulen (Solenoide) erzeugen im Inneren ein gleichmäßiges Feld B = μ₀nI, das in MRT-Geräten verwendet wird, um Wasserstoffatome im Körper der Patienten auszurichten. Die Kraft auf einen stromführenden Draht in einem Magnetfeld ist F = BILsinθ, was Elektromotoren in Basels Straßenbahnen und Zügen ermöglicht. Magnetschwebetechnik (Maglev) nutzt diese Prinzipien, und Basels Anbindung an das Schweizer Bahnnetz basiert auf elektromagnetischen Systemen.",
                         particle_motion: "Sie sind Physiker an CERNs Basel-Forschungseinrichtung und analysieren Trajektorien geladener Teilchen in elektromagnetischen Feldern für Large Hadron Collider-Experimente. Wenn ein geladenes Teilchen (Ladung q, Masse m) in ein elektrisches Feld E eintritt, erfährt es Kraft F = qE und Beschleunigung a = qE/m und folgt einer parabolischen Bahn wie bei Wurfbewegungen. In einem Magnetfeld B erfährt ein bewegtes geladenes Teilchen die Lorentzkraft F = qvB senkrecht zu Geschwindigkeit und Feld, was zu Kreisbewegung mit Radius r = mv/(qB) führt. Dieses Prinzip ermöglicht Massenspektrometer in Novartis- und Roche-Qualitätskontrolllaboren, Molekülmassen pharmazeutischer Verbindungen zu identifizieren. Geschwindigkeitsselektoren verwenden gekreuzte elektrische und magnetische Felder, wobei Teilchen nur bei v = E/B geradeaus fliegen und Ionen nach Geschwindigkeit trennen. Zyklotrone beschleunigen Teilchen auf Spiralbahnen für Krebsstrahlentherapie im Universitätsspital Basel. Das Verständnis der Teilchenbewegung ist wesentlich für die Entwicklung von Teilchendetektoren, Analyse kosmischer Strahlung und Entwicklung medizinischer Bildgebungstechnologien der nächsten Generation."
                 },
                 objective_title: "Elektromagnetische Analyse",

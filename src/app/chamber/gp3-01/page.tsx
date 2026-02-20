@@ -471,7 +471,7 @@ export default function GP301Page() {
 
         if (stage === "OPTICS") {
             if (difficulty === "BASIC") {
-                // 光的反射/折射定律 (n₁sinθ₁ = n₂sinθ₂)
+                // 光的反射/折射定律 (n_1sinθ_1 = n_2sinθ_2)
                 quests.push(
                     {
                         id: "OP-B1", difficulty, stage,

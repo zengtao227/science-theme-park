@@ -16,8 +16,8 @@ export default function PartialPressureCalculator({
 }: PartialPressureCalculatorProps) {
   const [totalPressure, setTotalPressure] = useState(101325); // Pa
   const [gases, setGases] = useState<GasComponent[]>([
-    { id: "1", name: "N₂", moles: 0.78, molarMass: 0.028 },
-    { id: "2", name: "O₂", moles: 0.21, molarMass: 0.032 },
+    { id: "1", name: "N_2", moles: 0.78, molarMass: 0.028 },
+    { id: "2", name: "O_2", moles: 0.21, molarMass: 0.032 },
   ]);
   const [result, setResult] = useState<MixtureResult | null>(null);
 

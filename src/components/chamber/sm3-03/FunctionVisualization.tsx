@@ -146,7 +146,7 @@ export default function FunctionVisualization({
           
           {/* Function type label */}
           <text x="20" y="30" fill="#39ff14" fontSize="12" fontFamily="monospace">
-            {curveData.type === "exponential" ? "y = 2^x" : "y = log₂(x)"}
+            {curveData.type === "exponential" ? "y = 2^x" : "y = log_2(x)"}
           </text>
         </svg>
       </div>
