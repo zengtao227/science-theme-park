@@ -297,7 +297,8 @@ Modules are classified by their quest density:
 #### Phase 6.2: Quest Density Sprint (Priority: HIGH)
 - [x] **6.2.1: Math Sprint** 
   - [x] SM1.02 (Algebraic Expressions) — Refactored to generative (240+ dynamic quests)
-  - [ ] SM2.01, SM3.01, SM3.02, SM3.04 (remaining static modules to upgrade)
+  - [x] SM2.01 (Euclidean/Binomial Equations) — Refactored to localized random generation, separated tightly by 4 difficulty tiers
+  - [ ] SM3.01, SM3.02, SM3.04 (remaining static modules to upgrade)
 - [ ] **6.2.2: Gymnasium Math Sprint** — Enrich GM1.01, GM1.02, GM2.01, GM3.01, GM4.01 (5 modules × 40+ quests = 200+ new quests)
 - [ ] **6.2.3: Physics Sprint** — Enrich SP1.02, SP3.02, SP3.03, SP3.08 (4 modules × 40+ quests = 160+ new quests)
 - [ ] **6.2.4: Chemistry Sprint** — Enrich SC1.01, SC1.02, SC2.03, SC2.04, GC* modules (9 modules × 40+ quests = 360+ new quests)
