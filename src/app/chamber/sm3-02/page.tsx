@@ -14,13 +14,15 @@ const TrigCanvas = dynamic(() => import("@/components/chamber/sm3-02/TrigCanvas"
     ssr: false,
 });
 
-type Stage = "UNIT_CIRCLE" | "PROJECTIONS" | "WAVES";
 
-interface S302Quest extends Quest {
-    stage: Stage;
-    angle?: number;
-    trigFunc?: "sin" | "cos" | "tan";
-}
+
+import {
+    S302Quest,
+    Stage,
+    generateUnitCircleQuests,
+    generateProjectionsQuests,
+    generateWavesQuests,
+} from "@/lib/sm3-02/quests";
 
 // ----------------------------------------------------------------------------
 // HELPER: EXACT VALUES MAP
@@ -48,150 +50,10 @@ const EXACT_VALUES: Record<number, { sin: string; cos: string; tan: string }> = 
 // ----------------------------------------------------------------------------
 // HELPER: QUESTION BUILDER
 // ----------------------------------------------------------------------------
-function q(
-    id: string,
-    d: Difficulty,
-    s: Stage,
-    p: string,
-    expr: string,
-    target: string,
-    slots: Array<{ id: string; l: string; e: number | string; p?: string }>,
-    correct: string,
-    extra?: { angle?: number; trigFunc?: "sin" | "cos" | "tan"; hintLatex?: string[] }
-): S302Quest {
-    return {
-        id,
-        difficulty: d,
-        stage: s,
-        promptLatex: p,
-        expressionLatex: expr,
-        targetLatex: target,
-        slots: slots.map((sl) => ({
-            id: sl.id,
-            labelLatex: sl.l,
-            placeholder: sl.p ?? "?",
-            expected: sl.e,
-        })),
-        correctLatex: correct,
-        ...extra,
-    };
-}
-
 function buildStagePool(t: ReturnType<typeof useLanguage>["t"], difficulty: Difficulty, stage: Stage): S302Quest[] {
-    // --- STAGE: UNIT CIRCLE ---
-    if (stage === "UNIT_CIRCLE") {
-        if (difficulty === "BASIC") {
-            return [
-                q("U-B1", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "120^\\circ", "\\text{Quadrant}", [{ id: "q", l: "Q", e: 2 }], "2", { angle: 120 }),
-                q("U-B2", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "300^\\circ", "\\text{Quadrant}", [{ id: "q", l: "Q", e: 4 }], "4", { angle: 300 }),
-                q("U-B3", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "45^\\circ", "\\text{Quadrant}", [{ id: "q", l: "Q", e: 1 }], "1", { angle: 45 }),
-                q("U-B4", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "200^\\circ", "\\text{Quadrant}", [{ id: "q", l: "Q", e: 3 }], "3", { angle: 200 }),
-                q("U-B5", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "91^\\circ", "\\text{Quadrant}", [{ id: "q", l: "Q", e: 2 }], "2", { angle: 91 }),
-            ];
-        }
-        if (difficulty === "CORE") {
-            return [
-                q("U-C1", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\sin(150^\\circ)", "\\text{Sign } (+/-)", [{ id: "s", l: "+/-", e: "+", p: "+/-" }], "+", { angle: 150 }),
-                q("U-C2", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\cos(120^\\circ)", "\\text{Sign } (+/-)", [{ id: "s", l: "+/-", e: "-", p: "+/-" }], "-", { angle: 120 }),
-                q("U-C3", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\tan(200^\\circ)", "\\text{Sign } (+/-)", [{ id: "s", l: "+/-", e: "+", p: "+/-" }], "+", { angle: 200 }),
-                q("U-C4", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\sin(300^\\circ)", "\\text{Sign } (+/-)", [{ id: "s", l: "+/-", e: "-", p: "+/-" }], "-", { angle: 300 }),
-                q("U-C5", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\cos(45^\\circ)", "\\text{Sign } (+/-)", [{ id: "s", l: "+/-", e: "+", p: "+/-" }], "+", { angle: 45 }),
-            ];
-        }
-        if (difficulty === "ADVANCED") {
-            return [
-                q("U-A1", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "90^\\circ", "\\text{Radians}", [{ id: "r", l: "rad", e: "pi/2" }], "\\pi/2", { angle: 90 }),
-                q("U-A2", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "180^\\circ", "\\text{Radians}", [{ id: "r", l: "rad", e: "pi" }], "\\pi", { angle: 180 }),
-                q("U-A3", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "45^\\circ", "\\text{Radians}", [{ id: "r", l: "rad", e: "pi/4" }], "\\pi/4", { angle: 45 }),
-                q("U-A4", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "60^\\circ", "\\text{Radians}", [{ id: "r", l: "rad", e: "pi/3" }], "\\pi/3", { angle: 60 }),
-                q("U-A5", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "30^\\circ", "\\text{Radians}", [{ id: "r", l: "rad", e: "pi/6" }], "\\pi/6", { angle: 30 }),
-            ];
-        }
-        return [ // ELITE
-            q("U-E1", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\frac{\\pi}{2}", "\\text{Degrees}", [{ id: "d", l: "deg", e: 90 }], "90^\\circ", { angle: 90 }),
-            q("U-E2", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\frac{\\pi}{6}", "\\text{Degrees}", [{ id: "d", l: "deg", e: 30 }], "30^\\circ", { angle: 30 }),
-            q("U-E3", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\frac{5\\pi}{6}", "\\text{Degrees}", [{ id: "d", l: "deg", e: 150 }], "150^\\circ", { angle: 150 }),
-            q("U-E4", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\frac{3\\pi}{4}", "\\text{Degrees}", [{ id: "d", l: "deg", e: 135 }], "135^\\circ", { angle: 135 }),
-            q("U-E5", difficulty, stage, t("sm3_02.stages.unit_circle_prompt_latex"), "\\frac{4\\pi}{3}", "\\text{Degrees}", [{ id: "d", l: "deg", e: 240 }], "240^\\circ", { angle: 240 }),
-        ];
-    }
-
-    // --- STAGE: PROJECTIONS ---
-    if (stage === "PROJECTIONS") {
-        if (difficulty === "BASIC") {
-            return [
-                q("P-B1", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(30^\\circ)", "v", [{ id: "v", l: "v", e: "1/2" }], "1/2", { angle: 30, trigFunc: "sin" }),
-                q("P-B2", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(60^\\circ)", "v", [{ id: "v", l: "v", e: "1/2" }], "1/2", { angle: 60, trigFunc: "cos" }),
-                q("P-B3", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(90^\\circ)", "v", [{ id: "v", l: "v", e: 1 }], "1", { angle: 90, trigFunc: "sin" }),
-                q("P-B4", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(0^\\circ)", "v", [{ id: "v", l: "v", e: 1 }], "1", { angle: 0, trigFunc: "cos" }),
-                q("P-B5", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(45^\\circ)", "v", [{ id: "v", l: "v", e: "sqrt(2)/2" }], "\\frac{\\sqrt{2}}{2}", { angle: 45, trigFunc: "sin" }),
-            ];
-        }
-        if (difficulty === "CORE") {
-            return [
-                q("P-C1", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(150^\\circ)", "v", [{ id: "v", l: "v", e: "1/2" }], "1/2", { angle: 150, trigFunc: "sin" }),
-                q("P-C2", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(120^\\circ)", "v", [{ id: "v", l: "v", e: "-1/2" }], "-1/2", { angle: 120, trigFunc: "cos" }),
-                q("P-C3", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(180^\\circ)", "v", [{ id: "v", l: "v", e: -1 }], "-1", { angle: 180, trigFunc: "cos" }),
-                q("P-C4", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(120^\\circ)", "v", [{ id: "v", l: "v", e: "sqrt(3)/2" }], "\\frac{\\sqrt{3}}{2}", { angle: 120, trigFunc: "sin" }),
-                q("P-C5", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(150^\\circ)", "v", [{ id: "v", l: "v", e: "-sqrt(3)/2" }], "-\\frac{\\sqrt{3}}{2}", { angle: 150, trigFunc: "cos" }),
-            ];
-        }
-        if (difficulty === "ADVANCED") {
-            return [
-                q("P-A1", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(210^\\circ)", "v", [{ id: "v", l: "v", e: "-1/2" }], "-1/2", { angle: 210, trigFunc: "sin" }),
-                q("P-A2", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(240^\\circ)", "v", [{ id: "v", l: "v", e: "-1/2" }], "-1/2", { angle: 240, trigFunc: "cos" }),
-                q("P-A3", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(300^\\circ)", "v", [{ id: "v", l: "v", e: "-sqrt(3)/2" }], "-\\frac{\\sqrt{3}}{2}", { angle: 300, trigFunc: "sin" }),
-                q("P-A4", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\cos(330^\\circ)", "v", [{ id: "v", l: "v", e: "sqrt(3)/2" }], "\\frac{\\sqrt{3}}{2}", { angle: 330, trigFunc: "cos" }),
-                q("P-A5", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\sin(225^\\circ)", "v", [{ id: "v", l: "v", e: "-sqrt(2)/2" }], "-\\frac{\\sqrt{2}}{2}", { angle: 225, trigFunc: "sin" }),
-            ];
-        }
-        return [ // ELITE
-            q("P-E1", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\tan(45^\\circ)", "v", [{ id: "v", l: "v", e: 1 }], "1", { angle: 45, trigFunc: "tan" }),
-            q("P-E2", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\tan(60^\\circ)", "v", [{ id: "v", l: "v", e: "sqrt(3)" }], "\\sqrt{3}", { angle: 60, trigFunc: "tan" }),
-            q("P-E3", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\tan(150^\\circ)", "v", [{ id: "v", l: "v", e: "-sqrt(3)/3" }], "-\\frac{\\sqrt{3}}{3}", { angle: 150, trigFunc: "tan" }),
-            q("P-E4", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\tan(135^\\circ)", "v", [{ id: "v", l: "v", e: -1 }], "-1", { angle: 135, trigFunc: "tan" }),
-            q("P-E5", difficulty, stage, t("sm3_02.stages.projections_prompt_latex"), "\\tan(30^\\circ)", "v", [{ id: "v", l: "v", e: "sqrt(3)/3" }], "\\frac{\\sqrt{3}}{3}", { angle: 30, trigFunc: "tan" }),
-        ];
-    }
-
-    // --- STAGE: WAVES ---
-    if (stage === "WAVES") {
-        if (difficulty === "BASIC") {
-            return [
-                q("W-B1", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=2\\sin(x)", "\\text{Amplitude}", [{ id: "a", l: "A", e: 2 }], "2"),
-                q("W-B2", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=5\\cos(x)", "\\text{Amplitude}", [{ id: "a", l: "A", e: 5 }], "5"),
-                q("W-B3", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=-3\\sin(x)", "\\text{Amplitude}", [{ id: "a", l: "A", e: 3 }], "3"),
-                q("W-B4", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\frac{1}{2}\\cos(x)", "\\text{Amplitude}", [{ id: "a", l: "A", e: "1/2" }], "1/2"),
-                q("W-B5", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=4\\sin(3x)", "\\text{Amplitude}", [{ id: "a", l: "A", e: 4 }], "4"),
-            ];
-        }
-        if (difficulty === "CORE") {
-            return [
-                q("W-C1", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(2x)", "\\text{Period (rad)}", [{ id: "p", l: "T", e: "pi" }], "\\pi"),
-                q("W-C2", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\cos(x/2)", "\\text{Period (rad)}", [{ id: "p", l: "T", e: "4pi" }], "4\\pi"),
-                q("W-C3", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(4x)", "\\text{Period (rad)}", [{ id: "p", l: "T", e: "pi/2" }], "\\pi/2"),
-                q("W-C4", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\cos(3x)", "\\text{Period (rad)}", [{ id: "p", l: "T", e: "2pi/3" }], "2\\pi/3"),
-                q("W-C5", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(\\pi x)", "\\text{Period}", [{ id: "p", l: "T", e: 2 }], "2"),
-            ];
-        }
-        if (difficulty === "ADVANCED") {
-            return [
-                q("W-A1", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=3\\cos(x)+1", "\\text{Max Value}", [{ id: "m", l: "max", e: 4 }], "4"),
-                q("W-A2", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=3\\cos(x)+1", "\\text{Min Value}", [{ id: "m", l: "min", e: -2 }], "-2"),
-                q("W-A3", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=2\\sin(x)-3", "\\text{Max Value}", [{ id: "m", l: "max", e: -1 }], "-1"),
-                q("W-A4", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=2\\sin(x)-3", "\\text{Min Value}", [{ id: "m", l: "min", e: -5 }], "-5"),
-                q("W-A5", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=5-2\\cos(x)", "\\text{Max Value}", [{ id: "m", l: "max", e: 7 }], "7"),
-            ];
-        }
-        return [ // ELITE
-            q("W-E1", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(x)+\\cos(x), x=45^\\circ", "y", [{ id: "y", l: "y", e: "sqrt(2)" }], "\\sqrt{2}"),
-            q("W-E2", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(x), x=30^\\circ", "y", [{ id: "y", l: "y", e: "1/2" }], "1/2"),
-            q("W-E3", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\cos(2x), x=15^\\circ", "y", [{ id: "y", l: "y", e: "sqrt(3)/2" }], "\\frac{\\sqrt{3}}{2}"),
-            q("W-E4", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=2\\sin(x/2), x=60^\\circ", "y", [{ id: "y", l: "y", e: 1 }], "1"),
-            q("W-E5", difficulty, stage, t("sm3_02.stages.waves_prompt_latex"), "y=\\sin(x), y'=?", "\\text{Derivative}", [{ id: "d", l: "y'", e: "cos(x)" }], "\\cos(x)"),
-        ];
-    }
-
+    if (stage === "UNIT_CIRCLE") return generateUnitCircleQuests(t, difficulty);
+    if (stage === "PROJECTIONS") return generateProjectionsQuests(t, difficulty);
+    if (stage === "WAVES") return generateWavesQuests(t, difficulty);
     return [];
 }
 
