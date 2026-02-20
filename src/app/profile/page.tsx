@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ScienceRadar from "@/components/ui/ScienceRadar";
@@ -60,6 +62,14 @@ export default function ProfilePage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 pb-20 pt-12 overflow-y-auto">
       <div className="max-w-6xl mx-auto space-y-12">
+        <Link
+          href="/nexus"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-black tracking-widest text-white/60 hover:text-white transition-all group"
+        >
+          <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
+          {t("common.back_to_hub") || "BACK TO HUB"}
+        </Link>
+
         <div className="border-l-2 border-neon-purple pl-6 py-3">
           <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black">{profile_t.title}</div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-3">{profile_t.subtitle}</h1>

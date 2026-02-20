@@ -10,9 +10,9 @@ import EquationBalance from "@/components/chamber/sm1-04/EquationBalance";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
 type Stage = "BALANCE" | "SOLVE" | "TRANSFORM" | "APPLICATIONS";
-type EquationQuest = Quest & { 
-  stage: Stage; 
-  context?: string; 
+type EquationQuest = Quest & {
+  stage: Stage;
+  context?: string;
   scenario?: string;
   equation?: string;
   leftSide?: number;
@@ -26,6 +26,18 @@ export default function SM105Page() {
 
   // Pre-extract all translations
   const sm1_04_t = {
+    objective_title: t("sm1_04.objective_title"),
+    scenario_title: t("sm1_04.scenario_title"),
+    labels: {
+      current_age: t("sm1_04.labels.current_age"),
+      years: t("sm1_04.labels.years"),
+      pure_acid: t("sm1_04.labels.pure_acid"),
+      liters: t("sm1_04.labels.liters"),
+      boat_speed: t("sm1_04.labels.boat_speed"),
+      speed_unit: t("sm1_04.labels.speed_unit"),
+      cost_price: t("sm1_04.labels.cost_price"),
+      currency: t("sm1_04.labels.currency"),
+    },
     scenarios: {
       applications: t("sm1_04.scenarios.applications"),
       balance: t("sm1_04.scenarios.balance"),
@@ -1161,10 +1173,10 @@ export default function SM105Page() {
     difficulty,
     handleDifficultyChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<EquationQuest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<EquationQuest, Stage>({
     moduleCode: "sm1-04",
     buildPool,
     initialStage: "BALANCE",
@@ -1216,10 +1228,10 @@ export default function SM105Page() {
       }}
       monitorContent={
         <div className="space-y-4">
-          <EquationBalance 
-            stage={stage} 
+          <EquationBalance
+            stage={stage}
             quest={quest}
-            language={currentLanguage as "EN" | "CN" | "DE"} 
+            language={currentLanguage as "EN" | "CN" | "DE"}
           />
         </div>
       }

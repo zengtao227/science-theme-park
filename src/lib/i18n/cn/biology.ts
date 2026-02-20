@@ -786,7 +786,23 @@ export const cnBiology = {
             arteries: "动脉",
             veins: "静脉",
             lungs: "肺",
-            trachea: "气管"
+            trachea: "气管",
+            reason: "理由",
+            absorption: "吸收",
+            surface_area: "表面积",
+            organ: "器官",
+            function: "功能",
+            result: "结果",
+            process: "过程",
+            dehydration: "脱水",
+            peristalsis: "蠕动",
+            body: "身体",
+            support: "支持",
+            diffusion: "扩散",
+            tree: "树",
+            pressure: "压力",
+            structure: "结构",
+            mechanism: "机制"
         },
         prompts: {
             // 消化系统 - 基础 (5题)

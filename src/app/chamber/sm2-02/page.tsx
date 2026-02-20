@@ -666,10 +666,10 @@ export default function S202Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S202Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S202Quest, Stage>({
     moduleCode: "sm2-02",
     buildPool,
     initialStage: "SOLVE_HYP",
@@ -950,16 +950,8 @@ export default function S202Page() {
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
               {(() => {
                 const latex = currentQuest?.promptLatex || "";
-                if (latex && latex.includes("\\\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
-                  const clean = latex
-                    .replace(/\\\\text\{/g, "")
-                    .replace(/\}/g, "")
-                    .replace(/\\\\\\\\/g, "\n")
-                    .replace(/\\\\;/g, " ")
-                    .replace(/\\\\,/g, " ")
-                    .replace(/\\\\quad/g, "  ")
-                    .replace(/\\\\!/g, "");
-                  return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
+                if (latex && (latex.includes("\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL"))) {
+                  return <span className="whitespace-pre-wrap font-sans not-italic">{latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\;/g, " ").replace(/\\\\,/g, " ").replace(/\\\\quad/g, "  ").replace(/\\\\!/g, "")}</span>;
                 }
                 return <InlineMath math={latex || ""} />;
               })()}

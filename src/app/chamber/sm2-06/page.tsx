@@ -103,7 +103,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "CORE") {
       return [
         {
@@ -188,7 +188,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "ADVANCED") {
       return [
         {
@@ -213,7 +213,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
           expressionLatex: `\\\\begin{cases} x = \\\\frac{2y+3}{3} \\\\ 3x + y = 15 \\\\end{cases}`,
           targetLatex: `x, y`,
           visual: {
-            eq1: { a: 1, b: -2/3, c: -1 },
+            eq1: { a: 1, b: -2 / 3, c: -1 },
             eq2: { a: 3, b: 1, c: 15 },
             intersect: { x: 3, y: 6 }
           },
@@ -273,7 +273,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     // ELITE difficulty
     return [
       {
@@ -298,7 +298,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         expressionLatex: `\\\\begin{cases} x = \\\\frac{7y-11}{5} \\\\ 5x + 2y = 23 \\\\end{cases}`,
         targetLatex: `x, y`,
         visual: {
-          eq1: { a: 1, b: -7/5, c: 11/5 },
+          eq1: { a: 1, b: -7 / 5, c: 11 / 5 },
           eq2: { a: 5, b: 2, c: 23 },
           intersect: { x: 3, y: 4 }
         },
@@ -330,7 +330,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         expressionLatex: `\\\\begin{cases} x = \\\\frac{9y-17}{7} \\\\ 7x + 3y = 35 \\\\end{cases}`,
         targetLatex: `x, y`,
         visual: {
-          eq1: { a: 1, b: -9/7, c: 17/7 },
+          eq1: { a: 1, b: -9 / 7, c: 17 / 7 },
           eq2: { a: 7, b: 3, c: 35 },
           intersect: { x: 4, y: 3.67 }
         },
@@ -445,7 +445,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "CORE") {
       return [
         {
@@ -530,7 +530,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "ADVANCED") {
       return [
         {
@@ -615,7 +615,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     // ELITE difficulty
     return [
       {
@@ -787,7 +787,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "CORE") {
       return [
         {
@@ -872,7 +872,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     if (difficulty === "ADVANCED") {
       return [
         {
@@ -957,7 +957,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
       ];
     }
-    
+
     // ELITE difficulty
     return [
       {
@@ -1066,10 +1066,10 @@ export default function S206Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S206Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S206Quest, Stage>({
     moduleCode: "sm2-06",
     buildPool,
     initialStage: "SUBSTITUTION",
@@ -1141,9 +1141,9 @@ export default function S206Page() {
           </div>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
             {(() => {
-              const latex = currentQuest?.promptLatex || "" || "";
+              const latex = currentQuest?.promptLatex || "";
               if (latex && latex.includes("\\text{")) {
-                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
               }
               return <InlineMath math={latex || ""} />;
             })()}

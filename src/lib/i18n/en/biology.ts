@@ -926,7 +926,23 @@ export const enBiology = {
             arteries: "ARTERIES",
             veins: "VEINS",
             lungs: "LUNGS",
-            trachea: "TRACHEA"
+            trachea: "TRACHEA",
+            reason: "Reason",
+            absorption: "Absorption",
+            surface_area: "Surface Area",
+            organ: "Organ",
+            function: "Function",
+            result: "Result",
+            process: "Process",
+            dehydration: "Dehydration",
+            peristalsis: "Peristalsis",
+            body: "Body",
+            support: "Support",
+            diffusion: "Diffusion",
+            tree: "Tree",
+            pressure: "Pressure",
+            structure: "Structure",
+            mechanism: "Mechanism"
         },
         prompts: {
             // DIGESTIVE STAGE - BASIC (5 questions)

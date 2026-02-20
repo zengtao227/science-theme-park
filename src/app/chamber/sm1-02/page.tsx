@@ -57,16 +57,16 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
             if (difficulty === "BASIC") {
                 const val1 = Math.floor(Math.random() * 10) + 1;
                 answer = val1;
-                promptLatex = `\\\\text{If } ${var1}=${val1} \\\\text{, what is } ${var1}?`;
+                promptLatex = `\\\\text{${sm1_02_t.prompts.if} } ${var1}=${val1} \\\\text{, ${sm1_02_t.prompts.what_is} } ${var1}?`;
                 expressionLatex = var1;
-                hintLatex = [`\\\\text{The variable ${var1} holds the value ${val1}.}`];
+                hintLatex = [`\\\\text{${sm1_02_t.labels.variable} ${var1} holds the value ${val1}.}`];
                 visualData = { variables: [{ label: var1, value: val1, color: color1 }] };
             } else if (difficulty === "CORE") {
                 const val1 = Math.floor(Math.random() * 8) + 2;
                 const coeff = Math.floor(Math.random() * 3) + 2; // 2 or 3
                 answer = coeff * val1;
                 const expr = coeff === 2 ? `${var1}+${var1}` : `${coeff}${var1}`;
-                promptLatex = `\\\\text{If } ${var1}=${val1} \\\\text{, calculate } ${expr}`;
+                promptLatex = `\\\\text{${sm1_02_t.prompts.if} } ${var1}=${val1} \\\\text{, ${sm1_02_t.prompts.calculate} } ${expr}`;
                 expressionLatex = expr;
                 hintLatex = [`\\text{Evaluate the expression}`];
                 visualData = {
@@ -77,7 +77,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const val2 = Math.floor(Math.random() * 5) + 1;
                 const sign = Math.random() > 0.5 ? '+' : '-';
                 answer = sign === '+' ? val1 + val2 : val1 - val2;
-                promptLatex = `\\\\text{If } ${var1}=${val1}, ${var2}=${val2} \\\\text{, calculate } ${var1}${sign}${var2}`;
+                promptLatex = `\\\\text{${sm1_02_t.prompts.if} } ${var1}=${val1}, ${var2}=${val2} \\\\text{, ${sm1_02_t.prompts.calculate} } ${var1}${sign}${var2}`;
                 expressionLatex = `${var1}${sign}${var2}`;
                 hintLatex = [`\\text{Substitute both variables}`];
                 visualData = {
@@ -93,7 +93,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const c2 = Math.floor(Math.random() * 2) + 2;
                 const sign = Math.random() > 0.4 ? '+' : '-';
                 answer = sign === '+' ? c1 * val1 + c2 * val2 : c1 * val1 - c2 * val2;
-                promptLatex = `\\\\text{If } ${var1}=${val1}, ${var2}=${val2} \\\\text{, calculate } ${c1}${var1}${sign}${c2}${var2}`;
+                promptLatex = `\\\\text{${sm1_02_t.prompts.if} } ${var1}=${val1}, ${var2}=${val2} \\\\text{, ${sm1_02_t.prompts.calculate} } ${c1}${var1}${sign}${c2}${var2}`;
                 expressionLatex = `${c1}${var1}${sign}${c2}${var2}`;
                 hintLatex = [`\\text{Multiply coefficients first}`];
                 visualData = {
@@ -114,7 +114,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 targetLatex,
                 visualMode: 'CONTAINERS',
                 visualData,
-                slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: answer }],
+                slots: [{ id: "ans", labelLatex: `\\\\text{${sm1_02_t.labels.value}}`, placeholder: "?", expected: answer }],
                 correctLatex: String(answer),
                 hintLatex,
             });
@@ -182,10 +182,10 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
             }
 
             const slots = isMultiVar
-                ? [{ id: "res", labelLatex: "Result", placeholder: answerStr, expected: answerStr }]
+                ? [{ id: "res", labelLatex: `\\\\text{${sm1_02_t.labels.result}}`, placeholder: answerStr, expected: answerStr }]
                 : [
-                    { id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: String(parseInt(answerStr) || 0) },
-                    { id: "var", labelLatex: "Variable", placeholder: "x", expected: answerStr.replace(/[0-9-]/g, '') }
+                    { id: "coef", labelLatex: `\\\\text{${sm1_02_t.labels.coefficient}}`, placeholder: "#", expected: String(parseInt(answerStr) || 0) },
+                    { id: "var", labelLatex: `\\\\text{${sm1_02_t.labels.variable}}`, placeholder: "x", expected: answerStr.replace(/[0-9-]/g, '') }
                 ];
 
             quests.push({
@@ -238,12 +238,12 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${expr} \\\\text{ for } ${v1}=${val}`,
+                promptLatex: `\\\\text{${sm1_02_t.prompts.calculate} } ${expr} \\\\text{ ${sm1_02_t.prompts.if} } ${v1}=${val}`,
                 expressionLatex: expr,
                 targetLatex: String(answer),
                 visualMode: 'MACHINE',
                 visualData: { inputValue: val, formula: expr },
-                slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: answer }],
+                slots: [{ id: "ans", labelLatex: `\\\\text{${sm1_02_t.labels.output}}`, placeholder: "?", expected: answer }],
                 correctLatex: String(answer),
                 hintLatex: [`\\\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
             });
@@ -284,8 +284,20 @@ export default function SM103Page() {
         prompts: {
             simplify: t("sm1_02.prompts.simplify") || "Simplify:",
             combine_like_terms: t("sm1_02.prompts.combine_like_terms") || "Combine terms with same variables",
-            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate") || "Substitute value into expression"
-        }
+            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate") || "Substitute value into expression",
+            if: t("sm1_02.prompts.if") || "If",
+            calculate: t("sm1_02.prompts.calculate") || "calculate",
+            what_is: t("sm1_02.prompts.what_is") || "what is"
+        },
+        labels: {
+            result: t("sm1_02.labels.result") || "Result",
+            coefficient: t("sm1_02.labels.coefficient") || "Coefficient",
+            variable: t("sm1_02.labels.variable") || "Variable",
+            value: t("sm1_02.labels.value") || "Value",
+            output: t("sm1_02.labels.output") || "Output"
+        },
+        objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",
+        scenario_title: t("sm1_02.scenario_title") || "SCENARIO CONTEXT"
     };
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_02_t, d, s), [sm1_02_t]);
@@ -353,7 +365,7 @@ export default function SM103Page() {
             <div className="space-y-12">
                 <div className="text-center group">
                     <div className="text-[10px] text-white/90 uppercase tracking-[0.5em] font-black mb-4 group-hover:text-neon-purple transition-colors">
-                        MISSION OBJECTIVE
+                        {sm1_02_t.objective_title}
                     </div>
                     <div className="text-2xl text-white font-black italic whitespace-normal break-words leading-tight min-h-[5rem] flex items-center justify-center">
                         {currentQuest?.promptLatex && (
@@ -385,7 +397,7 @@ export default function SM103Page() {
 
                 {/* Scenario Hint Footer */}
                 <div className="mt-8 text-center opacity-60 hover:opacity-100 transition-opacity">
-                    <div className="text-xs font-mono text-neon-blue mb-2">SCENARIO CONTEXT</div>
+                    <div className="text-xs font-mono text-neon-blue mb-2">{sm1_02_t.scenario_title}</div>
                     <div className="text-sm italic text-white max-w-lg mx-auto leading-relaxed">
                         {stage === 'VARIABLES' && sm1_02_t.scenarios.variables}
                         {stage === 'TERMS' && sm1_02_t.scenarios.terms}

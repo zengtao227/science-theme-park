@@ -731,7 +731,9 @@ export const cnMath = {
             simplify: "化简",
             evaluate: "求值",
             input: "输入",
-            output: "输出"
+            output: "输出",
+            result: "结果",
+            coefficient: "系数"
         },
         stages: {
             variables: "变量概念",
@@ -745,8 +747,13 @@ export const cnMath = {
             simplify: "化简：",
             evaluate_for: "计算 {expr} 当 {var}={val}",
             combine_like_terms: "合并同类项",
-            substitute_and_evaluate: "代入并计算"
+            substitute_and_evaluate: "代入并计算",
+            if: "如果 {var}={val}",
+            calculate: "计算 {expr}",
+            what_is: "{var} 是多少？"
         },
+        objective_title: "任务目标",
+        scenario_title: "场景说明",
         scenarios: {
             variables: "巴塞尔莱茵河更衣室：你正在管理著名的莱茵河游泳之家的储物柜。每个储物柜（变量 'x'）包含一个特定的物品。要理解 'x' 只是一个占位符。",
             terms: "集市广场水果摊：你在巴塞尔集市整理货物。苹果和梨不能直接混合。将相同的物品归类：3个苹果 + 2个苹果 = 5个苹果。",
@@ -767,7 +774,8 @@ export const cnMath = {
         monitor_title: "SM1.03_整数监视器",
         footer_left: "SM1.03_零度以下 // 节点：巴塞尔",
         basel_scenario: "巴塞尔冬季场景",
-        scenario_title: "问题背景",
+        scenario_title: "场景说明",
+        objective_title: "任务目标",
         calculate_title: "计算",
         answer_title: "你的答案",
         solution_title: "解答",
@@ -775,6 +783,23 @@ export const cnMath = {
             number_line: "数轴",
             rationals: "有理数",
             quadrants: "象限"
+        },
+        labels: {
+            input: "输入答案",
+            hints: "提示",
+            coordinate: "坐标",
+            quadrant: "象限",
+            middle_value: "中间值",
+            pos: "位置",
+            colder: "哪个更冷？",
+            smaller: "哪个更小？",
+            water_lvl: "水位",
+            final_temp: "最终温度",
+            dist: "距离",
+            abs: "绝对值",
+            range: "范围",
+            first: "第一个值",
+            start: "开始"
         },
         scenarios: {
             number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
@@ -858,7 +883,8 @@ export const cnMath = {
         monitor_title: "SM1.04_等式监视器",
         footer_left: "SM1.04_等式平衡 // 节点：巴塞尔",
         basel_scenario: "巴塞尔等式场景",
-        scenario_title: "问题背景",
+        scenario_title: "场景说明",
+        objective_title: "任务目标",
         solve_title: "求解等式",
         answer_title: "你的答案",
         solution_title: "解答",
@@ -867,6 +893,32 @@ export const cnMath = {
             solve: "求解",
             transform: "转换",
             applications: "应用"
+        },
+        labels: {
+            input: "输入",
+            hints: "提示",
+            equation: "方程式",
+            solution: "解",
+            adult_tickets: "成人票",
+            left_side: "左侧",
+            right_side: "右侧",
+            operation: "操作",
+            identify_eq: "识别方程式",
+            isolate_var: "隔离变量",
+            solve_for: "求 {var} 的解",
+            current_age: "当前年龄",
+            pure_acid: "纯酸量",
+            boat_speed: "静水船速",
+            cost_price: "成本价",
+            years: "岁",
+            liters: "升",
+            speed_unit: "公里/小时",
+            currency: "瑞郎"
+        },
+        canvas: {
+            bus: "公交车",
+            ferry: "渡轮",
+            basel_apps: "巴塞尔应用题"
         },
         scenarios: {
             balance: "理解等式平衡：就像天平一样，等式必须保持平衡。无论对一边做什么，都必须对另一边做同样的操作。这个基本原则是解所有等式的关键。",
@@ -1130,6 +1182,7 @@ export const cnMath = {
         input_k: "k",
         input_m: "m",
         input_number: "答案",
+        diagonal: "对角线",
         pythagoras: {
             solve_hyp: "消防救援：计算消防梯最短长度",
             solve_hyp_params: "水平距离 a={a}m, 垂直高度 b={b}m",
@@ -1140,6 +1193,8 @@ export const cnMath = {
             check_right: "📐 工程验收：这是直角三角形吗？",
             distance: "🚁 无人机快递：计算直线飞行距离",
             elite_space: " CERN 实验室：求解状态空间对角线",
+            right_triangle_q: "📐 这是直角三角形吗？",
+            solve_diagonal: "计算对角线长度",
             explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。",
             fluid_title: "流体面积守恒实验",
             fluid_desc: "倾斜容器观察 A^{2} + B^{2} 的液体如何精准填满 C^{2}。这直观证明了面积之和的守恒性。"
@@ -1381,7 +1436,10 @@ export const cnMath = {
             hints: "提示",
             distance: "距离 (d)",
             midpoint: "中点 (M)",
-            slope: "斜率 (m)"
+            slope: "斜率 (m)",
+            translation_vector: "平移向量",
+            reflection_line: "反射线",
+            transformation: "变换"
         },
         mission: {
             title: "苏黎世节点测绘",

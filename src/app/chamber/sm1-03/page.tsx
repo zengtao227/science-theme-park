@@ -18,6 +18,18 @@ export default function SM103Page() {
 
   // Pre-extract all translations
   const sm1_03_t = {
+    labels: {
+      pos: t("sm1_03.labels.pos"),
+      colder: t("sm1_03.labels.colder"),
+      smaller: t("sm1_03.labels.smaller"),
+      middle_value: t("sm1_03.labels.middle_value"),
+      water_lvl: t("sm1_03.labels.water_lvl"),
+      final_temp: t("sm1_03.labels.final_temp"),
+      dist: t("sm1_03.labels.dist"),
+      abs: t("sm1_03.labels.abs"),
+      range: t("sm1_03.labels.range"),
+    },
+    objective_title: t("sm1_03.objective_title"),
     scenarios: {
       number_line: t("sm1_03.scenarios.number_line"),
       rationals: t("sm1_03.scenarios.rationals"),
@@ -123,7 +135,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_temp_neg2,
-            promptLatex: "\\\\text{Temperature}",
+            promptLatex: `\\\\text{${tObj.labels.final_temp}}`,
             expressionLatex: "-2^\\\\circ\\\\text{C}",
             targetLatex: "T",
             value: -2,
@@ -136,7 +148,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_depth_neg4,
-            promptLatex: "\\\\text{Depth}",
+            promptLatex: `\\\\text{${tObj.labels.dist}}`,
             expressionLatex: "-4\\\\text{m}",
             targetLatex: "d",
             value: -4,
@@ -190,7 +202,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_order_three,
-            promptLatex: "\\\\text{Middle value}",
+            promptLatex: `\\\\text{${tObj.labels.middle_value}}`,
             expressionLatex: "-4, 0, 3",
             targetLatex: "x",
             value: 0,
@@ -203,7 +215,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_rhine_level,
-            promptLatex: "\\\\text{Water level}",
+            promptLatex: `\\\\text{${tObj.labels.water_lvl}}`,
             expressionLatex: "5 - 8 = -3",
             targetLatex: "L",
             value: -3,
@@ -216,7 +228,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_temp_drop,
-            promptLatex: "\\\\text{Final temperature}",
+            promptLatex: `\\\\text{${tObj.labels.final_temp}}`,
             expressionLatex: "2 - 7 = -5",
             targetLatex: "T",
             value: -5,
@@ -244,7 +256,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.number_line,
             context: tObj.problems.nl_abs_value,
-            promptLatex: "\\\\text{Absolute value}",
+            promptLatex: `\\\\text{${tObj.labels.abs}}`,
             expressionLatex: "|-8| = 8",
             targetLatex: "x",
             value: 8,
@@ -938,10 +950,10 @@ export default function SM103Page() {
     difficulty,
     handleDifficultyChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<IntegerQuest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<IntegerQuest, Stage>({
     moduleCode: "sm1-03",
     buildPool,
     initialStage: "NUMBER_LINE",
@@ -1004,7 +1016,7 @@ export default function SM103Page() {
         {quest?.scenario && (
           <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
-              {t("sm1_03.basel_scenario")}
+              {t("sm1_03.objective_title")}
             </div>
             <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
           </div>

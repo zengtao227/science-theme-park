@@ -663,12 +663,12 @@ export default function S205Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback
     } = useQuestManager<S205Quest, Stage>({
-    moduleCode: "sm2-05",
+        moduleCode: "sm2-05",
         buildPool,
         initialStage: "RULES",
     });
@@ -681,11 +681,11 @@ export default function S205Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      title={t("sm2_05.title")}
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
+            title={t("sm2_05.title")}
             moduleCode="SM2.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -701,18 +701,18 @@ export default function S205Page() {
             successRate={successRate}
             checkStatus={lastCheck}
             translations={{
-                back: t("sm2_05.back"), 
-                check: t("sm2_05.check"), 
-                next: t("sm2_05.next"), 
-                correct: t("sm2_05.correct"), 
+                back: t("sm2_05.back"),
+                check: t("sm2_05.check"),
+                next: t("sm2_05.next"),
+                correct: t("sm2_05.correct"),
                 incorrect: t("sm2_05.incorrect"),
-                ready: t("sm2_05.ready"), 
+                ready: t("sm2_05.ready"),
                 monitor_title: t("sm2_05.monitor_title"),
-                difficulty: { 
-                    basic: t("sm2_05.difficulty.basic"), 
-                    core: t("sm2_05.difficulty.core"), 
-                    advanced: t("sm2_05.difficulty.advanced"), 
-                    elite: t("sm2_05.difficulty.elite") 
+                difficulty: {
+                    basic: t("sm2_05.difficulty.basic"),
+                    core: t("sm2_05.difficulty.core"),
+                    advanced: t("sm2_05.difficulty.advanced"),
+                    elite: t("sm2_05.difficulty.elite")
                 },
             }}
             monitorContent={
@@ -728,9 +728,9 @@ export default function S205Page() {
                     </div>
                     <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
                         {(() => {
-                            const latex = currentQuest?.promptLatex || "" || "";
+                            const latex = currentQuest?.promptLatex || "";
                             if (latex && latex.includes("\\text{")) {
-                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
                             }
                             return <InlineMath math={latex || ""} />;
                         })()}

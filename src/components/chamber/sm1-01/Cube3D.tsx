@@ -5,11 +5,22 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text, Line } from '@react-three/drei';
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 import Canvas3DControls from '@/components/ui/Canvas3DControls';
 
 interface Cube3DProps {
   sideLength: number; // 边长
   showDiagonal?: boolean; // 是否显示对角线
+  translations?: {
+    volume?: string;
+    diagonal?: string;
+    instructions?: {
+      rotate: string;
+      zoom: string;
+      reset: string;
+    };
+  };
 }
 
 function CubeGeometry({ sideLength, showDiagonal }: Cube3DProps) {
@@ -91,7 +102,19 @@ function CubeGeometry({ sideLength, showDiagonal }: Cube3DProps) {
   );
 }
 
-export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps) {
+export default function Cube3D({
+  sideLength,
+  showDiagonal = false,
+  translations = {
+    volume: "立方体体积",
+    diagonal: "空间对角线",
+    instructions: {
+      rotate: "拖动鼠标旋转立方体，查看所有边长",
+      zoom: "滚轮缩放视图",
+      reset: "重置到初始视角"
+    }
+  }
+}: Cube3DProps) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
 
   const handleReset = () => {
@@ -135,22 +158,22 @@ export default function Cube3D({ sideLength, showDiagonal = false }: Cube3DProps
       <Canvas3DControls
         onReset={handleReset}
         showInstructions={true}
-        instructionsText={{
-          rotate: "拖动鼠标旋转立方体，查看所有边长",
-          zoom: "滚轮缩放视图",
-          reset: "重置到初始视角"
-        }}
+        instructionsText={translations.instructions}
       />
 
       {/* 公式显示 - 固定位置 */}
       <div className="absolute bottom-4 left-4 bg-black/80 p-4 rounded border border-white/60 backdrop-blur-sm">
         <div className="text-white font-mono text-sm">
-          <div className="text-neon-green mb-2">立方体体积</div>
-          <div>V = a^3 = {sideLength}^3 = {sideLength ** 3} cm^3</div>
+          <div className="text-neon-green mb-2">{translations.volume}</div>
+          <div className="bg-white/5 p-2 rounded">
+            <InlineMath math={`V = a^3 = ${sideLength}^3 = ${sideLength ** 3}\\text{ cm}^3`} />
+          </div>
           {showDiagonal && (
             <div className="mt-2 text-neon-cyan">
-              <div>空间对角线</div>
-              <div>d = a√3 = {sideLength}√3 ≈ {(sideLength * Math.sqrt(3)).toFixed(2)} cm</div>
+              <div className="mb-1">{translations.diagonal}</div>
+              <div className="bg-white/5 p-2 rounded">
+                <InlineMath math={`d = a\\sqrt{3} = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}\\text{ cm}`} />
+              </div>
             </div>
           )}
         </div>

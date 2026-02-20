@@ -751,7 +751,9 @@ export const enMath = {
             simplify: "Simplify",
             evaluate: "Evaluate",
             input: "Input",
-            output: "Output"
+            output: "Output",
+            result: "Result",
+            coefficient: "Coefficient"
         },
         stages: {
             variables: "VARIABLES",
@@ -765,8 +767,13 @@ export const enMath = {
             simplify: "Simplify:",
             evaluate_for: "Evaluate {expr} for {var}={val}",
             combine_like_terms: "Combine like terms",
-            substitute_and_evaluate: "Substitute and evaluate"
+            substitute_and_evaluate: "Substitute and evaluate",
+            if: "If {var}={val}",
+            calculate: "Calculate {expr}",
+            what_is: "What is {var}?"
         },
+        objective_title: "MISSION OBJECTIVE",
+        scenario_title: "SCENARIO CONTEXT",
         scenarios: {
             variables: "Basel Rhybadhüsli Locker: You are managing lockers at the famous Rhine swim house. Each locker (variable 'x') contains a specific value (towel, bag). Understand that 'x' is just a placeholder.",
             terms: "Marktplatz Fruit Stand: You are sorting deliveries at the Basel Market. You cannot mix apples and pears directly. Group same items together: 3 apples + 2 apples = 5 apples.",
@@ -787,10 +794,28 @@ export const enMath = {
         monitor_title: "SM1.03_INTEGER_MONITOR",
         footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
         basel_scenario: "BASEL WINTER SCENARIO",
-        scenario_title: "PROBLEM CONTEXT",
+        scenario_title: "SCENARIO CONTEXT",
+        objective_title: "MISSION OBJECTIVE",
         calculate_title: "CALCULATE",
         answer_title: "YOUR ANSWER",
         solution_title: "SOLUTION",
+        labels: {
+            input: "Input Answer",
+            hints: "Hints",
+            coordinate: "Coordinate",
+            quadrant: "Quadrant",
+            middle_value: "Middle Value",
+            pos: "Position",
+            colder: "Which is colder?",
+            smaller: "Which is smaller?",
+            water_lvl: "Water level",
+            final_temp: "Final temperature",
+            dist: "Distance",
+            abs: "Absolute value",
+            range: "Range",
+            first: "First value",
+            start: "Start"
+        },
         stages: {
             number_line: "NUMBER LINE",
             rationals: "RATIONALS",
@@ -878,10 +903,37 @@ export const enMath = {
         monitor_title: "SM1.04_EQUATION_MONITOR",
         footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
         basel_scenario: "BASEL EQUATION SCENARIO",
-        scenario_title: "PROBLEM CONTEXT",
+        scenario_title: "SCENARIO CONTEXT",
+        objective_title: "MISSION OBJECTIVE",
         solve_title: "SOLVE THE EQUATION",
         answer_title: "YOUR ANSWER",
         solution_title: "SOLUTION",
+        labels: {
+            input: "Input",
+            hints: "Hints",
+            equation: "Equation",
+            solution: "Solution",
+            adult_tickets: "Adult tickets",
+            left_side: "Left Side",
+            right_side: "Right Side",
+            operation: "Operation",
+            identify_eq: "Identify the equation",
+            isolate_var: "Isolate the variable",
+            solve_for: "Solve for {var}",
+            current_age: "Current age",
+            pure_acid: "Amount of pure acid",
+            boat_speed: "Boat speed",
+            cost_price: "Cost price",
+            years: "years",
+            liters: "L",
+            speed_unit: "km/h",
+            currency: "CHF"
+        },
+        canvas: {
+            bus: "BUS",
+            ferry: "Ferry",
+            basel_apps: "Basel Applications"
+        },
         stages: {
             balance: "BALANCE",
             solve: "SOLVE",
@@ -1150,6 +1202,7 @@ export const enMath = {
         input_k: "k",
         input_m: "m",
         input_number: "Answer",
+        diagonal: "Diagonal",
         pythagoras: {
             solve_hyp: "Fire rescue: Find the ladder length",
             solve_hyp_params: "horizontal distance a={a}m, vertical height b={b}m",
@@ -1160,6 +1213,8 @@ export const enMath = {
             check_right: "📐 Engineering check: Is this a right triangle?",
             distance: "🚁 Drone delivery: Calculate flight distance",
             elite_space: " CERN lab: Find the space diagonal",
+            right_triangle_q: "📐 Is this a right triangle?",
+            solve_diagonal: "Calculate diagonal",
             explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
             fluid_title: "Fluid Volume Conservation",
             fluid_desc: "Tilt to see A^{2} + B^{2} flow into C^{2}. This visualizes area conservation: the geometry sum remains constant."
@@ -1401,7 +1456,10 @@ export const enMath = {
             hints: "HINTS",
             distance: "Distance (d)",
             midpoint: "Midpoint (M)",
-            slope: "Slope (m)"
+            slope: "Slope (m)",
+            translation_vector: "Translation vector",
+            reflection_line: "Reflection line",
+            transformation: "Transformation"
         },
         mission: {
             title: "ZURICH NODE MAPPING",

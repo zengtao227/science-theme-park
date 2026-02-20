@@ -760,7 +760,9 @@ export const deMath = {
             simplify: "Vereinfachen",
             evaluate: "Auswerten",
             input: "Eingabe",
-            output: "Ausgabe"
+            output: "Ausgabe",
+            result: "Ergebnis",
+            coefficient: "Koeffizient"
         },
         stages: {
             variables: "VARIABLEN",
@@ -774,8 +776,13 @@ export const deMath = {
             simplify: "Vereinfachen:",
             evaluate_for: "Werte {expr} für {var}={val} aus",
             combine_like_terms: "Fasse gleichartige Terme zusammen",
-            substitute_and_evaluate: "Einsetzen und auswerten"
+            substitute_and_evaluate: "Einsetzen und auswerten",
+            if: "Wenn {var}={val}",
+            calculate: "Berechne {expr}",
+            what_is: "Was ist {var}?"
         },
+        objective_title: "MISSIONSZIEL",
+        scenario_title: "SZENARIO-KONTEXT",
         scenarios: {
             variables: "Basler Rhybadhüsli Schliessfach: Du verwaltest Schliessfächer im berühmten Rheinbad. Jedes Fach (Variable 'x') enthält einen bestimmten Wert. Verstehe, dass 'x' nur ein Platzhalter ist.",
             terms: "Marktplatz Obststand: Du sortierst Lieferungen auf dem Basler Markt. Äpfel und Birnen kann man nicht mischen. Gruppiere gleiche Artikel: 3 Äpfel + 2 Äpfel = 5 Äpfel.",
@@ -796,10 +803,28 @@ export const deMath = {
         monitor_title: "SM1.03_GANZZAHL_MONITOR",
         footer_left: "SM1.03_UNTER_NULL // KNOTEN: BASEL",
         basel_scenario: "BASLER WINTERSZENARIO",
-        scenario_title: "PROBLEMKONTEXT",
+        scenario_title: "SZENARIO-KONTEXT",
+        objective_title: "MISSIONSZIEL",
         calculate_title: "BERECHNEN",
         answer_title: "IHRE ANTWORT",
         solution_title: "LÖSUNG",
+        labels: {
+            input: "Antwort eingeben",
+            hints: "Hinweise",
+            coordinate: "Koordinate",
+            quadrant: "Quadrant",
+            middle_value: "Mittelwert",
+            pos: "Position",
+            colder: "Was ist kälter?",
+            smaller: "Was ist kleiner?",
+            water_lvl: "Wasserstand",
+            final_temp: "Endtemperatur",
+            dist: "Entfernung",
+            abs: "Absolutwert",
+            range: "Bereich",
+            first: "Erster Wert",
+            start: "Start"
+        },
         stages: {
             number_line: "ZAHLENGERADE",
             rationals: "RATIONALE ZAHLEN",
@@ -887,10 +912,37 @@ export const deMath = {
         monitor_title: "SM1.04_GLEICHUNGS_MONITOR",
         footer_left: "SM1.04_GLEICHUNGSWAAGE // KNOTEN: BASEL",
         basel_scenario: "BASLER GLEICHUNGSSZENARIO",
-        scenario_title: "PROBLEMKONTEXT",
+        scenario_title: "SZENARIO-KONTEXT",
+        objective_title: "MISSIONSZIEL",
         solve_title: "GLEICHUNG LÖSEN",
         answer_title: "IHRE ANTWORT",
         solution_title: "LÖSUNG",
+        labels: {
+            input: "Eingabe",
+            hints: "Hinweise",
+            equation: "Gleichung",
+            solution: "Lösung",
+            adult_tickets: "Erwachsenentickets",
+            left_side: "Linke Seite",
+            right_side: "Rechte Seite",
+            operation: "Operation",
+            identify_eq: "Gleichung identifizieren",
+            isolate_var: "Variable isolieren",
+            solve_for: "Löse nach {var}",
+            current_age: "Aktuelles Alter",
+            pure_acid: "Reine Säuremenge",
+            boat_speed: "Bootgeschwindigkeit",
+            cost_price: "Einkaufspreis",
+            years: "Jahre",
+            liters: "L",
+            speed_unit: "km/h",
+            currency: "CHF"
+        },
+        canvas: {
+            bus: "BUS",
+            ferry: "Fähre",
+            basel_apps: "Basler Anwendungen"
+        },
         stages: {
             balance: "WAAGE",
             solve: "LÖSEN",
@@ -1159,6 +1211,7 @@ export const deMath = {
         input_k: "k",
         input_m: "m",
         input_number: "Antwort",
+        diagonal: "Diagonale",
         pythagoras: {
             solve_hyp: "Feuerwehr: Leiterlänge berechnen",
             solve_hyp_params: "horizontale Distanz a={a}m, vertikale Höhe b={b}m",
@@ -1169,6 +1222,8 @@ export const deMath = {
             check_right: "Ingenieurscheck: Rechtwinkliges Dreieck?",
             distance: " Drohnenlieferung: Flugdistanz berechnen",
             elite_space: " CERN-Labor: Raumdiagonale berechnen",
+            right_triangle_q: "📐 Ist das ein rechtwinkliges Dreieck?",
+            solve_diagonal: "Raumdiagonale berechnen",
             explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten.",
             fluid_title: "Fluid-Volumenerhaltung",
             fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie A^{2} + B^{2} exakt C^{2} füllen. Dies visualisiert die Flächenerhaltung."
@@ -1410,7 +1465,10 @@ export const deMath = {
             hints: "HINWEISE",
             distance: "Abstand (d)",
             midpoint: "Mittelpunkt (M)",
-            slope: "Steigung (m)"
+            slope: "Steigung (m)",
+            translation_vector: "Translationsvektor",
+            reflection_line: "Reflexionslinie",
+            transformation: "Transformation"
         },
         mission: {
             title: "ZÜRCHER KNOTEN-KARTIERUNG",

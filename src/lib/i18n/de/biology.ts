@@ -786,7 +786,23 @@ export const deBiology = {
             arteries: "ARTERIEN",
             veins: "VENEN",
             lungs: "LUNGEN",
-            trachea: "LUFTRÖHRE"
+            trachea: "LUFTRÖHRE",
+            reason: "Grund",
+            absorption: "Absorption",
+            surface_area: "Oberflächenbereich",
+            organ: "Organ",
+            function: "Funktion",
+            result: "Ergebnis",
+            process: "Prozess",
+            dehydration: "Dehydrierung",
+            peristalsis: "Peristaltik",
+            body: "Körper",
+            support: "Unterstützung",
+            diffusion: "Diffusion",
+            tree: "Baum",
+            pressure: "Druck",
+            structure: "Struktur",
+            mechanism: "Mechanismus"
         },
         prompts: {
             // VERDAUUNGSSYSTEM - BASIS (5 Fragen)

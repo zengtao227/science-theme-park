@@ -22,31 +22,9 @@ interface S207Quest extends Quest {
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
 // Helper: Get Localized Prompt (Now used exclusively in the render phase for dynamic questions)
-const getLocalizedPrompt = (key: string, lang: string, params: any = {}) => {
-  const isCN = lang === 'CN';
-  const isDE = lang === 'DE';
-
-  if (key === 'DIST_REV_Y') {
-    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(0,0), B(3,y) \\text{ 且 } y>0 \\text{，求 } y \\text{。}`;
-    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } y \\text{ f\\"ur } B(3,y) \\text{ (y>0)}.`;
-    return `\\text{Distance } d=${params.d} \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.`;
-  }
-  if (key === 'DIST_REV_X') {
-    if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(1,1), B(x,5) \\text{ 且 } x>1 \\text{，求 } x \\text{。}`;
-    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ f\\"ur } B(x,5) \\text{ (x>1)}.`;
-    return `\\text{Distance } d=${params.d} \\text{. Find } x \\text{ for } B(x,5) \\text{ (x>1)}.`;
-  }
-  if (key === 'MID_REV') {
-    if (isCN) return `\\text{M 是中点。已知 A 和 M，求 B(x,y)。}`;
-    if (isDE) return `\\text{M ist der Mittelpunkt. Finde B(x,y).}`;
-    return `\\text{M is midpoint. Find B(x,y).}`;
-  }
-  if (key === 'COLLINEAR') {
-    if (isCN) return `\\text{A, B, C 三点共线。求 } ${params.target} \\text{。}`;
-    if (isDE) return `\\text{Punkte A, B, C sind kollinear. Finde } ${params.target} \\text{.}`;
-    return `\\text{Points A, B, C are collinear. Find } ${params.target} \\text{.}`;
-  }
-  return "";
+const getLocalizedPrompt = (t: any, key: string, params: any = {}) => {
+  const prompt = t(`sm2_07.dynamic_prompts.${key.toLowerCase()}`, params);
+  return `\\\\text{${prompt}}`;
 };
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest[] {
@@ -342,10 +320,10 @@ export default function S207Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S207Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S207Quest, Stage>({
     moduleCode: "sm2-07",
     buildPool,
     initialStage: "DISTANCE",
@@ -424,17 +402,13 @@ export default function S207Page() {
 
               // If this is a new question type with a promptKey, get the localized version NOW
               if (currentQuest?.promptKey) {
-                latex = getLocalizedPrompt(currentQuest?.promptKey, currentLanguage, currentQuest?.promptParams);
+                latex = getLocalizedPrompt(t, currentQuest.promptKey, currentQuest.promptParams);
               }
 
-              if (latex && latex.includes("\\text{")) {
+              if (latex && (latex.includes("\\text{") || latex.includes("\\\\text{"))) {
                 return (
                   <span className="font-sans not-italic whitespace-pre-wrap">
-                    {latex
-                      .replace(/\\text\{/g, "")
-                      .replace(/\}/g, "")
-                      .replace(/\\\\/g, "\n")
-                      .replace(/\\;/g, " ")}
+                    {latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}
                   </span>
                 );
               }

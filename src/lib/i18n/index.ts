@@ -99,6 +99,7 @@ export function useLanguage() {
       if (params) {
         Object.entries(params).forEach(([key, value]) => {
           val = val.replace(`{${key}}`, String(value));
+          val = val.replace(`\${${key}}`, String(value));
         });
       }
       return val;
