@@ -1,19 +1,18 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
     Box,
-    Sphere,
     Environment,
     ContactShadows,
     OrbitControls,
-    Html
+    Html,
+    Grid
 } from "@react-three/drei";
-import { Physics, RigidBody, RapierRigidBody } from "@react-three/rapier";
+import { Physics, RigidBody, RapierRigidBody, CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three";
-import { Zap, Move, Activity } from "lucide-react";
-import { clsx } from "clsx";
+import { Play, RotateCcw, Box as BoxIcon, Info } from "lucide-react";
 import { Force } from "@/lib/sp1-01/domain/types";
 
 interface PhysicsPlayground3DProps {
@@ -23,31 +22,22 @@ interface PhysicsPlayground3DProps {
 
 function ForceArrow({ magnitude, angle, color = "#00f2ff", label }: { magnitude: number; angle: number; color?: string; label?: string }) {
     const angleRad = (angle * Math.PI) / 180;
-    // Scale arrow length based on magnitude (e.g., 50N = 2 units)
     const length = Math.max(0.5, magnitude / 25);
-
-    // Create a quaternion for rotation toward the force direction
-    // In our 3D scene, x is right, z is deep, and y is up.
-    // We'll map the 2D physics angle (CCW from positive X) to the 3D XZ plane.
     const quaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -angleRad, 0));
 
     return (
         <group position={[0, 1, 0]}>
             <group quaternion={quaternion}>
-                {/* Base Cylinder */}
                 <mesh rotation={[0, 0, Math.PI / 2]} position={[-length / 2, 0, 0]}>
                     <cylinderGeometry args={[0.04, 0.04, length, 12]} />
                     <meshStandardMaterial color={color} emissive={color} emissiveIntensity={2} transparent opacity={0.8} />
                 </mesh>
-                {/* Tip Cone */}
                 <mesh rotation={[0, 0, -Math.PI / 2]} position={[-length, 0, 0]}>
                     <coneGeometry args={[0.12, 0.3, 12]} />
                     <meshStandardMaterial color={color} emissive={color} emissiveIntensity={2} />
                 </mesh>
-
-                {/* Label */}
                 <Html position={[-length * 0.7, 0.3, 0]} center distanceFactor={8}>
-                    <div className="bg-black/80 backdrop-blur-md px-1.5 py-0.5 rounded border border-white/20 text-[9px] text-white font-mono whitespace-nowrap shadow-xl">
+                    <div className="bg-black/80 backdrop-blur-md px-1.5 py-0.5 rounded border border-white/20 text-[9px] text-white font-mono whitespace-nowrap shadow-[0_0_10px_rgba(0,242,255,0.3)]">
                         {label || `${magnitude}N`}
                     </div>
                 </Html>
@@ -56,197 +46,149 @@ function ForceArrow({ magnitude, angle, color = "#00f2ff", label }: { magnitude:
     );
 }
 
-function PhysicalCrate({ forces, isApplying }: { forces: Force[]; isApplying: boolean }) {
+function PhysicalCrate({ forces, isApplying, position, onWake }: { forces: Force[]; isApplying: boolean; position: [number, number, number]; onWake: () => void }) {
     const rigidBodyRef = useRef<RapierRigidBody>(null!);
-    const [velocity, setVelocity] = useState(0);
+    const [speed, setSpeed] = useState(0);
+
+    // Reset physics state when position changes (reset requested)
+    useEffect(() => {
+        if (rigidBodyRef.current) {
+            rigidBodyRef.current.setTranslation({ x: position[0], y: position[1], z: position[2] }, true);
+            rigidBodyRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+            rigidBodyRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+            rigidBodyRef.current.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true);
+            onWake();
+        }
+    }, [position, onWake]);
 
     useFrame((state, delta) => {
         if (rigidBodyRef.current && isApplying) {
             forces.forEach(f => {
                 const angleRad = (f.angle * Math.PI) / 180;
-                // Map 2D angle to 3D impulse (X and Z components)
-                // CCW from X: x = cos, z = -sin (since -Z is forward in Three.js)
                 const impulseMultiplier = 8;
                 const ix = Math.cos(angleRad) * f.magnitude * impulseMultiplier;
                 const iz = -Math.sin(angleRad) * f.magnitude * impulseMultiplier;
-
                 rigidBodyRef.current.applyImpulse({ x: ix * delta, y: 0, z: iz * delta }, true);
             });
         }
-
         if (rigidBodyRef.current) {
             const v = rigidBodyRef.current.linvel();
-            const speed = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-            setVelocity(speed);
+            const s = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+            setSpeed(s);
         }
     });
 
     return (
-        <group>
-            <RigidBody
-                ref={rigidBodyRef}
-                colliders="cuboid"
-                restitution={0.3}
-                friction={0.7}
-                position={[0, 1.5, 0]}
-                angularDamping={0.5}
-                linearDamping={0.2}
-            >
-                <Box args={[1, 1, 1]}>
-                    <meshStandardMaterial color="#222" metalness={0.9} roughness={0.1} />
-                    {/* Internal Glow for 'Tech' look */}
-                    <Box args={[1.02, 1.02, 1.02]}>
-                        <meshStandardMaterial color="#00f2ff" wireframe transparent opacity={0.15} />
-                    </Box>
+        <RigidBody
+            ref={rigidBodyRef}
+            colliders="cuboid"
+            restitution={0.2}
+            friction={0.8}
+            mass={1}
+            position={position}
+            linearDamping={0.5}
+            angularDamping={0.5}
+        >
+            <Box args={[1, 1, 1]} castShadow receiveShadow>
+                <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+                <Box args={[1.02, 1.02, 1.02]}>
+                    <meshStandardMaterial color={isApplying ? "#00f2ff" : "#444"} wireframe transparent opacity={0.3} />
                 </Box>
-
-                <Html position={[0, 1.2, 0]} center distanceFactor={10}>
-                    <div className="flex flex-col items-center gap-1">
-                        <div className="bg-black/90 backdrop-blur-xl px-2 py-1 rounded-lg border border-cyan-500/40 text-[10px] text-cyan-400 font-mono shadow-2xl">
-                            SPEED: {velocity.toFixed(2)} m/s
-                        </div>
-                        {isApplying && (
-                            <div className="text-[8px] text-cyan-500/60 font-black animate-pulse uppercase tracking-widest">
-                                Impact Processing...
-                            </div>
-                        )}
+            </Box>
+            {isApplying && (
+                <Html position={[0, 1.5, 0]} center distanceFactor={10}>
+                    <div className="bg-black/60 backdrop-blur text-neon-green text-[10px] font-mono px-2 py-1 rounded border border-neon-green/30">
+                        v: {speed.toFixed(1)} m/s
                     </div>
                 </Html>
-            </RigidBody>
-
-            {/* Visualize Force Vectors */}
-            {forces.map((f, i) => (
-                <ForceArrow
-                    key={i}
-                    magnitude={f.magnitude}
-                    angle={f.angle}
-                    color={i === 0 ? "#00f2ff" : i === 1 ? "#ff0080" : "#a0ff00"}
-                    label={f.label}
-                />
-            ))}
-        </group>
+            )}
+        </RigidBody>
     );
 }
 
-function Scene({ forces, isApplying }: { forces: Force[]; isApplying: boolean }) {
-    return (
-        <>
-            <Physics gravity={[0, -9.81, 0]}>
-                <ambientLight intensity={0.4} />
-                <pointLight position={[10, 10, 10]} intensity={1.5} castShadow />
-                <spotLight position={[0, 10, 0]} intensity={2} angle={0.3} penumbra={1} castShadow />
-
-                <PhysicalCrate forces={forces} isApplying={isApplying} />
-
-                {/* Floor */}
-                <RigidBody type="fixed">
-                    <Box args={[30, 0.5, 30]} position={[0, -0.25, 0]}>
-                        <meshStandardMaterial color="#050505" metalness={1} roughness={0} />
-                    </Box>
-                </RigidBody>
-
-                {/* Grid and Decorations */}
-                <gridHelper args={[30, 30, 0x00f2ff, 0x111111]} position={[0, 0.01, 0]}>
-                    <meshBasicMaterial transparent opacity={0.2} />
-                </gridHelper>
-            </Physics>
-
-            <OrbitControls
-                makeDefault
-                maxPolarAngle={Math.PI / 2.1}
-                minDistance={3}
-                maxDistance={15}
-            />
-            <Environment preset="night" />
-            <ContactShadows position={[0, 0, 0]} opacity={0.8} scale={30} blur={2} far={5} />
-        </>
-    );
-}
-
-export default function PhysicsPlayground3D({
-    forces = []
-}: PhysicsPlayground3DProps) {
+export default function PhysicsPlayground3D({ forces }: PhysicsPlayground3DProps) {
     const [isApplying, setIsApplying] = useState(false);
+    const [resetKey, setResetKey] = useState(0);
 
-    // Derived stats
-    const totalMagnitude = forces.reduce((sum, f) => sum + f.magnitude, 0);
+    const handleReset = () => {
+        setIsApplying(false);
+        setResetKey(prev => prev + 1);
+    };
 
     return (
-        <div className="w-full h-full min-h-[500px] relative rounded-[2.5rem] overflow-hidden bg-[#050505] border border-white/5 shadow-2xl group transition-all duration-700">
-            <Canvas shadows camera={{ position: [6, 4, 6], fov: 40 }}>
-                <Scene forces={forces} isApplying={isApplying} />
-            </Canvas>
-
-            {/* Floating UI HUD */}
-            <div className="absolute top-8 left-8 flex flex-col gap-4 pointer-events-none">
-                <div className="bg-black/60 backdrop-blur-2xl px-6 py-3 rounded-2xl border border-white/10 flex items-center gap-4 shadow-2xl transition-all duration-500 hover:border-cyan-500/30">
-                    <div className={clsx(
-                        "p-2.5 rounded-xl transition-all duration-500",
-                        isApplying ? "bg-cyan-500/20 animate-pulse" : "bg-white/5"
-                    )}>
-                        <Activity className={clsx("w-5 h-5", isApplying ? "text-cyan-400" : "text-white/20")} />
+        <div className="w-full h-[400px] sm:h-[500px] relative rounded-2xl overflow-hidden bg-gradient-to-b from-black to-slate-900 border border-white/10 shadow-[0_0_50px_rgba(0,242,255,0.05)]">
+            <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-xl p-3 flex flex-col gap-2 shadow-2xl">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 flex items-center gap-2">
+                        <BoxIcon className="w-3 h-3" /> Physics Engine
                     </div>
-                    <div>
-                        <span className="text-[9px] font-black tracking-[0.2em] uppercase text-white/30 block mb-0.5">Vector Integration</span>
-                        <span className="text-sm font-bold text-white font-mono uppercase tracking-tighter">
-                            {isApplying ? "Real-time Processing" : "System Standby"}
-                        </span>
+                    <div className="flex items-center gap-2 mt-1">
+                        <button
+                            onClick={() => setIsApplying(!isApplying)}
+                            className={`flex items-center gap-2 px-4 py-2 rounded shadow-lg transition-all text-[10px] font-black uppercase tracking-widest ${isApplying ? 'bg-red-500/20 text-red-400 border border-red-500/50 hover:bg-red-500/30' : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 hover:bg-cyan-500/30'}`}
+                        >
+                            <Play className={`w-3 h-3 ${isApplying ? 'animate-pulse' : ''}`} />
+                            {isApplying ? "Pause Forces" : "Apply Forces"}
+                        </button>
+                        <button
+                            onClick={handleReset}
+                            className="p-2 bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10 rounded transition-colors"
+                            title="Reset Position"
+                        >
+                            <RotateCcw className="w-4 h-4" />
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <div className="flex gap-2">
-                    {forces.map((f, i) => (
-                        <div key={i} className="bg-black/40 backdrop-blur-md px-4 py-2 rounded-xl border border-white/5 flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: i === 0 ? "#00f2ff" : i === 1 ? "#ff0080" : "#a0ff00" }} />
-                            <span className="text-[10px] font-mono text-white/60 tracking-tight">{f.magnitude}N</span>
-                        </div>
+            <div className="absolute bottom-4 right-4 z-10">
+                <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-2 flex items-center gap-2">
+                    <Info className="w-3 h-3 text-white/40" />
+                    <span className="text-[9px] text-white/50 uppercase tracking-widest font-mono">Drag to rotate • Scroll to zoom</span>
+                </div>
+            </div>
+
+            <Canvas camera={{ position: [5, 4, 5], fov: 45 }} shadows>
+                <Suspense fallback={null}>
+                    <color attach="background" args={['#050505']} />
+                    <fog attach="fog" args={['#050505', 10, 30]} />
+
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={[1024, 1024]} />
+                    <pointLight position={[-10, 5, -10]} intensity={0.5} color="#00f2ff" />
+
+                    <Environment preset="city" background blur={0.8} />
+
+                    <Physics gravity={[0, -9.81, 0]}>
+                        <PhysicalCrate
+                            key={`crate-${resetKey}`}
+                            forces={forces}
+                            isApplying={isApplying}
+                            position={[0, 0.5, 0]}
+                            onWake={() => { }}
+                        />
+
+                        {/* Interactive Floor */}
+                        <RigidBody type="fixed" friction={1} restitution={0.1}>
+                            <mesh position={[0, -0.1, 0]} receiveShadow>
+                                <boxGeometry args={[20, 0.2, 20]} />
+                                <meshStandardMaterial color="#0a0a0a" roughness={0.8} />
+                            </mesh>
+                        </RigidBody>
+                    </Physics>
+
+                    {/* Reference Grid */}
+                    <Grid infiniteGrid fadeDistance={20} sectionColor="#00f2ff" cellColor="#ffffff" cellThickness={0.5} />
+
+                    {/* Vector Overlays */}
+                    {!isApplying && forces.map((f, i) => (
+                        <ForceArrow key={`force-${i}`} magnitude={f.magnitude} angle={f.angle} label={f.label} />
                     ))}
-                </div>
-            </div>
 
-            <div className="absolute top-8 right-8 flex flex-col items-end gap-2">
-                <div className="bg-cyan-500/10 border border-cyan-500/30 px-4 py-1.5 rounded-full backdrop-blur-md">
-                    <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">
-                        Module SP1.01_v3D
-                    </span>
-                </div>
-                <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest text-right">
-                    Bsl_Phys_Engine_Init<br />
-                    Rpr_Solver_v22.0
-                </div>
-            </div>
-
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6">
-                <button
-                    onMouseDown={() => setIsApplying(true)}
-                    onMouseUp={() => setIsApplying(false)}
-                    onMouseLeave={() => setIsApplying(false)}
-                    className={clsx(
-                        "px-14 py-5 rounded-full text-[11px] font-black tracking-[0.5em] uppercase transition-all duration-300 transform shadow-2xl border",
-                        isApplying
-                            ? "bg-cyan-400 border-cyan-300 text-black shadow-[0_0_50px_rgba(34,211,238,0.4)] scale-95"
-                            : "bg-white text-black hover:bg-cyan-400 hover:border-cyan-300 hover:scale-105 active:scale-95 cursor-pointer"
-                    )}
-                >
-                    {isApplying ? "Simulating Impact" : "Initialize Force"}
-                </button>
-
-                <div className="flex items-center gap-12 text-white/20">
-                    <div className="flex flex-col items-center gap-1">
-                        <span className="text-[8px] font-black uppercase tracking-widest opacity-50">Physics Mode</span>
-                        <span className="text-[10px] font-bold text-white/40">Continuous CCD</span>
-                    </div>
-                    <div className="h-4 w-px bg-white/10" />
-                    <div className="flex flex-col items-center gap-1">
-                        <span className="text-[8px] font-black uppercase tracking-widest opacity-50">Mass Model</span>
-                        <span className="text-[10px] font-bold text-white/40">1.0 kg Uni-Crate</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Decorative Corners */}
-            <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-cyan-500/20 rounded-tl-[2.5rem] pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-cyan-500/20 rounded-br-[2.5rem] pointer-events-none" />
+                    <ContactShadows position={[0, 0, 0]} opacity={0.4} scale={10} blur={2} far={4} />
+                    <OrbitControls makeDefault maxPolarAngle={Math.PI / 2 - 0.05} minDistance={3} maxDistance={15} enableDamping dampingFactor={0.05} />
+                </Suspense>
+            </Canvas>
         </div>
     );
 }

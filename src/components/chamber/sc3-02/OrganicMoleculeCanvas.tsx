@@ -1,264 +1,221 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useMemo, Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Environment, Text, Line, Float, ContactShadows, Stars } from "@react-three/drei";
+import * as THREE from "three";
 
 interface OrganicMoleculeCanvasProps {
     molecule: string;
-    show3D: boolean;
+    show3D: boolean; // if false, might show fixed angle
     stage: string;
     translations: any;
 }
 
-export default function OrganicMoleculeCanvas({ molecule, show3D, stage, translations }: OrganicMoleculeCanvasProps) {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+// Simple procedural builder for alkanes and linear molecules
+function generateLinearMolecule(carbons: number, hasDoubleBondAtIdx?: number) {
+    const atoms: { pos: [number, number, number], type: string, color: string, radius: number }[] = [];
+    const bonds: { start: [number, number, number], end: [number, number, number], double: boolean }[] = [];
 
-    const drawAtom = useCallback((ctx: CanvasRenderingContext2D, x: number, y: number, symbol: string, color: string) => {
-        // Atom circle
-        ctx.fillStyle = color + "40";
-        ctx.beginPath();
-        ctx.arc(x, y, 18, 0, Math.PI * 2);
-        ctx.fill();
+    const CC_DIST = 1.5;
+    const CH_DIST = 1.0;
+    const BOND_ANGLE = Math.PI * 109.5 / 180; // Tetrahedral angle roughly
 
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
-        ctx.stroke();
+    for (let i = 0; i < carbons; i++) {
+        // Zig-zag pattern in x-y plane
+        const x = (i - (carbons - 1) / 2) * CC_DIST;
+        const y = (i % 2 === 0 ? 1 : -1) * (CC_DIST / 4);
+        const z = 0;
 
-        // Symbol
-        ctx.fillStyle = color;
-        ctx.font = "bold 14px monospace";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(symbol, x, y);
-    }, []);
+        atoms.push({ pos: [x, y, z], type: "C", color: "#333333", radius: 0.4 });
 
-    const drawBond = useCallback((ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number) => {
-        ctx.strokeStyle = "#ffffff80";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-    }, []);
-
-    const draw3DBond = useCallback((ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, type: string) => {
-        if (type === "wedge") {
-            // Wedge bond (coming out of plane)
-            ctx.fillStyle = "#ffffff80";
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            const dx = x2 - x1;
-            const dy = y2 - y1;
-            const len = Math.sqrt(dx * dx + dy * dy);
-            const perpX = -dy / len * 5;
-            const perpY = dx / len * 5;
-            ctx.lineTo(x2 + perpX, y2 + perpY);
-            ctx.lineTo(x2 - perpX, y2 - perpY);
-            ctx.closePath();
-            ctx.fill();
-        } else if (type === "dash") {
-            // Dashed bond (going into plane)
-            ctx.strokeStyle = "#ffffff60";
-            ctx.lineWidth = 2;
-            ctx.setLineDash([5, 5]);
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        } else {
-            // Solid bond (in plane)
-            drawBond(ctx, x1, y1, x2, y2);
+        if (i > 0) {
+            const double = hasDoubleBondAtIdx === i - 1;
+            bonds.push({
+                start: atoms[i - 1].pos,
+                end: [x, y, z],
+                double
+            });
         }
-    }, [drawBond]);
 
-    const draw2DMolecule = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, mol: string) => {
-        const centerX = w / 2;
-        const centerY = h / 2;
+        // Add Hydrogens (simplified for visualization layout)
+        // Up/Down H
+        const hY = (i % 2 === 0 ? y + CH_DIST : y - CH_DIST);
+        atoms.push({ pos: [x, hY, z], type: "H", color: "#ffffff", radius: 0.25 });
+        bonds.push({ start: [x, y, z], end: [x, hY, z], double: false });
 
-        if (mol === "methane") {
-            drawAtom(ctx, centerX, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX, centerY - 40, "H", "#ffffff");
-            drawAtom(ctx, centerX + 40, centerY, "H", "#ffffff");
-            drawAtom(ctx, centerX, centerY + 40, "H", "#ffffff");
-            drawAtom(ctx, centerX - 40, centerY, "H", "#ffffff");
+        // Front/Back H
+        atoms.push({ pos: [x, y, CH_DIST * 0.8], type: "H", color: "#ffffff", radius: 0.25 });
+        bonds.push({ start: [x, y, z], end: [x, y, CH_DIST * 0.8], double: false });
 
-            drawBond(ctx, centerX, centerY, centerX, centerY - 40);
-            drawBond(ctx, centerX, centerY, centerX + 40, centerY);
-            drawBond(ctx, centerX, centerY, centerX, centerY + 40);
-            drawBond(ctx, centerX, centerY, centerX - 40, centerY);
-        } else if (mol === "ethane") {
-            drawAtom(ctx, centerX - 30, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX + 30, centerY, "C", "#00ff00");
-            drawBond(ctx, centerX - 30, centerY, centerX + 30, centerY);
+        atoms.push({ pos: [x, y, -CH_DIST * 0.8], type: "H", color: "#ffffff", radius: 0.25 });
+        bonds.push({ start: [x, y, z], end: [x, y, -CH_DIST * 0.8], double: false });
+    }
 
-            drawAtom(ctx, centerX - 30, centerY - 35, "H", "#ffffff");
-            drawAtom(ctx, centerX - 55, centerY + 20, "H", "#ffffff");
-            drawAtom(ctx, centerX - 5, centerY + 35, "H", "#ffffff");
-            drawAtom(ctx, centerX + 30, centerY - 35, "H", "#ffffff");
-            drawAtom(ctx, centerX + 55, centerY + 20, "H", "#ffffff");
-            drawAtom(ctx, centerX + 5, centerY + 35, "H", "#ffffff");
+    return { atoms, bonds };
+}
 
-            drawBond(ctx, centerX - 30, centerY, centerX - 30, centerY - 35);
-            drawBond(ctx, centerX - 30, centerY, centerX - 55, centerY + 20);
-            drawBond(ctx, centerX - 30, centerY, centerX - 5, centerY + 35);
-            drawBond(ctx, centerX + 30, centerY, centerX + 30, centerY - 35);
-            drawBond(ctx, centerX + 30, centerY, centerX + 55, centerY + 20);
-            drawBond(ctx, centerX + 30, centerY, centerX + 5, centerY + 35);
-        } else if (mol === "ethanol") {
-            drawAtom(ctx, centerX - 40, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX + 40, centerY, "O", "#ff0000");
-            drawAtom(ctx, centerX + 70, centerY, "H", "#ffffff");
+function generateBenzene() {
+    const atoms = [];
+    const bonds = [];
+    const R_C = 1.4;
+    const R_H = 2.4;
 
-            drawBond(ctx, centerX - 40, centerY, centerX, centerY);
-            drawBond(ctx, centerX, centerY, centerX + 40, centerY);
-            drawBond(ctx, centerX + 40, centerY, centerX + 70, centerY);
+    for (let i = 0; i < 6; i++) {
+        const angle = (i * Math.PI) / 3;
+        const x = Math.cos(angle) * R_C;
+        const y = Math.sin(angle) * R_C;
+        atoms.push({ pos: [x, y, 0], type: "C", color: "#333333", radius: 0.4 });
 
-            ctx.fillStyle = "#ff00ff";
-            ctx.font = "12px monospace";
-            ctx.textAlign = "center";
-            ctx.fillText("OH", centerX + 55, centerY - 20);
-        } else if (mol === "propane") {
-            drawAtom(ctx, centerX - 50, centerY + 20, "C", "#00ff00");
-            drawAtom(ctx, centerX, centerY - 20, "C", "#00ff00");
-            drawAtom(ctx, centerX + 50, centerY + 20, "C", "#00ff00");
-            drawBond(ctx, centerX - 50, centerY + 20, centerX, centerY - 20);
-            drawBond(ctx, centerX, centerY - 20, centerX + 50, centerY + 20);
-        } else if (mol === "butane") {
-            drawAtom(ctx, centerX - 60, centerY + 20, "C", "#00ff00");
-            drawAtom(ctx, centerX - 20, centerY - 20, "C", "#00ff00");
-            drawAtom(ctx, centerX + 20, centerY + 20, "C", "#00ff00");
-            drawAtom(ctx, centerX + 60, centerY - 20, "C", "#00ff00");
-            drawBond(ctx, centerX - 60, centerY + 20, centerX - 20, centerY - 20);
-            drawBond(ctx, centerX - 20, centerY - 20, centerX + 20, centerY + 20);
-            drawBond(ctx, centerX + 20, centerY + 20, centerX + 60, centerY - 20);
-        } else if (mol === "benzene") {
-            for (let i = 0; i < 6; i++) {
-                const a = (i * 60) * Math.PI / 180;
-                const x = centerX + Math.cos(a) * 50;
-                const y = centerY + Math.sin(a) * 50;
-                drawAtom(ctx, x, y, "C", "#00ff00");
-            }
-            for (let i = 0; i < 6; i++) {
-                const a1 = (i * 60) * Math.PI / 180;
-                const a2 = ((i + 1) * 60) * Math.PI / 180;
-                drawBond(ctx, centerX + Math.cos(a1) * 50, centerY + Math.sin(a1) * 50, centerX + Math.cos(a2) * 50, centerY + Math.sin(a2) * 50);
-                if (i % 2 === 0) {
-                    ctx.setLineDash([2, 5]);
-                    drawBond(ctx, centerX + Math.cos(a1) * 45, centerY + Math.sin(a1) * 45, centerX + Math.cos(a2) * 45, centerY + Math.sin(a2) * 45);
-                    ctx.setLineDash([]);
-                }
-            }
-        } else {
-            drawAtom(ctx, centerX, centerY, "C", "#00ff00");
-            ctx.fillStyle = "white";
-            ctx.font = "14px monospace";
-            ctx.textAlign = "center";
-            ctx.fillText(mol.toUpperCase(), centerX, centerY + 50);
+        const hx = Math.cos(angle) * R_H;
+        const hy = Math.sin(angle) * R_H;
+        atoms.push({ pos: [hx, hy, 0], type: "H", color: "#ffffff", radius: 0.25 });
+        bonds.push({ start: [x, y, 0], end: [hx, hy, 0], double: false });
+
+        if (i > 0) {
+            bonds.push({ start: atoms[(i - 1) * 2].pos, end: [x, y, 0], double: i % 2 !== 0 });
         }
-    }, [drawAtom, drawBond]);
+    }
+    bonds.push({ start: atoms[10].pos, end: atoms[0].pos, double: true }); // Close the ring
 
-    const draw3DMolecule = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, mol: string, time: number) => {
-        const centerX = w / 2;
-        const centerY = h / 2;
+    return { atoms, bonds };
+}
 
-        if (mol === "methane") {
-            drawAtom(ctx, centerX, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX, centerY - 50, "H", "#ffffff");
-            drawAtom(ctx, centerX + 45, centerY + 15, "H", "#ffffff");
-            drawAtom(ctx, centerX - 45, centerY + 15, "H", "#ffffff");
-            drawAtom(ctx, centerX, centerY + 40, "H", "#ffffff");
+function MappedMolecule({ molecule }: { molecule: string }) {
+    const { atoms, bonds } = useMemo(() => {
+        const name = molecule.toLowerCase();
 
-            draw3DBond(ctx, centerX, centerY, centerX, centerY - 50, "solid");
-            draw3DBond(ctx, centerX, centerY, centerX + 45, centerY + 15, "wedge");
-            draw3DBond(ctx, centerX, centerY, centerX - 45, centerY + 15, "dash");
-            draw3DBond(ctx, centerX, centerY, centerX, centerY + 40, "solid");
-        } else if (mol === "ethane") {
-            const angle = time / 1000;
-            drawAtom(ctx, centerX - 30, centerY, "C", "#00ff00");
-            drawAtom(ctx, centerX + 30, centerY, "C", "#00ff00");
-            draw3DBond(ctx, centerX - 30, centerY, centerX + 30, centerY, "solid");
-
-            for (let i = 0; i < 3; i++) {
-                const a = (i * 120 + angle * 20) * Math.PI / 180;
-                const x = centerX - 30 + Math.cos(a) * 40;
-                const y = centerY + Math.sin(a) * 40;
-                drawAtom(ctx, x, y, "H", "#ffffff");
-                draw3DBond(ctx, centerX - 30, centerY, x, y, i === 0 ? "wedge" : "solid");
-            }
-
-            for (let i = 0; i < 3; i++) {
-                const a = (i * 120 + 60 + angle * 20) * Math.PI / 180;
-                const x = centerX + 30 + Math.cos(a) * 40;
-                const y = centerY + Math.sin(a) * 40;
-                drawAtom(ctx, x, y, "H", "#ffffff");
-                draw3DBond(ctx, centerX + 30, centerY, x, y, i === 1 ? "dash" : "solid");
-            }
-        } else if (mol === "benzene") {
-            for (let i = 0; i < 6; i++) {
-                const a = (i * 60 + time / 20) * Math.PI / 180;
-                const x = centerX + Math.cos(a) * 60;
-                const y = centerY + Math.sin(a) * 30;
-                drawAtom(ctx, x, y, "C", "#00ff00");
-
-                const aNext = ((i + 1) * 60 + time / 20) * Math.PI / 180;
-                draw3DBond(ctx, x, y, centerX + Math.cos(aNext) * 60, centerY + Math.sin(aNext) * 30, "solid");
-            }
-        } else {
-            drawAtom(ctx, centerX, centerY, "C", "#00ff00");
-            ctx.strokeStyle = "#00ff0040";
-            ctx.lineWidth = 2;
-            for (let i = 0; i < 3; i++) {
-                ctx.beginPath();
-                ctx.ellipse(centerX, centerY, 40 + i * 15, 20 + i * 8, i * Math.PI / 3, 0, Math.PI * 2);
-                ctx.stroke();
-            }
-            ctx.fillStyle = "white";
-            ctx.font = "14px monospace";
-            ctx.textAlign = "center";
-            ctx.fillText(mol.toUpperCase(), centerX, centerY + 80);
+        if (name.includes("benzene") || name.includes("phenol") || name.includes("aniline")) {
+            return generateBenzene();
         }
-    }, [drawAtom, draw3DBond]);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        let animationFrameId: number;
-
-        const render = (time: number) => {
-            const dpr = window.devicePixelRatio || 1;
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            ctx.scale(dpr, dpr);
-
-            const w = rect.width;
-            const h = rect.height;
-
-            ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, w, h);
-
-            if (show3D) {
-                draw3DMolecule(ctx, w, h, molecule, time);
-            } else {
-                draw2DMolecule(ctx, w, h, molecule);
-            }
-
-            animationFrameId = requestAnimationFrame(render);
+        // Very basic parsing for alkanes to show visual scale
+        const alkaneMap: Record<string, number> = {
+            "methane": 1, "ethane": 2, "propane": 3, "butane": 4, "pentane": 5,
+            "hexane": 6, "heptane": 7, "octane": 8, "nonane": 9, "decane": 10
         };
 
-        animationFrameId = requestAnimationFrame(render);
-        return () => cancelAnimationFrame(animationFrameId);
-    }, [molecule, show3D, draw2DMolecule, draw3DMolecule]);
+        const alkeneMap: Record<string, number> = {
+            "ethene": 2, "propene": 3, "butene": 4, "pentene": 5, "hexene": 6,
+            "heptene": 7, "octene": 8
+        };
+
+        if (alkaneMap[name]) return generateLinearMolecule(alkaneMap[name]);
+        if (alkeneMap[name]) return generateLinearMolecule(alkeneMap[name], 0);
+
+        // Fallback generic representation
+        return generateLinearMolecule(3);
+    }, [molecule]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            className="w-full h-full"
-            style={{ width: "100%", height: "100%" }}
-        />
+        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+            <group>
+                {/* Atoms */}
+                {atoms.map((atom, i) => (
+                    <mesh key={`atom-${i}`} position={new THREE.Vector3(...atom.pos)}>
+                        <sphereGeometry args={[atom.radius, 32, 32]} />
+                        <meshPhysicalMaterial
+                            color={atom.color}
+                            roughness={atom.type === 'C' ? 0.4 : 0.2}
+                            metalness={0.1}
+                            transmission={0.1}
+                            thickness={1.5}
+                        />
+                        <Text
+                            position={[0, 0, atom.radius + 0.05]}
+                            fontSize={atom.radius * 0.8}
+                            color={atom.type === 'C' ? "#aaaaaa" : "#444"}
+                            anchorX="center"
+                            anchorY="middle"
+                        >
+                            {atom.type}
+                        </Text>
+                    </mesh>
+                ))}
+
+                {/* Bonds */}
+                {bonds.map((bond, i) => {
+                    const start = new THREE.Vector3(...bond.start);
+                    const end = new THREE.Vector3(...bond.end);
+                    const distance = start.distanceTo(end);
+                    const position = start.clone().lerp(end, 0.5);
+
+                    // Rotate cylinder to match bond direction
+                    const quaternion = new THREE.Quaternion().setFromUnitVectors(
+                        new THREE.Vector3(0, 1, 0),
+                        end.clone().sub(start).normalize()
+                    );
+
+                    return (
+                        <group key={`bond-${i}`} position={position} quaternion={quaternion}>
+                            {bond.double ? (
+                                <group>
+                                    <mesh position={[0.1, 0, 0]}>
+                                        <cylinderGeometry args={[0.08, 0.08, distance, 12]} />
+                                        <meshStandardMaterial color="#888888" roughness={0.3} metalness={0.6} transparent opacity={0.6} />
+                                    </mesh>
+                                    <mesh position={[-0.1, 0, 0]}>
+                                        <cylinderGeometry args={[0.08, 0.08, distance, 12]} />
+                                        <meshStandardMaterial color="#888888" roughness={0.3} metalness={0.6} transparent opacity={0.6} />
+                                    </mesh>
+                                </group>
+                            ) : (
+                                <mesh>
+                                    <cylinderGeometry args={[0.1, 0.1, distance, 12]} />
+                                    <meshStandardMaterial color="#bbbbbb" roughness={0.3} metalness={0.6} transparent opacity={0.6} />
+                                </mesh>
+                            )}
+                        </group>
+                    );
+                })}
+            </group>
+        </Float>
+    );
+}
+
+export default function OrganicMoleculeCanvas({ molecule, show3D, stage, translations }: OrganicMoleculeCanvasProps) {
+    return (
+        <div className="w-full h-full relative group">
+            <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 pointer-events-none">
+                <div className="bg-neon-purple/20 text-neon-purple border border-neon-purple/50 px-2 py-1 rounded text-[8px] uppercase tracking-widest font-black inline-block backdrop-blur-md">
+                    Target: {molecule.toUpperCase()}
+                </div>
+                {show3D && (
+                    <div className="text-[8px] text-white/40 uppercase tracking-widest font-mono">
+                        Interactive 3D Assembly
+                    </div>
+                )}
+            </div>
+
+            <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+                <Suspense fallback={null}>
+                    <color attach="background" args={['#050505']} />
+                    <ambientLight intensity={0.4} />
+                    <directionalLight position={[10, 10, 10]} intensity={1} castShadow />
+                    <pointLight position={[-10, -5, -10]} intensity={2} color="#ff00ff" />
+                    <pointLight position={[10, -5, 10]} intensity={1} color="#00ffff" />
+
+                    <Environment preset="studio" blur={1} background />
+
+                    <MappedMolecule molecule={molecule} />
+
+                    <ContactShadows position={[0, -2, 0]} opacity={0.5} scale={15} blur={1.5} far={4} />
+
+                    {show3D ? (
+                        <OrbitControls
+                            autoRotate={true}
+                            autoRotateSpeed={0.5}
+                            enableDamping
+                            dampingFactor={0.05}
+                            minDistance={3}
+                            maxDistance={15}
+                        />
+                    ) : (
+                        // Fixed camera angle if 3D rotation toggle is off
+                        <OrbitControls enableRotate={false} enableZoom={true} enablePan={false} />
+                    )}
+                </Suspense>
+            </Canvas>
+        </div>
     );
 }
