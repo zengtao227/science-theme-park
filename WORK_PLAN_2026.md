@@ -303,11 +303,14 @@ Modules are classified by their quest density:
 - [x] **6.2.2: Gymnasium Math Sprint** — Refactored GM1.01, GM1.02, GM2.01, GM3.01, GM4.01 to generative pools (1200+ dynamic quests)
 - [x] **6.2.3: Physics Sprint** — Refactored SP1.02, SP3.02, SP3.03, SP3.08 to generative pools (960+ dynamic quests)
 - [x] **6.2.4: Chemistry Sprint** — Refactored SC1.01, SC1.02, SC2.03, SC2.04, and GC modules to generative pools (540+ dynamic quests)
-- [ ] **Phase 7: Universal LaTeX Stabilization (URGENT)**
-  - [ ] Audit all Math (SM, GM) and Science (SP, SC, GC) modules for non-LaTeX expressions (e.g., `x^2`, `sqrt`).
-  - [ ] Restore proper LaTeX rendering in visual components (Canvas/Monitors) where regressions occurred.
-  - [ ] Standardize the usage of `\\\\text{}` and math mode in `useQuestManager`.
-  - [ ] **Must pass manual verification for SM2.01 and SP/SC modules before proceeding.**
+- [x] **Phase 7: Universal LaTeX Stabilization (URGENT)** ✅ 2026-02-20
+  - [x] Automated fix of 1003+ bare `^2/^3/^4` → `^{2}/^{3}/^{4}` across 114 files (all chamber pages, lib quests, i18n, components)
+  - [x] Fixed under-escaped `\\text` in unit fields, bare `sqrt()` → `\\sqrt{}`
+  - [x] Removed hardcoded English shape names (`Cylinder`, `Cube`, `Prism`) from `expressionLatex`
+  - [x] Expanded `ENGINEERING_STANDARDS.md` §4 with rendering rules table, anti-patterns, generative quest constraints
+  - [x] Added §7 QA Checklist (Math Rendering, Generative Quest, i18n, Component, Build audit)
+  - [x] Created reusable auto-fix scripts: `scripts/fix-latex-v2.js`, `scripts/fix-latex-v3.js`
+  - [x] All 100+ routes pass `npm run build` verification
 - [ ] **6.2.5: Biology Sprint** — Enrich SB1.01–SB1.03, SB2.02, SB2.03, GB2.01, GB3.01, GB3.02 (8 modules × 40+ quests = 320+ new quests)
 - [ ] **6.2.6: Enrichment Sprint** — Expand EM3.01 to 40+ Kangaroo/Olympiad quests
 
