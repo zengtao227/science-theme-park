@@ -316,7 +316,12 @@ Modules are classified by their quest density:
   - SB2.02-body-systems: 123 quests (12 stage×difficulty pools)
   - All use `useQuestManager` + `useLanguage` (i18n compliant)
   - Note: SB3.02 (230L), GB2.02 (197L) are thinner modules — could be enriched in future iteration
-- [ ] **6.2.6: Enrichment Sprint** — Expand EM3.01 to 40+ Kangaroo/Olympiad quests
+- [x] **6.2.6: Enrichment Sprint** ✅ 2026-02-20
+  - Rewrote `olympiad-data.ts`: 9 quests → 40 quests (10 per difficulty)
+  - Covers 4 categories: Logic, Geometry, Arithmetic, Combinatorics
+  - BASIC: Kangaroo Junior (Grade 5-6), CORE: Kangaroo Standard (Grade 7-8)
+  - ADVANCED: AMC/SMO style (Grade 9-10), ELITE: IMO/Putnam level
+  - All with proper LaTeX, hints, and verified correct answers
 
 #### Phase 6.3: Secondary Curriculum Gaps (Priority: MEDIUM)
 - [ ] **6.3.1: SP1.03 — Weather & Climate** (Wetter & Klima)
