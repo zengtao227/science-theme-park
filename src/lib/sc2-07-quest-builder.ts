@@ -38,7 +38,7 @@ export function buildStagePool(
 ): SC207Quest[] {
   // Get the appropriate data array based on stage and difficulty
   let rawData: any[];
-  
+
   if (stage === 'ENERGY_CHANGES') {
     switch (difficulty) {
       case 'BASIC': rawData = energyChangesBasic; break;
@@ -64,7 +64,7 @@ export function buildStagePool(
       default: rawData = calorimetryBasic;
     }
   }
-  
+
   // Convert raw data to quest objects
   return rawData.map(data => buildQuestFromData(t, data, difficulty, stage));
 }
@@ -81,15 +81,12 @@ function buildQuestFromData(
   // Generate required Quest interface fields
   const equationLatex = data.reactionLatex || data.targetReactionLatex || '';
   const expressionLatex = equationLatex; // Use equation as expression context
-  const targetLatex = stage === 'ENERGY_CHANGES'
-    ? '\\Delta H = [value] kJ'
-    : stage === 'HESS_LAW'
-    ? '\\Delta H = [value] kJ (using Hess\'s Law)'
-    : 'q = [value] J';
+  const targetLabel = t ? t("sc2_07.labels.target") : (stage === 'ENERGY_CHANGES' ? 'Value' : 'Result');
+  const targetLatex = `\\\\text{${targetLabel}}`;
   const correctLatex = stage === 'CALORIMETRY'
     ? `${data.calorimetryData?.heat || 0} J`
     : `${data.deltaH || data.targetDeltaH || 0} kJ`;
-  
+
   const quest: SC207Quest = {
     id: data.id,
     difficulty,
@@ -101,12 +98,12 @@ function buildQuestFromData(
       deltaH: data.deltaH || data.targetDeltaH || 0,
       stateSymbols: []
     },
-    promptLatex: getPromptForStage(stage),
+    promptLatex: `\\\\text{${t(`sc2_07.prompts.${stage.toLowerCase()}`) || getPromptForStage(stage)}}`,
     equationLatex,
     expressionLatex,
     targetLatex,
     correctLatex,
-    baselContext: data.baselContext || '',
+    baselContext: t(`sc2_07.contexts.${data.id}`) || data.baselContext || '',
     reactionType: data.reactionType || 'exothermic',
     slots: [] // Will be populated below
   };

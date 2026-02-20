@@ -25,6 +25,7 @@ interface RawQuestData {
   type: ReactionType;
   energyChange?: EnergyChange;
   baselContext: string;
+  baselContextKey?: string; // Added for i18n support
 }
 
 // ============================================================================
@@ -669,7 +670,7 @@ export const allQuestData = {
 export function getQuestData(stage: string, difficulty: string): RawQuestData[] {
   const stageData = allQuestData[stage as keyof typeof allQuestData];
   if (!stageData) return [];
-  
+
   return stageData[difficulty as keyof typeof stageData] || [];
 }
 

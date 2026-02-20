@@ -36,21 +36,21 @@ export function buildStagePool(
 ): SC106Quest[] {
   // Get raw quest data for this stage and difficulty
   const rawData = getQuestData(stage, difficulty);
-  
+
   if (!rawData || rawData.length === 0) {
     console.warn(`No quest data found for stage ${stage}, difficulty ${difficulty}`);
     return [];
   }
-  
+
   // Take exactly `count` quests (or all available if less than count)
   const selectedData = rawData.slice(0, count);
-  
+
   // Map raw data to SC106Quest objects
   const quests: SC106Quest[] = selectedData.map((data, index) => {
     // Create Compound objects for reactants and products
     const reactantCompounds = data.reactants.map(formula => createCompound(formula));
     const productCompounds = data.products.map(formula => createCompound(formula));
-    
+
     // Build ChemicalEquation object
     const equation: ChemicalEquation = {
       reactants: reactantCompounds,
@@ -58,34 +58,36 @@ export function buildStagePool(
       coefficients: data.coefficients,
       type: data.type
     };
-    
+
     // Generate LaTeX string for the equation
     const equationLatex = generateEquationLatex(
       reactantCompounds.map(c => c.formulaLatex),
       productCompounds.map(c => c.formulaLatex),
       data.coefficients
     );
-    
+
     // Generate prompt based on stage
-    const promptLatex = generatePromptLatex(stage, equation);
-    
+    const promptText = t ? t(`sc1_06.prompts.${stage}`) : "";
+    const promptLatex = generatePromptLatex(stage, equation, promptText);
+
     // Generate slots based on stage
-    const slots = generateSlots(stage, equation, data);
-    
+    const slots = generateSlots(stage, equation, data, t);
+
     // Generate required Quest interface fields
     const expressionLatex = equationLatex; // Use equation as expression context
-    const targetLatex = stage === 'REACTION_TYPES' 
+    const initialTargetLatex = stage === 'REACTION_TYPES'
       ? 'Reaction type: [type]'
       : stage === 'EQUATION_BALANCING'
-      ? 'Balanced coefficients'
-      : 'Reaction identification';
+        ? 'Balanced coefficients'
+        : 'Reaction identification';
     const correctLatex = stage === 'REACTION_TYPES'
       ? data.type
       : stage === 'EQUATION_BALANCING'
-      ? data.coefficients.join(', ')
-      : data.type;
-    
+        ? data.coefficients.join(', ')
+        : data.type;
+
     // Build the quest object
+    const finalContext = t ? t(`sc1_06.contexts.${data.id}`) : data.baselContext;
     const quest: SC106Quest = {
       id: data.id,
       difficulty,
@@ -98,16 +100,16 @@ export function buildStagePool(
       promptLatex,
       equationLatex,
       expressionLatex,
-      targetLatex,
+      targetLatex: `\\\\text{${t ? t("sc1_06.labels.target") : initialTargetLatex}}`,
       correctLatex,
       energyChange: data.energyChange,
-      baselContext: data.baselContext,
+      baselContext: t(`sc1_06.contexts.${data.id}`),
       slots
     };
-    
+
     return quest;
   });
-  
+
   return quests;
 }
 
@@ -141,7 +143,7 @@ function generateEquationLatex(
     // Only show coefficient if it's greater than 1
     return coeff > 1 ? `${coeff}${latex}` : latex;
   }).join(' + ');
-  
+
   // Build product side
   const productStartIndex = reactantLatexStrings.length;
   const productSide = productLatexStrings.map((latex, index) => {
@@ -149,7 +151,7 @@ function generateEquationLatex(
     // Only show coefficient if it's greater than 1
     return coeff > 1 ? `${coeff}${latex}` : latex;
   }).join(' + ');
-  
+
   // Combine with arrow (using four backslashes)
   return `${reactantSide} \\\\rightarrow ${productSide}`;
 }
@@ -161,19 +163,22 @@ function generateEquationLatex(
  * @param equation - Chemical equation
  * @returns Prompt LaTeX string
  */
-function generatePromptLatex(stage: Stage, equation: ChemicalEquation): string {
+function generatePromptLatex(stage: Stage, equation: ChemicalEquation, translatedText?: string): string {
+  if (translatedText && !translatedText.includes("sc1_06")) {
+    return `\\\\text{${translatedText}}`;
+  }
   switch (stage) {
     case 'REACTION_TYPES':
-      return 'Classify this chemical reaction:';
-    
+      return '\\\\text{Classify this chemical reaction:}';
+
     case 'EQUATION_BALANCING':
-      return 'Balance this chemical equation by entering the correct coefficients:';
-    
+      return '\\\\text{Balance this chemical equation by entering the correct coefficients:}';
+
     case 'REACTION_SIMULATION':
-      return 'Observe the molecular animation and identify the reaction:';
-    
+      return '\\\\text{Observe the molecular animation and identify the reaction:}';
+
     default:
-      return 'Analyze this chemical reaction:';
+      return '\\\\text{Analyze this chemical reaction:}';
   }
 }
 
@@ -188,10 +193,11 @@ function generatePromptLatex(stage: Stage, equation: ChemicalEquation): string {
 function generateSlots(
   stage: Stage,
   equation: ChemicalEquation,
-  data: any
+  data: any,
+  t?: any
 ): Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> {
   const slots: Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> = [];
-  
+
   switch (stage) {
     case 'EQUATION_BALANCING':
       // Create slots for each compound's coefficient
@@ -203,7 +209,7 @@ function generateSlots(
           expected: data.coefficients[index]
         });
       });
-      
+
       equation.products.forEach((compound, index) => {
         const coeffIndex = equation.reactants.length + index;
         slots.push({
@@ -214,7 +220,7 @@ function generateSlots(
         });
       });
       break;
-    
+
     case 'REACTION_TYPES':
       // Single slot for reaction type selection
       slots.push({
@@ -224,7 +230,7 @@ function generateSlots(
         expected: data.type
       });
       break;
-    
+
     case 'REACTION_SIMULATION':
       // Slots for identifying reactants and products
       slots.push({
@@ -235,6 +241,6 @@ function generateSlots(
       });
       break;
   }
-  
+
   return slots;
 }

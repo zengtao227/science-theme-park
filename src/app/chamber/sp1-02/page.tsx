@@ -44,6 +44,8 @@ export default function SP102NewtonsLaws() {
         incorrect: t("sp1_02.incorrect")
     }), [t]);
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildQuestPool(d, s, t), [t]);
+
     const {
         difficulty,
         stage,
@@ -56,7 +58,7 @@ export default function SP102NewtonsLaws() {
         handleDifficultyChange,
         handleStageChange,
     } = useQuestManager<SP102Quest, Stage>({
-        buildPool: (d, s) => buildQuestPool(d, s),
+        buildPool,
         initialStage: "FIRST_LAW",
     });
 
@@ -111,6 +113,8 @@ export default function SP102NewtonsLaws() {
                 next: sp1_02_t.next,
                 correct: sp1_02_t.correct,
                 incorrect: sp1_02_t.incorrect,
+                ready: t("sp1_02.ready") || "SYSTEM_READY",
+                monitor_title: t("sp1_02.monitor_title") || "NEWTON_PHYSICS_V1",
             }}
             monitorContent={
                 <P102LawsCanvas

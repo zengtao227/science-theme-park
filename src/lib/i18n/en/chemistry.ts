@@ -36,7 +36,7 @@ export const enChemistry = {
             principle_3: "• Increase temperature → shifts endothermic direction",
             add_reactant: "ADD REACTANT A",
             system_temperature: "SYSTEM TEMPERATURE",
-            system_pressure: "SYSTEM PRESSURE"
+            system_pressure: "SYSTEM PRESSURE",
             input_answer: "Input Answer",
             placeholder: "Type 1 or 2",
         },
@@ -486,7 +486,7 @@ export const enChemistry = {
             stoichiometry_prompt_latex: "\\text{Use stoichiometric ratios to compute product moles.}",
             yield_prompt_latex: "\\text{Compute the theoretical yield from the given masses.}"
         },
-        
+
         labels: {
             scale: "天平读数",
             formula: "Formula",

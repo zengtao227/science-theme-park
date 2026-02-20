@@ -1,169 +1,43 @@
-# Science Theme Park - 2026 工作计划
+# Science Theme Park - 2026 Master Work Plan
 
-**创建日期**: 2026-02-19  
-**最后更新**: 2026-02-19  
-**当前状态**: Phase 4.2 质量优化进行中 (4.2.1 & 4.2.3 全部完成 ✅)
-
----
-
-## 🎉 里程碑达成
-
-✅ **Phase 1-4.1 全部完成**
-- 102/102 模块 (100% 覆盖率)
-- 6000+ 题目
-- 三语言支持 (EN/CN/DE)
-- Basel场景完整
-- 最新完成: SP2.01 电路基础 (2026-02-19)
+**Current Status**: Phase 4.2 Quality Optimization (Executing)
+**Last Updated**: 2026-02-20
 
 ---
 
-## 🎯 Phase 4.2: 质量优化任务
-
-### 任务 4.2.1: 跨学科综合题开发 (P1)
-
-**目标**: 为关键模块添加5题ELITE难度跨学科综合题
-
-**子任务**:
-- [x] 4.2.1.1: GM2.01 + SP3.02 (向量与力学) - 10题ELITE ✅ (2026-02-19)
-  - GM2.01: 5题 (N_E6-N_E7, D_E6-D_E7, M_E6)
-  - SP3.02: 5题 (NEWTON_1: Q6-Q7, NEWTON_2: Q6-Q7, FRICTION: Q6)
-  - Basel场景: 莱茵河桥梁、Basel电车、Roche大厦、Basel港口、大学医院
-  - 结合向量运算与力的合成分解、3D向量分析
-  
-- [x] 4.2.1.2: SM2.10 + SB3.01 (数据分析与生态) - 10题ELITE ✅ (2026-02-19)
-  - SM2.10: 5题 (Rhine温度-鱼类多样性相关性、公园生物多样性比较、气候趋势分析、狐狸种群概率、Rhine溶解氧置信区间)
-  - SB3.01: 5题 (Kannenfeldpark能量传递效率、Rhine大型无脊椎动物Shannon指数、Basel乌鸫种群增长率、Rhine生物量比率、Basel鹿承载力)
-  - Basel场景: 莱茵河生态监测、Kannenfeldpark、Basel城市绿地、Basel气候数据
-  - 结合统计方法与生态系统分析
-  
-- [x] 4.2.1.2: SM2.10 + SB3.01 (数据分析与生态) - 10题ELITE ✅ (2026-02-19)
-  - SM2.10: 5题 (Rhine温度-鱼类多样性相关性、公园生物多样性比较、气候趋势分析、狐狸种群概率、Rhine溶解氧置信区间)
-  - SB3.01: 5题 (Kannenfeldpark能量传递效率、Rhine大型无脊椎动物Shannon指数、Basel乌鸫种群增长率、Rhine生物量比率、Basel鹿承载力)
-  - Basel场景: 莱茵河生态监测、Kannenfeldpark、Basel城市绿地、Basel气候数据
-  - 结合统计方法与生态系统分析
-
-- [x] 4.2.1.3: SC2.05 + SB2.04 (酸碱与生理) - 20题ELITE ✅ (2026-02-19)
-  - SC2.05: 15题 (PH_BASICS 5题: 血液缓冲能力、酸中毒补偿计算、等电点计算、血浆CO2分压、代谢性酸中毒; NEUTRALIZATION 5题: 血液缓冲中和、两性缓冲、废液中和、乳酸中和、肾脏排泄; TITRATION 5题: 药典标准、Gran图法、Kjeldahl法、血浆滴定、NaOH标定)
-  - SB2.04: 20题 (DIGESTIVE 5题: 马拉松消化、营养计划、SGLT1吸收、胆汁循环、微生物代谢; RESPIRATORY 5题: 莱茵河游泳、医院病例、公共卫生、平衡逻辑、酸中毒响应; CIRCULATORY 5题: 马拉松循环、医院病例、系统协调、Frank-Starling法则、血管阻力; EXCRETORY 5题: 医院病例、公共卫生、医院治疗、肾脏稳态、跨学科分析)
-  - Basel场景: 巴塞尔大学医院、莱茵河pH值监测、巴塞尔马拉松、Novartis质控
-  - 结合化学平衡与生理调节机制
-  - 国际化: 中英德三语完成
-
-- [x] 4.2.1.4: GP2.01 + SC2.03 (热力学与气体) - 20题ELITE ✅ (2026-02-19)
-  - GP2.01: 15题 (IDEAL_GAS 5题: IWB区域供热蒸汽压力、Roche大厦高层空气摩尔数、莱茵河潜水气泡体积、Basel气象气球平流层、Novartis反应釜氮气吹扫; BOYLES_LAW 5题: 等温功、压缩功、真实气体偏差、理想气体压缩、双球连通; CHARLES_LAW 5题: 密度-温度关系、V-T图斜率、活塞做功、温度计算、动能关系)
-  - SC2.03: 5题 (BVB电车气动刹车、EuroAirport机舱压力、莱茵河Wickelfisch游泳袋、Basel消防队氧气罐、地热井气体膨胀)
-  - Basel场景: IWB供热系统、Roche大厦、Novartis、EuroAirport、BVB电车、Basel消防队
-  - 结合热力学定律与气体状态方程 (PV=nRT)
-  - 代码重构: SC2.03接入统一useQuestManager hook标准 ✅
-  - 国际化: 中英德三语完成 ✅
-  - 构建验证: npm run build 全程零类型错误 ✅
-
-- [ ] 4.2.1.5: SC1.06 (化学反应基础升级) **[由 Kiro 准备中]**
+## 📈 Recent Achievement: SP1.01 Integrity Restoration
+- ✅ **Full Data Recovery**: All 65 quests restored with 100% trilingual i18n coverage.
+- ✅ **Infrastructure Upgrade**: Integrated `useQuestManager` with nonce persistence.
+- ✅ **UX Enhancement**: Progressive hints and mastery statistics implemented.
 
 ---
 
-### 任务 4.2.2: 实验设计题增加 (P2)
+## 🎯 Phase 4.2: Quality & Excellence Optimization
 
-**目标**: 为化学和生物模块增加开放性实验设计题
+### 4.2.1 Advanced Logic & Pedagogy (P1)
+- [ ] **4.2.1.5: SC1.06 (Chemical Reactions)** - Upgrade to 3D visualization and ELITE interdisciplinary analysis.
+- [ ] **4.2.1.6: Module Cross-Linkages** - Implement "Prerequisite System" UI to guide learning paths.
 
-**子任务**:
-- [ ] 4.2.2.1: SC1.01-SC1.05 基础化学 - 各增加2题实验设计
-- [ ] 4.2.2.2: SC2.01-SC2.07 进阶化学 - 各增加2题实验设计
-- [ ] 4.2.2.3: SB1.01-SB1.05 基础生物 - 各增加2题实验设计
-- [ ] 4.2.2.4: SB2.01-SB2.04 进阶生物 - 各增加2题实验设计
+### 4.2.2 Visualization & Interaction (P1 - NEXT)
+- [ ] **4.2.2.1: Physics 3D Expansion** - Implement Three.js/Rapier physics visualization for SP1-SP3 series.
+  - Priority: SP1.01 (Forces) 3D playground.
+- [ ] **4.2.2.2: Chemistry 3D Assembly** - Complete 3D orbital and VSEPR visualization for SC1.04-SC1.06.
+- [ ] **4.2.2.3: Micro-Animations** - Add smooth transitions and "Eureka" effects for correct answers.
 
-**要求**:
-- 包含实验目的、材料、步骤、预期结果
-- 添加实验安全提示
-- Basel本地实验室场景
+### 4.2.3 Real-World Data Integration (P2)
+- [ ] **4.2.3.5: Biology Monitoring** - Integrate Rhine local biodiversity time-series data into SB3.01.
+- [ ] **4.2.3.6: Physics Energy Audit** - Use Basel IWB real energy consumption patterns for SP3.03.
 
----
-
-### 任务 4.2.3: 真实数据分析题 (P1)
-
-**目标**: 使用Basel本地真实数据创建分析题
-
-**数据源**:
-- 莱茵河水质监测数据 (Basel-Stadt环境局)
-- Basel气候数据 (MeteoSwiss)
-- Basel交通数据 (BVB/BLT)
-- Basel能源消耗数据 (IWB)
-
-**子任务**:
-- [x] 4.2.3.1: SM2.10 数据分析 - Basel气候数据 (5题) ✅ (已在 4.2.1.2 完成)
-- [x] 4.2.3.2: SB3.01 生态系统 - 莱茵河生态数据 (5题) ✅ (已在 4.2.1.2 完成)
-- [x] 4.2.3.3: SP2.03 电功率 - Basel家庭能耗数据 (5题) ✅ (2026-02-19)
-  - 5题 ELITE: IWB热泵功率评估、夏季空调制冷峰值能耗、Basler Läckerli烘焙烤箱、BVB电动车充电谷电、Basel Fasnacht彩灯能耗
-  - Basel场景: IWB供热系统、Basel家庭能耗、Basler Läckerli烘焙、BVB电动车充电、Basel Fasnacht狂欢节
-  - 国际化: 中英德三语完成
-- [x] 4.2.3.4: SC2.04 溶解度 - 莱茵河水质数据 (5题) ✅ (2026-02-19)
-  - 5题 ELITE: 蒸发残渣计算、温度对氧气溶解度影响、废水排放浓度、重金属沉淀PbCl₂、硝酸盐污染摩尔浓度
-  - Basel场景: 莱茵河水质监测、Basel废水处理厂、莱茵河环境保护
-  - 代码重构: SC2.04接入统一useQuestManager hook标准 ✅
-  - 国际化: 中英德三语完成
-  - 构建验证: npm run build 全程零类型错误 ✅
+### 4.2.4 Documentation & Standardization (P3 - Ongoing)
+- [x] **4.2.4.1: Documentation Consolidation** - Unified `docs/ENGINEERING_STANDARDS.md`.
+- [ ] **4.2.4.2: Component Library** - Extract shared UI components into a dedicated internal library.
 
 ---
 
-### 任务 4.2.4: 可视化优化 (P2)
-
-**目标**: 增强关键模块的动态可视化效果
-
-**子任务**:
-- [ ] 4.2.4.1: 物理模块 - 增加3D动画效果 (SP1.01-SP3.02)
-- [ ] 4.2.4.2: 化学模块 - 增强分子可视化 (SC1.01-SC2.07)
-- [ ] 4.2.4.3: 生物模块 - 添加生命过程动画 (SB1.01-SB3.02)
-- [ ] 4.2.4.4: 数学模块 - 改进几何图形交互 (GM2.02, SM1.01)
-
-**技术栈**: Three.js, Framer Motion, D3.js, React Spring
+## 🛠️ Execution Strategy (Automated)
+1. **P1 Dominance**: Focus on 4.2.1 and 4.2.2 simultaneously.
+2. **Zero Regression**: Every new feature must pass 100% automated integrity audits.
+3. **Continuous Deployment**: Push verified segments to GitHub to maintain a stable main branch.
 
 ---
-
-### 任务 4.2.5: ELITE题目扩展 (P2)
-
-**目标**: 为Gymnasium模块增加10-15题ELITE难度
-
-**子任务**:
-- [ ] 4.2.5.1: GM1.01, GM1.02 微积分 - 各增加10题ELITE
-- [ ] 4.2.5.2: GM2.01 向量 - 增加10题ELITE
-- [ ] 4.2.5.3: GM3.01 概率, GM4.01 复数 - 各增加10题ELITE
-- [ ] 4.2.5.4: GP1.01-GP3.01 高中物理 - 各增加10题ELITE
-- [ ] 4.2.5.5: GC1.01-GC3.02 高中化学 - 各增加10题ELITE
-- [ ] 4.2.5.6: GB1.01-GB3.02 高中生物 - 各增加10题ELITE
-
-**题目类型**: 竞赛级难度、开放性探究、跨学科综合、真实场景应用
-
----
-
-## 🚀 自动化执行策略
-
-### 执行原则
-1. 不间断执行: 完成一个任务立即开始下一个
-2. 优先级驱动: P1任务优先 (4.2.1, 4.2.3)
-3. 质量保证: 每个修改必须通过构建测试
-4. 文档同步: 实时更新进度
-
-### 执行顺序
-1. **P1任务**: 4.2.1.1 → 4.2.3.1 → 4.2.1.2 → 4.2.3.2 → 4.2.1.3 → 4.2.3.3 → 4.2.1.4 → 4.2.3.4
-2. **P2任务**: 4.2.2.1 → 4.2.2.2 → 4.2.2.3 → 4.2.2.4 → 4.2.4.1 → 4.2.4.2 → 4.2.4.3 → 4.2.4.4 → 4.2.5.1-4.2.5.6
-
----
-
-## 📈 成功标准
-
-### 质量优化标准
-- 每个Gymnasium模块至少10题ELITE
-- 至少20组跨学科综合题
-- 至少40个实验设计题
-- 至少20个真实数据分析题
-- 所有物理模块有3D可视化
-
-### 最终目标
-- 模块覆盖率: 100% (102/102) ✅
-- 题目总数: 7000+ 题
-- 质量评分: ⭐⭐⭐⭐⭐ (5/5)
-
----
-
-**计划版本**: v2.0  
-**执行模式**: 自动化不间断执行
+**Plan Version**: 2.1 (Refined for Quality Excellence)

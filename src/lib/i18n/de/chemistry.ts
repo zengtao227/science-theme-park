@@ -36,7 +36,7 @@ export const deChemistry = {
             principle_3: "• Temperatur erhöhen → verschiebt in endotherme Richtung",
             add_reactant: "REAKTANT A HINZUFÜGEN",
             system_temperature: "SYSTEMTEMPERATUR",
-            system_pressure: "SYSTEMDRUCK"
+            system_pressure: "SYSTEMDRUCK",
             input_answer: "Antwort eingeben",
             placeholder: "Tippen Sie 1 oder 2",
         },
@@ -474,7 +474,7 @@ export const deChemistry = {
             stoichiometry_prompt_latex: "\\text{Nutze stöchiometrische Verhältnisse für die Produktmenge.}",
             yield_prompt_latex: "\\text{Berechne die theoretische Ausbeute aus den gegebenen Massen.}"
         },
-        
+
         labels: {
             scale: "天平读数",
             formula: "Formel",

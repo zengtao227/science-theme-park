@@ -36,7 +36,7 @@ export const cnChemistry = {
             principle_3: "• 升高温度 → 平衡向吸热方向移动",
             add_reactant: "添加反应物 A",
             system_temperature: "系统温度",
-            system_pressure: "系统压强"
+            system_pressure: "系统压强",
             input_answer: "输入答案",
             placeholder: "输入 1 或 2",
         },
@@ -486,7 +486,7 @@ export const cnChemistry = {
             stoichiometry_prompt_latex: "\\text{利用化学计量关系求产物物质的量。}",
             yield_prompt_latex: "\\text{根据给定质量计算理论产量。}"
         },
-        
+
         labels: {
             scale: "天平读数",
             formula: "化学式",
