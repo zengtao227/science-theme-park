@@ -271,6 +271,12 @@ export default function Home() {
           <div className="flex flex-col items-end gap-4">
             <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm">
               <UserSwitcher />
+              <a
+                href="/nexus"
+                className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-purple/40 text-neon-purple bg-neon-purple/10 hover:bg-neon-purple/20 transition-all shadow-[0_0_18px_var(--color-neon-purple)]"
+              >
+                ⬡ Nexus
+              </a>
               <button
                 onClick={() => setVaultOpen(true)}
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"
