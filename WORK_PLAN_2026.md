@@ -103,16 +103,23 @@
 - [x] **5.1.2: Personalized Feedback** - AI-generated scientific explanations for common mistakes.
 
 ### 5.2 Social & Gamification (P2)
-- [ ] **5.2.1: The Nexus Hub** - Community leaderboard for Zurich/Basel/International nodes and "Scientific Achievements" showcase.
-- [ ] **5.2.2: Laboratory Collaboration** - Cooperative questing mode for classroom environments.
+- [x] **5.2.1: The Nexus Hub** ✅ Completed (2026-02-20)
+  - Implemented `/nexus` dashboard with local completion statistics, domain mastery radar charts, and chronological activity feeds.
+  - Deployed localized Achievement Vault (Common/Rare/Epic/Legendary).
+- [x] **5.2.2: Laboratory Collaboration** ✅ Completed (2026-02-20)
+  - Integrated `PeerJS` WebRTC engine for serverless Peer-to-Peer cooperative questing.
+  - Deployed `CoopPanel` floating widget to all Chamber modules, allowing real-time host/guest quest sync and answer collaboration without any backend.
 
-### 5.3 Institutional Integration (P2)
-- [ ] **5.3.1: Teacher Dashboard** - Analytics for student progress tracking against the Basel Curriculum.
-- [ ] **5.3.2: Lesson Plan Export** - Generate PDF study guides based on theme park modules.
+### 5.3 Study Guides & PDF Export (P2) ✅ Completed (2026-02-21)
+- [x] **5.3.1: Lesson Plan PDF Export** - Integrated professional printable headers and `@media print` styles for worksheet generation.
+- [x] **5.3.2: Offline Worksheets** - Automated formatting of lab quests into offline-ready printable documents.
 
 ### 5.4 Global Performance & Access (P3)
 - [ ] **5.4.1: Edge Optimization** - Strategic asset optimization (WebP/AVIF migration) and offline-first PWA enhancements.
 - [ ] **5.4.2: Universal Accessibility** - WCAG 2.1 compliance audit and multi-input support (Voice/Accessibility controllers).
+
+### 5.5 Extra / Enrichment Challenges (P3) ✅ Completed (2026-02-21)
+- [x] **5.5.1: Olympiad-level Module Sandbox** - Launched `EM3.01` (Olympiad Challenge) with logic/math puzzles inspired by "Mathematical Kangaroo" and Junior Olympiads.
 
 ---
 
@@ -173,16 +180,20 @@
 - [ ] Week 4 (Feb 22-28): Start 4.2.2 visualization work
 
 ### March 2026
-- [ ] Week 1-2: Complete SP1.01 3D playground
-- [ ] Week 3-4: Chemistry 3D visualization (SC1.04-SC1.06)
+- [x] Week 1-2: Complete SP1.01 3D playground ✅ 
+- [x] Week 3-4: Chemistry 3D visualization (SC1.04-SC1.06) ✅
 
 ### April 2026
-- [ ] Complete Phase 4.2
-- [ ] Begin Phase 5 planning
+- [x] Complete Phase 4.2 ✅ 
+- [ ] Begin Phase 5.3 Institutional Integration planning
 
 ---
 
 ## 🔄 Version History
+
+### v2.5 (2026-02-20)
+- Fully implemented Phase 5.2: Social & Gamification. Built the Nexus Hub (local achievements/radar) and a PeerJS WebRTC serverless cooperative system.
+- Completed all Phase 4.2.2 Visualization tasks using React Three Fiber.
 
 ### v2.4 (2026-02-21)
 - Detailed closeout plan for Phase 4.2 (Component Library & Testing).

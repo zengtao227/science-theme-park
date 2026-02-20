@@ -9,7 +9,8 @@ import MasteryRadar from '@/components/ui/MasteryRadar';
 import AchievementVault from '@/components/ui/AchievementVault';
 import ModuleFilter from '@/components/ui/ModuleFilter';
 import { clsx } from 'clsx';
-import { Gamepad2, Atom, FlaskConical, Sigma, Medal } from 'lucide-react';
+import { Gamepad2, Atom, FlaskConical, Sigma, Medal, Settings } from 'lucide-react';
+import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import UserSwitcher from '@/components/UserSwitcher';
@@ -178,8 +179,9 @@ export default function Home() {
   ]), [t]);
 
   const enrichmentModules = useMemo(() => ([
-    { code: "EM1.01", title: t("home.em1_01_title"), desc: t("home.em1_01_subtitle") + " (Advanced Geometry)", color: "neon-purple", href: "/chamber/em1-01", tags: ["math", "enrichment", "advanced"] },
-    { code: "EM2.01", title: t("home.em2_01_title"), desc: t("home.em2_01_subtitle") + " (Matura Preparation)", color: "neon-amber", href: "/chamber/em2-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM1.01", title: t("home.em1_01_title"), desc: t("home.em1_01_subtitle"), color: "neon-purple", href: "/chamber/em1-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM2.01", title: t("home.em2_01_title"), desc: t("home.em2_01_subtitle"), color: "neon-amber", href: "/chamber/em2-01", tags: ["math", "enrichment", "advanced"] },
+    { code: "EM3.01", title: t("home.em3_01_title"), desc: t("home.em3_01_subtitle"), color: "neon-green", href: "/chamber/em3-01", tags: ["math", "enrichment", "olympiad"] },
   ]), [t]);
 
   const biologyModules = useMemo(() => ([
@@ -271,12 +273,12 @@ export default function Home() {
           <div className="flex flex-col items-end gap-4">
             <div className="flex items-center gap-4 bg-black/50 border border-white/10 px-4 py-2 rounded-sm">
               <UserSwitcher />
-              <a
+              <Link
                 href="/nexus"
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-purple/40 text-neon-purple bg-neon-purple/10 hover:bg-neon-purple/20 transition-all shadow-[0_0_18px_var(--color-neon-purple)]"
               >
                 ⬡ Nexus
-              </a>
+              </Link>
               <button
                 onClick={() => setVaultOpen(true)}
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-neon-cyan/40 text-neon-cyan bg-neon-cyan/10 hover:bg-neon-cyan/20 transition-all shadow-[0_0_18px_var(--color-neon-cyan)]"
@@ -284,6 +286,13 @@ export default function Home() {
                 <Medal className="w-4 h-4" />
                 {t("common.achievements_title")}
               </button>
+              <Link
+                href="/profile"
+                className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-white/20 text-white/70 bg-white/5 hover:bg-white/10 transition-all"
+                title="Settings & AI Configuration"
+              >
+                <Settings className="w-4 h-4" />
+              </Link>
               {languages.map((lang) => (
                 <button
                   key={lang}
@@ -317,7 +326,8 @@ export default function Home() {
           </div>
 
           {/* STEM Mastery Radar - Side by side with title */}
-          <div className="flex-shrink-0 -mt-6 relative z-0">
+          <Link href="/nexus" className="flex-shrink-0 -mt-6 relative z-0 group">
+            <div className="absolute inset-0 bg-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl blur-xl" />
             <MasteryRadar
               conceptual={masteryMetrics.conceptual}
               speed={masteryMetrics.speed}
@@ -331,7 +341,10 @@ export default function Home() {
                 decay: t("common.mastery_decay"),
               }}
             />
-          </div>
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-neon-purple text-black text-[8px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter shadow-lg">
+              EXPAND VIEW ⬡
+            </div>
+          </Link>
         </div>
 
         <div className="mb-8">
@@ -459,16 +472,18 @@ export default function Home() {
             </Sector>
           )}
 
-          {filteredEnrichment.length > 0 && (
+
+
+          {filteredBiology.length > 0 && (
             <Sector
-              title="ENRICHMENT & ADVANCED TOPICS"
-              color="neon-purple"
+              title="BIOLOGY SECTOR"
+              color="neon-green"
               progress={0}
-              icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-              tagIcon="⭐"
+              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="🧬"
             >
               <AnimatePresence mode="popLayout">
-                {filteredEnrichment.map((module) => (
+                {filteredBiology.map((module) => (
                   <motion.div
                     layout
                     key={module.code}
@@ -493,16 +508,16 @@ export default function Home() {
             </Sector>
           )}
 
-          {filteredBiology.length > 0 && (
+          {filteredEnrichment.length > 0 && (
             <Sector
-              title="BIOLOGY SECTOR"
-              color="neon-green"
+              title="ENRICHMENT & ADVANCED TOPICS"
+              color="neon-purple"
               progress={0}
-              icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
-              tagIcon="🧬"
+              icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
+              tagIcon="⭐"
             >
               <AnimatePresence mode="popLayout">
-                {filteredBiology.map((module) => (
+                {filteredEnrichment.map((module) => (
                   <motion.div
                     layout
                     key={module.code}

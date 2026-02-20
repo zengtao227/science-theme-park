@@ -220,10 +220,12 @@ export const enCommon = {
         gc3_02_title: "GC3.02 // CRYSTAL PALACE",
         gc3_02_subtitle: "Explore crystal structures: SC, BCC, FCC lattices with interstitial voids.",
 
-        em1_01_title: "EM1.01 // 4D HYPER-GEOMETRY",
-        em1_01_subtitle: "Explore the tesseract: 4D projection, rotation matrices, and hypercube unfolding.",
-        em2_01_title: "EM2.01 // MATRIX TRANSFORM",
-        em2_01_subtitle: "Linear transformations and eigenvectors mapped onto the Basel grid.",
+        em1_01_title: "EM1.01 // TOPOLOGICAL PHYSICS",
+        em1_01_subtitle: "Explore 4D hypercubes, Klein bottles, and Möbius strips.",
+        em2_01_title: "EM2.01 // MATH COMPETITION LAB",
+        em2_01_subtitle: "Advanced simulation challenges for Matura and Swiss Math competitions.",
+        em3_01_title: "EM3.01 // OLYMPIAD CHALLENGE",
+        em3_01_subtitle: "Olympiad-level logic and algebra challenges for elite explorers.",
 
         sb1_01_title: "SB1.01 // CELL FACTORY",
         sb1_01_subtitle: "Explore cell structure and organelles.",

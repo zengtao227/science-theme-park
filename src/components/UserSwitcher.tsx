@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { User, ChevronDown, Plus } from 'lucide-react';
+import { User, ChevronDown, Plus, Settings } from 'lucide-react';
+import Link from 'next/link';
 
 export default function UserSwitcher() {
   const { currentUser, getUserList, switchUser, createUser } = useAppStore();
@@ -60,9 +61,8 @@ export default function UserSwitcher() {
                         switchUser(user.username);
                         setShowMenu(false);
                       }}
-                      className={`w-full px-4 py-3 text-left hover:bg-white/10 transition-colors flex items-center gap-2 ${
-                        user.username === currentUser ? 'bg-neon-green/10 text-neon-green' : 'text-white'
-                      }`}
+                      className={`w-full px-4 py-3 text-left hover:bg-white/10 transition-colors flex items-center gap-2 ${user.username === currentUser ? 'bg-neon-green/10 text-neon-green' : 'text-white'
+                        }`}
                     >
                       <User className="w-3 h-3" />
                       <span className="text-sm font-mono">{user.username}</span>
@@ -79,6 +79,13 @@ export default function UserSwitcher() {
                   <Plus className="w-3 h-3" />
                   <span className="text-sm font-mono">Add User</span>
                 </button>
+                <Link
+                  href="/profile"
+                  className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-cyan hover:bg-neon-cyan/10 transition-colors flex items-center gap-2"
+                >
+                  <Settings className="w-3 h-3" />
+                  <span className="text-sm font-mono">Settings & AI</span>
+                </Link>
               </>
             ) : (
               <form onSubmit={handleCreateUser} className="p-4">

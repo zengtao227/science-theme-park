@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Sigma, X } from "lucide-react";
+import { ArrowLeft, Sigma, X, Printer } from "lucide-react";
 import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import ConceptIcon from "@/components/ConceptIcon";
@@ -299,8 +299,15 @@ export default function ChamberLayout({
                     >
                         {common.history_toggle}
                     </button>
+                    <button
+                        onClick={() => window.print()}
+                        className="inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border border-white/70 text-white hover:border-white/50"
+                        title="Export as PDF / Print"
+                    >
+                        <Printer className="w-4 h-4" />
+                    </button>
 
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden md:flex items-center gap-1 no-print">
                         {(["BASIC", "CORE", "ADVANCED", "ELITE"] as const).map((d) => (
                             <button
                                 key={d}
@@ -319,7 +326,7 @@ export default function ChamberLayout({
 
                     <div className="w-px h-4 bg-white/60 hidden md:block" />
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 no-print">
                         {(['DE', 'EN', 'CN'] as const).map((lang) => (
                             <button
                                 key={lang}
@@ -337,6 +344,33 @@ export default function ChamberLayout({
                     </div>
                 </div>
             </header>
+
+            {/* PRINT ONLY HEADER */}
+            <div className="hidden print:block mb-10 border-b-4 border-black pb-6 text-black">
+                <div className="flex justify-between items-start mb-8">
+                    <div>
+                        <div className="text-4xl font-black uppercase tracking-tighter leading-none mb-2">{title}</div>
+                        <div className="text-xs font-mono opacity-70">
+                            STATION_ID: #ZRH-{moduleCode} // SYSTEM: ANTIGRAVITY_V2 // REF: {new Date().getFullYear()}
+                        </div>
+                    </div>
+                    <div className="text-right font-mono text-[10px] leading-tight">
+                        <div>PARK_ID: SC-TP-2026</div>
+                        <div>STATUS: VERIFIED_CHAMBER</div>
+                        <div>SECURITY_LEVEL: {difficulty === 'ELITE' ? 'ULTRA' : 'STANDARD'}</div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 gap-x-12 gap-y-6">
+                    <div className="border-b-2 border-black/10 pb-2 flex items-center justify-between">
+                        <span className="text-[10px] font-black uppercase tracking-widest">CANDIDATE_NAME:</span>
+                        <div className="flex-1 border-b-2 border-black ml-4 h-6"></div>
+                    </div>
+                    <div className="border-b-2 border-black/10 pb-2 flex items-center justify-between">
+                        <span className="text-[10px] font-black uppercase tracking-widest">DATE_STAMP:</span>
+                        <div className="flex-1 border-b-2 border-black ml-4 h-6"></div>
+                    </div>
+                </div>
+            </div>
 
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
                 {/* 桌面端：可拖动布局 */}
@@ -596,6 +630,42 @@ export default function ChamberLayout({
                     {checkStatus ? (checkStatus.ok ? translations.correct : translations.incorrect) : (translations.ready || "SYSTEM READY")}
                 </span>
             </footer>
+
+            <style jsx global>{`
+                @media print {
+                    header, footer, nav, button, .no-print, [role="button"], .fixed, .absolute, aside, .hud-overlay {
+                        display: none !important;
+                    }
+                    html, body {
+                        background: white !important;
+                        color: black !important;
+                    }
+                    main, .print-content {
+                        display: block !important;
+                        position: static !important;
+                        width: 100% !important;
+                        height: auto !important;
+                        overflow: visible !important;
+                        background: white !important;
+                        color: black !important;
+                        padding: 2rem !important;
+                    }
+                    .katex {
+                        font-size: 1.4em !important;
+                        color: black !important;
+                    }
+                    * {
+                        box-shadow: none !important;
+                        text-shadow: none !important;
+                        background: transparent !important;
+                        border-color: black !important;
+                    }
+                    input {
+                        border: 1px solid black !important;
+                        background: white !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 }
