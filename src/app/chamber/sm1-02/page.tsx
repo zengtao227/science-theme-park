@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -22,147 +22,88 @@ interface S103Quest extends Quest {
     };
 }
 
-// Data structure for quest generation
-interface AlgebraData {
-    var1?: string;
-    val1?: number;
-    var2?: string;
-    val2?: number;
-    var3?: string;
-    val3?: number;
-    expr?: string;
-    answer: number | string;
-    visualMode: AlgebraVisualMode;
-    visualData: {
-        variables?: { label: string; value: number | string; color: string }[];
-        expression?: string;
-        items?: { type: string; count: number; color: string }[];
-        inputValue?: number;
-        formula?: string;
-    };
-}
-
-const QUEST_DATA: Record<Stage, Record<Difficulty, AlgebraData[]>> = {
-    VARIABLES: {
-        BASIC: [
-            { var1: 'x', val1: 5, answer: 5, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }] } },
-            { var1: 'y', val1: 10, answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 10, color: '#3b82f6' }] } },
-            { var1: 'z', val1: 2, answer: 2, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'z', value: 2, color: '#22c55e' }] } },
-            { var1: 'a', val1: 7, answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 7, color: '#ef4444' }] } },
-            { var1: 'b', val1: 0, answer: 0, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 0, color: '#64748b' }] } },
-        ],
-        CORE: [
-            { var1: 'x', val1: 3, expr: 'x+x', answer: 6, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }] } },
-            { var1: 'y', val1: 4, expr: 'y+y+y', answer: 12, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }, { label: 'y', value: 4, color: '#3b82f6' }] } },
-            { var1: 'a', val1: 5, expr: '2a', answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 5, color: '#ef4444' }, { label: 'a', value: 5, color: '#ef4444' }] } },
-            { var1: 'x', val1: 2, expr: 'x+5', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: '1', value: 5, color: '#64748b' }] } },
-            { var1: 'b', val1: 6, expr: 'b-2', answer: 4, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'b', value: 6, color: '#22c55e' }] } },
-        ],
-        ADVANCED: [
-            { var1: 'a', val1: 4, var2: 'b', val2: 2, expr: 'a+b', answer: 6, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }, { label: 'b', value: 2, color: '#22c55e' }] } },
-            { var1: 'x', val1: 5, var2: 'y', val2: 3, expr: 'x-y', answer: 2, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }] } },
-            { var1: 'a', val1: 3, var2: 'b', val2: 4, expr: '2a+b', answer: 10, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 3, color: '#ef4444' }, { label: 'a', value: 3, color: '#ef4444' }, { label: 'b', value: 4, color: '#22c55e' }] } },
-            { var1: 'x', val1: 10, expr: 'x/2', answer: 5, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 10, color: '#a855f7' }] } },
-            { var1: 'p', val1: 3, var2: 'q', val2: 2, expr: '3p-q', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'p', value: 3, color: '#eab308' }, { label: 'q', value: 2, color: '#ec4899' }] } },
-        ],
-        ELITE: [
-            { var1: 'x', val1: 3, expr: '2x+1', answer: 7, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 3, color: '#a855f7' }, { label: 'x', value: 3, color: '#a855f7' }, { label: '1', value: 1, color: '#64748b' }] } },
-            { var1: 'x', val1: 5, var2: 'y', val2: 2, expr: '2x-3y', answer: 4, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 5, color: '#a855f7' }, { label: 'x', value: 5, color: '#a855f7' }, { label: 'y', value: 2, color: '#3b82f6' }] } },
-            { var1: 'a', val1: 4, expr: 'a^2', answer: 16, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'a', value: 4, color: '#ef4444' }] } },
-            { var1: 'x', val1: 2, var2: 'y', val2: 3, var3: 'z', val3: 4, expr: 'x+y+z', answer: 9, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'x', value: 2, color: '#a855f7' }, { label: 'y', value: 3, color: '#3b82f6' }, { label: 'z', value: 4, color: '#22c55e' }] } },
-            { var1: 'k', val1: 10, expr: '2k+5', answer: 25, visualMode: 'CONTAINERS', visualData: { variables: [{ label: 'k', value: 10, color: '#eab308' }, { label: 'k', value: 10, color: '#eab308' }, { label: '5', value: 5, color: '#64748b' }] } },
-        ],
-    },
-    TERMS: {
-        BASIC: [
-            { expr: '3a+2a', answer: '5a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 2, color: '#ef4444' }] } },
-            { expr: '4x+x', answer: '5x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 4, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }] } },
-            { expr: '2y+5y', answer: '7y', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 2, color: '#eab308' }, { type: 'y', count: 5, color: '#eab308' }] } },
-            { expr: 'a+a', answer: '2a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 1, color: '#ef4444' }, { type: 'a', count: 1, color: '#ef4444' }] } },
-            { expr: '6b+2b', answer: '8b', visualMode: 'SORTING', visualData: { items: [{ type: 'b', count: 6, color: '#22c55e' }, { type: 'b', count: 2, color: '#22c55e' }] } },
-        ],
-        CORE: [
-            { expr: '5x-2x', answer: '3x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'x (remove)', count: -2, color: '#9ca3af' }] } },
-            { expr: '10y-4y', answer: '6y', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 10, color: '#eab308' }, { type: 'y', count: -4, color: '#9ca3af' }] } },
-            { expr: '3a+4a-2a', answer: '5a', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'a', count: 4, color: '#ef4444' }, { type: 'a', count: -2, color: '#9ca3af' }] } },
-            { expr: '8z-z', answer: '7z', visualMode: 'SORTING', visualData: { items: [{ type: 'z', count: 8, color: '#22c55e' }, { type: 'z', count: -1, color: '#9ca3af' }] } },
-            { expr: '2x+2x+2x', answer: '6x', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }, { type: 'x', count: 2, color: '#3b82f6' }] } },
-        ],
-        ADVANCED: [
-            { expr: '2x+3y+x', answer: '3x+3y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: 'y', count: 3, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }] } },
-            { expr: '4a+2b+a', answer: '5a+2b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 1, color: '#ef4444' }] } },
-            { expr: '5x+5y-2x', answer: '3x+5y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 5, color: '#3b82f6' }, { type: 'y', count: 5, color: '#eab308' }, { type: 'x', count: -2, color: '#9ca3af' }] } },
-            { expr: '3a+2b+3a+b', answer: '6a+3b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 2, color: '#22c55e' }, { type: 'a', count: 3, color: '#ef4444' }, { type: 'b', count: 1, color: '#22c55e' }] } },
-            { expr: 'x+y+x+y', answer: '2x+2y', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'y', count: 1, color: '#eab308' }] } },
-        ],
-        ELITE: [
-            { expr: '4a+5-a+2', answer: '3a+7', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 4, color: '#ef4444' }, { type: '1', count: 5, color: '#64748b' }, { type: 'a', count: -1, color: '#fca5a5' }, { type: '1', count: 2, color: '#64748b' }] } },
-            { expr: '2x-3+5x+10', answer: '7x+7', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 2, color: '#3b82f6' }, { type: '1', count: -3, color: '#64748b' }, { type: 'x', count: 5, color: '#3b82f6' }, { type: '1', count: 10, color: '#64748b' }] } },
-            { expr: '3y+2-y-5', answer: '2y-3', visualMode: 'SORTING', visualData: { items: [{ type: 'y', count: 3, color: '#eab308' }, { type: '1', count: 2, color: '#64748b' }, { type: 'y', count: -1, color: '#fca5a5' }, { type: '1', count: -5, color: '#64748b' }] } },
-            { expr: '5a-2a+3b-b', answer: '3a+2b', visualMode: 'SORTING', visualData: { items: [{ type: 'a', count: 5, color: '#ef4444' }, { type: 'a', count: -2, color: '#fca5a5' }, { type: 'b', count: 3, color: '#22c55e' }, { type: 'b', count: -1, color: '#9ca3af' }] } },
-            { expr: 'x+x+x-3x', answer: '0', visualMode: 'SORTING', visualData: { items: [{ type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: 1, color: '#3b82f6' }, { type: 'x', count: -3, color: '#fca5a5' }] } },
-        ],
-    },
-    SUBSTITUTION: {
-        BASIC: [
-            { var1: 'x', val1: 3, expr: '2x', answer: 6, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '2x' } },
-            { var1: 'x', val1: 2, expr: 'x+5', answer: 7, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: 'x+5' } },
-            { var1: 'x', val1: 10, expr: 'x-1', answer: 9, visualMode: 'MACHINE', visualData: { inputValue: 10, formula: 'x-1' } },
-            { var1: 'x', val1: 0, expr: '3x', answer: 0, visualMode: 'MACHINE', visualData: { inputValue: 0, formula: '3x' } },
-            { var1: 'x', val1: 8, expr: 'x/2', answer: 4, visualMode: 'MACHINE', visualData: { inputValue: 8, formula: 'x/2' } },
-        ],
-        CORE: [
-            { var1: 'x', val1: 4, expr: '3x+2', answer: 14, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: '3x+2' } },
-            { var1: 'x', val1: 5, expr: '2x-5', answer: 5, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: '2x-5' } },
-            { var1: 'x', val1: 1, expr: '4x+1', answer: 5, visualMode: 'MACHINE', visualData: { inputValue: 1, formula: '4x+1' } },
-            { var1: 'x', val1: 3, expr: '10-x', answer: 7, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '10-x' } },
-            { var1: 'x', val1: 1.5, expr: '5x', answer: 7.5, visualMode: 'MACHINE', visualData: { inputValue: 1.5, formula: '5x' } },
-        ],
-        ADVANCED: [
-            { var1: 'x', val1: 5, expr: 'x^2', answer: 25, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: 'x^2' } },
-            { var1: 'x', val1: 3, expr: 'x^2+2', answer: 11, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: 'x^2+2' } },
-            { var1: 'x', val1: 2, expr: '2x^2', answer: 8, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: '2x^2' } },
-            { var1: 'x', val1: 4, expr: '100-x^2', answer: 84, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: '100-x^2' } },
-            { var1: 'x', val1: 3, expr: '(x+1)^2', answer: 16, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '(x+1)^2' } },
-        ],
-        ELITE: [
-            { var1: 'x', val1: 3, expr: '2x^2+1', answer: 19, visualMode: 'MACHINE', visualData: { inputValue: 3, formula: '2x^2+1' } },
-            { var1: 'x', val1: 5, expr: 'x^2-3x', answer: 10, visualMode: 'MACHINE', visualData: { inputValue: 5, formula: 'x^2-3x' } },
-            { var1: 'x', val1: 4, expr: 'x^2/2', answer: 8, visualMode: 'MACHINE', visualData: { inputValue: 4, formula: 'x^2/2' } },
-            { var1: 'x', val1: 2, expr: '3x^2+x-10', answer: 4, visualMode: 'MACHINE', visualData: { inputValue: 2, formula: '3x^2+x-10' } },
-            { var1: 'x', val1: 16, expr: '\\sqrt{x}+5', answer: 9, visualMode: 'MACHINE', visualData: { inputValue: 16, formula: '\\sqrt{x}+5' } },
-        ],
-    },
+const VAR_COLORS = {
+    x: '#3b82f6', // blue
+    y: '#eab308', // yellow
+    z: '#22c55e', // green
+    a: '#ef4444', // red
+    b: '#a855f7', // purple
+    c: '#f97316', // orange
+    p: '#14b8a6', // teal
+    q: '#ec4899', // pink
 };
 
 function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S103Quest[] {
     const quests: S103Quest[] = [];
-    const dataList = QUEST_DATA[stage]?.[difficulty] || [];
+    const count = 20;
 
-    dataList.forEach((data, idx) => {
-        const id = `${stage[0]}${idx + 1}-${difficulty[0]}`;
+    for (let i = 0; i < count; i++) {
+        const id = `${stage[0]}${i + 1}-${difficulty[0]}`;
 
         if (stage === "VARIABLES") {
+            const vars = ['x', 'y', 'a', 'b', 'p'];
+            const var1 = vars[Math.floor(Math.random() * vars.length)];
+            const var2 = vars[(vars.indexOf(var1) + 1) % vars.length];
+            const color1 = VAR_COLORS[var1 as keyof typeof VAR_COLORS];
+            const color2 = VAR_COLORS[var2 as keyof typeof VAR_COLORS];
+
             let promptLatex = "";
             let expressionLatex = "";
             let targetLatex = "";
             let hintLatex = [""];
+            let visualData: any = {};
+            let answer: number = 0;
 
-            if (data.expr) {
-                if (data.var2) {
-                    promptLatex = `\\\\text{If } ${data.var1}=${data.val1}, ${data.var2}=${data.val2}${data.var3 ? `, ${data.var3}=${data.val3}` : ''} \\\\text{, calculate } ${data.expr}`;
-                } else {
-                    promptLatex = `\\\\text{If } ${data.var1}=${data.val1} \\\\text{, calculate } ${data.expr}`;
-                }
-                expressionLatex = data.expr;
-                targetLatex = String(data.answer);
+            if (difficulty === "BASIC") {
+                const val1 = Math.floor(Math.random() * 10) + 1;
+                answer = val1;
+                promptLatex = `\\\\text{If } ${var1}=${val1} \\\\text{, what is } ${var1}?`;
+                expressionLatex = var1;
+                hintLatex = [`\\\\text{The variable ${var1} holds the value ${val1}.}`];
+                visualData = { variables: [{ label: var1, value: val1, color: color1 }] };
+            } else if (difficulty === "CORE") {
+                const val1 = Math.floor(Math.random() * 8) + 2;
+                const coeff = Math.floor(Math.random() * 3) + 2; // 2 or 3
+                answer = coeff * val1;
+                const expr = coeff === 2 ? `${var1}+${var1}` : `${coeff}${var1}`;
+                promptLatex = `\\\\text{If } ${var1}=${val1} \\\\text{, calculate } ${expr}`;
+                expressionLatex = expr;
                 hintLatex = [`\\text{Evaluate the expression}`];
-            } else {
-                promptLatex = `\\\\text{If } ${data.var1}=${data.val1} \\\\text{, what is } ${data.var1}?`;
-                expressionLatex = data.var1!;
-                targetLatex = String(data.answer);
-                hintLatex = [`\\\\text{The variable ${data.var1} holds the value ${data.val1}.}`];
+                visualData = {
+                    variables: Array(coeff).fill(null).map(() => ({ label: var1, value: val1, color: color1 }))
+                };
+            } else if (difficulty === "ADVANCED") {
+                const val1 = Math.floor(Math.random() * 5) + 3;
+                const val2 = Math.floor(Math.random() * 5) + 1;
+                const sign = Math.random() > 0.5 ? '+' : '-';
+                answer = sign === '+' ? val1 + val2 : val1 - val2;
+                promptLatex = `\\\\text{If } ${var1}=${val1}, ${var2}=${val2} \\\\text{, calculate } ${var1}${sign}${var2}`;
+                expressionLatex = `${var1}${sign}${var2}`;
+                hintLatex = [`\\text{Substitute both variables}`];
+                visualData = {
+                    variables: [
+                        { label: var1, value: val1, color: color1 },
+                        { label: var2, value: sign === '-' ? -val2 : val2, color: color2 }
+                    ]
+                };
+            } else if (difficulty === "ELITE") {
+                const val1 = Math.floor(Math.random() * 5) + 2;
+                const val2 = Math.floor(Math.random() * 5) + 2;
+                const c1 = Math.floor(Math.random() * 2) + 2;
+                const c2 = Math.floor(Math.random() * 2) + 2;
+                const sign = Math.random() > 0.4 ? '+' : '-';
+                answer = sign === '+' ? c1 * val1 + c2 * val2 : c1 * val1 - c2 * val2;
+                promptLatex = `\\\\text{If } ${var1}=${val1}, ${var2}=${val2} \\\\text{, calculate } ${c1}${var1}${sign}${c2}${var2}`;
+                expressionLatex = `${c1}${var1}${sign}${c2}${var2}`;
+                hintLatex = [`\\text{Multiply coefficients first}`];
+                visualData = {
+                    variables: [
+                        ...Array(c1).fill(null).map(() => ({ label: var1, value: val1, color: color1 })),
+                        ...Array(c2).fill(null).map(() => ({ label: var2, value: sign === '-' ? -val2 : val2, color: color2 }))
+                    ]
+                };
             }
+            targetLatex = String(answer);
 
             quests.push({
                 id,
@@ -171,50 +112,143 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 promptLatex,
                 expressionLatex,
                 targetLatex,
-                visualMode: data.visualMode,
-                visualData: data.visualData,
-                slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: data.answer }],
-                correctLatex: String(data.answer),
+                visualMode: 'CONTAINERS',
+                visualData,
+                slots: [{ id: "ans", labelLatex: "Value", placeholder: "?", expected: answer }],
+                correctLatex: String(answer),
                 hintLatex,
             });
+
         } else if (stage === "TERMS") {
-            const isMultiVar = typeof data.answer === 'string' && (data.answer.includes('+') || data.answer.includes('-'));
+            const vars = ['x', 'y', 'a', 'b', 'p'];
+            const v1 = vars[Math.floor(Math.random() * vars.length)];
+            let v2 = vars[(vars.indexOf(v1) + 1) % vars.length];
+            const color1 = VAR_COLORS[v1 as keyof typeof VAR_COLORS];
+            const color2 = VAR_COLORS[v2 as keyof typeof VAR_COLORS];
+
+            let expr = "";
+            let answerStr = "";
+            let items: any[] = [];
+            let isMultiVar = false;
+
+            if (difficulty === "BASIC") {
+                const c1 = Math.floor(Math.random() * 5) + 2;
+                const c2 = Math.floor(Math.random() * 5) + 1;
+                expr = `${c1}${v1}+${c2}${v1}`;
+                answerStr = `${c1 + c2}${v1}`;
+                items = [
+                    { type: v1, count: c1, color: color1 },
+                    { type: v1, count: c2, color: color1 }
+                ];
+            } else if (difficulty === "CORE") {
+                const c1 = Math.floor(Math.random() * 6) + 4;
+                const c2 = Math.floor(Math.random() * (c1 - 1)) + 1;
+                expr = `${c1}${v1}-${c2}${v1}`;
+                answerStr = `${c1 - c2}${v1}`;
+                if (answerStr === `1${v1}`) answerStr = v1;
+                items = [
+                    { type: v1, count: c1, color: color1 },
+                    { type: `${v1} (remove)`, count: -c2, color: '#9ca3af' }
+                ];
+            } else if (difficulty === "ADVANCED") {
+                isMultiVar = true;
+                const c1 = Math.floor(Math.random() * 4) + 2;
+                const c2 = Math.floor(Math.random() * 3) + 2;
+                const c3 = Math.floor(Math.random() * 3) + 1;
+                expr = `${c1}${v1}+${c2}${v2}+${c3}${v1}`;
+                answerStr = `${c1 + c3}${v1}+${c2}${v2}`;
+                items = [
+                    { type: v1, count: c1, color: color1 },
+                    { type: v2, count: c2, color: color2 },
+                    { type: v1, count: c3, color: color1 }
+                ];
+            } else if (difficulty === "ELITE") {
+                isMultiVar = true;
+                const c1 = Math.floor(Math.random() * 5) + 3;
+                const c2 = Math.floor(Math.random() * 3) + 2;
+                const k1 = Math.floor(Math.random() * 5) + 2;
+                const k2 = Math.floor(Math.random() * 4) + 1;
+                expr = `${c1}${v1}+${k1}-${c2}${v1}+${k2}`;
+                let finalC = c1 - c2;
+                let cStr = finalC === 1 ? v1 : finalC === -1 ? `-${v1}` : `${finalC}${v1}`;
+                if (finalC === 0) cStr = "";
+                answerStr = `${cStr}${cStr ? '+' : ''}${k1 + k2}`;
+                items = [
+                    { type: v1, count: c1, color: color1 },
+                    { type: '1', count: k1, color: '#64748b' },
+                    { type: v1, count: -c2, color: '#fca5a5' },
+                    { type: '1', count: k2, color: '#64748b' }
+                ];
+            }
+
             const slots = isMultiVar
-                ? [{ id: "res", labelLatex: "Result", placeholder: String(data.answer), expected: String(data.answer) }]
+                ? [{ id: "res", labelLatex: "Result", placeholder: answerStr, expected: answerStr }]
                 : [
-                    { id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: String(parseInt(String(data.answer)) || 0) },
-                    { id: "var", labelLatex: "Variable", placeholder: "x", expected: String(data.answer).replace(/[0-9]/g, '') }
+                    { id: "coef", labelLatex: "Coefficient", placeholder: "#", expected: String(parseInt(answerStr) || 0) },
+                    { id: "var", labelLatex: "Variable", placeholder: "x", expected: answerStr.replace(/[0-9-]/g, '') }
                 ];
 
             quests.push({
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${data.expr}`,
-                expressionLatex: data.expr!,
-                targetLatex: String(data.answer),
-                visualMode: data.visualMode,
-                visualData: data.visualData,
+                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${expr}`,
+                expressionLatex: expr,
+                targetLatex: answerStr,
+                visualMode: 'SORTING',
+                visualData: { items },
                 slots,
-                correctLatex: String(data.answer),
+                correctLatex: answerStr,
                 hintLatex: [`\\\\text{${sm1_02_t.prompts.combine_like_terms}}`],
             });
+
         } else if (stage === "SUBSTITUTION") {
+            const v1 = ['x', 'y', 't', 'k'][Math.floor(Math.random() * 4)];
+            let val = 0;
+            let expr = "";
+            let answer = 0;
+
+            if (difficulty === "BASIC") {
+                val = Math.floor(Math.random() * 8) + 2;
+                const c = Math.floor(Math.random() * 3) + 2;
+                expr = `${c}${v1}`;
+                answer = c * val;
+            } else if (difficulty === "CORE") {
+                val = Math.floor(Math.random() * 6) + 2;
+                const c = Math.floor(Math.random() * 4) + 2;
+                const k = Math.floor(Math.random() * 5) + 1;
+                const sign = Math.random() > 0.5 ? '+' : '-';
+                expr = `${c}${v1}${sign}${k}`;
+                answer = sign === '+' ? c * val + k : c * val - k;
+            } else if (difficulty === "ADVANCED") {
+                val = Math.floor(Math.random() * 5) + 2;
+                const k = Math.floor(Math.random() * 3) + 1;
+                const sign = Math.random() > 0.5 ? '+' : '-';
+                expr = `${v1}^2${sign}${k}`;
+                answer = sign === '+' ? val * val + k : val * val - k;
+            } else if (difficulty === "ELITE") {
+                val = Math.floor(Math.random() * 4) + 2;
+                const c = Math.floor(Math.random() * 3) + 2;
+                const k = Math.floor(Math.random() * 5) + 2;
+                expr = `${c}${v1}^2 - ${v1} + ${k}`;
+                answer = c * val * val - val + k;
+            }
+
             quests.push({
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${data.expr} \\\\text{ for } ${data.var1}=${data.val1}`,
-                expressionLatex: data.expr!,
-                targetLatex: String(data.answer),
-                visualMode: data.visualMode,
-                visualData: data.visualData,
-                slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: data.answer }],
-                correctLatex: String(data.answer),
+                promptLatex: `\\\\text{${sm1_02_t.prompts.simplify} } ${expr} \\\\text{ for } ${v1}=${val}`,
+                expressionLatex: expr,
+                targetLatex: String(answer),
+                visualMode: 'MACHINE',
+                visualData: { inputValue: val, formula: expr },
+                slots: [{ id: "ans", labelLatex: "Output", placeholder: "?", expected: answer }],
+                correctLatex: String(answer),
                 hintLatex: [`\\\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
             });
         }
-    });
+    }
 
     return quests;
 }
@@ -224,33 +258,33 @@ export default function SM103Page() {
     const { t } = useLanguage();
 
     const sm1_02_t = {
-        title: t("sm1_02.title"),
-        back: t("sm1_02.back"),
-        check: t("sm1_02.check"),
-        next: t("sm1_02.next"),
-        correct: t("sm1_02.correct"),
-        incorrect: t("sm1_02.incorrect"),
-        ready: t("sm1_02.ready"),
+        title: t("sm1_02.title") || "SM1.02 // ALGEBRAIC EXPRESSIONS",
+        back: t("sm1_02.back") || "Back",
+        check: t("sm1_02.check") || "Verify",
+        next: t("sm1_02.next") || "Next",
+        correct: t("sm1_02.correct") || "Correct",
+        incorrect: t("sm1_02.incorrect") || "Incorrect",
+        ready: t("sm1_02.ready") || "READY",
         difficulty: {
-            basic: t("sm1_02.difficulty.basic"),
-            core: t("sm1_02.difficulty.core"),
-            advanced: t("sm1_02.difficulty.advanced"),
-            elite: t("sm1_02.difficulty.elite")
+            basic: t("sm1_02.difficulty.basic") || "BASIC",
+            core: t("sm1_02.difficulty.core") || "CORE",
+            advanced: t("sm1_02.difficulty.advanced") || "ADVANCED",
+            elite: t("sm1_02.difficulty.elite") || "ELITE"
         },
         stages: {
-            variables: t("sm1_02.stages.variables"),
-            terms: t("sm1_02.stages.terms"),
-            substitution: t("sm1_02.stages.substitution")
+            variables: t("sm1_02.stages.variables") || "VARIABLES",
+            terms: t("sm1_02.stages.terms") || "TERMS",
+            substitution: t("sm1_02.stages.substitution") || "SUBSTITUTION"
         },
         scenarios: {
-            variables: t("sm1_02.scenarios.variables"),
-            terms: t("sm1_02.scenarios.terms"),
-            substitution: t("sm1_02.scenarios.substitution")
+            variables: t("sm1_02.scenarios.variables") || "Variables store values like containers.",
+            terms: t("sm1_02.scenarios.terms") || "Group matching variables together to simplify.",
+            substitution: t("sm1_02.scenarios.substitution") || "Put the value inside the operation machine."
         },
         prompts: {
-            simplify: t("sm1_02.prompts.simplify"),
-            combine_like_terms: t("sm1_02.prompts.combine_like_terms"),
-            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate")
+            simplify: t("sm1_02.prompts.simplify") || "Simplify:",
+            combine_like_terms: t("sm1_02.prompts.combine_like_terms") || "Combine terms with same variables",
+            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate") || "Substitute value into expression"
         }
     };
 
@@ -260,19 +294,20 @@ export default function SM103Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback
     } = useQuestManager<S103Quest, Stage>({
-    moduleCode: "sm1-02",
+        moduleCode: "SM1.02",
         buildPool,
         initialStage: "VARIABLES",
+        tolerance: 0.1
     });
 
     useEffect(() => {
         if (lastCheck?.ok) {
-            completeStage("sm1-02", stage);
+            completeStage("SM1.02", stage);
         }
     }, [lastCheck, completeStage, stage]);
 
@@ -285,12 +320,12 @@ export default function SM103Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      title={sm1_02_t.title}
-            moduleCode="SM1.02"
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
+            title={sm1_02_t.title}
+            moduleCode="SM1.02" // ensure uniform capital case
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={[
