@@ -300,7 +300,7 @@ Modules are classified by their quest density:
   - [x] SM2.01 (Euclidean/Binomial Equations) — Refactored to localized random generation, separated tightly by 4 difficulty tiers
   - [x] SM3.01 (Quadratic Wizardry) — Refactored to localized random generation across Terms, Factorize, Fractions, Equations
   - [x] SM3.02, [x] SM3.04
-- [ ] **6.2.2: Gymnasium Math Sprint** — Enrich GM1.01, GM1.02, GM2.01, GM3.01, GM4.01 (5 modules × 40+ quests = 200+ new quests)
+- [x] **6.2.2: Gymnasium Math Sprint** — Refactored GM1.01, GM1.02, GM2.01, GM3.01, GM4.01 to generative pools (1200+ dynamic quests)
 - [ ] **6.2.3: Physics Sprint** — Enrich SP1.02, SP3.02, SP3.03, SP3.08 (4 modules × 40+ quests = 160+ new quests)
 - [ ] **6.2.4: Chemistry Sprint** — Enrich SC1.01, SC1.02, SC2.03, SC2.04, GC* modules (9 modules × 40+ quests = 360+ new quests)
 - [ ] **6.2.5: Biology Sprint** — Enrich SB1.01–SB1.03, SB2.02, SB2.03, GB2.01, GB3.01, GB3.02 (8 modules × 40+ quests = 320+ new quests)
