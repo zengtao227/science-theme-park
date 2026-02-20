@@ -14,6 +14,7 @@ import { translations as i18n } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import SuccessEureka from "@/components/ui/SuccessEureka";
+import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
 
 interface ChamberLayoutProps {
     title: string;
@@ -82,6 +83,17 @@ export default function ChamberLayout({
     const stageLabel = useMemo(() => {
         return stages.find((s) => s.id === currentStage)?.label ?? currentStage;
     }, [stages, currentStage]);
+
+    // Check Prerequisites
+    const prerequisites = useMemo(() => {
+        const deps = MODULE_DEPENDENCIES[moduleCode] || [];
+        return deps.map(dep => {
+            const isCompleted = history.some(h => h.moduleCode === dep.moduleCode);
+            return { ...dep, isCompleted };
+        });
+    }, [moduleCode, history]);
+
+    const allPrereqsMet = useMemo(() => prerequisites.every(p => p.isCompleted), [prerequisites]);
 
     useEffect(() => {
         stageStartRef.current = Date.now();
@@ -303,6 +315,60 @@ export default function ChamberLayout({
                                         ))}
                                     </div>
 
+                                    {/* Pathway Connection Alert */}
+                                    {prerequisites.length > 0 && (
+                                        <div className={clsx(
+                                            "w-full max-w-2xl mx-auto p-4 rounded-xl border flex flex-col gap-2 transition-all duration-700",
+                                            allPrereqsMet
+                                                ? "bg-neon-green/5 border-neon-green/20 opacity-40 hover:opacity-100"
+                                                : "bg-orange-500/10 border-orange-500/30 shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                                        )}>
+                                            <div className="flex items-center justify-between">
+                                                <span className={clsx(
+                                                    "text-[9px] font-black tracking-[0.3em] uppercase",
+                                                    allPrereqsMet ? "text-neon-green" : "text-orange-400"
+                                                )}>
+                                                    {currentLanguage === "CN" ? "路径依赖" : currentLanguage === "DE" ? "PFAD-VERBINDUNG" : "PATHWAY_CONNECTION"}
+                                                </span>
+                                                {allPrereqsMet ? (
+                                                    <span className="text-[8px] font-mono text-neon-green">LINK_STABLE</span>
+                                                ) : (
+                                                    <span className="text-[8px] font-mono text-orange-400 animate-pulse">PREREQUISITE_REQUIRED</span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                {prerequisites.map((p, idx) => (
+                                                    <div key={idx} className="flex items-center gap-2">
+                                                        <div className={clsx(
+                                                            "w-2 h-2 rounded-full",
+                                                            p.isCompleted ? "bg-neon-green shadow-[0_0_5px_green]" : "bg-white/20"
+                                                        )} />
+                                                        <span className={clsx(
+                                                            "text-[10px] font-bold tracking-widest",
+                                                            p.isCompleted ? "text-white" : "text-white/40"
+                                                        )}>
+                                                            {p.moduleCode}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                                <div className="h-px flex-1 bg-white/10" />
+                                                <div className="w-4 h-4 border border-white/20 rounded flex items-center justify-center text-[8px] font-mono">
+                                                    {moduleCode}
+                                                </div>
+                                            </div>
+                                            {!allPrereqsMet && (
+                                                <p className="text-[10px] text-white/60 leading-relaxed italic">
+                                                    {currentLanguage === "CN"
+                                                        ? `建议先完成 ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} 以获得最佳学习体验。`
+                                                        : currentLanguage === "DE"
+                                                            ? `Empfehlung: Schließen Sie ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} zuerst ab.`
+                                                            : `Recommended: Complete ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} first for the optimal experience.`
+                                                    }
+                                                </p>
+                                            )}
+                                        </div>
+                                    )}
+
                                     {children}
 
                                     {actionPanel && (
@@ -349,6 +415,36 @@ export default function ChamberLayout({
                                 </button>
                             ))}
                         </div>
+
+                        {/* Pathway Connection Alert (Mobile) */}
+                        {prerequisites.length > 0 && (
+                            <div className={clsx(
+                                "w-full max-w-2xl mx-auto p-4 rounded-xl border flex flex-col gap-2 transition-all duration-700",
+                                allPrereqsMet
+                                    ? "bg-neon-green/5 border-neon-green/20 opacity-40 hover:opacity-100"
+                                    : "bg-orange-500/10 border-orange-500/30"
+                            )}>
+                                <div className="flex items-center justify-between">
+                                    <span className={clsx(
+                                        "text-[9px] font-black tracking-[0.3em] uppercase",
+                                        allPrereqsMet ? "text-neon-green" : "text-orange-400"
+                                    )}>
+                                        {currentLanguage === "CN" ? "路径依赖" : currentLanguage === "DE" ? "PFAD-VERBINDUNG" : "PATHWAY_CONNECTION"}
+                                    </span>
+                                    {!allPrereqsMet && <span className="text-[8px] font-mono text-orange-400 animate-pulse">REQ</span>}
+                                </div>
+                                <div className="flex flex-wrap items-center gap-2">
+                                    {prerequisites.map((p, idx) => (
+                                        <div key={idx} className="flex items-center gap-1.5">
+                                            <div className={clsx("w-1.5 h-1.5 rounded-full", p.isCompleted ? "bg-neon-green" : "bg-white/20")} />
+                                            <span className={clsx("text-[9px] font-bold", p.isCompleted ? "text-white" : "text-white/40")}>
+                                                {p.moduleCode}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {children}
 
