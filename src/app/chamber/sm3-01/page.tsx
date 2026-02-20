@@ -41,181 +41,177 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
   const rp = t.stages.fractions_prompt_latex;
   const ep = t.stages.equations_prompt_latex;
 
+  const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const getSign = () => Math.random() > 0.5 ? 1 : -1;
+  const fmt = (c: number, v: string, isFirst = false) => {
+    if (c === 0) return "";
+    let signs = c > 0 ? (isFirst ? "" : "+") : "-";
+    let vals = Math.abs(c) === 1 && v ? "" : Math.abs(c).toString();
+    return `${signs}${vals}${v}`;
+  };
+  const count = 30;
+
   // ===================== TERMS =====================
   if (stage === "TERMS") {
-    if (difficulty === "BASIC") return [
-      q("T-B1", difficulty, stage, tp, "2x + 3x + 5y", "ax+by", [{ id: "a", l: "a", e: 5 }, { id: "b", l: "b", e: 5 }], "5x+5y"),
-      q("T-B2", difficulty, stage, tp, "4a + 2b + a", "pa+qb", [{ id: "p", l: "p", e: 5 }, { id: "q", l: "q", e: 2 }], "5a+2b"),
-      q("T-B3", difficulty, stage, tp, "6x + x + 3y", "ax+by", [{ id: "a", l: "a", e: 7 }, { id: "b", l: "b", e: 3 }], "7x+3y"),
-      q("T-B4", difficulty, stage, tp, "3m + 2n + 4m + n", "pm+qn", [{ id: "p", l: "p", e: 7 }, { id: "q", l: "q", e: 3 }], "7m+3n"),
-      q("T-B5", difficulty, stage, tp, "5x + 2x + y + 3y", "ax+by", [{ id: "a", l: "a", e: 7 }, { id: "b", l: "b", e: 4 }], "7x+4y"),
-      q("T-B6", difficulty, stage, tp, "a + 3b + 2a + b", "pa+qb", [{ id: "p", l: "p", e: 3 }, { id: "q", l: "q", e: 4 }], "3a+4b"),
-      q("T-B7", difficulty, stage, tp, "x + x + x + 2y", "ax+by", [{ id: "a", l: "a", e: 3 }, { id: "b", l: "b", e: 2 }], "3x+2y"),
-      q("T-B8", difficulty, stage, tp, "2p + 3q + 4p + q", "ap+bq", [{ id: "a", l: "a", e: 6 }, { id: "b", l: "b", e: 4 }], "6p+4q"),
-    ];
-    if (difficulty === "CORE") return [
-      q("T-C1", difficulty, stage, tp, "7x - 2y + 3x - 5y", "ax+by", [{ id: "a", l: "a", e: 10 }, { id: "b", l: "b", e: -7 }], "10x-7y"),
-      q("T-C2", difficulty, stage, tp, "3(x+2) + 4x", "ax+b", [{ id: "a", l: "a", e: 7 }, { id: "b", l: "b", e: 6 }], "7x+6"),
-      q("T-C3", difficulty, stage, tp, "5x - 3x + 2y - 6y", "ax+by", [{ id: "a", l: "a", e: 2 }, { id: "b", l: "b", e: -4 }], "2x-4y"),
-      q("T-C4", difficulty, stage, tp, "2(a+3) - a + 5", "pa+c", [{ id: "p", l: "p", e: 1 }, { id: "c", l: "c", e: 11 }], "a+11"),
-      q("T-C5", difficulty, stage, tp, "4(x-1) + 2(x+3)", "ax+b", [{ id: "a", l: "a", e: 6 }, { id: "b", l: "b", e: 2 }], "6x+2"),
-      q("T-C6", difficulty, stage, tp, "-3x + 8x - 2y + y", "ax+by", [{ id: "a", l: "a", e: 5 }, { id: "b", l: "b", e: -1 }], "5x-y"),
-      q("T-C7", difficulty, stage, tp, "6m - 2(m-3)", "pm+c", [{ id: "p", l: "p", e: 4 }, { id: "c", l: "c", e: 6 }], "4m+6"),
-      q("T-C8", difficulty, stage, tp, "3(2x+1) - 5x", "ax+b", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 3 }], "x+3"),
-    ];
-    if (difficulty === "ADVANCED") return [
-      q("T-A1", difficulty, stage, tp, "2x^2+3x-x^2+5", "ax^2+bx+c", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 3 }, { id: "c", l: "c", e: 5 }], "x^2+3x+5", { a: 1, b: 3, c: 5 }),
-      q("T-A2", difficulty, stage, tp, "4x(x-2)+3x+2", "ax^2+bx+c", [{ id: "a", l: "a", e: 4 }, { id: "b", l: "b", e: -5 }, { id: "c", l: "c", e: 2 }], "4x^2-5x+2", { a: 4, b: -5, c: 2 }),
-      q("T-A3", difficulty, stage, tp, "5x^2-x^2+2x-3", "ax^2+bx+c", [{ id: "a", l: "a", e: 4 }, { id: "b", l: "b", e: 2 }, { id: "c", l: "c", e: -3 }], "4x^2+2x-3", { a: 4, b: 2, c: -3 }),
-      q("T-A4", difficulty, stage, tp, "x(x+6)-2x+1", "ax^2+bx+c", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 4 }, { id: "c", l: "c", e: 1 }], "x^2+4x+1", { a: 1, b: 4, c: 1 }),
-      q("T-A5", difficulty, stage, tp, "3x^2+2x(1-x)+7", "ax^2+bx+c", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 2 }, { id: "c", l: "c", e: 7 }], "x^2+2x+7", { a: 1, b: 2, c: 7 }),
-      q("T-A6", difficulty, stage, tp, "2(x^2+x)-x^2+3", "ax^2+bx+c", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 2 }, { id: "c", l: "c", e: 3 }], "x^2+2x+3", { a: 1, b: 2, c: 3 }),
-      q("T-A7", difficulty, stage, tp, "x(3x-1)+2x^2-5", "ax^2+bx+c", [{ id: "a", l: "a", e: 5 }, { id: "b", l: "b", e: -1 }, { id: "c", l: "c", e: -5 }], "5x^2-x-5", { a: 5, b: -1, c: -5 }),
-      q("T-A8", difficulty, stage, tp, "(x+2)(x+3)-x^2", "ax+c", [{ id: "a", l: "a", e: 5 }, { id: "c", l: "c", e: 6 }], "5x+6"),
-    ];
-    return [ // ELITE
-      q("T-E1", difficulty, stage, tp, "3x^2-2x(x-4)+5", "ax^2+bx+c", [{ id: "a", l: "a", e: 1 }, { id: "b", l: "b", e: 8 }, { id: "c", l: "c", e: 5 }], "x^2+8x+5", { a: 1, b: 8, c: 5 }),
-      q("T-E2", difficulty, stage, tp, "(2x+1)^2 - 4x^2", "ax+c", [{ id: "a", l: "a", e: 4 }, { id: "c", l: "c", e: 1 }], "4x+1"),
-      q("T-E3", difficulty, stage, tp, "x(x+1)+2x(x-1)-3x^2", "ax+c", [{ id: "a", l: "a", e: -1 }, { id: "c", l: "c", e: 0 }], "-x"),
-      q("T-E4", difficulty, stage, tp, "(x+3)^2 - (x-3)^2", "ax", [{ id: "a", l: "a", e: 12 }], "12x"),
-      q("T-E5", difficulty, stage, tp, "2(x+1)^2-2x^2-4x", "c", [{ id: "c", l: "c", e: 2 }], "2"),
-      q("T-E6", difficulty, stage, tp, "(3x-2)(x+1)-3x^2", "ax+c", [{ id: "a", l: "a", e: 1 }, { id: "c", l: "c", e: -2 }], "x-2"),
-      q("T-E7", difficulty, stage, tp, "x^3+2x^2-x(x^2+x)", "ax^2", [{ id: "a", l: "a", e: 1 }], "x^2"),
-      q("T-E8", difficulty, stage, tp, "(x+4)(x-4)+16", "ax^2", [{ id: "a", l: "a", e: 1 }], "x^2"),
-    ];
+    return Array.from({ length: count }).map((_, i) => {
+      const id = `T_${difficulty}_${i}`;
+      if (difficulty === "BASIC") {
+        const x1 = randInt(1, 5), x2 = randInt(1, 4);
+        const y1 = randInt(1, 5), y2 = randInt(1, 4);
+        return q(id, difficulty, stage, tp, `${x1}x + ${y1}y + ${x2}x + ${y2}y`, "ax+by", [
+          { id: "a", l: "a", e: x1 + x2 }, { id: "b", l: "b", e: y1 + y2 }
+        ], `${x1 + x2}x+${y1 + y2}y`);
+      } else if (difficulty === "CORE") {
+        const x1 = randInt(2, 6) * getSign(), x2 = randInt(2, 6) * getSign();
+        const y1 = randInt(2, 6) * getSign(), y2 = randInt(2, 6) * getSign();
+        const cx = x1 + x2, cy = y1 + y2;
+        return q(id, difficulty, stage, tp, `${fmt(x1, "x", true)} ${fmt(y1, "y")} ${fmt(x2, "x")} ${fmt(y2, "y")}`, "ax+by", [
+          { id: "a", l: "a", e: cx }, { id: "b", l: "b", e: cy }
+        ], `${fmt(cx, "x", true)}${fmt(cy, "y")}`);
+      } else if (difficulty === "ADVANCED") {
+        const a1 = randInt(1, 4), b1 = randInt(-4, 4), c1 = randInt(-5, 5);
+        const a2 = randInt(-3, 3), b2 = randInt(-4, 4), c2 = randInt(-5, 5);
+        const rA = a1 + a2, rB = b1 + b2, rC = c1 + c2;
+        return q(id, difficulty, stage, tp, `(${fmt(a1, "x^2", true)}${fmt(b1, "x")}${fmt(c1, "")}) + (${fmt(a2, "x^2", true)}${fmt(b2, "x")}${fmt(c2, "")})`, "ax^2+bx+c", [
+          { id: "a", l: "a", e: rA }, { id: "b", l: "b", e: rB }, { id: "c", l: "c", e: rC }
+        ], `${fmt(rA, "x^2", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
+      } else {
+        const a = randInt(2, 4), b = randInt(1, 4), c = randInt(2, 5);
+        const rA = a * a - c, rB = 2 * a * b, rC = b * b;
+        return q(id, difficulty, stage, tp, `(${fmt(a, "x", true)}${fmt(b, "")})^2 - ${c}x^2`, "ax^2+bx+c", [
+          { id: "a", l: "a", e: rA }, { id: "b", l: "b", e: rB }, { id: "c", l: "c", e: rC }
+        ], `${fmt(rA, "x^2", true)}${fmt(rB, "x")}${fmt(rC, "")}`, { a: rA, b: rB, c: rC });
+      }
+    });
   }
 
   // ===================== FACTORIZE =====================
   if (stage === "FACTORIZE") {
-    if (difficulty === "BASIC") return [
-      q("F-B1", difficulty, stage, fp, "x^2+3x+2", "(x+A)(x+B)", [{ id: "A", l: "A", e: 1 }, { id: "B", l: "B", e: 2 }], "(x+1)(x+2)", { a: 1, b: 3, c: 2, vizMode: "AREA", hintLatex: ["A+B=3", "A×B=2"] }),
-      q("F-B2", difficulty, stage, fp, "x^2+5x+6", "(x+A)(x+B)", [{ id: "A", l: "A", e: 2 }, { id: "B", l: "B", e: 3 }], "(x+2)(x+3)", { a: 1, b: 5, c: 6, vizMode: "AREA", hintLatex: ["A+B=5", "A×B=6"] }),
-      q("F-B3", difficulty, stage, fp, "x^2+7x+12", "(x+A)(x+B)", [{ id: "A", l: "A", e: 3 }, { id: "B", l: "B", e: 4 }], "(x+3)(x+4)", { a: 1, b: 7, c: 12, vizMode: "AREA", hintLatex: ["A+B=7", "A×B=12"] }),
-      q("F-B4", difficulty, stage, fp, "x^2+7x+10", "(x+A)(x+B)", [{ id: "A", l: "A", e: 2 }, { id: "B", l: "B", e: 5 }], "(x+2)(x+5)", { a: 1, b: 7, c: 10, vizMode: "AREA", hintLatex: ["A+B=7", "A×B=10"] }),
-      q("F-B5", difficulty, stage, fp, "x^2+6x+8", "(x+A)(x+B)", [{ id: "A", l: "A", e: 2 }, { id: "B", l: "B", e: 4 }], "(x+2)(x+4)", { a: 1, b: 6, c: 8, vizMode: "AREA", hintLatex: ["A+B=6", "A×B=8"] }),
-      q("F-B6", difficulty, stage, fp, "x^2+8x+15", "(x+A)(x+B)", [{ id: "A", l: "A", e: 3 }, { id: "B", l: "B", e: 5 }], "(x+3)(x+5)", { a: 1, b: 8, c: 15, vizMode: "AREA", hintLatex: ["A+B=8", "A×B=15"] }),
-      q("F-B7", difficulty, stage, fp, "x^2+9x+20", "(x+A)(x+B)", [{ id: "A", l: "A", e: 4 }, { id: "B", l: "B", e: 5 }], "(x+4)(x+5)", { a: 1, b: 9, c: 20, vizMode: "AREA", hintLatex: ["A+B=9", "A×B=20"] }),
-      q("F-B8", difficulty, stage, fp, "x^2+4x+3", "(x+A)(x+B)", [{ id: "A", l: "A", e: 1 }, { id: "B", l: "B", e: 3 }], "(x+1)(x+3)", { a: 1, b: 4, c: 3, vizMode: "AREA", hintLatex: ["A+B=4", "A×B=3"] }),
-    ];
-    if (difficulty === "CORE") return [
-      q("F-C1", difficulty, stage, fp, "x^2-4", "(x+A)(x+B)", [{ id: "A", l: "A", e: -2 }, { id: "B", l: "B", e: 2 }], "(x-2)(x+2)", { a: 1, b: 0, c: -4, vizMode: "AREA", hintLatex: ["a²−b²=(a−b)(a+b)"] }),
-      q("F-C2", difficulty, stage, fp, "x^2-x-6", "(x+A)(x+B)", [{ id: "A", l: "A", e: -3 }, { id: "B", l: "B", e: 2 }], "(x-3)(x+2)", { a: 1, b: -1, c: -6, vizMode: "AREA", hintLatex: ["A+B=−1", "A×B=−6"] }),
-      q("F-C3", difficulty, stage, fp, "x^2-9", "(x+A)(x+B)", [{ id: "A", l: "A", e: -3 }, { id: "B", l: "B", e: 3 }], "(x-3)(x+3)", { a: 1, b: 0, c: -9, vizMode: "AREA", hintLatex: ["a²−b²=(a−b)(a+b)"] }),
-      q("F-C4", difficulty, stage, fp, "x^2+2x-8", "(x+A)(x+B)", [{ id: "A", l: "A", e: 4 }, { id: "B", l: "B", e: -2 }], "(x+4)(x-2)", { a: 1, b: 2, c: -8, vizMode: "AREA", hintLatex: ["A+B=2", "A×B=−8"] }),
-      q("F-C5", difficulty, stage, fp, "x^2-3x-10", "(x+A)(x+B)", [{ id: "A", l: "A", e: -5 }, { id: "B", l: "B", e: 2 }], "(x-5)(x+2)", { a: 1, b: -3, c: -10, vizMode: "AREA", hintLatex: ["A+B=−3", "A×B=−10"] }),
-      q("F-C6", difficulty, stage, fp, "x^2-25", "(x+A)(x+B)", [{ id: "A", l: "A", e: -5 }, { id: "B", l: "B", e: 5 }], "(x-5)(x+5)", { a: 1, b: 0, c: -25, vizMode: "AREA", hintLatex: ["a²−b²=(a−b)(a+b)"] }),
-      q("F-C7", difficulty, stage, fp, "x^2-5x+6", "(x+A)(x+B)", [{ id: "A", l: "A", e: -2 }, { id: "B", l: "B", e: -3 }], "(x-2)(x-3)", { a: 1, b: -5, c: 6, vizMode: "AREA", hintLatex: ["A+B=−5", "A×B=6"] }),
-      q("F-C8", difficulty, stage, fp, "x^2+x-12", "(x+A)(x+B)", [{ id: "A", l: "A", e: 4 }, { id: "B", l: "B", e: -3 }], "(x+4)(x-3)", { a: 1, b: 1, c: -12, vizMode: "AREA", hintLatex: ["A+B=1", "A×B=−12"] }),
-    ];
-    if (difficulty === "ADVANCED") return [
-      q("F-A1", difficulty, stage, fp, "2x^2+5x+3", "(2x+A)(x+B)", [{ id: "A", l: "A", e: 3 }, { id: "B", l: "B", e: 1 }], "(2x+3)(x+1)", { a: 2, b: 5, c: 3, vizMode: "AREA" }),
-      q("F-A2", difficulty, stage, fp, "3x^2-10x+3", "(3x+A)(x+B)", [{ id: "A", l: "A", e: -1 }, { id: "B", l: "B", e: -3 }], "(3x-1)(x-3)", { a: 3, b: -10, c: 3 }),
-      q("F-A3", difficulty, stage, fp, "2x^2+7x+3", "(2x+A)(x+B)", [{ id: "A", l: "A", e: 1 }, { id: "B", l: "B", e: 3 }], "(2x+1)(x+3)", { a: 2, b: 7, c: 3 }),
-      q("F-A4", difficulty, stage, fp, "2x^2-7x+3", "(2x+A)(x+B)", [{ id: "A", l: "A", e: -1 }, { id: "B", l: "B", e: -3 }], "(2x-1)(x-3)", { a: 2, b: -7, c: 3 }),
-      q("F-A5", difficulty, stage, fp, "3x^2+7x+2", "(3x+A)(x+B)", [{ id: "A", l: "A", e: 1 }, { id: "B", l: "B", e: 2 }], "(3x+1)(x+2)", { a: 3, b: 7, c: 2 }),
-      q("F-A6", difficulty, stage, fp, "2x^2-x-3", "(2x+A)(x+B)", [{ id: "A", l: "A", e: -3 }, { id: "B", l: "B", e: 1 }], "(2x-3)(x+1)", { a: 2, b: -1, c: -3 }),
-      q("F-A7", difficulty, stage, fp, "5x^2+7x+2", "(5x+A)(x+B)", [{ id: "A", l: "A", e: 2 }, { id: "B", l: "B", e: 1 }], "(5x+2)(x+1)", { a: 5, b: 7, c: 2 }),
-      q("F-A8", difficulty, stage, fp, "2x^2+3x-2", "(2x+A)(x+B)", [{ id: "A", l: "A", e: -1 }, { id: "B", l: "B", e: 2 }], "(2x-1)(x+2)", { a: 2, b: 3, c: -2 }),
-    ];
-    return [ // ELITE
-      q("F-E1", difficulty, stage, fp, "4x^2-12x+9", "(ax-b)^2", [{ id: "a", l: "a", e: 2 }, { id: "b", l: "b", e: 3 }], "(2x-3)^2", { a: 4, b: -12, c: 9 }),
-      q("F-E2", difficulty, stage, fp, "9x^2+6x+1", "(ax+b)^2", [{ id: "a", l: "a", e: 3 }, { id: "b", l: "b", e: 1 }], "(3x+1)^2", { a: 9, b: 6, c: 1 }),
-      q("F-E3", difficulty, stage, fp, "x^2-16", "(x+A)(x+B)", [{ id: "A", l: "A", e: -4 }, { id: "B", l: "B", e: 4 }], "(x-4)(x+4)", { a: 1, b: 0, c: -16 }),
-      q("F-E4", difficulty, stage, fp, "4x^2-1", "(ax+b)(ax-b)", [{ id: "a", l: "a", e: 2 }, { id: "b", l: "b", e: 1 }], "(2x+1)(2x-1)", { a: 4, b: 0, c: -1 }),
-      q("F-E5", difficulty, stage, fp, "x^2+10x+25", "(x+a)^2", [{ id: "a", l: "a", e: 5 }], "(x+5)^2", { a: 1, b: 10, c: 25 }),
-      q("F-E6", difficulty, stage, fp, "9x^2-12x+4", "(ax-b)^2", [{ id: "a", l: "a", e: 3 }, { id: "b", l: "b", e: 2 }], "(3x-2)^2", { a: 9, b: -12, c: 4 }),
-      q("F-E7", difficulty, stage, fp, "16x^2-9", "(ax+b)(ax-b)", [{ id: "a", l: "a", e: 4 }, { id: "b", l: "b", e: 3 }], "(4x+3)(4x-3)", { a: 16, b: 0, c: -9 }),
-      q("F-E8", difficulty, stage, fp, "x^2-6x+9", "(x-a)^2", [{ id: "a", l: "a", e: 3 }], "(x-3)^2", { a: 1, b: -6, c: 9 }),
-    ];
+    return Array.from({ length: count }).map((_, i) => {
+      const id = `F_${difficulty}_${i}`;
+      if (difficulty === "BASIC") {
+        const r1 = randInt(1, 5), r2 = randInt(1, 5);
+        const b = r1 + r2, c = r1 * r2;
+        return q(id, difficulty, stage, fp, `x^2+${b}x+${c}`, "(x+A)(x+B)", [
+          { id: "A", l: "A", e: r1 }, { id: "B", l: "B", e: r2 }
+        ], `(x+${r1})(x+${r2})`, { a: 1, b, c, vizMode: "AREA", hintLatex: [`A+B=${b}`, `A\\times B=${c}`] });
+      } else if (difficulty === "CORE") {
+        if (Math.random() > 0.5) {
+          const r = randInt(2, 7);
+          return q(id, difficulty, stage, fp, `x^2-${r * r}`, "(x+A)(x+B)", [
+            { id: "A", l: "A", e: -r }, { id: "B", l: "B", e: r }
+          ], `(x-${r})(x+${r})`, { a: 1, b: 0, c: -r * r, vizMode: "AREA", hintLatex: ["a^2-b^2=(a-b)(a+b)"] });
+        } else {
+          const r1 = randInt(1, 6) * getSign(), r2 = randInt(1, 6) * getSign();
+          const b = r1 + r2, c = r1 * r2;
+          return q(id, difficulty, stage, fp, `x^2${fmt(b, "x")}${fmt(c, "")}`, "(x+A)(x+B)", [
+            { id: "A", l: "A", e: Math.min(r1, r2) }, { id: "B", l: "B", e: Math.max(r1, r2) }
+          ], `(x${fmt(Math.min(r1, r2), "")})(x${fmt(Math.max(r1, r2), "")})`, { a: 1, b, c, vizMode: "AREA" });
+        }
+      } else if (difficulty === "ADVANCED") {
+        const a = randInt(2, 5), r1 = randInt(1, 4) * getSign(), r2 = randInt(1, 4) * getSign();
+        const b = a * r2 + r1, c = r1 * r2;
+        return q(id, difficulty, stage, fp, `${a}x^2${fmt(b, "x")}${fmt(c, "")}`, "({a}x+A)(x+B)", [
+          { id: "A", l: "A", e: r1 }, { id: "B", l: "B", e: r2 }
+        ], `(${a}x${fmt(r1, "")})(x${fmt(r2, "")})`, { a, b, c });
+      } else {
+        if (Math.random() > 0.5) {
+          const a = randInt(2, 5), b = randInt(1, 5) * getSign();
+          return q(id, difficulty, stage, fp, `${a * a}x^2${fmt(2 * a * b, "x")}${fmt(b * b, "")}`, "(ax+b)^2", [
+            { id: "a", l: "a", e: a }, { id: "b", l: "b", e: b }
+          ], `(${a}x${fmt(b, "")})^2`, { a: a * a, b: 2 * a * b, c: b * b });
+        } else {
+          const a = randInt(2, 5), b = randInt(1, 5);
+          return q(id, difficulty, stage, fp, `${a * a}x^2-${b * b}`, "(ax+b)(ax-b)", [
+            { id: "a", l: "a", e: a }, { id: "b", l: "b", e: b }
+          ], `(${a}x+${b})(${a}x-${b})`, { a: a * a, b: 0, c: -b * b });
+        }
+      }
+    });
   }
 
   // ===================== FRACTIONS =====================
   if (stage === "FRACTIONS") {
-    if (difficulty === "BASIC") return [
-      q("R-B1", difficulty, stage, rp, "\\frac{2x}{4x^2}", "\\frac{1}{ax}", [{ id: "a", l: "a", e: 2 }], "\\frac{1}{2x}"),
-      q("R-B2", difficulty, stage, rp, "\\frac{6x}{3}", "ax", [{ id: "a", l: "a", e: 2 }], "2x"),
-      q("R-B3", difficulty, stage, rp, "\\frac{4x^2}{2x}", "ax", [{ id: "a", l: "a", e: 2 }], "2x"),
-      q("R-B4", difficulty, stage, rp, "\\frac{10x}{5x}", "a", [{ id: "a", l: "a", e: 2 }], "2"),
-      q("R-B5", difficulty, stage, rp, "\\frac{3x}{9x^2}", "\\frac{1}{ax}", [{ id: "a", l: "a", e: 3 }], "\\frac{1}{3x}"),
-      q("R-B6", difficulty, stage, rp, "\\frac{8x^3}{4x}", "ax^2", [{ id: "a", l: "a", e: 2 }], "2x^2"),
-      q("R-B7", difficulty, stage, rp, "\\frac{12x}{4}", "ax", [{ id: "a", l: "a", e: 3 }], "3x"),
-      q("R-B8", difficulty, stage, rp, "\\frac{5x^2}{x}", "ax", [{ id: "a", l: "a", e: 5 }], "5x"),
-    ];
-    if (difficulty === "CORE") return [
-      q("R-C1", difficulty, stage, rp, "\\frac{x^2+2x}{x}", "x+b", [{ id: "b", l: "b", e: 2 }], "x+2"),
-      q("R-C2", difficulty, stage, rp, "\\frac{x^2+5x}{x}", "x+b", [{ id: "b", l: "b", e: 5 }], "x+5"),
-      q("R-C3", difficulty, stage, rp, "\\frac{3x^2+6x}{3x}", "x+b", [{ id: "b", l: "b", e: 2 }], "x+2"),
-      q("R-C4", difficulty, stage, rp, "\\frac{x^2-3x}{x}", "x+b", [{ id: "b", l: "b", e: -3 }], "x-3"),
-      q("R-C5", difficulty, stage, rp, "\\frac{2x^2+4x}{2x}", "x+b", [{ id: "b", l: "b", e: 2 }], "x+2"),
-      q("R-C6", difficulty, stage, rp, "\\frac{x^2+x}{x}", "x+b", [{ id: "b", l: "b", e: 1 }], "x+1"),
-      q("R-C7", difficulty, stage, rp, "\\frac{4x^2-8x}{4x}", "x+b", [{ id: "b", l: "b", e: -2 }], "x-2"),
-      q("R-C8", difficulty, stage, rp, "\\frac{x^2+7x}{x}", "x+b", [{ id: "b", l: "b", e: 7 }], "x+7"),
-    ];
-    if (difficulty === "ADVANCED") return [
-      q("R-A1", difficulty, stage, rp, "\\frac{x^2-9}{x+3}", "x+b", [{ id: "b", l: "b", e: -3 }], "x-3"),
-      q("R-A2", difficulty, stage, rp, "\\frac{x^2-4}{x+2}", "x+b", [{ id: "b", l: "b", e: -2 }], "x-2"),
-      q("R-A3", difficulty, stage, rp, "\\frac{x^2-1}{x+1}", "x+b", [{ id: "b", l: "b", e: -1 }], "x-1"),
-      q("R-A4", difficulty, stage, rp, "\\frac{x^2-25}{x+5}", "x+b", [{ id: "b", l: "b", e: -5 }], "x-5"),
-      q("R-A5", difficulty, stage, rp, "\\frac{x^2-16}{x-4}", "x+b", [{ id: "b", l: "b", e: 4 }], "x+4"),
-      q("R-A6", difficulty, stage, rp, "\\frac{x^2+4x+3}{x+1}", "x+b", [{ id: "b", l: "b", e: 3 }], "x+3"),
-      q("R-A7", difficulty, stage, rp, "\\frac{x^2+3x+2}{x+2}", "x+b", [{ id: "b", l: "b", e: 1 }], "x+1"),
-      q("R-A8", difficulty, stage, rp, "\\frac{x^2-x-6}{x-3}", "x+b", [{ id: "b", l: "b", e: 2 }], "x+2"),
-    ];
-    return [ // ELITE
-      q("R-E1", difficulty, stage, rp, "\\frac{x^2+5x+6}{x+2}", "x+b", [{ id: "b", l: "b", e: 3 }], "x+3"),
-      q("R-E2", difficulty, stage, rp, "\\frac{x^2+7x+12}{x+3}", "x+b", [{ id: "b", l: "b", e: 4 }], "x+4"),
-      q("R-E3", difficulty, stage, rp, "\\frac{2x^2+6x}{x^2+3x}", "a", [{ id: "a", l: "a", e: 2 }], "2"),
-      q("R-E4", difficulty, stage, rp, "\\frac{x^2-4x+3}{x-1}", "x+b", [{ id: "b", l: "b", e: -3 }], "x-3"),
-      q("R-E5", difficulty, stage, rp, "\\frac{x^2-6x+8}{x-2}", "x+b", [{ id: "b", l: "b", e: -4 }], "x-4"),
-      q("R-E6", difficulty, stage, rp, "\\frac{x^2+2x-3}{x-1}", "x+b", [{ id: "b", l: "b", e: 3 }], "x+3"),
-      q("R-E7", difficulty, stage, rp, "\\frac{x^2-2x-8}{x+2}", "x+b", [{ id: "b", l: "b", e: -4 }], "x-4"),
-      q("R-E8", difficulty, stage, rp, "\\frac{x^2+x-12}{x-3}", "x+b", [{ id: "b", l: "b", e: 4 }], "x+4"),
-    ];
+    return Array.from({ length: count }).map((_, i) => {
+      const id = `R_${difficulty}_${i}`;
+      if (difficulty === "BASIC") {
+        const a = randInt(2, 6);
+        if (Math.random() > 0.5) {
+          return q(id, difficulty, stage, rp, `\\frac{${a * 2}x}{${a}x^2}`, "\\frac{c}{ax}", [
+            { id: "a", l: "a", e: 1 }
+          ], `\\frac{2}{x}`);
+        } else {
+          return q(id, difficulty, stage, rp, `\\frac{${a * 2}x^2}{${a}x}`, "ax", [
+            { id: "a", l: "a", e: 2 }
+          ], `2x`);
+        }
+      } else if (difficulty === "CORE") {
+        const b = randInt(2, 8) * getSign();
+        return q(id, difficulty, stage, rp, `\\frac{x^2${fmt(b, "x")}}{x}`, "x+b", [
+          { id: "b", l: "b", e: b }
+        ], `x${fmt(b, "")}`);
+      } else if (difficulty === "ADVANCED") {
+        const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
+        const b = r1 + r2, c = r1 * r2;
+        return q(id, difficulty, stage, rp, `\\frac{x^2${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r1, "")}}`, "x+b", [
+          { id: "b", l: "b", e: r2 }
+        ], `x${fmt(r2, "")}`);
+      } else {
+        const a = randInt(2, 4), r1 = randInt(1, 4) * getSign(), r2 = randInt(1, 4) * getSign();
+        const b = a * r2 + r1, c = r1 * r2;
+        return q(id, difficulty, stage, rp, `\\frac{${a}x^2${fmt(b, "x")}${fmt(c, "")}}{x${fmt(r2, "")}}`, "ax+b", [
+          { id: "a", l: "a", e: a }, { id: "b", l: "b", e: r1 }
+        ], `${a}x${fmt(r1, "")}`);
+      }
+    });
   }
 
   // ===================== EQUATIONS =====================
   if (stage === "EQUATIONS") {
     const P = "PARABOLA" as const;
-    if (difficulty === "BASIC") return [
-      q("E-B1", difficulty, stage, ep, "x^2=9", "x=\\pm k", [{ id: "k", l: "k", e: 3 }], "x=\\pm 3", { a: 1, b: 0, c: -9, vizMode: P }),
-      q("E-B2", difficulty, stage, ep, "x(x-4)=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 0 }, { id: "x2", l: "x_2", e: 4 }], "0, 4", { a: 1, b: -4, c: 0, vizMode: P }),
-      q("E-B3", difficulty, stage, ep, "x^2=16", "x=\\pm k", [{ id: "k", l: "k", e: 4 }], "x=\\pm 4", { a: 1, b: 0, c: -16, vizMode: P }),
-      q("E-B4", difficulty, stage, ep, "x^2=25", "x=\\pm k", [{ id: "k", l: "k", e: 5 }], "x=\\pm 5", { a: 1, b: 0, c: -25, vizMode: P }),
-      q("E-B5", difficulty, stage, ep, "x(x-6)=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 0 }, { id: "x2", l: "x_2", e: 6 }], "0, 6", { a: 1, b: -6, c: 0, vizMode: P }),
-      q("E-B6", difficulty, stage, ep, "x^2=1", "x=\\pm k", [{ id: "k", l: "k", e: 1 }], "x=\\pm 1", { a: 1, b: 0, c: -1, vizMode: P }),
-      q("E-B7", difficulty, stage, ep, "x(x+3)=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: 0 }], "-3, 0", { a: 1, b: 3, c: 0, vizMode: P }),
-      q("E-B8", difficulty, stage, ep, "x^2=4", "x=\\pm k", [{ id: "k", l: "k", e: 2 }], "x=\\pm 2", { a: 1, b: 0, c: -4, vizMode: P }),
-    ];
-    if (difficulty === "CORE") return [
-      q("E-C1", difficulty, stage, ep, "x^2+5x+6=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: -2 }], "-3, -2", { a: 1, b: 5, c: 6, vizMode: P }),
-      q("E-C2", difficulty, stage, ep, "x^2-3x+2=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 1 }, { id: "x2", l: "x_2", e: 2 }], "1, 2", { a: 1, b: -3, c: 2, vizMode: P }),
-      q("E-C3", difficulty, stage, ep, "x^2+x-6=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: 2 }], "-3, 2", { a: 1, b: 1, c: -6, vizMode: P }),
-      q("E-C4", difficulty, stage, ep, "x^2-7x+12=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 3 }, { id: "x2", l: "x_2", e: 4 }], "3, 4", { a: 1, b: -7, c: 12, vizMode: P }),
-      q("E-C5", difficulty, stage, ep, "x^2-x-12=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: 4 }], "-3, 4", { a: 1, b: -1, c: -12, vizMode: P }),
-      q("E-C6", difficulty, stage, ep, "x^2+4x+3=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: -1 }], "-3, -1", { a: 1, b: 4, c: 3, vizMode: P }),
-      q("E-C7", difficulty, stage, ep, "x^2-5x+6=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 2 }, { id: "x2", l: "x_2", e: 3 }], "2, 3", { a: 1, b: -5, c: 6, vizMode: P }),
-      q("E-C8", difficulty, stage, ep, "x^2+2x-8=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -4 }, { id: "x2", l: "x_2", e: 2 }], "-4, 2", { a: 1, b: 2, c: -8, vizMode: P }),
-    ];
-    if (difficulty === "ADVANCED") return [
-      q("E-A1", difficulty, stage, ep, "x^2-4x=5", "x_1, x_2", [{ id: "x1", l: "x_1", e: -1 }, { id: "x2", l: "x_2", e: 5 }], "-1, 5", { a: 1, b: -4, c: -5, vizMode: P }),
-      q("E-A2", difficulty, stage, ep, "x^2+2x=3", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: 1 }], "-3, 1", { a: 1, b: 2, c: -3, vizMode: P }),
-      q("E-A3", difficulty, stage, ep, "x^2-6x+5=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 1 }, { id: "x2", l: "x_2", e: 5 }], "1, 5", { a: 1, b: -6, c: 5, vizMode: P }),
-      q("E-A4", difficulty, stage, ep, "2x^2-6x+4=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 1 }, { id: "x2", l: "x_2", e: 2 }], "1, 2", { a: 2, b: -6, c: 4, vizMode: P }),
-      q("E-A5", difficulty, stage, ep, "x^2+3x-10=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -5 }, { id: "x2", l: "x_2", e: 2 }], "-5, 2", { a: 1, b: 3, c: -10, vizMode: P }),
-      q("E-A6", difficulty, stage, ep, "x^2-2x-15=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 }, { id: "x2", l: "x_2", e: 5 }], "-3, 5", { a: 1, b: -2, c: -15, vizMode: P }),
-      q("E-A7", difficulty, stage, ep, "x^2=x+6", "x_1, x_2", [{ id: "x1", l: "x_1", e: -2 }, { id: "x2", l: "x_2", e: 3 }], "-2, 3", { a: 1, b: -1, c: -6, vizMode: P }),
-      q("E-A8", difficulty, stage, ep, "x^2-8x+15=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 3 }, { id: "x2", l: "x_2", e: 5 }], "3, 5", { a: 1, b: -8, c: 15, vizMode: P }),
-    ];
-    return [ // ELITE
-      q("E-E1", difficulty, stage, ep, "x^2-6x+k=0,\\;x=2", "k", [{ id: "k", l: "k", e: 8 }], "k=8", { a: 1, b: -6, c: 8, vizMode: P }),
-      q("E-E2", difficulty, stage, ep, "x^2+bx+5=0,\\;x=1", "b", [{ id: "b", l: "b", e: -6 }], "b=-6", { a: 1, b: -6, c: 5, vizMode: P }),
-      q("E-E3", difficulty, stage, ep, "3x^2-12x+9=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: 1 }, { id: "x2", l: "x_2", e: 3 }], "1, 3", { a: 3, b: -12, c: 9, vizMode: P }),
-      q("E-E4", difficulty, stage, ep, "x^2-10x+25=0", "x", [{ id: "x", l: "x", e: 5 }], "x=5", { a: 1, b: -10, c: 25, vizMode: P }),
-      q("E-E5", difficulty, stage, ep, "2x^2+x-3=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -3 / 2 }, { id: "x2", l: "x_2", e: 1 }], "-3/2, 1", { a: 2, b: 1, c: -3, vizMode: P }),
-      q("E-E6", difficulty, stage, ep, "x^2+kx+9=0,\\;x=3", "k", [{ id: "k", l: "k", e: -6 }], "k=-6", { a: 1, b: -6, c: 9, vizMode: P }),
-      q("E-E7", difficulty, stage, ep, "4x^2-4x+1=0", "x", [{ id: "x", l: "x", e: "1/2" }], "x=1/2", { a: 4, b: -4, c: 1, vizMode: P }),
-      q("E-E8", difficulty, stage, ep, "x^2-2x-3=0", "x_1, x_2", [{ id: "x1", l: "x_1", e: -1 }, { id: "x2", l: "x_2", e: 3 }], "-1, 3", { a: 1, b: -2, c: -3, vizMode: P }),
-    ];
+    return Array.from({ length: count }).map((_, i) => {
+      const id = `E_${difficulty}_${i}`;
+      if (difficulty === "BASIC") {
+        if (Math.random() > 0.5) {
+          const r = randInt(1, 6);
+          return q(id, difficulty, stage, ep, `x^2=${r * r}`, "x=\\pm k", [
+            { id: "k", l: "k", e: r }
+          ], `x=\\pm ${r}`, { a: 1, b: 0, c: -r * r, vizMode: P });
+        } else {
+          const r = randInt(1, 8) * getSign();
+          return q(id, difficulty, stage, ep, `x(x${fmt(-r, "")})=0`, "x_1, x_2", [
+            { id: "x1", l: "x_1", e: Math.min(0, r) }, { id: "x2", l: "x_2", e: Math.max(0, r) }
+          ], `${Math.min(0, r)}, ${Math.max(0, r)}`, { a: 1, b: -r, c: 0, vizMode: P });
+        }
+      } else if (difficulty === "CORE") {
+        const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
+        const b = -(r1 + r2), c = r1 * r2;
+        return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
+          { id: "x1", l: "x_1", e: Math.min(r1, r2) }, { id: "x2", l: "x_2", e: Math.max(r1, r2) }
+        ], `${Math.min(r1, r2)}, ${Math.max(r1, r2)}`, { a: 1, b, c, vizMode: P });
+      } else if (difficulty === "ADVANCED") {
+        const a = randInt(1, 3);
+        const r1 = randInt(1, 5) * getSign(), r2 = randInt(1, 5) * getSign();
+        const b = -a * (r1 + r2), c = a * r1 * r2;
+        return q(id, difficulty, stage, ep, `${a === 1 ? "" : a}x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x_1, x_2", [
+          { id: "x1", l: "x_1", e: Math.min(r1, r2) }, { id: "x2", l: "x_2", e: Math.max(r1, r2) }
+        ], `${Math.min(r1, r2)}, ${Math.max(r1, r2)}`, { a, b, c, vizMode: P });
+      } else {
+        if (Math.random() > 0.5) {
+          const r = randInt(1, 5) * getSign();
+          const b = -2 * r, c = r * r;
+          return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}+k=0,\\;x=${r}`, "k", [
+            { id: "k", l: "k", e: c }
+          ], `k=${c}`, { a: 1, b, c, vizMode: P });
+        } else {
+          const r = randInt(1, 5) * getSign();
+          const b = -2 * r, c = r * r;
+          return q(id, difficulty, stage, ep, `x^2${fmt(b, "x")}${fmt(c, "")}=0`, "x", [
+            { id: "x", l: "x", e: r }
+          ], `x=${r}`, { a: 1, b, c, vizMode: P });
+        }
+      }
+    });
   }
 
   return [];
@@ -241,10 +237,10 @@ export default function S301Page() {
     handleStageChange,
     parseNumberLike,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S301Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S301Quest, Stage>({
     moduleCode: "sm3-01",
     buildPool,
     initialStage: "TERMS",
