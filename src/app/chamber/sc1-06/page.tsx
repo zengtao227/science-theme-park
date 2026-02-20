@@ -54,8 +54,9 @@ export default function SC106Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    verify
+    verify, adaptiveRecommendation,
   } = useQuestManager<SC106Quest, Stage>({
+    moduleCode: "sc1-06",
     buildPool: buildPoolCallback,
     initialStage: 'REACTION_TYPES',
   });
@@ -86,9 +87,9 @@ export default function SC106Page() {
 
   const getCurrentScenario = () => {
     if (!currentQuest) return '';
-    const translated = t(`sc1_06.scenarios.${currentQuest.id}`);
-    if (translated !== `sc1_06.scenarios.${currentQuest.id}`) return translated;
-    return currentQuest.baselContext || '';
+    const translated = t(`sc1_06.scenarios.${currentQuest?.id}`);
+    if (translated !== `sc1_06.scenarios.${currentQuest?.id}`) return translated;
+    return currentQuest?.baselContext || '';
   };
 
   const getStagePrompt = () => {
@@ -142,7 +143,7 @@ export default function SC106Page() {
                     {t('sc1_06.reaction_simulation.molecular_field') || "Molecular Interaction Field"}
                   </h4>
                   <div className="flex items-center justify-center gap-6 text-2xl lg:text-4xl font-light">
-                    {currentQuest.equation.reactants.map((c, i) => (
+                    {currentQuest?.equation.reactants.map((c, i) => (
                       <div key={i} className="flex items-center gap-4">
                         {i > 0 && <span className="opacity-30">+</span>}
                         <span className="text-blue-400 font-mono"><ChemicalFormula latex={c.formulaLatex} /></span>
@@ -152,7 +153,7 @@ export default function SC106Page() {
                       animate={{ x: isReacted ? [0, 5, 0] : 0 }}
                       className="opacity-50 mx-4"
                     >→</motion.span>
-                    {currentQuest.equation.products.map((c, i) => (
+                    {currentQuest?.equation.products.map((c, i) => (
                       <div key={i} className="flex items-center gap-4">
                         {i > 0 && <span className="opacity-30">+</span>}
                         <span className={isReacted ? "text-neon-green font-mono" : "opacity-20 blur-sm grayscale font-mono"}>
@@ -197,7 +198,7 @@ export default function SC106Page() {
                   <div>
                     <h5 className="text-[10px] font-black tracking-[0.2em] text-white/50 uppercase mb-2">Mechanism Insights</h5>
                     <p className="text-sm text-white/80 leading-relaxed italic">
-                      {currentQuest.energyChange === 'exothermic'
+                      {currentQuest?.energyChange === 'exothermic'
                         ? "This reaction releases stored chemical potential energy as heat. Bond formation in products is more energetically favorable than the bonds broken in reactants."
                         : "This process requires continuous energy input to overcome the high activation barrier and break the strong reactant bonds."}
                     </p>
@@ -215,6 +216,7 @@ export default function SC106Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t('sc1_06.title')}
       moduleCode="SC1.06"
       difficulty={difficulty}

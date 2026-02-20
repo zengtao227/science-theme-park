@@ -366,7 +366,9 @@ export default function S201Page() {
     handleDifficultyChange,
     handleStageChange,
     verify,
+    adaptiveRecommendation,
   } = useQuestManager<S201Quest, QuestMode>({
+    moduleCode: "sm2-01",
     buildPool,
     initialStage: questMode,
   });
@@ -498,6 +500,7 @@ export default function S201Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sm2_01_t.title}
       moduleCode="SM2.01"
       difficulty={difficulty}

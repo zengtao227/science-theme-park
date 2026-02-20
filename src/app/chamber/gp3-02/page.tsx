@@ -240,14 +240,16 @@ export default function GP302Electromagnetism() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<GP302Quest, Stage>({
+    moduleCode: "gp3-02",
         buildPool: (d, s) => buildStagePool(gp3_02_t, d, s),
         initialStage: "ELECTRIC_FIELD",
     });
 
     useEffect(() => {
         if (!currentQuest) return;
-        if (currentQuest.fieldStrength) setFieldIntensity(currentQuest.fieldStrength);
+        if (currentQuest?.fieldStrength) setFieldIntensity(currentQuest?.fieldStrength);
     }, [currentQuest]);
 
     if (!currentQuest) {
@@ -260,7 +262,8 @@ export default function GP302Electromagnetism() {
 
     return (
         <ChamberLayout
-            title={gp3_02_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={gp3_02_t.title}
             moduleCode="GP3.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -312,25 +315,25 @@ export default function GP302Electromagnetism() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={currentQuest.id}
+                        key={currentQuest?.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         className="bg-black/30 rounded-xl p-6 border border-white/10"
                     >
                         <div className="mb-4">
-                            <div className="text-white/50 text-sm mb-2">Question {currentQuest.id}</div>
-                            <div className="text-white text-lg">{currentQuest.promptLatex}</div>
+                            <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
+                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
                         </div>
 
                         <div className="mb-4 p-4 bg-black/50 rounded-lg border border-cyan-500/30">
                             <div className="text-white/60 text-xs uppercase tracking-wider mb-2">Formula</div>
                             <div className="text-white text-xl">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                                <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </div>
                         </div>
 
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-4">
                                 <label className="text-white/70 min-w-[120px]">{slot.labelLatex}:</label>
                                 <input

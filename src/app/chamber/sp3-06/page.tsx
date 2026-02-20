@@ -636,7 +636,9 @@ export default function SP306Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SP306Quest, Stage>({
+    moduleCode: "sp3-06",
         buildPool,
         initialStage: "SOUND_WAVES",
     });
@@ -656,7 +658,8 @@ export default function SP306Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t("sp3_06.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sp3_06.title")}
                 moduleCode="SP3.06"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -681,7 +684,8 @@ export default function SP306Page() {
 
     return (
         <ChamberLayout
-            title={t("sp3_06.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sp3_06.title")}
             moduleCode="SP3.06"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -712,15 +716,15 @@ export default function SP306Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
                     
                     <div className="text-blue-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

@@ -33,7 +33,9 @@ export default function SB204Page() {
     handleDifficultyChange,
     handleStageChange,
     getHint,
+    adaptiveRecommendation,
   } = useQuestManager<SB204Quest, Stage>({
+    moduleCode: "sb2-04",
     buildPool,
     initialStage: "DIGESTIVE_SYSTEM",
   });
@@ -58,6 +60,7 @@ export default function SB204Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       moduleCode="SB2.04"
       title={t("sb2_04.title")}
       difficulty={difficulty}
@@ -136,11 +139,11 @@ export default function SB204Page() {
                 {t("sb2_04.labels.analysis")}
               </h3>
               <div className="text-2xl text-white font-bold leading-tight max-w-2xl mx-auto">
-                {t(currentQuest.promptLatex as any)}
+                {t(currentQuest?.promptLatex as any)}
               </div>
             </div>
 
-            {currentQuest.options && currentQuest.options.length > 0 ? (
+            {currentQuest?.options && currentQuest?.options.length > 0 ? (
               // Multiple choice display
               <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl">
                 <div className="space-y-6">
@@ -150,7 +153,7 @@ export default function SB204Page() {
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
-                    {currentQuest.options.map((option, idx) => (
+                    {currentQuest?.options.map((option, idx) => (
                       <button
                         key={idx}
                         onClick={() => setInputs({ answer: option.toLowerCase() })}
@@ -224,7 +227,7 @@ export default function SB204Page() {
                   </div>
 
                   <div className="grid grid-cols-1 gap-8 justify-items-center">
-                    {currentQuest.slots.map((slot) => (
+                    {currentQuest?.slots.map((slot) => (
                       <div key={slot.id} className="w-full max-w-md space-y-3">
                         <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                           <InlineMath>{slot.labelLatex}</InlineMath>

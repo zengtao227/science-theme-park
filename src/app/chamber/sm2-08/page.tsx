@@ -1150,7 +1150,9 @@ export default function SM208Page() {
     handleStageChange,
     difficulty,
     handleDifficultyChange,
+    adaptiveRecommendation,
   } = useQuestManager<ProbQuest, Stage>({
+    moduleCode: "sm2-08",
     buildPool,
     initialStage: "BASIC_PROB",
     tolerance: 0.01,
@@ -1164,6 +1166,7 @@ export default function SM208Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sm2_08.title")}
       moduleCode="SM2.08"
       difficulty={difficulty}

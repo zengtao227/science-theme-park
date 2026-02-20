@@ -191,7 +191,9 @@ export default function SC302Page() {
         handleStageChange,
         getHint,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<SC302Quest, Stage>({
+    moduleCode: "sc3-02",
         buildPool,
         initialStage: "HYDROCARBONS",
     });
@@ -210,7 +212,7 @@ export default function SC302Page() {
 
     useEffect(() => {
         if (currentQuest?.molecule) {
-            setSelectedMolecule(currentQuest.molecule);
+            setSelectedMolecule(currentQuest?.molecule);
         }
     }, [currentQuest]);
 
@@ -218,13 +220,14 @@ export default function SC302Page() {
 
     const activeScenario = useMemo(() => {
         if (!currentQuest?.scenario) return null;
-        const scenario = t(`sc3_02.scenarios.${currentQuest.scenario}`, { defaultValue: "" });
+        const scenario = t(`sc3_02.scenarios.${currentQuest?.scenario}`, { defaultValue: "" });
         return scenario || null;
     }, [currentQuest, t]);
 
     return (
         <ChamberLayout
-            moduleCode="SC3.02"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SC3.02"
             title={t("sc3_02.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -299,7 +302,7 @@ export default function SC302Page() {
                                 {t("sc3_02.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -310,7 +313,7 @@ export default function SC302Page() {
                                     {t("sc3_02.labels.molecule_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -324,7 +327,7 @@ export default function SC302Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest?.slots.map((slot: any) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

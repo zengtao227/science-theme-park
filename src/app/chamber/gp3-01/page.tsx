@@ -698,7 +698,9 @@ export default function GP301Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<GP301Quest, Stage>({
+    moduleCode: "gp3-01",
         buildPool,
         initialStage: "WAVE_PROPERTIES",
     });
@@ -718,7 +720,8 @@ export default function GP301Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t("gp3_01.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gp3_01.title")}
                 moduleCode="GP3.01"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -748,7 +751,8 @@ export default function GP301Page() {
 
     return (
         <ChamberLayout
-            title={t("gp3_01.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gp3_01.title")}
             moduleCode="GP3.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -784,15 +788,15 @@ export default function GP301Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
                     
                     <div className="text-blue-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

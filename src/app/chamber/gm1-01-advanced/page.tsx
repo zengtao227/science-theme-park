@@ -1211,7 +1211,9 @@ export default function G101AdvancedPage() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<G101AdvQuest, Challenge>({
+    moduleCode: "gm1-01-advanced",
     buildPool: (d, s) => buildChallengePool(gm1_01_advanced_t, d, s),
     initialStage: "COMPOSITE",
   });
@@ -1224,6 +1226,7 @@ export default function G101AdvancedPage() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gm1_01_advanced_t.title}
       moduleCode="GM1.01-ADV"
       difficulty={difficulty}

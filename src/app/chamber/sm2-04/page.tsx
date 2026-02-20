@@ -708,7 +708,9 @@ export default function S204Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<S204Quest, Stage>({
+    moduleCode: "sm2-04",
         buildPool,
         initialStage: "SCALE_FACTOR",
     });
@@ -727,7 +729,8 @@ export default function S204Page() {
 
     return (
         <ChamberLayout
-            title={t("sm2_04.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sm2_04.title")}
             moduleCode="SM2.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -757,7 +760,7 @@ export default function S204Page() {
             monitorContent={
                 <>
                     <S204_SimilarityCanvas
-                        visual={currentQuest.visual}
+                        visual={currentQuest?.visual}
                         labels={{
                             tower: t("sm2_04.mission.labels.tower"),
                             tower_shadow: t("sm2_04.mission.labels.tower_shadow"),
@@ -772,17 +775,17 @@ export default function S204Page() {
                         </div>
                         <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-normal break-words">
                             <span className="inline-block">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                                <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </span>
                         </div>
                         <div className="text-white/70 font-mono text-sm whitespace-pre-wrap break-words">
-                            {currentQuest.promptLatex}
+                            {currentQuest?.promptLatex}
                         </div>
-                        {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
+                        {currentQuest?.hintLatex && currentQuest?.hintLatex.length > 0 && (
                             <div className="space-y-2 text-white font-black text-[10px] uppercase tracking-[0.25em]">
                                 <div className="text-white/90">{t("sm2_04.labels.hints")}</div>
-                                {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
-                                    <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
+                                {currentQuest?.hintLatex.slice(0, 3).map((h, idx) => (
+                                    <div key={`${currentQuest?.id}|h|${idx}`} className="flex gap-2 items-start">
                                         <div className="text-white/70 w-6">{String(idx + 1).padStart(2, "0")}</div>
                                         <div className="flex-1">
                                             <InlineMath math={h} />
@@ -807,7 +810,7 @@ export default function S204Page() {
                         {t("sm2_04.objective_title")}
                     </h3>
                     <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-pre-wrap break-words">
-                        {currentQuest.promptLatex}
+                        {currentQuest?.promptLatex}
                     </p>
                 </div>
 
@@ -819,10 +822,10 @@ export default function S204Page() {
                         </span>
                         <div className="space-y-4">
                             <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                                <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </div>
                             <div className="text-white/60 font-black">
-                                <InlineMath math={currentQuest.targetLatex} />
+                                <InlineMath math={currentQuest?.targetLatex || ""} />
                             </div>
                         </div>
                     </div>
@@ -834,8 +837,8 @@ export default function S204Page() {
                     <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                         {t("sm2_04.labels.input")}
                     </div>
-                    <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                        {currentQuest.slots.map((slot) => (
+                    <div className={clsx("grid gap-4", ((currentQuest?.slots) || []).length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="space-y-2">
                                 <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                                     <InlineMath math={slot.labelLatex} />

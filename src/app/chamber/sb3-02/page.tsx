@@ -94,6 +94,7 @@ export default function BiodiversityModule() {
 
   return (
     <ChamberLayout
+
       title={moduleTitle[language]}
       moduleCode="SB3.02"
       difficulty={difficulty}

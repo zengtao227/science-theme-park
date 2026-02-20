@@ -93,7 +93,9 @@ export default function GC101Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<RedoxQuest, Stage>({
+    moduleCode: "gc1-01",
         buildPool: (d, s) => buildStagePool(t, d, s),
         initialStage: "BUILD",
         tolerance: 0.02
@@ -130,7 +132,8 @@ export default function GC101Page() {
 
     return (
         <ChamberLayout
-            title={t("gc1_01.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gc1_01.title")}
             moduleCode="GC1.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

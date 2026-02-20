@@ -474,7 +474,9 @@ export default function SM106Page() {
         handleStageChange,
         getHint,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<S106Quest, Stage>({
+    moduleCode: "sm1-05",
         buildPool,
         initialStage: "RECIPES",
     });
@@ -495,7 +497,8 @@ export default function SM106Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SM1.05"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SM1.05"
             title={sm1_05_t.title}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -526,7 +529,7 @@ export default function SM106Page() {
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
                         {currentQuest ? (
                             <RatioCanvas
-                                mode={currentQuest.visualMode}
+                                mode={currentQuest?.visualMode}
                                 quest={currentQuest}
                                 language={currentLanguage}
                             />
@@ -562,7 +565,7 @@ export default function SM106Page() {
                                 Laboratory Objective
                             </h3>
                             <div className="text-4xl text-white font-black leading-tight">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -573,7 +576,7 @@ export default function SM106Page() {
                                     Mathematical Expression
                                 </span>
                                 <div className="text-5xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -587,7 +590,7 @@ export default function SM106Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest?.slots.map((slot: any) => (
                                         <div key={slot.id} className="w-full max-w-xs space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

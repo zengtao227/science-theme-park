@@ -370,7 +370,9 @@ export default function S302Page() {
         handleDifficultyChange,
         handleStageChange,
         parseNumberLike,
+      adaptiveRecommendation,
     } = useQuestManager<S302Quest, Stage>({
+    moduleCode: "sm3-02",
         buildPool,
         initialStage: "UNIT_CIRCLE",
     });
@@ -380,11 +382,11 @@ export default function S302Page() {
     if (currentQuest?.id !== prevQuestId) {
         setPrevQuestId(currentQuest?.id);
         if (currentQuest?.angle != null) {
-            setAngle(currentQuest.angle);
+            setAngle(currentQuest?.angle);
             // Auto toggle relevant visuals based on quest type
-            if (currentQuest.trigFunc === "sin") { setShowSin(true); setShowCos(false); setShowTan(false); }
-            if (currentQuest.trigFunc === "cos") { setShowSin(false); setShowCos(true); setShowTan(false); }
-            if (currentQuest.trigFunc === "tan") { setShowSin(false); setShowCos(false); setShowTan(true); }
+            if (currentQuest?.trigFunc === "sin") { setShowSin(true); setShowCos(false); setShowTan(false); }
+            if (currentQuest?.trigFunc === "cos") { setShowSin(false); setShowCos(true); setShowTan(false); }
+            if (currentQuest?.trigFunc === "tan") { setShowSin(false); setShowCos(false); setShowTan(true); }
         }
     }
 
@@ -402,7 +404,8 @@ export default function S302Page() {
 
     return (
         <ChamberLayout
-            title={t("sm3_02.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sm3_02.title")}
             moduleCode="SM3.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -457,7 +460,7 @@ export default function S302Page() {
                         {currentQuest?.expressionLatex && (
                             <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10 inline-block min-w-[300px]">
                                 <span className="text-4xl text-cyan-300 font-serif">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </span>
                             </div>
                         )}

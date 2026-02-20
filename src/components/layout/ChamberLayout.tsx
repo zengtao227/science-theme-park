@@ -42,6 +42,11 @@ interface ChamberLayoutProps {
         monitor_title?: string;
         difficulty: Record<string, string>;
     };
+    adaptiveRecommendation?: {
+        recommendedDifficulty: string;
+        confidence: number;
+        reason: string;
+    } | null;
 }
 
 export default function ChamberLayout({
@@ -59,7 +64,8 @@ export default function ChamberLayout({
     onVerify,
     onNext,
     successRate,
-    translations
+    translations,
+    adaptiveRecommendation
 }: ChamberLayoutProps) {
     const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
     const common = i18n[currentLanguage].common;
@@ -358,6 +364,32 @@ export default function ChamberLayout({
                                                     }
                                                 </p>
                                             )}
+                                        </HUDAlert>
+                                    )}
+
+                                    {adaptiveRecommendation && adaptiveRecommendation.recommendedDifficulty !== difficulty && (
+                                        <HUDAlert
+                                            type="info"
+                                            title={currentLanguage === "CN" ? "AI 难度建议" : currentLanguage === "DE" ? "AI-SCHWIERIGKEITSEMPFEHLUNG" : "AI DIFFICULTY ADAPTATION"}
+                                            className="mb-6 border-cyan-500/50 bg-cyan-500/5"
+                                        >
+                                            <div className="flex flex-col gap-1">
+                                                <div className="text-[11px] font-bold text-cyan-300">
+                                                    {currentLanguage === "CN" ? "推荐切换至" : currentLanguage === "DE" ? "Empfohlen:" : "Recommended:"} {adaptiveRecommendation.recommendedDifficulty}
+                                                </div>
+                                                <div className="text-[9px] text-white/60">
+                                                    {adaptiveRecommendation.reason === 'HIGH_ACCURACY_DETECTED' && (currentLanguage === "CN" ? "检测到极高正确率，您可以尝试更高难度。" : "High accuracy detected. Challenge yourself with a higher level.")}
+                                                    {adaptiveRecommendation.reason === 'MASTERY_DETECTED' && (currentLanguage === "CN" ? "已精通当前级别，建议进阶。" : "Mastery detected. Time to move up.")}
+                                                    {adaptiveRecommendation.reason === 'REMEDIATION_REQUIRED' && (currentLanguage === "CN" ? "检测到挑战较大，建议先巩固基础。" : "Multiple errors detected. Let's build a stronger foundation first.")}
+                                                    {adaptiveRecommendation.reason === 'STABLE_PERFORMANCE' && (currentLanguage === "CN" ? "表现稳定，可以根据需要调整。" : "Performance is stable. Adjust as you feel comfortable.") || adaptiveRecommendation.reason}
+                                                </div>
+                                                <button
+                                                    onClick={() => onDifficultyChange(adaptiveRecommendation.recommendedDifficulty as Difficulty)}
+                                                    className="mt-2 self-start px-3 py-1 bg-cyan-500/20 hover:bg-cyan-500/40 border border-cyan-500/50 text-cyan-300 text-[9px] font-black uppercase tracking-widest rounded"
+                                                >
+                                                    {currentLanguage === "CN" ? "应用建议" : currentLanguage === "DE" ? "ÜBERNEHMEN" : "APPLY"}
+                                                </button>
+                                            </div>
                                         </HUDAlert>
                                     )}
 

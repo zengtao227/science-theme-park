@@ -648,7 +648,9 @@ export default function SP304Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SP304Quest, Stage>({
+    moduleCode: "sp3-04",
         buildPool,
         initialStage: "PRESSURE",
     });
@@ -669,7 +671,8 @@ export default function SP304Page() {
 
     return (
         <ChamberLayout
-            title={t("sp3_04.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sp3_04.title")}
             moduleCode="SP3.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -696,9 +699,9 @@ export default function SP304Page() {
             monitorContent={
                 <PressureBuoyancyCanvas
                     stage={stage.toLowerCase()}
-                    depth={currentQuest.depth || 0}
+                    depth={currentQuest?.depth || 0}
                     objectDensity={1000}
-                    pistonForce={currentQuest.force || 0}
+                    pistonForce={currentQuest?.force || 0}
                     translations={{
                         title: t("sp3_04.title"),
                         stages: {
@@ -725,13 +728,13 @@ export default function SP304Page() {
             <div className="space-y-6">
                 <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

@@ -186,8 +186,9 @@ export default function GB302Immunology() {
         next,
         inputs,
         setInputs,
-        lastCheck
+        lastCheck, adaptiveRecommendation,
     } = useQuestManager<GB302Quest, Stage>({
+    moduleCode: "gb3-02",
         buildPool: buildStagePool,
         initialStage: "INNATE",
     });
@@ -200,14 +201,15 @@ export default function GB302Immunology() {
 
     const activeScenario = useMemo(() => {
         if (currentQuest?.scenario) {
-            return t(`gb3_02.scenarios.${currentQuest.scenario}`);
+            return t(`gb3_02.scenarios.${currentQuest?.scenario}`);
         }
         return t("gb3_02.scenarios.basel_hospital_infectious");
     }, [t, currentQuest]);
 
     return (
         <ChamberLayout
-            title={t("gb3_02.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gb3_02.title")}
             moduleCode="GB3.02"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
@@ -260,7 +262,7 @@ export default function GB302Immunology() {
                         <AnimatePresence mode="wait">
                             {currentQuest && (
                                 <motion.div
-                                    key={currentQuest.id}
+                                    key={currentQuest?.id}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
@@ -268,18 +270,18 @@ export default function GB302Immunology() {
                                 >
                                     <div className="bg-white/5 p-6 rounded-xl border border-white/5">
                                         <div className="text-lg text-white/90 leading-relaxed mb-4">
-                                            <BlockMath math={currentQuest.promptLatex} />
+                                            <BlockMath math={currentQuest?.promptLatex || ""} />
                                         </div>
-                                        {currentQuest.expressionLatex && (
+                                        {currentQuest?.expressionLatex && (
                                             <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center">
-                                                <BlockMath math={currentQuest.expressionLatex} />
+                                                <BlockMath math={currentQuest?.expressionLatex || ""} />
                                             </div>
                                         )}
                                     </div>
 
                                     {/* Input Section */}
                                     <div className="space-y-6">
-                                        {currentQuest.slots.map((slot) => (
+                                        {currentQuest?.slots.map((slot) => (
                                             <div key={slot.id} className="space-y-3">
                                                 <label className="text-xs uppercase tracking-widest text-white/40 block">
                                                     <InlineMath math={slot.labelLatex} />

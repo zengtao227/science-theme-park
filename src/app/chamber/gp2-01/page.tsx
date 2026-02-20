@@ -408,7 +408,9 @@ export default function GP201Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<GP201Quest, Stage>({
+    moduleCode: "gp2-01",
         buildPool,
         initialStage: "IDEAL_GAS",
     });
@@ -431,7 +433,8 @@ export default function GP201Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t.title}
                 moduleCode="GP2.01"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -456,7 +459,8 @@ export default function GP201Page() {
 
     return (
         <ChamberLayout
-            title={t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t.title}
             moduleCode="GP2.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -487,15 +491,15 @@ export default function GP201Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
 
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

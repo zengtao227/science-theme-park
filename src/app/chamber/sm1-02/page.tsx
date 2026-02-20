@@ -260,7 +260,9 @@ export default function SM103Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<S103Quest, Stage>({
+    moduleCode: "sm1-02",
         buildPool,
         initialStage: "VARIABLES",
     });
@@ -273,14 +275,15 @@ export default function SM103Page() {
 
     // Format Visual Data for component
     const visualProps = currentQuest ? {
-        mode: currentQuest.visualMode,
-        data: currentQuest.visualData
+        mode: currentQuest?.visualMode,
+        data: currentQuest?.visualData
     } : { mode: 'CONTAINERS' as AlgebraVisualMode, data: {} };
 
 
     return (
         <ChamberLayout
-            title={sm1_02_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sm1_02_t.title}
             moduleCode="SM1.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -313,7 +316,7 @@ export default function SM103Page() {
                     </div>
                     <div className="text-2xl text-white font-black italic whitespace-normal break-words leading-tight min-h-[5rem] flex items-center justify-center">
                         {currentQuest?.promptLatex && (
-                            <InlineMath math={currentQuest.promptLatex} />
+                            <InlineMath math={currentQuest?.promptLatex || ""} />
                         )}
                     </div>
                 </div>

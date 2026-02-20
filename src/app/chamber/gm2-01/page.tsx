@@ -286,7 +286,9 @@ export default function G201Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<G201Quest, Stage>({
+    moduleCode: "gm2-01",
     buildPool: (d, s) => buildStagePool(gm2_01_t, d, s),
     initialStage: "NAVIGATION",
   });
@@ -299,6 +301,7 @@ export default function G201Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gm2_01_t.title}
       moduleCode="GM2.01"
       difficulty={difficulty}

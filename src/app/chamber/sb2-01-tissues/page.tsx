@@ -217,7 +217,9 @@ export default function SB201TissuesPage() {
         getHint,
         getCurrentErrorCount,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<SB201TissuesQuest, Stage>({
+    moduleCode: "sb2-01-tissues",
         buildPool,
         initialStage: "TISSUES",
     });
@@ -238,7 +240,8 @@ export default function SB201TissuesPage() {
 
     return (
         <ChamberLayout
-            moduleCode="SB2.01"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SB2.01"
             title={t("sb2_01_tissues.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -332,7 +335,7 @@ export default function SB201TissuesPage() {
                 {currentQuest && (
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`quest-${currentQuest.id}`}
+                            key={`quest-${currentQuest?.id}`}
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.98 }}
@@ -351,7 +354,7 @@ export default function SB201TissuesPage() {
                                 <span className="w-8 h-px bg-neon-green/30" />
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </motion.div>
 
@@ -371,7 +374,7 @@ export default function SB201TissuesPage() {
                                     {stage === "TISSUES" ? "TISSUE SAMPLE" : stage === "ORGANS" ? "ORGAN STRUCTURE" : "HIERARCHY LEVEL"}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </motion.div>
@@ -395,7 +398,7 @@ export default function SB201TissuesPage() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot, index) => (
+                                    {currentQuest?.slots.map((slot, index) => (
                                         <motion.div
                                             key={slot.id}
                                             className="w-full max-w-md space-y-3"

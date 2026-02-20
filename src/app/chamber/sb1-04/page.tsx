@@ -273,7 +273,9 @@ export default function SB104PlantStructure() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SB104Quest, Stage>({
+    moduleCode: "sb1-04",
         buildPool: (d, s) => buildStagePool(sb1_04_t, d, s),
         initialStage: "PLANT_STRUCTURE",
     });
@@ -288,7 +290,8 @@ export default function SB104PlantStructure() {
 
     return (
         <ChamberLayout
-            title={sb1_04_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sb1_04_t.title}
             moduleCode="SB1.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -339,18 +342,18 @@ export default function SB104PlantStructure() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={currentQuest.id}
+                        key={currentQuest?.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         className="bg-black/30 rounded-xl p-6 border border-white/10"
                     >
                         <div className="mb-4">
-                            <div className="text-white/50 text-sm mb-2">Question {currentQuest.id}</div>
-                            <div className="text-white text-lg">{currentQuest.promptLatex}</div>
+                            <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
+                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
                         </div>
 
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-4">
                                 <label className="text-white/70 min-w-[120px]">{slot.labelLatex}:</label>
                                 <input

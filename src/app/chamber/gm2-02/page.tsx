@@ -50,7 +50,9 @@ export default function GM202Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<GM202Quest, Stage>({
+    moduleCode: "gm2-02",
     buildPool: (d, s) => buildStagePool(gm2_02_t, d, s),
     initialStage: "LINE_EQUATIONS",
   });
@@ -99,6 +101,7 @@ export default function GM202Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gm2_02_t.title}
       moduleCode="GM2.02"
       difficulty={difficulty}
@@ -135,7 +138,7 @@ export default function GM202Page() {
             quest={currentQuest}
             stage={stage}
             visualizationType={visualizationType}
-            data={currentQuest.visualizationData}
+            data={currentQuest?.visualizationData}
             translations={{
               line_equations: gm2_02_t.line_equations,
               plane_geometry: gm2_02_t.plane_geometry,
@@ -164,13 +167,13 @@ export default function GM202Page() {
                 OBJECTIVE
               </h3>
               <p className="text-2xl text-white font-black">
-                <InlineMath math={currentQuest.promptLatex} />
+                <InlineMath math={currentQuest?.promptLatex || ""} />
               </p>
             </div>
 
             {/* Input Section */}
             <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-              {currentQuest.slots.map((slot) => (
+              {currentQuest?.slots.map((slot) => (
                 <div key={slot.id} className="space-y-2">
                   <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                     <InlineMath math={slot.labelLatex} />

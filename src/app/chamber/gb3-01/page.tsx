@@ -203,7 +203,9 @@ export default function GB301Page() {
         handleStageChange,
         getHint,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<GB301Quest, Stage>({
+    moduleCode: "gb3-01",
         buildPool,
         initialStage: "PAIRING",
     });
@@ -216,7 +218,7 @@ export default function GB301Page() {
 
     useEffect(() => {
         if (currentQuest?.highlightIndex !== undefined) {
-            setHighlightPair(currentQuest.highlightIndex);
+            setHighlightPair(currentQuest?.highlightIndex);
         } else {
             setHighlightPair(null);
         }
@@ -232,7 +234,8 @@ export default function GB301Page() {
 
     return (
         <ChamberLayout
-            moduleCode="GB3.01"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="GB3.01"
             title={t("gb3_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -311,7 +314,7 @@ export default function GB301Page() {
                                 {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -322,7 +325,7 @@ export default function GB301Page() {
                                     {t("gb3_01.labels.analysis")}
                                 </span>
                                 <div className="text-4xl text-white font-black uppercase">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -336,7 +339,7 @@ export default function GB301Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot) => (
+                                    {currentQuest?.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

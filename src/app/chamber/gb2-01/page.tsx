@@ -193,8 +193,9 @@ export default function GB201Neurobiology() {
         inputs,
         setInputs,
         lastCheck,
-        next
+        next, adaptiveRecommendation,
     } = useQuestManager<GB201Quest, Stage>({
+    moduleCode: "gb2-01",
         buildPool: buildStagePool,
         initialStage: "ANATOMY",
     });
@@ -211,8 +212,8 @@ export default function GB201Neurobiology() {
     }, [currentStageStats, pool.length]);
 
     const activeScenario = useMemo(() => {
-        if (currentQuest?.scenario && gb2_01.scenarios[currentQuest.scenario as keyof typeof gb2_01.scenarios]) {
-            return gb2_01.scenarios[currentQuest.scenario as keyof typeof gb2_01.scenarios];
+        if (currentQuest?.scenario && gb2_01.scenarios[currentQuest?.scenario as keyof typeof gb2_01.scenarios]) {
+            return gb2_01.scenarios[currentQuest?.scenario as keyof typeof gb2_01.scenarios];
         }
         const keys = Object.keys(gb2_01.scenarios);
         return gb2_01.scenarios[keys[0] as keyof typeof gb2_01.scenarios];
@@ -220,7 +221,8 @@ export default function GB201Neurobiology() {
 
     return (
         <ChamberLayout
-            title={gb2_01.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={gb2_01.title}
             moduleCode="GB2.01"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
@@ -278,7 +280,7 @@ export default function GB201Neurobiology() {
                         <AnimatePresence mode="wait">
                             {currentQuest && (
                                 <motion.div
-                                    key={currentQuest.id}
+                                    key={currentQuest?.id}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
@@ -286,18 +288,18 @@ export default function GB201Neurobiology() {
                                 >
                                     <div className="bg-white/5 p-6 rounded-xl border border-white/5">
                                         <div className="text-lg text-white/90 leading-relaxed mb-4">
-                                            <BlockMath math={currentQuest.promptLatex} />
+                                            <BlockMath math={currentQuest?.promptLatex || ""} />
                                         </div>
-                                        {currentQuest.expressionLatex && (
+                                        {currentQuest?.expressionLatex && (
                                             <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center overflow-x-auto">
-                                                <BlockMath math={currentQuest.expressionLatex} />
+                                                <BlockMath math={currentQuest?.expressionLatex || ""} />
                                             </div>
                                         )}
                                     </div>
 
                                     {/* Input Section */}
                                     <div className="space-y-6">
-                                        {currentQuest.slots.map((slot) => (
+                                        {currentQuest?.slots.map((slot) => (
                                             <div key={slot.id} className="space-y-3">
                                                 <label className="text-xs uppercase tracking-widest text-white/40 block">
                                                     <InlineMath math={slot.labelLatex} />
@@ -328,13 +330,13 @@ export default function GB201Neurobiology() {
                                         </button>
                                     </div>
 
-                                    {currentQuest.hintLatex && (
+                                    {currentQuest?.hintLatex && (
                                         <div className="p-4 bg-purple-500/5 border border-purple-500/10 rounded-xl flex items-start gap-4">
                                             <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
                                                 <span className="text-purple-400 font-bold text-xs">?</span>
                                             </div>
                                             <div className="text-sm text-purple-300/80 leading-relaxed italic overflow-x-auto">
-                                                <InlineMath math={currentQuest.hintLatex[0]} />
+                                                <InlineMath math={currentQuest?.hintLatex[0]} />
                                             </div>
                                         </div>
                                     )}

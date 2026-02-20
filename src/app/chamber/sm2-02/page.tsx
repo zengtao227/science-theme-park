@@ -665,7 +665,9 @@ export default function S202Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<S202Quest, Stage>({
+    moduleCode: "sm2-02",
     buildPool,
     initialStage: "SOLVE_HYP",
   });
@@ -682,8 +684,8 @@ export default function S202Page() {
 
   if (!currentQuest) return null;
 
-  const isPythagorasTab = currentQuest.tab === "PYTHAGORAS";
-  const isSqrtTab = currentQuest.tab === "SQRT";
+  const isPythagorasTab = currentQuest?.tab === "PYTHAGORAS";
+  const isSqrtTab = currentQuest?.tab === "SQRT";
 
   // Stage definitions
   const pythagorasStages = [
@@ -715,6 +717,7 @@ export default function S202Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sm2_02_t.title}
       moduleCode="SM2.02"
       difficulty={difficulty}
@@ -771,26 +774,26 @@ export default function S202Page() {
               />
             )
           ) : (
-            currentQuest.visual.kind === "triangle" && currentQuest.visual.a && currentQuest.visual.b && currentQuest.visual.c ? (
+            currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c ? (
               useFluidViz ? (
                 <PythagorasFluidCanvas
-                  a={currentQuest.visual.a}
-                  b={currentQuest.visual.b}
-                  c={currentQuest.visual.c}
+                  a={currentQuest?.visual.a}
+                  b={currentQuest?.visual.b}
+                  c={currentQuest?.visual.c}
                 />
               ) : (
                 <PythagorasSimple2D
-                  a={currentQuest.visual.a}
-                  b={currentQuest.visual.b}
-                  c={currentQuest.visual.c}
-                  highlightRightAngle={currentQuest.visual.highlightRightAngle}
+                  a={currentQuest?.visual.a}
+                  b={currentQuest?.visual.b}
+                  c={currentQuest?.visual.c}
+                  highlightRightAngle={currentQuest?.visual.highlightRightAngle}
                 />
               )
             ) : (
-              <S202PythagorasCanvas visual={currentQuest.visual} />
+              <S202PythagorasCanvas visual={currentQuest?.visual} />
             )
           )}
-          {currentQuest.visual.kind === "space" && (
+          {currentQuest?.visual.kind === "space" && (
             <div className="text-white/60 text-sm font-mono text-center">
               <InlineMath math={`d^2=a^2+b^2+c^2`} />
             </div>
@@ -940,8 +943,8 @@ export default function S202Page() {
             </h3>
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
               {(() => {
-                const latex = currentQuest.promptLatex;
-                if (latex.includes("\\\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
+                const latex = currentQuest?.promptLatex || "";
+                if (latex && latex.includes("\\\\text{") || latex.includes("CERN") || latex.includes("LUCERNE") || latex.includes("PROTOCOL")) {
                   const clean = latex
                     .replace(/\\\\text\{/g, "")
                     .replace(/\}/g, "")
@@ -952,7 +955,7 @@ export default function S202Page() {
                     .replace(/\\\\!/g, "");
                   return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
                 }
-                return <InlineMath math={latex} />;
+                return <InlineMath math={latex || ""} />;
               })()}
             </p>
           </div>
@@ -964,13 +967,13 @@ export default function S202Page() {
               {sm2_02_t.target_title}
             </span>
             <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
-              <InlineMath math={currentQuest.targetLatex} />
+              <InlineMath math={currentQuest?.targetLatex || ""} />
             </div>
           </div>
 
           {/* Input Section */}
           <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-            {currentQuest.steps.map((step) => (
+            {currentQuest?.steps.map((step) => (
               <div key={step.id} className="space-y-3">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                   <InlineMath math={step.labelLatex} />

@@ -108,7 +108,9 @@ export default function SB202Page() {
         handleDifficultyChange,
         handleStageChange,
         getHint,
+      adaptiveRecommendation,
     } = useQuestManager<SB202Quest, Stage>({
+    moduleCode: "sb2-02",
         buildPool,
         initialStage: "DIGESTIVE",
     });
@@ -121,7 +123,7 @@ export default function SB202Page() {
 
     useEffect(() => {
         if (currentQuest?.organ) {
-            setHighlightedOrgan(currentQuest.organ);
+            setHighlightedOrgan(currentQuest?.organ);
         }
     }, [currentQuest]);
 
@@ -141,7 +143,8 @@ export default function SB202Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SB2.02"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SB2.02"
             title={t("sb2_02.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -202,7 +205,7 @@ export default function SB202Page() {
                                 {t("sb2_02.labels.analysis")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -210,7 +213,7 @@ export default function SB202Page() {
                             <div className="p-8 bg-white/[0.03] border-2 border-neon-green/30 rounded-3xl text-center relative shadow-[0_0_30px_rgba(0,255,0,0.05)]">
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-neon-green/40 animate-pulse" />
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -224,7 +227,7 @@ export default function SB202Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot) => (
+                                    {currentQuest?.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

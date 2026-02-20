@@ -196,7 +196,9 @@ export default function SB101MetabolicPage() {
         handleStageChange,
         getHint,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<MetabolicQuest, Stage>({
+    moduleCode: "sb1-01-metabolic",
         buildPool,
         initialStage: "OSMOSIS",
     });
@@ -223,7 +225,8 @@ export default function SB101MetabolicPage() {
 
     return (
         <ChamberLayout
-            moduleCode="SB1.01"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SB1.01"
             title={t("sb1_01_metabolic.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -271,7 +274,7 @@ export default function SB101MetabolicPage() {
                         <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center">
                             <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("sb1_01_metabolic.labels.status")}</div>
                             <div className="text-xs font-mono text-neon-cyan truncate uppercase">
-                                {currentQuest?.statusKey ? t(`sb1_01_metabolic.labels.${currentQuest.statusKey}`) : "STABLE"}
+                                {currentQuest?.statusKey ? t(`sb1_01_metabolic.labels.${currentQuest?.statusKey}`) : "STABLE"}
                             </div>
                         </div>
                     </div>
@@ -301,7 +304,7 @@ export default function SB101MetabolicPage() {
                                 {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -312,7 +315,7 @@ export default function SB101MetabolicPage() {
                                     {t("sb1_01_metabolic.labels.analysis")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -326,7 +329,7 @@ export default function SB101MetabolicPage() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot) => (
+                                    {currentQuest?.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

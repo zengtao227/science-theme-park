@@ -1065,7 +1065,9 @@ export default function S206Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<S206Quest, Stage>({
+    moduleCode: "sm2-06",
     buildPool,
     initialStage: "SUBSTITUTION",
   });
@@ -1078,6 +1080,7 @@ export default function S206Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sm2_06.title")}
       moduleCode="SM2.06"
       difficulty={difficulty}
@@ -1132,11 +1135,11 @@ export default function S206Page() {
           </div>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
             {(() => {
-              const latex = currentQuest?.promptLatex || "";
-              if (latex.includes("\\text{")) {
+              const latex = currentQuest?.promptLatex || "" || "";
+              if (latex && latex.includes("\\text{")) {
                 return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
               }
-              return <InlineMath math={latex} />;
+              return <InlineMath math={latex || ""} />;
             })()}
           </p>
           <div className="mt-8 p-6 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm">

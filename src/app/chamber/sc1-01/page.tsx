@@ -240,7 +240,9 @@ export default function C101Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<C101Quest, Stage>({
+    moduleCode: "sc1-01",
     buildPool: (d, s) => buildStagePool(d, s, t),
     initialStage: "IDENTIFY",
   });
@@ -273,6 +275,7 @@ export default function C101Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sc1_01.title")}
       moduleCode="SC1.01"
       difficulty={difficulty}
@@ -305,13 +308,13 @@ export default function C101Page() {
       monitorContent={
         stage === "EXPERIMENT" ? (
           <ExperimentDesignCard
-            scenarioTitle={t(`sc1_01.experiments.${currentQuest.experimentKey}.title`)}
-            scenarioContext={t(`sc1_01.experiments.${currentQuest.experimentKey}.context`)}
-            purpose={t(`sc1_01.experiments.${currentQuest.experimentKey}.purpose`)}
-            materials={(t(`sc1_01.experiments.${currentQuest.experimentKey}.materials`) as unknown as string[]) || []}
-            procedure={(t(`sc1_01.experiments.${currentQuest.experimentKey}.procedure`) as unknown as string[]) || []}
-            expectedResults={t(`sc1_01.experiments.${currentQuest.experimentKey}.expectedResults`)}
-            safetyWarning={t(`sc1_01.experiments.${currentQuest.experimentKey}.safetyWarning`)}
+            scenarioTitle={t(`sc1_01.experiments.${currentQuest?.experimentKey}.title`)}
+            scenarioContext={t(`sc1_01.experiments.${currentQuest?.experimentKey}.context`)}
+            purpose={t(`sc1_01.experiments.${currentQuest?.experimentKey}.purpose`)}
+            materials={(t(`sc1_01.experiments.${currentQuest?.experimentKey}.materials`) as unknown as string[]) || []}
+            procedure={(t(`sc1_01.experiments.${currentQuest?.experimentKey}.procedure`) as unknown as string[]) || []}
+            expectedResults={t(`sc1_01.experiments.${currentQuest?.experimentKey}.expectedResults`)}
+            safetyWarning={t(`sc1_01.experiments.${currentQuest?.experimentKey}.safetyWarning`)}
           />
         ) : (
           <C101LabCanvas
@@ -328,7 +331,7 @@ export default function C101Page() {
             {t("sc1_01.objective_title")}
           </h3>
           <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-            <InlineMath math={currentQuest.promptLatex} />
+            <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
         </div>
 
@@ -338,12 +341,12 @@ export default function C101Page() {
             {t("sc1_01.target_title")}
           </span>
           <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95]">
-            <InlineMath math={currentQuest.targetLatex} />
+            <InlineMath math={currentQuest?.targetLatex || ""} />
           </div>
         </div>
 
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          {currentQuest.slots.map((slot) => (
+          {currentQuest?.slots.map((slot) => (
             <div key={slot.id} className="space-y-3">
               <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                 <InlineMath math={slot.labelLatex} />
@@ -360,7 +363,7 @@ export default function C101Page() {
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-black mb-2">{t("sc1_01.labels.method")}</div>
             <div className="text-sm text-white/60 font-mono">
-              <InlineMath math={currentQuest.expressionLatex} />
+              <InlineMath math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
 

@@ -799,7 +799,9 @@ export default function SC205Page() {
     next,
     handleStageChange,
     handleDifficultyChange,
+    adaptiveRecommendation,
   } = useQuestManager({
+    moduleCode: "sc2-05",
     buildPool: (difficulty, stage) => buildStagePool(difficulty, stage as Stage),
     initialStage: "PH_BASICS" as Stage,
   });
@@ -816,6 +818,7 @@ export default function SC205Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       moduleCode="SC2.05"
       title={t("sc2_05.title") || "SC2.05 // ACID-BASE CHEMISTRY"}
       difficulty={currentDifficulty}

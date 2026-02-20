@@ -260,7 +260,9 @@ export default function SC202Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<TitrationQuest, Stage>({
+    moduleCode: "sc2-02",
         buildPool: (d, s) => buildStagePool(sc2_02_t, d, s),
         initialStage: "CURVES",
         tolerance: 0.05
@@ -294,7 +296,8 @@ export default function SC202Page() {
 
     return (
         <ChamberLayout
-            title={sc2_02_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sc2_02_t.title}
             moduleCode="SC2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

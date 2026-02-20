@@ -937,7 +937,9 @@ export default function SM103Page() {
     handleStageChange,
     difficulty,
     handleDifficultyChange,
+    adaptiveRecommendation,
   } = useQuestManager<IntegerQuest, Stage>({
+    moduleCode: "sm1-03",
     buildPool,
     initialStage: "NUMBER_LINE",
     tolerance: 0.01,
@@ -951,6 +953,7 @@ export default function SM103Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sm1_03.title")}
       moduleCode="SM1.03"
       difficulty={difficulty}

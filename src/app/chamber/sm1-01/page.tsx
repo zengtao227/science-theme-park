@@ -820,7 +820,9 @@ export default function S101Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<S101Quest, Stage>({
+    moduleCode: "sm1-01",
         buildPool,
         initialStage: "AREAS",
     });
@@ -842,7 +844,8 @@ export default function S101Page() {
 
     return (
         <ChamberLayout
-            title={sm1_01_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sm1_01_t.title}
             moduleCode="SM1.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -873,15 +876,15 @@ export default function S101Page() {
                 <>
                     <div className="relative w-full">
                         {/* Use 3D Cube for volume stage with cube geometry */}
-                        {stage === 'VOLUMES' && currentQuest.visualMeta?.type === 'cube' ? (
+                        {stage === 'VOLUMES' && currentQuest?.visualMeta?.type === 'cube' ? (
                             <Cube3D
-                                sideLength={currentQuest.visualMeta.params.a}
+                                sideLength={currentQuest?.visualMeta?.params?.a}
                                 showDiagonal={false}
                             />
                         ) : (
                             <>
                                 <S101_GeometryCanvas
-                                    geometry={currentQuest.visualMeta}
+                                    geometry={currentQuest?.visualMeta}
                                     userAnswer={parsedAnswer}
                                     isVolumeMode={stage === 'VOLUMES'}
                                 />
@@ -898,17 +901,17 @@ export default function S101Page() {
                         </div>
                         <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
                             <span className="inline-block">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                                <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </span>
                         </div>
                         <div className="text-white/70 font-mono text-sm break-words">
-                            <InlineMath math={currentQuest.promptLatex} />
+                            <InlineMath math={currentQuest?.promptLatex || ""} />
                         </div>
-                        {currentQuest.hintLatex && currentQuest.hintLatex.length > 0 && (
+                        {currentQuest?.hintLatex && currentQuest?.hintLatex.length > 0 && (
                             <div className="space-y-2 text-white font-black text-[10px] uppercase tracking-[0.25em]">
                                 <div className="text-white/90">{sm1_01_t.labels.hints}</div>
-                                {currentQuest.hintLatex.slice(0, 3).map((h, idx) => (
-                                    <div key={`${currentQuest.id}|h|${idx}`} className="flex gap-2 items-start">
+                                {currentQuest?.hintLatex.slice(0, 3).map((h, idx) => (
+                                    <div key={`${currentQuest?.id}|h|${idx}`} className="flex gap-2 items-start">
                                         <div className="text-white/70 w-6">{String(idx + 1).padStart(2, "0")}</div>
                                         <div className="flex-1">
                                             <InlineMath math={h} />
@@ -934,8 +937,8 @@ export default function S101Page() {
                     </h3>
                     <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
                         {(() => {
-                            const latex = currentQuest.promptLatex;
-                            if (latex.includes("\\text{")) {
+                            const latex = currentQuest?.promptLatex || "";
+                            if (latex && latex.includes("\\text{")) {
                                 const clean = latex
                                     .replace(/\\text\{/g, "")
                                     .replace(/\}/g, "")
@@ -946,7 +949,7 @@ export default function S101Page() {
                                     .replace(/\\!/g, "");
                                 return <span className="whitespace-pre-wrap font-sans not-italic">{clean}</span>;
                             }
-                            return <InlineMath math={latex} />;
+                            return <InlineMath math={latex || ""} />;
                         })()}
                     </p>
                 </div>
@@ -960,15 +963,15 @@ export default function S101Page() {
                         <div className="space-y-4">
                             <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
                                 {(() => {
-                                    const latex = currentQuest.expressionLatex;
-                                    if (latex.includes("\\text{")) {
+                                    const latex = currentQuest?.expressionLatex || "";
+                                    if (latex && latex.includes("\\text{")) {
                                         return <span className="whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
                                     }
                                     return <InlineMath math={latex.replace(/(\text{m)[,，]/g, "$1}, \\\\ \\text{")} />;
                                 })()}
                             </div>
                             <div className="text-white/60 font-black">
-                                <InlineMath math={currentQuest.targetLatex} />
+                                <InlineMath math={currentQuest?.targetLatex || ""} />
                             </div>
                         </div>
                     </div>
@@ -980,8 +983,8 @@ export default function S101Page() {
                     <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                         {sm1_01_t.labels.input}
                     </div>
-                    <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                        {currentQuest.slots.map((slot) => (
+                    <div className={clsx("grid gap-4", ((currentQuest?.slots) || []).length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="space-y-2">
                                 <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                                     <InlineMath math={slot.labelLatex} />

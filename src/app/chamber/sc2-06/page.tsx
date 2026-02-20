@@ -369,7 +369,9 @@ export default function SC206Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SC206Quest, Stage>({
+    moduleCode: "sc2-06",
     buildPool: buildStagePool,
     initialStage: "OXIDATION_STATE",
   });
@@ -397,6 +399,7 @@ export default function SC206Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sc2_06.title")}
       moduleCode="SC2.06"
       difficulty={difficulty}
@@ -460,7 +463,7 @@ export default function SC206Page() {
                 {t("sc2_06.labels.reaction")}
               </div>
               <div className="text-sm text-white/70 italic text-center">
-                <InlineMath math={currentQuest.expressionLatex} />
+                <InlineMath math={currentQuest?.expressionLatex || ""} />
               </div>
             </div>
           )}

@@ -341,7 +341,9 @@ export default function S207Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<S207Quest, Stage>({
+    moduleCode: "sm2-07",
     buildPool,
     initialStage: "DISTANCE",
   });
@@ -354,6 +356,7 @@ export default function S207Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sm2_07.title")}
       moduleCode="SM2.07"
       difficulty={difficulty}
@@ -415,10 +418,10 @@ export default function S207Page() {
 
               // If this is a new question type with a promptKey, get the localized version NOW
               if (currentQuest?.promptKey) {
-                latex = getLocalizedPrompt(currentQuest.promptKey, currentLanguage, currentQuest.promptParams);
+                latex = getLocalizedPrompt(currentQuest?.promptKey, currentLanguage, currentQuest?.promptParams);
               }
 
-              if (latex.includes("\\text{")) {
+              if (latex && latex.includes("\\text{")) {
                 return (
                   <span className="font-sans not-italic whitespace-pre-wrap">
                     {latex
@@ -429,7 +432,7 @@ export default function S207Page() {
                   </span>
                 );
               }
-              return <InlineMath math={latex} />;
+              return <InlineMath math={latex || ""} />;
             })()}
           </p>
         </div>

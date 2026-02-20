@@ -282,7 +282,9 @@ export default function S203Page() {
     difficulty, stage, inputs, lastCheck, currentQuest,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
     successRate,
+    adaptiveRecommendation,
   } = useQuestManager<S203Quest, Stage>({
+    moduleCode: "sm2-03",
     buildPool,
     initialStage: "LEVEL1",
   });
@@ -297,6 +299,7 @@ export default function S203Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sm2_03_t.title}
       moduleCode="SM2.03"
       difficulty={difficulty}
@@ -383,7 +386,7 @@ export default function S203Page() {
             </p>
             {currentQuest?.expressionLatex && (
               <p className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
-                {currentQuest.expressionLatex}
+                {currentQuest?.expressionLatex}
               </p>
             )}
           </div>

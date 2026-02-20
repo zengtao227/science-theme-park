@@ -306,7 +306,9 @@ export default function S303Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<S303Quest, Stage>({
+    moduleCode: "sm3-03",
     buildPool,
     initialStage: "EXPONENTIAL",
   });
@@ -324,7 +326,7 @@ export default function S303Page() {
   ];
 
   const chartMode = useMemo(() => {
-    if (currentQuest?.chartMode) return currentQuest.chartMode;
+    if (currentQuest?.chartMode) return currentQuest?.chartMode;
     if (stage === "EXPONENTIAL") return "exponential";
     if (stage === "LOGARITHM") return "logarithm";
     if (stage === "APPLICATIONS") return "exponential"; // Default
@@ -333,6 +335,7 @@ export default function S303Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sm3_03_t.title}
       moduleCode="SM3.03"
       difficulty={difficulty}
@@ -385,7 +388,7 @@ export default function S303Page() {
                 <div className="bg-white/5 rounded p-2 border border-white/10 flex flex-col justify-between">
                   <div className="text-[9px] text-white/40">N₀</div>
                   <div className="text-sm font-mono text-cyan-300 font-bold">
-                    {currentQuest.initialCount}
+                    {currentQuest?.initialCount}
                   </div>
                 </div>
               )}
@@ -393,7 +396,7 @@ export default function S303Page() {
                 <div className="bg-white/5 rounded p-2 border border-white/10 flex flex-col justify-between">
                   <div className="text-[9px] text-white/40">d / h</div>
                   <div className="text-sm font-mono text-green-300 font-bold">
-                    {currentQuest.doublingTime}
+                    {currentQuest?.doublingTime}
                   </div>
                 </div>
               )}
@@ -401,7 +404,7 @@ export default function S303Page() {
                 <div className="bg-white/5 rounded p-2 border border-white/10 flex flex-col justify-between">
                   <div className="text-[9px] text-white/40">t</div>
                   <div className="text-sm font-mono text-white font-bold">
-                    {currentQuest.time}
+                    {currentQuest?.time}
                   </div>
                 </div>
               )}
@@ -419,7 +422,7 @@ export default function S303Page() {
             </div>
             {currentQuest?.scenarioKey && sm3_03_t.scenarios && (
               <div className="text-sm font-medium text-emerald-300 mb-6 max-w-2xl mx-auto border-l-2 border-emerald-500/50 pl-4 py-2 text-left bg-emerald-900/10 rounded-r shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]">
-                {(sm3_03_t.scenarios as any)[currentQuest.scenarioKey]}
+                {(sm3_03_t.scenarios as any)[currentQuest?.scenarioKey]}
               </div>
             )}
             <h2 className="text-3xl font-black text-white tracking-tight">
@@ -428,7 +431,7 @@ export default function S303Page() {
             {currentQuest?.expressionLatex && (
               <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10 inline-block min-w-[300px]">
                 <span className="text-4xl text-cyan-300 font-serif">
-                  <InlineMath math={currentQuest.expressionLatex} />
+                  <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </span>
               </div>
             )}

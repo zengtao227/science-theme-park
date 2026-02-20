@@ -520,7 +520,9 @@ export default function G101Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<G101Quest, Stage>({
+    moduleCode: "gm1-01",
     buildPool: (d, s) => buildStagePool(gm1_01_t, d, s),
     initialStage: "POWER_RULE",
   });
@@ -533,6 +535,7 @@ export default function G101Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gm1_01_t.title}
       moduleCode="GM1.01"
       difficulty={difficulty}

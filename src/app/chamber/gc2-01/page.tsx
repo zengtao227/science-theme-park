@@ -97,7 +97,9 @@ export default function GC201Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<OrganicQuest, Stage>({
+    moduleCode: "gc2-01",
         buildPool: (d, s) => buildStagePool(t, d, s),
         initialStage: "ALKANES",
     });
@@ -128,7 +130,8 @@ export default function GC201Page() {
 
     return (
         <ChamberLayout
-            title={t("gc2_01.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gc2_01.title")}
             moduleCode="GC2.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

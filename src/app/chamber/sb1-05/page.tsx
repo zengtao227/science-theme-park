@@ -234,7 +234,9 @@ export default function SB105AnimalClassification() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SB105Quest, Stage>({
+    moduleCode: "sb1-05",
         buildPool: (d, s) => buildStagePool(sb1_05_t, d, s),
         initialStage: "ANIMAL_CLASSIFICATION",
     });
@@ -249,8 +251,8 @@ export default function SB105AnimalClassification() {
 
     // Determine which Basel scenario to display
     const getScenarioText = () => {
-        if (currentQuest.baselContext) {
-            return currentQuest.baselContext;
+        if (currentQuest?.baselContext) {
+            return currentQuest?.baselContext;
         }
         // Default scenario based on stage
         if (stage === "ANIMAL_CLASSIFICATION") return sb1_05_t.scenarios.basel_zoo;
@@ -260,7 +262,8 @@ export default function SB105AnimalClassification() {
 
     return (
         <ChamberLayout
-            title={sb1_05_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sb1_05_t.title}
             moduleCode="SB1.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -309,7 +312,7 @@ export default function SB105AnimalClassification() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={currentQuest.id}
+                        key={currentQuest?.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -317,12 +320,12 @@ export default function SB105AnimalClassification() {
                     >
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">
-                                {currentQuest.animalName} - {currentQuest.scientificName}
+                                {currentQuest?.animalName} - {currentQuest?.scientificName}
                             </div>
-                            <div className="text-white text-lg">{currentQuest.promptLatex}</div>
+                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
                         </div>
 
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-4">
                                 <label className="text-white/70 min-w-[120px]">{slot.labelLatex}:</label>
                                 <input

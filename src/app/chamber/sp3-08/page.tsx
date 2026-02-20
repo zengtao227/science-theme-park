@@ -253,7 +253,9 @@ export default function P301Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<P301Quest, Stage>({
+    moduleCode: "sp3-08",
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "REFLECTION",
   });
@@ -274,6 +276,7 @@ export default function P301Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sp3_08.title")}
       moduleCode="SP3.08"
       difficulty={difficulty}
@@ -301,26 +304,26 @@ export default function P301Page() {
       monitorContent={
         <div className="space-y-4">
           <P308OpticsCanvas
-            scenario={currentQuest.scenario}
-            angle={currentQuest.angle}
-            n1={currentQuest.n1}
-            n2={currentQuest.n2}
-            focalLength={currentQuest.focalLength}
+            scenario={currentQuest?.scenario}
+            angle={currentQuest?.angle}
+            n1={currentQuest?.n1}
+            n2={currentQuest?.n2}
+            focalLength={currentQuest?.focalLength}
             showAnswer={lastCheck?.ok === true}
-            targetAngle={currentQuest.targetAngle}
+            targetAngle={currentQuest?.targetAngle}
           />
           <div className="text-white text-xs font-mono text-center space-y-1">
-            {currentQuest.scenario === "reflection" && (
-              <div>{t("sp3_08.labels.incident_angle")}: {currentQuest.angle}°</div>
+            {currentQuest?.scenario === "reflection" && (
+              <div>{t("sp3_08.labels.incident_angle")}: {currentQuest?.angle}°</div>
             )}
-            {currentQuest.scenario === "refraction" && (
+            {currentQuest?.scenario === "refraction" && (
               <>
-                <div>n₁ = {currentQuest.n1?.toFixed(2)} → n₂ = {currentQuest.n2?.toFixed(2)}</div>
-                <div>{t("sp3_08.labels.incident_angle")}: {currentQuest.angle}°</div>
+                <div>n₁ = {currentQuest?.n1?.toFixed(2)} → n₂ = {currentQuest?.n2?.toFixed(2)}</div>
+                <div>{t("sp3_08.labels.incident_angle")}: {currentQuest?.angle}°</div>
               </>
             )}
-            {currentQuest.scenario === "lens" && (
-              <div>{t("sp3_08.labels.focal_length")}: {currentQuest.focalLength}px</div>
+            {currentQuest?.scenario === "lens" && (
+              <div>{t("sp3_08.labels.focal_length")}: {currentQuest?.focalLength}px</div>
             )}
             {lastCheck?.ok && <div className="text-neon-green">✓ {t("sp3_08.labels.light_path_correct")}</div>}
           </div>
@@ -333,7 +336,7 @@ export default function P301Page() {
             {t("sp3_08.objective_title")}
           </h3>
           <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-            <InlineMath math={currentQuest.promptLatex} />
+            <InlineMath math={currentQuest?.promptLatex || ""} />
           </p>
         </div>
 
@@ -343,12 +346,12 @@ export default function P301Page() {
             {t("sp3_08.target_title")}
           </span>
           <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95]">
-            <InlineMath math={currentQuest.targetLatex} />
+            <InlineMath math={currentQuest?.targetLatex || ""} />
           </div>
         </div>
 
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          {currentQuest.slots.map((slot) => (
+          {currentQuest?.slots.map((slot) => (
             <div key={slot.id} className="space-y-3">
               <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                 <InlineMath math={slot.labelLatex} />
@@ -366,11 +369,11 @@ export default function P301Page() {
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-black mb-2">{t("sp3_08.labels.formula")}</div>
             <div className="text-sm text-white/60 font-mono">
-              <InlineMath math={currentQuest.expressionLatex} />
+              <InlineMath math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
 
-          {currentQuest.scenario === "refraction" && (
+          {currentQuest?.scenario === "refraction" && (
             <div className="p-4 bg-neon-cyan/5 border border-neon-cyan/20 rounded-xl">
               <div className="text-[9px] uppercase tracking-[0.3em] text-neon-cyan/60 font-black mb-2">{t("sp3_08.labels.hint")}</div>
               <div className="text-xs text-neon-cyan/80 font-mono">

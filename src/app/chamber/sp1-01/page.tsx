@@ -42,7 +42,9 @@ export default function SP101_ForcesBasics() {
     previous,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<any, Stage>({
+    moduleCode: "sp1-01",
     buildPool,
     initialStage: "FORCE_CONCEPTS" as Stage,
   });
@@ -52,6 +54,7 @@ export default function SP101_ForcesBasics() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sp1_01.title") || "Forces Basics"}
       moduleCode="SP1.01"
       difficulty={difficulty}
@@ -81,8 +84,8 @@ export default function SP101_ForcesBasics() {
         <div className="flex flex-col items-center justify-center h-full w-full">
           {currentQuest?.visualization === 'force_vector' && (
             <PhysicsPlayground3D
-              forces={currentQuest.forces || [{
-                magnitude: currentQuest.validation?.correctAnswer?.value || 100,
+              forces={currentQuest?.forces || [{
+                magnitude: currentQuest?.validation?.correctAnswer?.value || 100,
                 angle: 45,
                 label: "F"
               }]}
@@ -103,10 +106,10 @@ export default function SP101_ForcesBasics() {
             className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-6"
           >
             <h3 className="text-amber-400 font-black text-[10px] uppercase tracking-[0.3em] mb-3">
-              {currentQuest.scenarioTitle}
+              {currentQuest?.scenarioTitle}
             </h3>
             <p className="text-white/70 text-sm leading-relaxed italic">
-              {currentQuest.scenarioDesc}
+              {currentQuest?.scenarioDesc}
             </p>
           </motion.div>
         )}
@@ -227,7 +230,7 @@ export default function SP101_ForcesBasics() {
             <div className="space-y-4 relative">
               {currentQuest?.type === 'MULTIPLE_CHOICE' ? (
                 <div className="grid grid-cols-1 gap-3">
-                  {currentQuest.options?.map((opt: any) => (
+                  {currentQuest?.options?.map((opt: any) => (
                     <button
                       key={opt.id}
                       onClick={() => setInputs({ answer: opt.text })}

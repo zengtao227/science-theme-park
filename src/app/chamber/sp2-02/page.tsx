@@ -241,7 +241,9 @@ export default function SP202OhmsLaw() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SP202Quest, Stage>({
+    moduleCode: "sp2-02",
         buildPool: (d, s) => buildStagePool(sp2_02_t, d, s),
         initialStage: "OHMS_LAW",
     });
@@ -249,8 +251,8 @@ export default function SP202OhmsLaw() {
     useEffect(() => {
         if (!currentQuest) return;
         
-        if (currentQuest.voltage) setCurrentVoltage(currentQuest.voltage);
-        if (currentQuest.current) setCurrentCurrent(currentQuest.current);
+        if (currentQuest?.voltage) setCurrentVoltage(currentQuest?.voltage);
+        if (currentQuest?.current) setCurrentCurrent(currentQuest?.current);
     }, [currentQuest]);
 
     if (!currentQuest) {
@@ -263,7 +265,8 @@ export default function SP202OhmsLaw() {
 
     return (
         <ChamberLayout
-            title={sp2_02_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sp2_02_t.title}
             moduleCode="SP2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -316,18 +319,18 @@ export default function SP202OhmsLaw() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={currentQuest.id}
+                        key={currentQuest?.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         className="bg-black/30 rounded-xl p-6 border border-white/10"
                     >
                         <div className="mb-4">
-                            <div className="text-white/50 text-sm mb-2">Question {currentQuest.id}</div>
-                            <div className="text-white text-lg">{currentQuest.promptLatex}</div>
+                            <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
+                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
                         </div>
 
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-4">
                                 <label className="text-white/70 min-w-[120px]">{slot.labelLatex}:</label>
                                 <input

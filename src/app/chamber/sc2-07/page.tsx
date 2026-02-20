@@ -47,7 +47,9 @@ export default function SC207Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SC207Quest, Stage>({
+    moduleCode: "sc2-07",
     buildPool: buildPoolCallback,
     initialStage: 'ENERGY_CHANGES',
   });
@@ -71,7 +73,7 @@ export default function SC207Page() {
       return;
     }
 
-    const expected = currentQuest.slots?.[0]?.expected || currentQuest.deltaH || 0;
+    const expected = currentQuest?.slots?.[0]?.expected || currentQuest?.deltaH || 0;
     const isCorrect = verifyAnswer(numericAnswer, expected);
 
     setFeedback({
@@ -96,9 +98,9 @@ export default function SC207Page() {
   // Get current scenario
   const getCurrentScenario = () => {
     if (!currentQuest) return '';
-    const translated = t(`sc2_07.scenarios.${currentQuest.id}`);
-    if (translated !== `sc2_07.scenarios.${currentQuest.id}`) return translated;
-    return currentQuest.baselContext || '';
+    const translated = t(`sc2_07.scenarios.${currentQuest?.id}`);
+    if (translated !== `sc2_07.scenarios.${currentQuest?.id}`) return translated;
+    return currentQuest?.baselContext || '';
   };
 
   // Get stage-specific prompt
@@ -117,6 +119,7 @@ export default function SC207Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t('sc2_07.title')}
       moduleCode="SC2.07"
       difficulty={difficulty}
@@ -152,27 +155,27 @@ export default function SC207Page() {
           {/* Render appropriate visualization based on stage */}
           {stage === 'ENERGY_CHANGES' && currentQuest && (
             <EnergyDiagram
-              deltaH={currentQuest.deltaH || 0}
-              reactionType={currentQuest.reactionType}
+              deltaH={currentQuest?.deltaH || 0}
+              reactionType={currentQuest?.reactionType}
               showActivationEnergy={difficulty === 'ADVANCED' || difficulty === 'ELITE'}
-              activationEnergy={currentQuest.activationEnergy}
+              activationEnergy={currentQuest?.activationEnergy}
             />
           )}
 
-          {stage === 'HESS_LAW' && currentQuest && currentQuest.hessData && (
+          {stage === 'HESS_LAW' && currentQuest && currentQuest?.hessData && (
             <HessCycleView
-              targetEquation={currentQuest.hessData.targetEquation}
-              availableEquations={currentQuest.hessData.availableEquations}
+              targetEquation={currentQuest?.hessData.targetEquation}
+              availableEquations={currentQuest?.hessData.availableEquations}
             />
           )}
 
-          {stage === 'CALORIMETRY' && currentQuest && currentQuest.calorimetryData && (
+          {stage === 'CALORIMETRY' && currentQuest && currentQuest?.calorimetryData && (
             <CalorimeterView
-              mass={currentQuest.calorimetryData.mass}
-              specificHeat={currentQuest.calorimetryData.specificHeat}
-              initialTemp={currentQuest.calorimetryData.initialTemp}
-              finalTemp={currentQuest.calorimetryData.finalTemp}
-              heat={currentQuest.calorimetryData.heat}
+              mass={currentQuest?.calorimetryData.mass}
+              specificHeat={currentQuest?.calorimetryData.specificHeat}
+              initialTemp={currentQuest?.calorimetryData.initialTemp}
+              finalTemp={currentQuest?.calorimetryData.finalTemp}
+              heat={currentQuest?.calorimetryData.heat}
               animate={false}
             />
           )}
@@ -223,24 +226,24 @@ export default function SC207Page() {
         {currentQuest && (
           <div className="max-w-3xl mx-auto space-y-6">
             {/* Equation Display */}
-            {currentQuest.equationLatex && (
+            {currentQuest?.equationLatex && (
               <div className="bg-white/10 rounded-lg p-6 text-center">
                 <div className="text-2xl text-white">
-                  <BlockMath math={currentQuest.equationLatex} />
+                  <BlockMath math={currentQuest?.equationLatex || ""} />
                 </div>
               </div>
             )}
 
             {/* Prompt */}
             <div className="text-center text-white/90 text-lg">
-              <InlineMath math={currentQuest.promptLatex} />
+              <InlineMath math={currentQuest?.promptLatex || ""} />
             </div>
 
             {/* Input Field */}
             <div className="flex items-center justify-center gap-4">
               <label className="text-white/80 text-lg">
-                {currentQuest.slots?.[0]?.labelLatex && (
-                  <InlineMath math={currentQuest.slots[0].labelLatex} />
+                {currentQuest?.slots?.[0]?.labelLatex && (
+                  <InlineMath math={currentQuest?.slots[0].labelLatex} />
                 )}
                 {' = '}
               </label>
@@ -248,11 +251,11 @@ export default function SC207Page() {
                 type="number"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
-                placeholder={currentQuest.slots?.[0]?.placeholder || 'Enter value'}
+                placeholder={currentQuest?.slots?.[0]?.placeholder || 'Enter value'}
                 className="w-40 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-center text-lg min-h-[44px]"
               />
               <span className="text-white/80 text-lg">
-                {currentQuest.slots?.[0]?.unit || 'kJ'}
+                {currentQuest?.slots?.[0]?.unit || 'kJ'}
               </span>
             </div>
 

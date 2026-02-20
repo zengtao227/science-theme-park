@@ -168,7 +168,9 @@ export default function SM209Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SM209Quest, Stage>({
+    moduleCode: "sm2-09",
     buildPool: (diff, stg) => buildStagePool(sm2_09_t, diff, stg),
     initialStage: "INEQUALITY_BASICS",
   });
@@ -209,7 +211,7 @@ export default function SM209Page() {
 
     // Simple string comparison for now
     const normalizeAnswer = (s: string) => s.trim().toLowerCase().replace(/\s+/g, '').replace(/infinity/g, '∞');
-    const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(currentQuest.answer);
+    const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(currentQuest?.answer);
     
     if (isCorrect) {
       setFeedback(sm2_09_t.feedback.correct);
@@ -238,7 +240,7 @@ export default function SM209Page() {
   const getBaselScenarioText = useCallback(() => {
     if (!currentQuest?.baselScenario) return null;
     
-    const scenario = baselScenarios[currentQuest.baselScenario];
+    const scenario = baselScenarios[currentQuest?.baselScenario];
     if (!scenario) return null;
 
     if (currentLanguage === "CN") return scenario.cn;
@@ -253,7 +255,8 @@ export default function SM209Page() {
   if (!currentQuest) {
     return (
       <ChamberLayout
-        title={sm2_09_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sm2_09_t.title}
         moduleCode="SM2.09"
         difficulty={difficulty}
         onDifficultyChange={handleDifficultyChangeLocal}
@@ -291,6 +294,7 @@ export default function SM209Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sm2_09_t.title}
       moduleCode="SM2.09"
       difficulty={difficulty}
@@ -336,7 +340,7 @@ export default function SM209Page() {
                 {sm2_09_t.problem_title}
               </h3>
               <div className="mb-4">
-                <BlockMath math={currentQuest.expressionLatex} />
+                <BlockMath math={currentQuest?.expressionLatex || ""} />
               </div>
 
               {/* Input Field */}

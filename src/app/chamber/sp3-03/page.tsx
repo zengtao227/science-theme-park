@@ -195,7 +195,9 @@ export default function SP303Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SP303Quest, Stage>({
+    moduleCode: "sp3-03",
     buildPool,
     initialStage: "POTENTIAL",
   });
@@ -216,6 +218,7 @@ export default function SP303Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sp3_03.title")}
       moduleCode="SP3.03"
       difficulty={difficulty}
@@ -254,13 +257,13 @@ export default function SP303Page() {
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
           <div className="text-2xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm flex justify-center">
-            <InlineMath math={`\\text{${currentQuest.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
+            <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
           </div>
           <div className="text-cyan-300">
-            <InlineMath math={currentQuest.expressionLatex} />
+            <InlineMath math={currentQuest?.expressionLatex || ""} />
           </div>
           <div className="space-y-3">
-            {currentQuest.slots.map((slot) => (
+            {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="flex items-center gap-3">
                 <InlineMath math={slot.labelLatex} />
                 <input

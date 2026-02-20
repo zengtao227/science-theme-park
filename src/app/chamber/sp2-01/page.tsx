@@ -50,7 +50,9 @@ export default function SP201CircuitBasics() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SP201Quest, Stage>({
+    moduleCode: "sp2-01",
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "COMPONENTS",
   });
@@ -65,6 +67,7 @@ export default function SP201CircuitBasics() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={sp2_01_t.title}
       moduleCode="SP2.01"
       difficulty={difficulty}
@@ -97,11 +100,11 @@ export default function SP201CircuitBasics() {
               {stage === "CIRCUITS" && "Circuit Building Mode"}
               {stage === "DIAGRAMS" && "Diagram Drawing Mode"}
             </div>
-            {currentQuest.componentInfo && (
+            {currentQuest?.componentInfo && (
               <div className="mt-8 p-6 bg-black/30 rounded-xl border border-cyan-400/30">
-                <div className="text-6xl mb-4">{currentQuest.componentInfo.symbol}</div>
-                <div className="text-xl text-white mb-2">{currentQuest.componentInfo.name.en}</div>
-                <div className="text-sm text-white/70">{currentQuest.componentInfo.function.en}</div>
+                <div className="text-6xl mb-4">{currentQuest?.componentInfo.symbol}</div>
+                <div className="text-xl text-white mb-2">{currentQuest?.componentInfo.name.en}</div>
+                <div className="text-sm text-white/70">{currentQuest?.componentInfo.function.en}</div>
               </div>
             )}
           </div>
@@ -117,14 +120,14 @@ export default function SP201CircuitBasics() {
             {stage === "DIAGRAMS" && sp2_01_t.stages.circuit_diagrams}
           </h3>
           <p className="text-white/70 text-sm leading-relaxed">
-            {currentQuest.baselContext}
+            {currentQuest?.baselContext}
           </p>
         </div>
 
         {/* Quest Display */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentQuest.id}
+            key={currentQuest?.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -132,15 +135,15 @@ export default function SP201CircuitBasics() {
           >
             <div className="mb-4">
               <div className="text-white/50 text-sm mb-2">
-                Quest {currentQuest.id} | {difficulty} | {stage}
+                Quest {currentQuest?.id} | {difficulty} | {stage}
               </div>
-              <div className="text-white text-lg mb-4">{currentQuest.promptLatex}</div>
+              <div className="text-white text-lg mb-4">{currentQuest?.promptLatex}</div>
               
-              {currentQuest.designRequirements && (
+              {currentQuest?.designRequirements && (
                 <div className="mb-4 p-4 bg-cyan-500/10 rounded-lg border border-cyan-400/30">
                   <div className="text-cyan-400 font-bold mb-2">Design Requirements:</div>
                   <ul className="list-disc list-inside text-white/70 text-sm space-y-1">
-                    {currentQuest.designRequirements.map((req, idx) => (
+                    {currentQuest?.designRequirements.map((req, idx) => (
                       <li key={idx}>{req}</li>
                     ))}
                   </ul>
@@ -149,9 +152,9 @@ export default function SP201CircuitBasics() {
             </div>
 
             {/* Input Slots */}
-            {currentQuest.slots && currentQuest.slots.length > 0 && (
+            {((currentQuest?.slots && currentQuest?.slots) || []).length > 0 && (
               <div className="space-y-3">
-                {currentQuest.slots.map((slot) => (
+                {currentQuest?.slots.map((slot) => (
                   <div key={slot.id} className="flex items-center gap-4">
                     <label className="text-white/70 min-w-[150px]">{slot.labelLatex}:</label>
                     <input
@@ -167,13 +170,13 @@ export default function SP201CircuitBasics() {
             )}
 
             {/* Hints */}
-            {currentQuest.hints && currentQuest.hints.length > 0 && (
+            {currentQuest?.hints && currentQuest?.hints.length > 0 && (
               <details className="mt-4">
                 <summary className="text-cyan-400 cursor-pointer hover:text-cyan-300">
                   💡 Show Hints
                 </summary>
                 <div className="mt-2 space-y-2">
-                  {currentQuest.hints.map((hint, idx) => (
+                  {currentQuest?.hints.map((hint, idx) => (
                     <div key={idx} className="text-white/60 text-sm pl-4">
                       {idx + 1}. {hint}
                     </div>
@@ -186,8 +189,8 @@ export default function SP201CircuitBasics() {
             {lastCheck && (
               <div className={`mt-4 p-3 rounded-lg ${lastCheck.ok ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"}`}>
                 {lastCheck.ok ? sp2_01_t.correct : sp2_01_t.incorrect}
-                {lastCheck.ok && currentQuest.correctLatex && (
-                  <div className="mt-2 text-sm">{currentQuest.correctLatex}</div>
+                {lastCheck.ok && currentQuest?.correctLatex && (
+                  <div className="mt-2 text-sm">{currentQuest?.correctLatex}</div>
                 )}
               </div>
             )}

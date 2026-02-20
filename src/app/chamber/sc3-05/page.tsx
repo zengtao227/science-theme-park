@@ -137,15 +137,17 @@ export default function SC305MolecularForge() {
         next,
         inputs,
         setInputs,
-        lastCheck
+        lastCheck, adaptiveRecommendation,
     } = useQuestManager<SC305Quest, Stage>({
+    moduleCode: "sc3-05",
         buildPool: buildStagePool,
         initialStage: "VSEPR",
     });
 
     return (
         <ChamberLayout
-            title={sc3_05_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sc3_05_t.title}
             moduleCode="SC3.05"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
@@ -184,7 +186,7 @@ export default function SC305MolecularForge() {
                         <AnimatePresence mode="wait">
                             {currentQuest && (
                                 <motion.div
-                                    key={currentQuest.id}
+                                    key={currentQuest?.id}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
@@ -192,18 +194,18 @@ export default function SC305MolecularForge() {
                                 >
                                     <div className="bg-white/5 p-6 rounded-xl border border-white/5">
                                         <div className="text-lg text-white/90 leading-relaxed mb-4 overflow-x-auto">
-                                            <BlockMath math={currentQuest.promptLatex} />
+                                            <BlockMath math={currentQuest?.promptLatex || ""} />
                                         </div>
-                                        {currentQuest.expressionLatex && (
+                                        {currentQuest?.expressionLatex && (
                                             <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center">
-                                                <BlockMath math={currentQuest.expressionLatex} />
+                                                <BlockMath math={currentQuest?.expressionLatex || ""} />
                                             </div>
                                         )}
                                     </div>
 
                                     {/* Input Section */}
                                     <div className="space-y-6">
-                                        {currentQuest.slots.map((slot) => (
+                                        {currentQuest?.slots.map((slot) => (
                                             <div key={slot.id} className="space-y-3">
                                                 <label className="text-xs uppercase tracking-widest text-white/40 block">
                                                     <InlineMath math={slot.labelLatex} />

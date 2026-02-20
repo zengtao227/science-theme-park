@@ -109,7 +109,9 @@ export default function SC204Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SC204Quest, Stage>({
+    moduleCode: "sc2-04",
     buildPool,
     initialStage: "dissolve",
   });
@@ -145,6 +147,7 @@ export default function SC204Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t.title}
       moduleCode="SC2.04"
       difficulty={difficulty}
@@ -225,22 +228,22 @@ export default function SC204Page() {
             {t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {stage === "elite" ? "Rhine Water Quality Analysis" : currentQuest.promptLatex}
+            {stage === "elite" ? "Rhine Water Quality Analysis" : currentQuest?.promptLatex}
           </p>
         </div>
 
         {/* Input Section */}
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-lg">
-            <InlineMath math={currentQuest.promptLatex} />
+            <InlineMath math={currentQuest?.promptLatex || ""} />
           </div>
 
           <div className="text-neon-cyan">
-            <InlineMath math={currentQuest.expressionLatex} />
+            <InlineMath math={currentQuest?.expressionLatex || ""} />
           </div>
 
           <div className="space-y-3">
-            {currentQuest.slots.map((slot) => (
+            {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="flex items-center gap-3">
                 <InlineMath math={slot.labelLatex} />
                 <input

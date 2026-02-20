@@ -57,7 +57,9 @@ export default function SP102NewtonsLaws() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SP102Quest, Stage>({
+    moduleCode: "sp1-02",
         buildPool,
         initialStage: "FIRST_LAW",
     });
@@ -91,7 +93,8 @@ export default function SP102NewtonsLaws() {
 
     return (
         <ChamberLayout
-            title={sp1_02_t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={sp1_02_t.title}
             moduleCode="SP1.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -143,7 +146,7 @@ export default function SP102NewtonsLaws() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={currentQuest.id}
+                        key={currentQuest?.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -151,19 +154,19 @@ export default function SP102NewtonsLaws() {
                     >
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">
-                                Question {currentQuest.id}
+                                Question {currentQuest?.id}
                             </div>
                             <div className="text-white text-lg mb-2">
-                                {currentQuest.promptLatex}
+                                {currentQuest?.promptLatex}
                             </div>
-                            {currentQuest.expressionLatex && (
+                            {currentQuest?.expressionLatex && (
                                 <div className="text-cyan-400 text-sm font-mono">
-                                    {currentQuest.expressionLatex}
+                                    {currentQuest?.expressionLatex}
                                 </div>
                             )}
                         </div>
 
-                        {currentQuest.slots && currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots && currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-4 mb-3">
                                 <label className="text-white/70 min-w-[120px]">
                                     {slot.labelLatex}:

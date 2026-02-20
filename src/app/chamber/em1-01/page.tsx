@@ -159,7 +159,9 @@ export default function EM101Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<ThalesQuest, Stage>({
+    moduleCode: "em1-01",
     buildPool,
     initialStage: "MEASURE", // Default to Measure (Middle stage) or Basics? Let's sticky to existing default if logical, or Basics
   });
@@ -191,7 +193,8 @@ export default function EM101Page() {
   if (!currentQuest) {
     return (
       <ChamberLayout
-        title={t.title}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t.title}
         moduleCode="EM1.01"
         difficulty={difficulty}
         onDifficultyChange={handleDifficultyChange}
@@ -216,6 +219,7 @@ export default function EM101Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t.title}
       moduleCode="EM1.01"
       difficulty={difficulty}
@@ -248,20 +252,20 @@ export default function EM101Page() {
         <div className="bg-gray-800/50 p-4 rounded-lg border border-orange-500/30">
           <h3 className="text-orange-400 font-bold mb-2">{t.objective_title}</h3>
           <div className="text-gray-300 text-sm leading-relaxed">
-            {currentQuest.promptLatex.includes("{")
-              ? <InlineMath math={currentQuest.promptLatex} /> // LateX usually handles text inside
-              : <InlineMath math={currentQuest.promptLatex} />
+            {currentQuest?.promptLatex.includes("{")
+              ? <InlineMath math={currentQuest?.promptLatex || ""} /> // LateX usually handles text inside
+              : <InlineMath math={currentQuest?.promptLatex || ""} />
             }
           </div>
         </div>
 
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-orange-300 text-lg">
-            <InlineMath math={currentQuest.expressionLatex} />
+            <InlineMath math={currentQuest?.expressionLatex || ""} />
           </div>
 
           <div className="space-y-3">
-            {currentQuest.slots.map((slot) => (
+            {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="flex items-center gap-3">
                 <InlineMath math={slot.labelLatex} />
                 <input

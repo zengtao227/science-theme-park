@@ -182,7 +182,9 @@ export default function EM201Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<MatrixQuest, Stage>({
+    moduleCode: "em2-01",
     buildPool: (d, s) => buildMatrixPool(getT, t, d, s),
     initialStage: "BASIC_TRANSFORMS",
   });
@@ -196,11 +198,11 @@ export default function EM201Page() {
   // Get display matrix for visualization
   const getDisplayMatrix = (): number[][] => {
     if (!currentQuest) return [[1, 0], [0, 1]];
-    if (currentQuest.matrix) return currentQuest.matrix;
-    if (currentQuest.matrixA) return currentQuest.matrixA;
+    if (currentQuest?.matrix) return currentQuest?.matrix;
+    if (currentQuest?.matrixA) return currentQuest?.matrixA;
 
     // Try to parse user input for calculate_matrix type
-    if (currentQuest.type === "calculate_matrix") {
+    if (currentQuest?.type === "calculate_matrix") {
       const a11 = parseFloat(inputs.a11 || "1");
       const a12 = parseFloat(inputs.a12 || "0");
       const a21 = parseFloat(inputs.a21 || "0");
@@ -219,6 +221,7 @@ export default function EM201Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t.title}
       moduleCode="EM2.01"
       difficulty={difficulty}
@@ -262,25 +265,25 @@ export default function EM201Page() {
           <div className="p-8 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto space-y-6">
             <div className="text-center space-y-3">
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-black">
-                {currentQuest.question}
+                {currentQuest?.question}
               </div>
-              {currentQuest.expressionLatex && (
+              {currentQuest?.expressionLatex && (
                 <div className="text-2xl text-white font-black">
-                  <BlockMath math={currentQuest.expressionLatex} />
+                  <BlockMath math={currentQuest?.expressionLatex || ""} />
                 </div>
               )}
-              {currentQuest.matrixA && currentQuest.matrixB && (
+              {currentQuest?.matrixA && currentQuest?.matrixB && (
                 <div className="space-y-2">
-                  <BlockMath math={`A = \\begin{bmatrix} ${currentQuest.matrixA[0][0]} & ${currentQuest.matrixA[0][1]} \\\\ ${currentQuest.matrixA[1][0]} & ${currentQuest.matrixA[1][1]} \\end{bmatrix}`} />
-                  <BlockMath math={`B = \\begin{bmatrix} ${currentQuest.matrixB[0][0]} & ${currentQuest.matrixB[0][1]} \\\\ ${currentQuest.matrixB[1][0]} & ${currentQuest.matrixB[1][1]} \\end{bmatrix}`} />
+                  <BlockMath math={`A = \\begin{bmatrix} ${currentQuest?.matrixA[0][0]} & ${currentQuest?.matrixA[0][1]} \\\\ ${currentQuest?.matrixA[1][0]} & ${currentQuest?.matrixA[1][1]} \\end{bmatrix}`} />
+                  <BlockMath math={`B = \\begin{bmatrix} ${currentQuest?.matrixB[0][0]} & ${currentQuest?.matrixB[0][1]} \\\\ ${currentQuest?.matrixB[1][0]} & ${currentQuest?.matrixB[1][1]} \\end{bmatrix}`} />
                 </div>
               )}
             </div>
 
             {/* Input based on question type */}
-            {(currentQuest.type === "identify" || currentQuest.type === "predict") && currentQuest.options ? (
+            {(currentQuest?.type === "identify" || currentQuest?.type === "predict") && currentQuest?.options ? (
               <div className="space-y-3">
-                {currentQuest.options.map((option, idx) => (
+                {currentQuest?.options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => setInputs({ answer: option })}
@@ -295,7 +298,7 @@ export default function EM201Page() {
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4 pt-4">
-                {currentQuest.slots.map((slot) => (
+                {currentQuest?.slots.map((slot) => (
                   <div key={slot.id} className="space-y-2">
                     <label className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                       <InlineMath math={slot.labelLatex} />
@@ -317,13 +320,13 @@ export default function EM201Page() {
             )}
 
             {/* Explanation after correct answer */}
-            {lastCheck?.ok && currentQuest.explanation && (
+            {lastCheck?.ok && currentQuest?.explanation && (
               <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
                 <div className="text-xs text-green-400 mb-2 uppercase tracking-wider">
                   {t.explanation_label}
                 </div>
                 <div className="text-sm text-green-300/90">
-                  {currentQuest.explanation}
+                  {currentQuest?.explanation}
                 </div>
               </div>
             )}

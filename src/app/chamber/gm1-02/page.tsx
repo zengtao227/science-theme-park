@@ -390,7 +390,9 @@ export default function GM102Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<GM102Quest, Stage>({
+    moduleCode: "gm1-02",
     buildPool: buildPoolCallback,
     initialStage: "ANTIDERIVATIVE",
   });
@@ -403,6 +405,7 @@ export default function GM102Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("gm1_02.title")}
       moduleCode="GM1.02"
       difficulty={difficulty}

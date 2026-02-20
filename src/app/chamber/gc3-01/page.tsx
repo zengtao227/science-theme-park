@@ -89,7 +89,9 @@ export default function GC301Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<GC301Quest, Stage>({
+    moduleCode: "gc3-01",
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "CONCENTRATION",
   });
@@ -114,6 +116,7 @@ export default function GC301Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("gc3_01.title")}
       moduleCode="GC3.01"
       difficulty={difficulty}

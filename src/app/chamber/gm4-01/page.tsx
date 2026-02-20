@@ -286,13 +286,16 @@ export default function GM401Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<ComplexQuest, Stage>({
+    moduleCode: "gm4-01",
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "BASICS",
   });
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t?.title || "GM4.01 // COMPLEX HORIZON"}
       moduleCode="GM4.01"
       difficulty={difficulty}
@@ -347,18 +350,18 @@ export default function GM401Page() {
           <div className="p-8 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto space-y-6">
             <div className="text-center space-y-3">
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-black">
-                {currentQuest.promptLatex}
+                {currentQuest?.promptLatex}
               </div>
               <div className="text-3xl text-white font-black">
-                <InlineMath math={currentQuest.expressionLatex} />
+                <InlineMath math={currentQuest?.expressionLatex || ""} />
               </div>
               <div className="text-sm text-white/60 font-mono">
-                <InlineMath math={currentQuest.targetLatex} />
+                <InlineMath math={currentQuest?.targetLatex || ""} />
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 pt-4">
-              {currentQuest.slots.map((slot) => (
+              {currentQuest?.slots.map((slot) => (
                 <div key={slot.id} className="space-y-2">
                   <label className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                     {slot.labelLatex}

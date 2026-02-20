@@ -183,7 +183,9 @@ export default function SM211Page() {
     handleStageChange,
     getHint,
     currentStageStats,
+    adaptiveRecommendation,
   } = useQuestManager<SequenceQuest, Stage>({
+    moduleCode: "sm2-11",
     buildPool,
     initialStage: "ARITHMETIC",
   });
@@ -204,6 +206,7 @@ export default function SM211Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       moduleCode="SM2.11"
       title={t("sm2_11.title")}
       difficulty={difficulty}
@@ -268,7 +271,7 @@ export default function SM211Page() {
                 {t("labels.mission_objective")}
               </h3>
               <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
               </div>
             </div>
 
@@ -279,7 +282,7 @@ export default function SM211Page() {
                   {t("sm2_11.labels.sequence_data")}
                 </span>
                 <div className="text-4xl text-white font-black">
-                  <InlineMath math={currentQuest.expressionLatex} />
+                  <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </div>
               </div>
             </div>
@@ -293,7 +296,7 @@ export default function SM211Page() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                  {currentQuest.slots.map((slot) => (
+                  {currentQuest?.slots.map((slot) => (
                     <div key={slot.id} className="w-full max-w-md space-y-3">
                       <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                         <InlineMath>{slot.labelLatex}</InlineMath>

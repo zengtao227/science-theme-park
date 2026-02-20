@@ -637,7 +637,9 @@ export default function SB202BodySystemsPage() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SB202BodySystemsQuest, Stage>({
+    moduleCode: "sb2-02-body-systems",
         buildPool,
         initialStage: "DIGESTIVE",
     });
@@ -657,7 +659,8 @@ export default function SB202BodySystemsPage() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t("sb2_02.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sb2_02.title")}
                 moduleCode="SB2.02"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -689,7 +692,8 @@ export default function SB202BodySystemsPage() {
 
     return (
         <ChamberLayout
-            title={t("sb2_02.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sb2_02.title")}
             moduleCode="SB2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -730,16 +734,16 @@ export default function SB202BodySystemsPage() {
                 {/* Quest Display */}
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
                     
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     {/* Input Slots */}
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

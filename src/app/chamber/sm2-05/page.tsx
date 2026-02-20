@@ -663,7 +663,9 @@ export default function S205Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<S205Quest, Stage>({
+    moduleCode: "sm2-05",
         buildPool,
         initialStage: "RULES",
     });
@@ -676,7 +678,8 @@ export default function S205Page() {
 
     return (
         <ChamberLayout
-            title={t("sm2_05.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sm2_05.title")}
             moduleCode="SM2.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -719,11 +722,11 @@ export default function S205Page() {
                     </div>
                     <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
                         {(() => {
-                            const latex = currentQuest?.promptLatex || "";
-                            if (latex.includes("\\text{")) {
+                            const latex = currentQuest?.promptLatex || "" || "";
+                            if (latex && latex.includes("\\text{")) {
                                 return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\text\{/g, "").replace(/\}/g, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
                             }
-                            return <InlineMath math={latex} />;
+                            return <InlineMath math={latex || ""} />;
                         })()}
                     </div>
                     <div className="mt-8 p-8 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm shadow-2xl">

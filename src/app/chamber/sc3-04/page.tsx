@@ -189,7 +189,9 @@ export default function SC304Page() {
         getHint,
         currentStageStats,
         pool,
+      adaptiveRecommendation,
     } = useQuestManager<SC304Quest, Stage>({
+    moduleCode: "sc3-04",
         buildPool,
         initialStage: "ALCOHOLS",
     });
@@ -208,9 +210,9 @@ export default function SC304Page() {
 
     useEffect(() => {
         if (currentQuest?.molecule) {
-            setSelectedMolecule(currentQuest.molecule);
+            setSelectedMolecule(currentQuest?.molecule);
         } else if (currentQuest?.propA) {
-            setSelectedMolecule(currentQuest.propA.toLowerCase().replace(" ", "_"));
+            setSelectedMolecule(currentQuest?.propA.toLowerCase().replace(" ", "_"));
         }
     }, [currentQuest]);
 
@@ -218,7 +220,8 @@ export default function SC304Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SC3.04"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SC3.04"
             title={t("sc3_04.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -294,7 +297,7 @@ export default function SC304Page() {
                                 {t("sc3_04.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -305,7 +308,7 @@ export default function SC304Page() {
                                     MOLECULAR SYSTEM
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -319,7 +322,7 @@ export default function SC304Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest?.slots.map((slot: any) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

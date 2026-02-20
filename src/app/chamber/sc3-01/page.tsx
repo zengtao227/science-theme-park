@@ -208,7 +208,9 @@ export default function SC301Page() {
     handleStageChange,
     getHint,
     currentStageStats,
+    adaptiveRecommendation,
   } = useQuestManager<SC301Quest, Stage>({
+    moduleCode: "sc3-01",
     buildPool,
     initialStage: "ASPIRIN",
   });
@@ -229,12 +231,13 @@ export default function SC301Page() {
 
   const activeScenario = useMemo(() => {
     if (!currentQuest?.scenario) return null;
-    const scenario = t(`sc3_01.scenarios.${currentQuest.scenario}`, { defaultValue: "" });
+    const scenario = t(`sc3_01.scenarios.${currentQuest?.scenario}`, { defaultValue: "" });
     return scenario || null;
   }, [currentQuest, t]);
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       moduleCode="SC3.01"
       title={t("sc3_01.title")}
       difficulty={difficulty}
@@ -292,7 +295,7 @@ export default function SC301Page() {
                 {t("sc3_01.objective_title")}
               </h3>
               <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
               </div>
             </div>
 
@@ -305,7 +308,7 @@ export default function SC301Page() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                  {currentQuest.slots.map((slot: any) => (
+                  {currentQuest?.slots.map((slot: any) => (
                     <div key={slot.id} className="w-full max-w-md space-y-3">
                       <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                         <InlineMath>{slot.labelLatex}</InlineMath>

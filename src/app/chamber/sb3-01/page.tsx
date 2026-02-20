@@ -298,7 +298,9 @@ export default function SB301Page() {
         handleStageChange,
         getHint,
         currentStageStats,
+      adaptiveRecommendation,
     } = useQuestManager<SB301Quest, Stage>({
+    moduleCode: "sb3-01",
         buildPool,
         initialStage: "FOOD_CHAINS",
     });
@@ -320,7 +322,8 @@ export default function SB301Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SB3.01"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SB3.01"
             title={t("sb3_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -381,7 +384,7 @@ export default function SB301Page() {
                             {t("sb3_01.objective_title")}
                         </h3>
                         <p className="text-white/70 text-sm leading-relaxed font-medium">
-                            {t(`sb3_01.scenarios.${currentQuest.scenario}` as any)}
+                            {t(`sb3_01.scenarios.${currentQuest?.scenario}` as any)}
                         </p>
                     </div>
                 )}
@@ -393,7 +396,7 @@ export default function SB301Page() {
                                 {t("sb3_01.labels.trophic_level")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm text-center">
-                                <InlineMath math={`\\text{${currentQuest.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
+                                <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
                             </div>
                         </div>
 
@@ -404,7 +407,7 @@ export default function SB301Page() {
                                     {t("sb3_01.labels.input_terminal")}
                                 </span>
                                 <div className="text-3xl text-white font-black">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -418,7 +421,7 @@ export default function SB301Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot: any) => (
+                                    {currentQuest?.slots.map((slot: any) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

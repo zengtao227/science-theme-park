@@ -636,7 +636,9 @@ export default function SM305Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
+      adaptiveRecommendation,
     } = useQuestManager<SM305Quest, Stage>({
+    moduleCode: "sm3-05",
         buildPool,
         initialStage: "BASEL_ARCH",
     });
@@ -656,7 +658,8 @@ export default function SM305Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                title={t("sm3_05.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sm3_05.title")}
                 moduleCode="SM3.05"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -686,7 +689,8 @@ export default function SM305Page() {
 
     return (
         <ChamberLayout
-            title={t("sm3_05.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("sm3_05.title")}
             moduleCode="SM3.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -722,15 +726,15 @@ export default function SM305Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest.promptLatex} />
+                        <InlineMath math={currentQuest?.promptLatex || ""} />
                     </div>
 
                     <div className="text-green-300">
-                        <InlineMath math={currentQuest.expressionLatex} />
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">
-                        {currentQuest.slots.map((slot) => (
+                        {currentQuest?.slots.map((slot) => (
                             <div key={slot.id} className="flex items-center gap-3">
                                 <InlineMath math={slot.labelLatex} />
                                 <input

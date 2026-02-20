@@ -205,7 +205,9 @@ export default function GC102Page() {
         getHint,
         currentStageStats,
         pool,
+      adaptiveRecommendation,
     } = useQuestManager<GC102Quest, Stage>({
+    moduleCode: "gc1-02",
         buildPool,
         initialStage: "PRINCIPLES",
     });
@@ -217,7 +219,8 @@ export default function GC102Page() {
 
     return (
         <ChamberLayout
-            title={t("gc1_02.title")}
+      adaptiveRecommendation={adaptiveRecommendation}
+      title={t("gc1_02.title")}
             moduleCode="GC1.02"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
@@ -323,19 +326,19 @@ export default function GC102Page() {
                             <div className="space-y-6">
                                 <div className="text-2xl text-white font-light leading-snug">
                                     {t("gc1_02.prompts.calc_mass", { 
-                                        metal: currentQuest.metal, 
-                                        current: currentQuest.current.toString(), 
-                                        time: currentQuest.time.toString(), 
-                                        solution: currentQuest.solution 
+                                        metal: currentQuest?.metal, 
+                                        current: currentQuest?.current.toString(), 
+                                        time: currentQuest?.time.toString(), 
+                                        solution: currentQuest?.solution 
                                     })}
                                 </div>
                                 <div className="p-6 bg-black/40 rounded-xl border border-white/5 flex justify-center shadow-inner">
-                                    <BlockMath math={currentQuest.expressionLatex} />
+                                    <BlockMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
 
                             <div className="space-y-6">
-                                {currentQuest.slots.map((slot) => (
+                                {currentQuest?.slots.map((slot) => (
                                     <div key={slot.id} className="space-y-3">
                                         <div className="flex justify-between items-center px-1">
                                             <div className="text-[10px] text-white/40 uppercase tracking-widest font-bold">

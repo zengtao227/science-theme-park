@@ -390,7 +390,9 @@ export default function G301Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<G301Quest, Stage>({
+    moduleCode: "gm3-01",
     buildPool: (d, s) => buildStagePool(gm3_01_t, d, s),
     initialStage: "BASIC_PROB",
   });
@@ -403,6 +405,7 @@ export default function G301Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gm3_01_t.title}
       moduleCode="GM3.01"
       difficulty={difficulty}
@@ -471,7 +474,7 @@ export default function G301Page() {
           <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-6 max-w-4xl mx-auto">
             <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider mb-3">PROBLEM</div>
             <div className="text-base text-cyan-300 leading-relaxed whitespace-pre-line">
-              {currentQuest.problemText}
+              {currentQuest?.problemText}
             </div>
           </div>
         )}

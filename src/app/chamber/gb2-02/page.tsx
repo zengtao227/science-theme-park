@@ -41,7 +41,9 @@ export default function GB202Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<GB202Quest, Stage>({
+    moduleCode: "gb2-02",
     buildPool: (d, s) => buildStagePool(gb2_02_t, d, s),
     initialStage: "HORMONE_IDENTIFICATION",
   });
@@ -57,7 +59,7 @@ export default function GB202Page() {
     if (currentQuest?.baselContext) {
       return {
         title: `${stage} - ${difficulty}`,
-        description: currentQuest.baselContext
+        description: currentQuest?.baselContext
       };
     }
     
@@ -71,6 +73,7 @@ export default function GB202Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={gb2_02_t.title}
       moduleCode="GB2.02"
       difficulty={difficulty}
@@ -111,12 +114,12 @@ export default function GB202Page() {
           <div className="bg-gray-800/50 p-4 rounded-lg border border-cyan-500/30">
             <div className="text-cyan-400 font-mono text-sm mb-2">OBJECTIVE:</div>
             <div className="text-white">
-              {currentQuest.promptLatex}
+              {currentQuest?.promptLatex}
             </div>
           </div>
 
           {/* Input Slots */}
-          {currentQuest.slots && currentQuest.slots.map((slot) => (
+          {currentQuest?.slots && currentQuest?.slots.map((slot) => (
             <div key={slot.id} className="space-y-2">
               <label className="text-cyan-400 font-mono text-sm">
                 {slot.labelLatex}

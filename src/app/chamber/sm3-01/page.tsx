@@ -240,7 +240,9 @@ export default function S301Page() {
     handleDifficultyChange,
     handleStageChange,
     parseNumberLike,
+    adaptiveRecommendation,
   } = useQuestManager<S301Quest, Stage>({
+    moduleCode: "sm3-01",
     buildPool,
     initialStage: "TERMS",
   });
@@ -258,8 +260,11 @@ export default function S301Page() {
     { id: "EQUATIONS", label: t("sm3_01.stages.equations") },
   ];
 
+  if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
+
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sm3_01.title")}
       moduleCode="SM3.01"
       difficulty={difficulty}
@@ -299,7 +304,7 @@ export default function S301Page() {
           <div className="text-center">
             <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t("sm3_01.objective_title")}</h3>
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-              <InlineMath math={currentQuest.promptLatex} />
+              <InlineMath math={currentQuest?.promptLatex || ""} />
             </p>
           </div>
 
@@ -309,10 +314,10 @@ export default function S301Page() {
               <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t("sm3_01.target_title")}</span>
               <div className="space-y-4">
                 <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
-                  <InlineMath math={currentQuest.expressionLatex} />
+                  <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </div>
                 <div className="text-white/60 font-black">
-                  <InlineMath math={currentQuest.targetLatex} />
+                  <InlineMath math={currentQuest?.targetLatex || ""} />
                 </div>
               </div>
             </div>
@@ -322,16 +327,16 @@ export default function S301Page() {
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full">
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t("sm3_01.labels.input")}</div>
-            {currentQuest.slotGroups ? (
+            {currentQuest?.slotGroups ? (
               <div className="space-y-4">
-                {currentQuest.slotGroups.map((group) => (
+                {currentQuest?.slotGroups.map((group) => (
                   <div key={group.titleLatex} className="space-y-3">
                     <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                       <InlineMath math={group.titleLatex} />
                     </div>
                     <div className={clsx("grid gap-4", group.slotIds.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
                       {group.slotIds.map((slotId) => {
-                        const slot = currentQuest.slots.find((s) => s.id === slotId);
+                        const slot = currentQuest?.slots.find((s) => s.id === slotId);
                         if (!slot) return null;
                         return (
                           <div key={slot.id} className="space-y-2">
@@ -353,8 +358,8 @@ export default function S301Page() {
                 ))}
               </div>
             ) : (
-              <div className={clsx("grid gap-4", currentQuest.slots.length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
-                {currentQuest.slots.map((slot) => (
+              <div className={clsx("grid gap-4", ((currentQuest?.slots) || []).length <= 2 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3")}>
+                {currentQuest?.slots.map((slot) => (
                   <div key={slot.id} className="space-y-2">
                     <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
                       <InlineMath math={slot.labelLatex} />
@@ -375,7 +380,7 @@ export default function S301Page() {
               {t("sm3_01.labels.fraction_hint")}
             </div>
 
-            {stage === "FACTORIZE" && currentQuest.slots.some((s) => s.id === "A") && currentQuest.slots.some((s) => s.id === "B") && (
+            {stage === "FACTORIZE" && currentQuest?.slots.some((s) => s.id === "A") && currentQuest?.slots.some((s) => s.id === "B") && (
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/90 font-black">
                 <InlineMath
                   math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}

@@ -197,7 +197,9 @@ export default function SB101Page() {
         handleDifficultyChange,
         handleStageChange,
         getHint,
+      adaptiveRecommendation,
     } = useQuestManager<SB101Quest, Stage>({
+    moduleCode: "sb1-01",
         buildPool,
         initialStage: "IDENTIFICATION",
     });
@@ -218,7 +220,8 @@ export default function SB101Page() {
 
     return (
         <ChamberLayout
-            moduleCode="SB1.01"
+      adaptiveRecommendation={adaptiveRecommendation}
+      moduleCode="SB1.01"
             title={t("sb1_01.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -283,7 +286,7 @@ export default function SB101Page() {
                                 {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
                             </div>
                         </div>
 
@@ -294,7 +297,7 @@ export default function SB101Page() {
                                     {t("sb1_01.results.analysis")}
                                 </span>
                                 <div className="text-4xl text-white font-black uppercase">
-                                    <InlineMath math={currentQuest.expressionLatex} />
+                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>
@@ -308,7 +311,7 @@ export default function SB101Page() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
-                                    {currentQuest.slots.map((slot) => (
+                                    {currentQuest?.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath>{slot.labelLatex}</InlineMath>

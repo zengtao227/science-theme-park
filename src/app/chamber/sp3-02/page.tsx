@@ -202,7 +202,9 @@ export default function SP302Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
+    adaptiveRecommendation,
   } = useQuestManager<SP302Quest, Stage>({
+    moduleCode: "sp3-02",
     buildPool,
     initialStage: "NEWTON_1",
   });
@@ -223,6 +225,7 @@ export default function SP302Page() {
 
   return (
     <ChamberLayout
+      adaptiveRecommendation={adaptiveRecommendation}
       title={t("sp3_02.title")}
       moduleCode="SP3.02"
       difficulty={difficulty}
@@ -251,22 +254,22 @@ export default function SP302Page() {
       monitorContent={
         <LawsCanvas
           scenario={stage === "NEWTON_1" ? "acceleration" : (stage === "FRICTION" ? "friction" : "acceleration")}
-          mass={currentQuest.mass || 1}
-          friction={currentQuest.frictionCoeff || 0}
-          forceX={currentQuest.force || 0}
+          mass={currentQuest?.mass || 1}
+          friction={currentQuest?.frictionCoeff || 0}
+          forceX={currentQuest?.force || 0}
         />
       }
     >
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
           <div className="text-lg">
-            <InlineMath math={currentQuest.promptLatex} />
+            <InlineMath math={currentQuest?.promptLatex || ""} />
           </div>
           <div className="text-cyan-300">
-            <InlineMath math={currentQuest.expressionLatex} />
+            <InlineMath math={currentQuest?.expressionLatex || ""} />
           </div>
           <div className="space-y-3">
-            {currentQuest.slots.map((slot) => (
+            {currentQuest?.slots.map((slot) => (
               <div key={slot.id} className="flex items-center gap-3">
                 <InlineMath math={slot.labelLatex} />
                 <input
