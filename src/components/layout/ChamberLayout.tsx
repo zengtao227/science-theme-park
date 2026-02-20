@@ -15,6 +15,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import SuccessEureka from "@/components/shared/SuccessEureka";
 import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
+import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
 
 interface ChamberLayoutProps {
@@ -585,6 +586,8 @@ export default function ChamberLayout({
 
 
             <SuccessEureka show={showEureka} onComplete={() => setShowEureka(false)} />
+
+            <CoopPanel lastCheckCorrect={checkStatus ? checkStatus.ok : null} />
 
             <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
                 <span>{footerLeft}</span>

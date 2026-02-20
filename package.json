@@ -28,6 +28,7 @@
     "lucide-react": "^0.563.0",
     "matter-js": "^0.20.0",
     "next": "16.1.5",
+    "peerjs": "^1.5.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-katex": "^3.1.0",
