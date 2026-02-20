@@ -311,7 +311,11 @@ Modules are classified by their quest density:
   - [x] Added §7 QA Checklist (Math Rendering, Generative Quest, i18n, Component, Build audit)
   - [x] Created reusable auto-fix scripts: `scripts/fix-latex-v2.js`, `scripts/fix-latex-v3.js`
   - [x] All 100+ routes pass `npm run build` verification
-- [ ] **6.2.5: Biology Sprint** — Enrich SB1.01–SB1.03, SB2.02, SB2.03, GB2.01, GB3.01, GB3.02 (8 modules × 40+ quests = 320+ new quests)
+- [x] **6.2.5: Biology Sprint** ✅ 2026-02-20 (Audit confirmed)
+  - All 18 biology modules (SB1.01–SB3.02, GB1.01–GB3.02) verified: 3 stages × 4 difficulties × 5 quests = 60+ quests per module
+  - SB2.02-body-systems: 123 quests (12 stage×difficulty pools)
+  - All use `useQuestManager` + `useLanguage` (i18n compliant)
+  - Note: SB3.02 (230L), GB2.02 (197L) are thinner modules — could be enriched in future iteration
 - [ ] **6.2.6: Enrichment Sprint** — Expand EM3.01 to 40+ Kangaroo/Olympiad quests
 
 #### Phase 6.3: Secondary Curriculum Gaps (Priority: MEDIUM)
