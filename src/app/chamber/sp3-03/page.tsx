@@ -6,7 +6,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import EnergyMonitor from "@/components/chamber/sp3-03/EnergyMonitor";
+import FlowMonitor from "@/components/shared/FlowMonitor";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
@@ -235,7 +235,21 @@ export default function SP303Page() {
         incorrect: t("sp3_03.incorrect"),
         difficulty: t("sp3_03.difficulty"),
       }}
-      monitorContent={<EnergyMonitor stage={stage} />}
+      monitorContent={
+        <FlowMonitor
+          title="BASEL_ENERGY_AUDIT"
+          hubLabel="IWB"
+          sources={[
+            { label: "SOLAR", value: 45, color: "bg-yellow-400" },
+            { label: "HYDRO", value: 30, color: "bg-blue-400" },
+            { label: "GRID", value: 25, color: "bg-purple-400" }
+          ]}
+          meta={[
+            { label: "Efficiency", value: "92.4%", color: "text-green-400" },
+            { label: "Grid_Load", value: "1.2 GW", color: "text-cyan-400" }
+          ]}
+        />
+      }
     >
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">

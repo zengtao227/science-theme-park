@@ -7,7 +7,8 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EcosystemVisualization from "@/components/chamber/sb3-01/EcosystemVisualization";
-import SalmonTracker from "@/components/chamber/sb3-01/SalmonTracker";
+import DataTracker from "@/components/shared/DataTracker";
+import ProgressBar from "@/components/shared/ProgressBar";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -353,21 +354,21 @@ export default function SB301Page() {
                         translations={t("sb3_01")}
                     />
 
-                    <SalmonTracker />
+                    <DataTracker
+                        title="RHINE_SALMON_TRACKER"
+                        reference="BSL_ECO_2026"
+                        data={[2, 5, 8, 12, 18, 25, 35, 42, 60, 85].map((v, i) => ({ label: i, value: v }))}
+                        xAxisLabels={["1990", "2010", "2020", "ACTIVE"]}
+                        color="bg-green-500"
+                    />
                     <div className="mt-auto pt-4 border-t border-white/5">
-                        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between font-black">
-                            <span>{t("sb3_01.labels.analysis")}</span>
-                            <span>{currentStageStats?.correct || 0} PTS</span>
-                        </div>
-                        <div className="flex gap-1 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <div
-                                    key={i}
-                                    className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0) ? "bg-green-500 shadow-[0_0_5px_green]" : "bg-transparent"
-                                        }`}
-                                />
-                            ))}
-                        </div>
+                        <ProgressBar
+                            value={((currentStageStats?.correct || 0) % 6) / 5 * 100}
+                            segments={5}
+                            label={t("sb3_01.labels.analysis")}
+                            subLabel={`${currentStageStats?.correct || 0} PTS`}
+                            showValue={false}
+                        />
                     </div>
                 </div>
             }
