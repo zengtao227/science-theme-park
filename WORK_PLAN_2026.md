@@ -407,7 +407,7 @@ Modules are classified by their quest density:
 1. **P1**: Create SM2.13 (Geom. Transformations) — fills the most critical curriculum gap
 2. **P1**: Math Quest Density Sprint — SM1.02, SM2.01, SM3.01, SM3.02, SM3.04
 3. **P2**: Physics/Chemistry Quest Density Sprint
-4. **P3**: Secondary curriculum gaps (Weather, Astronomy, Sustainability)
+4. ~~**P3**: Secondary curriculum gaps (Weather, Astronomy, Sustainability)~~ ✅ (Implemented FE & Quests Feb 21)
 
 ### Quality Gates
 - ✅ TypeScript compilation with zero errors
@@ -422,6 +422,7 @@ Modules are classified by their quest density:
 ### February 2026
 - [x] Week 3 (Feb 15-21): Phase 4.2 & 5 completion ✅
 - [x] Feb 21: Full Curriculum Audit completed ✅
+- [x] Feb 21: Fixed LaTeX rendering issues and implemented secondary gaps (SP1.03, SP1.04, SC1.07) ✅
 
 ### March 2026
 - [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
@@ -438,6 +439,11 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v3.1 (2026-02-21)
+- **LaTeX Rendering Hotfix**: Fixed double-escaped backslashes in math chambers (e.g., `\\text`).
+- **Secondary Gaps Closed**: Implemented SP1.03 (Weather & Climate), SP1.04 (Astronomy Basics), and SC1.07 (Sustainability & Recycling) with multi-language (EN, CN, DE) quest support.
+- **Audit Refinement**: Updated work plan to track closed modules.
 
 ### v3.0 (2026-02-21)
 - **Full Curriculum Audit** against Lehrplan 21 (Zyklus 3) and Basel-Stadt Gymnasium requirements.

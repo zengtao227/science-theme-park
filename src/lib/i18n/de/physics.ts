@@ -1880,7 +1880,11 @@ export const dePhysics = {
                 correct: "Daten verifiziert",
                 incorrect: "Parameter prüfen",
                 labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS" },
-                prompts: {}
+                prompts: {
+                        sp1_03_q1: "Identifizieren Sie die Schicht der Atmosphäre.",
+                        sp1_03_q2: "Was ist der Standard-Luftdruck auf Meereshöhe (hPa)?",
+                        sp1_03_q3: "Identifizieren Sie das wichtigste Treibhausgas (Formel)."
+                }
         },
 
         // SP1.04: Astronomy Basics
@@ -1899,6 +1903,10 @@ export const dePhysics = {
                 correct: "Koordinaten bestätigt",
                 incorrect: "Orbit-Anomalie",
                 labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS" },
-                prompts: {}
+                prompts: {
+                        sp1_04_q1: "Identifizieren Sie den größten Planeten im Sonnensystem.",
+                        sp1_04_q2: "Identifizieren Sie die Phase, wenn der Mond voll beleuchtet ist.",
+                        sp1_04_q3: "Wie groß ist die Achsneigung der Erde in Grad?"
+                }
         }
 };

@@ -1613,6 +1613,10 @@ export const cnChemistry = {
         correct: "可持续方法已验证",
         incorrect: "检查生命周期数据",
         labels: { mission_objective: "生命周期分析", terminal_input: "生态输入", hint: "提示" },
-        prompts: {}
+        prompts: {
+            sc1_07_q1: "识别此类可回收塑料（缩写）。",
+            sc1_07_q2: "计算理想状态下的原子经济性 (%)。",
+            sc1_07_q3: "识别产品生命周期的起始点名称。"
+        }
     }
 };

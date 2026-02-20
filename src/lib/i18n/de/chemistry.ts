@@ -1592,6 +1592,10 @@ export const deChemistry = {
         correct: "Nachhaltigkeitsdaten verifiziert",
         incorrect: "Parameter prüfen",
         labels: { mission_objective: "ÖKOBILANZ", terminal_input: "ÖKO-EINGABE", hint: "HINWEIS" },
-        prompts: {}
+        prompts: {
+            sc1_07_q1: "Identifizieren Sie diesen recycelbaren Kunststoff (Abkürzung).",
+            sc1_07_q2: "Berechnen Sie die ideale Atomökonomie (%).",
+            sc1_07_q3: "Identifizieren Sie den Startpunkt des Produktlebenszyklus."
+        }
     }
 };
