@@ -106,7 +106,10 @@ export default function SC203Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SC203Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SC203Quest, Stage>({
     moduleCode: "sc2-03",
     buildPool,
     initialStage: "boyle",
@@ -143,6 +146,9 @@ export default function SC203Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
       moduleCode="SC2.03"
       difficulty={difficulty}

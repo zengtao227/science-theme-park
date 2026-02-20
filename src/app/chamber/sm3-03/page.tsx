@@ -307,7 +307,10 @@ export default function S303Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<S303Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S303Quest, Stage>({
     moduleCode: "sm3-03",
     buildPool,
     initialStage: "EXPONENTIAL",
@@ -336,6 +339,9 @@ export default function S303Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm3_03_t.title}
       moduleCode="SM3.03"
       difficulty={difficulty}

@@ -666,7 +666,10 @@ export default function S202Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<S202Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S202Quest, Stage>({
     moduleCode: "sm2-02",
     buildPool,
     initialStage: "SOLVE_HYP",
@@ -718,6 +721,9 @@ export default function S202Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_02_t.title}
       moduleCode="SM2.02"
       difficulty={difficulty}

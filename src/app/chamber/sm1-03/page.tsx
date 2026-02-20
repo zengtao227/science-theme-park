@@ -938,7 +938,10 @@ export default function SM103Page() {
     difficulty,
     handleDifficultyChange,
     adaptiveRecommendation,
-  } = useQuestManager<IntegerQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<IntegerQuest, Stage>({
     moduleCode: "sm1-03",
     buildPool,
     initialStage: "NUMBER_LINE",
@@ -954,6 +957,9 @@ export default function SM103Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm1_03.title")}
       moduleCode="SM1.03"
       difficulty={difficulty}

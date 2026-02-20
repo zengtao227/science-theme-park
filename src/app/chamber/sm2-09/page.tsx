@@ -169,7 +169,10 @@ export default function SM209Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SM209Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SM209Quest, Stage>({
     moduleCode: "sm2-09",
     buildPool: (diff, stg) => buildStagePool(sm2_09_t, diff, stg),
     initialStage: "INEQUALITY_BASICS",
@@ -256,6 +259,9 @@ export default function SM209Page() {
     return (
       <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_09_t.title}
         moduleCode="SM2.09"
         difficulty={difficulty}
@@ -295,6 +301,9 @@ export default function SM209Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_09_t.title}
       moduleCode="SM2.09"
       difficulty={difficulty}

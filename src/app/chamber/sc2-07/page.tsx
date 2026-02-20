@@ -48,7 +48,10 @@ export default function SC207Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SC207Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SC207Quest, Stage>({
     moduleCode: "sc2-07",
     buildPool: buildPoolCallback,
     initialStage: 'ENERGY_CHANGES',
@@ -120,6 +123,9 @@ export default function SC207Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t('sc2_07.title')}
       moduleCode="SC2.07"
       difficulty={difficulty}

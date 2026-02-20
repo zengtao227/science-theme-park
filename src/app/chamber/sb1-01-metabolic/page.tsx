@@ -197,6 +197,9 @@ export default function SB101MetabolicPage() {
         getHint,
         currentStageStats,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<MetabolicQuest, Stage>({
     moduleCode: "sb1-01-metabolic",
         buildPool,
@@ -226,6 +229,9 @@ export default function SB101MetabolicPage() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SB1.01"
             title={t("sb1_01_metabolic.title")}
             difficulty={difficulty}

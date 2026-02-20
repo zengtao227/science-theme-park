@@ -235,6 +235,9 @@ export default function SB105AnimalClassification() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SB105Quest, Stage>({
     moduleCode: "sb1-05",
         buildPool: (d, s) => buildStagePool(sb1_05_t, d, s),
@@ -263,6 +266,9 @@ export default function SB105AnimalClassification() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sb1_05_t.title}
             moduleCode="SB1.05"
             difficulty={difficulty}

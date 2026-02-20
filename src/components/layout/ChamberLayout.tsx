@@ -47,6 +47,9 @@ interface ChamberLayoutProps {
         confidence: number;
         reason: string;
     } | null;
+    aiFeedback?: string | null;
+    isRequestingAi?: boolean;
+    onAiDiagnosisRequested?: () => void;
 }
 
 export default function ChamberLayout({
@@ -65,7 +68,10 @@ export default function ChamberLayout({
     onNext,
     successRate,
     translations,
-    adaptiveRecommendation
+    adaptiveRecommendation,
+    aiFeedback,
+    isRequestingAi,
+    onAiDiagnosisRequested
 }: ChamberLayoutProps) {
     const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
     const common = i18n[currentLanguage].common;
@@ -181,8 +187,40 @@ export default function ChamberLayout({
                         {checkStatus.ok ? translations.correct : translations.incorrect}
                     </div>
                     {!checkStatus.ok && (
-                        <div className="text-white/70 font-black break-words max-w-lg mx-auto p-3 bg-white/[0.03] rounded border border-white/5">
+                        <div className="text-white/70 font-black break-words max-w-lg mx-auto p-3 bg-white/[0.03] rounded border border-white/5 relative">
                             <InlineMath math={checkStatus.correct} />
+
+                            {/* AI Diagnosis Area */}
+                            {onAiDiagnosisRequested && (
+                                <div className="mt-4 pt-4 border-t border-white/10 w-full flex flex-col items-center">
+                                    {!aiFeedback && (
+                                        <button
+                                            onClick={onAiDiagnosisRequested}
+                                            disabled={isRequestingAi}
+                                            className="px-4 py-2 border border-neon-purple/50 bg-neon-purple/10 text-neon-purple text-[10px] font-black tracking-widest uppercase rounded hover:bg-neon-purple/20 transition-colors disabled:opacity-50 flex items-center gap-2"
+                                        >
+                                            {isRequestingAi ? (
+                                                <span className="animate-pulse">✨ AI Diagnosing...</span>
+                                            ) : (
+                                                <span>🪄 Ask AI for Explanation</span>
+                                            )}
+                                        </button>
+                                    )}
+                                    {aiFeedback && (
+                                        <div className="w-full text-left bg-black/40 border border-neon-purple/30 rounded-lg p-4 mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
+                                            <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] mb-2 flex items-center gap-2">
+                                                🪄 Nexus AI Assistant
+                                            </div>
+                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap">
+                                                {/* Use a simple method to render inline latex if present but standard string is handled by react-katex?
+                                                    Feedback might contain $$ $$ or \` \`. We'll just render it as raw string here or try to pass it to InlineMath for simple cases.
+                                                    Actually, for robust markdown/math we'd use react-markdown, but we can just output text. */}
+                                                {aiFeedback}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

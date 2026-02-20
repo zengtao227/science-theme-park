@@ -241,7 +241,10 @@ export default function S301Page() {
     handleStageChange,
     parseNumberLike,
     adaptiveRecommendation,
-  } = useQuestManager<S301Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S301Quest, Stage>({
     moduleCode: "sm3-01",
     buildPool,
     initialStage: "TERMS",
@@ -265,6 +268,9 @@ export default function S301Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm3_01.title")}
       moduleCode="SM3.01"
       difficulty={difficulty}

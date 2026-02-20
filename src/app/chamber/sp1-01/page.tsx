@@ -43,7 +43,10 @@ export default function SP101_ForcesBasics() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<any, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<any, Stage>({
     moduleCode: "sp1-01",
     buildPool,
     initialStage: "FORCE_CONCEPTS" as Stage,
@@ -55,6 +58,9 @@ export default function SP101_ForcesBasics() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sp1_01.title") || "Forces Basics"}
       moduleCode="SP1.01"
       difficulty={difficulty}

@@ -51,7 +51,10 @@ export default function GM202Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<GM202Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<GM202Quest, Stage>({
     moduleCode: "gm2-02",
     buildPool: (d, s) => buildStagePool(gm2_02_t, d, s),
     initialStage: "LINE_EQUATIONS",
@@ -102,6 +105,9 @@ export default function GM202Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={gm2_02_t.title}
       moduleCode="GM2.02"
       difficulty={difficulty}

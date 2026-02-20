@@ -204,6 +204,9 @@ export default function GB301Page() {
         getHint,
         currentStageStats,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<GB301Quest, Stage>({
     moduleCode: "gb3-01",
         buildPool,
@@ -235,6 +238,9 @@ export default function GB301Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="GB3.01"
             title={t("gb3_01.title")}
             difficulty={difficulty}

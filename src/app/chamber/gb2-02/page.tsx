@@ -42,7 +42,10 @@ export default function GB202Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<GB202Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<GB202Quest, Stage>({
     moduleCode: "gb2-02",
     buildPool: (d, s) => buildStagePool(gb2_02_t, d, s),
     initialStage: "HORMONE_IDENTIFICATION",
@@ -74,6 +77,9 @@ export default function GB202Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={gb2_02_t.title}
       moduleCode="GB2.02"
       difficulty={difficulty}

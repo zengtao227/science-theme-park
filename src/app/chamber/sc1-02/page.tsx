@@ -627,7 +627,10 @@ export default function C102Page() {
     handleStageChange,
     parseNumberLike,
     adaptiveRecommendation,
-  } = useQuestManager<C102Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<C102Quest, Stage>({
     moduleCode: "sc1-02",
     buildPool,
     initialStage: "MOLAR_MASS",
@@ -655,6 +658,9 @@ export default function C102Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sc1_02_t.title}
       moduleCode="SC1.02"
       difficulty={difficulty}

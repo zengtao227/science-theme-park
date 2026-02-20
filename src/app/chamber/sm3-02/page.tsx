@@ -371,6 +371,9 @@ export default function S302Page() {
         handleStageChange,
         parseNumberLike,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<S302Quest, Stage>({
     moduleCode: "sm3-02",
         buildPool,
@@ -405,6 +408,9 @@ export default function S302Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm3_02.title")}
             moduleCode="SM3.02"
             difficulty={difficulty}

@@ -206,6 +206,9 @@ export default function GC102Page() {
         currentStageStats,
         pool,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<GC102Quest, Stage>({
     moduleCode: "gc1-02",
         buildPool,
@@ -220,6 +223,9 @@ export default function GC102Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("gc1_02.title")}
             moduleCode="GC1.02"
             currentStage={stage}

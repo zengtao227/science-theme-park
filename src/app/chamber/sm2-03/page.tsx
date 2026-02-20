@@ -283,7 +283,10 @@ export default function S203Page() {
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
     successRate,
     adaptiveRecommendation,
-  } = useQuestManager<S203Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S203Quest, Stage>({
     moduleCode: "sm2-03",
     buildPool,
     initialStage: "LEVEL1",
@@ -300,6 +303,9 @@ export default function S203Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_03_t.title}
       moduleCode="SM2.03"
       difficulty={difficulty}

@@ -254,7 +254,10 @@ export default function P301Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<P301Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<P301Quest, Stage>({
     moduleCode: "sp3-08",
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "REFLECTION",
@@ -277,6 +280,9 @@ export default function P301Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sp3_08.title")}
       moduleCode="SP3.08"
       difficulty={difficulty}

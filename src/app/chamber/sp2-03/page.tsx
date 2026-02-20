@@ -255,6 +255,9 @@ export default function SP203ElectricPower() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SP203Quest, Stage>({
     moduleCode: "sp2-03",
         buildPool: (d, s) => buildStagePool(sp2_03_t, d, s),
@@ -277,6 +280,9 @@ export default function SP203ElectricPower() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sp2_03_t.title}
             moduleCode="SP2.03"
             difficulty={difficulty}

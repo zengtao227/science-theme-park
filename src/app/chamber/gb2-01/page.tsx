@@ -194,6 +194,9 @@ export default function GB201Neurobiology() {
         setInputs,
         lastCheck,
         next, adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<GB201Quest, Stage>({
     moduleCode: "gb2-01",
         buildPool: buildStagePool,
@@ -222,6 +225,9 @@ export default function GB201Neurobiology() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={gb2_01.title}
             moduleCode="GB2.01"
             currentStage={stage}

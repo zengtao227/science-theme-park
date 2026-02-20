@@ -391,7 +391,10 @@ export default function G301Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<G301Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<G301Quest, Stage>({
     moduleCode: "gm3-01",
     buildPool: (d, s) => buildStagePool(gm3_01_t, d, s),
     initialStage: "BASIC_PROB",
@@ -406,6 +409,9 @@ export default function G301Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={gm3_01_t.title}
       moduleCode="GM3.01"
       difficulty={difficulty}

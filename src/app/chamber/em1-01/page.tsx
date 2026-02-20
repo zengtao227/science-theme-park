@@ -160,7 +160,10 @@ export default function EM101Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<ThalesQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<ThalesQuest, Stage>({
     moduleCode: "em1-01",
     buildPool,
     initialStage: "MEASURE", // Default to Measure (Middle stage) or Basics? Let's sticky to existing default if logical, or Basics
@@ -194,6 +197,9 @@ export default function EM101Page() {
     return (
       <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
         moduleCode="EM1.01"
         difficulty={difficulty}
@@ -220,6 +226,9 @@ export default function EM101Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
       moduleCode="EM1.01"
       difficulty={difficulty}

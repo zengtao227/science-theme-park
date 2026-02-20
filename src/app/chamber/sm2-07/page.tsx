@@ -342,7 +342,10 @@ export default function S207Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<S207Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S207Quest, Stage>({
     moduleCode: "sm2-07",
     buildPool,
     initialStage: "DISTANCE",
@@ -357,6 +360,9 @@ export default function S207Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_07.title")}
       moduleCode="SM2.07"
       difficulty={difficulty}

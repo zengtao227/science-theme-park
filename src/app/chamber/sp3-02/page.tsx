@@ -203,7 +203,10 @@ export default function SP302Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SP302Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SP302Quest, Stage>({
     moduleCode: "sp3-02",
     buildPool,
     initialStage: "NEWTON_1",
@@ -226,6 +229,9 @@ export default function SP302Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sp3_02.title")}
       moduleCode="SP3.02"
       difficulty={difficulty}

@@ -157,6 +157,9 @@ export default function GP202Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<GP202Quest, Stage>({
     moduleCode: "gp2-02",
         buildPool,
@@ -181,6 +184,9 @@ export default function GP202Page() {
         return (
             <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
                 moduleCode="GP2.02"
                 difficulty={difficulty}
@@ -207,6 +213,9 @@ export default function GP202Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
             moduleCode="GP2.02"
             difficulty={difficulty}

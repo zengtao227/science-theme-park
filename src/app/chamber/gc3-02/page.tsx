@@ -99,7 +99,10 @@ export default function GC302Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<CrystalQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<CrystalQuest, Stage>({
     moduleCode: "gc3-02",
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "SC",
@@ -131,6 +134,9 @@ export default function GC302Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("gc3_02.title")}
       moduleCode="GC3.02"
       difficulty={difficulty}

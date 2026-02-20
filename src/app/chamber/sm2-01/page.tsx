@@ -367,7 +367,10 @@ export default function S201Page() {
     handleStageChange,
     verify,
     adaptiveRecommendation,
-  } = useQuestManager<S201Quest, QuestMode>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S201Quest, QuestMode>({
     moduleCode: "sm2-01",
     buildPool,
     initialStage: questMode,
@@ -501,6 +504,9 @@ export default function S201Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_01_t.title}
       moduleCode="SM2.01"
       difficulty={difficulty}

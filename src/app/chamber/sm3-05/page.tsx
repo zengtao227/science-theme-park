@@ -637,6 +637,9 @@ export default function SM305Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SM305Quest, Stage>({
     moduleCode: "sm3-05",
         buildPool,
@@ -659,6 +662,9 @@ export default function SM305Page() {
         return (
             <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm3_05.title")}
                 moduleCode="SM3.05"
                 difficulty={difficulty}
@@ -690,6 +696,9 @@ export default function SM305Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm3_05.title")}
             moduleCode="SM3.05"
             difficulty={difficulty}

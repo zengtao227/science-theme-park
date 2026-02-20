@@ -97,7 +97,10 @@ export default function GM103Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<GM103Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<GM103Quest, Stage>({
     moduleCode: "gm1-03",
     buildPool: buildPoolCallback,
     initialStage: "LIMIT_BASICS",
@@ -142,6 +145,9 @@ export default function GM103Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={gm1_03_t.title}
       moduleCode="GM1.03"
       difficulty={difficulty}

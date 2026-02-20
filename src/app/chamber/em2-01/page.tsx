@@ -183,7 +183,10 @@ export default function EM201Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<MatrixQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<MatrixQuest, Stage>({
     moduleCode: "em2-01",
     buildPool: (d, s) => buildMatrixPool(getT, t, d, s),
     initialStage: "BASIC_TRANSFORMS",
@@ -222,6 +225,9 @@ export default function EM201Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
       moduleCode="EM2.01"
       difficulty={difficulty}

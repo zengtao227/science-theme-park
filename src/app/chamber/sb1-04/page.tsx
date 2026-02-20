@@ -274,6 +274,9 @@ export default function SB104PlantStructure() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SB104Quest, Stage>({
     moduleCode: "sb1-04",
         buildPool: (d, s) => buildStagePool(sb1_04_t, d, s),
@@ -291,6 +294,9 @@ export default function SB104PlantStructure() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sb1_04_t.title}
             moduleCode="SB1.04"
             difficulty={difficulty}

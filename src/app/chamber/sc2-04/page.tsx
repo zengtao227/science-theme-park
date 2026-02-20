@@ -110,7 +110,10 @@ export default function SC204Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SC204Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SC204Quest, Stage>({
     moduleCode: "sc2-04",
     buildPool,
     initialStage: "dissolve",
@@ -148,6 +151,9 @@ export default function SC204Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t.title}
       moduleCode="SC2.04"
       difficulty={difficulty}

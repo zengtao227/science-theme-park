@@ -1066,7 +1066,10 @@ export default function S206Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<S206Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<S206Quest, Stage>({
     moduleCode: "sm2-06",
     buildPool,
     initialStage: "SUBSTITUTION",
@@ -1081,6 +1084,9 @@ export default function S206Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_06.title")}
       moduleCode="SM2.06"
       difficulty={difficulty}

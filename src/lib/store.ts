@@ -45,6 +45,13 @@ export interface ModuleProgress {
   };
 }
 
+export interface AiProviderConfig {
+  useDefault: boolean;
+  baseUrl?: string;
+  apiKey?: string;
+  modelName?: string;
+}
+
 interface AppState {
   hasAcceptedProtocol: boolean;
   currentLanguage: 'EN' | 'CN' | 'DE';
@@ -52,7 +59,8 @@ interface AppState {
   history: HistoryEntry[];
   achievements: Record<AchievementId, AchievementRecord>;
   lastAchievement?: AchievementId;
-  
+  aiProviderConfig: AiProviderConfig;
+
   // User system
   currentUser: string | null;
   users: Record<string, UserProfile>;
@@ -63,9 +71,10 @@ interface AppState {
   acceptProtocol: () => void;
   resetProtocol: () => void;
   setLanguage: (lang: 'EN' | 'CN' | 'DE') => void;
+  setAiProviderConfig: (config: Partial<AiProviderConfig>) => void;
   addHistory: (entry: HistoryEntry) => void;
   clearLastAchievement: () => void;
-  
+
   // User actions
   setCurrentUser: (username: string) => void;
   createUser: (username: string) => void;
@@ -93,7 +102,10 @@ export const useAppStore = create<AppState>()(
         time_traveler: { unlocked: false },
         calculus_god: { unlocked: false },
       },
-      
+      aiProviderConfig: {
+        useDefault: true,
+      },
+
       // User system initial state
       currentUser: null,
       users: {},
@@ -104,6 +116,7 @@ export const useAppStore = create<AppState>()(
       acceptProtocol: () => set({ hasAcceptedProtocol: true }),
       resetProtocol: () => set({ hasAcceptedProtocol: false }),
       setLanguage: (lang) => set({ currentLanguage: lang }),
+      setAiProviderConfig: (config) => set((state) => ({ aiProviderConfig: { ...state.aiProviderConfig, ...config } })),
       addHistory: (entry) =>
         set((state) => {
           const history = [entry, ...state.history].slice(0, 200);
@@ -152,10 +165,10 @@ export const useAppStore = create<AppState>()(
           };
         }),
       clearLastAchievement: () => set({ lastAchievement: undefined }),
-      
+
       // User system actions
       setCurrentUser: (username) => set({ currentUser: username }),
-      
+
       createUser: (username) =>
         set((state) => {
           const now = Date.now();
@@ -190,7 +203,7 @@ export const useAppStore = create<AppState>()(
             },
           };
         }),
-      
+
       switchUser: (username) =>
         set((state) => {
           if (!state.users[username]) return state;
@@ -216,7 +229,7 @@ export const useAppStore = create<AppState>()(
             },
           };
         }),
-      
+
       getUserList: () => {
         const state = get();
         return Object.values(state.users).sort((a, b) => b.lastActive - a.lastActive);
@@ -236,7 +249,7 @@ export const useAppStore = create<AppState>()(
               lastPlayed: Date.now(),
             },
           };
-          
+
           // Save to user-specific progress if user exists
           if (user) {
             return {
@@ -247,7 +260,7 @@ export const useAppStore = create<AppState>()(
               },
             };
           }
-          
+
           return { progress: newProgress };
         }),
 

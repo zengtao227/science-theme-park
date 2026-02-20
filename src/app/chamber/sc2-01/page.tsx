@@ -178,7 +178,11 @@ export default function SC201Page() {
     return pools[stage][difficulty] || [];
   }, [sc2_01_t]);
 
-  const { stage: currentStage, difficulty: currentDifficulty, currentQuest, inputs: userAnswer, lastCheck, setInputs, verify, next, handleStageChange, handleDifficultyChange, adaptiveRecommendation, } = useQuestManager({
+  const { stage: currentStage, difficulty: currentDifficulty, currentQuest, inputs: userAnswer, lastCheck, setInputs, verify, next, handleStageChange, handleDifficultyChange, adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager({
     moduleCode: "sc2-01",
     buildPool: (difficulty, stage) => buildStagePool(sc2_01_t, difficulty, stage as Stage),
     initialStage: "ARRHENIUS" as Stage,
@@ -197,6 +201,9 @@ export default function SC201Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SC2.01"
       title={t("sc2_01.title") || "SC2.01 // KINETICS"}
       difficulty={currentDifficulty}

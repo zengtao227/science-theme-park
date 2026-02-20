@@ -241,7 +241,10 @@ export default function C101Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<C101Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<C101Quest, Stage>({
     moduleCode: "sc1-01",
     buildPool: (d, s) => buildStagePool(d, s, t),
     initialStage: "IDENTIFY",
@@ -276,6 +279,9 @@ export default function C101Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sc1_01.title")}
       moduleCode="SC1.01"
       difficulty={difficulty}

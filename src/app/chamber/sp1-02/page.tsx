@@ -58,6 +58,9 @@ export default function SP102NewtonsLaws() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SP102Quest, Stage>({
     moduleCode: "sp1-02",
         buildPool,
@@ -94,6 +97,9 @@ export default function SP102NewtonsLaws() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sp1_02_t.title}
             moduleCode="SP1.02"
             difficulty={difficulty}

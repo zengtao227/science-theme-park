@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
+import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 
@@ -74,6 +75,10 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState<DifficultyAdjustment | null>(null);
 
+    // AI Feedback State
+    const [aiFeedback, setAiFeedback] = useState<string | null>(null);
+    const [isRequestingAi, setIsRequestingAi] = useState(false);
+
     // AI Adaptive Difficulty Engine Integration
     useEffect(() => {
         const recommendation = getAdaptiveDifficulty(history, moduleCode);
@@ -123,7 +128,27 @@ export function useQuestManager<T extends Quest, S extends string>({
     const clearInputs = useCallback(() => {
         setInputs({});
         setLastCheck(null);
+        setAiFeedback(null);
+        setIsRequestingAi(false);
     }, []);
+
+    const requestAiFeedback = useCallback(async () => {
+        if (!currentQuest || isRequestingAi) return;
+        setIsRequestingAi(true);
+        setAiFeedback(null);
+        try {
+            const feedback = await requestPersonalizedFeedback({
+                quest: currentQuest as Quest,
+                inputs,
+                language: currentLanguage
+            });
+            setAiFeedback(feedback);
+        } catch (error: any) {
+            setAiFeedback(`AI Diagnosis Error: ${error.message || 'Unknown error'}`);
+        } finally {
+            setIsRequestingAi(false);
+        }
+    }, [currentQuest, inputs, isRequestingAi, currentLanguage]);
 
     const previous = useCallback(() => {
         if (nonce > 0) {
@@ -377,6 +402,9 @@ export function useQuestManager<T extends Quest, S extends string>({
         getHint,
         getCurrentErrorCount,
         adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback,
         setInputs,
         verify,
         next,

@@ -190,6 +190,9 @@ export default function SC303Page() {
         getHint,
         currentStageStats,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SC303Quest, Stage>({
     moduleCode: "sc3-03",
         buildPool,
@@ -219,6 +222,9 @@ export default function SC303Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SC3.03"
             title={t("sc3_03.title")}
             difficulty={difficulty}

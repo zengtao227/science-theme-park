@@ -51,7 +51,10 @@ export default function SP201CircuitBasics() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SP201Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
     buildPool: (d, s) => buildStagePool(d, s),
     initialStage: "COMPONENTS",
@@ -68,6 +71,9 @@ export default function SP201CircuitBasics() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sp2_01_t.title}
       moduleCode="SP2.01"
       difficulty={difficulty}

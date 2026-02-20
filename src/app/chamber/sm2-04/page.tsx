@@ -709,6 +709,9 @@ export default function S204Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<S204Quest, Stage>({
     moduleCode: "sm2-04",
         buildPool,
@@ -730,6 +733,9 @@ export default function S204Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_04.title")}
             moduleCode="SM2.04"
             difficulty={difficulty}

@@ -821,6 +821,9 @@ export default function S101Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<S101Quest, Stage>({
     moduleCode: "sm1-01",
         buildPool,
@@ -845,6 +848,9 @@ export default function S101Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sm1_01_t.title}
             moduleCode="SM1.01"
             difficulty={difficulty}

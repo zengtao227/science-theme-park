@@ -706,6 +706,9 @@ export default function SM210Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SM210Quest, Stage>({
     moduleCode: "sm2-10",
         buildPool,
@@ -729,6 +732,9 @@ export default function SM210Page() {
         return (
             <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_10.title")}
                 moduleCode="SM2.10"
                 difficulty={difficulty}
@@ -755,6 +761,9 @@ export default function SM210Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_10.title")}
             moduleCode="SM2.10"
             difficulty={difficulty}

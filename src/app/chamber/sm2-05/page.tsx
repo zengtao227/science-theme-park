@@ -664,6 +664,9 @@ export default function S205Page() {
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<S205Quest, Stage>({
     moduleCode: "sm2-05",
         buildPool,
@@ -679,6 +682,9 @@ export default function S205Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm2_05.title")}
             moduleCode="SM2.05"
             difficulty={difficulty}

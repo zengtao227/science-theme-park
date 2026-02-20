@@ -98,6 +98,9 @@ export default function GC201Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<OrganicQuest, Stage>({
     moduleCode: "gc2-01",
         buildPool: (d, s) => buildStagePool(t, d, s),
@@ -131,6 +134,9 @@ export default function GC201Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("gc2_01.title")}
             moduleCode="GC2.01"
             difficulty={difficulty}

@@ -55,7 +55,10 @@ export default function SC106Page() {
     handleDifficultyChange,
     handleStageChange,
     verify, adaptiveRecommendation,
-  } = useQuestManager<SC106Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SC106Quest, Stage>({
     moduleCode: "sc1-06",
     buildPool: buildPoolCallback,
     initialStage: 'REACTION_TYPES',
@@ -217,6 +220,9 @@ export default function SC106Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t('sc1_06.title')}
       moduleCode="SC1.06"
       difficulty={difficulty}

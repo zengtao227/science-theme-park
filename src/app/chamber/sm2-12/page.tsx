@@ -195,7 +195,10 @@ export default function SM212Page() {
     getHint,
     currentStageStats,
     adaptiveRecommendation,
-  } = useQuestManager<ComboQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<ComboQuest, Stage>({
     moduleCode: "sm2-12",
     buildPool,
     initialStage: "PERMUTATIONS",
@@ -218,6 +221,9 @@ export default function SM212Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SM2.12"
       title={t("sm2_12.title")}
       difficulty={difficulty}

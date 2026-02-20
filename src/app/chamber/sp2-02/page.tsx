@@ -242,6 +242,9 @@ export default function SP202OhmsLaw() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SP202Quest, Stage>({
     moduleCode: "sp2-02",
         buildPool: (d, s) => buildStagePool(sp2_02_t, d, s),
@@ -266,6 +269,9 @@ export default function SP202OhmsLaw() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={sp2_02_t.title}
             moduleCode="SP2.02"
             difficulty={difficulty}

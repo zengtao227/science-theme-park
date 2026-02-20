@@ -370,7 +370,10 @@ export default function SC206Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<SC206Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SC206Quest, Stage>({
     moduleCode: "sc2-06",
     buildPool: buildStagePool,
     initialStage: "OXIDATION_STATE",
@@ -400,6 +403,9 @@ export default function SC206Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sc2_06.title")}
       moduleCode="SC2.06"
       difficulty={difficulty}

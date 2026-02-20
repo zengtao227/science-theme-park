@@ -1161,7 +1161,10 @@ export default function SM105Page() {
     difficulty,
     handleDifficultyChange,
     adaptiveRecommendation,
-  } = useQuestManager<EquationQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<EquationQuest, Stage>({
     moduleCode: "sm1-04",
     buildPool,
     initialStage: "BALANCE",
@@ -1177,6 +1180,9 @@ export default function SM105Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("sm1_04.title")}
       moduleCode="SM1.04"
       difficulty={difficulty}

@@ -287,7 +287,10 @@ export default function GM401Page() {
     handleDifficultyChange,
     handleStageChange,
     adaptiveRecommendation,
-  } = useQuestManager<ComplexQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<ComplexQuest, Stage>({
     moduleCode: "gm4-01",
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "BASICS",
@@ -296,6 +299,9 @@ export default function GM401Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t?.title || "GM4.01 // COMPLEX HORIZON"}
       moduleCode="GM4.01"
       difficulty={difficulty}

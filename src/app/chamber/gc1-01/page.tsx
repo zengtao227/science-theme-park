@@ -94,6 +94,9 @@ export default function GC101Page() {
         handleDifficultyChange,
         handleStageChange,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<RedoxQuest, Stage>({
     moduleCode: "gc1-01",
         buildPool: (d, s) => buildStagePool(t, d, s),
@@ -133,6 +136,9 @@ export default function GC101Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       title={t("gc1_01.title")}
             moduleCode="GC1.01"
             difficulty={difficulty}

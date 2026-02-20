@@ -184,7 +184,10 @@ export default function SM211Page() {
     getHint,
     currentStageStats,
     adaptiveRecommendation,
-  } = useQuestManager<SequenceQuest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SequenceQuest, Stage>({
     moduleCode: "sm2-11",
     buildPool,
     initialStage: "ARITHMETIC",
@@ -207,6 +210,9 @@ export default function SM211Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SM2.11"
       title={t("sm2_11.title")}
       difficulty={difficulty}

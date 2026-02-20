@@ -5,12 +5,13 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ScienceRadar from "@/components/ui/ScienceRadar";
 import StatsMatrix from "@/components/profile/StatsMatrix";
+import AiProviderSettings from "@/components/profile/AiProviderSettings";
 import { clsx } from "clsx";
 
 export default function ProfilePage() {
   const { history } = useAppStore();
   const { t, currentLanguage } = useLanguage();
-  
+
   const profile_t = {
     title: t("profile.title"),
     subtitle: t("profile.subtitle"),
@@ -107,6 +108,8 @@ export default function ProfilePage() {
             },
           ]}
         />
+
+        <AiProviderSettings />
 
         <div className="border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.35)]">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{profile_t.timeline_title}</div>

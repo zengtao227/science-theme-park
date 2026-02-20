@@ -538,6 +538,9 @@ export default function SP307Page() {
         getHint,
         currentStageStats,
       adaptiveRecommendation,
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
     } = useQuestManager<SP307Quest, Stage>({
     moduleCode: "sp3-07",
         buildPool,
@@ -561,6 +564,9 @@ export default function SP307Page() {
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SP3.07"
             title={t("sp3_07.title")}
             difficulty={difficulty}

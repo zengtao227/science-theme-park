@@ -34,7 +34,10 @@ export default function SB204Page() {
     handleStageChange,
     getHint,
     adaptiveRecommendation,
-  } = useQuestManager<SB204Quest, Stage>({
+      aiFeedback,
+      isRequestingAi,
+      requestAiFeedback
+    } = useQuestManager<SB204Quest, Stage>({
     moduleCode: "sb2-04",
     buildPool,
     initialStage: "DIGESTIVE_SYSTEM",
@@ -61,6 +64,9 @@ export default function SB204Page() {
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
+      aiFeedback={aiFeedback}
+      isRequestingAi={isRequestingAi}
+      onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SB2.04"
       title={t("sb2_04.title")}
       difficulty={difficulty}
