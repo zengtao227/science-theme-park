@@ -6,9 +6,18 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { buildQuestPool } from "@/lib/sp1-02-quests";
-import { Stage, SP102Quest } from "@/lib/sp1-02-types";
+
+
 import P102LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
+import {
+    Stage,
+    SP102Quest,
+    generateFirstLawQuests,
+    generateSecondLawQuests,
+    generateThirdLawQuests,
+} from "@/lib/sp1-02/quests";
+
+
 
 export default function SP102NewtonsLaws() {
     const { completeStage } = useAppStore();
@@ -44,7 +53,12 @@ export default function SP102NewtonsLaws() {
         incorrect: t("sp1_02.incorrect")
     }), [t]);
 
-    const buildPool = useCallback((d: Difficulty, s: Stage) => buildQuestPool(d, s, t), [t]);
+    const buildPool = useCallback((d: Difficulty, s: Stage) => {
+        if (s === "FIRST_LAW") return generateFirstLawQuests(t, d);
+        if (s === "SECOND_LAW") return generateSecondLawQuests(t, d);
+        if (s === "THIRD_LAW") return generateThirdLawQuests(t, d);
+        return [];
+    }, [t]);
 
     const {
         difficulty,
@@ -57,12 +71,12 @@ export default function SP102NewtonsLaws() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback
     } = useQuestManager<SP102Quest, Stage>({
-    moduleCode: "sp1-02",
+        moduleCode: "sp1-02",
         buildPool,
         initialStage: "FIRST_LAW",
     });
@@ -96,11 +110,11 @@ export default function SP102NewtonsLaws() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      title={sp1_02_t.title}
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
+            title={sp1_02_t.title}
             moduleCode="SP1.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

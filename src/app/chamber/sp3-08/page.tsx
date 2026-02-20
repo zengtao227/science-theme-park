@@ -9,233 +9,17 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import P308OpticsCanvas from "@/components/chamber/sp3-08/OpticsCanvas";
+import {
+  Stage,
+  SP308Quest,
+  generateReflectionQuests,
+  generateRefractionQuests,
+  generateLensQuests,
+} from "@/lib/sp3-08/quests";
 
-type Stage = "REFLECTION" | "REFRACTION" | "LENSES";
 
-interface P301Quest extends Quest {
-  stage: Stage;
-  scenario: "reflection" | "refraction" | "lens";
-  angle: number;
-  n1?: number;
-  n2?: number;
-  focalLength?: number;
-  targetAngle: number;
-}
 
-function buildStagePool(difficulty: Difficulty, stage: Stage): P301Quest[] {
-  const quests: P301Quest[] = [];
 
-  // Stage 1: REFLECTION - Law of Reflection (5 questions per difficulty)
-  if (stage === "REFLECTION") {
-    let angles: number[] = [];
-    
-    switch (difficulty) {
-      case "BASIC":
-        angles = [30, 45, 60, 20, 50]; // Simple angles
-        break;
-      case "CORE":
-        angles = [25, 35, 55, 65, 40]; // More variety
-        break;
-      case "ADVANCED":
-        angles = [15, 22, 38, 52, 68]; // Irregular angles
-        break;
-      case "ELITE":
-        angles = [12, 18, 33, 47, 73]; // Complex angles
-        break;
-    }
-
-    for (const angle of angles) {
-      const reflectedAngle = angle; // Law of Reflection: θᵢ = θᵣ
-
-      quests.push({
-        id: `REFLECTION_${difficulty}_${angle}`,
-        difficulty,
-        stage,
-        scenario: "reflection",
-        angle,
-        targetAngle: reflectedAngle,
-        promptLatex: `\\\\text{Law of Reflection}\\\\\\theta_i=${angle}^\\circ`,
-        expressionLatex: `\\theta_i=\\theta_r`,
-        targetLatex: `\\theta_r`,
-        correctLatex: `\\theta_r=${reflectedAngle}^\\circ`,
-        slots: [
-          { id: "theta_r", labelLatex: "\\theta_r", placeholder: "θᵣ (degrees)", expected: reflectedAngle },
-        ],
-        hintLatex: [`\\\\text{Angle of incidence equals angle of reflection}`],
-      });
-    }
-    return quests;
-  }
-
-  // Stage 2: REFRACTION - Snell's Law (5 questions per difficulty)
-  if (stage === "REFRACTION") {
-    const materials = [
-      { name: "Air→Water", n1: 1.00, n2: 1.33 },
-      { name: "Air→Glass", n1: 1.00, n2: 1.50 },
-      { name: "Water→Glass", n1: 1.33, n2: 1.50 },
-      { name: "Air→Diamond", n1: 1.00, n2: 2.42 },
-      { name: "Glass→Water", n1: 1.50, n2: 1.33 },
-    ];
-
-    let configs: Array<{ mat: typeof materials[0]; angle: number }> = [];
-
-    switch (difficulty) {
-      case "BASIC":
-        // Simple angles with air-water
-        configs = [
-          { mat: materials[0], angle: 30 },
-          { mat: materials[0], angle: 45 },
-          { mat: materials[0], angle: 60 },
-          { mat: materials[1], angle: 30 },
-          { mat: materials[1], angle: 45 },
-        ];
-        break;
-      case "CORE":
-        // More materials and angles
-        configs = [
-          { mat: materials[0], angle: 25 },
-          { mat: materials[1], angle: 35 },
-          { mat: materials[2], angle: 40 },
-          { mat: materials[0], angle: 50 },
-          { mat: materials[1], angle: 55 },
-        ];
-        break;
-      case "ADVANCED":
-        // Complex materials
-        configs = [
-          { mat: materials[2], angle: 20 },
-          { mat: materials[3], angle: 15 },
-          { mat: materials[4], angle: 35 },
-          { mat: materials[0], angle: 65 },
-          { mat: materials[1], angle: 70 },
-        ];
-        break;
-      case "ELITE":
-        // Challenging combinations
-        configs = [
-          { mat: materials[3], angle: 10 },
-          { mat: materials[3], angle: 20 },
-          { mat: materials[4], angle: 45 },
-          { mat: materials[2], angle: 55 },
-          { mat: materials[1], angle: 75 },
-        ];
-        break;
-    }
-
-    for (const { mat, angle: theta1 } of configs) {
-      const theta1Rad = (theta1 * Math.PI) / 180;
-      const sinTheta2 = (mat.n1 * Math.sin(theta1Rad)) / mat.n2;
-
-      // Skip if total internal reflection would occur
-      if (sinTheta2 > 1) continue;
-
-      const theta2 = Math.asin(sinTheta2) * (180 / Math.PI);
-
-      quests.push({
-        id: `REFRACTION_${difficulty}_${mat.name}_${theta1}`,
-        difficulty,
-        stage,
-        scenario: "refraction",
-        angle: theta1,
-        n1: mat.n1,
-        n2: mat.n2,
-        targetAngle: theta2,
-        promptLatex: `\\text{Snell's Law: }${mat.name}\\\\n_1=${mat.n1},\\; n_2=${mat.n2},\\; \\theta_1=${theta1}^\\circ`,
-        expressionLatex: `n_1\\sin\\theta_1=n_2\\sin\\theta_2`,
-        targetLatex: `\\theta_2`,
-        correctLatex: `\\theta_2=${theta2.toFixed(1)}^\\circ`,
-        slots: [
-          { id: "theta_2", labelLatex: "\\theta_2", placeholder: "θ_2 (degrees)", expected: parseFloat(theta2.toFixed(1)) },
-        ],
-        hintLatex: [`\\text{Use Snell's Law: } n_1\\sin\\theta_1=n_2\\sin\\theta_2`],
-      });
-    }
-    
-    // Ensure we have exactly 5 questions
-    return quests.slice(0, 5);
-  }
-
-  // Stage 3: LENSES - Focal Length and Image Formation (5 questions per difficulty)
-  if (stage === "LENSES") {
-    let configs: Array<{ f: number; u: number }> = [];
-
-    switch (difficulty) {
-      case "BASIC":
-        // Simple focal lengths and object distances
-        configs = [
-          { f: 50, u: 150 },
-          { f: 50, u: 200 },
-          { f: 75, u: 150 },
-          { f: 75, u: 225 },
-          { f: 100, u: 200 },
-        ];
-        break;
-      case "CORE":
-        // More variety
-        configs = [
-          { f: 60, u: 180 },
-          { f: 80, u: 200 },
-          { f: 100, u: 250 },
-          { f: 50, u: 175 },
-          { f: 90, u: 270 },
-        ];
-        break;
-      case "ADVANCED":
-        // Complex combinations
-        configs = [
-          { f: 40, u: 120 },
-          { f: 65, u: 195 },
-          { f: 85, u: 255 },
-          { f: 110, u: 220 },
-          { f: 55, u: 165 },
-        ];
-        break;
-      case "ELITE":
-        // Challenging calculations
-        configs = [
-          { f: 35, u: 140 },
-          { f: 45, u: 180 },
-          { f: 70, u: 280 },
-          { f: 95, u: 285 },
-          { f: 120, u: 240 },
-        ];
-        break;
-    }
-
-    for (const { f, u } of configs) {
-      // Lens equation: 1/f = 1/u + 1/v
-      const v = (f * u) / (u - f);
-
-      // Skip if image is virtual or too far
-      if (v < 0 || v > 500) continue;
-
-      const magnification = -v / u;
-
-      quests.push({
-        id: `LENS_${difficulty}_${f}_${u}`,
-        difficulty,
-        stage,
-        scenario: "lens",
-        angle: 0,
-        focalLength: f,
-        targetAngle: v,
-        promptLatex: `\\\\text{Converging Lens}\\\\f=${f}\\\\text{px},\\; u=${u}\\\\text{px}`,
-        expressionLatex: `\\\\frac{1}{f}=\\\\frac{1}{u}+\\\\frac{1}{v}`,
-        targetLatex: `v`,
-        correctLatex: `v=${v.toFixed(1)}\\\\text{px}`,
-        slots: [
-          { id: "v", labelLatex: "v\\\\text{ (image distance)}", placeholder: "v (px)", expected: parseFloat(v.toFixed(1)) },
-          { id: "m", labelLatex: "m\\\\text{ (magnification)}", placeholder: "m", expected: parseFloat(magnification.toFixed(2)) },
-        ],
-        hintLatex: [`\\\\text{Lens equation: } \\\\frac{1}{f}=\\\\frac{1}{u}+\\\\frac{1}{v}`],
-      });
-    }
-    
-    return quests;
-  }
-
-  return [];
-}
 
 export default function P301Page() {
   const { completeStage } = useAppStore();
@@ -257,9 +41,14 @@ export default function P301Page() {
       aiFeedback,
       isRequestingAi,
       requestAiFeedback
-    } = useQuestManager<P301Quest, Stage>({
+    } = useQuestManager<SP308Quest, Stage>({
     moduleCode: "sp3-08",
-    buildPool: (d, s) => buildStagePool(d, s),
+    buildPool: (d, s) => {
+      if (s === "REFLECTION") return generateReflectionQuests(t, d);
+      if (s === "REFRACTION") return generateRefractionQuests(t, d);
+      if (s === "LENSES") return generateLensQuests(t, d);
+      return [];
+    },
     initialStage: "REFLECTION",
   });
 
