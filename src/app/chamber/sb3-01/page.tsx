@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EcosystemVisualization from "@/components/chamber/sb3-01/EcosystemVisualization";
+import SalmonTracker from "@/components/chamber/sb3-01/SalmonTracker";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -244,6 +245,35 @@ export default function SB301Page() {
                             `\\\\frac{dN}{dt} = 0.18 \\\\times 150 \\\\times 0.25`,
                             `\\\\frac{dN}{dt} = 6.75 \\\\approx 6.8 \\\\text{ individuals/year}`
                         ]
+                    },
+                    {
+                        id: "ELITE-A2", difficulty, stage, scenario: "rhine_river",
+                        promptLatex: `\\\\text{Rhine Salmon Return (Project Salmon 2020): In 1990, 0 salmon were found. In 2022, 1,200 salmon returned to Basel. If growth follows } N(t) = 1.15^t, \\\\text{ calculate population after 5 more years.}`,
+                        expressionLatex: `N(5) = 1200 \\\\times (1.15)^5`,
+                        targetLatex: `N_{2027}`,
+                        slots: [{ id: "n", labelLatex: `N`, placeholder: "2414", expected: "2414" }],
+                        correctLatex: `2414`,
+                        hintLatex: [
+                            `1.15^5 \\\\approx 2.011`,
+                            `1200 \\\\times 2.011 = 2413.2`,
+                            `\\\\text{Round to nearest whole number: 2414}`
+                        ]
+                    }
+                );
+            } else if (difficulty === "ELITE") {
+                quests.push(
+                    {
+                        id: "ELITE-E1", difficulty, stage, scenario: "rhine_river",
+                        promptLatex: `\\\\text{Simpson's Index } D = \\\\sum (n/N)^2 \\\\text{ for Rhine fish: } \\\\text{Eel 50, Salmon 30, Carp 20. Total } N=100. \\\\text{ Calculate } 1 - D \\\\text{ (Diversity).}`,
+                        expressionLatex: `D = (0.5)^2 + (0.3)^2 + (0.2)^2, \\\\text{ Diversity} = 1 - D`,
+                        targetLatex: `1-D`,
+                        slots: [{ id: "div", labelLatex: `1-D`, placeholder: "0.62", expected: "0.62" }],
+                        correctLatex: `0.62`,
+                        hintLatex: [
+                            `D = 0.25 + 0.09 + 0.04 = 0.38`,
+                            `1 - 0.38 = 0.62`,
+                            `\\\\text{Higher value indicates greater biodiversity stability.}`
+                        ]
                     }
                 );
             }
@@ -322,6 +352,8 @@ export default function SB301Page() {
                         stage={stage}
                         translations={t("sb3_01")}
                     />
+
+                    <SalmonTracker />
                     <div className="mt-auto pt-4 border-t border-white/5">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-2 flex justify-between font-black">
                             <span>{t("sb3_01.labels.analysis")}</span>
@@ -359,8 +391,8 @@ export default function SB301Page() {
                             <h3 className="text-[10px] text-green-400 uppercase tracking-[0.5em] font-black italic">
                                 {t("sb3_01.labels.trophic_level")}
                             </h3>
-                            <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm">
-                                <BlockMath>{currentQuest.promptLatex}</BlockMath>
+                            <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm text-center">
+                                <InlineMath math={`\\text{${currentQuest.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
                             </div>
                         </div>
 

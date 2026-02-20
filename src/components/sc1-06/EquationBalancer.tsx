@@ -1,27 +1,15 @@
-/**
- * SC1.06 Chemical Reactions Basics - EquationBalancer Component
- * 
- * Interactive tool for balancing chemical equations with:
- * - Input fields for coefficients
- * - Real-time atom count updates
- * - Visual feedback (green/red for balanced/unbalanced)
- * - Hint generation
- * - Reset functionality
- * 
- * Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 11.2, 11.6
- */
-
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { SC106Quest } from '@/lib/sc1-06-types';
 import { ChemicalFormula } from '@/lib/sc1-06-latex';
-import { 
-  calculateAtomCounts, 
-  isEquationBalanced, 
+import {
+  calculateAtomCounts,
+  isEquationBalanced,
   identifyUnbalancedElements,
-  validateCoefficient 
+  validateCoefficient
 } from '@/lib/sc1-06-utils';
+import { clsx } from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
+import { RotateCcw, HelpCircle, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface EquationBalancerProps {
   quest: SC106Quest;
@@ -30,7 +18,6 @@ interface EquationBalancerProps {
 }
 
 export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps) {
-  // Initialize coefficients to 1 for all compounds
   const totalCompounds = quest.equation.reactants.length + quest.equation.products.length;
   const [coefficients, setCoefficients] = useState<number[]>(Array(totalCompounds).fill(1));
   const [inputValues, setInputValues] = useState<string[]>(Array(totalCompounds).fill('1'));
@@ -38,19 +25,25 @@ export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps
   const [feedback, setFeedback] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
 
-  // Calculate atom counts in real-time
+  // Sync state when quest changes
+  useEffect(() => {
+    const total = quest.equation.reactants.length + quest.equation.products.length;
+    setCoefficients(Array(total).fill(1));
+    setInputValues(Array(total).fill('1'));
+    setFeedback('');
+    setSubmitted(false);
+    setShowHint(false);
+  }, [quest]);
+
   const atomCounts = calculateAtomCounts(quest.equation, coefficients);
   const balanced = isEquationBalanced(atomCounts);
   const unbalancedElements = identifyUnbalancedElements(atomCounts);
 
-  // Handle coefficient input change
   const handleCoefficientChange = (index: number, value: string) => {
-    // Update input value immediately for display
     const newInputValues = [...inputValues];
     newInputValues[index] = value;
     setInputValues(newInputValues);
 
-    // Validate and update coefficient
     const validation = validateCoefficient(value);
     if (validation.valid && validation.value) {
       const newCoefficients = [...coefficients];
@@ -59,200 +52,192 @@ export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps
     }
   };
 
-  // Handle submit
   const handleSubmit = () => {
     setSubmitted(true);
-    
     if (balanced) {
-      setFeedback(t('sc1-06.equation_balancer.correct'));
+      setFeedback(t('sc1_06.feedback.balanced'));
       onComplete(true);
     } else {
-      setFeedback(t('sc1-06.equation_balancer.incorrect'));
+      setFeedback(t('sc1_06.feedback.unbalanced'));
       onComplete(false);
     }
   };
 
-  // Handle reset
   const handleReset = () => {
-    const resetCoefficients = Array(totalCompounds).fill(1);
-    const resetInputs = Array(totalCompounds).fill('1');
-    setCoefficients(resetCoefficients);
-    setInputValues(resetInputs);
+    const total = quest.equation.reactants.length + quest.equation.products.length;
+    setCoefficients(Array(total).fill(1));
+    setInputValues(Array(total).fill('1'));
     setShowHint(false);
     setFeedback('');
     setSubmitted(false);
   };
 
-  // Generate hint
   const generateHint = (): string => {
-    if (balanced) {
-      return t('sc1-06.equation_balancer.already_balanced');
-    }
+    if (balanced) return t('sc1_06.feedback.balanced');
+    if (unbalancedElements.length === 0) return t('sc1_06.feedback.check_elements');
 
-    if (unbalancedElements.length === 0) {
-      return t('sc1-06.equation_balancer.no_hint');
-    }
-
-    // Pick the first unbalanced element
     const element = unbalancedElements[0];
     const counts = atomCounts.get(element);
-    
-    if (!counts) {
-      return t('sc1-06.equation_balancer.no_hint');
-    }
+    if (!counts) return "";
 
     const diff = counts.reactants - counts.products;
-    
-    if (diff > 0) {
-      return `${t('sc1-06.equation_balancer.hint_increase_products')} (${element})`;
-    } else {
-      return `${t('sc1-06.equation_balancer.hint_increase_reactants')} (${element})`;
-    }
+    return diff > 0
+      ? `${t('sc1_06.hints.increase_products') || "Increase Reactants"} (${element})`
+      : `${t('sc1_06.hints.increase_reactants') || "Increase Products"} (${element})`;
   };
 
   return (
-    <div className="space-y-6">
-      {/* Chemical Equation Display */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-        <h3 className="text-lg font-semibold mb-4">{t('sc1-06.equation_balancer.title')}</h3>
-        
-        {/* Equation with coefficient inputs */}
-        <div className="flex flex-wrap items-center gap-2 mb-6">
-          {/* Reactants */}
+    <div className="space-y-10 max-w-5xl mx-auto">
+      <div className="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 backdrop-blur-xl shadow-2xl overflow-hidden relative group">
+        <div className="absolute top-0 right-0 p-4 opacity-20">
+          <Beaker className="w-24 h-24 rotate-12" />
+        </div>
+
+        <h3 className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase mb-8">
+          {t('sc1_06.stages.equation_balancing')}
+        </h3>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 mb-12 py-8 bg-black/20 rounded-2xl border border-white/5">
           {quest.equation.reactants.map((compound, index) => (
             <React.Fragment key={`reactant-${index}`}>
-              {index > 0 && <span className="text-2xl">+</span>}
-              <div className="flex items-center gap-2">
+              {index > 0 && <span className="text-3xl font-light opacity-30">+</span>}
+              <div className="flex items-center gap-3 bg-white/5 p-2 rounded-xl border border-white/10 group-hover:border-white/20 transition-colors">
                 <input
                   type="text"
                   value={inputValues[index]}
                   onChange={(e) => handleCoefficientChange(index, e.target.value)}
-                  className="w-16 h-12 text-center border-2 border-gray-300 dark:border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
+                  className="w-14 h-14 text-2xl font-mono text-center bg-black border-2 border-white/10 rounded-lg focus:border-blue-500 focus:outline-none transition-all hover:bg-white/5"
                   placeholder="1"
                 />
-                <ChemicalFormula latex={compound.formulaLatex} />
+                <div className="text-2xl px-2">
+                  <ChemicalFormula latex={compound.formulaLatex} />
+                </div>
               </div>
             </React.Fragment>
           ))}
-          
-          {/* Arrow */}
-          <span className="text-2xl mx-2">→</span>
-          
-          {/* Products */}
-          {quest.equation.products.map((compound, index) => (
-            <React.Fragment key={`product-${index}`}>
-              {index > 0 && <span className="text-2xl">+</span>}
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={inputValues[quest.equation.reactants.length + index]}
-                  onChange={(e) => handleCoefficientChange(quest.equation.reactants.length + index, e.target.value)}
-                  className="w-16 h-12 text-center border-2 border-gray-300 dark:border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
-                  placeholder="1"
-                />
-                <ChemicalFormula latex={compound.formulaLatex} />
-              </div>
-            </React.Fragment>
-          ))}
+
+          <span className="text-4xl font-light opacity-50 mx-4">→</span>
+
+          {quest.equation.products.map((compound, index) => {
+            const productIndex = quest.equation.reactants.length + index;
+            return (
+              <React.Fragment key={`product-${index}`}>
+                {index > 0 && <span className="text-3xl font-light opacity-30">+</span>}
+                <div className="flex items-center gap-3 bg-white/5 p-2 rounded-xl border border-white/10 group-hover:border-white/20 transition-colors">
+                  <input
+                    type="text"
+                    value={inputValues[productIndex]}
+                    onChange={(e) => handleCoefficientChange(productIndex, e.target.value)}
+                    className="w-14 h-14 text-2xl font-mono text-center bg-black border-2 border-white/10 rounded-lg focus:border-blue-500 focus:outline-none transition-all hover:bg-white/5"
+                    placeholder="1"
+                  />
+                  <div className="text-2xl px-2">
+                    <ChemicalFormula latex={compound.formulaLatex} />
+                  </div>
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
 
-        {/* Atom Count Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40">
+          <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b-2 border-gray-300 dark:border-gray-600">
-                <th className="px-4 py-2 text-left">{t('sc1-06.equation_balancer.element')}</th>
-                <th className="px-4 py-2 text-center">{t('sc1-06.equation_balancer.reactants')}</th>
-                <th className="px-4 py-2 text-center">{t('sc1-06.equation_balancer.products')}</th>
-                <th className="px-4 py-2 text-center">{t('sc1-06.equation_balancer.status')}</th>
+              <tr className="bg-white/5 border-b border-white/10">
+                <th className="px-6 py-4 text-[10px] font-black tracking-widest text-white/40 uppercase font-mono">
+                  {t('sc1_06.atomCount.element')}
+                </th>
+                <th className="px-6 py-4 text-[10px] font-black tracking-widest text-white/40 uppercase font-mono text-center">
+                  {t('sc1_06.atomCount.reactants')}
+                </th>
+                <th className="px-6 py-4 text-[10px] font-black tracking-widest text-white/40 uppercase font-mono text-center">
+                  {t('sc1_06.atomCount.products')}
+                </th>
+                <th className="px-6 py-4 text-[10px] font-black tracking-widest text-white/40 uppercase font-mono text-center">
+                  {t('sc1_06.atomCount.balanced')}
+                </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-white/5">
               {Array.from(atomCounts.entries()).map(([element, counts]) => {
                 const isBalanced = counts.reactants === counts.products;
                 return (
-                  <tr 
+                  <motion.tr
                     key={element}
-                    className={`border-b border-gray-200 dark:border-gray-700 ${
-                      isBalanced 
-                        ? 'bg-green-50 dark:bg-green-900/20' 
-                        : 'bg-red-50 dark:bg-red-900/20'
-                    }`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className={clsx(
+                      "transition-colors",
+                      isBalanced ? "bg-green-500/5 hover:bg-green-500/10" : "bg-red-500/5 hover:bg-red-500/10"
+                    )}
                   >
-                    <td className="px-4 py-2 font-semibold">{element}</td>
-                    <td className="px-4 py-2 text-center">{counts.reactants}</td>
-                    <td className="px-4 py-2 text-center">{counts.products}</td>
-                    <td className="px-4 py-2 text-center">
-                      {isBalanced ? (
-                        <span className="text-green-600 dark:text-green-400">✓</span>
-                      ) : (
-                        <span className="text-red-600 dark:text-red-400">✗</span>
-                      )}
+                    <td className="px-6 py-4 font-mono font-bold text-lg">{element}</td>
+                    <td className="px-6 py-4 text-center font-mono text-xl text-blue-400">{counts.reactants}</td>
+                    <td className="px-6 py-4 text-center font-mono text-xl text-purple-400">{counts.products}</td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex justify-center">
+                        {isBalanced ? (
+                          <CheckCircle2 className="w-6 h-6 text-neon-green" />
+                        ) : (
+                          <AlertCircle className="w-6 h-6 text-orange-500" />
+                        )}
+                      </div>
                     </td>
-                  </tr>
+                  </motion.tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-
-        {/* Overall Balance Status */}
-        <div className="mt-4 text-center">
-          {balanced ? (
-            <div className="text-green-600 dark:text-green-400 font-semibold text-lg">
-              {t('sc1-06.equation_balancer.balanced')}
-            </div>
-          ) : (
-            <div className="text-red-600 dark:text-red-400 font-semibold text-lg">
-              {t('sc1-06.equation_balancer.unbalanced')}
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* Hint Section */}
-      {showHint && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-          <p className="text-blue-800 dark:text-blue-200">
-            <strong>{t('sc1-06.equation_balancer.hint')}:</strong> {generateHint()}
-          </p>
-        </div>
-      )}
+      <AnimatePresence>
+        {showHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="p-6 bg-blue-500/10 border border-blue-500/30 rounded-2xl flex gap-4 backdrop-blur-md"
+          >
+            <HelpCircle className="w-6 h-6 text-blue-400 shrink-0" />
+            <div className="space-y-1">
+              <span className="text-[10px] font-black tracking-widest text-blue-400 uppercase">Analysis Tip</span>
+              <p className="text-white/80 italic font-light">{generateHint()}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Feedback */}
-      {submitted && feedback && (
-        <div className={`rounded-lg p-4 ${
-          balanced 
-            ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
-            : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
-        }`}>
-          {feedback}
-        </div>
-      )}
-
-      {/* Action Buttons */}
-      <div className="flex gap-4 justify-center">
+      <div className="flex flex-wrap gap-4 justify-center pt-6">
         <button
           onClick={() => setShowHint(!showHint)}
-          className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors min-h-[44px]"
+          className="flex items-center gap-3 px-8 py-3 bg-white/5 border border-white/20 hover:bg-white/10 text-[10px] font-black tracking-widest uppercase transition-all rounded-full"
         >
-          {showHint ? t('sc1-06.equation_balancer.hide_hint') : t('sc1-06.equation_balancer.show_hint')}
+          <HelpCircle className="w-4 h-4" />
+          {showHint ? t('sc1_06.ui.hide_hint') || "Hide Tip" : t('sc1_06.ui.hint') || "Show Tip"}
         </button>
-        
+
         <button
           onClick={handleReset}
-          className="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors min-h-[44px]"
+          className="flex items-center gap-3 px-8 py-3 bg-white/5 border border-white/20 hover:bg-white/10 text-[10px] font-black tracking-widest uppercase transition-all rounded-full"
         >
-          {t('sc1-06.equation_balancer.reset')}
+          <RotateCcw className="w-4 h-4" />
+          {t('sc1_06.ui.reset')}
         </button>
-        
+
         <button
           onClick={handleSubmit}
-          className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold transition-colors min-h-[44px]"
+          className="px-10 py-4 bg-white text-black text-[10px] font-black tracking-widest uppercase hover:bg-neon-green transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-neon rounded-full"
         >
-          {t('sc1-06.equation_balancer.submit')}
+          {t('sc1_06.ui.submit')}
         </button>
       </div>
     </div>
   );
 }
+
+const Beaker = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4.5 3h15" /><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3" /><path d="M6 14h12" />
+  </svg>
+);

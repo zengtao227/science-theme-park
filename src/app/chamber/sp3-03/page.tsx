@@ -6,7 +6,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import HydroCanvas from "@/components/chamber/sp1-03/HydroCanvas";
+import EnergyMonitor from "@/components/chamber/sp3-03/EnergyMonitor";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
 type Stage = "POTENTIAL" | "KINETIC" | "POWER";
@@ -61,11 +61,11 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SP303QuestData[]>> = {
       { id: "Q5", m: 12, h: 10, v: 10, scen: "total_energy", expect: 1776 },
     ],
     ELITE: [
-      { id: "Q1", m: 10, h: 50, v: 20, scen: "conservation", expect: 6900 },
-      { id: "Q2", m: 15, h: 40, v: 15, scen: "conservation", expect: 7567.5 },
-      { id: "Q3", m: 8, h: 60, v: 25, scen: "conservation", expect: 7208 },
-      { id: "Q4", m: 20, h: 30, v: 18, scen: "conservation", expect: 9120 },
-      { id: "Q5", m: 12, h: 45, v: 22, scen: "conservation", expect: 8190 },
+      { id: "E1", m: 50, h: 30, scen: "rhine_power_station", expect: 14700 }, // Ep = mgh
+      { id: "E2", m: 40, h: 25, scen: "energy_audit", expect: 9800 },
+      { id: "E3", m: 100, f: 800, v: 20, scen: "energy_audit_solar", expect: 16000 }, // Output = A * I * eff
+      { id: "E4", m: 12, v: 4, scen: "energy_audit_heatpump", expect: 3 }, // P = Q / COP
+      { id: "E5", m: 800, v: 100, f: 5, scen: "iwb_grid_load", expect: 37.5 }, // (800 - 100*5)/800 * 100%
     ],
   },
   KINETIC: {
@@ -235,12 +235,12 @@ export default function SP303Page() {
         incorrect: t("sp3_03.incorrect"),
         difficulty: t("sp3_03.difficulty"),
       }}
-      monitorContent={<HydroCanvas stage={stage} />}
+      monitorContent={<EnergyMonitor stage={stage} />}
     >
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
-          <div className="text-lg">
-            <InlineMath math={currentQuest.promptLatex} />
+          <div className="text-2xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm flex justify-center">
+            <InlineMath math={`\\text{${currentQuest.promptLatex.replace(/%/g, '\\%').replace(/²/g, '^2')}}`} />
           </div>
           <div className="text-cyan-300">
             <InlineMath math={currentQuest.expressionLatex} />

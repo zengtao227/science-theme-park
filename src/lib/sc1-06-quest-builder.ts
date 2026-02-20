@@ -87,7 +87,7 @@ export function buildStagePool(
         : data.type;
 
     // Build the quest object
-    const finalContext = t ? t(`sc1_06.contexts.${data.id}`) : data.baselContext;
+    const finalScenario = t ? t(`sc1_06.scenarios.${data.id}`) : data.baselContext;
     const quest: SC106Quest = {
       id: data.id,
       difficulty,
@@ -100,10 +100,10 @@ export function buildStagePool(
       promptLatex,
       equationLatex,
       expressionLatex,
-      targetLatex: `\\\\text{${t ? t("sc1_06.labels.target") : initialTargetLatex}}`,
+      targetLatex: `\\\\text{${t ? (t("sc1_06.labels.target") !== "sc1_06.labels.target" ? t("sc1_06.labels.target") : "Target") : initialTargetLatex}}`,
       correctLatex,
       energyChange: data.energyChange,
-      baselContext: t(`sc1_06.contexts.${data.id}`),
+      baselContext: finalScenario,
       slots
     };
 

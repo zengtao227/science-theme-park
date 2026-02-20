@@ -13,6 +13,7 @@ import { Difficulty } from "@/hooks/useQuestManager";
 import { translations as i18n } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import SuccessEureka from "@/components/ui/SuccessEureka";
 
 interface ChamberLayoutProps {
     title: string;
@@ -67,6 +68,7 @@ export default function ChamberLayout({
     const prevOkRef = useRef(false);
     const stageStartRef = useRef(0);
     const hadFailureRef = useRef(false);
+    const [showEureka, setShowEureka] = useState(false);
 
     const moduleEntries = useMemo<HistoryEntry[]>(() => {
         return history.filter((entry) => entry.moduleCode === moduleCode);
@@ -108,6 +110,7 @@ export default function ChamberLayout({
                 durationMs,
                 rigor: !hadFailureRef.current,
             });
+            setShowEureka(true);
         }
         prevOkRef.current = ok;
     }, [addHistory, checkStatus, currentStage, difficulty, moduleCode, stageLabel, successRate]);
@@ -432,7 +435,8 @@ export default function ChamberLayout({
                 )}
             </AnimatePresence>
 
-            <NotificationToast />
+
+            <SuccessEureka show={showEureka} onComplete={() => setShowEureka(false)} />
 
             <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
                 <span>{footerLeft}</span>

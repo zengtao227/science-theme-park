@@ -1171,7 +1171,8 @@ export const cnPhysics = {
         stages: { potential: "重力势能", kinetic: "动能", work: "功率输出" },
         scenarios: {
             rhein_hydro: "莱茵河水电站：巴塞尔电站利用莱茵河的水流将势能转化为源源不断的清洁电力。",
-            tram_braking: "巴塞尔电车能量回收：BVB 电车在刹车时利用再生制动将动能回馈至城市电网。"
+            tram_braking: "巴塞尔电车能量回收：BVB 电车在刹车时利用再生制动将动能回馈至城市电网。",
+            energy_audit: "巴塞尔 IWB 能源审计：作为 IWB 的咨询顾问，你需要分析巴塞尔居民楼的能源效率。通过计算热泵功率、太阳能板产出及年度总能耗，你帮助城市实现 2030 净零排放目标。"
         },
         prompts: {
             // 势能
@@ -1190,7 +1191,10 @@ export const cnPhysics = {
             basic_work: "力 F={f}N 移动物体 d={d}m。计算功 W。",
             basic_power: "力 F={f}N 在 t={t}s 内移动物体 d={d}m。计算功率 P。",
             power_lifting: "起重机在 t={t}s 内将 m={m}kg 提升到 h={h}m。功率 P？",
-            rhine_power_station: "莱茵河电站在 t={t}s 内将水 m={m}kg 提升 h={h}m。功率 P？"
+            rhine_power_station: "莱茵河电站在 t={t}s 内将水 m={m}kg 提升 h={h}m。功率 P？",
+            energy_audit_solar: "巴塞尔屋顶 A={m}m²。光强 I={f}W/m²，效率 {v}%。输出功率 P？",
+            energy_audit_heatpump: "热泵需提供 {m}kW 热量，COP={v}。所需电功率 P？",
+            iwb_grid_load: "巴塞尔高峰负载 {m}MW。若由 {v} 台 {f}MW 风机供电，缺口百分比？"
         },
         hints: {
             // 势能

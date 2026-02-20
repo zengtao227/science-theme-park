@@ -1,23 +1,10 @@
-/**
- * SC1.06 Chemical Reactions Basics - ReactionTypeSelector Component
- * 
- * Interactive tool for classifying reaction types with:
- * - Radio buttons for five reaction types
- * - Display of reaction patterns (e.g., "A + B → AB")
- * - Examples from daily life and industry
- * - Immediate visual feedback on selection
- * - Submit button to verify answer
- * - Success/error feedback with explanation
- * 
- * Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8
- */
-
-'use client';
-
 import React, { useState } from 'react';
 import { SC106Quest, ReactionType } from '@/lib/sc1-06-types';
 import { ChemicalFormula } from '@/lib/sc1-06-latex';
 import { classifyReaction, analyzeReactionPattern } from '@/lib/sc1-06-utils';
+import { clsx } from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Target, Info, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface ReactionTypeSelectorProps {
   quest: SC106Quest;
@@ -30,229 +17,223 @@ export function ReactionTypeSelector({ quest, onComplete, t }: ReactionTypeSelec
   const [submitted, setSubmitted] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
 
-  // Get the correct reaction type from the quest
   const correctType = quest.reactionType || classifyReaction(quest.equation);
-  
-  // Get pattern analysis for display
   const patternAnalysis = analyzeReactionPattern(quest.equation);
 
-  // Define reaction types with their patterns and examples
   const reactionTypes: Array<{
     type: ReactionType;
     pattern: string;
     description: string;
-    examples: string[];
   }> = [
-    {
-      type: 'synthesis',
-      pattern: 'A + B → AB',
-      description: t('sc1-06.reaction_types.synthesis_description'),
-      examples: [
-        t('sc1-06.reaction_types.synthesis_example_1'),
-        t('sc1-06.reaction_types.synthesis_example_2')
-      ]
-    },
-    {
-      type: 'decomposition',
-      pattern: 'AB → A + B',
-      description: t('sc1-06.reaction_types.decomposition_description'),
-      examples: [
-        t('sc1-06.reaction_types.decomposition_example_1'),
-        t('sc1-06.reaction_types.decomposition_example_2')
-      ]
-    },
-    {
-      type: 'single_replacement',
-      pattern: 'A + BC → AC + B',
-      description: t('sc1-06.reaction_types.single_replacement_description'),
-      examples: [
-        t('sc1-06.reaction_types.single_replacement_example_1'),
-        t('sc1-06.reaction_types.single_replacement_example_2')
-      ]
-    },
-    {
-      type: 'double_replacement',
-      pattern: 'AB + CD → AD + CB',
-      description: t('sc1-06.reaction_types.double_replacement_description'),
-      examples: [
-        t('sc1-06.reaction_types.double_replacement_example_1'),
-        t('sc1-06.reaction_types.double_replacement_example_2')
-      ]
-    },
-    {
-      type: 'combustion',
-      pattern: 'CₓHᵧ + O₂ → CO₂ + H₂O',
-      description: t('sc1-06.reaction_types.combustion_description'),
-      examples: [
-        t('sc1-06.reaction_types.combustion_example_1'),
-        t('sc1-06.reaction_types.combustion_example_2')
-      ]
-    }
-  ];
+      {
+        type: 'synthesis',
+        pattern: 'A + B → AB',
+        description: t('sc1_06.reactionTypeDescriptions.synthesis')
+      },
+      {
+        type: 'decomposition',
+        pattern: 'AB → A + B',
+        description: t('sc1_06.reactionTypeDescriptions.decomposition')
+      },
+      {
+        type: 'single_replacement',
+        pattern: 'A + BC → AC + B',
+        description: t('sc1_06.reactionTypeDescriptions.single_replacement')
+      },
+      {
+        type: 'double_replacement',
+        pattern: 'AB + CD → AD + CB',
+        description: t('sc1_06.reactionTypeDescriptions.double_replacement')
+      },
+      {
+        type: 'combustion',
+        pattern: 'CₓHᵧ + O₂ → CO₂ + H₂O',
+        description: t('sc1_06.reactionTypeDescriptions.combustion')
+      }
+    ];
 
-  // Handle type selection
   const handleTypeSelect = (type: ReactionType) => {
     setSelectedType(type);
     setSubmitted(false);
     setFeedback('');
   };
 
-  // Handle submit
   const handleSubmit = () => {
-    if (!selectedType) {
-      setSubmitted(true);
-      setFeedback(t('sc1-06.reaction_types.select_type_first'));
-      return;
-    }
+    if (!selectedType) return;
 
     setSubmitted(true);
-    
     if (selectedType === correctType) {
-      setFeedback(t('sc1-06.reaction_types.correct'));
+      setFeedback(t('sc1_06.feedback.correct'));
       onComplete(true);
     } else {
-      const correctTypeName = t(`sc1-06.reaction_types.${correctType}`);
-      setFeedback(t('sc1-06.reaction_types.incorrect') + ' ' + 
-                  t('sc1-06.reaction_types.correct_type_is') + ' ' + correctTypeName);
+      setFeedback(t('sc1_06.feedback.incorrect'));
       onComplete(false);
     }
   };
 
   return (
-    <div className="space-y-6">
-      {/* Chemical Equation Display */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-        <h3 className="text-lg font-semibold mb-4">{t('sc1-06.reaction_types.title')}</h3>
-        
-        {/* Display the equation */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-2xl">
-          {/* Reactants */}
+    <div className="space-y-10 max-w-5xl mx-auto">
+      {/* Equation Display */}
+      <div className="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-10">
+          <Target className="w-24 h-24" />
+        </div>
+
+        <h3 className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase mb-8">
+          {t('sc1_06.stages.reaction_types')}
+        </h3>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 py-10 bg-black/40 rounded-2xl border border-white/5 mb-8 shadow-inner">
           {quest.equation.reactants.map((compound, index) => (
             <React.Fragment key={`reactant-${index}`}>
-              {index > 0 && <span>+</span>}
-              <ChemicalFormula latex={compound.formulaLatex} />
+              {index > 0 && <span className="text-3xl font-light opacity-30">+</span>}
+              <div className="text-3xl font-bold tracking-tight">
+                <ChemicalFormula latex={compound.formulaLatex} />
+              </div>
             </React.Fragment>
           ))}
-          
-          {/* Arrow */}
-          <span className="mx-2">→</span>
-          
-          {/* Products */}
+
+          <span className="text-4xl font-light opacity-50 mx-4">→</span>
+
           {quest.equation.products.map((compound, index) => (
             <React.Fragment key={`product-${index}`}>
-              {index > 0 && <span>+</span>}
-              <ChemicalFormula latex={compound.formulaLatex} />
+              {index > 0 && <span className="text-3xl font-light opacity-30">+</span>}
+              <div className="text-3xl font-bold tracking-tight text-white/90">
+                <ChemicalFormula latex={compound.formulaLatex} />
+              </div>
             </React.Fragment>
           ))}
         </div>
 
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-          {t('sc1-06.reaction_types.classify_prompt')}
+        <p className="text-center text-white/60 font-light italic text-lg decoration-blue-500/30">
+          {t('sc1_06.prompts.classify_reaction')}
         </p>
       </div>
 
-      {/* Reaction Type Selection */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-        <h4 className="text-md font-semibold mb-4">{t('sc1-06.reaction_types.select_type')}</h4>
-        
-        <div className="space-y-4">
-          {reactionTypes.map(({ type, pattern, description, examples }) => (
-            <div
-              key={type}
-              className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                selectedType === type
-                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                  : 'border-gray-300 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-700'
-              }`}
-              onClick={() => handleTypeSelect(type)}
-            >
-              <div className="flex items-start gap-3">
-                {/* Radio button */}
-                <input
-                  type="radio"
-                  name="reaction-type"
-                  checked={selectedType === type}
-                  onChange={() => handleTypeSelect(type)}
-                  className="mt-1 w-5 h-5 cursor-pointer"
-                />
-                
-                <div className="flex-1">
-                  {/* Type name and pattern */}
-                  <div className="flex items-center justify-between mb-2">
-                    <h5 className="font-semibold text-lg">
-                      {t(`sc1-06.reaction_types.${type}`)}
-                    </h5>
-                    <span className="text-sm font-mono bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded">
-                      {pattern}
-                    </span>
+      {/* Grid of Reaction Types */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reactionTypes.map(({ type, pattern, description }) => (
+          <motion.div
+            key={type}
+            whileHover={{ y: -5 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => handleTypeSelect(type)}
+            className={clsx(
+              "p-6 rounded-2xl border-2 transition-all cursor-pointer relative overflow-hidden group/card",
+              selectedType === type
+                ? "bg-white/10 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                : "bg-white/5 border-white/5 hover:border-white/20"
+            )}
+          >
+            {selectedType === type && (
+              <motion.div
+                layoutId="active-bg"
+                className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-transparent"
+              />
+            )}
+
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-4">
+                <h4 className="font-bold text-white/90 text-lg">
+                  {t(`sc1_06.reactionTypes.${type}`)}
+                </h4>
+                <div className="px-2 py-1 bg-white/10 rounded text-[10px] font-mono font-bold text-white/40 tracking-widest uppercase">
+                  {pattern}
+                </div>
+              </div>
+
+              <p className="text-sm text-white/50 leading-relaxed font-light mb-6 flex-grow">
+                {description}
+              </p>
+
+              <div className="flex items-center gap-2 mt-auto">
+                <div className={clsx(
+                  "w-4 h-4 rounded-full border-2 transition-all",
+                  selectedType === type ? "bg-white border-white" : "border-white/20"
+                )} />
+                <span className={clsx(
+                  "text-[8px] font-black tracking-widest uppercase transition-colors",
+                  selectedType === type ? "text-white" : "text-white/20"
+                )}>
+                  {selectedType === type ? "Selected" : "Select"}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Feedback Area */}
+      <AnimatePresence>
+        {submitted && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className={clsx(
+              "p-8 rounded-3xl border flex flex-col md:flex-row gap-8 items-start relative overflow-hidden backdrop-blur-xl",
+              selectedType === correctType
+                ? "bg-neon-green/10 border-neon-green/30 text-neon-green"
+                : "bg-red-500/10 border-red-500/30 text-red-400"
+            )}
+          >
+            <div className={clsx(
+              "p-4 rounded-2xl shrink-0",
+              selectedType === correctType ? "bg-neon-green/20" : "bg-red-500/20"
+            )}>
+              {selectedType === correctType ? (
+                <CheckCircle2 className="w-8 h-8" />
+              ) : (
+                <AlertCircle className="w-8 h-8" />
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-[10px] font-black tracking-[0.3em] uppercase opacity-60 mb-1">System Verification</h4>
+                <p className="text-2xl font-black">{feedback}</p>
+              </div>
+
+              <div className="space-y-3 p-6 bg-black/40 rounded-2xl border border-white/5">
+                <div className="flex gap-4 items-start">
+                  <Info className="w-5 h-5 text-white/40 shrink-0 mt-1" />
+                  <div>
+                    <h5 className="text-[10px] font-black tracking-widest uppercase text-white/40 mb-2">Scientific Explanation</h5>
+                    <p className="text-sm text-white/80 leading-relaxed font-light">
+                      {patternAnalysis.description}
+                    </p>
                   </div>
-                  
-                  {/* Description */}
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    {description}
-                  </p>
-                  
-                  {/* Examples */}
-                  <div className="text-xs text-gray-500 dark:text-gray-500">
-                    <strong>{t('sc1-06.reaction_types.examples')}:</strong>
-                    <ul className="list-disc list-inside ml-2 mt-1">
-                      {examples.map((example, idx) => (
-                        <li key={idx}>{example}</li>
-                      ))}
-                    </ul>
+                </div>
+
+                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                  <span className="text-[8px] font-black tracking-widest text-white/20 uppercase">Pattern Match</span>
+                  <div className="px-3 py-1 bg-white/5 rounded-lg text-sm font-mono text-white/60">
+                    {patternAnalysis.pattern}
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Feedback */}
-      {feedback && (
-        <div className={`rounded-lg p-4 ${
-          !selectedType || selectedType !== correctType
-            ? 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
-            : 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
-        }`}>
-          {feedback}
-          
-          {/* Show explanation for correct answer */}
-          {submitted && selectedType === correctType && (
-            <div className="mt-3 pt-3 border-t border-green-300 dark:border-green-700">
-              <p className="font-semibold mb-1">{t('sc1-06.reaction_types.explanation')}:</p>
-              <p className="text-sm">{patternAnalysis.description}</p>
-              <p className="text-sm mt-1">
-                {t('sc1-06.reaction_types.pattern')}: <span className="font-mono">{patternAnalysis.pattern}</span>
-              </p>
+            {/* Background Decoration */}
+            <div className="absolute -bottom-10 -right-10 opacity-5">
+              <Info className="w-48 h-48" />
             </div>
-          )}
-          
-          {/* Show correct answer for incorrect selection */}
-          {submitted && selectedType && selectedType !== correctType && (
-            <div className="mt-3 pt-3 border-t border-red-300 dark:border-red-700">
-              <p className="font-semibold mb-1">{t('sc1-06.reaction_types.why_correct')}:</p>
-              <p className="text-sm">{patternAnalysis.description}</p>
-              <p className="text-sm mt-1">
-                {t('sc1-06.reaction_types.pattern')}: <span className="font-mono">{patternAnalysis.pattern}</span>
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Submit Button */}
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-8">
         <button
           onClick={handleSubmit}
-          disabled={!selectedType}
-          className={`px-8 py-3 rounded-lg font-semibold transition-colors min-h-[44px] ${
-            selectedType
-              ? 'bg-green-500 hover:bg-green-600 text-white cursor-pointer'
-              : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 cursor-not-allowed'
-          }`}
+          disabled={!selectedType || (submitted && selectedType === correctType)}
+          className={clsx(
+            "px-16 py-5 rounded-full text-[10px] font-black tracking-[0.4em] uppercase transition-all shadow-2xl",
+            (!selectedType || (submitted && selectedType === correctType))
+              ? "bg-white/5 text-white/20 cursor-not-allowed"
+              : "bg-white text-black hover:bg-neon-green hover:shadow-neon cursor-pointer"
+          )}
         >
-          {t('sc1-06.reaction_types.submit')}
+          {t('sc1_06.ui.verify') || "Verify Classification"}
         </button>
       </div>
     </div>

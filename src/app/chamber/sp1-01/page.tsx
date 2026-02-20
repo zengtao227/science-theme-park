@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { ForceVectorDiagram } from "@/components/chamber/sp1-01/ForceVectorDiagram";
+import PhysicsPlayground3D from "@/components/chamber/sp1-01/PhysicsPlayground3D";
 import { buildSP101Pool } from "@/lib/sp1-01-adapter";
 import { Difficulty } from "@/hooks/useQuestManager";
 import { Stage } from "@/lib/sp1-01/domain/types";
@@ -77,9 +78,15 @@ export default function SP101_ForcesBasics() {
         monitor_title: "VECTOR_SCAN_V1"
       }}
       monitorContent={
-        <div className="flex flex-col items-center justify-center h-full gap-4">
+        <div className="flex flex-col items-center justify-center h-full w-full">
           {currentQuest?.visualization === 'force_vector' && (
-            <ForceVectorDiagram />
+            <PhysicsPlayground3D
+              forces={currentQuest.forces || [{
+                magnitude: currentQuest.validation?.correctAnswer?.value || 100,
+                angle: 45,
+                label: "F"
+              }]}
+            />
           )}
           {!currentQuest?.visualization && (
             <div className="text-white/20 font-black italic text-4xl">STATIC_SCAN</div>

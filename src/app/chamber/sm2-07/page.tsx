@@ -28,12 +28,12 @@ const getLocalizedPrompt = (key: string, lang: string, params: any = {}) => {
 
   if (key === 'DIST_REV_Y') {
     if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(0,0), B(3,y) \\text{ 且 } y>0 \\text{，求 } y \\text{。}`;
-    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } y \\text{ für } B(3,y) \\text{ (y>0)}.`;
+    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } y \\text{ f\\"ur } B(3,y) \\text{ (y>0)}.`;
     return `\\text{Distance } d=${params.d} \\text{. Find } y \\text{ for } B(3,y) \\text{ (y>0)}.`;
   }
   if (key === 'DIST_REV_X') {
     if (isCN) return `\\text{距离 } d=${params.d} \\text{。已知 } A(1,1), B(x,5) \\text{ 且 } x>1 \\text{，求 } x \\text{。}`;
-    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ für } B(x,5) \\text{ (x>1)}.`;
+    if (isDE) return `\\text{Abstand } d=${params.d} \\text{. Finde } x \\text{ f\\"ur } B(x,5) \\text{ (x>1)}.`;
     return `\\text{Distance } d=${params.d} \\text{. Find } x \\text{ for } B(x,5) \\text{ (x>1)}.`;
   }
   if (key === 'MID_REV') {
