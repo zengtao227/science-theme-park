@@ -96,6 +96,7 @@ export default function Home() {
     { code: "SM2.10", title: t("home.sm2_10_title"), desc: t("home.sm2_10_subtitle"), color: "neon-cyan", href: "/chamber/sm2-10", tags: ["math"] },
     { code: "SM2.11", title: t("home.sm2_11_title"), desc: t("home.sm2_11_subtitle"), color: "neon-green", href: "/chamber/sm2-11", tags: ["math"] },
     { code: "SM2.12", title: t("home.sm2_12_title"), desc: t("home.sm2_12_subtitle"), color: "neon-purple", href: "/chamber/sm2-12", tags: ["math"] },
+    { code: "SM2.13", title: t("home.sm2_13_title"), desc: t("home.sm2_13_subtitle"), color: "neon-amber", href: "/chamber/sm2-13", tags: ["math"] },
     // Year 3
     { code: "SM3.01", title: t("home.sm3_01_title"), desc: t("home.sm3_01_subtitle"), color: "neon-purple", href: "/chamber/sm3-01", tags: ["math"] },
     { code: "SM3.02", title: t("home.sm3_02_title"), desc: t("home.sm3_02_subtitle"), color: "neon-cyan", href: "/chamber/sm3-02", tags: ["math"] },

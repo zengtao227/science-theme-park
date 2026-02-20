@@ -100,6 +100,8 @@ export const enCommon = {
         sm2_11_subtitle: "Explore arithmetic and geometric sequences and their sums.",
         sm2_12_title: "SM2.12 // COMBINATORICS",
         sm2_12_subtitle: "Master permutations, combinations, and probability applications.",
+        sm2_13_title: "SM2.13 // GEOMETRIC TRANSFORMATIONS",
+        sm2_13_subtitle: "Master reflections, rotations, and translations on the coordinate plane.",
         sm3_01_title: "SM3.01 // QUADRATIC EQUATIONS",
         sm3_01_subtitle: "Solve quadratic equations by factoring, formula, and completing the square.",
         sm3_02_title: "SM3.02 // TRIGONOMETRY ARRAY",

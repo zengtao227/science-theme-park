@@ -88,6 +88,8 @@ export const cnCommon = {
         sm2_11_subtitle: "探索等差数列、等比数列及其求和。",
         sm2_12_title: "SM2.12 // 组合数学",
         sm2_12_subtitle: "掌握排列、组合和概率应用。",
+        sm2_13_title: "SM2.13 // 几何变换",
+        sm2_13_subtitle: "在坐标平面上掌握轴对称（反射）、旋转与平移。",
         sm2_03_title: "SM2.03 // 直线与函数",
         sm2_03_subtitle: "训练斜率、截距、图像匹配与交点，并保持低输入负担。",
         sm2_04_title: "SM2.04 // 相似与比例",

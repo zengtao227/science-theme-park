@@ -88,6 +88,8 @@ export const deCommon = {
         sm2_11_subtitle: "Erkunden Sie arithmetische und geometrische Folgen und ihre Summen.",
         sm2_12_title: "SM2.12 // KOMBINATORIK",
         sm2_12_subtitle: "Meistern Sie Permutationen, Kombinationen und Wahrscheinlichkeitsanwendungen.",
+        sm2_13_title: "SM2.13 // GEOMETRISCHE TRANSFORMATIONEN",
+        sm2_13_subtitle: "Meistern Sie Spiegelungen, Drehungen und Verschiebungen in der Koordinatenebene.",
         sm2_03_title: "SM2.03 // GERADEN & FUNKTIONEN",
         sm2_03_subtitle: "Übe Steigung, Achsenabschnitt, Graph-Zuordnung und Schnittpunkte mit wenig Eingabe.",
         sm2_04_title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
