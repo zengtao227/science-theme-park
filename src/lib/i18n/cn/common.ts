@@ -21,6 +21,9 @@ export const cnCommon = {
         mastery_speed: "速度",
         mastery_rigor: "严谨",
         mastery_decay: "衰减",
+        mastery: "正确率",
+        attempts: "尝试次数",
+        failed_attempts: "失败尝试",
         achievements_title: "成就",
         achievement_unlocked: "成就解锁",
         achievements: {

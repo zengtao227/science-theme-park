@@ -5,7 +5,638 @@
  */
 
 export const cnPhysics = {
-    // --- 全球物理模块 (保留自原始 GP 系列) ---
+
+
+    /* SP1.01_DATA_START */
+    sp1_01: {
+        "back": "返回枢纽",
+        "title": "SP1.01 // 力学历险记：基础",
+        "difficulty": {
+            "basic": "基础",
+            "core": "核心",
+            "advanced": "进阶",
+            "elite": "精英"
+        },
+        "stages": {
+            "concepts": "概念",
+            "composition": "求和",
+            "equilibrium": "平衡状态"
+        },
+        "labels": {
+            "answer": "答案",
+            "value": "数值",
+            "select": "请选择选项",
+            "progress": "实验进度",
+            "previous": "上一项",
+            "skip": "跳过"
+        },
+        "check": "验证检测",
+        "next": "下一个任务",
+        "correct": "验证通过 - 系统稳定",
+        "incorrect": "验证失败 - 存在偏差",
+        "ready": "系统准备就绪",
+        "monitor_title": "静态力学监视器",
+        "SP1.01.034": {
+            "prompt": "三个力作用在物体上：100 N 在 0°，80 N 在 60°，60 N 在 150°。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 100 + 80cos(60°) + 60cos(150°) = 88.04 N，F_y = 80sin(60°) + 60sin(150°) = 99.28 N。F = 118.32 N",
+                "incorrect": "将所有力分解为 x 和 y 分量，求和，然后找到大小。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.035": {
+            "prompt": "巴塞尔有轨电车以 5000 N 的力制动。如果轨道向下倾斜 5°，制动力平行于轨道的分量是多少？",
+            "feedback": {
+                "correct": "正确！F_平行 = 5000 × cos(5°) = 4981.13 N",
+                "incorrect": "平行分量是 F × cos(θ)，其中 θ 是倾斜角。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.036": {
+            "prompt": "五个力作用在一点上：40 N 在 0°，30 N 在 72°，30 N 在 144°，30 N 在 216°，30 N 在 288°。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！四个 30 N 的力对称排列并相互抵消，只剩下 40 N 的力。",
+                "incorrect": "寻找力排列中的对称性。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.037": {
+            "prompt": "一个 200 N 的力以水平方向上方 30° 作用，另一个 150 N 的力以水平方向下方 45° 作用。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 200cos(30°) + 150cos(-45°) = 279.28 N，F_y = 200sin(30°) + 150sin(-45°) = -6.07 N。F = 199.25 N",
+                "incorrect": "记住水平方向下方的角度是负的。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.038": {
+            "prompt": "Mittlere Brücke 上的一根缆绳以与水平方向成 60° 的 50 kN 张力支撑负载。这个张力的垂直分量是多少？",
+            "feedback": {
+                "correct": "正确！F_y = 50 × sin(60°) = 43.30 kN",
+                "incorrect": "垂直分量是 F × sin(θ)。"
+            },
+            "scenario_desc": "",
+            "unit": "kN"
+        },
+        "SP1.01.039": {
+            "prompt": "三个各为 100 N 的力分别作用在 0°、120° 和 240°。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！这三个相等的力以 120° 间隔对称排列，完全相互抵消。",
+                "incorrect": "三个相等的力以 120° 间隔形成平衡系统。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.040": {
+            "prompt": "一个 120 N 的力作用在 25°，另一个 80 N 的力作用在 155°。合力与水平方向成多少度角？",
+            "feedback": {
+                "correct": "正确！F_x = 120cos(25°) + 80cos(155°) = 36.29 N，F_y = 120sin(25°) + 80sin(155°) = 84.51 N。θ = arctan(84.51/36.29) = 52.13°",
+                "incorrect": "找到 x 和 y 分量，然后使用 arctan(F_y/F_x)。"
+            },
+            "scenario_desc": "",
+            "unit": "degrees"
+        },
+        "SP1.01.041": {
+            "prompt": "六个各为 20 N 的力分别作用在 0°、60°、120°、180°、240° 和 300°。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！六个相等的力以 60° 间隔形成完全平衡的系统，合力为零。",
+                "incorrect": "寻找对称性 - 围绕圆周以相等间隔排列的力相互抵消。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.024": {
+            "prompt": "两个力作用在物体上：30 N 向右和 40 N 向上。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(30² + 40²) = 50 N",
+                "incorrect": "对于垂直的力使用勾股定理。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.042": {
+            "prompt": "两个各为 50 N 的力相互垂直作用。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(50² + 50²) = 70.71 N",
+                "incorrect": "对于相等的垂直力，F = F₁√2"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.043": {
+            "prompt": "一个 20 N 的力向东作用，另一个 15 N 的力向北作用。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(20² + 15²) = 25 N",
+                "incorrect": "这是一个放大 5 倍的 3-4-5 三角形。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.044": {
+            "prompt": "两个力作用在同一方向：80 N 和 120 N。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！同方向的力相加：80 + 120 = 200 N",
+                "incorrect": "当力作用在同一方向时，只需将它们相加。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.045": {
+            "prompt": "两个力作用在相反方向：150 N 向右和 90 N 向左。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！相反方向的力相减：150 - 90 = 60 N",
+                "incorrect": "当力相互对抗时，从较大的力中减去较小的力。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.026": {
+            "prompt": "两个 60 N 和 80 N 的力相互垂直作用。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(60² + 80²) = 100 N",
+                "incorrect": "对于垂直的力使用勾股定理。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.027": {
+            "prompt": "一个 100 N 的力作用在 0°，另一个 100 N 的力作用在 90°。合力与水平方向成多少度角？",
+            "feedback": {
+                "correct": "正确！θ = arctan(100/100) = 45°",
+                "incorrect": "使用 θ = arctan(F_y/F_x) 来找到角度。"
+            },
+            "scenario_desc": "",
+            "unit": "degrees"
+        },
+        "SP1.01.028": {
+            "prompt": "三个力作用在物体上：20 N 向东，30 N 向北，10 N 向西。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！净水平力：20-10=10 N，垂直力：30 N。F = √(10² + 30²) = 31.62 N",
+                "incorrect": "首先找到每个方向的净力，然后使用勾股定理。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.029": {
+            "prompt": "两个大小相等的力相互成 60° 角作用。如果每个力是 50 N，合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！对于成 60° 角的相等力：F = 2F₁cos(30°) = 2(50)(0.866) = 86.60 N",
+                "incorrect": "使用平行四边形法则或分解为分量。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.030": {
+            "prompt": "一个 40 N 的力以水平方向上方 30° 作用，另一个 60 N 的力水平作用。合力的水平分量是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 40cos(30°) + 60 = 34.64 + 60 = 94.64 N",
+                "incorrect": "将两个力的水平分量相加。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.031": {
+            "prompt": "两个力作用在一点上：100 N 在 0° 和 100 N 在 120°。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 100 + 100cos(120°) = 50 N，F_y = 100sin(120°) = 86.6 N。F = √(50² + 86.6²) = 100 N",
+                "incorrect": "将每个力分解为分量，然后相加并找到大小。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.032": {
+            "prompt": "四个力作用在物体上：50 N 向北，30 N 向南，40 N 向东，20 N 向西。合力的大小是多少？",
+            "feedback": {
+                "correct": "正确！净力：20 N 向北，20 N 向东。F = √(20² + 20²) = 28.28 N",
+                "incorrect": "首先找到每个方向的净力。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.033": {
+            "prompt": "一个 80 N 的力作用在 45°，另一个 60 N 的力作用在 135°。合力的垂直分量是多少？",
+            "feedback": {
+                "correct": "正确！F_y = 80sin(45°) + 60sin(135°) = 56.57 + 42.43 = 98.99 N",
+                "incorrect": "将两个力的垂直分量相加。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.001": {
+            "prompt": "什么是力？",
+            "feedback": {
+                "correct": "正确！力是可以改变运动的推或拉。",
+                "incorrect": "不太对。想想当你推或拉某物时会发生什么。"
+            },
+            "options": [
+                { "id": "A", "text": "力是可以改变运动的推或拉。" },
+                { "id": "B", "text": "力是一种能量。" },
+                { "id": "C", "text": "力是一种速度。" },
+                { "id": "D", "text": "力是一种质量。" }
+            ],
+            "scenario_desc": "",
+            "unit": ""
+        },
+        "SP1.01.002": {
+            "prompt": "力的国际单位是什么？",
+            "feedback": {
+                "correct": "正确！牛顿（N）是力的国际单位。",
+                "incorrect": "力的国际单位是牛顿（N）。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.003": {
+            "prompt": "将 5000 N 转换为 kN。",
+            "feedback": {
+                "correct": "太好了！5000 N = 5 kN",
+                "incorrect": "记住：1 kN = 1000 N"
+            },
+            "scenario_desc": "",
+            "unit": "kN"
+        },
+        "SP1.01.004": {
+            "prompt": "将 2.5 MN 转换为 N。",
+            "feedback": {
+                "correct": "完美！2.5 MN = 2,500,000 N",
+                "incorrect": "记住：1 MN = 1,000,000 N"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.005": {
+            "prompt": "定义力的三个要素是什么？",
+            "feedback": {
+                "correct": "正确！力有大小、方向和作用点。",
+                "incorrect": "力由其大小、方向和作用点定义。"
+            },
+            "options": [
+                { "id": "A", "text": "大小、方向和作用点" },
+                { "id": "B", "text": "质量、加速度和速度" },
+                { "id": "C", "text": "时间、距离和位移" },
+                { "id": "D", "text": "能量、功和功率" }
+            ],
+            "scenario_desc": "",
+            "unit": ""
+        },
+        "SP1.01.006": {
+            "prompt": "一个 50 N 的力作用在物体上。这个力的大小是多少？",
+            "feedback": {
+                "correct": "正确！大小是 50 N。",
+                "incorrect": "大小是数值：50 N。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.007": {
+            "prompt": "将 750 kN 转换为 MN。",
+            "feedback": {
+                "correct": "太好了！750 kN = 0.75 MN",
+                "incorrect": "记住：1000 kN = 1 MN"
+            },
+            "scenario_desc": "",
+            "unit": "MN"
+        },
+        "SP1.01.008": {
+            "prompt": "一本书放在桌子上。如果书重 20 N，桌子的支持力大小是多少？",
+            "feedback": {
+                "correct": "正确！支持力等于重量：20 N。",
+                "incorrect": "桌子向上推的力与书的重量相同。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.009": {
+            "prompt": "将 0.025 MN 转换为 kN。",
+            "feedback": {
+                "correct": "太好了！0.025 MN = 25 kN",
+                "incorrect": "记住：1 MN = 1000 kN"
+            },
+            "scenario_desc": "",
+            "unit": "kN"
+        },
+        "SP1.01.010": {
+            "prompt": "你用 100 N 的力向右推一个箱子。力的方向是什么？",
+            "feedback": {
+                "correct": "正确！力指向右边。",
+                "incorrect": "方向是向右（水平方向 0 度）。"
+            },
+            "scenario_desc": "",
+            "unit": ""
+        },
+        "SP1.01.011": {
+            "prompt": "将 3500 N 转换为 kN。",
+            "feedback": {
+                "correct": "完美！3500 N = 3.5 kN",
+                "incorrect": "除以 1000 将 N 转换为 kN。"
+            },
+            "scenario_desc": "",
+            "unit": "kN"
+        },
+        "SP1.01.012": {
+            "prompt": "一个力垂直向上作用。它与水平方向成多少度角？",
+            "feedback": {
+                "correct": "正确！垂直向上与水平方向成 90 度。",
+                "incorrect": "垂直向上与水平方向垂直：90 度。"
+            },
+            "scenario_desc": "",
+            "unit": "degrees"
+        },
+        "SP1.01.013": {
+            "prompt": "将 1.2 MN 转换为 N。",
+            "feedback": {
+                "correct": "太好了！1.2 MN = 1,200,000 N",
+                "incorrect": "乘以 1,000,000 将 MN 转换为 N。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.014": {
+            "prompt": "两个人推一辆车。A 施加 200 N，B 施加 150 N，方向相同。总力是多少？",
+            "feedback": {
+                "correct": "正确！200 N + 150 N = 350 N",
+                "incorrect": "当力作用在同一方向时，将它们相加。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.015": {
+            "prompt": "将 450 kN 转换为 MN。",
+            "feedback": {
+                "correct": "太好了！450 kN = 0.45 MN",
+                "incorrect": "除以 1000 将 kN 转换为 MN。"
+            },
+            "scenario_desc": "",
+            "unit": "MN"
+        },
+        "SP1.01.016": {
+            "prompt": "一个 80 N 的力以水平方向上方 30° 的角度作用。这个力的水平分量是多少？",
+            "feedback": {
+                "correct": "正确！F_x = F × cos(30°) = 80 × 0.866 = 69.28 N",
+                "incorrect": "使用 F_x = F × cos(θ) 来找到水平分量。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.017": {
+            "prompt": "一个 80 N 的力以水平方向上方 30° 的角度作用。这个力的垂直分量是多少？",
+            "feedback": {
+                "correct": "正确！F_y = F × sin(30°) = 80 × 0.5 = 40 N",
+                "incorrect": "使用 F_y = F × sin(θ) 来找到垂直分量。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.018": {
+            "prompt": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(60² + 80²) = √10000 = 100 N",
+                "incorrect": "使用勾股定理：F = √(F_x² + F_y²)"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.019": {
+            "prompt": "一个力的分量为 F_x = 60 N 和 F_y = 80 N。它与水平方向成多少度角？",
+            "feedback": {
+                "correct": "正确！θ = arctan(80/60) = arctan(1.333) = 53.13°",
+                "incorrect": "使用 θ = arctan(F_y/F_x) 来找到角度。"
+            },
+            "scenario_desc": "",
+            "unit": "degrees"
+        },
+        "SP1.01.020": {
+            "prompt": "一个 50 N 的力以水平方向上方 45° 的角度作用。它的水平分量是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 50 × cos(45°) = 50 × 0.707 = 35.36 N",
+                "incorrect": "在 45° 时，cos(45°) = sin(45°) = 0.707"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.021": {
+            "prompt": "一个 50 N 的力以水平方向上方 45° 的角度作用。它的垂直分量是多少？",
+            "feedback": {
+                "correct": "正确！F_y = 50 × sin(45°) = 50 × 0.707 = 35.36 N",
+                "incorrect": "在 45° 时，水平和垂直分量相等。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.022": {
+            "prompt": "一个 100 N 的力以水平方向上方 60° 的角度作用。它的垂直分量是多少？",
+            "feedback": {
+                "correct": "正确！F_y = 100 × sin(60°) = 100 × 0.866 = 86.60 N",
+                "incorrect": "记住：sin(60°) = 0.866"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.023": {
+            "prompt": "一个 100 N 的力以水平方向上方 60° 的角度作用。它的水平分量是多少？",
+            "feedback": {
+                "correct": "正确！F_x = 100 × cos(60°) = 100 × 0.5 = 50 N",
+                "incorrect": "记住：cos(60°) = 0.5"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.049": {
+            "prompt": "四个力作用在处于平衡的点上：60 N 在 0°，40 N 在 90°，50 N 在 180°，以及一个未知的力。未知力的大小是多少？",
+            "feedback": {
+                "correct": "正确！净 x：60-50=10 N，净 y：40 N。未知力：√(10² + 40²) = 41.23 N",
+                "incorrect": "找到 x 和 y 方向的净力，然后计算平衡力。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.050": {
+            "prompt": "一个交通灯由两根缆绳悬挂：一根在 45° 张力为 T₁，另一根在 60° 张力为 150 N。如果系统处于平衡，T₁ 是多少？",
+            "feedback": {
+                "correct": "正确！对于水平平衡：T₁cos(45°) = 150cos(60°)，所以 T₁ = 150×0.5/0.707 = 183.71 N",
+                "incorrect": "使用水平平衡：水平分量必须平衡。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.051": {
+            "prompt": "巴塞尔大教堂塔楼受到风力作用。如果 2000 N 的风力水平作用，120° 的 1500 N 结构力和 240° 的 F 力维持平衡，F 是多少？",
+            "feedback": {
+                "correct": "正确！通过对称性和平衡分析，F = 1500 N",
+                "incorrect": "分别分析 x 和 y 分量以达到平衡。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.052": {
+            "prompt": "三个力维持平衡：100 N 在 30°，120 N 在 150°，F 在 270°。F 是多少？",
+            "feedback": {
+                "correct": "正确！y 分量之和：100sin(30°) + 120sin(150°) - F = 0，所以 F = 110 N",
+                "incorrect": "270° 的力纯粹作用在负 y 方向。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.053": {
+            "prompt": "一根梁由两根与垂直方向成 40° 和 50° 的缆绳支撑。如果梁重 500 N，40° 缆绳的张力是多少？",
+            "feedback": {
+                "correct": "正确！使用平衡方程：T₁ = 281.91 N",
+                "incorrect": "为水平和垂直分量建立平衡方程。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.054": {
+            "prompt": "四个力作用在一个环上：80 N 在 0°，60 N 在 90°，70 N 在 180°，F 在未知角度。如果系统处于平衡，F 是多少？",
+            "feedback": {
+                "correct": "正确！净 x：80-70=10 N，净 y：60 N。F = √(10² + 60²) = 60.83 N",
+                "incorrect": "找到已知力的合力，然后 F 的大小必须与之相等。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.055": {
+            "prompt": "一个重 300 N 的吊灯由三根以 120° 间隔的缆绳悬挂。每根缆绳的张力是多少？",
+            "feedback": {
+                "correct": "正确！根据对称性，每根缆绳承受 300/3 = 100 N",
+                "incorrect": "对于对称排列，负载均匀分布。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.025": {
+            "prompt": "三个力作用在处于平衡状态的物体上：50 N 向右，30 N 向上，以及一个未知的力。未知力的大小是多少？",
+            "feedback": {
+                "correct": "正确！未知力必须平衡其他两个力：√(50² + 30²) = 58.31 N",
+                "incorrect": "对于平衡，所有力的总和必须为零。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.046": {
+            "prompt": "两个各为 40 N 的力相互成 60° 角作用。达到平衡所需的第三个力的大小是多少？",
+            "feedback": {
+                "correct": "正确！两个力的合力是 69.28 N，所以平衡力必须大小相等方向相反。",
+                "incorrect": "首先找到两个力的合力，然后平衡力的大小与之相等。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.047": {
+            "prompt": "一个物体在三个力的作用下处于平衡：100 N 在 0°，80 N 在 90°，以及第三个力。第三个力的大小是多少？",
+            "feedback": {
+                "correct": "正确！F = √(100² + 80²) = 128.06 N",
+                "incorrect": "第三个力必须平衡前两个力的合力。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.048": {
+            "prompt": "一个标志牌由两根与水平方向成 30° 角的缆绳悬挂。如果每根缆绳的张力为 200 N，标志牌的重量是多少？",
+            "feedback": {
+                "correct": "正确！重量 = 2 × 200 × sin(30°) = 2 × 200 × 0.5 = 200 N",
+                "incorrect": "两根缆绳的垂直分量之和必须等于重量。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.056": {
+            "prompt": "巴塞尔马拉松跑者的脚以 2400 N 的力击地。地面反作用力与垂直方向成 15° 角。推动跑者前进的水平分量是多少？",
+            "feedback": {
+                "correct": "正确！F_水平 = 2400 × sin(15°) = 621.18 N",
+                "incorrect": "水平分量是 F × sin(θ)，其中 θ 是从垂直方向测量的。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.057": {
+            "prompt": "五个力作用在复杂结构上：200 N 在 36°，150 N 在 108°，180 N 在 180°，120 N 在 252°，F 在 324°。为了平衡，F 是多少？",
+            "feedback": {
+                "correct": "正确！通过分别分析 x 和 y 分量并求解平衡方程，F = 200 N",
+                "incorrect": "分别求和所有 x 分量和 y 分量，然后求解 F。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.058": {
+            "prompt": "一个悬挂平台由四根缆绳支撑。三根缆绳的张力为：400 N 在 30°，350 N 在 120°，380 N 在 210°。300° 的第四根缆绳的张力是多少？",
+            "feedback": {
+                "correct": "正确！求解平衡方程得到 T₄ = 350 N",
+                "incorrect": "建立两个平衡方程（x 和 y）并求解未知张力。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.059": {
+            "prompt": "一个桁架节点受力：500 N 压力在 0°，400 N 拉力在 60°，450 N 压力在 180°，以及两个未知力在 240° 和 300°。如果 240° 和 300° 的力相等，它们的大小是多少？",
+            "feedback": {
+                "correct": "正确！使用对称性和平衡方程，每个未知力是 200 N",
+                "incorrect": "利用两个未知力相等的事实来简化平衡方程。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.060": {
+            "prompt": "一个复杂的缆绳系统有六根缆绳在一点相交。五根缆绳的张力已知：300 N 在 0°，250 N 在 72°，280 N 在 144°，260 N 在 216°，270 N 在 288°。第六根缆绳在最佳平衡角度的张力是多少？",
+            "feedback": {
+                "correct": "正确！五个力的合力是 89.44 N，所以第六根缆绳必须提供这个力。",
+                "incorrect": "找到所有已知力的合力，然后第六根缆绳必须平衡它。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.061": {
+            "prompt": "一个桥梁支撑受到 3000 N 的水平风荷载，8000 N 的垂直恒载，以及三个支撑反力在 45°、135° 和 225°。如果 45° 和 225° 的反力相等，它们的大小是多少？",
+            "feedback": {
+                "correct": "正确！使用对称性的平衡方程，每个相等的反力是 4242.64 N",
+                "incorrect": "为 x 和 y 建立平衡方程，利用两个相等反力的对称性。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.062": {
+            "prompt": "巴塞尔的一个建筑雕塑有八根对称排列的支撑缆绳，间隔 45°。如果雕塑重 2400 N，每根缆绳的张力是多少？",
+            "feedback": {
+                "correct": "正确！根据对称性，每根缆绳承受 2400/8 = 300 N",
+                "incorrect": "对于对称排列，负载在所有缆绳之间均匀分布。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.063": {
+            "prompt": "一个起重机吊钩用四根链条支撑负载，角度分别为与水平方向成 20°、110°、200° 和 290°。如果三根链条的张力分别为 800 N、750 N 和 820 N，第四根链条的张力是多少？",
+            "feedback": {
+                "correct": "正确！求解平衡方程得到 T₄ = 750 N",
+                "incorrect": "计算所有已知力的 x 和 y 分量，然后求解未知量。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.064": {
+            "prompt": "一个空间框架节点有七个构件在 0°、51.43°、102.86°、154.29°、205.71°、257.14° 和 308.57° 角度相交。六个构件各有 500 N 的力。第七个构件必须承受多少力才能平衡？",
+            "feedback": {
+                "correct": "正确！根据对称性（7 个相等的角度），第七个构件也承受 500 N",
+                "incorrect": "寻找对称性 - 七个相等的力以相等的角度间隔形成平衡系统。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        },
+        "SP1.01.065": {
+            "prompt": "一个复杂的索具系统有力：600 N 在 15°，550 N 在 75°，580 N 在 135°，520 N 在 195°，590 N 在 255°，F 在 315°。平衡时 F 是多少？",
+            "feedback": {
+                "correct": "正确！综合平衡分析得到 F = 550 N",
+                "incorrect": "求和所有已知力的 x 分量和 y 分量，然后求解 F。"
+            },
+            "scenario_desc": "",
+            "unit": "N"
+        }
+    },
+    /* SP1.01_DATA_END */
+
+    // --- Global Physics Modules ---
     gp1_01: {
         back: "返回枢纽",
         title: "GP1.01 // 原子核核心",
@@ -161,6 +792,118 @@ export const cnPhysics = {
             first_law: "第一定律（惯性）",
             second_law: "第二定律（F=ma）",
             third_law: "第三定律（作用-反作用）"
+        },
+
+        prompts: {
+            "FIRST_LAW": {
+                "BASIC": [
+                    "Object at rest, no force applied. Will it move?",
+                    "Object moving at 5 m/s, no net force. What happens?",
+                    "Car at rest. Driver applies no force. Does it move?",
+                    "Ball rolling at 3 m/s on frictionless surface. Net force?",
+                    "Book on table. Is it in equilibrium?",
+                    "Puck sliding on ice at constant speed. Net force?",
+                    "Object at rest stays at rest unless acted upon by?"
+                ],
+                "CORE": [
+                    "Basel tram at 15 m/s. Brakes apply -3000 N. Mass 10000 kg. Final velocity after 5s?",
+                    "Fasnacht float at rest. Push with 500 N. Friction 500 N. Does it move?",
+                    "Rhine boat moving at 2 m/s. Engine off. Friction 100 N. Mass 500 kg. Time to stop?",
+                    "Object moving at 10 m/s. Net force 0 N. Velocity after 10s?",
+                    "Car at 20 m/s. Friction 2000 N. Mass 1000 kg. Deceleration?",
+                    "Tram at constant 12 m/s. Applied force equals friction. Net force?",
+                    "Puck on ice at 5 m/s. No friction. Velocity after 20s?",
+                    "Basel bus at rest. Engine force 3000 N. Friction 3000 N. Acceleration?"
+                ],
+                "ADVANCED": [
+                    "Basel SBB train 50000 kg at 25 m/s. Brakes apply -10000 N. Distance to stop?",
+                    "Fasnacht parade float 2000 kg. Push 1000 N, friction 800 N. Acceleration?",
+                    "Rhine boat 1000 kg at 5 m/s. Water resistance 200 N. Time to reach 3 m/s?",
+                    "Tram 15000 kg at 20 m/s. Emergency brake -12000 N. Stopping distance?",
+                    "Object 500 kg moving at 8 m/s. Friction 100 N. Distance traveled before stopping?",
+                    "Car 1200 kg at 30 m/s. Brake force -4000 N. Time to stop?"
+                ],
+                "ELITE": [
+                    "Basel tram system: 3 trams, masses 10000, 12000, 15000 kg, all at 15 m/s. Total momentum?",
+                    "Fasnacht float 3000 kg at rest. Multiple pushes: 500 N, 300 N, -200 N. Net force?",
+                    "Rhine boat 2000 kg at 4 m/s. Engine thrust 1000 N, water resistance 800 N. Final velocity after 10s?"
+                ]
+            },
+            "SECOND_LAW": {
+                "BASIC": [
+                    "F=10 N, m=2 kg. Find a (m/s²)",
+                    "F=20 N, m=5 kg. Find a (m/s²)",
+                    "F=15 N, m=3 kg. Find a (m/s²)",
+                    "m=10 kg, a=2 m/s². Find F (N)",
+                    "m=5 kg, a=4 m/s². Find F (N)",
+                    "F=30 N, a=6 m/s². Find m (kg)",
+                    "F=40 N, a=8 m/s². Find m (kg)"
+                ],
+                "CORE": [
+                    "Basel tram 10000 kg accelerates at 1.5 m/s². Find F (N)",
+                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s²)",
+                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s²)",
+                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s²)",
+                    "Tram 12000 kg needs 2 m/s² acceleration. Find F (N)",
+                    "Car 1000 kg, net force 2000 N. Find a (m/s²)",
+                    "Basel bus 8000 kg accelerates at 1 m/s². Find F (N)",
+                    "Bicycle 80 kg, force 160 N. Find a (m/s²)",
+                    "Truck 5000 kg, acceleration 0.5 m/s². Find F (N)"
+                ],
+                "ADVANCED": [
+                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s²)",
+                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s²)",
+                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s²)",
+                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s²)",
+                    "Tram 15000 kg needs 1.8 m/s² with friction 2000 N. Find applied force (N)",
+                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s²)",
+                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s²)"
+                ],
+                "ELITE": [
+                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s². Total force?",
+                    "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
+                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s²)"
+                ]
+            },
+            "THIRD_LAW": {
+                "BASIC": [
+                    "You push wall with 50 N. Wall pushes back with how many N?",
+                    "Rocket exerts 1000 N on gas. Gas exerts how many N on rocket?",
+                    "Earth pulls you with 600 N. You pull Earth with how many N?",
+                    "Hammer hits nail with 200 N. Nail hits hammer with how many N?",
+                    "Action-reaction forces act on (same/different) objects?",
+                    "Action force 100 N east. Reaction force direction?"
+                ],
+                "CORE": [
+                    "Basel tram 10000 kg pushes track with 15000 N. Track pushes tram with how many N?",
+                    "Rhine boat propeller pushes water backward with 3000 N. Water pushes boat with how many N?",
+                    "Fasnacht float pushes ground with 20000 N. Ground pushes float with how many N?",
+                    "SBB train wheels push track with 50000 N. Track pushes wheels with how many N?",
+                    "Swimmer pushes water backward with 500 N. Water pushes swimmer forward with how many N?",
+                    "Car tire pushes road with 4000 N. Road pushes tire with how many N?",
+                    "Rocket pushes exhaust gas with 100000 N. Gas pushes rocket with how many N?",
+                    "Person pushes wall with 200 N. Wall pushes person with how many N?"
+                ],
+                "ADVANCED": [
+                    "Basel tram 10000 kg accelerates at 1.5 m/s². Force on track?",
+                    "Rhine boat 2000 kg accelerates at 2 m/s². Force on water?",
+                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s². Force on ground?",
+                    "SBB train 50000 kg decelerates at -0.2 m/s². Force on track?",
+                    "Rocket 5000 kg accelerates at 10 m/s². Force on exhaust gas?",
+                    "Car 1200 kg accelerates at 3 m/s². Force on road?",
+                    "Basel bus 8000 kg accelerates at 1 m/s². Force on road?"
+                ],
+                "ELITE": [
+                    "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
+                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s². Water mass pushed?",
+                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s². Friction force?",
+                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s². Verify F=ma?"
+                ]
+            }
+        },
+        labels: {
+            "ans": "答案",
+            "placeholder": "在此输入"
         },
         scenarios: {
             first_law: "巴塞尔狂欢节游行花车运动：在巴塞尔著名的Fasnacht狂欢节期间，在Marktplatz，精心装饰的游行花车展示了牛顿第一惯性定律。一个质量为3,000公斤的巨大花车在游行开始前静止不动。尽管外观色彩缤纷，它顽固地抵抗运动——除非受到外力作用，否则它将保持静止。当游行参与者以2,000牛顿推动而摩擦力以500牛顿反对时，净1,500牛顿力克服惯性并以0.5米/秒²加速花车。一旦以恒定速度沿游行路线移动，如果推动者保持与摩擦力相等的力，花车将以稳定速度继续前进——证明当净力为零时，运动中的物体以恒定速度保持运动。",

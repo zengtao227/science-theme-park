@@ -21,6 +21,9 @@ export const deCommon = {
         mastery_speed: "Tempo",
         mastery_rigor: "Strenge",
         mastery_decay: "Abbau",
+        mastery: "Meisterschaft",
+        attempts: "Versuche",
+        failed_attempts: "Versuche",
         achievements_title: "Errungenschaften",
         achievement_unlocked: "Errungenschaft freigeschaltet",
         achievements: {

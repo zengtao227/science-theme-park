@@ -21,6 +21,9 @@ export const enCommon = {
         mastery_speed: "Speed",
         mastery_rigor: "Rigor",
         mastery_decay: "Decay",
+        mastery: "Mastery",
+        attempts: "Attempts",
+        failed_attempts: "Attempts",
         achievements_title: "Achievements",
         achievement_unlocked: "Achievement Unlocked",
         achievements: {

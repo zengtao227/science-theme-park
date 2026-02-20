@@ -48,7 +48,17 @@ export function useQuestManager<T extends Quest, S extends string>({
     const storageKey = "quest_manager_stats_v1";
     const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
     const [stage, setStage] = useState<S>(initialStage);
-    const [nonce, setNonce] = useState(0);
+    const [nonce, setNonce] = useState(() => {
+        if (typeof window === "undefined") return 0;
+        try {
+            const key = `quest_manager_nonce_${initialStage}_CORE`;
+            const saved = window.localStorage.getItem(key);
+            return saved ? parseInt(saved, 10) : 0;
+        } catch {
+            return 0;
+        }
+    });
+
     const [inputs, setInputs] = useState<Record<string, string>>({});
     const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
     const [stageStats, setStageStats] = useState<Record<string, StageStats>>(() => {
@@ -60,6 +70,25 @@ export function useQuestManager<T extends Quest, S extends string>({
             return {};
         }
     });
+
+    // Load nonce when stage or difficulty changes
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const key = `quest_manager_nonce_${stage}_${difficulty}`;
+        const saved = window.localStorage.getItem(key);
+        if (saved) {
+            setNonce(parseInt(saved, 10));
+        } else {
+            setNonce(0);
+        }
+    }, [stage, difficulty]);
+
+    // Persist nonce when it changes
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const key = `quest_manager_nonce_${stage}_${difficulty}`;
+        window.localStorage.setItem(key, nonce.toString());
+    }, [nonce, stage, difficulty]);
     const [errorCounts, setErrorCounts] = useState<Record<string, number>>({});
 
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
@@ -81,6 +110,21 @@ export function useQuestManager<T extends Quest, S extends string>({
         setLastCheck(null);
     }, []);
 
+    const previous = useCallback(() => {
+        if (nonce > 0) {
+            clearInputs();
+            setNonce((v) => v - 1);
+            if (currentQuest) {
+                const questKey = `${stage}:${currentQuest.id}`;
+                setErrorCounts((prev) => {
+                    const nextMap = { ...prev };
+                    delete nextMap[questKey];
+                    return nextMap;
+                });
+            }
+        }
+    }, [clearInputs, currentQuest, stage, nonce]);
+
     const next = useCallback(() => {
         clearInputs();
         setNonce((v) => v + 1);
@@ -93,6 +137,11 @@ export function useQuestManager<T extends Quest, S extends string>({
             });
         }
     }, [clearInputs, currentQuest, stage]);
+
+    const canPrevious = nonce > 0;
+    const canNext = pool.length > 0 && nonce < pool.length - 1;
+    const progress = pool.length > 0 ? Math.min((nonce / pool.length) * 100, 100) : 0;
+
 
     const parseNumberLike = useCallback((s: string) => {
         const raw = s.trim();
@@ -164,7 +213,7 @@ export function useQuestManager<T extends Quest, S extends string>({
             });
             setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
             // Enhanced error message for empty inputs
-            const errorMessage = emptySlots.length > 0 
+            const errorMessage = emptySlots.length > 0
                 ? `${currentQuest.correctLatex} \\text{ (Empty: ${emptySlots.join(', ')})}`
                 : currentQuest.correctLatex;
             setLastCheck({ ok: false, correct: errorMessage });
@@ -249,14 +298,12 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
         setDifficulty(d);
-        setNonce(0);
         clearInputs();
         setErrorCounts({});
     }, [clearInputs]);
 
     const handleStageChange = useCallback((s: S) => {
         setStage(s);
-        setNonce(0);
         clearInputs();
         setErrorCounts({});
     }, [clearInputs]);
@@ -289,13 +336,13 @@ export function useQuestManager<T extends Quest, S extends string>({
         const questKey = `${stage}:${currentQuest.id}`;
         const errors = errorCounts[questKey] ?? 0;
         if (errors <= 0) return null;
-        
+
         // Progressive hint system: provide increasingly specific hints
         if (currentQuest.hintLatex && currentQuest.hintLatex.length > 0) {
             const idx = Math.min(errors - 1, currentQuest.hintLatex.length - 1);
             return currentQuest.hintLatex[idx];
         }
-        
+
         // Smart fallback hints based on error count
         if (errors === 1) {
             // First error: show target format
@@ -345,11 +392,15 @@ export function useQuestManager<T extends Quest, S extends string>({
         stageStats,
         currentStageStats,
         successRate,
+        progress,
+        canPrevious,
+        canNext,
         getHint,
         getCurrentErrorCount,
         setInputs,
         verify,
         next,
+        previous,
         handleDifficultyChange,
         handleStageChange,
         parseNumberLike,

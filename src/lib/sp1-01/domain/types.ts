@@ -183,6 +183,7 @@ export interface Quest {
   visualization?: VisualizationType;
   validation: ValidationConfig;
   feedback: FeedbackConfig;
+  options?: { id: string; text: MultiLangContent }[];
   prerequisites: string[]; // Quest IDs that must be completed first
 }
 

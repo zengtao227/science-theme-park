@@ -9,6 +9,32 @@
       "cn": "什么是力？",
       "de": "Was ist eine Kraft?"
     },
+    "options": [
+      {
+        "id": "A",
+        "text": {
+          "en": "A push or pull that can change an object's motion"
+        }
+      },
+      {
+        "id": "B",
+        "text": {
+          "en": "A form of energy"
+        }
+      },
+      {
+        "id": "C",
+        "text": {
+          "en": "A type of speed"
+        }
+      },
+      {
+        "id": "D",
+        "text": {
+          "en": "A measure of mass"
+        }
+      }
+    ],
     "validation": {
       "type": "exact",
       "correctAnswer": {
@@ -58,7 +84,9 @@
         "de": "Die SI-Einheit der Kraft ist das Newton (N)."
       }
     },
-    "prerequisites": ["SP1.01.001"]
+    "prerequisites": [
+      "SP1.01.001"
+    ]
   },
   {
     "id": "SP1.01.003",
@@ -91,7 +119,9 @@
         "de": "Denken Sie daran: 1 kN = 1000 N"
       }
     },
-    "prerequisites": ["SP1.01.002"]
+    "prerequisites": [
+      "SP1.01.002"
+    ]
   },
   {
     "id": "SP1.01.004",
@@ -124,7 +154,9 @@
         "de": "Denken Sie daran: 1 MN = 1.000.000 N"
       }
     },
-    "prerequisites": ["SP1.01.003"]
+    "prerequisites": [
+      "SP1.01.003"
+    ]
   },
   {
     "id": "SP1.01.005",
@@ -136,6 +168,32 @@
       "cn": "定义力的三个要素是什么？",
       "de": "Was sind die drei Elemente, die eine Kraft definieren?"
     },
+    "options": [
+      {
+        "id": "A",
+        "text": {
+          "en": "Magnitude, direction, and point of application"
+        }
+      },
+      {
+        "id": "B",
+        "text": {
+          "en": "Mass, acceleration, and velocity"
+        }
+      },
+      {
+        "id": "C",
+        "text": {
+          "en": "Time, distance, and displacement"
+        }
+      },
+      {
+        "id": "D",
+        "text": {
+          "en": "Energy, work, and power"
+        }
+      }
+    ],
     "validation": {
       "type": "exact",
       "correctAnswer": {
@@ -154,7 +212,9 @@
         "de": "Eine Kraft wird durch ihren Betrag, ihre Richtung und ihren Angriffspunkt definiert."
       }
     },
-    "prerequisites": ["SP1.01.002"]
+    "prerequisites": [
+      "SP1.01.002"
+    ]
   },
   {
     "id": "SP1.01.006",
@@ -187,7 +247,9 @@
         "de": "Der Betrag ist der numerische Wert: 50 N."
       }
     },
-    "prerequisites": ["SP1.01.005"]
+    "prerequisites": [
+      "SP1.01.005"
+    ]
   },
   {
     "id": "SP1.01.007",
@@ -220,7 +282,9 @@
         "de": "Denken Sie daran: 1000 kN = 1 MN"
       }
     },
-    "prerequisites": ["SP1.01.004"]
+    "prerequisites": [
+      "SP1.01.004"
+    ]
   },
   {
     "id": "SP1.01.008",
@@ -253,7 +317,9 @@
         "de": "Der Tisch drückt mit der gleichen Kraft nach oben wie das Gewicht des Buches."
       }
     },
-    "prerequisites": ["SP1.01.006"]
+    "prerequisites": [
+      "SP1.01.006"
+    ]
   },
   {
     "id": "SP1.01.009",
@@ -286,7 +352,9 @@
         "de": "Denken Sie daran: 1 MN = 1000 kN"
       }
     },
-    "prerequisites": ["SP1.01.007"]
+    "prerequisites": [
+      "SP1.01.007"
+    ]
   },
   {
     "id": "SP1.01.010",
@@ -316,7 +384,9 @@
         "de": "Die Richtung ist nach rechts (0 Grad von der Horizontalen)."
       }
     },
-    "prerequisites": ["SP1.01.005"]
+    "prerequisites": [
+      "SP1.01.005"
+    ]
   },
   {
     "id": "SP1.01.011",
@@ -349,7 +419,9 @@
         "de": "Teilen Sie durch 1000, um N in kN umzuwandeln."
       }
     },
-    "prerequisites": ["SP1.01.009"]
+    "prerequisites": [
+      "SP1.01.009"
+    ]
   },
   {
     "id": "SP1.01.012",
@@ -381,7 +453,9 @@
         "de": "Vertikal nach oben ist senkrecht zur Horizontalen: 90 Grad."
       }
     },
-    "prerequisites": ["SP1.01.010"]
+    "prerequisites": [
+      "SP1.01.010"
+    ]
   },
   {
     "id": "SP1.01.013",
@@ -414,7 +488,9 @@
         "de": "Multiplizieren Sie mit 1.000.000, um MN in N umzuwandeln."
       }
     },
-    "prerequisites": ["SP1.01.011"]
+    "prerequisites": [
+      "SP1.01.011"
+    ]
   },
   {
     "id": "SP1.01.014",
@@ -447,7 +523,9 @@
         "de": "Addieren Sie die Kräfte, wenn sie in die gleiche Richtung wirken."
       }
     },
-    "prerequisites": ["SP1.01.008"]
+    "prerequisites": [
+      "SP1.01.008"
+    ]
   },
   {
     "id": "SP1.01.015",
@@ -480,6 +558,8 @@
         "de": "Teilen Sie durch 1000, um kN in MN umzuwandeln."
       }
     },
-    "prerequisites": ["SP1.01.013"]
+    "prerequisites": [
+      "SP1.01.013"
+    ]
   }
 ]
