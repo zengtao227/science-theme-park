@@ -77,10 +77,12 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
     return `${coeff}${variable}`;
   };
 
+  const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+
   if (stage === "ARCHITECT") {
     return Array.from({ length: poolSize }).map((_, i) => {
       if (isBasic) {
-        const vb = (i % 8) + 2;
+        const vb = randInt(2, 12);
         return {
           id: `ARCH_B_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb,
           formula: `(x + ${vb})^2`, promptLatex: t.scenarios.architect_mission,
@@ -93,7 +95,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           correctLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
         };
       } else if (isCore) {
-        const ca = (i % 4) + 2; const vb = (i % 5) + 3;
+        const ca = randInt(2, 6); const vb = randInt(3, 9);
         return {
           id: `ARCH_C_${i}`, difficulty, stage, type: "EXPAND", ca, vb,
           formula: `(${ca}x + ${vb})^2`, promptLatex: t.scenarios.architect_mission,
@@ -106,7 +108,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           correctLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
         };
       } else if (isAdvanced) {
-        const vb = (i % 10) + 2;
+        const vb = randInt(4, 15);
         return {
           id: `ARCH_A_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb, isFactor: true,
           formula: `x^2 + ${2 * vb}x + ${vb ** 2}`, promptLatex: t.scenarios.architect_advanced_prompt,
@@ -121,7 +123,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           correctLatex: `x^2 + ${2 * vb}x + ${vb ** 2} = (x + ${vb})^2`,
         };
       } else {
-        const ca = (i % 4) + 2; const vb = (i % 6) + 3; const aTerm = `${ca}x`; const bTerm = `${vb}y`;
+        const ca = randInt(2, 8); const vb = randInt(3, 11); const aTerm = `${ca}x`; const bTerm = `${vb}y`;
         return {
           id: `ARCH_E_${i}`, difficulty, stage, type: "EXPAND", ca, vb, isFactor: true,
           formula: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`, promptLatex: t.scenarios.architect_elite_prompt,
@@ -143,14 +145,14 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
     return Array.from({ length: poolSize }).map((_, i) => {
       let ca, vb, vA = "x", vB = "";
       let variant: "X" | "XY" = "X";
-      if (isBasic) { ca = 1; vb = (i % 6) + 2; }
-      else if (isCore) { ca = (i % 5) + 2; vb = (i % 5) + 2; }
-      else if (isAdvanced) { ca = (i % 4) + 2; vb = (i % 4) + 3; vB = "y"; variant = "XY"; }
-      else { ca = ((i % 4) + 3) * 2; vb = (i % 4) + 2; vA = "x²"; vB = i % 2 === 0 ? "y²" : ""; variant = vB ? "XY" : "X"; }
+      if (isBasic) { ca = 1; vb = randInt(2, 9); }
+      else if (isCore) { ca = randInt(2, 7); vb = randInt(2, 7); }
+      else if (isAdvanced) { ca = randInt(2, 8); vb = randInt(3, 8); vB = "y"; variant = "XY"; }
+      else { ca = randInt(3, 9); vb = randInt(2, 8); vA = "x^2"; vB = Math.random() > 0.5 ? "y^2" : ""; variant = vB ? "XY" : "X"; }
 
       const aTerm = getFullTerm(ca, vA);
       const bTerm = vB ? getFullTerm(vb, vB) : vb.toString();
-      const expr = `${ca ** 2}${vA === "x^2" ? "x^4" : "x^2"} + ${2 * ca * vb}${vA}${vB} + ${vb ** 2}${vB === "y" ? "y^2" : (vB === "y^2" ? "y^4" : "")}`;
+      const expr = `${ca ** 2}${vA === "x^2" ? "x^4" : "x^2"} + ${2 * ca * vb}${vA.replace('^2', '')}${vB.replace('^2', '')} + ${vb ** 2}${vB === "y" ? "y^2" : (vB === "y^2" ? "y^4" : "")}`;
 
       return {
         id: `SCRAP_${difficulty}_${i}`, difficulty, stage, type: "SCRAPPER", ca, vb, variant, isFactor: true,
@@ -168,10 +170,32 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
   if (stage === "SPEEDSTER") {
     return Array.from({ length: poolSize }).map((_, i) => {
       let val, rb, off, sn: "+" | "-" = "+";
-      if (isBasic) { val = [11, 12, 15, 21][i % 4]; rb = val < 20 ? 10 : 20; off = val - rb; }
-      else if (isCore) { val = [49, 51, 99, 101][i % 4]; rb = val < 90 ? 50 : 100; off = Math.abs(val - rb); sn = val < rb ? "-" : "+"; }
-      else if (isAdvanced) { val = [103, 98, 43, 197][i % 4]; rb = Math.round(val / 10) * 10; off = Math.abs(val - rb); sn = val < rb ? "-" : "+"; }
-      else { val = [5.1, 10.2, 4.9, 2.1][i % 4]; rb = Math.round(val); off = parseFloat(Math.abs(val - rb).toFixed(1)); sn = val < rb ? "-" : "+"; }
+      if (isBasic) {
+        const bases = [10, 20, 30];
+        rb = bases[randInt(0, 2)];
+        off = randInt(1, 3);
+        val = rb + off;
+        sn = "+";
+      } else if (isCore) {
+        const bases = [50, 100];
+        rb = bases[randInt(0, 1)];
+        off = randInt(1, 3);
+        sn = Math.random() > 0.5 ? "+" : "-";
+        val = sn === "+" ? rb + off : rb - off;
+      } else if (isAdvanced) {
+        const bases = [200, 300, 400, 500];
+        rb = bases[randInt(0, 3)];
+        off = randInt(1, 4);
+        sn = Math.random() > 0.5 ? "+" : "-";
+        val = sn === "+" ? rb + off : rb - off;
+      } else {
+        const bases = [5, 10, 20];
+        rb = bases[randInt(0, 2)];
+        const dec = randInt(1, 4) / 10;
+        off = dec;
+        sn = Math.random() > 0.5 ? "+" : "-";
+        val = sn === "+" ? rb + off : rb - off;
+      }
 
       const mid = (sn === "-" ? -1 : 1) * 2 * rb * off;
       return {
@@ -193,10 +217,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
   if (stage === "ELITE") {
     return Array.from({ length: poolSize }).map((_, i) => {
       let C, V, vA = "xy";
-      if (isBasic) { C = 1; V = (i % 5) + 2; }
-      else if (isCore) { C = (i % 3) + 2; V = (i % 4) + 4; }
-      else if (isAdvanced) { C = (i % 4) + 4; V = (i % 5) + 10; }
-      else { C = (i % 3) + 10; V = (i % 3) + 20; vA = "xyz"; }
+      if (isBasic) { C = 1; V = randInt(3, 8); }
+      else if (isCore) { C = randInt(2, 5); V = randInt(4, 9); }
+      else if (isAdvanced) { C = randInt(4, 8); V = randInt(8, 15); }
+      else { C = randInt(8, 15); V = randInt(12, 25); vA = "xyz"; }
 
       const aTerm = getFullTerm(C, vA);
       return {
@@ -218,10 +242,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
   if (stage === "VOYAGER") {
     return Array.from({ length: poolSize }).map((_, i) => {
       let ca, vb, vB = "";
-      if (isBasic) { ca = 1; vb = (i % 8) + 2; }
-      else if (isCore) { ca = (i % 5) + 2; vb = (i % 5) + 5; }
-      else if (isAdvanced) { ca = (i % 6) + 3; vb = (i % 6) + 10; }
-      else { ca = (i % 5) + 10; vb = (i % 5) + 15; vB = "y"; }
+      if (isBasic) { ca = 1; vb = randInt(3, 12); }
+      else if (isCore) { ca = randInt(2, 6); vb = randInt(4, 11); }
+      else if (isAdvanced) { ca = randInt(3, 9); vb = randInt(6, 15); }
+      else { ca = randInt(6, 14); vb = randInt(10, 20); vB = "y"; }
 
       const aT = getFullTerm(ca, "x"); const bT = vB ? getFullTerm(vb, vB) : vb.toString();
       const isFact = isAdvanced || isElite;
@@ -367,10 +391,10 @@ export default function S201Page() {
     handleStageChange,
     verify,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S201Quest, QuestMode>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S201Quest, QuestMode>({
     moduleCode: "sm2-01",
     buildPool,
     initialStage: questMode,
