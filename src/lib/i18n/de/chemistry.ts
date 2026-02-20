@@ -1574,5 +1574,24 @@ export const deChemistry = {
             current_equation: "Aktuelle Reaktion"
         },
         loading: "Thermodynamik-Kern wird initialisiert..."
+    },
+
+    // SC1.07: Sustainability & Recycling
+    sc1_07: {
+        title: "SC1.07 // NACHHALTIGKEIT & RECYCLING",
+        back: "Zurück",
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        stages: {
+            recycling: "RECYCLING",
+            green_chemistry: "GRÜNE CHEMIE",
+            circular_economy: "KREISLAUFWIRTSCHAFT"
+        },
+        footer_left: "SC1.07_NACHHALTIGKEIT // KNOTEN: BASEL",
+        check: "Verifizieren",
+        next: "Nächste Herausforderung",
+        correct: "Nachhaltigkeitsdaten verifiziert",
+        incorrect: "Parameter prüfen",
+        labels: { mission_objective: "ÖKOBILANZ", terminal_input: "ÖKO-EINGABE", hint: "HINWEIS" },
+        prompts: {}
     }
 };

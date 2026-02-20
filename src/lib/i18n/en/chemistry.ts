@@ -1607,5 +1607,24 @@ export const enChemistry = {
             description: "Visual representation of enthalpy changes",
             current_equation: "Current Reaction"
         }
+    },
+
+    // SC1.07: Sustainability & Recycling (Requested per Basel Curriculum)
+    sc1_07: {
+        title: "SC1.07 // Sustainability & Recycling",
+        back: "Back",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        stages: {
+            recycling: "RECYCLING",
+            green_chemistry: "GREEN CHEMISTRY",
+            circular_economy: "CIRCULAR ECONOMY"
+        },
+        footer_left: "SC1.07_SUSTAINABILITY // NODE: BASEL",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Sustainable Method Verified",
+        incorrect: "Check lifecycle data",
+        labels: { mission_objective: "LIFECYCLE ANALYSIS", terminal_input: "ECOLOGICAL INPUT", hint: "HINT" },
+        prompts: {}
     }
 };

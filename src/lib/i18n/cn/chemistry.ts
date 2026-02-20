@@ -1595,5 +1595,24 @@ export const cnChemistry = {
             description: "焓变的可视化表示",
             current_equation: "当前反应"
         }
+    },
+
+    // SC1.07: Sustainability & Recycling (Requested per Basel Curriculum)
+    sc1_07: {
+        title: "SC1.07 // 可持续性与回收",
+        back: "返回",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        stages: {
+            recycling: "回收利用",
+            green_chemistry: "绿色化学",
+            circular_economy: "循环经济"
+        },
+        footer_left: "SC1.07_可持续性 // 节点：巴塞尔",
+        check: "验证",
+        next: "下一挑战",
+        correct: "可持续方法已验证",
+        incorrect: "检查生命周期数据",
+        labels: { mission_objective: "生命周期分析", terminal_input: "生态输入", hint: "提示" },
+        prompts: {}
     }
 };

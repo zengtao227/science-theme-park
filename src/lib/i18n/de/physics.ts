@@ -1863,4 +1863,42 @@ export const dePhysics = {
                 monitor_title: "GP3.03_INDUKTION_MONITOR",
                 footer_left: "GP3.03_INDUKTION // KNOTEN: BASEL"
         },
+
+        // SP1.03: Weather & Climate
+        sp1_03: {
+                title: "SP1.03 // WETTER & KLIMA",
+                back: "Zurück",
+                difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                stages: {
+                        atmosphere: "ATMOSPHÄRE",
+                        weather: "WETTERPHÄNOMENE",
+                        climate: "KLIMASYSTEM"
+                },
+                footer_left: "SP1.03_METEOROLOGIE // KNOTEN: BASEL",
+                check: "Verifizieren",
+                next: "Nächste Herausforderung",
+                correct: "Daten verifiziert",
+                incorrect: "Parameter prüfen",
+                labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS" },
+                prompts: {}
+        },
+
+        // SP1.04: Astronomy Basics
+        sp1_04: {
+                title: "SP1.04 // ASTRONOMIE GRUNDLAGEN",
+                back: "Zurück",
+                difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                stages: {
+                        solar_system: "SONNENSYSTEM",
+                        moon_phases: "MONDPHASEN",
+                        seasons: "JAHRESZEITEN"
+                },
+                footer_left: "SP1.04_ASTROPHYSIK // KNOTEN: BASEL",
+                check: "Verifizieren",
+                next: "Nächste Herausforderung",
+                correct: "Koordinaten bestätigt",
+                incorrect: "Orbit-Anomalie",
+                labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS" },
+                prompts: {}
+        }
 };

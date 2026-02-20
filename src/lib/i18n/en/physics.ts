@@ -1899,4 +1899,41 @@ export const enPhysics = {
                 monitor_title: "GP3.03_INDUCTION_MONITOR",
                 footer_left: "GP3.03_INDUCTION // NODE: BASEL"
         },
+        // SP1.03: Weather & Climate
+        sp1_03: {
+                title: "SP1.03 // Weather & Climate",
+                back: "Back",
+                difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+                stages: {
+                        atmosphere: "ATMOSPHERE",
+                        weather: "WEATHER",
+                        climate: "CLIMATE"
+                },
+                footer_left: "SP1.03_METEOROLOGY // NODE: BASEL",
+                check: "Verify",
+                next: "Next Challenge",
+                correct: "Data Validated",
+                incorrect: "Check parameters",
+                labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT" },
+                prompts: {}
+        },
+
+        // SP1.04: Astronomy Basics
+        sp1_04: {
+                title: "SP1.04 // Astronomy Basics",
+                back: "Back",
+                difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+                stages: {
+                        solar_system: "SOLAR SYSTEM",
+                        moon_phases: "MOON PHASES",
+                        seasons: "SEASONS"
+                },
+                footer_left: "SP1.04_ASTRONOMY // NODE: BASEL",
+                check: "Verify",
+                next: "Next Challenge",
+                correct: "Coordinates Validated",
+                incorrect: "Check orbital data",
+                labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT" },
+                prompts: {}
+        }
 };

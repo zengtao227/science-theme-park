@@ -80,12 +80,12 @@ The audit checks TWO dimensions:
 | | Akustik, Schall | SP3.06 (Acoustics) | ✅ Covered |
 | **NT (additional)** | Messung, SI-Einheiten | SP3.01 (Measurement & Units) | ✅ Covered |
 | | Navigation, Vektoren | SP3.07 (Navigation & Vectors) | ✅ Covered |
-| | **Wetter & Klima (Atmosphäre)** | ❌ **MISSING** | ⚠️ Gap |
-| | **Astronomie (Sonnensystem, Planetenbewegung - Sek I level)** | Only at Gymnasium (GP3.03) | ⚠️ Partial |
+| | Wetter & Klima (Atmosphäre) | SP1.03 (Weather & Climate) | ✅ Covered |
+| | Astronomie (Sonnensystem, Planetenbewegung - Sek I level) | SP1.04 (Astronomy Basics) | ✅ Covered |
 
 **⚠️ Physics Gaps Found**:
-1. **Wetter und Klima**: LP21 NT expects basic understanding of weather phenomena and climate at Sek I level. No dedicated module exists.
-2. **Astronomie/Weltraum (Sek I)**: Only covered at Gymnasium level (GP3.03 Astrophysics). Missing a simpler Sek I introduction (phases of the moon, solar system basics, seasons).
+1. ~~**Wetter und Klima**~~: Addressed via SP1.03 (Weather & Climate).
+2. ~~**Astronomie/Weltraum (Sek I)**~~: Addressed via SP1.04 (Astronomy Basics).
 
 ---
 
@@ -103,9 +103,10 @@ The audit checks TWO dimensions:
 | | Löslichkeit | SC2.04 (Solubility Lab) | ✅ Covered |
 | | Organische Chemie | SC3.02–SC3.05 | ✅ Covered |
 | | Enthalpie/Thermochemie | SC2.07 (Enthalpy Lab) | ✅ Covered |
-| | **Nachhaltigkeit / Recycling / Ressourcenmgmt** | ❌ **MISSING** | ⚠️ Gap |
+| | Nachhaltigkeit / Recycling / Ressourcenmgmt | SC1.07 (Sustainability) | ✅ Covered |
 
-**⚠️ Chemistry Gap Found**: **Nachhaltigkeit und Ressourcen** — LP21 NT.3 emphasizes understanding sustainable use of materials and recycling. No dedicated module covers this. Could be integrated as a stage in SC2.06/SC3.04, or as a new module.
+**⚠️ Chemistry Gap Found**:
+~~**Nachhaltigkeit und Ressourcen**~~: Addressed via SC1.07 (Sustainability).
 
 ---
 

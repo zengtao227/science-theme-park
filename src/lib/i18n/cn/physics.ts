@@ -1902,4 +1902,41 @@ export const cnPhysics = {
         footer_left: "GP3.03_电磁感应 // 节点：巴塞尔"
     },
 
+    // SP1.03: Weather & Climate
+    sp1_03: {
+        title: "SP1.03 // 天气与气候",
+        back: "返回",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        stages: {
+            atmosphere: "大气层",
+            weather: "天气现象",
+            climate: "气候系统"
+        },
+        footer_left: "SP1.03_气象学 // 节点：巴塞尔",
+        check: "验证",
+        next: "下一挑战",
+        correct: "数据验证成功",
+        incorrect: "检查参数",
+        labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示" },
+        prompts: {}
+    },
+
+    // SP1.04: Astronomy Basics
+    sp1_04: {
+        title: "SP1.04 // 基础天文学",
+        back: "返回",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        stages: {
+            solar_system: "太阳系",
+            moon_phases: "月相与潮汐",
+            seasons: "四季交替"
+        },
+        footer_left: "SP1.04_天体物理 // 节点：巴塞尔",
+        check: "验证",
+        next: "下一挑战",
+        correct: "坐标系确认",
+        incorrect: "轨道数据异常",
+        labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示" },
+        prompts: {}
+    }
 };
