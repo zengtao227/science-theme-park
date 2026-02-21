@@ -15,6 +15,8 @@ interface Cube3DProps {
   translations?: {
     volume?: string;
     diagonal?: string;
+    side?: string;
+    unit?: string;
     instructions?: {
       rotate: string;
       zoom: string;
@@ -23,8 +25,9 @@ interface Cube3DProps {
   };
 }
 
-function CubeGeometry({ sideLength, showDiagonal }: Cube3DProps) {
+function CubeGeometry({ sideLength, showDiagonal, translations }: Cube3DProps) {
   const a = sideLength / 2;
+  const sideLabel = translations?.side || "a";
 
   return (
     <group>
@@ -53,7 +56,7 @@ function CubeGeometry({ sideLength, showDiagonal }: Cube3DProps) {
         anchorX="center"
         anchorY="middle"
       >
-        {sideLength}
+        {`${sideLabel} = ${sideLength}`}
       </Text>
 
       {/* 边长标签 - 右侧边 */}
@@ -106,12 +109,14 @@ export default function Cube3D({
   sideLength,
   showDiagonal = false,
   translations = {
-    volume: "立方体体积",
-    diagonal: "空间对角线",
+    volume: "Volume",
+    diagonal: "Space Diagonal",
+    side: "a",
+    unit: "cm",
     instructions: {
-      rotate: "拖动鼠标旋转立方体，查看所有边长",
-      zoom: "滚轮缩放视图",
-      reset: "重置到初始视角"
+      rotate: "Drag to rotate",
+      zoom: "Scroll to zoom",
+      reset: "Reset View"
     }
   }
 }: Cube3DProps) {
@@ -140,7 +145,7 @@ export default function Cube3D({
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
 
         {/* 立方体 */}
-        <CubeGeometry sideLength={sideLength} showDiagonal={showDiagonal} />
+        <CubeGeometry sideLength={sideLength} showDiagonal={showDiagonal} translations={translations} />
 
         {/* 控制器 - 不自动旋转 */}
         <OrbitControls
@@ -166,13 +171,13 @@ export default function Cube3D({
         <div className="text-white font-mono text-sm">
           <div className="text-neon-green mb-2">{translations.volume}</div>
           <div className="bg-white/5 p-2 rounded">
-            <InlineMath math={`V = a^3 = ${sideLength}^3 = ${sideLength ** 3}\\text{ cm}^3`} />
+            <InlineMath math={`V = ${translations.side || "a"}^3 = ${sideLength}^3 = ${sideLength ** 3}\\text{ ${translations.unit || "cm"}}^3`} />
           </div>
           {showDiagonal && (
             <div className="mt-2 text-neon-cyan">
               <div className="mb-1">{translations.diagonal}</div>
               <div className="bg-white/5 p-2 rounded">
-                <InlineMath math={`d = a\\sqrt{3} = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}\\text{ cm}`} />
+                <InlineMath math={`d = ${translations.side || "a"}\\sqrt{3} = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}\\text{ ${translations.unit || "cm"}}`} />
               </div>
             </div>
           )}

@@ -14,9 +14,26 @@ export interface AlgebraVisualProps {
         inputValue?: number; // For machine
         formula?: string; // For machine
     };
+    translations?: {
+        mixed_items: string;
+        combine_hint: string;
+        input: string;
+        output: string;
+        processing_core: string;
+    };
 }
 
-export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
+export default function AlgebraCanvas({
+    mode,
+    data,
+    translations = {
+        mixed_items: "Mixed Items",
+        combine_hint: "Combine like items",
+        input: "Input",
+        output: "Output",
+        processing_core: "Processing Core"
+    }
+}: AlgebraVisualProps) {
 
     // --- RENDERERS ---
 
@@ -51,7 +68,7 @@ export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
         // In a real app, this would use framer-motion for drag/drop animation
         return (
             <div className="flex flex-col items-center gap-8 w-full">
-                <div className="text-white/60 text-sm tracking-widest uppercase">Mixed Items (Marktplatz)</div>
+                <div className="text-white/60 text-sm tracking-widest uppercase">{translations.mixed_items}</div>
                 <div className="flex flex-wrap justify-center gap-4 bg-white/5 p-6 rounded-2xl w-full border border-white/10">
                     {data.items?.map((item, i) => (
                         <div
@@ -67,7 +84,7 @@ export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
                     ))}
                 </div>
                 <div className="text-white/40 text-xs italic">
-                    Combine items of the same color/type.
+                    {translations.combine_hint}
                 </div>
             </div>
         );
@@ -79,7 +96,7 @@ export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
                 {/* Input Funnel */}
                 <div className="flex flex-col items-center mb-[-10px] z-10">
                     <div className="bg-neon-blue px-4 py-2 rounded-full text-black font-bold shadow-[0_0_15px_#00f3ff]">
-                        Input: {data.inputValue}
+                        {translations.input}: {data.inputValue}
                     </div>
                     <div className="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[30px] border-t-neon-blue/50"></div>
                 </div>
@@ -87,7 +104,7 @@ export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
                 {/* Machine Box */}
                 <div className="w-64 h-48 bg-gray-900 border-2 border-white/20 rounded-2xl flex flex-col items-center justify-center shadow-2xl relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-                    <div className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-4">Processing Core</div>
+                    <div className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-4">{translations.processing_core}</div>
                     <div className="text-3xl font-black text-neon-green">
                         <InlineMath math={data.formula || "f(x)"} />
                     </div>
@@ -103,7 +120,7 @@ export default function AlgebraCanvas({ mode, data }: AlgebraVisualProps) {
                 <div className="flex flex-col items-center mt-[-10px] z-10">
                     <div className="w-12 h-8 bg-gray-800 border-x-2 border-white/20"></div>
                     <div className="bg-neon-purple px-6 py-3 rounded-lg border border-neon-purple text-white font-bold shadow-[0_0_20px_#a855f7]">
-                        Output: ?
+                        {translations.output}: ?
                     </div>
                 </div>
             </div>

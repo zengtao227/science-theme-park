@@ -403,11 +403,11 @@ Modules are classified by their quest density:
 
 ## 🛠️ Execution Strategy
 
-### Priority Focus (Next Sprint)
-1. **P1**: Create SM2.13 (Geom. Transformations) — fills the most critical curriculum gap
-2. **P1**: Math Quest Density Sprint — SM1.02, SM2.01, SM3.01, SM3.02, SM3.04
-3. **P2**: Physics/Chemistry Quest Density Sprint
 4. ~~**P3**: Secondary curriculum gaps (Weather, Astronomy, Sustainability)~~ ✅ (Implemented FE & Quests Feb 21)
+5. **P1 (NEW)**: Internationalization (i18n) & LaTeX Quality Sprint (Systematic Audit)
+    - **Step 1**: Text & Meta Audit (Left Side) - Module by module, ensure 100% translation & zero duplicate keys.
+    - **Step 2**: Visualization Audit (Right Side) - Canvas/SVG internal text localization.
+    - **Step 3**: LaTeX Formula Check - Standardize escapes (`\\`) and rendering.
 
 ### Quality Gates
 - ✅ TypeScript compilation with zero errors
@@ -424,9 +424,14 @@ Modules are classified by their quest density:
 - [x] Feb 21: Full Curriculum Audit completed ✅
 - [x] Feb 21: Fixed LaTeX rendering issues and implemented secondary gaps (SP1.03, SP1.04, SC1.07) ✅
 
+### February/March 2026 (Quality Sprint)
+- [ ] **Phase 6.0: Internationalization & LaTeX Systematic Audit**
+    - [ ] 6.0.1: Left-Side Metadata & Content (SM1.01-SM3.12, SP/SB/SC)
+    - [ ] 6.0.2: Right-Side Canvas/SVG Localization
+    - [ ] 6.0.3: LaTeX Formula Standardization Sprint
+
 ### March 2026
 - [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
-- [ ] Week 2-4: Phase 6.2.1–6.2.2 (Math Quest Sprint)
 
 ### April 2026
 - [ ] Phase 6.2.3–6.2.5 (Physics/Chemistry/Biology Quest Sprint)
@@ -439,6 +444,11 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v3.2 (2026-02-21)
+- **Quality Sprint Initiation**: Defined Phase 6.0 for systematic i18n and LaTeX formula rectification.
+- **Enhanced Localization Strategy**: Split work into "Left Side" (content/meta) and "Right Side" (visualizations/canvas) to ensure 100% coverage.
+- **Standardized Component**: Refactored `EquationBalance` (SM1.04) as a benchmark for multi-language SVG rendering.
 
 ### v3.1 (2026-02-21)
 - **LaTeX Rendering Hotfix**: Fixed double-escaped backslashes in math chambers (e.g., `\\text`).

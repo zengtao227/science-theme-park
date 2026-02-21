@@ -294,7 +294,11 @@ export default function SM103Page() {
             coefficient: t("sm1_02.labels.coefficient") || "Coefficient",
             variable: t("sm1_02.labels.variable") || "Variable",
             value: t("sm1_02.labels.value") || "Value",
-            output: t("sm1_02.labels.output") || "Output"
+            output: t("sm1_02.labels.output") || "Output",
+            input: t("sm1_02.labels.input") || "Input",
+            mixed_items: t("sm1_02.labels.mixed_items") || "Mixed Items",
+            combine_hint: t("sm1_02.labels.combine_hint") || "Combine like items",
+            processing_core: t("sm1_02.labels.processing_core") || "Processing Core"
         },
         objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",
         scenario_title: t("sm1_02.scenario_title") || "SCENARIO CONTEXT"
@@ -358,7 +362,16 @@ export default function SM103Page() {
             }}
             monitorContent={
                 <div className="w-full h-full flex items-center justify-center">
-                    <AlgebraCanvas {...visualProps} />
+                    <AlgebraCanvas
+                        {...visualProps}
+                        translations={{
+                            input: sm1_02_t.labels.input,
+                            output: sm1_02_t.labels.output,
+                            mixed_items: sm1_02_t.labels.mixed_items,
+                            combine_hint: sm1_02_t.labels.combine_hint,
+                            processing_core: sm1_02_t.labels.processing_core
+                        }}
+                    />
                 </div>
             }
         >
