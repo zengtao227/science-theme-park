@@ -116,7 +116,17 @@ export default function SM213Page() {
 
                                     <div className="space-y-6">
                                         <div className="text-xl md:text-2xl font-bold leading-tight text-white/90">
-                                            <InlineMath math={currentQuest.promptLatex} />
+                                            {(() => {
+                                                const latex = currentQuest.promptLatex || "";
+                                                if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                                                    const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                                                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
+                                                }
+                                                if (!latex.includes("\\\\") && !latex.includes("$") && !latex.includes("$")) {
+                                                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
+                                                }
+                                                return <InlineMath math={latex} />;
+                                            })()}
                                         </div>
 
                                         <div className="p-6 bg-white/[0.03] border border-white/10 rounded-2xl relative group overflow-hidden">

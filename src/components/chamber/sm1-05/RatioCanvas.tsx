@@ -7,11 +7,13 @@ export type RatioMode = "RECIPES" | "PERCENT" | "MIXTURES";
 
 interface RatioCanvasProps {
     mode: RatioMode;
-    quest?: any; // Avoiding strict type for flexibility during dev
+    quest?: any;
     language: "EN" | "CN" | "DE";
+    translations: any;
 }
 
-export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps) {
+export default function RatioCanvas({ mode, quest, language, translations }: RatioCanvasProps) {
+    const t = translations;
     // Use quest data or fallback to defaults
     const data = quest?.visualData || {};
 
@@ -27,16 +29,16 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
         let color = "#fbbf24"; // default amber
         let label = "Item";
 
-        if (ingredient === "flour" || ingredient === "sugar") { color = "#f5f5f5"; label = ingredient === "flour" ? "Flour" : "Sugar"; }
-        else if (ingredient === "eggs") { color = "#fbbf24"; label = "Eggs"; }
-        else if (ingredient === "milk") { color = "#bfdbfe"; label = "Milk"; }
-        else if (ingredient === "cocoa") { color = "#78350f"; label = "Cocoa"; }
+        if (ingredient === "flour" || ingredient === "sugar") { color = "#f5f5f5"; label = ingredient === "flour" ? t.labels.flour : t.labels.sugar; }
+        else if (ingredient === "eggs") { color = "#fbbf24"; label = t.labels.eggs; }
+        else if (ingredient === "milk") { color = "#bfdbfe"; label = t.labels.milk; }
+        else if (ingredient === "cocoa") { color = "#78350f"; label = t.labels.cocoa; }
 
         return (
             <div className="flex flex-col items-center justify-center h-full gap-8">
                 {/* Original Batch */}
                 <div className="flex flex-col items-center gap-2 p-4 border border-white/20 rounded-xl bg-white/5">
-                    <div className="text-xs uppercase tracking-widest text-white/50">Base Batch</div>
+                    <div className="text-xs uppercase tracking-widest text-white/50">{t.labels.base_batch}</div>
                     <div className="flex gap-2 flex-wrap justify-center max-w-[200px]">
                         {Array.from({ length: Math.min(baseAmount, 20) }).map((_, i) => (
                             <motion.div
@@ -55,7 +57,7 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
                 {/* Target Batch (Visualized as empty slots if strictly asking for result, or filled if showing relationship) */}
                 {/* For this canvas specific behavior: Show target batch as filled to visualize the concept */}
                 <div className="flex flex-col items-center gap-2 p-4 border-2 border-neon-cyan/50 rounded-xl bg-neon-cyan/5">
-                    <div className="text-xs uppercase tracking-widest text-neon-cyan/80">Target Batch</div>
+                    <div className="text-xs uppercase tracking-widest text-neon-cyan/80">{t.labels.target_batch}</div>
                     <div className="flex gap-2 flex-wrap justify-center max-w-[200px]">
                         {Array.from({ length: Math.min(targetAmount, 50) }).map((_, i) => (
                             <motion.div
@@ -120,7 +122,7 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
                     </motion.div>
                 </div>
 
-                <div className="text-white/50 text-sm tracking-widest mt-4 uppercase">{label} CAPACITY</div>
+                <div className="text-white/50 text-sm tracking-widest mt-4 uppercase">{label} {t.labels.capacity}</div>
             </div>
         );
     };
@@ -146,7 +148,7 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
                             style={{ backgroundColor: soluteColor }}
                         />
                     </div>
-                    <span className="text-xs text-white/60 mb-1">{data.soluteLabel || "Solute"}</span>
+                    <span className="text-xs text-white/60 mb-1">{t.labels.solute}</span>
                     <span className="font-mono text-xl text-white font-bold">{solute}ml</span>
                 </div>
 
@@ -161,7 +163,7 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
                             style={{ backgroundColor: solventColor }}
                         />
                     </div>
-                    <span className="text-xs text-white/60 mb-1">{data.solventLabel || "Solvent"}</span>
+                    <span className="text-xs text-white/60 mb-1">{t.labels.solvent}</span>
                     <span className="font-mono text-xl text-white font-bold">{solvent}ml</span>
                 </div>
 
@@ -188,7 +190,7 @@ export default function RatioCanvas({ mode, quest, language }: RatioCanvasProps)
                             <div className="absolute inset-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_70%)]" />
                         </div>
                     </div>
-                    <span className="text-xs text-neon-green mb-1">Concentration</span>
+                    <span className="text-xs text-neon-green mb-1">{t.labels.concentration}</span>
                     <span className="font-mono text-xl text-neon-green font-bold">
                         {data.hideResult ? "?" : `${solutePercent.toFixed(1)}%`}
                     </span>

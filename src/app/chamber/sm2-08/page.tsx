@@ -1151,10 +1151,10 @@ export default function SM208Page() {
     difficulty,
     handleDifficultyChange,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<ProbQuest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<ProbQuest, Stage>({
     moduleCode: "sm2-08",
     buildPool,
     initialStage: "BASIC_PROB",
@@ -1239,8 +1239,18 @@ export default function SM208Page() {
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
             {t("sm2_08.calculate_title")}
           </div>
-          <div className="text-3xl text-white font-black">
-            <InlineMath math={quest?.promptLatex || ""} />
+          <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
+            {(() => {
+              const latex = quest?.promptLatex || "";
+              if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
+              }
+              if (!latex.includes("\\\\") && !latex.includes("$")) {
+                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
+              }
+              return <InlineMath math={latex} />;
+            })()}
           </div>
         </div>
 

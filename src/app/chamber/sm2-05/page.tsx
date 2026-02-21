@@ -24,9 +24,9 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             // BASIC: Simple numeric multiplication and division
             quests.push({
                 id: "R1-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
-                expressionLatex: `2^{3} \\cdot 2^{2}`,
-                targetLatex: `2^x`,
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
+                expressionLatex: `2^{3} \\\\cdot 2^{2}`,
+                targetLatex: `2^{x}`,
                 visual: { mode: 'MULTIPLY', base: 2, m: 3, n: 2 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5 }],
                 correctLatex: `2^5`,
@@ -34,7 +34,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R2-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `3^6 \\div 3^{2}`,
                 targetLatex: `3^x`,
                 visual: { mode: 'DIVIDE', base: 3, m: 6, n: 2 },
@@ -44,7 +44,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R3-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `5^{4} \\cdot 5^{3}`,
                 targetLatex: `5^x`,
                 visual: { mode: 'MULTIPLY', base: 5, m: 4, n: 3 },
@@ -54,7 +54,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R4-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `7^8 \\div 7^5`,
                 targetLatex: `7^x`,
                 visual: { mode: 'DIVIDE', base: 7, m: 8, n: 5 },
@@ -64,7 +64,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R5-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(4^{2})^{3}`,
                 targetLatex: `4^x`,
                 visual: { mode: 'POWER', base: 4, m: 2, n: 3 },
@@ -76,7 +76,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             // CORE: Algebraic variables
             quests.push({
                 id: "R1-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `x^5 \\cdot x^{4}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'MULTIPLY', base: 'x', m: 5, n: 4 },
@@ -86,7 +86,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R2-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(z^{4})^{2}`,
                 targetLatex: `z^n`,
                 visual: { mode: 'POWER', base: 'z', m: 4, n: 2 },
@@ -96,7 +96,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R3-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `a^7 \\div a^{3}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'DIVIDE', base: 'a', m: 7, n: 3 },
@@ -106,7 +106,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R4-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(y^{3})^{4}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'POWER', base: 'y', m: 3, n: 4 },
@@ -116,7 +116,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R5-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `m^6 \\cdot m^{2}`,
                 targetLatex: `m^n`,
                 visual: { mode: 'MULTIPLY', base: 'm', m: 6, n: 2 },
@@ -128,7 +128,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             // ADVANCED: Combined rules
             quests.push({
                 id: "R1-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `a^{2} \\cdot (a^{3})^{2}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'POWER', base: 'a', m: 3, n: 2 },
@@ -138,7 +138,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R2-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(b^{4} \\cdot b^{2})^{3}`,
                 targetLatex: `b^n`,
                 visual: { mode: 'MULTIPLY', base: 'b', m: 4, n: 2 },
@@ -148,7 +148,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R3-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(x^5)^{2} \\div x^{3}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: 'x', m: 5, n: 2 },
@@ -158,7 +158,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R4-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `c^{3} \\cdot (c^{2})^{3} \\div c^{4}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'POWER', base: 'c', m: 2, n: 3 },
@@ -168,7 +168,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R5-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(d^{2})^{4} \\cdot d^{3}`,
                 targetLatex: `d^n`,
                 visual: { mode: 'POWER', base: 'd', m: 2, n: 4 },
@@ -180,7 +180,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             // ELITE: Coefficients and complex expressions
             quests.push({
                 id: "R1-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(2x^{3})^{2} \\div 4x^{2}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: '2x', m: 3, n: 2 },
@@ -190,7 +190,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R2-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(3a^{2})^{3} \\cdot 2a^{4}`,
                 targetLatex: `54a^n`,
                 visual: { mode: 'POWER', base: '3a', m: 2, n: 3 },
@@ -200,7 +200,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R3-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(5y^{4})^{2} \\div (5y^{2})`,
                 targetLatex: `5y^n`,
                 visual: { mode: 'POWER', base: '5y', m: 4, n: 2 },
@@ -210,7 +210,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R4-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(2m^{3})^{2} \\cdot (3m^{2})^{2}`,
                 targetLatex: `36m^n`,
                 visual: { mode: 'POWER', base: '2m', m: 3, n: 2 },
@@ -220,7 +220,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "R5-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.rules_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.rules_prompt_latex")}}`,
                 expressionLatex: `(4n^{2})^{3} \\div 8n^{3}`,
                 targetLatex: `8n^n`,
                 visual: { mode: 'POWER', base: '4n', m: 2, n: 3 },
@@ -236,7 +236,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         if (difficulty === "BASIC") {
             quests.push({
                 id: "N1-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `5^{-2}`,
                 targetLatex: `\\\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 5, m: 1, n: 2 },
@@ -246,7 +246,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N2-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `3^{-3}`,
                 targetLatex: `\\\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 3, m: 1, n: 3 },
@@ -256,7 +256,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N3-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `2^{-4}`,
                 targetLatex: `\\\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 2, m: 1, n: 4 },
@@ -266,7 +266,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N4-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `10^{-1}`,
                 targetLatex: `\\\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 10, m: 1, n: 1 },
@@ -276,7 +276,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N5-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `4^{-2}`,
                 targetLatex: `\\\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 4, m: 1, n: 2 },
@@ -287,7 +287,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "CORE") {
             quests.push({
                 id: "N1-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `x^{-4}`,
                 targetLatex: `\\\\frac{1}{x^n}`,
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 4 },
@@ -297,7 +297,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N2-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `y^{-5}`,
                 targetLatex: `\\\\frac{1}{y^n}`,
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 5 },
@@ -307,7 +307,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N3-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `a^{-3}`,
                 targetLatex: `\\\\frac{1}{a^n}`,
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
@@ -317,7 +317,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N4-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `m^{-6}`,
                 targetLatex: `\\\\frac{1}{m^n}`,
                 visual: { mode: 'NEGATIVE', base: 'm', m: 1, n: 6 },
@@ -327,7 +327,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N5-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `z^{-2}`,
                 targetLatex: `\\\\frac{1}{z^n}`,
                 visual: { mode: 'NEGATIVE', base: 'z', m: 1, n: 2 },
@@ -338,7 +338,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "ADVANCED") {
             quests.push({
                 id: "N1-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `\\\\frac{1}{a^{-3}}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
@@ -348,7 +348,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N2-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `\\\\frac{1}{b^{-5}}`,
                 targetLatex: `b^n`,
                 visual: { mode: 'NEGATIVE', base: 'b', m: 1, n: 5 },
@@ -358,7 +358,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N3-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `x^{-2} \\cdot x^5`,
                 targetLatex: `x^n`,
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 2 },
@@ -368,7 +368,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N4-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `y^{3} \\div y^{-2}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 2 },
@@ -378,7 +378,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N5-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `(c^{-2})^{3}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'NEGATIVE', base: 'c', m: 1, n: 2 },
@@ -389,7 +389,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "ELITE") {
             quests.push({
                 id: "N1-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `\\left(\\\\frac{x}{2}\\right)^{-3}`,
                 targetLatex: `\\\\frac{8}{x^n}`,
                 visual: { mode: 'NEGATIVE', base: 'x/2', m: 1, n: 3 },
@@ -399,7 +399,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N2-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `\\left(\\\\frac{3}{y}\\right)^{-2}`,
                 targetLatex: `\\\\frac{y^n}{9}`,
                 visual: { mode: 'NEGATIVE', base: '3/y', m: 1, n: 2 },
@@ -409,7 +409,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N3-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `(2a^{-3})^{-2}`,
                 targetLatex: `\\\\frac{a^n}{4}`,
                 visual: { mode: 'NEGATIVE', base: '2a', m: 1, n: 3 },
@@ -419,7 +419,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N4-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `(3m^{2})^{-2} \\cdot 9m^5`,
                 targetLatex: `m^n`,
                 visual: { mode: 'NEGATIVE', base: '3m', m: 2, n: 2 },
@@ -429,7 +429,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "N5-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.negative_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.negative_prompt_latex")}}`,
                 expressionLatex: `\\\\frac{(2x)^3}{(2x)^{-2}}`,
                 targetLatex: `32x^n`,
                 visual: { mode: 'NEGATIVE', base: '2x', m: 3, n: 2 },
@@ -445,9 +445,9 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         if (difficulty === "BASIC") {
             quests.push({
                 id: "S1-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `72000`,
-                targetLatex: `7.2 \\cdot 10^n`,
+                targetLatex: `7.2 \\\\cdot 10^{n}`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 7.2, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
                 correctLatex: `7.2 \\cdot 10^{4}`,
@@ -455,7 +455,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S2-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `5600`,
                 targetLatex: `5.6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 5.6, n: 3 },
@@ -465,7 +465,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S3-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `890000`,
                 targetLatex: `8.9 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.9, n: 5 },
@@ -475,7 +475,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S4-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `340`,
                 targetLatex: `3.4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.4, n: 2 },
@@ -485,7 +485,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S5-B", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `1200000`,
                 targetLatex: `1.2 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 1.2, n: 6 },
@@ -496,7 +496,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "CORE") {
             quests.push({
                 id: "S1-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `0.00035`,
                 targetLatex: `3.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.5, n: -4 },
@@ -506,7 +506,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S2-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `0.0082`,
                 targetLatex: `8.2 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.2, n: -3 },
@@ -516,7 +516,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S3-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `0.000067`,
                 targetLatex: `6.7 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6.7, n: -5 },
@@ -526,7 +526,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S4-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `0.00000091`,
                 targetLatex: `9.1 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 9.1, n: -7 },
@@ -536,7 +536,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S5-C", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `0.0045`,
                 targetLatex: `4.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 4.5, n: -3 },
@@ -547,7 +547,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "ADVANCED") {
             quests.push({
                 id: "S1-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `1.2 \\cdot 10^5`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 1.2, n: 5 },
@@ -557,7 +557,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S2-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `3.5 \\cdot 10^{-4}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.5, n: -4 },
@@ -567,7 +567,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S3-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `8.9 \\cdot 10^{3}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.9, n: 3 },
@@ -577,7 +577,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S4-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `2.4 \\cdot 10^{-2}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 2.4, n: -2 },
@@ -587,7 +587,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S5-A", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `6.7 \\cdot 10^6`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6.7, n: 6 },
@@ -598,7 +598,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
         } else if (difficulty === "ELITE") {
             quests.push({
                 id: "S1-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `(3 \\cdot 10^{4}) \\cdot (2 \\cdot 10^{3})`,
                 targetLatex: `6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6, n: 7 },
@@ -608,7 +608,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S2-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `(8 \\cdot 10^6) \\div (2 \\cdot 10^{2})`,
                 targetLatex: `4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 4, n: 4 },
@@ -618,7 +618,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S3-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `(5 \\cdot 10^{3})^{2}`,
                 targetLatex: `25 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 25, n: 6 },
@@ -628,7 +628,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S4-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `(9 \\cdot 10^5) \\cdot (4 \\cdot 10^{-2})`,
                 targetLatex: `36 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 36, n: 3 },
@@ -638,7 +638,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
             });
             quests.push({
                 id: "S5-E", difficulty, stage,
-                promptLatex: t("sm2_05.stages.scientific_prompt_latex"),
+                promptLatex: `\\\\text{${t("sm2_05.stages.scientific_prompt_latex")}}`,
                 expressionLatex: `(1.5 \\cdot 10^{4}) \\div (3 \\cdot 10^{-3})`,
                 targetLatex: `0.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 0.5, n: 7 },
@@ -729,8 +729,12 @@ export default function S205Page() {
                     <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
                         {(() => {
                             const latex = currentQuest?.promptLatex || "";
-                            if (latex && latex.includes("\\text{")) {
-                                return <span className="font-sans not-italic whitespace-pre-wrap">{latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+                            if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean}</span>;
+                            }
+                            if (!latex.includes("\\\\") && !latex.includes("$")) {
+                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
                             }
                             return <InlineMath math={latex || ""} />;
                         })()}

@@ -705,12 +705,12 @@ export default function SM210Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback
     } = useQuestManager<SM210Quest, Stage>({
-    moduleCode: "sm2-10",
+        moduleCode: "sm2-10",
         buildPool,
         initialStage: "BOX_PLOTS",
     });
@@ -731,11 +731,11 @@ export default function SM210Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      title={t("sm2_10.title")}
+                adaptiveRecommendation={adaptiveRecommendation}
+                aiFeedback={aiFeedback}
+                isRequestingAi={isRequestingAi}
+                onAiDiagnosisRequested={requestAiFeedback}
+                title={t("sm2_10.title")}
                 moduleCode="SM2.10"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
@@ -760,11 +760,11 @@ export default function SM210Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      title={t("sm2_10.title")}
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
+            title={t("sm2_10.title")}
             moduleCode="SM2.10"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -794,10 +794,20 @@ export default function SM210Page() {
                 </div>
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
-                    <div className="text-lg">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                    <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
+                        {(() => {
+                            const latex = currentQuest?.promptLatex || "";
+                            if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
+                            }
+                            if (!latex.includes("\\\\") && !latex.includes("$")) {
+                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
+                            }
+                            return <InlineMath math={latex} />;
+                        })()}
                     </div>
-                    
+
                     <div className="text-purple-300">
                         <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>

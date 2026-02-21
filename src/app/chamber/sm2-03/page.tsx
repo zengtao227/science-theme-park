@@ -34,7 +34,7 @@ function r2(n: number) { return Math.round(n * 100) / 100; }
  * ──────────────────────────────────────────────── */
 
 // Type for question data
-type QuestionData = 
+type QuestionData =
   | { id: string; m: number; c: number; x: number; type: "CALCULATE" }
   | { id: string; m1: number; c1: number; m2: number; c2: number; type: "INTERSECT" }
   | { id: string; m1: number; c1: number; m2: number; c2: number; type: "OPTIMIZE" };
@@ -157,9 +157,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         c1: data.c,
         targetX: data.x,
         targetY: y,
-        promptLatex: t.prompts.level1 || "Calculate the ticket price for the given destination",
-        expressionLatex: `Plan: y = ${data.m}x + ${data.c}    |    x = ${data.x} km`,
-        targetLatex: "y",
+        promptLatex: `\\\\text{${t.prompts.level1}}`,
+        expressionLatex: `\\\\text{Plan: } y = ${data.m}x + ${data.c} \\\\quad | \\\\quad x = ${data.x} \\\\text{ km}`,
+        targetLatex: `y`,
         correctLatex: `y=${y}`,
         slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
       });
@@ -181,9 +181,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         c2: data.c2,
         targetX: x,
         targetY: y,
-        promptLatex: t.prompts.level2 || "Find the distance where two fare plans cost the same",
-        expressionLatex: `Plan A: y = ${data.m1}x + ${data.c1}    |    Plan B: y = ${data.m2}x + ${data.c2}`,
-        targetLatex: "x",
+        promptLatex: `\\\\text{${t.prompts.level2}}`,
+        expressionLatex: `\\\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\\\quad | \\\\quad \\\\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
+        targetLatex: `x`,
         correctLatex: `x=${x}`,
         slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
       });
@@ -205,9 +205,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         c2: data.c2,
         targetX: x,
         targetY: y,
-        promptLatex: t.prompts.level3 || "Find the threshold distance where Plan A becomes cheaper",
-        expressionLatex: `Plan A: y = ${data.m1}x + ${data.c1}    |    Plan B: y = ${data.m2}x + ${data.c2}`,
-        targetLatex: "x",
+        promptLatex: `\\\\text{${t.prompts.level3}}`,
+        expressionLatex: `\\\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\\\quad | \\\\quad \\\\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
+        targetLatex: `x`,
         correctLatex: `x=${x}`,
         slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
       });
@@ -220,7 +220,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
 export default function S203Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  
+
   const sm2_03_t = {
     title: t("sm2_03.title"),
     back: t("sm2_03.back"),
@@ -283,10 +283,10 @@ export default function S203Page() {
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
     successRate,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<S203Quest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<S203Quest, Stage>({
     moduleCode: "sm2-03",
     buildPool,
     initialStage: "LEVEL1",
@@ -387,13 +387,23 @@ export default function S203Page() {
             {sm2_03_t.objective_title}
           </h3>
           <div className="space-y-4">
-            <p className="text-3xl text-white font-black whitespace-normal break-words">
-              {currentQuest?.promptLatex || "Calculate the fare"}
-            </p>
+            <div className="text-3xl text-white font-black whitespace-normal break-words italic">
+              {(() => {
+                const latex = currentQuest?.promptLatex || "";
+                if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                  const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                  return <span className="font-sans font-black not-italic">{clean}</span>;
+                }
+                if (!latex.includes("\\\\") && !latex.includes("$")) {
+                  return <span className="font-sans font-black not-italic">{latex}</span>;
+                }
+                return <InlineMath math={latex} />;
+              })()}
+            </div>
             {currentQuest?.expressionLatex && (
-              <p className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
-                {currentQuest?.expressionLatex}
-              </p>
+              <div className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
+                <InlineMath math={currentQuest.expressionLatex} />
+              </div>
             )}
           </div>
         </div>

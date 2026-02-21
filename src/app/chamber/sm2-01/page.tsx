@@ -85,33 +85,33 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         const vb = randInt(2, 12);
         return {
           id: `ARCH_B_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb,
-          formula: `(x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
-          expressionLatex: `(x + ${vb})^2`, targetLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
+          formula: `(x + ${vb})^{2}`, promptLatex: `\\\\text{${t.scenarios.architect_mission}}`,
+          expressionLatex: `(x + ${vb})^{2}`, targetLatex: `x^{2} + ${2 * vb}x + ${vb ** 2}`,
           slots: [
             { id: "a2", labelLatex: "x^{2}", placeholder: "1", expected: 1 },
             { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * vb },
             { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
           ],
-          correctLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
+          correctLatex: `x^{2} + ${2 * vb}x + ${vb ** 2}`,
         };
       } else if (isCore) {
         const ca = randInt(2, 6); const vb = randInt(3, 9);
         return {
           id: `ARCH_C_${i}`, difficulty, stage, type: "EXPAND", ca, vb,
-          formula: `(${ca}x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
-          expressionLatex: `(${ca}x + ${vb})^2`, targetLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
+          formula: `(${ca}x + ${vb})^{2}`, promptLatex: `\\\\text{${t.scenarios.architect_mission}}`,
+          expressionLatex: `(${ca}x + ${vb})^{2}`, targetLatex: `${ca ** 2}x^{2} + ${2 * ca * vb}x + ${vb ** 2}`,
           slots: [
-            { id: "a2", labelLatex: "x^2", placeholder: "coeff", expected: ca ** 2 },
+            { id: "a2", labelLatex: "x^{2}", placeholder: "coeff", expected: ca ** 2 },
             { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
             { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
           ],
-          correctLatex: `${ca ** 2}x^2 + ${2 * ca * vb}x + ${vb ** 2}`,
+          correctLatex: `${ca ** 2}x^{2} + ${2 * ca * vb}x + ${vb ** 2}`,
         };
       } else if (isAdvanced) {
         const vb = randInt(4, 15);
         return {
           id: `ARCH_A_${i}`, difficulty, stage, type: "EXPAND", ca: 1, vb, isFactor: true,
-          formula: `x^2 + ${2 * vb}x + ${vb ** 2}`, promptLatex: t.scenarios.architect_advanced_prompt,
+          formula: `x^2 + ${2 * vb}x + ${vb ** 2}`, promptLatex: `\\\\text{${t.scenarios.architect_advanced_prompt}}`,
           expressionLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
           targetLatex: `(x)^{2} + 2(x)(${vb}) + (${vb})^{2}`,
           slots: [
@@ -126,7 +126,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         const ca = randInt(2, 8); const vb = randInt(3, 11); const aTerm = `${ca}x`; const bTerm = `${vb}y`;
         return {
           id: `ARCH_E_${i}`, difficulty, stage, type: "EXPAND", ca, vb, isFactor: true,
-          formula: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`, promptLatex: t.scenarios.architect_elite_prompt,
+          formula: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`, promptLatex: `\\\\text{${t.scenarios.architect_elite_prompt}}`,
           expressionLatex: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`,
           targetLatex: `(${aTerm})^{2} + 2(${aTerm})(${bTerm}) + (${bTerm})^{2}`,
           slots: [
@@ -156,11 +156,11 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 
       return {
         id: `SCRAP_${difficulty}_${i}`, difficulty, stage, type: "SCRAPPER", ca, vb, variant, isFactor: true,
-        promptLatex: t.scenarios.scrapper_mission, expressionLatex: expr,
+        promptLatex: `\\\\text{${t.scenarios.scrapper_mission}}`, expressionLatex: expr,
         targetLatex: `(${aTerm} + ${bTerm})^{2}`,
         slots: [
-          { id: "a", labelLatex: "root a", placeholder: vA === "x^{2}" ? "ax^{2}" : "ax", expected: aTerm },
-          { id: "b", labelLatex: "root b", placeholder: vB ? (vB === "y^{2}" ? "by^{2}" : "by") : "b", expected: bTerm },
+          { id: "a", labelLatex: "\\\\text{root } a", placeholder: vA === "x^{2}" ? "ax^{2}" : "ax", expected: aTerm },
+          { id: "b", labelLatex: "\\\\text{root } b", placeholder: vB ? (vB === "y^{2}" ? "by^{2}" : "by") : "b", expected: bTerm },
         ],
         correctLatex: `(${aTerm} + ${bTerm})^{2}`,
       };
@@ -202,12 +202,12 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         id: `SPEED_${difficulty}_${i}`, difficulty, stage, type: "SPEEDSTER",
         base: val, roundBase: rb, offset: off, sign: sn,
         a2: parseFloat((rb ** 2).toFixed(2)), middle: parseFloat(mid.toFixed(2)), b2: parseFloat((off ** 2).toFixed(2)), target: parseFloat((val ** 2).toFixed(2)),
-        promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}^{2}`,
+        promptLatex: `\\\\text{${t.scenarios.speedster_mission}}`, expressionLatex: `${val}^{2}`,
         targetLatex: `${rb}^{2} ${sn} 2(${rb})(${off}) + ${off}^{2}`,
         slots: [
-          { id: "part1", labelLatex: "a^2", placeholder: "a^2", expected: rb ** 2 },
+          { id: "part1", labelLatex: "a^{2}", placeholder: "a^{2}", expected: rb ** 2 },
           { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: mid },
-          { id: "part3", labelLatex: "b^2", placeholder: "b^2", expected: parseFloat((off ** 2).toFixed(2)) },
+          { id: "part3", labelLatex: "b^{2}", placeholder: "b^{2}", expected: parseFloat((off ** 2).toFixed(2)) },
         ],
         correctLatex: `${rb ** 2} ${sn === "-" ? "-" : "+"} ${Math.abs(mid)} + ${parseFloat((off ** 2).toFixed(2))} = ${parseFloat((val ** 2).toFixed(2))}`,
       };
@@ -225,16 +225,16 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
       const aTerm = getFullTerm(C, vA);
       return {
         id: `ELITE_${difficulty}_${i}`, difficulty, stage, type: "ELITE", C, V, isFactor: true,
-        promptLatex: t.scenarios.elite_mission,
-        expressionLatex: `${C ** 2}${vA === "xy" ? "x^2y^2" : "x^2y^2z^2"} - ${V ** 2}`,
-        targetLatex: `(${aTerm} - ${V})^2 + ${2 * C * V}${vA} - ${2 * V ** 2}`,
+        promptLatex: `\\\\text{${t.scenarios.elite_mission}}`,
+        expressionLatex: `${C ** 2}${vA === "xy" ? "x^{2}y^{2}" : "x^{2}y^{2}z^{2}"} - ${V ** 2}`,
+        targetLatex: `(${aTerm} - ${V})^{2} + ${2 * C * V}${vA} - ${2 * V ** 2}`,
         slots: [
-          { id: "base", labelLatex: "root a", placeholder: vA.toUpperCase(), expected: aTerm },
-          { id: "sub", labelLatex: "root b", placeholder: "V", expected: V.toString() },
+          { id: "base", labelLatex: "\\\\text{root } a", placeholder: vA.toUpperCase(), expected: aTerm },
+          { id: "sub", labelLatex: "\\\\text{root } b", placeholder: "V", expected: V.toString() },
           { id: "add_term", labelLatex: "2ab", placeholder: "linear", expected: `${2 * C * V}${vA}` },
-          { id: "const_term", labelLatex: "2b^2", placeholder: "const", expected: (2 * V ** 2).toString() },
+          { id: "const_term", labelLatex: "2b^{2}", placeholder: "const", expected: (2 * V ** 2).toString() },
         ],
-        correctLatex: `(${aTerm} - ${V})^2 + ${2 * C * V}${vA} - ${2 * V ** 2} = ${C ** 2}${vA === "xy" ? "x^2y^2" : "x^2y^2z^2"} - ${V ** 2}`,
+        correctLatex: `(${aTerm} - ${V})^{2} + ${2 * C * V}${vA} - ${2 * V ** 2} = ${C ** 2}${vA === "xy" ? "x^{2}y^{2}" : "x^{2}y^{2}z^{2}"} - ${V ** 2}`,
       };
     });
   }
@@ -255,12 +255,12 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
       return {
         id: `VOY_${difficulty}_${i}`, difficulty, stage, type: "DIFFERENCE", ca, vb, isFactor: isFact,
         expr, subType,
-        promptLatex: t.scenarios.voyager_mission, expressionLatex: expr,
-        targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^2 - ${vb ** 2}${vB ? "y^2" : ""}`,
+        promptLatex: `\\\\text{${t.scenarios.voyager_mission}}`, expressionLatex: expr,
+        targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
         slots: isFact
-          ? [{ id: "a", labelLatex: "root a", placeholder: "ax", expected: aT }, { id: "b", labelLatex: "root b", placeholder: vB ? "by" : "b", expected: bT }]
-          : [{ id: "part1", labelLatex: "a^2", placeholder: "a^2", expected: ca ** 2 }, { id: "part2", labelLatex: "b^2", placeholder: "b^2", expected: vb ** 2 }],
-        correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^2 - ${vb ** 2}${vB ? "y^2" : ""}`,
+          ? [{ id: "a", labelLatex: "\\\\text{root } a", placeholder: "ax", expected: aT }, { id: "b", labelLatex: "\\\\text{root } b", placeholder: vB ? "by" : "b", expected: bT }]
+          : [{ id: "part1", labelLatex: "a^{2}", placeholder: "a^{2}", expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: "b^{2}", expected: vb ** 2 }],
+        correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
       };
     });
   }
@@ -680,7 +680,18 @@ export default function S201Page() {
                   {sm2_01_t.active_objective}
                 </h3>
                 <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md">
-                  <InlineMath math={currentQuest?.promptLatex || ""} />
+                  {(() => {
+                    const latex = currentQuest?.promptLatex || "";
+                    if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                      const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                      return <span className="font-sans font-black not-italic">{clean}</span>;
+                    }
+                    if (!latex.includes("\\\\") && !latex.includes("$")) {
+                      // If it's plain text without LaTeX commands, treat as text
+                      return <span className="font-sans font-black not-italic">{latex}</span>;
+                    }
+                    return <InlineMath math={latex} />;
+                  })()}
                 </p>
               </div>
 
@@ -691,7 +702,7 @@ export default function S201Page() {
                   {sm2_01_t.target_expression}
                 </span>
                 <div className="font-black italic tracking-tighter text-white block py-1 drop-shadow-lg text-[clamp(1.5rem,5vw,4.5rem)] leading-tight whitespace-normal break-words">
-                  {currentQuest?.expressionLatex}
+                  <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </div>
                 {questMode === "SPEEDSTER" && (
                   <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{sm2_01_t.speedster_hint}</div>

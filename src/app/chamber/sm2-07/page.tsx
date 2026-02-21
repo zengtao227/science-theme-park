@@ -118,9 +118,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.distance_prompt_latex,
-        expressionLatex: `A(${x1},${y1}),\\; B(${x2},${y2})`,
-        targetLatex: "d",
+        promptLatex: `\\\\text{${t.stages.distance_prompt_latex}}`,
+        expressionLatex: `A(${x1}, ${y1}), \\\\; B(${x2}, ${y2})`,
+        targetLatex: `d`,
         slots: [{ id: "d", labelLatex: "d", placeholder: "distance", expected: distance }],
         correctLatex: `d=${distance}`,
       };
@@ -187,9 +187,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.midpoint_prompt_latex,
-        expressionLatex: `A(${x1},${y1}),\\; B(${x2},${y2})`,
-        targetLatex: "M(x,y)",
+        promptLatex: `\\\\text{${t.stages.midpoint_prompt_latex}}`,
+        expressionLatex: `A(${x1}, ${y1}), \\\\; B(${x2}, ${y2})`,
+        targetLatex: `M(x, y)`,
         slots: [
           { id: "mx", labelLatex: "x", placeholder: "x", expected: mx },
           { id: "my", labelLatex: "y", placeholder: "y", expected: my },
@@ -289,9 +289,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.slope_prompt_latex,
-        expressionLatex: `A(${x1},${y1}),\\; B(${x2},${y2})`,
-        targetLatex: "m",
+        promptLatex: `\\\\text{${t.stages.slope_prompt_latex}}`,
+        expressionLatex: `A(${x1}, ${y1}), \\\\; B(${x2}, ${y2})`,
+        targetLatex: `m`,
         slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: slope }],
         correctLatex: `m=${slope}`,
       };
@@ -405,14 +405,14 @@ export default function S207Page() {
                 latex = getLocalizedPrompt(t, currentQuest.promptKey, currentQuest.promptParams);
               }
 
-              if (latex && (latex.includes("\\text{") || latex.includes("\\\\text{"))) {
-                return (
-                  <span className="font-sans not-italic whitespace-pre-wrap">
-                    {latex.replace(/\\\\text\{/g, "").replace(/\\text\{/g, "").replace(/\{/g, "").replace(/\}/g, "").replace(/\\\\\\\\/g, "\n").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}
-                  </span>
-                );
+              if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
               }
-              return <InlineMath math={latex || ""} />;
+              if (!latex.includes("\\\\") && !latex.includes("$")) {
+                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
+              }
+              return <InlineMath math={latex} />;
             })()}
           </p>
         </div>

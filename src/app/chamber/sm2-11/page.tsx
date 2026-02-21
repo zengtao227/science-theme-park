@@ -129,7 +129,7 @@ export default function SM211Page() {
           difficulty,
           stage,
           scenario: t("sm2_11.scenarios.arithmetic"),
-          promptLatex: t("sm2_11.prompts.find_nth_term"),
+          promptLatex: `\\\\text{${t("sm2_11.prompts.find_nth_term")}}`,
           expressionLatex: `a_1 = ${data.a1}, \\; d = ${data.d}, \\; n = ${data.n}`,
           targetLatex: `a_{${data.n}}`,
           slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: "...", expected: data.answer }],
@@ -142,7 +142,7 @@ export default function SM211Page() {
           difficulty,
           stage,
           scenario: t("sm2_11.scenarios.geometric"),
-          promptLatex: t("sm2_11.prompts.find_nth_term"),
+          promptLatex: `\\\\text{${t("sm2_11.prompts.find_nth_term")}}`,
           expressionLatex: `a_1 = ${data.a1}, \\; r = ${data.r}, \\; n = ${data.n}`,
           targetLatex: `a_{${data.n}}`,
           slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: "...", expected: data.answer }],
@@ -155,7 +155,7 @@ export default function SM211Page() {
           difficulty,
           stage,
           scenario: t("sm2_11.scenarios.series"),
-          promptLatex: t("sm2_11.prompts.find_sum"),
+          promptLatex: `\\\\text{${t("sm2_11.prompts.find_sum")}}`,
           expressionLatex: `a_1 = ${data.a1}, \\; d = ${data.d}, \\; n = ${data.n}`,
           targetLatex: `S_{${data.n}}`,
           slots: [{ id: "ans", labelLatex: `S_{${data.n}}`, placeholder: "...", expected: data.answer }],
@@ -184,10 +184,10 @@ export default function SM211Page() {
     getHint,
     currentStageStats,
     adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback
-    } = useQuestManager<SequenceQuest, Stage>({
+    aiFeedback,
+    isRequestingAi,
+    requestAiFeedback
+  } = useQuestManager<SequenceQuest, Stage>({
     moduleCode: "sm2-11",
     buildPool,
     initialStage: "ARITHMETIC",
@@ -257,11 +257,10 @@ export default function SM211Page() {
               {Array.from({ length: 5 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`flex-1 transition-all duration-1000 ${
-                    i < (currentStageStats ? currentStageStats.correct % 6 : 0)
+                  className={`flex-1 transition-all duration-1000 ${i < (currentStageStats ? currentStageStats.correct % 6 : 0)
                       ? "bg-neon-cyan shadow-[0_0_5px_cyan]"
                       : "bg-transparent"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -277,7 +276,17 @@ export default function SM211Page() {
                 {t("labels.mission_objective")}
               </h3>
               <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                {(() => {
+                  const latex = currentQuest?.promptLatex || "";
+                  if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
+                    const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
+                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
+                  }
+                  if (!latex.includes("\\\\") && !latex.includes("$")) {
+                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
+                  }
+                  return <BlockMath>{latex}</BlockMath>;
+                })()}
               </div>
             </div>
 
@@ -331,16 +340,14 @@ export default function SM211Page() {
                       initial={{ opacity: 0, scale: 0.98, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                      className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${
-                        lastCheck.ok
+                      className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors ${lastCheck.ok
                           ? 'bg-green-500/10 border-green-500/30 text-green-400'
                           : 'bg-red-500/10 border-red-500/30 text-red-400'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-5">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${
-                          lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
-                        }`}>
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 ${lastCheck.ok ? 'border-green-500/50 bg-green-500/20' : 'border-red-500/50 bg-red-500/20'
+                          }`}>
                           {lastCheck.ok ? "✓" : "✗"}
                         </div>
                         <div>
