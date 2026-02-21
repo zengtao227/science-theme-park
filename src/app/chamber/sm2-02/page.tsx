@@ -21,6 +21,29 @@ type Stage =
   | "MENTAL" | "CHAIN"
   | "PERFECT" | "SIMPLIFY" | "ESTIMATE";
 
+const renderMixedText = (text: string) => {
+  if (!text) return null;
+  const parts = text.split(/(\$[^$]+\$)/g);
+  return (
+    <>
+      {parts.map((p, i) => {
+        if (p.startsWith("$") && p.endsWith("$")) {
+          return <InlineMath key={i} math={p.slice(1, -1)} />;
+        }
+        return <span key={i} className="font-sans font-black whitespace-pre-wrap">{p}</span>;
+      })}
+    </>
+  );
+};
+
+interface S202Slot {
+  id: string;
+  labelLatex: string;
+  placeholder: string;
+  expected: string | number;
+  input: "number" | "radical" | "boolean";
+}
+
 interface S202Quest extends Quest {
   stage: Stage;
   tab: "PYTHAGORAS" | "SQRT";
@@ -33,11 +56,7 @@ interface S202Quest extends Quest {
     p1?: { x: number; y: number };
     p2?: { x: number; y: number };
   };
-  steps: Array<
-    | { id: string; labelLatex: string; input: "number"; answer: number }
-    | { id: string; labelLatex: string; input: "radical"; answer: Radical }
-    | { id: string; labelLatex: string; input: "boolean"; answer: boolean }
-  >;
+  slots: S202Slot[];
 }
 
 // Utility functions
@@ -115,7 +134,6 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       targetLatex: "(k a)^{2} + (k b)^{2} = (k c)^{2}",
       correctLatex: "",
       slots: [],
-      steps: [],
       visual: { kind: "triangle", a: 3, b: 4, c: 5 },
     }];
   }
@@ -136,14 +154,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|SOLVE_HYP|${difficulty}|${a}|${b}`,
           difficulty, stage, tab,
-          promptLatex: `\\\\text{${sm2_02_t.pythagoras.solve_hyp}}: \\\\; \\\\text{${sm2_02_t.pythagoras.solve_hyp_params.replace('{a}', a.toString()).replace('{b}', b.toString())}}`,
+          promptLatex: `${sm2_02_t.pythagoras.solve_hyp}: $a=${a}, \\, b=${b}$`,
           expressionLatex: `c^{2} = a^{2} + b^{2}`,
           targetLatex: `c`,
           correctLatex: `c = ${c}`,
-          slots: [],
-          steps: [
-            { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", answer: c2 },
-            { id: "c", labelLatex: `c=\\\\\sqrt{c^2}`, input: "number", answer: c },
+          slots: [
+            { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", expected: c2, placeholder: "?" },
+            { id: "c", labelLatex: `c=\\sqrt{c^2}`, input: "number", expected: c, placeholder: "?" },
           ],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
         });
@@ -174,14 +191,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|SOLVE_LEG|${difficulty}|${c}|${known}|${knownIsA ? "A" : "B"}`,
           difficulty, stage, tab,
-          promptLatex: `\\\\text{${sm2_02_t.pythagoras.solve_leg}}: \\\\; \\\\text{${sm2_02_t.pythagoras.solve_leg_params.replace('{c}', c.toString()).replace('{known_label}', knownLabel).replace('{known_var}', knownVar).replace('{known}', known.toString())}}`,
+          promptLatex: `${sm2_02_t.pythagoras.solve_leg}: $c=${c}, \\, ${knownVar}=${known}$`,
           expressionLatex: `${knownIsA ? "b^{2}" : "a^{2}"} = c^{2} - ${knownIsA ? "a^{2}" : "b^{2}"}`,
           targetLatex: `${knownIsA ? "b" : "a"}`,
           correctLatex: `${knownIsA ? "b" : "a"} = ${missing}`,
-          slots: [],
-          steps: [
-            { id: "leg2", labelLatex: `${knownIsA ? "b^{2}" : "a^{2}"}=c^{2}-${knownIsA ? "a^{2}" : "b^{2}"}`, input: "number", answer: missing2 },
-            { id: "leg", labelLatex: `${knownIsA ? "b" : "a"}=\\\\sqrt{${knownIsA ? "b^{2}" : "a^{2}"}}`, input: "number", answer: missing },
+          slots: [
+            { id: "leg2", labelLatex: `${knownIsA ? "b^{2}" : "a^{2}"}=c^{2}-${knownIsA ? "a^{2}" : "b^{2}"}`, input: "number", expected: missing2, placeholder: "?" },
+            { id: "leg", labelLatex: `${knownIsA ? "b" : "a"}=\\sqrt{${knownIsA ? "b^{2}" : "a^{2}"}}`, input: "number", expected: missing, placeholder: "?" },
           ],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
         });
@@ -206,12 +222,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c}|T`,
           difficulty, stage, tab,
-          promptLatex: `\\\\text{${sm2_02_t.pythagoras.check_right}}: \\\\; ${a}, \\\\; ${b}, \\\\; ${c}`,
-          expressionLatex: `${a}^{2} + ${b}^{2} \\\\stackrel{?}{=} ${c}^{2}`,
-          targetLatex: `\\\\text{right triangle?}`,
+          promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c}$`,
+          expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c}^{2}`,
+          targetLatex: `\\text{Rechtwinkliges Dreieck?}`,
           correctLatex: `${sm2_02_t.yes}`,
-          slots: [],
-          steps: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\\\stackrel{?}{=}${c}^{2}`, input: "boolean", answer: true }],
+          slots: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\stackrel{?}{=}${c}^{2}`, input: "boolean", expected: "true", placeholder: "?" }],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: false },
         });
 
@@ -219,12 +234,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c + 1}|F`,
           difficulty, stage, tab,
-          promptLatex: `\\\\text{${sm2_02_t.pythagoras.check_right}}: \\\\; ${a}, \\\\; ${b}, \\\\; ${c + 1}`,
-          expressionLatex: `${a}^{2} + ${b}^{2} \\\\stackrel{?}{=} ${c + 1}^{2}`,
-          targetLatex: `\\\\text{right triangle?}`,
+          promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c + 1}$`,
+          expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c + 1}^{2}`,
+          targetLatex: `\\text{Rechtwinkliges Dreieck?}`,
           correctLatex: `${sm2_02_t.no}`,
-          slots: [],
-          steps: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\\\stackrel{?}{=}${c + 1}^{2}`, input: "boolean", answer: false }],
+          slots: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\stackrel{?}{=}${c + 1}^{2}`, input: "boolean", expected: "false", placeholder: "?" }],
           visual: { kind: "triangle", a, b, c: c + 1, highlightRightAngle: false },
         });
       }
@@ -254,14 +268,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.pythagoras.distance}}: \\\\; (${x1}, ${y1}) \\\\rightarrow (${x2}, ${y2})`,
-        expressionLatex: `d^{2} = (\\\\Delta x)^{2} + (\\\\Delta y)^{2}`,
+        promptLatex: `${sm2_02_t.pythagoras.distance}: $({${x1}}, {${y1}}) \\rightarrow ({${x2}}, {${y2}})$`,
+        expressionLatex: `d^{2} = (\\Delta x)^{2} + (\\Delta y)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
-        slots: [],
-        steps: [
-          { id: "d2", labelLatex: `d^{2}=(\\\\Delta x)^{2}+(\\\\Delta y)^{2}`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
+        slots: [
+          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -286,14 +299,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|SPACE|${difficulty}|${a}|${b}|${c}`,
         difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.pythagoras.elite_space}}: \\\\; a = ${a}, \\\\, b = ${b}, \\\\, c = ${c}`,
+        promptLatex: `${sm2_02_t.pythagoras.elite_space}: $a = ${a}, \\, b = ${b}, \\, c = ${c}$`,
         expressionLatex: `d^{2} = a^{2} + b^{2} + c^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
-        slots: [],
-        steps: [
-          { id: "d2", labelLatex: `d^{2}=a^{2}+b^{2}+c^{2}`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
+        slots: [
+          { id: "d2", labelLatex: `d^{2}=a^{2}+b^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -316,14 +328,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CERN|${scale}`,
       difficulty, stage, tab,
-      promptLatex: `\\\\text{${sm2_02_t.mission.protocol}}\\\\\\\\\\text{${sm2_02_t.mission.cern_title}}\\\\\\\\\\text{${sm2_02_t.mission.cern_desc}}`,
+      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.cern_title}\n${sm2_02_t.mission.cern_desc}`,
       expressionLatex: `d^{2}=w^{2}+h^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(exact_cern)}`,
-      slots: [],
-      steps: [
-        { id: "d2", labelLatex: `d^{2}=w^{2}+h^{2}`, input: "number", answer: d2_cern },
-        { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact_cern },
+      slots: [
+        { id: "d2", labelLatex: `d^{2}=w^{2}+h^{2}`, input: "number", expected: d2_cern, placeholder: "?" },
+        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact_cern), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: w, b: h, c: Math.sqrt(d2_cern) },
     });
@@ -336,14 +347,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|GRIND|${a_grind}|${b_grind}`,
       difficulty, stage, tab,
-      promptLatex: `\\\\text{${sm2_02_t.mission.protocol}}\\\\\\\\\\text{${sm2_02_t.mission.roof_title}}\\\\\\\\\\text{${sm2_02_t.mission.roof_desc}}`,
+      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.roof_title}\n${sm2_02_t.mission.roof_desc}`,
       expressionLatex: `r^{2}=a^{2}+b^{2}`,
       targetLatex: `r`,
       correctLatex: `r=${formatRadicalLatex(exact_grind)}`,
-      slots: [],
-      steps: [
-        { id: "r2", labelLatex: `r^{2}=a^{2}+b^{2}`, input: "number", answer: d2_grind },
-        { id: "r", labelLatex: `r=\\\\\sqrt{r^2}`, input: "radical", answer: exact_grind },
+      slots: [
+        { id: "r2", labelLatex: `r^{2}=a^{2}+b^{2}`, input: "number", expected: d2_grind, placeholder: "?" },
+        { id: "r", labelLatex: `r=\\sqrt{r^2}`, input: "radical", expected: JSON.stringify(exact_grind), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: a_grind, b: b_grind, c: Math.sqrt(d2_grind) },
     });
@@ -355,14 +365,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|LUCERNE|${base_lucerne}|${height_lucerne}`,
       difficulty, stage, tab,
-      promptLatex: `\\\\text{${sm2_02_t.mission.protocol}}\\\\\\\\\\text{${sm2_02_t.mission.ladder_title}}\\\\\\\\\\text{${sm2_02_t.mission.ladder_desc}}`,
+      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.ladder_title}\n${sm2_02_t.mission.ladder_desc}`,
       expressionLatex: `c^{2}=a^{2}+b^{2}`,
       targetLatex: `c`,
       correctLatex: `c=${Math.sqrt(d2_lucerne)}`,
-      slots: [],
-      steps: [
-        { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", answer: d2_lucerne },
-        { id: "c", labelLatex: `c=\\\\\sqrt{c^2}`, input: "number", answer: Math.sqrt(d2_lucerne) },
+      slots: [
+        { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", expected: d2_lucerne, placeholder: "?" },
+        { id: "c", labelLatex: `c=\\sqrt{c^2}`, input: "number", expected: Math.sqrt(d2_lucerne), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: base_lucerne, b: height_lucerne, c: Math.sqrt(d2_lucerne) },
     });
@@ -383,14 +392,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.mission.protocol}}\\\\\\\\\\text{${sm2_02_t.mission.grid_title}}\\\\\\\\\\text{${sm2_02_t.mission.grid_desc}}`,
-        expressionLatex: `d^{2}=(\\\\Delta x)^{2}+(\\\\Delta y)^{2}`,
+        promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.grid_title}\n${sm2_02_t.mission.grid_desc}`,
+        expressionLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
-        slots: [],
-        steps: [
-          { id: "d2", labelLatex: `d^{2}=(\\\\Delta x)^{2}+(\\\\Delta y)^{2}`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: exact },
+        slots: [
+          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -411,16 +419,15 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
       difficulty, stage, tab,
-      promptLatex: `\\\\text{${sm2_02_t.mission.protocol}}\\\\\\\\\\text{${sm2_02_t.mission.chain_title}}\\\\\\\\\\text{${sm2_02_t.mission.chain_desc}}`,
+      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.chain_title}\n${sm2_02_t.mission.chain_desc}`,
       expressionLatex: `d^{2}=s^{2}+c^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(dExact)}`,
-      slots: [],
-      steps: [
-        { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", answer: s2 },
-        { id: "s", labelLatex: `s=\\\\\sqrt{s^2}`, input: "radical", answer: sExact },
-        { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", answer: d2 },
-        { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: dExact },
+      slots: [
+        { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", expected: s2, placeholder: "?" },
+        { id: "s", labelLatex: `s=\\sqrt{s^2}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
+        { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
+        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
       ],
       visual: { kind: "space", a, b, c },
     });
@@ -445,12 +452,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
       quests.push({
         id: `MENT_B_${i}`, difficulty, stage, tab,
-        promptLatex: isHyp ? `\\\\text{a}=${a},\\\\; \\\\text{b}=${b}` : `\\\\text{c}=${c},\\\\; \\\\text{a}=${a}`,
-        expressionLatex: isHyp ? `c = \\\\sqrt{a^2 + b^2}` : `b = \\\\sqrt{c^2 - a^2}`,
+        promptLatex: isHyp ? `$a=${a}, \\, b=${b}$` : `$c=${c}, \\, a=${a}$`,
+        expressionLatex: isHyp ? `c = \\sqrt{a^2 + b^2}` : `b = \\sqrt{c^2 - a^2}`,
         targetLatex: isHyp ? `c` : `b`,
         correctLatex: isHyp ? `c=${c}` : `b=${b}`,
-        slots: [],
-        steps: [{ id: "ans", labelLatex: isHyp ? `c` : `b`, input: "number", answer: isHyp ? c : b }],
+        slots: [{ id: "ans", labelLatex: isHyp ? `c` : `b`, input: "number", expected: isHyp ? c : b, placeholder: "?" }],
         visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
       });
     }
@@ -478,16 +484,15 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
       quests.push({
         id: `MENT_C_${i}`, difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.mental.chain}}:\\\\; a=${a},\\\\; b=${b},\\\\; c=${c}`,
-        expressionLatex: `d = \\\\sqrt{a^2 + b^2 + c^2}`,
+        promptLatex: `${sm2_02_t.mental.chain}: $a=${a}, \\, b=${b}, \\, c=${c}$`,
+        expressionLatex: `d = \\sqrt{a^2 + b^2 + c^2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(dExact)}`,
-        slots: [],
-        steps: [
-          { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", answer: s2 },
-          { id: "s", labelLatex: `s=\\\\\sqrt{s^2}`, input: "radical", answer: sExact },
-          { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", answer: d2 },
-          { id: "d", labelLatex: `d=\\\\\sqrt{d^2}`, input: "radical", answer: dExact },
+        slots: [
+          { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", expected: s2, placeholder: "?" },
+          { id: "s", labelLatex: `s=\\sqrt{s^2}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
+          { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -509,12 +514,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|PERFECT|${difficulty}|${n}`,
         difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.sqrt.perfect}}: \\\\; \\\\sqrt{${n}}`,
-        expressionLatex: `\\\\sqrt{${n}}`,
-        targetLatex: `\\\\sqrt{${n}}`,
+        promptLatex: `${sm2_02_t.sqrt.perfect}: $\\sqrt{${n}}$`,
+        expressionLatex: `\\sqrt{${n}}`,
+        targetLatex: `\\sqrt{${n}}`,
         correctLatex: `${r}`,
-        slots: [],
-        steps: [{ id: "sqrt", labelLatex: `\\\\\sqrt{${n}}`, input: "number", answer: r }],
+        slots: [{ id: "sqrt", labelLatex: `\\sqrt{${n}}`, input: "number", expected: r, placeholder: "?" }],
         visual: { kind: "triangle", a: 3, b: 4, c: 5 },
       });
     }
@@ -533,12 +537,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `SQRT|SIMPLIFY|${difficulty}|${k}|${m}`,
           difficulty, stage, tab,
-          promptLatex: `\\\\text{${sm2_02_t.sqrt.simplify}}: \\\\; \\\\sqrt{${n}}`,
-          expressionLatex: `\\\\sqrt{${n}} = k\\\\sqrt{m}`,
-          targetLatex: `k\\\\sqrt{m}`,
+          promptLatex: `${sm2_02_t.sqrt.simplify}: $\\sqrt{${n}}$`,
+          expressionLatex: `\\sqrt{${n}} = k\\sqrt{m}`,
+          targetLatex: `k\\sqrt{m}`,
           correctLatex: `${formatRadicalLatex({ k, m })}`,
-          slots: [],
-          steps: [{ id: "simplify", labelLatex: `\\\\\sqrt{${n}}=k\\\\\sqrt{m}`, input: "radical", answer: { k, m } }],
+          slots: [{ id: "simplify", labelLatex: `\\sqrt{${n}}=k\\sqrt{m}`, input: "radical", expected: JSON.stringify({ k, m }), placeholder: "?" }],
           visual: { kind: "triangle", a: 3, b: 4, c: 5 },
         });
       }
@@ -560,12 +563,11 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|ESTIMATE|${difficulty}|${n}|${interval[0]}|${interval[1]}|${isTrue ? 1 : 0}`,
         difficulty, stage, tab,
-        promptLatex: `\\\\text{${sm2_02_t.sqrt.estimate}}: \\\\; \\\\sqrt{${n}} \\\\in [${interval[0]}, ${interval[1]}] \\\\,?`,
-        expressionLatex: `\\\\sqrt{${n}}`,
-        targetLatex: `\\\\sqrt{${n}} \\\\in [${interval[0]}, ${interval[1]}]`,
+        promptLatex: `${sm2_02_t.sqrt.estimate}: $\\sqrt{${n}} \\in [${interval[0]}, ${interval[1]}]$ ?`,
+        expressionLatex: `\\sqrt{${n}}`,
+        targetLatex: `\\sqrt{${n}} \\in [${interval[0]}, ${interval[1]}]`,
         correctLatex: isTrue ? sm2_02_t.yes : sm2_02_t.no,
-        slots: [],
-        steps: [{ id: "judge", labelLatex: `\\\\\sqrt{${n}}\\\\in[${interval[0]},${interval[1]}]`, input: "boolean", answer: isTrue }],
+        slots: [{ id: "judge", labelLatex: `\\sqrt{${n}}\\in[${interval[0]},${interval[1]}]`, input: "boolean", expected: isTrue ? "true" : "false", placeholder: "?" }],
         visual: { kind: "triangle", a: 3, b: 4, c: 5 },
       });
     }
@@ -945,19 +947,9 @@ export default function S202Page() {
             <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
               {sm2_02_t.objective_title}
             </h3>
-            <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-              {(() => {
-                const latex = currentQuest?.promptLatex || "";
-                if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                  const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                  return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean}</span>;
-                }
-                if (!latex.includes("\\\\") && !latex.includes("$")) {
-                  return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-                }
-                return <InlineMath math={latex || ""} />;
-              })()}
-            </p>
+            <div className="text-xl md:text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md pb-4 [&_span]:!leading-relaxed text-center">
+              {renderMixedText(currentQuest?.promptLatex || "")}
+            </div>
           </div>
 
           {/* Target Display */}
@@ -973,38 +965,38 @@ export default function S202Page() {
 
           {/* Input Section */}
           <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-            {currentQuest?.steps.map((step) => (
-              <div key={step.id} className="space-y-3">
+            {currentQuest?.slots.map((slot: any) => (
+              <div key={slot.id} className="space-y-3">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-                  <InlineMath math={step.labelLatex} />
+                  <InlineMath math={slot.labelLatex} />
                 </div>
 
-                {step.input === "number" && (
+                {slot.input === "number" && (
                   <input
-                    value={inputs[step.id] || ""}
-                    onChange={(e) => setInputs({ ...inputs, [step.id]: e.target.value })}
+                    value={inputs[slot.id] || ""}
+                    onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
                     className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
                     placeholder={sm2_02_t.placeholders?.question ?? "?"}
                     inputMode="numeric"
                   />
                 )}
 
-                {step.input === "radical" && (
+                {slot.input === "radical" && (
                   <RadicalSlotInput
-                    value={(() => { try { return JSON.parse(inputs[step.id] || "{}"); } catch { return { k: 1, m: 1 }; } })()}
-                    onChange={(v) => setInputs({ ...inputs, [step.id]: JSON.stringify(v) })}
+                    value={(() => { try { return JSON.parse(inputs[slot.id] || "{}"); } catch { return { k: 1, m: 1 }; } })()}
+                    onChange={(v) => setInputs({ ...inputs, [slot.id]: JSON.stringify(v) })}
                     labelK={sm2_02_t.input_k}
                     labelM={sm2_02_t.input_m}
                   />
                 )}
 
-                {step.input === "boolean" && (
+                {slot.input === "boolean" && (
                   <div className="flex items-center justify-center gap-4">
                     <button
-                      onClick={() => setInputs({ ...inputs, [step.id]: "true" })}
+                      onClick={() => setInputs({ ...inputs, [slot.id]: "true" })}
                       className={clsx(
                         "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
-                        inputs[step.id] === "true"
+                        inputs[slot.id] === "true"
                           ? "border-white bg-white/10"
                           : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
                       )}
@@ -1012,10 +1004,10 @@ export default function S202Page() {
                       {sm2_02_t.yes}
                     </button>
                     <button
-                      onClick={() => setInputs({ ...inputs, [step.id]: "false" })}
+                      onClick={() => setInputs({ ...inputs, [slot.id]: "false" })}
                       className={clsx(
                         "px-6 py-3 border-2 text-[10px] font-black tracking-[0.4em] uppercase transition-all",
-                        inputs[step.id] === "false"
+                        inputs[slot.id] === "false"
                           ? "border-white bg-white/10"
                           : "border-white/10 text-white/80 hover:border-white/40 hover:text-white"
                       )}
