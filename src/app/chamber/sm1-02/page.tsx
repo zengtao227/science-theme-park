@@ -381,9 +381,16 @@ export default function SM103Page() {
                         {sm1_02_t.objective_title}
                     </div>
                     <div className="text-2xl text-white font-black italic whitespace-normal break-words leading-tight min-h-[5rem] flex items-center justify-center">
-                        {currentQuest?.promptLatex && (
-                            <InlineMath math={currentQuest?.promptLatex || ""} />
-                        )}
+                        <div className="text-white/70 font-mono text-xl break-words">
+                            {(() => {
+                                const latex = currentQuest?.promptLatex || "";
+                                // Robust stripping of \\text{...} wrappers for UI display
+                                if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
+                                    return <span className="font-sans font-black whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+                                }
+                                return <InlineMath math={latex || ""} />;
+                            })()}
+                        </div>
                     </div>
                 </div>
 

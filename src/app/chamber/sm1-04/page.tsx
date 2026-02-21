@@ -1308,7 +1308,14 @@ export default function SM104Page() {
             {t("sm1_04.solve_title")}
           </div>
           <div className="text-3xl text-white font-black">
-            <InlineMath math={quest?.promptLatex || ""} />
+            {(() => {
+              const latex = quest?.promptLatex || "";
+              // Robust stripping of \\text{...} wrappers for UI display
+              if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
+                return <span className="font-sans font-black whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
+              }
+              return <InlineMath math={latex || ""} />;
+            })()}
           </div>
         </div>
 
