@@ -546,7 +546,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CC2", difficulty, stage,
                     promptLatex: `\\text{${t.quests.basel_rhine_trap}}`,
-                    expressionLatex: `a=a=10,\\; b=16,\\; h=8`,
+                    expressionLatex: `a=10,\\; b=16,\\; h=8`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 104, unit: "\\text{m}^{2}" }],
                     correctLatex: `A=\\frac{1}{2}(10+16)\\cdot 8=104`,
@@ -556,7 +556,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CC3", difficulty, stage,
                     promptLatex: `\\text{${t.quests.roche_prism_core}}`,
-                    expressionLatex: `a=a=8,\\; b=6,\\; h=10`,
+                    expressionLatex: `a=8,\\; b=6,\\; h=10`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 480, unit: "\\text{m}^{3}" }],
                     correctLatex: `V=8\\cdot 6\\cdot 10=480`,
@@ -576,7 +576,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CC5", difficulty, stage,
                     promptLatex: `\\text{${t.quests.basel_messe_cube}}`,
-                    expressionLatex: `a=a=8`,
+                    expressionLatex: `a=8`,
                     targetLatex: `SA`,
                     slots: [{ id: "SA", labelLatex: `SA`, placeholder: t.labels.surface_area_given, expected: 384, unit: "\\text{m}^{2}" }],
                     correctLatex: `SA=6a^{2}=6\\cdot 64=384`,
