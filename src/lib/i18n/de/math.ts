@@ -1245,7 +1245,7 @@ export const deMath = {
             speedster_desc: "Berechne grosse Quadratzahlen sofort durch Aufteilen in (Runde+Rest)^{2}.",
             speedster_context: "Im Schweizer Mathe-Olympiad musst du Zahlen wie 103 oder 47 im Kopf quadrieren. Der Trick: 103 = (100+3), dann (a+b)^{2} = 10000 + 600 + 9 = 10609.",
             voyager_context: "Zwei quadratische Felder teilen eine gemeinsame Grenze. Eines hat die Seitenlänge a, das andere b.",
-            architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit $(a+b)^{2} = a^{2} + 2ab + b^{2}$.",
+            architect_mission: "Aufgabe: Berechne die erweiterte Gartenfläche mit $(a+b)^{2} = $a^{2} + 2ab + b^{2}$$.",
             architect_advanced_prompt: "Termidentifikation & Faktorisierungsübung",
             architect_elite_prompt: "Zweivariablen-Faktorisierungsherausforderung",
             scrapper_mission: "Aufgabe: Identifiziere $a$ und $b$ aus der expandierten Form und rekonstruiere das Quadrat.",
@@ -1307,17 +1307,17 @@ export const deMath = {
         placeholders: {
             ax: "ax",
             b: "b",
-            a_squared: "a^{2}",
+            a_squared: "a²",
             two_ab: "2ab",
-            b_squared: "b^{2}",
+            b_squared: "b²",
             cxy: "Cxy",
             v: "V",
             two_cvxy: "2CVxy",
-            v_squared: "V^{2}",
+            v_squared: "V²",
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "Zerlegungsmuster: a^{2} + 2ab + b^{2}"
+        decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$"
     },
     sm2_02: {
         back: "Zurück zum Nexus",

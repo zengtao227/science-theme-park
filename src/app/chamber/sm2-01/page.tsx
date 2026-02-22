@@ -177,8 +177,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         promptLatex: t.scenarios.scrapper_mission, expressionLatex: expr,
         targetLatex: `(${aTerm} + ${bTerm})^{2}`,
         slots: [
-          { id: "a", labelLatex: "a", placeholder: vA === "x^{2}" ? "ax^{2}" : "ax", expected: aTerm },
-          { id: "b", labelLatex: "b", placeholder: vB ? (vB === "y^{2}" ? "by^{2}" : "by") : "b", expected: bTerm },
+          { id: "a", labelLatex: "a", placeholder: vA === "x^{2}" ? "ax²" : "ax", expected: aTerm },
+          { id: "b", labelLatex: "b", placeholder: vB ? (vB === "y^{2}" ? "by²" : "by") : "b", expected: bTerm },
         ],
         correctLatex: `(${aTerm} + ${bTerm})^{2}`,
       };
@@ -223,9 +223,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}^{2}`,
         targetLatex: `${rb}^{2} ${sn} 2(${rb})(${off}) + ${off}^{2}`,
         slots: [
-          { id: "part1", labelLatex: "a^{2}", placeholder: "a^{2}", expected: rb ** 2 },
+          { id: "part1", labelLatex: "a^{2}", placeholder: "a²", expected: rb ** 2 },
           { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: mid },
-          { id: "part3", labelLatex: "b^{2}", placeholder: "b^{2}", expected: parseFloat((off ** 2).toFixed(2)) },
+          { id: "part3", labelLatex: "b^{2}", placeholder: "b²", expected: parseFloat((off ** 2).toFixed(2)) },
         ],
         correctLatex: `${rb ** 2} ${sn === "-" ? "-" : "+"} ${Math.abs(mid)} + ${parseFloat((off ** 2).toFixed(2))} = ${parseFloat((val ** 2).toFixed(2))}`,
       };
@@ -277,7 +277,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
         slots: isFact
           ? [{ id: "a", labelLatex: "a", placeholder: "ax", expected: aT }, { id: "b", labelLatex: "b", placeholder: vB ? "by" : "b", expected: bT }]
-          : [{ id: "part1", labelLatex: "a^{2}", placeholder: "a^{2}", expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: "b^{2}", expected: vb ** 2 }],
+          : [{ id: "part1", labelLatex: "a^{2}", placeholder: "a²", expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: "b²", expected: vb ** 2 }],
         correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
       };
     });
@@ -814,8 +814,8 @@ export default function S201Page() {
                         <InlineMath
                           math={
                             scrapperQuest?.variant === "XY"
-                              ? `\\\\sqrt{${scrapperQuest.ca ** 2}x^{2}} = ${scrapperQuest.ca}x`
-                              : `\\\\sqrt{${scrapperQuest?.ca ? scrapperQuest.ca ** 2 : ""}x^{2}} = ${scrapperQuest?.ca ?? ""}x`
+                              ? `\\sqrt{${scrapperQuest.ca ** 2}x^{2}} = ${scrapperQuest.ca}x`
+                              : `\\sqrt{${scrapperQuest?.ca ? scrapperQuest.ca ** 2 : ""}x^{2}} = ${scrapperQuest?.ca ?? ""}x`
                           }
                         />
                       </div>
@@ -854,7 +854,7 @@ export default function S201Page() {
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder="a^{2}"
+                      placeholder="a²"
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
@@ -888,7 +888,7 @@ export default function S201Page() {
                             <InlineMath
                               math={
                                 eliteQuest
-                                  ? `\\\\sqrt{${eliteQuest.C ** 2}} = ${eliteQuest.C}, \\\\quad \\\\sqrt{${eliteQuest.V ** 2}} = ${eliteQuest.V
+                                  ? `\\sqrt{${eliteQuest.C ** 2}} = ${eliteQuest.C}, \\quad \\sqrt{${eliteQuest.V ** 2}} = ${eliteQuest.V
                                   }`
                                   : ""
                               }
@@ -943,7 +943,7 @@ export default function S201Page() {
                         value={inputs.const_term || ""}
                         onChange={(e) => setInputs({ ...inputs, const_term: e.target.value })}
                         className="w-32 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder="V^{2}"
+                        placeholder="V²"
                       />
                     </div>
                   </div>
@@ -1037,7 +1037,7 @@ export default function S201Page() {
                     {sm2_01_t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
                   </div>
                   <div className="text-white font-black">
-                    <InlineMath math={scrapperQuest ? `\\\\sqrt{${scrapperQuest.ca * scrapperQuest.ca}x^{2}} = ${scrapperQuest.ca}x` : ""} />
+                    <InlineMath math={scrapperQuest ? `\\sqrt{${scrapperQuest.ca * scrapperQuest.ca}x^{2}} = ${scrapperQuest.ca}x` : ""} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {sm2_01_t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
