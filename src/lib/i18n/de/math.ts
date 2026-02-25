@@ -1302,7 +1302,8 @@ export const deMath = {
             verified: "Verifiziert",
             simulating: "Simuliert",
             coeff: "Koeffizient",
-            const: "Konstante"
+            const: "Konstante",
+            linear: "Linear"
         },
         placeholders: {
             ax: "ax",
@@ -1345,6 +1346,10 @@ export const deMath = {
         no: "NEIN",
         monitor_title: "SM2.02_VISUELLE_UEBERWACHUNG",
         footer_left: "SM2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
+        ui: {
+            view_2d: "2D-Ansicht",
+            view_fluid: "Fluid-Ansicht"
+        },
         input_radical: "Antwort als k√m",
         input_k: "k",
         input_m: "m",

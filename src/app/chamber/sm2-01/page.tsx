@@ -107,8 +107,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           expressionLatex: `(x + ${vb})^{2}`, targetLatex: `x^{2} + ${2 * vb}x + ${vb ** 2}`,
           slots: [
             { id: "a2", labelLatex: "x^{2}", placeholder: "1", expected: 1 },
-            { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * vb },
-            { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
+            { id: "ab", labelLatex: "x", placeholder: t.ui.coeff, expected: 2 * vb },
+            { id: "b2", labelLatex: t.ui.const, placeholder: t.ui.const, expected: vb ** 2 },
           ],
           correctLatex: `x^{2} + ${2 * vb}x + ${vb ** 2}`,
         };
@@ -119,9 +119,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           formula: `(${ca}x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
           expressionLatex: `(${ca}x + ${vb})^{2}`, targetLatex: `${ca ** 2}x^{2} + ${2 * ca * vb}x + ${vb ** 2}`,
           slots: [
-            { id: "a2", labelLatex: "x^{2}", placeholder: "coeff", expected: ca ** 2 },
-            { id: "ab", labelLatex: "x", placeholder: "coeff", expected: 2 * ca * vb },
-            { id: "b2", labelLatex: "const", placeholder: "const", expected: vb ** 2 },
+            { id: "a2", labelLatex: "x^{2}", placeholder: t.ui.coeff, expected: ca ** 2 },
+            { id: "ab", labelLatex: "x", placeholder: t.ui.coeff, expected: 2 * ca * vb },
+            { id: "b2", labelLatex: t.ui.const, placeholder: t.ui.const, expected: vb ** 2 },
           ],
           correctLatex: `${ca ** 2}x^{2} + ${2 * ca * vb}x + ${vb ** 2}`,
         };
@@ -148,10 +148,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           expressionLatex: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2`,
           targetLatex: `(${aTerm})^{2} + 2(${aTerm})(${bTerm}) + (${bTerm})^{2}`,
           slots: [
-            { id: "a_root", labelLatex: "a", placeholder: "ax", expected: aTerm },
-            { id: "b_root", labelLatex: "b", placeholder: "by", expected: bTerm },
-            { id: "a_mid", labelLatex: "a", placeholder: "ax", expected: aTerm },
-            { id: "b_mid", labelLatex: "b", placeholder: "by", expected: bTerm },
+            { id: "a_root", labelLatex: "a", placeholder: t.placeholders.ax, expected: aTerm },
+            { id: "b_root", labelLatex: "b", placeholder: t.placeholders.by, expected: bTerm },
+            { id: "a_mid", labelLatex: "a", placeholder: t.placeholders.ax, expected: aTerm },
+            { id: "b_mid", labelLatex: "b", placeholder: t.placeholders.by, expected: bTerm },
           ],
           correctLatex: `${ca ** 2}x^2 + ${2 * ca * vb}xy + ${vb ** 2}y^2 = (${aTerm} + ${bTerm})^2`,
         };
@@ -177,8 +177,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         promptLatex: t.scenarios.scrapper_mission, expressionLatex: expr,
         targetLatex: `(${aTerm} + ${bTerm})^{2}`,
         slots: [
-          { id: "a", labelLatex: "a", placeholder: vA === "x^{2}" ? "ax²" : "ax", expected: aTerm },
-          { id: "b", labelLatex: "b", placeholder: vB ? (vB === "y^{2}" ? "by²" : "by") : "b", expected: bTerm },
+          { id: "a", labelLatex: "a", placeholder: vA === "x^{2}" ? "ax²" : t.placeholders.ax, expected: aTerm },
+          { id: "b", labelLatex: "b", placeholder: vB ? (vB === "y^{2}" ? "by²" : t.placeholders.by) : t.placeholders.b, expected: bTerm },
         ],
         correctLatex: `(${aTerm} + ${bTerm})^{2}`,
       };
@@ -223,9 +223,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         promptLatex: t.scenarios.speedster_mission, expressionLatex: `${val}^{2}`,
         targetLatex: `${rb}^{2} ${sn} 2(${rb})(${off}) + ${off}^{2}`,
         slots: [
-          { id: "part1", labelLatex: "a^{2}", placeholder: "a²", expected: rb ** 2 },
-          { id: "part2", labelLatex: "2ab", placeholder: "2ab", expected: mid },
-          { id: "part3", labelLatex: "b^{2}", placeholder: "b²", expected: parseFloat((off ** 2).toFixed(2)) },
+          { id: "part1", labelLatex: "a^{2}", placeholder: t.placeholders.a_squared, expected: rb ** 2 },
+          { id: "part2", labelLatex: "2ab", placeholder: t.placeholders.two_ab, expected: mid },
+          { id: "part3", labelLatex: "b^{2}", placeholder: t.placeholders.b_squared, expected: parseFloat((off ** 2).toFixed(2)) },
         ],
         correctLatex: `${rb ** 2} ${sn === "-" ? "-" : "+"} ${Math.abs(mid)} + ${parseFloat((off ** 2).toFixed(2))} = ${parseFloat((val ** 2).toFixed(2))}`,
       };
@@ -249,8 +249,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         slots: [
           { id: "base", labelLatex: "a", placeholder: vA.toUpperCase(), expected: aTerm },
           { id: "sub", labelLatex: "b", placeholder: "V", expected: V.toString() },
-          { id: "add_term", labelLatex: "2ab", placeholder: "linear", expected: `${2 * C * V}${vA}` },
-          { id: "const_term", labelLatex: "b^{2}", placeholder: "const", expected: (2 * V ** 2).toString() },
+          { id: "add_term", labelLatex: "2ab", placeholder: t.ui.linear, expected: `${2 * C * V}${vA}` },
+          { id: "const_term", labelLatex: "b^{2}", placeholder: t.ui.const, expected: (2 * V ** 2).toString() },
         ],
         correctLatex: `(${aTerm} - ${V})^{2} + ${2 * C * V}${vA} - ${2 * V ** 2} = ${C ** 2}${vA === "xy" ? "x^{2}y^{2}" : "x^{2}y^{2}z^{2}"} - ${V ** 2}`,
       };

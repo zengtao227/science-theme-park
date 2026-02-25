@@ -650,6 +650,10 @@ export default function S202Page() {
     },
     placeholders: {
       question: "?"
+    },
+    ui: {
+      view_2d: t("sm2_02.ui.view_2d"),
+      view_fluid: t("sm2_02.ui.view_fluid")
     }
   };
 
@@ -765,7 +769,7 @@ export default function S202Page() {
               onClick={() => setUseFluidViz(!useFluidViz)}
               className="px-3 py-1 text-[8px] uppercase tracking-wider border border-white/70 text-white/70 hover:border-white/60 hover:text-white transition-all"
             >
-              {useFluidViz ? "2D View" : "Fluid View"}
+              {useFluidViz ? sm2_02_t.ui.view_2d : sm2_02_t.ui.view_fluid}
             </button>
           </div>
           {stage === "EXPLORER" ? (
@@ -781,6 +785,11 @@ export default function S202Page() {
                 b={explorerB * explorerK}
                 c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
                 highlightRightAngle={true}
+                labels={{
+                  sideA: sm2_02_t.labels.side_a,
+                  sideB: sm2_02_t.labels.side_b,
+                  hyp: sm2_02_t.labels.hypotenuse
+                }}
               />
             )
           ) : (
@@ -797,6 +806,11 @@ export default function S202Page() {
                   b={currentQuest?.visual.b}
                   c={currentQuest?.visual.c}
                   highlightRightAngle={currentQuest?.visual.highlightRightAngle}
+                  labels={{
+                    sideA: sm2_02_t.labels.side_a,
+                    sideB: sm2_02_t.labels.side_b,
+                    hyp: sm2_02_t.labels.hypotenuse
+                  }}
                 />
               )
             ) : (
