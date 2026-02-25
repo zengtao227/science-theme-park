@@ -66,7 +66,7 @@ interface VoyagerQuest extends Quest {
 
 type S201Quest = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | VoyagerQuest;
 
-const renderMixedText = (text: string) => {
+const renderMixedText = (text: string | undefined | null) => {
   if (!text) return null;
   const parts = text.split(/(\$[^$]+\$)/g);
   return (
@@ -685,10 +685,10 @@ export default function S201Page() {
               {/* Scenario Context Box - SHIFTED UP AND REFINED */}
               <div className="bg-white/[0.04] border-l-4 border-neon-green/50 rounded-r-xl p-5 max-w-3xl mx-auto backdrop-blur-sm">
                 <div className="text-white/70 text-xs font-mono leading-relaxed">
-                  {questMode === "ARCHITECT" && sm2_01_t.scenarios.architect_context}
-                  {questMode === "SCRAPPER" && sm2_01_t.scenarios.scrapper_context}
-                  {questMode === "SPEEDSTER" && sm2_01_t.scenarios.speedster_context}
-                  {questMode === "VOYAGER" && sm2_01_t.scenarios.voyager_context}
+                  {questMode === "ARCHITECT" && renderMixedText(sm2_01_t.scenarios.architect_context)}
+                  {questMode === "SCRAPPER" && renderMixedText(sm2_01_t.scenarios.scrapper_context)}
+                  {questMode === "SPEEDSTER" && renderMixedText(sm2_01_t.scenarios.speedster_context)}
+                  {questMode === "VOYAGER" && renderMixedText(sm2_01_t.scenarios.voyager_context)}
                 </div>
               </div>
 
@@ -711,7 +711,7 @@ export default function S201Page() {
                   <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </div>
                 {questMode === "SPEEDSTER" && (
-                  <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{sm2_01_t.speedster_hint}</div>
+                  <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{renderMixedText(sm2_01_t.speedster_hint)}</div>
                 )}
               </div>
             </div>
@@ -763,7 +763,7 @@ export default function S201Page() {
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        {sm2_01_t.decomposition_pattern ?? "Decomposition Pattern: a^{2} + 2ab + b^{2}"}
+                        {renderMixedText(sm2_01_t.decomposition_pattern ?? "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$")}
                       </div>
                     </div>
                   ) : (
@@ -1059,7 +1059,7 @@ export default function S201Page() {
                     {sm2_01_t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
                   </div>
                   <div className="text-white font-black flex items-center h-6">
-                    <InlineMath math={`A^{2} + AB - AB - B^{2} \\\\equiv A^{2} - B^{2}`} />
+                    <InlineMath math={`A^{2} + AB - AB - B^{2} \\equiv A^{2} - B^{2}`} />
                   </div>
                 </>
               )}
@@ -1079,12 +1079,12 @@ export default function S201Page() {
               </span>
             </div>
             <p className="text-xs text-white/70 leading-relaxed font-mono italic font-black bg-white/[0.03] p-5 rounded-lg border-2 border-white/10">
-              {questMode === "EXPLORE" && (locked ? sm2_01_t.instruction_solve : sm2_01_t.instruction_setup)}
-              {questMode === "ARCHITECT" && sm2_01_t.ui?.constraints_architect}
-              {questMode === "SCRAPPER" && sm2_01_t.ui?.constraints_scrapper}
-              {questMode === "SPEEDSTER" && sm2_01_t.ui?.constraints_speedster}
-              {questMode === "ELITE" && sm2_01_t.ui?.constraints_elite}
-              {questMode === "VOYAGER" && sm2_01_t.ui?.constraints_voyager}
+              {questMode === "EXPLORE" && (locked ? renderMixedText(sm2_01_t.instruction_solve) : renderMixedText(sm2_01_t.instruction_setup))}
+              {questMode === "ARCHITECT" && renderMixedText(sm2_01_t.ui?.constraints_architect)}
+              {questMode === "SCRAPPER" && renderMixedText(sm2_01_t.ui?.constraints_scrapper)}
+              {questMode === "SPEEDSTER" && renderMixedText(sm2_01_t.ui?.constraints_speedster)}
+              {questMode === "ELITE" && renderMixedText(sm2_01_t.ui?.constraints_elite)}
+              {questMode === "VOYAGER" && renderMixedText(sm2_01_t.ui?.constraints_voyager)}
             </p>
           </div>
         </div>

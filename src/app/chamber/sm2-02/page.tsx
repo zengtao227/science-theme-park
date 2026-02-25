@@ -22,7 +22,7 @@ type Stage =
   | "MENTAL" | "CHAIN"
   | "PERFECT" | "SIMPLIFY" | "ESTIMATE";
 
-const renderMixedText = (text: string) => {
+const renderMixedText = (text: string | undefined | null) => {
   if (!text) return null;
   const parts = text.split(/(\$[^$]+\$)/g);
   return (
