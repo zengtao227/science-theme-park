@@ -13,6 +13,7 @@ import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
 import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
+import { formatRadicalLatex, simplifyRadical as sharedSimplifyRadical } from "@/lib/math";
 
 type Stage =
   | "EXPLORER"
@@ -62,26 +63,12 @@ interface S202Quest extends Quest {
 // Utility functions
 function simplifyRadical(n: number): Radical {
   if (n <= 0) return { k: 0, m: 0 };
-  let k = 1;
-  let m = n;
-  for (let p = 2; p * p <= m; p++) {
-    while (m % (p * p) === 0) {
-      m /= p * p;
-      k *= p;
-    }
-  }
-  return { k, m };
+  return sharedSimplifyRadical(n);
 }
 
 function isPerfectSquare(n: number) {
   const r = Math.floor(Math.sqrt(n));
   return r * r === n;
-}
-
-function formatRadicalLatex({ k, m }: Radical) {
-  if (m === 1) return `${k}`;
-  if (k === 1) return `\\\\sqrt{${m}}`;
-  return `${k}\\\\sqrt{${m}}`;
 }
 
 function hashStringToUint32(s: string) {
@@ -328,7 +315,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CERN|${scale}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.cern_title}\n${sm2_02_t.mission.cern_desc}`,
+      promptLatex: `${sm2_02_t.mission.cern_title} — ${sm2_02_t.mission.cern_desc}`,
       expressionLatex: `d^{2}=w^{2}+h^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(exact_cern)}`,
@@ -347,7 +334,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|GRIND|${a_grind}|${b_grind}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.roof_title}\n${sm2_02_t.mission.roof_desc}`,
+      promptLatex: `${sm2_02_t.mission.roof_title} — ${sm2_02_t.mission.roof_desc}`,
       expressionLatex: `r^{2}=a^{2}+b^{2}`,
       targetLatex: `r`,
       correctLatex: `r=${formatRadicalLatex(exact_grind)}`,
@@ -365,7 +352,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|LUCERNE|${base_lucerne}|${height_lucerne}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.ladder_title}\n${sm2_02_t.mission.ladder_desc}`,
+      promptLatex: `${sm2_02_t.mission.ladder_title} — ${sm2_02_t.mission.ladder_desc}`,
       expressionLatex: `c^{2}=a^{2}+b^{2}`,
       targetLatex: `c`,
       correctLatex: `c=${Math.sqrt(d2_lucerne)}`,
@@ -392,7 +379,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.grid_title}\n${sm2_02_t.mission.grid_desc}`,
+        promptLatex: `${sm2_02_t.mission.grid_title} — ${sm2_02_t.mission.grid_desc}`,
         expressionLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -419,7 +406,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.protocol}\n${sm2_02_t.mission.chain_title}\n${sm2_02_t.mission.chain_desc}`,
+      promptLatex: `${sm2_02_t.mission.chain_title} — ${sm2_02_t.mission.chain_desc}`,
       expressionLatex: `d^{2}=s^{2}+c^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(dExact)}`,
@@ -644,6 +631,23 @@ export default function S202Page() {
       simplify: t("sm2_02.sqrt.simplify"),
       estimate: t("sm2_02.sqrt.estimate")
     },
+    explorer: {
+      base_config: t("sm2_02.explorer.base_config"),
+      leg_a: t("sm2_02.explorer.leg_a"),
+      leg_b: t("sm2_02.explorer.leg_b"),
+      scaling_title: t("sm2_02.explorer.scaling_title"),
+      multiplier: t("sm2_02.explorer.multiplier"),
+      ratio: t("sm2_02.explorer.ratio"),
+      similarity_title: t("sm2_02.explorer.similarity_title"),
+      similarity_desc: t("sm2_02.explorer.similarity_desc"),
+      engine_title: t("sm2_02.explorer.engine_title"),
+      hyp_label: t("sm2_02.explorer.hyp_label"),
+    },
+    labels: {
+      side_a: t("sm2_02.labels.side_a"),
+      side_b: t("sm2_02.labels.side_b"),
+      hypotenuse: t("sm2_02.labels.hypotenuse"),
+    },
     placeholders: {
       question: "?"
     }
@@ -838,12 +842,12 @@ export default function S202Page() {
         <div className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 p-8 space-y-8 max-w-4xl mx-auto mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <h4 className="text-neon-cyan font-bold uppercase tracking-widest text-[10px]">Triangle Base Configuration</h4>
+              <h4 className="text-neon-cyan font-bold uppercase tracking-widest text-[10px]">{sm2_02_t.explorer.base_config}</h4>
               <div className="space-y-5">
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
-                    <span>Base Leg a: {explorerA}</span>
-                    <span className="text-neon-cyan">a^{2} = {explorerA * explorerA}</span>
+                    <span>{sm2_02_t.explorer.leg_a}: {explorerA}</span>
+                    <span className="text-neon-cyan">a^{"{2}"} = {explorerA * explorerA}</span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -853,8 +857,8 @@ export default function S202Page() {
                 </div>
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
-                    <span>Base Leg b: {explorerB}</span>
-                    <span className="text-neon-blue">b^{2} = {explorerB * explorerB}</span>
+                    <span>{sm2_02_t.explorer.leg_b}: {explorerB}</span>
+                    <span className="text-neon-blue">b^{"{2}"} = {explorerB * explorerB}</span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -881,11 +885,11 @@ export default function S202Page() {
             </div>
 
             <div className="space-y-6">
-              <h4 className="text-neon-purple font-bold uppercase tracking-widest text-[10px]">Homothetic Scaling (k)</h4>
+              <h4 className="text-neon-purple font-bold uppercase tracking-widest text-[10px]">{sm2_02_t.explorer.scaling_title}</h4>
               <div>
                 <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
-                  <span>Multiplier k: {explorerK}</span>
-                  <span className="text-neon-purple">Ratio Constant</span>
+                  <span>{sm2_02_t.explorer.multiplier}: {explorerK}</span>
+                  <span className="text-neon-purple">{sm2_02_t.explorer.ratio}</span>
                 </div>
                 <input
                   type="range" min="0.5" max="20" step="0.1"
@@ -910,10 +914,9 @@ export default function S202Page() {
               </div>
 
               <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3">
-                <div className="text-[9px] text-white/90 uppercase font-mono tracking-widest">Similarity Theorem</div>
+                <div className="text-[9px] text-white/90 uppercase font-mono tracking-widest">{sm2_02_t.explorer.similarity_title}</div>
                 <p className="text-[11px] text-white/70 leading-relaxed italic">
-                  Scaled triangles (ka, kb, kc) are similar to (a, b, c).
-                  The relationship <span className="text-neon-cyan">a^{2}+b^{2}=c^{2}</span> remains invariant under any positive scale factor <span className="text-neon-purple">k</span>.
+                  {renderMixedText(sm2_02_t.explorer.similarity_desc)}
                 </p>
               </div>
             </div>
@@ -922,19 +925,19 @@ export default function S202Page() {
           <div className="flex justify-center pt-8 border-t border-white/5">
             <div className="text-center group">
               <div className="text-white/60 text-[9px] mb-3 uppercase tracking-[0.4em] font-black group-hover:text-white/90 transition-all font-mono">
-                Real-time Geometry Engine
+                {sm2_02_t.explorer.engine_title}
               </div>
               <div className="text-3xl font-black text-white tracking-tighter">
-                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}^{2}</span>
+                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}^{"{2}"}</span>
                 <span className="mx-3 opacity-30">+</span>
-                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}^{2}</span>
+                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}^{"{2}"}</span>
                 <span className="mx-3 opacity-30">=</span>
                 <span className="text-neon-green">{(explorerA * explorerA * explorerK * explorerK + explorerB * explorerB * explorerK * explorerK).toFixed(1)}</span>
               </div>
               <div className="flex items-center justify-center gap-2 mt-4">
                 <div className="h-px w-8 bg-white/10" />
                 <div className="text-neon-green text-sm font-bold font-mono px-4 border border-neon-green/20 py-1 rounded-full bg-neon-green/5">
-                  Hypotenuse c = {Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2)).toFixed(2)}
+                  {sm2_02_t.explorer.hyp_label} = {Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2)).toFixed(2)}
                 </div>
                 <div className="h-px w-8 bg-white/10" />
               </div>

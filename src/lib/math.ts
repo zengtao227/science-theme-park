@@ -44,3 +44,36 @@ export function complexPowSteps(base: Complex, power: number, steps: number) {
     }
     return points;
 }
+
+// --- Radical utilities (shared across SM2.02, SM2.04, etc.) ---
+
+export interface Radical {
+    k: number;
+    m: number;
+}
+
+/**
+ * Simplifies √n into k√m where m has no perfect square factors.
+ * Example: simplifyRadical(72) → { k: 6, m: 2 } since √72 = 6√2
+ */
+export function simplifyRadical(n: number): Radical {
+    let k = 1;
+    let m = n;
+    for (let i = 2; i * i <= m; i++) {
+        while (m % (i * i) === 0) {
+            k *= i;
+            m /= i * i;
+        }
+    }
+    return { k, m };
+}
+
+/**
+ * Formats a Radical as a LaTeX string for use in expressionLatex / correctLatex.
+ * Uses 2 backslashes in JS source → 1 backslash in memory → KaTeX renders √ correctly.
+ */
+export function formatRadicalLatex({ k, m }: Radical): string {
+    if (m === 1) return `${k}`;
+    if (k === 1) return `\\sqrt{${m}}`;
+    return `${k}\\sqrt{${m}}`;
+}

@@ -8,9 +8,17 @@ interface PythagorasSimple2DProps {
   b: number;
   c: number;
   highlightRightAngle?: boolean;
+  labels?: {
+    sideA?: string;
+    sideB?: string;
+    hyp?: string;
+  };
 }
 
-export default function PythagorasSimple2D({ a, b, c, highlightRightAngle }: PythagorasSimple2DProps) {
+export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, labels }: PythagorasSimple2DProps) {
+  const sideALabel = labels?.sideA || "Kathete a";
+  const sideBLabel = labels?.sideB || "Kathete b";
+  const hypLabel = labels?.hyp || "Hypotenuse c";
   const [showProof, setShowProof] = useState(false);
 
   // Geometric math
@@ -128,19 +136,19 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle }: Pyt
       {/* Stats / Controls Overlay */}
       <div className="p-4 bg-black/60 backdrop-blur-md border-t border-white/10 grid grid-cols-3 gap-4 font-mono text-center">
         <div className="text-red-400">
-          <div className="text-[10px] opacity-50 uppercase">Side a</div>
+          <div className="text-[10px] opacity-50 uppercase">{sideALabel}</div>
           <div className="text-xl font-bold">{a}</div>
-          <div className="text-xs">a^{2} = {a * a}</div>
+          <div className="text-xs">a^{"{"}2{"}"}  = {a * a}</div>
         </div>
         <div className="text-blue-400">
-          <div className="text-[10px] opacity-50 uppercase">Side b</div>
+          <div className="text-[10px] opacity-50 uppercase">{sideBLabel}</div>
           <div className="text-xl font-bold">{b}</div>
-          <div className="text-xs">b^{2} = {b * b}</div>
+          <div className="text-xs">b^{"{"}2{"}"}  = {b * b}</div>
         </div>
         <div className="text-neon-green">
-          <div className="text-[10px] opacity-50 uppercase">Hypotenuse c</div>
+          <div className="text-[10px] opacity-50 uppercase">{hypLabel}</div>
           <div className="text-xl font-bold">{c.toFixed(2)}</div>
-          <div className="text-xs">c^{2} ≈ {(c * c).toFixed(0)}</div>
+          <div className="text-xs">c^{"{"}2{"}"}  ≈ {(c * c).toFixed(0)}</div>
         </div>
       </div>
 

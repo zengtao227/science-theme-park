@@ -1389,6 +1389,23 @@ export const deMath = {
             title: "KOPFRECHNEN",
             triples: "Pythagoreische Tripel",
             chain: "Streckenkette"
+        },
+        explorer: {
+            base_config: "Dreiecks-Basiskonfiguration",
+            leg_a: "Kathete a",
+            leg_b: "Kathete b",
+            scaling_title: "Homothetische Skalierung (k)",
+            multiplier: "Faktor k",
+            ratio: "Verhältniskonstante",
+            similarity_title: "Ähnlichkeitssatz",
+            similarity_desc: "Skalierte Dreiecke (ka, kb, kc) sind ähnlich zu (a, b, c). Die Beziehung $a^{2}+b^{2}=c^{2}$ bleibt unter jedem positiven Skalierungsfaktor $k$ invariant.",
+            engine_title: "Echtzeit-Geometrie-Engine",
+            hyp_label: "Hypotenuse c"
+        },
+        labels: {
+            side_a: "Kathete a",
+            side_b: "Kathete b",
+            hypotenuse: "Hypotenuse c"
         }
     },
     sm2_03: {
