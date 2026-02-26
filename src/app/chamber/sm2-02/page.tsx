@@ -604,6 +604,7 @@ export default function S202Page() {
       known_horizontal: t("sm2_02.pythagoras.known_horizontal"),
       known_given: t("sm2_02.pythagoras.known_given"),
       check_right: t("sm2_02.pythagoras.check_right"),
+      check_right_question: t("sm2_02.pythagoras.check_right_question"),
       distance: t("sm2_02.pythagoras.distance"),
       elite_space: t("sm2_02.pythagoras.elite_space"),
       explorer_mission: t("sm2_02.pythagoras.explorer_mission")
@@ -653,7 +654,8 @@ export default function S202Page() {
     },
     ui: {
       view_2d: t("sm2_02.ui.view_2d"),
-      view_fluid: t("sm2_02.ui.view_fluid")
+      view_fluid: t("sm2_02.ui.view_fluid"),
+      fluid_proof_title: t("sm2_02.ui.fluid_proof_title")
     }
   };
 
