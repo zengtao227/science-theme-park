@@ -949,14 +949,7 @@ export default function S101Page() {
                             </span>
                         </div>
                         <div className="text-white/70 font-mono text-sm break-words">
-                            {(() => {
-                                const latex = currentQuest?.promptLatex || "";
-                                // Robust stripping of \\text{...} wrappers for UI display
-                                if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}") && !latex.includes("=")) {
-                                    return <span className="whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
-                                }
-                                return <>{renderMixedText(latex)}</>;
-                            })()}
+                            {renderMixedText(currentQuest?.promptLatex || "")}
                         </div>
                         {currentQuest?.hintLatex && currentQuest?.hintLatex.length > 0 && (
                             <div className="space-y-2 text-white font-black text-[10px] uppercase tracking-[0.25em]">
@@ -987,23 +980,7 @@ export default function S101Page() {
                         {sm1_01_t.objective_title}
                     </h3>
                     <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
-                        {(() => {
-                            const latex = currentQuest?.promptLatex || "";
-                            // Improved logic: only use plain text if it's strictly a container for localized text
-                            // and translate it properly. Variables should stay in math mode.
-                            if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
-                                const clean = latex
-                                    .replace(/^\\+text\{/, "")
-                                    .replace(/\}$/, "")
-                                    .replace(/\\\\/g, "\n")
-                                    .replace(/\\;/g, " ")
-                                    .replace(/\\,/g, " ")
-                                    .replace(/\\quad/g, "  ")
-                                    .replace(/\\!/g, "");
-                                return <span className="whitespace-pre-wrap font-sans not-italic text-center block w-full">{clean}</span>;
-                            }
-                            return <>{renderMixedText(latex)}</>;
-                        })()}
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </p>
                 </div>
 
