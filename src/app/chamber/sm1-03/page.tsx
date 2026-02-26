@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import IntegerCanvas from "@/components/chamber/sm1-03/IntegerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "NUMBER_LINE" | "RATIONALS" | "QUADRANTS";
 type IntegerQuest = Quest & { stage: Stage; context?: string; scenario?: string; value?: number; x?: number; y?: number };
@@ -45,7 +46,8 @@ export default function SM103Page() {
       result: t("sm1_03.labels.result") || "Result",
       quadrant: t("sm1_03.labels.quadrant") || "Quadrant",
       midpoint: t("sm1_03.labels.midpoint") || "Midpoint",
-      order_smallest: t("sm1_03.labels.order_smallest") || "Order from smallest"
+      order_smallest: t("sm1_03.labels.order_smallest") || "Order from smallest",
+      unit_celsius: t("sm1_03.labels.unit_celsius") || "°C"
     },
     objective_title: t("sm1_03.objective_title"),
     scenarios: {
@@ -1028,7 +1030,8 @@ export default function SM103Page() {
             translations={{
               integer_number_line: sm1_03_t.labels.integer_number_line,
               rational_number_line: sm1_03_t.labels.rational_number_line,
-              coordinate_plane: sm1_03_t.labels.coordinate_plane
+              coordinate_plane: sm1_03_t.labels.coordinate_plane,
+              unit_celsius: sm1_03_t.labels.unit_celsius
             }}
           />
         </div>
@@ -1040,7 +1043,7 @@ export default function SM103Page() {
             <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
               {t("sm1_03.objective_title")}
             </div>
-            <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
+            <p className="text-white/90 leading-relaxed font-medium">{renderMixedText(quest.scenario)}</p>
           </div>
         )}
 
@@ -1049,7 +1052,7 @@ export default function SM103Page() {
             <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
               {t("sm1_03.scenario_title")}
             </div>
-            <p className="text-white/80 leading-relaxed">{quest.context}</p>
+            <p className="text-white/80 leading-relaxed italic">{renderMixedText(quest.context)}</p>
           </div>
         )}
 
@@ -1058,9 +1061,7 @@ export default function SM103Page() {
             {t("sm1_03.calculate_title")}
           </div>
           <div className="text-3xl text-white font-black">
-            {quest?.promptLatex && (
-              <InlineMath math={quest.promptLatex} />
-            )}
+            {renderMixedText(quest?.promptLatex)}
           </div>
         </div>
 

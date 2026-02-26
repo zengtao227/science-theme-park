@@ -9,6 +9,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BinomialSquare2D from "@/components/chamber/sm2-01/BinomialSquare2D";
+import { renderMixedText } from "@/lib/latex-utils";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -65,21 +66,6 @@ interface VoyagerQuest extends Quest {
 }
 
 type S201Quest = ArchitectQuest | ScrapperQuest | SpeedsterQuest | EliteQuest | VoyagerQuest;
-
-const renderMixedText = (text: string | undefined | null) => {
-  if (!text) return null;
-  const parts = text.split(/(\$[^$]+\$)/g);
-  return (
-    <>
-      {parts.map((p, i) => {
-        if (p.startsWith("$") && p.endsWith("$")) {
-          return <InlineMath key={i} math={p.slice(1, -1)} />;
-        }
-        return <span key={i} className="font-sans font-black whitespace-pre-wrap">{p}</span>;
-      })}
-    </>
-  );
-};
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Quest[] {
   if (stage === "EXPLORE") return [];
@@ -308,9 +294,32 @@ export default function S201Page() {
     elite_tips_title: t("sm2_01.elite_tips_title"),
     elite_tips_target: t("sm2_01.elite_tips_target"),
     decomposition_pattern: t("sm2_01.decomposition_pattern"),
+    decomposition_pattern_2d: t("sm2_01.decomposition_pattern_2d"),
+    decomposition_pattern_3d: t("sm2_01.decomposition_pattern_3d"),
+    volume_proof_3d: t("sm2_01.volume_proof_3d"),
+    volume_conservation: t("sm2_01.volume_conservation"),
+    unit_cubed: t("sm2_01.unit_cubed"),
+    status_mode: t("sm2_01.status_mode"),
+    status_exploded: t("sm2_01.status_exploded"),
+    status_assembled: t("sm2_01.status_assembled"),
     scrapper_step01: t("sm2_01.scrapper_step01"),
     instruction_solve: t("sm2_01.instruction_solve"),
     instruction_setup: t("sm2_01.instruction_setup"),
+    expand: t("sm2_01.expand"),
+    collapse: t("sm2_01.collapse"),
+    expanded_view: t("sm2_01.expanded_view"),
+    assembled_view: t("sm2_01.assembled_view"),
+    color_coding: t("sm2_01.color_coding"),
+    total: t("sm2_01.total"),
+    pattern_3d: t("sm2_01.decomposition_pattern_3d"), // Reusing for pattern title
+    instructions: {
+      rotate: t("sm2_01.instructions.rotate"),
+      zoom: t("sm2_01.instructions.zoom"),
+      reset: t("sm2_01.instructions.reset"),
+      help: t("sm2_01.instructions.help"),
+      title: t("sm2_01.instructions.title"),
+      hint: t("sm2_01.instructions.hint"),
+    },
     tabs: {
       explore: t("sm2_01.tabs.explore"),
       architect: t("sm2_01.tabs.architect"),
@@ -386,6 +395,9 @@ export default function S201Page() {
       constraints_speedster: t("sm2_01.ui.constraints_speedster"),
       constraints_elite: t("sm2_01.ui.constraints_elite"),
       constraints_voyager: t("sm2_01.ui.constraints_voyager"),
+      geometry_proof: t("sm2_01.ui.geometry_proof"),
+      binomial_formula: t("sm2_01.ui.binomial_formula"),
+      node_zurich: t("sm2_01.ui.node_zurich"),
     },
   };
 
@@ -472,52 +484,6 @@ export default function S201Page() {
   );
   // .. (omitted unchanged code logic, but verify is destructured above)
 
-  // ... (Update getCanvasLabels etc - unchanged) ...
-
-  const getCanvasLabels = () => {
-    if (questMode === "ARCHITECT" && architectQuest) {
-      return {
-        a2: `${architectQuest.ca ** 2}x^2`,
-        b2: `${architectQuest.vb ** 2}`,
-        ab: `${architectQuest.ca * architectQuest.vb}x`,
-      };
-    }
-    if (questMode === "SCRAPPER" && scrapperQuest) {
-      return {
-        a2: `${scrapperQuest.ca ** 2 === 1 ? "" : scrapperQuest.ca ** 2}x^2`,
-        b2: `${scrapperQuest.vb ** 2}${scrapperQuest.variant === "XY" ? "y^2" : ""}`,
-        ab: `${scrapperQuest.ca * scrapperQuest.vb}${scrapperQuest.variant === "XY" ? "xy" : "x"}`,
-      };
-    }
-    if (questMode === "ELITE" && eliteQuest) {
-      return {
-        a2: `${eliteQuest.C ** 2}x^2y^2`,
-        b2: `${eliteQuest.V ** 2}`,
-        ab: `${eliteQuest.C * eliteQuest.V}xy`,
-      };
-    }
-    if (questMode === "VOYAGER" && voyagerQuest) {
-      return {
-        a2: `${voyagerQuest.ca ** 2}x^2`,
-        b2: `${voyagerQuest.vb ** 2}`,
-        ab: `${voyagerQuest.ca * voyagerQuest.vb}x`,
-      };
-    }
-    return { a2: sm2_01_t.terms?.a2 ?? "a^{2}", b2: sm2_01_t.terms?.b2 ?? "b^{2}", ab: sm2_01_t.terms?.ab ?? "ab" };
-  };
-
-  const getCanvasTitleText = () => {
-    if (questMode === "ARCHITECT" && architectQuest) return architectQuest.formula;
-    if (questMode === "SCRAPPER" && scrapperQuest) {
-      return scrapperQuest.variant === "XY"
-        ? `${scrapperQuest.ca ** 2}x^2 + ${2 * scrapperQuest.ca * scrapperQuest.vb}xy + ${scrapperQuest.vb ** 2}y^2`
-        : `${scrapperQuest.ca ** 2}x^2 + ${2 * scrapperQuest.ca * scrapperQuest.vb}x + ${scrapperQuest.vb ** 2}`;
-    }
-    if (questMode === "ELITE" && eliteQuest) return `${eliteQuest.C ** 2}x^2y^2 - ${eliteQuest.V ** 2}`;
-    if (questMode === "VOYAGER" && voyagerQuest) return voyagerQuest.expr;
-    return sm2_01_t.terms?.target_plus ?? "(a + b)^{2}";
-  };
-
   const handleSidebarKeyDown = (e: React.KeyboardEvent) => {
     if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) return;
 
@@ -583,6 +549,14 @@ export default function S201Page() {
               a={canvasA}
               b={canvasB}
               hideRoots={!!(currentQuest as any)?.isFactor || questMode === "ELITE"}
+              translations={{
+                terms: sm2_01_t.terms,
+                ui: {
+                  geometry_proof: sm2_01_t.ui.geometry_proof,
+                  binomial_formula: sm2_01_t.ui.binomial_formula,
+                  node_zurich: sm2_01_t.ui.node_zurich,
+                }
+              }}
             />
 
             <AnimatePresence>

@@ -18,9 +18,12 @@ interface Cube3DProps {
     side?: string;
     unit?: string;
     instructions?: {
-      rotate: string;
-      zoom: string;
-      reset: string;
+      rotate?: string;
+      zoom?: string;
+      reset?: string;
+      help?: string;
+      title?: string;
+      hint?: string;
     };
   };
 }
@@ -116,7 +119,10 @@ export default function Cube3D({
     instructions: {
       rotate: "Drag to rotate",
       zoom: "Scroll to zoom",
-      reset: "Reset View"
+      reset: "Reset View",
+      help: "Instructions",
+      title: "3D Controls",
+      hint: "Observe the model from any angle"
     }
   }
 }: Cube3DProps) {

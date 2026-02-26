@@ -630,6 +630,13 @@ export const cnMath = {
             volume: "体积",
             calculate_area: "计算面积",
             calculate_volume: "计算体积",
+            rectangle: "长方形",
+            triangle: "三角形",
+            circle: "圆形",
+            trapezoid: "梯形",
+            cube: "正方体",
+            prism: "棱柱",
+            cylinder: "圆柱体"
         },
         quests: {
             ski: "阿尔卑斯滑雪场需要铺设新雪道。雪道是长方形的。",
@@ -665,7 +672,7 @@ export const cnMath = {
             basel_water_tank: "巴塞尔水箱（圆柱体）",
             basel_museum: "巴塞尔博物馆立方体展示",
             basel_sbb_cargo: "巴塞尔火车站货运集装箱",
-            basel_storage_sa: "巴塞尔储物立方体，表面积 150 平方米",
+            basel_storage_sa: "巴塞尔储物立方体，表面积 150 m²",
             novartis_lab: "诺华实验室容器，底面 6×8 米，高 10 米",
             basel_rhine_pipe: "巴塞尔莱茵河水管，直径 8 米，长 12 米",
             roche_cube: "罗氏大厦立方体房间，边长 9 米",
@@ -674,12 +681,12 @@ export const cnMath = {
             novartis_plaza: "诺华梯形广场，周长 50 米",
             basel_rhine_cyl: "巴塞尔莱茵河圆柱形管道，直径 10 米，长 15 米",
             roche_prism: "罗氏大厦棱柱，底面 12×10 米，高 20 米",
-            basel_sbb_storage: "巴塞尔火车站立方体储物，表面积 294 平方米",
-            basel_museum_vol: "巴塞尔博物馆立方体，体积 512 立方米，求对角线",
-            novartis_tank: "诺华圆柱形水箱，侧面积 314.16 平方米，半径 5 米",
-            basel_bridge_area: "巴塞尔莱茵河桥梯形，面积 180 平方米，a=10，b=20，求 h",
-            roche_prism_vol: "罗氏大厦棱柱，体积 1200 立方米，底面 10×8 米，求高度",
-            basel_water_cyl: "巴塞尔水箱圆柱体，体积 1570.8 立方米，高 20 米，求半径",
+            basel_sbb_storage: "巴塞尔火车站立方体储物，表面积 294 m²",
+            basel_museum_vol: "巴塞尔博物馆立方体，体积 512 m³，求对角线",
+            novartis_tank: "诺华圆柱形水箱，侧面积 314.16 m²，半径 5 米",
+            basel_bridge_area: "巴塞尔莱茵河桥梯形，面积 180 m²，a=10，b=20，求 h",
+            roche_prism_vol: "罗氏大厦棱柱，体积 1200 m³，底面 10×8 米，求高度",
+            basel_water_cyl: "巴塞尔水箱圆柱体，体积 1570.8 m³，高 20 米，求半径",
             basel_park_path: "巴塞尔公园长方形小径",
             basel_cathedral_roof: "巴塞尔大教堂三角形屋顶部分",
             novartis_logo: "诺华圆形标志",
@@ -694,8 +701,8 @@ export const cnMath = {
 
             // 额外场景
             basel_messe_trap: "巴塞尔展览梯形展位",
-            basel_uni_lab_vol: "巴塞尔大学立方体实验室，体积 1000 立方米",
-            novartis_tank_vol: "诺华圆柱形水箱，半径 6 米，体积 678.6 立方米",
+            basel_uni_lab_vol: "巴塞尔大学立方体实验室，体积 1000 m³",
+            novartis_tank_vol: "诺华圆柱形水箱，半径 6 米，体积 678.6 m³",
 
             // 监控标签
             realtime_geo: "实时几何",
@@ -1291,7 +1298,29 @@ export const cnMath = {
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "分解模式：$a^{2} + 2ab + b^{2}$"
+        decomposition_pattern: "分解模式：$a^{2} + 2ab + b^{2}$",
+        decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
+        expand: "展开",
+        collapse: "收起",
+        expanded_view: "展开视图",
+        assembled_view: "组合视图",
+        color_coding: "颜色编码",
+        total: "总计",
+        decomposition_pattern_3d: "分解模式：$(a+b)^{3} = a^{3} + 3a^{2}b + 3ab^{2} + b^{3}$",
+        volume_proof_3d: "3D 空间体积证明",
+        volume_conservation: "体积守恒",
+        unit_cubed: "单位³",
+        status_mode: "模式",
+        status_exploded: "分解状态",
+        status_assembled: "组合状态",
+        instructions: {
+            rotate: "旋转",
+            zoom: "缩放",
+            reset: "重置",
+            help: "帮助",
+            title: "3D 控制",
+            hint: "使用鼠标进行交互"
+        }
     },
     sm2_02: {
         back: "返回枢纽",
@@ -1385,7 +1414,11 @@ export const cnMath = {
         ui: {
             view_2d: "2D 视图",
             view_fluid: "流体视图",
-            fluid_proof_title: "流体动力学证明"
+            fluid_proof_title: "流体动力学证明",
+            voxel_proof: "体素勾股证明",
+            elite_space_diagonal: "精英空间对角线",
+            distance_formula_3d: "3D 距离公式",
+            no_viz: "暂无可视化"
         }
     },
     sm2_03: {

@@ -650,6 +650,13 @@ export const enMath = {
             volume: "Volume",
             calculate_area: "Calculate the area.",
             calculate_volume: "Calculate the volume.",
+            rectangle: "Rectangle",
+            triangle: "Triangle",
+            circle: "Circle",
+            trapezoid: "Trapezoid",
+            cube: "Cube",
+            prism: "Prism",
+            cylinder: "Cylinder"
         },
         quests: {
             ski: "An Alpine ski slope needs new snow. The slope is rectangular.",
@@ -685,7 +692,7 @@ export const enMath = {
             basel_water_tank: "Basel water tank (cylinder)",
             basel_museum: "Basel Museum cube display",
             basel_sbb_cargo: "Basel SBB cargo container",
-            basel_storage_sa: "Basel storage cube, surface area 150 m^{2}",
+            basel_storage_sa: "Basel storage cube, surface area 150 m²",
             novartis_lab: "Novartis lab container, base 6×8 m, height 10 m",
             basel_rhine_pipe: "Basel Rhine water pipe, diameter 8 m, length 12 m",
             roche_cube: "Roche Tower cube room, edge 9 m",
@@ -694,12 +701,12 @@ export const enMath = {
             novartis_plaza: "Novartis trapezoid plaza, perimeter 50 m",
             basel_rhine_cyl: "Basel Rhine cylindrical pipe, diameter 10 m, length 15 m",
             roche_prism: "Roche Tower prism, base 12×10 m, height 20 m",
-            basel_sbb_storage: "Basel SBB cube storage, surface area 294 m^{2}",
-            basel_museum_vol: "Basel Museum cube, volume 512 m^{3}, find diagonal",
-            novartis_tank: "Novartis cylinder tank, lateral area 314.16 m^{2}, radius 5 m",
-            basel_bridge_area: "Basel Rhine bridge trapezoid, area 180 m^{2}, a=10, b=20, find h",
-            roche_prism_vol: "Roche Tower prism, volume 1200 m^{3}, base 10×8 m, find height",
-            basel_water_cyl: "Basel water tank cylinder, volume 1570.8 m^{3}, height 20 m, find radius",
+            basel_sbb_storage: "Basel SBB cube storage, surface area 294 m²",
+            basel_museum_vol: "Basel Museum cube, volume 512 m³, find diagonal",
+            novartis_tank: "Novartis cylinder tank, lateral area 314.16 m², radius 5 m",
+            basel_bridge_area: "Basel Rhine bridge trapezoid, area 180 m², a=10, b=20, find h",
+            roche_prism_vol: "Roche Tower prism, volume 1200 m³, base 10×8 m, find height",
+            basel_water_cyl: "Basel water tank cylinder, volume 1570.8 m³, height 20 m, find radius",
             basel_park_path: "Basel park rectangular path",
             basel_cathedral_roof: "Basel Cathedral triangular roof section",
             novartis_logo: "Novartis circular logo",
@@ -714,8 +721,8 @@ export const enMath = {
 
             // Additional scenarios
             basel_messe_trap: "Basel Messe exhibition trapezoid booth",
-            basel_uni_lab_vol: "Basel University cube lab, volume 1000 m^{3}",
-            novartis_tank_vol: "Novartis cylindrical tank, radius 6 m, volume 678.6 m^{3}",
+            basel_uni_lab_vol: "Basel University cube lab, volume 1000 m³",
+            novartis_tank_vol: "Basel cylindrical tank, radius 6 m, volume 678.6 m³",
 
             // Monitor labels
             realtime_geo: "REAL-TIME GEOMETRY",
@@ -833,7 +840,8 @@ export const enMath = {
             x_coord: "x-coordinate",
             y_coord: "y-coordinate",
             midpoint: "Midpoint",
-            order_smallest: "Order from smallest"
+            order_smallest: "Order from smallest",
+            unit_celsius: "°C"
         },
         stages: {
             number_line: "NUMBER LINE",
@@ -1308,7 +1316,29 @@ export const enMath = {
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$"
+        decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$",
+        decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
+        expand: "Expand",
+        collapse: "Collapse",
+        expanded_view: "Expanded View",
+        assembled_view: "Assembled View",
+        color_coding: "Color Coding",
+        total: "Total",
+        decomposition_pattern_3d: "$(a+b)^{3} = a^{3} + 3a^{2}b + 3ab^{2} + b^{3}$",
+        volume_proof_3d: "3D_VOLUME_PROOF",
+        volume_conservation: "Volume Conservation",
+        unit_cubed: "units³",
+        status_mode: "MODE",
+        status_exploded: "EXPLODED",
+        status_assembled: "ASSEMBLED",
+        instructions: {
+            rotate: "Rotate",
+            zoom: "Zoom",
+            reset: "Reset",
+            help: "Help",
+            title: "3D Controls",
+            hint: "Use mouse to interact"
+        }
     },
     sm2_02: {
         back: "Back to Nexus",
@@ -1402,7 +1432,11 @@ export const enMath = {
         ui: {
             view_2d: "2D View",
             view_fluid: "Fluid View",
-            fluid_proof_title: "Fluid Dynamic Proof"
+            fluid_proof_title: "Fluid Dynamic Proof",
+            voxel_proof: "Voxel Pythagorean Proof",
+            elite_space_diagonal: "Elite Space Diagonal",
+            distance_formula_3d: "Distance Formula 3D",
+            no_viz: "No visualization available"
         }
     },
     sm2_03: {

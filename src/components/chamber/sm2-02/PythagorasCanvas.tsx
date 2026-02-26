@@ -544,9 +544,22 @@ export interface S202CanvasProps {
     p1?: { x: number; y: number };
     p2?: { x: number; y: number };
   };
+  translations?: {
+    voxel_proof: string;
+    elite_space_diagonal: string;
+    distance_formula_3d: string;
+    no_viz: string;
+  };
 }
 
-export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
+export default function S202PythagorasCanvas({ visual, translations }: S202CanvasProps) {
+  const currentTranslations = {
+    voxel_proof: translations?.voxel_proof || "Voxel Pythagorean Proof",
+    elite_space_diagonal: translations?.elite_space_diagonal || "Elite Space Diagonal",
+    distance_formula_3d: translations?.distance_formula_3d || "Distance Formula 3D",
+    no_viz: translations?.no_viz || "No visualization available"
+  };
+
   if (visual.kind === "triangle" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
       <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
@@ -586,7 +599,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
         </Canvas>
 
         <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
-          Voxel Pythagorean Proof
+          {currentTranslations.voxel_proof}
         </div>
       </div>
     );
@@ -626,7 +639,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
         </Canvas>
 
         <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
-          Elite Space Diagonal
+          {currentTranslations.elite_space_diagonal}
         </div>
       </div>
     );
@@ -652,7 +665,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
         </Canvas>
 
         <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
-          Distance Formula 3D
+          {currentTranslations.distance_formula_3d}
         </div>
       </div>
     );
@@ -660,7 +673,7 @@ export default function S202PythagorasCanvas({ visual }: S202CanvasProps) {
 
   return (
     <div className="w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 flex items-center justify-center">
-      <div className="text-white/90 text-center p-8">No visualization available</div>
+      <div className="text-white/90 text-center p-8">{currentTranslations.no_viz}</div>
     </div>
   );
 }

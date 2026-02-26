@@ -659,6 +659,13 @@ export const deMath = {
             volume: "Volumen",
             calculate_area: "Berechnen Sie die Fläche.",
             calculate_volume: "Berechnen Sie das Volumen.",
+            rectangle: "Rechteck",
+            triangle: "Dreieck",
+            circle: "Kreis",
+            trapezoid: "Trapez",
+            cube: "Würfel",
+            prism: "Prisma",
+            cylinder: "Zylinder"
         },
         quests: {
             ski: "Eine alpine Skipiste benötigt Neuschnee. Die Piste ist rechteckig.",
@@ -694,7 +701,7 @@ export const deMath = {
             basel_water_tank: "Basel Wassertank (Zylinder)",
             basel_museum: "Basel Museum Würfelanzeige",
             basel_sbb_cargo: "Basel SBB Frachtcontainer",
-            basel_storage_sa: "Basel Lagerwürfel, Oberfläche 150 m^{2}",
+            basel_storage_sa: "Basel Lagerwürfel, Oberfläche 150 m²",
             novartis_lab: "Novartis Laborbehälter, Basis 6×8 m, Höhe 10 m",
             basel_rhine_pipe: "Basel Rhein Wasserrohr, Durchmesser 8 m, Länge 12 m",
             roche_cube: "Roche Tower Würfelraum, Kante 9 m",
@@ -703,12 +710,12 @@ export const deMath = {
             novartis_plaza: "Novartis Trapezplatz, Umfang 50 m",
             basel_rhine_cyl: "Basel Rhein zylindrisches Rohr, Durchmesser 10 m, Länge 15 m",
             roche_prism: "Roche Tower Prisma, Basis 12×10 m, Höhe 20 m",
-            basel_sbb_storage: "Basel SBB Würfellager, Oberfläche 294 m^{2}",
-            basel_museum_vol: "Basel Museum Würfel, Volumen 512 m^{3}, finde Diagonale",
-            novartis_tank: "Novartis Zylindertank, Mantelfläche 314.16 m^{2}, Radius 5 m",
-            basel_bridge_area: "Basel Rheinbrücke Trapez, Fläche 180 m^{2}, a=10, b=20, finde h",
-            roche_prism_vol: "Roche Tower Prisma, Volumen 1200 m^{3}, Basis 10×8 m, finde Höhe",
-            basel_water_cyl: "Basel Wassertank Zylinder, Volumen 1570.8 m^{3}, Höhe 20 m, finde Radius",
+            basel_sbb_storage: "Basel SBB Würfellager, Oberfläche 294 m²",
+            basel_museum_vol: "Basel Museum Würfel, Volumen 512 m³, finde Diagonale",
+            novartis_tank: "Novartis Zylindertank, Mantelfläche 314.16 m², Radius 5 m",
+            basel_bridge_area: "Basel Rheinbrücke Trapez, Fläche 180 m², a=10, b=20, finde h",
+            roche_prism_vol: "Roche Tower Prisma, Volumen 1200 m³, Basis 10×8 m, finde Höhe",
+            basel_water_cyl: "Basel Wassertank Zylinder, Volumen 1570.8 m³, Höhe 20 m, finde Radius",
             basel_park_path: "Basel Park rechteckiger Weg",
             basel_cathedral_roof: "Basler Münster dreieckiger Dachabschnitt",
             novartis_logo: "Novartis kreisförmiges Logo",
@@ -723,8 +730,8 @@ export const deMath = {
 
             // Zusätzliche Szenarien
             basel_messe_trap: "Basel Messe Ausstellungstrapezstand",
-            basel_uni_lab_vol: "Universität Basel Würfellabor, Volumen 1000 m^{3}",
-            novartis_tank_vol: "Novartis Zylindertank, Radius 6 m, Volumen 678.6 m^{3}",
+            basel_uni_lab_vol: "Universität Basel Würfellabor, Volumen 1000 m³",
+            novartis_tank_vol: "Novartis Zylindertank, Radius 6 m, Volumen 678.6 m³",
 
             // Monitor-Labels
             realtime_geo: "ECHTZEIT-GEOMETRIE",
@@ -765,7 +772,9 @@ export const deMath = {
             coefficient: "Koeffizient",
             mixed_items: "Gemischte Artikel (Marktplatz)",
             combine_hint: "Kombiniere Artikel der gleichen Farbe/Art.",
-            processing_core: "Verarbeitungskern"
+            processing_core: "Verarbeitungskern",
+            holds_value: "hält den Wert",
+            remove: "entfernen"
         },
         stages: {
             variables: "VARIABLEN",
@@ -782,7 +791,10 @@ export const deMath = {
             substitute_and_evaluate: "Einsetzen und auswerten",
             if: "Wenn",
             calculate: "Berechne",
-            what_is: "Was ist"
+            what_is: "Was ist",
+            evaluate: "Auswerten",
+            substitute_both: "Setze beide Variablen ein",
+            multiply_coeffs: "Koeffizienten zuerst multiplizieren"
         },
         objective_title: "MISSIONSZIEL",
         scenario_title: "SZENARIO-KONTEXT",
@@ -815,6 +827,8 @@ export const deMath = {
             input: "Antwort eingeben",
             hints: "Hinweise",
             coordinate: "Koordinate",
+            x_coord_origin: "x-Koordinate im Ursprung",
+            x_coord_kleinbasel: "x-Koordinate von Kleinbasel",
             quadrant: "Quadrant",
             middle_value: "Mittelwert",
             pos: "Position",
@@ -842,7 +856,8 @@ export const deMath = {
             x_coord: "x-Koordinate",
             y_coord: "y-Koordinate",
             midpoint: "Mittelpunkt",
-            order_smallest: "Von kleinsten ordnen"
+            order_smallest: "Von kleinsten ordnen",
+            unit_celsius: "°C"
         },
         stages: {
             number_line: "ZAHLENGERADE",
@@ -1321,7 +1336,29 @@ export const deMath = {
             by: "by",
             question: "?"
         },
-        decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$"
+        decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$",
+        decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
+        expand: "Ausklappen",
+        collapse: "Einklappen",
+        expanded_view: "Ausgeklappte Ansicht",
+        assembled_view: "Zusammengesetzte Ansicht",
+        color_coding: "Farbcodierung",
+        total: "Gesamt",
+        decomposition_pattern_3d: "$(a+b)^{3} = a^{3} + 3a^{2}b + 3ab^{2} + b^{3}$",
+        volume_proof_3d: "3D_VOLUMENBEWEIS",
+        volume_conservation: "Volumenerhaltung",
+        unit_cubed: "Einheiten³",
+        status_mode: "MODUS",
+        status_exploded: "EXPLODIERT",
+        status_assembled: "ZUSAMMENGEBAUT",
+        instructions: {
+            rotate: "Drehen",
+            zoom: "Zoomen",
+            reset: "Zurücksetzen",
+            help: "Hilfe",
+            title: "3D-Steuerung",
+            hint: "Verwende die Maus zum Interagieren"
+        }
     },
     sm2_02: {
         back: "Zurück zum Nexus",
@@ -1352,7 +1389,11 @@ export const deMath = {
         ui: {
             view_2d: "2D-Ansicht",
             view_fluid: "Fluid-Ansicht",
-            fluid_proof_title: "Dynamischer Fluid-Beweis"
+            fluid_proof_title: "Fluiddynamischer Beweis",
+            voxel_proof: "Voxel-Pythagoras-Beweis",
+            elite_space_diagonal: "Elite-Raumdiagonale",
+            distance_formula_3d: "3D-Distanzformel",
+            no_viz: "Keine Visualisierung verfügbar"
         },
         input_radical: "Antwort als k√m",
         input_k: "k",
@@ -1416,7 +1457,8 @@ export const deMath = {
             side_a: "Kathete a",
             side_b: "Kathete b",
             hypotenuse: "Hypotenuse c"
-        }
+        },
+
     },
     sm2_03: {
         back: "Zurück zum Nexus",

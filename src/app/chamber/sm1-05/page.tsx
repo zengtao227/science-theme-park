@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
 
@@ -654,14 +655,7 @@ export default function SM105Page() {
                                 {sm1_05_t.monitor_title}
                             </div>
                             <div className="text-2xl text-white font-medium leading-relaxed">
-                                {(() => {
-                                    const latex = currentQuest.promptLatex || "";
-                                    // Robust stripping of \\text{...} wrappers for UI display
-                                    if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
-                                        return <span className="font-sans font-black whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
-                                    }
-                                    return <BlockMath math={latex} />;
-                                })()}
+                                {renderMixedText(currentQuest.promptLatex)}
                             </div>
                         </div>
 

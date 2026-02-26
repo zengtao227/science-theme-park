@@ -68,6 +68,17 @@ export function simplifyRadical(n: number): Radical {
     return { k, m };
 }
 
+export function isPerfectSquare(n: number): boolean {
+    const r = Math.floor(Math.sqrt(n));
+    return r * r === n;
+}
+
+export function toRadical(n: number): Radical {
+    if (n <= 0) return { k: 0, m: 0 };
+    if (isPerfectSquare(n)) return { k: Math.sqrt(n), m: 1 };
+    return simplifyRadical(n);
+}
+
 /**
  * Formats a Radical as a LaTeX string for use in expressionLatex / correctLatex.
  * Uses 2 backslashes in JS source → 1 backslash in memory → KaTeX renders √ correctly.

@@ -51,7 +51,13 @@ export const enCommon = {
                 title: "Calculus God",
                 description: "Reach 100% accuracy in GM1.01."
             }
-        }
+        },
+        three_d_rotate: "Drag to rotate view",
+        three_d_zoom: "Scroll to zoom",
+        three_d_reset: "Reset view",
+        three_d_help: "Help",
+        three_d_controls_title: "3D CONTROLS",
+        three_d_hint: "Hint: Observe the 3D model from any angle."
     },
     home: {
         title: "SCIENCE THEME PARK",

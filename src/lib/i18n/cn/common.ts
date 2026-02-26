@@ -51,7 +51,13 @@ export const cnCommon = {
                 title: "微积分之神",
                 description: "在 GM1.01 达到 100% 正确率。"
             }
-        }
+        },
+        three_d_rotate: "拖动鼠标旋转视角",
+        three_d_zoom: "滚轮缩放",
+        three_d_reset: "重置视角",
+        three_d_help: "使用说明",
+        three_d_controls_title: "3D 控制说明",
+        three_d_hint: "提示：针对3D模型，你可以从任意角度观察细节。"
     },
     home: {
         title: "理科主题乐园",

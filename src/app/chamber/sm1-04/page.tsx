@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquationBalance from "@/components/chamber/sm1-04/EquationBalance";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "BALANCE" | "SOLVE" | "TRANSFORM" | "APPLICATIONS";
 type EquationQuest = Quest & {
@@ -1285,21 +1286,21 @@ export default function SM104Page() {
       }
     >
       <div className="space-y-8">
-        {quest?.scenario && (
-          <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
-              {t("sm1_04.basel_scenario")}
-            </div>
-            <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
-          </div>
-        )}
-
         {quest?.context && (
           <div className="p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
               {t("sm1_04.scenario_title")}
             </div>
-            <p className="text-white/80 leading-relaxed">{quest.context}</p>
+            <p className="text-white/80 leading-relaxed italic">{renderMixedText(quest.context)}</p>
+          </div>
+        )}
+
+        {quest?.scenario && (
+          <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
+              {t("sm1_04.basel_scenario")}
+            </div>
+            <p className="text-white/90 leading-relaxed font-medium">{renderMixedText(quest.scenario)}</p>
           </div>
         )}
 
@@ -1308,14 +1309,7 @@ export default function SM104Page() {
             {t("sm1_04.solve_title")}
           </div>
           <div className="text-3xl text-white font-black">
-            {(() => {
-              const latex = quest?.promptLatex || "";
-              // Robust stripping of \\text{...} wrappers for UI display
-              if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
-                return <span className="font-sans font-black whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
-              }
-              return <InlineMath math={latex || ""} />;
-            })()}
+            {renderMixedText(quest?.promptLatex)}
           </div>
         </div>
 

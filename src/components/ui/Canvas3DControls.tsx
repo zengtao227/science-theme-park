@@ -6,28 +6,34 @@ import { RotateCcw, Info } from 'lucide-react';
 
 interface Canvas3DControlsProps {
   onReset: () => void;
-  showInstructions?: boolean; // 是否显示使用说明
+  showInstructions?: boolean;
   instructionsText?: {
     rotate?: string;
     zoom?: string;
     reset?: string;
+    help?: string;
+    title?: string;
+    hint?: string;
   };
 }
 
 export default function Canvas3DControls({
   onReset,
   showInstructions = true,
-  instructionsText = {
-    rotate: "拖动鼠标旋转视角",
-    zoom: "滚轮缩放",
-    reset: "点击重置视角"
-  }
+  instructionsText = {}
 }: Canvas3DControlsProps) {
   const [showHelp, setShowHelp] = useState(false);
 
+  const rotateLabel = instructionsText.rotate || "Rotate View";
+  const zoomLabel = instructionsText.zoom || "Zoom";
+  const resetLabel = instructionsText.reset || "Reset View";
+  const helpLabel = instructionsText.help || "Instructions";
+  const titleLabel = instructionsText.title || "3D Controls";
+  const hintLabel = instructionsText.hint || "Observe from any angle.";
+
   return (
     <div className="absolute top-4 right-4 z-10 flex flex-row gap-2 items-start">
-      {/* 使用说明按钮 - 放在左边 */}
+      {/* Help Button */}
       {showInstructions && (
         <div className="relative">
           <button
@@ -35,52 +41,49 @@ export default function Canvas3DControls({
             className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/60 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm"
           >
             <Info className="w-4 h-4" />
-            <span>使用说明</span>
+            <span>{helpLabel}</span>
           </button>
 
-          {/* 使用说明面板 - 向左展开 */}
+          {/* Help Panel */}
           {showHelp && (
-            <div className="absolute top-12 right-0 bg-black/90 border border-white/60 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md w-64">
-              <div className="font-bold text-neon-green mb-3 text-sm">3D 控制说明</div>
+            <div className="absolute top-12 right-0 bg-black/90 border border-white/60 rounded p-4 text-xs font-mono text-white/80 backdrop-blur-md w-64 shadow-2xl">
+              <div className="font-bold text-neon-green mb-3 text-sm tracking-tight">{titleLabel}</div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
                   <span className="text-neon-cyan">🖱️</span>
                   <div>
-                    <div className="font-bold text-white">旋转视角</div>
-                    <div className="text-white/60">{instructionsText.rotate}</div>
+                    <div className="font-bold text-white mb-0.5">{rotateLabel}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-neon-purple">🔍</span>
                   <div>
-                    <div className="font-bold text-white">缩放</div>
-                    <div className="text-white/60">{instructionsText.zoom}</div>
+                    <div className="font-bold text-white mb-0.5">{zoomLabel}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-neon-amber">🔄</span>
                   <div>
-                    <div className="font-bold text-white">重置</div>
-                    <div className="text-white/60">{instructionsText.reset}</div>
+                    <div className="font-bold text-white mb-0.5">{resetLabel}</div>
                   </div>
                 </div>
               </div>
-              <div className="mt-3 pt-3 border-t border-white/10 text-white text-[10px]">
-                提示：拖动时可以从任意角度观察3D模型
+              <div className="mt-3 pt-3 border-t border-white/10 text-white/60 text-[10px] leading-relaxed">
+                {hintLabel}
               </div>
             </div>
           )}
         </div>
       )}
 
-      {/* Reset按钮 - 放在右边 */}
+      {/* Reset Button */}
       <button
         onClick={onReset}
         className="flex items-center gap-2 px-3 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm"
-        title={instructionsText.reset}
+        title={resetLabel}
       >
         <RotateCcw className="w-4 h-4" />
-        <span>Reset</span>
+        <span>RESET</span>
       </button>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { InlineMath } from 'react-katex';
 
 export type AlgebraVisualMode = 'CONTAINERS' | 'SORTING' | 'MACHINE';

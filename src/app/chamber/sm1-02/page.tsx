@@ -8,10 +8,11 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlgebraCanvas, { type AlgebraVisualMode } from "@/components/chamber/sm1-02/AlgebraCanvas";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "VARIABLES" | "TERMS" | "SUBSTITUTION";
 
-interface S103Quest extends Quest {
+interface S102Quest extends Quest {
     visualMode: AlgebraVisualMode;
     visualData: {
         variables?: { label: string; value: number | string; color: string }[];
@@ -33,8 +34,8 @@ const VAR_COLORS = {
     q: '#ec4899', // pink
 };
 
-function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S103Quest[] {
-    const quests: S103Quest[] = [];
+function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S102Quest[] {
+    const quests: S102Quest[] = [];
     const count = 20;
 
     for (let i = 0; i < count; i++) {
@@ -59,7 +60,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 answer = val1;
                 promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, \\; \\text{${sm1_02_t.prompts.what_is} } ${var1}?`;
                 expressionLatex = var1;
-                hintLatex = [`\\text{${sm1_02_t.labels.variable} ${var1} holds the value ${val1}.}`];
+                hintLatex = [`\\text{${sm1_02_t.labels.variable} ${var1} ${sm1_02_t.labels.holds_value || 'holds value'} ${val1}.}`];
                 visualData = { variables: [{ label: var1, value: val1, color: color1 }] };
             } else if (difficulty === "CORE") {
                 const val1 = Math.floor(Math.random() * 8) + 2;
@@ -68,7 +69,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const expr = coeff === 2 ? `${var1}+${var1}` : `${coeff}${var1}`;
                 promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${expr}`;
                 expressionLatex = expr;
-                hintLatex = [`\\text{Evaluate the expression}`];
+                hintLatex = [`\\text{${sm1_02_t.prompts.evaluate || 'Evaluate expression'}}`];
                 visualData = {
                     variables: Array(coeff).fill(null).map(() => ({ label: var1, value: val1, color: color1 }))
                 };
@@ -79,7 +80,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 answer = sign === '+' ? val1 + val2 : val1 - val2;
                 promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, ${var2}=${val2}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${var1}${sign}${var2}`;
                 expressionLatex = `${var1}${sign}${var2}`;
-                hintLatex = [`\\text{Substitute both variables}`];
+                hintLatex = [`\\text{${sm1_02_t.prompts.substitute_both || 'Substitute both'}}`];
                 visualData = {
                     variables: [
                         { label: var1, value: val1, color: color1 },
@@ -95,7 +96,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 answer = sign === '+' ? c1 * val1 + c2 * val2 : c1 * val1 - c2 * val2;
                 promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, ${var2}=${val2}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${c1}${var1}${sign}${c2}${var2}`;
                 expressionLatex = `${c1}${var1}${sign}${c2}${var2}`;
-                hintLatex = [`\\text{Multiply coefficients first}`];
+                hintLatex = [`\\text{${sm1_02_t.prompts.multiply_coeffs || 'Multiply coefficients first'}}`];
                 visualData = {
                     variables: [
                         ...Array(c1).fill(null).map(() => ({ label: var1, value: val1, color: color1 })),
@@ -148,7 +149,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 if (answerStr === `1${v1}`) answerStr = v1;
                 items = [
                     { type: v1, count: c1, color: color1 },
-                    { type: `${v1} (remove)`, count: -c2, color: '#9ca3af' }
+                    { type: `${v1} (${sm1_02_t.labels.remove || 'remove'})`, count: -c2, color: '#9ca3af' }
                 ];
             } else if (difficulty === "ADVANCED") {
                 isMultiVar = true;
@@ -253,7 +254,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
     return quests;
 }
 
-export default function SM103Page() {
+export default function SM102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
@@ -287,7 +288,10 @@ export default function SM103Page() {
             substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate") || "Substitute value into expression",
             if: t("sm1_02.prompts.if") || "If",
             calculate: t("sm1_02.prompts.calculate") || "calculate",
-            what_is: t("sm1_02.prompts.what_is") || "what is"
+            what_is: t("sm1_02.prompts.what_is") || "what is",
+            evaluate: t("sm1_02.prompts.evaluate") || "Evaluate expression",
+            substitute_both: t("sm1_02.prompts.substitute_both") || "Substitute both variables",
+            multiply_coeffs: t("sm1_02.prompts.multiply_coeffs") || "Multiply coefficients first"
         },
         labels: {
             result: t("sm1_02.labels.result") || "Result",
@@ -298,7 +302,9 @@ export default function SM103Page() {
             input: t("sm1_02.labels.input") || "Input",
             mixed_items: t("sm1_02.labels.mixed_items") || "Mixed Items",
             combine_hint: t("sm1_02.labels.combine_hint") || "Combine like items",
-            processing_core: t("sm1_02.labels.processing_core") || "Processing Core"
+            processing_core: t("sm1_02.labels.processing_core") || "Processing Core",
+            holds_value: t("sm1_02.labels.holds_value"),
+            remove: t("sm1_02.labels.remove")
         },
         objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",
         scenario_title: t("sm1_02.scenario_title") || "SCENARIO CONTEXT"
@@ -314,7 +320,7 @@ export default function SM103Page() {
         aiFeedback,
         isRequestingAi,
         requestAiFeedback
-    } = useQuestManager<S103Quest, Stage>({
+    } = useQuestManager<S102Quest, Stage>({
         moduleCode: "SM1.02",
         buildPool,
         initialStage: "VARIABLES",
@@ -382,14 +388,7 @@ export default function SM103Page() {
                     </div>
                     <div className="text-2xl text-white font-black italic whitespace-normal break-words leading-tight min-h-[5rem] flex items-center justify-center">
                         <div className="text-white/70 font-mono text-xl break-words">
-                            {(() => {
-                                const latex = currentQuest?.promptLatex || "";
-                                // Robust stripping of \\text{...} wrappers for UI display
-                                if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
-                                    return <span className="font-sans font-black whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
-                                }
-                                return <InlineMath math={latex || ""} />;
-                            })()}
+                            {renderMixedText(currentQuest?.promptLatex)}
                         </div>
                     </div>
                 </div>
@@ -409,6 +408,7 @@ export default function SM103Page() {
                                     onChange={(e) => setInputs((v) => ({ ...v, [slot.id]: e.target.value }))}
                                     placeholder={slot.placeholder}
                                     className="w-48 bg-black/60 border-2 border-white/10 p-4 text-center outline-none focus:border-neon-purple text-white font-black text-3xl rounded-2xl transition-all focus:shadow-[0_0_30px_rgba(168,85,247,0.2)]"
+                                    onKeyDown={(e) => e.key === "Enter" && verify()}
                                 />
                             </div>
                         ))}

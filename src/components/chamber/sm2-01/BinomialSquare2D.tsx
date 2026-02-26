@@ -9,18 +9,22 @@ interface BinomialSquare2DProps {
     a: number;
     b: number;
     hideRoots?: boolean;
+    translations: {
+        terms: {
+            a2: string;
+            b2: string;
+            ab: string;
+            target_plus: string;
+        };
+        ui: {
+            geometry_proof: string;
+            binomial_formula: string;
+            node_zurich: string;
+        };
+    };
 }
 
-export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSquare2DProps) {
-    const { t } = useLanguage();
-    const sm2_01_t = {
-        ui: {
-            geometry_proof: t("sm2_01.ui.geometry_proof"),
-            binomial_formula: t("sm2_01.ui.binomial_formula"),
-            node_zurich: t("sm2_01.ui.node_zurich"),
-        }
-    };
-
+export default function BinomialSquare2D({ a, b, hideRoots = false, translations }: BinomialSquare2DProps) {
     const total = a + b;
     const padding = 40;
     const viewSize = 400;
@@ -57,7 +61,9 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={aw / 2} y={aw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >a²</text>
+                    >
+                        {translations.terms.a2.replace(/\$|\{|\}/g, "")}
+                    </text>
                     <text x={aw / 2} y={aw / 2 + 20} fill="#ff3131" fontSize="10" textAnchor="middle">{a * a}</text>
                 </g>
 
@@ -72,7 +78,9 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={bw / 2} y={aw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >ab</text>
+                    >
+                        {translations.terms.ab.replace(/\$|\{|\}/g, "")}
+                    </text>
                     <text x={bw / 2} y={aw / 2 + 20} fill="#ffaa00" fontSize="10" textAnchor="middle">{a * b}</text>
                 </g>
 
@@ -87,7 +95,9 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={aw / 2} y={bw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >ab</text>
+                    >
+                        {translations.terms.ab.replace(/\$|\{|\}/g, "")}
+                    </text>
                     <text x={aw / 2} y={bw / 2 + 20} fill="#ffaa00" fontSize="10" textAnchor="middle">{a * b}</text>
                 </g>
 
@@ -102,48 +112,50 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
                         x={bw / 2} y={bw / 2}
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
-                    >b²</text>
+                    >
+                        {translations.terms.b2.replace(/\$|\{|\}/g, "")}
+                    </text>
                     <text x={bw / 2} y={bw / 2 + 20} fill="#39ff14" fontSize="10" textAnchor="middle">{b * b}</text>
                 </g>
 
                 {/* External Labels */}
-                <text x={padding + aw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">{hideRoots ? "a" : a}</text>
-                <text x={padding + aw + bw / 2} y={padding - 10} fill="white/60" fontSize="12" textAnchor="middle">{hideRoots ? "b" : b}</text>
-                <text x={padding - 15} y={padding + aw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw / 2})`}>{hideRoots ? "a" : a}</text>
-                <text x={padding - 15} y={padding + aw + bw / 2} fill="white/60" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>{hideRoots ? "b" : b}</text>
+                <text x={padding + aw / 2} y={padding - 10} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle">{hideRoots ? "a" : a}</text>
+                <text x={padding + aw + bw / 2} y={padding - 10} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle">{hideRoots ? "b" : b}</text>
+                <text x={padding - 15} y={padding + aw / 2} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw / 2})`}>{hideRoots ? "a" : a}</text>
+                <text x={padding - 15} y={padding + aw + bw / 2} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>{hideRoots ? "b" : b}</text>
             </svg>
 
             {/* Legend Overlay */}
             <div className="absolute top-4 left-4 bg-black/60 p-3 rounded-lg border border-white/10 backdrop-blur-md">
                 <div className="text-neon-cyan font-black text-xs mb-2">
-                    <InlineMath math="(a+b)^{2} = a^{2} + 2ab + b^{2}" />
+                    <InlineMath math={`${translations.terms.target_plus} = ${translations.terms.a2} + 2${translations.terms.ab} + ${translations.terms.b2}`} />
                 </div>
                 <div className="flex items-center gap-4 text-[10px] font-mono">
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#ff3131]" />
                         <span className="text-white/60">
-                            <InlineMath math={`a^{2}=${a * a}`} />
+                            <InlineMath math={`${translations.terms.a2}=${a * a}`} />
                         </span>
                     </div>
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#ffaa00]" />
                         <span className="text-white/60">
-                            <InlineMath math={`2ab=${2 * a * b}`} />
+                            <InlineMath math={`2${translations.terms.ab}=${2 * a * b}`} />
                         </span>
                     </div>
                     <div className="flex items-center gap-1.5">
                         <div className="w-2 h-2 bg-[#39ff14]" />
                         <span className="text-white/60">
-                            <InlineMath math={`b^{2}=${b * b}`} />
+                            <InlineMath math={`${translations.terms.b2}=${b * b}`} />
                         </span>
                     </div>
                 </div>
             </div>
 
             <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
-                {sm2_01_t.ui.geometry_proof}<br />
-                {sm2_01_t.ui.binomial_formula}<br />
-                {sm2_01_t.ui.node_zurich}
+                {translations.ui.geometry_proof}<br />
+                {translations.ui.binomial_formula}<br />
+                {translations.ui.node_zurich}
             </div>
         </div>
     );

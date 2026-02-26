@@ -13,7 +13,8 @@ import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
 import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
-import { formatRadicalLatex, simplifyRadical as sharedSimplifyRadical } from "@/lib/math";
+import { renderMixedText } from "@/lib/latex-utils";
+import { formatRadicalLatex, simplifyRadical, toRadical } from "@/lib/math";
 
 type Stage =
   | "EXPLORER"
@@ -21,21 +22,6 @@ type Stage =
   | "DISTANCE" | "ELITE_SPACE" | "MISSION"
   | "MENTAL" | "CHAIN"
   | "PERFECT" | "SIMPLIFY" | "ESTIMATE";
-
-const renderMixedText = (text: string | undefined | null) => {
-  if (!text) return null;
-  const parts = text.split(/(\$[^$]+\$)/g);
-  return (
-    <>
-      {parts.map((p, i) => {
-        if (p.startsWith("$") && p.endsWith("$")) {
-          return <InlineMath key={i} math={p.slice(1, -1)} />;
-        }
-        return <span key={i} className="font-sans font-black whitespace-pre-wrap">{p}</span>;
-      })}
-    </>
-  );
-};
 
 interface S202Slot {
   id: string;
@@ -58,17 +44,6 @@ interface S202Quest extends Quest {
     p2?: { x: number; y: number };
   };
   slots: S202Slot[];
-}
-
-// Utility functions
-function simplifyRadical(n: number): Radical {
-  if (n <= 0) return { k: 0, m: 0 };
-  return sharedSimplifyRadical(n);
-}
-
-function isPerfectSquare(n: number) {
-  const r = Math.floor(Math.sqrt(n));
-  return r * r === n;
 }
 
 function hashStringToUint32(s: string) {
@@ -250,7 +225,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       const dx = x2 - x1;
       const dy = y2 - y1;
       const d2 = dx * dx + dy * dy;
-      const exact: Radical = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+      const exact: Radical = toRadical(d2);
 
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
@@ -281,7 +256,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       const b = 2 + Math.floor(rnd() * (max - 1));
       const c = 2 + Math.floor(rnd() * (max - 1));
       const d2 = a * a + b * b + c * c;
-      const exact: Radical = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+      const exact: Radical = toRadical(d2);
 
       quests.push({
         id: `PYT|SPACE|${difficulty}|${a}|${b}|${c}`,
@@ -374,7 +349,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       const dx = x2 - x1;
       const dy = y2 - y1;
       const d2 = dx * dx + dy * dy;
-      const exact = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+      const exact = toRadical(d2);
 
       quests.push({
         id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
@@ -399,9 +374,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     const b = b_chain * chainScale;
     const c = c_chain_base;
     const s2 = a * a + b * b;
-    const sExact = isPerfectSquare(s2) ? { k: Math.sqrt(s2), m: 1 } : simplifyRadical(s2);
+    const sExact = toRadical(s2);
     const d2 = s2 + c * c;
-    const dExact = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+    const dExact = toRadical(d2);
 
     quests.push({
       id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
@@ -465,9 +440,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       const c = Math.floor(rnd() * 10) + 1;
 
       const s2 = a * a + b * b;
-      const sExact = isPerfectSquare(s2) ? { k: Math.sqrt(s2), m: 1 } : simplifyRadical(s2);
+      const sExact = toRadical(s2);
       const d2 = s2 + c * c;
-      const dExact = isPerfectSquare(d2) ? { k: Math.sqrt(d2), m: 1 } : simplifyRadical(d2);
+      const dExact = toRadical(d2);
 
       quests.push({
         id: `MENT_C_${i}`, difficulty, stage, tab,
@@ -655,7 +630,11 @@ export default function S202Page() {
     ui: {
       view_2d: t("sm2_02.ui.view_2d"),
       view_fluid: t("sm2_02.ui.view_fluid"),
-      fluid_proof_title: t("sm2_02.ui.fluid_proof_title")
+      fluid_proof_title: t("sm2_02.ui.fluid_proof_title"),
+      voxel_proof: t("sm2_02.ui.voxel_proof"),
+      elite_space_diagonal: t("sm2_02.ui.elite_space_diagonal"),
+      distance_formula_3d: t("sm2_02.ui.distance_formula_3d"),
+      no_viz: t("sm2_02.ui.no_viz")
     }
   };
 
@@ -816,7 +795,10 @@ export default function S202Page() {
                 />
               )
             ) : (
-              <S202PythagorasCanvas visual={currentQuest?.visual} />
+              <S202PythagorasCanvas
+                visual={currentQuest?.visual}
+                translations={sm2_02_t.ui}
+              />
             )
           )}
           {currentQuest?.visual.kind === "space" && (

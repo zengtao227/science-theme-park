@@ -490,7 +490,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CB2", difficulty, stage,
                     promptLatex: `\\text{${t.quests.basel_park_path}}`,
-                    expressionLatex: `\\text{Rectangle: }a=10,\\; b=6`,
+                    expressionLatex: `\\text{${t.labels.rectangle}: }a=10,\\; b=6`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 60, unit: "\\text{m}^{2}" }],
                     correctLatex: `A=10\\cdot 6=60`,
@@ -500,7 +500,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CB3", difficulty, stage,
                     promptLatex: `\\text{${t.quests.basel_cathedral_roof}}`,
-                    expressionLatex: `\\text{Triangle: }b=8,\\; h=6`,
+                    expressionLatex: `\\text{${t.labels.triangle}: }b=8,\\; h=6`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 24, unit: "\\text{m}^{2}" }],
                     correctLatex: `A=\\frac{1}{2}\\cdot 8\\cdot 6=24`,
@@ -510,7 +510,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 {
                     id: "CB4", difficulty, stage,
                     promptLatex: `\\text{${t.quests.novartis_logo}}`,
-                    expressionLatex: `\\text{Circle: }r=4`,
+                    expressionLatex: `\\text{${t.labels.circle}: }r=4`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 50.3, unit: "\\text{cm}^{2}" }],
                     correctLatex: `A=\\pi r^{2}\\approx 50.3`,
@@ -740,6 +740,13 @@ export default function S101Page() {
             volume: t("sm1_01.labels.volume"),
             input: t("sm1_01.labels.input"),
             hints: t("sm1_01.labels.hints"),
+            rectangle: t("sm1_01.labels.rectangle"),
+            triangle: t("sm1_01.labels.triangle"),
+            circle: t("sm1_01.labels.circle"),
+            trapezoid: t("sm1_01.labels.trapezoid"),
+            cube: t("sm1_01.labels.cube"),
+            prism: t("sm1_01.labels.prism"),
+            cylinder: t("sm1_01.labels.cylinder"),
         },
         quests: {
             ski: t("sm1_01.quests.ski"),
@@ -895,9 +902,12 @@ export default function S101Page() {
                                     side: sm1_01_t.labels.side,
                                     unit: "cm",
                                     instructions: {
-                                        rotate: t("common.3d_rotate") || "Drag to rotate",
-                                        zoom: t("common.3d_zoom") || "Scroll to zoom",
-                                        reset: t("common.3d_reset") || "Reset View"
+                                        rotate: t("common.three_d_rotate"),
+                                        zoom: t("common.three_d_zoom"),
+                                        reset: t("common.three_d_reset"),
+                                        help: t("common.three_d_help"),
+                                        title: t("common.three_d_controls_title"),
+                                        hint: t("common.three_d_hint")
                                     }
                                 }}
                             />

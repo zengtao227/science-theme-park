@@ -51,7 +51,13 @@ export const deCommon = {
                 title: "Analysis-Gott",
                 description: "Erreiche 100% Genauigkeit in GM1.01."
             }
-        }
+        },
+        three_d_rotate: "Ziehen zum Drehen des Blickwinkels",
+        three_d_zoom: "Scrollen zum Zoomen",
+        three_d_reset: "Blickwinkel zurücksetzen",
+        three_d_help: "Hilfe",
+        three_d_controls_title: "3D-STEUERUNG",
+        three_d_hint: "Hinweis: Das 3D-Modell kann aus jedem Winkel betrachtet werden."
     },
     home: {
         title: "WISSENSCHAFTSPARK",

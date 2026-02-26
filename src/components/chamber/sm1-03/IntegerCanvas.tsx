@@ -9,6 +9,7 @@ interface IntegerCanvasProps {
     integer_number_line: string;
     rational_number_line: string;
     coordinate_plane: string;
+    unit_celsius: string;
   };
 }
 
@@ -16,9 +17,10 @@ export default function IntegerCanvas({
   stage,
   quest,
   translations = {
-    integer_number_line: "INTEGER NUMBER LINE",
-    rational_number_line: "RATIONAL NUMBER LINE",
-    coordinate_plane: "COORDINATE PLANE"
+    integer_number_line: "Integer Number Line",
+    rational_number_line: "Rational Number Line",
+    coordinate_plane: "Coordinate Plane",
+    unit_celsius: "°C"
   }
 }: IntegerCanvasProps) {
   const canvasSize = 400;
@@ -51,11 +53,11 @@ export default function IntegerCanvas({
               return (
                 <g key={i}>
                   <line x1="220" y1={y} x2={isFive ? "235" : "228"} y2={y} stroke="#ffffff" strokeWidth="1" />
-                  {isFive && <text x="245" y={y + 5} fill="#ffffff" fontSize="12">{v}°C</text>}
+                  {isFive && <text x="245" y={y + 5} fill="#ffffff" fontSize="12">{v}{translations.unit_celsius}</text>}
                 </g>
               );
             })}
-            <text x="200" y="230" textAnchor="middle" fill={mercuryColor} fontSize="18" fontWeight="bold">{value}°C</text>
+            <text x="200" y="230" textAnchor="middle" fill={mercuryColor} fontSize="18" fontWeight="bold">{value}{translations.unit_celsius}</text>
           </svg>
         );
       }

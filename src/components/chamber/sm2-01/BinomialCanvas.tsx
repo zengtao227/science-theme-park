@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Text, Grid } from "@react-three/drei";
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from "three";
@@ -31,6 +31,30 @@ interface S201BinomialCanvasProps {
   };
   titleText: string;
   onSnap: (id: string, isSnapped: boolean) => void;
+  translations: {
+    expand: string;
+    collapse: string;
+    expanded_view: string;
+    assembled_view: string;
+    color_coding: string;
+    total: string;
+    pattern_3d: string;
+    decomposition_pattern_3d: string;
+    volume_proof_3d: string;
+    volume_conservation: string;
+    unit_cubed: string;
+    status_mode: string;
+    status_exploded: string;
+    status_assembled: string;
+    instructions: {
+      rotate: string;
+      zoom: string;
+      reset: string;
+      help: string;
+      title: string;
+      hint: string;
+    };
+  };
 }
 
 // Individual cube component - NO animations
@@ -227,27 +251,27 @@ function BinomialCube3D({ a, b, exploded }: { a: number; b: number; exploded: bo
 }
 
 // Legend component with color coding
-function Legend({ a, b }: { a: number; b: number }) {
+function Legend({ a, b, translations }: { a: number; b: number; translations: any }) {
   return (
     <group position={[-6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.4} color="#ffffff" anchorX="left">
-        (a+b)^{3} Decomposition
+        {translations.decomposition_pattern_3d}
       </Text>
 
       <Text position={[0, 2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">
-        1× a^3 = {a ** 3}
+        1× a³ = {a ** 3}
       </Text>
 
       <Text position={[0, 1.5, 0]} fontSize={0.25} color="#ffaa00" anchorX="left">
-        3× a^{2}b = {3 * a * a * b}
+        3× a²b = {3 * a * a * b}
       </Text>
 
       <Text position={[0, 1, 0]} fontSize={0.25} color="#4444ff" anchorX="left">
-        3× ab^{2} = {3 * a * b * b}
+        3× ab² = {3 * a * b * b}
       </Text>
 
       <Text position={[0, 0.5, 0]} fontSize={0.25} color="#39ff14" anchorX="left">
-        1× b^3 = {b ** 3}
+        1× b³ = {b ** 3}
       </Text>
 
       <Text position={[0, -0.3, 0]} fontSize={0.2} color="#ffffff" anchorX="left">
@@ -255,7 +279,7 @@ function Legend({ a, b }: { a: number; b: number }) {
       </Text>
 
       <Text position={[0, -0.8, 0]} fontSize={0.3} color="#ffffff" anchorX="left">
-        Total = {(a + b) ** 3}
+        {translations.total} = {(a + b) ** 3}
       </Text>
 
       <Text position={[0, -1.5, 0]} fontSize={0.2} color="#ffffff" anchorX="left" fillOpacity={0.6}>
@@ -268,6 +292,7 @@ function Legend({ a, b }: { a: number; b: number }) {
 export default function S201BinomialCanvas({
   a,
   b,
+  translations
 }: S201BinomialCanvasProps) {
   const [exploded, setExploded] = useState(false);
   const controlsRef = useRef<OrbitControlsImpl>(null);
@@ -316,7 +341,7 @@ export default function S201BinomialCanvas({
         <BinomialCube3D a={a} b={b} exploded={exploded} />
 
         {/* Legend */}
-        <Legend a={a} b={b} />
+        <Legend a={a} b={b} translations={translations} />
 
         {/* Coordinate axes */}
         <group>
@@ -330,11 +355,7 @@ export default function S201BinomialCanvas({
       <Canvas3DControls
         onReset={handleReset}
         showInstructions={true}
-        instructionsText={{
-          rotate: "拖动鼠标旋转查看各个立方体",
-          zoom: "滚轮缩放视图",
-          reset: "重置到初始视角"
-        }}
+        instructionsText={translations.instructions}
       />
 
       {/* Expand/Collapse Buttons */}
@@ -344,68 +365,68 @@ export default function S201BinomialCanvas({
           disabled={exploded}
           className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          展开
+          {translations.expand}
         </button>
         <button
           onClick={() => setExploded(false)}
           disabled={!exploded}
           className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          收起
+          {translations.collapse}
         </button>
       </div>
 
       {/* Fixed Formula Display - Does NOT rotate with 3D */}
       <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
         <div className="text-white font-mono text-sm space-y-2">
-          <div className="text-neon-cyan font-bold text-base">(a+b)^{3} = a^{3} + 3a^{2}b + 3ab^{2} + b^{3}</div>
+          <div className="text-neon-cyan font-bold text-base">{translations.pattern_3d}</div>
           <div className="text-white/60 text-xs">
-            {exploded ? "展开视图" : "组合视图"}
+            {exploded ? translations.expanded_view : translations.assembled_view}
           </div>
         </div>
       </div>
 
       {/* Color Legend - Fixed Position */}
       <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
-        <div className="text-white/60 font-bold mb-2">颜色编码</div>
+        <div className="text-white/60 font-bold mb-2">{translations.color_coding}</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
-          <span className="text-[#ff3131]">a^3 = {a ** 3} units^3</span>
+          <span className="text-[#ff3131]">a³ = {a ** 3} {translations.unit_cubed}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
-          <span className="text-[#ffaa00]">3a^{2}b = {3 * a * a * b} units^{3}</span>
+          <span className="text-[#ffaa00]">3a²b = {3 * a * a * b} {translations.unit_cubed}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#4444ff] rounded"></div>
-          <span className="text-[#4444ff]">3ab^{2} = {3 * a * b * b} units^{3}</span>
+          <span className="text-[#4444ff]">3ab² = {3 * a * b * b} {translations.unit_cubed}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
-          <span className="text-[#39ff14]">b^3 = {b ** 3} units^3</span>
+          <span className="text-[#39ff14]">b³ = {b ** 3} {translations.unit_cubed}</span>
         </div>
         <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
-          总计: {(a + b) ** 3} units^3
+          {translations.total}: {(a + b) ** 3} {translations.unit_cubed}
         </div>
       </div>
 
       {/* Status Indicator */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
+      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
         CHAMBER // S2.01<br />
-        3D_VOLUME_PROOF<br />
-        MODE: {exploded ? 'EXPLODED' : 'ASSEMBLED'}
+        {translations.volume_proof_3d}<br />
+        {translations.status_mode}: {exploded ? translations.status_exploded : translations.status_assembled}
       </div>
 
       {/* Volume conservation indicator */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <div className="text-[10px] font-mono text-white/60 uppercase tracking-wider text-center">
-          Volume Conservation
+          {translations.volume_conservation}
         </div>
         <div className="text-4xl font-black text-green-400 text-center">
           ✓
         </div>
         <div className="text-[12px] font-mono text-white/70 text-center">
-          {(a + b) ** 3} = {(a + b) ** 3}
+          {a ** 3} + {3 * a * a * b} + {3 * a * b * b} + {b ** 3} = {(a + b) ** 3}
         </div>
       </div>
     </div>
