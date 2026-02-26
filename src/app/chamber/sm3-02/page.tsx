@@ -170,7 +170,7 @@ function TrigMonitorPanel({
                     <div className="bg-white/5 rounded p-2 border border-white/10">
                         <div className="text-[9px] text-pink-400/70 mb-1">TAN</div>
                         <div className="font-mono text-sm text-pink-300 font-bold flex items-center h-6 overflow-hidden">
-                            {exact ? <InlineMath math={exact.tan} /> : Math.abs(cosValue) < 0.001 ? "∞" : tanValue.toFixed(4)}
+                            {exact ? <InlineMath math={exact.tan} /> : Math.abs(cosValue) < 0.001 ? <InlineMath math="\\infty" /> : <>{tanValue.toFixed(4)}</>}
                         </div>
                     </div>
                 </div>
