@@ -1252,7 +1252,7 @@ export const deMath = {
         scenarios: {
             architect_title: "Szenario A: Gartenerweiterung",
             architect_desc: "Dein Garten am See (a×a) wird um b Meter erweitert. Berechne die neue Gesamtfläche.",
-            architect_context: "Du besitzt ein quadratisches Gartenbeet am Zürichsee mit Seitenlänge $a$ Meter. Die Stadt erlaubt dir, es um $b$ Meter auf zwei Seiten zu erweitern. Um die richtige Menge Erde und Samen zu kaufen, musst du die neue Gesamtfläche kennen.",
+            architect_context: "Du besitzt ein quadratisches Gartenbeet am Zürichsee mit Seitenlänge $a$ Meter. Die Stadt erlaubt dir, es um $b$ Meter auf zwei Seiten zu erweitern. Um die richtige Menge Erde und Samen zu kaufen, musst du die neue Gesamtfläche kennen. Hinweis: Die Gesamtfläche ist nicht nur $a^{2} + b^{2}$, sondern enthält auch zwei rechteckige Streifen und ein Eckquadrat.",
             scrapper_title: "Szenario B: Fliesenfabrik",
             scrapper_desc: "Eine Fabrik hat drei Fliesenformen produziert. Setze sie zu einem perfekten Quadrat zusammen.",
             scrapper_context: "Eine Schweizer Fliesenfabrik produziert drei Arten von Fliesen: ein grosses Quadrat $a^{2}$, zwei rechteckige Streifen (je $a \\times b$) und ein kleines Quadrat $b^{2}$. Deine Aufgabe ist es zu überprüfen, dass diese vier Teile perfekt zu einem grossen Quadrat der Seitenlänge $(a+b)$ zusammengesetzt werden können.",
