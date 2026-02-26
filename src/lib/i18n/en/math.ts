@@ -1349,7 +1349,7 @@ export const enMath = {
             known_horizontal: "horizontal movement",
             known_given: "given",
             check_right: "📐 Engineering check: Is this a right triangle?",
-            check_right_target: "Right Triangle?",
+            check_right_question: "Right Triangle?",
             distance: "🚁 Drone delivery: Calculate flight distance",
             elite_space: " CERN lab: Find the space diagonal",
             right_triangle_q: "📐 Is this a right triangle?",

@@ -729,7 +729,7 @@ export default function S201Page() {
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
                         />
-                        <span className="text-white/80">)^{2}</span>
+                        <span className="text-white/80"><InlineMath math=")^{2}" /></span>
 
                         <span className="text-neon-cyan mx-2">+</span>
 
@@ -759,7 +759,7 @@ export default function S201Page() {
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
                           placeholder={sm2_01_t.placeholders?.b ?? "b"}
                         />
-                        <span className="text-white/80">)^{2}</span>
+                        <span className="text-white/80"><InlineMath math=")^{2}" /></span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
@@ -868,7 +868,7 @@ export default function S201Page() {
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b^{2}"}
+                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b²"}
                     />
                   </div>
                 </div>

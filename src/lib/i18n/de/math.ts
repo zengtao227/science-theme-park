@@ -1367,7 +1367,7 @@ export const deMath = {
             known_horizontal: "horizontale Bewegung",
             known_given: "gegeben",
             check_right: "Ingenieurscheck: Rechtwinkliges Dreieck?",
-            check_right_target: "Rechtwinkliges Dreieck?",
+            check_right_question: "Rechtwinkliges Dreieck?",
             distance: "Drohnenlieferung: Flugdistanz berechnen",
             elite_space: "CERN-Labor: Raumdiagonale berechnen",
             right_triangle_q: "📐 Ist das ein rechtwinkliges Dreieck?",

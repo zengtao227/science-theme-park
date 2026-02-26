@@ -1332,7 +1332,7 @@ export const cnMath = {
             known_horizontal: "水平移动",
             known_given: "已知",
             check_right: "📐 工程验收：这是直角三角形吗？",
-            check_right_target: "直角三角形？",
+            check_right_question: "直角三角形？",
             distance: "🚁 无人机快递：计算直线飞行距离",
             elite_space: " CERN 实验室：求解状态空间对角线",
             right_triangle_q: "📐 这是直角三角形吗？",

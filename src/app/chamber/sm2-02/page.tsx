@@ -211,7 +211,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
           difficulty, stage, tab,
           promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c}$`,
           expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c}^{2}`,
-          targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_target}}`,
+          targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_question}}`,
           correctLatex: `${sm2_02_t.yes}`,
           slots: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\stackrel{?}{=}${c}^{2}`, input: "boolean", expected: "true", placeholder: "?" }],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: false },
@@ -223,7 +223,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
           difficulty, stage, tab,
           promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c + 1}$`,
           expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c + 1}^{2}`,
-          targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_target}}`,
+          targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_question}}`,
           correctLatex: `${sm2_02_t.no}`,
           slots: [{ id: "judge", labelLatex: `${a}^{2}+${b}^{2}\\stackrel{?}{=}${c + 1}^{2}`, input: "boolean", expected: "false", placeholder: "?" }],
           visual: { kind: "triangle", a, b, c: c + 1, highlightRightAngle: false },
@@ -861,7 +861,7 @@ export default function S202Page() {
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>{sm2_02_t.explorer.leg_a}: {explorerA}</span>
-                    <span className="text-neon-cyan">a^{"{2}"} = {explorerA * explorerA}</span>
+                    <span className="text-neon-cyan"><InlineMath math={`a^{2} = ${explorerA * explorerA}`} /></span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -872,7 +872,7 @@ export default function S202Page() {
                 <div>
                   <div className="flex justify-between text-[10px] text-white/90 mb-2 font-mono uppercase tracking-widest">
                     <span>{sm2_02_t.explorer.leg_b}: {explorerB}</span>
-                    <span className="text-neon-blue">b^{"{2}"} = {explorerB * explorerB}</span>
+                    <span className="text-neon-blue"><InlineMath math={`b^{2} = ${explorerB * explorerB}`} /></span>
                   </div>
                   <input
                     type="range" min="1" max="25" step="1"
@@ -942,9 +942,9 @@ export default function S202Page() {
                 {sm2_02_t.explorer.engine_title}
               </div>
               <div className="text-3xl font-black text-white tracking-tighter">
-                <span className="text-neon-cyan">{(explorerA * explorerK).toFixed(1)}^{"{2}"}</span>
+                <span className="text-neon-cyan"><InlineMath math={`${(explorerA * explorerK).toFixed(1)}^{2}`} /></span>
                 <span className="mx-3 opacity-30">+</span>
-                <span className="text-neon-blue">{(explorerB * explorerK).toFixed(1)}^{"{2}"}</span>
+                <span className="text-neon-blue"><InlineMath math={`${(explorerB * explorerK).toFixed(1)}^{2}`} /></span>
                 <span className="mx-3 opacity-30">=</span>
                 <span className="text-neon-green">{(explorerA * explorerA * explorerK * explorerK + explorerB * explorerB * explorerK * explorerK).toFixed(1)}</span>
               </div>
