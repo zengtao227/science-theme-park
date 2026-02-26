@@ -5,27 +5,51 @@ import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
 /**
+ * Preprocesses legacy promptLatex format:
+ * Converts mixed "\\text{...}" + bare math into plain text + "$...$".
+ * Only processes strings that contain "\\text{" and do not already contain "$".
+ */
+function preprocessLegacyLatex(input: string): string {
+    if (!input.includes('\\text{') || input.includes('$')) {
+        return input;
+    }
+
+    const result: string[] = [];
+    let remaining = input;
+
+    while (remaining.length > 0) {
+        const textMatch = remaining.match(/^\\text\{([^}]*)\}/);
+        if (textMatch) {
+            // Convert \text{...} to plain text.
+            result.push(textMatch[1]);
+            remaining = remaining.slice(textMatch[0].length);
+        } else {
+            // Treat the segment before next \text{ as bare math.
+            const nextText = remaining.search(/\\text\{/);
+            const mathPart = nextText === -1 ? remaining : remaining.slice(0, nextText);
+            const clean = mathPart.replace(/\\;/g, ' ').replace(/\\,/g, ' ').trim();
+            if (clean) result.push(`$${clean}$`);
+            remaining = nextText === -1 ? '' : remaining.slice(nextText);
+        }
+    }
+
+    return result.join(' ').replace(/\s{2,}/g, ' ').trim();
+}
+
+/**
  * Renders a string that may contain LaTeX segments wrapped in $ ... $.
- * Also handles robust stripping of \\text{...} wrappers for backward compatibility with some legacy patterns.
+ * Also handles legacy "\\text{...}" mixed-format prompt strings.
  * 
  * @param text - The text to render
  * @param className - Optional CSS class for the wrapper spans
  */
 export const renderMixedText = (text: string | undefined | null, className: string = "font-sans font-black whitespace-pre-wrap") => {
     if (!text) return null;
-
-    // Handle robust stripping of legacy \\text{...} wrappers if the whole string is wrapped
-    if (/^\s*\\+text\{/.test(text) && text.endsWith("}")) {
-        const stripped = text
-            .replace(/^\\+text\{/, "")
-            .replace(/\}$/, "")
-            .replace(/\\\\/g, "\n")
-            .replace(/\\;/g, " ");
-        return <span className={className}>{stripped}</span>;
-    }
+    const normalized = preprocessLegacyLatex(text);
+    if (!normalized) return null;
 
     // Split by $...$ to handle mixed content
-    const parts = text.split(/(\$[^$]+\$)/g);
+    const parts = normalized.split(/(\$[^$]+\$)/g);
     return (
         <>
             {parts.map((p, i) => {
