@@ -1,55 +1,62 @@
 # I18N & LaTeX Rendering Best Practices for Math Modules
 
 ## 1. Problem Statement
-In earlier iterations (e.g., SM1 series), mathematical expressions and internationalized prompts suffered from:
-- **`frac2004` errors**: `\frac` rendering as raw text without backslashes because escaping layers stripped the backslashes before KaTeX received them.
-- **`text` or `ext` errors**: Using JS string templates correctly but losing the `\t` escape sequences during React component renders due to insufficient backslashes.
-- **Hardcoded Prompts**: Complex Elite-level problems were hardcoded in English inside the React component instead of being loaded dynamically from the `i18n` dictionary.
+In earlier iterations (e.g., SM1 and initial SM2 series), mathematical expressions and internationalized content suffered from:
+- **`backslash` tragedy**: Excessive escaping (`\\\\\\\\\\\\sqrt`) or insufficient escaping leading to raw text like `\\sqrt` instead of symbols.
+- **Key-as-Value Errors**: i18n keys appearing in the UI (e.g., `sm2_02.labels.hypotenuse`) because they were defined in dictionary files but not mapped to the localized `t` object in the page file.
+- **Hardcoded Visual Labels**: Strings like "Leg a" or "Side b" hardcoded inside visualization components (SVGs/Canvas).
+- **Aesthetic Fragmentation**: Using plain text `^2` or `sup` tags mixed with KaTeX, leading to inconsistent font weights and sizes.
 
-## 2. Best Practice
+## 2. Best Practices
 
-### Translation Object Structure
-Place all prompts, labels, and scenarios in `i18n/[lang]/math.ts`. 
+### 2.1 Backslash Normalization
+In `.tsx` or `.ts` files:
+- **Memory vs Source**: To have `\sqrt` in the final string, use `\\sqrt` in the source file.
+- **The "Template Literal" Trap**: Inside backticks `` `...` ``, double backslashes are often correctly interpreted. Avoid triple or quadruple backslashes unless specifically wrapping in a `\text{}` container that requires deeper layering.
+- **Golden Rule**: If you see raw `\sqrt` in the browser, you have **too many** backslashes in the source. If you see `sqrt` without the symbol, you have **too few**.
 
-### `page.tsx` Prompt Formatting
-When injecting a translated string into the UI, always enforce the **"Double-escaped Text Container" (4 Backslashes in Source)**:
+### 2.2 Explicit i18n Mapping Flow
+Never access i18n keys directly by string in the UI logic. Follow this flow:
+1. **Define** in `src/lib/i18n/[lang]/math.ts`.
+2. **Map** in the `page.tsx` local translation object (e.g., `sm2_02_t`).
+3. **Inject** the mapped property into components.
 
-```tsx
-// DO NOT do this (renders purely as Math without font sizing/language wrapping):
-promptLatex: `\\text{${t.prompts.my_prompt}}`
-
-// DO THIS:
-promptLatex: `\\\\text{${t.prompts.my_prompt}}`
-```
-Since it's a JS template string, the 4 backslashes interpret to 2 backslashes (`\\text{...}`) in memory. 
-
-### LaTeX Expression Formatting
-For logic and mathematical formula evaluation (e.g. `expressionLatex`, `targetLatex`, `hintLatex`), enforce the **"Single-escaped Instruction Container" (2 Backslashes in Source)**:
-
-```tsx
-// DO NOT do this (interpreted as tab/newline/etc., or strips characters for KaTeX):
-expressionLatex: "\\\\frac{200}{4} \\\\times 6" // Becomes "\frac" which strips the backslash
-
-// DO THIS:
-expressionLatex: "\\frac{200}{4} \\times 6" // Becomes "\frac{200}{4} \times 6" for KaTeX
+```typescript
+// page.tsx
+const sm2_02_t = {
+  labels: {
+    side_a: t("sm2_02.labels.side_a"), // MUST EXPLICITLY MAP HERE
+  }
+};
 ```
 
-### Component Rendering (UI Layer)
-In the React view block, use a robust Regex pattern to safely strip the `\\text{...}` wrapping from the `promptLatex` string. This allows for rich line break replacements and CSS styling specifically tailored to natural language strings (preventing forced italicization of i18n characters).
+### 2.3 Visualization Component Decoupling
+Visual components should not have internal localization logic. Pass translated labels as props.
 
 ```tsx
-<div className="text-2xl text-white font-medium ...">
-  {(() => {
-      const latex = currentQuest?.promptLatex || "";
-      // Robust stripping of \text{...} wrappers for UI display
-      if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}")) {
-          const clean = latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ");
-          return <span className="font-sans font-black whitespace-pre-wrap">{clean}</span>;
-      }
-      return <InlineMath math={latex || ""} />;
-  })()}
-</div>
+// PythagorasSimple2D.tsx
+interface Props {
+  labels: { sideA: string; sideB: string; hyp: string; };
+}
+
+// page.tsx usage
+<PythagorasSimple2D 
+  labels={{
+    sideA: t("sm2_02.labels.side_a"),
+    sideB: t("sm2_02.labels.side_b"),
+    hyp:   t("sm2_02.labels.hypotenuse"),
+  }}
+/>
 ```
+
+### 2.4 Standardized Math Styling
+- **No Unicode Hackery**: Avoid `²` or `b²`. Use `<InlineMath math="b^{2}" />`.
+- **Consistency**: Use `<InlineMath>` even for single variables in stats overlays to ensure they match the font used in the main problem description.
+
+### 2.5 LaTeX Newlines
+When needing a manual line break inside a LaTeX block:
+- use `\\\\` in the source string.
+- In `renderMixedText`, ensure the regex handles the split correctly.
 
 ---
-Applying these patterns uniformly ensures rendering stability and complete internationalization across all SM modules!
+Applying these patterns uniformly ensures rendering stability and a premium, unified aesthetic across all Science Theme Park modules!

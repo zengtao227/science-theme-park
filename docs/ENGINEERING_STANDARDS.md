@@ -19,6 +19,11 @@ All modules **must** use the `useQuestManager` hook to manage:
 - Progress tracking and persistence.
 - Hint & error tracking systems.
 
+### 1.3 Build Safety (Zero Tolerance)
+- **Duplicate Attributes**: No JSX element may have duplicate attributes (e.g., two `onMouseLeave` handlers). This causes silent build failures in CI/CD.
+- **Unused Imports**: Remove all unused imports to keep bundle sizes lean.
+- **Build Pass Rule**: No code shall be merged without a successful local `npm run build`.
+
 ---
 
 ## 🧪 2. Quest & Pedagogy Standards
@@ -41,6 +46,7 @@ Each stage in a module should ideally have **4-5 unique quests per difficulty le
 Complete support for **English (EN)**, **Chinese (CN)**, and **German (DE)** is mandatory.
 - No hardcoded strings in components.
 - Accurate mapping of technical terms (e.g., "Momentum" vs "Impuls" vs "动量").
+- **Mapping Completeness**: Any key added to `math.ts` must be explicitly mapped in the local translation object of the consuming page to avoid raw key display.
 
 ### 3.2 Detailed Scenarios (The Basel Narrative)
 Every quest must be grounded in a concrete real-world context, preferably using **Basel-specific locations and companies**.
@@ -79,11 +85,11 @@ In TypeScript strings (i18n files, pool builders), use **quadruple backslashes**
 
 以下模式一旦出现，说明代码存在 LaTeX 渲染缺陷：
 
-1. **裸 caret (`x^2` 直接显示在 UI 上)**：说明字符串没有被 `<InlineMath>` 包裹。
-2. **裸 `sqrt` 文字**：说明 `\\sqrt{}` 没有正确转义或根本没有使用 LaTeX。
-3. **形状枚举值直接显示** (`Cylinder`, `Prism`)：说明 i18n 键缺失或模板拼接错误。
-4. **`\\text` 显示为文本**：说明反斜杠转义层数不对（需要 `\\\\\\\\text`）。
-5. **Unicode 上标** (`²`, `³`)：在 KaTeX 环境中不需要，并且在纯文本中也不如 LaTeX 直觉。
+1.  **裸 caret (`x^2` 直接显示在 UI 上)**：说明字符串没有被 `<InlineMath>` 包裹。
+2.  **裸 `sqrt` 文字**：说明 `\\sqrt{}` 没有正确转义或根本没有使用 LaTeX。
+3.  **形状枚举值直接显示** (`Cylinder`, `Prism`)：说明 i18n 键缺失或模板拼接错误。
+4.  **`\\text` 显示为文本**：说明反斜杠转义层数不对（需要 `\\\\\\\\text`）。
+5.  **Unicode 上标** (`²`, `³`)：在 KaTeX 环境中不需要，并且在纯文本中也不如 LaTeX 直觉。
 
 ### 4.4 生成式题库的 LaTeX 规范（关键约束）
 
@@ -102,19 +108,19 @@ const root = `sqrt(${val})`;                 // 无 \\sqrt
 ```
 
 **规则总结**：
-1. 所有幂次 `^` 后面的内容必须用 `{}` 包裹：`x^{2}` 而不是 `x^2`。
-2. 所有单位必须用 `\\text{}` 包裹。
-3. 所有根号必须用 `\\sqrt{}` 而不是 `sqrt()` 或 `√`。
-4. 所有分数必须用 `\\frac{}{}` 而不是 `/`。
-5. 所有希腊字母必须用 LaTeX 命令 (`\\pi`, `\\Delta`) 而不是 Unicode。
-6. 所有形状名称、物理量名称必须通过 i18n `t()` 函数获取，不能硬编码英文。
+1.  所有幂次 `^` 后面的内容必须用 `{}` 包裹：`x^{2}` 而不是 `x^2`。
+2.  所有单位必须用 `\\text{}` 包裹。
+3.  所有根号必须用 `\\sqrt{}` 而不是 `sqrt()` 或 `√`。
+4.  所有分数必须用 `\\frac{}{}` 而不是 `/`。
+5.  所有希腊字母必须用 LaTeX 命令 (`\\pi`, `\\Delta`) 而不是 Unicode。
+6.  所有形状名称、物理量名称必须通过 i18n `t()` 函数获取，不能硬编码英文。
 
 ### 4.5 组件端规范
 
-- **所有数学内容** 必须被 `<InlineMath math={...} />` 或 `<BlockMath math={...} />` 组件包裹。
-- **SVG 内的数学** 使用 `<foreignObject>` + `<InlineMath>` 渲染，而不是 `<text>` 标签。
-- **提示面板（Hint Panel）** 中的公式项也必须使用 `<InlineMath>` 渲染。
-- **Canvas/SVG 标签** 中如果需要显示数学（如 `y = x²`），必须用 `<foreignObject>` 嵌套 KaTeX。
+-   **所有数学内容** 必须被 `<InlineMath math={...} />` 或 `<BlockMath math={...} />` 组件包裹。
+-   **SVG 内的数学** 使用 `<foreignObject>` + `<InlineMath>` 渲染，而不是 `<text>` 标签。
+-   **提示面板（Hint Panel）** 中的公式项也必须使用 `<InlineMath>` 渲染。
+-   **Canvas/SVG 标签** 中如果需要显示数学（如 `y = x²`），必须用 `<foreignObject>` 嵌套 KaTeX。
 
 ---
 
@@ -128,6 +134,9 @@ Visualizations must match the current quest's concepts.
 
 ### 5.2 Automatic Scaling
 Visual containers must automatically calculate bounds and scale to fit the quest data range, ensuring no elements are cut off or too small to read.
+
+### 5.3 Visual-Math Synchronicity
+Visualization labels (SVG text) must match the variables used in the LaTeX prompts. If a prompt uses $a$ and $b$ for legs, the SVG labels must be "a" and "b", not "x" and "y".
 
 ---
 
@@ -155,15 +164,21 @@ Upon successful migration and verification:
 
 对模块中**所有可见的数学表达式**逐一检查：
 
-- [ ] **幂次显示**：`x²` 是否以上标形式正确显示？（不能显示为 `x^2` 纯文本）
-- [ ] **根号显示**：`√` 是否以根号符号正确显示？（不能显示为 `sqrt(...)` 文字）
+- [ ] **幂次显示**：是否均为 KaTeX 渲染且带花括号 `{}`？
+- [ ] **根号显示**：是否均为 KaTeX 渲染且正确转义？
 - [ ] **分数显示**：分数是否以竖式分数线显示？（不能显示为 `a/b` 纯文本）
-- [ ] **单位显示**：物理单位 (m, kg, s, m³) 是否以正体显示？（不能显示为斜体变量）
+- [ ] **单位隔离**：所有单位是否均被包裹在 `\\text{}` 中？
+- [ ] **全局一致性**：状态栏、详情页和提示框中的公式风格是否完全统一？
 - [ ] **希腊字母**：π, θ, Δ 等是否以标准符号显示？（不能显示为 `pi`, `theta`）
 - [ ] **形状/物理量名称**：是否已翻译且不显示英文枚举值？（不能显示 `Cylinder:` 等）
 - [ ] **所有 InlineMath 组件**：传入的字符串是否为合法 KaTeX？
 - [ ] **SVG 内数学标签**：是否使用了 `<foreignObject>` + `<InlineMath>`？
 - [ ] **提示面板公式**：Hint Panel 中的公式是否使用了 `<InlineMath>` 渲染？
+
+### 7.2 国际化与映射审查
+
+- [ ] **Key 核对**：检查是否有显示为 `sm2_xx.xxx` 的原始字符串？
+- [ ] **显式映射**：`page.tsx` 中的映射对象是否涵盖了组件所需的所有 Key？
 
 ### 7.2 生成式题库审查 (Generative Quest Audit)
 
@@ -204,8 +219,9 @@ Upon successful migration and verification:
 
 | 脚本 | 用途 | 运行方式 |
 |------|------|---------|
-| `scripts/deep-audit.sh` | 模块结构、题目数量、i18n 模式、LaTeX 使用概况 | `bash scripts/deep-audit.sh` |
+| `scripts/deep-audit.sh` | 全面审计 LaTeX 与 i18n 覆盖率 | `bash scripts/deep-audit.sh` |
 | `scripts/audit-modules.js` | 空题目池、硬编码文本、旧 i18n 模式检测 | `node scripts/audit-modules.js` |
+| `fix_backslashes.js` | 自动化清理多余的 LaTeX 转义符 |
 
 **建议**：在每次 Sprint 结束后，运行这两个脚本并检查输出，确保没有回归问题。
 
@@ -218,3 +234,8 @@ Upon successful migration and verification:
 - **影响范围**：所有使用模板字符串动态拼接数学表达式的模块。
 - **修复方向**：从源头（`buildStagePool` / `quests.ts`）修正拼接逻辑，而不是逐个修补 UI。
 - **验证标准**：必须在浏览器中实际查看每个模块的随机题目显示，通过第 7 节的 QA 清单审查。
+
+### LaTeX 转义溢出 (Backslash Overflow)
+- **原因**：在尝试修复渲染问题时容易过度转义 (`\\\\\\sqrt`)。
+- **现象**：浏览器显示原始 `\sqrt` 文本。
+- **修复标准**：内存字符串中必须只有单个 `\`。
