@@ -159,7 +159,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         targetX: data.x,
         targetY: y,
         promptLatex: `\\\\text{${t.prompts.level1}}`,
-        expressionLatex: `\\\\text{Plan: } y = ${data.m}x + ${data.c} \\\\quad | \\\\quad x = ${data.x} \\\\text{ km}`,
+        expressionLatex: `\\text{Plan: } y = ${data.m}x + ${data.c} \\quad | \\quad x = ${data.x} \\text{ km}`,
         targetLatex: `y`,
         correctLatex: `y=${y}`,
         slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
@@ -183,7 +183,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         targetX: x,
         targetY: y,
         promptLatex: `\\\\text{${t.prompts.level2}}`,
-        expressionLatex: `\\\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\\\quad | \\\\quad \\\\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
+        expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
         slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
@@ -207,7 +207,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         targetX: x,
         targetY: y,
         promptLatex: `\\\\text{${t.prompts.level3}}`,
-        expressionLatex: `\\\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\\\quad | \\\\quad \\\\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
+        expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
         slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
@@ -389,17 +389,7 @@ export default function S203Page() {
           </h3>
           <div className="space-y-4">
             <div className="text-3xl text-white font-black whitespace-normal break-words italic">
-              {(() => {
-                const latex = currentQuest?.promptLatex || "";
-                if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                  const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                  return <span className="font-sans font-black not-italic">{clean}</span>;
-                }
-                if (!latex.includes("\\\\") && !latex.includes("$")) {
-                  return <span className="font-sans font-black not-italic">{latex}</span>;
-                }
-                return <>{renderMixedText(latex)}</>;
-              })()}
+              {renderMixedText(currentQuest?.promptLatex || "")}
             </div>
             {currentQuest?.expressionLatex && (
               <div className="text-xl text-neon-cyan font-mono whitespace-normal break-words">
