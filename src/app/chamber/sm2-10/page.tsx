@@ -616,7 +616,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, dataType: "rhine_temp_fish",
-                        promptLatex: `\\\\text{Basel Rhine River: summer temp } \\\\mu = 21.5°\\\\text{C, } \\\\sigma = 2.3°\\\\text{C (normal). Fish diversity correlates } r = -0.72. \\\\text{ Calculate } P(T > 24°\\\\text{C}).`,
+                        promptLatex: `\\\\text{Basel Rhine River: summer temp } \\\\mu = 21.5deg\\\\text{C, } \\\\sigma = 2.3deg\\\\text{C (normal). Fish diversity correlates } r = -0.72. \\\\text{ Calculate } P(T > 24deg\\\\text{C}).`,
                         expressionLatex: `z = \\\\frac{x - \\\\mu}{\\\\sigma}, \\\\text{ then use normal distribution}`,
                         targetLatex: `P(T > 24)`,
                         slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
@@ -645,13 +645,13 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-C1", difficulty, stage, dataType: "climate_trend",
-                        promptLatex: `\\\\text{Basel temp: 9.2°C (1990) to 11.0°C (2024), 34 years. Growing season was 165 days (1990), increases 8 days per °C. Calculate 2024 growing season.}`,
-                        expressionLatex: `\\\\text{Temp increase} \\\\times \\\\text{days per °C} + \\\\text{baseline}`,
+                        promptLatex: `\\\\text{Basel temp: 9.2degC (1990) to 11.0degC (2024), 34 years. Growing season was 165 days (1990), increases 8 days per degC. Calculate 2024 growing season.}`,
+                        expressionLatex: `\\\\text{Temp increase} \\\\times \\\\text{days per degC} + \\\\text{baseline}`,
                         targetLatex: `\\\\text{Days in 2024}`,
                         slots: [{ id: "days", labelLatex: `\\\\text{Days}`, placeholder: "179", expected: 179 }],
                         correctLatex: `179 \\\\text{ days}`,
                         hintLatex: [
-                            `\\\\text{Temp increase} = 11.0 - 9.2 = 1.8°\\\\text{C}`,
+                            `\\\\text{Temp increase} = 11.0 - 9.2 = 1.8deg\\\\text{C}`,
                             `\\\\text{Growing season increase} = 1.8 \\\\times 8 = 14.4 \\\\text{ days}`,
                             `2024: 165 + 14.4 = 179.4 \\\\approx 179 \\\\text{ days}`
                         ]

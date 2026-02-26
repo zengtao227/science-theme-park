@@ -29,7 +29,7 @@ export default function SP306Page() {
                 quests.push(
                     {
                         id: "SW-B1", difficulty, stage, soundType: "speed",
-                        promptLatex: `\\\\text{Sound speed in air at 20°C is 343 m/s. A sound wave has frequency 686 Hz. Wavelength?}`,
+                        promptLatex: `\\\\text{Sound speed in air at 20degC is 343 m/s. A sound wave has frequency 686 Hz. Wavelength?}`,
                         expressionLatex: `v = f \\times \\lambda \\Rightarrow \\lambda = \\\\frac{v}{f}`,
                         targetLatex: `\\lambda`,
                         slots: [{ id: "wavelength", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "0.5", expected: 0.5 }],
@@ -286,7 +286,7 @@ export default function SP306Page() {
                     },
                     {
                         id: "FP-C2", difficulty, stage, soundType: "semitone",
-                        promptLatex: `\\\\text{A4 is 440 Hz. A#4 (one semitone up) is 440 × 1.0595. What is A#4 frequency?}`,
+                        promptLatex: `\\\\text{A4 is 440 Hz. A#4 (one semitone up) is 440 x 1.0595. What is A#4 frequency?}`,
                         expressionLatex: `f_{\\\\text{semitone}} = f \\times 2^{1/12}`,
                         targetLatex: `f`,
                         slots: [{ id: "freq", labelLatex: `f\\\\text{ (Hz)}`, placeholder: "466", expected: 466 }],
@@ -300,7 +300,7 @@ export default function SP306Page() {
                         targetLatex: `f_2`,
                         slots: [{ id: "freq", labelLatex: `f_2\\\\text{ (Hz)}`, placeholder: "880", expected: 880 }],
                         correctLatex: `880\\\\text{ Hz}`,
-                        hintLatex: [`\\\\text{2nd harmonic = 2 × fundamental}`]
+                        hintLatex: [`\\\\text{2nd harmonic = 2 x fundamental}`]
                     },
                     {
                         id: "FP-C4", difficulty, stage, soundType: "bat_echolocation",

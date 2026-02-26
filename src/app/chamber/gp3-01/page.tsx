@@ -479,8 +479,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.reflection_angle"),
                         expressionLatex: `\\theta_r = \\theta_i`,
                         targetLatex: `\\theta_r`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (°)}`, placeholder: "30", expected: 30 }],
-                        correctLatex: `30°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.law_of_reflection")]
                     },
                     {
@@ -488,8 +488,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.refraction_basic"),
                         expressionLatex: `n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2`,
                         targetLatex: `\\theta_2`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_2\\\\text{ (°)}`, placeholder: "22", expected: 22 }],
-                        correctLatex: `22°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_2\\\\text{ (deg)}`, placeholder: "22", expected: 22 }],
+                        correctLatex: `22deg`,
                         hintLatex: [t("gp3_01.hints.snells_law")]
                     },
                     {
@@ -513,10 +513,10 @@ export default function GP301Page() {
                     {
                         id: "OP-B5", difficulty, stage,
                         promptLatex: t("gp3_01.prompts.normal_incidence"),
-                        expressionLatex: `\\theta_i = 0° \\rightarrow \\theta_r = 0°`,
+                        expressionLatex: `\\theta_i = 0deg \\rightarrow \\theta_r = 0deg`,
                         targetLatex: `\\theta_r`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (°)}`, placeholder: "0", expected: 0 }],
-                        correctLatex: `0°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (deg)}`, placeholder: "0", expected: 0 }],
+                        correctLatex: `0deg`,
                         hintLatex: [t("gp3_01.hints.normal_ray")]
                     }
                 );
@@ -529,8 +529,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.critical_angle"),
                         expressionLatex: `\\sin\\theta_c = \\\\frac{n_2}{n_1}`,
                         targetLatex: `\\theta_c`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_c\\\\text{ (°)}`, placeholder: "42", expected: 42 }],
-                        correctLatex: `42°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_c\\\\text{ (deg)}`, placeholder: "42", expected: 42 }],
+                        correctLatex: `42deg`,
                         hintLatex: [t("gp3_01.hints.critical_angle")]
                     },
                     {
@@ -565,8 +565,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.brewster_angle"),
                         expressionLatex: `\\tan\\theta_B = \\\\frac{n_2}{n_1}`,
                         targetLatex: `\\theta_B`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_B\\\\text{ (°)}`, placeholder: "53", expected: 53 }],
-                        correctLatex: `53°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_B\\\\text{ (deg)}`, placeholder: "53", expected: 53 }],
+                        correctLatex: `53deg`,
                         hintLatex: [t("gp3_01.hints.brewster")]
                     }
                 );
@@ -580,8 +580,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.single_slit_minima"),
                         expressionLatex: `a \\sin\\theta = m\\lambda`,
                         targetLatex: `\\theta_1`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (°)}`, placeholder: "30", expected: 30 }],
-                        correctLatex: `30°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.single_slit")]
                     },
                     {
@@ -610,8 +610,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.circular_aperture"),
                         expressionLatex: `\\\\text{Airy disk radius} = 1.22\\\\frac{\\lambda f}{D}`,
                         targetLatex: `r`,
-                        slots: [{ id: "r", labelLatex: `r\\\\text{ (μm)}`, placeholder: "6", expected: 6 }],
-                        correctLatex: `6\\\\text{ μm}`,
+                        slots: [{ id: "r", labelLatex: `r\\\\text{ (um)}`, placeholder: "6", expected: 6 }],
+                        correctLatex: `6\\\\text{ um}`,
                         hintLatex: [t("gp3_01.hints.airy_disk")]
                     },
                     {
@@ -635,8 +635,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.grating_equation"),
                         expressionLatex: `d \\sin\\theta = m\\lambda`,
                         targetLatex: `\\theta_1`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (°)}`, placeholder: "30", expected: 30 }],
-                        correctLatex: `30°`,
+                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.grating")]
                     },
                     {
@@ -655,8 +655,8 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.grating_spacing"),
                         expressionLatex: `d = \\\\frac{m\\lambda}{\\sin\\theta}`,
                         targetLatex: `d`,
-                        slots: [{ id: "d", labelLatex: `d\\\\text{ (μm)}`, placeholder: "1", expected: 1 }],
-                        correctLatex: `1\\\\text{ μm}`,
+                        slots: [{ id: "d", labelLatex: `d\\\\text{ (um)}`, placeholder: "1", expected: 1 }],
+                        correctLatex: `1\\\\text{ um}`,
                         hintLatex: [t("gp3_01.hints.line_spacing")]
                     },
                     {

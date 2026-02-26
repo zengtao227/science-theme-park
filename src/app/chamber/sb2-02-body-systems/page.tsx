@@ -332,7 +332,7 @@ export default function SB202BodySystemsPage() {
                         targetLatex: `\\\\text{CO}`,
                         slots: [{ id: "co", labelLatex: `\\\\text{CO (L/min)}`, placeholder: "5", expected: 5 }],
                         correctLatex: `\\\\text{CO} = 5 \\\\text{ L/min}`,
-                        hintLatex: [`\\\\text{CO = HR × SV}`]
+                        hintLatex: [`\\\\text{CO = HR x SV}`]
                     },
                     {
                         id: "C-A2", difficulty, stage, systemType: "circulatory",
@@ -389,7 +389,7 @@ export default function SB202BodySystemsPage() {
                         expressionLatex: `\\\\text{Frank-Starling}`,
                         targetLatex: `\\\\text{Stretch}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Factor}`, placeholder: "stretch", expected: "stretch" }],
-                        correctLatex: `\\\\text{Increased stretch → stronger contraction}`,
+                        correctLatex: `\\\\text{Increased stretch -> stronger contraction}`,
                         hintLatex: [`\\\\text{More blood in = more out}`]
                     },
                     {
@@ -540,7 +540,7 @@ export default function SB202BodySystemsPage() {
                         targetLatex: `\\\\text{MV}`,
                         slots: [{ id: "mv", labelLatex: `\\\\text{MV (L/min)}`, placeholder: "7.5", expected: 7.5 }],
                         correctLatex: `\\\\text{MV} = 7.5 \\\\text{ L/min}`,
-                        hintLatex: [`\\\\text{MV = TV × RR}`]
+                        hintLatex: [`\\\\text{MV = TV x RR}`]
                     },
                     {
                         id: "R-A3", difficulty, stage, systemType: "respiratory",

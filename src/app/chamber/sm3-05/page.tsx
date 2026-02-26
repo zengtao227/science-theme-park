@@ -362,7 +362,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-A5", difficulty, stage, geometryType: "cylinder_ellipse",
-                        promptLatex: `\\\\text{Cylinder radius 3 cm cut at 45° angle. Cross-section is ellipse. Minor axis?}`,
+                        promptLatex: `\\\\text{Cylinder radius 3 cm cut at 45deg angle. Cross-section is ellipse. Minor axis?}`,
                         expressionLatex: `\\\\text{Minor axis} = 2r`,
                         targetLatex: `b`,
                         slots: [{ id: "minor", labelLatex: `b\\\\text{ (cm)}`, placeholder: "6", expected: 6 }],
