@@ -1243,10 +1243,10 @@ export const deMath = {
         solve_success: "IDENTITÄT BEWIESEN",
         solve_fail: "FLÄCHENFEHLER",
         terms: {
-            a2: "$a^{2}$",
-            b2: "$b^{2}$",
-            ab: "$ab$",
-            target_plus: "$(a+b)^{2}$",
+            a2: "a^{2}",
+            b2: "b^{2}",
+            ab: "ab",
+            target_plus: "(a+b)^{2}",
             target_minus: "$(a-b)^{2}$",
         },
         scenarios: {

@@ -1206,10 +1206,10 @@ export const cnMath = {
         solve_success: "恒等式已证明",
         solve_fail: "面积不匹配",
         terms: {
-            a2: "$a^{2}$",
-            b2: "$b^{2}$",
-            ab: "$ab$",
-            target_plus: "$(a+b)^{2}$",
+            a2: "a^{2}",
+            b2: "b^{2}",
+            ab: "ab",
+            target_plus: "(a+b)^{2}",
             target_minus: "$(a-b)^{2}$",
         },
         scenarios: {

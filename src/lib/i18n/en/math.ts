@@ -1224,10 +1224,10 @@ export const enMath = {
         solve_success: "IDENTITY PROVED",
         solve_fail: "AREA MISMATCH",
         terms: {
-            a2: "$a^{2}$",
-            b2: "$b^{2}$",
-            ab: "$ab$",
-            target_plus: "$(a+b)^{2}$",
+            a2: "a^{2}",
+            b2: "b^{2}",
+            ab: "ab",
+            target_plus: "(a+b)^{2}",
             target_minus: "$(a-b)^{2}$",
         },
         scenarios: {
