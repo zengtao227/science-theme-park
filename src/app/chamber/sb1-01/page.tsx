@@ -321,7 +321,7 @@ export default function SB101Page() {
                                     {currentQuest?.slots.map((slot) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
-                                                <InlineMath>{slot.labelLatex}</InlineMath>
+                                                <InlineMath math={slot.labelLatex ?? ""} />
                                                 <span className="text-neon-cyan/30 font-mono">SEQ_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <div className="relative group">
@@ -371,7 +371,7 @@ export default function SB101Page() {
                                                 <div className="bg-black/40 px-6 py-3 rounded-xl border border-white/10 flex items-center gap-3">
                                                     <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t("labels.hint")}:</span>
                                                     <div className="text-white font-bold">
-                                                        <InlineMath>{hint}</InlineMath>
+                                                        <InlineMath math={hint ?? ""} />
                                                     </div>
                                                 </div>
                                             )}

@@ -414,7 +414,7 @@ export default function SB201TissuesPage() {
                                             transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
                                         >
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
-                                                <InlineMath>{slot.labelLatex}</InlineMath>
+                                                <InlineMath math={slot.labelLatex ?? ""} />
                                                 <span className="text-neon-green/30 font-mono">TISSUE_0x{slot.id.toUpperCase()}</span>
                                             </div>
                                             <motion.div 
@@ -525,7 +525,7 @@ export default function SB201TissuesPage() {
                                                         {t("sb2_01_tissues.labels.hint")}:
                                                     </motion.span>
                                                     <div className="text-white font-bold">
-                                                        <InlineMath>{hint}</InlineMath>
+                                                        <InlineMath math={hint ?? ""} />
                                                     </div>
                                                 </motion.div>
                                             )}

@@ -236,7 +236,7 @@ export default function SB204Page() {
                     {currentQuest?.slots.map((slot) => (
                       <div key={slot.id} className="w-full max-w-md space-y-3">
                         <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
-                          <InlineMath>{slot.labelLatex}</InlineMath>
+                          <InlineMath math={slot.labelLatex ?? ""} />
                           <span className="text-neon-green/30 font-mono">
                             SYS_REG_0x{slot.id.toUpperCase()}
                           </span>
@@ -300,7 +300,7 @@ export default function SB204Page() {
                               {t("sb2_04.labels.hint")}:
                             </span>
                             <div className="text-white font-bold">
-                              <InlineMath>{hint}</InlineMath>
+                              <InlineMath math={hint ?? ""} />
                             </div>
                           </div>
                         )}
