@@ -52,3 +52,4 @@ scripts/*.py
 
 # IDE settings
 .vscode/
+.continuerc.json
