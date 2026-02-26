@@ -118,7 +118,7 @@ export default function GM102Page() {
             </div>
             {stage === "ANTIDERIVATIVE" && (
               <div className="text-white/70 text-sm">
-                <InlineMath math={t("gm1_02.prompts.hint_power")} />
+                {renderMixedText(t("gm1_02.prompts.hint_power"))}
               </div>
             )}
             {stage === "DEFINITE_INTEGRAL" && (
@@ -128,7 +128,7 @@ export default function GM102Page() {
             )}
             {stage === "APPLICATION" && (
               <div className="text-white/70 text-sm">
-                <InlineMath math={t("gm1_02.prompts.hint_area")} />
+                {renderMixedText(t("gm1_02.prompts.hint_area"))}
               </div>
             )}
           </div>
