@@ -600,13 +600,13 @@ export default function S201Page() {
         </>
       }
     >
-      <div className="w-full max-w-5xl space-y-12" onKeyDown={handleSidebarKeyDown}>
+      <div className="w-full max-w-5xl space-y-4" onKeyDown={handleSidebarKeyDown}>
         {questMode === "EXPLORE" ? (
-          <div className="space-y-12 py-20 flex flex-col justify-center min-h-[60vh]">
+          <div className="space-y-4 py-8 flex flex-col justify-center min-h-[60vh]">
             <h3 className="text-xl text-white uppercase tracking-[0.4em] font-black flex items-center gap-4 border-l-4 border-white pl-6">
               {sm2_01_t.params_config}
             </h3>
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6">
                 <div className="flex justify-between text-base mb-3 text-white uppercase tracking-widest font-black">
                   <span>{sm2_01_t.param_a}</span>
@@ -690,9 +690,9 @@ export default function S201Page() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center gap-10 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center gap-5 max-w-4xl mx-auto">
               {questMode === "ARCHITECT" && (
-                <div className="flex flex-wrap items-center justify-center gap-4 bg-white/5 p-10 rounded-3xl border border-white/10 shadow-inner">
+                <div className="flex flex-wrap items-center justify-center gap-4 bg-white/5 p-5 rounded-3xl border border-white/10 shadow-inner">
                   {architectQuest?.isFactor ? (
                     <div className="flex flex-col items-center gap-8 w-full">
                       <div className="flex flex-wrap items-center justify-center gap-2 text-2xl font-black">
@@ -848,7 +848,7 @@ export default function S201Page() {
                 </div>
               )}
               {questMode === "ELITE" && (
-                <div className="col-span-3 space-y-12">
+                <div className="col-span-3 space-y-4">
                   <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-2 border-blue-400/30 rounded-2xl p-6 max-w-3xl mx-auto">
                     <div className="flex items-start gap-4">
                       <div className="text-4xl">💡</div>
@@ -924,7 +924,7 @@ export default function S201Page() {
                 </div>
               )}
               {questMode === "VOYAGER" && (
-                <div className="col-span-3 space-y-12">
+                <div className="col-span-3 space-y-4">
                   {voyagerQuest?.subType === "FACTOR" ? (
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-3 font-black text-xl justify-center bg-white/10 p-8 rounded-2xl border-2 border-white/40 max-w-6xl mx-auto text-3xl">
                       <span className="text-white">(</span>
@@ -948,7 +948,7 @@ export default function S201Page() {
                       <span className="text-white">)</span>
                     </div>
                   ) : (
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-3 font-black text-4xl justify-center bg-white/10 p-10 rounded-2xl border-2 border-white/40">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-3 font-black text-4xl justify-center bg-white/10 p-5 rounded-2xl border-2 border-white/40">
                       <div className="flex items-center">
                         <input
                           value={inputs.part1 || ""}
