@@ -152,6 +152,9 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
     pythagoras: {
       fluid_title: t("sm2_02.pythagoras.fluid_title"),
       fluid_desc: t("sm2_02.pythagoras.fluid_desc"),
+    },
+    ui: {
+      fluid_proof_title: t("sm2_02.ui.fluid_proof_title")
     }
   };
 
@@ -174,7 +177,7 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
       />
 
       <div className="absolute top-4 right-4 text-white/90 text-[10px] uppercase font-mono tracking-widest">
-        Fluid Dynamic Proof
+        {sm2_02_t.ui.fluid_proof_title}
       </div>
 
       <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm p-3 rounded-lg border border-white/10">

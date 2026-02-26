@@ -1303,7 +1303,10 @@ export const deMath = {
             simulating: "Simuliert",
             coeff: "Koeffizient",
             const: "Konstante",
-            linear: "Linear"
+            linear: "Linear",
+            geometry_proof: "2D Geometrie-Beweis",
+            binomial_formula: "S2.01 Binomische Formel",
+            node_zurich: "Knoten: Zürich"
         },
         placeholders: {
             ax: "ax",
@@ -1348,7 +1351,8 @@ export const deMath = {
         footer_left: "SM2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
         ui: {
             view_2d: "2D-Ansicht",
-            view_fluid: "Fluid-Ansicht"
+            view_fluid: "Fluid-Ansicht",
+            fluid_proof_title: "Dynamischer Fluid-Beweis"
         },
         input_radical: "Antwort als k√m",
         input_k: "k",
@@ -1363,6 +1367,7 @@ export const deMath = {
             known_horizontal: "horizontale Bewegung",
             known_given: "gegeben",
             check_right: "Ingenieurscheck: Rechtwinkliges Dreieck?",
+            check_right_target: "Rechtwinkliges Dreieck?",
             distance: "Drohnenlieferung: Flugdistanz berechnen",
             elite_space: "CERN-Labor: Raumdiagonale berechnen",
             right_triangle_q: "📐 Ist das ein rechtwinkliges Dreieck?",

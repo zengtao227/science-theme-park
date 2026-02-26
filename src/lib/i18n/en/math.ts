@@ -1290,7 +1290,10 @@ export const enMath = {
             verified: "Verified",
             simulating: "Simulating",
             coeff: "Coefficient",
-            const: "Constant"
+            const: "Constant",
+            geometry_proof: "2D Geometry Proof",
+            binomial_formula: "S2.01 Binomial Formula",
+            node_zurich: "Node: Zurich"
         },
         placeholders: {
             ax: "ax",
@@ -1346,6 +1349,7 @@ export const enMath = {
             known_horizontal: "horizontal movement",
             known_given: "given",
             check_right: "📐 Engineering check: Is this a right triangle?",
+            check_right_target: "Right Triangle?",
             distance: "🚁 Drone delivery: Calculate flight distance",
             elite_space: " CERN lab: Find the space diagonal",
             right_triangle_q: "📐 Is this a right triangle?",
@@ -1377,6 +1381,28 @@ export const enMath = {
             title: "MENTAL",
             triples: "Pythagorean Triples",
             chain: "Segment Chain"
+        },
+        explorer: {
+            base_config: "Triangle Base Configuration",
+            leg_a: "Leg a",
+            leg_b: "Leg b",
+            scaling_title: "Homothetic Scaling (k)",
+            multiplier: "Multiplier k",
+            ratio: "Ratio Constant",
+            similarity_title: "Similarity Theorem",
+            similarity_desc: "Scaled triangles (ka, kb, kc) are similar to (a, b, c). The relationship $a^{2}+b^{2}=c^{2}$ remains invariant under any positive scale factor $k$.",
+            engine_title: "Real-time Geometry Engine",
+            hyp_label: "Hypotenuse c"
+        },
+        labels: {
+            side_a: "Side a",
+            side_b: "Side b",
+            hypotenuse: "Hypotenuse c"
+        },
+        ui: {
+            view_2d: "2D View",
+            view_fluid: "Fluid View",
+            fluid_proof_title: "Fluid Dynamic Proof"
         }
     },
     sm2_03: {

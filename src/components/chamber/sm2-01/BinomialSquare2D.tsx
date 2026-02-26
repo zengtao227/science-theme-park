@@ -3,6 +3,7 @@
 import React from 'react';
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { useLanguage } from "@/lib/i18n";
 
 interface BinomialSquare2DProps {
     a: number;
@@ -11,6 +12,15 @@ interface BinomialSquare2DProps {
 }
 
 export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSquare2DProps) {
+    const { t } = useLanguage();
+    const sm2_01_t = {
+        ui: {
+            geometry_proof: t("sm2_01.ui.geometry_proof"),
+            binomial_formula: t("sm2_01.ui.binomial_formula"),
+            node_zurich: t("sm2_01.ui.node_zurich"),
+        }
+    };
+
     const total = a + b;
     const padding = 40;
     const viewSize = 400;
@@ -131,9 +141,9 @@ export default function BinomialSquare2D({ a, b, hideRoots = false }: BinomialSq
             </div>
 
             <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
-                2D Geometrie-Beweis<br />
-                S2.01 Binomische Formel<br />
-                Knoten: Zürich
+                {sm2_01_t.ui.geometry_proof}<br />
+                {sm2_01_t.ui.binomial_formula}<br />
+                {sm2_01_t.ui.node_zurich}
             </div>
         </div>
     );

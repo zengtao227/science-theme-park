@@ -32,7 +32,7 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
         />
       </div>
       <div className="text-4xl font-black text-white/80">
-        <InlineMath math="\\\\sqrt" />
+        <InlineMath math={"\\sqrt"} />
       </div>
       <div className="flex items-center gap-2 rounded-xl border border-neon-green/40 bg-white/5 px-3 py-2 shadow-[0_0_18px_rgba(57,255,20,0.2)]">
         <div className="text-[10px] font-black tracking-[0.4em] text-neon-green">{labelM}</div>

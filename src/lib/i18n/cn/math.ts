@@ -1273,7 +1273,10 @@ export const cnMath = {
             verified: "已验证",
             simulating: "模拟中",
             coeff: "系数",
-            const: "常数"
+            const: "常数",
+            geometry_proof: "2D 几何解析",
+            binomial_formula: "S2.01 二项式定理",
+            node_zurich: "节点：苏黎世"
         },
         placeholders: {
             ax: "ax",
@@ -1329,6 +1332,7 @@ export const cnMath = {
             known_horizontal: "水平移动",
             known_given: "已知",
             check_right: "📐 工程验收：这是直角三角形吗？",
+            check_right_target: "直角三角形？",
             distance: "🚁 无人机快递：计算直线飞行距离",
             elite_space: " CERN 实验室：求解状态空间对角线",
             right_triangle_q: "📐 这是直角三角形吗？",
@@ -1360,6 +1364,28 @@ export const cnMath = {
             title: "心算",
             triples: "勾股数",
             chain: "链式路径"
+        },
+        explorer: {
+            base_config: "三角形基本配置",
+            leg_a: "直角边 a",
+            leg_b: "直角边 b",
+            scaling_title: "等比缩放 (k)",
+            multiplier: "系数 k",
+            ratio: "比例常数",
+            similarity_title: "相似定理",
+            similarity_desc: "缩放后的三角形 (ka, kb, kc) 与 (a, b, c) 相似。关系式 $a^{2}+b^{2}=c^{2}$ 在任意正缩放因子 $k$ 下保持不变。",
+            engine_title: "实时几何引擎",
+            hyp_label: "斜边 c"
+        },
+        labels: {
+            side_a: "直角边 a",
+            side_b: "直角边 b",
+            hypotenuse: "斜边 c"
+        },
+        ui: {
+            view_2d: "2D 视图",
+            view_fluid: "流体视图",
+            fluid_proof_title: "流体动力学证明"
         }
     },
     sm2_03: {
