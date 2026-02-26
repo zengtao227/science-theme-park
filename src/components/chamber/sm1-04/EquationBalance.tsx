@@ -64,8 +64,8 @@ export default function EquationBalance({
           <g>
             <line x1="120" y1="150" x2="120" y2="120" stroke="#ffffff" strokeWidth="2" />
             <rect x="80" y="120" width="80" height="60" fill="#ff2d7d" fillOpacity="0.3" stroke="#ff2d7d" strokeWidth="2" rx="5" />
-            <foreignObject x="80" y="125" width="80" height="50">
-              <div className="w-full h-full flex items-center justify-center text-white pb-1">
+            <foreignObject x="70" y="88" width="100" height="28">
+              <div className="w-full h-full flex items-center justify-center text-white bg-black/60 rounded-md text-sm">
                 <InlineMath math={left} />
               </div>
             </foreignObject>
@@ -75,8 +75,8 @@ export default function EquationBalance({
           <g>
             <line x1="280" y1="150" x2="280" y2="120" stroke="#ffffff" strokeWidth="2" />
             <rect x="240" y="120" width="80" height="60" fill="#39ff14" fillOpacity="0.3" stroke="#39ff14" strokeWidth="2" rx="5" />
-            <foreignObject x="240" y="125" width="80" height="50">
-              <div className="w-full h-full flex items-center justify-center text-white pb-1">
+            <foreignObject x="230" y="88" width="100" height="28">
+              <div className="w-full h-full flex items-center justify-center text-white bg-black/60 rounded-md text-sm">
                 <InlineMath math={right} />
               </div>
             </foreignObject>

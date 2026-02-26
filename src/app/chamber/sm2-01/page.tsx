@@ -602,7 +602,7 @@ export default function S201Page() {
     >
       <div className="w-full max-w-5xl space-y-4" onKeyDown={handleSidebarKeyDown}>
         {questMode === "EXPLORE" ? (
-          <div className="space-y-4 py-8 flex flex-col justify-center min-h-[60vh]">
+          <div className="space-y-4 py-8 flex flex-col justify-center min-h-0">
             <h3 className="text-xl text-white uppercase tracking-[0.4em] font-black flex items-center gap-4 border-l-4 border-white pl-6">
               {sm2_01_t.params_config}
             </h3>
@@ -654,7 +654,7 @@ export default function S201Page() {
             </button>
           </div>
         ) : (
-          <div className="space-y-6 animate-in slide-in-from-bottom duration-700 min-h-[50vh] flex flex-col justify-start pt-4">
+          <div className="space-y-6 animate-in slide-in-from-bottom duration-700 min-h-0 flex flex-col justify-start pt-4">
             <div className="space-y-4">
               {/* Scenario Context Box - SHIFTED UP AND REFINED */}
               <div className="bg-white/[0.04] border-l-4 border-neon-green/50 rounded-r-xl p-5 max-w-3xl mx-auto backdrop-blur-sm">

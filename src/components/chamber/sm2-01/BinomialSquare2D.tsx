@@ -35,6 +35,8 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
 
     const aw = a * k;
     const bw = b * k;
+    const toSvgLabel = (s: string) =>
+        s.replace(/\$|\{|\}/g, "").replace(/\^2/g, "²");
 
     return (
         <div className="w-full aspect-square relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col items-center justify-center p-4">
@@ -62,7 +64,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
                     >
-                        {translations.terms.a2.replace(/\$|\{|\}/g, "")}
+                        {toSvgLabel(translations.terms.a2)}
                     </text>
                     <text x={aw / 2} y={aw / 2 + 20} fill="#ff3131" fontSize="10" textAnchor="middle">{a * a}</text>
                 </g>
@@ -79,7 +81,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
                     >
-                        {translations.terms.ab.replace(/\$|\{|\}/g, "")}
+                        {toSvgLabel(translations.terms.ab)}
                     </text>
                     <text x={bw / 2} y={aw / 2 + 20} fill="#ffaa00" fontSize="10" textAnchor="middle">{a * b}</text>
                 </g>
@@ -96,7 +98,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
                     >
-                        {translations.terms.ab.replace(/\$|\{|\}/g, "")}
+                        {toSvgLabel(translations.terms.ab)}
                     </text>
                     <text x={aw / 2} y={bw / 2 + 20} fill="#ffaa00" fontSize="10" textAnchor="middle">{a * b}</text>
                 </g>
@@ -113,7 +115,7 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                         fill="white" fontSize="16" fontWeight="900"
                         textAnchor="middle" dominantBaseline="middle"
                     >
-                        {translations.terms.b2.replace(/\$|\{|\}/g, "")}
+                        {toSvgLabel(translations.terms.b2)}
                     </text>
                     <text x={bw / 2} y={bw / 2 + 20} fill="#39ff14" fontSize="10" textAnchor="middle">{b * b}</text>
                 </g>
