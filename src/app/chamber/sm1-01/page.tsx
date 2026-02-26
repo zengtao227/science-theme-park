@@ -480,7 +480,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CB1", difficulty, stage,
-                    promptLatex: `\\text{${t.mission?.protocol}}\\text{${t.mission?.title}}\\text{${t.mission?.description}}`,
+                    promptLatex: `\\text{${t.mission?.description}}`,
                     expressionLatex: `\\text{${t.labels.side} } a=8, \\; \\text{${t.labels.base} } b=12, \\; \\text{${t.labels.height} } h=5`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 50, unit: "\\text{m}^{2}" }],
@@ -536,7 +536,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CC1", difficulty, stage,
-                    promptLatex: `\\text{${t.mission?.protocol}}\\text{${t.mission?.cube_title}}\\text{${t.mission?.cube_desc}}`,
+                    promptLatex: `\\text{${t.mission?.cube_desc}}`,
                     expressionLatex: `a=6\\text{ m}`,
                     targetLatex: `d`,
                     slots: [{ id: "d", labelLatex: `d`, placeholder: t.labels.space_diagonal || "diagonal", expected: 10.39, unit: "m" }],
