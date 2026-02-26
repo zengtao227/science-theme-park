@@ -780,8 +780,8 @@ export default function ComplexVisualization({ quest, checkStatus, language = "E
             {t.polar_power}
           </div>
           <div className="text-white font-mono text-sm">
-            <BlockMath math={`z = r e^{i\\theta} = ${r.toFixed(3)} e^{i \\cdot ${thetaDeg}°}`} />
-            <BlockMath math={`z^{${quest.power}} = r^{${quest.power}} e^{i \\cdot ${quest.power}\\theta} = ${Math.pow(r, quest.power).toFixed(3)} e^{i \\cdot ${(parseFloat(thetaDeg) * quest.power).toFixed(1)}°}`} />
+            <BlockMath math={`z = r e^{i\\theta} = ${r.toFixed(3)} e^{i \\cdot ${thetaDeg}^{\\circ}}`} />
+            <BlockMath math={`z^{${quest.power}} = r^{${quest.power}} e^{i \\cdot ${quest.power}\\theta} = ${Math.pow(r, quest.power).toFixed(3)} e^{i \\cdot ${(parseFloat(thetaDeg) * quest.power).toFixed(1)}^{\\circ}}`} />
             <div className="text-white/60 text-xs mt-2">
               {t.polar_meaning}
             </div>
