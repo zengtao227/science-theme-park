@@ -4,6 +4,7 @@ import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ComplexVisualization from "@/components/chamber/gm4-01/ComplexVisualization";
+import { renderMixedText } from "@/lib/latex-utils";
 import {
   Stage,
   G401Quest,
@@ -114,7 +115,7 @@ export default function GM401Page() {
           <div className="p-8 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto space-y-6">
             <div className="text-center space-y-3">
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-black">
-                {currentQuest?.promptLatex}
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </div>
               <div className="text-3xl text-white font-black">
                 <InlineMath math={currentQuest?.expressionLatex || ""} />

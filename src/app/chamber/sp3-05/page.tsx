@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import SimpleMachineCanvas from "@/components/chamber/sp3-05/SimpleMachineCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
 
@@ -527,7 +528,7 @@ export default function SP305Page() {
                                 {sp3_05_t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

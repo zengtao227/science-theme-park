@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import MetabolicCell from "@/components/chamber/sb1-01/MetabolicCell";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "OSMOSIS" | "RESPIRATION" | "HOMEOSTASIS";
 
@@ -310,7 +311,7 @@ export default function SB101MetabolicPage() {
                                 {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

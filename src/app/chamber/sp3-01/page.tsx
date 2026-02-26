@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import MeasurementCanvas from "@/components/chamber/sp3-01/MeasurementCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
 
@@ -587,7 +588,7 @@ export default function SP301Page() {
                                 {sp3_01_t.objective_title}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

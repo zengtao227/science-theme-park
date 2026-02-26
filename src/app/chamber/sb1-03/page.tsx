@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellDivisionVisualization from "@/components/chamber/sb1-03/CellDivisionVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "MITOSIS" | "MEIOSIS_I" | "MEIOSIS_II";
 
@@ -301,7 +302,7 @@ export default function SB103Page() {
                                 {t("sb1_03.labels.phase_analysis")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

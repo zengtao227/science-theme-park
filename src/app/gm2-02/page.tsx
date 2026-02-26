@@ -9,6 +9,7 @@ import { buildStagePool } from "@/lib/gm2-02-quest-builder";
 import { verifyAnswer } from "@/lib/gm2-02-verification";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { renderMixedText } from "@/lib/latex-utils";
 
 // Import translation files
 import enTranslations from "@/lib/i18n/gm2-02-en.json";
@@ -166,7 +167,7 @@ export default function GM202AnalyticalGeometry() {
             {currentLanguage === "CN" ? "问题" : currentLanguage === "DE" ? "AUFGABE" : "QUEST"}
           </div>
           <div className="text-lg text-white mb-4">
-            {currentQuest.promptLatex}
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
           {currentQuest.expressionLatex && (
             <div className="mt-4 p-4 bg-white/[0.03] rounded border border-white/5">

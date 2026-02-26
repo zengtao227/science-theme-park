@@ -9,6 +9,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
 
@@ -329,7 +330,7 @@ export default function GP302Electromagnetism() {
                     >
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
-                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
+                            <div className="text-white text-lg">{renderMixedText(currentQuest?.promptLatex || "")}</div>
                         </div>
 
                         <div className="mb-4 p-4 bg-black/50 rounded-lg border border-cyan-500/30">

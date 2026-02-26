@@ -4,6 +4,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useCallback } from "react";
+import { renderMixedText } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -826,7 +827,7 @@ export default function S204Page() {
                         {t("sm2_04.objective_title")}
                     </h3>
                     <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-pre-wrap break-words">
-                        {currentQuest?.promptLatex}
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </p>
                 </div>
 

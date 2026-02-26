@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 import {
     Stage,
@@ -112,7 +113,7 @@ export default function SP103WeatherClimate() {
                 <div className="lg:w-1/2 p-6 flex flex-col items-center">
                     <div className="w-full max-w-md mt-16 text-center">
                         <div className="text-xl text-gray-300 font-mono mb-8 opacity-80 h-16">
-                            {currentQuest.promptLatex}
+                            {renderMixedText(currentQuest?.promptLatex || "")}
                         </div>
                         <div className="text-4xl text-[#0ff] drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] my-8">
                             <BlockMath math={currentQuest.expressionLatex} />

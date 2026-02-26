@@ -7,6 +7,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import PlantVisualization from "@/components/chamber/sb1-04/PlantVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "PLANT_STRUCTURE" | "WATER_TRANSPORT" | "NUTRIENT_TRANSPORT";
 
@@ -356,7 +357,7 @@ export default function SB104PlantStructure() {
                     >
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
-                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
+                            <div className="text-white text-lg">{renderMixedText(currentQuest?.promptLatex || "")}</div>
                         </div>
 
                         {currentQuest?.slots.map((slot) => (

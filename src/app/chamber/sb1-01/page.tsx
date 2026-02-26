@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellCanvas from "@/components/chamber/sb1-01/CellCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "IDENTIFICATION" | "FUNCTION" | "ORGANELLES";
 
@@ -292,7 +293,7 @@ export default function SB101Page() {
                                 {t("labels.mission_objective")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 
 import P102LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
@@ -177,7 +178,7 @@ export default function SP102NewtonsLaws() {
                                 Question {currentQuest?.id}
                             </div>
                             <div className="text-white text-lg mb-2">
-                                {currentQuest?.promptLatex}
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                             {currentQuest?.expressionLatex && (
                                 <div className="text-cyan-400 text-sm font-mono">

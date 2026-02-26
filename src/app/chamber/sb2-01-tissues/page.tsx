@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import TissueVisualization from "@/components/chamber/sb2-01-tissues/TissueVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "TISSUES" | "ORGANS" | "SYSTEMS";
 
@@ -360,7 +361,7 @@ export default function SB201TissuesPage() {
                                 <span className="w-8 h-px bg-neon-green/30" />
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </motion.div>
 

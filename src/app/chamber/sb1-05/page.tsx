@@ -7,6 +7,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import AnimalVisualization from "@/components/chamber/sb1-05/AnimalVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "ANIMAL_CLASSIFICATION" | "ADAPTATIONS" | "BEHAVIOR_EVOLUTION";
 
@@ -328,7 +329,7 @@ export default function SB105AnimalClassification() {
                             <div className="text-white/50 text-sm mb-2">
                                 {currentQuest?.animalName} - {currentQuest?.scientificName}
                             </div>
-                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
+                            <div className="text-white text-lg">{renderMixedText(currentQuest?.promptLatex || "")}</div>
                         </div>
 
                         {currentQuest?.slots.map((slot) => (

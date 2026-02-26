@@ -7,6 +7,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import PowerVisualization from "@/components/chamber/sp2-03/PowerVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "POWER_BASICS" | "ENERGY_CONSUMPTION" | "EFFICIENCY";
 
@@ -343,7 +344,7 @@ export default function SP203ElectricPower() {
                     >
                         <div className="mb-4">
                             <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
-                            <div className="text-white text-lg">{currentQuest?.promptLatex}</div>
+                            <div className="text-white text-lg">{renderMixedText(currentQuest?.promptLatex || "")}</div>
                         </div>
 
                         {currentQuest?.slots.map((slot) => (

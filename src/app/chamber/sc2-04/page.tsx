@@ -171,7 +171,7 @@ export default function SC204Page() {
             {t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {stage === "elite" ? "Rhine Water Quality Analysis" : currentQuest?.promptLatex}
+            {stage === "elite" ? "Rhine Water Quality Analysis" : renderMixedText(currentQuest?.promptLatex || "")}
           </p>
         </div>
 

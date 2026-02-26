@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquilibriumCanvas from "@/components/chamber/gc3-01/EquilibriumCanvas";
 import { useQuestManager } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 import {
   Stage,
   GC301Quest as GC301QuestType,
@@ -117,7 +118,7 @@ export default function GC301Page() {
             {t("gc3_01.mission.title")}
           </h3>
           <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic text-center">
-            {currentQuest?.promptLatex}
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
         </div>
 

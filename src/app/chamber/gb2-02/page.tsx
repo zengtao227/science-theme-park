@@ -9,6 +9,7 @@ import { GB202Quest, Stage } from "@/lib/gb2-02-types";
 import { buildStagePool } from "@/lib/gb2-02-quest-builder";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function GB202Page() {
   const { completeStage } = useAppStore();
@@ -120,7 +121,7 @@ export default function GB202Page() {
           <div className="bg-gray-800/50 p-4 rounded-lg border border-cyan-500/30">
             <div className="text-cyan-400 font-mono text-sm mb-2">OBJECTIVE:</div>
             <div className="text-white">
-              {currentQuest?.promptLatex}
+              {renderMixedText(currentQuest?.promptLatex || "")}
             </div>
           </div>
 

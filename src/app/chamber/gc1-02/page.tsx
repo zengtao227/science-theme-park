@@ -7,6 +7,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectrolysisCanvas from "@/components/chamber/gc1-02/ElectrolysisCanvas";
 import CorrosionCanvas from "@/components/chamber/gc1-02/CorrosionCanvas";
 import { useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 import {
     Stage,
     GC102Quest as GC102QuestType,
@@ -127,7 +128,7 @@ export default function GC102Page() {
                         {t("gc1_02.mission.title")}
                     </h3>
                     <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                        {currentQuest?.promptLatex}
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                 </div>
 

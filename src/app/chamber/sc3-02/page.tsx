@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "HYDROCARBONS" | "FUNCTIONAL_GROUPS" | "ISOMERS";
 
@@ -308,7 +309,7 @@ export default function SC302Page() {
                                 {t("sc3_02.objective_title")}
                             </h3>
                             <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                                <BlockMath>{currentQuest?.promptLatex}</BlockMath>
+                                {renderMixedText(currentQuest?.promptLatex || "")}
                             </div>
                         </div>
 

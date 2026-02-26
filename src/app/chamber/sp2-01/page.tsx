@@ -8,6 +8,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { SP201Quest, Stage } from "@/types/sp2-01-types";
 import { buildStagePool } from "@/lib/sp2-01-quest-data";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SP201CircuitBasics() {
   const { completeStage } = useAppStore();
@@ -143,7 +144,7 @@ export default function SP201CircuitBasics() {
               <div className="text-white/50 text-sm mb-2">
                 Quest {currentQuest?.id} | {difficulty} | {stage}
               </div>
-              <div className="text-white text-lg mb-4">{currentQuest?.promptLatex}</div>
+              <div className="text-white text-lg mb-4">{renderMixedText(currentQuest?.promptLatex || "")}</div>
               
               {currentQuest?.designRequirements && (
                 <div className="mb-4 p-4 bg-cyan-500/10 rounded-lg border border-cyan-400/30">
