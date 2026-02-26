@@ -998,10 +998,14 @@ export default function S201Page() {
                     {sm2_01_t.ui?.logic_architect_step_2 ?? "STEP 2"}
                   </div>
                   <div className="text-white font-black">
-                    {architectQuest
-                      ? `(${architectQuest.ca * architectQuest.ca}x^{2}) + (${architectQuest.ca * architectQuest.vb}x) + (${architectQuest.vb * architectQuest.ca
-                      }x) + (${architectQuest.vb * architectQuest.vb})`
-                      : ""}
+                    <InlineMath
+                      math={
+                        architectQuest
+                          ? `(${architectQuest.ca * architectQuest.ca}x^{2}) + (${architectQuest.ca * architectQuest.vb}x) + (${architectQuest.vb * architectQuest.ca
+                          }x) + (${architectQuest.vb * architectQuest.vb})`
+                          : ""
+                      }
+                    />
                   </div>
                 </>
               )}
