@@ -1,11 +1,21 @@
-## 渲染规范
+# 渲染规范
 
-1. promptLatex 字段统一走 renderMixedText()，禁止直接传入 InlineMath 或 BlockMath
-2. expressionLatex / targetLatex / slot.labelLatex 等纯公式字段走 InlineMath math={}
-3. i18n 的 terms.* 类 key 不带 $ 包裹，$ 只用于 renderMixedText 的分隔符
+## 字段渲染规则
+
+| 字段 | 渲染方式 | 禁止 |
+|------|---------|------|
+| promptLatex | renderMixedText() | 直接传入 InlineMath/BlockMath |
+| expressionLatex / targetLatex / slot.labelLatex | InlineMath math={} | 子节点写法 |
+| i18n terms.* 纯公式 key | 直接写 LaTeX，不带 $ | 带 $ 包裹 |
 
 ## 数据格式
 
-- promptLatex 混合格式：文字直接写，公式用 $...$ 包裹
-- promptLatex 纯公式：整体用 $...$ 包裹
-- expressionLatex：直接写 LaTeX，JS 源码用 \\frac（两反斜杠）
+- promptLatex 混合格式：文字直接写，公式用 $...$ 包裹，例如 `计算 $a^{2}+b^{2}$`
+- promptLatex 纯公式：整体用 $...$ 包裹，例如 `$\frac{x}{3}+2=5$`
+- expressionLatex：直接写 LaTeX，JS 源码用双反斜杠，例如 `\\frac{x}{3}`
+
+## 翻译规范
+
+- 每个 key 必须在 CN/EN/DE 三个文件中同时存在
+- 运行 npm run validate:translations 确认无缺失
+- 禁止在页面代码中硬编码任何语言的文字
