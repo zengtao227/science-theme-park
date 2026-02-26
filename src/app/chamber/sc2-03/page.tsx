@@ -17,6 +17,7 @@ import {
   generateCombinedQuests,
   generateEliteQuests,
 } from "@/lib/sc2-03/quests";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SC203Page() {
   const { t: getT } = useLanguage();
@@ -161,7 +162,7 @@ export default function SC203Page() {
 
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-lg">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
 
           <div className="text-neon-cyan">

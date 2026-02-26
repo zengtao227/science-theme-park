@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcousticsVisualization from "@/components/chamber/sp3-06/AcousticsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "SOUND_WAVES" | "FREQUENCY_PITCH" | "LOUDNESS_INTENSITY";
 
@@ -725,7 +726,7 @@ export default function SP306Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                     
                     <div className="text-blue-300">

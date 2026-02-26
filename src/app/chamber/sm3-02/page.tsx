@@ -9,6 +9,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import dynamic from "next/dynamic";
+import { renderMixedText } from "@/lib/latex-utils";
 
 const TrigCanvas = dynamic(() => import("@/components/chamber/sm3-02/TrigCanvas"), {
     ssr: false,
@@ -323,7 +324,7 @@ export default function S302Page() {
                             {t("sm3_02.objective_title")}
                         </div>
                         <h2 className="text-3xl font-black text-white tracking-tight">
-                            <InlineMath math={currentQuest?.promptLatex || ""} />
+                            {renderMixedText(currentQuest?.promptLatex || "")}
                         </h2>
                         {currentQuest?.expressionLatex && (
                             <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10 inline-block min-w-[300px]">

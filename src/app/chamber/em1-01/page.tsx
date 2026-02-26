@@ -8,6 +8,7 @@ import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "BASICS" | "MEASURE" | "SURVEY";
 
@@ -262,8 +263,8 @@ export default function EM101Page() {
           <h3 className="text-orange-400 font-bold mb-2">{t.objective_title}</h3>
           <div className="text-gray-300 text-sm leading-relaxed">
             {currentQuest?.promptLatex.includes("{")
-              ? <InlineMath math={currentQuest?.promptLatex || ""} /> // LateX usually handles text inside
-              : <InlineMath math={currentQuest?.promptLatex || ""} />
+              ? renderMixedText(currentQuest?.promptLatex || "")
+              : renderMixedText(currentQuest?.promptLatex || "")
             }
           </div>
         </div>

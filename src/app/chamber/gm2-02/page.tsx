@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/GeometryVisualization";
 import { GM202Quest, Stage } from "@/lib/gm2-02-types";
 import { buildStagePool } from "@/lib/gm2-02-quest-builder";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function GM202Page() {
   const { completeStage } = useAppStore();
@@ -173,7 +174,7 @@ export default function GM202Page() {
                 OBJECTIVE
               </h3>
               <p className="text-2xl text-white font-black">
-                <InlineMath math={currentQuest?.promptLatex || ""} />
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </p>
             </div>
 

@@ -18,6 +18,7 @@ import {
   generateQuotientRuleQuests,
   generateChainRuleQuests
 } from "@/lib/gm1-01/quests";
+import { renderMixedText } from "@/lib/latex-utils";
 
 
 
@@ -241,7 +242,7 @@ export default function G101Page() {
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{gm1_01_t.objective_title}</h3>
           <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

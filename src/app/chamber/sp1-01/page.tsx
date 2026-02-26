@@ -11,6 +11,7 @@ import { Difficulty } from "@/hooks/useQuestManager";
 import { Stage } from "@/lib/sp1-01/domain/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SP101_ForcesBasics() {
   const { t } = useLanguage();
@@ -204,7 +205,7 @@ export default function SP101_ForcesBasics() {
                 <span className="text-[10px] font-black text-cyan-400/50 tracking-[0.3em] uppercase">{currentQuest?.type}</span>
               </div>
               <div className="text-xl text-white font-medium leading-relaxed">
-                <InlineMath math={currentQuest?.promptLatex || ""} />
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </div>
             </div>
 

@@ -25,6 +25,7 @@ import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
 import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { BondEnergyView } from '@/components/sc2-07/BondEnergyView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SC207Page() {
   const { completeStage } = useAppStore();
@@ -242,7 +243,7 @@ export default function SC207Page() {
 
             {/* Prompt */}
             <div className="text-center text-white/90 text-lg">
-              <InlineMath math={currentQuest?.promptLatex || ""} />
+              {renderMixedText(currentQuest?.promptLatex || "")}
             </div>
 
             {/* Input Field */}

@@ -9,6 +9,7 @@ import "katex/dist/katex.min.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, HelpCircle, BrainCircuit, Sparkles } from "lucide-react";
 import clsx from "clsx";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function OlympiadChallenge() {
     const { t } = useLanguage();
@@ -91,7 +92,7 @@ export default function OlympiadChallenge() {
                                 {/* Prompt Section */}
                                 <div className="space-y-6">
                                     <div className="text-2xl md:text-3xl font-bold leading-tight text-white/90">
-                                        <InlineMath math={currentQuest.promptLatex} />
+                                        {renderMixedText(currentQuest.promptLatex)}
                                     </div>
 
                                     <div className="p-8 bg-white/[0.03] border border-white/10 rounded-2xl relative group overflow-hidden no-print">

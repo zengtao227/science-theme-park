@@ -15,6 +15,7 @@ import {
   generateDefiniteIntegralQuests,
   generateApplicationQuests,
 } from "@/lib/gm1-02/quests";
+import { renderMixedText } from "@/lib/latex-utils";
 
 
 
@@ -163,7 +164,7 @@ export default function GM102Page() {
             {t("gm1_02.objective_title")}
           </h3>
           <p className="text-3xl text-white font-black italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </p>
         </div>
 

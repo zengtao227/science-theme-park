@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "OXIDATION_STATE" | "ELECTRON_TRANSFER" | "ELECTROCHEMISTRY";
 
@@ -446,7 +447,7 @@ export default function SC206Page() {
             {t("sc2_06.mission.title")}
           </h3>
           <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
         </div>
 

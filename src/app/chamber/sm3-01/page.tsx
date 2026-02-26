@@ -4,6 +4,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useCallback } from "react";
+import { renderMixedText } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -306,7 +307,7 @@ export default function S301Page() {
           <div className="text-center">
             <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t("sm3_01.objective_title")}</h3>
             <p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-              <InlineMath math={currentQuest?.promptLatex || ""} />
+              {renderMixedText(currentQuest?.promptLatex || "")}
             </p>
           </div>
 

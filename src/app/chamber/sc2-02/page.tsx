@@ -9,6 +9,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/TitrationCanvas"), {
     ssr: false,
@@ -356,7 +357,7 @@ export default function SC202Page() {
                         {sc2_02_t.monitor_title}
                     </h3>
                     <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                 </div>
 

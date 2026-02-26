@@ -8,6 +8,7 @@ import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "IDEAL_GAS" | "BOYLES_LAW" | "CHARLES_LAW";
 
@@ -500,7 +501,7 @@ export default function GP201Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
 
                     <div className="text-cyan-300">

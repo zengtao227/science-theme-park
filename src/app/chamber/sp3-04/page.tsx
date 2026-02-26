@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PressureBuoyancyCanvas from "@/components/chamber/sp1-07/PressureBuoyancyCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "PRESSURE" | "BUOYANCY" | "HYDRAULICS";
 
@@ -734,7 +735,7 @@ export default function SP304Page() {
             <div className="space-y-6">
                 <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
                     <div className="text-lg">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                     <div className="text-cyan-300">
                         <InlineMath math={currentQuest?.expressionLatex || ""} />

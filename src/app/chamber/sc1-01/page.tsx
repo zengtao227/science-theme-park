@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { renderMixedText } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -130,7 +131,7 @@ export default function SC101Page() {
             {t("sc1_01.mission.title")}
           </h3>
           <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
         </div>
 

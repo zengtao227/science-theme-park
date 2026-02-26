@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FlowMonitor from "@/components/shared/FlowMonitor";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 import {
   Stage,
   SP303Quest,
@@ -111,7 +112,7 @@ export default function SP303Page() {
       <div className="space-y-6">
         <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
           <div className="text-2xl text-white font-black leading-tight max-w-2xl mx-auto drop-shadow-sm flex justify-center">
-            <InlineMath math={`\\text{${currentQuest?.promptLatex.replace(/%/g, '\\%').replace(/\^2/g, '^{2}')}}`} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
           <div className="text-cyan-300">
             <InlineMath math={currentQuest?.expressionLatex || ""} />

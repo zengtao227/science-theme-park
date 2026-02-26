@@ -16,6 +16,7 @@ import {
   generateConditionalQuests,
   generateMissionQuests,
 } from "@/lib/gm3-01/quests";
+import { renderMixedText } from "@/lib/latex-utils";
 
 
 
@@ -187,7 +188,7 @@ export default function G301Page() {
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{gm3_01_t.objective_title}</h3>
           <p className="text-2xl text-white font-black italic mb-4">
-            <InlineMath math={currentQuest?.promptLatex || ""} />
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </p>
           <p className="text-lg text-white/70 font-mono">
             <InlineMath math={currentQuest?.expressionLatex || ""} />

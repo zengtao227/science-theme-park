@@ -13,6 +13,7 @@ import {
     GC101Quest as GC101QuestType,
     generateRedoxQuests,
 } from "@/lib/gc1-01/quests";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function GC101Page() {
     const { completeStage } = useAppStore();
@@ -119,7 +120,7 @@ export default function GC101Page() {
                         {t("gc1_01.mission.title")}
                     </h3>
                     <div className="text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic">
-                        <InlineMath math={currentQuest?.promptLatex || ""} />
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                 </div>
 
