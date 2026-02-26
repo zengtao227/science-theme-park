@@ -795,9 +795,9 @@ export default function S204Page() {
                                 if (!latex.includes("\\\\") && !latex.includes("$")) {
                                     return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
                                 }
-                                return <InlineMath math={latex} />;
+                                return <>{renderMixedText(latex)}</>;
                             })()}
-                        </div>
+                          </div>
                         {currentQuest?.hintLatex && currentQuest?.hintLatex.length > 0 && (
                             <div className="space-y-2 text-white font-black text-[10px] uppercase tracking-[0.25em]">
                                 <div className="text-white/90">{t("sm2_04.labels.hints")}</div>

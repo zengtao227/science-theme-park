@@ -7,6 +7,7 @@ import { useEffect, useCallback } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
+import { renderMixedText } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ResizableLayout from "@/components/layout/ResizableLayout";
@@ -954,7 +955,7 @@ export default function S101Page() {
                                 if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}") && !latex.includes("=")) {
                                     return <span className="whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ")}</span>;
                                 }
-                                return <InlineMath math={latex || ""} />;
+                                return <>{renderMixedText(latex)}</>;
                             })()}
                         </div>
                         {currentQuest?.hintLatex && currentQuest?.hintLatex.length > 0 && (
@@ -1001,7 +1002,7 @@ export default function S101Page() {
                                     .replace(/\\!/g, "");
                                 return <span className="whitespace-pre-wrap font-sans not-italic text-center block w-full">{clean}</span>;
                             }
-                            return <InlineMath math={latex || ""} />;
+                            return <>{renderMixedText(latex)}</>;
                         })()}
                     </p>
                 </div>

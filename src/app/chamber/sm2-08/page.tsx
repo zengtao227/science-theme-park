@@ -5,6 +5,7 @@ import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
+import { renderMixedText } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualizer from "@/components/chamber/sm2-08/ProbabilityVisualizer";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -1249,7 +1250,7 @@ export default function SM208Page() {
               if (!latex.includes("\\\\") && !latex.includes("$")) {
                 return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
               }
-              return <InlineMath math={latex} />;
+              return <>{renderMixedText(latex)}</>;
             })()}
           </div>
         </div>

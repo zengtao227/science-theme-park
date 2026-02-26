@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
+import { renderMixedText } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CombinatoricsVisualization from "@/components/chamber/sm2-12/CombinatoricsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -287,17 +288,7 @@ export default function SM212Page() {
                 {t("labels.mission_objective")}
               </h3>
               <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                {(() => {
-                  const latex = currentQuest?.promptLatex || "";
-                  if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                    const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
-                  }
-                  if (!latex.includes("\\\\") && !latex.includes("$")) {
-                    return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-                  }
-                  return <BlockMath>{latex}</BlockMath>;
-                })()}
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </div>
             </div>
 

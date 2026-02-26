@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
+import { renderMixedText } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S205_PowerCanvas, { type PowerVisual } from "@/components/chamber/sm2-05/PowerCanvas";
@@ -736,7 +737,7 @@ export default function S205Page() {
                             if (!latex.includes("\\\\") && !latex.includes("$")) {
                                 return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
                             }
-                            return <InlineMath math={latex || ""} />;
+                            return <>{renderMixedText(latex)}</>;
                         })()}
                     </div>
                     <div className="mt-8 p-8 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm shadow-2xl">

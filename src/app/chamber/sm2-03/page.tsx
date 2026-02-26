@@ -5,6 +5,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
+import { renderMixedText } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import LaserCanvas from "@/components/chamber/sm2-03/LaserCanvas";
@@ -397,7 +398,7 @@ export default function S203Page() {
                 if (!latex.includes("\\\\") && !latex.includes("$")) {
                   return <span className="font-sans font-black not-italic">{latex}</span>;
                 }
-                return <InlineMath math={latex} />;
+                return <>{renderMixedText(latex)}</>;
               })()}
             </div>
             {currentQuest?.expressionLatex && (
