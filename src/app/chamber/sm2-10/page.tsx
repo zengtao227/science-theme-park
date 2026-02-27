@@ -113,7 +113,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C5", difficulty, stage, dataType: "box_parts",
-                        promptLatex: `\\\\text{In a box plot, what does the box represent?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_box_represents"),
                         expressionLatex: `\\text{Box = IQR (Q1 to Q3)}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{Represents}`, placeholder: "IQR", expected: "IQR" }],
@@ -173,7 +173,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-E1", difficulty, stage, dataType: "modified_box",
-                        promptLatex: `\\\\text{Modified box plot shows outliers separately. Why is this useful?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_modified_boxplot_useful"),
                         expressionLatex: `\\text{Shows extreme values clearly}`,
                         targetLatex: `\\text{${t("sm2_10.labels.reason")}}`,
                         slots: [{ id: "reason", labelLatex: `\\text{${t("sm2_10.labels.benefit")}}`, placeholder: "clarity", expected: "clarity" }],
@@ -191,7 +191,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-E3", difficulty, stage, dataType: "resistant_measure",
-                        promptLatex: `\\\\text{Is median or mean more resistant to outliers?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_median_or_mean_resistant"),
                         expressionLatex: `\\text{Median not affected by extreme values}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{More resistant}`, placeholder: "median", expected: "median" }],
@@ -225,7 +225,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "SP-B1", difficulty, stage, dataType: "identify",
-                        promptLatex: `\\\\text{Points go up from left to right. What type of correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_points_up_correlation"),
                         expressionLatex: `\\text{Upward trend = positive}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
@@ -234,7 +234,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-B2", difficulty, stage, dataType: "downward",
-                        promptLatex: `\\\\text{Points go down from left to right. What correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_points_down_correlation"),
                         expressionLatex: `\\text{Downward trend = negative}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
@@ -243,7 +243,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-B3", difficulty, stage, dataType: "scatter",
-                        promptLatex: `\\\\text{Points scattered randomly. What correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_points_random_correlation"),
                         expressionLatex: `\\text{No pattern = no correlation}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
@@ -252,7 +252,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-B4", difficulty, stage, dataType: "axes",
-                        promptLatex: `\\\\text{In a scatter plot, which axis shows the independent variable?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_scatter_independent_axis"),
                         expressionLatex: `\\text{Independent on x-axis}`,
                         targetLatex: `\\text{${t("sm2_10.labels.axis")}}`,
                         slots: [{ id: "axis", labelLatex: `\\text{${t("sm2_10.labels.axis")}}`, placeholder: "x", expected: "x" }],
@@ -261,7 +261,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-B5", difficulty, stage, dataType: "point",
-                        promptLatex: `\\\\text{Each point on a scatter plot represents what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_each_point_represents"),
                         expressionLatex: `\\text{Point = one data pair}`,
                         targetLatex: `\\text{Represents}`,
                         slots: [{ id: "rep", labelLatex: `\\\\text{Represents}`, placeholder: "pair", expected: "pair" }],
@@ -273,7 +273,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "SP-C1", difficulty, stage, dataType: "positive",
-                        promptLatex: `\\\\text{As study time increases, test scores increase. What type of correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_study_scores_correlation"),
                         expressionLatex: `\\text{Both increase together}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
@@ -282,7 +282,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-C2", difficulty, stage, dataType: "negative",
-                        promptLatex: `\\\\text{As temperature decreases, heating costs increase. What correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_temp_heating_correlation"),
                         expressionLatex: `\\text{One up, one down}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
@@ -291,7 +291,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-C3", difficulty, stage, dataType: "none",
-                        promptLatex: `\\\\text{Shoe size vs. math score shows no pattern. What correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_shoe_math_no_pattern"),
                         expressionLatex: `\\text{No relationship}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
@@ -300,7 +300,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-C4", difficulty, stage, dataType: "strong",
-                        promptLatex: `\\\\text{Points cluster tightly around a line. Is correlation strong or weak?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_points_cluster_strength"),
                         expressionLatex: `\\text{Tight cluster = strong}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
@@ -309,7 +309,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-C5", difficulty, stage, dataType: "trend",
-                        promptLatex: `\\\\text{Line of best fit has positive slope. What does this indicate?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_best_fit_positive_slope"),
                         expressionLatex: `\\text{Positive slope = positive trend}`,
                         targetLatex: `\\text{Trend}`,
                         slots: [{ id: "trend", labelLatex: `\\\\text{Trend}`, placeholder: "positive", expected: "positive" }],
@@ -321,7 +321,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "SP-A1", difficulty, stage, dataType: "best_fit",
-                        promptLatex: `\\\\text{Line of best fit minimizes what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_best_fit_minimizes"),
                         expressionLatex: `\\text{Minimizes distance from points}`,
                         targetLatex: `\\text{Minimizes}`,
                         slots: [{ id: "min", labelLatex: `\\\\text{Minimizes}`, placeholder: "distance", expected: "distance" }],
@@ -330,7 +330,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-A2", difficulty, stage, dataType: "extrapolation",
-                        promptLatex: `\\\\text{Using line to predict beyond data range is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_predict_beyond_range"),
                         expressionLatex: `\\text{Beyond range = extrapolation}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "extrapolation", expected: "extrapolation" }],
@@ -339,7 +339,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-A3", difficulty, stage, dataType: "interpolation",
-                        promptLatex: `\\\\text{Predicting within data range is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_predict_within_range"),
                         expressionLatex: `\\text{Within range = interpolation}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "interpolation", expected: "interpolation" }],
@@ -348,7 +348,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-A4", difficulty, stage, dataType: "residual",
-                        promptLatex: `\\\\text{Difference between actual and predicted value is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_actual_predicted_difference"),
                         expressionLatex: `\\text{Actual - Predicted = Residual}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "residual", expected: "residual" }],
@@ -357,7 +357,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-A5", difficulty, stage, dataType: "weak_correlation",
-                        promptLatex: `\\\\text{Points widely scattered. Is correlation strong or weak?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_points_wide_scatter"),
                         expressionLatex: `\\text{Wide scatter = weak}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
@@ -369,7 +369,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "SP-E1", difficulty, stage, dataType: "nonlinear",
-                        promptLatex: `\\\\text{Points form a curve, not a line. What type of relationship?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_curve_not_line_relationship"),
                         expressionLatex: `\\text{Curved pattern = nonlinear}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "nonlinear", expected: "nonlinear" }],
@@ -378,7 +378,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-E2", difficulty, stage, dataType: "influential",
-                        promptLatex: `\\\\text{One point far from others greatly affects line. What is this point called?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_far_point_affects_line"),
                         expressionLatex: `\\text{Influential point or outlier}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "influential", expected: "influential" }],
@@ -387,7 +387,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-E3", difficulty, stage, dataType: "lurking",
-                        promptLatex: `\\\\text{Hidden variable affecting both x and y is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_hidden_variable_name"),
                         expressionLatex: `\\text{Hidden variable = lurking variable}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "lurking", expected: "lurking" }],
@@ -396,7 +396,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-E4", difficulty, stage, dataType: "regression",
-                        promptLatex: `\\\\text{Process of finding line of best fit is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_process_best_fit"),
                         expressionLatex: `\\text{Finding best fit = regression}`,
                         targetLatex: `\\text{${t("sm2_10.labels.process")}}`,
                         slots: [{ id: "proc", labelLatex: `\\text{${t("sm2_10.labels.process")}}`, placeholder: "regression", expected: "regression" }],
@@ -421,7 +421,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "C-B1", difficulty, stage, dataType: "definition",
-                        promptLatex: `\\\\text{Correlation measures what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_correlation_measures"),
                         expressionLatex: `\\text{Measures relationship strength}`,
                         targetLatex: `\\text{Measures}`,
                         slots: [{ id: "meas", labelLatex: `\\\\text{Measures}`, placeholder: "relationship", expected: "relationship" }],
@@ -430,7 +430,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-B2", difficulty, stage, dataType: "range",
-                        promptLatex: `\\\\text{Correlation coefficient r ranges from what to what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_r_range"),
                         expressionLatex: `-1 \\leq r \\leq 1`,
                         targetLatex: `\\text{${t("sm2_10.labels.range")}}`,
                         slots: [{ id: "min", labelLatex: `\\text{${t("sm2_10.labels.min")}}`, placeholder: "-1", expected: -1 }, { id: "max", labelLatex: `\\text{${t("sm2_10.labels.max")}}`, placeholder: "1", expected: 1 }],
@@ -439,7 +439,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-B3", difficulty, stage, dataType: "perfect_positive",
-                        promptLatex: `\\\\text{What value of r indicates perfect positive correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_r_perfect_positive"),
                         expressionLatex: `r = 1 = \\text{perfect positive}`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "1", expected: 1 }],
@@ -448,7 +448,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-B4", difficulty, stage, dataType: "perfect_negative",
-                        promptLatex: `\\\\text{What value of r indicates perfect negative correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_r_perfect_negative"),
                         expressionLatex: `r = -1 = \\text{perfect negative}`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "-1", expected: -1 }],
@@ -457,7 +457,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-B5", difficulty, stage, dataType: "no_correlation",
-                        promptLatex: `\\\\text{What value of r indicates no correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_r_no_correlation"),
                         expressionLatex: `r = 0 = \\text{no correlation}`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "0", expected: 0 }],
@@ -517,7 +517,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "C-A1", difficulty, stage, dataType: "causation",
-                        promptLatex: `\\\\text{Ice cream sales and drowning both increase in summer. Does ice cream cause drowning?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_icecream_drowning"),
                         expressionLatex: `\\text{Correlation} \\neq \\text{Causation}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{Cause?}`, placeholder: "no", expected: "no" }],
@@ -553,7 +553,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A5", difficulty, stage, dataType: "prediction",
-                        promptLatex: `\\\\text{Strong positive correlation between hours studied and test score. Can we predict scores?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_strong_positive_predict"),
                         expressionLatex: `\\text{Strong correlation allows prediction}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{Predict?}`, placeholder: "yes", expected: "yes" }],
@@ -565,7 +565,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "C-E1", difficulty, stage, dataType: "confounding",
-                        promptLatex: `\\\\text{Variable that affects both x and y, creating false correlation, is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_false_correlation_variable"),
                         expressionLatex: `\\text{${t("sm2_10.formula_phrases.confounding_variable")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "confounding", expected: "confounding" }],
@@ -574,7 +574,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-E2", difficulty, stage, dataType: "spurious",
-                        promptLatex: `\\\\text{Correlation without causal relationship is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_no_causal_relationship"),
                         expressionLatex: `\\text{${t("sm2_10.formula_phrases.spurious_correlation")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "spurious", expected: "spurious" }],
@@ -583,7 +583,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-E3", difficulty, stage, dataType: "pearson",
-                        promptLatex: `\\\\text{Most common correlation coefficient is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_common_correlation_coefficient"),
                         expressionLatex: `\\text{Pearson's r}`,
                         targetLatex: `\\text{Name}`,
                         slots: [{ id: "name", labelLatex: `\\\\text{Name}`, placeholder: "Pearson", expected: "Pearson" }],
@@ -592,7 +592,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-E4", difficulty, stage, dataType: "assumptions",
-                        promptLatex: `\\text{Pearson's r assumes what type of relationship?}`,
+                        promptLatex: t("sm2_10.prompts.b2_1_pearson_assumes_relationship"),
                         expressionLatex: `\\text{Assumes linear relationship}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "linear", expected: "linear" }],
