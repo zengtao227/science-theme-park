@@ -34,7 +34,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.median")}}`,
                         slots: [{ id: "median", labelLatex: `\\text{${t("sm2_10.labels.median")}}`, placeholder: "6", expected: 6 }],
                         correctLatex: `6`,
-                        hintLatex: [`\\\\text{Middle of 5 values is 3rd value}`]
+                        hintLatex: [`\\text{Middle of 5 values is 3rd value}`]
                     },
                     {
                         id: "BP-B2", difficulty, stage, dataType: "quartiles",
@@ -43,7 +43,7 @@ export default function SM210Page() {
                         targetLatex: `Q_1`,
                         slots: [{ id: "q1", labelLatex: `Q_1`, placeholder: "3", expected: 3 }],
                         correctLatex: `Q_1 = 3`,
-                        hintLatex: [`\\\\text{Lower half: } 1, 3`]
+                        hintLatex: [`\\text{Lower half: } 1, 3`]
                     },
                     {
                         id: "BP-B3", difficulty, stage, dataType: "range",
@@ -59,7 +59,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b4"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
-                        slots: [{ id: "iqr", labelLatex: `\\\\text{IQR}`, placeholder: "10", expected: 10 }],
+                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: "10", expected: 10 }],
                         correctLatex: `\\text{IQR} = 10`,
                         hintLatex: [`15 - 5 = 10`]
                     },
@@ -70,7 +70,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.outlier")}}`,
                         slots: [{ id: "outlier", labelLatex: `\\text{${t("sm2_10.labels.outlier")}}`, placeholder: "20", expected: 20 }],
                         correctLatex: `20`,
-                        hintLatex: [`\\\\text{20 is much larger than others}`]
+                        hintLatex: [`\\text{20 is much larger than others}`]
                     }
                 );
             } else if (difficulty === "CORE") {
@@ -82,14 +82,14 @@ export default function SM210Page() {
                         targetLatex: `Q_3`,
                         slots: [{ id: "q3", labelLatex: `Q_3`, placeholder: "12", expected: 12 }],
                         correctLatex: `Q_3 = 12`,
-                        hintLatex: [`\\\\text{Upper half: } 10, 12, 14`]
+                        hintLatex: [`\\text{Upper half: } 10, 12, 14`]
                     },
                     {
                         id: "BP-C2", difficulty, stage, dataType: "iqr_calc",
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c2"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
-                        slots: [{ id: "iqr", labelLatex: `\\\\text{IQR}`, placeholder: "20", expected: 20 }],
+                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: "20", expected: 20 }],
                         correctLatex: `\\text{IQR} = 20`,
                         hintLatex: [`Q_1 = 10, Q_3 = 30`]
                     },
@@ -100,25 +100,25 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.mean")}}`,
                         slots: [{ id: "mean", labelLatex: `\\text{${t("sm2_10.labels.mean")}}`, placeholder: "8", expected: 8 }],
                         correctLatex: `\\text{Mean} = 8`,
-                        hintLatex: [`\\\\frac{4+6+8+10+12}{5} = 8`]
+                        hintLatex: [`\\frac{4+6+8+10+12}{5} = 8`]
                     },
                     {
                         id: "BP-C4", difficulty, stage, dataType: "outlier_detect",
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c4"),
                         expressionLatex: `\\text{Outlier if far from Q1-Q3 range}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Outlier?}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Outlier?}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes}`,
-                        hintLatex: [`50 \\\\text{ is much larger than others}`]
+                        hintLatex: [`50 \\text{ is much larger than others}`]
                     },
                     {
                         id: "BP-C5", difficulty, stage, dataType: "box_parts",
                         promptLatex: t("sm2_10.prompts.b2_1_box_represents"),
                         expressionLatex: `\\text{Box = IQR (Q1 to Q3)}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Represents}`, placeholder: "IQR", expected: "IQR" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Represents}`, placeholder: "IQR", expected: "IQR" }],
                         correctLatex: `\\text{IQR (middle 50\\%)}`,
-                        hintLatex: [`\\\\text{Box shows Q1 to Q3}`]
+                        hintLatex: [`\\text{Box shows Q1 to Q3}`]
                     }
                 );
             } else if (difficulty === "ADVANCED") {
@@ -148,7 +148,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{Skew}`,
                         slots: [{ id: "skew", labelLatex: `\\text{${t("sm2_10.labels.direction")}}`, placeholder: "right", expected: "right" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.right_skewed")}}`,
-                        hintLatex: [`\\\\text{Long tail on right}`]
+                        hintLatex: [`\\text{Long tail on right}`]
                     },
                     {
                         id: "BP-A4", difficulty, stage, dataType: "compare_spread",
@@ -157,7 +157,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{${t("sm2_10.labels.dataset")}}`, placeholder: "B", expected: "B" }],
                         correctLatex: `\\text{Dataset B}`,
-                        hintLatex: [`\\\\text{Larger IQR means more variability}`]
+                        hintLatex: [`\\text{Larger IQR means more variability}`]
                     },
                     {
                         id: "BP-A5", difficulty, stage, dataType: "percentile",
@@ -166,7 +166,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.percentile")}}`,
                         slots: [{ id: "pct", labelLatex: `\\text{${t("sm2_10.labels.percentile")}}`, placeholder: "25", expected: 25 }],
                         correctLatex: `25\\text{th}`,
-                        hintLatex: [`Q_1 \\\\text{ is 25th percentile}`]
+                        hintLatex: [`Q_1 \\text{ is 25th percentile}`]
                     }
                 );
             } else if (difficulty === "ELITE") {
@@ -178,34 +178,34 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.reason")}}`,
                         slots: [{ id: "reason", labelLatex: `\\text{${t("sm2_10.labels.benefit")}}`, placeholder: "clarity", expected: "clarity" }],
                         correctLatex: `\\text{Identifies extreme values}`,
-                        hintLatex: [`\\\\text{Outliers shown as individual points}`]
+                        hintLatex: [`\\text{Outliers shown as individual points}`]
                     },
                     {
                         id: "BP-E2", difficulty, stage, dataType: "compare_distributions",
                         promptLatex: t("sm2_10.prompts.b2_2_bp_e2"),
                         expressionLatex: `\\text{IQR measures middle 50\\%, range measures all}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{More variable}`, placeholder: "depends", expected: "depends" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{More variable}`, placeholder: "depends", expected: "depends" }],
                         correctLatex: `\\text{Depends on context}`,
-                        hintLatex: [`\\\\text{IQR vs range measure different things}`]
+                        hintLatex: [`\\text{IQR vs range measure different things}`]
                     },
                     {
                         id: "BP-E3", difficulty, stage, dataType: "resistant_measure",
                         promptLatex: t("sm2_10.prompts.b2_1_median_or_mean_resistant"),
                         expressionLatex: `\\text{Median not affected by extreme values}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{More resistant}`, placeholder: "median", expected: "median" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{More resistant}`, placeholder: "median", expected: "median" }],
                         correctLatex: `\\text{${t("sm2_10.labels.median")}}`,
-                        hintLatex: [`\\\\text{Median is position-based}`]
+                        hintLatex: [`\\text{Median is position-based}`]
                     },
                     {
                         id: "BP-E4", difficulty, stage, dataType: "five_number",
                         promptLatex: t("sm2_10.prompts.b2_2_bp_e4"),
                         expressionLatex: `\\text{Five numbers describe distribution}`,
                         targetLatex: `\\text{Fifth number}`,
-                        slots: [{ id: "num", labelLatex: `\\\\text{Fifth}`, placeholder: "Max", expected: "Max" }],
+                        slots: [{ id: "num", labelLatex: `\\text{Fifth}`, placeholder: "Max", expected: "Max" }],
                         correctLatex: `\\text{Maximum}`,
-                        hintLatex: [`\\\\text{Min, Q1, Med, Q3, Max}`]
+                        hintLatex: [`\\text{Min, Q1, Med, Q3, Max}`]
                     },
                     {
                         id: "BP-E5", difficulty, stage, dataType: "symmetric",
@@ -214,7 +214,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.distribution")}}`, placeholder: "symmetric", expected: "symmetric" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.symmetric")}}`,
-                        hintLatex: [`\\\\text{Balanced on both sides}`]
+                        hintLatex: [`\\text{Balanced on both sides}`]
                     }
                 );
             }
@@ -230,7 +230,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
-                        hintLatex: [`\\\\text{Both variables increase}`]
+                        hintLatex: [`\\text{Both variables increase}`]
                     },
                     {
                         id: "SP-B2", difficulty, stage, dataType: "downward",
@@ -239,7 +239,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.labels.negative")}}`,
-                        hintLatex: [`\\\\text{One up, one down}`]
+                        hintLatex: [`\\text{One up, one down}`]
                     },
                     {
                         id: "SP-B3", difficulty, stage, dataType: "scatter",
@@ -248,7 +248,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{None}`,
-                        hintLatex: [`\\\\text{No relationship}`]
+                        hintLatex: [`\\text{No relationship}`]
                     },
                     {
                         id: "SP-B4", difficulty, stage, dataType: "axes",
@@ -257,16 +257,16 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.axis")}}`,
                         slots: [{ id: "axis", labelLatex: `\\text{${t("sm2_10.labels.axis")}}`, placeholder: "x", expected: "x" }],
                         correctLatex: `\\text{x-axis}`,
-                        hintLatex: [`\\\\text{x = independent, y = dependent}`]
+                        hintLatex: [`\\text{x = independent, y = dependent}`]
                     },
                     {
                         id: "SP-B5", difficulty, stage, dataType: "point",
                         promptLatex: t("sm2_10.prompts.b2_1_each_point_represents"),
                         expressionLatex: `\\text{Point = one data pair}`,
                         targetLatex: `\\text{Represents}`,
-                        slots: [{ id: "rep", labelLatex: `\\\\text{Represents}`, placeholder: "pair", expected: "pair" }],
+                        slots: [{ id: "rep", labelLatex: `\\text{Represents}`, placeholder: "pair", expected: "pair" }],
                         correctLatex: `\\text{One data pair (x,y)}`,
-                        hintLatex: [`\\\\text{One observation with two values}`]
+                        hintLatex: [`\\text{One observation with two values}`]
                     }
                 );
             } else if (difficulty === "CORE") {
@@ -278,7 +278,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{Positive correlation}`,
-                        hintLatex: [`\\\\text{Both go up = positive}`]
+                        hintLatex: [`\\text{Both go up = positive}`]
                     },
                     {
                         id: "SP-C2", difficulty, stage, dataType: "negative",
@@ -287,7 +287,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
                         correctLatex: `\\text{Negative correlation}`,
-                        hintLatex: [`\\\\text{Opposite directions = negative}`]
+                        hintLatex: [`\\text{Opposite directions = negative}`]
                     },
                     {
                         id: "SP-C3", difficulty, stage, dataType: "none",
@@ -296,7 +296,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
-                        hintLatex: [`\\\\text{No pattern = no correlation}`]
+                        hintLatex: [`\\text{No pattern = no correlation}`]
                     },
                     {
                         id: "SP-C4", difficulty, stage, dataType: "strong",
@@ -305,16 +305,16 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{Strong correlation}`,
-                        hintLatex: [`\\\\text{Close to line = strong}`]
+                        hintLatex: [`\\text{Close to line = strong}`]
                     },
                     {
                         id: "SP-C5", difficulty, stage, dataType: "trend",
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_positive_slope"),
                         expressionLatex: `\\text{Positive slope = positive trend}`,
                         targetLatex: `\\text{Trend}`,
-                        slots: [{ id: "trend", labelLatex: `\\\\text{Trend}`, placeholder: "positive", expected: "positive" }],
+                        slots: [{ id: "trend", labelLatex: `\\text{Trend}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{Positive trend}`,
-                        hintLatex: [`\\\\text{Upward slope = positive}`]
+                        hintLatex: [`\\text{Upward slope = positive}`]
                     }
                 );
             } else if (difficulty === "ADVANCED") {
@@ -324,7 +324,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_minimizes"),
                         expressionLatex: `\\text{Minimizes distance from points}`,
                         targetLatex: `\\text{Minimizes}`,
-                        slots: [{ id: "min", labelLatex: `\\\\text{Minimizes}`, placeholder: "distance", expected: "distance" }],
+                        slots: [{ id: "min", labelLatex: `\\text{Minimizes}`, placeholder: "distance", expected: "distance" }],
                         correctLatex: `\\text{Sum of squared distances}`,
                         hintLatex: [`\\text{${t("sm2_10.formula_phrases.least_squares")}}`]
                     },
@@ -335,7 +335,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "extrapolation", expected: "extrapolation" }],
                         correctLatex: `\\text{${t("sm2_10.labels.extrapolation")}}`,
-                        hintLatex: [`\\\\text{Extra = beyond, polation = prediction}`]
+                        hintLatex: [`\\text{Extra = beyond, polation = prediction}`]
                     },
                     {
                         id: "SP-A3", difficulty, stage, dataType: "interpolation",
@@ -344,7 +344,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "interpolation", expected: "interpolation" }],
                         correctLatex: `\\text{${t("sm2_10.labels.interpolation")}}`,
-                        hintLatex: [`\\\\text{Inter = between}`]
+                        hintLatex: [`\\text{Inter = between}`]
                     },
                     {
                         id: "SP-A4", difficulty, stage, dataType: "residual",
@@ -353,7 +353,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "residual", expected: "residual" }],
                         correctLatex: `\\text{${t("sm2_10.labels.residual")}}`,
-                        hintLatex: [`\\\\text{Residual = leftover error}`]
+                        hintLatex: [`\\text{Residual = leftover error}`]
                     },
                     {
                         id: "SP-A5", difficulty, stage, dataType: "weak_correlation",
@@ -362,7 +362,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
                         correctLatex: `\\text{${t("sm2_10.labels.weak")}}`,
-                        hintLatex: [`\\\\text{Far from line = weak}`]
+                        hintLatex: [`\\text{Far from line = weak}`]
                     }
                 );
             } else if (difficulty === "ELITE") {
@@ -374,7 +374,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "nonlinear", expected: "nonlinear" }],
                         correctLatex: `\\text{${t("sm2_10.labels.nonlinear")}}`,
-                        hintLatex: [`\\\\text{Not a straight line}`]
+                        hintLatex: [`\\text{Not a straight line}`]
                     },
                     {
                         id: "SP-E2", difficulty, stage, dataType: "influential",
@@ -383,7 +383,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "influential", expected: "influential" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.influential_point")}}`,
-                        hintLatex: [`\\\\text{Has large influence on line}`]
+                        hintLatex: [`\\text{Has large influence on line}`]
                     },
                     {
                         id: "SP-E3", difficulty, stage, dataType: "lurking",
@@ -392,7 +392,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "lurking", expected: "lurking" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.lurking_variable")}}`,
-                        hintLatex: [`\\\\text{Lurking = hidden}`]
+                        hintLatex: [`\\text{Lurking = hidden}`]
                     },
                     {
                         id: "SP-E4", difficulty, stage, dataType: "regression",
@@ -401,7 +401,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.process")}}`,
                         slots: [{ id: "proc", labelLatex: `\\text{${t("sm2_10.labels.process")}}`, placeholder: "regression", expected: "regression" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.linear_regression")}}`,
-                        hintLatex: [`\\\\text{Regression analysis}`]
+                        hintLatex: [`\\text{Regression analysis}`]
                     },
                     {
                         id: "SP-E5", difficulty, stage, dataType: "r_squared",
@@ -424,9 +424,9 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_correlation_measures"),
                         expressionLatex: `\\text{Measures relationship strength}`,
                         targetLatex: `\\text{Measures}`,
-                        slots: [{ id: "meas", labelLatex: `\\\\text{Measures}`, placeholder: "relationship", expected: "relationship" }],
+                        slots: [{ id: "meas", labelLatex: `\\text{Measures}`, placeholder: "relationship", expected: "relationship" }],
                         correctLatex: `\\text{Relationship between variables}`,
-                        hintLatex: [`\\\\text{How variables relate}`]
+                        hintLatex: [`\\text{How variables relate}`]
                     },
                     {
                         id: "C-B2", difficulty, stage, dataType: "range",
@@ -435,7 +435,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.range")}}`,
                         slots: [{ id: "min", labelLatex: `\\text{${t("sm2_10.labels.min")}}`, placeholder: "-1", expected: -1 }, { id: "max", labelLatex: `\\text{${t("sm2_10.labels.max")}}`, placeholder: "1", expected: 1 }],
                         correctLatex: `-1 \\text{ to } 1`,
-                        hintLatex: [`r \\\\text{ is between } -1 \\\\text{ and } 1`]
+                        hintLatex: [`r \\text{ is between } -1 \\text{ and } 1`]
                     },
                     {
                         id: "C-B3", difficulty, stage, dataType: "perfect_positive",
@@ -444,7 +444,7 @@ export default function SM210Page() {
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "1", expected: 1 }],
                         correctLatex: `r = 1`,
-                        hintLatex: [`\\\\text{Perfect positive} = 1`]
+                        hintLatex: [`\\text{Perfect positive} = 1`]
                     },
                     {
                         id: "C-B4", difficulty, stage, dataType: "perfect_negative",
@@ -453,7 +453,7 @@ export default function SM210Page() {
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "-1", expected: -1 }],
                         correctLatex: `r = -1`,
-                        hintLatex: [`\\\\text{Perfect negative} = -1`]
+                        hintLatex: [`\\text{Perfect negative} = -1`]
                     },
                     {
                         id: "C-B5", difficulty, stage, dataType: "no_correlation",
@@ -462,7 +462,7 @@ export default function SM210Page() {
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "0", expected: 0 }],
                         correctLatex: `r = 0`,
-                        hintLatex: [`\\\\text{No correlation} = 0`]
+                        hintLatex: [`\\text{No correlation} = 0`]
                     }
                 );
             } else if (difficulty === "CORE") {
@@ -474,7 +474,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
-                        hintLatex: [`\\\\text{Positive r = positive correlation}`]
+                        hintLatex: [`\\text{Positive r = positive correlation}`]
                     },
                     {
                         id: "C-C2", difficulty, stage, dataType: "strength",
@@ -483,7 +483,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{${t("sm2_10.labels.strong")}}`,
-                        hintLatex: [`0.95 \\\\text{ is close to } 1`]
+                        hintLatex: [`0.95 \\text{ is close to } 1`]
                     },
                     {
                         id: "C-C3", difficulty, stage, dataType: "weak",
@@ -492,7 +492,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
                         correctLatex: `\\text{${t("sm2_10.labels.weak")}}`,
-                        hintLatex: [`0.15 \\\\text{ is close to } 0`]
+                        hintLatex: [`0.15 \\text{ is close to } 0`]
                     },
                     {
                         id: "C-C4", difficulty, stage, dataType: "negative_strong",
@@ -501,7 +501,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{Description}`,
                         slots: [{ id: "desc", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "strong negative", expected: "strong negative" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_negative")}}`,
-                        hintLatex: [`\\\\text{Negative and close to } -1`]
+                        hintLatex: [`\\text{Negative and close to } -1`]
                     },
                     {
                         id: "C-C5", difficulty, stage, dataType: "moderate",
@@ -510,7 +510,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "moderate", expected: "moderate" }],
                         correctLatex: `\\text{${t("sm2_10.labels.moderate")}}`,
-                        hintLatex: [`\\\\text{Middle range}`]
+                        hintLatex: [`\\text{Middle range}`]
                     }
                 );
             } else if (difficulty === "ADVANCED") {
@@ -520,7 +520,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_icecream_drowning"),
                         expressionLatex: `\\text{Correlation} \\neq \\text{Causation}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Cause?}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Cause?}`, placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (both caused by hot weather)}`,
                         hintLatex: [`\\text{Correlation doesn't mean causation}`]
                     },
@@ -531,7 +531,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_positive")}}`,
-                        hintLatex: [`r \\\\text{ near } 1 = \\\\text{strong positive}`]
+                        hintLatex: [`r \\text{ near } 1 = \\text{strong positive}`]
                     },
                     {
                         id: "C-A3", difficulty, stage, dataType: "negative_r",
@@ -540,25 +540,25 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_negative")}}`,
-                        hintLatex: [`\\\\text{Negative } r = \\\\text{negative correlation}`]
+                        hintLatex: [`\\text{Negative } r = \\text{negative correlation}`]
                     },
                     {
                         id: "C-A4", difficulty, stage, dataType: "zero_r",
                         promptLatex: t("sm2_10.prompts.b2_2_c_a4"),
                         expressionLatex: `r \\approx 0 = \\text{no correlation}`,
                         targetLatex: `\\text{Meaning}`,
-                        slots: [{ id: "meaning", labelLatex: `\\\\text{Meaning}`, placeholder: "none", expected: "none" }],
+                        slots: [{ id: "meaning", labelLatex: `\\text{Meaning}`, placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
-                        hintLatex: [`r \\\\text{ near } 0 = \\\\text{no correlation}`]
+                        hintLatex: [`r \\text{ near } 0 = \\text{no correlation}`]
                     },
                     {
                         id: "C-A5", difficulty, stage, dataType: "prediction",
                         promptLatex: t("sm2_10.prompts.b2_1_strong_positive_predict"),
                         expressionLatex: `\\text{Strong correlation allows prediction}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Predict?}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Predict?}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (with some error)}`,
-                        hintLatex: [`\\\\text{Strong correlation enables prediction}`]
+                        hintLatex: [`\\text{Strong correlation enables prediction}`]
                     }
                 );
             } else if (difficulty === "ELITE") {
@@ -570,7 +570,7 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "confounding", expected: "confounding" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.confounding_variable")}}`,
-                        hintLatex: [`\\\\text{Confounds = confuses the relationship}`]
+                        hintLatex: [`\\text{Confounds = confuses the relationship}`]
                     },
                     {
                         id: "C-E2", difficulty, stage, dataType: "spurious",
@@ -579,16 +579,16 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "spurious", expected: "spurious" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.spurious_correlation")}}`,
-                        hintLatex: [`\\\\text{Spurious = false/misleading}`]
+                        hintLatex: [`\\text{Spurious = false/misleading}`]
                     },
                     {
                         id: "C-E3", difficulty, stage, dataType: "pearson",
                         promptLatex: t("sm2_10.prompts.b2_1_common_correlation_coefficient"),
                         expressionLatex: `\\text{Pearson's r}`,
                         targetLatex: `\\text{Name}`,
-                        slots: [{ id: "name", labelLatex: `\\\\text{Name}`, placeholder: "Pearson", expected: "Pearson" }],
+                        slots: [{ id: "name", labelLatex: `\\text{Name}`, placeholder: "Pearson", expected: "Pearson" }],
                         correctLatex: `\\text{Pearson correlation coefficient}`,
-                        hintLatex: [`\\\\text{Named after Karl Pearson}`]
+                        hintLatex: [`\\text{Named after Karl Pearson}`]
                     },
                     {
                         id: "C-E4", difficulty, stage, dataType: "assumptions",
@@ -597,16 +597,16 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "linear", expected: "linear" }],
                         correctLatex: `\\text{${t("sm2_10.labels.linear")}}`,
-                        hintLatex: [`\\\\text{Straight line relationship}`]
+                        hintLatex: [`\\text{Straight line relationship}`]
                     },
                     {
                         id: "C-E5", difficulty, stage, dataType: "coefficient_determination",
                         promptLatex: t("sm2_10.prompts.b2_2_c_e5"),
                         expressionLatex: `r^{2} = \\text{coefficient of determination}`,
                         targetLatex: `\\text{Name}`,
-                        slots: [{ id: "name", labelLatex: `\\\\text{Name}`, placeholder: "determination", expected: "determination" }],
+                        slots: [{ id: "name", labelLatex: `\\text{Name}`, placeholder: "determination", expected: "determination" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.coefficient_of_determination")}}`,
-                        hintLatex: [`\\\\text{Determines percent of variation explained}`]
+                        hintLatex: [`\\text{Determines percent of variation explained}`]
                     }
                 );
             }
@@ -621,7 +621,7 @@ export default function SM210Page() {
                         expressionLatex: `z = \\frac{x - \\mu}{\\sigma}, \\text{ then use normal distribution}`,
                         targetLatex: `P(T > 24)`,
                         slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
-                        correctLatex: `0.138 \\text{ or } 13.8\\\\%`,
+                        correctLatex: `0.138 \\text{ or } 13.8\\%`,
                         hintLatex: [
                             `z = \\\\frac{24 - 21.5}{2.3} = 1.087`,
                             `P(z > 1.087) \\\\approx 0.138`,
@@ -662,8 +662,8 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_c2"),
                         expressionLatex: `P(X < 120) + P(X > 180)`,
                         targetLatex: `P(\\text{outside})`,
-                        slots: [{ id: "prob", labelLatex: `P(\\\\text{out})`, placeholder: "0.096", expected: 0.096 }],
-                        correctLatex: `0.096 \\text{ or } 9.6\\\\%`,
+                        slots: [{ id: "prob", labelLatex: `P(\\text{out})`, placeholder: "0.096", expected: 0.096 }],
+                        correctLatex: `0.096 \\text{ or } 9.6\\%`,
                         hintLatex: [
                             `z_1 = \\\\frac{120-150}{18} = -1.667, P(X<120) = 0.048`,
                             `z_2 = \\\\frac{180-150}{18} = 1.667, P(X>180) = 0.048`,
