@@ -638,7 +638,7 @@ export default function S202Page() {
     }
   };
 
-  const [showExperimental, setShowExperimental] = useState(false);
+  const [showExperimental, setShowExperimental] = useState(true);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm2_02_t, d, s), [sm2_02_t]);
 
@@ -1002,7 +1002,19 @@ export default function S202Page() {
 
                 {slot.input === "radical" && (
                   <RadicalSlotInput
-                    value={(() => { try { return JSON.parse(inputs[slot.id] || "{}"); } catch { return { k: 1, m: 1 }; } })()}
+                    value={(() => {
+                      try {
+                        const parsed = JSON.parse(inputs[slot.id] || "{}");
+                        const k = Number(parsed?.k);
+                        const m = Number(parsed?.m);
+                        return {
+                          k: Number.isFinite(k) && k !== 0 ? k : 1,
+                          m: Number.isFinite(m) && m > 0 ? m : 1,
+                        };
+                      } catch {
+                        return { k: 1, m: 1 };
+                      }
+                    })()}
                     onChange={(v) => setInputs({ ...inputs, [slot.id]: JSON.stringify(v) })}
                     labelK={sm2_02_t.input_k}
                     labelM={sm2_02_t.input_m}
