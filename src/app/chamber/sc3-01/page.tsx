@@ -114,13 +114,13 @@ export default function SC301Page() {
         },
         {
           id: `${currentStage}-PERCENT1`, promptLatex: `\\\\text{Carbon percentage in ${config.name}?}`,
-          expressionLatex: `\\\\frac{C_{${config.c}}}{\\\\text{Total}}\\times 100`,
+          expressionLatex: `\\frac{C_{${config.c}}}{\\text{Total}}\\times 100`,
           slots: [{ id: "percent", labelLatex: "\\\\text{Percent}", placeholder: "%", expected: ((config.c / (config.c + config.h + config.o + config.n)) * 100).toFixed(1) }],
           hintLatex: ["\\\\text{Carbon / Total atoms}"]
         },
         {
           id: `${currentStage}-BONDS1`, promptLatex: `\\\\text{Estimate bond count in ${config.name}?}`,
-          expressionLatex: `\\\\text{Approximate}`,
+          expressionLatex: `\\text{Approximate}`,
           slots: [{ id: "bonds", labelLatex: "\\\\text{Bonds}", placeholder: "?", expected: (config.c + config.h + config.o + config.n - 1).toString() }],
           hintLatex: ["\\\\text{Roughly atoms - 1}"]
         },
@@ -151,25 +151,25 @@ export default function SC301Page() {
         },
         {
           id: `${currentStage}-COMPOSITION1`, promptLatex: `\\\\text{Mass percent of C in ${config.name}?}`,
-          expressionLatex: `\\\\frac{m_C}{M_{total}}\\times 100`,
+          expressionLatex: `\\frac{m_C}{M_{total}}\\times 100`,
           slots: [{ id: "percent", labelLatex: "\\\\text{Percent}", placeholder: "%", expected: ((config.c * 12.01) / (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01) * 100).toFixed(2) }],
           hintLatex: ["\\\\text{Mass of C / Total mass}"]
         },
         {
           id: `${currentStage}-FUNCTIONAL1`, promptLatex: `\\\\text{Functional groups in ${config.name}?}`,
-          expressionLatex: `\\\\text{Identify}`,
+          expressionLatex: `\\text{Identify}`,
           slots: [{ id: "groups", labelLatex: "\\\\text{Groups}", placeholder: "name", expected: currentStage === "ASPIRIN" ? "ester,carboxyl" : currentStage === "CAFFEINE" ? "amide,amine" : "amine,hydroxyl" }],
           hintLatex: ["\\\\text{Look for O, N patterns}"]
         },
         {
           id: `${currentStage}-STRUCTURE1`, promptLatex: `\\\\text{Ring structures in ${config.name}?}`,
-          expressionLatex: `\\\\text{Count}`,
+          expressionLatex: `\\text{Count}`,
           slots: [{ id: "rings", labelLatex: "\\\\text{Rings}", placeholder: "?", expected: currentStage === "ASPIRIN" ? "1" : currentStage === "CAFFEINE" ? "2" : "1" }],
           hintLatex: ["\\\\text{Closed carbon chains}"]
         },
         {
           id: `${currentStage}-SATURATION1`, promptLatex: `\\\\text{Degree of unsaturation in ${config.name}?}`,
-          expressionLatex: `\\\\frac{2C + 2 + N - H}{2}`,
+          expressionLatex: `\\frac{2C + 2 + N - H}{2}`,
           slots: [{ id: "unsat", labelLatex: "\\\\text{Degree}", placeholder: "?", expected: Math.floor((2 * config.c + 2 + config.n - config.h) / 2).toString() }],
           hintLatex: ["\\\\text{Use formula}"]
         },

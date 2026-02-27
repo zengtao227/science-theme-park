@@ -68,7 +68,7 @@ export default function SC305MolecularForge() {
                     stage,
                     promptLatex: `\\\\text{Determine geometry of ${m.name} with ${m.lone} lone pairs and ${m.bonded} bonded atoms}`,
                     expressionLatex: "",
-                    targetLatex: `\\\\text{${m.shape}}`,
+                    targetLatex: `\\text{${m.shape}}`,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Geometry}", placeholder: "...", expected: m.shape }],
                     correctLatex: m.shape,
                     hintLatex: [`\\\\text{Use VSEPR theory: count electron domains}`]
