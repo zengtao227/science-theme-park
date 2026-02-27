@@ -11,7 +11,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
-import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
+import PythagorasAreaProof from "@/components/chamber/sm2-02/PythagorasAreaProof";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
 import { renderMixedText, normalizeInlineMath } from "@/lib/latex-utils";
 import { formatRadicalLatex, simplifyRadical, toRadical } from "@/lib/math";
@@ -638,7 +638,6 @@ export default function S202Page() {
     }
   };
 
-  const [useFluidViz, setUseFluidViz] = useState(false);
   const [showExperimental, setShowExperimental] = useState(false);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm2_02_t, d, s), [sm2_02_t]);
@@ -701,6 +700,20 @@ export default function S202Page() {
   ];
 
   const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
+  const areaProofSides =
+    stage === "EXPLORER"
+      ? {
+          a: explorerA * explorerK,
+          b: explorerB * explorerK,
+          c: Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2)),
+        }
+      : (currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c
+          ? {
+              a: currentQuest.visual.a,
+              b: currentQuest.visual.b,
+              c: currentQuest.visual.c,
+            }
+          : null);
 
   // Tab switching
   const handleTabChange = (newTab: "PYTHAGORAS" | "SQRT") => {
@@ -751,60 +764,36 @@ export default function S202Page() {
                 onClick={() => setShowExperimental(!showExperimental)}
                 className="text-xs text-gray-400 hover:text-gray-200 underline"
               >
-                {showExperimental ? "▾ 隐藏实验功能" : "▸ 实验功能"}
+                {showExperimental ? "▾ 隐藏面积证明" : "▸ 显示面积证明"}
               </button>
-              {showExperimental && (
-                <button
-                  onClick={() => setUseFluidViz(!useFluidViz)}
-                  className="ml-3 text-xs text-yellow-400 border border-yellow-400 px-2 py-0.5 rounded"
-                >
-                  {useFluidViz ? "切回 2D" : "流体视图"}
-                </button>
-              )}
             </div>
           </div>
           <div className="w-full">
             {stage === "EXPLORER" ? (
-              useFluidViz ? (
-                <PythagorasFluidCanvas
-                  a={explorerA * explorerK}
-                  b={explorerB * explorerK}
-                  c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
-                />
-              ) : (
+              <PythagorasSimple2D
+                a={explorerA * explorerK}
+                b={explorerB * explorerK}
+                c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
+                highlightRightAngle={true}
+                labels={{
+                  sideA: sm2_02_t.labels.side_a,
+                  sideB: sm2_02_t.labels.side_b,
+                  hyp: sm2_02_t.labels.hypotenuse
+                }}
+              />
+            ) : (
+              currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c ? (
                 <PythagorasSimple2D
-                  a={explorerA * explorerK}
-                  b={explorerB * explorerK}
-                  c={Math.sqrt(Math.pow(explorerA * explorerK, 2) + Math.pow(explorerB * explorerK, 2))}
-                  highlightRightAngle={true}
+                  a={currentQuest?.visual.a}
+                  b={currentQuest?.visual.b}
+                  c={currentQuest?.visual.c}
+                  highlightRightAngle={currentQuest?.visual.highlightRightAngle}
                   labels={{
                     sideA: sm2_02_t.labels.side_a,
                     sideB: sm2_02_t.labels.side_b,
                     hyp: sm2_02_t.labels.hypotenuse
                   }}
                 />
-              )
-            ) : (
-              currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c ? (
-                useFluidViz ? (
-                  <PythagorasFluidCanvas
-                    a={currentQuest?.visual.a}
-                    b={currentQuest?.visual.b}
-                    c={currentQuest?.visual.c}
-                  />
-                ) : (
-                  <PythagorasSimple2D
-                    a={currentQuest?.visual.a}
-                    b={currentQuest?.visual.b}
-                    c={currentQuest?.visual.c}
-                    highlightRightAngle={currentQuest?.visual.highlightRightAngle}
-                    labels={{
-                      sideA: sm2_02_t.labels.side_a,
-                      sideB: sm2_02_t.labels.side_b,
-                      hyp: sm2_02_t.labels.hypotenuse
-                    }}
-                  />
-                )
               ) : (
                 <S202PythagorasCanvas
                   visual={currentQuest?.visual}
@@ -817,6 +806,18 @@ export default function S202Page() {
             <div className="text-white/60 text-sm font-mono text-center">
               <InlineMath math={`d^{2}=a^{2}+b^{2}+c^{2}`} />
             </div>
+          )}
+          {showExperimental && areaProofSides && (
+            <PythagorasAreaProof
+              a={areaProofSides.a}
+              b={areaProofSides.b}
+              c={areaProofSides.c}
+              labels={{
+                sideA: t("sm2_02.labels.side_a"),
+                sideB: t("sm2_02.labels.side_b"),
+                hyp: t("sm2_02.labels.hypotenuse"),
+              }}
+            />
           )}
         </div>
       }
