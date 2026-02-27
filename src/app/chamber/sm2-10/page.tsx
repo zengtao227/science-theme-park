@@ -29,7 +29,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-B1", difficulty, stage, dataType: "median",
-                        promptLatex: `\\\\text{Data: } 2, 4, 6, 8, 10. \\\\text{ What is the median?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_b1"),
                         expressionLatex: `\\text{Median = middle value}`,
                         targetLatex: `\\text{${t("sm2_10.labels.median")}}`,
                         slots: [{ id: "median", labelLatex: `\\text{${t("sm2_10.labels.median")}}`, placeholder: "6", expected: 6 }],
@@ -38,7 +38,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B2", difficulty, stage, dataType: "quartiles",
-                        promptLatex: `\\\\text{Data: } 1, 3, 5, 7, 9. \\\\text{ What is Q1 (first quartile)?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_b2"),
                         expressionLatex: `\\text{Q1 = median of lower half}`,
                         targetLatex: `Q_1`,
                         slots: [{ id: "q1", labelLatex: `Q_1`, placeholder: "3", expected: 3 }],
@@ -47,7 +47,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B3", difficulty, stage, dataType: "range",
-                        promptLatex: `\\\\text{Data: } 10, 15, 20, 25, 30. \\\\text{ What is the range?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_b3"),
                         expressionLatex: `\\text{Range} = \\text{Max} - \\text{Min}`,
                         targetLatex: `\\text{${t("sm2_10.labels.range")}}`,
                         slots: [{ id: "range", labelLatex: `\\text{${t("sm2_10.labels.range")}}`, placeholder: "20", expected: 20 }],
@@ -56,7 +56,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B4", difficulty, stage, dataType: "iqr",
-                        promptLatex: `\\\\text{Q1 = 5, Q3 = 15. What is IQR (interquartile range)?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_b4"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
                         slots: [{ id: "iqr", labelLatex: `\\\\text{IQR}`, placeholder: "10", expected: 10 }],
@@ -65,7 +65,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B5", difficulty, stage, dataType: "outlier",
-                        promptLatex: `\\\\text{Data: } 2, 3, 4, 5, 20. \\\\text{ Which value is an outlier?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_b5"),
                         expressionLatex: `\\text{Outlier = far from others}`,
                         targetLatex: `\\text{${t("sm2_10.labels.outlier")}}`,
                         slots: [{ id: "outlier", labelLatex: `\\text{${t("sm2_10.labels.outlier")}}`, placeholder: "20", expected: 20 }],
@@ -77,7 +77,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-C1", difficulty, stage, dataType: "q3",
-                        promptLatex: `\\\\text{Data: } 2, 4, 6, 8, 10, 12, 14. \\\\text{ What is Q3?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_c1"),
                         expressionLatex: `Q_3 = \\text{median of upper half}`,
                         targetLatex: `Q_3`,
                         slots: [{ id: "q3", labelLatex: `Q_3`, placeholder: "12", expected: 12 }],
@@ -86,7 +86,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C2", difficulty, stage, dataType: "iqr_calc",
-                        promptLatex: `\\\\text{Data: } 5, 10, 15, 20, 25, 30, 35. \\\\text{ Calculate IQR.}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_c2"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
                         slots: [{ id: "iqr", labelLatex: `\\\\text{IQR}`, placeholder: "20", expected: 20 }],
@@ -95,7 +95,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C3", difficulty, stage, dataType: "mean",
-                        promptLatex: `\\\\text{Data: } 4, 6, 8, 10, 12. \\\\text{ What is the mean?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_c3"),
                         expressionLatex: `\\text{Mean} = \\frac{\\text{sum}}{n}`,
                         targetLatex: `\\text{${t("sm2_10.labels.mean")}}`,
                         slots: [{ id: "mean", labelLatex: `\\text{${t("sm2_10.labels.mean")}}`, placeholder: "8", expected: 8 }],
@@ -104,7 +104,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C4", difficulty, stage, dataType: "outlier_detect",
-                        promptLatex: `\\\\text{Data: } 10, 12, 14, 16, 50. \\\\text{ Is 50 an outlier?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_c4"),
                         expressionLatex: `\\text{Outlier if far from Q1-Q3 range}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{Outlier?}`, placeholder: "yes", expected: "yes" }],
@@ -125,7 +125,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-A1", difficulty, stage, dataType: "outlier_rule",
-                        promptLatex: `\\\\text{Q1 = 10, Q3 = 20, IQR = 10. What is the upper outlier boundary?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_a1"),
                         expressionLatex: `\\text{Upper boundary} = Q_3 + 1.5 \\times \\text{IQR}`,
                         targetLatex: `\\text{${t("sm2_10.labels.boundary")}}`,
                         slots: [{ id: "boundary", labelLatex: `\\text{${t("sm2_10.labels.upper")}}`, placeholder: "35", expected: 35 }],
@@ -134,7 +134,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A2", difficulty, stage, dataType: "lower_outlier",
-                        promptLatex: `\\\\text{Q1 = 15, IQR = 8. What is the lower outlier boundary?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_a2"),
                         expressionLatex: `\\text{Lower boundary} = Q_1 - 1.5 \\times \\text{IQR}`,
                         targetLatex: `\\text{${t("sm2_10.labels.boundary")}}`,
                         slots: [{ id: "boundary", labelLatex: `\\text{${t("sm2_10.labels.lower")}}`, placeholder: "3", expected: 3 }],
@@ -143,7 +143,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A3", difficulty, stage, dataType: "skewness",
-                        promptLatex: `\\\\text{Median closer to Q1 than Q3. Is data left or right skewed?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_a3"),
                         expressionLatex: `\\text{Median near Q1} = \\text{right skewed}`,
                         targetLatex: `\\text{Skew}`,
                         slots: [{ id: "skew", labelLatex: `\\text{${t("sm2_10.labels.direction")}}`, placeholder: "right", expected: "right" }],
@@ -152,7 +152,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A4", difficulty, stage, dataType: "compare_spread",
-                        promptLatex: `\\\\text{Dataset A: IQR = 10. Dataset B: IQR = 20. Which is more spread out?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_a4"),
                         expressionLatex: `\\text{Larger IQR} = \\text{more spread}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{${t("sm2_10.labels.dataset")}}`, placeholder: "B", expected: "B" }],
@@ -161,7 +161,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A5", difficulty, stage, dataType: "percentile",
-                        promptLatex: `\\\\text{Q1 represents what percentile?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_a5"),
                         expressionLatex: `Q_1 = 25\\text{th percentile}`,
                         targetLatex: `\\text{${t("sm2_10.labels.percentile")}}`,
                         slots: [{ id: "pct", labelLatex: `\\text{${t("sm2_10.labels.percentile")}}`, placeholder: "25", expected: 25 }],
@@ -182,7 +182,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-E2", difficulty, stage, dataType: "compare_distributions",
-                        promptLatex: `\\\\text{Two box plots: A has larger IQR, B has larger range. Which is more variable?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_e2"),
                         expressionLatex: `\\text{IQR measures middle 50\\%, range measures all}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\\\text{More variable}`, placeholder: "depends", expected: "depends" }],
@@ -200,7 +200,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-E4", difficulty, stage, dataType: "five_number",
-                        promptLatex: `\\\\text{Five-number summary includes: Min, Q1, Median, Q3, and what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_e4"),
                         expressionLatex: `\\text{Five numbers describe distribution}`,
                         targetLatex: `\\text{Fifth number}`,
                         slots: [{ id: "num", labelLatex: `\\\\text{Fifth}`, placeholder: "Max", expected: "Max" }],
@@ -209,7 +209,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-E5", difficulty, stage, dataType: "symmetric",
-                        promptLatex: `\\\\text{Median = Mean, Q1 and Q3 equidistant from median. What type of distribution?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_bp_e5"),
                         expressionLatex: `\\text{Symmetric distribution}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.distribution")}}`, placeholder: "symmetric", expected: "symmetric" }],
@@ -405,7 +405,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "SP-E5", difficulty, stage, dataType: "r_squared",
-                        promptLatex: `\\\\text{r^{2} = 0.81 means what percent of variation is explained?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_sp_e5"),
                         expressionLatex: `r^{2} \\times 100\\% = \\text{percent explained}`,
                         targetLatex: `\\text{${t("sm2_10.labels.percent")}}`,
                         slots: [{ id: "pct", labelLatex: `\\text{${t("sm2_10.labels.percent")}}`, placeholder: "81", expected: 81 }],
@@ -469,7 +469,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "C-C1", difficulty, stage, dataType: "interpret_r",
-                        promptLatex: `\\\\text{r = 0.7. Is this positive or negative correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_c1"),
                         expressionLatex: `r > 0 = \\text{positive}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
@@ -478,7 +478,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C2", difficulty, stage, dataType: "strength",
-                        promptLatex: `\\\\text{r = 0.95. Is this strong or weak correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_c2"),
                         expressionLatex: `|r| \\text{ near } 1 = \\text{strong}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
@@ -487,7 +487,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C3", difficulty, stage, dataType: "weak",
-                        promptLatex: `\\\\text{r = 0.15. Is this strong or weak correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_c3"),
                         expressionLatex: `|r| \\text{ near } 0 = \\text{weak}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
@@ -496,7 +496,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C4", difficulty, stage, dataType: "negative_strong",
-                        promptLatex: `\\\\text{r = -0.85. What type and strength?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_c4"),
                         expressionLatex: `r < 0, |r| \\text{ near } 1`,
                         targetLatex: `\\text{Description}`,
                         slots: [{ id: "desc", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "strong negative", expected: "strong negative" }],
@@ -505,7 +505,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C5", difficulty, stage, dataType: "moderate",
-                        promptLatex: `\\\\text{r = 0.5. Is this weak, moderate, or strong?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_c5"),
                         expressionLatex: `0.3 < |r| < 0.7 = \\text{moderate}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "moderate", expected: "moderate" }],
@@ -526,7 +526,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A2", difficulty, stage, dataType: "coefficient",
-                        promptLatex: `\\\\text{Correlation coefficient r = 0.9. Is this strong or weak?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_a2"),
                         expressionLatex: `r \\text{ close to } 1 = \\text{strong}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
@@ -535,7 +535,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A3", difficulty, stage, dataType: "negative_r",
-                        promptLatex: `\\\\text{Correlation coefficient r = -0.8. What type of correlation?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_a3"),
                         expressionLatex: `r < 0 = \\text{negative}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
@@ -544,7 +544,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A4", difficulty, stage, dataType: "zero_r",
-                        promptLatex: `\\\\text{Correlation coefficient r = 0.05. What does this mean?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_a4"),
                         expressionLatex: `r \\approx 0 = \\text{no correlation}`,
                         targetLatex: `\\text{Meaning}`,
                         slots: [{ id: "meaning", labelLatex: `\\\\text{Meaning}`, placeholder: "none", expected: "none" }],
@@ -601,7 +601,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-E5", difficulty, stage, dataType: "coefficient_determination",
-                        promptLatex: `\\\\text{r^{2} is called what?}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_c_e5"),
                         expressionLatex: `r^{2} = \\text{coefficient of determination}`,
                         targetLatex: `\\text{Name}`,
                         slots: [{ id: "name", labelLatex: `\\\\text{Name}`, placeholder: "determination", expected: "determination" }],
@@ -617,7 +617,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, dataType: "rhine_temp_fish",
-                        promptLatex: `\\\\text{Basel Rhine River: summer temp } \\\\mu = 21.5deg\\\\text{C, } \\\\sigma = 2.3deg\\\\text{C (normal). Fish diversity correlates } r = -0.72. \\\\text{ Calculate } P(T > 24deg\\\\text{C}).`,
+                        promptLatex: t("sm2_10.prompts.b2_2_elite_b1"),
                         expressionLatex: `z = \\frac{x - \\mu}{\\sigma}, \\text{ then use normal distribution}`,
                         targetLatex: `P(T > 24)`,
                         slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
@@ -630,7 +630,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "ELITE-B2", difficulty, stage, dataType: "park_biodiversity",
-                        promptLatex: `\\\\text{Kannenfeldpark birds (n=20): mean=32, SD=4.2. Novartis Campus (n=20): mean=28, SD=3.8. Find lower bound of 95\\% CI for difference.}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_elite_b2"),
                         expressionLatex: `\\text{SE}_{\\text{diff}} = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}, \\text{ CI: diff } \\pm 1.96(\\text{SE})`,
                         targetLatex: `\\text{Lower bound}`,
                         slots: [{ id: "lower", labelLatex: `\\text{${t("sm2_10.labels.lower")}}`, placeholder: "1.52", expected: 1.52 }],
@@ -646,7 +646,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-C1", difficulty, stage, dataType: "climate_trend",
-                        promptLatex: `\\\\text{Basel temp: 9.2degC (1990) to 11.0degC (2024), 34 years. Growing season was 165 days (1990), increases 8 days per degC. Calculate 2024 growing season.}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_elite_c1"),
                         expressionLatex: `\\text{Temp increase} \\times \\text{days per degC} + \\text{baseline}`,
                         targetLatex: `\\text{Days in 2024}`,
                         slots: [{ id: "days", labelLatex: `\\text{${t("sm2_10.labels.days")}}`, placeholder: "179", expected: 179 }],
@@ -659,7 +659,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "ELITE-C2", difficulty, stage, dataType: "fox_population",
-                        promptLatex: `\\\\text{Basel urban fox: mean K=150, SD=18 (normal). Safe range: 120-180. Calculate } P(\\\\text{outside safe range}).`,
+                        promptLatex: t("sm2_10.prompts.b2_2_elite_c2"),
                         expressionLatex: `P(X < 120) + P(X > 180)`,
                         targetLatex: `P(\\text{outside})`,
                         slots: [{ id: "prob", labelLatex: `P(\\\\text{out})`, placeholder: "0.096", expected: 0.096 }],
@@ -675,7 +675,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-A1", difficulty, stage, dataType: "dissolved_oxygen",
-                        promptLatex: `\\\\text{Rhine dissolved oxygen (n=25): mean=9.8 mg/L, SD=1.4. Fish need } \\\\geq 8.0 \\\\text{ mg/L. Find lower bound of 90\\% CI.}`,
+                        promptLatex: t("sm2_10.prompts.b2_2_elite_a1"),
                         expressionLatex: `\\text{SE} = \\frac{s}{\\sqrt{n}}, \\text{ 90\\% CI: } \\mu \\pm 1.645(\\text{SE})`,
                         targetLatex: `\\text{Lower bound}`,
                         slots: [{ id: "lower", labelLatex: `\\text{${t("sm2_10.labels.lower")}}`, placeholder: "9.34", expected: 9.34 }],
