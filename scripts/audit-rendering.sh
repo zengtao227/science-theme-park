@@ -31,3 +31,26 @@ rg -n '>\s*"[A-Z][^"]*"\s*<|\{"\s*[A-Z][^"]*"\s*\}' \
   | rg -v '^\s*//' | rg -v '\?\?|\|\|' \
   | rg -v 'translations\?|labels\?|props\.' \
   | cut -d: -f1 | sort -u
+
+# ── 新增规则 E1：hintLatex / labelLatex 四反斜杠检测 ──
+echo "=== E1: hintLatex/labelLatex four-backslash check ==="
+E1=$(rg -n '(hintLatex|labelLatex).*\\\\\\\\' src/app/chamber --glob '*.tsx' \
+  | grep -v 't("sm')
+if [ -z "$E1" ]; then
+  echo "  OK – no violations"
+else
+  echo "$E1"
+  FAIL=1
+fi
+
+# ── 新增规则 E2：公式字段非 i18n 英文 \text 检测 ──
+echo "=== E2: hardcoded \\text{English} in formula fields ==="
+E2=$(rg -n '(expressionLatex|correctLatex|labelLatex|hintLatex).*\\\\text\{[A-Z][a-z]' \
+  src/app/chamber --glob '*.tsx' \
+  | grep -v 't("sm')
+if [ -z "$E2" ]; then
+  echo "  OK – no violations"
+else
+  echo "$E2"
+  FAIL=1
+fi
