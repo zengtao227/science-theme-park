@@ -1502,9 +1502,11 @@ export const cnMath = {
             application: "应用",
             stages_prompt_latex: "使用比例关系求出未知量。"
         },
-        labels: {
+        labels:
+        {
             input: "输入",
-            hints: "提示"
+            hints: "提示",
+            new_value: "新值",
         },
         hints: {
             rules: {

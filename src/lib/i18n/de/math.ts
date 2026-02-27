@@ -1541,9 +1541,11 @@ export const deMath = {
             application: "ANWENDUNG",
             stages_prompt_latex: "Nutze Proportionen, um den fehlenden Wert zu bestimmen."
         },
-        labels: {
+        labels:
+        {
             input: "EINGABE",
-            hints: "HINWEISE"
+            hints: "HINWEISE",
+            new_value: "Neu",
         },
         hints: {
             rules: {

@@ -1522,7 +1522,8 @@ export const enMath = {
         },
         labels: {
             input: "INPUT",
-            hints: "HINTS"
+            hints: "HINTS",
+            new_value: "New",
         },
         hints: {
             rules: {
