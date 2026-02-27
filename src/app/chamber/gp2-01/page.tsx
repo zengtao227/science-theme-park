@@ -44,7 +44,7 @@ function buildStagePool(
                 {
                     id: "IG-B1", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_p", { n: 2, T: 300, V: 0.05 }),
-                    expressionLatex: `P = \\\\frac{nRT}{V}`,
+                    expressionLatex: `P = \\frac{nRT}{V}`,
                     targetLatex: "P",
                     slots: [{ id: "p", labelLatex: "P \\\\text{ (Pa)}", placeholder: "99768", expected: 99768 }],
                     correctLatex: "P \\approx 99768 \\\\text{ Pa}",
@@ -53,7 +53,7 @@ function buildStagePool(
                 {
                     id: "IG-B2", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_n", { P: 100000, V: 0.1, T: 400 }),
-                    expressionLatex: `n = \\\\frac{PV}{RT}`,
+                    expressionLatex: `n = \\frac{PV}{RT}`,
                     targetLatex: "n",
                     slots: [{ id: "n", labelLatex: "n \\\\text{ (mol)}", placeholder: "3.01", expected: 3.01 }],
                     correctLatex: "n \\approx 3.01 \\\\text{ mol}",
@@ -62,7 +62,7 @@ function buildStagePool(
                 {
                     id: "IG-B3", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_v", { n: 1, P: 101325, T: 273 }),
-                    expressionLatex: `V = \\\\frac{nRT}{P}`,
+                    expressionLatex: `V = \\frac{nRT}{P}`,
                     targetLatex: "V",
                     slots: [{ id: "v", labelLatex: "V \\\\text{ (m}^{3})", placeholder: "0.0224", expected: 0.0224 }],
                     correctLatex: "V \\approx 0.0224 \\\\text{ m}^{3}",
@@ -71,7 +71,7 @@ function buildStagePool(
                 {
                     id: "IG-B4", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_t", { P: 200000, V: 0.02, n: 2 }),
-                    expressionLatex: `T = \\\\frac{PV}{nR}`,
+                    expressionLatex: `T = \\frac{PV}{nR}`,
                     targetLatex: "T",
                     slots: [{ id: "t", labelLatex: "T \\\\text{ (K)}", placeholder: "240.56", expected: 240.56 }],
                     correctLatex: "T \\approx 240.6 \\\\text{ K}",
@@ -80,7 +80,7 @@ function buildStagePool(
                 {
                     id: "IG-B5", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_p", { n: 5, T: 350, V: 0.1 }),
-                    expressionLatex: `P = \\\\frac{nRT}{V}`,
+                    expressionLatex: `P = \\frac{nRT}{V}`,
                     targetLatex: "P",
                     slots: [{ id: "p", labelLatex: "P \\\\text{ (Pa)}", placeholder: "145495", expected: 145495 }],
                     correctLatex: "P \\approx 145495 \\\\text{ Pa}",
@@ -93,7 +93,7 @@ function buildStagePool(
                 {
                     id: "IG-C1", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_p", { n: 0.5, T: 298, V: 0.01 }),
-                    expressionLatex: `P = \\\\frac{nRT}{V}`,
+                    expressionLatex: `P = \\frac{nRT}{V}`,
                     targetLatex: "P",
                     slots: [{ id: "p", labelLatex: "P", placeholder: "123878", expected: 123878 }],
                     correctLatex: "P \\approx 123879 \\\\text{ Pa}",
@@ -102,7 +102,7 @@ function buildStagePool(
                 {
                     id: "IG-C2", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_n", { P: 150000, V: 0.05, T: 300 }),
-                    expressionLatex: `n = \\\\frac{PV}{RT}`,
+                    expressionLatex: `n = \\frac{PV}{RT}`,
                     targetLatex: "n",
                     slots: [{ id: "n", labelLatex: "n", placeholder: "3.01", expected: 3.01 }],
                     correctLatex: "n \\approx 3.01 \\\\text{ mol}",
@@ -111,7 +111,7 @@ function buildStagePool(
                 {
                     id: "IG-C3", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_v", { n: 2.5, P: 50000, T: 400 }),
-                    expressionLatex: `V = \\\\frac{nRT}{P}`,
+                    expressionLatex: `V = \\frac{nRT}{P}`,
                     targetLatex: "V",
                     slots: [{ id: "v", labelLatex: "V", placeholder: "0.166", expected: 0.166 }],
                     correctLatex: "V \\approx 0.166 \\\\text{ m}^{3}",
@@ -120,7 +120,7 @@ function buildStagePool(
                 {
                     id: "IG-C4", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.find_t", { P: 300000, V: 0.01, n: 1 }),
-                    expressionLatex: `T = \\\\frac{PV}{nR}`,
+                    expressionLatex: `T = \\frac{PV}{nR}`,
                     targetLatex: "T",
                     slots: [{ id: "t", labelLatex: "T", placeholder: "360.8", expected: 360.8 }],
                     correctLatex: "T \\approx 361 \\\\text{ K}",
@@ -129,7 +129,7 @@ function buildStagePool(
                 {
                     id: "IG-C5", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.relation_pt"),
-                    expressionLatex: `P \\propto T \\\\text{ (V, n const)}`,
+                    expressionLatex: `P \\propto T \\text{ (V, n const)}`,
                     targetLatex: "\\\\text{Factor}",
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
                     correctLatex: "\\\\text{Factor } = 2",
