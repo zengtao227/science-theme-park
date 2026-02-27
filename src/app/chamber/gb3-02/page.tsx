@@ -142,7 +142,7 @@ export default function GB302Immunology() {
                     targetLatex: data.expected,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Factor}", placeholder: "...", expected: data.expected }],
                     correctLatex: `${data.expected}x`,
-                    hintLatex: [`\\text{${t("gb3_02.prompts.hint_memory")}}`]
+                    hintLatex: [t("gb3_02.prompts.hint_memory")]
                 });
             } else if (stage === "INNATE") {
                 quests.push({
@@ -152,10 +152,10 @@ export default function GB302Immunology() {
                     scenario: data.scenario,
                     promptLatex: `\\text{${t("gb3_02.prompts.innate_defense").replace("{pathogen}", data.pathogen)}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.cell}}`,
+                    targetLatex: data.cell,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Cell type}", placeholder: "...", expected: data.cell }],
                     correctLatex: data.cell,
-                    hintLatex: [`\\text{${t("gb3_02.prompts.hint_innate")}}`]
+                    hintLatex: [t("gb3_02.prompts.hint_innate")]
                 });
             } else {
                 quests.push({
@@ -165,10 +165,10 @@ export default function GB302Immunology() {
                     scenario: data.scenario,
                     promptLatex: `\\text{${t("gb3_02.prompts.adaptive_function").replace("{cell}", data.cell)}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.role}}`,
+                    targetLatex: data.role,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Function}", placeholder: "...", expected: data.role }],
                     correctLatex: data.role,
-                    hintLatex: [`\\text{${t("gb3_02.prompts.hint_adaptive")}}`]
+                    hintLatex: [t("gb3_02.prompts.hint_adaptive")]
                 });
             }
         });

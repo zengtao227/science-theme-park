@@ -66,12 +66,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "combustion",
                     scenario: comb.scenario,
-                    promptLatex: `\\text{${t("sc3_03.prompts.combustion", { reactant: comb.reactant })}}`,
+                    promptLatex: t("sc3_03.prompts.combustion", { reactant: comb.reactant }),
                     expressionLatex: `\\ce{${comb.reactant} + O2 -> CO2 + H2O}`,
                     targetLatex: comb.co2.toString(),
                     slots: [{ id: "ans", labelLatex: "\\ce{CO2}\\\\text{ molecules}", placeholder: "...", expected: comb.co2.toString() }],
                     correctLatex: `${comb.co2}\\ce{CO2}`,
-                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_combustion")}}`]
+                    hintLatex: [t("sc3_03.prompts.hint_combustion")]
                 });
             });
         }
@@ -114,12 +114,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "substitution",
                     scenario: sub.scenario,
-                    promptLatex: `\\text{${t("sc3_03.prompts.substitution", { alkane: sub.alkane, halogen: sub.halogen })}}`,
+                    promptLatex: t("sc3_03.prompts.substitution", { alkane: sub.alkane, halogen: sub.halogen }),
                     expressionLatex: `\\ce{${sub.alkane} + ${sub.halogen}2 ->[light] ? + H${sub.halogen}}`,
                     targetLatex: sub.product,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Product}", placeholder: "Formula", expected: sub.product }],
                     correctLatex: `\\ce{${sub.product}}`,
-                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_substitution")}}`]
+                    hintLatex: [t("sc3_03.prompts.hint_substitution")]
                 });
             });
         }
@@ -162,12 +162,12 @@ export default function SC303Page() {
                     stage,
                     reactionType: "addition",
                     scenario: add.scenario,
-                    promptLatex: `\\text{${t("sc3_03.prompts.addition", { alkene: add.alkene, reagent: add.reagent })}}`,
+                    promptLatex: t("sc3_03.prompts.addition", { alkene: add.alkene, reagent: add.reagent }),
                     expressionLatex: `\\ce{${add.alkene} + ${add.reagent} -> ?}`,
                     targetLatex: add.product,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Product}", placeholder: "Formula", expected: add.product }],
                     correctLatex: `\\ce{${add.product}}`,
-                    hintLatex: [`\\text{${t("sc3_03.prompts.hint_addition")}}`]
+                    hintLatex: [t("sc3_03.prompts.hint_addition")]
                 });
             });
         }

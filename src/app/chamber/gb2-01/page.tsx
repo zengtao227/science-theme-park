@@ -144,10 +144,10 @@ export default function GB201Neurobiology() {
                     scenario: data.scenario,
                     promptLatex: `\\text{${t('gb2_01.prompts.identify_part').replace("{function}", data.func!)}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.expected}}`,
+                    targetLatex: data.expected,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Structure}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
-                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_anatomy')}}`]
+                    hintLatex: [t('gb2_01.prompts.hint_anatomy')]
                 });
             } else if (stage === "POTENTIAL") {
                 quests.push({
@@ -160,7 +160,7 @@ export default function GB201Neurobiology() {
                     targetLatex: data.expected,
                     slots: [{ id: "ans", labelLatex: "E \\\\text{ (mV)}", placeholder: "0", expected: data.expected }],
                     correctLatex: `${data.expected}\\text{ mV}`,
-                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_nernst')}}`]
+                    hintLatex: [t('gb2_01.prompts.hint_nernst')]
                 });
             } else {
                 const promptText = t('gb2_01.prompts.nt_role_type', { effect: data.nt_effect || '', name: data.nt_name || '' });
@@ -171,10 +171,10 @@ export default function GB201Neurobiology() {
                     scenario: data.scenario,
                     promptLatex: `\\\\text{${promptText}}`,
                     expressionLatex: "",
-                    targetLatex: `\\text{${data.expected}}`,
+                    targetLatex: data.expected,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Type}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
-                    hintLatex: [`\\text{${t('gb2_01.prompts.hint_synapse')}}`]
+                    hintLatex: [t('gb2_01.prompts.hint_synapse')]
                 });
             }
         });
