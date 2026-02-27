@@ -796,17 +796,7 @@ export default function SM210Page() {
 
                 <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
                     <div className="text-3xl text-white font-black leading-tight max-w-2xl mx-auto">
-                        {(() => {
-                            const latex = currentQuest?.promptLatex || "";
-                            if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
-                            }
-                            if (!latex.includes("\\\\") && !latex.includes("$")) {
-                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-                            }
-                            return <>{renderMixedText(latex)}</>;
-                        })()}
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
 
                     <div className="text-purple-300">

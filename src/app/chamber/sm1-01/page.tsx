@@ -992,15 +992,7 @@ export default function S101Page() {
                         </span>
                         <div className="space-y-4">
                             <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
-                                {(() => {
-                                    const latex = currentQuest?.expressionLatex || "";
-                                    // If it contains localized text AND math, keep it in InlineMath
-                                    // only strip if it's pure descriptive text
-                                    if (latex && /^\s*\\+text\{/.test(latex) && latex.endsWith("}") && !latex.includes("=")) {
-                                        return <span className="whitespace-pre-wrap">{latex.replace(/^\\+text\{/, "").replace(/\}$/, "").replace(/\\\\/g, "\n").replace(/\\;/g, " ").replace(/\\,/g, " ")}</span>;
-                                    }
-                                    return <InlineMath math={latex} />;
-                                })()}
+                                <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </div>
                             <div className="text-white/60 font-black">
                                 <InlineMath math={currentQuest?.targetLatex || ""} />

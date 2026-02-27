@@ -1141,17 +1141,7 @@ export default function S206Page() {
             {t("sm2_06.objective_title")}
           </div>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
-            {(() => {
-              const latex = currentQuest?.promptLatex || "";
-              if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
-              }
-              if (!latex.includes("\\\\") && !latex.includes("$")) {
-                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-              }
-              return <>{renderMixedText(latex)}</>;
-            })()}
+            {renderMixedText(currentQuest?.promptLatex || "")}
           </p>
           <div className="mt-8 p-6 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm">
             <div className="text-4xl text-white font-black">

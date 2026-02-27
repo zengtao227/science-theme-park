@@ -397,24 +397,11 @@ export default function S207Page() {
         <div className="text-center">
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">{t("sm2_07.objective_title")}</h3>
           <p className="text-3xl text-white font-black italic whitespace-normal break-words">
-            {(() => {
-              // DYNAMIC LOCALIZATION LOGIC
-              let latex = currentQuest?.promptLatex || "";
-
-              // If this is a new question type with a promptKey, get the localized version NOW
-              if (currentQuest?.promptKey) {
-                latex = getLocalizedPrompt(t, currentQuest.promptKey, currentQuest.promptParams);
-              }
-
-              if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean.replace(/\\\\n/g, "\n")}</span>;
-              }
-              if (!latex.includes("\\\\") && !latex.includes("$")) {
-                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-              }
-              return <>{renderMixedText(latex)}</>;
-            })()}
+            {renderMixedText(
+              currentQuest?.promptKey
+                ? getLocalizedPrompt(t, currentQuest.promptKey, currentQuest.promptParams)
+                : (currentQuest?.promptLatex || "")
+            )}
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

@@ -728,17 +728,7 @@ export default function S205Page() {
                         {t("sm2_05.objective_title")}
                     </div>
                     <div className="text-3xl text-white font-black italic whitespace-normal break-words leading-tight">
-                        {(() => {
-                            const latex = currentQuest?.promptLatex || "";
-                            if (latex.startsWith("\\\\text{") && latex.endsWith("}")) {
-                                const clean = latex.replace(/^\\\\text\{/, "").replace(/\}$/, "");
-                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{clean}</span>;
-                            }
-                            if (!latex.includes("\\\\") && !latex.includes("$")) {
-                                return <span className="font-sans font-black not-italic whitespace-pre-wrap">{latex}</span>;
-                            }
-                            return <>{renderMixedText(latex)}</>;
-                        })()}
+                        {renderMixedText(currentQuest?.promptLatex || "")}
                     </div>
                     <div className="mt-8 p-8 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm shadow-2xl">
                         <div className="text-5xl text-white font-black tracking-widest">
