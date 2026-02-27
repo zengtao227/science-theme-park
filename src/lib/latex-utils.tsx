@@ -5,6 +5,14 @@ import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
 /**
+ * Normalize accidental double-backslash LaTeX commands (e.g. \\sqrt -> \sqrt)
+ * before passing into InlineMath.
+ */
+export function normalizeInlineMath(math: string): string {
+    return math.replace(/\\\\([a-zA-Z])/g, '\\$1');
+}
+
+/**
  * Preprocesses legacy promptLatex format:
  * Converts mixed "\\text{...}" + bare math into plain text + "$...$".
  * Only processes strings that contain "\\text{" and do not already contain "$".
@@ -54,7 +62,7 @@ export const renderMixedText = (text: string | undefined | null, className: stri
         <>
             {parts.map((p, i) => {
                 if (p.startsWith("$") && p.endsWith("$")) {
-                    return <InlineMath key={i} math={p.slice(1, -1)} />;
+                    return <InlineMath key={i} math={normalizeInlineMath(p.slice(1, -1))} />;
                 }
                 return <span key={i} className={className}>{p}</span>;
             })}

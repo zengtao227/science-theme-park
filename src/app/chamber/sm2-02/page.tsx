@@ -13,7 +13,7 @@ import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
 import PythagorasSimple2D from "@/components/chamber/sm2-02/PythagorasSimple2D";
 import PythagorasFluidCanvas from "@/components/chamber/sm2-02/PythagorasFluidCanvas";
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, normalizeInlineMath } from "@/lib/latex-utils";
 import { formatRadicalLatex, simplifyRadical, toRadical } from "@/lib/math";
 
 type Stage =
@@ -972,7 +972,7 @@ export default function S202Page() {
               {sm2_02_t.target_title}
             </span>
             <div className="font-black italic tracking-tighter text-white block py-2 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
-              <InlineMath math={currentQuest?.targetLatex || ""} />
+              <InlineMath math={normalizeInlineMath(currentQuest?.targetLatex || "")} />
             </div>
           </div>
 
@@ -981,7 +981,7 @@ export default function S202Page() {
             {currentQuest?.slots.map((slot: any) => (
               <div key={slot.id} className="space-y-3">
                 <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-                  <InlineMath math={slot.labelLatex} />
+                  <InlineMath math={normalizeInlineMath(slot.labelLatex)} />
                 </div>
 
                 {slot.input === "number" && (

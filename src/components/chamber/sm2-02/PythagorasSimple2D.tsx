@@ -73,7 +73,7 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, label
   const height = maxY - minY;
 
   // Padding
-  const pad = Math.max(width, height) * 0.1;
+  const pad = Math.max(width, height) * 0.2;
   const viewBox = `${minX - pad} ${minY - pad} ${width + 2 * pad} ${height + 2 * pad}`;
 
   const formatPoints = (points: { x: number; y: number }[]) =>
@@ -138,22 +138,22 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, label
         </div>
       </div>
 
-      {/* Stats / Controls Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/70 backdrop-blur-md border-t border-white/10 grid grid-cols-3 gap-2 font-mono text-center">
+      {/* Compact stats card to avoid covering lower geometry */}
+      <div className="absolute top-4 right-4 p-3 bg-black/75 backdrop-blur-md border border-white/10 rounded-lg font-mono text-right space-y-2">
         <div className="text-red-400">
-          <div className="text-[10px] opacity-50 uppercase">{sideALabel}</div>
-          <div className="text-lg font-bold">{a}</div>
-          <div className="text-xs"><InlineMath math={`a^{2} = ${a * a}`} /></div>
+          <div className="text-[9px] opacity-60 uppercase">{sideALabel}</div>
+          <div className="text-base font-bold">{a}</div>
+          <div className="text-[11px]"><InlineMath math={`a^{2} = ${a * a}`} /></div>
         </div>
         <div className="text-blue-400">
-          <div className="text-[10px] opacity-50 uppercase">{sideBLabel}</div>
-          <div className="text-lg font-bold">{b}</div>
-          <div className="text-xs"><InlineMath math={`b^{2} = ${b * b}`} /></div>
+          <div className="text-[9px] opacity-60 uppercase">{sideBLabel}</div>
+          <div className="text-base font-bold">{b}</div>
+          <div className="text-[11px]"><InlineMath math={`b^{2} = ${b * b}`} /></div>
         </div>
         <div className="text-neon-green">
-          <div className="text-[10px] opacity-50 uppercase">{hypLabel}</div>
-          <div className="text-lg font-bold">{c.toFixed(2)}</div>
-          <div className="text-xs"><InlineMath math={`c^{2} \\approx ${(c * c).toFixed(0)}`} /></div>
+          <div className="text-[9px] opacity-60 uppercase">{hypLabel}</div>
+          <div className="text-base font-bold">{c.toFixed(2)}</div>
+          <div className="text-[11px]"><InlineMath math={`c^{2} \\approx ${(c * c).toFixed(0)}`} /></div>
         </div>
       </div>
 
