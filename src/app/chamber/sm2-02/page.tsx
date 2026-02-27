@@ -40,8 +40,8 @@ interface S202Quest extends Quest {
     b?: number;
     c?: number;
     highlightRightAngle?: boolean;
-    p1?: { x: number; y: number };
-    p2?: { x: number; y: number };
+    p1?: { x: number; y: number; z?: number };
+    p2?: { x: number; y: number; z?: number };
   };
   slots: S202Slot[];
 }
@@ -218,27 +218,30 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     for (let i = 0; i < 120; i++) {
       const x1 = Math.floor(rnd() * (range * 2 + 1)) - range;
       const y1 = Math.floor(rnd() * (range * 2 + 1)) - range;
+      const z1 = Math.floor(rnd() * (range * 2 + 1)) - range;
       const x2 = Math.floor(rnd() * (range * 2 + 1)) - range;
       const y2 = Math.floor(rnd() * (range * 2 + 1)) - range;
-      if (x1 === x2 && y1 === y2) continue;
+      const z2 = Math.floor(rnd() * (range * 2 + 1)) - range;
+      if (x1 === x2 && y1 === y2 && z1 === z2) continue;
 
       const dx = x2 - x1;
       const dy = y2 - y1;
-      const d2 = dx * dx + dy * dy;
+      const dz = z2 - z1;
+      const d2 = dx * dx + dy * dy + dz * dz;
       const exact: Radical = toRadical(d2);
 
       quests.push({
-        id: `PYT|DIST|${difficulty}|${x1}|${y1}|${x2}|${y2}`,
+        id: `PYT|DIST|${difficulty}|${x1}|${y1}|${z1}|${x2}|${y2}|${z2}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.pythagoras.distance}: $({${x1}}, {${y1}}) \\rightarrow ({${x2}}, {${y2}})$`,
-        expressionLatex: `d^{2} = (\\Delta x)^{2} + (\\Delta y)^{2}`,
+        promptLatex: `${sm2_02_t.pythagoras.distance}: $({${x1}}, {${y1}}, {${z1}}) \\rightarrow ({${x2}}, {${y2}}, {${z2}})$`,
+        expressionLatex: `d^{2} = (\\Delta x)^{2} + (\\Delta y)^{2} + (\\Delta z)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
         slots: [
-          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}+(\\Delta z)^{2}`, input: "number", expected: d2, placeholder: "?" },
           { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
-        visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
+        visual: { kind: "distance", p1: { x: x1, y: y1, z: z1 }, p2: { x: x2, y: y2, z: z2 } },
       });
     }
     return quests;
@@ -342,27 +345,30 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     for (let i = 0; i < 3; i++) {
       const x1 = Math.floor(rnd() * 11) - 5;
       const y1 = Math.floor(rnd() * 11) - 5;
+      const z1 = Math.floor(rnd() * 11) - 5;
       let x2 = Math.floor(rnd() * 11) - 5;
       const y2 = Math.floor(rnd() * 11) - 5;
-      if (x1 === x2 && y1 === y2) x2 += 2;
+      const z2 = Math.floor(rnd() * 11) - 5;
+      if (x1 === x2 && y1 === y2 && z1 === z2) x2 += 2;
 
       const dx = x2 - x1;
       const dy = y2 - y1;
-      const d2 = dx * dx + dy * dy;
+      const dz = z2 - z1;
+      const d2 = dx * dx + dy * dy + dz * dz;
       const exact = toRadical(d2);
 
       quests.push({
-        id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${x2}|${y2}`,
+        id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${z1}|${x2}|${y2}|${z2}`,
         difficulty, stage, tab,
         promptLatex: `${sm2_02_t.mission.grid_title} — ${sm2_02_t.mission.grid_desc}`,
-        expressionLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`,
+        expressionLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}+(\\Delta z)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
         slots: [
-          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
+          { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}+(\\Delta z)^{2}`, input: "number", expected: d2, placeholder: "?" },
           { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
-        visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
+        visual: { kind: "distance", p1: { x: x1, y: y1, z: z1 }, p2: { x: x2, y: y2, z: z2 } },
       });
     }
 

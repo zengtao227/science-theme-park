@@ -414,21 +414,25 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
 }
 
 interface DistanceCanvasProps {
-  p1: { x: number; y: number };
-  p2: { x: number; y: number };
+  p1: { x: number; y: number; z?: number };
+  p2: { x: number; y: number; z?: number };
 }
 
 // 3D Coordinate Distance with Voxel Path
 function Distance3D({ p1, p2 }: DistanceCanvasProps) {
   // 移除自动旋转
 
-  const distance = Math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2);
+  const z1 = p1.z ?? 0;
+  const z2 = p2.z ?? 0;
+  const distance = Math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2 + (z2 - z1) ** 2);
   const dx = Math.abs(p2.x - p1.x);
   const dy = Math.abs(p2.y - p1.y);
+  const dz = Math.abs(z2 - z1);
 
-  const P1 = new THREE.Vector3(p1.x, p1.y, 0);
-  const P2 = new THREE.Vector3(p2.x, p2.y, 0);
-  const corner = new THREE.Vector3(p2.x, p1.y, 0);
+  const P1 = new THREE.Vector3(p1.x, p1.y, z1);
+  const P2 = new THREE.Vector3(p2.x, p2.y, z2);
+  const cornerXY = new THREE.Vector3(p2.x, p1.y, z1);
+  const cornerXYZ = new THREE.Vector3(p2.x, p2.y, z1);
 
   return (
     <group>
@@ -449,20 +453,23 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
       {/* Axes */}
       <Line points={[new THREE.Vector3(-12, 0, 0), new THREE.Vector3(12, 0, 0)]} color="#ffffff" lineWidth={2} transparent opacity={0.3} />
       <Line points={[new THREE.Vector3(0, -12, 0), new THREE.Vector3(0, 12, 0)]} color="#ffffff" lineWidth={2} transparent opacity={0.3} />
+      <Line points={[new THREE.Vector3(0, 0, -12), new THREE.Vector3(0, 0, 12)]} color="#ffffff" lineWidth={2} transparent opacity={0.3} />
 
-      {/* Right triangle helper lines */}
-      <Line points={[P1, corner, P2]} color="#ffffff" lineWidth={2} transparent opacity={0.4} dashed dashScale={2} />
+      {/* Orthogonal helper path in 3D */}
+      <Line points={[P1, cornerXY, cornerXYZ, P2]} color="#ffffff" lineWidth={2} transparent opacity={0.4} dashed dashScale={2} />
 
       {/* Distance line (main feature) */}
       <Line points={[P1, P2]} color="#d946ef" lineWidth={5} />
       <Line points={[P1, P2]} color="#d946ef" lineWidth={12} transparent opacity={0.35} />
 
       {/* Dimension indicators */}
-      <Line points={[P1, corner]} color="#39ff14" lineWidth={3} />
-      <Line points={[P1, corner]} color="#39ff14" lineWidth={8} transparent opacity={0.25} />
+      <Line points={[P1, cornerXY]} color="#39ff14" lineWidth={3} />
+      <Line points={[P1, cornerXY]} color="#39ff14" lineWidth={8} transparent opacity={0.25} />
 
-      <Line points={[corner, P2]} color="#00e5ff" lineWidth={3} />
-      <Line points={[corner, P2]} color="#00e5ff" lineWidth={8} transparent opacity={0.25} />
+      <Line points={[cornerXY, cornerXYZ]} color="#00e5ff" lineWidth={3} />
+      <Line points={[cornerXY, cornerXYZ]} color="#00e5ff" lineWidth={8} transparent opacity={0.25} />
+      <Line points={[cornerXYZ, P2]} color="#f59e0b" lineWidth={3} />
+      <Line points={[cornerXYZ, P2]} color="#f59e0b" lineWidth={8} transparent opacity={0.25} />
 
       {/* Points */}
       <Float speed={2} rotationIntensity={0} floatIntensity={0.3}>
@@ -494,7 +501,7 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
       </Float>
 
       {/* Corner marker */}
-      <mesh position={corner}>
+      <mesh position={cornerXY}>
         <sphereGeometry args={[0.15, 16, 16]} />
         <meshPhysicalMaterial
           color="#ffffff"
@@ -506,29 +513,44 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
           opacity={0.6}
         />
       </mesh>
+      <mesh position={cornerXYZ}>
+        <sphereGeometry args={[0.15, 16, 16]} />
+        <meshPhysicalMaterial
+          color="#f59e0b"
+          emissive="#f59e0b"
+          emissiveIntensity={0.5}
+          metalness={0.8}
+          roughness={0.2}
+          transparent
+          opacity={0.7}
+        />
+      </mesh>
 
-      <Billboard position={[p1.x, p1.y + 1, 0.5]}>
+      <Billboard position={[p1.x, p1.y + 1, z1 + 0.8]}>
         <Text fontSize={0.5} color="#ffffff" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
-          ({p1.x}, {p1.y})
+          ({p1.x}, {p1.y}, {z1})
         </Text>
       </Billboard>
 
-      <Billboard position={[p2.x, p2.y + 1, 0.5]}>
+      <Billboard position={[p2.x, p2.y + 1, z2 + 0.8]}>
         <Text fontSize={0.5} color="#39ff14" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
-          ({p2.x}, {p2.y})
+          ({p2.x}, {p2.y}, {z2})
         </Text>
       </Billboard>
 
-      <Billboard position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.5, 0.5]}>
+      <Billboard position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.5, (z1 + z2) / 2 + 0.5]}>
         <Text fontSize={0.6} color="#d946ef" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
           d = ?
         </Text>
       </Billboard>
-      <Text position={[(p1.x + corner.x) / 2, p1.y - 0.7, 0]} fontSize={0.35} color="#39ff14" anchorX="center">
+      <Text position={[(p1.x + cornerXY.x) / 2, p1.y - 0.7, z1]} fontSize={0.35} color="#39ff14" anchorX="center">
         Δx = {dx}
       </Text>
-      <Text position={[p2.x + 0.9, (p1.y + p2.y) / 2, 0]} fontSize={0.35} color="#00e5ff" anchorX="center">
+      <Text position={[p2.x + 0.9, (p1.y + p2.y) / 2, z1]} fontSize={0.35} color="#00e5ff" anchorX="center">
         Δy = {dy}
+      </Text>
+      <Text position={[p2.x + 0.9, p2.y + 0.9, (z1 + z2) / 2]} fontSize={0.35} color="#f59e0b" anchorX="center">
+        Δz = {dz}
       </Text>
     </group>
   );
@@ -541,8 +563,8 @@ export interface S202CanvasProps {
     b?: number;
     c?: number;
     highlightRightAngle?: boolean;
-    p1?: { x: number; y: number };
-    p2?: { x: number; y: number };
+    p1?: { x: number; y: number; z?: number };
+    p2?: { x: number; y: number; z?: number };
   };
   translations?: {
     voxel_proof: string;
@@ -585,10 +607,21 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
   ];
 
   const distanceScale = visual.kind === "distance" && visual.p1 && visual.p2
-    ? Math.max(8, Math.abs(visual.p1.x - visual.p2.x), Math.abs(visual.p1.y - visual.p2.y), Math.abs(visual.p1.x), Math.abs(visual.p1.y), Math.abs(visual.p2.x), Math.abs(visual.p2.y))
+    ? Math.max(
+        8,
+        Math.abs(visual.p1.x - visual.p2.x),
+        Math.abs(visual.p1.y - visual.p2.y),
+        Math.abs((visual.p1.z ?? 0) - (visual.p2.z ?? 0)),
+        Math.abs(visual.p1.x),
+        Math.abs(visual.p1.y),
+        Math.abs(visual.p1.z ?? 0),
+        Math.abs(visual.p2.x),
+        Math.abs(visual.p2.y),
+        Math.abs(visual.p2.z ?? 0)
+      )
     : 10;
   const distanceTarget: [number, number, number] = visual.kind === "distance" && visual.p1 && visual.p2
-    ? [(visual.p1.x + visual.p2.x) / 2, (visual.p1.y + visual.p2.y) / 2, 0]
+    ? [(visual.p1.x + visual.p2.x) / 2, (visual.p1.y + visual.p2.y) / 2, ((visual.p1.z ?? 0) + (visual.p2.z ?? 0)) / 2]
     : [0, 0, 0];
   const distanceCameraPos: [number, number, number] = [
     distanceTarget[0],
