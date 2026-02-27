@@ -221,7 +221,7 @@ Upon successful migration and verification:
 |------|------|---------|
 | `scripts/deep-audit.sh` | 全面审计 LaTeX 与 i18n 覆盖率 | `bash scripts/deep-audit.sh` |
 | `scripts/audit-modules.js` | 空题目池、硬编码文本、旧 i18n 模式检测 | `node scripts/audit-modules.js` |
-| `fix_backslashes.js` | 自动化清理多余的 LaTeX 转义符 |
+| `scripts/legacy-fixes/fix_backslashes.js` | 自动化清理多余的 LaTeX 转义符 |
 
 **建议**：在每次 Sprint 结束后，运行这两个脚本并检查输出，确保没有回归问题。
 

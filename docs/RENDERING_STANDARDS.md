@@ -19,3 +19,12 @@
 - 每个 key 必须在 CN/EN/DE 三个文件中同时存在
 - 运行 npm run validate:translations 确认无缺失
 - 禁止在页面代码中硬编码任何语言的文字
+
+## 禁止模式
+
+| 禁止写法 | 原因 | 正确写法 |
+|---------|------|---------|
+| `promptLatex: \`\\text{${t(...)}}\`` | `\text{}` 包裹 `t()` 导致红色反斜杠泄漏 | `promptLatex: t(...)` |
+| `<InlineMath math={promptLatex} />` | `promptLatex` 可能含混合文本 | `{renderMixedText(promptLatex)}` |
+| `expressionLatex: \`\\\\frac\`` | 四反斜杠 KaTeX 不认 | `expressionLatex: \`\\frac\`` |
+| i18n `terms.*` 值带 `$` | `$` 是 `renderMixedText` 分隔符 | 直接写 LaTeX，不带 `$` |
