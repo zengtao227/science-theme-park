@@ -80,7 +80,7 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, label
     points.map(p => `${p.x},${p.y}`).join(" ");
 
   return (
-    <div className="relative w-full aspect-square bg-[#020208] rounded-xl border border-white/10 overflow-hidden flex flex-col">
+    <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden flex flex-col">
       <div className="flex-1 w-full relative">
         <svg viewBox={viewBox} className="w-full h-full transform scale-y-[-1]">
           <defs>
