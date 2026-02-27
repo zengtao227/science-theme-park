@@ -368,9 +368,14 @@ export default function S203Page() {
               {sm2_03_t.labels.hints}
             </div>
             <div className="text-white/70 text-sm font-mono">
-              {level === 1 && sm2_03_t.hints.level1}
-              {level === 2 && sm2_03_t.hints.level2}
-              {level === 3 && sm2_03_t.hints.level3}
+              {renderMixedText(
+                level === 1
+                  ? sm2_03_t.hints.level1
+                  : level === 2
+                    ? sm2_03_t.hints.level2
+                    : sm2_03_t.hints.level3,
+                "font-mono"
+              )}
             </div>
             <div className="text-white text-xs font-mono">
               {sm2_03_t.hints.drag}

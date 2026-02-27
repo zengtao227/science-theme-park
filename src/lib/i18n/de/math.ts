@@ -1490,7 +1490,7 @@ export const deMath = {
         },
         hints: {
             level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",
-            level2: "Zwei Tarife haben unterschiedliche m und c. Setze m_1x + c_1 = m_2x + c_2 und löse nach x.",
+            level2: "Zwei Tarife haben unterschiedliche m und c. Setze $m_{1}x + c_{1} = m_{2}x + c_{2}$ und löse nach x.",
             level3: "Finde die Distanz, ab der Plan A günstiger als Plan B ist.",
             drag: "Gib deine Antwort im Eingabefeld unten ein."
         },

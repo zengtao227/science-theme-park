@@ -1469,7 +1469,7 @@ export const enMath = {
         },
         hints: {
             level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
-            level2: "Two fare plans have different m and c. Find the intersection point — that's where they cost the same!",
+            level2: "Two fare plans have different m and c. Set $m_{1}x + c_{1} = m_{2}x + c_{2}$ and solve for x.",
             level3: "Design the slope and intercept so your plan is cheapest beyond a certain distance.",
             drag: "Adjust the slider to change the slope (cost/km) and intercept (base fare)."
         },
