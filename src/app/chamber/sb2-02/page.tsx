@@ -62,7 +62,7 @@ export default function SB202Page() {
                 quests.push({
                     id: `C-${c.name}`, difficulty, stage, organ: c.name,
                     promptLatex: t("sb2_02.prompts.component_function", { function: c.function }),
-                    expressionLatex: `\\\\text{${c.name.charAt(0).toUpperCase() + c.name.slice(1)}}`,
+                    expressionLatex: `\\text{${c.name.charAt(0).toUpperCase() + c.name.slice(1)}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
                     slots: [{ id: "comp", labelLatex: "\\\\text{Component}", placeholder: c.name, expected: c.name }],
                     correctLatex: c.name,
@@ -83,7 +83,7 @@ export default function SB202Page() {
                 quests.push({
                     id: `R-${s.name}`, difficulty, stage, organ: s.name,
                     promptLatex: t("sb2_02.prompts.structure_function", { function: s.function }),
-                    expressionLatex: `\\\\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
+                    expressionLatex: `\\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
                     slots: [{ id: "struct", labelLatex: "\\\\text{Structure}", placeholder: s.name, expected: s.name }],
                     correctLatex: s.name,

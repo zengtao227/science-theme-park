@@ -169,7 +169,7 @@ export default function SB102Page() {
                     stage,
                     structure: item.name,
                     promptLatex: t(`sb1_02.prompts.struct_${item.name}`),
-                    expressionLatex: `\\\\text{${item.function}} \\rightarrow ?`,
+                    expressionLatex: `\\text{${item.function}} \\rightarrow ?`,
                     targetLatex: item.name,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Structure}", placeholder: "...", expected: item.name }],
                     correctLatex: item.name,

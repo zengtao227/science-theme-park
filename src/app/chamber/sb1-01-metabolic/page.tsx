@@ -72,7 +72,7 @@ export default function SB101MetabolicPage() {
                     statusKey: s.status,
                     targetOsmolarity: s.osmolarity,
                     promptLatex: t("sb1_01_metabolic.prompts.osmosis_prompt", { status: statusLabel, desc: s.desc }),
-                    expressionLatex: `\\\\text{${s.desc}}`,
+                    expressionLatex: `\\text{${s.desc}}`,
                     targetLatex: s.target,
                     slots: [{ id: "ans", labelLatex: "\\\\text{Water Flow}", placeholder: "enter/leave/stable", expected: s.target }],
                     correctLatex: s.target,

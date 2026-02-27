@@ -67,7 +67,7 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "D-B5", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_b5"),
-                        expressionLatex: `\\\\text{Organs: 7}`,
+                        expressionLatex: `\\text{Organs: 7}`,
                         targetLatex: `n`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "7", expected: 7 }],
                         correctLatex: `n = 7`,
@@ -108,18 +108,18 @@ export default function SB202BodySystemsPage() {
                         id: "D-C4", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_c4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.large_intestine")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.dehydration")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.dehydration")}}`,
                         slots: [{ id: "result", labelLatex: `\\\\text{${t("sb2_02.labels.result")}}`, placeholder: "dehydration", expected: t("sb2_02.labels.dehydration") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.dehydration")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.dehydration")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c4")]
                     },
                     {
                         id: "D-C5", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_c5"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.peristalsis")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.peristalsis")}}`,
                         slots: [{ id: "process", labelLatex: `\\\\text{${t("sb2_02.labels.process")}}`, placeholder: "peristalsis", expected: t("sb2_02.labels.peristalsis") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.peristalsis")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.peristalsis")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c5")]
                     }
                 );
@@ -130,45 +130,45 @@ export default function SB202BodySystemsPage() {
                         id: "D-A1", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.pancreas")}}`,
-                        targetLatex: `\\\\text{pH increase}`,
+                        targetLatex: `\\text{pH increase}`,
                         slots: [{ id: "ph", labelLatex: `\\\\text{pH}`, placeholder: "7", expected: 7 }],
-                        correctLatex: `\\\\text{pH} \\approx 7`,
+                        correctLatex: `\\text{pH} \\approx 7`,
                         hintLatex: [`\\\\text{Neutralizes acid}`]
                     },
                     {
                         id: "D-A2", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_a2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.liver")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.surface_area")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.surface_area")}}`,
                         slots: [{ id: "reason", labelLatex: `\\\\text{${t("sb2_02.labels.reason")}}`, placeholder: "surface area", expected: t("sb2_02.labels.surface_area") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.surface_area")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.surface_area")}}`,
                         hintLatex: [`\\\\text{${t("sb2_02.labels.surface_area")}}`]
                     },
                     {
                         id: "D-A3", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.small_intestine")}}`,
-                        targetLatex: `\\\\text{Efficiency}`,
+                        targetLatex: `\\text{Efficiency}`,
                         slots: [{ id: "effect", labelLatex: `\\\\text{Effect}`, placeholder: "more time", expected: "more time" }],
-                        correctLatex: `\\\\text{More time for absorption}`,
+                        correctLatex: `\\text{More time for absorption}`,
                         hintLatex: [`\\\\text{Longer = more contact time}`]
                     },
                     {
                         id: "D-A4", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_a4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
-                        targetLatex: `\\\\text{Infection risk}`,
+                        targetLatex: `\\text{Infection risk}`,
                         slots: [{ id: "risk", labelLatex: `\\\\text{Risk}`, placeholder: "infection", expected: "infection" }],
-                        correctLatex: `\\\\text{Bacterial infection}`,
+                        correctLatex: `\\text{Bacterial infection}`,
                         hintLatex: [`\\\\text{Acid kills bacteria}`]
                     },
                     {
                         id: "D-A5", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_a5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.liver")}}`,
-                        targetLatex: `\\\\text{Metabolism}`,
+                        targetLatex: `\\text{Metabolism}`,
                         slots: [{ id: "process", labelLatex: `\\\\text{Process}`, placeholder: "metabolism", expected: "metabolism" }],
-                        correctLatex: `\\\\text{Metabolism}`,
+                        correctLatex: `\\text{Metabolism}`,
                         hintLatex: [`\\\\text{Processing nutrients}`]
                     }
                 );
@@ -179,7 +179,7 @@ export default function SB202BodySystemsPage() {
                         id: "D-E1", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_e1"),
                         expressionLatex: `\\text{Crohn's disease}`,
-                        targetLatex: `\\\\text{Intestines}`,
+                        targetLatex: `\\text{Intestines}`,
                         slots: [{ id: "organs", labelLatex: `\\\\text{Organs}`, placeholder: "intestines", expected: "intestines" }],
                         correctLatex: `\\text{${t("sb2_02.organs.intestines")}}`,
                         hintLatex: [`\\\\text{Inflammatory bowel disease}`]
@@ -187,37 +187,37 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "D-E2", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_e2"),
-                        expressionLatex: `\\\\text{Lactose intolerance}`,
-                        targetLatex: `\\\\text{Lactase}`,
+                        expressionLatex: `\\text{Lactose intolerance}`,
+                        targetLatex: `\\text{Lactase}`,
                         slots: [{ id: "enzyme", labelLatex: `\\\\text{Enzyme}`, placeholder: "lactase", expected: "lactase" }],
-                        correctLatex: `\\\\text{Lactase}`,
+                        correctLatex: `\\text{Lactase}`,
                         hintLatex: [`\\\\text{Breaks down lactose}`]
                     },
                     {
                         id: "D-E3", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_e3"),
-                        expressionLatex: `\\\\text{Enteric nervous system}`,
+                        expressionLatex: `\\text{Enteric nervous system}`,
                         targetLatex: `n`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "500000000", expected: 500000000 }],
-                        correctLatex: `n \\approx 500 \\\\text{ million}`,
+                        correctLatex: `n \\approx 500 \\text{ million}`,
                         hintLatex: [`\\\\text{Second brain}`]
                     },
                     {
                         id: "D-E4", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_e4"),
-                        expressionLatex: `\\\\text{Celiac disease}`,
-                        targetLatex: `\\\\text{Malabsorption}`,
+                        expressionLatex: `\\text{Celiac disease}`,
+                        targetLatex: `\\text{Malabsorption}`,
                         slots: [{ id: "consequence", labelLatex: `\\\\text{Result}`, placeholder: "malabsorption", expected: "malabsorption" }],
-                        correctLatex: `\\\\text{Malabsorption}`,
+                        correctLatex: `\\text{Malabsorption}`,
                         hintLatex: [`\\\\text{Damaged villi}`]
                     },
                     {
                         id: "D-E5", difficulty, stage, systemType: "digestive",
                         promptLatex: t("sb2_02.prompts.digestive_e5"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
-                        targetLatex: `\\\\text{Comparison}`,
+                        targetLatex: `\\text{Comparison}`,
                         slots: [{ id: "comparison", labelLatex: `\\\\text{Type}`, placeholder: "mechanical", expected: "mechanical" }],
-                        correctLatex: `\\\\text{Mechanical + Chemical}`,
+                        correctLatex: `\\text{Mechanical + Chemical}`,
                         hintLatex: [`\\\\text{Physical vs enzymatic}`]
                     }
                 );
@@ -239,7 +239,7 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "C-B2", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_b2"),
-                        expressionLatex: `\\\\text{Blood vessels}`,
+                        expressionLatex: `\\text{Blood vessels}`,
                         targetLatex: `\\text{${t("sb2_02.functions.return_blood")}}`,
                         slots: [{ id: "func", labelLatex: `\\\\text{Function}`, placeholder: "return", expected: "return" }],
                         correctLatex: `\\text{${t("sb2_02.functions.return_blood")}}`,
@@ -257,16 +257,16 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "C-B4", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_b4"),
-                        expressionLatex: `\\\\text{Gas exchange}`,
-                        targetLatex: `\\\\text{CO}_2`,
+                        expressionLatex: `\\text{Gas exchange}`,
+                        targetLatex: `\\text{CO}_2`,
                         slots: [{ id: "gas", labelLatex: `\\\\text{Gas}`, placeholder: "CO2", expected: "CO2" }],
-                        correctLatex: `\\\\text{Carbon dioxide (CO}_2\\\\text{)}`,
+                        correctLatex: `\\text{Carbon dioxide (CO}_2\\text{)}`,
                         hintLatex: [t("sb2_02.hints.circulatory_b4")]
                     },
                     {
                         id: "C-B5", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_b5"),
-                        expressionLatex: `\\\\text{2 atria + 2 ventricles}`,
+                        expressionLatex: `\\text{2 atria + 2 ventricles}`,
                         targetLatex: `n`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "4", expected: 4 }],
                         correctLatex: `n = 4`,
@@ -280,18 +280,18 @@ export default function SB202BodySystemsPage() {
                         id: "C-C1", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_c1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
-                        targetLatex: `\\\\text{Pulmonary}`,
+                        targetLatex: `\\text{Pulmonary}`,
                         slots: [{ id: "circulation", labelLatex: `\\\\text{Type}`, placeholder: "pulmonary", expected: "pulmonary" }],
-                        correctLatex: `\\\\text{Pulmonary circulation}`,
+                        correctLatex: `\\text{Pulmonary circulation}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c1")]
                     },
                     {
                         id: "C-C2", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.reason")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.reason")}}`,
                         slots: [{ id: "reason", labelLatex: `\\\\text{${t("sb2_02.labels.reason")}}`, placeholder: "body", expected: t("sb2_02.labels.body") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.body")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.body")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c2")]
                     },
                     {
@@ -306,19 +306,19 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "C-C4", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_c4"),
-                        expressionLatex: `\\\\text{Blood pressure}`,
-                        targetLatex: `\\\\text{120/80}`,
+                        expressionLatex: `\\text{Blood pressure}`,
+                        targetLatex: `\\text{120/80}`,
                         slots: [{ id: "bp", labelLatex: `\\\\text{BP}`, placeholder: "120/80", expected: "120/80" }],
-                        correctLatex: `\\\\text{120/80 mmHg}`,
+                        correctLatex: `\\text{120/80 mmHg}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c4")]
                     },
                     {
                         id: "C-C5", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_c5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
-                        targetLatex: `\\\\text{Heart rate}`,
+                        targetLatex: `\\text{Heart rate}`,
                         slots: [{ id: "term", labelLatex: `\\\\text{Term}`, placeholder: "heart rate", expected: "heart rate" }],
-                        correctLatex: `\\\\text{Heart rate}`,
+                        correctLatex: `\\text{Heart rate}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c5")]
                     }
                 );
@@ -328,34 +328,34 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "C-A1", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_a1"),
-                        expressionLatex: `\\\\text{HR} = 70 \\\\text{ bpm, SV} = 70 \\\\text{ mL}`,
-                        targetLatex: `\\\\text{CO}`,
+                        expressionLatex: `\\text{HR} = 70 \\text{ bpm, SV} = 70 \\text{ mL}`,
+                        targetLatex: `\\text{CO}`,
                         slots: [{ id: "co", labelLatex: `\\\\text{CO (L/min)}`, placeholder: "5", expected: 5 }],
-                        correctLatex: `\\\\text{CO} = 5 \\\\text{ L/min}`,
+                        correctLatex: `\\text{CO} = 5 \\text{ L/min}`,
                         hintLatex: [`\\\\text{CO = HR x SV}`]
                     },
                     {
                         id: "C-A2", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_a2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.arteries")}}`,
-                        targetLatex: `\\\\text{Elasticity}`,
+                        targetLatex: `\\text{Elasticity}`,
                         slots: [{ id: "property", labelLatex: `\\\\text{Property}`, placeholder: "elastic", expected: "elastic" }],
-                        correctLatex: `\\\\text{Elastic walls absorb pressure}`,
+                        correctLatex: `\\text{Elastic walls absorb pressure}`,
                         hintLatex: [`\\\\text{Stretch and recoil}`]
                     },
                     {
                         id: "C-A3", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.veins")}}`,
-                        targetLatex: `\\\\text{Varicose veins}`,
+                        targetLatex: `\\text{Varicose veins}`,
                         slots: [{ id: "condition", labelLatex: `\\\\text{Condition}`, placeholder: "varicose", expected: "varicose" }],
-                        correctLatex: `\\\\text{Varicose veins}`,
+                        correctLatex: `\\text{Varicose veins}`,
                         hintLatex: [`\\\\text{Blood pools in veins}`]
                     },
                     {
                         id: "C-A4", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_a4"),
-                        expressionLatex: `\\\\text{Hemoglobin}`,
+                        expressionLatex: `\\text{Hemoglobin}`,
                         targetLatex: `n`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "4", expected: 4 }],
                         correctLatex: `n = 4`,
@@ -365,9 +365,9 @@ export default function SB202BodySystemsPage() {
                         id: "C-A5", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_a5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
-                        targetLatex: `\\\\text{SA node}`,
+                        targetLatex: `\\text{SA node}`,
                         slots: [{ id: "node", labelLatex: `\\\\text{Node}`, placeholder: "SA", expected: "SA" }],
-                        correctLatex: `\\\\text{SA node (sinoatrial)}`,
+                        correctLatex: `\\text{SA node (sinoatrial)}`,
                         hintLatex: [`\\\\text{Natural pacemaker}`]
                     }
                 );
@@ -377,46 +377,46 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "C-E1", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_e1"),
-                        expressionLatex: `\\\\text{Atherosclerosis}`,
-                        targetLatex: `\\\\text{Heart attack}`,
+                        expressionLatex: `\\text{Atherosclerosis}`,
+                        targetLatex: `\\text{Heart attack}`,
                         slots: [{ id: "consequence", labelLatex: `\\\\text{Risk}`, placeholder: "heart attack", expected: "heart attack" }],
-                        correctLatex: `\\\\text{Heart attack, stroke}`,
+                        correctLatex: `\\text{Heart attack, stroke}`,
                         hintLatex: [`\\\\text{Blocked arteries}`]
                     },
                     {
                         id: "C-E2", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_e2"),
-                        expressionLatex: `\\\\text{Frank-Starling}`,
-                        targetLatex: `\\\\text{Stretch}`,
+                        expressionLatex: `\\text{Frank-Starling}`,
+                        targetLatex: `\\text{Stretch}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Factor}`, placeholder: "stretch", expected: "stretch" }],
-                        correctLatex: `\\\\text{Increased stretch -> stronger contraction}`,
+                        correctLatex: `\\text{Increased stretch -> stronger contraction}`,
                         hintLatex: [`\\\\text{More blood in = more out}`]
                     },
                     {
                         id: "C-E3", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_e3"),
-                        expressionLatex: `\\\\text{BP regulation}`,
-                        targetLatex: `\\\\text{Mechanisms}`,
+                        expressionLatex: `\\text{BP regulation}`,
+                        targetLatex: `\\text{Mechanisms}`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "3", expected: 3 }],
-                        correctLatex: `\\\\text{Baroreceptors, RAAS, ANP}`,
+                        correctLatex: `\\text{Baroreceptors, RAAS, ANP}`,
                         hintLatex: [`\\\\text{Neural, hormonal, renal}`]
                     },
                     {
                         id: "C-E4", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_e4"),
-                        expressionLatex: `\\\\text{Heart failure}`,
-                        targetLatex: `\\\\text{Compensation}`,
+                        expressionLatex: `\\text{Heart failure}`,
+                        targetLatex: `\\text{Compensation}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Response}`, placeholder: "hypertrophy", expected: "hypertrophy" }],
-                        correctLatex: `\\\\text{Cardiac hypertrophy}`,
+                        correctLatex: `\\text{Cardiac hypertrophy}`,
                         hintLatex: [`\\\\text{Heart enlarges}`]
                     },
                     {
                         id: "C-E5", difficulty, stage, systemType: "circulatory",
                         promptLatex: t("sb2_02.prompts.circulatory_e5"),
-                        expressionLatex: `\\\\text{Rest: 5 L/min, Exercise: 25 L/min}`,
-                        targetLatex: `\\\\text{Increase}`,
+                        expressionLatex: `\\text{Rest: 5 L/min, Exercise: 25 L/min}`,
+                        targetLatex: `\\text{Increase}`,
                         slots: [{ id: "factor", labelLatex: `\\\\text{Factor}`, placeholder: "5", expected: 5 }],
-                        correctLatex: `5\\times \\\\text{ increase}`,
+                        correctLatex: `5\\times \\text{ increase}`,
                         hintLatex: [`\\\\text{25/5 = 5}`]
                     }
                 );
@@ -438,10 +438,10 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "R-B2", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_b2"),
-                        expressionLatex: `\\\\text{Gas exchange}`,
-                        targetLatex: `\\\\text{O}_2`,
+                        expressionLatex: `\\text{Gas exchange}`,
+                        targetLatex: `\\text{O}_2`,
                         slots: [{ id: "gas", labelLatex: `\\\\text{Gas}`, placeholder: "O2", expected: "O2" }],
-                        correctLatex: `\\\\text{Oxygen (O}_2\\\\text{)}`,
+                        correctLatex: `\\text{Oxygen (O}_2\\text{)}`,
                         hintLatex: [t("sb2_02.hints.respiratory_b2")]
                     },
                     {
@@ -465,7 +465,7 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "R-B5", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_b5"),
-                        expressionLatex: `\\\\text{Respiratory pathway}`,
+                        expressionLatex: `\\text{Respiratory pathway}`,
                         targetLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
                         slots: [{ id: "organ", labelLatex: `\\\\text{Organ}`, placeholder: "larynx", expected: "larynx" }],
                         correctLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
@@ -479,45 +479,45 @@ export default function SB202BodySystemsPage() {
                         id: "R-C1", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_c1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.trachea")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.support")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.support")}}`,
                         slots: [{ id: "reason", labelLatex: `\\\\text{${t("sb2_02.labels.reason")}}`, placeholder: "support", expected: t("sb2_02.labels.support") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.support")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.support")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c1")]
                     },
                     {
                         id: "R-C2", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.bronchi")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.tree")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.tree")}}`,
                         slots: [{ id: "structure", labelLatex: `\\\\text{${t("sb2_02.labels.structure")}}`, placeholder: "tree", expected: t("sb2_02.labels.tree") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.tree")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.tree")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c2")]
                     },
                     {
                         id: "R-C3", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_c3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.diffusion")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.diffusion")}}`,
                         slots: [{ id: "reason", labelLatex: `\\\\text{${t("sb2_02.labels.reason")}}`, placeholder: "diffusion", expected: t("sb2_02.labels.diffusion") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.diffusion")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.diffusion")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c3")]
                     },
                     {
                         id: "R-C4", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_c4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.diaphragm")}}`,
-                        targetLatex: `\\\\text{${t("sb2_02.labels.pressure")}}`,
+                        targetLatex: `\\text{${t("sb2_02.labels.pressure")}}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: "pressure", expected: t("sb2_02.labels.pressure") }],
-                        correctLatex: `\\\\text{${t("sb2_02.labels.pressure")}}`,
+                        correctLatex: `\\text{${t("sb2_02.labels.pressure")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c4")]
                     },
                     {
                         id: "R-C5", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_c5"),
-                        expressionLatex: `\\\\text{Breathing}`,
-                        targetLatex: `\\\\text{Respiratory rate}`,
+                        expressionLatex: `\\text{Breathing}`,
+                        targetLatex: `\\text{Respiratory rate}`,
                         slots: [{ id: "term", labelLatex: `\\\\text{Term}`, placeholder: "rate", expected: "rate" }],
-                        correctLatex: `\\\\text{Respiratory rate}`,
+                        correctLatex: `\\text{Respiratory rate}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c5")]
                     }
                 );
@@ -528,45 +528,45 @@ export default function SB202BodySystemsPage() {
                         id: "R-A1", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
-                        targetLatex: `\\\\text{Area}`,
+                        targetLatex: `\\text{Area}`,
                         slots: [{ id: "area", labelLatex: `\\\\text{Area (m}^{2}\\\\text{)}`, placeholder: "70", expected: 70 }],
-                        correctLatex: `\\approx 70 \\\\text{ m}^{2}`,
+                        correctLatex: `\\approx 70 \\text{ m}^{2}`,
                         hintLatex: [`\\\\text{Tennis court size}`]
                     },
                     {
                         id: "R-A2", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_a2"),
-                        expressionLatex: `\\\\text{TV} = 500 \\\\text{ mL, RR} = 15 \\\\text{ breaths/min}`,
-                        targetLatex: `\\\\text{MV}`,
+                        expressionLatex: `\\text{TV} = 500 \\text{ mL, RR} = 15 \\text{ breaths/min}`,
+                        targetLatex: `\\text{MV}`,
                         slots: [{ id: "mv", labelLatex: `\\\\text{MV (L/min)}`, placeholder: "7.5", expected: 7.5 }],
-                        correctLatex: `\\\\text{MV} = 7.5 \\\\text{ L/min}`,
+                        correctLatex: `\\text{MV} = 7.5 \\text{ L/min}`,
                         hintLatex: [`\\\\text{MV = TV x RR}`]
                     },
                     {
                         id: "R-A3", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
-                        targetLatex: `\\\\text{Gradient}`,
+                        targetLatex: `\\text{Gradient}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Mechanism}`, placeholder: "gradient", expected: "gradient" }],
-                        correctLatex: `\\\\text{Concentration gradient}`,
+                        correctLatex: `\\text{Concentration gradient}`,
                         hintLatex: [`\\\\text{High to low concentration}`]
                     },
                     {
                         id: "R-A4", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_a4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
-                        targetLatex: `\\\\text{Vibration}`,
+                        targetLatex: `\\text{Vibration}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Mechanism}`, placeholder: "vibration", expected: "vibration" }],
-                        correctLatex: `\\\\text{Vocal cord vibration}`,
+                        correctLatex: `\\text{Vocal cord vibration}`,
                         hintLatex: [`\\\\text{Air vibrates cords}`]
                     },
                     {
                         id: "R-A5", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_a5"),
-                        expressionLatex: `\\\\text{Surfactant}`,
-                        targetLatex: `\\\\text{Collapse}`,
+                        expressionLatex: `\\text{Surfactant}`,
+                        targetLatex: `\\text{Collapse}`,
                         slots: [{ id: "consequence", labelLatex: `\\\\text{Result}`, placeholder: "collapse", expected: "collapse" }],
-                        correctLatex: `\\\\text{Alveolar collapse}`,
+                        correctLatex: `\\text{Alveolar collapse}`,
                         hintLatex: [`\\\\text{Surface tension too high}`]
                     }
                 );
@@ -576,46 +576,46 @@ export default function SB202BodySystemsPage() {
                     {
                         id: "R-E1", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_e1"),
-                        expressionLatex: `\\\\text{Asthma}`,
-                        targetLatex: `\\\\text{Reduced airflow}`,
+                        expressionLatex: `\\text{Asthma}`,
+                        targetLatex: `\\text{Reduced airflow}`,
                         slots: [{ id: "consequence", labelLatex: `\\\\text{Result}`, placeholder: "airflow", expected: "airflow" }],
-                        correctLatex: `\\\\text{Reduced airflow, hypoxia}`,
+                        correctLatex: `\\text{Reduced airflow, hypoxia}`,
                         hintLatex: [`\\\\text{Narrowed airways}`]
                     },
                     {
                         id: "R-E2", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_e2"),
-                        expressionLatex: `\\\\text{COPD}`,
-                        targetLatex: `\\\\text{Compensation}`,
+                        expressionLatex: `\\text{COPD}`,
+                        targetLatex: `\\text{Compensation}`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Response}`, placeholder: "breathing", expected: "breathing" }],
-                        correctLatex: `\\\\text{Increased breathing rate}`,
+                        correctLatex: `\\text{Increased breathing rate}`,
                         hintLatex: [`\\\\text{Breathe faster/deeper}`]
                     },
                     {
                         id: "R-E3", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_e3"),
-                        expressionLatex: `\\\\text{pH regulation}`,
-                        targetLatex: `\\\\text{CO}_2`,
+                        expressionLatex: `\\text{pH regulation}`,
+                        targetLatex: `\\text{CO}_2`,
                         slots: [{ id: "mechanism", labelLatex: `\\\\text{Factor}`, placeholder: "CO2", expected: "CO2" }],
-                        correctLatex: `\\\\text{CO}_2 \\leftrightarrow \\\\text{H}^+ + \\\\text{HCO}_3^-`,
+                        correctLatex: `\\text{CO}_2 \\leftrightarrow \\text{H}^+ + \\text{HCO}_3^-`,
                         hintLatex: [`\\\\text{CO2 forms carbonic acid}`]
                     },
                     {
                         id: "R-E4", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_e4"),
-                        expressionLatex: `\\\\text{High altitude}`,
-                        targetLatex: `\\\\text{Adaptation}`,
+                        expressionLatex: `\\text{High altitude}`,
+                        targetLatex: `\\text{Adaptation}`,
                         slots: [{ id: "adaptation", labelLatex: `\\\\text{Response}`, placeholder: "RBC", expected: "RBC" }],
-                        correctLatex: `\\\\text{Increased RBC production}`,
+                        correctLatex: `\\text{Increased RBC production}`,
                         hintLatex: [`\\\\text{More red blood cells}`]
                     },
                     {
                         id: "R-E5", difficulty, stage, systemType: "respiratory",
                         promptLatex: t("sb2_02.prompts.respiratory_e5"),
-                        expressionLatex: `\\\\text{Pneumonia}`,
-                        targetLatex: `\\\\text{Reduction}`,
+                        expressionLatex: `\\text{Pneumonia}`,
+                        targetLatex: `\\text{Reduction}`,
                         slots: [{ id: "percentage", labelLatex: `\\\\text{\\%}`, placeholder: "50", expected: 50 }],
-                        correctLatex: `\\approx 50\\% \\\\text{ reduction}`,
+                        correctLatex: `\\approx 50\\% \\text{ reduction}`,
                         hintLatex: [`\\\\text{Fluid blocks gas exchange}`]
                     }
                 );
