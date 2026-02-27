@@ -26,7 +26,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "SF_B1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old} = 4, \\; k = 2`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 8 }],
@@ -36,7 +36,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_B2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=6,\\; k=3`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 18 }],
@@ -46,7 +46,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_B3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=10,\\; k=2`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 20 }],
@@ -56,7 +56,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_B4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=5,\\; k=4`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 20 }],
@@ -66,7 +66,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_B5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=8,\\; k=2`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 16 }],
@@ -81,7 +81,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "SF_C1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=4,\\; k=\\frac{3}{2}`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 6 }],
@@ -91,7 +91,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_C2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=8,\\; \\text{New}=12`,
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
@@ -101,7 +101,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_C3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=6,\\; k=\\frac{5}{3}`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 10 }],
@@ -111,7 +111,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_C4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=12,\\; \\text{New}=18`,
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
@@ -121,7 +121,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_C5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=9,\\; k=\\frac{4}{3}`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 12 }],
@@ -136,7 +136,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "SF_A1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=5,\\; k=0.8`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 4 }],
@@ -146,7 +146,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_A2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=15,\\; \\text{New}=9`,
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
@@ -156,7 +156,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_A3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=7.5,\\; k=1.6`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 12 }],
@@ -166,7 +166,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_A4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=20,\\; \\text{New}=14`,
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.7 }],
@@ -176,7 +176,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "SF_A5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\text{Old}=12.5,\\; k=0.64`,
                     targetLatex: `\\text{New}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 8 }],
@@ -191,7 +191,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         return [
             {
                 id: "SF_E1", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\text{Old}=18,\\; \\text{New}=10.8`,
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
@@ -201,7 +201,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "SF_E2", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\text{Old}=22.5,\\; k=\\frac{8}{15}`,
                 targetLatex: `\\text{New}`,
                 slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 12 }],
@@ -211,7 +211,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "SF_E3", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\text{Old}=16.8,\\; \\text{New}=25.2`,
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
@@ -221,7 +221,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "SF_E4", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\text{Old}=27,\\; k=\\frac{5}{9}`,
                 targetLatex: `\\text{New}`,
                 slots: [{ id: "n", labelLatex: `\\\\text{New}`, placeholder: "value", expected: 15 }],
@@ -231,7 +231,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "SF_E5", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\text{Old}=35,\\; \\text{New}=21`,
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
@@ -249,7 +249,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "ST_B1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{6}{3}=\\frac{x}{4}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 8 }],
@@ -259,7 +259,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_B2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{9}{3}=\\frac{x}{5}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 15 }],
@@ -269,7 +269,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_B3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{8}{4}=\\frac{x}{6}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 12 }],
@@ -279,7 +279,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_B4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{12}{4}=\\frac{x}{7}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
@@ -289,7 +289,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_B5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{10}{5}=\\frac{x}{8}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 16 }],
@@ -304,7 +304,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "ST_C1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{15}{5}=\\frac{x}{7}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
@@ -314,7 +314,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_C2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{9}{6}=\\frac{x}{12}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 18 }],
@@ -324,7 +324,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_C3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{12}{8}=\\frac{y}{10}`,
                     targetLatex: `y`,
                     slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 15 }],
@@ -334,7 +334,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_C4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{20}{8}=\\frac{x}{14}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 35 }],
@@ -344,7 +344,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_C5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{18}{12}=\\frac{z}{16}`,
                     targetLatex: `z`,
                     slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 24 }],
@@ -359,7 +359,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "ST_A1", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{7.5}{5}=\\frac{x}{8}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 12 }],
@@ -369,7 +369,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_A2", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{13.5}{9}=\\frac{y}{12}`,
                     targetLatex: `y`,
                     slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 18 }],
@@ -379,7 +379,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_A3", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{16.8}{12}=\\frac{x}{15}`,
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
@@ -389,7 +389,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_A4", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{22.5}{15}=\\frac{z}{18}`,
                     targetLatex: `z`,
                     slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 27 }],
@@ -399,7 +399,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "ST_A5", difficulty, stage,
-                    promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                    promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                     expressionLatex: `\\frac{19.2}{16}=\\frac{w}{20}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "w", expected: 24 }],
@@ -414,7 +414,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         return [
             {
                 id: "ST_E1", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\frac{24.5}{17.5}=\\frac{x}{21}`,
                 targetLatex: `x`,
                 slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 29.4 }],
@@ -424,7 +424,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "ST_E2", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\frac{31.5}{22.5}=\\frac{y}{27}`,
                 targetLatex: `y`,
                 slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 37.8 }],
@@ -434,7 +434,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "ST_E3", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\frac{28.8}{19.2}=\\frac{z}{24}`,
                 targetLatex: `z`,
                 slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 36 }],
@@ -444,7 +444,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "ST_E4", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\frac{35.7}{25.5}=\\frac{w}{30}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "w", expected: 42 }],
@@ -454,7 +454,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "ST_E5", difficulty, stage,
-                promptLatex: `\\\\text{${t("sm2_04.stages.stages_prompt_latex")}}`,
+                promptLatex: t("sm2_04.stages.stages_prompt_latex"),
                 expressionLatex: `\\frac{42}{28}=\\frac{v}{33}`,
                 targetLatex: `v`,
                 slots: [{ id: "v", labelLatex: `v`, placeholder: "v", expected: 49.5 }],

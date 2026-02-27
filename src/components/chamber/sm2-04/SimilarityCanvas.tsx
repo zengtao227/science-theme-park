@@ -110,7 +110,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     <Edges color="#fff" />
                 </mesh>
                 <Text position={[0, 8.5, 0]} fontSize={0.5} color="#fff" anchorY="bottom">
-                    {labels?.tower || "CLOCK TOWER"}
+                    {labels?.tower || ""}
                 </Text>
                 {/* Shadow Measurement */}
                 <Line
@@ -121,7 +121,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     opacity={0.6}
                 />
                 <Text position={[4, 0.5, 2]} fontSize={0.4} color="#00e5ff" rotation={[-Math.PI / 2, 0, 0]}>
-                    SHADOW: 12m
+                    {(labels?.tower_shadow || "") + ": 12m"}
                 </Text>
             </group>
 
@@ -132,7 +132,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     <meshStandardMaterial color="#fbbf24" />
                 </mesh>
                 <Text position={[0, 1.8, 0]} fontSize={0.3} color="#fbbf24" anchorY="bottom">
-                    {labels?.stick || "STICK (1.5m)"}
+                    {labels?.stick || ""}
                 </Text>
                 {/* Shadow Measurement */}
                 <Line
@@ -143,7 +143,7 @@ function ShadowScene({ labels }: { labels?: S204_SimilarityCanvasProps["labels"]
                     opacity={0.6}
                 />
                 <Text position={[0.7, 0.3, 0.4]} fontSize={0.25} color="#fbbf24" rotation={[-Math.PI / 2, 0, 0]}>
-                    shadow: 2.4m
+                    {(labels?.stick_shadow || "") + ": 2.4m"}
                 </Text>
             </group>
 
@@ -198,7 +198,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                                 position={[-2.5, 0, 0]}
                                 scale={[1.2, 0.6, 1]}
                                 color="rgba(255,255,255,0.4)"
-                                label="ORIGINAL (4)"
+                                label="k=1"
                             />
 
                             <Line
@@ -214,11 +214,11 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                                     position={[2, 0, 0]}
                                     scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
                                     color="#00e5ff"
-                                    label={`NEW (${Math.round(4 * (visual.k ?? 1.5))})`}
+                                    label={`k=${visual.k ?? 1.5}`}
                                 />
                             </Float>
                             <Text position={[0, 1, 0]} fontSize={0.3} color="white">
-                                {`Scale Factor k = ${visual.k ?? 1.5}`}
+                                {`k = ${visual.k ?? 1.5}`}
                             </Text>
                         </group>
                     )}
@@ -231,7 +231,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                                     <meshStandardMaterial color="#fbbf24" transparent opacity={0.2} />
                                     <Edges color="#fbbf24" />
                                 </mesh>
-                                <Text position={[0, -1.5, 0]} fontSize={0.3} color="#fbbf24">Original</Text>
+                                <Text position={[0, -1.5, 0]} fontSize={0.3} color="#fbbf24">k=1</Text>
                             </group>
 
                             <Text position={[0, 0, 0]} fontSize={0.5} color="white">→</Text>
@@ -242,7 +242,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                                     <meshStandardMaterial color="#a855f7" transparent opacity={0.2} />
                                     <Edges color="#a855f7" />
                                 </mesh>
-                                <Text position={[0, -1.5 * (visual.k ?? 1.5) - 0.5, 0]} fontSize={0.3} color="#a855f7">Scaled</Text>
+                                <Text position={[0, -1.5 * (visual.k ?? 1.5) - 0.5, 0]} fontSize={0.3} color="#a855f7">{`k=${visual.k ?? 1.5}`}</Text>
                             </group>
                         </group>
                     )}
@@ -265,10 +265,10 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                             </mesh>
 
                             <Text position={[0, 2.5, 0]} fontSize={0.4} color="white">
-                                {`Radius R = ${visual.r ?? 0}`}
+                                {`R = ${visual.r ?? 0}`}
                             </Text>
                             <Text position={[0, -2.5, 0]} fontSize={0.4} color="#00e5ff">
-                                {`Width w = ?`}
+                                {`w = ?`}
                             </Text>
                         </group>
                     )}
@@ -295,11 +295,11 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
             {/* HUD Overlay */}
             <div className="absolute top-3 left-4 flex gap-2 items-center pointer-events-none">
                 <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
-                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">Sim-Scanner v3.0 // 3D_MATRIX</span>
+                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">SIM-MATRIX</span>
             </div>
 
             <div className="absolute bottom-3 left-4 text-[7px] font-mono text-white/10 uppercase tracking-widest">
-                Geometric_Similarity_Algorithm: ACTIVE
+                K-SCALE ACTIVE
             </div>
         </div>
     );
