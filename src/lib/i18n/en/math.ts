@@ -1523,13 +1523,15 @@ export const enMath = {
         labels: {
             input: "INPUT",
             hints: "HINTS",
+            old_value: "Old",
             new_value: "New",
         },
         hints: {
             rules: {
                 proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
                 scale_factor_latex: "\\text{Scale factor }k=\\frac{\\text{new}}{\\text{old}}",
-                cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}"
+                cross_multiply_latex: "\\text{Cross-multiply to solve for the unknown.}",
+                multiply_by_k: "\\text{Multiply by }k."
             }
         },
         mission: {
@@ -1603,7 +1605,27 @@ export const enMath = {
             mission: "MISSION",
             substitution_prompt_latex: "\\text{Solve by substitution method.}",
             elimination_prompt_latex: "\\text{Solve by elimination (addition/subtraction).}",
-            mission_prompt_latex: "\\text{Translate and solve the word problem.}"
+            mission_prompt_latex: "\\text{Translate and solve the word problem.}",
+            mission_prompt_1: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_2: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_3: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_4: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_5: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_6: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_7: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_8: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_9: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_10: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_11: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_12: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_13: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_14: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_15: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_16: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_17: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_18: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_19: "\\text{Set up and solve the system of equations.}",
+            mission_prompt_20: "\\text{Set up and solve the system of equations.}"
         },
         labels: {
             input: "INPUT",

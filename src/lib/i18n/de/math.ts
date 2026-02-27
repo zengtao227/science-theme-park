@@ -1545,13 +1545,15 @@ export const deMath = {
         {
             input: "EINGABE",
             hints: "HINWEISE",
+            old_value: "alt",
             new_value: "Neu",
         },
         hints: {
             rules: {
                 proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
                 scale_factor_latex: "\\text{Streckfaktor }k=\\frac{\\text{neu}}{\\text{alt}}",
-                cross_multiply_latex: "\\text{Über Kreuz multiplizieren, um die Unbekannte zu lösen.}"
+                cross_multiply_latex: "\\text{Über Kreuz multiplizieren, um die Unbekannte zu lösen.}",
+                multiply_by_k: "\\text{Mit }k\\text{ multiplizieren.}"
             }
         },
         mission: {
@@ -1625,7 +1627,27 @@ export const deMath = {
             mission: "MISSION",
             substitution_prompt_latex: "\\text{Löse mit dem Einsetzungsverfahren.}",
             elimination_prompt_latex: "\\text{Löse mit dem Additionsverfahren.}",
-            mission_prompt_latex: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}"
+            mission_prompt_latex: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_1: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_2: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_3: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_4: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_5: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_6: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_7: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_8: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_9: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_10: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_11: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_12: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_13: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_14: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_15: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_16: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_17: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_18: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_19: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}",
+            mission_prompt_20: "\\text{Übersetze das Problem in ein Gleichungssystem und löse.}"
         },
         labels: {
             input: "EINGABE",

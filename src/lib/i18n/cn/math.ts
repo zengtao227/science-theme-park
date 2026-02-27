@@ -1506,13 +1506,15 @@ export const cnMath = {
         {
             input: "输入",
             hints: "提示",
+            old_value: "旧值",
             new_value: "新值",
         },
         hints: {
             rules: {
                 proportional_latex: "\\frac{a}{b}=\\frac{c}{d}",
                 scale_factor_latex: "\\text{缩放因子 }k=\\frac{\\text{新}}{\\text{旧}}",
-                cross_multiply_latex: "\\text{交叉相乘求解未知数。}"
+                cross_multiply_latex: "\\text{交叉相乘求解未知数。}",
+                multiply_by_k: "\\text{乘以 }k\\text{。}"
             }
         },
         mission: {
@@ -1586,7 +1588,27 @@ export const cnMath = {
             mission: "任务",
             substitution_prompt_latex: "\\text{用代入消元法求解。}",
             elimination_prompt_latex: "\\text{用加减消元法求解。}",
-            mission_prompt_latex: "\\text{阅读题目并建立方程组求解。}"
+            mission_prompt_latex: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_1: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_2: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_3: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_4: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_5: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_6: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_7: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_8: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_9: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_10: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_11: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_12: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_13: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_14: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_15: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_16: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_17: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_18: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_19: "\\text{阅读题目并建立方程组求解。}",
+            mission_prompt_20: "\\text{阅读题目并建立方程组求解。}"
         },
         labels: {
             input: "输入",
