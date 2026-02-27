@@ -2249,6 +2249,23 @@ export const deMath = {
             linear_regression: "Lineare Regression",
             coefficient_of_determination: "Bestimmtheitsmaß"
         },
+        answers: {
+            yes: "Ja",
+            dataset_b: "Datensatz B",
+            identifies_extreme_values: "Identifiziert Ausreißer",
+            depends_on_context: "Hängt vom Kontext ab",
+            none: "Keine",
+            one_data_pair: "Ein Datenpaar (x,y)",
+            positive_correlation: "Positive Korrelation",
+            negative_correlation: "Negative Korrelation",
+            strong_correlation: "Starke Korrelation",
+            positive_trend: "Positiver Trend",
+            sum_of_squared_distances: "Summe der quadrierten Abstände",
+            relationship_between_variables: "Beziehung zwischen Variablen",
+            no_hot_weather_cause: "Nein (beides durch heißes Wetter verursacht)",
+            yes_with_some_error: "Ja (mit etwas Fehler)",
+            pearson_correlation_coefficient: "Pearson-Korrelationskoeffizient"
+        },
         prompts: {
             b2_1_box_represents: "Was stellt die Box in einem Boxplot dar?",
             b2_1_modified_boxplot_useful: "Ein modifizierter Boxplot zeigt Ausreißer separat. Warum ist das nützlich?",

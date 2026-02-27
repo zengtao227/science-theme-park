@@ -2202,6 +2202,23 @@ export const cnMath = {
             linear_regression: "线性回归",
             coefficient_of_determination: "决定系数"
         },
+        answers: {
+            yes: "是",
+            dataset_b: "数据集 B",
+            identifies_extreme_values: "识别异常值",
+            depends_on_context: "视具体情况而定",
+            none: "无",
+            one_data_pair: "一个数据对 (x,y)",
+            positive_correlation: "正相关",
+            negative_correlation: "负相关",
+            strong_correlation: "强相关",
+            positive_trend: "正向趋势",
+            sum_of_squared_distances: "平方距离之和",
+            relationship_between_variables: "变量之间的关系",
+            no_hot_weather_cause: "否（两者都由炎热天气引起）",
+            yes_with_some_error: "是（有一定误差）",
+            pearson_correlation_coefficient: "皮尔逊相关系数"
+        },
         prompts: {
             b2_1_box_represents: "在箱线图中，箱体表示什么？",
             b2_1_modified_boxplot_useful: "改进箱线图将异常值单独显示。为什么这很有用？",

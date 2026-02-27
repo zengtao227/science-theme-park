@@ -108,7 +108,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Outlier if far from Q1-Q3 range}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Outlier?}`, placeholder: "yes", expected: "yes" }],
-                        correctLatex: `\\text{Yes}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.yes")}}`,
                         hintLatex: [`50 \\text{ is much larger than others}`]
                     },
                     {
@@ -156,7 +156,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Larger IQR} = \\text{more spread}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{${t("sm2_10.labels.dataset")}}`, placeholder: "B", expected: "B" }],
-                        correctLatex: `\\text{Dataset B}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.dataset_b")}}`,
                         hintLatex: [`\\text{Larger IQR means more variability}`]
                     },
                     {
@@ -177,7 +177,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Shows extreme values clearly}`,
                         targetLatex: `\\text{${t("sm2_10.labels.reason")}}`,
                         slots: [{ id: "reason", labelLatex: `\\text{${t("sm2_10.labels.benefit")}}`, placeholder: "clarity", expected: "clarity" }],
-                        correctLatex: `\\text{Identifies extreme values}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.identifies_extreme_values")}}`,
                         hintLatex: [`\\text{Outliers shown as individual points}`]
                     },
                     {
@@ -186,7 +186,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{IQR measures middle 50\\%, range measures all}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{More variable}`, placeholder: "depends", expected: "depends" }],
-                        correctLatex: `\\text{Depends on context}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.depends_on_context")}}`,
                         hintLatex: [`\\text{IQR vs range measure different things}`]
                     },
                     {
@@ -247,7 +247,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{No pattern = no correlation}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
-                        correctLatex: `\\text{None}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.none")}}`,
                         hintLatex: [`\\text{No relationship}`]
                     },
                     {
@@ -265,7 +265,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Point = one data pair}`,
                         targetLatex: `\\text{Represents}`,
                         slots: [{ id: "rep", labelLatex: `\\text{Represents}`, placeholder: "pair", expected: "pair" }],
-                        correctLatex: `\\text{One data pair (x,y)}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.one_data_pair")}}`,
                         hintLatex: [`\\text{One observation with two values}`]
                     }
                 );
@@ -277,7 +277,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Both increase together}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
-                        correctLatex: `\\text{Positive correlation}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.positive_correlation")}}`,
                         hintLatex: [`\\text{Both go up = positive}`]
                     },
                     {
@@ -286,7 +286,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{One up, one down}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
-                        correctLatex: `\\text{Negative correlation}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.negative_correlation")}}`,
                         hintLatex: [`\\text{Opposite directions = negative}`]
                     },
                     {
@@ -304,7 +304,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Tight cluster = strong}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
-                        correctLatex: `\\text{Strong correlation}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.strong_correlation")}}`,
                         hintLatex: [`\\text{Close to line = strong}`]
                     },
                     {
@@ -313,7 +313,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Positive slope = positive trend}`,
                         targetLatex: `\\text{Trend}`,
                         slots: [{ id: "trend", labelLatex: `\\text{Trend}`, placeholder: "positive", expected: "positive" }],
-                        correctLatex: `\\text{Positive trend}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.positive_trend")}}`,
                         hintLatex: [`\\text{Upward slope = positive}`]
                     }
                 );
@@ -325,7 +325,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Minimizes distance from points}`,
                         targetLatex: `\\text{Minimizes}`,
                         slots: [{ id: "min", labelLatex: `\\text{Minimizes}`, placeholder: "distance", expected: "distance" }],
-                        correctLatex: `\\text{Sum of squared distances}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.sum_of_squared_distances")}}`,
                         hintLatex: [`\\text{${t("sm2_10.formula_phrases.least_squares")}}`]
                     },
                     {
@@ -425,7 +425,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Measures relationship strength}`,
                         targetLatex: `\\text{Measures}`,
                         slots: [{ id: "meas", labelLatex: `\\text{Measures}`, placeholder: "relationship", expected: "relationship" }],
-                        correctLatex: `\\text{Relationship between variables}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.relationship_between_variables")}}`,
                         hintLatex: [`\\text{How variables relate}`]
                     },
                     {
@@ -521,7 +521,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Correlation} \\neq \\text{Causation}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Cause?}`, placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No (both caused by hot weather)}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.no_hot_weather_cause")}}`,
                         hintLatex: [`\\text{Correlation doesn't mean causation}`]
                     },
                     {
@@ -557,7 +557,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Strong correlation allows prediction}`,
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Predict?}`, placeholder: "yes", expected: "yes" }],
-                        correctLatex: `\\text{Yes (with some error)}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.yes_with_some_error")}}`,
                         hintLatex: [`\\text{Strong correlation enables prediction}`]
                     }
                 );
@@ -587,7 +587,7 @@ export default function SM210Page() {
                         expressionLatex: `\\text{Pearson's r}`,
                         targetLatex: `\\text{Name}`,
                         slots: [{ id: "name", labelLatex: `\\text{Name}`, placeholder: "Pearson", expected: "Pearson" }],
-                        correctLatex: `\\text{Pearson correlation coefficient}`,
+                        correctLatex: `\\text{${t("sm2_10.answers.pearson_correlation_coefficient")}}`,
                         hintLatex: [`\\text{Named after Karl Pearson}`]
                     },
                     {
@@ -623,9 +623,9 @@ export default function SM210Page() {
                         slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
                         correctLatex: `0.138 \\text{ or } 13.8\\%`,
                         hintLatex: [
-                            `z = \\\\frac{24 - 21.5}{2.3} = 1.087`,
-                            `P(z > 1.087) \\\\approx 0.138`,
-                            `\\\\text{Strong negative correlation means higher temp reduces diversity}`
+                            `z = \\frac{24 - 21.5}{2.3} = 1.087`,
+                            `P(z > 1.087) \\approx 0.138`,
+                            `\\text{Strong negative correlation means higher temp reduces diversity}`
                         ]
                     },
                     {
@@ -636,9 +636,9 @@ export default function SM210Page() {
                         slots: [{ id: "lower", labelLatex: `\\text{${t("sm2_10.labels.lower")}}`, placeholder: "1.52", expected: 1.52 }],
                         correctLatex: `1.52 \\text{ species}`,
                         hintLatex: [
-                            `\\\\text{Difference} = 32 - 28 = 4`,
-                            `\\\\text{SE} = \\\\sqrt{\\\\frac{4.2^2}{20} + \\\\frac{3.8^2}{20}} = 1.267`,
-                            `\\\\text{CI: } 4 \\\\pm 1.96(1.267) = (1.52, 6.48)`
+                            `\\text{Difference} = 32 - 28 = 4`,
+                            `\\text{SE} = \\sqrt{\\frac{4.2^2}{20} + \\frac{3.8^2}{20}} = 1.267`,
+                            `\\text{CI: } 4 \\pm 1.96(1.267) = (1.52, 6.48)`
                         ]
                     }
                 );
@@ -652,9 +652,9 @@ export default function SM210Page() {
                         slots: [{ id: "days", labelLatex: `\\text{${t("sm2_10.labels.days")}}`, placeholder: "179", expected: 179 }],
                         correctLatex: `179 \\text{ days}`,
                         hintLatex: [
-                            `\\\\text{Temp increase} = 11.0 - 9.2 = 1.8deg\\\\text{C}`,
-                            `\\\\text{Growing season increase} = 1.8 \\\\times 8 = 14.4 \\\\text{ days}`,
-                            `2024: 165 + 14.4 = 179.4 \\\\approx 179 \\\\text{ days}`
+                            `\\text{Temp increase} = 11.0 - 9.2 = 1.8deg\\text{C}`,
+                            `\\text{Growing season increase} = 1.8 \\times 8 = 14.4 \\text{ days}`,
+                            `2024: 165 + 14.4 = 179.4 \\approx 179 \\text{ days}`
                         ]
                     },
                     {
@@ -665,9 +665,9 @@ export default function SM210Page() {
                         slots: [{ id: "prob", labelLatex: `P(\\text{out})`, placeholder: "0.096", expected: 0.096 }],
                         correctLatex: `0.096 \\text{ or } 9.6\\%`,
                         hintLatex: [
-                            `z_1 = \\\\frac{120-150}{18} = -1.667, P(X<120) = 0.048`,
-                            `z_2 = \\\\frac{180-150}{18} = 1.667, P(X>180) = 0.048`,
-                            `P(\\\\text{outside}) = 0.048 + 0.048 = 0.096`
+                            `z_1 = \\frac{120-150}{18} = -1.667, P(X<120) = 0.048`,
+                            `z_2 = \\frac{180-150}{18} = 1.667, P(X>180) = 0.048`,
+                            `P(\\text{outside}) = 0.048 + 0.048 = 0.096`
                         ]
                     }
                 );
@@ -681,9 +681,9 @@ export default function SM210Page() {
                         slots: [{ id: "lower", labelLatex: `\\text{${t("sm2_10.labels.lower")}}`, placeholder: "9.34", expected: 9.34 }],
                         correctLatex: `9.34 \\text{ mg/L}`,
                         hintLatex: [
-                            `\\\\text{SE} = \\\\frac{1.4}{\\\\sqrt{25}} = \\\\frac{1.4}{5} = 0.28`,
-                            `\\\\text{90\\% CI: } 9.8 \\\\pm 1.645(0.28) = 9.8 \\\\pm 0.461`,
-                            `\\\\text{Lower bound} = 9.34 > 8.0 \\\\text{ (safe for fish)}`
+                            `\\text{SE} = \\frac{1.4}{\\sqrt{25}} = \\frac{1.4}{5} = 0.28`,
+                            `\\text{90\\% CI: } 9.8 \\pm 1.645(0.28) = 9.8 \\pm 0.461`,
+                            `\\text{Lower bound} = 9.34 > 8.0 \\text{ (safe for fish)}`
                         ]
                     }
                 );

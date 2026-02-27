@@ -2219,6 +2219,23 @@ export const enMath = {
             linear_regression: "Linear regression",
             coefficient_of_determination: "Coefficient of determination"
         },
+        answers: {
+            yes: "Yes",
+            dataset_b: "Dataset B",
+            identifies_extreme_values: "Identifies extreme values",
+            depends_on_context: "Depends on context",
+            none: "None",
+            one_data_pair: "One data pair (x,y)",
+            positive_correlation: "Positive correlation",
+            negative_correlation: "Negative correlation",
+            strong_correlation: "Strong correlation",
+            positive_trend: "Positive trend",
+            sum_of_squared_distances: "Sum of squared distances",
+            relationship_between_variables: "Relationship between variables",
+            no_hot_weather_cause: "No (both caused by hot weather)",
+            yes_with_some_error: "Yes (with some error)",
+            pearson_correlation_coefficient: "Pearson correlation coefficient"
+        },
         prompts: {
             b2_1_box_represents: "In a box plot, what does the box represent?",
             b2_1_modified_boxplot_useful: "Modified box plot shows outliers separately. Why is this useful?",
