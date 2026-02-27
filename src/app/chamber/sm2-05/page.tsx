@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText } from "@/lib/latex-utils";
@@ -673,6 +673,7 @@ export default function S205Page() {
         buildPool,
         initialStage: "RULES",
     });
+    const [showExperimental, setShowExperimental] = useState(false);
 
     useEffect(() => {
         if (lastCheck?.ok) {
@@ -717,8 +718,19 @@ export default function S205Page() {
                 },
             }}
             monitorContent={
-                <div className="w-full flex justify-center">
-                    <S205_PowerCanvas visual={currentQuest?.visual} />
+                <div className="w-full flex flex-col items-center justify-center gap-4 p-4">
+                    <div className="text-center text-gray-300 text-sm">
+                        {renderMixedText(currentQuest?.expressionLatex || "")}
+                    </div>
+                    <div className="mt-2 text-center">
+                        <button
+                            onClick={() => setShowExperimental(!showExperimental)}
+                            className="text-xs text-gray-400 hover:text-gray-200 underline"
+                        >
+                            {showExperimental ? "▾ 隐藏实验功能" : "▸ 实验功能 (3D)"}
+                        </button>
+                    </div>
+                    {showExperimental && <S205_PowerCanvas visual={currentQuest?.visual} />}
                 </div>
             }
         >
