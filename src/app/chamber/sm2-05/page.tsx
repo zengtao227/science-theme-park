@@ -720,7 +720,7 @@ export default function S205Page() {
             monitorContent={
                 <div className="w-full flex flex-col items-center justify-center gap-4 p-4">
                     <div className="text-center text-gray-300 text-sm">
-                        {renderMixedText(currentQuest?.expressionLatex || "")}
+                        <InlineMath math={currentQuest?.expressionLatex || ""} />
                     </div>
                     <div className="mt-2 text-center">
                         <button
