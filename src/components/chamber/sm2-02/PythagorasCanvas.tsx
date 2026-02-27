@@ -536,7 +536,7 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
 
 export interface S202CanvasProps {
   visual: {
-    kind: "triangle" | "space" | "distance";
+    kind: "triangle" | "space" | "distance" | "box" | "3d";
     a?: number;
     b?: number;
     c?: number;
@@ -575,7 +575,7 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
     0
   ];
 
-  const spaceScale = visual.kind === "space" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined
+  const spaceScale = (visual.kind === "space" || visual.kind === "box" || visual.kind === "3d") && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined
     ? Math.max(6, visual.a, visual.b, visual.c)
     : 8;
   const spaceCameraPos: [number, number, number] = [
@@ -642,7 +642,7 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
     );
   }
 
-  if (visual.kind === "space" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
+  if ((visual.kind === "space" || visual.kind === "box" || visual.kind === "3d") && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
       <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
         <Canvas camera={{ position: spaceCameraPos, fov: 48 }} gl={{ antialias: true }}>

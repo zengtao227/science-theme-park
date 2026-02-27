@@ -35,7 +35,7 @@ interface S202Quest extends Quest {
   stage: Stage;
   tab: "PYTHAGORAS" | "SQRT";
   visual: {
-    kind: "triangle" | "space" | "distance";
+    kind: "triangle" | "space" | "distance" | "box" | "3d";
     a?: number;
     b?: number;
     c?: number;
@@ -122,7 +122,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
           correctLatex: `c = ${c}`,
           slots: [
             { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", expected: c2, placeholder: "?" },
-            { id: "c", labelLatex: `c=\\sqrt{c^2}`, input: "number", expected: c, placeholder: "?" },
+            { id: "c", labelLatex: `c=\\sqrt{${c2}}`, input: "number", expected: c, placeholder: "?" },
           ],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
         });
@@ -159,7 +159,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
           correctLatex: `${knownIsA ? "b" : "a"} = ${missing}`,
           slots: [
             { id: "leg2", labelLatex: `${knownIsA ? "b^{2}" : "a^{2}"}=c^{2}-${knownIsA ? "a^{2}" : "b^{2}"}`, input: "number", expected: missing2, placeholder: "?" },
-            { id: "leg", labelLatex: `${knownIsA ? "b" : "a"}=\\sqrt{${knownIsA ? "b^{2}" : "a^{2}"}}`, input: "number", expected: missing, placeholder: "?" },
+            { id: "leg", labelLatex: `${knownIsA ? "b" : "a"}=\\sqrt{${missing2}}`, input: "number", expected: missing, placeholder: "?" },
           ],
           visual: { kind: "triangle", a, b, c, highlightRightAngle: true },
         });
@@ -236,7 +236,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         correctLatex: `d=${formatRadicalLatex(exact)}`,
         slots: [
           { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
-          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -267,7 +267,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         correctLatex: `d=${formatRadicalLatex(exact)}`,
         slots: [
           { id: "d2", labelLatex: `d^{2}=a^{2}+b^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
-          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -296,7 +296,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       correctLatex: `d=${formatRadicalLatex(exact_cern)}`,
       slots: [
         { id: "d2", labelLatex: `d^{2}=w^{2}+h^{2}`, input: "number", expected: d2_cern, placeholder: "?" },
-        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact_cern), placeholder: "?" },
+        { id: "d", labelLatex: `d=\\sqrt{${d2_cern}}`, input: "radical", expected: JSON.stringify(exact_cern), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: w, b: h, c: Math.sqrt(d2_cern) },
     });
@@ -315,7 +315,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       correctLatex: `r=${formatRadicalLatex(exact_grind)}`,
       slots: [
         { id: "r2", labelLatex: `r^{2}=a^{2}+b^{2}`, input: "number", expected: d2_grind, placeholder: "?" },
-        { id: "r", labelLatex: `r=\\sqrt{r^2}`, input: "radical", expected: JSON.stringify(exact_grind), placeholder: "?" },
+        { id: "r", labelLatex: `r=\\sqrt{${d2_grind}}`, input: "radical", expected: JSON.stringify(exact_grind), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: a_grind, b: b_grind, c: Math.sqrt(d2_grind) },
     });
@@ -333,7 +333,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       correctLatex: `c=${Math.sqrt(d2_lucerne)}`,
       slots: [
         { id: "c2", labelLatex: `c^{2}=a^{2}+b^{2}`, input: "number", expected: d2_lucerne, placeholder: "?" },
-        { id: "c", labelLatex: `c=\\sqrt{c^2}`, input: "number", expected: Math.sqrt(d2_lucerne), placeholder: "?" },
+        { id: "c", labelLatex: `c=\\sqrt{${d2_lucerne}}`, input: "number", expected: Math.sqrt(d2_lucerne), placeholder: "?" },
       ],
       visual: { kind: "triangle", a: base_lucerne, b: height_lucerne, c: Math.sqrt(d2_lucerne) },
     });
@@ -360,7 +360,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         correctLatex: `d=${formatRadicalLatex(exact)}`,
         slots: [
           { id: "d2", labelLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}`, input: "number", expected: d2, placeholder: "?" },
-          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(exact), placeholder: "?" },
         ],
         visual: { kind: "distance", p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } },
       });
@@ -387,9 +387,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       correctLatex: `d=${formatRadicalLatex(dExact)}`,
       slots: [
         { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", expected: s2, placeholder: "?" },
-        { id: "s", labelLatex: `s=\\sqrt{s^2}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
+        { id: "s", labelLatex: `s=\\sqrt{${s2}}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
         { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
-        { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
+        { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
       ],
       visual: { kind: "space", a, b, c },
     });
@@ -452,9 +452,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         correctLatex: `d=${formatRadicalLatex(dExact)}`,
         slots: [
           { id: "s2", labelLatex: `s^{2}=a^{2}+b^{2}`, input: "number", expected: s2, placeholder: "?" },
-          { id: "s", labelLatex: `s=\\sqrt{s^2}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
+          { id: "s", labelLatex: `s=\\sqrt{${s2}}`, input: "radical", expected: JSON.stringify(sExact), placeholder: "?" },
           { id: "d2", labelLatex: `d^{2}=s^{2}+c^{2}`, input: "number", expected: d2, placeholder: "?" },
-          { id: "d", labelLatex: `d=\\sqrt{d^2}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
+          { id: "d", labelLatex: `d=\\sqrt{${d2}}`, input: "radical", expected: JSON.stringify(dExact), placeholder: "?" },
         ],
         visual: { kind: "space", a, b, c },
       });
@@ -782,7 +782,12 @@ export default function S202Page() {
                 }}
               />
             ) : (
-              currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c ? (
+              (currentQuest?.visual.kind === "space" || currentQuest?.visual.kind === "box" || currentQuest?.visual.kind === "3d") ? (
+                <S202PythagorasCanvas
+                  visual={currentQuest?.visual}
+                  translations={sm2_02_t.ui}
+                />
+              ) : currentQuest?.visual.kind === "triangle" && currentQuest?.visual.a && currentQuest?.visual.b && currentQuest?.visual.c ? (
                 <PythagorasSimple2D
                   a={currentQuest?.visual.a}
                   b={currentQuest?.visual.b}
