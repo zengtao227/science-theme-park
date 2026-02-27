@@ -15,3 +15,11 @@ done
 
 echo "=== 审计 4：validate translations ==="
 npm run validate:translations
+
+echo "=== 审计 5：组件硬编码英文文本（JSX 直接渲染）==="
+rg -n ">\s*\"[A-Z][^\"]*\"\s*<|>\s*'[^']*'\s*<" \
+  src/components/chamber --glob '*.tsx' \
+  | rg -v '^\s*//' \
+  | rg -v '\?\?|\|\|' \
+  | rg -v 'translations\?|labels\?|props\.' \
+  | cut -d: -f1 | sort -u
