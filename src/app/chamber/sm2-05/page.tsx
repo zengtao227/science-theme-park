@@ -243,7 +243,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 5, m: 1, n: 2 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 25 }],
                 correctLatex: `\\frac{1}{5^2} = \\frac{1}{25}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N2-B", difficulty, stage,
@@ -253,7 +253,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 3, m: 1, n: 3 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 27 }],
                 correctLatex: `\\frac{1}{3^3} = \\frac{1}{27}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N3-B", difficulty, stage,
@@ -263,7 +263,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 2, m: 1, n: 4 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 16 }],
                 correctLatex: `\\frac{1}{2^4} = \\frac{1}{16}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N4-B", difficulty, stage,
@@ -273,7 +273,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 10, m: 1, n: 1 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 10 }],
                 correctLatex: `\\frac{1}{10^1} = \\frac{1}{10}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N5-B", difficulty, stage,
@@ -283,7 +283,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 4, m: 1, n: 2 },
                 slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 16 }],
                 correctLatex: `\\frac{1}{4^2} = \\frac{1}{16}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
         } else if (difficulty === "CORE") {
             quests.push({
@@ -294,7 +294,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 4 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
                 correctLatex: `\\frac{1}{x^4}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N2-C", difficulty, stage,
@@ -304,7 +304,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 5 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
                 correctLatex: `\\frac{1}{y^5}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N3-C", difficulty, stage,
@@ -314,7 +314,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
                 correctLatex: `\\frac{1}{a^3}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N4-C", difficulty, stage,
@@ -324,7 +324,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'm', m: 1, n: 6 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
                 correctLatex: `\\frac{1}{m^6}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
             quests.push({
                 id: "N5-C", difficulty, stage,
@@ -334,7 +334,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'z', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
                 correctLatex: `\\frac{1}{z^2}`,
-                hintLatex: [`a^{-n} = \\\\frac{1}{a^n}`],
+                hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
         } else if (difficulty === "ADVANCED") {
             quests.push({
@@ -345,7 +345,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
                 correctLatex: `a^{3}`,
-                hintLatex: [`\\\\frac{1}{a^{-n}} = a^n`],
+                hintLatex: [`\\frac{1}{a^{-n}} = a^n`],
             });
             quests.push({
                 id: "N2-A", difficulty, stage,
@@ -355,7 +355,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'b', m: 1, n: 5 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
                 correctLatex: `b^5`,
-                hintLatex: [`\\\\frac{1}{a^{-n}} = a^n`],
+                hintLatex: [`\\frac{1}{a^{-n}} = a^n`],
             });
             quests.push({
                 id: "N3-A", difficulty, stage,
@@ -396,7 +396,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: 'x/2', m: 1, n: 3 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
                 correctLatex: `(\\frac{2}{x})^{3} = \\frac{8}{x^3}`,
-                hintLatex: [`(\\\\frac{a}{b})^{-n} = (\\\\frac{b}{a})^n`],
+                hintLatex: [`(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n`],
             });
             quests.push({
                 id: "N2-E", difficulty, stage,
@@ -406,7 +406,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 visual: { mode: 'NEGATIVE', base: '3/y', m: 1, n: 2 },
                 slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
                 correctLatex: `(\\frac{y}{3})^{2} = \\frac{y^2}{9}`,
-                hintLatex: [`(\\\\frac{a}{b})^{-n} = (\\\\frac{b}{a})^n`],
+                hintLatex: [`(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n`],
             });
             quests.push({
                 id: "N3-E", difficulty, stage,
