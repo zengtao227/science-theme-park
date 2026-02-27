@@ -72,7 +72,7 @@ export default function SB101Page() {
                     promptLatex: t("sb1_01.prompts.id_prompt", { organelle: org.key }),
                     expressionLatex: `\\text{Size: } ${org.size} \\, \\mu\\text{m}`,
                     targetLatex: org.key,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Organelle}", placeholder: "...", expected: org.key }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Organelle}", placeholder: "...", expected: org.key }],
                     correctLatex: org.key,
                     hintLatex: [t("sb1_01.prompts.hint_start", { char: org.key[0].toUpperCase() })]
                 });
@@ -123,7 +123,7 @@ export default function SB101Page() {
                     promptLatex: t("sb1_01.prompts.fn_prompt", { func: item.func }),
                     expressionLatex: `\\text{Function: } \\text{${item.func}}`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Organelle}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Organelle}", placeholder: "...", expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t("sb1_01.prompts.hint_func", { func: item.func })]
                 });
@@ -174,7 +174,7 @@ export default function SB101Page() {
                     promptLatex: t(`sb1_01.prompts.org_${item.q}`),
                     expressionLatex: `\\text{${item.q.replace(/_/g, ' ')}}`,
                     targetLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Value}", placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Value}", placeholder: "...", expected: item.answer }],
                     correctLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
                     hintLatex: [t("sb1_01.prompts.hint_range", { min: Math.floor(parseFloat(item.answer) * 0.8), max: Math.ceil(parseFloat(item.answer) * 1.2) })]
                 });
