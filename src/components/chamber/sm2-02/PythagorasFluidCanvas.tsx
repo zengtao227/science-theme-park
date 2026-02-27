@@ -17,12 +17,6 @@ interface PythagorasFluidCanvasProps {
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 
-interface PythagorasFluidCanvasProps {
-  a: number;
-  b: number;
-  c: number;
-}
-
 export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -120,6 +114,8 @@ export default function PythagorasFluidCanvas({ a, b, c }: PythagorasFluidCanvas
       Matter.Engine.clear(engine);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
+      Matter.Composite.clear(engine.world, false);
+      render.canvas.remove();
     };
   }, [a, b, c]);
 
