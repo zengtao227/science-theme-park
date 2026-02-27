@@ -1363,7 +1363,7 @@ export const cnMath = {
             check_right: "📐 工程验收：这是直角三角形吗？",
             check_right_question: "直角三角形？",
             distance: "🚁 无人机快递：计算直线飞行距离",
-            elite_space: " CERN 实验室：求解状态空间对角线",
+            elite_space: "苏黎世研究站：求解三维空间对角线",
             right_triangle_q: "📐 这是直角三角形吗？",
             solve_diagonal: "计算对角线长度",
             explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。",
@@ -1378,7 +1378,7 @@ export const cnMath = {
         mission: {
             title: "任务",
             protocol: "NEXUS PROTOCOL // 瑞士节点在线",
-            cern_title: "CERN 校准阵列",
+            cern_title: "苏黎世校准阵列",
             cern_desc: "校准 16:9 观测阵列。高=9s，宽=16s。求对角线。",
             roof_title: "格林德瓦防雪屋顶",
             roof_desc: "半跨度 6m，高 6m。计算屋顶支撑梁长度。",
@@ -1386,7 +1386,7 @@ export const cnMath = {
             ladder_desc: "梯子距墙 5m，可达高度 12m。求梯子长度。",
             grid_title: "巴塞尔网格距离",
             grid_desc: "计算巴塞尔城市网格中两个导航节点的距离。",
-            chain_title: "CERN 转运通道",
+            chain_title: "苏黎世转运通道",
             chain_desc: "转运通道跨越矩形平台并上升至高位。求完整对角线。"
         },
         mental: {

@@ -763,7 +763,7 @@ export default function S202Page() {
               )}
             </div>
           </div>
-          <div className="w-full max-h-[360px] lg:max-h-[360px] md:max-h-[300px] overflow-hidden">
+          <div className="w-full max-h-[420px] overflow-y-auto">
             {stage === "EXPLORER" ? (
               useFluidViz ? (
                 <PythagorasFluidCanvas
