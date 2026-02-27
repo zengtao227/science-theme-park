@@ -726,7 +726,7 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
 
           <OrbitControls
             enablePan={true}
-            enableRotate={false}
+            enableRotate={true}
             target={distanceTarget}
             minDistance={distanceScale * 0.8}
             maxDistance={distanceScale * 3.2}

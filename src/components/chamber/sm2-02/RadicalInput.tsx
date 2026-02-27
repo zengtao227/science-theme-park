@@ -35,9 +35,9 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
         />
       </div>
 
-      <div className="flex items-end gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+      <div className="flex items-end gap-2 rounded-xl border border-white/40 bg-white/5 px-3 py-2">
         <div className="text-white/90 text-4xl leading-none font-black">√</div>
-        <div className="border-t-2 border-white/60 pt-2">
+        <div className="border-t-2 border-white pt-2">
           <input
             value={safeM === 0 ? "" : String(safeM)}
             onChange={(e) => {
