@@ -1636,6 +1636,9 @@ export const cnMath = {
             distance: "距离 (d)",
             midpoint: "中点 (M)",
             slope: "斜率 (m)",
+            analysis_terminal: "分析终端",
+            find_distance: "使用以下公式求距离 d：",
+            find_slope: "求斜率 m：",
             translation_vector: "平移向量",
             reflection_line: "反射线",
             transformation: "变换"

@@ -1653,6 +1653,9 @@ export const enMath = {
             distance: "Distance (d)",
             midpoint: "Midpoint (M)",
             slope: "Slope (m)",
+            analysis_terminal: "Analysis Terminal",
+            find_distance: "Find distance d using:",
+            find_slope: "Find slope m:",
             translation_vector: "Translation vector",
             reflection_line: "Reflection line",
             transformation: "Transformation"

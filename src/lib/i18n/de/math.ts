@@ -1675,6 +1675,9 @@ export const deMath = {
             distance: "Abstand (d)",
             midpoint: "Mittelpunkt (M)",
             slope: "Steigung (m)",
+            analysis_terminal: "Analyse-Terminal",
+            find_distance: "Bestimme die Distanz d mit:",
+            find_slope: "Bestimme die Steigung m:",
             translation_vector: "Translationsvektor",
             reflection_line: "Reflexionslinie",
             transformation: "Transformation"
