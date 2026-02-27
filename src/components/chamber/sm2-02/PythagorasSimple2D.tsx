@@ -80,8 +80,8 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, label
     points.map(p => `${p.x},${p.y}`).join(" ");
 
   return (
-    <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden flex flex-col">
-      <div className="flex-1 w-full relative">
+    <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
+      <div className="w-full h-full relative">
         <svg viewBox={viewBox} className="w-full h-full transform scale-y-[-1]">
           <defs>
             <pattern id="grid" width="1" height="1" patternUnits="userSpaceOnUse">
@@ -139,20 +139,20 @@ export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, label
       </div>
 
       {/* Stats / Controls Overlay */}
-      <div className="p-4 bg-black/60 backdrop-blur-md border-t border-white/10 grid grid-cols-3 gap-4 font-mono text-center">
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/70 backdrop-blur-md border-t border-white/10 grid grid-cols-3 gap-2 font-mono text-center">
         <div className="text-red-400">
           <div className="text-[10px] opacity-50 uppercase">{sideALabel}</div>
-          <div className="text-xl font-bold">{a}</div>
+          <div className="text-lg font-bold">{a}</div>
           <div className="text-xs"><InlineMath math={`a^{2} = ${a * a}`} /></div>
         </div>
         <div className="text-blue-400">
           <div className="text-[10px] opacity-50 uppercase">{sideBLabel}</div>
-          <div className="text-xl font-bold">{b}</div>
+          <div className="text-lg font-bold">{b}</div>
           <div className="text-xs"><InlineMath math={`b^{2} = ${b * b}`} /></div>
         </div>
         <div className="text-neon-green">
           <div className="text-[10px] opacity-50 uppercase">{hypLabel}</div>
-          <div className="text-xl font-bold">{c.toFixed(2)}</div>
+          <div className="text-lg font-bold">{c.toFixed(2)}</div>
           <div className="text-xs"><InlineMath math={`c^{2} \\approx ${(c * c).toFixed(0)}`} /></div>
         </div>
       </div>

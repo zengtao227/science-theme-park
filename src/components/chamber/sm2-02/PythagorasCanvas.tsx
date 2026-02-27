@@ -560,10 +560,46 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
     no_viz: translations?.no_viz || "No visualization available"
   };
 
+  const triangleScale = visual.kind === "triangle" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined
+    ? Math.max(6, visual.a, visual.b, visual.c)
+    : 8;
+
+  const triangleCameraPos: [number, number, number] = [
+    triangleScale * 1.1,
+    triangleScale * 0.8,
+    triangleScale * 1.4
+  ];
+  const triangleTarget: [number, number, number] = [
+    visual.kind === "triangle" && visual.a !== undefined ? visual.a * 0.35 : 0,
+    visual.kind === "triangle" && visual.b !== undefined ? visual.b * 0.25 : 0,
+    0
+  ];
+
+  const spaceScale = visual.kind === "space" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined
+    ? Math.max(6, visual.a, visual.b, visual.c)
+    : 8;
+  const spaceCameraPos: [number, number, number] = [
+    spaceScale * 1.6,
+    spaceScale * 1.4,
+    spaceScale * 1.8
+  ];
+
+  const distanceScale = visual.kind === "distance" && visual.p1 && visual.p2
+    ? Math.max(8, Math.abs(visual.p1.x - visual.p2.x), Math.abs(visual.p1.y - visual.p2.y), Math.abs(visual.p1.x), Math.abs(visual.p1.y), Math.abs(visual.p2.x), Math.abs(visual.p2.y))
+    : 10;
+  const distanceTarget: [number, number, number] = visual.kind === "distance" && visual.p1 && visual.p2
+    ? [(visual.p1.x + visual.p2.x) / 2, (visual.p1.y + visual.p2.y) / 2, 0]
+    : [0, 0, 0];
+  const distanceCameraPos: [number, number, number] = [
+    distanceTarget[0],
+    distanceTarget[1],
+    distanceScale * 1.9
+  ];
+
   if (visual.kind === "triangle" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
       <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [8, 6, 12], fov: 55 }} gl={{ antialias: true }}>
+        <Canvas camera={{ position: triangleCameraPos, fov: 50 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -572,8 +608,9 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
 
           <OrbitControls
             enablePan={false}
-            minDistance={6}
-            maxDistance={25}
+            target={triangleTarget}
+            minDistance={triangleScale * 0.7}
+            maxDistance={triangleScale * 3.2}
             autoRotate={false}
           />
 
@@ -608,7 +645,7 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
   if (visual.kind === "space" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined) {
     return (
       <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [12, 10, 14], fov: 55 }} gl={{ antialias: true }}>
+        <Canvas camera={{ position: spaceCameraPos, fov: 48 }} gl={{ antialias: true }}>
           <color attach="background" args={["#050510"]} />
           <ambientLight intensity={0.6} />
           <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -617,8 +654,8 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
 
           <OrbitControls
             enablePan={false}
-            minDistance={6}
-            maxDistance={30}
+            minDistance={spaceScale * 0.9}
+            maxDistance={spaceScale * 4}
             autoRotate={false}
           />
 
@@ -648,7 +685,7 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
   if (visual.kind === "distance" && visual.p1 && visual.p2) {
     return (
       <div className="relative w-full h-[420px] md:h-[520px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden">
-        <Canvas camera={{ position: [0, 0, 18], fov: 55 }} gl={{ antialias: true }}>
+        <Canvas camera={{ position: distanceCameraPos, fov: 50 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -657,8 +694,9 @@ export default function S202PythagorasCanvas({ visual, translations }: S202Canva
           <OrbitControls
             enablePan={true}
             enableRotate={false}
-            minDistance={8}
-            maxDistance={30}
+            target={distanceTarget}
+            minDistance={distanceScale * 0.8}
+            maxDistance={distanceScale * 3.2}
           />
 
           <Distance3D p1={visual.p1} p2={visual.p2} />
