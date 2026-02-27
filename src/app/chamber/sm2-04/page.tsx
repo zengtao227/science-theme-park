@@ -31,7 +31,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 8 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=4\\cdot 2=8`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `8`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `8`],
                     visual: { kind: "rect-scale", a: 4, b: 2, k: 2 },
                 },
                 {
@@ -41,7 +41,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 18 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=6\\cdot 3=18`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `18`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `18`],
                     visual: { kind: "rect-scale", a: 6, b: 2, k: 3 },
                 },
                 {
@@ -51,7 +51,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 20 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=10\\cdot 2=20`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `20`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `20`],
                     visual: { kind: "rect-scale", a: 10, b: 3, k: 2 },
                 },
                 {
@@ -61,7 +61,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 20 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=5\\cdot 4=20`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `20`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `20`],
                     visual: { kind: "rect-scale", a: 5, b: 2, k: 4 },
                 },
                 {
@@ -71,7 +71,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 16 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=8\\cdot 2=16`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `16`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `16`],
                     visual: { kind: "rect-scale", a: 8, b: 3, k: 2 },
                 },
             ];
@@ -86,7 +86,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 6 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=4\\cdot \\frac{3}{2}=6`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `6`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `6`],
                     visual: { kind: "rect-scale", a: 4, b: 2, k: 1.5 },
                 },
                 {
@@ -96,7 +96,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
                     correctLatex: `k=\\frac{12}{8}=\\frac{3}{2}=1.5`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{\\\\text{${t("sm2_04.labels.new_value")}}}{\\\\text{Old}}`, `k=\\\\frac{3}{2}`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{\\text{${t("sm2_04.labels.new_value")}}}{\\text{Old}}`, `k=\\frac{3}{2}`],
                     visual: { kind: "rect-scale", a: 8, b: 3, k: 1.5 },
                 },
                 {
@@ -106,7 +106,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 10 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=6\\cdot \\frac{5}{3}=10`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `10`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `10`],
                     visual: { kind: "rect-scale", a: 6, b: 2, k: 5 / 3 },
                 },
                 {
@@ -116,7 +116,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
                     correctLatex: `k=\\frac{18}{12}=\\frac{3}{2}=1.5`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{\\\\text{${t("sm2_04.labels.new_value")}}}{\\\\text{Old}}`, `1.5`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{\\text{${t("sm2_04.labels.new_value")}}}{\\text{Old}}`, `1.5`],
                     visual: { kind: "rect-scale", a: 12, b: 3, k: 1.5 },
                 },
                 {
@@ -126,7 +126,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 12 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=9\\cdot \\frac{4}{3}=12`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `12`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `12`],
                     visual: { kind: "rect-scale", a: 9, b: 3, k: 4 / 3 },
                 },
             ];
@@ -141,7 +141,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 4 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=5\\cdot 0.8=4`,
-                    hintLatex: [`\\\\text{Multiply by }k.`, `4`],
+                    hintLatex: [`\\text{Multiply by }k.`, `4`],
                     visual: { kind: "rect-scale", a: 5, b: 2, k: 0.8 },
                 },
                 {
@@ -151,7 +151,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
                     correctLatex: `k=\\frac{9}{15}=0.6`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{9}{15}`, `0.6`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{9}{15}`, `0.6`],
                     visual: { kind: "rect-scale", a: 15, b: 4, k: 0.6 },
                 },
                 {
@@ -161,7 +161,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 12 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=7.5\\cdot 1.6=12`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `12`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `12`],
                     visual: { kind: "rect-scale", a: 7.5, b: 3, k: 1.6 },
                 },
                 {
@@ -171,7 +171,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `k`,
                     slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.7 }],
                     correctLatex: `k=\\frac{14}{20}=0.7`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{14}{20}`, `0.7`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{14}{20}`, `0.7`],
                     visual: { kind: "rect-scale", a: 20, b: 5, k: 0.7 },
                 },
                 {
@@ -181,7 +181,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                     slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 8 }],
                     correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=12.5\\cdot 0.64=8`,
-                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `8`],
+                    hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `8`],
                     visual: { kind: "rect-scale", a: 12.5, b: 4, k: 0.64 },
                 },
             ];
@@ -196,7 +196,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
                 correctLatex: `k=\\frac{10.8}{18}=0.6`,
-                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{10.8}{18}`, `0.6`],
+                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{10.8}{18}`, `0.6`],
                 visual: { kind: "rect-scale", a: 18, b: 5, k: 0.6 },
             },
             {
@@ -206,7 +206,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                 slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 12 }],
                 correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=22.5\\cdot \\frac{8}{15}=12`,
-                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `12`],
+                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `12`],
                 visual: { kind: "rect-scale", a: 22.5, b: 6, k: 8 / 15 },
             },
             {
@@ -216,7 +216,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 1.5 }],
                 correctLatex: `k=\\frac{25.2}{16.8}=1.5`,
-                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{25.2}{16.8}`, `1.5`],
+                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{25.2}{16.8}`, `1.5`],
                 visual: { kind: "rect-scale", a: 16.8, b: 5, k: 1.5 },
             },
             {
@@ -226,7 +226,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `\\text{${t("sm2_04.labels.new_value")}}`,
                 slots: [{ id: "n", labelLatex: `\\\\text{${t("sm2_04.labels.new_value")}}`, placeholder: "value", expected: 15 }],
                 correctLatex: `\\text{${t("sm2_04.labels.new_value")}}=27\\cdot \\frac{5}{9}=15`,
-                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\\\text{Old}`, `15`],
+                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `\\text{${t("sm2_04.labels.new_value")}}=k\\cdot \\text{Old}`, `15`],
                 visual: { kind: "rect-scale", a: 27, b: 7, k: 5 / 9 },
             },
             {
@@ -236,7 +236,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `k`,
                 slots: [{ id: "k", labelLatex: `k`, placeholder: "k", expected: 0.6 }],
                 correctLatex: `k=\\frac{21}{35}=\\frac{3}{5}=0.6`,
-                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\\\frac{21}{35}=\\\\frac{3}{5}`, `0.6`],
+                hintLatex: [t("sm2_04.hints.rules.scale_factor_latex"), `k=\\frac{21}{35}=\\frac{3}{5}`, `0.6`],
                 visual: { kind: "rect-scale", a: 35, b: 8, k: 0.6 },
             },
         ];
@@ -264,7 +264,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 15 }],
                     correctLatex: `k=3\\Rightarrow x=3\\cdot 5=15`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{9}{3}=3`, `x=15`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{9}{3}=3`, `x=15`],
                     visual: { kind: "tri-sim", a: 5, b: 15, k: 3 },
                 },
                 {
@@ -274,7 +274,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 12 }],
                     correctLatex: `k=2\\Rightarrow x=2\\cdot 6=12`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{8}{4}=2`, `x=12`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{8}{4}=2`, `x=12`],
                     visual: { kind: "tri-sim", a: 6, b: 12, k: 2 },
                 },
                 {
@@ -284,7 +284,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
                     correctLatex: `k=3\\Rightarrow x=3\\cdot 7=21`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{12}{4}=3`, `x=21`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{12}{4}=3`, `x=21`],
                     visual: { kind: "tri-sim", a: 7, b: 21, k: 3 },
                 },
                 {
@@ -294,7 +294,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 16 }],
                     correctLatex: `k=2\\Rightarrow x=2\\cdot 8=16`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{10}{5}=2`, `x=16`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{10}{5}=2`, `x=16`],
                     visual: { kind: "tri-sim", a: 8, b: 16, k: 2 },
                 },
             ];
@@ -309,7 +309,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
                     correctLatex: `x=7\\cdot 3=21`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{15}{5}=3`, `x=21`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{15}{5}=3`, `x=21`],
                     visual: { kind: "tri-sim", a: 7, b: 21, k: 3 },
                 },
                 {
@@ -329,7 +329,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `y`,
                     slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 15 }],
                     correctLatex: `y=10\\cdot \\frac{3}{2}=15`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{12}{8}=\\\\frac{3}{2}`, `y=15`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{12}{8}=\\frac{3}{2}`, `y=15`],
                     visual: { kind: "tri-sim", a: 10, b: 15, k: 1.5 },
                 },
                 {
@@ -339,7 +339,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 35 }],
                     correctLatex: `x=14\\cdot \\frac{5}{2}=35`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{20}{8}=\\\\frac{5}{2}`, `x=35`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{20}{8}=\\frac{5}{2}`, `x=35`],
                     visual: { kind: "tri-sim", a: 14, b: 35, k: 2.5 },
                 },
                 {
@@ -349,7 +349,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `z`,
                     slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 24 }],
                     correctLatex: `z=16\\cdot \\frac{3}{2}=24`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{18}{12}=\\\\frac{3}{2}`, `z=24`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{18}{12}=\\frac{3}{2}`, `z=24`],
                     visual: { kind: "tri-sim", a: 16, b: 24, k: 1.5 },
                 },
             ];
@@ -364,7 +364,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 12 }],
                     correctLatex: `x=8\\cdot 1.5=12`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{7.5}{5}=1.5`, `x=12`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{7.5}{5}=1.5`, `x=12`],
                     visual: { kind: "tri-sim", a: 8, b: 12, k: 1.5 },
                 },
                 {
@@ -374,7 +374,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `y`,
                     slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 18 }],
                     correctLatex: `y=12\\cdot 1.5=18`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{13.5}{9}=1.5`, `y=18`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{13.5}{9}=1.5`, `y=18`],
                     visual: { kind: "tri-sim", a: 12, b: 18, k: 1.5 },
                 },
                 {
@@ -384,7 +384,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `x`,
                     slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 21 }],
                     correctLatex: `x=15\\cdot 1.4=21`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{16.8}{12}=1.4`, `x=21`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{16.8}{12}=1.4`, `x=21`],
                     visual: { kind: "tri-sim", a: 15, b: 21, k: 1.4 },
                 },
                 {
@@ -394,7 +394,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `z`,
                     slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 27 }],
                     correctLatex: `z=18\\cdot 1.5=27`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{22.5}{15}=1.5`, `z=27`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{22.5}{15}=1.5`, `z=27`],
                     visual: { kind: "tri-sim", a: 18, b: 27, k: 1.5 },
                 },
                 {
@@ -404,7 +404,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "w", expected: 24 }],
                     correctLatex: `w=20\\cdot 1.2=24`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{19.2}{16}=1.2`, `w=24`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{19.2}{16}=1.2`, `w=24`],
                     visual: { kind: "tri-sim", a: 20, b: 24, k: 1.2 },
                 },
             ];
@@ -419,7 +419,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `x`,
                 slots: [{ id: "x", labelLatex: `x`, placeholder: "x", expected: 29.4 }],
                 correctLatex: `x=21\\cdot 1.4=29.4`,
-                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{24.5}{17.5}=1.4`, `x=29.4`],
+                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{24.5}{17.5}=1.4`, `x=29.4`],
                 visual: { kind: "tri-sim", a: 21, b: 29.4, k: 1.4 },
             },
             {
@@ -429,7 +429,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `y`,
                 slots: [{ id: "y", labelLatex: `y`, placeholder: "y", expected: 37.8 }],
                 correctLatex: `y=27\\cdot 1.4=37.8`,
-                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{31.5}{22.5}=1.4`, `y=37.8`],
+                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{31.5}{22.5}=1.4`, `y=37.8`],
                 visual: { kind: "tri-sim", a: 27, b: 37.8, k: 1.4 },
             },
             {
@@ -439,7 +439,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `z`,
                 slots: [{ id: "z", labelLatex: `z`, placeholder: "z", expected: 36 }],
                 correctLatex: `z=24\\cdot 1.5=36`,
-                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{28.8}{19.2}=1.5`, `z=36`],
+                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{28.8}{19.2}=1.5`, `z=36`],
                 visual: { kind: "tri-sim", a: 24, b: 36, k: 1.5 },
             },
             {
@@ -449,7 +449,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "w", expected: 42 }],
                 correctLatex: `w=30\\cdot 1.4=42`,
-                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{35.7}{25.5}=1.4`, `w=42`],
+                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{35.7}{25.5}=1.4`, `w=42`],
                 visual: { kind: "tri-sim", a: 30, b: 42, k: 1.4 },
             },
             {
@@ -459,7 +459,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `v`,
                 slots: [{ id: "v", labelLatex: `v`, placeholder: "v", expected: 49.5 }],
                 correctLatex: `v=33\\cdot 1.5=49.5`,
-                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{42}{28}=1.5`, `v=49.5`],
+                hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{42}{28}=1.5`, `v=49.5`],
                 visual: { kind: "tri-sim", a: 33, b: 49.5, k: 1.5 },
             },
         ];
@@ -477,7 +477,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 5 }],
                     correctLatex: `\\frac{H}{10}=\\frac{2}{4}\\Rightarrow H=5`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{H}{10}=0.5`, `H=5`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{H}{10}=0.5`, `H=5`],
                     visual: { kind: "shadow", a: 5, b: 10, k: 0.5 },
                 },
                 {
@@ -487,7 +487,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 8 }],
                     correctLatex: `\\frac{H}{12}=\\frac{2}{3}\\Rightarrow H=8`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2}{3}\\approx 0.667`, `H=8`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2}{3}\\approx 0.667`, `H=8`],
                     visual: { kind: "shadow", a: 8, b: 12, k: 2 / 3 },
                 },
                 {
@@ -497,7 +497,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 6 }],
                     correctLatex: `\\frac{H}{15}=\\frac{2}{5}\\Rightarrow H=6`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2}{5}=0.4`, `H=6`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2}{5}=0.4`, `H=6`],
                     visual: { kind: "shadow", a: 6, b: 15, k: 0.4 },
                 },
                 {
@@ -507,7 +507,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 4 }],
                     correctLatex: `\\frac{H}{8}=\\frac{2}{4}\\Rightarrow H=4`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2}{4}=0.5`, `H=4`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2}{4}=0.5`, `H=4`],
                     visual: { kind: "shadow", a: 4, b: 8, k: 0.5 },
                 },
                 {
@@ -517,7 +517,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 6 }],
                     correctLatex: `\\frac{H}{18}=\\frac{2}{6}\\Rightarrow H=6`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2}{6}\\approx 0.333`, `H=6`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2}{6}\\approx 0.333`, `H=6`],
                     visual: { kind: "shadow", a: 6, b: 18, k: 1 / 3 },
                 },
             ];
@@ -532,7 +532,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 7.5 }],
                     correctLatex: `\\frac{H}{12}=\\frac{1.5}{2.4}\\Rightarrow H=7.5`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{H}{12}=0.625`, `H=7.5`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{H}{12}=0.625`, `H=7.5`],
                     visual: { kind: "shadow", a: 7.5, b: 12, k: 0.625 },
                 },
                 {
@@ -542,7 +542,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 9 }],
                     correctLatex: `\\frac{H}{15}=\\frac{1.8}{3}\\Rightarrow H=9`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{1.8}{3}=0.6`, `H=9`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{1.8}{3}=0.6`, `H=9`],
                     visual: { kind: "shadow", a: 9, b: 15, k: 0.6 },
                 },
                 {
@@ -552,7 +552,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 10 }],
                     correctLatex: `\\frac{H}{18}=\\frac{2.5}{4.5}\\Rightarrow H=10`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2.5}{4.5}\\approx 0.556`, `H=10`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2.5}{4.5}\\approx 0.556`, `H=10`],
                     visual: { kind: "shadow", a: 10, b: 18, k: 5 / 9 },
                 },
                 {
@@ -562,7 +562,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 10 }],
                     correctLatex: `\\frac{H}{20}=\\frac{1.6}{3.2}\\Rightarrow H=10`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{1.6}{3.2}=0.5`, `H=10`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{1.6}{3.2}=0.5`, `H=10`],
                     visual: { kind: "shadow", a: 10, b: 20, k: 0.5 },
                 },
                 {
@@ -572,7 +572,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `\\text{Tower Height}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 12 }],
                     correctLatex: `\\frac{H}{24}=\\frac{2.1}{4.2}\\Rightarrow H=12`,
-                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\\\frac{2.1}{4.2}=0.5`, `H=12`],
+                    hintLatex: [t("sm2_04.hints.rules.proportional_latex"), `\\frac{2.1}{4.2}=0.5`, `H=12`],
                     visual: { kind: "shadow", a: 12, b: 24, k: 0.5 },
                 },
             ];
@@ -587,7 +587,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 1.2 }],
                     correctLatex: `d=\\sqrt{36-23.04}=3.6,\\; w=6-3.6=2.4`,
-                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.4`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=2.4`],
                     visual: { kind: "ring", a: 2.4, b: 6, r: 6, l: 9.6 },
                 },
                 {
@@ -597,7 +597,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.2 }],
                     correctLatex: `d=\\sqrt{64-40.96}=4.8,\\; w=8-4.8=3.2`,
-                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.2`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=3.2`],
                     visual: { kind: "ring", a: 3.2, b: 8, r: 8, l: 12.8 },
                 },
                 {
@@ -607,7 +607,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4 }],
                     correctLatex: `d=\\sqrt{100-64}=6,\\; w=10-6=4`,
-                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=4`],
                     visual: { kind: "ring", a: 4, b: 10, r: 10, l: 16 },
                 },
                 {
@@ -617,7 +617,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 2.8 }],
                     correctLatex: `d=\\sqrt{49-31.36}=4.2,\\; w=7-4.2=2.8`,
-                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=2.8`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=2.8`],
                     visual: { kind: "ring", a: 2.8, b: 7, r: 7, l: 11.2 },
                 },
                 {
@@ -627,7 +627,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.6 }],
                     correctLatex: `d=\\sqrt{81-51.84}=5.4,\\; w=9-5.4=3.6`,
-                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=3.6`],
+                    hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=3.6`],
                     visual: { kind: "ring", a: 3.6, b: 9, r: 9, l: 14.4 },
                 },
             ];
@@ -642,7 +642,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.8 }],
                 correctLatex: `d=\\sqrt{144-92.16}=7.2,\\; w=12-7.2=4.8`,
-                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.8`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=4.8`],
                 visual: { kind: "ring", a: 4.8, b: 12, r: 12, l: 19.2 },
             },
             {
@@ -652,7 +652,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.6 }],
                 correctLatex: `d=\\sqrt{196-125.44}=8.4,\\; w=14-8.4=5.6`,
-                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.6`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=5.6`],
                 visual: { kind: "ring", a: 5.6, b: 14, r: 14, l: 22.4 },
             },
             {
@@ -662,7 +662,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.4 }],
                 correctLatex: `d=\\sqrt{121-77.44}=6.6,\\; w=11-6.6=4.4`,
-                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=4.4`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=4.4`],
                 visual: { kind: "ring", a: 4.4, b: 11, r: 11, l: 17.6 },
             },
             {
@@ -672,7 +672,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.2 }],
                 correctLatex: `d=\\sqrt{169-108.16}=7.8,\\; w=13-7.8=5.2`,
-                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=5.2`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=5.2`],
                 visual: { kind: "ring", a: 5.2, b: 13, r: 13, l: 20.8 },
             },
             {
@@ -682,7 +682,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 6 }],
                 correctLatex: `d=\\sqrt{225-144}=9,\\; w=15-9=6`,
-                hintLatex: [`d=\\\\sqrt{R^{2}-(\\\\frac{L}{2})^2}`, `w=R-d`, `w=6`],
+                hintLatex: [`d=\\\\sqrt{R^{2}-(\\frac{L}{2})^2}`, `w=R-d`, `w=6`],
                 visual: { kind: "ring", a: 6, b: 15, r: 15, l: 24 },
             },
         ];

@@ -184,9 +184,9 @@ export default function AlchemistCanvas({ visual, inputs, translations }: Alchem
 
     const t = translations || {
         legend: "LEGEND",
-        eq1: "Equation 1",
-        eq2: "Equation 2",
-        cursor: "Target Cursor",
+        eq1: "",
+        eq2: "",
+        cursor: "",
         locked: "LOCKED",
         view: "GRAPH_VIEW: ORTHOGRAPHIC_2D"
     };
