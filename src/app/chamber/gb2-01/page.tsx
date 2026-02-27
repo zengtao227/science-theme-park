@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
 
@@ -294,7 +295,7 @@ export default function GB201Neurobiology() {
                                 >
                                     <div className="bg-white/5 p-6 rounded-xl border border-white/5">
                                         <div className="text-lg text-white/90 leading-relaxed mb-4">
-                                            <BlockMath math={currentQuest?.promptLatex || ""} />
+                                            {renderMixedText(currentQuest?.promptLatex || "")}
                                         </div>
                                         {currentQuest?.expressionLatex && (
                                             <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center overflow-x-auto">

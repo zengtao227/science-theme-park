@@ -11,6 +11,7 @@ import { StepBySolver } from "@/components/chamber/sm2-09/StepBySolver";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { SM209Quest, Stage, SolutionStep } from "@/lib/sm2-09-types";
 import { baselScenarios } from "@/lib/sm2-09-basel-scenarios";
+import { renderMixedText } from "@/lib/latex-utils";
 import {
   inequalityBasicsBasic,
   inequalityBasicsCore,
@@ -348,6 +349,11 @@ export default function SM209Page() {
               <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">
                 {sm2_09_t.problem_title}
               </h3>
+              {currentQuest?.promptLatex && (
+                <div className="mb-4 text-gray-900 dark:text-gray-100">
+                  {renderMixedText(currentQuest.promptLatex)}
+                </div>
+              )}
               <div className="mb-4">
                 <BlockMath math={currentQuest?.expressionLatex || ""} />
               </div>

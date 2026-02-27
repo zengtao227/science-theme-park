@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "VSEPR" | "HYBRIDIZATION" | "MO_THEORY";
 
@@ -200,7 +201,7 @@ export default function SC305MolecularForge() {
                                 >
                                     <div className="bg-white/5 p-6 rounded-xl border border-white/5">
                                         <div className="text-lg text-white/90 leading-relaxed mb-4 overflow-x-auto">
-                                            <BlockMath math={currentQuest?.promptLatex || ""} />
+                                            {renderMixedText(currentQuest?.promptLatex || "")}
                                         </div>
                                         {currentQuest?.expressionLatex && (
                                             <div className="p-4 bg-black/30 rounded-lg border border-white/5 flex justify-center">

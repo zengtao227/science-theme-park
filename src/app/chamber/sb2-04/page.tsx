@@ -11,6 +11,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { Stage, SB204Quest } from "@/lib/sb2-04-types";
 import { buildStagePool } from "@/lib/sb2-04-quest-builder";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SB204Page() {
   const { completeStage } = useAppStore();
@@ -145,7 +146,7 @@ export default function SB204Page() {
                 {t("sb2_04.labels.analysis")}
               </h3>
               <div className="text-2xl text-white font-bold leading-tight max-w-2xl mx-auto">
-                {t(currentQuest?.promptLatex as any)}
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </div>
             </div>
 

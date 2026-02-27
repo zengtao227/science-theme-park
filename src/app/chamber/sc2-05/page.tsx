@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "PH_BASICS" | "NEUTRALIZATION" | "TITRATION";
 
@@ -888,7 +889,7 @@ export default function SC205Page() {
           </div>
           {quest?.promptLatex && (
             <div className="text-2xl text-white font-black">
-              <BlockMath math={quest.promptLatex} />
+              {renderMixedText(quest.promptLatex)}
             </div>
           )}
         </div>

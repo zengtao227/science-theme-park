@@ -8,6 +8,7 @@ import MatrixVisualization2D from "@/components/chamber/em2-01/MatrixVisualizati
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useMemo } from "react";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "BASIC_TRANSFORMS" | "DETERMINANT" | "COMPOSITION";
 
@@ -271,7 +272,7 @@ export default function EM201Page() {
           <div className="p-8 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto space-y-6">
             <div className="text-center space-y-3">
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-black">
-                {currentQuest?.question}
+                {renderMixedText(currentQuest?.promptLatex || "")}
               </div>
               {currentQuest?.expressionLatex && (
                 <div className="text-2xl text-white font-black">

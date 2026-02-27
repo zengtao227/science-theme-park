@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
+import { renderMixedText } from "@/lib/latex-utils";
 
 type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
 
@@ -1321,7 +1322,7 @@ export default function G101AdvancedPage() {
           <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
             {gm1_01_advanced_t.question_label}
           </h3>
-          <p className="text-xl text-white/90 font-mono">{currentQuest?.question}</p>
+          <p className="text-xl text-white/90 font-mono">{renderMixedText(currentQuest?.promptLatex || "")}</p>
         </div>
 
         {/* Input Area */}
