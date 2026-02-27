@@ -1544,8 +1544,11 @@ export const enMath = {
             labels: {
                 tower: "Clock Tower",
                 tower_shadow: "Tower Shadow",
+                tower_height: "Tower Height",
                 stick: "Stick (1.5m)",
+                stick_plain: "Stick",
                 stick_shadow: "Stick Shadow",
+                shadow: "Shadow",
                 calculate_height: "Calculate Tower Height"
             }
         }

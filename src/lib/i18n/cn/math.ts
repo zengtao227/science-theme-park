@@ -1527,8 +1527,11 @@ export const cnMath = {
             labels: {
                 tower: "钟楼",
                 tower_shadow: "钟楼阴影",
+                tower_height: "钟楼高度",
                 stick: "木棍 (1.5m)",
+                stick_plain: "木棍",
                 stick_shadow: "木棍阴影",
+                shadow: "阴影",
                 calculate_height: "计算钟楼高度"
             }
         }

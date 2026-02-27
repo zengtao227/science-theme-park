@@ -1566,8 +1566,11 @@ export const deMath = {
             labels: {
                 tower: "Kirchturm",
                 tower_shadow: "Turmschatten",
+                tower_height: "Turmhöhe",
                 stick: "Stab (1.5m)",
+                stick_plain: "Stab",
                 stick_shadow: "Stabschatten",
+                shadow: "Schatten",
                 calculate_height: "Turmhöhe berechnen"
             }
         }
