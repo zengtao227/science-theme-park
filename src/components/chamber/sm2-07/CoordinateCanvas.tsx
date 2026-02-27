@@ -9,6 +9,11 @@ interface CoordinateCanvasProps {
   stage: "DISTANCE" | "MIDPOINT" | "SLOPE";
   point1?: [number, number];
   point2?: [number, number];
+  labels?: {
+    distance_formula?: string;
+    midpoint_formula?: string;
+    slope_formula?: string;
+  };
 }
 
 const palette = {
@@ -281,6 +286,7 @@ export default function CoordinateCanvas({
   stage = "DISTANCE",
   point1 = [2, 3],
   point2 = [6, 7],
+  labels,
 }: CoordinateCanvasProps) {
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
@@ -316,9 +322,9 @@ export default function CoordinateCanvas({
       {/* Info panel */}
       <div className="absolute top-4 left-4 bg-black/70 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider">
-          {stage === "DISTANCE" && "Distance Formula"}
-          {stage === "MIDPOINT" && "Midpoint Formula"}
-          {stage === "SLOPE" && "Slope Formula"}
+          {stage === "DISTANCE" && (labels?.distance_formula ?? "")}
+          {stage === "MIDPOINT" && (labels?.midpoint_formula ?? "")}
+          {stage === "SLOPE" && (labels?.slope_formula ?? "")}
         </div>
         <div className="text-[11px] font-mono text-white">
           A({point1[0]}, {point1[1]}) → B({point2[0]}, {point2[1]})

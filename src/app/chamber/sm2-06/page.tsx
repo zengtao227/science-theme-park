@@ -24,7 +24,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "SUB_B1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = 2y \\\\ x + y = 6 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -40,7 +40,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_B2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = 3y \\\\ x + y = 8 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -56,7 +56,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_B3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = 2x \\\\ x + y = 9 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -72,7 +72,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_B4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = y \\\\ x + y = 10 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -88,7 +88,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_B5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = 4y \\\\ x + y = 10 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -109,7 +109,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "SUB_C1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = 3x - 1 \\\\ x + y = 7 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -125,7 +125,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_C2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = 2x + 1 \\\\ x + y = 10 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -141,7 +141,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_C3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = 2y - 3 \\\\ x + y = 9 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -157,7 +157,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_C4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = 4x - 2 \\\\ 2x + y = 16 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -173,7 +173,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_C5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = 3y + 2 \\\\ x + 2y = 12 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -194,7 +194,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "SUB_A1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = \\frac{3x-1}{2} \\\\ 2x + y = 11 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -210,7 +210,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_A2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = \\frac{2y+3}{3} \\\\ 3x + y = 15 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -226,7 +226,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_A3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = \\frac{5x-4}{3} \\\\ x + 2y = 14 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -242,7 +242,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_A4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} x = \\frac{4y-5}{2} \\\\ 2x + 3y = 19 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -258,7 +258,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "SUB_A5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
           expressionLatex: `\\begin{cases} y = \\frac{7x-6}{4} \\\\ 3x + 2y = 18 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -279,7 +279,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
     return [
       {
         id: "SUB_E1", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
         expressionLatex: `\\begin{cases} y = \\frac{5x-7}{3} \\\\ 4x + 3y = 25 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -295,7 +295,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "SUB_E2", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
         expressionLatex: `\\begin{cases} x = \\frac{7y-11}{5} \\\\ 5x + 2y = 23 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -311,7 +311,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "SUB_E3", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
         expressionLatex: `\\begin{cases} y = \\frac{8x-13}{5} \\\\ 3x + 5y = 31 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -327,7 +327,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "SUB_E4", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
         expressionLatex: `\\begin{cases} x = \\frac{9y-17}{7} \\\\ 7x + 3y = 35 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -343,7 +343,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "SUB_E5", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.substitution_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.substitution_prompt_latex"),
         expressionLatex: `\\begin{cases} y = \\frac{11x-19}{6} \\\\ 2x + 3y = 17 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -366,7 +366,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "ELIM_B1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -382,7 +382,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_B2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} x + y = 7 \\\\ x - y = 3 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -398,7 +398,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_B3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 2x + y = 10 \\\\ 2x - y = 6 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -414,7 +414,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_B4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} x + 2y = 8 \\\\ x - 2y = 0 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -430,7 +430,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_B5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 3x + y = 11 \\\\ 3x - y = 7 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -451,7 +451,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "ELIM_C1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 2x + 3y = 13 \\\\ 2x - y = 5 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -467,7 +467,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_C2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 3x + 2y = 16 \\\\ 3x - 4y = 4 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -483,7 +483,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_C3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 4x + 3y = 22 \\\\ 2x + 3y = 14 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -499,7 +499,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_C4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 5x + 2y = 24 \\\\ 3x + 2y = 16 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -515,7 +515,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_C5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 3x + 4y = 20 \\\\ 3x - 2y = 8 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -536,7 +536,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "ELIM_A1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 3x + 5y = 23 \\\\ 2x - 5y = -3 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -552,7 +552,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_A2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 4x + 7y = 30 \\\\ 3x - 7y = -2 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -568,7 +568,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_A3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 5x + 3y = 26 \\\\ 4x - 3y = 10 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -584,7 +584,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_A4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 7x + 4y = 36 \\\\ 5x - 4y = 12 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -600,7 +600,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "ELIM_A5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+          promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
           expressionLatex: `\\begin{cases} 6x + 5y = 34 \\\\ 4x - 5y = 6 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -621,7 +621,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
     return [
       {
         id: "ELIM_E1", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
         expressionLatex: `\\begin{cases} 7x + 11y = 50 \\\\ 5x - 11y = -2 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -637,7 +637,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "ELIM_E2", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
         expressionLatex: `\\begin{cases} 9x + 13y = 62 \\\\ 7x - 13y = 2 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -653,7 +653,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "ELIM_E3", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
         expressionLatex: `\\begin{cases} 11x + 8y = 60 \\\\ 9x - 8y = 20 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -669,7 +669,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "ELIM_E4", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
         expressionLatex: `\\begin{cases} 13x + 9y = 70 \\\\ 11x - 9y = 26 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -685,7 +685,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "ELIM_E5", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.elimination_prompt_latex")}}`,
+        promptLatex: t("sm2_06.stages.elimination_prompt_latex"),
         expressionLatex: `\\begin{cases} 15x + 7y = 74 \\\\ 13x - 7y = 38 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -708,7 +708,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "MISS_B1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_1")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_1"),
           expressionLatex: `\\begin{cases} x + y = 10 \\\\ x = 2y \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -724,7 +724,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_B2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_2")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_2"),
           expressionLatex: `\\begin{cases} x + y = 15 \\\\ x - y = 5 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -740,7 +740,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_B3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_3")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_3"),
           expressionLatex: `\\begin{cases} x + y = 20 \\\\ 2x + y = 35 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -756,7 +756,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_B4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_4")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_4"),
           expressionLatex: `\\begin{cases} x + y = 12 \\\\ x = 3y \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -772,7 +772,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_B5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_5")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_5"),
           expressionLatex: `\\begin{cases} x + y = 18 \\\\ x - y = 6 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -793,7 +793,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "MISS_C1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_6")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_6"),
           expressionLatex: `\\begin{cases} 2x + 3y = 23 \\\\ x + y = 9 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -809,7 +809,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_C2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_7")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_7"),
           expressionLatex: `\\begin{cases} 3x + 2y = 26 \\\\ x + y = 10 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -825,7 +825,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_C3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_8")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_8"),
           expressionLatex: `\\begin{cases} 4x + 5y = 38 \\\\ 2x + y = 14 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -841,7 +841,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_C4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_9")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_9"),
           expressionLatex: `\\begin{cases} 5x + 3y = 34 \\\\ 2x + y = 13 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -857,7 +857,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_C5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_10")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_10"),
           expressionLatex: `\\begin{cases} 3x + 4y = 29 \\\\ x + 2y = 13 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -878,7 +878,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       return [
         {
           id: "MISS_A1", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_11")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_11"),
           expressionLatex: `\\begin{cases} 7x + 5y = 59 \\\\ 3x + 2y = 25 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -894,7 +894,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_A2", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_12")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_12"),
           expressionLatex: `\\begin{cases} 6x + 7y = 62 \\\\ 4x + 3y = 38 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -910,7 +910,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_A3", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_13")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_13"),
           expressionLatex: `\\begin{cases} 8x + 9y = 89 \\\\ 5x + 4y = 50 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -926,7 +926,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_A4", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_14")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_14"),
           expressionLatex: `\\begin{cases} 9x + 7y = 85 \\\\ 6x + 5y = 59 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -942,7 +942,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         },
         {
           id: "MISS_A5", difficulty, stage,
-          promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_15")}}`,
+          promptLatex: t("sm2_06.stages.mission_prompt_15"),
           expressionLatex: `\\begin{cases} 11x + 8y = 98 \\\\ 7x + 5y = 62 \\end{cases}`,
           targetLatex: `x, y`,
           visual: {
@@ -963,7 +963,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
     return [
       {
         id: "MISS_E1", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_16")}}`,
+        promptLatex: t("sm2_06.stages.mission_prompt_16"),
         expressionLatex: `\\begin{cases} 13x + 11y = 127 \\\\ 9x + 7y = 89 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -979,7 +979,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "MISS_E2", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_17")}}`,
+        promptLatex: t("sm2_06.stages.mission_prompt_17"),
         expressionLatex: `\\begin{cases} 15x + 13y = 149 \\\\ 11x + 9y = 107 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -995,7 +995,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "MISS_E3", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_18")}}`,
+        promptLatex: t("sm2_06.stages.mission_prompt_18"),
         expressionLatex: `\\begin{cases} 17x + 14y = 169 \\\\ 13x + 11y = 133 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -1011,7 +1011,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "MISS_E4", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_19")}}`,
+        promptLatex: t("sm2_06.stages.mission_prompt_19"),
         expressionLatex: `\\begin{cases} 19x + 16y = 193 \\\\ 15x + 13y = 157 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
@@ -1027,7 +1027,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
       },
       {
         id: "MISS_E5", difficulty, stage,
-        promptLatex: `\\\\text{${t("sm2_06.stages.mission_prompt_20")}}`,
+        promptLatex: t("sm2_06.stages.mission_prompt_20"),
         expressionLatex: `\\begin{cases} 21x + 17y = 215 \\\\ 17x + 14y = 177 \\end{cases}`,
         targetLatex: `x, y`,
         visual: {
