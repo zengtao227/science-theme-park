@@ -706,6 +706,11 @@ export default function S202Page() {
   ];
 
   const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
+  const is3DVisual =
+    currentQuest?.visual.kind === "space" ||
+    currentQuest?.visual.kind === "box" ||
+    currentQuest?.visual.kind === "distance" ||
+    currentQuest?.visual.kind === "3d";
   const areaProofSides =
     stage === "EXPLORER"
       ? {
@@ -788,7 +793,7 @@ export default function S202Page() {
                 }}
               />
             ) : (
-              (currentQuest?.visual.kind === "space" || currentQuest?.visual.kind === "box" || currentQuest?.visual.kind === "3d") ? (
+              is3DVisual ? (
                 <S202PythagorasCanvas
                   visual={currentQuest?.visual}
                   translations={sm2_02_t.ui}
@@ -1022,8 +1027,8 @@ export default function S202Page() {
                       }
                     })()}
                     onChange={(v) => setInputs({ ...inputs, [slot.id]: JSON.stringify(v) })}
-                    labelK={sm2_02_t.input_k}
-                    labelM={sm2_02_t.input_m}
+                    labelK={sm2_02_t.input_k || "k"}
+                    labelM={sm2_02_t.input_m || "m"}
                   />
                 )}
 

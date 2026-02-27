@@ -67,9 +67,9 @@ export default function PythagorasAreaProof({ a, b, c, labels }: PythagorasAreaP
         <line x1={A.x} y1={A.y} x2={A.x + Math.min(safeA, safeB) * 0.16} y2={A.y} stroke="#f8f9fa" strokeWidth={1} />
         <line x1={A.x} y1={A.y} x2={A.x} y2={A.y + Math.min(safeA, safeB) * 0.16} stroke="#f8f9fa" strokeWidth={1} />
 
-        <text x={mAB.x} y={mAB.y - 1} fill="#ffd8a8" fontSize={4.5} textAnchor="middle">{labels?.sideA ?? "a"}</text>
-        <text x={mAC.x - 1.4} y={mAC.y} fill="#d3f9d8" fontSize={4.5} textAnchor="end">{labels?.sideB ?? "b"}</text>
-        <text x={mBC.x + 1.4} y={mBC.y + 1.2} fill="#a5d8ff" fontSize={4.5} textAnchor="start">{labels?.hyp ?? "c"}</text>
+        <text x={mAB.x} y={mAB.y - 1} fill="#ffd8a8" fontSize={3} stroke="#020208" strokeWidth={0.3} paintOrder="stroke" textAnchor="middle">{labels?.sideA ?? "a"}</text>
+        <text x={mAC.x - 1.4} y={mAC.y} fill="#d3f9d8" fontSize={3} stroke="#020208" strokeWidth={0.3} paintOrder="stroke" textAnchor="end">{labels?.sideB ?? "b"}</text>
+        <text x={mBC.x + 1.4} y={mBC.y + 1.2} fill="#a5d8ff" fontSize={3} stroke="#020208" strokeWidth={0.3} paintOrder="stroke" textAnchor="start">{labels?.hyp ?? "c"}</text>
 
         <circle cx={textA.x} cy={textA.y} r={2.2} fill="#ff6b6b" fillOpacity={0.24} />
         <circle cx={textB.x} cy={textB.y} r={2.2} fill="#51cf66" fillOpacity={0.24} />
