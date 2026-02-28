@@ -1083,7 +1083,14 @@ export const dePhysics = {
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
                 stages: { si_units: "SI-EINHEITEN", conversion: "UMRECHNUNG", precision: "PRÄZISION" },
                 tools: { ruler: "Lineal", scale: "Waage", timer: "Stoppuhr" },
-                labels: { precision: "Messpräzision", measurement_display: "Messanzeige", input_terminal: "Terminal-Eingabe" },
+                labels: {
+                        precision: "Messpräzision",
+                        measurement_display: "Messanzeige",
+                        input_terminal: "Terminal-Eingabe",
+                        unit: "\\text{Einheit}",
+                        sig_figs: "\\text{Sig. Stellen}",
+                        percent: "\\text{Prozent}"
+                },
                 prompts: {
                         si_unit: "Was ist die SI-Einheit für {measurement}?",
                         convert: "Rechnen Sie {value} {from} in {to} um",
@@ -1096,7 +1103,16 @@ export const dePhysics = {
                         lab_pharma: "Novartis Qualitätssicherung: In den Basler Pharma-Labors ist die korrekte Massenbeurteilung entscheidend. Ein kleiner Fehler kann eine chemische Reaktion verändern.",
                         basel_watch: "Schweizer Präzision: Die Herstellung von Luxusuhren in Basel erfordert Messungen im Mikrometerbereich. Präzision ist die Seele der Basler Industrie."
                 },
-                feedback: { correct: "Messung bestätigt.", incorrect: "Kalibrierungsfehler erkannt." }
+                feedback: { correct: "Messung bestätigt.", incorrect: "Kalibrierungsfehler erkannt." },
+                hints: {
+                        use_metric_prefixes: "Metrische Präfixe verwenden",
+                        simplify_base_units: "Basiseinheiten vereinfachen",
+                        multiple_steps_needed: "Mehrere Schritte erforderlich",
+                        square_or_cube_factor: "Umrechnungsfaktor quadrieren oder kubieren",
+                        convert_num_denom: "Zähler und Nenner getrennt umrechnen",
+                        count_sig_figs: "Nicht-Null-Ziffern und eingeschlossene Nullen zählen",
+                        divide_uncertainty: "Unsicherheit durch Messwert teilen"
+                }
         },
 
         // 2. KRÄFTE (Mechanik I)

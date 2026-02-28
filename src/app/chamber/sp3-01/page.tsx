@@ -199,7 +199,7 @@ export default function SP301Page() {
                         promptLatex: `What is the SI unit for ${d.quantity}?`,
                         expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
                         targetLatex: d.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: d.unit }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: "...", expected: d.unit }],
                         correctLatex: `\\text{${d.unit}}`,
                         hintLatex: [`\\text{${d.formula}}`]
                     });
@@ -220,7 +220,7 @@ export default function SP301Page() {
                         targetLatex: c.answer,
                         slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Use metric prefixes}`]
+                        hintLatex: [t("sp3_01.hints.use_metric_prefixes")]
                     });
                 });
             }
@@ -234,9 +234,9 @@ export default function SP301Page() {
                         promptLatex: `What unit is equivalent to ${c.expr}?`,
                         expressionLatex: `${c.expr} = \\text{?}`,
                         targetLatex: c.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: c.unit }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: "...", expected: c.unit }],
                         correctLatex: `\\text{${c.unit} (${c.name})}`,
-                        hintLatex: [`\\text{Simplify the base units}`]
+                        hintLatex: [t("sp3_01.hints.simplify_base_units")]
                     });
                 });
             }
@@ -295,7 +295,7 @@ export default function SP301Page() {
                         targetLatex: c.answer,
                         slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Multiple steps needed}`]
+                        hintLatex: [t("sp3_01.hints.multiple_steps_needed")]
                     });
                 });
             }
@@ -323,7 +323,7 @@ export default function SP301Page() {
                         targetLatex: c.answer,
                         slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Square or cube the conversion factor}`]
+                        hintLatex: [t("sp3_01.hints.square_or_cube_factor")]
                     });
                 });
             }
@@ -351,7 +351,7 @@ export default function SP301Page() {
                         targetLatex: c.answer,
                         slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\text{Convert numerator and denominator separately}`]
+                        hintLatex: [t("sp3_01.hints.convert_num_denom")]
                     });
                 });
             }
@@ -376,9 +376,9 @@ export default function SP301Page() {
                         promptLatex: `How many significant figures in ${p.value}?`,
                         expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
                         targetLatex: p.sigfigs,
-                        slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.sig_figs"), placeholder: "...", expected: p.sigfigs }],
                         correctLatex: `${p.sigfigs}\\text{ significant figures}`,
-                        hintLatex: [`\\text{Count non-zero digits and trapped zeros}`]
+                        hintLatex: [t("sp3_01.hints.count_sig_figs")]
                     });
                 });
             }
@@ -451,9 +451,9 @@ export default function SP301Page() {
                         promptLatex: `What is the percent uncertainty of ${u.measurement} ${u.unit}?`,
                         expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
                         targetLatex: u.percent,
-                        slots: [{ id: "ans", labelLatex: "\\text{Percent}", placeholder: "...", expected: u.percent }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.percent"), placeholder: "...", expected: u.percent }],
                         correctLatex: `${u.percent}\\%`,
-                        hintLatex: [`\\text{Divide uncertainty by measurement}`]
+                        hintLatex: [t("sp3_01.hints.divide_uncertainty")]
                     });
                 });
             }

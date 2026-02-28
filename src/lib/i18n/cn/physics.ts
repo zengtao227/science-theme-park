@@ -1018,7 +1018,14 @@ export const cnPhysics = {
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         stages: { si_units: "SI 单位", conversion: "单位换算", precision: "测量精度" },
         tools: { ruler: "直尺", scale: "天平", timer: "计时器" },
-        labels: { precision: "测量精度", measurement_display: "数据数值显示", input_terminal: "终端输入 [测量节点]" },
+        labels: {
+            precision: "测量精度",
+            measurement_display: "数据数值显示",
+            input_terminal: "终端输入 [测量节点]",
+            unit: "\\text{单位}",
+            sig_figs: "\\text{有效数字}",
+            percent: "\\text{百分比}"
+        },
         prompts: {
             si_unit: "{measurement} 的 SI 国际标准单位是什么？",
             convert: "将 {value} {from} 转换为 {to}",
@@ -1031,7 +1038,16 @@ export const cnPhysics = {
             lab_pharma: "诺华制药实验室：在巴塞尔的制药研发中，质量测量的准确性至关重要。哪怕是毫克的误差也会导致整个化学反应失败。",
             basel_watch: "瑞士制造精度：巴塞尔的奢侈钟表制造业要求达到微米级的测量标准。精度是瑞士工业的灵魂。"
         },
-        feedback: { correct: "测量精度已确认。", incorrect: "检测到校准偏误。" }
+        feedback: { correct: "测量精度已确认。", incorrect: "检测到校准偏误。" },
+        hints: {
+            use_metric_prefixes: "使用公制前缀",
+            simplify_base_units: "化简基本单位",
+            multiple_steps_needed: "需要多步换算",
+            square_or_cube_factor: "对换算因子取平方或立方",
+            convert_num_denom: "分别换算分子和分母",
+            count_sig_figs: "计算非零数字和夹零",
+            divide_uncertainty: "用不确定度除以测量值"
+        }
     },
 
     // SP3.02: 力与运动 (映射自原 sp3_02)

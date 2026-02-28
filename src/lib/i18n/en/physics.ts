@@ -1023,7 +1023,14 @@ export const enPhysics = {
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
                 stages: { si_units: "SI UNITS", conversion: "CONVERSION", precision: "PRECISION" },
                 tools: { ruler: "Ruler", scale: "Scale", timer: "Timer" },
-                labels: { precision: "Measurement Precision", measurement_display: "Measurement Display", input_terminal: "Terminal Input" },
+                labels: {
+                        precision: "Measurement Precision",
+                        measurement_display: "Measurement Display",
+                        input_terminal: "Terminal Input",
+                        unit: "\\text{Unit}",
+                        sig_figs: "\\text{Sig Figs}",
+                        percent: "\\text{Percent}"
+                },
                 prompts: {
                         si_unit: "What is the SI unit for {measurement}?",
                         convert: "Convert {value} {from} to {to}",
@@ -1036,7 +1043,16 @@ export const enPhysics = {
                         lab_pharma: "Novartis Quality Control: In Basel's pharmaceutical labs, measuring mass correctly is critical. A tiny error can change the entire chemical reaction.",
                         basel_watch: "Swiss Watchmaking Precision: Crafting luxury watches in Basel requires measurements in micrometers. Precision is the soul of Basel's industry."
                 },
-                feedback: { correct: "Measurement confirmed.", incorrect: "Calibration error detected." }
+                feedback: { correct: "Measurement confirmed.", incorrect: "Calibration error detected." },
+                hints: {
+                        use_metric_prefixes: "Use metric prefixes",
+                        simplify_base_units: "Simplify the base units",
+                        multiple_steps_needed: "Multiple steps needed",
+                        square_or_cube_factor: "Square or cube the conversion factor",
+                        convert_num_denom: "Convert numerator and denominator separately",
+                        count_sig_figs: "Count non-zero digits and trapped zeros",
+                        divide_uncertainty: "Divide uncertainty by measurement"
+                }
         },
 
         // SP3.02: Mechanics - Forces (Existing)
