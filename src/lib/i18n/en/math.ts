@@ -2687,5 +2687,31 @@ export const enMath = {
         scenario_airport_desc: "EuroAirport Basel-Mulhouse-Freiburg is unique in Europe, serving Switzerland, France, and Germany. Air traffic controllers use analytical geometry to manage flight paths, ensuring aircraft maintain safe distances and follow optimal approach routes. You are working with the airport's air traffic management team to analyze flight paths in 3D space. The coordinate system has its origin at the airport control tower, with x-axis pointing east (toward Germany), y-axis pointing north (toward Basel city center), and z-axis pointing upward (altitude in meters). Two aircraft are approaching the airport: Flight LX318 from Zurich: position (5000, 8000, 1200), descending along direction vector (-1, -2, -0.3), and Flight AF1642 from Paris: position (3000, 6000, 1500), descending along direction vector (1, -1, -0.4). Your responsibilities include determining if the flight paths are parallel, intersecting, or skew, calculating the minimum distance between the two aircraft, verifying that both flights maintain the required 1000-meter vertical separation, finding the intersection point with the ground plane (z = 0) for each flight path, and ensuring flight paths avoid noise-sensitive areas in Basel neighborhoods. This analysis is critical for aviation safety and demonstrates how spatial geometry enables modern air traffic control systems to manage hundreds of flights daily while maintaining strict safety standards.",
         scenario_university: "University Basel Campus Building Layout",
         scenario_university_desc: "The University of Basel is planning a new research building for the Department of Mathematics and Computer Science. You are part of the architectural team using analytical geometry to optimize the building's position and orientation. The campus uses a 3D coordinate system with the origin at the historic Kollegienhaus (main building). The new building must be positioned to maximize natural light, maintain sight lines to historic buildings, ensure accessibility from existing pathways, and comply with Basel's strict building height regulations. Three existing buildings define the available space: Kollegienhaus: plane equation x + 2y = 100, Biozentrum: plane equation 2x - y = 50, Pharmazentrum: plane equation x + y + z = 150. Your tasks include calculating distances from proposed building locations to existing structures, determining if proposed walls are parallel or perpendicular to existing buildings, finding intersection lines between building planes for shared infrastructure, and optimizing the building footprint to maximize usable space while respecting constraints. This project illustrates how analytical geometry supports architectural design, helping create functional, aesthetically pleasing spaces that integrate with Basel's rich academic heritage."
-    }
+    },
+
+  common: {
+    labels: {
+      answer: "Answer",
+      function: "Function",
+      structure: "Structure",
+      effect: "Effect",
+      value: "Value",
+      water_flow: "Water Flow",
+      organelle: "Organelle",
+      product: "Product",
+      result: "Result",
+      group: "Group",
+      functional_group: "Functional Group",
+      formula_or_functional_group: "Formula/Group",
+      hybridization: "Hybridization",
+      bond_order: "Bond Order",
+      geometry: "Geometry",
+      formula: "Formula",
+      count: "Count",
+      ratio: "Ratio",
+      type: "Type",
+      percentage: "Percentage",
+    },
+    answer_prefix: "Answer:",
+  },
 };

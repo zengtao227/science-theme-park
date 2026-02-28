@@ -2717,5 +2717,31 @@ export const deMath = {
         scenario_airport_desc: "Der EuroAirport Basel-Mulhouse-Freiburg ist in Europa einzigartig und bedient die Schweiz, Frankreich und Deutschland. Fluglotsen verwenden analytische Geometrie, um Flugbahnen zu verwalten und sicherzustellen, dass Flugzeuge sichere Abstände einhalten und optimale Anflugwege befolgen. Sie arbeiten mit dem Luftverkehrsmanagement-Team des Flughafens zusammen, um Flugbahnen im 3D-Raum zu analysieren. Das Koordinatensystem hat seinen Ursprung am Flughafenkontrollturm, wobei die x-Achse nach Osten (Richtung Deutschland), die y-Achse nach Norden (Richtung Basler Stadtzentrum) und die z-Achse nach oben (Höhe in Metern) zeigt. Zwei Flugzeuge nähern sich dem Flughafen: Flug LX318 von Zürich: Position (5000, 8000, 1200), sinkend entlang des Richtungsvektors (-1, -2, -0.3), und Flug AF1642 von Paris: Position (3000, 6000, 1500), sinkend entlang des Richtungsvektors (1, -1, -0.4). Ihre Verantwortlichkeiten umfassen die Bestimmung, ob die Flugbahnen parallel, sich schneidend oder windschief sind, die Berechnung des Mindestabstands zwischen den beiden Flugzeugen, die Überprüfung, dass beide Flüge die erforderliche vertikale Trennung von 1000 Metern einhalten, das Auffinden des Schnittpunkts mit der Bodenebene (z = 0) für jede Flugbahn und die Sicherstellung, dass Flugbahnen lärmempfindliche Gebiete in Basler Quartieren vermeiden. Diese Analyse ist für die Flugsicherheit von entscheidender Bedeutung und zeigt, wie räumliche Geometrie moderne Flugsicherungssysteme in die Lage versetzt, täglich Hunderte von Flügen zu verwalten und dabei strenge Sicherheitsstandards einzuhalten.",
         scenario_university: "Universität Basel Campus-Gebäudelayout",
         scenario_university_desc: "Die Universität Basel plant ein neues Forschungsgebäude für das Departement Mathematik und Informatik. Sie sind Teil des Architekturteams, das analytische Geometrie verwendet, um die Position und Ausrichtung des Gebäudes zu optimieren. Der Campus verwendet ein 3D-Koordinatensystem mit dem Ursprung am historischen Kollegienhaus (Hauptgebäude). Das neue Gebäude muss so positioniert werden, dass es natürliches Licht maximiert, Sichtlinien zu historischen Gebäuden aufrechterhält, die Erreichbarkeit von bestehenden Wegen gewährleistet und Basels strenge Bauhöhenvorschriften einhält. Drei bestehende Gebäude definieren den verfügbaren Raum: Kollegienhaus: Ebenengleichung x + 2y = 100, Biozentrum: Ebenengleichung 2x - y = 50, Pharmazentrum: Ebenengleichung x + y + z = 150. Ihre Aufgaben umfassen die Berechnung von Abständen von vorgeschlagenen Gebäudestandorten zu bestehenden Strukturen, die Bestimmung, ob vorgeschlagene Wände parallel oder senkrecht zu bestehenden Gebäuden sind, das Auffinden von Schnittlinien zwischen Gebäudeebenen für gemeinsame Infrastruktur und die Optimierung der Gebäudegrundfläche, um den nutzbaren Raum zu maximieren und gleichzeitig Einschränkungen zu respektieren. Dieses Projekt veranschaulicht, wie analytische Geometrie das architektonische Design unterstützt und hilft, funktionale, ästhetisch ansprechende Räume zu schaffen, die sich in Basels reiches akademisches Erbe integrieren."
-    }
+    },
+
+  common: {
+    labels: {
+      answer: "Antwort",
+      function: "Funktion",
+      structure: "Struktur",
+      effect: "Wirkung",
+      value: "Wert",
+      water_flow: "Wasserfluss",
+      organelle: "Organell",
+      product: "Produkt",
+      result: "Ergebnis",
+      group: "Gruppe",
+      functional_group: "Funktionsgruppe",
+      formula_or_functional_group: "Formel/Gruppe",
+      hybridization: "Hybridisierung",
+      bond_order: "Bindungsordnung",
+      geometry: "Geometrie",
+      formula: "Formel",
+      count: "Anzahl",
+      ratio: "Verhältnis",
+      type: "Typ",
+      percentage: "Prozentsatz",
+    },
+    answer_prefix: "Antwort:",
+  },
 };
