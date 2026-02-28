@@ -241,7 +241,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_b2"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
-                        correctLatex: `\\text{Higher pitch}`,
+                        correctLatex: t("sp3_06.corrects.fp_b2"),
                         hintLatex: [t("sp3_06.hints.fp_b2")]
                     },
                     {
@@ -259,7 +259,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_b4"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No}`,
+                        correctLatex: t("sp3_06.corrects.correct_no"),
                         hintLatex: [t("sp3_06.hints.fp_b4")]
                     },
                     {
@@ -268,7 +268,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_b5"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No}`,
+                        correctLatex: t("sp3_06.corrects.correct_no"),
                         hintLatex: [t("sp3_06.hints.fp_b5")]
                     }
                 );
@@ -308,7 +308,7 @@ export default function SP306Page() {
                         expressionLatex: `50{,}000 > 20{,}000`,
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
-                        correctLatex: `\\text{Yes (ultrasound)}`,
+                        correctLatex: t("sp3_06.corrects.fp_c4"),
                         hintLatex: [`50{,}000 \\text{ Hz} > 20{,}000 \\text{ Hz}`]
                     },
                     {
@@ -339,7 +339,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_a2"),
                         targetLatex: t("sp3_06.labels.label_property"),
                         slots: [{ id: "prop", labelLatex: t("sp3_06.labels.label_property"), placeholder: "timbre", expected: "timbre" }],
-                        correctLatex: `\\text{Timbre (tone quality)}`,
+                        correctLatex: t("sp3_06.corrects.fp_a2"),
                         hintLatex: [t("sp3_06.hints.fp_a2")]
                     },
                     {
@@ -348,7 +348,7 @@ export default function SP306Page() {
                         expressionLatex: `\\text{MHz} = 10^6 \\text{ Hz} >> 20{,}000 \\text{ Hz}`,
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_above_below"), placeholder: "above", expected: "above" }],
-                        correctLatex: `\\text{Far above (ultrasound)}`,
+                        correctLatex: t("sp3_06.corrects.fp_a3"),
                         hintLatex: [`2 \\text{ MHz} = 2{,}000{,}000 \\text{ Hz}`]
                     },
                     {
@@ -357,7 +357,7 @@ export default function SP306Page() {
                         expressionLatex: `5 < 20 \\text{ Hz}`,
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No (infrasound)}`,
+                        correctLatex: t("sp3_06.corrects.fp_a4"),
                         hintLatex: [`5 \\text{ Hz} < 20 \\text{ Hz}`]
                     },
                     {
@@ -366,7 +366,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_a5"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
-                        correctLatex: `\\text{Yes (beyond critical band)}`,
+                        correctLatex: t("sp3_06.corrects.fp_a5"),
                         hintLatex: [t("sp3_06.hints.fp_a5")]
                     }
                 );
@@ -388,7 +388,7 @@ export default function SP306Page() {
                         expressionLatex: `\\frac{3}{2} = 1.5, \\quad 2^{7/12} \\approx 1.498`,
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_just_equal"), placeholder: "just", expected: "just" }],
-                        correctLatex: `\\text{Just intonation (1.5 > 1.498)}`,
+                        correctLatex: t("sp3_06.corrects.fp_e2"),
                         hintLatex: [`1.5 > 1.498`]
                     },
                     {
@@ -397,7 +397,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_e3"),
                         targetLatex: t("sp3_06.labels.label_term"),
                         slots: [{ id: "term", labelLatex: t("sp3_06.labels.label_term"), placeholder: "formants", expected: "formants" }],
-                        correctLatex: `\\text{Formants}`,
+                        correctLatex: t("sp3_06.corrects.fp_e3"),
                         hintLatex: [t("sp3_06.hints.fp_e3")]
                     },
                     {
@@ -406,7 +406,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_e4"),
                         targetLatex: `f_0`,
                         slots: [{ id: "freq", labelLatex: `f_0\\text{ (Hz)}`, placeholder: "200", expected: 200 }],
-                        correctLatex: `200\\text{ Hz (missing fundamental)}`,
+                        correctLatex: t("sp3_06.corrects.fp_e4"),
                         hintLatex: [`\\text{GCD}(400, 600, 800) = 200`]
                     },
                     {
@@ -415,7 +415,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.fp_e5"),
                         targetLatex: t("sp3_06.labels.label_effect"),
                         slots: [{ id: "effect", labelLatex: t("sp3_06.labels.label_effect"), placeholder: "masking", expected: "masking" }],
-                        correctLatex: `\\text{Auditory masking}`,
+                        correctLatex: t("sp3_06.corrects.fp_e5"),
                         hintLatex: [t("sp3_06.hints.fp_e5")]
                     }
                 );

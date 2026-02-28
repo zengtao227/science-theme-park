@@ -1614,6 +1614,16 @@ export const dePhysics = {
                         sw_a4: "\\text{Diffraktion}",
                         sw_e4: "\\text{Überschallknall}",
                         sw_e5: "\\text{Akustische Impedanzfehlanpassung}",
+                        fp_b2: "\\text{Höhere Tonhöhe}",
+                        fp_c4: "\\text{Ja (Ultraschall)}",
+                        fp_a2: "\\text{Klangfarbe (Tonqualität)}",
+                        fp_a3: "\\text{Weit darüber (Ultraschall)}",
+                        fp_a4: "\\text{Nein (Infraschall)}",
+                        fp_a5: "\\text{Ja (jenseits kritischer Bandbreite)}",
+                        fp_e2: "\\text{Reine Stimmung (1{,}5 > 1{,}498)}",
+                        fp_e3: "\\text{Formanten}",
+                        fp_e4: "200\\text{ Hz (fehlende Grundfrequenz)}",
+                        fp_e5: "\\text{Auditive Maskierung}",
                 },
                 prompts: {
                 // SOUND_WAVES

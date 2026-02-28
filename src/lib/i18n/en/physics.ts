@@ -1585,6 +1585,16 @@ export const enPhysics = {
                         sw_a4: "\\text{Diffraction}",
                         sw_e4: "\\text{Sonic boom}",
                         sw_e5: "\\text{Acoustic impedance mismatch}",
+                        fp_b2: "\\text{Higher pitch}",
+                        fp_c4: "\\text{Yes (ultrasound)}",
+                        fp_a2: "\\text{Timbre (tone quality)}",
+                        fp_a3: "\\text{Far above (ultrasound)}",
+                        fp_a4: "\\text{No (infrasound)}",
+                        fp_a5: "\\text{Yes (beyond critical band)}",
+                        fp_e2: "\\text{Just intonation (1.5 > 1.498)}",
+                        fp_e3: "\\text{Formants}",
+                        fp_e4: "200\\text{ Hz (missing fundamental)}",
+                        fp_e5: "\\text{Auditory masking}",
                 },
                 prompts: {
                 // SOUND_WAVES

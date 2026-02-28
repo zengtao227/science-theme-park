@@ -1647,6 +1647,16 @@ export const cnPhysics = {
                         sw_a4: "\\text{衍射}",
                         sw_e4: "\\text{音爆}",
                         sw_e5: "\\text{声阻抗失配}",
+                        fp_b2: "\\text{音调更高}",
+                        fp_c4: "\\text{是（超声波）}",
+                        fp_a2: "\\text{音色（音质）}",
+                        fp_a3: "\\text{远超（超声波范围）}",
+                        fp_a4: "\\text{否（次声波）}",
+                        fp_a5: "\\text{是（超出临界频带）}",
+                        fp_e2: "\\text{纯律（1.5 > 1.498）}",
+                        fp_e3: "\\text{共振峰（Formanten）}",
+                        fp_e4: "200\\text{ Hz（缺失基频）}",
+                        fp_e5: "\\text{听觉掩蔽}",
                 },
         prompts: {
         // SOUND_WAVES
