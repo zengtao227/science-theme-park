@@ -1845,6 +1845,19 @@ export const enMath = {
             insurance_elite_3: "Insurance Elite Problem 3", // TODO
             insurance_elite_4: "Insurance Elite Problem 4", // TODO
             insurance_elite_5: "Insurance Elite Problem 5", // TODO
+            lottery_6_2_biased: "Lottery 6 draw 2 (biased)", // TODO
+            lottery_7_4: "Lottery 7 draw 4", // TODO
+            lottery_8_5: "Lottery 8 draw 5", // TODO
+            lottery_8_5_biased: "Lottery 8 draw 5 (biased)", // TODO
+            lottery_9_4_biased: "Lottery 9 draw 4 (biased)", // TODO
+            lottery_10_6: "Lottery 10 draw 6", // TODO
+            lottery_11_7_biased: "Lottery 11 draw 7 (biased)", // TODO
+            lottery_12_7: "Lottery 12 draw 7", // TODO
+            lottery_14_9: "Lottery 14 draw 9", // TODO
+            lottery_15_9: "Lottery 15 draw 9", // TODO
+            lottery_16_8: "Lottery 16 draw 8", // TODO
+            lottery_18_11: "Lottery 18 draw 11", // TODO
+            lottery_20_12: "Lottery 20 draw 12", // TODO
             adjacent: "Adjacent",
             cos: "Cosine",
             sin: "Sine",

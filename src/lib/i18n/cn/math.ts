@@ -1838,6 +1838,21 @@ export const cnMath = {
             insurance_elite_3: "保险精英题 3", // TODO
             insurance_elite_4: "保险精英题 4", // TODO
             insurance_elite_5: "保险精英题 5", // TODO
+            lottery_5_3_biased: "彩票5取3（偏置）", // TODO
+            lottery_6_2_biased: "彩票6取2（偏置）", // TODO
+            lottery_6_4: "彩票6取4", // TODO
+            lottery_7_4: "彩票7取4", // TODO
+            lottery_8_5: "彩票8取5", // TODO
+            lottery_8_5_biased: "彩票8取5（偏置）", // TODO
+            lottery_9_4_biased: "彩票9取4（偏置）", // TODO
+            lottery_10_6: "彩票10取6", // TODO
+            lottery_11_7_biased: "彩票11取7（偏置）", // TODO
+            lottery_12_7: "彩票12取7", // TODO
+            lottery_14_9: "彩票14取9", // TODO
+            lottery_15_9: "彩票15取9", // TODO
+            lottery_16_8: "彩票16取8", // TODO
+            lottery_18_11: "彩票18取11", // TODO
+            lottery_20_12: "彩票20取12", // TODO
             adjacent: "邻边",
             cos: "余弦",
             sin: "正弦",
