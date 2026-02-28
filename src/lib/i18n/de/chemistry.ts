@@ -1312,7 +1312,9 @@ export const deChemistry = {
             input_answer: "Geben Sie Ihre Antwort ein",
             reaction: "REAKTIONSGLEICHUNG",
             oxidation_state: "Oxidationsstufe",
-            electrons: "Übertragene Elektronen",
+            agent: "Oxidations-/Reduktionsmittel",
+            electrons: "Elektronen",
+            mass_g: "Masse (g)",
             cell_potential: "Zellpotential",
             regional_case: "Regionale Fallstudie // Basel-Knoten"
         },

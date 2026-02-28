@@ -1319,7 +1319,9 @@ export const enChemistry = {
             input_answer: "Enter Your Answer",
             reaction: "REACTION EQUATION",
             oxidation_state: "Oxidation State",
-            electrons: "Electrons Transferred",
+            agent: "Agent",
+            electrons: "Electrons",
+            mass_g: "Mass (g)",
             cell_potential: "Cell Potential",
             regional_case: "Regional Case Study // Basel Node"
         },

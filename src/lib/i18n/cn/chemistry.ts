@@ -1319,7 +1319,9 @@ export const cnChemistry = {
             input_answer: "输入您的答案",
             reaction: "反应方程",
             oxidation_state: "氧化态",
-            electrons: "转移电子数",
+            agent: "氧化还原剂",
+            electrons: "电子数",
+            mass_g: "质量 (g)",
             cell_potential: "电池电位",
             regional_case: "区域案例研究 // 巴塞尔节点"
         },
