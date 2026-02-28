@@ -2500,6 +2500,17 @@ export const deMath = {
             cross_sections: "Basler Medizinische Bildgebung - Diagnostische Geometrie: Im Universitätsspital Basel (USB) verwenden Radiologen MRT- und CT-Scans, um 2D-Querschnitte des menschlichen Körpers zu erstellen. Diese mathematische Abstraktion ermöglicht es Ärzten, Organe ohne Operation zu sehen. In dieser Stufe analysieren Sie, wie verschiedene Ebenen, die durch Festkörper (wie ein Zylinder für ein Blutgefäß oder eine Kugel für eine Zelle) schneiden, spezifische 2D-Formen erzeugen. Ein diagonaler Schnitt durch das Modell des Roche-Turms könnte ein komplexes Polygon ergeben. Das Beherrschen von Querschnitten ist sowohl für die Medizin als auch für die architektonische Grundrissplanung unerlässlich.",
             curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr^{3}) und die Oberfläche (A = 4πr^{2}) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
         },
+        prompts: {
+            roche1_volume: "Roche Tower 1 ist 178m hoch. Als Quader mit Grundflaeche 60m x 40m modelliert: Wie gross ist das Volumen?",
+            messeturm_volume: "Messeturm Basel: Zylinder mit Hoehe 105m, Radius 15m. Naeherungsvolumen? (pi ~= 3.14)",
+            roche2_volume: "Roche Tower 2 ist 205m hoch und verjuengt sich. Grundflaeche 2400m^2, Dachflaeche 1800m^2 - Volumen mit Durchschnittsflaeche berechnen.",
+            kunstmuseum_volume: "Die Dachlichter des Kunstmuseums Basel sind quadratische Pyramiden mit Basis 2m und Hoehe 1,5m. Gesamtvolumen von 100 Dachlichtern?",
+            cross_cube_parallel: "Wuerfel parallel zu einer Flaeche geschnitten. Welche Form hat der Querschnitt?",
+            cross_sphere_any: "Kugel durch eine beliebige Ebene geschnitten. Welche Form hat der Querschnitt?",
+            cross_cyl_perp: "Zylinder senkrecht zur Achse geschnitten. Welche Form?",
+            cross_cyl_parallel: "Zylinder parallel zur Achse geschnitten. Welche Form?",
+            cross_cone_perp: "Kegel senkrecht zur Achse geschnitten. Welche Form?"
+        },
         labels: {
             shape: "\\text{Form}",
             correct_square: "Quadrat",

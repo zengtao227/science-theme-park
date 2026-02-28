@@ -2512,6 +2512,17 @@ export const enMath = {
             cross_sections: "Basel Medical Imaging - Diagnostic Geometry: At the Basel University Hospital (USB), radiologists use MRI and CT scans to generate 2D cross-sections of the human body. This mathematical abstraction allows doctors to see inside organs without surgery. In this stage, you'll analyze how different planes cutting through solids (like a cylinder representing a blood vessel or a sphere representing a cell) create specific 2D shapes. A diagonal cut through the Roche Tower's model might yield a complex polygon. Mastering cross-sections is essential for both medicine and architectural floor planning.",
             curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr^{3}) and surface area (A = 4πr^{2}) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
         },
+        prompts: {
+            roche1_volume: "Roche Tower 1 is 178m tall. If modeled as a rectangular prism with base 60m x 40m, what is the volume?",
+            messeturm_volume: "Messeturm Basel: a cylinder of height 105m, radius 15m. Approximate volume? (pi ~= 3.14)",
+            roche2_volume: "Roche Tower 2 is 205m. It tapers. If the base is 2400m^2 and top is 1800m^2, use the average area for volume.",
+            kunstmuseum_volume: "Kunstmuseum Basel skylights are square pyramids with base 2m and height 1.5m. Total volume of 100 skylights?",
+            cross_cube_parallel: "Cube cut parallel to a face. What shape is the cross-section?",
+            cross_sphere_any: "Sphere cut by any plane. What shape is the cross-section?",
+            cross_cyl_perp: "Cylinder cut perpendicular to axis. What shape?",
+            cross_cyl_parallel: "Cylinder cut parallel to axis. What shape?",
+            cross_cone_perp: "Cone cut perpendicular to axis. What shape?"
+        },
         labels: {
             shape: "\\text{Shape}",
             correct_square: "Square",

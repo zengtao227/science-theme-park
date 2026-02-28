@@ -29,7 +29,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "ARCH-B1", difficulty, stage, geometryType: "roche1",
-                        promptLatex: `\\\\text{Roche Tower 1 is } 178\\\\text{m tall. If modeled as a rectangular prism with base } 60\\\\text{m} \\times 40\\\\text{m}, \\\\text{ what is the volume?}`,
+                        promptLatex: t("sm3_05.prompts.roche1_volume"),
                         expressionLatex: `V = l \\cdot w \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "427200", expected: 427200 }],
@@ -78,7 +78,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "ARCH-C1", difficulty, stage, geometryType: "messeturm",
-                        promptLatex: `\\\\text{Messeturm Basel: a cylinder of height } 105\\\\text{m, radius } 15\\\\text{m. Approximate volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.messeturm_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "74182", expected: 74182 }],
@@ -127,7 +127,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "ARCH-A1", difficulty, stage, geometryType: "roche2",
-                        promptLatex: `\\\\text{Roche Tower 2 is } 205\\\\text{m. It tapers. If the base is } 2400\\\\text{ m}^{2} \\\\text{ and top is } 1800\\\\text{ m}^{2}, \\\\text{ use the average area for volume.}`,
+                        promptLatex: t("sm3_05.prompts.roche2_volume"),
                         expressionLatex: `V \\approx \\frac{A_1 + A_2}{2} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V`, placeholder: "430500", expected: 430500 }],
@@ -176,7 +176,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "ARCH-E1", difficulty, stage, geometryType: "kunstmuseum",
-                        promptLatex: `\\\\text{Kunstmuseum Basel skylights are square pyramids with base } 2\\\\text{m and height } 1.5\\\\text{m. Total volume of 100 skylights?}`,
+                        promptLatex: t("sm3_05.prompts.kunstmuseum_volume"),
                         expressionLatex: `V = 100 \\cdot \\frac{1}{3} a^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V`, placeholder: "200", expected: 200 }],
@@ -228,7 +228,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CS-B1", difficulty, stage, geometryType: "cube_parallel",
-                        promptLatex: `\\\\text{Cube cut parallel to a face. What shape is the cross-section?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cube_parallel"),
                         expressionLatex: `\\text{Parallel cut} \\rightarrow \\text{same shape as face}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
@@ -237,7 +237,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-B2", difficulty, stage, geometryType: "sphere",
-                        promptLatex: `\\\\text{Sphere cut by any plane. What shape is the cross-section?}`,
+                        promptLatex: t("sm3_05.prompts.cross_sphere_any"),
                         expressionLatex: `\\text{Sphere} \\rightarrow \\text{always circular}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
@@ -246,7 +246,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-B3", difficulty, stage, geometryType: "cylinder_perp",
-                        promptLatex: `\\\\text{Cylinder cut perpendicular to axis. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cyl_perp"),
                         expressionLatex: `\\text{Perpendicular to axis} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
@@ -255,7 +255,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-B4", difficulty, stage, geometryType: "cylinder_parallel",
-                        promptLatex: `\\\\text{Cylinder cut parallel to axis. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cyl_parallel"),
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{rectangle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
@@ -264,7 +264,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-B5", difficulty, stage, geometryType: "cone_perp",
-                        promptLatex: `\\\\text{Cone cut perpendicular to axis. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cone_perp"),
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
