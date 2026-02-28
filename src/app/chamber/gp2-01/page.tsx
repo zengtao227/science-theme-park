@@ -130,7 +130,7 @@ function buildStagePool(
                     id: "IG-C5", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.relation_pt"),
                     expressionLatex: `P \\propto T \\text{ (V, n const)}`,
-                    targetLatex: "\\\\text{Factor}",
+                    targetLatex: "\\text{Factor}",
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
                     correctLatex: "\\text{Factor } = 2",
                     hintLatex: ["Linear relationship"]
@@ -142,7 +142,7 @@ function buildStagePool(
                     id: "IG-A1", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.relation_vn"),
                     expressionLatex: `V \\propto n`,
-                    targetLatex: "\\\\text{Factor}",
+                    targetLatex: "\\text{Factor}",
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
                     correctLatex: "\\text{Factor } = 2",
                     hintLatex: ["Avogadro's Law"]
@@ -278,7 +278,7 @@ function buildStagePool(
                     id: "B-B5", difficulty, stage, lawType: "boyle",
                     promptLatex: t("gp2_01.prompts.boyle_condition"),
                     expressionLatex: "PV = k",
-                    targetLatex: "\\\\text{Constant}",
+                    targetLatex: "\\text{Constant}",
                     slots: [{ id: "c", labelLatex: "T", placeholder: "temperature", expected: "temperature" }],
                     correctLatex: "Temperature",
                     hintLatex: ["Isothermal"]
@@ -308,7 +308,7 @@ function buildStagePool(
                     id: "B-C3", difficulty, stage, lawType: "boyle",
                     promptLatex: t("gp2_01.prompts.boyle_relation", { v1: 10, v2: 2 }),
                     expressionLatex: "P_2/P_1 = V_1/V_2",
-                    targetLatex: "\\\\text{Factor}",
+                    targetLatex: "\\text{Factor}",
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "5", expected: 5 }],
                     correctLatex: "5\\times",
                     hintLatex: ["10/2"]
@@ -335,7 +335,7 @@ function buildStagePool(
         } else if (difficulty === "ADVANCED") {
             quests.push(
                 { id: "B-A1", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_p2", { p1: 300, v1: 0.5, v2: 0.1 }), expressionLatex: "300 \\times 0.5 = P_2 \\times 0.1", targetLatex: "P_2", slots: [{ id: "p", labelLatex: "P", placeholder: "1500", expected: 1500 }], correctLatex: "1500 kPa", hintLatex: ["x5"] },
-                { id: "B-A2", difficulty, stage, lawType: "boyle", promptLatex: "Pressure increases by 25%. New Volume factor?", expressionLatex: "P_2 = 1.25 P_1 \\implies V_2 = V_1 / 1.25", targetLatex: "\\\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.8", expected: 0.8 }], correctLatex: "0.8", hintLatex: ["1/1.25"] },
+                { id: "B-A2", difficulty, stage, lawType: "boyle", promptLatex: "Pressure increases by 25%. New Volume factor?", expressionLatex: "P_2 = 1.25 P_1 \\implies V_2 = V_1 / 1.25", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.8", expected: 0.8 }], correctLatex: "0.8", hintLatex: ["1/1.25"] },
                 { id: "B-A3", difficulty, stage, lawType: "boyle", promptLatex: "P V = 5000 J (energy density). If V=0.01 m^{3}, P?", expressionLatex: "P = 5000/0.01", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "500000", expected: 500000 }], correctLatex: "500 kPa", hintLatex: ["J/m^{3} = Pa"] },
                 { id: "B-A4", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_find_v2", { p1: 400, v1: 2.5, p2: 1000 }), expressionLatex: "400(2.5)=1000 V_2", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["1000/1000"] },
                 { id: "B-A5", difficulty, stage, lawType: "boyle", promptLatex: "Graph P vs V is a hyperbola. P(V) = k/V. If k=100, P at V=5?", expressionLatex: "P=100/5", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "20", expected: 20 }], correctLatex: "20", hintLatex: ["Inverse"] }
@@ -344,8 +344,8 @@ function buildStagePool(
             // ELITE
             quests.push(
                 { id: "B-E1", difficulty, stage, lawType: "boyle", promptLatex: "Isothermal Work W = nRT ln(V2/V1). P1V1=1000 J. Expand V to 2V. W?", expressionLatex: "W = 1000 \\ln(2)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "693", expected: 693 }], correctLatex: "\\approx 693 \\text{ J}", hintLatex: ["ln(2)=0.693"] },
-                { id: "B-E2", difficulty, stage, lawType: "boyle", promptLatex: "Compress V to V/3. Work done on gas?", expressionLatex: "W = -P_1 V_1 \\ln(1/3)", targetLatex: "\\\\text{Sign}", slots: [{ id: "s", labelLatex: "+/-", placeholder: "+", expected: "+" }], correctLatex: "Positive work on gas", hintLatex: ["Compression"] },
-                { id: "B-E3", difficulty, stage, lawType: "boyle", promptLatex: "Real gas does NOT follow Boyle's exactly at...", expressionLatex: "\\text{High P, Low T}", targetLatex: "\\\\text{Conditions}", slots: [{ id: "c", labelLatex: "P is", placeholder: "high", expected: "high" }], correctLatex: "High Pressure", hintLatex: ["Intermolecular forces dominate"] },
+                { id: "B-E2", difficulty, stage, lawType: "boyle", promptLatex: "Compress V to V/3. Work done on gas?", expressionLatex: "W = -P_1 V_1 \\ln(1/3)", targetLatex: "\\text{Sign}", slots: [{ id: "s", labelLatex: "+/-", placeholder: "+", expected: "+" }], correctLatex: "Positive work on gas", hintLatex: ["Compression"] },
+                { id: "B-E3", difficulty, stage, lawType: "boyle", promptLatex: "Real gas does NOT follow Boyle's exactly at...", expressionLatex: "\\text{High P, Low T}", targetLatex: "\\text{Conditions}", slots: [{ id: "c", labelLatex: "P is", placeholder: "high", expected: "high" }], correctLatex: "High Pressure", hintLatex: ["Intermolecular forces dominate"] },
                 { id: "B-E4", difficulty, stage, lawType: "boyle", promptLatex: "P1=1 atm, V1=10 L. Compress to P2=10 atm. V2 if Ideal?", expressionLatex: "1(10) = 10(V_2)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["Ratio 10"] },
                 { id: "B-E5", difficulty, stage, lawType: "boyle", promptLatex: "Two bulbs connected. P1=2, V1=1; P2=0, V2=1 (Values). Open valve. Final P?", expressionLatex: "P_f (V_1+V_2) = P_1 V_1", targetLatex: "P_f", slots: [{ id: "p", labelLatex: "P", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["Total Volume = 2"] }
             );
@@ -359,31 +359,31 @@ function buildStagePool(
                 { id: "C-B2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 1, t1: 200, v2: 2 }), expressionLatex: "2/T_2 = 1/200", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "400", expected: 400 }], correctLatex: "400 K", hintLatex: ["V doubles, T doubles"] },
                 { id: "C-B3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_v2", { v1: 10, t1: 400, t2: 200 }), expressionLatex: "V_2/200 = 10/400", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "5", expected: 5 }], correctLatex: "5 L", hintLatex: ["T halves"] },
                 { id: "C-B4", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 5, t1: 250, v2: 10 }), expressionLatex: "10/T_2 = 5/250", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "500", expected: 500 }], correctLatex: "500 K", hintLatex: ["Proportional"] },
-                { id: "C-B5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_condition"), expressionLatex: "V/T = k", targetLatex: "\\\\text{Constant}", slots: [{ id: "c", labelLatex: "P", placeholder: "pressure", expected: "pressure" }], correctLatex: "Pressure", hintLatex: ["Isobaric"] }
+                { id: "C-B5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_condition"), expressionLatex: "V/T = k", targetLatex: "\\text{Constant}", slots: [{ id: "c", labelLatex: "P", placeholder: "pressure", expected: "pressure" }], correctLatex: "Pressure", hintLatex: ["Isobaric"] }
             );
         } else if (difficulty === "CORE") {
             quests.push(
                 { id: "C-C1", difficulty, stage, lawType: "charles", promptLatex: "V1=3 L, T1=27 °C (300 K). T2=127 °C (400 K). Find V2.", expressionLatex: "V_2 = 3 \\times 400/300", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }], correctLatex: "4 L", hintLatex: ["Use Kelvin Only"] },
                 { id: "C-C2", difficulty, stage, lawType: "charles", promptLatex: "V1=2 L, T1=200 K. V2=3 L. Find T2.", expressionLatex: "T_2 = 3 \\times 200/2", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "300", expected: 300 }], correctLatex: "300 K", hintLatex: ["Ratio 1.5"] },
-                { id: "C-C3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_relation"), expressionLatex: "V \\propto T", targetLatex: "\\\\text{Factor}", slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Linear"] },
-                { id: "C-C4", difficulty, stage, lawType: "charles", promptLatex: "Cool gas from 400 K to 100 K. Volume factor?", expressionLatex: "100/400", targetLatex: "\\\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["1/4"] },
-                { id: "C-C5", difficulty, stage, lawType: "charles", promptLatex: "Absolute Zero in Celsius?", expressionLatex: "0 \\text{ K}", targetLatex: "^\circ\\\\text{C}", slots: [{ id: "c", labelLatex: "C", placeholder: "-273.15", expected: -273.15 }], correctLatex: "-273.15", hintLatex: ["Offset"] }
+                { id: "C-C3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_relation"), expressionLatex: "V \\propto T", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Linear"] },
+                { id: "C-C4", difficulty, stage, lawType: "charles", promptLatex: "Cool gas from 400 K to 100 K. Volume factor?", expressionLatex: "100/400", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["1/4"] },
+                { id: "C-C5", difficulty, stage, lawType: "charles", promptLatex: "Absolute Zero in Celsius?", expressionLatex: "0 \\text{ K}", targetLatex: "^\circ\\text{C}", slots: [{ id: "c", labelLatex: "C", placeholder: "-273.15", expected: -273.15 }], correctLatex: "-273.15", hintLatex: ["Offset"] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
                 { id: "C-A1", difficulty, stage, lawType: "charles", promptLatex: "V1=5 L at 20 °C. At 80 °C (353 K), V2?", expressionLatex: "V_2 = 5 \\times 353 / 293", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "6.02", expected: 6.02 }], correctLatex: "\\approx 6.02 \\text{ L}", hintLatex: ["Kelvin conv"] },
-                { id: "C-A2", difficulty, stage, lawType: "charles", promptLatex: "Heating gas increases kinetic energy. Mean KE is prop to?", expressionLatex: "KE \\propto T", targetLatex: "\\\\text{Quantity}", slots: [{ id: "q", labelLatex: "Q", placeholder: "temperature", expected: "temperature" }], correctLatex: "Temperature", hintLatex: ["T is measure of KE"] },
+                { id: "C-A2", difficulty, stage, lawType: "charles", promptLatex: "Heating gas increases kinetic energy. Mean KE is prop to?", expressionLatex: "KE \\propto T", targetLatex: "\\text{Quantity}", slots: [{ id: "q", labelLatex: "Q", placeholder: "temperature", expected: "temperature" }], correctLatex: "Temperature", hintLatex: ["T is measure of KE"] },
                 { id: "C-A3", difficulty, stage, lawType: "charles", promptLatex: "V1=10, T1=500. V2=5. T2?", expressionLatex: "T_2 = 5/10 \\times 500", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "250", expected: 250 }], correctLatex: "250 K", hintLatex: ["Halved"] },
-                { id: "C-A4", difficulty, stage, lawType: "combined", promptLatex: "Combined Law at constant P reduces to?", expressionLatex: "V/T = k", targetLatex: "\\\\text{Law}", slots: [{ id: "l", labelLatex: "Law", placeholder: "charles", expected: "charles" }], correctLatex: "Charles's Law", hintLatex: ["Name"] },
+                { id: "C-A4", difficulty, stage, lawType: "combined", promptLatex: "Combined Law at constant P reduces to?", expressionLatex: "V/T = k", targetLatex: "\\text{Law}", slots: [{ id: "l", labelLatex: "Law", placeholder: "charles", expected: "charles" }], correctLatex: "Charles's Law", hintLatex: ["Name"] },
                 { id: "C-A5", difficulty, stage, lawType: "charles", promptLatex: "Isobaric expansion work W = P(V2-V1). If P=100 Pa, V changes 1 to 2. W?", expressionLatex: "100(2-1)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "100", expected: 100 }], correctLatex: "100 J", hintLatex: ["Direct mult"] }
             );
         } else { // ELITE
             quests.push(
-                { id: "C-E1", difficulty, stage, lawType: "combined", promptLatex: "Ideal Gas: density \\rho \\propto 1/T (at const P). T multiplies by 2. \\rho factor?", expressionLatex: "1/2", targetLatex: "\\\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.5", expected: 0.5 }], correctLatex: "0.5", hintLatex: ["Inverse"] },
+                { id: "C-E1", difficulty, stage, lawType: "combined", promptLatex: "Ideal Gas: density \\rho \\propto 1/T (at const P). T multiplies by 2. \\rho factor?", expressionLatex: "1/2", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.5", expected: 0.5 }], correctLatex: "0.5", hintLatex: ["Inverse"] },
                 { id: "C-E2", difficulty, stage, lawType: "charles", promptLatex: "V-T Graph slope = nR/P. If n=1, P=8.314. Slope?", expressionLatex: "Slope = R/P = 1", targetLatex: "S", slots: [{ id: "s", labelLatex: "S", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["R = 8.314"] },
                 { id: "C-E3", difficulty, stage, lawType: "charles", promptLatex: "T1=300, V1=1. Piston moves out, doing Work W=300J at P=100Pa. V2?", expressionLatex: "300 = 100(V_2 - 1)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "4", expected: 4 }], correctLatex: "4 L", hintLatex: ["W = P \\Delta V"] },
                 { id: "C-E4", difficulty, stage, lawType: "charles", promptLatex: "Find T2 in prev problem (Quest C-E3). T1/V1 = T2/V2.", expressionLatex: "300/1 = T_2/4", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "1200", expected: 1200 }], correctLatex: "1200 K", hintLatex: ["Prop"] },
-                { id: "C-E5", difficulty, stage, lawType: "combined", promptLatex: "Efficiency = 1 - T_c/T_h (Carnot). If V doubles adiabatically... (Ignore for Charles). Just: T proportional E_kin.", expressionLatex: "v_{rms} \\propto \\\sqrt{T}", targetLatex: "\\\\text{Power}", slots: [{ id: "p", labelLatex: "P", placeholder: "0.5", expected: 0.5 }], correctLatex: "Sq root", hintLatex: ["Power 1/2"] }
+                { id: "C-E5", difficulty, stage, lawType: "combined", promptLatex: "Efficiency = 1 - T_c/T_h (Carnot). If V doubles adiabatically... (Ignore for Charles). Just: T proportional E_kin.", expressionLatex: "v_{rms} \\propto \\\sqrt{T}", targetLatex: "\\text{Power}", slots: [{ id: "p", labelLatex: "P", placeholder: "0.5", expected: 0.5 }], correctLatex: "Sq root", hintLatex: ["Power 1/2"] }
             );
         }
     }
