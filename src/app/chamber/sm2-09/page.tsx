@@ -124,7 +124,7 @@ export default function SM209Page() {
           slots: q.slots || [
             {
               id: "solution",
-              labelLatex: "\\\\text{Solution}",
+              labelLatex: "\\text{Solution}",
               placeholder: sm2_09_t.placeholder_interval,
               expected: q.answer || "",
               acceptedFormats: ["interval", "inequality"]
