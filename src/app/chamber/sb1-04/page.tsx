@@ -90,7 +90,7 @@ export default function SB104PlantStructure() {
                 stage,
                 structure: item.structure,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Structure: } ${item.structure}`,
+                expressionLatex: `\\text{${t("sb1_04.expressions.structure_label")}} ${item.structure}`,
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
@@ -140,7 +140,7 @@ export default function SB104PlantStructure() {
                 difficulty,
                 stage,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Water Transport Mechanism}`,
+                expressionLatex: `\\text{${t("sb1_04.expressions.water_transport_title")}}`,
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
@@ -211,7 +211,7 @@ export default function SB104PlantStructure() {
                 difficulty,
                 stage,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Nutrient Transport}`,
+                expressionLatex: `\\text{${t("sb1_04.expressions.nutrient_transport_title")}}`,
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",

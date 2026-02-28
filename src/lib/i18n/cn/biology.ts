@@ -534,7 +534,12 @@ export const cnBiology = {
         incorrect: "检查答案",
         ready: "就绪",
         monitor_title: "SB1.04_植物监视器",
-        footer_left: "SB1.04_植物结构 // 节点：巴塞尔"
+        footer_left: "SB1.04_植物结构 // 节点：巴塞尔",
+        expressions: {
+            structure_label: "结构：",
+            water_transport_title: "水分运输机制",
+            nutrient_transport_title: "营养物质运输"
+        }
     },
 
     // SB1.05: 动物分类与适应

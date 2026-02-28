@@ -674,7 +674,12 @@ export const enBiology = {
         incorrect: "Check answer",
         ready: "Ready",
         monitor_title: "SB1.04_PLANT_MONITOR",
-        footer_left: "SB1.04_PLANT_STRUCTURE // NODE: BASEL"
+        footer_left: "SB1.04_PLANT_STRUCTURE // NODE: BASEL",
+        expressions: {
+            structure_label: "Structure:",
+            water_transport_title: "Water Transport Mechanism",
+            nutrient_transport_title: "Nutrient Transport"
+        }
     },
 
     // SB1.05: Animal Classification & Adaptation

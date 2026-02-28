@@ -534,7 +534,12 @@ export const deBiology = {
         incorrect: "Antwort prüfen",
         ready: "Bereit",
         monitor_title: "SB1.04_PFLANZEN_MONITOR",
-        footer_left: "SB1.04_PFLANZENSTRUKTUR // KNOTEN: BASEL"
+        footer_left: "SB1.04_PFLANZENSTRUKTUR // KNOTEN: BASEL",
+        expressions: {
+            structure_label: "Struktur:",
+            water_transport_title: "Wassertransportmechanismus",
+            nutrient_transport_title: "Nährstofftransport"
+        }
     },
 
     // SB1.05: Tierklassifikation & Anpassung
