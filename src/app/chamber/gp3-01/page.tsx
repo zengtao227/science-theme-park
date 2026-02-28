@@ -39,7 +39,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.find_velocity", { f: "2", lambda: "3" }),
                         expressionLatex: `v = f \\times \\lambda`,
                         targetLatex: `v`,
-                        slots: [{ id: "v", labelLatex: `v\\\\text{ (m/s)}`, placeholder: "6", expected: 6 }],
+                        slots: [{ id: "v", labelLatex: `v\\text{ (m/s)}`, placeholder: "6", expected: 6 }],
                         correctLatex: `6\\text{ m/s}`,
                         hintLatex: [t("gp3_01.hints.wave_equation")]
                     },
@@ -49,7 +49,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.find_wavelength", { f: "5", v: "10" }),
                         expressionLatex: `\\lambda = \\frac{v}{f}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "2", expected: 2 }],
                         correctLatex: `2\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.wavelength_calc")]
                     },
@@ -59,7 +59,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.find_frequency", { v: "20", lambda: "5" }),
                         expressionLatex: `f = \\frac{v}{\\lambda}`,
                         targetLatex: `f`,
-                        slots: [{ id: "f", labelLatex: `f\\\\text{ (Hz)}`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "f", labelLatex: `f\\text{ (Hz)}`, placeholder: "4", expected: 4 }],
                         correctLatex: `4\\text{ Hz}`,
                         hintLatex: [t("gp3_01.hints.frequency_calc")]
                     },
@@ -69,7 +69,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.verify_wave_eq", { f: "10", lambda: "3", v: "30" }),
                         expressionLatex: `v = f \\times \\lambda = 10 \\times 3`,
                         targetLatex: `v`,
-                        slots: [{ id: "v", labelLatex: `v\\\\text{ (m/s)}`, placeholder: "30", expected: 30 }],
+                        slots: [{ id: "v", labelLatex: `v\\text{ (m/s)}`, placeholder: "30", expected: 30 }],
                         correctLatex: `30\\text{ m/s}`,
                         hintLatex: [t("gp3_01.hints.wave_equation")]
                     },
@@ -79,7 +79,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.water_wave", { f: "8", lambda: "4" }),
                         expressionLatex: `v = f \\times \\lambda`,
                         targetLatex: `v`,
-                        slots: [{ id: "v", labelLatex: `v\\\\text{ (m/s)}`, placeholder: "32", expected: 32 }],
+                        slots: [{ id: "v", labelLatex: `v\\text{ (m/s)}`, placeholder: "32", expected: 32 }],
                         correctLatex: `32\\text{ m/s}`,
                         hintLatex: [t("gp3_01.hints.wave_equation")]
                     }
@@ -94,7 +94,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.find_period", { f: "2" }),
                         expressionLatex: `T = \\frac{1}{f}`,
                         targetLatex: `T`,
-                        slots: [{ id: "T", labelLatex: `T\\\\text{ (s)}`, placeholder: "0.5", expected: 0.5 }],
+                        slots: [{ id: "T", labelLatex: `T\\text{ (s)}`, placeholder: "0.5", expected: 0.5 }],
                         correctLatex: `0.5\\text{ s}`,
                         hintLatex: [t("gp3_01.hints.period_calc")]
                     },
@@ -104,7 +104,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.period_to_freq", { T: "0.2" }),
                         expressionLatex: `f = \\frac{1}{T}`,
                         targetLatex: `f`,
-                        slots: [{ id: "f", labelLatex: `f\\\\text{ (Hz)}`, placeholder: "5", expected: 5 }],
+                        slots: [{ id: "f", labelLatex: `f\\text{ (Hz)}`, placeholder: "5", expected: 5 }],
                         correctLatex: `5\\text{ Hz}`,
                         hintLatex: [t("gp3_01.hints.frequency_from_period")]
                     },
@@ -114,7 +114,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.sound_in_air", { f: "500" }),
                         expressionLatex: `\\lambda = \\frac{v}{f} = \\frac{340}{500}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "0.68", expected: 0.68 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "0.68", expected: 0.68 }],
                         correctLatex: `0.68\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.sound_speed_air")]
                     },
@@ -124,7 +124,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.sound_in_water", { f: "500" }),
                         expressionLatex: `\\lambda = \\frac{v}{f} = \\frac{1500}{500}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "3", expected: 3 }],
                         correctLatex: `3\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.sound_speed_water")]
                     },
@@ -134,7 +134,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.speed_ratio"),
                         expressionLatex: `\\frac{v_{\\text{water}}}{v_{\\text{air}}} = \\frac{1500}{340}`,
                         targetLatex: `\\text{ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\\\text{ratio}`, placeholder: "4.4", expected: 4.4 }],
+                        slots: [{ id: "ratio", labelLatex: `\\text{ratio}`, placeholder: "4.4", expected: 4.4 }],
                         correctLatex: `4.4`,
                         hintLatex: [t("gp3_01.hints.speed_comparison")]
                     }
@@ -149,7 +149,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.doppler_approach"),
                         expressionLatex: `f' = f \\times \\frac{v}{v - v_s}`,
                         targetLatex: `\\text{higher/lower}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Answer}`, placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Answer}`, placeholder: "higher", expected: "higher" }],
                         correctLatex: `\\text{Higher}`,
                         hintLatex: [t("gp3_01.hints.doppler_effect")]
                     },
@@ -159,7 +159,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.doppler_recede"),
                         expressionLatex: `f' = f \\times \\frac{v}{v + v_s}`,
                         targetLatex: `\\text{higher/lower}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Answer}`, placeholder: "lower", expected: "lower" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Answer}`, placeholder: "lower", expected: "lower" }],
                         correctLatex: `\\text{Lower}`,
                         hintLatex: [t("gp3_01.hints.doppler_recede")]
                     },
@@ -169,7 +169,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.constructive_interference"),
                         expressionLatex: `A_{\\text{total}} = A_1 + A_2`,
                         targetLatex: `A_{\\text{total}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "4", expected: 4 }],
                         correctLatex: `4\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.constructive")]
                     },
@@ -179,7 +179,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.destructive_interference"),
                         expressionLatex: `A_{\\text{total}} = |A_1 - A_2|`,
                         targetLatex: `A_{\\text{total}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "0", expected: 0 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "0", expected: 0 }],
                         correctLatex: `0\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.destructive")]
                     },
@@ -189,7 +189,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.beat_frequency"),
                         expressionLatex: `f_{\\text{beat}} = |f_1 - f_2|`,
                         targetLatex: `f_{\\text{beat}}`,
-                        slots: [{ id: "f", labelLatex: `f_{\\\\text{beat}}\\\\text{ (Hz)}`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "f", labelLatex: `f_{\\text{beat}}\\text{ (Hz)}`, placeholder: "4", expected: 4 }],
                         correctLatex: `4\\text{ Hz}`,
                         hintLatex: [t("gp3_01.hints.beats")]
                     }
@@ -203,7 +203,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.de_broglie"),
                         expressionLatex: `\\lambda = \\frac{h}{p} = \\frac{h}{mv}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "6.63e-34", expected: 6.63e-34 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "6.63e-34", expected: 6.63e-34 }],
                         correctLatex: `6.63 \\times 10^{-34}\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.de_broglie")]
                     },
@@ -212,7 +212,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.wave_particle_duality"),
                         expressionLatex: `E = h f = \\frac{hc}{\\lambda}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Answer}`, placeholder: "both", expected: "both" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Answer}`, placeholder: "both", expected: "both" }],
                         correctLatex: `\\text{Both wave and particle}`,
                         hintLatex: [t("gp3_01.hints.duality")]
                     },
@@ -221,7 +221,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.photon_energy"),
                         expressionLatex: `E = hf`,
                         targetLatex: `E`,
-                        slots: [{ id: "E", labelLatex: `E\\\\text{ (J)}`, placeholder: "3.31e-19", expected: 3.31e-19 }],
+                        slots: [{ id: "E", labelLatex: `E\\text{ (J)}`, placeholder: "3.31e-19", expected: 3.31e-19 }],
                         correctLatex: `3.31 \\times 10^{-19}\\text{ J}`,
                         hintLatex: [t("gp3_01.hints.photon_energy")]
                     },
@@ -230,7 +230,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.matter_wave"),
                         expressionLatex: `\\lambda = \\frac{h}{mv}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (m)}`, placeholder: "1e-10", expected: 1e-10 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "1e-10", expected: 1e-10 }],
                         correctLatex: `10^{-10}\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.matter_wave")]
                     },
@@ -239,7 +239,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.uncertainty"),
                         expressionLatex: `\\Delta x \\Delta p \\geq \\frac{h}{4\\pi}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Answer}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Answer}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (Heisenberg)}`,
                         hintLatex: [t("gp3_01.hints.uncertainty")]
                     }
@@ -257,7 +257,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.same_phase_add"),
                         expressionLatex: `A_{\\text{total}} = A_1 + A_2 = 2 + 2`,
                         targetLatex: `A_{\\text{total}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "4", expected: 4 }],
                         correctLatex: `4\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.in_phase")]
                     },
@@ -267,7 +267,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.opposite_phase_cancel"),
                         expressionLatex: `A_{\\text{total}} = |A_1 - A_2| = |3 - 3|`,
                         targetLatex: `A_{\\text{total}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "0", expected: 0 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "0", expected: 0 }],
                         correctLatex: `0\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.out_of_phase")]
                     },
@@ -277,7 +277,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.constructive_max"),
                         expressionLatex: `A_{\\text{max}} = A_1 + A_2`,
                         targetLatex: `A_{\\text{max}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "2", expected: 2 }],
                         correctLatex: `2\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.max_amplitude")]
                     },
@@ -287,7 +287,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.partial_destructive"),
                         expressionLatex: `A_{\\text{total}} = |A_1 - A_2| = |5 - 3|`,
                         targetLatex: `A_{\\text{total}}`,
-                        slots: [{ id: "A", labelLatex: `A\\\\text{ (m)}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "A", labelLatex: `A\\text{ (m)}`, placeholder: "2", expected: 2 }],
                         correctLatex: `2\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.partial_cancel")]
                     },
@@ -297,7 +297,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.interference_type"),
                         expressionLatex: `\\text{Same phase} \\rightarrow \\text{constructive}`,
                         targetLatex: `\\text{Type}`,
-                        slots: [{ id: "type", labelLatex: `\\\\text{Type}`, placeholder: "constructive", expected: "constructive" }],
+                        slots: [{ id: "type", labelLatex: `\\text{Type}`, placeholder: "constructive", expected: "constructive" }],
                         correctLatex: `\\text{Constructive}`,
                         hintLatex: [t("gp3_01.hints.interference_types")]
                     }
@@ -312,7 +312,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.standing_wave_node"),
                         expressionLatex: `x_n = n \\times \\frac{\\lambda}{2}`,
                         targetLatex: `x_1`,
-                        slots: [{ id: "x", labelLatex: `x_1\\\\text{ (m)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "x", labelLatex: `x_1\\text{ (m)}`, placeholder: "1", expected: 1 }],
                         correctLatex: `1\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.node_position")]
                     },
@@ -322,7 +322,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.standing_wave_antinode"),
                         expressionLatex: `x_a = (n + \\frac{1}{2}) \\times \\frac{\\lambda}{2}`,
                         targetLatex: `x_1`,
-                        slots: [{ id: "x", labelLatex: `x_1\\\\text{ (m)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "x", labelLatex: `x_1\\text{ (m)}`, placeholder: "1", expected: 1 }],
                         correctLatex: `1\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.antinode_position")]
                     },
@@ -342,7 +342,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.string_fundamental"),
                         expressionLatex: `L = \\frac{\\lambda}{2}`,
                         targetLatex: `L`,
-                        slots: [{ id: "L", labelLatex: `L\\\\text{ (m)}`, placeholder: "0.5", expected: 0.5 }],
+                        slots: [{ id: "L", labelLatex: `L\\text{ (m)}`, placeholder: "0.5", expected: 0.5 }],
                         correctLatex: `0.5\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.fundamental_mode")]
                     },
@@ -352,7 +352,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.harmonic_wavelength"),
                         expressionLatex: `\\lambda_2 = \\frac{\\lambda_1}{2}`,
                         targetLatex: `\\lambda_2`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda_2\\\\text{ (m)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda_2\\text{ (m)}`, placeholder: "1", expected: 1 }],
                         correctLatex: `1\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.second_harmonic")]
                     }
@@ -367,7 +367,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.double_slit_spacing"),
                         expressionLatex: `\\Delta y = \\frac{\\lambda L}{d}`,
                         targetLatex: `\\Delta y`,
-                        slots: [{ id: "dy", labelLatex: `\\Delta y\\\\text{ (mm)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "dy", labelLatex: `\\Delta y\\text{ (mm)}`, placeholder: "1", expected: 1 }],
                         correctLatex: `1\\text{ mm}`,
                         hintLatex: [t("gp3_01.hints.double_slit")]
                     },
@@ -377,7 +377,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.fringe_order"),
                         expressionLatex: `y_m = m \\times \\frac{\\lambda L}{d}`,
                         targetLatex: `y_3`,
-                        slots: [{ id: "y", labelLatex: `y_3\\\\text{ (mm)}`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "y", labelLatex: `y_3\\text{ (mm)}`, placeholder: "3", expected: 3 }],
                         correctLatex: `3\\text{ mm}`,
                         hintLatex: [t("gp3_01.hints.fringe_position")]
                     },
@@ -387,7 +387,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.slit_separation"),
                         expressionLatex: `d = \\frac{\\lambda L}{\\Delta y}`,
                         targetLatex: `d`,
-                        slots: [{ id: "d", labelLatex: `d\\\\text{ (mm)}`, placeholder: "0.5", expected: 0.5 }],
+                        slots: [{ id: "d", labelLatex: `d\\text{ (mm)}`, placeholder: "0.5", expected: 0.5 }],
                         correctLatex: `0.5\\text{ mm}`,
                         hintLatex: [t("gp3_01.hints.slit_distance")]
                     },
@@ -397,7 +397,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.wavelength_from_fringes"),
                         expressionLatex: `\\lambda = \\frac{\\Delta y \\times d}{L}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "lambda", labelLatex: `\\lambda\\\\text{ (nm)}`, placeholder: "400", expected: 400 }],
+                        slots: [{ id: "lambda", labelLatex: `\\lambda\\text{ (nm)}`, placeholder: "400", expected: 400 }],
                         correctLatex: `400\\text{ nm}`,
                         hintLatex: [t("gp3_01.hints.wavelength_measurement")]
                     },
@@ -407,7 +407,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.central_maximum"),
                         expressionLatex: `m = 0 \\rightarrow y = 0`,
                         targetLatex: `y_0`,
-                        slots: [{ id: "y", labelLatex: `y_0\\\\text{ (m)}`, placeholder: "0", expected: 0 }],
+                        slots: [{ id: "y", labelLatex: `y_0\\text{ (m)}`, placeholder: "0", expected: 0 }],
                         correctLatex: `0\\text{ m}`,
                         hintLatex: [t("gp3_01.hints.central_bright")]
                     }
@@ -422,7 +422,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.thin_film_constructive"),
                         expressionLatex: `2nt = m\\lambda`,
                         targetLatex: `t`,
-                        slots: [{ id: "t", labelLatex: `t\\\\text{ (nm)}`, placeholder: "250", expected: 250 }],
+                        slots: [{ id: "t", labelLatex: `t\\text{ (nm)}`, placeholder: "250", expected: 250 }],
                         correctLatex: `250\\text{ nm}`,
                         hintLatex: [t("gp3_01.hints.thin_film")]
                     },
@@ -432,7 +432,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.thin_film_destructive"),
                         expressionLatex: `2nt = (m + \\frac{1}{2})\\lambda`,
                         targetLatex: `t`,
-                        slots: [{ id: "t", labelLatex: `t\\\\text{ (nm)}`, placeholder: "150", expected: 150 }],
+                        slots: [{ id: "t", labelLatex: `t\\text{ (nm)}`, placeholder: "150", expected: 150 }],
                         correctLatex: `150\\text{ nm}`,
                         hintLatex: [t("gp3_01.hints.destructive_film")]
                     },
@@ -442,7 +442,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.newton_rings"),
                         expressionLatex: `r_m = \\sqrt{m\\lambda R}`,
                         targetLatex: `r_1`,
-                        slots: [{ id: "r", labelLatex: `r_1\\\\text{ (mm)}`, placeholder: "0.5", expected: 0.5 }],
+                        slots: [{ id: "r", labelLatex: `r_1\\text{ (mm)}`, placeholder: "0.5", expected: 0.5 }],
                         correctLatex: `0.5\\text{ mm}`,
                         hintLatex: [t("gp3_01.hints.newton_rings")]
                     },
@@ -452,7 +452,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.soap_bubble"),
                         expressionLatex: `2nt = m\\lambda`,
                         targetLatex: `\\text{color}`,
-                        slots: [{ id: "color", labelLatex: `\\\\text{Color}`, placeholder: "green", expected: "green" }],
+                        slots: [{ id: "color", labelLatex: `\\text{Color}`, placeholder: "green", expected: "green" }],
                         correctLatex: `\\text{Green (500 nm)}`,
                         hintLatex: [t("gp3_01.hints.soap_colors")]
                     },
@@ -462,7 +462,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.anti_reflection"),
                         expressionLatex: `t = \\frac{\\lambda}{4n}`,
                         targetLatex: `t`,
-                        slots: [{ id: "t", labelLatex: `t\\\\text{ (nm)}`, placeholder: "100", expected: 100 }],
+                        slots: [{ id: "t", labelLatex: `t\\text{ (nm)}`, placeholder: "100", expected: 100 }],
                         correctLatex: `100\\text{ nm}`,
                         hintLatex: [t("gp3_01.hints.anti_reflection")]
                     }
@@ -479,7 +479,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.reflection_angle"),
                         expressionLatex: `\\theta_r = \\theta_i`,
                         targetLatex: `\\theta_r`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_r\\text{ (deg)}`, placeholder: "30", expected: 30 }],
                         correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.law_of_reflection")]
                     },
@@ -488,7 +488,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.refraction_basic"),
                         expressionLatex: `n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2`,
                         targetLatex: `\\theta_2`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_2\\\\text{ (deg)}`, placeholder: "22", expected: 22 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_2\\text{ (deg)}`, placeholder: "22", expected: 22 }],
                         correctLatex: `22deg`,
                         hintLatex: [t("gp3_01.hints.snells_law")]
                     },
@@ -497,7 +497,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.light_speed_medium"),
                         expressionLatex: `v = \\frac{c}{n}`,
                         targetLatex: `v`,
-                        slots: [{ id: "v", labelLatex: `v\\\\text{ (m/s)}`, placeholder: "2e8", expected: 2e8 }],
+                        slots: [{ id: "v", labelLatex: `v\\text{ (m/s)}`, placeholder: "2e8", expected: 2e8 }],
                         correctLatex: `2 \\times 10^8\\text{ m/s}`,
                         hintLatex: [t("gp3_01.hints.light_speed")]
                     },
@@ -515,7 +515,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.normal_incidence"),
                         expressionLatex: `\\theta_i = 0deg \\rightarrow \\theta_r = 0deg`,
                         targetLatex: `\\theta_r`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_r\\\\text{ (deg)}`, placeholder: "0", expected: 0 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_r\\text{ (deg)}`, placeholder: "0", expected: 0 }],
                         correctLatex: `0deg`,
                         hintLatex: [t("gp3_01.hints.normal_ray")]
                     }
@@ -529,7 +529,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.critical_angle"),
                         expressionLatex: `\\sin\\theta_c = \\frac{n_2}{n_1}`,
                         targetLatex: `\\theta_c`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_c\\\\text{ (deg)}`, placeholder: "42", expected: 42 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_c\\text{ (deg)}`, placeholder: "42", expected: 42 }],
                         correctLatex: `42deg`,
                         hintLatex: [t("gp3_01.hints.critical_angle")]
                     },
@@ -538,7 +538,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.total_internal_reflection"),
                         expressionLatex: `\\theta > \\theta_c \\rightarrow \\text{TIR}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{Yes/No}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (TIR occurs)}`,
                         hintLatex: [t("gp3_01.hints.tir_condition")]
                     },
@@ -547,7 +547,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.fiber_optics"),
                         expressionLatex: `\\text{TIR} \\rightarrow \\text{light trapped}`,
                         targetLatex: `\\text{Principle}`,
-                        slots: [{ id: "principle", labelLatex: `\\\\text{Principle}`, placeholder: "TIR", expected: "TIR" }],
+                        slots: [{ id: "principle", labelLatex: `\\text{Principle}`, placeholder: "TIR", expected: "TIR" }],
                         correctLatex: `\\text{Total Internal Reflection}`,
                         hintLatex: [t("gp3_01.hints.fiber_principle")]
                     },
@@ -556,7 +556,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.prism_dispersion"),
                         expressionLatex: `n(\\lambda) \\rightarrow \\text{different angles}`,
                         targetLatex: `\\text{Effect}`,
-                        slots: [{ id: "effect", labelLatex: `\\\\text{Effect}`, placeholder: "dispersion", expected: "dispersion" }],
+                        slots: [{ id: "effect", labelLatex: `\\text{Effect}`, placeholder: "dispersion", expected: "dispersion" }],
                         correctLatex: `\\text{Dispersion}`,
                         hintLatex: [t("gp3_01.hints.dispersion")]
                     },
@@ -565,7 +565,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.brewster_angle"),
                         expressionLatex: `\\tan\\theta_B = \\frac{n_2}{n_1}`,
                         targetLatex: `\\theta_B`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_B\\\\text{ (deg)}`, placeholder: "53", expected: 53 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_B\\text{ (deg)}`, placeholder: "53", expected: 53 }],
                         correctLatex: `53deg`,
                         hintLatex: [t("gp3_01.hints.brewster")]
                     }
@@ -580,7 +580,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.single_slit_minima"),
                         expressionLatex: `a \\sin\\theta = m\\lambda`,
                         targetLatex: `\\theta_1`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_1\\text{ (deg)}`, placeholder: "30", expected: 30 }],
                         correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.single_slit")]
                     },
@@ -590,7 +590,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.diffraction_width"),
                         expressionLatex: `w = \\frac{2\\lambda L}{a}`,
                         targetLatex: `w`,
-                        slots: [{ id: "w", labelLatex: `w\\\\text{ (mm)}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "w", labelLatex: `w\\text{ (mm)}`, placeholder: "2", expected: 2 }],
                         correctLatex: `2\\text{ mm}`,
                         hintLatex: [t("gp3_01.hints.central_width")]
                     },
@@ -600,7 +600,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.rayleigh_criterion"),
                         expressionLatex: `\\theta_{\\text{min}} = 1.22\\frac{\\lambda}{D}`,
                         targetLatex: `\\theta_{\\text{min}}`,
-                        slots: [{ id: "theta", labelLatex: `\\theta\\\\text{ (rad)}`, placeholder: "1e-6", expected: 1e-6 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta\\text{ (rad)}`, placeholder: "1e-6", expected: 1e-6 }],
                         correctLatex: `10^{-6}\\text{ rad}`,
                         hintLatex: [t("gp3_01.hints.rayleigh")]
                     },
@@ -610,7 +610,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.circular_aperture"),
                         expressionLatex: `\\text{Airy disk radius} = 1.22\\frac{\\lambda f}{D}`,
                         targetLatex: `r`,
-                        slots: [{ id: "r", labelLatex: `r\\\\text{ (um)}`, placeholder: "6", expected: 6 }],
+                        slots: [{ id: "r", labelLatex: `r\\text{ (um)}`, placeholder: "6", expected: 6 }],
                         correctLatex: `6\\text{ um}`,
                         hintLatex: [t("gp3_01.hints.airy_disk")]
                     },
@@ -635,7 +635,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.grating_equation"),
                         expressionLatex: `d \\sin\\theta = m\\lambda`,
                         targetLatex: `\\theta_1`,
-                        slots: [{ id: "theta", labelLatex: `\\theta_1\\\\text{ (deg)}`, placeholder: "30", expected: 30 }],
+                        slots: [{ id: "theta", labelLatex: `\\theta_1\\text{ (deg)}`, placeholder: "30", expected: 30 }],
                         correctLatex: `30deg`,
                         hintLatex: [t("gp3_01.hints.grating")]
                     },
@@ -645,7 +645,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.grating_order"),
                         expressionLatex: `m_{\\text{max}} = \\frac{d}{\\lambda}`,
                         targetLatex: `m_{\\text{max}}`,
-                        slots: [{ id: "m", labelLatex: `m_{\\\\text{max}}`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "m", labelLatex: `m_{\\text{max}}`, placeholder: "3", expected: 3 }],
                         correctLatex: `3`,
                         hintLatex: [t("gp3_01.hints.max_order")]
                     },
@@ -655,7 +655,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.grating_spacing"),
                         expressionLatex: `d = \\frac{m\\lambda}{\\sin\\theta}`,
                         targetLatex: `d`,
-                        slots: [{ id: "d", labelLatex: `d\\\\text{ (um)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "d", labelLatex: `d\\text{ (um)}`, placeholder: "1", expected: 1 }],
                         correctLatex: `1\\text{ um}`,
                         hintLatex: [t("gp3_01.hints.line_spacing")]
                     },
@@ -675,7 +675,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.blazed_grating"),
                         expressionLatex: `\\text{Blaze angle} \\rightarrow \\text{max efficiency}`,
                         targetLatex: `\\text{Purpose}`,
-                        slots: [{ id: "purpose", labelLatex: `\\\\text{Purpose}`, placeholder: "efficiency", expected: "efficiency" }],
+                        slots: [{ id: "purpose", labelLatex: `\\text{Purpose}`, placeholder: "efficiency", expected: "efficiency" }],
                         correctLatex: `\\text{Maximize efficiency}`,
                         hintLatex: [t("gp3_01.hints.blaze_angle")]
                     }
