@@ -12,6 +12,12 @@
 - H101_PROMPT_FOR_NEW_CLAUDE.md
   - 可直接复制给新 Claude 的下一轮接管 prompt（Math/Physics 规划）。
 
+- H102_STATUS_AFTER_PH_MA_FIX_20260228.md
+  - Physics/Math 翻译对称性修复完成后的最新状态与提交清单。
+
+- H103_PROMPT_FOR_NEW_CLAUDE.md
+  - 面向下一阶段“模块级 i18n 清理”的接管 prompt。
+
 - H94_recent_commits.txt
   - 最近提交记录（便于新 AI 对齐上下文）。
 
