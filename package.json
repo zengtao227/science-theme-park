@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage",
     "validate:translations": "node scripts/validate-translations.mjs",
     "i18n:extract": "node --experimental-strip-types scripts/extract-i18n-candidates.ts",
-    "i18n:apply": "node --experimental-strip-types scripts/apply-i18n-replacements.ts"
+    "i18n:apply": "node --experimental-strip-types scripts/apply-i18n-replacements.ts",
+    "i18n:scan-quality": "node --experimental-strip-types scripts/scan-translation-quality.ts"
   },
   "dependencies": {
     "@react-spring/web": "^10.0.3",
