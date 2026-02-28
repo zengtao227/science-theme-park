@@ -2072,6 +2072,29 @@ export const dePhysics = {
                         line_spacing: "d = mλ/sinθ",
                         grating_resolution: "R = mN",
                         blaze_angle: "Optimiert Effizienz"
+                },
+                labels: {
+                        answer: "\\text{Antwort}",
+                        type: "\\text{Typ}",
+                        color: "\\text{Farbe}",
+                        yes_no: "\\text{Ja/Nein}",
+                        principle: "\\text{Prinzip}",
+                        effect: "\\text{Effekt}",
+                        purpose: "\\text{Zweck}",
+                        higher: "\\text{Höher}",
+                        lower: "\\text{Niedriger}",
+                        both_wave_particle: "\\text{Welle und Teilchen}",
+                        yes_heisenberg: "\\text{Ja (Heisenberg)}",
+                        constructive: "\\text{Konstruktiv}",
+                        green_500nm: "\\text{Grün (500 nm)}",
+                        yes_tir: "\\text{Ja (TIR tritt auf)}",
+                        total_internal_reflection: "\\text{Totalreflexion}",
+                        dispersion: "\\text{Dispersion}",
+                        maximize_efficiency: "\\text{Effizienz maximieren}"
+                },
+                expr: {
+                        same_phase_constructive: "\\text{Gleiche Phase} \\rightarrow \\text{konstruktiv}",
+                        blaze_angle_efficiency: "\\text{Blazewinkel} \\rightarrow \\text{maximale Effizienz}"
                 }
         },
 

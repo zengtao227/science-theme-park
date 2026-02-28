@@ -2041,6 +2041,29 @@ export const cnPhysics = {
             line_spacing: "d = mλ/sinθ",
             grating_resolution: "R = mN",
             blaze_angle: "优化效率"
+        },
+        labels: {
+            answer: "\\text{答案}",
+            type: "\\text{类型}",
+            color: "\\text{颜色}",
+            yes_no: "\\text{是/否}",
+            principle: "\\text{原理}",
+            effect: "\\text{效果}",
+            purpose: "\\text{目的}",
+            higher: "\\text{更高}",
+            lower: "\\text{更低}",
+            both_wave_particle: "\\text{波和粒子两者都是}",
+            yes_heisenberg: "\\text{是（Heisenberg）}",
+            constructive: "\\text{相长干涉}",
+            green_500nm: "\\text{绿色（500 nm）}",
+            yes_tir: "\\text{是（TIR occurs）}",
+            total_internal_reflection: "\\text{全内反射}",
+            dispersion: "\\text{色散}",
+            maximize_efficiency: "\\text{最大化效率}"
+        },
+        expr: {
+            same_phase_constructive: "\\text{同相位} \\rightarrow \\text{相长干涉}",
+            blaze_angle_efficiency: "\\text{闪耀角} \\rightarrow \\text{最大效率}"
         }
     },
 

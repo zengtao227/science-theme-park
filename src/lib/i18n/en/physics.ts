@@ -2104,6 +2104,29 @@ export const enPhysics = {
                         line_spacing: "d = mλ/sinθ",
                         grating_resolution: "R = mN",
                         blaze_angle: "Optimizes efficiency"
+                },
+                labels: {
+                        answer: "\\text{Answer}",
+                        type: "\\text{Type}",
+                        color: "\\text{Color}",
+                        yes_no: "\\text{Yes/No}",
+                        principle: "\\text{Principle}",
+                        effect: "\\text{Effect}",
+                        purpose: "\\text{Purpose}",
+                        higher: "\\text{Higher}",
+                        lower: "\\text{Lower}",
+                        both_wave_particle: "\\text{Both wave and particle}",
+                        yes_heisenberg: "\\text{Yes (Heisenberg)}",
+                        constructive: "\\text{Constructive}",
+                        green_500nm: "\\text{Green (500 nm)}",
+                        yes_tir: "\\text{Yes (TIR occurs)}",
+                        total_internal_reflection: "\\text{Total Internal Reflection}",
+                        dispersion: "\\text{Dispersion}",
+                        maximize_efficiency: "\\text{Maximize efficiency}"
+                },
+                expr: {
+                        same_phase_constructive: "\\text{Same phase} \\rightarrow \\text{constructive}",
+                        blaze_angle_efficiency: "\\text{Blaze angle} \\rightarrow \\text{max efficiency}"
                 }
         },
 
