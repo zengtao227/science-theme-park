@@ -2581,6 +2581,13 @@ export const deMath = {
             label_ps: "P/S"
         }
     },
+    sc3_04: {
+        hints: {
+            look_for_group: "\\text{Suche die charakteristische Gruppe in } {formula}",
+            characteristic_ending: "\\text{Charakteristische Endung: -oic acid, -al oder -one}",
+            hydrogen_bonding: "\\text{Berücksichtige das Wasserstoffbindungspotenzial.}"
+        }
+    },
     sm2_09: {
         back: "Zurück zum Nexus",
         title: "SM2.09 // UNGLEICHUNGEN",

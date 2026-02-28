@@ -71,7 +71,7 @@ export default function SC304Page() {
                     targetLatex: m.expected,
                     slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: "...", expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
-                    hintLatex: [`\\text{Look for the characteristic group in } ${m.formula}`]
+                    hintLatex: [t("sc3_04.hints.look_for_group", { formula: m.formula })]
                 });
             });
         }
@@ -118,7 +118,7 @@ export default function SC304Page() {
                     targetLatex: m.expected,
                     slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: "...", expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
-                    hintLatex: [`\\text{Characteristic ending: -oic acid, -al, or -one}`]
+                    hintLatex: [t("sc3_04.hints.characteristic_ending")]
                 });
             });
         }
@@ -166,7 +166,7 @@ export default function SC304Page() {
                     targetLatex: c.expected,
                     slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: c.expected.toLowerCase() }],
                     correctLatex: c.expected,
-                    hintLatex: [`\\text{Consider hydrogen bonding potential.}`]
+                    hintLatex: [t("sc3_04.hints.hydrogen_bonding")]
                 });
             });
         }

@@ -2534,6 +2534,13 @@ export const cnMath = {
             label_ps: "P/S"
         }
     },
+    sc3_04: {
+        hints: {
+            look_for_group: "\\text{在 {formula} 中寻找特征基团}",
+            characteristic_ending: "\\text{特征结尾：-oic acid、-al 或 -one}",
+            hydrogen_bonding: "\\text{考虑氢键的形成可能。}"
+        }
+    },
     sm2_09: {
         back: "返回主界面",
         title: "SM2.09 // 不等式",

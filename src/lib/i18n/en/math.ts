@@ -2551,6 +2551,13 @@ export const enMath = {
             label_ps: "P/S"
         }
     },
+    sc3_04: {
+        hints: {
+            look_for_group: "\\text{Look for the characteristic group in } {formula}",
+            characteristic_ending: "\\text{Characteristic ending: -oic acid, -al, or -one}",
+            hydrogen_bonding: "\\text{Consider hydrogen bonding potential.}"
+        }
+    },
     sm2_09: {
         back: "Back to Nexus",
         title: "SM2.09 // INEQUALITIES",
