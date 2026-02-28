@@ -1599,6 +1599,10 @@ export const dePhysics = {
                         sw_e4: "v > v_{\\text{Schall}} \\rightarrow \\text{Schockwelle}",
                         sw_e5: "\\text{Großer Impedanzunterschied} \\rightarrow \\text{starke Reflexion}",
                 },
+                targets: {
+                        answer: "\\text{Antwort}",
+                        phenomenon: "\\text{Phänomen}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Die Schallgeschwindigkeit in Luft bei 20°C beträgt 343 m/s. Eine Schallwelle hat die Frequenz 686 Hz. Berechne die Wellenlänge.",

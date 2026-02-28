@@ -1632,6 +1632,10 @@ export const cnPhysics = {
                         sw_e4: "v > v_{\\text{音速}} \\rightarrow \\text{冲击波}",
                         sw_e5: "\\text{阻抗差异大} \\rightarrow \\text{强反射}",
                 },
+                targets: {
+                        answer: "\\text{答案}",
+                        phenomenon: "\\text{现象}",
+                },
         prompts: {
         // SOUND_WAVES
         sound_waves_b1: "20°C 空气中声速为 343 m/s，声波频率为 686 Hz，求波长。",

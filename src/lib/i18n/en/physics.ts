@@ -1570,6 +1570,10 @@ export const enPhysics = {
                         sw_e4: "v > v_{\\text{sound}} \\rightarrow \\text{shock wave}",
                         sw_e5: "\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}",
                 },
+                targets: {
+                        answer: "\\text{Answer}",
+                        phenomenon: "\\text{Phenomenon}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Sound speed in air at 20°C is 343 m/s. A sound wave has frequency 686 Hz. Find the wavelength.",
