@@ -1315,6 +1315,27 @@ export const dePhysics = {
                         buoyancy_elite_3: "Auftrieb Elite 3", // TODO
                         buoyancy_elite_4: "Auftrieb Elite 4", // TODO
                         buoyancy_elite_5: "Auftrieb Elite 5", // TODO
+                        hydraulics: "Hydraulik",
+                        hydraulics_basic_1: "Hydraulik Grundaufgabe 1", // TODO
+                        hydraulics_basic_2: "Hydraulik Grundaufgabe 2", // TODO
+                        hydraulics_basic_3: "Hydraulik Grundaufgabe 3", // TODO
+                        hydraulics_basic_4: "Hydraulik Grundaufgabe 4", // TODO
+                        hydraulics_basic_5: "Hydraulik Grundaufgabe 5", // TODO
+                        hydraulics_core_1: "Hydraulik Kernaufgabe 1", // TODO
+                        hydraulics_core_2: "Hydraulik Kernaufgabe 2", // TODO
+                        hydraulics_core_3: "Hydraulik Kernaufgabe 3", // TODO
+                        hydraulics_core_4: "Hydraulik Kernaufgabe 4", // TODO
+                        hydraulics_core_5: "Hydraulik Kernaufgabe 5", // TODO
+                        hydraulics_advanced_1: "Hydraulik Fortgeschritten 1", // TODO
+                        hydraulics_advanced_2: "Hydraulik Fortgeschritten 2", // TODO
+                        hydraulics_advanced_3: "Hydraulik Fortgeschritten 3", // TODO
+                        hydraulics_advanced_4: "Hydraulik Fortgeschritten 4", // TODO
+                        hydraulics_advanced_5: "Hydraulik Fortgeschritten 5", // TODO
+                        hydraulics_elite_1: "Hydraulik Elite 1", // TODO
+                        hydraulics_elite_2: "Hydraulik Elite 2", // TODO
+                        hydraulics_elite_3: "Hydraulik Elite 3", // TODO
+                        hydraulics_elite_4: "Hydraulik Elite 4", // TODO
+                        hydraulics_elite_5: "Hydraulik Elite 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",

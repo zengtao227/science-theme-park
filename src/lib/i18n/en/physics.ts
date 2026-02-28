@@ -1255,6 +1255,27 @@ export const enPhysics = {
                         buoyancy_elite_3: "Buoyancy Elite Problem 3", // TODO
                         buoyancy_elite_4: "Buoyancy Elite Problem 4", // TODO
                         buoyancy_elite_5: "Buoyancy Elite Problem 5", // TODO
+                        hydraulics: "Hydraulics",
+                        hydraulics_basic_1: "Hydraulics Basic Problem 1", // TODO
+                        hydraulics_basic_2: "Hydraulics Basic Problem 2", // TODO
+                        hydraulics_basic_3: "Hydraulics Basic Problem 3", // TODO
+                        hydraulics_basic_4: "Hydraulics Basic Problem 4", // TODO
+                        hydraulics_basic_5: "Hydraulics Basic Problem 5", // TODO
+                        hydraulics_core_1: "Hydraulics Core Problem 1", // TODO
+                        hydraulics_core_2: "Hydraulics Core Problem 2", // TODO
+                        hydraulics_core_3: "Hydraulics Core Problem 3", // TODO
+                        hydraulics_core_4: "Hydraulics Core Problem 4", // TODO
+                        hydraulics_core_5: "Hydraulics Core Problem 5", // TODO
+                        hydraulics_advanced_1: "Hydraulics Advanced Problem 1", // TODO
+                        hydraulics_advanced_2: "Hydraulics Advanced Problem 2", // TODO
+                        hydraulics_advanced_3: "Hydraulics Advanced Problem 3", // TODO
+                        hydraulics_advanced_4: "Hydraulics Advanced Problem 4", // TODO
+                        hydraulics_advanced_5: "Hydraulics Advanced Problem 5", // TODO
+                        hydraulics_elite_1: "Hydraulics Elite Problem 1", // TODO
+                        hydraulics_elite_2: "Hydraulics Elite Problem 2", // TODO
+                        hydraulics_elite_3: "Hydraulics Elite Problem 3", // TODO
+                        hydraulics_elite_4: "Hydraulics Elite Problem 4", // TODO
+                        hydraulics_elite_5: "Hydraulics Elite Problem 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
