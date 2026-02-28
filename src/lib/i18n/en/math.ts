@@ -1822,6 +1822,14 @@ export const enMath = {
             deck_aces: "Aces in a deck",
             deck_face_cards: "Face cards in a deck",
             deck_red_cards: "Red cards in a deck",
+            recipe_chain_ratio_ABC: "Chain ratio A:B:C",
+            recipe_inverse_proportion: "Inverse proportion in recipe",
+            recipe_pumps: "Pump output ratio",
+            quality_control_78: "Quality control - sample 78", // TODO
+            quality_control_85: "Quality control - sample 85", // TODO
+            quality_control_92: "Quality control - sample 92", // TODO
+            quality_control_156: "Quality control - sample 156", // TODO
+            quality_control_234: "Quality control - sample 234", // TODO
             adjacent: "Adjacent",
             cos: "Cosine",
             sin: "Sine",

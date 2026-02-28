@@ -1806,6 +1806,19 @@ export const cnMath = {
             deck_aces: "牌组中的A",
             deck_face_cards: "牌组中的人头牌",
             deck_red_cards: "牌组中的红色牌",
+            recipe_chain_ratio_ABC: "连比 A:B:C",
+            recipe_inverse_proportion: "食谱中的反比例",
+            recipe_pumps: "泵输出比",
+            quality_control_78: "质量控制 - 样本78", // TODO
+            quality_control_85: "质量控制 - 样本85", // TODO
+            quality_control_92: "质量控制 - 样本92", // TODO
+            quality_control_156: "质量控制 - 样本156", // TODO
+            quality_control_234: "质量控制 - 样本234", // TODO
+            quality_control_427: "质量控制 - 样本427", // TODO
+            quality_control_683: "质量控制 - 样本683", // TODO
+            quality_control_891: "质量控制 - 样本891", // TODO
+            quality_control_1456: "质量控制 - 样本1456", // TODO
+            quality_control_1789: "质量控制 - 样本1789", // TODO
             adjacent: "邻边",
             cos: "余弦",
             sin: "正弦",
