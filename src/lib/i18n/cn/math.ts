@@ -2517,7 +2517,22 @@ export const cnMath = {
             cross_sphere_any: "球被任意平面截切，截面是什么形状？",
             cross_cyl_perp: "圆柱垂直于轴截切，截面是什么形状？",
             cross_cyl_parallel: "圆柱平行于轴截切，截面是什么形状？",
-            cross_cone_perp: "圆锥垂直于轴截切，截面是什么形状？"
+            cross_cone_perp: "圆锥垂直于轴截切，截面是什么形状？",
+            cross_cone_parallel_base: "圆锥平行于底面截切，截面是什么形状？",
+            cross_pyramid_parallel: "正四棱锥平行于底面截切，截面是什么形状？",
+            cross_prism_perp: "三棱柱垂直于轴线截切，截面是什么形状？",
+            cross_cone_slant: "圆锥平行于斜边截切，形成什么圆锥曲线？",
+            cross_cone_axis: "圆锥平行于轴线截切，形成什么圆锥曲线？",
+            cross_cube_midpoints: "正方体过6条棱中点截切，截面是什么形状？",
+            cross_cube_area: "正方体棱长4cm，平行于某面在中点截切，截面面积是多少？",
+            cross_cylinder_45: "半径3cm的圆柱以45°角截切，截面为椭圆，短轴是多少？",
+            cross_sphere_max_area: "球半径5cm，最大截面面积是多少？",
+            cross_cylinder_rect: "圆柱半径3cm，高8cm，最大矩形截面面积是多少？",
+            cross_cone_ellipse: "圆锥底面半径4cm，斜截面形成椭圆，短轴4cm，长轴是多少？",
+            cross_torus: "圆环（甜甜圈）过中心孔截切，截面是什么形状？",
+            cross_pyramid_apex: "正四棱锥底边6cm，高8cm，过顶点和底面对角线截切，截面面积是多少？",
+            novartis_tube_sa: "诺华输送管：r=2cm，h=10cm，总表面积是多少？",
+            ellipsoid_volume: "椭球体：半轴 a=5, b=4, c=3 cm，体积是多少？（pi ~= 3.14）"
         },
         labels: {
             shape: "\\text{形状}",

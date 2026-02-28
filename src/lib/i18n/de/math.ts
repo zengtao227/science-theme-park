@@ -2509,7 +2509,22 @@ export const deMath = {
             cross_sphere_any: "Kugel durch eine beliebige Ebene geschnitten. Welche Form hat der Querschnitt?",
             cross_cyl_perp: "Zylinder senkrecht zur Achse geschnitten. Welche Form?",
             cross_cyl_parallel: "Zylinder parallel zur Achse geschnitten. Welche Form?",
-            cross_cone_perp: "Kegel senkrecht zur Achse geschnitten. Welche Form?"
+            cross_cone_perp: "Kegel senkrecht zur Achse geschnitten. Welche Form?",
+            cross_cone_parallel_base: "Kegel parallel zur Basis geschnitten. Welche Form?",
+            cross_pyramid_parallel: "Quadratische Pyramide parallel zur Basis. Welche Form?",
+            cross_prism_perp: "Dreieckiges Prisma senkrecht zur Laenge. Welche Form?",
+            cross_cone_slant: "Kegel parallel zur Kante geschnitten. Welcher Kegelschnitt?",
+            cross_cone_axis: "Kegel parallel zur Achse geschnitten. Welcher Kegelschnitt?",
+            cross_cube_midpoints: "Wuerfel durch 6 Kantenmittelpunkte geschnitten. Welche Form?",
+            cross_cube_area: "Wuerfel Kante 4 cm, parallel zur Flaeche bei Mittelpunkt. Schnittflaeche?",
+            cross_cylinder_45: "Zylinder Radius 3 cm, 45°-Schnitt. Ellipse als Schnittflaeche. Kleine Achse?",
+            cross_sphere_max_area: "Kugel Radius 5 cm. Maximale Schnittflaeche?",
+            cross_cylinder_rect: "Zylinder: Radius 3 cm, Hoehe 8 cm. Maximale rechteckige Schnittflaeche?",
+            cross_cone_ellipse: "Kegel: Basisradius 4 cm, Schnitt ergibt Ellipse. Kleine Achse 4 cm. Grosse Achse?",
+            cross_torus: "Torus (Donut) durch das Mittelloch geschnitten. Welche Form?",
+            cross_pyramid_apex: "Quadratische Pyramide: Basis 6 cm, Hoehe 8 cm. Schnitt durch Spitze und Diagonale. Flaeche?",
+            novartis_tube_sa: "Novartis-Roehrchen: r=2 cm, h=10 cm. Gesamtoberflaeche?",
+            ellipsoid_volume: "Ein Ellipsoid: Halbachsen a=5, b=4, c=3 cm. Volumen? (pi ~= 3.14)"
         },
         labels: {
             shape: "\\text{Form}",

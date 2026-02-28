@@ -295,7 +295,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-C3", difficulty, stage, geometryType: "cone_parallel",
-                        promptLatex: `\\\\text{Cone cut parallel to base. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cone_parallel_base"),
                         expressionLatex: `\\text{Parallel to base} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
@@ -304,7 +304,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-C4", difficulty, stage, geometryType: "pyramid",
-                        promptLatex: `\\\\text{Square pyramid cut parallel to base. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_pyramid_parallel"),
                         expressionLatex: `\\text{Parallel} \\rightarrow \\text{similar shape}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
@@ -313,7 +313,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-C5", difficulty, stage, geometryType: "prism",
-                        promptLatex: `\\\\text{Triangular prism cut perpendicular to length. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_prism_perp"),
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{base shape}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
@@ -326,7 +326,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CS-A1", difficulty, stage, geometryType: "cone_parabola",
-                        promptLatex: `\\\\text{Cone cut parallel to slant edge. What conic section?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cone_slant"),
                         expressionLatex: `\\text{Parallel to edge} \\rightarrow \\text{parabola}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
@@ -335,7 +335,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-A2", difficulty, stage, geometryType: "cone_hyperbola",
-                        promptLatex: `\\\\text{Cone cut parallel to axis. What conic section?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cone_axis"),
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{hyperbola}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
@@ -344,7 +344,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-A3", difficulty, stage, geometryType: "cube_hexagon",
-                        promptLatex: `\\\\text{Cube cut through 6 edge midpoints. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cube_midpoints"),
                         expressionLatex: `\\text{Through edge midpoints} \\rightarrow \\text{hexagon}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
@@ -353,7 +353,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-A4", difficulty, stage, geometryType: "area",
-                        promptLatex: `\\\\text{Cube edge 4 cm, cut parallel to face at midpoint. Cross-section area?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cube_area"),
                         expressionLatex: `A = a^{2}`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "16", expected: 16 }],
@@ -362,7 +362,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-A5", difficulty, stage, geometryType: "cylinder_ellipse",
-                        promptLatex: `\\\\text{Cylinder radius 3 cm cut at 45deg angle. Cross-section is ellipse. Minor axis?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cylinder_45"),
                         expressionLatex: `\\text{Minor axis} = 2r`,
                         targetLatex: `b`,
                         slots: [{ id: "minor", labelLatex: `b\\text{ (cm)}`, placeholder: "6", expected: 6 }],
@@ -375,7 +375,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CS-E1", difficulty, stage, geometryType: "max_area",
-                        promptLatex: `\\\\text{Sphere radius 5 cm. Maximum cross-section area?}`,
+                        promptLatex: t("sm3_05.prompts.cross_sphere_max_area"),
                         expressionLatex: `A_{\\text{max}} = \\pi r^{2} \\text{ (through center)}`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "79", expected: 79 }],
@@ -384,7 +384,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-E2", difficulty, stage, geometryType: "cylinder_max",
-                        promptLatex: `\\\\text{Cylinder: radius 3 cm, height 8 cm. Max rectangular cross-section area?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cylinder_rect"),
                         expressionLatex: `A_{\\text{max}} = 2r \\times h`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "48", expected: 48 }],
@@ -393,7 +393,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-E3", difficulty, stage, geometryType: "cone_ellipse",
-                        promptLatex: `\\\\text{Cone: base radius 4 cm, cut at angle creating ellipse. Min axis 4 cm. Max axis?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cone_ellipse"),
                         expressionLatex: `\\text{Ellipse from angled cut}`,
                         targetLatex: `a`,
                         slots: [{ id: "axis", labelLatex: `a\\text{ (cm)}`, placeholder: "8", expected: 8 }],
@@ -402,7 +402,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-E4", difficulty, stage, geometryType: "torus",
-                        promptLatex: `\\\\text{Torus (donut) cut through center hole. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_torus"),
                         expressionLatex: `\\text{Torus cross-section}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
@@ -411,7 +411,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-E5", difficulty, stage, geometryType: "pyramid_diagonal",
-                        promptLatex: `\\\\text{Square pyramid: base 6 cm, height 8 cm. Cut through apex and base diagonal. Cross-section area?}`,
+                        promptLatex: t("sm3_05.prompts.cross_pyramid_apex"),
                         expressionLatex: `A = \frac{1}{2} \\times \\text{diagonal} \\times h`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "34", expected: 34 }],
@@ -476,7 +476,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CURVE-C1", difficulty, stage, geometryType: "cylinder_sa",
-                        promptLatex: `\\\\text{Novartis delivery tube: } r=2\\\\text{cm, } h=10\\\\text{cm. Total surface area?}`,
+                        promptLatex: t("sm3_05.prompts.novartis_tube_sa"),
                         expressionLatex: `A = 2\\pi r h + 2\\pi r^{2}`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A`, placeholder: "150.7", expected: 150.72 }],
@@ -552,7 +552,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-A4", difficulty, stage, geometryType: "ellipsoid",
-                        promptLatex: `\\\\text{An ellipsoid: semi-axes } a=5, b=4, c=3\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.ellipsoid_volume"),
                         expressionLatex: `V = \\frac{4}{3}\\pi abc`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "251", expected: 251 }],

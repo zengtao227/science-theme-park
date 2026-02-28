@@ -2521,7 +2521,22 @@ export const enMath = {
             cross_sphere_any: "Sphere cut by any plane. What shape is the cross-section?",
             cross_cyl_perp: "Cylinder cut perpendicular to axis. What shape?",
             cross_cyl_parallel: "Cylinder cut parallel to axis. What shape?",
-            cross_cone_perp: "Cone cut perpendicular to axis. What shape?"
+            cross_cone_perp: "Cone cut perpendicular to axis. What shape?",
+            cross_cone_parallel_base: "Cone cut parallel to base. What shape?",
+            cross_pyramid_parallel: "Square pyramid cut parallel to base. What shape?",
+            cross_prism_perp: "Triangular prism cut perpendicular to length. What shape?",
+            cross_cone_slant: "Cone cut parallel to slant edge. What conic section?",
+            cross_cone_axis: "Cone cut parallel to axis. What conic section?",
+            cross_cube_midpoints: "Cube cut through 6 edge midpoints. What shape?",
+            cross_cube_area: "Cube edge 4 cm, cut parallel to face at midpoint. Cross-section area?",
+            cross_cylinder_45: "Cylinder radius 3 cm cut at 45deg angle. Cross-section is ellipse. Minor axis?",
+            cross_sphere_max_area: "Sphere radius 5 cm. Maximum cross-section area?",
+            cross_cylinder_rect: "Cylinder: radius 3 cm, height 8 cm. Max rectangular cross-section area?",
+            cross_cone_ellipse: "Cone: base radius 4 cm, cut at angle creating ellipse. Min axis 4 cm. Max axis?",
+            cross_torus: "Torus (donut) cut through center hole. What shape?",
+            cross_pyramid_apex: "Square pyramid: base 6 cm, height 8 cm. Cut through apex and base diagonal. Cross-section area?",
+            novartis_tube_sa: "Novartis delivery tube: r=2 cm, h=10 cm. Total surface area?",
+            ellipsoid_volume: "An ellipsoid: semi-axes a=5, b=4, c=3 cm. Volume? (pi ~= 3.14)"
         },
         labels: {
             shape: "\\text{Shape}",
