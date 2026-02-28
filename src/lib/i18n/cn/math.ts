@@ -2502,6 +2502,15 @@ export const cnMath = {
             next: "下一题"
         }
     },
+    gp3_03: {
+        labels: {
+            direction_effect: "方向/效果",
+            answer: "答案",
+            voltage: "电压 (V)",
+            value: "数值",
+            output_power: "输出功率 (W)"
+        }
+    },
     sm2_09: {
         back: "返回主界面",
         title: "SM2.09 // 不等式",

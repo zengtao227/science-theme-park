@@ -2519,6 +2519,15 @@ export const enMath = {
             next: "NEXT PROBLEM"
         }
     },
+    gp3_03: {
+        labels: {
+            direction_effect: "Direction/Effect",
+            answer: "Answer",
+            voltage: "Voltage (V)",
+            value: "Value",
+            output_power: "Output Power (W)"
+        }
+    },
     sm2_09: {
         back: "Back to Nexus",
         title: "SM2.09 // INEQUALITIES",

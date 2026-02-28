@@ -2549,6 +2549,15 @@ export const deMath = {
             next: "NÄCHSTES PROBLEM"
         }
     },
+    gp3_03: {
+        labels: {
+            direction_effect: "Richtung/Effekt",
+            answer: "Antwort",
+            voltage: "Spannung (V)",
+            value: "Wert",
+            output_power: "Ausgangsleistung (W)"
+        }
+    },
     sm2_09: {
         back: "Zurück zum Nexus",
         title: "SM2.09 // UNGLEICHUNGEN",

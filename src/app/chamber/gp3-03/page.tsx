@@ -149,7 +149,7 @@ export default function GP303Induction() {
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
-                    labelLatex: "Direction/Effect",
+                    labelLatex: t("gp3_03.labels.direction_effect"),
                     placeholder: "type answer",
                     expected: item.direction
                 }],
@@ -202,9 +202,9 @@ export default function GP303Induction() {
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
-                    labelLatex: difficulty === "BASIC" ? "Answer" :
-                               difficulty === "CORE" ? "Voltage (V)" :
-                               difficulty === "ADVANCED" ? "Value" : "Output Power (W)",
+                    labelLatex: difficulty === "BASIC" ? t("gp3_03.labels.answer") :
+                               difficulty === "CORE" ? t("gp3_03.labels.voltage") :
+                               difficulty === "ADVANCED" ? t("gp3_03.labels.value") : t("gp3_03.labels.output_power"),
                     placeholder: "type value",
                     expected: ('output' in item ? item.output : undefined) || 
                              ('voltage' in item ? item.voltage : undefined) || 
