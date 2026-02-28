@@ -1357,6 +1357,20 @@ export const dePhysics = {
                         pressure_elite_3: "Druck Elite 3", // TODO
                         pressure_elite_4: "Druck Elite 4", // TODO
                         pressure_elite_5: "Druck Elite 5", // TODO
+                        energy_audit: "Energieaudit",
+                        energy_audit_heatpump: "Energieaudit - Wärmepumpe",
+                        energy_audit_solar: "Energieaudit - Solaranlage",
+                        iwb_grid_load: "Netzlast",
+                        angle: "Winkel",
+                        composition: "Komposition",
+                        compound_machine: "Zusammengesetzte Maschine",
+                        drift: "Drift",
+                        ferry_speed: "Fährgeschwindigkeit",
+                        gp2_04: "GP2 Aufgabe 04", // TODO
+                        navigation: "Navigation",
+                        next_mission: "Nächste Mission",
+                        resultant_speed: "Resultierende Geschwindigkeit",
+                        terminal_input: "Eingabe",
                 },
                 scenarios: {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",

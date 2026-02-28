@@ -1297,6 +1297,16 @@ export const enPhysics = {
                         pressure_elite_3: "Pressure Elite Problem 3", // TODO
                         pressure_elite_4: "Pressure Elite Problem 4", // TODO
                         pressure_elite_5: "Pressure Elite Problem 5", // TODO
+                        energy_audit: "Energy Audit",
+                        energy_audit_heatpump: "Energy Audit - Heat Pump",
+                        energy_audit_solar: "Energy Audit - Solar Panel",
+                        iwb_grid_load: "Grid Load",
+                        sp1_03_q1: "Question 1", // TODO
+                        sp1_03_q2: "Question 2", // TODO
+                        sp1_03_q3: "Question 3", // TODO
+                        sp1_04_q1: "Question 1", // TODO
+                        sp1_04_q2: "Question 2", // TODO
+                        sp1_04_q3: "Question 3", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
