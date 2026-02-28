@@ -1118,7 +1118,9 @@ export const enBiology = {
             copd: "COPD",
             ph_regulation: "pH regulation",
             high_altitude: "High altitude",
-            pneumonia: "Pneumonia"
+            pneumonia: "Pneumonia",
+            organ_label: "Organ",
+            component_label: "Component"
         },
         answers: {
             ph_increase: "pH increase",

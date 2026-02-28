@@ -978,7 +978,9 @@ export const deBiology = {
             copd: "COPD",
             ph_regulation: "pH-Regulation",
             high_altitude: "Hochaltitude",
-            pneumonia: "Pneumonie"
+            pneumonia: "Pneumonie",
+            organ_label: "Organ",
+            component_label: "Bestandteil"
         },
         answers: {
             ph_increase: "pH-Anstieg",

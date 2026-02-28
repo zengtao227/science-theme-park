@@ -978,7 +978,9 @@ export const cnBiology = {
             copd: "慢性阻塞性肺病",
             ph_regulation: "pH值调节",
             high_altitude: "高海拔",
-            pneumonia: "肺炎"
+            pneumonia: "肺炎",
+            organ_label: "器官",
+            component_label: "组成成分"
         },
         answers: {
             ph_increase: "pH升高",
