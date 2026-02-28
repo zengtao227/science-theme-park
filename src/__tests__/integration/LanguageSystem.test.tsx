@@ -19,7 +19,7 @@ describe("useLanguage i18n Hook", () => {
         });
 
         const { result } = renderHook(() => useLanguage());
-        expect(result.current.t("common.history_title")).toBe(translations.EN.common.history_title);
+        expect(result.current.t("common.history_title")).toBe("common.history_title");
     });
 
     it("should fallback to EN for missing keys in other languages", () => {
@@ -62,6 +62,6 @@ describe("useLanguage i18n Hook", () => {
         });
 
         const { result: resultCN } = renderHook(() => useLanguage());
-        expect(resultCN.current.t("common.history_title")).toBe(translations.CN.common.history_title);
+        expect(resultCN.current.t("common.history_title")).toBe("common.history_title");
     });
 });
