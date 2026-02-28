@@ -55,7 +55,7 @@ export const cnMath = {
         },
         mission: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
-            description: "Measure the tower height using Thales' theorem and shadow ratios."
+            description: "使用泰勒斯定理和影长比例测量塔楼高度。"
         }
     },
     em2_01: {

@@ -55,7 +55,7 @@ export const deMath = {
         },
         mission: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
-            description: "Measure the tower height using Thales' theorem and shadow ratios."
+            description: "Bestimme die Turmhöhe mit dem Satz des Thales und Schattenverhältnissen."
         }
     },
     em2_01: {
