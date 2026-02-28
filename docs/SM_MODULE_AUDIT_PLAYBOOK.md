@@ -142,6 +142,14 @@ content = content.replace(
 | `sm2-10` | 审计 3：`expressionLatex` 英文硬编码检查 | `\\text{IQR} = Q_3 - Q_1` 为国际通用统计缩写与公式结构，保留英文 | 2026-02 |
 | `sm2-10` | 审计 5：`hintLatex` 英文硬编码检查 | 行 `208`：`\\text{Min, Q1, Med, Q3, Max}` 为统计符号列表，非教学句子 | 2026-02 |
 | `sm2-10` | 审计 5：`hintLatex` 英文硬编码检查 | 行 `543`：`\\text{Negative } r = \\text{negative correlation}` 含数学变量 `r` 的混合表达，改动风险高于收益 | 2026-02 |
+| `sm3-05` | E2：`\\text{English}` 公式字段硬编码检查 | 几何截面名称（Circle/Ellipse/Parabola/Hyperbola/Rectangle等）为数学固定术语，KaTeX 公式字段内 `\\text{}` 包裹属合法用法 | 2026-02 |
+| `gp3-01` | E2：`\\text{English}` 公式字段硬编码检查 | 光学物理术语（Constructive/Diffraction/Dispersion/TIR/Heisenberg等）为国际通用术语，公式字段内合法 | 2026-02 |
+| `sc3-05` | E2：`\\text{English}` 公式字段硬编码检查 | Bond Order 公式与 VSEPR 为化学标准术语，expressionLatex/hintLatex 内使用合法 | 2026-02 |
+| `sc2-06` | E2：`\\text{English}` 公式字段硬编码检查 | Oxidation State/Galvanic Cell/Electrons 为电化学专业术语，公式字段内合法 | 2026-02 |
+| `gb1-01` | E2：`\\text{English}` 公式字段硬编码检查 | Equal/Positive/Yes 为遗传学判断答案，单词型 correctLatex，改动无实质收益 | 2026-02 |
+| `em1-01` | E2：`\\text{English}` 公式字段硬编码检查 | Geometric Mean/Invariant/Pythag/Cones 等数学概念名，公式语境内合法 | 2026-02 |
+| `sm2-10` | E2：`\\text{English}` 公式字段硬编码检查（延续） | Maximum/Mean/Min,Q1,Med,Q3,Max 等统计术语，延续现有豁免（IQR/负相关已登记） | 2026-02 |
+| `sc2-01` | E2：`\\text{English}` 公式字段硬编码检查（延续） | Belousov-Zhabotinsky 反应名及核素符号，延续现有豁免记录 | 2026-02 |
 
 新增豁免必须满足：
 
