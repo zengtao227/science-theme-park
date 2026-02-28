@@ -24,6 +24,7 @@ describe("useQuestManager", () => {
     beforeEach(() => {
         (useAppStore as any).mockReturnValue({
             currentLanguage: "EN",
+            history: [],
         });
         mockBuildPool.mockClear();
         localStorage.clear();

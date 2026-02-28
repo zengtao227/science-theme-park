@@ -19,7 +19,7 @@ export interface DifficultyAdjustment {
  * Analyzes previous performances for a specific module
  */
 export function analyzePerformance(history: HistoryEntry[], moduleCode: string): PerformanceMetrics {
-    const moduleHistory = history.filter(h => h.moduleCode === moduleCode);
+    const moduleHistory = (history ?? []).filter(h => h.moduleCode === moduleCode);
 
     if (moduleHistory.length === 0) {
         return {
@@ -53,7 +53,7 @@ export function analyzePerformance(history: HistoryEntry[], moduleCode: string):
  */
 export function getAdaptiveDifficulty(history: HistoryEntry[], moduleCode: string): DifficultyAdjustment {
     const metrics = analyzePerformance(history, moduleCode);
-    const moduleHistory = history.filter(h => h.moduleCode === moduleCode);
+    const moduleHistory = (history ?? []).filter(h => h.moduleCode === moduleCode);
 
     // Default for new users
     if (moduleHistory.length < 3) {
