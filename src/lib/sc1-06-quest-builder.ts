@@ -87,7 +87,11 @@ export function buildStagePool(
         : data.type;
 
     // Build the quest object
-    const finalScenario = t ? t(`sc1_06.scenarios.${data.id}`) : data.baselContext;
+    const translated = t ? t(`sc1_06.scenarios.${data.id}`) : null;
+    const finalScenario =
+      translated && translated !== `sc1_06.scenarios.${data.id}`
+        ? translated
+        : data.baselContext;
     const quest: SC106Quest = {
       id: data.id,
       difficulty,
