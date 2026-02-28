@@ -138,6 +138,9 @@ content = content.replace(
 |---|---|---|---|
 | `sc2-01` | 审计 1：`promptLatex` 未走 `renderMixedText` | 该模块使用 `BlockMath` 渲染纯公式 prompt，属有意设计 | 2026-02 |
 | `sc2-01`/`sc2-05`/`gb3-02`/`sc3-05`/`gb2-01` | 审计 7：`InlineMath/BlockMath` 与 `promptLatex` | 历史结构下的已验收白名单 | 2026-02 |
+| `sm2-10` | 审计 3：`expressionLatex` 英文硬编码检查 | `\\text{IQR} = Q_3 - Q_1` 为国际通用统计缩写与公式结构，保留英文 | 2026-02 |
+| `sm2-10` | 审计 5：`hintLatex` 英文硬编码检查 | 行 `208`：`\\text{Min, Q1, Med, Q3, Max}` 为统计符号列表，非教学句子 | 2026-02 |
+| `sm2-10` | 审计 5：`hintLatex` 英文硬编码检查 | 行 `543`：`\\text{Negative } r = \\text{negative correlation}` 含数学变量 `r` 的混合表达，改动风险高于收益 | 2026-02 |
 
 新增豁免必须满足：
 
