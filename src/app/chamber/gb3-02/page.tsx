@@ -138,9 +138,9 @@ export default function GB302Immunology() {
                     stage,
                     scenario: data.scenario,
                     promptLatex: t("gb3_02.prompts.memory_response").replace('{lag}', data.lag!.toString()).replace('{primary_lag}', data.prim!.toString()),
-                    expressionLatex: "\\\\text{Factor} = \\\\frac{\\\\text{Primary Lag}}{\\\\text{Secondary Lag}}",
+                    expressionLatex: "\\text{Factor} = \\frac{\\text{Primary Lag}}{\\text{Secondary Lag}}",
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Factor}", placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Factor}", placeholder: "...", expected: data.expected }],
                     correctLatex: `${data.expected}x`,
                     hintLatex: [t("gb3_02.prompts.hint_memory")]
                 });
@@ -153,7 +153,7 @@ export default function GB302Immunology() {
                     promptLatex: t("gb3_02.prompts.innate_defense").replace("{pathogen}", data.pathogen),
                     expressionLatex: "",
                     targetLatex: data.cell,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Cell type}", placeholder: "...", expected: data.cell }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Cell type}", placeholder: "...", expected: data.cell }],
                     correctLatex: data.cell,
                     hintLatex: [t("gb3_02.prompts.hint_innate")]
                 });
@@ -166,7 +166,7 @@ export default function GB302Immunology() {
                     promptLatex: t("gb3_02.prompts.adaptive_function").replace("{cell}", data.cell),
                     expressionLatex: "",
                     targetLatex: data.role,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Function}", placeholder: "...", expected: data.role }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Function}", placeholder: "...", expected: data.role }],
                     correctLatex: data.role,
                     hintLatex: [t("gb3_02.prompts.hint_adaptive")]
                 });

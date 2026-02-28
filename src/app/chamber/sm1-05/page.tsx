@@ -166,7 +166,7 @@ export default function SM105Page() {
                     {
                         id: "R-B1", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_eggs}}`,
-                        expressionLatex: "2 \\to 4, \\; ? \\to 8", targetLatex: "4",
+                        expressionLatex: "2 \to 4, \; ? \to 8", targetLatex: "4",
                         visualData: { ingredient: "eggs", baseAmount: 2, targetAmount: 4 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.eggs, placeholder: "?", expected: 4 }],
                         correctLatex: "4", hintLatex: [sm1_05_t.hints.recipe_double]
@@ -174,7 +174,7 @@ export default function SM105Page() {
                     {
                         id: "R-B2", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_flour}}`,
-                        expressionLatex: "1 \\times 3", targetLatex: "3",
+                        expressionLatex: "1 \times 3", targetLatex: "3",
                         visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 3 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.cups, placeholder: "?", expected: 3 }],
                         correctLatex: "3", hintLatex: [sm1_05_t.hints.recipe_triple]
@@ -182,7 +182,7 @@ export default function SM105Page() {
                     {
                         id: "R-B3", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_cost}}`,
-                        expressionLatex: "3 \\to 2, \\; 6 \\to ?", targetLatex: "4",
+                        expressionLatex: "3 \to 2, \; 6 \to ?", targetLatex: "4",
                         visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.cost, placeholder: "?", expected: 4 }],
                         correctLatex: "4", hintLatex: [sm1_05_t.hints.recipe_double]
@@ -190,7 +190,7 @@ export default function SM105Page() {
                     {
                         id: "R-B4", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_ratio_ab}}`,
-                        expressionLatex: "1:2 \\implies 5:?", targetLatex: "10",
+                        expressionLatex: "1:2 \implies 5:?", targetLatex: "10",
                         visualData: { ingredient: "cocoa", baseAmount: 5, targetAmount: 10 },
                         slots: [{ id: "ans", labelLatex: "B", placeholder: "?", expected: 10 }],
                         correctLatex: "10", hintLatex: [sm1_05_t.hints.recipe_double]
@@ -198,7 +198,7 @@ export default function SM105Page() {
                     {
                         id: "R-B5", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_half}}`,
-                        expressionLatex: "4 \\div 2", targetLatex: "2",
+                        expressionLatex: "4 \div 2", targetLatex: "2",
                         visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 2 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.eggs, placeholder: "?", expected: 2 }],
                         correctLatex: "2", hintLatex: [sm1_05_t.hints.recipe_halve]
@@ -217,7 +217,7 @@ export default function SM105Page() {
                     {
                         id: "R-C2", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_map_cm}}`,
-                        expressionLatex: "1:5 \\implies 3:?", targetLatex: "15",
+                        expressionLatex: "1:5 \implies 3:?", targetLatex: "15",
                         visualData: { ingredient: "flour", baseAmount: 3, targetAmount: 15 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.dist, placeholder: "?", expected: 15 }],
                         correctLatex: "15", hintLatex: [sm1_05_t.hints.recipe_triple]
@@ -225,7 +225,7 @@ export default function SM105Page() {
                     {
                         id: "R-C3", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_sugar}}`,
-                        expressionLatex: "\\frac{200}{4} \\times 6", targetLatex: "300",
+                        expressionLatex: "\frac{200}{4} \times 6", targetLatex: "300",
                         visualData: { ingredient: "sugar", baseAmount: 4, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.sugar, placeholder: "?", expected: 300 }],
                         correctLatex: "300", hintLatex: [sm1_05_t.hints.recipe_50g_person]
@@ -241,7 +241,7 @@ export default function SM105Page() {
                     {
                         id: "R-C5", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_speed}}`,
-                        expressionLatex: "60 \\times 3", targetLatex: "180",
+                        expressionLatex: "60 \times 3", targetLatex: "180",
                         visualData: { ingredient: "cocoa", baseAmount: 1, targetAmount: 3 },
                         slots: [{ id: "ans", labelLatex: "km", placeholder: "?", expected: 180 }],
                         correctLatex: "180", hintLatex: [sm1_05_t.hints.recipe_triple]
@@ -260,7 +260,7 @@ export default function SM105Page() {
                     {
                         id: "R-A2", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_unitary}}`,
-                        expressionLatex: "\\frac{1.5}{5} \\times 3", targetLatex: "0.9",
+                        expressionLatex: "\frac{1.5}{5} \times 3", targetLatex: "0.9",
                         visualData: { ingredient: "flour", baseAmount: 5, targetAmount: 3 },
                         slots: [{ id: "ans", labelLatex: "kg", placeholder: "?", expected: 0.9 }],
                         correctLatex: "0.9", hintLatex: [sm1_05_t.hints.recipe_300g_person]
@@ -268,10 +268,10 @@ export default function SM105Page() {
                     {
                         id: "R-A3", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_scale_factor}}`,
-                        expressionLatex: "4 \\times 2.5", targetLatex: "10",
+                        expressionLatex: "4 \times 2.5", targetLatex: "10",
                         visualData: { ingredient: "sugar", baseAmount: 4, targetAmount: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 10 }],
-                        correctLatex: "10", hintLatex: ["4 \\times 2 + 4 \\times 0.5"]
+                        correctLatex: "10", hintLatex: ["4 \times 2 + 4 \times 0.5"]
                     },
                     {
                         id: "R-A4", difficulty, stage, visualMode: "RECIPES",
@@ -284,7 +284,7 @@ export default function SM105Page() {
                     {
                         id: "R-A5", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_gears}}`,
-                        expressionLatex: "9 \\div 3", targetLatex: "3",
+                        expressionLatex: "9 \div 3", targetLatex: "3",
                         visualData: { ingredient: "cocoa", baseAmount: 9, targetAmount: 3 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.spins, placeholder: "?", expected: 3 }],
                         correctLatex: "3", hintLatex: ["Output is slower."]
@@ -304,7 +304,7 @@ export default function SM105Page() {
                     {
                         id: "R-E2", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.map_scale}}`,
-                        expressionLatex: "4 \\times 25000", targetLatex: "1",
+                        expressionLatex: "4 \times 25000", targetLatex: "1",
                         visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 1 },
                         slots: [{ id: "ans", labelLatex: "km", placeholder: "?", expected: 1 }],
                         correctLatex: "1", hintLatex: ["100,000cm = 1km."]
@@ -312,7 +312,7 @@ export default function SM105Page() {
                     {
                         id: "R-E3", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.total_ratio_share}}`,
-                        expressionLatex: "\\frac{4}{9} \\times 360", targetLatex: "160",
+                        expressionLatex: "\frac{4}{9} \times 360", targetLatex: "160",
                         visualData: { ingredient: "sugar", baseAmount: 2, targetAmount: 4 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.share, placeholder: "?", expected: 160 }],
                         correctLatex: "160", hintLatex: [sm1_05_t.hints.recipe_7_parts]
@@ -320,7 +320,7 @@ export default function SM105Page() {
                     {
                         id: "R-E4", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_inverse_proportion}}`,
-                        expressionLatex: "4 \\times 6 = 24h \\text{ total}", targetLatex: "8",
+                        expressionLatex: "4 \times 6 = 24h \text{ total}", targetLatex: "8",
                         visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.hours, placeholder: "?", expected: 8 }],
                         correctLatex: "8", hintLatex: ["Constant product."]
@@ -328,7 +328,7 @@ export default function SM105Page() {
                     {
                         id: "R-E5", difficulty, stage, visualMode: "RECIPES",
                         promptLatex: `\\text{${sm1_05_t.prompts.recipe_pumps}}`,
-                        expressionLatex: "\\frac{1}{6} - \\frac{1}{10}", targetLatex: "15",
+                        expressionLatex: "\frac{1}{6} - \frac{1}{10}", targetLatex: "15",
                         visualData: { ingredient: "cocoa", baseAmount: 6, targetAmount: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.hours, placeholder: "?", expected: 15 }],
                         correctLatex: "15", hintLatex: ["Subtract rates."]
@@ -344,7 +344,7 @@ export default function SM105Page() {
                     {
                         id: "P-B1", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_50_100}}`,
-                        expressionLatex: "0.5 \\times 100", targetLatex: "50",
+                        expressionLatex: "0.5 \times 100", targetLatex: "50",
                         visualData: { percentage: 50, totalValue: 100 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 50 }],
                         correctLatex: "50", hintLatex: [sm1_05_t.hints.percent_half]
@@ -352,7 +352,7 @@ export default function SM105Page() {
                     {
                         id: "P-B2", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_25_100}}`,
-                        expressionLatex: "0.25 \\times 100", targetLatex: "25",
+                        expressionLatex: "0.25 \times 100", targetLatex: "25",
                         visualData: { percentage: 25, totalValue: 100 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 25 }],
                         correctLatex: "25", hintLatex: [sm1_05_t.hints.percent_quarter]
@@ -360,7 +360,7 @@ export default function SM105Page() {
                     {
                         id: "P-B3", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_frac_half}}`,
-                        expressionLatex: "1 \\div 2", targetLatex: "50",
+                        expressionLatex: "1 \div 2", targetLatex: "50",
                         visualData: { percentage: 50, totalValue: 100 },
                         slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 50 }],
                         correctLatex: "50", hintLatex: [sm1_05_t.hints.percent_half]
@@ -368,7 +368,7 @@ export default function SM105Page() {
                     {
                         id: "P-B4", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_10_200}}`,
-                        expressionLatex: "0.1 \\times 200", targetLatex: "20",
+                        expressionLatex: "0.1 \times 200", targetLatex: "20",
                         visualData: { percentage: 10, totalValue: 200, partValue: 20 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 20 }],
                         correctLatex: "20", hintLatex: [sm1_05_t.hints.percent_decimal]
@@ -376,7 +376,7 @@ export default function SM105Page() {
                     {
                         id: "P-B5", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_dec_75}}`,
-                        expressionLatex: "0.75 \\times 100", targetLatex: "75",
+                        expressionLatex: "0.75 \times 100", targetLatex: "75",
                         visualData: { percentage: 75, totalValue: 100 },
                         slots: [{ id: "ans", labelLatex: "%", placeholder: "?", expected: 75 }],
                         correctLatex: "75", hintLatex: ["Multiply by 100."]
@@ -387,7 +387,7 @@ export default function SM105Page() {
                     {
                         id: "P-C1", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_20_50}}`,
-                        expressionLatex: "0.2 \\times 50", targetLatex: "10",
+                        expressionLatex: "0.2 \times 50", targetLatex: "10",
                         visualData: { percentage: 20, totalValue: 50, partValue: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 10 }],
                         correctLatex: "10", hintLatex: [sm1_05_t.hints.percent_decimal]
@@ -406,7 +406,7 @@ export default function SM105Page() {
                         expressionLatex: "30", targetLatex: "30",
                         visualData: { percentage: 15, totalValue: 200, partValue: 30 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 30 }],
-                        correctLatex: "30", hintLatex: ["10\\\\% is 20, 5\\\\% is 10."]
+                        correctLatex: "30", hintLatex: ["10\\% is 20, 5\\% is 10."]
                     },
                     {
                         id: "P-C4", difficulty, stage, visualMode: "PERCENT",
@@ -430,7 +430,7 @@ export default function SM105Page() {
                     {
                         id: "P-A1", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_decrease_80}}`,
-                        expressionLatex: "15\\\\% = 12", targetLatex: "68",
+                        expressionLatex: "15\\% = 12", targetLatex: "68",
                         visualData: { percentage: 15, totalValue: 80, partValue: 12 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 68 }],
                         correctLatex: "68", hintLatex: ["80 - 12"]
@@ -438,7 +438,7 @@ export default function SM105Page() {
                     {
                         id: "P-A2", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_discount}}`,
-                        expressionLatex: "120 \\times 0.8", targetLatex: "96",
+                        expressionLatex: "120 \times 0.8", targetLatex: "96",
                         visualData: { percentage: 80, totalValue: 120, partValue: 96 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.cost, placeholder: "?", expected: 96 }],
                         correctLatex: "96", hintLatex: ["Discount is 24."]
@@ -446,7 +446,7 @@ export default function SM105Page() {
                     {
                         id: "P-A3", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_calc_125}}`,
-                        expressionLatex: "1/8 \\times 80", targetLatex: "10",
+                        expressionLatex: "1/8 \times 80", targetLatex: "10",
                         visualData: { percentage: 12.5, totalValue: 80, partValue: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 10 }],
                         correctLatex: "10", hintLatex: ["1/8th of the value."]
@@ -465,7 +465,7 @@ export default function SM105Page() {
                         expressionLatex: "200 + 5", targetLatex: "205",
                         visualData: { percentage: 2.5, totalValue: 200, partValue: 5 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: "?", expected: 205 }],
-                        correctLatex: "205", hintLatex: ["1\\\\% is 2."]
+                        correctLatex: "205", hintLatex: ["1\\% is 2."]
                     }
                 );
             } else {
@@ -474,7 +474,7 @@ export default function SM105Page() {
                     {
                         id: "P-E1", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_tax}}`,
-                        expressionLatex: "120 \\times 1.2 = 144", targetLatex: "120",
+                        expressionLatex: "120 \times 1.2 = 144", targetLatex: "120",
                         visualData: { percentage: 120, totalValue: 120, partValue: 144 },
                         slots: [{ id: "ans", labelLatex: "Orig", placeholder: "?", expected: 120 }],
                         correctLatex: "120", hintLatex: ["Divide by 1.2."]
@@ -482,7 +482,7 @@ export default function SM105Page() {
                     {
                         id: "P-E2", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_compound}}`,
-                        expressionLatex: "1000 \\times 1.1 \\times 1.1", targetLatex: "1210",
+                        expressionLatex: "1000 \times 1.1 \times 1.1", targetLatex: "1210",
                         visualData: { percentage: 10, totalValue: 1000, partValue: 1210 },
                         slots: [{ id: "ans", labelLatex: "Final", placeholder: "?", expected: 1210 }],
                         correctLatex: "1210", hintLatex: [sm1_05_t.hints.percent_comp_1year]
@@ -490,9 +490,9 @@ export default function SM105Page() {
                     {
                         id: "P-E3", difficulty, stage, visualMode: "PERCENT",
                         promptLatex: `\\text{${sm1_05_t.prompts.percent_net_change}}`,
-                        expressionLatex: "100 \\times 0.8 \\times 1.25 = 100", targetLatex: "0",
+                        expressionLatex: "100 \times 0.8 \times 1.25 = 100", targetLatex: "0",
                         visualData: { percentage: 0, totalValue: 100, partValue: 100 },
-                        slots: [{ id: "ans", labelLatex: "\\\\% Change", placeholder: "?", expected: 0 }],
+                        slots: [{ id: "ans", labelLatex: "\\% Change", placeholder: "?", expected: 0 }],
                         correctLatex: "0", hintLatex: ["It breaks even."]
                     },
                     {
