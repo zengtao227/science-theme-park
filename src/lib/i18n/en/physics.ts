@@ -1248,6 +1248,16 @@ export const enPhysics = {
                         weight_equals_buoyancy: "\\text{Weight = Buoyant force}",
                         pressure_force_per_area: "\\text{Pressure is force per unit area}",
                 },
+                        labels: {
+                        float_q: "\\text{Float?}",
+                },
+                        targets: {
+                        answer: "\\text{Answer}",
+                },
+                        corrects: {
+                        yes_density_less_water: "\\text{Yes (density < water)}",
+                        yes_rho_avg_less_1000: "\\text{Yes (} \\rho_{avg} < 1000 \\text{)}",
+                },
         },
 
         // SP3.05: Simple Machines (from sp1_04 - Full Version)

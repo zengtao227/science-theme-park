@@ -1308,6 +1308,16 @@ export const dePhysics = {
                         weight_equals_buoyancy: "\\text{Gewicht = Auftriebskraft}",
                         pressure_force_per_area: "\\text{Druck ist Kraft pro Fläche}",
                 },
+                        labels: {
+                        float_q: "\\text{Schwimmt?}",
+                },
+                        targets: {
+                        answer: "\\text{Antwort}",
+                },
+                        corrects: {
+                        yes_density_less_water: "\\text{Ja (Dichte < Wasser)}",
+                        yes_rho_avg_less_1000: "\\text{Ja (} \\rho_{avg} < 1000 \\text{)}",
+                },
         },
 
         // 5. EINFACHE MASCHINEN (Angewandte Mechanik)

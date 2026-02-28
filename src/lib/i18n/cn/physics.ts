@@ -1325,6 +1325,16 @@ export const cnPhysics = {
                         weight_equals_buoyancy: "\\text{重力 = 浮力}",
                         pressure_force_per_area: "\\text{压强是单位面积上的力}",
                 },
+                        labels: {
+                        float_q: "\\text{浮？}",
+                },
+                        targets: {
+                        answer: "\\text{答案}",
+                },
+                        corrects: {
+                        yes_density_less_water: "\\text{是（密度 < 水）}",
+                        yes_rho_avg_less_1000: "\\text{是（} \\rho_{avg} < 1000 \\text{）}",
+                },
         },
 
     // SP3.05: 简单机械 (映射自原 sp1_04 - 完整背景版)
