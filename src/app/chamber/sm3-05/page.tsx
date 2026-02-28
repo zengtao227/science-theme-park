@@ -232,7 +232,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel cut} \\rightarrow \\text{same shape as face}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
-                        correctLatex: `\\text{Square}`,
+                        correctLatex: t("sm3_05.labels.correct_square"),
                         hintLatex: [`\\text{Cube faces are squares}`]
                     },
                     {
@@ -241,7 +241,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Sphere} \\rightarrow \\text{always circular}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
-                        correctLatex: `\\text{Circle}`,
+                        correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [`\\text{All sphere cross-sections are circles}`]
                     },
                     {
@@ -250,7 +250,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Perpendicular to axis} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
-                        correctLatex: `\\text{Circle}`,
+                        correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [`\\text{Perpendicular cut shows circular base}`]
                     },
                     {
@@ -259,7 +259,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{rectangle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
-                        correctLatex: `\\text{Rectangle}`,
+                        correctLatex: t("sm3_05.labels.correct_rectangle"),
                         hintLatex: [`\\text{Parallel cut shows side view}`]
                     },
                     {
@@ -268,7 +268,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
-                        correctLatex: `\\text{Circle}`,
+                        correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [`\\text{Horizontal cut through cone is circular}`]
                     }
                 );
@@ -281,7 +281,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Diagonal cut} \\rightarrow \\text{rectangle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
-                        correctLatex: `\\text{Rectangle}`,
+                        correctLatex: t("sm3_05.labels.correct_rectangle"),
                         hintLatex: [`\\text{Diagonal cut creates rectangle}`]
                     },
                     {
@@ -290,7 +290,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Angled cut} \\rightarrow \\text{ellipse}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],
-                        correctLatex: `\\text{Ellipse}`,
+                        correctLatex: t("sm3_05.labels.correct_ellipse"),
                         hintLatex: [`\\text{Angled cut stretches circle into ellipse}`]
                     },
                     {
@@ -299,7 +299,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel to base} \\rightarrow \\text{circle}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
-                        correctLatex: `\\text{Circle (smaller than base)}`,
+                        correctLatex: t("sm3_05.labels.correct_circle_smaller"),
                         hintLatex: [`\\text{Parallel cut is circular, smaller radius}`]
                     },
                     {
@@ -308,7 +308,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel} \\rightarrow \\text{similar shape}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
-                        correctLatex: `\\text{Square (smaller)}`,
+                        correctLatex: t("sm3_05.labels.correct_square_smaller"),
                         hintLatex: [`\\text{Parallel cut creates similar square}`]
                     },
                     {
@@ -317,7 +317,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{base shape}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
-                        correctLatex: `\\text{Triangle}`,
+                        correctLatex: t("sm3_05.labels.correct_triangle"),
                         hintLatex: [`\\text{Shows triangular base}`]
                     }
                 );
@@ -330,7 +330,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel to edge} \\rightarrow \\text{parabola}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
-                        correctLatex: `\\text{Parabola}`,
+                        correctLatex: t("sm3_05.labels.correct_parabola"),
                         hintLatex: [`\\text{Parallel to slant creates parabola}`]
                     },
                     {
@@ -339,7 +339,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{hyperbola}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
-                        correctLatex: `\\text{Hyperbola}`,
+                        correctLatex: t("sm3_05.labels.correct_hyperbola"),
                         hintLatex: [`\\text{Steep cut creates hyperbola}`]
                     },
                     {
@@ -348,7 +348,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Through edge midpoints} \\rightarrow \\text{hexagon}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
-                        correctLatex: `\\text{Regular hexagon}`,
+                        correctLatex: t("sm3_05.labels.correct_regular_hexagon"),
                         hintLatex: [`\\text{Special diagonal cut creates hexagon}`]
                     },
                     {
@@ -406,7 +406,7 @@ export default function SM305Page() {
                         expressionLatex: `\\text{Torus cross-section}`,
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
-                        correctLatex: `\\text{Two circles}`,
+                        correctLatex: t("sm3_05.labels.correct_two_circles"),
                         hintLatex: [`\\text{Cut shows two circular tubes}`]
                     },
                     {

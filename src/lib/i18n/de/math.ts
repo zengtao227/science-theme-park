@@ -2501,7 +2501,18 @@ export const deMath = {
             curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr^{3}) und die Oberfläche (A = 4πr^{2}) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
         },
         labels: {
-            shape: "\\text{Form}"
+            shape: "\\text{Form}",
+            correct_square: "Quadrat",
+            correct_circle: "Kreis",
+            correct_rectangle: "Rechteck",
+            correct_ellipse: "Ellipse",
+            correct_circle_smaller: "Kreis (kleiner als Basis)",
+            correct_square_smaller: "Quadrat (kleiner)",
+            correct_triangle: "Dreieck",
+            correct_parabola: "Parabel",
+            correct_hyperbola: "Hyperbel",
+            correct_regular_hexagon: "Reguläres Sechseck",
+            correct_two_circles: "Zwei Kreise"
         }
     },
     sm2_11: {

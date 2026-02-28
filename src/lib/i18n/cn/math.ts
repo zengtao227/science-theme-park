@@ -2509,7 +2509,18 @@ export const cnMath = {
             curved_solids: "巴塞尔生物技术研究 - 微观几何：在诺华（Novartis）的制药实验室中，科学家们正在研究用于新药投递的球形脂质体和圆柱形输送系统。计算球体的表面积对于确定药物释放率至关重要，而圆锥形储液罐的体积则影响剂量精度。这个阶段带你进入非多面体几何的世界——球体、圆锥和圆柱。你将应用球体体积（V = 4/3πr^{3}）和表面积（A = 4πr^{2}）的公式，以及圆锥和圆柱的类似高级公式，确保巴塞尔的药品以数学上的确定性完成交付。"
         },
         labels: {
-            shape: "\\text{形状}"
+            shape: "\\text{形状}",
+            correct_square: "正方形",
+            correct_circle: "圆形",
+            correct_rectangle: "矩形",
+            correct_ellipse: "椭圆",
+            correct_circle_smaller: "圆形（小于底面）",
+            correct_square_smaller: "正方形（较小）",
+            correct_triangle: "三角形",
+            correct_parabola: "抛物线",
+            correct_hyperbola: "双曲线",
+            correct_regular_hexagon: "正六边形",
+            correct_two_circles: "两个圆"
         }
     },
     sm2_11: {

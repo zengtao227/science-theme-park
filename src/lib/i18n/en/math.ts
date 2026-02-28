@@ -2513,7 +2513,18 @@ export const enMath = {
             curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr^{3}) and surface area (A = 4πr^{2}) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
         },
         labels: {
-            shape: "\\text{Shape}"
+            shape: "\\text{Shape}",
+            correct_square: "Square",
+            correct_circle: "Circle",
+            correct_rectangle: "Rectangle",
+            correct_ellipse: "Ellipse",
+            correct_circle_smaller: "Circle (smaller than base)",
+            correct_square_smaller: "Square (smaller)",
+            correct_triangle: "Triangle",
+            correct_parabola: "Parabola",
+            correct_hyperbola: "Hyperbola",
+            correct_regular_hexagon: "Regular hexagon",
+            correct_two_circles: "Two circles"
         }
     },
     sm2_11: {
