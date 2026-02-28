@@ -233,7 +233,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square"),
-                        hintLatex: [`\\text{Cube faces are squares}`]
+                        hintLatex: [t("sm3_05.hints.cube_faces_squares")]
                     },
                     {
                         id: "CS-B2", difficulty, stage, geometryType: "sphere",
@@ -242,7 +242,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
-                        hintLatex: [`\\text{All sphere cross-sections are circles}`]
+                        hintLatex: [t("sm3_05.hints.sphere_cross_circles")]
                     },
                     {
                         id: "CS-B3", difficulty, stage, geometryType: "cylinder_perp",
@@ -251,7 +251,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
-                        hintLatex: [`\\text{Perpendicular cut shows circular base}`]
+                        hintLatex: [t("sm3_05.hints.perp_cut_circular")]
                     },
                     {
                         id: "CS-B4", difficulty, stage, geometryType: "cylinder_parallel",
@@ -260,7 +260,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
-                        hintLatex: [`\\text{Parallel cut shows side view}`]
+                        hintLatex: [t("sm3_05.hints.parallel_cut_side")]
                     },
                     {
                         id: "CS-B5", difficulty, stage, geometryType: "cone_perp",
@@ -269,7 +269,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
-                        hintLatex: [`\\text{Horizontal cut through cone is circular}`]
+                        hintLatex: [t("sm3_05.hints.horiz_cut_cone_circular")]
                     }
                 );
             }
@@ -282,7 +282,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
-                        hintLatex: [`\\text{Diagonal cut creates rectangle}`]
+                        hintLatex: [t("sm3_05.hints.diagonal_cut_rectangle")]
                     },
                     {
                         id: "CS-C2", difficulty, stage, geometryType: "cylinder_angle",
@@ -291,7 +291,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],
                         correctLatex: t("sm3_05.labels.correct_ellipse"),
-                        hintLatex: [`\\text{Angled cut stretches circle into ellipse}`]
+                        hintLatex: [t("sm3_05.hints.angled_cut_ellipse")]
                     },
                     {
                         id: "CS-C3", difficulty, stage, geometryType: "cone_parallel",
@@ -318,7 +318,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
                         correctLatex: t("sm3_05.labels.correct_triangle"),
-                        hintLatex: [`\\text{Shows triangular base}`]
+                        hintLatex: [t("sm3_05.hints.shows_triangular_base")]
                     }
                 );
             }

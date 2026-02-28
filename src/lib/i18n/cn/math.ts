@@ -2521,6 +2521,16 @@ export const cnMath = {
             correct_hyperbola: "双曲线",
             correct_regular_hexagon: "正六边形",
             correct_two_circles: "两个圆"
+        },
+        hints: {
+            cube_faces_squares: "正方体各面均为正方形",
+            sphere_cross_circles: "球的所有截面均为圆形",
+            perp_cut_circular: "垂直截面为圆形底面",
+            parallel_cut_side: "平行截面显示侧面",
+            horiz_cut_cone_circular: "圆锥水平截面为圆形",
+            diagonal_cut_rectangle: "对角截面形成矩形",
+            angled_cut_ellipse: "斜切将圆拉伸为椭圆",
+            shows_triangular_base: "显示三角形底面"
         }
     },
     sm2_11: {

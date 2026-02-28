@@ -2525,6 +2525,16 @@ export const enMath = {
             correct_hyperbola: "Hyperbola",
             correct_regular_hexagon: "Regular hexagon",
             correct_two_circles: "Two circles"
+        },
+        hints: {
+            cube_faces_squares: "Cube faces are squares",
+            sphere_cross_circles: "All sphere cross-sections are circles",
+            perp_cut_circular: "Perpendicular cut shows circular base",
+            parallel_cut_side: "Parallel cut shows side view",
+            horiz_cut_cone_circular: "Horizontal cut through cone is circular",
+            diagonal_cut_rectangle: "Diagonal cut creates rectangle",
+            angled_cut_ellipse: "Angled cut stretches circle into ellipse",
+            shows_triangular_base: "Shows triangular base"
         }
     },
     sm2_11: {

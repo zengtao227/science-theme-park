@@ -2513,6 +2513,16 @@ export const deMath = {
             correct_hyperbola: "Hyperbel",
             correct_regular_hexagon: "Reguläres Sechseck",
             correct_two_circles: "Zwei Kreise"
+        },
+        hints: {
+            cube_faces_squares: "Wuerfelflaechen sind Quadrate",
+            sphere_cross_circles: "Alle Kugelschnitte sind Kreise",
+            perp_cut_circular: "Senkrechter Schnitt zeigt Kreisquerschnitt",
+            parallel_cut_side: "Paralleler Schnitt zeigt Seitenansicht",
+            horiz_cut_cone_circular: "Horizontaler Schnitt durch Kegel ist kreisfoermig",
+            diagonal_cut_rectangle: "Diagonalschnitt ergibt Rechteck",
+            angled_cut_ellipse: "Schraeger Schnitt streckt Kreis zur Ellipse",
+            shows_triangular_base: "Zeigt dreieckige Grundflaeche"
         }
     },
     sm2_11: {
