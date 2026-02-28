@@ -1894,6 +1894,14 @@ export const dePhysics = {
                         ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
                         boyles_law: "Boyle-Mariotte-Gesetz: Bei konstanter Temperatur ist das Volumen umgekehrt proportional zum Druck.",
                         charles_law: "Gesetz von Gay-Lussac: Bei konstantem Druck ist das Volumen direkt proportional zur Temperatur."
+                },
+                hints: {
+                        stp_conditions: "STP-Bedingungen"
+                },
+                labels: {
+                        factor: "Faktor",
+                        symbol: "Symbol",
+                        constant: "Konstante"
                 }
         },
         gp2_02: {

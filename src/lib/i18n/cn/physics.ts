@@ -1858,6 +1858,14 @@ export const cnPhysics = {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
             boyles_law: "波义耳定律：在温度恒定的情况下，体积与压强成反比。",
             charles_law: "查理定律：在压强恒定的情况下，体积与温度成正比。"
+        },
+        hints: {
+            stp_conditions: "标准状态条件"
+        },
+        labels: {
+            factor: "因子",
+            symbol: "符号",
+            constant: "常量"
         }
     },
     gp2_02: {

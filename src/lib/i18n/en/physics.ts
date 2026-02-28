@@ -1922,6 +1922,14 @@ export const enPhysics = {
                         ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",
                         boyles_law: "Boyle's Law: At constant temperature, volume is inversely proportional to pressure.",
                         charles_law: "Charles's Law: At constant pressure, volume is directly proportional to temperature."
+                },
+                hints: {
+                        stp_conditions: "STP conditions"
+                },
+                labels: {
+                        factor: "Factor",
+                        symbol: "Symbol",
+                        constant: "Constant"
                 }
         },
         gp2_02: {

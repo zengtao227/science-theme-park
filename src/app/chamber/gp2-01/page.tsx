@@ -66,7 +66,7 @@ function buildStagePool(
                     targetLatex: "V",
                     slots: [{ id: "v", labelLatex: "V \\text{ (m}^{3})", placeholder: "0.0224", expected: 0.0224 }],
                     correctLatex: "V \\approx 0.0224 \\text{ m}^{3}",
-                    hintLatex: [`\\text{STP conditions}`]
+                    hintLatex: [t("gp2_01.hints.stp_conditions")]
                 },
                 {
                     id: "IG-B4", difficulty, stage, gasType: "ideal",
@@ -130,7 +130,7 @@ function buildStagePool(
                     id: "IG-C5", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.relation_pt"),
                     expressionLatex: `P \\propto T \\text{ (V, n const)}`,
-                    targetLatex: "\\text{Factor}",
+                    targetLatex: t("gp2_01.labels.factor"),
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
                     correctLatex: "\\text{Factor } = 2",
                     hintLatex: ["Linear relationship"]
@@ -142,7 +142,7 @@ function buildStagePool(
                     id: "IG-A1", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.relation_vn"),
                     expressionLatex: `V \\propto n`,
-                    targetLatex: "\\text{Factor}",
+                    targetLatex: t("gp2_01.labels.factor"),
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }],
                     correctLatex: "\\text{Factor } = 2",
                     hintLatex: ["Avogadro's Law"]
@@ -179,7 +179,7 @@ function buildStagePool(
                     promptLatex: t("gp2_01.prompts.combined_law", { target: "P2" }),
                     expressionLatex: "\\frac{P_1V_1}{T_1} = \\\frac{P_2V_2}{T_2}",
                     targetLatex: "P_2",
-                    slots: [{ id: "f", labelLatex: "\\text{Symbol}", placeholder: "P2", expected: "P2" }], // Logic placeholder
+                    slots: [{ id: "f", labelLatex: t("gp2_01.labels.symbol"), placeholder: "P2", expected: "P2" }], // Logic placeholder
                     correctLatex: "P_2 = P_1 \\frac{V_1 T_2}{V_2 T_1}",
                     hintLatex: ["Isolate P2"]
                 }
@@ -278,7 +278,7 @@ function buildStagePool(
                     id: "B-B5", difficulty, stage, lawType: "boyle",
                     promptLatex: t("gp2_01.prompts.boyle_condition"),
                     expressionLatex: "PV = k",
-                    targetLatex: "\\text{Constant}",
+                    targetLatex: t("gp2_01.labels.constant"),
                     slots: [{ id: "c", labelLatex: "T", placeholder: "temperature", expected: "temperature" }],
                     correctLatex: "Temperature",
                     hintLatex: ["Isothermal"]
@@ -308,7 +308,7 @@ function buildStagePool(
                     id: "B-C3", difficulty, stage, lawType: "boyle",
                     promptLatex: t("gp2_01.prompts.boyle_relation", { v1: 10, v2: 2 }),
                     expressionLatex: "P_2/P_1 = V_1/V_2",
-                    targetLatex: "\\text{Factor}",
+                    targetLatex: t("gp2_01.labels.factor"),
                     slots: [{ id: "f", labelLatex: "\\times", placeholder: "5", expected: 5 }],
                     correctLatex: "5\\times",
                     hintLatex: ["10/2"]
@@ -528,3 +528,4 @@ export default function GP201Page() {
         </ChamberLayout>
     );
 }
+
