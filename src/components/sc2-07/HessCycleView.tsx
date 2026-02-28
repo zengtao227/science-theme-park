@@ -49,7 +49,7 @@ export function HessCycleView({
     <div className="w-full h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-6">
       {/* Title */}
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-white">Hess's Law Cycle</h3>
+        <h3 className="text-lg font-semibold text-white">Hess&apos;s Law Cycle</h3>
         <p className="text-sm text-white/60">Select equations to build pathway</p>
       </div>
 

@@ -19,13 +19,8 @@ import 'katex/dist/katex.min.css';
  * @param latex - LaTeX string with four backslashes (e.g., "\\\\text{H}_2\\\\text{O}")
  */
 export function ChemicalFormula({ latex }: { latex: string }) {
-  try {
-    return <InlineMath math={latex} />;
-  } catch (error) {
-    console.error('LaTeX rendering error:', error);
-    // Fallback to plain text if LaTeX fails
-    return <span className="text-red-500">{latex}</span>;
-  }
+  if (!latex) return null;
+  return <InlineMath math={latex} />;
 }
 
 /**
@@ -35,13 +30,8 @@ export function ChemicalFormula({ latex }: { latex: string }) {
  * @param latex - LaTeX string with four backslashes (e.g., "2\\\\text{H}_2 + \\\\text{O}_2 \\\\rightarrow 2\\\\text{H}_2\\\\text{O}")
  */
 export function ChemicalEquation({ latex }: { latex: string }) {
-  try {
-    return <BlockMath math={latex} />;
-  } catch (error) {
-    console.error('LaTeX rendering error:', error);
-    // Fallback to plain text if LaTeX fails
-    return <div className="text-center text-red-500">{latex}</div>;
-  }
+  if (!latex) return null;
+  return <BlockMath math={latex} />;
 }
 
 /**

@@ -124,9 +124,7 @@ export interface GasParameters {
   moles: number; // mol
 }
 
-export interface GasState extends GasParameters {
-  // Extends GasParameters with no additional fields for now
-}
+export type GasState = GasParameters;
 
 // ============================================================================
 // Visualization Types

@@ -351,7 +351,7 @@ export default function ChamberLayout({
                     <div>
                         <div className="text-4xl font-black uppercase tracking-tighter leading-none mb-2">{title}</div>
                         <div className="text-xs font-mono opacity-70">
-                            STATION_ID: #ZRH-{moduleCode} // SYSTEM: ANTIGRAVITY_V2 // REF: {new Date().getFullYear()}
+                            {`STATION_ID: #ZRH-${moduleCode} // SYSTEM: ANTIGRAVITY_V2 // REF: ${new Date().getFullYear()}`}
                         </div>
                     </div>
                     <div className="text-right font-mono text-[10px] leading-tight">

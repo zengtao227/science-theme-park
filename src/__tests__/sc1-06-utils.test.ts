@@ -2,7 +2,14 @@
  * Unit tests for SC1.06 utility functions
  */
 
-import { formulaToLatex, parseCompound, validateChemicalNotation, createCompound } from '../lib/sc1-06-utils';
+import {
+  formulaToLatex,
+  parseCompound,
+  validateChemicalNotation,
+  createCompound,
+  classifyReaction,
+  analyzeReactionPattern
+} from '../lib/sc1-06-utils';
 
 describe('SC1.06 Utility Functions', () => {
   describe('formulaToLatex', () => {
@@ -115,8 +122,6 @@ describe('SC1.06 Utility Functions', () => {
 });
 
 describe('Reaction Type Classification', () => {
-  const { classifyReaction, analyzeReactionPattern } = require('../lib/sc1-06-utils');
-  
   describe('classifyReaction', () => {
     it('should classify synthesis reactions (A + B → AB)', () => {
       // H2 + O2 → H2O

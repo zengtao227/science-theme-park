@@ -1,15 +1,9 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, Trail, Float, Text, Environment, ContactShadows } from "@react-three/drei";
+import { Sphere, Trail, Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
-
-interface AtomProps {
-    type: string;
-    position: [number, number, number];
-    velocity: THREE.Vector3;
-}
 
 const ATOM_CONFIG: Record<string, { color: string; radius: number }> = {
     H: { color: "#ffffff", radius: 0.25 },
@@ -70,19 +64,24 @@ function ReactionBox({ reactants, products, isReacted }: { reactants: string[]; 
         return list;
     }, [reactants, products, isReacted]);
 
+    const pseudoRandom = (seed: number) => {
+        const x = Math.sin(seed * 12.9898) * 43758.5453123;
+        return x - Math.floor(x);
+    };
+
     const atoms = useMemo(() => {
         return atomList.map((type, i) => ({
             id: i,
             type,
             position: [
-                (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 4
+                (pseudoRandom(i * 6 + 1) - 0.5) * 4,
+                (pseudoRandom(i * 6 + 2) - 0.5) * 4,
+                (pseudoRandom(i * 6 + 3) - 0.5) * 4
             ] as [number, number, number],
             velocity: new THREE.Vector3(
-                (Math.random() - 0.5) * 2,
-                (Math.random() - 0.5) * 2,
-                (Math.random() - 0.5) * 2
+                (pseudoRandom(i * 6 + 4) - 0.5) * 2,
+                (pseudoRandom(i * 6 + 5) - 0.5) * 2,
+                (pseudoRandom(i * 6 + 6) - 0.5) * 2
             )
         }));
     }, [atomList]);
