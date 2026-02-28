@@ -114,7 +114,7 @@ export default function SM209Page() {
           constants: q.constants,
           systemInequalities: q.systemInequalities,
           absoluteValueExpression: q.absoluteValueExpression,
-          promptLatex: `\\\\text{Solve: } ${q.expression}`,
+          promptLatex: `Solve: ${q.expression}`,
           expressionLatex: q.expression || "",
           targetLatex: q.variable || "x",
           solutionType: q.solutionType || "INTERVAL",
