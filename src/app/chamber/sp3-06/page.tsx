@@ -50,7 +50,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b3"),
                         expressionLatex: `\\text{Denser medium} \\rightarrow \\text{faster sound}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{T/F}`, placeholder: "true", expected: "true" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
                         correctLatex: `\\text{True}`,
                         hintLatex: [t("sp3_06.hints.sw_b3")]
                     },
@@ -68,7 +68,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b5"),
                         expressionLatex: `\\text{Sound needs medium}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (needs medium)}`,
                         hintLatex: [t("sp3_06.hints.sw_b5")]
                     }
@@ -117,7 +117,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c5"),
                         expressionLatex: `\\text{Ratio} = \\frac{v_{\\text{steel}}}{v_{\\text{air}}}`,
                         targetLatex: `\\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "17", expected: 17 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "17", expected: 17 }],
                         correctLatex: `\\approx 17\\text{ times}`,
                         hintLatex: [`5960 \\div 343 \\approx 17.4`]
                     }
@@ -130,7 +130,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a1"),
                         expressionLatex: `\\text{Doppler effect: approaching} \\rightarrow \\text{higher}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{H/L}`, placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
                         correctLatex: `\\text{Higher (Doppler effect)}`,
                         hintLatex: [t("sp3_06.hints.sw_a1")]
                     },
@@ -139,7 +139,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a2"),
                         expressionLatex: `\\text{Cancellation} = \\text{destructive interference}`,
                         targetLatex: `\\text{Type}`,
-                        slots: [{ id: "type", labelLatex: `\\text{Type}`, placeholder: "destructive", expected: "destructive" }],
+                        slots: [{ id: "type", labelLatex: t("sp3_06.labels.label_type"), placeholder: "destructive", expected: "destructive" }],
                         correctLatex: `\\text{Destructive}`,
                         hintLatex: [t("sp3_06.hints.sw_a2")]
                     },
@@ -148,7 +148,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a3"),
                         expressionLatex: `\\text{Bending at boundary} = \\text{refraction}`,
                         targetLatex: `\\text{Phenomenon}`,
-                        slots: [{ id: "phenom", labelLatex: `\\text{Name}`, placeholder: "refraction", expected: "refraction" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "refraction", expected: "refraction" }],
                         correctLatex: `\\text{Refraction}`,
                         hintLatex: [t("sp3_06.hints.sw_a3")]
                     },
@@ -157,7 +157,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a4"),
                         expressionLatex: `\\text{Bending around obstacles} = \\text{diffraction}`,
                         targetLatex: `\\text{Phenomenon}`,
-                        slots: [{ id: "phenom", labelLatex: `\\text{Name}`, placeholder: "diffraction", expected: "diffraction" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "diffraction", expected: "diffraction" }],
                         correctLatex: `\\text{Diffraction}`,
                         hintLatex: [t("sp3_06.hints.sw_a4")]
                     },
@@ -206,7 +206,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e4"),
                         expressionLatex: `v > v_{\\text{sound}} \\rightarrow \\text{shock wave}`,
                         targetLatex: `\\text{Phenomenon}`,
-                        slots: [{ id: "phenom", labelLatex: `\\text{Name}`, placeholder: "sonic boom", expected: "sonic boom" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "sonic boom", expected: "sonic boom" }],
                         correctLatex: `\\text{Sonic boom}`,
                         hintLatex: [t("sp3_06.hints.sw_e4")]
                     },
@@ -215,7 +215,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e5"),
                         expressionLatex: `\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}`,
                         targetLatex: `\\text{Reason}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{Reason}`, placeholder: "impedance", expected: "impedance" }],
+                        slots: [{ id: "reason", labelLatex: t("sp3_06.labels.label_reason"), placeholder: "impedance", expected: "impedance" }],
                         correctLatex: `\\text{Acoustic impedance mismatch}`,
                         hintLatex: [t("sp3_06.hints.sw_e5")]
                     }
@@ -240,7 +240,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b2"),
                         expressionLatex: `\\text{Frequency} \\uparrow \\Rightarrow \\text{Pitch} \\uparrow`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{H/L}`, placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
                         correctLatex: `\\text{Higher pitch}`,
                         hintLatex: [t("sp3_06.hints.fp_b2")]
                     },
@@ -258,7 +258,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b4"),
                         expressionLatex: `\\text{Above hearing range}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No}`,
                         hintLatex: [t("sp3_06.hints.fp_b4")]
                     },
@@ -267,7 +267,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b5"),
                         expressionLatex: `\\text{Below hearing range}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No}`,
                         hintLatex: [t("sp3_06.hints.fp_b5")]
                     }
@@ -307,7 +307,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c4"),
                         expressionLatex: `50{,}000 > 20{,}000`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (ultrasound)}`,
                         hintLatex: [`50{,}000 \\text{ Hz} > 20{,}000 \\text{ Hz}`]
                     },
@@ -338,7 +338,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a2"),
                         expressionLatex: `\\text{Different harmonic content}`,
                         targetLatex: `\\text{Property}`,
-                        slots: [{ id: "prop", labelLatex: `\\text{Property}`, placeholder: "timbre", expected: "timbre" }],
+                        slots: [{ id: "prop", labelLatex: t("sp3_06.labels.label_property"), placeholder: "timbre", expected: "timbre" }],
                         correctLatex: `\\text{Timbre (tone quality)}`,
                         hintLatex: [t("sp3_06.hints.fp_a2")]
                     },
@@ -347,7 +347,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a3"),
                         expressionLatex: `\\text{MHz} = 10^6 \\text{ Hz} >> 20{,}000 \\text{ Hz}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Above/Below}`, placeholder: "above", expected: "above" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_above_below"), placeholder: "above", expected: "above" }],
                         correctLatex: `\\text{Far above (ultrasound)}`,
                         hintLatex: [`2 \\text{ MHz} = 2{,}000{,}000 \\text{ Hz}`]
                     },
@@ -356,7 +356,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a4"),
                         expressionLatex: `5 < 20 \\text{ Hz}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (infrasound)}`,
                         hintLatex: [`5 \\text{ Hz} < 20 \\text{ Hz}`]
                     },
@@ -365,7 +365,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a5"),
                         expressionLatex: `\\Delta f > \\text{critical bandwidth}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Yes/No}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (beyond critical band)}`,
                         hintLatex: [t("sp3_06.hints.fp_a5")]
                     }
@@ -387,7 +387,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e2"),
                         expressionLatex: `\\frac{3}{2} = 1.5, \\quad 2^{7/12} \\approx 1.498`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Just/Equal}`, placeholder: "just", expected: "just" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_just_equal"), placeholder: "just", expected: "just" }],
                         correctLatex: `\\text{Just intonation (1.5 > 1.498)}`,
                         hintLatex: [`1.5 > 1.498`]
                     },
@@ -396,7 +396,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e3"),
                         expressionLatex: `\\text{Vocal tract resonances}`,
                         targetLatex: `\\text{Term}`,
-                        slots: [{ id: "term", labelLatex: `\\text{Term}`, placeholder: "formants", expected: "formants" }],
+                        slots: [{ id: "term", labelLatex: t("sp3_06.labels.label_term"), placeholder: "formants", expected: "formants" }],
                         correctLatex: `\\text{Formants}`,
                         hintLatex: [t("sp3_06.hints.fp_e3")]
                     },
@@ -414,7 +414,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e5"),
                         expressionLatex: `\\text{Frequency masking}`,
                         targetLatex: `\\text{Effect}`,
-                        slots: [{ id: "effect", labelLatex: `\\text{Effect}`, placeholder: "masking", expected: "masking" }],
+                        slots: [{ id: "effect", labelLatex: t("sp3_06.labels.label_effect"), placeholder: "masking", expected: "masking" }],
                         correctLatex: `\\text{Auditory masking}`,
                         hintLatex: [t("sp3_06.hints.fp_e5")]
                     }
@@ -430,7 +430,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b1"),
                         expressionLatex: `\\Delta L = 30 \\text{ dB} \\Rightarrow 10^{3} = 1000\\times`,
                         targetLatex: `\\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "1000", expected: 1000 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "1000", expected: 1000 }],
                         correctLatex: `1000\\times`,
                         hintLatex: [`10 \\text{ dB} = 10\\times, \\quad 30 \\text{ dB} = 10^{3} = 1000\\times`]
                     },
@@ -448,7 +448,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b3"),
                         expressionLatex: `> 85 \\text{ dB} \\rightarrow \\text{damage risk}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{Safe?}`, placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_safe"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (causes pain and damage)}`,
                         hintLatex: [`140 \\text{ dB} >> 85 \\text{ dB}`]
                     },
@@ -466,7 +466,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b5"),
                         expressionLatex: `> 85 \\text{ dB} \\rightarrow \\text{damage risk}`,
                         targetLatex: `\\text{Answer}`,
-                        slots: [{ id: "ans", labelLatex: `\\text{T/F}`, placeholder: "true", expected: "true" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
                         correctLatex: `\\text{True}`,
                         hintLatex: [t("sp3_06.hints.li_b5")]
                     }
@@ -479,7 +479,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c1"),
                         expressionLatex: `\\Delta L = 10 \\text{ dB} \\Rightarrow 10\\times`,
                         targetLatex: `\\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "10", expected: 10 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "10", expected: 10 }],
                         correctLatex: `10\\times`,
                         hintLatex: [t("sp3_06.hints.li_c1")]
                     },
@@ -506,7 +506,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c4"),
                         expressionLatex: `\\Delta L = 40 \\text{ dB} \\Rightarrow 10^{4} = 10{,}000\\times`,
                         targetLatex: `\\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "10000", expected: 10000 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "10000", expected: 10000 }],
                         correctLatex: `10{,}000\\times`,
                         hintLatex: [`40 \\text{ dB} = 10^{4} = 10{,}000\\times`]
                     },
@@ -577,7 +577,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e1"),
                         expressionLatex: `\\text{Perceived loudness unit}`,
                         targetLatex: `\\text{Unit}`,
-                        slots: [{ id: "unit", labelLatex: `\\text{Unit}`, placeholder: "phon", expected: "phon" }],
+                        slots: [{ id: "unit", labelLatex: t("sp3_06.labels.label_unit"), placeholder: "phon", expected: "phon" }],
                         correctLatex: `\\text{Phon}`,
                         hintLatex: [t("sp3_06.hints.li_e1")]
                     },
@@ -586,7 +586,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e2"),
                         expressionLatex: `\\text{Linear loudness scale}`,
                         targetLatex: `\\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "2", expected: 2 }],
                         correctLatex: `2\\times \\text{ louder}`,
                         hintLatex: [t("sp3_06.hints.li_e2")]
                     },
@@ -595,7 +595,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e3"),
                         expressionLatex: `\\text{Weighted decibel}`,
                         targetLatex: `\\text{Symbol}`,
-                        slots: [{ id: "symbol", labelLatex: `\\text{Symbol}`, placeholder: "dBA", expected: "dBA" }],
+                        slots: [{ id: "symbol", labelLatex: t("sp3_06.labels.label_symbol"), placeholder: "dBA", expected: "dBA" }],
                         correctLatex: `\\text{dB(A) or dBA}`,
                         hintLatex: [t("sp3_06.hints.li_e3")]
                     },
@@ -604,7 +604,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e4"),
                         expressionLatex: `+3 \\text{ dB} \\Rightarrow \\text{half time}`,
                         targetLatex: `\\text{Dose}`,
-                        slots: [{ id: "dose", labelLatex: `\\text{Dose (\\%)}`, placeholder: "100", expected: 100 }],
+                        slots: [{ id: "dose", labelLatex: t("sp3_06.labels.label_dose"), placeholder: "100", expected: 100 }],
                         correctLatex: `100\\%`,
                         hintLatex: [t("sp3_06.hints.li_e4")]
                     },
@@ -613,7 +613,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e5"),
                         expressionLatex: `\\text{Noise measurement standard}`,
                         targetLatex: `\\text{Application}`,
-                        slots: [{ id: "app", labelLatex: `\\text{Application}`, placeholder: "noise", expected: "noise" }],
+                        slots: [{ id: "app", labelLatex: t("sp3_06.labels.label_application"), placeholder: "noise", expected: "noise" }],
                         correctLatex: `\\text{Audio noise/hiss}`,
                         hintLatex: [t("sp3_06.hints.li_e5")]
                     }
