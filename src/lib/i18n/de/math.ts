@@ -2556,6 +2556,10 @@ export const deMath = {
             voltage: "Spannung (V)",
             value: "Wert",
             output_power: "Ausgangsleistung (W)"
+        },
+        expressions: {
+            lenz_law: "\text{Lenz'sches Gesetz: Induzierte Wirkungen hemmen die Änderung}",
+            generator_principles: "\text{Generatorprinzipien}"
         }
     },
     gp2_02: {

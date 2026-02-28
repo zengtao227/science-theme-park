@@ -2526,6 +2526,10 @@ export const enMath = {
             voltage: "Voltage (V)",
             value: "Value",
             output_power: "Output Power (W)"
+        },
+        expressions: {
+            lenz_law: "\text{Lenz's Law: Induced effects oppose change}",
+            generator_principles: "\text{Generator principles}"
         }
     },
     gp2_02: {

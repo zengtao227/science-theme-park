@@ -145,7 +145,7 @@ export default function GP303Induction() {
                 difficulty,
                 stage,
                 promptLatex: item.prompt,
-                expressionLatex: `\\text{Lenz's Law: Induced effects oppose change}`,
+                expressionLatex: t("gp3_03.expressions.lenz_law"),
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
@@ -195,7 +195,7 @@ export default function GP303Induction() {
                 difficulty,
                 stage,
                 promptLatex: item.prompt,
-                expressionLatex: difficulty === "BASIC" ? `\\text{Generator principles}` :
+                expressionLatex: difficulty === "BASIC" ? t("gp3_03.expressions.generator_principles") :
                                difficulty === "CORE" ? `\\varepsilon = NAB\\omega` :
                                difficulty === "ADVANCED" ? `P = VI` :
                                `\\eta = \\frac{P_{out}}{P_{in}}`,

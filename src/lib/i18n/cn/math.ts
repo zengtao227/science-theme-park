@@ -2509,6 +2509,10 @@ export const cnMath = {
             voltage: "电压 (V)",
             value: "数值",
             output_power: "输出功率 (W)"
+        },
+        expressions: {
+            lenz_law: "\text{楞次定律：感应效果阻碍变化}",
+            generator_principles: "\text{发电机原理}"
         }
     },
     gp2_02: {
