@@ -124,6 +124,17 @@ function hasEnglishLetters(s: string): boolean {
   return /[A-Za-z]/.test(s);
 }
 
+function numericDominant(s: string): boolean {
+  const digits = (s.match(/\d/g) || []).length;
+  const chars = Math.max(s.replace(/\s/g, "").length, 1);
+  return /^\d/.test(s.trim()) || digits / chars > 0.3;
+}
+
+function textInsideMathFunction(raw: string): boolean {
+  // Example: P(\text{...}), Var(\text{...})
+  return /[A-Za-z]+\s*\([^)]*\\text\{/.test(raw);
+}
+
 function looksLikeE2EnglishText(raw: string): boolean {
   // Rule 7: must align with E2-like hardcoded English in \text{...}
   const parts = extractTextContents(raw).filter(Boolean);
@@ -185,7 +196,7 @@ function main(): void {
     }
 
     // Rule 1 - numeric result with unit text
-    if (!autoExempt && /\\approx|=\s*[\d]/.test(raw) && hasUnitText(raw)) {
+    if (!autoExempt && /\\approx|[=<>]\s*[\d]/.test(raw) && hasUnitText(raw)) {
       autoExempt = true;
       autoExemptReason = "numeric result";
     }
@@ -197,7 +208,13 @@ function main(): void {
     }
 
     // Rule 3 - math-dominant formula
-    if (!autoExempt && /\\(propto|times|frac|sqrt|approx)/.test(raw) && ratio < 0.5) {
+    if (!autoExempt && /\\propto/.test(raw)) {
+      autoExempt = true;
+      autoExemptReason = "math formula";
+    }
+
+    // Rule 3 - math-dominant formula
+    if (!autoExempt && /\\(times|frac|sqrt|approx)/.test(raw) && ratio < 0.5) {
       autoExempt = true;
       autoExemptReason = "math formula";
     }
@@ -208,10 +225,32 @@ function main(): void {
       autoExemptReason = "unit symbol";
     }
 
+    // Rule 4 (extended) - superscript/subscript-like symbol text
+    if (!autoExempt && textParts.some((t) => t.includes("^") || t.includes("_"))) {
+      autoExempt = true;
+      autoExemptReason = "unit with superscript";
+    }
+
     // Rule 5 - non-English or numeric-only text
     if (!autoExempt && textParts.length > 0 && textParts.every((t) => !hasEnglishLetters(t))) {
       autoExempt = true;
       autoExemptReason = "non-english or numeric only";
+    }
+
+    // Rule 8 - text wrapped inside math function call
+    if (!autoExempt && textInsideMathFunction(raw)) {
+      autoExempt = true;
+      autoExemptReason = "text inside math function call";
+    }
+
+    // Rule 7 (extended) - numeric-dominant hint text
+    if (
+      !autoExempt &&
+      field === "hintLatex" &&
+      (textParts.some(numericDominant) || /^\s*\d/.test(raw))
+    ) {
+      autoExempt = true;
+      autoExemptReason = "numeric-dominant hint";
     }
 
     // Rule 7 - E2 alignment; non-matching text is auto-exempt

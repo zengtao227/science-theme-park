@@ -1325,6 +1325,9 @@ export const enChemistry = {
             cell_potential: "Cell Potential",
             regional_case: "Regional Case Study // Basel Node"
         },
+        expressions: {
+            galvanic_cell: "Galvanic Cell"
+        },
         mission: {
             title: "REDOX MISSION"
         },

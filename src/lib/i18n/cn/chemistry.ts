@@ -1325,6 +1325,9 @@ export const cnChemistry = {
             cell_potential: "电池电位",
             regional_case: "区域案例研究 // 巴塞尔节点"
         },
+        expressions: {
+            galvanic_cell: "原电池"
+        },
         mission: {
             title: "氧化还原任务"
         },

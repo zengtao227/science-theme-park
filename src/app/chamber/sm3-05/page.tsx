@@ -38,7 +38,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-B2", difficulty, stage, geometryType: "cube",
-                        promptLatex: `\\\\text{A cube has edge length } 5\\\\text{m. What is its volume?}`,
+                        promptLatex: t("sm3_05.prompts.cube_volume_basic"),
                         expressionLatex: `V = a^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "125", expected: 125 }],
@@ -154,7 +154,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-A4", difficulty, stage, geometryType: "frustum",
-                        promptLatex: `\\\\text{A frustum (truncated cone): base radius } 8\\\\text{m, top radius } 4\\\\text{m, height } 10\\\\text{m. Approximate volume using average area.}`,
+                        promptLatex: t("sm3_05.prompts.frustum_avg_area"),
                         expressionLatex: `V \\approx \\pi \\cdot \\frac{r_1^{2} + r_2^2}{2} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "1256", expected: 1256 }],
@@ -277,7 +277,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CS-C1", difficulty, stage, geometryType: "cube_diagonal",
-                        promptLatex: `\\\\text{Cube cut diagonally through opposite edges. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cube_diagonal"),
                         expressionLatex: t("sm3_05.expr.diagonal_rectangle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
@@ -286,7 +286,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CS-C2", difficulty, stage, geometryType: "cylinder_angle",
-                        promptLatex: `\\\\text{Cylinder cut at angle to axis. What shape?}`,
+                        promptLatex: t("sm3_05.prompts.cross_cylinder_angle"),
                         expressionLatex: t("sm3_05.expr.angled_ellipse"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],

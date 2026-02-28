@@ -259,7 +259,7 @@ export default function SC206Page() {
               difficulty,
               stage,
               promptLatex: t(`sc2_06.prompts.${item.question}`),
-              expressionLatex: "\\text{Galvanic Cell}",
+              expressionLatex: t("sc2_06.expressions.galvanic_cell"),
               targetLatex: `\\text{${item.answer}}`,
               slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
               correctLatex: `\\text{${item.answer}}`,

@@ -1318,6 +1318,9 @@ export const deChemistry = {
             cell_potential: "Zellpotential",
             regional_case: "Regionale Fallstudie // Basel-Knoten"
         },
+        expressions: {
+            galvanic_cell: "Galvanisches Element"
+        },
         mission: {
             title: "REDOX-MISSION"
         },
