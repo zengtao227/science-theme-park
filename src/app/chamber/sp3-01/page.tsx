@@ -183,9 +183,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{What is the SI unit for ${u.measurement}?}`,
                         expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
                         targetLatex: u.unit,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{SI Unit}", placeholder: "...", expected: u.unit }],
+                        slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
                         correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
-                        hintLatex: [`\\\\text{The base unit for ${u.measurement} is ${u.name}}`]
+                        hintLatex: [`\\text{The base unit for ${u.measurement} is ${u.name}}`]
                     });
                 });
             }
@@ -199,9 +199,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{What is the SI unit for ${d.quantity}?}`,
                         expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
                         targetLatex: d.unit,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Unit}", placeholder: "...", expected: d.unit }],
+                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: d.unit }],
                         correctLatex: `\\text{${d.unit}}`,
-                        hintLatex: [`\\\\text{${d.formula}}`]
+                        hintLatex: [`\\text{${d.formula}}`]
                     });
                 });
             }
@@ -218,9 +218,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\\\text{Use metric prefixes}`]
+                        hintLatex: [`\\text{Use metric prefixes}`]
                     });
                 });
             }
@@ -234,9 +234,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{What unit is equivalent to ${c.expr}?}`,
                         expressionLatex: `${c.expr} = \\text{?}`,
                         targetLatex: c.unit,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Unit}", placeholder: "...", expected: c.unit }],
+                        slots: [{ id: "ans", labelLatex: "\\text{Unit}", placeholder: "...", expected: c.unit }],
                         correctLatex: `\\text{${c.unit} (${c.name})}`,
-                        hintLatex: [`\\\\text{Simplify the base units}`]
+                        hintLatex: [`\\text{Simplify the base units}`]
                     });
                 });
             }
@@ -265,9 +265,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: result,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: result }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
                         correctLatex: `${result}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\\\text{Factor: ${c.factor}}`]
+                        hintLatex: [`\\text{Factor: ${c.factor}}`]
                     });
                 });
             }
@@ -293,9 +293,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\\\text{Multiple steps needed}`]
+                        hintLatex: [`\\text{Multiple steps needed}`]
                     });
                 });
             }
@@ -321,9 +321,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\\\text{Square or cube the conversion factor}`]
+                        hintLatex: [`\\text{Square or cube the conversion factor}`]
                     });
                 });
             }
@@ -349,9 +349,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Convert ${c.value} ${c.from} to ${c.to}}`,
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
-                        hintLatex: [`\\\\text{Convert numerator and denominator separately}`]
+                        hintLatex: [`\\text{Convert numerator and denominator separately}`]
                     });
                 });
             }
@@ -376,9 +376,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{How many significant figures in ${p.value}?}`,
                         expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
                         targetLatex: p.sigfigs,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
+                        slots: [{ id: "ans", labelLatex: "\\text{Sig Figs}", placeholder: "...", expected: p.sigfigs }],
                         correctLatex: `${p.sigfigs}\\text{ significant figures}`,
-                        hintLatex: [`\\\\text{Count non-zero digits and trapped zeros}`]
+                        hintLatex: [`\\text{Count non-zero digits and trapped zeros}`]
                     });
                 });
             }
@@ -401,9 +401,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Round ${r.value} to ${r.sigfigs} significant figures}`,
                         expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
                         targetLatex: r.answer,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Result}", placeholder: "...", expected: r.answer }],
+                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: r.answer }],
                         correctLatex: `${r.answer}`,
-                        hintLatex: [`\\\\text{Round at the ${r.sigfigs}th significant digit}`]
+                        hintLatex: [`\\text{Round at the ${r.sigfigs}th significant digit}`]
                     });
                 });
             }
@@ -426,9 +426,9 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Calculate ${c.expr} with proper sig figs}`,
                         expressionLatex: `${c.expr}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Result}", placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}`,
-                        hintLatex: [`\\\\text{Use ${c.rule} rule}`]
+                        hintLatex: [`\\text{Use ${c.rule} rule}`]
                     });
                 });
             }
@@ -449,11 +449,11 @@ export default function SP301Page() {
                         difficulty,
                         stage,
                         promptLatex: `\\\\text{What is the percent uncertainty of ${u.measurement} ${u.unit}?}`,
-                        expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\\\%`,
+                        expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
                         targetLatex: u.percent,
-                        slots: [{ id: "ans", labelLatex: "\\\\text{Percent}", placeholder: "...", expected: u.percent }],
-                        correctLatex: `${u.percent}\\\\%`,
-                        hintLatex: [`\\\\text{Divide uncertainty by measurement}`]
+                        slots: [{ id: "ans", labelLatex: "\\text{Percent}", placeholder: "...", expected: u.percent }],
+                        correctLatex: `${u.percent}\\%`,
+                        hintLatex: [`\\text{Divide uncertainty by measurement}`]
                     });
                 });
             }
