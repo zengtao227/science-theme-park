@@ -71,7 +71,7 @@ export default function SC305MolecularForge() {
                     targetLatex: `\\text{${m.shape}}`,
                     slots: [{ id: "ans", labelLatex: t("common.labels.geometry"), placeholder: "...", expected: m.shape }],
                     correctLatex: m.shape,
-                    hintLatex: [`\\text{Use VSEPR theory: count electron domains}`]
+                    hintLatex: [t("sc3_05.hints.vsepr_theory_count_electron_domains")]
                 });
             });
         }
@@ -95,7 +95,7 @@ export default function SC305MolecularForge() {
                     targetLatex: h.h,
                     slots: [{ id: "ans", labelLatex: t("common.labels.hybridization"), placeholder: "...", expected: h.h }],
                     correctLatex: h.h,
-                    hintLatex: [`\\text{Count electron domains around central atom}`]
+                    hintLatex: [t("sc3_05.hints.electron_domains_around_central_atom")]
                 });
             });
         }

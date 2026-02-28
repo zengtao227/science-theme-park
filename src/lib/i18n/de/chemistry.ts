@@ -1119,6 +1119,10 @@ export const deChemistry = {
             hint_mo: "Bindungsordnung = (Bindend - Antibindend) / 2.",
             hint_paramagnetism: "Ungepaarte Elektronen führen zu Paramagnetismus."
         },
+        hints: {
+            vsepr_theory_count_electron_domains: "VSEPR-Theorie anwenden: Elektronendomänen zählen",
+            electron_domains_around_central_atom: "Elektronendomänen um das Zentralatom zählen"
+        },
         scenarios: {
             basel_catalysis: "Universität Basel - Katalysezentrum: Forscher untersuchen, wie die Molekülgeometrie von Katalysatoren Reaktionsraten und Selektivität beeinflusst.",
             syngenta_agrochemicals: "Syngenta Basel: Wissenschaftler entwickeln Pestizidmoleküle, indem sie deren 3D-Geometrie für maximale Rezeptorbindung optimieren.",

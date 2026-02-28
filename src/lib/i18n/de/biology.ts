@@ -1115,6 +1115,8 @@ export const deBiology = {
             trophic_level: "Trophische Ebene",
             show_energy: "Energiefluss anzeigen",
             ecology_score: "Ökologie-Punktzahl",
+            energy_kj: "Energie (kJ)",
+            efficiency: "Effizienz (%)",
             analysis: "Ökosystem-Analyse",
             hint: "Ökologie-Hinweis",
             viz: {

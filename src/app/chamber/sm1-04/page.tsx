@@ -1033,7 +1033,7 @@ export default function SM104Page() {
             stage,
             scenario: tObj.scenarios.applications,
             context: tObj.problems.app_age_sum,
-            promptLatex: "$\\text{Son's age}$",
+            promptLatex: t("sm1_04.prompts.s_age"),
             expressionLatex: "x + (x + 30) = 50",
             targetLatex: "x",
             slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "years" }],

@@ -927,7 +927,7 @@ export default function SM103Page() {
             stage,
             scenario: tObj.scenarios.quadrants,
             context: tObj.problems.q_diagonal_distance,
-            promptLatex: "\\text{Horizontal distance}",
+            promptLatex: t("sm1_03.prompts.distance"),
             expressionLatex: "|6 - 2| = 4",
             targetLatex: "d_x",
             x: 6,

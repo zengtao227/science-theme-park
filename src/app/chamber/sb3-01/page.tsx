@@ -118,7 +118,7 @@ export default function SB301Page() {
                     promptLatex: t("sb3_01.prompts.energy_transfer", { level: item.level, energy: item.energy.toString() }),
                     expressionLatex: `E_{next} = E_{current} \times 10\%`,
                     targetLatex: item.expected,
-                    slots: [{ id: "ans", labelLatex: "\text{Energy (kJ)}", placeholder: "0", expected: item.expected }],
+                    slots: [{ id: "ans", labelLatex: `\\text{${t("sb3_01.labels.energy_kj")}}`, placeholder: "0", expected: item.expected }],
                     correctLatex: `${item.expected}\text{ kJ}`,
                     hintLatex: [t("sb3_01.prompts.hint_10percent")]
                 });
@@ -182,7 +182,7 @@ export default function SB301Page() {
                         promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^{2}/year. Herbivores consume mean = 850 kcal/m^{2}/year. Calculate energy transfer efficiency (\\%).}`,
                         expressionLatex: `\text{Efficiency} = \frac{\text{Energy consumed}}{\text{Energy available}} \times 100\\%`,
                         targetLatex: `\text{Efficiency}`,
-                        slots: [{ id: "eff", labelLatex: `\text{Efficiency (\%)}`, placeholder: "10", expected: "10" }],
+                        slots: [{ id: "eff", labelLatex: `\\text{${t("sb3_01.labels.efficiency")}}`, placeholder: "10", expected: "10" }],
                         correctLatex: `10\%`,
                         hintLatex: [
                             `\\frac{850}{8500} \\times 100\\% = 10\\%`,

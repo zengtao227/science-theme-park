@@ -843,6 +843,9 @@ export const enMath = {
             order_smallest: "Order from smallest",
             unit_celsius: "°C"
         },
+        prompts: {
+            distance: "Horizontal distance"
+        },
         stages: {
             number_line: "NUMBER LINE",
             rationals: "RATIONALS",
@@ -982,6 +985,9 @@ export const enMath = {
             liters_solution: "Liters of solution",
             principal_amount: "Principal amount",
             time_to_meet: "Time to meet"
+        },
+        prompts: {
+            s_age: "Son's age"
         },
         canvas: {
             bus: "BUS",

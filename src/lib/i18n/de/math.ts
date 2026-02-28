@@ -859,6 +859,9 @@ export const deMath = {
             order_smallest: "Von kleinsten ordnen",
             unit_celsius: "°C"
         },
+        prompts: {
+            distance: "Horizontale Distanz"
+        },
         stages: {
             number_line: "ZAHLENGERADE",
             rationals: "RATIONALE ZAHLEN",
@@ -998,6 +1001,9 @@ export const deMath = {
             liters_solution: "Liter der Lösung",
             principal_amount: "Kapitalbetrag",
             time_to_meet: "Zeit bis zum Treffen"
+        },
+        prompts: {
+            s_age: "Alter des Sohnes"
         },
         canvas: {
             bus: "BUS",

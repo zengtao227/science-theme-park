@@ -1255,6 +1255,8 @@ export const enBiology = {
             trophic_level: "Trophic Level",
             show_energy: "Show Energy Flow",
             ecology_score: "Ecology Score",
+            energy_kj: "Energy (kJ)",
+            efficiency: "Efficiency (%)",
             analysis: "Ecosystem Analysis",
             hint: "Ecology Hint",
             viz: {

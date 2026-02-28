@@ -1115,6 +1115,8 @@ export const cnBiology = {
             trophic_level: "营养级",
             show_energy: "显示能量流动",
             ecology_score: "生态学分数",
+            energy_kj: "能量 (kJ)",
+            efficiency: "效率 (%)",
             analysis: "生态系统分析",
             hint: "生态提示",
             viz: {

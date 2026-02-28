@@ -1126,6 +1126,10 @@ export const enChemistry = {
             hint_mo: "Bond Order = (Bonding - Antibonding) / 2.",
             hint_paramagnetism: "Unpaired electrons result in paramagnetism."
         },
+        hints: {
+            vsepr_theory_count_electron_domains: "Use VSEPR theory: count electron domains",
+            electron_domains_around_central_atom: "Count electron domains around central atom"
+        },
         scenarios: {
             basel_catalysis: "University of Basel - Catalysis Center: Researchers study how catalyst molecular geometry influences reaction rates and selectivity.",
             syngenta_agrochemicals: "Syngenta Basel: Scientists engineer pesticide molecules by optimizing their 3D geometry for maximum receptor binding.",

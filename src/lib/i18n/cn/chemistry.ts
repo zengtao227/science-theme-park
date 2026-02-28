@@ -1126,6 +1126,10 @@ export const cnChemistry = {
             hint_mo: "键级 = (成键电子数 - 反键电子数) / 2。",
             hint_paramagnetism: "存在未成对电子会导致顺磁性。"
         },
+        hints: {
+            vsepr_theory_count_electron_domains: "使用VSEPR理论：计算电子域数",
+            electron_domains_around_central_atom: "计算中心原子周围的电子域数"
+        },
         scenarios: {
             basel_catalysis: "巴塞尔大学 - 催化中心：研究人员研究催化剂的分子几何结构如何影响反应速率和选择性。",
             syngenta_agrochemicals: "巴塞尔先正达 (Syngenta)：科学家通过优化农药分子的三维几何结构，以实现与受体的最大程度结合。",

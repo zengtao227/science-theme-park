@@ -827,6 +827,9 @@ export const cnMath = {
             midpoint: "中点",
             order_smallest: "按从小到大排序"
         },
+        prompts: {
+            distance: "水平距离"
+        },
         scenarios: {
             number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
             rationals: "莱茵河水位：巴塞尔莱茵河的水位计显示水深。正常水位是+5米。干旱时会下降。潜水员将水面以下的深度测量为负值。有理数（分数和小数）提供精确测量。",
@@ -967,6 +970,9 @@ export const cnMath = {
             liters_solution: "溶液升数",
             principal_amount: "本金金额",
             time_to_meet: "相遇时间"
+        },
+        prompts: {
+            s_age: "儿子的年龄"
         },
         canvas: {
             bus: "公交车",
