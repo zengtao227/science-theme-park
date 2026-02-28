@@ -48,9 +48,10 @@ fi
 echo "=== E2: hardcoded \\text{English} in formula fields ==="
 # 阶段性降噪策略（E2）：
 # A类（已评审可豁免的科学/数学固定术语模块）从 E2 输出中过滤：
-#   sm2-10, sm3-05, gb1-01, gb3-02, sc3-05, gp3-01, sc2-06, em1-01, sc2-01
+#   sm2-10, sm3-05, gb1-01, gb3-02, sc3-05, gp3-01, sc2-06, em1-01, sc2-01, sc2-05
+#   注：sc2-05 仅豁免公式字段中的单位型 \text{M}；promptLatex 英文文本与完整教学句不豁免
 # C类（归 E3/F1 渲染链批次，暂不在 E2 统计）过滤：
-#   sc2-05, sp3-05, gp2-01, gp2-02, sm2-03, gp3-03, sc3-04, sp3-01
+#   sp3-05, gp2-01, gp2-02, sm2-03, gp3-03, sc3-04, sp3-01
 # B类（下一批 i18n 处理）保留在 E2 输出中。
 E2=$(rg -n '(expressionLatex|correctLatex|labelLatex|hintLatex).*\\\\text\{[A-Z][a-z]' \
   src/app/chamber --glob '*.tsx' \

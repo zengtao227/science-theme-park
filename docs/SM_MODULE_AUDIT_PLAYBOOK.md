@@ -146,6 +146,7 @@ content = content.replace(
 | `gp3-01` | E2：`\\text{English}` 公式字段硬编码检查 | 光学物理术语（Constructive/Diffraction/Dispersion/TIR/Heisenberg等）为国际通用术语，公式字段内合法 | 2026-02 |
 | `sc3-05` | E2：`\\text{English}` 公式字段硬编码检查 | Bond Order 公式与 VSEPR 为化学标准术语，expressionLatex/hintLatex 内使用合法 | 2026-02 |
 | `sc2-06` | E2：`\\text{English}` 公式字段硬编码检查 | Oxidation State/Galvanic Cell/Electrons 为电化学专业术语，公式字段内合法 | 2026-02 |
+| `sc2-05` | E2：`\\text{English}` 公式字段硬编码检查 | `\\text{M}` 为摩尔浓度单位符号，属公式语义，非 UI 文案；仅豁免公式字段，不豁免 promptLatex 英文文本和完整教学句 | 2026-02 |
 | `gb1-01` | E2：`\\text{English}` 公式字段硬编码检查 | Equal/Positive/Yes 为遗传学判断答案，单词型 correctLatex，改动无实质收益 | 2026-02 |
 | `em1-01` | E2：`\\text{English}` 公式字段硬编码检查 | Geometric Mean/Invariant/Pythag/Cones 等数学概念名，公式语境内合法 | 2026-02 |
 | `sm2-10` | E2：`\\text{English}` 公式字段硬编码检查（延续） | Maximum/Mean/Min,Q1,Med,Q3,Max 等统计术语，延续现有豁免（IQR/负相关已登记） | 2026-02 |
