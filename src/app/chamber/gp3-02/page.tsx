@@ -108,7 +108,7 @@ export default function GP302Electromagnetism() {
                         expected: 'field' in item ? item.field : item.answer
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${'field' in item ? item.field : item.answer}`,
+                correctLatex: `${t("common.answer_prefix")} ${'field' in item ? item.field : item.answer}`,
                 answer: ('field' in item ? item.field : item.answer) as string
             }));
         }
@@ -222,7 +222,7 @@ export default function GP302Electromagnetism() {
                         expected: 'force' in item ? item.force : 'radius' in item ? item.radius : item.velocity
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${'force' in item ? item.force : 'radius' in item ? item.radius : item.velocity}`,
+                correctLatex: `${t("common.answer_prefix")} ${'force' in item ? item.force : 'radius' in item ? item.radius : item.velocity}`,
                 answer: ('force' in item ? item.force : 'radius' in item ? item.radius : item.velocity) as string
             }));
         }

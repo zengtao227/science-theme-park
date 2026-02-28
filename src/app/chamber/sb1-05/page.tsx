@@ -108,7 +108,7 @@ export default function SB105AnimalClassification() {
                     placeholder: "type answer",
                     expected: item.answer
                 }],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `${t("common.answer_prefix")} ${item.answer}`,
                 answer: item.answer,
                 baselContext: idx % 4 === 0 ? tObj.scenarios.basel_zoo : undefined
             }));
@@ -164,7 +164,7 @@ export default function SB105AnimalClassification() {
                     placeholder: "type answer",
                     expected: item.answer
                 }],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `${t("common.answer_prefix")} ${item.answer}`,
                 answer: item.answer,
                 baselContext: idx % 3 === 0 ? (idx % 2 === 0 ? tObj.scenarios.rhine_river : tObj.scenarios.alpine_animals) : undefined
             }));
@@ -215,7 +215,7 @@ export default function SB105AnimalClassification() {
                     placeholder: "type answer",
                     expected: item.answer
                 }],
-                correctLatex: `\\text{Answer: } ${item.answer}`,
+                correctLatex: `${t("common.answer_prefix")} ${item.answer}`,
                 answer: item.answer,
                 baselContext: idx % 3 === 0 ? tObj.scenarios.wildlife_conservation : undefined
             }));

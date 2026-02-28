@@ -153,7 +153,7 @@ export default function GP303Induction() {
                     placeholder: "type answer",
                     expected: item.direction
                 }],
-                correctLatex: `\\text{Answer: } ${item.direction}`,
+                correctLatex: `${t("common.answer_prefix")} ${item.direction}`,
                 answer: item.direction as string
             }));
         }
@@ -211,7 +211,7 @@ export default function GP303Induction() {
                              ('current' in item ? item.current : undefined) || 
                              ('power' in item ? item.power : undefined) || "0"
                 }],
-                correctLatex: `\\text{Answer: } ${('output' in item ? item.output : undefined) || 
+                correctLatex: `${t("common.answer_prefix")} ${('output' in item ? item.output : undefined) || 
                              ('voltage' in item ? item.voltage : undefined) || 
                              ('current' in item ? item.current : undefined) || 
                              ('power' in item ? item.power : undefined) || "0"}`,

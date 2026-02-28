@@ -98,7 +98,7 @@ export default function SB104PlantStructure() {
                     placeholder: "type answer",
                     expected: item.function
                 }],
-                correctLatex: `\\text{Answer: } ${item.function}`,
+                correctLatex: `${t("common.answer_prefix")} ${item.function}`,
                 answer: item.function as string
             }));
         }
@@ -155,7 +155,7 @@ export default function SB104PlantStructure() {
                              ('feature' in item ? item.feature : undefined) || 
                              ('benefit' in item ? item.benefit : undefined) || "unknown"
                 }],
-                correctLatex: `\\text{Answer: } ${('location' in item ? item.location : undefined) || 
+                correctLatex: `${t("common.answer_prefix")} ${('location' in item ? item.location : undefined) || 
                               ('tissue' in item ? item.tissue : undefined) || 
                               ('structure' in item ? item.structure : undefined) || 
                               ('effect' in item ? item.effect : undefined) || 
@@ -231,7 +231,7 @@ export default function SB104PlantStructure() {
                              ('transport' in item ? item.transport : undefined) || 
                              ('source' in item ? item.source : undefined) || "unknown"
                 }],
-                correctLatex: `\\text{Answer: } ${('tissue' in item ? item.tissue : undefined) || 
+                correctLatex: `${t("common.answer_prefix")} ${('tissue' in item ? item.tissue : undefined) || 
                               ('product' in item ? item.product : undefined) || 
                               ('use' in item ? item.use : undefined) || 
                               ('direction' in item ? item.direction : undefined) || 

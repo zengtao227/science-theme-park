@@ -109,7 +109,7 @@ export default function SP202OhmsLaw() {
                                  typeof item.voltage === 'string' ? item.voltage : item.resistance
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${typeof item.current === 'string' ? item.current : 
+                correctLatex: `${t("common.answer_prefix")} ${typeof item.current === 'string' ? item.current : 
                               typeof item.voltage === 'string' ? item.voltage : item.resistance}`,
                 answer: typeof item.current === 'string' ? item.current : 
                        typeof item.voltage === 'string' ? item.voltage : item.resistance as string

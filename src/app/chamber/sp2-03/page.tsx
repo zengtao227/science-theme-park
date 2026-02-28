@@ -109,7 +109,7 @@ export default function SP203ElectricPower() {
                             typeof item.current === 'string' ? item.current : item.voltage
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${typeof item.power === 'string' ? item.power :
+                correctLatex: `${t("common.answer_prefix")} ${typeof item.power === 'string' ? item.power :
                     typeof item.current === 'string' ? item.current : item.voltage}`,
                 answer: typeof item.power === 'string' ? item.power :
                     typeof item.current === 'string' ? item.current : item.voltage as string
@@ -170,7 +170,7 @@ export default function SP203ElectricPower() {
                             ('answer' in item ? item.answer : undefined) || "0"
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${('energy' in item ? item.energy : undefined) ||
+                correctLatex: `${t("common.answer_prefix")} ${('energy' in item ? item.energy : undefined) ||
                     ('answer' in item ? item.answer : undefined) || "0"}`,
                 answer: (('energy' in item ? item.energy : undefined) ||
                     ('answer' in item ? item.answer : undefined) || "0") as string
@@ -230,7 +230,7 @@ export default function SP203ElectricPower() {
                             ('loss' in item ? item.loss : undefined) || "0"
                     }
                 ],
-                correctLatex: `\\text{Answer: } ${('efficiency' in item ? item.efficiency : undefined) ||
+                correctLatex: `${t("common.answer_prefix")} ${('efficiency' in item ? item.efficiency : undefined) ||
                     ('output' in item ? item.output : undefined) ||
                     ('input' in item ? item.input : undefined) ||
                     ('loss' in item ? item.loss : undefined) || "0"}`,
