@@ -1233,6 +1233,10 @@ export const cnPhysics = {
             hydraulics: "液压"
         },
         prompts: {
+            pressure_depth: "莱茵河中潜水员下潜到 {depth} m，计算总压强。",
+            buoyant_force: "体积为 {volume} m^{3} 的物体浸没在莱茵河中，计算浮力。",
+            hint_pressure: "提示：使用 P = P₀ + ρgh",
+            hint_archimedes: "提示：使用 F_b = ρ_water × V × g",
             // 压力 - 基础 (5)
             pressure_basic_1: "P = \\\\rho gh. \\text{ 若 } h = 10 \\text{ m, } \\\\rho = 1000 \\text{ kg/m}^{3}, \\text{ 求表压 } P.",
             pressure_basic_2: "\\text{水深 5 m。压力？ } (\\\\rho = 1000 \\text{ kg/m}^{3}, g = 10 \\text{ m/s}^{2})",
@@ -1316,6 +1320,10 @@ export const cnPhysics = {
             hydraulics_elite_3: "\\text{液压蓄能器：} A_1 = 0.005, A_2 = 0.05 \\text{ m}^{2}, \\text{ 压力 } = 2 \\\\times 10^6 \\text{ Pa。} A_2 \\text{ 上的力？}",
             hydraulics_elite_4: "\\text{液压阻尼器：} A = 0.01 \\text{ m}^{2}, \\text{ 速度 } = 0.5 \\text{ m/s，粘度产生 } 200 \\text{ N 阻力。净力？}",
             hydraulics_elite_5: "\\text{串联液压回路：} A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\text{ m}^{2}. F_1 = 100 \\text{ N。总机械优势？}"
+        },
+        scenarios: {
+            rhine_swimming: "莱茵河游泳：潜水员在米特勒桥附近探索河床，水压随深度增加。",
+            rhine_boat: "莱茵河货运：理解浮力对往返巴塞尔与鹿特丹的驳船航行至关重要。"
         },
 
                 hints: {
