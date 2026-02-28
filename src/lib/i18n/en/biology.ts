@@ -956,7 +956,8 @@ export const enBiology = {
             node: "Node",
             factor: "Factor",
             response: "Response",
-            mv_l_min: "MV (L/min)"
+            mv_l_min: "MV (L/min)",
+            area_m2: "\\text{Area (m}^{2}\\text{)}"
         },
         corrects: {
             carbon_dioxide: "\\text{Carbon dioxide (CO}_2\\text{)}",

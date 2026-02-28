@@ -816,7 +816,8 @@ export const cnBiology = {
             node: "节点",
             factor: "因子",
             response: "反应",
-            mv_l_min: "每分通气量(L/min)"
+            mv_l_min: "每分通气量(L/min)",
+            area_m2: "\\text{面积 (m}^{2}\\text{)}"
         },
         corrects: {
             carbon_dioxide: "\\text{二氧化碳（CO}_2\\text{）}",

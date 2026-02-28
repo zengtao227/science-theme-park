@@ -816,7 +816,8 @@ export const deBiology = {
             node: "Knoten",
             factor: "Faktor",
             response: "Reaktion",
-            mv_l_min: "MV (L/min)"
+            mv_l_min: "MV (L/min)",
+            area_m2: "\\text{Fläche (m}^{2}\\text{)}"
         },
         corrects: {
             carbon_dioxide: "\\text{Kohlendioxid (CO}_2\\text{)}",
