@@ -145,7 +145,7 @@ export default function GB201Neurobiology() {
                     promptLatex: t('gb2_01.prompts.identify_part').replace("{function}", data.func!),
                     expressionLatex: "",
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Structure}", placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [t('gb2_01.prompts.hint_anatomy')]
                 });
@@ -158,7 +158,7 @@ export default function GB201Neurobiology() {
                     promptLatex: t('gb2_01.prompts.calc_potential').replace('{ion}', data.ion!).replace('{cout}', data.cout!.toString()).replace('{cin}', data.cin!.toString()),
                     expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "E \\\\text{ (mV)}", placeholder: "0", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: "E \\text{ (mV)}", placeholder: "0", expected: data.expected }],
                     correctLatex: `${data.expected}\\text{ mV}`,
                     hintLatex: [t('gb2_01.prompts.hint_nernst')]
                 });
@@ -172,7 +172,7 @@ export default function GB201Neurobiology() {
                     promptLatex: promptText,
                     expressionLatex: "",
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "\\\\text{Type}", placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [t('gb2_01.prompts.hint_synapse')]
                 });
