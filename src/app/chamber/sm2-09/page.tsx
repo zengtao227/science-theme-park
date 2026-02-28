@@ -69,6 +69,7 @@ export default function SM209Page() {
     number_line: t("sm2_09.number_line"),
     graph: t("sm2_09.graph"),
     solution_set: t("sm2_09.solution_set"),
+    solution_label: t("sm2_09.labels.solution"),
     enter_solution: t("sm2_09.enter_solution"),
     placeholder_interval: t("sm2_09.placeholder_interval"),
     feedback: {
@@ -124,7 +125,7 @@ export default function SM209Page() {
           slots: q.slots || [
             {
               id: "solution",
-              labelLatex: "\\text{Solution}",
+              labelLatex: `\\text{${sm2_09_t.solution_label}}`,
               placeholder: sm2_09_t.placeholder_interval,
               expected: q.answer || "",
               acceptedFormats: ["interval", "inequality"]
