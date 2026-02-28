@@ -14,38 +14,57 @@ import { createCompound } from '../lib/sc1-06-utils';
 // Mock translation function
 const mockT = (key: string) => {
   const translations: Record<string, string> = {
-    'sc1-06.reaction_types.title': 'Classify the Reaction Type',
-    'sc1-06.reaction_types.classify_prompt': 'What type of reaction is this?',
-    'sc1-06.reaction_types.select_type': 'Select a reaction type:',
-    'sc1-06.reaction_types.synthesis': 'Synthesis (合成反应)',
-    'sc1-06.reaction_types.decomposition': 'Decomposition (分解反应)',
-    'sc1-06.reaction_types.single_replacement': 'Single Replacement (单置换反应)',
-    'sc1-06.reaction_types.double_replacement': 'Double Replacement (双置换反应)',
-    'sc1-06.reaction_types.combustion': 'Combustion (燃烧反应)',
-    'sc1-06.reaction_types.synthesis_description': 'Two or more substances combine to form a single product',
-    'sc1-06.reaction_types.decomposition_description': 'A single compound breaks down into two or more simpler substances',
-    'sc1-06.reaction_types.single_replacement_description': 'One element replaces another in a compound',
-    'sc1-06.reaction_types.double_replacement_description': 'Two compounds exchange parts to form two new compounds',
-    'sc1-06.reaction_types.combustion_description': 'A hydrocarbon reacts with oxygen to produce carbon dioxide and water',
-    'sc1-06.reaction_types.synthesis_example_1': 'Hydrogen + Oxygen → Water',
-    'sc1-06.reaction_types.synthesis_example_2': 'Iron + Sulfur → Iron Sulfide',
-    'sc1-06.reaction_types.decomposition_example_1': 'Water → Hydrogen + Oxygen (electrolysis)',
-    'sc1-06.reaction_types.decomposition_example_2': 'Calcium Carbonate → Calcium Oxide + Carbon Dioxide',
-    'sc1-06.reaction_types.single_replacement_example_1': 'Zinc + Hydrochloric Acid → Zinc Chloride + Hydrogen',
-    'sc1-06.reaction_types.single_replacement_example_2': 'Copper + Silver Nitrate → Copper Nitrate + Silver',
-    'sc1-06.reaction_types.double_replacement_example_1': 'Sodium Chloride + Silver Nitrate → Sodium Nitrate + Silver Chloride',
-    'sc1-06.reaction_types.double_replacement_example_2': 'Barium Chloride + Sodium Sulfate → Barium Sulfate + Sodium Chloride',
-    'sc1-06.reaction_types.combustion_example_1': 'Methane + Oxygen → Carbon Dioxide + Water',
-    'sc1-06.reaction_types.combustion_example_2': 'Propane + Oxygen → Carbon Dioxide + Water',
-    'sc1-06.reaction_types.examples': 'Examples',
-    'sc1-06.reaction_types.submit': 'Submit',
-    'sc1-06.reaction_types.correct': 'Correct! You identified the reaction type.',
-    'sc1-06.reaction_types.incorrect': 'Incorrect.',
-    'sc1-06.reaction_types.correct_type_is': 'The correct type is',
-    'sc1-06.reaction_types.select_type_first': 'Please select a reaction type first.',
-    'sc1-06.reaction_types.explanation': 'Explanation',
-    'sc1-06.reaction_types.pattern': 'Pattern',
-    'sc1-06.reaction_types.why_correct': 'Why this is correct'
+    'sc1_06.stages.reaction_types': 'Classify the Reaction Type',
+    'sc1_06.ui.verify': 'Submit',
+    'sc1_06.feedback.correct': 'Correct! You identified the reaction type.',
+    'sc1_06.feedback.incorrect': 'Incorrect',
+    'sc1_06.prompts.classify_reaction': 'Classify the Reaction',
+    'sc1_06.reactionTypeDescriptions.synthesis': 'Two or more substances combine to form one product.',
+    'sc1_06.reactionTypeDescriptions.decomposition': 'One compound breaks down into simpler substances.',
+    'sc1_06.reactionTypeDescriptions.single_replacement': 'One element replaces another in a compound.',
+    'sc1_06.reactionTypeDescriptions.double_replacement': 'Two compounds exchange ions to form new compounds.',
+    'sc1_06.reactionTypeDescriptions.combustion': 'A hydrocarbon reacts with oxygen to form CO₂ and H₂O.',
+    'sc1_06.reactionTypes.synthesis': 'Synthesis (合成反应)',
+    'sc1_06.reactionTypes.decomposition': 'Decomposition (分解反应)',
+    'sc1_06.reactionTypes.single_replacement': 'Single Replacement (单置换反应)',
+    'sc1_06.reactionTypes.double_replacement': 'Double Replacement (双置换反应)',
+    'sc1_06.reactionTypes.combustion': 'Combustion (燃烧反应)',
+    'sc1_06.examples.synthesis': 'Hydrogen + Oxygen → Water',
+    'sc1_06.examples.decomposition': 'Water → Hydrogen + Oxygen',
+    'sc1_06.explanation': 'Explanation',
+    'sc1_06.pattern': 'Pattern',
+    'sc1_06.reaction_types.title': 'Classify the Reaction Type',
+    'sc1_06.reaction_types.classify_prompt': 'What type of reaction is this?',
+    'sc1_06.reaction_types.select_type': 'Select a reaction type:',
+    'sc1_06.reaction_types.synthesis': 'Synthesis (合成反应)',
+    'sc1_06.reaction_types.decomposition': 'Decomposition (分解反应)',
+    'sc1_06.reaction_types.single_replacement': 'Single Replacement (单置换反应)',
+    'sc1_06.reaction_types.double_replacement': 'Double Replacement (双置换反应)',
+    'sc1_06.reaction_types.combustion': 'Combustion (燃烧反应)',
+    'sc1_06.reaction_types.synthesis_description': 'Two or more substances combine to form a single product',
+    'sc1_06.reaction_types.decomposition_description': 'A single compound breaks down into two or more simpler substances',
+    'sc1_06.reaction_types.single_replacement_description': 'One element replaces another in a compound',
+    'sc1_06.reaction_types.double_replacement_description': 'Two compounds exchange parts to form two new compounds',
+    'sc1_06.reaction_types.combustion_description': 'A hydrocarbon reacts with oxygen to produce carbon dioxide and water',
+    'sc1_06.reaction_types.synthesis_example_1': 'Hydrogen + Oxygen → Water',
+    'sc1_06.reaction_types.synthesis_example_2': 'Iron + Sulfur → Iron Sulfide',
+    'sc1_06.reaction_types.decomposition_example_1': 'Water → Hydrogen + Oxygen (electrolysis)',
+    'sc1_06.reaction_types.decomposition_example_2': 'Calcium Carbonate → Calcium Oxide + Carbon Dioxide',
+    'sc1_06.reaction_types.single_replacement_example_1': 'Zinc + Hydrochloric Acid → Zinc Chloride + Hydrogen',
+    'sc1_06.reaction_types.single_replacement_example_2': 'Copper + Silver Nitrate → Copper Nitrate + Silver',
+    'sc1_06.reaction_types.double_replacement_example_1': 'Sodium Chloride + Silver Nitrate → Sodium Nitrate + Silver Chloride',
+    'sc1_06.reaction_types.double_replacement_example_2': 'Barium Chloride + Sodium Sulfate → Barium Sulfate + Sodium Chloride',
+    'sc1_06.reaction_types.combustion_example_1': 'Methane + Oxygen → Carbon Dioxide + Water',
+    'sc1_06.reaction_types.combustion_example_2': 'Propane + Oxygen → Carbon Dioxide + Water',
+    'sc1_06.reaction_types.examples': 'Examples',
+    'sc1_06.reaction_types.submit': 'Submit',
+    'sc1_06.reaction_types.correct': 'Correct! You identified the reaction type.',
+    'sc1_06.reaction_types.incorrect': 'Incorrect.',
+    'sc1_06.reaction_types.correct_type_is': 'The correct type is',
+    'sc1_06.reaction_types.select_type_first': 'Please select a reaction type first.',
+    'sc1_06.reaction_types.explanation': 'Explanation',
+    'sc1_06.reaction_types.pattern': 'Pattern',
+    'sc1_06.reaction_types.why_correct': 'Why this is correct'
   };
   return translations[key] || key;
 };
@@ -126,15 +145,14 @@ describe('ReactionTypeSelector Component', () => {
     const quest = createSynthesisQuest();
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
-    // Get the synthesis radio button
-    const radioButtons = screen.getAllByRole('radio');
-    const synthesisRadio = radioButtons[0]; // First radio button is synthesis
+    const submitButton = screen.getByText('Submit');
+    expect(submitButton).toBeDisabled();
 
-    // Click the synthesis option
-    fireEvent.click(synthesisRadio);
+    // Select synthesis by clicking the card label text
+    fireEvent.click(screen.getByText('Synthesis (合成反应)'));
 
-    // Check if it's selected
-    expect(synthesisRadio).toBeChecked();
+    // Verify a selection enables submit
+    expect(submitButton).not.toBeDisabled();
   });
 
   test('calls onComplete with true when correct type is selected', () => {
@@ -142,8 +160,7 @@ describe('ReactionTypeSelector Component', () => {
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
     // Select synthesis (correct answer)
-    const radioButtons = screen.getAllByRole('radio');
-    fireEvent.click(radioButtons[0]);
+    fireEvent.click(screen.getByText('Synthesis (合成反应)'));
 
     // Click submit
     const submitButton = screen.getByText('Submit');
@@ -161,8 +178,7 @@ describe('ReactionTypeSelector Component', () => {
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
     // Select decomposition (incorrect answer)
-    const radioButtons = screen.getAllByRole('radio');
-    fireEvent.click(radioButtons[1]);
+    fireEvent.click(screen.getByText('Decomposition (分解反应)'));
 
     // Click submit
     const submitButton = screen.getByText('Submit');
@@ -195,20 +211,20 @@ describe('ReactionTypeSelector Component', () => {
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
     // Check if patterns are displayed
-    expect(screen.getByText('A + B → AB')).toBeInTheDocument();
-    expect(screen.getByText('AB → A + B')).toBeInTheDocument();
-    expect(screen.getByText('A + BC → AC + B')).toBeInTheDocument();
-    expect(screen.getByText('AB + CD → AD + CB')).toBeInTheDocument();
-    expect(screen.getByText('CₓHᵧ + O_2 → CO_2 + H_2O')).toBeInTheDocument();
+    expect(screen.getAllByText('A + B → AB').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('AB → A + B').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('A + BC → AC + B').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('AB + CD → AD + CB').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('CₓHᵧ + O_2 → CO_2 + H_2O').length).toBeGreaterThan(0);
   });
 
-  test('displays examples for each reaction type', () => {
+  test('displays reaction descriptions for each reaction type', () => {
     const quest = createSynthesisQuest();
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
-    // Check if examples are displayed
-    expect(screen.getByText('Hydrogen + Oxygen → Water')).toBeInTheDocument();
-    expect(screen.getByText(/Water → Hydrogen \+ Oxygen/)).toBeInTheDocument();
+    // Check if description text is displayed
+    expect(screen.getByText('Two or more substances combine to form one product.')).toBeInTheDocument();
+    expect(screen.getByText('One compound breaks down into simpler substances.')).toBeInTheDocument();
   });
 
   test('shows explanation when correct answer is submitted', () => {
@@ -216,8 +232,7 @@ describe('ReactionTypeSelector Component', () => {
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
     // Select correct answer
-    const radioButtons = screen.getAllByRole('radio');
-    fireEvent.click(radioButtons[0]);
+    fireEvent.click(screen.getByText('Synthesis (合成反应)'));
 
     // Submit
     const submitButton = screen.getByText('Submit');
@@ -233,8 +248,7 @@ describe('ReactionTypeSelector Component', () => {
     render(<ReactionTypeSelector quest={quest} onComplete={mockOnComplete} t={mockT} />);
 
     // Select decomposition (correct answer)
-    const radioButtons = screen.getAllByRole('radio');
-    fireEvent.click(radioButtons[1]);
+    fireEvent.click(screen.getByText('Decomposition (分解反应)'));
 
     // Submit
     const submitButton = screen.getByText('Submit');
