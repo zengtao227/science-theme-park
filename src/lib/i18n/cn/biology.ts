@@ -773,7 +773,7 @@ export const cnBiology = {
         labels: {
             heart_rate: "心率",
             o2_sat: "血氧饱和度",
-            enzyme: "酶活性",
+            enzyme: "酶",
             anatomy_score: "解剖学分数",
             anatomy_display: "解剖学显示",
             input_terminal: "输入终端",
@@ -802,7 +802,21 @@ export const cnBiology = {
             tree: "树",
             pressure: "压力",
             structure: "结构",
-            mechanism: "机制"
+            mechanism: "机制",
+            effect: "效果",
+            risk: "风险",
+            organs: "器官（复数）",
+            type: "类型",
+            gas: "气体",
+            bp: "血压",
+            term: "术语",
+            co_l_min: "心输出量(L/min)",
+            property: "特性",
+            condition: "状况",
+            node: "节点",
+            factor: "因子",
+            response: "反应",
+            mv_l_min: "每分通气量(L/min)"
         },
         prompts: {
             // 消化系统 - 基础 (5题)

@@ -773,7 +773,7 @@ export const deBiology = {
         labels: {
             heart_rate: "Herzfrequenz",
             o2_sat: "O2-Sättigung",
-            enzyme: "Enzymaktivität",
+            enzyme: "Enzym",
             anatomy_score: "Anatomie-Punktzahl",
             anatomy_display: "Anatomie-Anzeige",
             input_terminal: "Eingabeterminal",
@@ -802,7 +802,21 @@ export const deBiology = {
             tree: "Baum",
             pressure: "Druck",
             structure: "Struktur",
-            mechanism: "Mechanismus"
+            mechanism: "Mechanismus",
+            effect: "Wirkung",
+            risk: "Risiko",
+            organs: "Organe",
+            type: "Typ",
+            gas: "Gas",
+            bp: "BD",
+            term: "Begriff",
+            co_l_min: "HZV (L/min)",
+            property: "Eigenschaft",
+            condition: "Zustand",
+            node: "Knoten",
+            factor: "Faktor",
+            response: "Reaktion",
+            mv_l_min: "MV (L/min)"
         },
         prompts: {
             // VERDAUUNGSSYSTEM - BASIS (5 Fragen)

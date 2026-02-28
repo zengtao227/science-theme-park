@@ -913,7 +913,7 @@ export const enBiology = {
         labels: {
             heart_rate: "Heart Rate",
             o2_sat: "O2 Saturation",
-            enzyme: "Enzyme Activity",
+            enzyme: "Enzyme",
             anatomy_score: "Anatomy Score",
             anatomy_display: "Anatomy Display",
             input_terminal: "Input Terminal",
@@ -942,7 +942,21 @@ export const enBiology = {
             tree: "Tree",
             pressure: "Pressure",
             structure: "Structure",
-            mechanism: "Mechanism"
+            mechanism: "Mechanism",
+            effect: "Effect",
+            risk: "Risk",
+            organs: "Organs",
+            type: "Type",
+            gas: "Gas",
+            bp: "BP",
+            term: "Term",
+            co_l_min: "CO (L/min)",
+            property: "Property",
+            condition: "Condition",
+            node: "Node",
+            factor: "Factor",
+            response: "Response",
+            mv_l_min: "MV (L/min)"
         },
         prompts: {
             // DIGESTIVE STAGE - BASIC (5 questions)
