@@ -229,7 +229,7 @@ export default function SM305Page() {
                     {
                         id: "CS-B1", difficulty, stage, geometryType: "cube_parallel",
                         promptLatex: t("sm3_05.prompts.cross_cube_parallel"),
-                        expressionLatex: `\\text{Parallel cut} \\rightarrow \\text{same shape as face}`,
+                        expressionLatex: t("sm3_05.expr.parallel_cut_same"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square"),
@@ -238,7 +238,7 @@ export default function SM305Page() {
                     {
                         id: "CS-B2", difficulty, stage, geometryType: "sphere",
                         promptLatex: t("sm3_05.prompts.cross_sphere_any"),
-                        expressionLatex: `\\text{Sphere} \\rightarrow \\text{always circular}`,
+                        expressionLatex: t("sm3_05.expr.sphere_always_circular"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
@@ -247,7 +247,7 @@ export default function SM305Page() {
                     {
                         id: "CS-B3", difficulty, stage, geometryType: "cylinder_perp",
                         promptLatex: t("sm3_05.prompts.cross_cyl_perp"),
-                        expressionLatex: `\\text{Perpendicular to axis} \\rightarrow \\text{circle}`,
+                        expressionLatex: t("sm3_05.expr.perp_axis_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
@@ -256,7 +256,7 @@ export default function SM305Page() {
                     {
                         id: "CS-B4", difficulty, stage, geometryType: "cylinder_parallel",
                         promptLatex: t("sm3_05.prompts.cross_cyl_parallel"),
-                        expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{rectangle}`,
+                        expressionLatex: t("sm3_05.expr.parallel_axis_rectangle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
@@ -265,7 +265,7 @@ export default function SM305Page() {
                     {
                         id: "CS-B5", difficulty, stage, geometryType: "cone_perp",
                         promptLatex: t("sm3_05.prompts.cross_cone_perp"),
-                        expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{circle}`,
+                        expressionLatex: t("sm3_05.expr.perp_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
@@ -278,7 +278,7 @@ export default function SM305Page() {
                     {
                         id: "CS-C1", difficulty, stage, geometryType: "cube_diagonal",
                         promptLatex: `\\\\text{Cube cut diagonally through opposite edges. What shape?}`,
-                        expressionLatex: `\\text{Diagonal cut} \\rightarrow \\text{rectangle}`,
+                        expressionLatex: t("sm3_05.expr.diagonal_rectangle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
@@ -287,7 +287,7 @@ export default function SM305Page() {
                     {
                         id: "CS-C2", difficulty, stage, geometryType: "cylinder_angle",
                         promptLatex: `\\\\text{Cylinder cut at angle to axis. What shape?}`,
-                        expressionLatex: `\\text{Angled cut} \\rightarrow \\text{ellipse}`,
+                        expressionLatex: t("sm3_05.expr.angled_ellipse"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],
                         correctLatex: t("sm3_05.labels.correct_ellipse"),
@@ -296,7 +296,7 @@ export default function SM305Page() {
                     {
                         id: "CS-C3", difficulty, stage, geometryType: "cone_parallel",
                         promptLatex: t("sm3_05.prompts.cross_cone_parallel_base"),
-                        expressionLatex: `\\text{Parallel to base} \\rightarrow \\text{circle}`,
+                        expressionLatex: t("sm3_05.expr.parallel_base_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle_smaller"),
@@ -305,7 +305,7 @@ export default function SM305Page() {
                     {
                         id: "CS-C4", difficulty, stage, geometryType: "pyramid",
                         promptLatex: t("sm3_05.prompts.cross_pyramid_parallel"),
-                        expressionLatex: `\\text{Parallel} \\rightarrow \\text{similar shape}`,
+                        expressionLatex: t("sm3_05.expr.parallel_similar"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square_smaller"),
@@ -314,7 +314,7 @@ export default function SM305Page() {
                     {
                         id: "CS-C5", difficulty, stage, geometryType: "prism",
                         promptLatex: t("sm3_05.prompts.cross_prism_perp"),
-                        expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{base shape}`,
+                        expressionLatex: t("sm3_05.expr.perp_base_shape"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
                         correctLatex: t("sm3_05.labels.correct_triangle"),
@@ -327,7 +327,7 @@ export default function SM305Page() {
                     {
                         id: "CS-A1", difficulty, stage, geometryType: "cone_parabola",
                         promptLatex: t("sm3_05.prompts.cross_cone_slant"),
-                        expressionLatex: `\\text{Parallel to edge} \\rightarrow \\text{parabola}`,
+                        expressionLatex: t("sm3_05.expr.parallel_edge_parabola"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
                         correctLatex: t("sm3_05.labels.correct_parabola"),
@@ -336,7 +336,7 @@ export default function SM305Page() {
                     {
                         id: "CS-A2", difficulty, stage, geometryType: "cone_hyperbola",
                         promptLatex: t("sm3_05.prompts.cross_cone_axis"),
-                        expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{hyperbola}`,
+                        expressionLatex: t("sm3_05.expr.parallel_axis_hyperbola"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
                         correctLatex: t("sm3_05.labels.correct_hyperbola"),
@@ -345,7 +345,7 @@ export default function SM305Page() {
                     {
                         id: "CS-A3", difficulty, stage, geometryType: "cube_hexagon",
                         promptLatex: t("sm3_05.prompts.cross_cube_midpoints"),
-                        expressionLatex: `\\text{Through edge midpoints} \\rightarrow \\text{hexagon}`,
+                        expressionLatex: t("sm3_05.expr.midpoints_hexagon"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
                         correctLatex: t("sm3_05.labels.correct_regular_hexagon"),
@@ -394,7 +394,7 @@ export default function SM305Page() {
                     {
                         id: "CS-E3", difficulty, stage, geometryType: "cone_ellipse",
                         promptLatex: t("sm3_05.prompts.cross_cone_ellipse"),
-                        expressionLatex: `\\text{Ellipse from angled cut}`,
+                        expressionLatex: t("sm3_05.expr.ellipse_angled"),
                         targetLatex: `a`,
                         slots: [{ id: "axis", labelLatex: `a\\text{ (cm)}`, placeholder: "8", expected: 8 }],
                         correctLatex: `> 4\\text{ cm (depends on angle)}`,
@@ -403,7 +403,7 @@ export default function SM305Page() {
                     {
                         id: "CS-E4", difficulty, stage, geometryType: "torus",
                         promptLatex: t("sm3_05.prompts.cross_torus"),
-                        expressionLatex: `\\text{Torus cross-section}`,
+                        expressionLatex: t("sm3_05.expr.torus_cross"),
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
                         correctLatex: t("sm3_05.labels.correct_two_circles"),

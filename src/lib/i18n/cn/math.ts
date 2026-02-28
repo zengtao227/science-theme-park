@@ -2564,6 +2564,23 @@ export const cnMath = {
             diagonal_cut_hexagon: "特殊对角截面形成正六边形",
             angled_cut_circle: "斜切拉伸圆形",
             cut_two_tubes: "截面显示两个圆形管道"
+        },
+        expr: {
+            parallel_cut_same: "\\text{平行截切} \\rightarrow \\text{与面相同形状}",
+            sphere_always_circular: "\\text{球体} \\rightarrow \\text{截面始终为圆形}",
+            perp_axis_circle: "\\text{垂直于轴} \\rightarrow \\text{圆形}",
+            parallel_axis_rectangle: "\\text{平行于轴} \\rightarrow \\text{矩形}",
+            perp_circle: "\\text{垂直截切} \\rightarrow \\text{圆形}",
+            diagonal_rectangle: "\\text{对角截切} \\rightarrow \\text{矩形}",
+            angled_ellipse: "\\text{斜截切} \\rightarrow \\text{椭圆}",
+            parallel_base_circle: "\\text{平行于底面} \\rightarrow \\text{圆形}",
+            parallel_similar: "\\text{平行截切} \\rightarrow \\text{相似形状}",
+            perp_base_shape: "\\text{垂直截切} \\rightarrow \\text{底面形状}",
+            parallel_edge_parabola: "\\text{平行于斜边} \\rightarrow \\text{抛物线}",
+            parallel_axis_hyperbola: "\\text{平行于轴} \\rightarrow \\text{双曲线}",
+            midpoints_hexagon: "\\text{过棱中点} \\rightarrow \\text{正六边形}",
+            ellipse_angled: "\\text{斜截面形成椭圆}",
+            torus_cross: "\\text{圆环截面}"
         }
     },
     sm2_11: {

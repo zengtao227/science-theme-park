@@ -2568,6 +2568,23 @@ export const enMath = {
             diagonal_cut_hexagon: "Special diagonal cut creates hexagon",
             angled_cut_circle: "Angled cut stretches circle",
             cut_two_tubes: "Cut shows two circular tubes"
+        },
+        expr: {
+            parallel_cut_same: "\\text{Parallel cut} \\rightarrow \\text{same shape as face}",
+            sphere_always_circular: "\\text{Sphere} \\rightarrow \\text{always circular}",
+            perp_axis_circle: "\\text{Perpendicular to axis} \\rightarrow \\text{circle}",
+            parallel_axis_rectangle: "\\text{Parallel to axis} \\rightarrow \\text{rectangle}",
+            perp_circle: "\\text{Perpendicular} \\rightarrow \\text{circle}",
+            diagonal_rectangle: "\\text{Diagonal cut} \\rightarrow \\text{rectangle}",
+            angled_ellipse: "\\text{Angled cut} \\rightarrow \\text{ellipse}",
+            parallel_base_circle: "\\text{Parallel to base} \\rightarrow \\text{circle}",
+            parallel_similar: "\\text{Parallel} \\rightarrow \\text{similar shape}",
+            perp_base_shape: "\\text{Perpendicular} \\rightarrow \\text{base shape}",
+            parallel_edge_parabola: "\\text{Parallel to edge} \\rightarrow \\text{parabola}",
+            parallel_axis_hyperbola: "\\text{Parallel to axis} \\rightarrow \\text{hyperbola}",
+            midpoints_hexagon: "\\text{Through edge midpoints} \\rightarrow \\text{hexagon}",
+            ellipse_angled: "\\text{Ellipse from angled cut}",
+            torus_cross: "\\text{Torus cross-section}"
         }
     },
     sm2_11: {

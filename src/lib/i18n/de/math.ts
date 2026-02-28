@@ -2556,6 +2556,23 @@ export const deMath = {
             diagonal_cut_hexagon: "Besonderer Diagonalschnitt ergibt Sechseck",
             angled_cut_circle: "Schraeger Schnitt streckt den Kreis",
             cut_two_tubes: "Schnitt zeigt zwei kreisfoermige Roehren"
+        },
+        expr: {
+            parallel_cut_same: "\\text{Paralleler Schnitt} \\rightarrow \\text{gleiche Form wie Flaeche}",
+            sphere_always_circular: "\\text{Kugel} \\rightarrow \\text{immer kreisfoermig}",
+            perp_axis_circle: "\\text{Senkrecht zur Achse} \\rightarrow \\text{Kreis}",
+            parallel_axis_rectangle: "\\text{Parallel zur Achse} \\rightarrow \\text{Rechteck}",
+            perp_circle: "\\text{Senkrecht} \\rightarrow \\text{Kreis}",
+            diagonal_rectangle: "\\text{Diagonalschnitt} \\rightarrow \\text{Rechteck}",
+            angled_ellipse: "\\text{Schraeger Schnitt} \\rightarrow \\text{Ellipse}",
+            parallel_base_circle: "\\text{Parallel zur Basis} \\rightarrow \\text{Kreis}",
+            parallel_similar: "\\text{Parallel} \\rightarrow \\text{aehnliche Form}",
+            perp_base_shape: "\\text{Senkrecht} \\rightarrow \\text{Grundform}",
+            parallel_edge_parabola: "\\text{Parallel zur Kante} \\rightarrow \\text{Parabel}",
+            parallel_axis_hyperbola: "\\text{Parallel zur Achse} \\rightarrow \\text{Hyperbel}",
+            midpoints_hexagon: "\\text{Durch Kantenmittelpunkte} \\rightarrow \\text{Sechseck}",
+            ellipse_angled: "\\text{Ellipse durch schraegen Schnitt}",
+            torus_cross: "\\text{Torus-Querschnitt}"
         }
     },
     sm2_11: {
