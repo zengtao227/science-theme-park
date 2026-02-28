@@ -1239,7 +1239,15 @@ export const enPhysics = {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
                         rhine_boat: "Rhine Cargo: Understanding buoyancy is critical for the barges navigating between Basel and Rotterdam."
                 },
-                feedback: { correct: "Fluid mechanics mastered!", incorrect: "Review Archimedes' principle." }
+                feedback: { correct: "Fluid mechanics mastered!", incorrect: "Review Archimedes' principle." },
+
+                hints: {
+                        archimedes_principle: "\\text{Archimedes' Principle}",
+                        compare_densities: "\\text{Compare densities}",
+                        at_equilibrium: "\\text{At equilibrium: } W = F_b",
+                        weight_equals_buoyancy: "\\text{Weight = Buoyant force}",
+                        pressure_force_per_area: "\\text{Pressure is force per unit area}",
+                },
         },
 
         // SP3.05: Simple Machines (from sp1_04 - Full Version)

@@ -239,7 +239,7 @@ export default function SP304Page() {
                         targetLatex: `F_b`,
                         slots: [{ id: "force", labelLatex: `F_b \\text{ (N)}`, placeholder: "980", expected: 980 }],
                         correctLatex: `F_b = 980 \\text{ N}`,
-                        hintLatex: [`\\text{Archimedes' Principle}`]
+                        hintLatex: [t("sp3_04.hints.archimedes_principle")]
                     },
                     {
                         id: "B-B2", difficulty, stage, volume: 0.05,
@@ -289,7 +289,7 @@ export default function SP304Page() {
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: `\\text{Float?}`, placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (density < water)}`,
-                        hintLatex: [`\\text{Compare densities}`]
+                        hintLatex: [t("sp3_04.hints.compare_densities")]
                     },
                     {
                         id: "B-C2", difficulty, stage, volume: 0.1,
@@ -339,7 +339,7 @@ export default function SP304Page() {
                         targetLatex: `V_{sub}`,
                         slots: [{ id: "vol", labelLatex: `V_{sub} \\text{ (m}^{3}\\text{)}`, placeholder: "0.00005", expected: 0.00005 }],
                         correctLatex: `V_{sub} = 5 \\times 10^{-5} \\text{ m}^{3}`,
-                        hintLatex: [`\\text{At equilibrium: } W = F_b`]
+                        hintLatex: [t("sp3_04.hints.at_equilibrium")]
                     },
                     {
                         id: "B-A2", difficulty, stage, volume: 0.1,
@@ -348,7 +348,7 @@ export default function SP304Page() {
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V \\text{ (m}^{3}\\text{)}`, placeholder: "50", expected: 50 }],
                         correctLatex: `V = 50 \\text{ m}^{3}`,
-                        hintLatex: [`\\text{Weight = Buoyant force}`]
+                        hintLatex: [t("sp3_04.hints.weight_equals_buoyancy")]
                     },
                     {
                         id: "B-A3", difficulty, stage, volume: 0.02,
@@ -441,7 +441,7 @@ export default function SP304Page() {
                         targetLatex: `P`,
                         slots: [{ id: "press", labelLatex: `P \\text{ (Pa)}`, placeholder: "10000", expected: 10000 }],
                         correctLatex: `P = 10000 \\text{ Pa}`,
-                        hintLatex: [`\\text{Pressure is force per unit area}`]
+                        hintLatex: [t("sp3_04.hints.pressure_force_per_area")]
                     },
                     {
                         id: "H-B2", difficulty, stage, area: 0.02, force: 200,

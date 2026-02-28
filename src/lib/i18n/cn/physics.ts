@@ -1316,8 +1316,16 @@ export const cnPhysics = {
             hydraulics_elite_3: "\\text{液压蓄能器：} A_1 = 0.005, A_2 = 0.05 \\text{ m}^{2}, \\text{ 压力 } = 2 \\\\times 10^6 \\text{ Pa。} A_2 \\text{ 上的力？}",
             hydraulics_elite_4: "\\text{液压阻尼器：} A = 0.01 \\text{ m}^{2}, \\text{ 速度 } = 0.5 \\text{ m/s，粘度产生 } 200 \\text{ N 阻力。净力？}",
             hydraulics_elite_5: "\\text{串联液压回路：} A_1 = 0.002, A_2 = 0.02, A_3 = 0.2 \\text{ m}^{2}. F_1 = 100 \\text{ N。总机械优势？}"
-        }
-    },
+        },
+
+                hints: {
+                        archimedes_principle: "\\text{阿基米德原理}",
+                        compare_densities: "\\text{比较密度}",
+                        at_equilibrium: "\\text{平衡时：} W = F_b",
+                        weight_equals_buoyancy: "\\text{重力 = 浮力}",
+                        pressure_force_per_area: "\\text{压强是单位面积上的力}",
+                },
+        },
 
     // SP3.05: 简单机械 (映射自原 sp1_04 - 完整背景版)
     sp3_05: {

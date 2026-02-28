@@ -1299,7 +1299,15 @@ export const dePhysics = {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",
                         rhine_boat: "Rheinschifffahrt: Das Verständnis von Auftrieb ist entscheidend für die Schiffe zwischen Basel und Rotterdam."
                 },
-                feedback: { correct: "Fluidmechanik gemeistert!", incorrect: "Überprüfen Sie das archimedische Prinzip." }
+                feedback: { correct: "Fluidmechanik gemeistert!", incorrect: "Überprüfen Sie das archimedische Prinzip." },
+
+                hints: {
+                        archimedes_principle: "\\text{Archimedisches Prinzip}",
+                        compare_densities: "\\text{Dichten vergleichen}",
+                        at_equilibrium: "\\text{Im Gleichgewicht: } W = F_b",
+                        weight_equals_buoyancy: "\\text{Gewicht = Auftriebskraft}",
+                        pressure_force_per_area: "\\text{Druck ist Kraft pro Fläche}",
+                },
         },
 
         // 5. EINFACHE MASCHINEN (Angewandte Mechanik)
