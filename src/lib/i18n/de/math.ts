@@ -2558,6 +2558,25 @@ export const deMath = {
             output_power: "Ausgangsleistung (W)"
         }
     },
+    gp2_02: {
+        labels: {
+            sign: "Vorzeichen",
+            factor: "Faktor",
+            type: "Typ",
+            yes_no: "Ja/Nein",
+            formula: "Formel",
+            reason: "Grund",
+            cv_r: "Cv/R",
+            unit: "Einheit",
+            limit: "Grenzwert",
+            corr: "Korrelation",
+            procs: "Prozesse",
+            label_type: "Typ",
+            label_yn: "J/N",
+            label_symbol: "Symbol",
+            label_ps: "P/S"
+        }
+    },
     sm2_09: {
         back: "Zurück zum Nexus",
         title: "SM2.09 // UNGLEICHUNGEN",

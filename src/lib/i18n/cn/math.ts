@@ -2511,6 +2511,25 @@ export const cnMath = {
             output_power: "输出功率 (W)"
         }
     },
+    gp2_02: {
+        labels: {
+            sign: "符号",
+            factor: "因子",
+            type: "类型",
+            yes_no: "是/否",
+            formula: "公式",
+            reason: "原因",
+            cv_r: "Cv/R",
+            unit: "单位",
+            limit: "极限",
+            corr: "相关性",
+            procs: "过程",
+            label_type: "类型",
+            label_yn: "是/否",
+            label_symbol: "符号",
+            label_ps: "P/S"
+        }
+    },
     sm2_09: {
         back: "返回主界面",
         title: "SM2.09 // 不等式",

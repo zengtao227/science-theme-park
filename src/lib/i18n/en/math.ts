@@ -2528,6 +2528,25 @@ export const enMath = {
             output_power: "Output Power (W)"
         }
     },
+    gp2_02: {
+        labels: {
+            sign: "Sign",
+            factor: "Factor",
+            type: "Type",
+            yes_no: "Yes/No",
+            formula: "Formula",
+            reason: "Reason",
+            cv_r: "Cv/R",
+            unit: "Unit",
+            limit: "Limit",
+            corr: "Corr",
+            procs: "Procs",
+            label_type: "Type",
+            label_yn: "Y/N",
+            label_symbol: "Symbol",
+            label_ps: "P/S"
+        }
+    },
     sm2_09: {
         back: "Back to Nexus",
         title: "SM2.09 // INEQUALITIES",
