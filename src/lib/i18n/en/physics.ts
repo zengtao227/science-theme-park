@@ -1276,6 +1276,27 @@ export const enPhysics = {
                         hydraulics_elite_3: "Hydraulics Elite Problem 3", // TODO
                         hydraulics_elite_4: "Hydraulics Elite Problem 4", // TODO
                         hydraulics_elite_5: "Hydraulics Elite Problem 5", // TODO
+                        pressure: "Pressure",
+                        pressure_basic_1: "Pressure Basic Problem 1", // TODO
+                        pressure_basic_2: "Pressure Basic Problem 2", // TODO
+                        pressure_basic_3: "Pressure Basic Problem 3", // TODO
+                        pressure_basic_4: "Pressure Basic Problem 4", // TODO
+                        pressure_basic_5: "Pressure Basic Problem 5", // TODO
+                        pressure_core_1: "Pressure Core Problem 1", // TODO
+                        pressure_core_2: "Pressure Core Problem 2", // TODO
+                        pressure_core_3: "Pressure Core Problem 3", // TODO
+                        pressure_core_4: "Pressure Core Problem 4", // TODO
+                        pressure_core_5: "Pressure Core Problem 5", // TODO
+                        pressure_advanced_1: "Pressure Advanced Problem 1", // TODO
+                        pressure_advanced_2: "Pressure Advanced Problem 2", // TODO
+                        pressure_advanced_3: "Pressure Advanced Problem 3", // TODO
+                        pressure_advanced_4: "Pressure Advanced Problem 4", // TODO
+                        pressure_advanced_5: "Pressure Advanced Problem 5", // TODO
+                        pressure_elite_1: "Pressure Elite Problem 1", // TODO
+                        pressure_elite_2: "Pressure Elite Problem 2", // TODO
+                        pressure_elite_3: "Pressure Elite Problem 3", // TODO
+                        pressure_elite_4: "Pressure Elite Problem 4", // TODO
+                        pressure_elite_5: "Pressure Elite Problem 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",

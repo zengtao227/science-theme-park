@@ -1336,6 +1336,27 @@ export const dePhysics = {
                         hydraulics_elite_3: "Hydraulik Elite 3", // TODO
                         hydraulics_elite_4: "Hydraulik Elite 4", // TODO
                         hydraulics_elite_5: "Hydraulik Elite 5", // TODO
+                        pressure: "Druck",
+                        pressure_basic_1: "Druck Grundaufgabe 1", // TODO
+                        pressure_basic_2: "Druck Grundaufgabe 2", // TODO
+                        pressure_basic_3: "Druck Grundaufgabe 3", // TODO
+                        pressure_basic_4: "Druck Grundaufgabe 4", // TODO
+                        pressure_basic_5: "Druck Grundaufgabe 5", // TODO
+                        pressure_core_1: "Druck Kernaufgabe 1", // TODO
+                        pressure_core_2: "Druck Kernaufgabe 2", // TODO
+                        pressure_core_3: "Druck Kernaufgabe 3", // TODO
+                        pressure_core_4: "Druck Kernaufgabe 4", // TODO
+                        pressure_core_5: "Druck Kernaufgabe 5", // TODO
+                        pressure_advanced_1: "Druck Fortgeschritten 1", // TODO
+                        pressure_advanced_2: "Druck Fortgeschritten 2", // TODO
+                        pressure_advanced_3: "Druck Fortgeschritten 3", // TODO
+                        pressure_advanced_4: "Druck Fortgeschritten 4", // TODO
+                        pressure_advanced_5: "Druck Fortgeschritten 5", // TODO
+                        pressure_elite_1: "Druck Elite 1", // TODO
+                        pressure_elite_2: "Druck Elite 2", // TODO
+                        pressure_elite_3: "Druck Elite 3", // TODO
+                        pressure_elite_4: "Druck Elite 4", // TODO
+                        pressure_elite_5: "Druck Elite 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",
