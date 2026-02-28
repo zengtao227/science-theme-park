@@ -254,6 +254,10 @@ export const enBiology = {
             membrane: "Cell Membrane",
             vacuole: "Vacuole"
         },
+        expressions: {
+            size_label: "Size:",
+            function_label: "Function:"
+        },
         mission: {
             title: "MISSION: CELL EXPLORATION",
             description: "Explore the animal cell structure. Identify organelles and understand their functions in the cellular economy."

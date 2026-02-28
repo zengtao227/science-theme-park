@@ -254,6 +254,10 @@ export const deBiology = {
             membrane: "Zellmembrane",
             vacuole: "Vakuole"
         },
+        expressions: {
+            size_label: "Größe:",
+            function_label: "Funktion:"
+        },
         mission: {
             title: "MISSION: ZELLERKUNDUNG",
             description: "Erkunden Sie die tierische Zellstruktur. Identifizieren Sie Organellen und verstehen Sie ihre Funktionen in der Zellökonomie."

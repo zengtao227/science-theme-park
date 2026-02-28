@@ -254,6 +254,10 @@ export const cnBiology = {
             membrane: "细胞膜",
             vacuole: "液泡"
         },
+        expressions: {
+            size_label: "大小：",
+            function_label: "功能："
+        },
         mission: {
             title: "任务：细胞探索",
             description: "探索真核细胞结构。识别细胞器并理解它们在细胞生命活动中的作用。"
