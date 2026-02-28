@@ -230,8 +230,8 @@ export default function SM305Page() {
                         id: "CS-B1", difficulty, stage, geometryType: "cube_parallel",
                         promptLatex: `\\\\text{Cube cut parallel to a face. What shape is the cross-section?}`,
                         expressionLatex: `\\text{Parallel cut} \\rightarrow \\text{same shape as face}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "square", expected: "square" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: `\\text{Square}`,
                         hintLatex: [`\\text{Cube faces are squares}`]
                     },
@@ -239,8 +239,8 @@ export default function SM305Page() {
                         id: "CS-B2", difficulty, stage, geometryType: "sphere",
                         promptLatex: `\\\\text{Sphere cut by any plane. What shape is the cross-section?}`,
                         expressionLatex: `\\text{Sphere} \\rightarrow \\text{always circular}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circle", expected: "circle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: `\\text{Circle}`,
                         hintLatex: [`\\text{All sphere cross-sections are circles}`]
                     },
@@ -248,8 +248,8 @@ export default function SM305Page() {
                         id: "CS-B3", difficulty, stage, geometryType: "cylinder_perp",
                         promptLatex: `\\\\text{Cylinder cut perpendicular to axis. What shape?}`,
                         expressionLatex: `\\text{Perpendicular to axis} \\rightarrow \\text{circle}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circle", expected: "circle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: `\\text{Circle}`,
                         hintLatex: [`\\text{Perpendicular cut shows circular base}`]
                     },
@@ -257,8 +257,8 @@ export default function SM305Page() {
                         id: "CS-B4", difficulty, stage, geometryType: "cylinder_parallel",
                         promptLatex: `\\\\text{Cylinder cut parallel to axis. What shape?}`,
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{rectangle}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "rectangle", expected: "rectangle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: `\\text{Rectangle}`,
                         hintLatex: [`\\text{Parallel cut shows side view}`]
                     },
@@ -266,8 +266,8 @@ export default function SM305Page() {
                         id: "CS-B5", difficulty, stage, geometryType: "cone_perp",
                         promptLatex: `\\\\text{Cone cut perpendicular to axis. What shape?}`,
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{circle}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circle", expected: "circle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: `\\text{Circle}`,
                         hintLatex: [`\\text{Horizontal cut through cone is circular}`]
                     }
@@ -279,8 +279,8 @@ export default function SM305Page() {
                         id: "CS-C1", difficulty, stage, geometryType: "cube_diagonal",
                         promptLatex: `\\\\text{Cube cut diagonally through opposite edges. What shape?}`,
                         expressionLatex: `\\text{Diagonal cut} \\rightarrow \\text{rectangle}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "rectangle", expected: "rectangle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
                         correctLatex: `\\text{Rectangle}`,
                         hintLatex: [`\\text{Diagonal cut creates rectangle}`]
                     },
@@ -288,8 +288,8 @@ export default function SM305Page() {
                         id: "CS-C2", difficulty, stage, geometryType: "cylinder_angle",
                         promptLatex: `\\\\text{Cylinder cut at angle to axis. What shape?}`,
                         expressionLatex: `\\text{Angled cut} \\rightarrow \\text{ellipse}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "ellipse", expected: "ellipse" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],
                         correctLatex: `\\text{Ellipse}`,
                         hintLatex: [`\\text{Angled cut stretches circle into ellipse}`]
                     },
@@ -297,8 +297,8 @@ export default function SM305Page() {
                         id: "CS-C3", difficulty, stage, geometryType: "cone_parallel",
                         promptLatex: `\\\\text{Cone cut parallel to base. What shape?}`,
                         expressionLatex: `\\text{Parallel to base} \\rightarrow \\text{circle}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circle", expected: "circle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: `\\text{Circle (smaller than base)}`,
                         hintLatex: [`\\text{Parallel cut is circular, smaller radius}`]
                     },
@@ -306,8 +306,8 @@ export default function SM305Page() {
                         id: "CS-C4", difficulty, stage, geometryType: "pyramid",
                         promptLatex: `\\\\text{Square pyramid cut parallel to base. What shape?}`,
                         expressionLatex: `\\text{Parallel} \\rightarrow \\text{similar shape}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "square", expected: "square" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: `\\text{Square (smaller)}`,
                         hintLatex: [`\\text{Parallel cut creates similar square}`]
                     },
@@ -315,8 +315,8 @@ export default function SM305Page() {
                         id: "CS-C5", difficulty, stage, geometryType: "prism",
                         promptLatex: `\\\\text{Triangular prism cut perpendicular to length. What shape?}`,
                         expressionLatex: `\\text{Perpendicular} \\rightarrow \\text{base shape}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "triangle", expected: "triangle" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
                         correctLatex: `\\text{Triangle}`,
                         hintLatex: [`\\text{Shows triangular base}`]
                     }
@@ -328,8 +328,8 @@ export default function SM305Page() {
                         id: "CS-A1", difficulty, stage, geometryType: "cone_parabola",
                         promptLatex: `\\\\text{Cone cut parallel to slant edge. What conic section?}`,
                         expressionLatex: `\\text{Parallel to edge} \\rightarrow \\text{parabola}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "parabola", expected: "parabola" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
                         correctLatex: `\\text{Parabola}`,
                         hintLatex: [`\\text{Parallel to slant creates parabola}`]
                     },
@@ -337,8 +337,8 @@ export default function SM305Page() {
                         id: "CS-A2", difficulty, stage, geometryType: "cone_hyperbola",
                         promptLatex: `\\\\text{Cone cut parallel to axis. What conic section?}`,
                         expressionLatex: `\\text{Parallel to axis} \\rightarrow \\text{hyperbola}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "hyperbola", expected: "hyperbola" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
                         correctLatex: `\\text{Hyperbola}`,
                         hintLatex: [`\\text{Steep cut creates hyperbola}`]
                     },
@@ -346,8 +346,8 @@ export default function SM305Page() {
                         id: "CS-A3", difficulty, stage, geometryType: "cube_hexagon",
                         promptLatex: `\\\\text{Cube cut through 6 edge midpoints. What shape?}`,
                         expressionLatex: `\\text{Through edge midpoints} \\rightarrow \\text{hexagon}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "hexagon", expected: "hexagon" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
                         correctLatex: `\\text{Regular hexagon}`,
                         hintLatex: [`\\text{Special diagonal cut creates hexagon}`]
                     },
@@ -404,8 +404,8 @@ export default function SM305Page() {
                         id: "CS-E4", difficulty, stage, geometryType: "torus",
                         promptLatex: `\\\\text{Torus (donut) cut through center hole. What shape?}`,
                         expressionLatex: `\\text{Torus cross-section}`,
-                        targetLatex: `\\text{Shape}`,
-                        slots: [{ id: "shape", labelLatex: `\\text{Shape}`, placeholder: "circles", expected: "circles" }],
+                        targetLatex: t("sm3_05.labels.shape"),
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
                         correctLatex: `\\text{Two circles}`,
                         hintLatex: [`\\text{Cut shows two circular tubes}`]
                     },
