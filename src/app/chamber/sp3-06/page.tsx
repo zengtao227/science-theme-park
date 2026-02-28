@@ -449,7 +449,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_safe"), placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No (causes pain and damage)}`,
+                        correctLatex: t("sp3_06.corrects.li_b3"),
                         hintLatex: [`140 \\text{ dB} >> 85 \\text{ dB}`]
                     },
                     {
@@ -467,7 +467,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
-                        correctLatex: `\\text{True}`,
+                        correctLatex: t("sp3_06.corrects.correct_true"),
                         hintLatex: [t("sp3_06.hints.li_b5")]
                     }
                 );
@@ -578,7 +578,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_e1"),
                         targetLatex: t("sp3_06.labels.label_unit"),
                         slots: [{ id: "unit", labelLatex: t("sp3_06.labels.label_unit"), placeholder: "phon", expected: "phon" }],
-                        correctLatex: `\\text{Phon}`,
+                        correctLatex: t("sp3_06.corrects.li_e1"),
                         hintLatex: [t("sp3_06.hints.li_e1")]
                     },
                     {
@@ -587,7 +587,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_e2"),
                         targetLatex: t("sp3_06.labels.label_ratio"),
                         slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "2", expected: 2 }],
-                        correctLatex: `2\\times \\text{ louder}`,
+                        correctLatex: t("sp3_06.corrects.li_e2"),
                         hintLatex: [t("sp3_06.hints.li_e2")]
                     },
                     {
@@ -596,7 +596,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_e3"),
                         targetLatex: t("sp3_06.labels.label_symbol"),
                         slots: [{ id: "symbol", labelLatex: t("sp3_06.labels.label_symbol"), placeholder: "dBA", expected: "dBA" }],
-                        correctLatex: `\\text{dB(A) or dBA}`,
+                        correctLatex: t("sp3_06.corrects.li_e3"),
                         hintLatex: [t("sp3_06.hints.li_e3")]
                     },
                     {
@@ -614,7 +614,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.li_e5"),
                         targetLatex: t("sp3_06.labels.label_application"),
                         slots: [{ id: "app", labelLatex: t("sp3_06.labels.label_application"), placeholder: "noise", expected: "noise" }],
-                        correctLatex: `\\text{Audio noise/hiss}`,
+                        correctLatex: t("sp3_06.corrects.li_e5"),
                         hintLatex: [t("sp3_06.hints.li_e5")]
                     }
                 );

@@ -1624,6 +1624,11 @@ export const dePhysics = {
                         fp_e3: "\\text{Formanten}",
                         fp_e4: "200\\text{ Hz (fehlende Grundfrequenz)}",
                         fp_e5: "\\text{Auditive Maskierung}",
+                        li_b3: "\\text{Nein (verursacht Schmerzen und Schäden)}",
+                        li_e1: "\\text{Phon}",
+                        li_e2: "2\times \text{ mal lauter}",
+                        li_e3: "\\text{dB(A) oder dBA}",
+                        li_e5: "\\text{Audio-Rauschen/Zischen}",
                 },
                 prompts: {
                 // SOUND_WAVES

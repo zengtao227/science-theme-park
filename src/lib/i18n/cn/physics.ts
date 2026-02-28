@@ -1657,6 +1657,11 @@ export const cnPhysics = {
                         fp_e3: "\\text{共振峰（Formanten）}",
                         fp_e4: "200\\text{ Hz（缺失基频）}",
                         fp_e5: "\\text{听觉掩蔽}",
+                        li_b3: "\\text{否（引发痛感和损伤）}",
+                        li_e1: "\\text{方（Phon）}",
+                        li_e2: "2\times \text{ 倍响}",
+                        li_e3: "\\text{dB(A) 或 dBA}",
+                        li_e5: "\\text{音频噪声/嘶嘶声}",
                 },
         prompts: {
         // SOUND_WAVES

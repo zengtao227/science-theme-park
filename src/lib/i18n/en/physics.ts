@@ -1595,6 +1595,11 @@ export const enPhysics = {
                         fp_e3: "\\text{Formants}",
                         fp_e4: "200\\text{ Hz (missing fundamental)}",
                         fp_e5: "\\text{Auditory masking}",
+                        li_b3: "\\text{No (causes pain and damage)}",
+                        li_e1: "\\text{Phon}",
+                        li_e2: "2\times \text{ louder}",
+                        li_e3: "\\text{dB(A) or dBA}",
+                        li_e5: "\\text{Audio noise/hiss}",
                 },
                 prompts: {
                 // SOUND_WAVES
