@@ -1392,7 +1392,15 @@ export const enPhysics = {
                 feedback: {
                         correct: "Mechanical advantage calculated correctly!",
                         incorrect: "Check your mechanical advantage calculation."
-                }
+                },
+                hints: {
+                        for_friction_losses: "Account for friction losses",
+                        pulleys_double_ma: "Movable pulleys double MA",
+                        for_friction: "Account for friction",
+                        all_supporting_strands: "Count all supporting strands",
+                        friction_component: "Add friction component",
+                        is_inclined_plane_wrapped_around_cylinder: "Screw is inclined plane wrapped around cylinder",
+                },
         },
 
         // SP3.07: Navigation & Vectors - Rhine Ferry (60 questions: 3 stages × 4 difficulties × 5 questions)

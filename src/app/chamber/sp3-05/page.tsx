@@ -142,7 +142,7 @@ export default function SP305Page() {
                         targetLatex: lever.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
                         correctLatex: `${lever.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Account for friction losses}`]
+                        hintLatex: [t("sp3_05.hints.for_friction_losses")]
                     });
                 });
             }
@@ -222,7 +222,7 @@ export default function SP305Page() {
                         targetLatex: pulley.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Movable pulleys double MA}`]
+                        hintLatex: [t("sp3_05.hints.pulleys_double_ma")]
                     });
                 });
             }
@@ -248,7 +248,7 @@ export default function SP305Page() {
                         targetLatex: pulley.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Account for friction}`]
+                        hintLatex: [t("sp3_05.hints.for_friction")]
                     });
                 });
             }
@@ -274,7 +274,7 @@ export default function SP305Page() {
                         targetLatex: pulley.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Count all supporting strands}`]
+                        hintLatex: [t("sp3_05.hints.all_supporting_strands")]
                     });
                 });
             }
@@ -354,7 +354,7 @@ export default function SP305Page() {
                         targetLatex: plane.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Add friction component}`]
+                        hintLatex: [t("sp3_05.hints.friction_component")]
                     });
                 });
             }
@@ -380,7 +380,7 @@ export default function SP305Page() {
                         targetLatex: plane.effort.toString(),
                         slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
-                        hintLatex: [`\\text{Screw is inclined plane wrapped around cylinder}`]
+                        hintLatex: [t("sp3_05.hints.is_inclined_plane_wrapped_around_cylinder")]
                     });
                 });
             }
@@ -630,3 +630,4 @@ export default function SP305Page() {
         </ChamberLayout>
     );
 }
+

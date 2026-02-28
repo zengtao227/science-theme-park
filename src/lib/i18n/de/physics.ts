@@ -1455,7 +1455,15 @@ export const dePhysics = {
                 feedback: {
                         correct: "Mechanischer Vorteil korrekt berechnet!",
                         incorrect: "Überprüfen Sie das Hebelgesetz oder die Seilsegmente."
-                }
+                },
+                hints: {
+                        for_friction_losses: "Reibungsverluste berücksichtigen",
+                        pulleys_double_ma: "Bewegliche Rollen verdoppeln die Übersetzung",
+                        for_friction: "Reibung berücksichtigen",
+                        all_supporting_strands: "Alle tragenden Stränge zählen",
+                        friction_component: "Reibungskomponente hinzufügen",
+                        is_inclined_plane_wrapped_around_cylinder: "Schraube ist eine um einen Zylinder gewickelte schiefe Ebene",
+                },
         },
 
         // SP3.07: Navigation & Vektoren (von sp1_05)

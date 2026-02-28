@@ -1404,7 +1404,15 @@ export const cnPhysics = {
         feedback: {
             correct: "机械优势计算无误！",
             incorrect: "请检查你的力矩平衡或绳子段数计算。"
-        }
+        },
+        hints: {
+            for_friction_losses: "考虑摩擦损耗",
+            pulleys_double_ma: "动滑轮使机械优势翻倍",
+            for_friction: "考虑摩擦力",
+            all_supporting_strands: "计算所有承重绳段数",
+            friction_component: "加入摩擦力分量",
+            is_inclined_plane_wrapped_around_cylinder: "螺钉是缠绕在圆柱体上的斜面",
+        },
     },
 
     // SP3.07: 导航与矢量 - 莱茵河渡轮 (60题：3阶段 × 4难度 × 5题)
