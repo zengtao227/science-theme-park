@@ -818,6 +818,11 @@ export const deBiology = {
             response: "Reaktion",
             mv_l_min: "MV (L/min)"
         },
+        corrects: {
+            carbon_dioxide: "\\text{Kohlendioxid (CO}_2\\text{)}",
+            baroreceptors_raas_anp: "\\text{Barorezeptoren, RAAS, ANP}",
+            oxygen: "\\text{Sauerstoff (O}_2\\text{)}",
+        },
         prompts: {
             // VERDAUUNGSSYSTEM - BASIS (5 Fragen)
             digestive_b1: "Nahrungsweg: Mund → Speiseröhre → ? → Darm",

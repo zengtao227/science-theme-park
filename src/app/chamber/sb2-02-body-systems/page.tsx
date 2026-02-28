@@ -260,7 +260,7 @@ export default function SB202BodySystemsPage() {
                         expressionLatex: `\\text{${t("sb2_02.expressions.gas_exchange")}}`,
                         targetLatex: `\\text{CO}_2`,
                         slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: "CO2", expected: "CO2" }],
-                        correctLatex: `\\text{Carbon dioxide (CO}_2\\text{)}`,
+                        correctLatex: t("sb2_02.corrects.carbon_dioxide"),
                         hintLatex: [t("sb2_02.hints.circulatory_b4")]
                     },
                     {
@@ -398,7 +398,7 @@ export default function SB202BodySystemsPage() {
                         expressionLatex: `\\text{${t("sb2_02.expressions.bp_regulation")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.mechanisms")}}`,
                         slots: [{ id: "count", labelLatex: `n`, placeholder: "3", expected: 3 }],
-                        correctLatex: `\\text{Baroreceptors, RAAS, ANP}`,
+                        correctLatex: t("sb2_02.corrects.baroreceptors_raas_anp"),
                         hintLatex: [t("sb2_02.hints.circulatory_e3")]
                     },
                     {
@@ -441,7 +441,7 @@ export default function SB202BodySystemsPage() {
                         expressionLatex: `\\text{${t("sb2_02.expressions.gas_exchange")}}`,
                         targetLatex: `\\text{O}_2`,
                         slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: "O2", expected: "O2" }],
-                        correctLatex: `\\text{Oxygen (O}_2\\text{)}`,
+                        correctLatex: t("sb2_02.corrects.oxygen"),
                         hintLatex: [t("sb2_02.hints.respiratory_b2")]
                     },
                     {

@@ -818,6 +818,11 @@ export const cnBiology = {
             response: "反应",
             mv_l_min: "每分通气量(L/min)"
         },
+        corrects: {
+            carbon_dioxide: "\\text{二氧化碳（CO}_2\\text{）}",
+            baroreceptors_raas_anp: "\\text{压力感受器、RAAS、ANP}",
+            oxygen: "\\text{氧气（O}_2\\text{）}",
+        },
         prompts: {
             // 消化系统 - 基础 (5题)
             digestive_b1: "食物路径：口腔 → 食道 → ? → 肠道",

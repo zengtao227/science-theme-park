@@ -958,6 +958,11 @@ export const enBiology = {
             response: "Response",
             mv_l_min: "MV (L/min)"
         },
+        corrects: {
+            carbon_dioxide: "\\text{Carbon dioxide (CO}_2\\text{)}",
+            baroreceptors_raas_anp: "\\text{Baroreceptors, RAAS, ANP}",
+            oxygen: "\\text{Oxygen (O}_2\\text{)}",
+        },
         prompts: {
             // DIGESTIVE STAGE - BASIC (5 questions)
             digestive_b1: "Food travels: Mouth → Esophagus → ? → Intestines",
