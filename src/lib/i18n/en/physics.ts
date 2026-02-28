@@ -1574,6 +1574,18 @@ export const enPhysics = {
                         answer: "\\text{Answer}",
                         phenomenon: "\\text{Phenomenon}",
                 },
+                corrects: {
+                        correct_true: "\\text{True}",
+                        correct_no: "\\text{No}",
+                        sw_b5: "\\text{No (needs medium)}",
+                        sw_c5: "\\approx 17\\text{ times}",
+                        sw_a1: "\\text{Higher (Doppler effect)}",
+                        sw_a2: "\\text{Destructive}",
+                        sw_a3: "\\text{Refraction}",
+                        sw_a4: "\\text{Diffraction}",
+                        sw_e4: "\\text{Sonic boom}",
+                        sw_e5: "\\text{Acoustic impedance mismatch}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Sound speed in air at 20°C is 343 m/s. A sound wave has frequency 686 Hz. Find the wavelength.",

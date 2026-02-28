@@ -1603,6 +1603,18 @@ export const dePhysics = {
                         answer: "\\text{Antwort}",
                         phenomenon: "\\text{Phänomen}",
                 },
+                corrects: {
+                        correct_true: "\\text{Wahr}",
+                        correct_no: "\\text{Nein}",
+                        sw_b5: "\\text{Nein (braucht Medium)}",
+                        sw_c5: "\\approx 17\\text{ mal}",
+                        sw_a1: "\\text{Höher (Doppler-Effekt)}",
+                        sw_a2: "\\text{Destruktiv}",
+                        sw_a3: "\\text{Refraktion}",
+                        sw_a4: "\\text{Diffraktion}",
+                        sw_e4: "\\text{Überschallknall}",
+                        sw_e5: "\\text{Akustische Impedanzfehlanpassung}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Die Schallgeschwindigkeit in Luft bei 20°C beträgt 343 m/s. Eine Schallwelle hat die Frequenz 686 Hz. Berechne die Wellenlänge.",

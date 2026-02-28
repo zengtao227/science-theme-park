@@ -1636,6 +1636,18 @@ export const cnPhysics = {
                         answer: "\\text{答案}",
                         phenomenon: "\\text{现象}",
                 },
+                corrects: {
+                        correct_true: "\\text{正确}",
+                        correct_no: "\\text{否}",
+                        sw_b5: "\\text{否（需要介质）}",
+                        sw_c5: "\\approx 17\\text{ 倍}",
+                        sw_a1: "\\text{更高（多普勒效应）}",
+                        sw_a2: "\\text{相消}",
+                        sw_a3: "\\text{折射}",
+                        sw_a4: "\\text{衍射}",
+                        sw_e4: "\\text{音爆}",
+                        sw_e5: "\\text{声阻抗失配}",
+                },
         prompts: {
         // SOUND_WAVES
         sound_waves_b1: "20°C 空气中声速为 343 m/s，声波频率为 686 Hz，求波长。",

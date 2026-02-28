@@ -51,7 +51,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
-                        correctLatex: `\\text{True}`,
+                        correctLatex: t("sp3_06.corrects.correct_true"),
                         hintLatex: [t("sp3_06.hints.sw_b3")]
                     },
                     {
@@ -69,7 +69,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_b5"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
-                        correctLatex: `\\text{No (needs medium)}`,
+                        correctLatex: t("sp3_06.corrects.sw_b5"),
                         hintLatex: [t("sp3_06.hints.sw_b5")]
                     }
                 );
@@ -118,7 +118,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_c5"),
                         targetLatex: t("sp3_06.labels.label_ratio"),
                         slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "17", expected: 17 }],
-                        correctLatex: `\\approx 17\\text{ times}`,
+                        correctLatex: t("sp3_06.corrects.sw_c5"),
                         hintLatex: [`5960 \\div 343 \\approx 17.4`]
                     }
                 );
@@ -131,7 +131,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_a1"),
                         targetLatex: t("sp3_06.targets.answer"),
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
-                        correctLatex: `\\text{Higher (Doppler effect)}`,
+                        correctLatex: t("sp3_06.corrects.sw_a1"),
                         hintLatex: [t("sp3_06.hints.sw_a1")]
                     },
                     {
@@ -140,7 +140,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_a2"),
                         targetLatex: t("sp3_06.labels.label_type"),
                         slots: [{ id: "type", labelLatex: t("sp3_06.labels.label_type"), placeholder: "destructive", expected: "destructive" }],
-                        correctLatex: `\\text{Destructive}`,
+                        correctLatex: t("sp3_06.corrects.sw_a2"),
                         hintLatex: [t("sp3_06.hints.sw_a2")]
                     },
                     {
@@ -149,7 +149,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_a3"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "refraction", expected: "refraction" }],
-                        correctLatex: `\\text{Refraction}`,
+                        correctLatex: t("sp3_06.corrects.sw_a3"),
                         hintLatex: [t("sp3_06.hints.sw_a3")]
                     },
                     {
@@ -158,7 +158,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_a4"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "diffraction", expected: "diffraction" }],
-                        correctLatex: `\\text{Diffraction}`,
+                        correctLatex: t("sp3_06.corrects.sw_a4"),
                         hintLatex: [t("sp3_06.hints.sw_a4")]
                     },
                     {
@@ -207,7 +207,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_e4"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "sonic boom", expected: "sonic boom" }],
-                        correctLatex: `\\text{Sonic boom}`,
+                        correctLatex: t("sp3_06.corrects.sw_e4"),
                         hintLatex: [t("sp3_06.hints.sw_e4")]
                     },
                     {
@@ -216,7 +216,7 @@ export default function SP306Page() {
                         expressionLatex: t("sp3_06.expressions.sw_e5"),
                         targetLatex: t("sp3_06.labels.label_reason"),
                         slots: [{ id: "reason", labelLatex: t("sp3_06.labels.label_reason"), placeholder: "impedance", expected: "impedance" }],
-                        correctLatex: `\\text{Acoustic impedance mismatch}`,
+                        correctLatex: t("sp3_06.corrects.sw_e5"),
                         hintLatex: [t("sp3_06.hints.sw_e5")]
                     }
                 );
