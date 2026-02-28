@@ -53,3 +53,6 @@ scripts/*.py
 # IDE settings
 .vscode/
 .continuerc.json
+
+# local handoff workspace (never commit)
+temp/
