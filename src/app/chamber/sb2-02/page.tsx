@@ -85,7 +85,7 @@ export default function SB202Page() {
                     promptLatex: t("sb2_02.prompts.structure_function", { function: s.function }),
                     expressionLatex: `\text{${s.name.charAt(0).toUpperCase() + s.name.slice(1)}}`,
                     targetLatex: t("sb2_02.labels.anatomy_display"),
-                    slots: [{ id: "struct", labelLatex: "\\text{Structure}", placeholder: s.name, expected: s.name }],
+                    slots: [{ id: "struct", labelLatex: t("common.labels.structure"), placeholder: s.name, expected: s.name }],
                     correctLatex: s.name,
                     hintLatex: [t("sb2_02.prompts.hint_structure", { name: s.name })]
                 });

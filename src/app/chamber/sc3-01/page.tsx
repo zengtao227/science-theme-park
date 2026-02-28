@@ -90,7 +90,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-RATIO1`, promptLatex: `\\\\text{C:O ratio in ${config.name}?}`,
           expressionLatex: `C_{${config.c}}:O_{${config.o}}`,
-          slots: [{ id: "ratio", labelLatex: "\\text{Ratio}", placeholder: "x:y", expected: `${config.c}:${config.o}` }],
+          slots: [{ id: "ratio", labelLatex: t("common.labels.ratio"), placeholder: "x:y", expected: `${config.c}:${config.o}` }],
           hintLatex: ["\\text{Simplify if possible.}"]
         },
         {
@@ -127,7 +127,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-EMPIRICAL1`, promptLatex: `\\\\text{Simplest ratio for ${config.name}?}`,
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "empirical", labelLatex: "\\text{Formula}", placeholder: "CxHyOz", expected: config.formula.replace(/_/g, "").replace(/\{|\}/g, "") }],
+          slots: [{ id: "empirical", labelLatex: t("common.labels.formula"), placeholder: "CxHyOz", expected: config.formula.replace(/_/g, "").replace(/\{|\}/g, "") }],
           hintLatex: ["\\text{Already simplified}"]
         },
         {

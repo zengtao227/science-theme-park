@@ -145,7 +145,7 @@ export default function GB201Neurobiology() {
                     promptLatex: t('gb2_01.prompts.identify_part').replace("{function}", data.func!),
                     expressionLatex: "",
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Structure}", placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.structure"), placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [t('gb2_01.prompts.hint_anatomy')]
                 });
@@ -172,7 +172,7 @@ export default function GB201Neurobiology() {
                     promptLatex: promptText,
                     expressionLatex: "",
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "\\text{Type}", placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.type"), placeholder: "...", expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [t('gb2_01.prompts.hint_synapse')]
                 });

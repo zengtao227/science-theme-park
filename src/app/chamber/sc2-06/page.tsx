@@ -261,7 +261,7 @@ export default function SC206Page() {
               promptLatex: t(`sc2_06.prompts.${item.question}`),
               expressionLatex: "\\text{Galvanic Cell}",
               targetLatex: `\\text{${item.answer}}`,
-              slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: "...", expected: item.answer }],
+              slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
               correctLatex: `\\text{${item.answer}}`,
               reactants: [{ formula: "Zn", oxidationState: 0 }],
               products: [{ formula: "Zn^{2}^+", oxidationState: 2 }],

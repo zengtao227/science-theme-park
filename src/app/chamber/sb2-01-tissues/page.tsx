@@ -156,7 +156,7 @@ export default function SB201TissuesPage() {
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
                     targetLatex: "\\text{Function}",
-                    slots: [{ id: "func", labelLatex: "\\text{Function}", placeholder: data.answer, expected: data.answer }],
+                    slots: [{ id: "func", labelLatex: t("common.labels.function"), placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });
@@ -174,7 +174,7 @@ export default function SB201TissuesPage() {
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
                     targetLatex: "\\text{Answer}",
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });
@@ -192,7 +192,7 @@ export default function SB201TissuesPage() {
                     promptLatex: data.prompt,
                     expressionLatex: data.expression,
                     targetLatex: "\\text{Answer}",
-                    slots: [{ id: "ans", labelLatex: "\\text{Answer}", placeholder: data.answer, expected: data.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: data.answer, expected: data.answer }],
                     correctLatex: data.answer,
                     hintLatex: [data.hint]
                 });

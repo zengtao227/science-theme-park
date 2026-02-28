@@ -634,7 +634,7 @@ export default function SC205Page() {
               promptLatex: "\\\\text{Suitable?}",
               expressionLatex: "\\text{pH}_{\\text{eq}} \\approx 8.9",
               targetLatex: "\\\\text{Yes=1, No=2}",
-              slots: [{ id: "suitable", labelLatex: "\\text{Answer}", placeholder: "?", expected: 1 }],
+              slots: [{ id: "suitable", labelLatex: t("common.labels.answer"), placeholder: "?", expected: 1 }],
               correctLatex: "1",
               reactionType: "titration"
             },

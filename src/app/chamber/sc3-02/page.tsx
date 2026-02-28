@@ -71,7 +71,7 @@ export default function SC302Page() {
                     promptLatex: t("sc3_02.prompts.name_formula", { name: hc.name }),
                     expressionLatex: `\\text{${hc.name}} \\rightarrow \\text{?}`,
                     targetLatex: hc.formula,
-                    slots: [{ id: "ans", labelLatex: "\\text{Formula}", placeholder: "CxHy", expected: hc.formula }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.formula"), placeholder: "CxHy", expected: hc.formula }],
                     correctLatex: hc.formula,
                     hintLatex: [t("sc3_02.prompts.hint_carbons", { count: hc.carbons })]
                 });
@@ -119,7 +119,7 @@ export default function SC302Page() {
                     promptLatex: t("sc3_02.prompts.functional_group", { name: g.name === 'benzene' ? 'Benzene' : g.name }),
                     expressionLatex: `\\text{${g.name}} \\rightarrow \\text{?}`,
                     targetLatex: g.group,
-                    slots: [{ id: "ans", labelLatex: "\\text{Formula/Group}", placeholder: "...", expected: g.group }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.formula_or_functional_group"), placeholder: "...", expected: g.group }],
                     correctLatex: g.group,
                     hintLatex: [t("sc3_02.prompts.hint_group", { example: g.example })]
                 });
@@ -167,7 +167,7 @@ export default function SC302Page() {
                     promptLatex: t("sc3_02.prompts.isomer_count", { formula: iso.formula }),
                     expressionLatex: `${iso.formula} \\rightarrow \\text{? isomers}`,
                     targetLatex: iso.count,
-                    slots: [{ id: "ans", labelLatex: "\\text{Count}", placeholder: "...", expected: iso.count }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.count"), placeholder: "...", expected: iso.count }],
                     correctLatex: iso.count,
                     hintLatex: [t("sc3_02.prompts.hint_isomer", { type: iso.type })]
                 });

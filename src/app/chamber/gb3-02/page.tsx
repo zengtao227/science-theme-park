@@ -166,7 +166,7 @@ export default function GB302Immunology() {
                     promptLatex: t("gb3_02.prompts.adaptive_function").replace("{cell}", data.cell),
                     expressionLatex: "",
                     targetLatex: data.role,
-                    slots: [{ id: "ans", labelLatex: "\\text{Function}", placeholder: "...", expected: data.role }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.function"), placeholder: "...", expected: data.role }],
                     correctLatex: data.role,
                     hintLatex: [t("gb3_02.prompts.hint_adaptive")]
                 });

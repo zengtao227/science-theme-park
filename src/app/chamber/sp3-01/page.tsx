@@ -401,7 +401,7 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Round ${r.value} to ${r.sigfigs} significant figures}`,
                         expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
                         targetLatex: r.answer,
-                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: r.answer }],
+                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: r.answer }],
                         correctLatex: `${r.answer}`,
                         hintLatex: [`\\text{Round at the ${r.sigfigs}th significant digit}`]
                     });
@@ -426,7 +426,7 @@ export default function SP301Page() {
                         promptLatex: `\\\\text{Calculate ${c.expr} with proper sig figs}`,
                         expressionLatex: `${c.expr}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: "\\text{Result}", placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: c.answer }],
                         correctLatex: `${c.answer}`,
                         hintLatex: [`\\text{Use ${c.rule} rule}`]
                     });

@@ -69,7 +69,7 @@ export default function SC305MolecularForge() {
                     promptLatex: `\\\\text{Determine geometry of ${m.name} with ${m.lone} lone pairs and ${m.bonded} bonded atoms}`,
                     expressionLatex: "",
                     targetLatex: `\\text{${m.shape}}`,
-                    slots: [{ id: "ans", labelLatex: "\\text{Geometry}", placeholder: "...", expected: m.shape }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.geometry"), placeholder: "...", expected: m.shape }],
                     correctLatex: m.shape,
                     hintLatex: [`\\text{Use VSEPR theory: count electron domains}`]
                 });
@@ -93,7 +93,7 @@ export default function SC305MolecularForge() {
                     promptLatex: `\\\\text{Determine hybridization of ${h.m}}`,
                     expressionLatex: "",
                     targetLatex: h.h,
-                    slots: [{ id: "ans", labelLatex: "\\text{Hybridization}", placeholder: "...", expected: h.h }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.hybridization"), placeholder: "...", expected: h.h }],
                     correctLatex: h.h,
                     hintLatex: [`\\text{Count electron domains around central atom}`]
                 });
@@ -116,7 +116,7 @@ export default function SC305MolecularForge() {
                     promptLatex: `\\\\text{Calculate bond order for ${m.ion}}. (\\\\text{Bonding } e^- = ${m.b}, \\\\text{Antibonding } e^- = ${m.ab})`,
                     expressionLatex: "\\text{Bond Order} = \\frac{1}{2}(n_b - n_a)",
                     targetLatex: m.order,
-                    slots: [{ id: "ans", labelLatex: "\\text{Bond Order}", placeholder: "0", expected: m.order }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.bond_order"), placeholder: "0", expected: m.order }],
                     correctLatex: m.order,
                     hintLatex: [`\\text{Use the formula: Bond Order = (bonding - antibonding) / 2}`]
                 });
