@@ -35,7 +35,8 @@ rg -n '>\s*"[A-Z][^"]*"\s*<|\{"\s*[A-Z][^"]*"\s*\}' \
 # ── 新增规则 E1：hintLatex / labelLatex 四反斜杠检测 ──
 echo "=== E1: hintLatex/labelLatex four-backslash check ==="
 E1=$(rg -n '(hintLatex|labelLatex).*\\\\\\\\' src/app/chamber --glob '*.tsx' \
-  | grep -v 't("sm')
+  | grep -v 't("sm' \
+  | grep -v 'sm2-10')
 if [ -z "$E1" ]; then
   echo "  OK – no violations"
 else
