@@ -2522,7 +2522,14 @@ export const deMath = {
             horiz_cut_cone_circular: "Horizontaler Schnitt durch Kegel ist kreisfoermig",
             diagonal_cut_rectangle: "Diagonalschnitt ergibt Rechteck",
             angled_cut_ellipse: "Schraeger Schnitt streckt Kreis zur Ellipse",
-            shows_triangular_base: "Zeigt dreieckige Grundflaeche"
+            shows_triangular_base: "Zeigt dreieckige Grundflaeche",
+            parallel_cut_smaller: "Paralleler Schnitt ist kreisfoermig, kleinerer Radius",
+            parallel_cut_square: "Paralleler Schnitt ergibt aehnliches Quadrat",
+            slant_cut_parabola: "Parallel zur Kante ergibt Parabel",
+            steep_cut_hyperbola: "Steiler Schnitt ergibt Hyperbel",
+            diagonal_cut_hexagon: "Besonderer Diagonalschnitt ergibt Sechseck",
+            angled_cut_circle: "Schraeger Schnitt streckt den Kreis",
+            cut_two_tubes: "Schnitt zeigt zwei kreisfoermige Roehren"
         }
     },
     sm2_11: {

@@ -300,7 +300,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle_smaller"),
-                        hintLatex: [`\\text{Parallel cut is circular, smaller radius}`]
+                        hintLatex: [t("sm3_05.hints.parallel_cut_smaller")]
                     },
                     {
                         id: "CS-C4", difficulty, stage, geometryType: "pyramid",
@@ -309,7 +309,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square_smaller"),
-                        hintLatex: [`\\text{Parallel cut creates similar square}`]
+                        hintLatex: [t("sm3_05.hints.parallel_cut_square")]
                     },
                     {
                         id: "CS-C5", difficulty, stage, geometryType: "prism",
@@ -331,7 +331,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
                         correctLatex: t("sm3_05.labels.correct_parabola"),
-                        hintLatex: [`\\text{Parallel to slant creates parabola}`]
+                        hintLatex: [t("sm3_05.hints.slant_cut_parabola")]
                     },
                     {
                         id: "CS-A2", difficulty, stage, geometryType: "cone_hyperbola",
@@ -340,7 +340,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
                         correctLatex: t("sm3_05.labels.correct_hyperbola"),
-                        hintLatex: [`\\text{Steep cut creates hyperbola}`]
+                        hintLatex: [t("sm3_05.hints.steep_cut_hyperbola")]
                     },
                     {
                         id: "CS-A3", difficulty, stage, geometryType: "cube_hexagon",
@@ -349,7 +349,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
                         correctLatex: t("sm3_05.labels.correct_regular_hexagon"),
-                        hintLatex: [`\\text{Special diagonal cut creates hexagon}`]
+                        hintLatex: [t("sm3_05.hints.diagonal_cut_hexagon")]
                     },
                     {
                         id: "CS-A4", difficulty, stage, geometryType: "area",
@@ -398,7 +398,7 @@ export default function SM305Page() {
                         targetLatex: `a`,
                         slots: [{ id: "axis", labelLatex: `a\\text{ (cm)}`, placeholder: "8", expected: 8 }],
                         correctLatex: `> 4\\text{ cm (depends on angle)}`,
-                        hintLatex: [`\\text{Angled cut stretches circle}`]
+                        hintLatex: [t("sm3_05.hints.angled_cut_circle")]
                     },
                     {
                         id: "CS-E4", difficulty, stage, geometryType: "torus",
@@ -407,7 +407,7 @@ export default function SM305Page() {
                         targetLatex: t("sm3_05.labels.shape"),
                         slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
                         correctLatex: t("sm3_05.labels.correct_two_circles"),
-                        hintLatex: [`\\text{Cut shows two circular tubes}`]
+                        hintLatex: [t("sm3_05.hints.cut_two_tubes")]
                     },
                     {
                         id: "CS-E5", difficulty, stage, geometryType: "pyramid_diagonal",

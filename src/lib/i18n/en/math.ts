@@ -2534,7 +2534,14 @@ export const enMath = {
             horiz_cut_cone_circular: "Horizontal cut through cone is circular",
             diagonal_cut_rectangle: "Diagonal cut creates rectangle",
             angled_cut_ellipse: "Angled cut stretches circle into ellipse",
-            shows_triangular_base: "Shows triangular base"
+            shows_triangular_base: "Shows triangular base",
+            parallel_cut_smaller: "Parallel cut is circular, smaller radius",
+            parallel_cut_square: "Parallel cut creates similar square",
+            slant_cut_parabola: "Parallel to slant creates parabola",
+            steep_cut_hyperbola: "Steep cut creates hyperbola",
+            diagonal_cut_hexagon: "Special diagonal cut creates hexagon",
+            angled_cut_circle: "Angled cut stretches circle",
+            cut_two_tubes: "Cut shows two circular tubes"
         }
     },
     sm2_11: {

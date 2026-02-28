@@ -2530,7 +2530,14 @@ export const cnMath = {
             horiz_cut_cone_circular: "圆锥水平截面为圆形",
             diagonal_cut_rectangle: "对角截面形成矩形",
             angled_cut_ellipse: "斜切将圆拉伸为椭圆",
-            shows_triangular_base: "显示三角形底面"
+            shows_triangular_base: "显示三角形底面",
+            parallel_cut_smaller: "平行截面为圆形，半径较小",
+            parallel_cut_square: "平行截面形成相似正方形",
+            slant_cut_parabola: "平行于斜边截面形成抛物线",
+            steep_cut_hyperbola: "陡截面形成双曲线",
+            diagonal_cut_hexagon: "特殊对角截面形成正六边形",
+            angled_cut_circle: "斜切拉伸圆形",
+            cut_two_tubes: "截面显示两个圆形管道"
         }
     },
     sm2_11: {
