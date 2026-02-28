@@ -1538,6 +1538,18 @@ export const enPhysics = {
                         label_dose: "\\text{Dose (\\%)}",
                         label_application: "\\text{Application}",
                 },
+                expressions: {
+                        sw_b3: "\text{Denser medium} \rightarrow \text{faster sound}",
+                        sw_b5: "\text{Sound needs medium}",
+                        sw_c5: "\text{Ratio} = \frac{v_{\text{steel}}}{v_{\text{air}}}",
+                        sw_a1: "\text{Doppler effect: approaching} \rightarrow \text{higher}",
+                        sw_a2: "\text{Cancellation} = \text{destructive interference}",
+                        sw_a3: "\text{Bending at boundary} = \text{refraction}",
+                        sw_a4: "\text{Bending around obstacles} = \text{diffraction}",
+                        sw_a5: "\text{Resonance occurs at natural frequency}",
+                        sw_e4: "v > v_{\text{sound}} \rightarrow \text{shock wave}",
+                        sw_e5: "\text{Large impedance mismatch} \rightarrow \text{strong reflection}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Sound speed in air at 20°C is 343 m/s. A sound wave has frequency 686 Hz. Find the wavelength.",

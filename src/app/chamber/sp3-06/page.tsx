@@ -48,7 +48,7 @@ export default function SP306Page() {
                     {
                         id: "SW-B3", difficulty, stage, soundType: "medium",
                         promptLatex: t("sp3_06.prompts.sound_waves_b3"),
-                        expressionLatex: `\\text{Denser medium} \\rightarrow \\text{faster sound}`,
+                        expressionLatex: t("sp3_06.expressions.sw_b3"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
                         correctLatex: `\\text{True}`,
@@ -66,7 +66,7 @@ export default function SP306Page() {
                     {
                         id: "SW-B5", difficulty, stage, soundType: "vacuum",
                         promptLatex: t("sp3_06.prompts.sound_waves_b5"),
-                        expressionLatex: `\\text{Sound needs medium}`,
+                        expressionLatex: t("sp3_06.expressions.sw_b5"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (needs medium)}`,
@@ -115,7 +115,7 @@ export default function SP306Page() {
                     {
                         id: "SW-C5", difficulty, stage, soundType: "comparison",
                         promptLatex: t("sp3_06.prompts.sound_waves_c5"),
-                        expressionLatex: `\\text{Ratio} = \\frac{v_{\\text{steel}}}{v_{\\text{air}}}`,
+                        expressionLatex: t("sp3_06.expressions.sw_c5"),
                         targetLatex: `\\text{Ratio}`,
                         slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "17", expected: 17 }],
                         correctLatex: `\\approx 17\\text{ times}`,
@@ -128,7 +128,7 @@ export default function SP306Page() {
                     {
                         id: "SW-A1", difficulty, stage, soundType: "doppler",
                         promptLatex: t("sp3_06.prompts.sound_waves_a1"),
-                        expressionLatex: `\\text{Doppler effect: approaching} \\rightarrow \\text{higher}`,
+                        expressionLatex: t("sp3_06.expressions.sw_a1"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
                         correctLatex: `\\text{Higher (Doppler effect)}`,
@@ -137,7 +137,7 @@ export default function SP306Page() {
                     {
                         id: "SW-A2", difficulty, stage, soundType: "interference",
                         promptLatex: t("sp3_06.prompts.sound_waves_a2"),
-                        expressionLatex: `\\text{Cancellation} = \\text{destructive interference}`,
+                        expressionLatex: t("sp3_06.expressions.sw_a2"),
                         targetLatex: `\\text{Type}`,
                         slots: [{ id: "type", labelLatex: t("sp3_06.labels.label_type"), placeholder: "destructive", expected: "destructive" }],
                         correctLatex: `\\text{Destructive}`,
@@ -146,7 +146,7 @@ export default function SP306Page() {
                     {
                         id: "SW-A3", difficulty, stage, soundType: "refraction",
                         promptLatex: t("sp3_06.prompts.sound_waves_a3"),
-                        expressionLatex: `\\text{Bending at boundary} = \\text{refraction}`,
+                        expressionLatex: t("sp3_06.expressions.sw_a3"),
                         targetLatex: `\\text{Phenomenon}`,
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "refraction", expected: "refraction" }],
                         correctLatex: `\\text{Refraction}`,
@@ -155,7 +155,7 @@ export default function SP306Page() {
                     {
                         id: "SW-A4", difficulty, stage, soundType: "diffraction",
                         promptLatex: t("sp3_06.prompts.sound_waves_a4"),
-                        expressionLatex: `\\text{Bending around obstacles} = \\text{diffraction}`,
+                        expressionLatex: t("sp3_06.expressions.sw_a4"),
                         targetLatex: `\\text{Phenomenon}`,
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "diffraction", expected: "diffraction" }],
                         correctLatex: `\\text{Diffraction}`,
@@ -164,7 +164,7 @@ export default function SP306Page() {
                     {
                         id: "SW-A5", difficulty, stage, soundType: "resonance_freq",
                         promptLatex: t("sp3_06.prompts.sound_waves_a5"),
-                        expressionLatex: `\\text{Resonance occurs at natural frequency}`,
+                        expressionLatex: t("sp3_06.expressions.sw_a5"),
                         targetLatex: `f`,
                         slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "512", expected: 512 }],
                         correctLatex: `512\\text{ Hz}`,
@@ -204,7 +204,7 @@ export default function SP306Page() {
                     {
                         id: "SW-E4", difficulty, stage, soundType: "sonic_boom",
                         promptLatex: t("sp3_06.prompts.sound_waves_e4"),
-                        expressionLatex: `v > v_{\\text{sound}} \\rightarrow \\text{shock wave}`,
+                        expressionLatex: t("sp3_06.expressions.sw_e4"),
                         targetLatex: `\\text{Phenomenon}`,
                         slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "sonic boom", expected: "sonic boom" }],
                         correctLatex: `\\text{Sonic boom}`,
@@ -213,7 +213,7 @@ export default function SP306Page() {
                     {
                         id: "SW-E5", difficulty, stage, soundType: "acoustic_impedance",
                         promptLatex: t("sp3_06.prompts.sound_waves_e5"),
-                        expressionLatex: `\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}`,
+                        expressionLatex: t("sp3_06.expressions.sw_e5"),
                         targetLatex: `\\text{Reason}`,
                         slots: [{ id: "reason", labelLatex: t("sp3_06.labels.label_reason"), placeholder: "impedance", expected: "impedance" }],
                         correctLatex: `\\text{Acoustic impedance mismatch}`,

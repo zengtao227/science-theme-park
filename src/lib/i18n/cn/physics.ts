@@ -1600,6 +1600,18 @@ export const cnPhysics = {
                         label_dose: "\\text{剂量（\\%）}",
                         label_application: "\\text{应用}",
                 },
+                expressions: {
+                        sw_b3: "\text{密度较大的介质} \rightarrow \text{声速更快}",
+                        sw_b5: "\text{声音需要介质}",
+                        sw_c5: "\text{倍数} = \frac{v_{\text{钢铁}}}{v_{\text{空气}}}",
+                        sw_a1: "\text{多普勒效应：接近} \rightarrow \text{频率更高}",
+                        sw_a2: "\text{相消} = \text{相消干涉}",
+                        sw_a3: "\text{界面处弯折} = \text{折射}",
+                        sw_a4: "\text{绕障碍物弯折} = \text{衍射}",
+                        sw_a5: "\text{共鸣发生在固有频率}",
+                        sw_e4: "v > v_{\text{音速}} \rightarrow \text{冲击波}",
+                        sw_e5: "\text{阻抗差异大} \rightarrow \text{强反射}",
+                },
         prompts: {
         // SOUND_WAVES
         sound_waves_b1: "20°C 空气中声速为 343 m/s，声波频率为 686 Hz，求波长。",

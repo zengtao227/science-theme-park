@@ -1567,6 +1567,18 @@ export const dePhysics = {
                         label_dose: "\\text{Dosis (\\%)}",
                         label_application: "\\text{Anwendung}",
                 },
+                expressions: {
+                        sw_b3: "\text{Dichteres Medium} \rightarrow \text{schnellerer Schall}",
+                        sw_b5: "\text{Schall braucht ein Medium}",
+                        sw_c5: "\text{Verhältnis} = \frac{v_{\text{Stahl}}}{v_{\text{Luft}}}",
+                        sw_a1: "\text{Doppler-Effekt: nähern} \rightarrow \text{höher}",
+                        sw_a2: "\text{Auslöschung} = \text{destruktive Interferenz}",
+                        sw_a3: "\text{Brechung an Grenzfläche} = \text{Refraktion}",
+                        sw_a4: "\text{Beugung um Hindernisse} = \text{Diffraktion}",
+                        sw_a5: "\text{Resonanz bei Eigenfrequenz}",
+                        sw_e4: "v > v_{\text{Schall}} \rightarrow \text{Schockwelle}",
+                        sw_e5: "\text{Großer Impedanzunterschied} \rightarrow \text{starke Reflexion}",
+                },
                 prompts: {
                 // SOUND_WAVES
                 sound_waves_b1: "Die Schallgeschwindigkeit in Luft bei 20°C beträgt 343 m/s. Eine Schallwelle hat die Frequenz 686 Hz. Berechne die Wellenlänge.",
