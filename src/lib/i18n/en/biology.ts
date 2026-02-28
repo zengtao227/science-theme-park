@@ -1357,6 +1357,10 @@ export const enBiology = {
             hint_square: "Check the Punnett Square.",
             hint_all_rr: "All offspring are Rr.",
             hint_count: "{count} out of 4 squares."
+        },
+        expressions: {
+            ratio_label: "Ratio",
+            percentage_label: "Percentage"
         }
     },
     sb2_04: {

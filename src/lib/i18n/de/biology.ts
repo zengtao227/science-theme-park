@@ -1217,6 +1217,10 @@ export const deBiology = {
             hint_square: "Überprüfe das Punnett-Quadrat.",
             hint_all_rr: "Alle Nachkommen sind Rr.",
             hint_count: "{count} von 4 Quadraten."
+        },
+        expressions: {
+            ratio_label: "Verhältnis",
+            percentage_label: "Prozentsatz"
         }
     },
     sb2_04: {

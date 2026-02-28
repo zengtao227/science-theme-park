@@ -1217,6 +1217,10 @@ export const cnBiology = {
             hint_square: "检查普内特方格。",
             hint_all_rr: "所有子代均为 Rr。",
             hint_count: "4个方格中的 {count} 个。"
+        },
+        expressions: {
+            ratio_label: "比值",
+            percentage_label: "百分比"
         }
     },
     sb2_04: {

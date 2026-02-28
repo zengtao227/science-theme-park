@@ -136,12 +136,12 @@ export default function SB203Page() {
                 promptLatex = t("sb2_03.prompts.monohybrid_ratio", { p1: data.p1, p2: data.p2 });
                 expressionLatex = t("sb2_03.prompts.ratio_target");
                 placeholder = "X:Y";
-                labelLatex = "\\text{Ratio}";
+                labelLatex = `\\text{${t("sb2_03.expressions.ratio_label")}}`;
             } else if (data.type === "percent") {
                 promptLatex = t("sb2_03.prompts.monohybrid_percent", { p1: data.p1, p2: data.p2 });
                 expressionLatex = t("sb2_03.prompts.percent_target");
                 placeholder = "X%";
-                labelLatex = "\\text{Percentage}";
+                labelLatex = `\\text{${t("sb2_03.expressions.percentage_label")}}`;
                 if (!targetLatex.includes("%")) targetLatex += "\\%";
             } else if (data.type === "prob") {
                 const genotype = data.p1.includes("R") ? "rr" : (data.p1.includes("A") ? "aa" : "bb");
