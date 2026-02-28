@@ -1233,7 +1233,28 @@ export const enPhysics = {
                         pressure_depth: "A swimmer dives to {depth} m in the Rhine. Calculate total pressure.",
                         buoyant_force: "An object with {volume} m^{3} is submerged in the Rhine. Calculate buoyancy.",
                         hint_pressure: "Use P = P₀ + ρgh",
-                        hint_archimedes: "Use F_b = ρ_water × V × g"
+                        hint_archimedes: "Use F_b = ρ_water × V × g",
+                        buoyancy: "Buoyancy",
+                        buoyancy_basic_1: "Buoyancy Basic Problem 1", // TODO
+                        buoyancy_basic_2: "Buoyancy Basic Problem 2", // TODO
+                        buoyancy_basic_3: "Buoyancy Basic Problem 3", // TODO
+                        buoyancy_basic_4: "Buoyancy Basic Problem 4", // TODO
+                        buoyancy_basic_5: "Buoyancy Basic Problem 5", // TODO
+                        buoyancy_core_1: "Buoyancy Core Problem 1", // TODO
+                        buoyancy_core_2: "Buoyancy Core Problem 2", // TODO
+                        buoyancy_core_3: "Buoyancy Core Problem 3", // TODO
+                        buoyancy_core_4: "Buoyancy Core Problem 4", // TODO
+                        buoyancy_core_5: "Buoyancy Core Problem 5", // TODO
+                        buoyancy_advanced_1: "Buoyancy Advanced Problem 1", // TODO
+                        buoyancy_advanced_2: "Buoyancy Advanced Problem 2", // TODO
+                        buoyancy_advanced_3: "Buoyancy Advanced Problem 3", // TODO
+                        buoyancy_advanced_4: "Buoyancy Advanced Problem 4", // TODO
+                        buoyancy_advanced_5: "Buoyancy Advanced Problem 5", // TODO
+                        buoyancy_elite_1: "Buoyancy Elite Problem 1", // TODO
+                        buoyancy_elite_2: "Buoyancy Elite Problem 2", // TODO
+                        buoyancy_elite_3: "Buoyancy Elite Problem 3", // TODO
+                        buoyancy_elite_4: "Buoyancy Elite Problem 4", // TODO
+                        buoyancy_elite_5: "Buoyancy Elite Problem 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",

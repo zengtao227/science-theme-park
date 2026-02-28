@@ -1293,7 +1293,28 @@ export const dePhysics = {
                         pressure_depth: "Ein Schwimmer taucht auf {depth} m im Rhein. Berechnen Sie den Gesamtdruck.",
                         buoyant_force: "Ein Objekt mit {volume} m^{3} ist im Rhein untergetaucht. Berechnen Sie den Auftrieb.",
                         hint_pressure: "P = P₀ + ρgh",
-                        hint_archimedes: "F_a = ρ_wasser × V × g"
+                        hint_archimedes: "F_a = ρ_wasser × V × g",
+                        buoyancy: "Auftrieb",
+                        buoyancy_basic_1: "Auftrieb Grundaufgabe 1", // TODO
+                        buoyancy_basic_2: "Auftrieb Grundaufgabe 2", // TODO
+                        buoyancy_basic_3: "Auftrieb Grundaufgabe 3", // TODO
+                        buoyancy_basic_4: "Auftrieb Grundaufgabe 4", // TODO
+                        buoyancy_basic_5: "Auftrieb Grundaufgabe 5", // TODO
+                        buoyancy_core_1: "Auftrieb Kernaufgabe 1", // TODO
+                        buoyancy_core_2: "Auftrieb Kernaufgabe 2", // TODO
+                        buoyancy_core_3: "Auftrieb Kernaufgabe 3", // TODO
+                        buoyancy_core_4: "Auftrieb Kernaufgabe 4", // TODO
+                        buoyancy_core_5: "Auftrieb Kernaufgabe 5", // TODO
+                        buoyancy_advanced_1: "Auftrieb Fortgeschritten 1", // TODO
+                        buoyancy_advanced_2: "Auftrieb Fortgeschritten 2", // TODO
+                        buoyancy_advanced_3: "Auftrieb Fortgeschritten 3", // TODO
+                        buoyancy_advanced_4: "Auftrieb Fortgeschritten 4", // TODO
+                        buoyancy_advanced_5: "Auftrieb Fortgeschritten 5", // TODO
+                        buoyancy_elite_1: "Auftrieb Elite 1", // TODO
+                        buoyancy_elite_2: "Auftrieb Elite 2", // TODO
+                        buoyancy_elite_3: "Auftrieb Elite 3", // TODO
+                        buoyancy_elite_4: "Auftrieb Elite 4", // TODO
+                        buoyancy_elite_5: "Auftrieb Elite 5", // TODO
                 },
                 scenarios: {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",
