@@ -1819,6 +1819,25 @@ export const cnMath = {
             quality_control_891: "质量控制 - 样本891", // TODO
             quality_control_1456: "质量控制 - 样本1456", // TODO
             quality_control_1789: "质量控制 - 样本1789", // TODO
+            insurance_basic_1: "保险基础题 1", // TODO
+            insurance_basic_2: "保险基础题 2", // TODO
+            insurance_basic_3: "保险基础题 3", // TODO
+            insurance_basic_4: "保险基础题 4", // TODO
+            insurance_adv_1: "保险进阶题 1", // TODO
+            insurance_adv_2: "保险进阶题 2", // TODO
+            insurance_adv_3: "保险进阶题 3", // TODO
+            insurance_adv_4: "保险进阶题 4", // TODO
+            insurance_adv_5: "保险进阶题 5", // TODO
+            insurance_core_1: "保险核心题 1", // TODO
+            insurance_core_2: "保险核心题 2", // TODO
+            insurance_core_3: "保险核心题 3", // TODO
+            insurance_core_4: "保险核心题 4", // TODO
+            insurance_core_5: "保险核心题 5", // TODO
+            insurance_elite_1: "保险精英题 1", // TODO
+            insurance_elite_2: "保险精英题 2", // TODO
+            insurance_elite_3: "保险精英题 3", // TODO
+            insurance_elite_4: "保险精英题 4", // TODO
+            insurance_elite_5: "保险精英题 5", // TODO
             adjacent: "邻边",
             cos: "余弦",
             sin: "正弦",

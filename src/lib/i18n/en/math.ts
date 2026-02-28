@@ -1830,6 +1830,21 @@ export const enMath = {
             quality_control_92: "Quality control - sample 92", // TODO
             quality_control_156: "Quality control - sample 156", // TODO
             quality_control_234: "Quality control - sample 234", // TODO
+            insurance_adv_1: "Insurance Advanced Problem 1", // TODO
+            insurance_adv_2: "Insurance Advanced Problem 2", // TODO
+            insurance_adv_3: "Insurance Advanced Problem 3", // TODO
+            insurance_adv_4: "Insurance Advanced Problem 4", // TODO
+            insurance_adv_5: "Insurance Advanced Problem 5", // TODO
+            insurance_core_1: "Insurance Core Problem 1", // TODO
+            insurance_core_2: "Insurance Core Problem 2", // TODO
+            insurance_core_3: "Insurance Core Problem 3", // TODO
+            insurance_core_4: "Insurance Core Problem 4", // TODO
+            insurance_core_5: "Insurance Core Problem 5", // TODO
+            insurance_elite_1: "Insurance Elite Problem 1", // TODO
+            insurance_elite_2: "Insurance Elite Problem 2", // TODO
+            insurance_elite_3: "Insurance Elite Problem 3", // TODO
+            insurance_elite_4: "Insurance Elite Problem 4", // TODO
+            insurance_elite_5: "Insurance Elite Problem 5", // TODO
             adjacent: "Adjacent",
             cos: "Cosine",
             sin: "Sine",
