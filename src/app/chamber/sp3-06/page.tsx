@@ -446,7 +446,7 @@ export default function SP306Page() {
                     {
                         id: "LI-B3", difficulty, stage, soundType: "pain_threshold",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b3"),
-                        expressionLatex: `> 85 \\text{ dB} \\rightarrow \\text{damage risk}`,
+                        expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_safe"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No (causes pain and damage)}`,
@@ -464,7 +464,7 @@ export default function SP306Page() {
                     {
                         id: "LI-B5", difficulty, stage, soundType: "safe_level",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b5"),
-                        expressionLatex: `> 85 \\text{ dB} \\rightarrow \\text{damage risk}`,
+                        expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
                         correctLatex: `\\text{True}`,
@@ -495,7 +495,7 @@ export default function SP306Page() {
                     {
                         id: "LI-C3", difficulty, stage, soundType: "distance_double",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c3"),
-                        expressionLatex: `2\\times \\text{ distance} \\Rightarrow -6 \\text{ dB}`,
+                        expressionLatex: t("sp3_06.expressions.li_c3"),
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "74", expected: 74 }],
                         correctLatex: `74\\text{ dB}`,
@@ -526,7 +526,7 @@ export default function SP306Page() {
                     {
                         id: "LI-A1", difficulty, stage, soundType: "inverse_square",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a1"),
-                        expressionLatex: `10\\times \\text{ distance} \\Rightarrow -20 \\text{ dB}`,
+                        expressionLatex: t("sp3_06.expressions.li_a1"),
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "40", expected: 40 }],
                         correctLatex: `40\\text{ dB}`,
@@ -535,7 +535,7 @@ export default function SP306Page() {
                     {
                         id: "LI-A2", difficulty, stage, soundType: "combining_sources",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a2"),
-                        expressionLatex: `2\\times \\text{ intensity} \\Rightarrow +3 \\text{ dB}`,
+                        expressionLatex: t("sp3_06.expressions.li_a2"),
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "63", expected: 63 }],
                         correctLatex: `63\\text{ dB}`,
@@ -553,7 +553,7 @@ export default function SP306Page() {
                     {
                         id: "LI-A4", difficulty, stage, soundType: "jet_engine",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a4"),
-                        expressionLatex: `10\\times \\text{ distance} \\Rightarrow -20 \\text{ dB}`,
+                        expressionLatex: t("sp3_06.expressions.li_a1"),
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "110", expected: 110 }],
                         correctLatex: `110\\text{ dB}`,
@@ -562,7 +562,7 @@ export default function SP306Page() {
                     {
                         id: "LI-A5", difficulty, stage, soundType: "four_sources",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a5"),
-                        expressionLatex: `4\\times \\text{ intensity} \\Rightarrow +6 \\text{ dB}`,
+                        expressionLatex: t("sp3_06.expressions.li_a5"),
                         targetLatex: `L`,
                         slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "56", expected: 56 }],
                         correctLatex: `56\\text{ dB}`,
@@ -575,7 +575,7 @@ export default function SP306Page() {
                     {
                         id: "LI-E1", difficulty, stage, soundType: "phon",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e1"),
-                        expressionLatex: `\\text{Perceived loudness unit}`,
+                        expressionLatex: t("sp3_06.expressions.li_e1"),
                         targetLatex: `\\text{Unit}`,
                         slots: [{ id: "unit", labelLatex: t("sp3_06.labels.label_unit"), placeholder: "phon", expected: "phon" }],
                         correctLatex: `\\text{Phon}`,
@@ -584,7 +584,7 @@ export default function SP306Page() {
                     {
                         id: "LI-E2", difficulty, stage, soundType: "sone",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e2"),
-                        expressionLatex: `\\text{Linear loudness scale}`,
+                        expressionLatex: t("sp3_06.expressions.li_e2"),
                         targetLatex: `\\text{Ratio}`,
                         slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "2", expected: 2 }],
                         correctLatex: `2\\times \\text{ louder}`,
@@ -593,7 +593,7 @@ export default function SP306Page() {
                     {
                         id: "LI-E3", difficulty, stage, soundType: "a_weighting",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e3"),
-                        expressionLatex: `\\text{Weighted decibel}`,
+                        expressionLatex: t("sp3_06.expressions.li_e3"),
                         targetLatex: `\\text{Symbol}`,
                         slots: [{ id: "symbol", labelLatex: t("sp3_06.labels.label_symbol"), placeholder: "dBA", expected: "dBA" }],
                         correctLatex: `\\text{dB(A) or dBA}`,
@@ -602,7 +602,7 @@ export default function SP306Page() {
                     {
                         id: "LI-E4", difficulty, stage, soundType: "noise_dose",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e4"),
-                        expressionLatex: `+3 \\text{ dB} \\Rightarrow \\text{half time}`,
+                        expressionLatex: t("sp3_06.expressions.li_e4"),
                         targetLatex: `\\text{Dose}`,
                         slots: [{ id: "dose", labelLatex: t("sp3_06.labels.label_dose"), placeholder: "100", expected: 100 }],
                         correctLatex: `100\\%`,
@@ -611,7 +611,7 @@ export default function SP306Page() {
                     {
                         id: "LI-E5", difficulty, stage, soundType: "itu_weighting",
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e5"),
-                        expressionLatex: `\\text{Noise measurement standard}`,
+                        expressionLatex: t("sp3_06.expressions.li_e5"),
                         targetLatex: `\\text{Application}`,
                         slots: [{ id: "app", labelLatex: t("sp3_06.labels.label_application"), placeholder: "noise", expected: "noise" }],
                         correctLatex: `\\text{Audio noise/hiss}`,
