@@ -114,13 +114,13 @@ export default function SC301Page() {
         },
         {
           id: `${currentStage}-PERCENT1`, promptLatex: `\\\\text{Carbon percentage in ${config.name}?}`,
-          expressionLatex: `\\frac{C_{${config.c}}}{\\text{Total}}\\times 100`,
+          expressionLatex: `\\frac{C_{${config.c}}}{\\text{${t("sc3_01.labels.total_word")}}}\\times 100`,
           slots: [{ id: "percent", labelLatex: t("sc3_01.labels.percent"), placeholder: "%", expected: ((config.c / (config.c + config.h + config.o + config.n)) * 100).toFixed(1) }],
           hintLatex: [t("sc3_01.hints.carbon_over_total")]
         },
         {
           id: `${currentStage}-BONDS1`, promptLatex: `\\\\text{Estimate bond count in ${config.name}?}`,
-          expressionLatex: `\\text{Approximate}`,
+          expressionLatex: t("sc3_01.expressions.approximate"),
           slots: [{ id: "bonds", labelLatex: t("sc3_01.labels.bonds"), placeholder: "?", expected: (config.c + config.h + config.o + config.n - 1).toString() }],
           hintLatex: [t("sc3_01.hints.roughly_atoms_minus_one")]
         },
@@ -157,13 +157,13 @@ export default function SC301Page() {
         },
         {
           id: `${currentStage}-FUNCTIONAL1`, promptLatex: `\\\\text{Functional groups in ${config.name}?}`,
-          expressionLatex: `\\text{Identify}`,
+          expressionLatex: t("sc3_01.expressions.identify"),
           slots: [{ id: "groups", labelLatex: t("sc3_01.labels.groups"), placeholder: "name", expected: currentStage === "ASPIRIN" ? "ester,carboxyl" : currentStage === "CAFFEINE" ? "amide,amine" : "amine,hydroxyl" }],
           hintLatex: [t("sc3_01.hints.look_for_o_n_patterns")]
         },
         {
           id: `${currentStage}-STRUCTURE1`, promptLatex: `\\\\text{Ring structures in ${config.name}?}`,
-          expressionLatex: `\\text{Count}`,
+          expressionLatex: t("sc3_01.expressions.count"),
           slots: [{ id: "rings", labelLatex: t("sc3_01.labels.rings"), placeholder: "?", expected: currentStage === "ASPIRIN" ? "1" : currentStage === "CAFFEINE" ? "2" : "1" }],
           hintLatex: [t("sc3_01.hints.closed_carbon_chains")]
         },

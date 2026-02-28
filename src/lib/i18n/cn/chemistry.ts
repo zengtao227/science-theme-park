@@ -970,6 +970,11 @@ export const cnChemistry = {
             closed_carbon_chains: "\\text{闭合碳链}",
             use_formula: "\\text{使用公式}",
         },
+        expressions: {
+            approximate: "\\text{近似值}",
+            identify: "\\text{识别}",
+            count: "\\text{计数}",
+        },
         mission: {
             title: "分子组装实验室",
             description: "使用球棍模型组装药物分子。旋转并观察 3D 结构。"

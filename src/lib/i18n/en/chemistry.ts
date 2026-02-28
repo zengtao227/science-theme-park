@@ -970,6 +970,11 @@ export const enChemistry = {
             closed_carbon_chains: "\\text{Closed carbon chains}",
             use_formula: "\\text{Use formula}",
         },
+        expressions: {
+            approximate: "\\text{Approximate}",
+            identify: "\\text{Identify}",
+            count: "\\text{Count}",
+        },
         mission: {
             title: "MOLECULAR ASSEMBLY LAB",
             description: "Assemble pharmaceutical molecules using ball-and-stick models. Rotate and observe the 3D structure."

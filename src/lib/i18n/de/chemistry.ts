@@ -958,6 +958,11 @@ export const deChemistry = {
             closed_carbon_chains: "\\text{Geschlossene Kohlenstoffketten}",
             use_formula: "\\text{Formel verwenden}",
         },
+        expressions: {
+            approximate: "\\text{Näherungswert}",
+            identify: "\\text{Identifizieren}",
+            count: "\\text{Zählen}",
+        },
         mission: {
             title: "MOLEKÜL-MONTAGE-LABOR",
             description: "Bauen Sie pharmazeutische Moleküle mit Kugel-Stab-Modellen zusammen. Drehen und beobachten Sie die 3D-Struktur."
