@@ -229,7 +229,7 @@ export default function SP306Page() {
                     {
                         id: "FP-B1", difficulty, stage, soundType: "hearing_range",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b1"),
-                        expressionLatex: `\\text{Upper limit of human hearing}`,
+                        expressionLatex: t("sp3_06.expressions.fp_b1"),
                         targetLatex: `f_{\\text{max}}`,
                         slots: [{ id: "freq", labelLatex: `f_{\\text{max}}\\text{ (Hz)}`, placeholder: "20000", expected: 20000 }],
                         correctLatex: `20{,}000\\text{ Hz}`,
@@ -238,7 +238,7 @@ export default function SP306Page() {
                     {
                         id: "FP-B2", difficulty, stage, soundType: "pitch",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b2"),
-                        expressionLatex: `\\text{Frequency} \\uparrow \\Rightarrow \\text{Pitch} \\uparrow`,
+                        expressionLatex: t("sp3_06.expressions.fp_b2"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
                         correctLatex: `\\text{Higher pitch}`,
@@ -247,7 +247,7 @@ export default function SP306Page() {
                     {
                         id: "FP-B3", difficulty, stage, soundType: "concert_pitch",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b3"),
-                        expressionLatex: `\\text{Octave} \\rightarrow \\text{double frequency}`,
+                        expressionLatex: t("sp3_06.expressions.fp_b3"),
                         targetLatex: `f`,
                         slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "880", expected: 880 }],
                         correctLatex: `880\\text{ Hz}`,
@@ -256,7 +256,7 @@ export default function SP306Page() {
                     {
                         id: "FP-B4", difficulty, stage, soundType: "ultrasound",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b4"),
-                        expressionLatex: `\\text{Above hearing range}`,
+                        expressionLatex: t("sp3_06.expressions.fp_b4"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No}`,
@@ -265,7 +265,7 @@ export default function SP306Page() {
                     {
                         id: "FP-B5", difficulty, stage, soundType: "infrasound",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b5"),
-                        expressionLatex: `\\text{Below hearing range}`,
+                        expressionLatex: t("sp3_06.expressions.fp_b5"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
                         correctLatex: `\\text{No}`,
@@ -336,7 +336,7 @@ export default function SP306Page() {
                     {
                         id: "FP-A2", difficulty, stage, soundType: "timbre",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a2"),
-                        expressionLatex: `\\text{Different harmonic content}`,
+                        expressionLatex: t("sp3_06.expressions.fp_a2"),
                         targetLatex: `\\text{Property}`,
                         slots: [{ id: "prop", labelLatex: t("sp3_06.labels.label_property"), placeholder: "timbre", expected: "timbre" }],
                         correctLatex: `\\text{Timbre (tone quality)}`,
@@ -363,7 +363,7 @@ export default function SP306Page() {
                     {
                         id: "FP-A5", difficulty, stage, soundType: "critical_bands",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a5"),
-                        expressionLatex: `\\Delta f > \\text{critical bandwidth}`,
+                        expressionLatex: t("sp3_06.expressions.fp_a5"),
                         targetLatex: `\\text{Answer}`,
                         slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
                         correctLatex: `\\text{Yes (beyond critical band)}`,
@@ -394,7 +394,7 @@ export default function SP306Page() {
                     {
                         id: "FP-E3", difficulty, stage, soundType: "formants",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e3"),
-                        expressionLatex: `\\text{Vocal tract resonances}`,
+                        expressionLatex: t("sp3_06.expressions.fp_e3"),
                         targetLatex: `\\text{Term}`,
                         slots: [{ id: "term", labelLatex: t("sp3_06.labels.label_term"), placeholder: "formants", expected: "formants" }],
                         correctLatex: `\\text{Formants}`,
@@ -403,7 +403,7 @@ export default function SP306Page() {
                     {
                         id: "FP-E4", difficulty, stage, soundType: "missing_fundamental",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e4"),
-                        expressionLatex: `\\text{GCD of harmonics}`,
+                        expressionLatex: t("sp3_06.expressions.fp_e4"),
                         targetLatex: `f_0`,
                         slots: [{ id: "freq", labelLatex: `f_0\\text{ (Hz)}`, placeholder: "200", expected: 200 }],
                         correctLatex: `200\\text{ Hz (missing fundamental)}`,
@@ -412,7 +412,7 @@ export default function SP306Page() {
                     {
                         id: "FP-E5", difficulty, stage, soundType: "masking",
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e5"),
-                        expressionLatex: `\\text{Frequency masking}`,
+                        expressionLatex: t("sp3_06.expressions.fp_e5"),
                         targetLatex: `\\text{Effect}`,
                         slots: [{ id: "effect", labelLatex: t("sp3_06.labels.label_effect"), placeholder: "masking", expected: "masking" }],
                         correctLatex: `\\text{Auditory masking}`,
