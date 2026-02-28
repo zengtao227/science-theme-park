@@ -16,6 +16,8 @@ type Candidate = {
   suggested_key: string | null;
   has_interpolation: boolean;
   has_math_symbols: boolean;
+  auto_exempt: boolean;
+  auto_exempt_reason?: string;
   suggested_exempt: boolean;
   exempt_reason?: string;
 };
@@ -91,6 +93,19 @@ function hasMathSymbols(raw: string): boolean {
   return /\\(frac|log|sqrt|times|cdot|approx|Delta|sum|int|rightarrow)|[_^=]/.test(raw);
 }
 
+function hasUnitText(raw: string): boolean {
+  // Unit-like text inside \text{...}, e.g. Pa, mol, mL, m^3, K, kg
+  return /\\text\{\s*[^}]*[A-Za-z%°][^}]*\}/.test(raw);
+}
+
+function textContentRatio(raw: string): number {
+  const textMatches = [...raw.matchAll(/\\text\{([^}]*)\}/g)];
+  const textLen = textMatches.reduce((sum, m) => sum + (m[1]?.length ?? 0), 0);
+  const plain = raw.replace(/\\[a-zA-Z]+/g, "").replace(/[{}]/g, "");
+  const totalLen = Math.max(plain.length, 1);
+  return textLen / totalLen;
+}
+
 function main(): void {
   const modulePathArg = getArg("--module");
   if (!modulePathArg) usage();
@@ -128,6 +143,28 @@ function main(): void {
 
     const interpolation = hasInterpolation(raw);
     const mathSymbols = hasMathSymbols(raw);
+    const ratio = textContentRatio(raw);
+
+    let autoExempt = false;
+    let autoExemptReason: string | undefined;
+
+    // Rule 1 - numeric result with unit text
+    if ((/\\approx|=\s*[\d]/.test(raw) && hasUnitText(raw))) {
+      autoExempt = true;
+      autoExemptReason = "numeric result";
+    }
+
+    // Rule 2 - physical variable + unit, e.g. P \text{ (Pa)}
+    if (!autoExempt && /^[A-Za-z_]\d*\s*\\text\{\s*\(/.test(raw)) {
+      autoExempt = true;
+      autoExemptReason = "physical variable + unit";
+    }
+
+    // Rule 3 - math-dominant formula
+    if (!autoExempt && /\\(propto|times|frac|sqrt|approx)/.test(raw) && ratio < 0.5) {
+      autoExempt = true;
+      autoExemptReason = "math formula";
+    }
 
     let suggestedExempt = false;
     let exemptReason: string | undefined;
@@ -135,6 +172,9 @@ function main(): void {
     if (interpolation) {
       suggestedExempt = true;
       exemptReason = "runtime interpolation";
+    } else if (autoExempt) {
+      suggestedExempt = true;
+      exemptReason = autoExemptReason;
     } else if (mathSymbols && (field === "promptLatex" || field === "hintLatex" || field === "expressionLatex")) {
       suggestedExempt = true;
       exemptReason = "math symbols mixed with text";
@@ -151,6 +191,8 @@ function main(): void {
       suggested_key: suggestedKey,
       has_interpolation: interpolation,
       has_math_symbols: mathSymbols,
+      auto_exempt: autoExempt,
+      ...(autoExemptReason ? { auto_exempt_reason: autoExemptReason } : {}),
       suggested_exempt: suggestedExempt,
       ...(exemptReason ? { exempt_reason: exemptReason } : {})
     });
