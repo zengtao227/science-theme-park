@@ -17,6 +17,17 @@ type CandidateFile = {
 };
 
 type TranslationMap = Record<string, Record<string, string>>;
+type ReviewedTranslationFile = {
+  module: string;
+  translations: Record<
+    string,
+    {
+      en: string;
+      cn: string;
+      de: string;
+    }
+  >;
+};
 
 function getArg(name: string): string | undefined {
   const idx = process.argv.indexOf(name);
@@ -36,6 +47,32 @@ function usage(): never {
 
 function parseJsonFile<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
+}
+
+function normalizeTranslations(input: TranslationMap | ReviewedTranslationFile): TranslationMap {
+  // Format A (native): { en: {key: val}, cn: {...}, de: {...} }
+  if (
+    typeof input === "object" &&
+    input !== null &&
+    "en" in input &&
+    "cn" in input &&
+    "de" in input
+  ) {
+    return input as TranslationMap;
+  }
+
+  // Format B (reviewed): { module: "...", translations: { key: {en,cn,de} } }
+  const reviewed = input as ReviewedTranslationFile;
+  if (!reviewed || typeof reviewed !== "object" || !reviewed.translations) {
+    throw new Error("Unsupported translations JSON format");
+  }
+  const out: TranslationMap = { en: {}, cn: {}, de: {} };
+  for (const [key, vals] of Object.entries(reviewed.translations)) {
+    out.en[key] = vals.en;
+    out.cn[key] = vals.cn;
+    out.de[key] = vals.de;
+  }
+  return out;
 }
 
 function resolvePagePath(c: CandidateFile): string {
@@ -234,7 +271,8 @@ function main(): void {
   if (!candidatesArg || !translationsArg) usage();
 
   const cFile = parseJsonFile<CandidateFile>(path.resolve(candidatesArg));
-  const tFile = parseJsonFile<TranslationMap>(path.resolve(translationsArg));
+  const tRaw = parseJsonFile<TranslationMap | ReviewedTranslationFile>(path.resolve(translationsArg));
+  const tFile = normalizeTranslations(tRaw);
 
   const pageResult = applyPageReplacements(cFile, dryRun);
   console.log(`Updated page lines: ${pageResult.changed}`);
