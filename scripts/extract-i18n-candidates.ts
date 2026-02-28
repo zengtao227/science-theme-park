@@ -26,6 +26,11 @@ type ExtractResult = {
   module: string;
   source_file: string;
   generated_at: string;
+  summary: {
+    total_candidates: number;
+    auto_exempt: number;
+    human_review_needed: number;
+  };
   candidates: Candidate[];
 };
 
@@ -106,6 +111,30 @@ function textContentRatio(raw: string): number {
   return textLen / totalLen;
 }
 
+function extractTextContents(raw: string): string[] {
+  return [...raw.matchAll(/\\text\{([^}]*)\}/g)].map((m) => (m[1] ?? "").trim());
+}
+
+function isUnitLikeText(s: string): boolean {
+  // Rule 4 pattern
+  return /^[A-Za-zΑ-Ω°µ·\/\^\{\}\d\s()]+$/.test(s) && s.length <= 10;
+}
+
+function hasEnglishLetters(s: string): boolean {
+  return /[A-Za-z]/.test(s);
+}
+
+function looksLikeE2EnglishText(raw: string): boolean {
+  // Rule 7: must align with E2-like hardcoded English in \text{...}
+  const parts = extractTextContents(raw).filter(Boolean);
+  if (parts.length === 0) return false;
+  return parts.some((seg) => {
+    const capWord = /^[A-Z][a-z]+(?:\b|[^A-Za-z])/.test(seg);
+    const phrase = /[A-Za-z]+\s+[A-Za-z]+/.test(seg);
+    return capWord || phrase;
+  });
+}
+
 function main(): void {
   const modulePathArg = getArg("--module");
   if (!modulePathArg) usage();
@@ -144,12 +173,19 @@ function main(): void {
     const interpolation = hasInterpolation(raw);
     const mathSymbols = hasMathSymbols(raw);
     const ratio = textContentRatio(raw);
+    const textParts = extractTextContents(raw).filter(Boolean);
 
     let autoExempt = false;
     let autoExemptReason: string | undefined;
 
+    // Rule 6 - already localized on same line
+    if (new RegExp(`t\\(\\s*["']${moduleKey}\\.`).test(line)) {
+      autoExempt = true;
+      autoExemptReason = "already localized";
+    }
+
     // Rule 1 - numeric result with unit text
-    if ((/\\approx|=\s*[\d]/.test(raw) && hasUnitText(raw))) {
+    if (!autoExempt && /\\approx|=\s*[\d]/.test(raw) && hasUnitText(raw)) {
       autoExempt = true;
       autoExemptReason = "numeric result";
     }
@@ -164,6 +200,24 @@ function main(): void {
     if (!autoExempt && /\\(propto|times|frac|sqrt|approx)/.test(raw) && ratio < 0.5) {
       autoExempt = true;
       autoExemptReason = "math formula";
+    }
+
+    // Rule 4 - pure unit/symbol text
+    if (!autoExempt && textParts.length > 0 && textParts.every(isUnitLikeText)) {
+      autoExempt = true;
+      autoExemptReason = "unit symbol";
+    }
+
+    // Rule 5 - non-English or numeric-only text
+    if (!autoExempt && textParts.length > 0 && textParts.every((t) => !hasEnglishLetters(t))) {
+      autoExempt = true;
+      autoExemptReason = "non-english or numeric only";
+    }
+
+    // Rule 7 - E2 alignment; non-matching text is auto-exempt
+    if (!autoExempt && !looksLikeE2EnglishText(raw)) {
+      autoExempt = true;
+      autoExemptReason = "outside E2 scope";
     }
 
     let suggestedExempt = false;
@@ -202,6 +256,11 @@ function main(): void {
     module: moduleKey,
     source_file: path.relative(process.cwd(), absModulePath),
     generated_at: new Date().toISOString(),
+    summary: {
+      total_candidates: candidates.length,
+      auto_exempt: candidates.filter((c) => c.auto_exempt).length,
+      human_review_needed: candidates.filter((c) => !c.auto_exempt && !c.suggested_exempt).length
+    },
     candidates
   };
 
