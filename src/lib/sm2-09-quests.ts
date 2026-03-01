@@ -2,7 +2,7 @@
 // Total: 75 quests (20 BASIC, 25 CORE, 20 ADVANCED, 10 ELITE)
 // Distribution: INEQUALITY_BASICS (30), SYSTEMS (26), ABSOLUTE_VALUE (19)
 
-import { SM209Quest, Difficulty, Stage, InequalityType, SolutionType } from "./sm2-09-types";
+import { SM209Quest } from "./sm2-09-types";
 
 // INEQUALITY_BASICS - BASIC (8 quests)
 export const inequalityBasicsBasic: Partial<SM209Quest>[] = [

@@ -2,10 +2,6 @@
 
 import { GM202Quest, Difficulty, Stage } from "./gm2-02-types";
 import {
-  generateLineEquationsBasicQuests,
-  generatePlaneGeometryCoreQuests,
-  generateSpatialRelationshipsAdvancedQuests,
-  generateSpatialRelationshipsEliteQuests,
   getAllQuests
 } from "./gm2-02-quest-data";
 

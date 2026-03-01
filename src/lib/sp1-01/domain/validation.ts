@@ -11,7 +11,7 @@ import {
   MultiLangContent,
   Force,
 } from './types';
-import { checkEquilibrium, calculateMagnitude } from './physics';
+import { checkEquilibrium } from './physics';
 
 // ============================================================================
 // Main Validation Function
@@ -59,6 +59,7 @@ function validateExactAnswer(
   config: ValidationConfig,
   language: 'en' | 'cn' | 'de'
 ): ValidationResult {
+  void language;
   const correct = config.correctAnswer;
 
   // Check if values match exactly
@@ -96,6 +97,7 @@ export function validateNumericalAnswer(
   config: ValidationConfig,
   language: 'en' | 'cn' | 'de'
 ): ValidationResult {
+  void language;
   const correct = config.correctAnswer;
   const tolerance = config.tolerance || 0.01; // Default 1%
 
@@ -165,6 +167,7 @@ export function validateVectorAnswer(
   config: ValidationConfig,
   language: 'en' | 'cn' | 'de'
 ): ValidationResult {
+  void language;
   const correct = config.correctAnswer;
 
   // Check if both are vectors
@@ -310,6 +313,7 @@ function generateCorrectFeedback(): MultiLangContent {
 }
 
 function generateIncorrectFeedback(type: string): MultiLangContent {
+  void type;
   return {
     en: 'Incorrect. Please try again',
     cn: '不正确。请再试一次',

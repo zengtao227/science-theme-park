@@ -6,9 +6,8 @@
  * Requirements: 14.2, 14.6
  */
 
-import { SC207Quest, Stage, ThermochemicalReaction } from './sc2-07-types';
+import { SC207Quest, Stage } from './sc2-07-types';
 import { Difficulty } from '@/hooks/useQuestManager';
-import { createCompound, formatEquationToLatex } from './sc2-07-utils';
 import {
   energyChangesBasic,
   energyChangesCore,

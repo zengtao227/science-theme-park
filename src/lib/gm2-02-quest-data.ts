@@ -1,6 +1,6 @@
 // GM2.02 Analytical Geometry - Quest Data Generation
 
-import { GM202Quest, Difficulty, Stage, GeometryData } from "./gm2-02-types";
+import { GM202Quest } from "./gm2-02-types";
 import {
   calculateLineFrom2Points,
   calculatePlaneFrom3Points,
@@ -14,7 +14,6 @@ import {
   classifyLinePlane,
   classifyPlanePlane,
   calculateLinePlaneIntersection,
-  calculatePlanePlaneIntersection,
   calculate3DLineParametric
 } from "./gm2-02-geometry";
 
