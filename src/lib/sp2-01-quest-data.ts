@@ -1,7 +1,7 @@
 // SP2.01 Circuit Basics - Quest Data Generation
 
 import { Difficulty } from "@/hooks/useQuestManager";
-import { SP201Quest, Stage, ComponentType, CircuitConfiguration, FaultType } from "@/types/sp2-01-types";
+import { SP201Quest, Stage, ComponentType, FaultType } from "@/types/sp2-01-types";
 
 // Component information database
 const componentInfo = {

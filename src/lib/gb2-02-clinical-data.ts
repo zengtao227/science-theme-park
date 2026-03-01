@@ -5,7 +5,7 @@
  * including patient information, symptoms, lab results, and diagnoses.
  */
 
-import { ClinicalCase, LabResult } from './gb2-02-types';
+import { ClinicalCase } from './gb2-02-types';
 
 /**
  * Clinical cases database

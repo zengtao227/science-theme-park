@@ -1,4 +1,4 @@
-import { Quest, Difficulty, Stage } from "./sp1-01/domain/types";
+import { Difficulty, Stage } from "./sp1-01/domain/types";
 import { getAllQuests } from "./sp1-01/data/questLoader";
 
 /**

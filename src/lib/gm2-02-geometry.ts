@@ -1,6 +1,6 @@
 // GM2.02 Analytical Geometry - Core Geometric Calculations
 
-import { Point2D, Point3D, Vector2D, Vector3D, LineEquation, PlaneEquation, RelationshipType } from "./gm2-02-types";
+import { Point2D, Point3D, Vector3D, LineEquation, PlaneEquation, RelationshipType } from "./gm2-02-types";
 
 // ============================================================================
 // 2D LINE CALCULATIONS

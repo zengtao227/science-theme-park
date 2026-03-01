@@ -9,7 +9,6 @@ import {
   Hormone, 
   HormoneType, 
   FeedbackLoop, 
-  ClinicalCase,
   LabResult 
 } from './gb2-02-types';
 

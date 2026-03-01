@@ -36,7 +36,7 @@ export function saveProgress(progress: UserProgress): void {
       // Retry once
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      } catch (retryError) {
+      } catch {
         throw new StorageError('Storage quota exceeded and cleanup failed');
       }
     } else {

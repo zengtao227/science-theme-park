@@ -3,7 +3,7 @@
  * Type definitions for quest data structures
  */
 
-import { Quest, Difficulty } from "@/hooks/useQuestManager";
+import { Quest } from "@/hooks/useQuestManager";
 
 export type Stage = "LIMIT_BASICS" | "LIMIT_OPERATIONS" | "CONTINUITY";
 

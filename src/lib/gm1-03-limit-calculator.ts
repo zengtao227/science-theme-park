@@ -33,7 +33,7 @@ function evaluateFunction(expr: string, x: number): number | null {
     }
     
     return result;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

@@ -5,7 +5,7 @@
  * including negative and positive feedback loops.
  */
 
-import { FeedbackLoop, FeedbackComponent } from './gb2-02-types';
+import { FeedbackLoop } from './gb2-02-types';
 
 /**
  * Negative feedback loops database

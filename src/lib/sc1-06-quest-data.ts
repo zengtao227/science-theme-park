@@ -11,7 +11,6 @@
  * Requirements: 1.5, 2.5, 3.4, 7.1-7.4, 8.1-8.7, 11.1-11.7
  */
 
-import { createCompound } from './sc1-06-utils';
 import { ReactionType, EnergyChange } from './sc1-06-types';
 
 /**
