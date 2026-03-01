@@ -21,6 +21,11 @@ interface BondingVisualization3DProps {
     type: "IONIC" | "COVALENT" | "METALLIC";
 }
 
+const pseudoRandom = (seed: number) => {
+    const x = Math.sin(seed * 12.9898) * 43758.5453123;
+    return x - Math.floor(x);
+};
+
 function IonicBonding() {
     const electronRef = useRef<THREE.Mesh>(null!);
     const [stage, setStage] = useState<'approaching' | 'transfer' | 'balanced'>('approaching');
@@ -122,13 +127,13 @@ function CovalentBonding() {
 
 function MetallicBonding() {
     const electrons = useMemo(() => {
-        return Array.from({ length: 40 }).map(() => ({
+        return Array.from({ length: 40 }).map((_, i) => ({
             position: new THREE.Vector3(
-                (Math.random() - 0.5) * 6,
-                (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 4
+                (pseudoRandom(i * 4 + 1) - 0.5) * 6,
+                (pseudoRandom(i * 4 + 2) - 0.5) * 4,
+                (pseudoRandom(i * 4 + 3) - 0.5) * 4
             ),
-            speed: 1 + Math.random() * 2
+            speed: 1 + pseudoRandom(i * 4 + 4) * 2
         }));
     }, []);
 

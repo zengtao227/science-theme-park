@@ -87,6 +87,17 @@ function ScoreBoard({ myScore, partnerScore, role }: { myScore: number; partnerS
     );
 }
 
+function StatusDot({ isConnected, phase }: { isConnected: boolean; phase: string }) {
+    return (
+        <div
+            className={clsx(
+                "w-2 h-2 rounded-full flex-shrink-0",
+                isConnected ? "bg-green-400 animate-pulse" : phase === "waiting_guest" || phase === "joining" ? "bg-yellow-400 animate-pulse" : "bg-white/20"
+            )}
+        />
+    );
+}
+
 export default function CoopPanel({
     onQuestReceived,
     currentQuestToSync,
@@ -131,15 +142,6 @@ export default function CoopPanel({
         }
     }, [lastCheckCorrect, sendAnswerSubmit]);
 
-    const StatusDot = () => (
-        <div
-            className={clsx(
-                "w-2 h-2 rounded-full flex-shrink-0",
-                isConnected ? "bg-green-400 animate-pulse" : phase === "waiting_guest" || phase === "joining" ? "bg-yellow-400 animate-pulse" : "bg-white/20"
-            )}
-        />
-    );
-
     return (
         <>
             {/* Floating trigger button */}
@@ -152,7 +154,7 @@ export default function CoopPanel({
                         : "border-neon-purple/50 bg-neon-purple/10 text-neon-purple shadow-neon-purple/20"
                 )}
             >
-                <StatusDot />
+                <StatusDot isConnected={isConnected} phase={phase} />
                 <Users className="w-4 h-4" />
                 Coop
                 {isConnected && (
@@ -287,7 +289,7 @@ export default function CoopPanel({
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="text-xs text-white/30 italic">Partner hasn't typed yet...</div>
+                                            <div className="text-xs text-white/30 italic">Partner hasn&apos;t typed yet...</div>
                                         )}
                                         {partnerState.submitted && (
                                             <div className={clsx("text-xs font-black flex items-center gap-1", partnerState.correct ? "text-green-400" : "text-orange-400")}>

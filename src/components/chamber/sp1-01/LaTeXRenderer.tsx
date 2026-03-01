@@ -24,32 +24,23 @@ export function LaTeXRenderer({
   inline = false,
   className = '',
 }: LaTeXRendererProps) {
-  try {
-    // Check if content is empty or only whitespace
-    if (!content || !content.trim()) return null;
+  // Check if content is empty or only whitespace
+  if (!content || !content.trim()) return null;
 
-    // Detect if the content is plain text and needs \text{} wrapper
-    // Especially if it contains non-ASCII characters (like Chinese)
-    const needsTextWrapper = /[^\x00-\x7F]/.test(content) && !content.includes('\\text{');
-    const finalContent = needsTextWrapper ? `\\text{${content}}` : content;
+  // Detect if the content is plain text and needs \text{} wrapper
+  // Especially if it contains non-ASCII characters (like Chinese)
+  const needsTextWrapper = /[^\x00-\x7F]/.test(content) && !content.includes('\\text{');
+  const finalContent = needsTextWrapper ? `\\text{${content}}` : content;
 
-    if (inline) {
-      return <InlineMath math={finalContent} />;
-    } else {
-      return (
-        <div className={className}>
-          <BlockMath math={finalContent} />
-        </div>
-      );
-    }
-  } catch (error) {
-    console.error('LaTeX rendering error:', error);
-    return (
-      <span className="text-red-500">
-        Error rendering math: {content}
-      </span>
-    );
+  if (inline) {
+    return <InlineMath math={finalContent} />;
   }
+
+  return (
+    <div className={className}>
+      <BlockMath math={finalContent} />
+    </div>
+  );
 }
 
 /**

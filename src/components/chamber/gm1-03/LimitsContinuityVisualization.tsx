@@ -161,7 +161,7 @@ export default function LimitsContinuityVisualization({
 
       {/* Status Indicator */}
       <div className="text-[8px] uppercase tracking-[0.3em] text-white/40 text-center">
-        {stage} // VISUALIZATION ACTIVE
+        {`${stage} // VISUALIZATION ACTIVE`}
       </div>
     </div>
   );

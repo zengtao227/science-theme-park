@@ -223,7 +223,7 @@ export default function AnimalVisualization({
                     <div className="mt-4 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
                         <div className="text-green-400 text-xs uppercase mb-1">Survival Benefit</div>
                         <div className="text-white/80 text-sm">
-                            This behavior increases survival and reproductive success in the animal's environment.
+                            This behavior increases survival and reproductive success in the animal&apos;s environment.
                         </div>
                     </div>
                 </div>

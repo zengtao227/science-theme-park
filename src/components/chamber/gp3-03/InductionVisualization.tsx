@@ -28,7 +28,7 @@ export default function InductionVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Faraday's Law: ε = -N(ΔΦ/Δt)
+                    Faraday&apos;s Law: ε = -N(ΔΦ/Δt)
                 </div>
                 
                 <div className="relative w-64 h-64">
@@ -75,7 +75,7 @@ export default function InductionVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Lenz's Law: Induced effects oppose change
+                    Lenz&apos;s Law: Induced effects oppose change
                 </div>
                 
                 <div className="relative w-64 h-64 bg-black/30 rounded-lg border border-white/10 p-4">

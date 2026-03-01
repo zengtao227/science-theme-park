@@ -16,28 +16,29 @@ interface LaTeXRendererProps {
 }
 
 export function LaTeXRenderer({ formula, display = false, className = '' }: LaTeXRendererProps) {
-  try {
-    if (display) {
-      return (
-        <div className={`my-4 overflow-x-auto ${className}`}>
-          <BlockMath math={formula} />
-        </div>
-      );
-    } else {
-      return (
-        <span className={`inline-block ${className}`}>
-          <InlineMath math={formula} />
+  if (!formula || !formula.trim()) return null;
+
+  const rendered = display ? (
+    <div className={`my-4 overflow-x-auto ${className}`}>
+      <BlockMath math={formula} />
+    </div>
+  ) : (
+    <span className={`inline-block ${className}`}>
+      <InlineMath math={formula} />
+    </span>
+  );
+
+  return (
+    <LaTeXErrorBoundary
+      fallback={
+        <span className={`text-red-500 font-mono text-sm ${className}`}>
+          [Formula error: {formula}]
         </span>
-      );
-    }
-  } catch (error) {
-    console.error('LaTeX rendering error:', error);
-    return (
-      <span className={`text-red-500 font-mono text-sm ${className}`}>
-        [Formula error: {formula}]
-      </span>
-    );
-  }
+      }
+    >
+      {rendered}
+    </LaTeXErrorBoundary>
+  );
 }
 
 interface LaTeXContentProps {

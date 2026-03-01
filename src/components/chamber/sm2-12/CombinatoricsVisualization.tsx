@@ -71,7 +71,7 @@ export default function CombinatoricsVisualization({
       return (
         <div className="space-y-6">
           <div className="text-center text-sm text-purple-300">
-            Choose {displayR} items from {displayN} (order doesn't matter)
+            Choose {displayR} items from {displayN} (order doesn&apos;t matter)
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             {Array.from({ length: displayN }, (_, i) => (

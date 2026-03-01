@@ -34,7 +34,7 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Ohm's Law: U = I × R
+                    Ohm&apos;s Law: U = I × R
                 </div>
                 
                 <div className="grid grid-cols-3 gap-8 w-full max-w-md">
