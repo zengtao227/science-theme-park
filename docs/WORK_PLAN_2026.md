@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-01 (SP1.01 + SM1.04 + SM2.08 + SC2.05 Updated)
-**Plan Version**: 3.6 (Batch A Wave-1 Complete)
+**Last Updated**: 2026-03-01 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV Updated)
+**Plan Version**: 3.7 (Batch A/B/C Wave-1+ Complete)
 
 ---
 
@@ -32,9 +32,10 @@
 - [x] `sm2-08` (scenarios merged from `_updated.ts`, 26/26 coverage in EN/CN/DE)
 - [x] `sm1-04` (applications/scenarios text aligned to 4-element structure in EN/CN/DE)
 - [x] `sc2-05` (60 context literals migrated to i18n in EN/CN/DE; page hardcoding removed)
-- [ ] `em1-01`
-- [ ] `gp2-02`
-- [ ] `gb1-01`
+- [x] `em1-01` (79 hardcoded prompt/render violations removed; EN/CN/DE prompts aligned)
+- [x] `gp2-02` (q_* prompt placeholders translated and synchronized in EN/CN/DE)
+- [x] `gb1-01` (36 hardcoded promptLatex migrated to i18n; key symmetry verified)
+- [x] `gm1-01-advanced` (66 hardcoded promptLatex migrated to `gm1_01_advanced.prompts.*`; 27 keys tri-language aligned)
 - [ ] `sm3-05`
 - [ ] `gp2-01`
 - [ ] `sc3-01`
@@ -42,9 +43,9 @@
 
 ### 7.4 Quality Gates (must pass before merge)
 - [ ] `npm run lint`
-- [ ] `npm run build`
-- [x] `npm run validate:translations` (passed after SM1.04 + SM2.08 merge)
-- [ ] `bash scripts/audit-rendering.sh`
+- [x] `npm run build` (passed after GM1.01-ADV merge, 2026-03-01)
+- [x] `npm run validate:translations` (passed after GM1.01-ADV merge, 2026-03-01)
+- [x] `bash scripts/audit-rendering.sh` (passed after GM1.01-ADV merge, 2026-03-01)
 - [ ] Scenario 4-element compliance check completed for touched content.
 
 ### 7.5 Batch A Wave-1 Results (2026-03-01)
@@ -53,7 +54,11 @@
 - [x] `SM2.08`: merged `sm2_08.scenarios` from Claude deliverables; `problems` preserved byte-level.
 - [x] `SC2.05`: migrated all 60 hardcoded `context` strings from `page.tsx` into i18n keys (`sc2_05.contexts.*`) across EN/CN/DE.
 - [x] `SM2.08 Batch B`: TODO placeholders / bare-label problem text cleaned; `two_dice` vs `dice_two` scenario key usage unified.
-- [ ] Batch B expansion on next modules (`EM1.01`, `GP2.02`, `GB1.01`).
+- [x] `EM1.01 Batch B`: TODO placeholders removed and prompt path unified to i18n.
+- [x] `GP2.02 Batch B`: q_* prompts localized in CN/DE and aligned with EN keys.
+- [x] `GB1.01 Batch B`: 36 promptLatex hardcoding removed, tri-language key symmetry maintained.
+- [x] `GM1.01-ADV Batch C`: 66 promptLatex hardcoding removed, rendering pipeline unchanged.
+- [ ] Next wave target: `GP2.01` hardcoded prompt migration + physics TODO placeholder cleanup.
 
 ---
 
