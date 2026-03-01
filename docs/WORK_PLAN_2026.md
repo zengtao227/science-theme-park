@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-01 (SP1.01 Completed)
-**Plan Version**: 3.4 (SP1.01 Delivered)
+**Last Updated**: 2026-03-01 (SP1.01 + SM1.04 + SM2.08 Updated)
+**Plan Version**: 3.5 (Batch A Wave-1)
 
 ---
 
@@ -29,8 +29,8 @@
 - [ ] Produce per-batch audit snapshot under `temp/` before merge.
 
 ### 7.3 Priority Queue (First 10 high-risk modules)
-- [ ] `sm2-08`
-- [ ] `sm1-04`
+- [x] `sm2-08` (scenarios merged from `_updated.ts`, 26/26 coverage in EN/CN/DE)
+- [x] `sm1-04` (applications/scenarios text aligned to 4-element structure in EN/CN/DE)
 - [ ] `sc2-05`
 - [ ] `em1-01`
 - [ ] `gp2-02`
@@ -43,9 +43,16 @@
 ### 7.4 Quality Gates (must pass before merge)
 - [ ] `npm run lint`
 - [ ] `npm run build`
-- [ ] `npm run validate:translations`
+- [x] `npm run validate:translations` (passed after SM1.04 + SM2.08 merge)
 - [ ] `bash scripts/audit-rendering.sh`
 - [ ] Scenario 4-element compliance check completed for touched content.
+
+### 7.5 Batch A Wave-1 Results (2026-03-01)
+- [x] `SP1.01`: `scenario_desc` EN/CN/DE = `65/65` non-empty.
+- [x] `SM1.04`: `APPLICATIONS` stage audit reached `20/20` four-element heuristic in EN/CN/DE.
+- [x] `SM2.08`: merged `sm2_08.scenarios` from Claude deliverables; `problems` preserved byte-level.
+- [ ] `SC2.05`: pending full fill + merge (next execution target).
+- [ ] Batch B kickoff for `SM2.08` TODO placeholders / bare-label problems (post-scenario wave).
 
 ---
 
@@ -475,7 +482,7 @@ Modules are classified by their quest density:
 
 ### March 2026
 - [x] Week 1: Phase 7.1 SP1.01 baseline completion (scenario_desc EN/CN/DE)
-- [ ] Week 1-2: Phase 7.2 Batch A start on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`)
+- [ ] Week 1-2: Phase 7.2 Batch A on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`) - first two completed, `sc2-05` pending
 - [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
 
 ### April 2026
@@ -489,6 +496,12 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v3.5 (2026-03-01)
+- **Wave-1 Expanded**: Completed first two Batch A high-risk modules beyond SP1.01 (`SM1.04`, `SM2.08`).
+- **SM2.08 Merge Guardrail**: Applied `scenarios`-only merge into `src/lib/i18n/*/math.ts`; `problems` unchanged.
+- **Validation Passed**: `npm run validate:translations` passed after cross-language merge.
+- **Next Focus Locked**: `SC2.05` as immediate next module, then Batch B cleanup on TODO/bare-label problem text.
 
 ### v3.4 (2026-03-01)
 - **SP1.01 Delivered**: Completed scenario baseline for EN/CN/DE with zero empty `scenario_desc`.
@@ -539,5 +552,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 3.4 (SP1.01 Delivered)
+**Plan Version**: 3.5 (Batch A Wave-1)
 **Next Review**: 2026-03-05
