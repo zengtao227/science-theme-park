@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";

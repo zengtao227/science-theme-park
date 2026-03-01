@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InequalityVisualization } from "@/components/chamber/sm2-09/InequalityVisualization";
 import { StepBySolver } from "@/components/chamber/sm2-09/StepBySolver";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { SM209Quest, Stage, SolutionStep } from "@/lib/sm2-09-types";
 import { baselScenarios } from "@/lib/sm2-09-basel-scenarios";
 import { renderMixedText } from "@/lib/latex-utils";

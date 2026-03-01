@@ -6,7 +6,7 @@ import { clsx } from "clsx";
 import { useEffect, useCallback, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import dynamic from "next/dynamic";
 import { renderMixedText } from "@/lib/latex-utils";

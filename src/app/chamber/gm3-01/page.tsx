@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualization from "@/components/chamber/gm3-01/ProbabilityVisualization";
 import {

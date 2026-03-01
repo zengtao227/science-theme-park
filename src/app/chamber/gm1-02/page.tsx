@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useCallback, useEffect } from "react";

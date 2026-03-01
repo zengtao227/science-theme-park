@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { useQuestManager, Difficulty } from '@/hooks/useQuestManager';
