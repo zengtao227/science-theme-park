@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 
 let p1 = 'src/app/chamber/sm2-01/page.tsx';

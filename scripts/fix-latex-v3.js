@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 // Fix remaining ^2/^3/^4 -> ^{2}/^{3}/^{4} in LaTeX strings
 // Skips lines with Math., **, or comments
 

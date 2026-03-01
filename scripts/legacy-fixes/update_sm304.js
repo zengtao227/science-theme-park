@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const file = 'src/app/chamber/sm3-04/page.tsx';
 let content = fs.readFileSync(file, 'utf8');

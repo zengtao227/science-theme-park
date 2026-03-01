@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * LaTeX Anti-Pattern Auto-Fixer v2
  * Fixes common LaTeX rendering issues across all chamber modules.

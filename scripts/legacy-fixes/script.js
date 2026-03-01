@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 let content = fs.readFileSync('src/app/chamber/sm2-02/page.tsx', 'utf-8');
 
@@ -69,18 +70,18 @@ content = content.replace(/slots: \[\],\n\s*steps: \[(.*?)\],/gs, (match, stepsC
   let slotsContent = stepsContent.replace(/answer:\s*([^,}]+)/g, (m, ans) => {
     ans = ans.trim();
     if (ans === 'true' || ans === 'false') {
-      return \`expected: "\${ans}", placeholder: "?"\`;
+      return `expected: "${ans}", placeholder: "?"`;
     }
     if (ans.startsWith('{')) {
-      return \`expected: JSON.stringify(\${ans}), placeholder: "?"\`;
+      return `expected: JSON.stringify(${ans}), placeholder: "?"`;
     }
-    return \`expected: \${ans}, placeholder: "?"\`;
+    return `expected: ${ans}, placeholder: "?"`;
   });
-  return \`slots: [\${slotsContent}],\`;
+  return `slots: [${slotsContent}],`;
 });
 
 // Fix promptLatex rendering in UI
-const oldRender = \`<p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
+const oldRender = `<p className="text-3xl text-white font-black max-w-3xl mx-auto leading-tight italic whitespace-normal break-words">
               {(() => {
                 const latex = currentQuest?.promptLatex || "";
                 if (latex.startsWith("\\\\\\\\text{") && latex.endsWith("}")) {
@@ -92,10 +93,10 @@ const oldRender = \`<p className="text-3xl text-white font-black max-w-3xl mx-au
                 }
                 return <InlineMath math={latex || ""} />;
               })()}
-            </p>\`;
-const newRender = \`<div className="text-xl md:text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md pb-4 [&_span]:!leading-relaxed text-center">
+            </p>`;
+const newRender = `<div className="text-xl md:text-2xl text-white font-black max-w-3xl mx-auto leading-tight italic drop-shadow-md pb-4 [&_span]:!leading-relaxed text-center">
               {renderMixedText(currentQuest?.promptLatex || "")}
-            </div>\`;
+            </div>`;
 content = content.replace(oldRender, newRender);
 
 // Fix UI steps map
