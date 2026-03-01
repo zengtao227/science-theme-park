@@ -42,7 +42,7 @@ export default function ModuleContainer({
     if (initialLanguage && initialLanguage !== currentLanguage) {
       setLanguage(initialLanguage);
     }
-  }, [initialLanguage]);
+  }, [initialLanguage, currentLanguage, setLanguage]);
 
   // Get quests for current stage and difficulty
   const stageQuests = ALL_QUESTS.filter(

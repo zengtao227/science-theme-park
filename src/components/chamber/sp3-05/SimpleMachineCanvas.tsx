@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 interface SimpleMachineCanvasProps {
     stage: "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
@@ -18,36 +18,40 @@ export default function SimpleMachineCanvas({
     void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+    const drawArrow = useCallback((ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, color: string, label: string) => {
+        const angle = Math.atan2(y2 - y1, x2 - x1);
+        
+        // Arrow line
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
 
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+        // Arrow head
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(
+            x2 - 10 * Math.cos(angle - Math.PI / 6),
+            y2 - 10 * Math.sin(angle - Math.PI / 6)
+        );
+        ctx.lineTo(
+            x2 - 10 * Math.cos(angle + Math.PI / 6),
+            y2 - 10 * Math.sin(angle + Math.PI / 6)
+        );
+        ctx.closePath();
+        ctx.fill();
 
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.scale(dpr, dpr);
+        // Label
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 12px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(label, x2 + 20 * Math.cos(angle), y2 + 20 * Math.sin(angle));
+    }, []);
 
-        const w = rect.width;
-        const h = rect.height;
-
-        // Clear canvas
-        ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, w, h);
-
-        if (stage === "LEVERS") {
-            drawLever(ctx, w, h, forceRatio, showForces);
-        } else if (stage === "PULLEYS") {
-            drawPulley(ctx, w, h, showForces);
-        } else if (stage === "INCLINED_PLANES") {
-            drawInclinedPlane(ctx, w, h, showForces);
-        }
-    }, [stage, forceRatio, showForces]);
-
-    const drawLever = (ctx: CanvasRenderingContext2D, w: number, h: number, ma: number, showForces: boolean) => {
+    const drawLever = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, ma: number, showForces: boolean) => {
         const centerX = w / 2;
         const centerY = h / 2;
         
@@ -106,9 +110,9 @@ export default function SimpleMachineCanvas({
         for (let i = 0; i < 3; i++) {
             ctx.strokeRect(w * 0.1 + i * 30, h * 0.8, 20, 40);
         }
-    };
+    }, [drawArrow]);
 
-    const drawPulley = (ctx: CanvasRenderingContext2D, w: number, h: number, showForces: boolean) => {
+    const drawPulley = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, showForces: boolean) => {
         const centerX = w / 2;
         const topY = h * 0.2;
         const bottomY = h * 0.7;
@@ -162,9 +166,9 @@ export default function SimpleMachineCanvas({
             ctx.fillText("n = 2 strands", centerX, topY - 50);
             ctx.fillText("MA = 2", centerX, topY - 35);
         }
-    };
+    }, [drawArrow]);
 
-    const drawInclinedPlane = (ctx: CanvasRenderingContext2D, w: number, h: number, showForces: boolean) => {
+    const drawInclinedPlane = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, showForces: boolean) => {
         const baseX = w * 0.2;
         const baseY = h * 0.7;
         const topX = w * 0.8;
@@ -226,40 +230,36 @@ export default function SimpleMachineCanvas({
             ctx.fillText(`l = ${planeLength.toFixed(0)}`, (baseX + topX) / 2, baseY + 30);
             ctx.fillText(`MA = l/h`, w * 0.5, h * 0.15);
         }
-    };
+    }, [drawArrow]);
 
-    const drawArrow = (ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, color: string, label: string) => {
-        const angle = Math.atan2(y2 - y1, x2 - x1);
-        
-        // Arrow line
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
-        // Arrow head
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.moveTo(x2, y2);
-        ctx.lineTo(
-            x2 - 10 * Math.cos(angle - Math.PI / 6),
-            y2 - 10 * Math.sin(angle - Math.PI / 6)
-        );
-        ctx.lineTo(
-            x2 - 10 * Math.cos(angle + Math.PI / 6),
-            y2 - 10 * Math.sin(angle + Math.PI / 6)
-        );
-        ctx.closePath();
-        ctx.fill();
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
 
-        // Label
-        ctx.fillStyle = "#fff";
-        ctx.font = "bold 12px monospace";
-        ctx.textAlign = "center";
-        ctx.fillText(label, x2 + 20 * Math.cos(angle), y2 + 20 * Math.sin(angle));
-    };
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        const w = rect.width;
+        const h = rect.height;
+
+        // Clear canvas
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, w, h);
+
+        if (stage === "LEVERS") {
+            drawLever(ctx, w, h, forceRatio, showForces);
+        } else if (stage === "PULLEYS") {
+            drawPulley(ctx, w, h, showForces);
+        } else if (stage === "INCLINED_PLANES") {
+            drawInclinedPlane(ctx, w, h, showForces);
+        }
+    }, [stage, forceRatio, showForces, drawLever, drawPulley, drawInclinedPlane]);
 
     return (
         <canvas

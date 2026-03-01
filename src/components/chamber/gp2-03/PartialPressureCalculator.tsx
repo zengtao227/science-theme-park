@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { GasComponent, MixtureResult, Language } from "@/lib/gp2-03-types";
 
 interface PartialPressureCalculatorProps {
@@ -21,11 +21,7 @@ export default function PartialPressureCalculator({
   ]);
   const [result, setResult] = useState<MixtureResult | null>(null);
 
-  useEffect(() => {
-    calculateMixture();
-  }, [gases, totalPressure]);
-
-  const calculateMixture = () => {
+  const calculateMixture = useCallback(() => {
     const totalMoles = gases.reduce((sum, gas) => sum + gas.moles, 0);
     
     if (totalMoles === 0) {
@@ -70,7 +66,11 @@ export default function PartialPressureCalculator({
     if (onCalculate) {
       onCalculate(mixResult);
     }
-  };
+  }, [gases, totalPressure, onCalculate]);
+
+  useEffect(() => {
+    calculateMixture();
+  }, [calculateMixture]);
 
   const addGas = () => {
     if (gases.length >= maxGases) return;

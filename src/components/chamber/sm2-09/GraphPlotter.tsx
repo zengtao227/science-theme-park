@@ -13,6 +13,27 @@ interface GraphPlotterProps {
     showLegend?: boolean;
 }
 
+const GRAPH_COLORS = [
+    { fill: 'rgba(59, 130, 246, 0.2)', stroke: '#3B82F6', name: 'Blue' },
+    { fill: 'rgba(239, 68, 68, 0.2)', stroke: '#EF4444', name: 'Red' },
+    { fill: 'rgba(34, 197, 94, 0.2)', stroke: '#22C55E', name: 'Green' },
+    { fill: 'rgba(168, 85, 247, 0.2)', stroke: '#A855F7', name: 'Purple' },
+    { fill: 'rgba(251, 146, 60, 0.2)', stroke: '#FB923C', name: 'Orange' }
+];
+
+function xToCanvas(x: number, xMin: number, xMax: number, padding: number, width: number): number {
+    const range = xMax - xMin;
+    const normalized = (x - xMin) / range;
+    return padding + normalized * (width - 2 * padding);
+}
+
+function yToCanvas(y: number, yMin: number, yMax: number, padding: number, height: number): number {
+    const range = yMax - yMin;
+    const normalized = (y - yMin) / range;
+    // Flip y-axis (canvas y increases downward)
+    return height - padding - normalized * (height - 2 * padding);
+}
+
 export const GraphPlotter: React.FC<GraphPlotterProps> = ({
     inequalities,
     xMin = -10,
@@ -25,29 +46,6 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
     const width = 600;
     const height = 600;
     const padding = 50;
-
-    // Colors for different inequalities
-    const colors = [
-        { fill: 'rgba(59, 130, 246, 0.2)', stroke: '#3B82F6', name: 'Blue' },
-        { fill: 'rgba(239, 68, 68, 0.2)', stroke: '#EF4444', name: 'Red' },
-        { fill: 'rgba(34, 197, 94, 0.2)', stroke: '#22C55E', name: 'Green' },
-        { fill: 'rgba(168, 85, 247, 0.2)', stroke: '#A855F7', name: 'Purple' },
-        { fill: 'rgba(251, 146, 60, 0.2)', stroke: '#FB923C', name: 'Orange' }
-    ];
-
-    // Convert coordinate to canvas position
-    const xToCanvas = (x: number): number => {
-        const range = xMax - xMin;
-        const normalized = (x - xMin) / range;
-        return padding + normalized * (width - 2 * padding);
-    };
-
-    const yToCanvas = (y: number): number => {
-        const range = yMax - yMin;
-        const normalized = (y - yMin) / range;
-        // Flip y-axis (canvas y increases downward)
-        return height - padding - normalized * (height - 2 * padding);
-    };
 
     // Parse inequality to extract boundary line equation
     const parseBoundaryLine = (inequality: string): {
@@ -141,7 +139,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
 
         // Vertical grid lines
         for (let x = xMin; x <= xMax; x++) {
-            const canvasX = xToCanvas(x);
+            const canvasX = xToCanvas(x, xMin, xMax, padding, width);
             ctx.beginPath();
             ctx.moveTo(canvasX, padding);
             ctx.lineTo(canvasX, height - padding);
@@ -150,7 +148,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
 
         // Horizontal grid lines
         for (let y = yMin; y <= yMax; y++) {
-            const canvasY = yToCanvas(y);
+            const canvasY = yToCanvas(y, yMin, yMax, padding, height);
             ctx.beginPath();
             ctx.moveTo(padding, canvasY);
             ctx.lineTo(width - padding, canvasY);
@@ -162,14 +160,14 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
         ctx.lineWidth = 2;
 
         // X-axis
-        const yAxisCanvas = yToCanvas(0);
+        const yAxisCanvas = yToCanvas(0, yMin, yMax, padding, height);
         ctx.beginPath();
         ctx.moveTo(padding, yAxisCanvas);
         ctx.lineTo(width - padding, yAxisCanvas);
         ctx.stroke();
 
         // Y-axis
-        const xAxisCanvas = xToCanvas(0);
+        const xAxisCanvas = xToCanvas(0, xMin, xMax, padding, width);
         ctx.beginPath();
         ctx.moveTo(xAxisCanvas, padding);
         ctx.lineTo(xAxisCanvas, height - padding);
@@ -185,12 +183,12 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
         // Draw tick marks and labels
         for (let x = xMin; x <= xMax; x++) {
             if (x === 0) continue;
-            const canvasX = xToCanvas(x);
+            const canvasX = xToCanvas(x, xMin, xMax, padding, width);
             ctx.fillText(x.toString(), canvasX, yAxisCanvas + 20);
         }
         for (let y = yMin; y <= yMax; y++) {
             if (y === 0) continue;
-            const canvasY = yToCanvas(y);
+            const canvasY = yToCanvas(y, yMin, yMax, padding, height);
             ctx.textAlign = 'right';
             ctx.fillText(y.toString(), xAxisCanvas - 10, canvasY + 4);
         }
@@ -232,7 +230,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
             const boundary = parseBoundaryLine(inequality);
             if (!boundary) return;
 
-            const color = colors[index % colors.length];
+            const color = GRAPH_COLORS[index % GRAPH_COLORS.length];
             ctx.strokeStyle = color.stroke;
             ctx.lineWidth = 2;
 
@@ -246,7 +244,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
 
             if (boundary.isVertical && boundary.verticalX !== undefined) {
                 // Draw vertical line
-                const canvasX = xToCanvas(boundary.verticalX);
+                const canvasX = xToCanvas(boundary.verticalX, xMin, xMax, padding, width);
                 ctx.moveTo(canvasX, padding);
                 ctx.lineTo(canvasX, height - padding);
             } else if (boundary.slope !== null) {
@@ -254,8 +252,14 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
                 const y1 = boundary.slope * xMin + boundary.intercept;
                 const y2 = boundary.slope * xMax + boundary.intercept;
 
-                ctx.moveTo(xToCanvas(xMin), yToCanvas(y1));
-                ctx.lineTo(xToCanvas(xMax), yToCanvas(y2));
+                ctx.moveTo(
+                    xToCanvas(xMin, xMin, xMax, padding, width),
+                    yToCanvas(y1, yMin, yMax, padding, height)
+                );
+                ctx.lineTo(
+                    xToCanvas(xMax, xMin, xMax, padding, width),
+                    yToCanvas(y2, yMin, yMax, padding, height)
+                );
             }
 
             ctx.stroke();
@@ -279,7 +283,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
                     <p className="text-sm font-semibold text-gray-700 mb-2">Inequalities:</p>
                     <div className="space-y-2">
                         {inequalities.map((inequality, index) => {
-                            const color = colors[index % colors.length];
+                            const color = GRAPH_COLORS[index % GRAPH_COLORS.length];
                             const boundary = parseBoundaryLine(inequality);
                             return (
                                 <div key={index} className="flex items-center gap-2">

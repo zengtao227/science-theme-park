@@ -5,7 +5,7 @@
  * Force Vector Diagram - Interactive visualization
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Force } from '@/lib/sp1-01/domain/types';
 import { decomposeVector } from '@/lib/sp1-01/domain/physics';
 
@@ -48,35 +48,7 @@ export function ForceVectorDiagram({
     }
   };
 
-  // Draw the diagram
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, width, height);
-
-    // Draw grid
-    if (showGrid) {
-      drawGrid(ctx);
-    }
-
-    // Draw axes
-    drawAxes(ctx);
-
-    // Draw force vector
-    drawForceVector(ctx, force);
-
-    // Draw components
-    if (showComponents) {
-      drawComponents(ctx, force);
-    }
-  }, [force, width, height, showGrid, showComponents]);
-
-  const drawGrid = (ctx: CanvasRenderingContext2D) => {
+  const drawGrid = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.strokeStyle = '#e0e0e0';
     ctx.lineWidth = 0.5;
 
@@ -95,9 +67,30 @@ export function ForceVectorDiagram({
       ctx.lineTo(width, y);
       ctx.stroke();
     }
-  };
+  }, [width, height]);
 
-  const drawAxes = (ctx: CanvasRenderingContext2D) => {
+  const drawArrowhead = useCallback((
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    angle: number
+  ) => {
+    const angleRad = (angle * Math.PI) / 180;
+    const size = 10;
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(-angleRad);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-size, -size / 2);
+    ctx.lineTo(-size, size / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }, []);
+
+  const drawAxes = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 2;
 
@@ -122,9 +115,9 @@ export function ForceVectorDiagram({
     ctx.font = '14px Arial';
     ctx.fillText('x', width - 20, centerY + 20);
     ctx.fillText('y', centerX + 10, 20);
-  };
+  }, [centerY, width, centerX, height, drawArrowhead]);
 
-  const drawForceVector = (ctx: CanvasRenderingContext2D, f: Force) => {
+  const drawForceVector = useCallback((ctx: CanvasRenderingContext2D, f: Force) => {
     const angleRad = (f.angle * Math.PI) / 180;
     const endX = centerX + f.magnitude * scale * Math.cos(angleRad);
     const endY = centerY - f.magnitude * scale * Math.sin(angleRad);
@@ -147,9 +140,9 @@ export function ForceVectorDiagram({
     const labelX = centerX + (f.magnitude * scale * Math.cos(angleRad)) / 2;
     const labelY = centerY - (f.magnitude * scale * Math.sin(angleRad)) / 2;
     ctx.fillText(`F = ${f.magnitude.toFixed(1)} N`, labelX + 10, labelY - 10);
-  };
+  }, [centerX, scale, centerY, drawArrowhead]);
 
-  const drawComponents = (ctx: CanvasRenderingContext2D, f: Force) => {
+  const drawComponents = useCallback((ctx: CanvasRenderingContext2D, f: Force) => {
     const components = decomposeVector(f);
     const endX = centerX + components.x * scale;
     const endY = centerY - components.y * scale;
@@ -177,28 +170,35 @@ export function ForceVectorDiagram({
     ctx.fillText(`Fx = ${components.x.toFixed(1)} N`, endX / 2 + centerX / 2, centerY + 20);
     ctx.fillStyle = '#16a34a';
     ctx.fillText(`Fy = ${components.y.toFixed(1)} N`, endX + 10, (endY + centerY) / 2);
-  };
+  }, [centerX, scale, centerY]);
 
-  const drawArrowhead = (
-    ctx: CanvasRenderingContext2D,
-    x: number,
-    y: number,
-    angle: number
-  ) => {
-    const angleRad = (angle * Math.PI) / 180;
-    const size = 10;
+  // Draw the diagram
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(-angleRad);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(-size, -size / 2);
-    ctx.lineTo(-size, size / 2);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  };
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw grid
+    if (showGrid) {
+      drawGrid(ctx);
+    }
+
+    // Draw axes
+    drawAxes(ctx);
+
+    // Draw force vector
+    drawForceVector(ctx, force);
+
+    // Draw components
+    if (showComponents) {
+      drawComponents(ctx, force);
+    }
+  }, [force, width, height, showGrid, showComponents, drawGrid, drawAxes, drawForceVector, drawComponents]);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!interactive) return;
