@@ -1829,74 +1829,74 @@ export const cnMath = {
             dice_prime: "掷骰子。掷出质数（2、3或5）的概率是多少？",
             two_dice_sum_10: "掷两个骰子。和为10的概率是多少？",
             card_ace_or_king: "抽一张牌。抽到A或K的概率是多少？",
-            coin_3_1: "3枚硬币，恰好1个正面",
-            coin_3_2: "3枚硬币，恰好2个正面",
-            coin_4_3: "4枚硬币，恰好3个正面",
-            coin_5_2: "5枚硬币，恰好2个正面",
-            deck_aces: "牌组中的A",
-            deck_face_cards: "牌组中的人头牌",
-            deck_red_cards: "牌组中的红色牌",
-            recipe_chain_ratio_ABC: "连比 A:B:C",
-            recipe_inverse_proportion: "食谱中的反比例",
-            recipe_pumps: "泵输出比",
-            quality_control_78: "质量控制 - 样本78", // TODO
-            quality_control_85: "质量控制 - 样本85", // TODO
-            quality_control_92: "质量控制 - 样本92", // TODO
-            quality_control_156: "质量控制 - 样本156", // TODO
-            quality_control_234: "质量控制 - 样本234", // TODO
-            quality_control_427: "质量控制 - 样本427", // TODO
-            quality_control_683: "质量控制 - 样本683", // TODO
-            quality_control_891: "质量控制 - 样本891", // TODO
-            quality_control_1456: "质量控制 - 样本1456", // TODO
-            quality_control_1789: "质量控制 - 样本1789", // TODO
-            insurance_basic_1: "保险基础题 1", // TODO
-            insurance_basic_2: "保险基础题 2", // TODO
-            insurance_basic_3: "保险基础题 3", // TODO
-            insurance_basic_4: "保险基础题 4", // TODO
-            insurance_adv_1: "保险进阶题 1", // TODO
-            insurance_adv_2: "保险进阶题 2", // TODO
-            insurance_adv_3: "保险进阶题 3", // TODO
-            insurance_adv_4: "保险进阶题 4", // TODO
-            insurance_adv_5: "保险进阶题 5", // TODO
-            insurance_core_1: "保险核心题 1", // TODO
-            insurance_core_2: "保险核心题 2", // TODO
-            insurance_core_3: "保险核心题 3", // TODO
-            insurance_core_4: "保险核心题 4", // TODO
-            insurance_core_5: "保险核心题 5", // TODO
-            insurance_elite_1: "保险精英题 1", // TODO
-            insurance_elite_2: "保险精英题 2", // TODO
-            insurance_elite_3: "保险精英题 3", // TODO
-            insurance_elite_4: "保险精英题 4", // TODO
-            insurance_elite_5: "保险精英题 5", // TODO
-            lottery_5_3_biased: "彩票5取3（偏置）", // TODO
-            lottery_6_2_biased: "彩票6取2（偏置）", // TODO
-            lottery_6_4: "彩票6取4", // TODO
-            lottery_7_4: "彩票7取4", // TODO
-            lottery_8_5: "彩票8取5", // TODO
-            lottery_8_5_biased: "彩票8取5（偏置）", // TODO
-            lottery_9_4_biased: "彩票9取4（偏置）", // TODO
-            lottery_10_6: "彩票10取6", // TODO
-            lottery_11_7_biased: "彩票11取7（偏置）", // TODO
-            lottery_12_7: "彩票12取7", // TODO
-            lottery_14_9: "彩票14取9", // TODO
-            lottery_15_9: "彩票15取9", // TODO
-            lottery_16_8: "彩票16取8", // TODO
-            lottery_18_11: "彩票18取11", // TODO
-            lottery_20_12: "彩票20取12", // TODO
-            adjacent: "邻边",
-            cos: "余弦",
-            sin: "正弦",
-            tan: "正切",
-            opposite: "对边",
-            holds_value: "保持值",
-            multiply_coeffs: "乘以系数",
-            remove: "移除",
-            substitute_both: "代入两者",
-            single_die_even: "单骰子 - 偶数",
-            single_die_half: "单骰子 - 半数面",
-            x_coord_kleinbasel: "x坐标（小巴塞尔）",
-            x_coord_origin: "x坐标（原点）",
-            unit_celsius: "摄氏度",
+            coin_3_1: "抛3枚公平硬币，恰好出现1次正面的概率是多少？",
+            coin_3_2: "抛3枚公平硬币，恰好出现2次正面的概率是多少？",
+            coin_4_3: "抛4枚公平硬币，恰好出现3次正面的概率是多少？",
+            coin_5_2: "抛5枚公平硬币，恰好出现2次正面的概率是多少？",
+            deck_aces: "标准52张扑克牌中有4张A，抽到A的概率是多少？",
+            deck_face_cards: "标准牌组中有12张人头牌（J、Q、K），抽到人头牌的概率是多少？",
+            deck_red_cards: "标准牌组中有26张红色牌，抽到红色牌的概率是多少？",
+            recipe_chain_ratio_ABC: "某配方比例为 A:B:C = 2:3:5，求A在总混合物中所占的分数。",
+            recipe_inverse_proportion: "在配方模型中，浓度与体积成反比。如果体积翻倍，浓度会变为原来的几分之几？",
+            recipe_pumps: "泵A与泵B的输出比为3:2，泵A占总输出的比例是多少？",
+            quality_control_78: "质量控制样本78：若通过率为0.95，则不通过率是多少？",
+            quality_control_85: "质量控制样本85：若通过率为0.95，则不通过率是多少？",
+            quality_control_92: "质量控制样本92：若通过率为0.95，则不通过率是多少？",
+            quality_control_156: "质量控制样本156：若通过率为0.95，则不通过率是多少？",
+            quality_control_234: "质量控制样本234：若通过率为0.95，则不通过率是多少？",
+            quality_control_427: "质量控制样本427：若通过率为0.95，则不通过率是多少？",
+            quality_control_683: "质量控制样本683：若通过率为0.95，则不通过率是多少？",
+            quality_control_891: "质量控制样本891：若通过率为0.95，则不通过率是多少？",
+            quality_control_1456: "质量控制样本1456：若通过率为0.95，则不通过率是多少？",
+            quality_control_1789: "质量控制样本1789：若通过率为0.95，则不通过率是多少？",
+            insurance_basic_1: "保险基础B1：若理赔概率为0.10，不理赔概率是多少？",
+            insurance_basic_2: "保险基础B2：两份独立保单的理赔概率都为0.10，两份都不理赔的概率是多少？",
+            insurance_basic_3: "保险基础B3：两份独立保单理赔概率都为0.10，恰好一份理赔的概率是多少？",
+            insurance_basic_4: "保险基础B4：在60次申请中有18次获批，经验获批概率是多少？",
+            insurance_adv_1: "保险进阶A1：若理赔概率为0.12，不理赔概率是多少？",
+            insurance_adv_2: "保险进阶A2：两份独立保单理赔概率都为0.12，两份都理赔的概率是多少？",
+            insurance_adv_3: "保险进阶A3：两份独立保单理赔概率都为0.12，至少一份理赔的概率是多少？",
+            insurance_adv_4: "保险进阶A4：某组合中高风险客户占20%，随机抽一人是低风险的概率是多少？",
+            insurance_adv_5: "保险进阶A5：某事件概率为0.08，该事件的有利赔率是多少？",
+            insurance_core_1: "保险核心C1：理赔概率为0.10，不理赔概率是多少？",
+            insurance_core_2: "保险核心C2：3位独立客户理赔概率都为0.10，三人都不理赔的概率是多少？",
+            insurance_core_3: "保险核心C3：两份独立保单理赔概率都为0.10，恰好一份理赔的概率是多少？",
+            insurance_core_4: "保险核心C4：若保费收入为5000瑞郎、赔付为3200瑞郎，赔付率是多少？",
+            insurance_core_5: "保险核心C5：若期望损失为180瑞郎、保费为240瑞郎，安全附加率是多少？",
+            insurance_elite_1: "保险精英E1：罕见事件年概率为0.02，一年内不发生的概率是多少？",
+            insurance_elite_2: "保险精英E2：事件年概率为0.02，3年内至少发生一次的概率是多少（独立假设）？",
+            insurance_elite_3: "保险精英E3：模型真负率96%、真正率92%，对应误差率分别是多少？",
+            insurance_elite_4: "保险精英E4：200份保单的预期理赔率为5%，预期理赔件数是多少？",
+            insurance_elite_5: "保险精英E5：若期望损失180瑞郎、保费240瑞郎，安全加载率是多少？",
+            lottery_5_3_biased: "偏置彩票（5选3）中，为什么不能直接使用等可能组合模型？",
+            lottery_6_2_biased: "偏置彩票（6选2）应使用经典概率还是经验概率来估计中奖率？",
+            lottery_6_4: "公平彩票中从6个数字选4个，一张票全中的概率是多少？",
+            lottery_7_4: "公平彩票中从7个数字选4个，一张票全中的概率是多少？",
+            lottery_8_5: "公平彩票中从8个数字选5个，一张票全中的概率是多少？",
+            lottery_8_5_biased: "偏置彩票（8选5）中，需要什么数据来估计真实中奖概率？",
+            lottery_9_4_biased: "偏置彩票（9选4）中，如何用历史开奖数据估计中奖概率？",
+            lottery_10_6: "公平彩票中从10个数字选6个，一张票全中的概率是多少？",
+            lottery_11_7_biased: "偏置彩票（11选7）中，为什么组合数不再等于中奖概率分母？",
+            lottery_12_7: "公平彩票中从12个数字选7个，一张票全中的概率是多少？",
+            lottery_14_9: "公平彩票中从14个数字选9个，一张票全中的概率是多少？",
+            lottery_15_9: "公平彩票中从15个数字选9个，一张票全中的概率是多少？",
+            lottery_16_8: "公平彩票中从16个数字选8个，一张票全中的概率是多少？",
+            lottery_18_11: "公平彩票中从18个数字选11个，一张票全中的概率是多少？",
+            lottery_20_12: "公平彩票中从20个数字选12个，一张票全中的概率是多少？",
+            adjacent: "在直角三角形中，相对角 \\(\\theta\\) 的邻边是哪一条？",
+            cos: "直角三角形中，余弦对应哪个比值：邻边/斜边、对边/斜边，还是对边/邻边？",
+            sin: "直角三角形中，正弦对应哪个比值：对边/斜边、邻边/斜边，还是邻边/对边？",
+            tan: "直角三角形中，正切对应哪个比值：对边/邻边还是邻边/对边？",
+            opposite: "在直角三角形中，相对角 \\(\\theta\\) 的对边是哪一条？",
+            holds_value: "在代数代入步骤后，哪个变量保持原值不变？",
+            multiply_coeffs: "在单项式相乘时，系数应该如何处理？",
+            remove: "解方程时，移除一侧常数项应使用哪种逆运算？",
+            substitute_both: "在方程组中，为什么代入必须对两个方程保持一致？",
+            single_die_even: "公平六面骰子中，掷出偶数的概率是多少？",
+            single_die_half: "对公平骰子而言，事件覆盖一半面数时概率是多少？",
+            x_coord_kleinbasel: "在小巴塞尔坐标图中，点的 x 坐标表示什么方向位置？",
+            x_coord_origin: "在直角坐标系中，原点的 x 坐标是多少？",
+            unit_celsius: "摄氏度（°C）",
             two_dice_doubles: "掷两个骰子。掷出相同数字的概率是多少？",
             card_spade_face: "抽一张牌。抽到黑桃人头牌的概率是多少？",
             school_raffle_win: "学校为慈善活动售出100张彩票。你买了3张。你中奖的概率是多少？",

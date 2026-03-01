@@ -35,7 +35,7 @@ export default function SC205Page() {
             {
               id: "PH_B1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.1M HCl solution",
+              context: t("sc2_05.contexts.PH_B1"),
               promptLatex: "\\\\text{pH} = -\\log[H^+]",
               expressionLatex: "[HCl] = 0.1\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -49,7 +49,7 @@ export default function SC205Page() {
             {
               id: "PH_B2", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of pure water at 25°C",
+              context: t("sc2_05.contexts.PH_B2"),
               promptLatex: "\\\\text{pH} = -\\log[H^+]",
               expressionLatex: "[H^+] = 10^{-7}\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -62,7 +62,7 @@ export default function SC205Page() {
             {
               id: "PH_B3", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.01M NaOH solution",
+              context: t("sc2_05.contexts.PH_B3"),
               promptLatex: "\\\\text{pOH} = -\\log[OH^-], \\\\text{pH} = 14 - \\\\text{pOH}",
               expressionLatex: "[NaOH] = 0.01\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -76,7 +76,7 @@ export default function SC205Page() {
             {
               id: "PH_B4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.001M HNO3 solution",
+              context: t("sc2_05.contexts.PH_B4"),
               promptLatex: "\\\\text{pH} = -\\log[H^+]",
               expressionLatex: "[HNO_3] = 0.001\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -90,7 +90,7 @@ export default function SC205Page() {
             {
               id: "PH_B5", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.0001M KOH solution",
+              context: t("sc2_05.contexts.PH_B5"),
               promptLatex: "\\\\text{pOH} = -\\log[OH^-], \\\\text{pH} = 14 - \\\\text{pOH}",
               expressionLatex: "[KOH] = 0.0001\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -106,7 +106,7 @@ export default function SC205Page() {
             {
               id: "PH_C1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of weak acid CH3COOH (Ka = 1.8×10^-^5, C = 0.1M)",
+              context: t("sc2_05.contexts.PH_C1"),
               promptLatex: "\\\\text{pH} = \\\\frac{1}{2}(\\\\text{pKa} - \\log C)",
               expressionLatex: "K_a = 1.8 \\times 10^{-5}, C = 0.1\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -120,7 +120,7 @@ export default function SC205Page() {
             {
               id: "PH_C2", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Buffer solution: 0.1M CH3COOH + 0.1M CH3COONa, find pH",
+              context: t("sc2_05.contexts.PH_C2"),
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\text{pKa} = 4.76, [A^-] = [HA]",
               targetLatex: "\\\\text{pH}",
@@ -132,7 +132,7 @@ export default function SC205Page() {
             {
               id: "PH_C3", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.01M NH3 solution (Kb = 1.8×10^-^5)",
+              context: t("sc2_05.contexts.PH_C3"),
               promptLatex: "\\\\text{pOH} = \\\\frac{1}{2}(\\\\text{pKb} - \\log C)",
               expressionLatex: "K_b = 1.8 \\times 10^{-5}, C = 0.01\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -146,7 +146,7 @@ export default function SC205Page() {
             {
               id: "PH_C4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Mixed buffer: 0.2M HA + 0.1M A^-, pKa = 5.0",
+              context: t("sc2_05.contexts.PH_C4"),
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\text{pKa} = 5.0, \\frac{[A^-]}{[HA]} = \\frac{0.1}{0.2}",
               targetLatex: "\\\\text{pH}",
@@ -158,7 +158,7 @@ export default function SC205Page() {
             {
               id: "PH_C5", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH after diluting 0.1M HCl to 0.001M",
+              context: t("sc2_05.contexts.PH_C5"),
               promptLatex: "\\\\text{pH} = -\\log[H^+]",
               expressionLatex: "[H^+] = 0.001\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -174,7 +174,7 @@ export default function SC205Page() {
             {
               id: "PH_A1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Polyprotic acid H2SO4: first dissociation complete, second Ka2 = 1.2×10^-^{2}",
+              context: t("sc2_05.contexts.PH_A1"),
               promptLatex: "\\\\text{pH (polyprotic)}",
               expressionLatex: "[H_2SO_4] = 0.1\\text{M}",
               targetLatex: "\\\\text{pH}",
@@ -188,7 +188,7 @@ export default function SC205Page() {
             {
               id: "PH_A2", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Henderson-Hasselbalch: pH = 5.5, pKa = 4.76, find [A^-]/[HA]",
+              context: t("sc2_05.contexts.PH_A2"),
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\text{pH} = 5.5, \\text{pKa} = 4.76",
               targetLatex: "\\\\frac{[A^-]}{[HA]}",
@@ -200,7 +200,7 @@ export default function SC205Page() {
             {
               id: "PH_A3", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Amino acid glycine at isoelectric point (pI = 6.0)",
+              context: t("sc2_05.contexts.PH_A3"),
               promptLatex: "\\\\text{pI} = \\\\frac{\\\\text{pKa}_1 + \\\\text{pKa}_2}{2}",
               expressionLatex: "\\text{pKa}_1 = 2.3, \\text{pKa}_2 = 9.6",
               targetLatex: "\\\\text{pI}",
@@ -212,7 +212,7 @@ export default function SC205Page() {
             {
               id: "PH_A4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Calculate pH of 0.05M H3PO4 (Ka1 = 7.5×10^-^{3})",
+              context: t("sc2_05.contexts.PH_A4"),
               promptLatex: "\\\\text{pH (triprotic)}",
               expressionLatex: "K_{a1} = 7.5 \\times 10^{-3}",
               targetLatex: "\\\\text{pH}",
@@ -226,7 +226,7 @@ export default function SC205Page() {
             {
               id: "PH_A5", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Buffer capacity: 0.5M CH3COOH + 0.5M CH3COONa",
+              context: t("sc2_05.contexts.PH_A5"),
               promptLatex: "\\beta = 2.303 \\times C \\times \\\\frac{K_a[H^+]}{(K_a + [H^+])^2}",
               expressionLatex: "C = 0.5\\text{M}, \\text{pKa} = 4.76",
               targetLatex: "\\\\text{pH}",
@@ -240,7 +240,7 @@ export default function SC205Page() {
             {
               id: "PH_E1", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Novartis Enzyme Buffer: Ionic strength affects pKa. For a 0.1M buffer, $\\gamma_{A^-} = 0.8$. If $pKa_{ideal} = 4.76$, calculate the effective $pKa$.",
+              context: t("sc2_05.contexts.PH_E1"),
               promptLatex: "pKa_{eff} = pKa_{ideal} + \\log \\gamma_{A^-}",
               expressionLatex: "pKa_{ideal} = 4.76, \\gamma_{A^-} = 0.8",
               targetLatex: "pKa_{eff}",
@@ -251,7 +251,7 @@ export default function SC205Page() {
             {
               id: "PH_E2", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "University Hospital Basel: Hypothermia treatment. Blood $pKa$ is 6.1 at 37°C but 6.25 at 30°C. Calculate pH if $[HCO_3^-]/[CO_2]$ is 20 at 30°C.",
+              context: t("sc2_05.contexts.PH_E2"),
               promptLatex: "\\\\text{pH} = pKa(T) + \\log\\\\frac{[HCO_3^-]}{[CO_2]}",
               expressionLatex: "pKa = 6.25, \\text{ratio} = 20",
               targetLatex: "\\\\text{pH}",
@@ -263,7 +263,7 @@ export default function SC205Page() {
             {
               id: "PH_E3", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Parenteral Nutrition: Amino acid Glycine ($pKa_1=2.35, pKa_2=9.78$). Find the isoelectric point ($pI$) where it acts as a zwitterion buffer.",
+              context: t("sc2_05.contexts.PH_E3"),
               promptLatex: "pI = \\\\frac{pKa_1 + pKa_2}{2}",
               expressionLatex: "pKa_1 = 2.35, pKa_2 = 9.78",
               targetLatex: "pI",
@@ -275,7 +275,7 @@ export default function SC205Page() {
             {
               id: "PH_E4", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Physiological Buffer: Blood pH is maintained at 7.4. If $[HCO_3^-] = 24\\\\text{mM}$ and $pKa = 6.1$, find $P_{CO2}$ in mmHg (using $\\\\alpha = 0.03$).",
+              context: t("sc2_05.contexts.PH_E4"),
               promptLatex: "\\\\text{pH} = 6.1 + \\log\\\\frac{[HCO_3^-]}{0.03 \\times P_{CO2}}",
               expressionLatex: "\\text{pH} = 7.4, [HCO_3^-] = 24\\text{mM}",
               targetLatex: "P_{CO2}",
@@ -287,7 +287,7 @@ export default function SC205Page() {
             {
               id: "PH_E5", difficulty, stage,
               scenario: t("sc2_05.scenarios.ph_basics"),
-              context: "Metabolic Acidosis: A patient's $[HCO_3^-]$ drops to $15\\\\text{mM}$. Calculate the required $P_{CO2}$ to reach pH 7.1 via respiratory compensation.",
+              context: t("sc2_05.contexts.PH_E5"),
               promptLatex: "\\\\text{pH} = 6.1 + \\log\\\\frac{[HCO_3^-]}{0.03 \\times P_{CO2}}",
               expressionLatex: "[HCO_3^-] = 15\\text{mM}, \\text{pH} = 7.1",
               targetLatex: "P_{CO2}",
@@ -303,7 +303,7 @@ export default function SC205Page() {
             {
               id: "NT_B1", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "HCl + NaOH → NaCl + H2O. Calculate moles of salt formed.",
+              context: t("sc2_05.contexts.NT_B1"),
               promptLatex: "n_{\\\\text{salt}} = n_{\\\\text{acid}} = n_{\\\\text{base}}",
               expressionLatex: "n_{HCl} = 0.1\\text{ mol}, n_{NaOH} = 0.1\\text{ mol}",
               targetLatex: "n_{NaCl}",
@@ -314,7 +314,7 @@ export default function SC205Page() {
             {
               id: "NT_B2", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "50mL 0.2M HCl + 50mL 0.2M NaOH. Final pH?",
+              context: t("sc2_05.contexts.NT_B2"),
               promptLatex: "\\\\text{pH}_{\\\\text{equivalence}}",
               expressionLatex: "\\text{Strong acid + Strong base}",
               targetLatex: "\\\\text{pH}",
@@ -326,7 +326,7 @@ export default function SC205Page() {
             {
               id: "NT_B3", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "25mL 0.1M H2SO4 + 50mL 0.1M NaOH. Complete neutralization?",
+              context: t("sc2_05.contexts.NT_B3"),
               promptLatex: "n_{H^+} = 2 \\times n_{H_2SO_4}",
               expressionLatex: "n_{H^+} = 0.005\\text{ mol}, n_{OH^-} = 0.005\\text{ mol}",
               targetLatex: "\\\\text{Complete?}",
@@ -337,7 +337,7 @@ export default function SC205Page() {
             {
               id: "NT_B4", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "20mL 0.15M HNO3 + 30mL 0.1M KOH. Excess reactant?",
+              context: t("sc2_05.contexts.NT_B4"),
               promptLatex: "n_{\\\\text{excess}}",
               expressionLatex: "n_{H^+} = 0.003, n_{OH^-} = 0.003",
               targetLatex: "\\\\text{Excess}",
@@ -348,7 +348,7 @@ export default function SC205Page() {
             {
               id: "NT_B5", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "10mL 0.5M HCl + 25mL 0.2M NaOH. Final solution volume?",
+              context: t("sc2_05.contexts.NT_B5"),
               promptLatex: "V_{\\\\text{total}}",
               expressionLatex: "V_1 + V_2",
               targetLatex: "V",
@@ -362,7 +362,7 @@ export default function SC205Page() {
             {
               id: "NT_C1", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Excess acid: 30mL 0.2M HCl + 20mL 0.2M NaOH. Calculate final pH.",
+              context: t("sc2_05.contexts.NT_C1"),
               promptLatex: "[H^+]_{\\\\text{excess}} = \\\\frac{n_{\\\\text{excess}}}{V_{\\\\text{total}}}",
               expressionLatex: "n_{\\text{excess}} = 0.002\\text{ mol}, V = 50\\text{ mL}",
               targetLatex: "\\\\text{pH}",
@@ -374,7 +374,7 @@ export default function SC205Page() {
             {
               id: "NT_C2", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Excess base: 25mL 0.1M HCl + 40mL 0.1M NaOH. Calculate final pH.",
+              context: t("sc2_05.contexts.NT_C2"),
               promptLatex: "[OH^-]_{\\\\text{excess}} = \\\\frac{n_{\\\\text{excess}}}{V_{\\\\text{total}}}",
               expressionLatex: "n_{\\text{excess}} = 0.0015\\text{ mol}, V = 65\\text{ mL}",
               targetLatex: "\\\\text{pH}",
@@ -386,7 +386,7 @@ export default function SC205Page() {
             {
               id: "NT_C3", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Diprotic acid: H2SO4 + 2NaOH → Na2SO4 + 2H2O. Mole ratio?",
+              context: t("sc2_05.contexts.NT_C3"),
               promptLatex: "\\\\frac{n_{H_2SO_4}}{n_{NaOH}}",
               expressionLatex: "\\text{Stoichiometry: 1:2}",
               targetLatex: "\\\\text{ratio}",
@@ -397,7 +397,7 @@ export default function SC205Page() {
             {
               id: "NT_C4", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Heat of neutralization: ΔH = -57.3 kJ/mol for strong acid/base",
+              context: t("sc2_05.contexts.NT_C4"),
               promptLatex: "Q = n \\times \\Delta H",
               expressionLatex: "n = 0.1\\text{ mol}",
               targetLatex: "Q",
@@ -408,7 +408,7 @@ export default function SC205Page() {
             {
               id: "NT_C5", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Mixed neutralization: 20mL 0.1M HCl + 20mL 0.1M CH3COOH + 40mL 0.1M NaOH",
+              context: t("sc2_05.contexts.NT_C5"),
               promptLatex: "\\\\text{pH}_{\\\\text{final}}",
               expressionLatex: "\\text{Total acid} = 0.004\\text{ mol}, \\text{Base} = 0.004\\text{ mol}",
               targetLatex: "\\\\text{pH}",
@@ -422,7 +422,7 @@ export default function SC205Page() {
             {
               id: "NT_A1", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Weak acid + strong base: CH3COOH + NaOH. pH at equivalence point?",
+              context: t("sc2_05.contexts.NT_A1"),
               promptLatex: "\\\\text{pH} > 7 \\\\text{ (salt hydrolysis)}",
               expressionLatex: "\\text{pKa} = 4.76",
               targetLatex: "\\\\text{pH}",
@@ -434,7 +434,7 @@ export default function SC205Page() {
             {
               id: "NT_A2", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Weak base + strong acid: NH3 + HCl. pH at equivalence point?",
+              context: t("sc2_05.contexts.NT_A2"),
               promptLatex: "\\\\text{pH} < 7 \\\\text{ (salt hydrolysis)}",
               expressionLatex: "\\text{pKb} = 4.76",
               targetLatex: "\\\\text{pH}",
@@ -446,7 +446,7 @@ export default function SC205Page() {
             {
               id: "NT_A3", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Partial neutralization: 50mL 0.1M CH3COOH + 25mL 0.1M NaOH",
+              context: t("sc2_05.contexts.NT_A3"),
               promptLatex: "\\\\text{pH} = \\\\text{pKa} + \\log\\\\frac{[A^-]}{[HA]}",
               expressionLatex: "\\text{Half-neutralized: pH = pKa}",
               targetLatex: "\\\\text{pH}",
@@ -458,7 +458,7 @@ export default function SC205Page() {
             {
               id: "NT_A4", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Polyprotic neutralization: H3PO4 + 3NaOH → Na3PO4 + 3H2O",
+              context: t("sc2_05.contexts.NT_A4"),
               promptLatex: "n_{\\\\text{base required}}",
               expressionLatex: "n_{H_3PO_4} = 0.05\\text{ mol}",
               targetLatex: "n_{NaOH}",
@@ -469,7 +469,7 @@ export default function SC205Page() {
             {
               id: "NT_A5", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Conductometric titration: conductivity minimum at equivalence point",
+              context: t("sc2_05.contexts.NT_A5"),
               promptLatex: "V_{\\\\text{equivalence}}",
               expressionLatex: "25\\text{mL } 0.1\\text{M HCl} + 0.1\\text{M NaOH}",
               targetLatex: "V",
@@ -483,7 +483,7 @@ export default function SC205Page() {
             {
               id: "NT_E1", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Blood Buffer Neutralization: A sudden increase in $CO_2$ produces $0.02\\\\text{mol}$ of $H_2CO_3$. How many moles of $OH^-$ (from medication) are needed for full neutralization?",
+              context: t("sc2_05.contexts.NT_E1"),
               promptLatex: "n_{OH^-} = 2 \\times n_{H_2CO_3} \\\\text{ (complete neutralization)}",
               expressionLatex: "n_{H_2CO_3} = 0.02\\text{ mol}",
               targetLatex: "n_{OH^-}",
@@ -494,7 +494,7 @@ export default function SC205Page() {
             {
               id: "NT_E2", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Amphoteric Buffer: $H_2PO_4^-$ acts as a buffer. Calculate the amount of $H^+$ neutralized by $0.1\\\\text{mol}$ of $HPO_4^{2-}$.",
+              context: t("sc2_05.contexts.NT_E2"),
               promptLatex: "n_{H^+} = n_{HPO_4^{2-}}",
               expressionLatex: "n_{HPO_4^{2-}} = 0.1\\text{ mol}",
               targetLatex: "n_{H^+}",
@@ -505,7 +505,7 @@ export default function SC205Page() {
             {
               id: "NT_E3", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Novartis Quality Control: Neutralizing a strong acid waste stream. $100\\\\text{L}$ of $0.05\\\\text{M H_2SO_4}$ requires how many moles of $Ca(OH)_2$?",
+              context: t("sc2_05.contexts.NT_E3"),
               promptLatex: "n_{acid} \\times 2 = n_{base} \\times 2",
               expressionLatex: "V = 100\\text{L}, C = 0.05\\text{M}",
               targetLatex: "n",
@@ -516,7 +516,7 @@ export default function SC205Page() {
             {
               id: "NT_E4", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Lactic Acid Neutralization: During exercise, $0.05\\\\text{mol}$ of $CH_3CH(OH)COOH$ enters the blood. How many moles of $HCO_3^-$ are consumed to maintain pH?",
+              context: t("sc2_05.contexts.NT_E4"),
               promptLatex: "n_{HCO_3^-} = n_{\\\\text{lactic acid}}",
               expressionLatex: "n_{\\text{lactic acid}} = 0.05\\text{ mol}",
               targetLatex: "n_{HCO_3^-}",
@@ -527,7 +527,7 @@ export default function SC205Page() {
             {
               id: "NT_E5", difficulty, stage,
               scenario: t("sc2_05.scenarios.neutralization"),
-              context: "Renal Compensation: Using $NH_3$ to excrete $H^+$. If $0.1\\\\text{mol}$ of $NH_4^+$ is excreted, how many moles of 'new' $HCO_3^-$ are returned to the blood?",
+              context: t("sc2_05.contexts.NT_E5"),
               promptLatex: "n_{HCO_3^- \\\\text{ (new)}} = n_{NH_4^+ \\\\text{ (excreted)}}",
               expressionLatex: "n_{NH_4^+} = 0.1\\text{ mol}",
               targetLatex: "n_{HCO_3^-}",
@@ -542,7 +542,7 @@ export default function SC205Page() {
             {
               id: "TT_B1", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "C_1V_1 = C_2V_2. Find volume of 0.2M NaOH to neutralize 25mL 0.1M HCl.",
+              context: t("sc2_05.contexts.TT_B1"),
               promptLatex: "V_2 = \\\\frac{C_1V_1}{C_2}",
               expressionLatex: "C_1 = 0.1, V_1 = 25, C_2 = 0.2",
               targetLatex: "V_2",
@@ -554,7 +554,7 @@ export default function SC205Page() {
             {
               id: "TT_B2", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "20mL unknown HCl neutralized by 30mL 0.15M NaOH. Find [HCl].",
+              context: t("sc2_05.contexts.TT_B2"),
               promptLatex: "C_1 = \\\\frac{C_2V_2}{V_1}",
               expressionLatex: "C_2 = 0.15, V_2 = 30, V_1 = 20",
               targetLatex: "C_1",
@@ -566,7 +566,7 @@ export default function SC205Page() {
             {
               id: "TT_B3", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Titration of 50mL 0.1M CH3COOH with 0.1M NaOH. Equivalence volume?",
+              context: t("sc2_05.contexts.TT_B3"),
               promptLatex: "V_{\\\\text{eq}} = V_{\\\\text{acid}}",
               expressionLatex: "\\text{Same concentration: } V_{\\text{eq}} = 50\\text{ mL}",
               targetLatex: "V",
@@ -578,7 +578,7 @@ export default function SC205Page() {
             {
               id: "TT_B4", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Indicator selection: strong acid/strong base titration. pH at equivalence?",
+              context: t("sc2_05.contexts.TT_B4"),
               promptLatex: "\\\\text{pH}_{\\\\text{eq}}",
               expressionLatex: "\\text{Strong/Strong: pH = 7}",
               targetLatex: "\\\\text{pH}",
@@ -590,7 +590,7 @@ export default function SC205Page() {
             {
               id: "TT_B5", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Burette reading: initial 0.5mL, final 25.8mL. Volume delivered?",
+              context: t("sc2_05.contexts.TT_B5"),
               promptLatex: "V_{\\\\text{delivered}} = V_{\\\\text{final}} - V_{\\\\text{initial}}",
               expressionLatex: "V_{\\text{final}} = 25.8, V_{\\text{initial}} = 0.5",
               targetLatex: "V",
@@ -604,7 +604,7 @@ export default function SC205Page() {
             {
               id: "TT_C1", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Titration curve: identify equivalence point from pH jump (pH 4 → 10)",
+              context: t("sc2_05.contexts.TT_C1"),
               promptLatex: "\\\\text{Equivalence point}",
               expressionLatex: "\\text{Midpoint of steep rise}",
               targetLatex: "\\\\text{pH}",
@@ -616,7 +616,7 @@ export default function SC205Page() {
             {
               id: "TT_C2", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Half-equivalence point: 25mL added to reach equivalence, pH at 12.5mL?",
+              context: t("sc2_05.contexts.TT_C2"),
               promptLatex: "\\\\text{pH}_{1/2} = \\\\text{pKa}",
               expressionLatex: "\\text{pKa} = 4.76",
               targetLatex: "\\\\text{pH}",
@@ -628,7 +628,7 @@ export default function SC205Page() {
             {
               id: "TT_C3", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Indicator range: phenolphthalein (pH 8.2-10.0). Suitable for weak acid/strong base?",
+              context: t("sc2_05.contexts.TT_C3"),
               promptLatex: "\\\\text{Suitable?}",
               expressionLatex: "\\text{pH}_{\\text{eq}} \\approx 8.9",
               targetLatex: "\\\\text{Yes=1, No=2}",
@@ -639,7 +639,7 @@ export default function SC205Page() {
             {
               id: "TT_C4", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Diprotic titration: H2SO4 has two equivalence points. First at pH?",
+              context: t("sc2_05.contexts.TT_C4"),
               promptLatex: "\\\\text{pH}_{\\\\text{eq1}}",
               expressionLatex: "\\text{Strong acid: pH} < 7",
               targetLatex: "\\\\text{pH}",
@@ -651,7 +651,7 @@ export default function SC205Page() {
             {
               id: "TT_C5", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Precision: three trials give 24.8, 25.1, 24.9 mL. Average volume?",
+              context: t("sc2_05.contexts.TT_C5"),
               promptLatex: "\\bar{V} = \\\\frac{\\sum V_i}{n}",
               expressionLatex: "V_1 = 24.8, V_2 = 25.1, V_3 = 24.9",
               targetLatex: "\\bar{V}",
@@ -665,7 +665,7 @@ export default function SC205Page() {
             {
               id: "TT_A1", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Weak acid titration curve: calculate pH at 10%, 50%, 90%, 100% neutralization",
+              context: t("sc2_05.contexts.TT_A1"),
               promptLatex: "\\\\text{pH}_{50\\%} = \\\\text{pKa}",
               expressionLatex: "\\text{pKa} = 4.76",
               targetLatex: "\\\\text{pH}",
@@ -677,7 +677,7 @@ export default function SC205Page() {
             {
               id: "TT_A2", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Buffer region: pH changes slowly between 25-75% neutralization",
+              context: t("sc2_05.contexts.TT_A2"),
               promptLatex: "\\Delta \\\\text{pH}",
               expressionLatex: "\\text{pH}_{75\\%} - \\text{pH}_{25\\%} \\approx 1.2",
               targetLatex: "\\Delta \\\\text{pH}",
@@ -688,7 +688,7 @@ export default function SC205Page() {
             {
               id: "TT_A3", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Polyprotic acid: H3PO4 titration shows 3 equivalence points",
+              context: t("sc2_05.contexts.TT_A3"),
               promptLatex: "\\\\text{Number of equivalence points}",
               expressionLatex: "\\text{Triprotic acid}",
               targetLatex: "n",
@@ -699,7 +699,7 @@ export default function SC205Page() {
             {
               id: "TT_A4", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Derivative titration: d(pH)/dV maximum at equivalence point",
+              context: t("sc2_05.contexts.TT_A4"),
               promptLatex: "\\\\frac{d(\\\\text{pH})}{dV}_{\\\\text{max}}",
               expressionLatex: "\\text{Locate inflection point}",
               targetLatex: "V_{\\\\text{eq}}",
@@ -711,7 +711,7 @@ export default function SC205Page() {
             {
               id: "TT_A5", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Gran plot: linearization method for weak acid titration",
+              context: t("sc2_05.contexts.TT_A5"),
               promptLatex: "\\\\text{Linear extrapolation}",
               expressionLatex: "V \\times 10^{-\\text{pH}} \\text{ vs } V",
               targetLatex: "V_{\\\\text{eq}}",
@@ -725,7 +725,7 @@ export default function SC205Page() {
             {
               id: "TT_E1", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Pharmacopoeia Standards: Titrating a weak organic acid drug. Half-equivalence point pH is 4.75. Determine $pKa$.",
+              context: t("sc2_05.contexts.TT_E1"),
               promptLatex: "\\\\text{pKa} = \\\\text{pH}_{1/2}",
               expressionLatex: "\\text{pH} = 4.75 \\text{ at 50% titration}",
               targetLatex: "\\\\text{pKa}",
@@ -736,7 +736,7 @@ export default function SC205Page() {
             {
               id: "TT_E2", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Precise Analytical Method: Gran Plot linear extrapolation. If the intercept on the V-axis is $25.4\\\\text{mL}$, find the equivalence volume.",
+              context: t("sc2_05.contexts.TT_E2"),
               promptLatex: "V_{\\\\text{eq}} = V_{\\\\text{intercept}}",
               expressionLatex: "V_{\\text{intercept}} = 25.4\\text{mL}",
               targetLatex: "V_{\\\\text{eq}}",
@@ -748,7 +748,7 @@ export default function SC205Page() {
             {
               id: "TT_E3", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Kjeldahl Method (Roche Lab): $NH_3$ from a $1\\\\text{g}$ sample is captured in $50\\\\text{mL}$ of $0.1\\\\text{M HCl}$. Back-titration requires $20\\\\text{mL}$ of $0.1\\\\text{M NaOH}$. Find moles of Nitrogen.",
+              context: t("sc2_05.contexts.TT_E3"),
               promptLatex: "n_N = n_{HCl} - n_{NaOH}",
               expressionLatex: "n_{HCl} = 0.005, n_{NaOH} = 0.002",
               targetLatex: "n",
@@ -759,7 +759,7 @@ export default function SC205Page() {
             {
               id: "TT_E4", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Blood Plasma Titration: $10\\\\text{mL}$ of plasma requires $2.4\\\\text{mL}$ of $0.1\\\\text{M HCl}$ to reach pH 4.4 (bicarbonate endpoint). Find $[HCO_3^-]$ in blood.",
+              context: t("sc2_05.contexts.TT_E4"),
               promptLatex: "[HCO_3^-] = \\\\frac{C_{HCl}V_{HCl}}{V_{\\\\text{plasma}}}",
               expressionLatex: "C_{HCl} = 0.1, V_{HCl} = 2.4, V_{\\text{plasma}} = 10",
               targetLatex: "[HCO_3^-]",
@@ -770,7 +770,7 @@ export default function SC205Page() {
             {
               id: "TT_E5", difficulty, stage,
               scenario: t("sc2_05.scenarios.titration"),
-              context: "Standardization: KHP ($Mw=204.22$) used to standardize NaOH. $0.5106\\\\text{g}$ KHP requires $25.00\\\\text{mL}$ NaOH. Find NaOH concentration.",
+              context: t("sc2_05.contexts.TT_E5"),
               promptLatex: "C = \\\\frac{m/Mw}{V}",
               expressionLatex: "m = 0.5106, Mw = 204.22, V = 0.025",
               targetLatex: "C",

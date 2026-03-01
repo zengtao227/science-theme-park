@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-01 (SP1.01 + SM1.04 + SM2.08 Updated)
-**Plan Version**: 3.5 (Batch A Wave-1)
+**Last Updated**: 2026-03-01 (SP1.01 + SM1.04 + SM2.08 + SC2.05 Updated)
+**Plan Version**: 3.6 (Batch A Wave-1 Complete)
 
 ---
 
@@ -31,7 +31,7 @@
 ### 7.3 Priority Queue (First 10 high-risk modules)
 - [x] `sm2-08` (scenarios merged from `_updated.ts`, 26/26 coverage in EN/CN/DE)
 - [x] `sm1-04` (applications/scenarios text aligned to 4-element structure in EN/CN/DE)
-- [ ] `sc2-05`
+- [x] `sc2-05` (60 context literals migrated to i18n in EN/CN/DE; page hardcoding removed)
 - [ ] `em1-01`
 - [ ] `gp2-02`
 - [ ] `gb1-01`
@@ -51,8 +51,9 @@
 - [x] `SP1.01`: `scenario_desc` EN/CN/DE = `65/65` non-empty.
 - [x] `SM1.04`: `APPLICATIONS` stage audit reached `20/20` four-element heuristic in EN/CN/DE.
 - [x] `SM2.08`: merged `sm2_08.scenarios` from Claude deliverables; `problems` preserved byte-level.
-- [ ] `SC2.05`: pending full fill + merge (next execution target).
-- [ ] Batch B kickoff for `SM2.08` TODO placeholders / bare-label problems (post-scenario wave).
+- [x] `SC2.05`: migrated all 60 hardcoded `context` strings from `page.tsx` into i18n keys (`sc2_05.contexts.*`) across EN/CN/DE.
+- [x] `SM2.08 Batch B`: TODO placeholders / bare-label problem text cleaned; `two_dice` vs `dice_two` scenario key usage unified.
+- [ ] Batch B expansion on next modules (`EM1.01`, `GP2.02`, `GB1.01`).
 
 ---
 
@@ -482,7 +483,7 @@ Modules are classified by their quest density:
 
 ### March 2026
 - [x] Week 1: Phase 7.1 SP1.01 baseline completion (scenario_desc EN/CN/DE)
-- [ ] Week 1-2: Phase 7.2 Batch A on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`) - first two completed, `sc2-05` pending
+- [x] Week 1-2: Phase 7.2 Batch A on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`) completed
 - [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
 
 ### April 2026
@@ -496,6 +497,12 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v3.6 (2026-03-01)
+- **SC2.05 Integrated**: Merged EN/CN/DE `contexts` block and replaced 60 inline `context` literals in `sc2-05/page.tsx` with i18n keys.
+- **Batch A Wave-1 Completed**: Top three risk modules (`SP1.01`, `SM1.04`, `SM2.08`, `SC2.05`) now merged with validation and build pass.
+- **SM2.08 Batch B Closed**: Removed TODO/bare-label placeholders in `sm2_08.problems`; unified scenario key usage (`dice_two`).
+- **Build Guardrail Added**: `temp/` excluded from TypeScript compilation to prevent handoff snippets from breaking production builds.
 
 ### v3.5 (2026-03-01)
 - **Wave-1 Expanded**: Completed first two Batch A high-risk modules beyond SP1.01 (`SM1.04`, `SM2.08`).
@@ -552,5 +559,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 3.5 (Batch A Wave-1)
+**Plan Version**: 3.6 (Batch A Wave-1 Complete)
 **Next Review**: 2026-03-05

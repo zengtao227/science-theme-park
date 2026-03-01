@@ -1849,61 +1849,61 @@ export const enMath = {
             dice_prime: "Roll a die. What is the probability of rolling a prime number (2, 3, or 5)?",
             two_dice_sum_10: "Roll two dice. What is the probability the sum equals 10?",
             card_ace_or_king: "Draw one card. What is the probability of drawing an Ace or King?",
-            coin_3_1: "3 coins, exactly 1 head",
-            coin_4_3: "4 coins, exactly 3 heads",
-            coin_5_2: "5 coins, exactly 2 heads",
-            deck_aces: "Aces in a deck",
-            deck_face_cards: "Face cards in a deck",
-            deck_red_cards: "Red cards in a deck",
-            recipe_chain_ratio_ABC: "Chain ratio A:B:C",
-            recipe_inverse_proportion: "Inverse proportion in recipe",
-            recipe_pumps: "Pump output ratio",
-            quality_control_78: "Quality control - sample 78", // TODO
-            quality_control_85: "Quality control - sample 85", // TODO
-            quality_control_92: "Quality control - sample 92", // TODO
-            quality_control_156: "Quality control - sample 156", // TODO
-            quality_control_234: "Quality control - sample 234", // TODO
-            insurance_adv_1: "Insurance Advanced Problem 1", // TODO
-            insurance_adv_2: "Insurance Advanced Problem 2", // TODO
-            insurance_adv_3: "Insurance Advanced Problem 3", // TODO
-            insurance_adv_4: "Insurance Advanced Problem 4", // TODO
-            insurance_adv_5: "Insurance Advanced Problem 5", // TODO
-            insurance_core_1: "Insurance Core Problem 1", // TODO
-            insurance_core_2: "Insurance Core Problem 2", // TODO
-            insurance_core_3: "Insurance Core Problem 3", // TODO
-            insurance_core_4: "Insurance Core Problem 4", // TODO
-            insurance_core_5: "Insurance Core Problem 5", // TODO
-            insurance_elite_1: "Insurance Elite Problem 1", // TODO
-            insurance_elite_2: "Insurance Elite Problem 2", // TODO
-            insurance_elite_3: "Insurance Elite Problem 3", // TODO
-            insurance_elite_4: "Insurance Elite Problem 4", // TODO
-            insurance_elite_5: "Insurance Elite Problem 5", // TODO
-            lottery_6_2_biased: "Lottery 6 draw 2 (biased)", // TODO
-            lottery_7_4: "Lottery 7 draw 4", // TODO
-            lottery_8_5: "Lottery 8 draw 5", // TODO
-            lottery_8_5_biased: "Lottery 8 draw 5 (biased)", // TODO
-            lottery_9_4_biased: "Lottery 9 draw 4 (biased)", // TODO
-            lottery_10_6: "Lottery 10 draw 6", // TODO
-            lottery_11_7_biased: "Lottery 11 draw 7 (biased)", // TODO
-            lottery_12_7: "Lottery 12 draw 7", // TODO
-            lottery_14_9: "Lottery 14 draw 9", // TODO
-            lottery_15_9: "Lottery 15 draw 9", // TODO
-            lottery_16_8: "Lottery 16 draw 8", // TODO
-            lottery_18_11: "Lottery 18 draw 11", // TODO
-            lottery_20_12: "Lottery 20 draw 12", // TODO
-            adjacent: "Adjacent",
-            cos: "Cosine",
-            sin: "Sine",
-            tan: "Tangent",
-            opposite: "Opposite",
-            holds_value: "Holds value",
-            multiply_coeffs: "Multiply coefficients",
-            remove: "Remove",
-            substitute_both: "Substitute both",
-            single_die_even: "Single die - even number",
-            single_die_half: "Single die - half the faces",
-            x_coord_kleinbasel: "x-coordinate (Kleinbasel)",
-            x_coord_origin: "x-coordinate (origin)",
+            coin_3_1: "You flip 3 fair coins. What is the probability of getting exactly 1 head?",
+            coin_4_3: "You flip 4 fair coins. What is the probability of getting exactly 3 heads?",
+            coin_5_2: "You flip 5 fair coins. What is the probability of getting exactly 2 heads?",
+            deck_aces: "From a standard 52-card deck with 4 aces, what is the probability of drawing an ace?",
+            deck_face_cards: "A standard deck has 12 face cards (J, Q, K). What is the probability of drawing a face card?",
+            deck_red_cards: "A standard deck has 26 red cards. What is the probability of drawing a red card?",
+            recipe_chain_ratio_ABC: "A recipe uses ratio A:B:C = 2:3:5. What fraction of the mixture is component A?",
+            recipe_inverse_proportion: "In a recipe model, concentration is inversely proportional to volume. If volume doubles, by what factor does concentration change?",
+            recipe_pumps: "Pump A and Pump B have output ratio 3:2. What fraction of total output is produced by Pump A?",
+            quality_control_78: "Quality control sample 78: If pass probability is 0.95, what is the failure probability?",
+            quality_control_85: "Quality control sample 85: If pass probability is 0.95, what is the failure probability?",
+            quality_control_92: "Quality control sample 92: If pass probability is 0.95, what is the failure probability?",
+            quality_control_156: "Quality control sample 156: If pass probability is 0.95, what is the failure probability?",
+            quality_control_234: "Quality control sample 234: If pass probability is 0.95, what is the failure probability?",
+            insurance_adv_1: "Insurance case A1: A claim occurs with probability 0.12. What is the probability of no claim?",
+            insurance_adv_2: "Insurance case A2: Two independent policies each have claim probability 0.12. What is the probability both file claims?",
+            insurance_adv_3: "Insurance case A3: Two independent policies each have claim probability 0.12. What is the probability at least one files a claim?",
+            insurance_adv_4: "Insurance case A4: A portfolio has 20% high-risk clients. What is the probability a random client is low-risk?",
+            insurance_adv_5: "Insurance case A5: An event has probability 0.08. What are the odds in favor of the event?",
+            insurance_core_1: "Insurance core C1: Claim probability is 0.10. What is the probability of no claim?",
+            insurance_core_2: "Insurance core C2: Three independent clients each have claim probability 0.10. What is the probability all three have no claim?",
+            insurance_core_3: "Insurance core C3: For two independent policies with claim probability 0.10 each, what is the probability exactly one files a claim?",
+            insurance_core_4: "Insurance core C4: If 18 out of 60 claims were approved, what is the empirical approval probability?",
+            insurance_core_5: "Insurance core C5: If premium revenue is CHF 5000 and claim payout is CHF 3200, what is the payout ratio in percent?",
+            insurance_elite_1: "Insurance elite E1: A rare event has probability 0.02 per year. What is the probability it does not occur in one year?",
+            insurance_elite_2: "Insurance elite E2: For event probability 0.02 per year, what is the probability it occurs at least once in 3 independent years?",
+            insurance_elite_3: "Insurance elite E3: A model predicts 96% true negatives and 92% true positives. Compute the missing error rates.",
+            insurance_elite_4: "Insurance elite E4: In 200 policies, expected claim rate is 5%. What is the expected number of claims?",
+            insurance_elite_5: "Insurance elite E5: If expected loss is CHF 180 and premium is CHF 240, what is the safety loading percentage?",
+            lottery_6_2_biased: "A biased lottery draws 2 numbers from 6 with non-uniform weights. Which method should be used: classical probability or empirical probability?",
+            lottery_7_4: "In a fair lottery, you choose 4 numbers from 7. What is the probability one ticket wins the jackpot?",
+            lottery_8_5: "In a fair lottery, you choose 5 numbers from 8. What is the probability one ticket matches all 5 numbers?",
+            lottery_8_5_biased: "In a biased 8-choose-5 lottery, why can you not assume all combinations are equally likely?",
+            lottery_9_4_biased: "In a biased 9-choose-4 lottery, which probability model should be used to estimate winning chance from observed draws?",
+            lottery_10_6: "In a fair lottery, you choose 6 numbers from 10. What is the probability one ticket wins?",
+            lottery_11_7_biased: "In a biased 11-choose-7 lottery, what data do you need to estimate the real winning probability?",
+            lottery_12_7: "In a fair lottery, you choose 7 numbers from 12. What is the probability of an exact match?",
+            lottery_14_9: "In a fair lottery, you choose 9 numbers from 14. What is the probability of an exact match?",
+            lottery_15_9: "In a fair lottery, you choose 9 numbers from 15. What is the probability of an exact match?",
+            lottery_16_8: "In a fair lottery, you choose 8 numbers from 16. What is the probability of an exact match?",
+            lottery_18_11: "In a fair lottery, you choose 11 numbers from 18. What is the probability of an exact match?",
+            lottery_20_12: "In a fair lottery, you choose 12 numbers from 20. What is the probability of an exact match?",
+            adjacent: "In a right triangle, which side is adjacent to angle \\(\\theta\\)?",
+            cos: "For a right triangle, which ratio defines cosine: adjacent/hypotenuse, opposite/hypotenuse, or opposite/adjacent?",
+            sin: "For a right triangle, which ratio defines sine: opposite/hypotenuse, adjacent/hypotenuse, or adjacent/opposite?",
+            tan: "For a right triangle, which ratio defines tangent: opposite/adjacent or adjacent/opposite?",
+            opposite: "In a right triangle, which side is opposite to angle \\(\\theta\\)?",
+            holds_value: "After a substitution step in algebra, which variable still keeps its original value?",
+            multiply_coeffs: "When multiplying monomials, what do you do with the coefficients?",
+            remove: "In solving an equation, which inverse operation removes a constant term from one side?",
+            substitute_both: "In a system of equations, why must substitution be applied consistently to both equations?",
+            single_die_even: "A fair die has 6 faces. What is the probability of rolling an even number?",
+            single_die_half: "For a fair die, what is the probability of an event that covers exactly half the faces?",
+            x_coord_kleinbasel: "On a coordinate map of Kleinbasel, what does the x-coordinate represent?",
+            x_coord_origin: "What is the x-coordinate of the origin point in a Cartesian coordinate system?",
             two_dice_doubles: "Roll two dice. What is the probability of rolling doubles (same number on both)?",
             card_spade_face: "Draw one card. What is the probability of drawing a spade face card?",
             school_raffle_win: "The school sold 100 raffle tickets for charity. You bought 3 tickets. What is the probability you win?",

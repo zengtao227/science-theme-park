@@ -44,7 +44,6 @@ export default function SM208Page() {
       tram_punctuality: t("sm2_08.scenarios.tram_punctuality"),
       two_buses: t("sm2_08.scenarios.two_buses"),
       two_coins: t("sm2_08.scenarios.two_coins"),
-      two_dice: t("sm2_08.scenarios.two_dice"),
       weather_basel: t("sm2_08.scenarios.weather_basel"),
     },
     problems: {
@@ -663,7 +662,7 @@ export default function SM208Page() {
             id: "CB3",
             difficulty,
             stage,
-            scenario: tObj.scenarios.two_dice,
+            scenario: tObj.scenarios.dice_two,
             context: tObj.problems.two_dice_both_even,
             promptLatex: "P(\\\\text{both even})",
             expressionLatex: "0.5 \\times 0.5",
