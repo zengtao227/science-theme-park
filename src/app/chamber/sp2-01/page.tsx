@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { SP201Quest, Stage } from "@/types/sp2-01-types";
 import { buildStagePool } from "@/lib/sp2-01-quest-data";
 import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SP201CircuitBasics() {
-  const { completeStage } = useAppStore();
+  useAppStore();
   const { t } = useLanguage();
 
   const sp2_01_t = useMemo(() => ({

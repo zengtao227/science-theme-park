@@ -9,7 +9,7 @@
 
 import { SC106Quest, Stage, Difficulty, ChemicalEquation } from './sc1-06-types';
 import { getQuestData } from './sc1-06-quest-data';
-import { createCompound, formulaToLatex } from './sc1-06-utils';
+import { createCompound } from './sc1-06-utils';
 
 /**
  * Build a quest pool for a specific stage and difficulty
@@ -46,7 +46,7 @@ export function buildStagePool(
   const selectedData = rawData.slice(0, count);
 
   // Map raw data to SC106Quest objects
-  const quests: SC106Quest[] = selectedData.map((data, index) => {
+  const quests: SC106Quest[] = selectedData.map((data) => {
     // Create Compound objects for reactants and products
     const reactantCompounds = data.reactants.map(formula => createCompound(formula));
     const productCompounds = data.products.map(formula => createCompound(formula));
@@ -200,6 +200,8 @@ function generateSlots(
   data: any,
   t?: any
 ): Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> {
+  void t;
+
   const slots: Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> = [];
 
   switch (stage) {

@@ -11,12 +11,11 @@ import type {
   ModuleState,
   StageId,
   Language,
-  QuestProgressMap,
   VisualizationStateMap,
   StageProgress,
   GasParameters,
 } from "./gp2-03-types";
-import { GAS_CONSTANT, STANDARD_CONDITIONS } from "./gp2-03-types";
+import { STANDARD_CONDITIONS } from "./gp2-03-types";
 
 // ============================================================================
 // Store Interface

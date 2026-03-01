@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { InlineMath } from "react-katex";
 import { clsx } from "clsx";
 import { useCoop } from "@/hooks/useCoop";
 import { CoopQuestState } from "@/lib/coop/coopService";
@@ -105,6 +104,9 @@ export default function CoopPanel({
     onNext,
     lastCheckCorrect,
 }: CoopPanelProps) {
+    void myAnswers;
+    void onNext;
+
     const [joinCode, setJoinCode] = useState("");
     const [panelOpen, setPanelOpen] = useState(false);
 
@@ -114,7 +116,6 @@ export default function CoopPanel({
         roomCode,
         error,
         partnerState,
-        partnerReady,
         myScore,
         partnerScore,
         isConnected,
@@ -122,10 +123,7 @@ export default function CoopPanel({
         joinRoom,
         disconnect,
         sendQuestSync,
-        sendAnswerUpdate,
         sendAnswerSubmit,
-        sendNextQuest,
-        sendReady,
     } = useCoop({ onQuestReceived });
 
     // Send quest sync when host changes quest

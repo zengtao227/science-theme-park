@@ -7,8 +7,8 @@
 
 import { GB202Quest, Stage, GB202QuestSlot } from './gb2-02-types';
 import { Difficulty } from '@/hooks/useQuestManager';
-import { HORMONES, GLANDS } from './gb2-02-hormone-data';
-import { NEGATIVE_FEEDBACK_LOOPS, POSITIVE_FEEDBACK_LOOPS } from './gb2-02-feedback-data';
+import { HORMONES } from './gb2-02-hormone-data';
+import { NEGATIVE_FEEDBACK_LOOPS } from './gb2-02-feedback-data';
 import { CLINICAL_CASES } from './gb2-02-clinical-data';
 
 /**

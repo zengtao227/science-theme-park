@@ -126,18 +126,6 @@ export function parseSetBuilder(notation: string): Interval | Interval[] {
 function parseConditionToInterval(condition: string): Interval {
     const cleaned = condition.trim();
     
-    // Match patterns like "x < 5", "x ≥ 2", "2 < x", etc.
-    const patterns = [
-        /x\s*<\s*([+-]?\d+\.?\d*)/,   // x < 5
-        /x\s*>\s*([+-]?\d+\.?\d*)/,   // x > 2
-        /x\s*≤\s*([+-]?\d+\.?\d*)/,   // x ≤ 5
-        /x\s*≥\s*([+-]?\d+\.?\d*)/,   // x ≥ 2
-        /([+-]?\d+\.?\d*)\s*<\s*x/,   // 2 < x
-        /([+-]?\d+\.?\d*)\s*>\s*x/,   // 5 > x
-        /([+-]?\d+\.?\d*)\s*≤\s*x/,   // 2 ≤ x
-        /([+-]?\d+\.?\d*)\s*≥\s*x/    // 5 ≥ x
-    ];
-    
     // Try x < value or x ≤ value
     let match = cleaned.match(/x\s*(<|≤)\s*([+-]?\d+\.?\d*)/);
     if (match) {
@@ -388,7 +376,7 @@ export function getValidationFeedback(
             } else {
                 parsedSubmitted = parseInequalityNotation(cleaned);
             }
-        } catch (parseError) {
+        } catch {
             return "Invalid format. Please use interval notation like (-∞, 5] or [2, 10).";
         }
         
@@ -427,7 +415,7 @@ export function getValidationFeedback(
         
         return "Your answer is incorrect. Please review the solution steps.";
         
-    } catch (error) {
+    } catch {
         return "Unable to validate your answer. Please check the format.";
     }
 }
