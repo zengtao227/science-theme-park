@@ -17,13 +17,12 @@ interface IntegralVisualizationProps {
   checkStatus: { ok: boolean; correct: string } | null;
 }
 
-const round2 = (v: number) => Math.round(v * 100) / 100;
-
 export default function IntegralVisualization({
   quest,
   inputs,
   checkStatus,
 }: IntegralVisualizationProps) {
+  void inputs;
   // Calculate bounds with 50% padding
   const bounds = useMemo(() => {
     if (!quest) return { xMin: -5, xMax: 5, yMin: -3, yMax: 5 };

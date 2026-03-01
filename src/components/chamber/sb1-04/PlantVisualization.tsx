@@ -18,7 +18,8 @@ export default function PlantVisualization({
     stage,
     translations
 }: PlantVisualizationProps) {
-    const [animationKey, setAnimationKey] = useState(0);
+    void translations;
+    const [, setAnimationKey] = useState(0);
 
     useEffect(() => {
         setAnimationKey(prev => prev + 1);

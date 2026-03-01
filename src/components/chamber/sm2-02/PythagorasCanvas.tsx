@@ -252,8 +252,6 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
   const F = new THREE.Vector3(a, b, c);
   const G = new THREE.Vector3(0, b, c);
 
-  const diagonal = Math.sqrt(a * a + b * b + c * c);
-
   return (
     <group position={[-a / 2, -b / 2, -c / 2]}>
       {/* Glassy cuboid faces */}
@@ -424,7 +422,6 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
 
   const z1 = p1.z ?? 0;
   const z2 = p2.z ?? 0;
-  const distance = Math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2 + (z2 - z1) ** 2);
   const dx = Math.abs(p2.x - p1.x);
   const dy = Math.abs(p2.y - p1.y);
   const dz = Math.abs(z2 - z1);

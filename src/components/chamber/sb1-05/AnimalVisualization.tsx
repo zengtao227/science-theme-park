@@ -18,7 +18,8 @@ export default function AnimalVisualization({
     stage,
     translations
 }: AnimalVisualizationProps) {
-    const [animationKey, setAnimationKey] = useState(0);
+    void translations;
+    const [, setAnimationKey] = useState(0);
 
     useEffect(() => {
         setAnimationKey(prev => prev + 1);

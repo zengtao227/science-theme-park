@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useMemo, useState } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -19,7 +19,7 @@ interface SP305Quest extends Quest {
 }
 
 export default function SP305Page() {
-    const { currentLanguage, completeStage } = useAppStore();
+    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     
     const sp3_05_t = {
@@ -630,4 +630,3 @@ export default function SP305Page() {
         </ChamberLayout>
     );
 }
-

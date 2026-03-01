@@ -30,7 +30,6 @@ export default function ModuleContainer({
     setStage,
     setLanguage,
     completeQuest,
-    getStageProgress,
   } = useGP203Store();
 
   const [difficulty, setDifficulty] = useState<Difficulty>("BASIC");
@@ -53,6 +52,7 @@ export default function ModuleContainer({
   const currentQuest = stageQuests[currentQuestIndex];
   const validator = new QuestValidator(currentLanguage);
   const progressTracker = new QuestProgressTracker(ALL_QUESTS, questProgress);
+  void progressTracker;
 
   const handleStageChange = (newStage: string) => {
     setStage(newStage as StageId);

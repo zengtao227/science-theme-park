@@ -6,16 +6,8 @@ interface TemperatureVisualizationProps {
 }
 
 export default function TemperatureVisualization({ quest, stage }: TemperatureVisualizationProps) {
+    void quest;
     const canvasSize = 400;
-
-    // Temperature color mapping (blue = cold, red = hot)
-    const getTempColor = (temp: number) => {
-        // temp range: 0-373K mapped to blue-red
-        const ratio = Math.min(Math.max(temp / 373, 0), 1);
-        const r = Math.floor(ratio * 255);
-        const b = Math.floor((1 - ratio) * 255);
-        return `rgb(${r}, 100, ${b})`;
-    };
 
     return (
         <div className="w-full h-full flex items-center justify-center bg-gray-900/50 rounded-xl p-4">

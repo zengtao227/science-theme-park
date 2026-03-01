@@ -23,6 +23,7 @@ export default function RedoxVisualization({
   inputs,
   checkStatus,
 }: RedoxVisualizationProps) {
+  void inputs;
   const canvasSize = 400;
   const centerX = canvasSize / 2;
   const centerY = canvasSize / 2;
@@ -286,7 +287,7 @@ export default function RedoxVisualization({
   const renderElectrochemistry = useMemo(() => {
     if (!quest || quest.stage !== "ELECTROCHEMISTRY") return null;
 
-    const { cellPotential, electronsTransferred } = quest;
+    const { cellPotential } = quest;
     const anodeX = 100;
     const cathodeX = 300;
     const electrodeY = 150;

@@ -6,7 +6,6 @@ import { ArrowLeft, Sigma, X, Printer } from "lucide-react";
 import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import ConceptIcon from "@/components/ConceptIcon";
-import NotificationToast from "@/components/ui/NotificationToast";
 import ResizableLayout from "@/components/layout/ResizableLayout";
 import { useAppStore, type HistoryEntry } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";

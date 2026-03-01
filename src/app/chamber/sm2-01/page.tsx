@@ -4,7 +4,6 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -273,7 +272,6 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 }
 
 export default function S201Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
   const sm2_01_t = {
@@ -448,7 +446,6 @@ export default function S201Page() {
 
   const architectQuest = currentQuest?.type === "EXPAND" ? (currentQuest as ArchitectQuest) : null;
   const scrapperQuest = currentQuest?.type === "SCRAPPER" ? (currentQuest as ScrapperQuest) : null;
-  const speedsterQuest = currentQuest?.type === "SPEEDSTER" ? (currentQuest as SpeedsterQuest) : null;
   const eliteQuest = currentQuest?.type === "ELITE" ? (currentQuest as EliteQuest) : null;
   const voyagerQuest = currentQuest?.type === "DIFFERENCE" ? (currentQuest as VoyagerQuest) : null;
 
@@ -472,16 +469,6 @@ export default function S201Page() {
 
   // Removed auto-complete useEffect. Now relying on explicit User Check button -> verify() -> lastCheck update -> Success Overlay.
 
-  const targetSize = canvasA + canvasB;
-  const initialPositions = useMemo(
-    () => ({
-      a2: [-1.5, 2, 0] as [number, number, number],
-      b2: [-1.5, -2, 0] as [number, number, number],
-      ab1: [1.5, 2, 0] as [number, number, number],
-      ab2: [1.5, -2, 0] as [number, number, number],
-    }),
-    []
-  );
   // .. (omitted unchanged code logic, but verify is destructured above)
 
   const handleSidebarKeyDown = (e: React.KeyboardEvent) => {

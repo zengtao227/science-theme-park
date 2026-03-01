@@ -30,16 +30,8 @@ export default function CoordinateCanvas2D({
   translations,
   labels,
 }: CoordinateCanvas2DProps) {
+  void translations;
   const [showFormula, setShowFormula] = useState(true);
-
-  const t = translations || {
-    distance_formula: "Distance Formula",
-    midpoint_formula: "Midpoint Formula",
-    slope_formula: "Slope Formula",
-    line_eq: "Line Equation: ",
-    hide_formula: "Hide Formula",
-    show_formula: "Show Formula"
-  };
 
   const width = 800;
   const height = 600;
@@ -168,8 +160,8 @@ export default function CoordinateCanvas2D({
           {Array.from({ length: 25 }).map((_, i) => {
             const val = i - 12;
             if (val === 0) return null;
-            const [sx, sy] = toSVG(val, 0);
-            const [sx2, sy2] = toSVG(0, val);
+            const [sx] = toSVG(val, 0);
+            const [, sy2] = toSVG(0, val);
             // 只有在视图内的才显示
             if (sx < 0 || sx > width || sy2 < 0 || sy2 > height) return null;
             return (

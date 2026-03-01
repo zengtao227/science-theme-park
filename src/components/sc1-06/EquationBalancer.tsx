@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SC106Quest } from '@/lib/sc1-06-types';
 import { ChemicalFormula } from '@/lib/sc1-06-latex';
 import {
@@ -22,8 +22,8 @@ export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps
   const [coefficients, setCoefficients] = useState<number[]>(Array(totalCompounds).fill(1));
   const [inputValues, setInputValues] = useState<string[]>(Array(totalCompounds).fill('1'));
   const [showHint, setShowHint] = useState(false);
-  const [feedback, setFeedback] = useState<string>('');
-  const [submitted, setSubmitted] = useState(false);
+  const [, setFeedback] = useState<string>('');
+  const [, setSubmitted] = useState(false);
 
   // Sync state when quest changes
   useEffect(() => {

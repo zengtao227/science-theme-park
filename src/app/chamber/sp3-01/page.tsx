@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useMemo, useState } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -22,7 +22,7 @@ interface SP301Quest extends Quest {
 }
 
 export default function SP301Page() {
-    const { currentLanguage, completeStage } = useAppStore();
+    const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
     const sp3_01_t = {
@@ -74,7 +74,7 @@ export default function SP301Page() {
     };
 
     const [selectedTool, setSelectedTool] = useState<string>("ruler");
-    const [measurementValue, setMeasurementValue] = useState<number>(0);
+    const [measurementValue] = useState<number>(0);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP301Quest[] => {
         const quests: SP301Quest[] = [];

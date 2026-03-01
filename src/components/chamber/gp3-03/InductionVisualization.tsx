@@ -18,6 +18,7 @@ export default function InductionVisualization({
     stage,
     translations
 }: InductionVisualizationProps) {
+    void translations;
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {
@@ -84,7 +85,6 @@ export default function InductionVisualization({
                     
                     {/* Magnetic field lines */}
                     {Array.from({ length: 8 }).map((_, i) => {
-                        const angle = (i * 45) * Math.PI / 180;
                         return (
                             <motion.div
                                 key={i}

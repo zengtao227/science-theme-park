@@ -17,8 +17,6 @@ interface GP202Quest extends Quest {
     processType?: string;
 }
 
-const R = 8.314;
-
 function buildStagePool(
     getT: any,
     tObj: TranslationKeys['gp2_02'],
@@ -140,7 +138,7 @@ function buildStagePool(
 }
 
 export default function GP202Page() {
-    const { t: getT, currentLanguage } = useLanguage();
+    const { t: getT } = useLanguage();
     const t = getT("gp2_02");
     const { completeStage } = useAppStore();
 

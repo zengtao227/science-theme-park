@@ -18,12 +18,6 @@ interface GP201Quest extends Quest {
     lawType?: string;
 }
 
-// Helper to access nested keys safely if needed, but we rely on standard structure
-// We will use the t() function provided by useLanguage for dynamic prompts
-type T = (path: string, params?: Record<string, string | number>) => string;
-
-const R = 8.314;
-
 function buildStagePool(
     getT: any, // The main t function from useLanguage
     tObj: TranslationKeys['gp2_01'], // The object for static keys
@@ -32,9 +26,6 @@ function buildStagePool(
 ): GP201Quest[] {
     const quests: GP201Quest[] = [];
     const t = getT; // Alias for brevity
-
-    // Helper to format numbers
-    const fm = (n: number) => Number.isInteger(n) ? n.toString() : n.toFixed(2);
 
     if (stage === "IDEAL_GAS") {
         // PV = nRT
@@ -392,7 +383,7 @@ function buildStagePool(
 }
 
 export default function GP201Page() {
-    const { t: getT, currentLanguage } = useLanguage();
+    const { t: getT } = useLanguage();
     const t = getT("gp2_01");
     const { completeStage } = useAppStore();
 
@@ -528,4 +519,3 @@ export default function GP201Page() {
         </ChamberLayout>
     );
 }
-

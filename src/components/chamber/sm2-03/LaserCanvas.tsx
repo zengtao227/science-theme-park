@@ -49,8 +49,9 @@ export default function LaserCanvas({
   onLineChange,
   labels,
 }: LaserCanvasProps) {
+  void onLineChange;
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [hitVisible, setHitVisible] = useState(false);
+  const [hitVisible] = useState(false);
 
   const originX = 60;
   const originY = 700; // Inverted Y, origin near bottom-left
@@ -63,8 +64,6 @@ export default function LaserCanvas({
     cy: originY - (y / maxY) * (canvasRef.current?.height ? canvasRef.current.height - 150 : 600),
   });
 
-  const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -73,7 +72,6 @@ export default function LaserCanvas({
     if (!ctx) return;
     let raf = 0;
     const render = () => {
-      const time = performance.now() / 1000;
       const targetPos = { x: targetX ?? 0, y: targetY ?? 0 };
 
       // DRAWING LOGIC FOR PRICING

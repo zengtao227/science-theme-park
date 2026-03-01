@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
+import { useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PlantVisualization from "@/components/chamber/sb1-04/PlantVisualization";
@@ -18,7 +17,6 @@ interface SB104Quest extends Quest {
 }
 
 export default function SB104PlantStructure() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
     const sb1_04_t = useMemo(() => ({

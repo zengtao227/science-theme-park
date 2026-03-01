@@ -147,7 +147,6 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         const missing = knownIsA ? b : a;
         const missing2 = c * c - known * known;
 
-        const knownLabel = knownIsA ? sm2_02_t.pythagoras.known_horizontal : sm2_02_t.pythagoras.known_given;
         const knownVar = knownIsA ? "a" : "b";
 
         quests.push({
@@ -547,7 +546,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
 // Main component
 export default function S202Page() {
-  const { currentLanguage, completeStage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
   const sm2_02_t = {
@@ -683,7 +682,6 @@ export default function S202Page() {
   if (!currentQuest) return null;
 
   const isPythagorasTab = currentQuest?.tab === "PYTHAGORAS";
-  const isSqrtTab = currentQuest?.tab === "SQRT";
 
   // Stage definitions
   const pythagorasStages = [
@@ -725,12 +723,6 @@ export default function S202Page() {
               c: currentQuest.visual.c,
             }
           : null);
-
-  // Tab switching
-  const handleTabChange = (newTab: "PYTHAGORAS" | "SQRT") => {
-    const newStage = newTab === "PYTHAGORAS" ? "SOLVE_HYP" : "PERFECT";
-    handleStageChange(newStage as Stage);
-  };
 
   return (
     <ChamberLayout

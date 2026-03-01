@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
@@ -39,11 +39,6 @@ function Vector3DArrow({
   color: string; 
   label: string;
 }) {
-  const direction = useMemo(() => {
-    const dir = new THREE.Vector3(...end).sub(new THREE.Vector3(...start));
-    return dir.normalize();
-  }, [start, end]);
-  
   const length = useMemo(() => {
     return new THREE.Vector3(...end).sub(new THREE.Vector3(...start)).length();
   }, [start, end]);

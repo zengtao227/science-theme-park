@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
 import { ACHIEVEMENTS, computeStats, formatStudyTime } from "@/lib/achievements";
 import { clsx } from "clsx";
 import { ArrowLeft, Zap, Target, Clock, TrendingUp, Award, BookOpen, Star } from "lucide-react";
@@ -153,9 +152,7 @@ function StatCard({ icon: Icon, label, value, color }: { icon: React.ComponentTy
 }
 
 export default function NexusHubPage() {
-    const { history, progress, achievements, currentLanguage } = useAppStore();
-    const { t } = useLanguage();
-    const lang = currentLanguage as "EN" | "CN" | "DE";
+    const { history, progress, achievements } = useAppStore();
 
     const stats = useMemo(() => computeStats(history, progress), [history, progress]);
 

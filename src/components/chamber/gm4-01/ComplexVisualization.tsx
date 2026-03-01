@@ -37,6 +37,7 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
     polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
     parallelogram_rule: "Parallelogram rule: from origin to z_1, then translate z_2 from z_1"
   };
+  void t;
   
   // Calculate bounds based on the complex numbers
   const bounds = useMemo(() => {
@@ -279,7 +280,6 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
           {(() => {
             const aOffset = getLabelOffset(quest.z1.re / 2, 0, 'side');
             const bOffset = getLabelOffset(quest.z1.re, quest.z1.im / 2, 'side');
-            const zOffset = getLabelOffset(quest.z1.re, quest.z1.im);
             
             return (
               <>

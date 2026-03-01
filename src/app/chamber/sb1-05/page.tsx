@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
+import { useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AnimalVisualization from "@/components/chamber/sb1-05/AnimalVisualization";
@@ -19,7 +18,6 @@ interface SB105Quest extends Quest {
 }
 
 export default function SB105AnimalClassification() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
     const sb1_05_t = useMemo(() => ({
