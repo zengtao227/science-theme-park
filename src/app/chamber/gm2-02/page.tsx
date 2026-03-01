@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
+import { useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/GeometryVisualization";
 import { GM202Quest, Stage } from "@/lib/gm2-02-types";

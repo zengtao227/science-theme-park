@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
@@ -19,7 +18,6 @@ interface SC305Quest extends Quest {
 }
 
 export default function SC305MolecularForge() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const sc3_05_t = {
         title: t("sc3_05.title"),
@@ -47,7 +45,7 @@ export default function SC305MolecularForge() {
             elite: "ELITE",
         },
     };
-    const [stability, setStability] = useState(98.5);
+    const [stability] = useState(98.5);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SC305Quest[] => {
         const quests: SC305Quest[] = [];
@@ -132,8 +130,6 @@ export default function SC305MolecularForge() {
         currentQuest,
         handleStageChange,
         handleDifficultyChange,
-        currentStageStats,
-        pool,
         verify,
         next,
         inputs,

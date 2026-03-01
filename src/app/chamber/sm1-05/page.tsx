@@ -155,7 +155,6 @@ export default function SM105Page() {
         const isBasic = difficulty === "BASIC";
         const isCore = difficulty === "CORE";
         const isAdv = difficulty === "ADVANCED";
-        const isElite = difficulty === "ELITE";
 
         const quests: S105Quest[] = [];
 
@@ -570,7 +569,6 @@ export default function SM105Page() {
         handleDifficultyChange,
         handleStageChange,
         getHint,
-        currentStageStats,
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,
