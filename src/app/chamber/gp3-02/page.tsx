@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectromagnetismVisualization from "@/components/chamber/gp3-02/ElectromagnetismVisualization";
@@ -23,7 +22,6 @@ interface GP302Quest extends Quest {
 }
 
 export default function GP302Electromagnetism() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const [fieldIntensity, setFieldIntensity] = useState(0);
 

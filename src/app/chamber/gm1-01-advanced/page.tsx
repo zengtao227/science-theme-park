@@ -1127,7 +1127,7 @@ function buildChallengePool(gm1_01_advanced_t: any, difficulty: Difficulty, chal
 }
 
 export default function G101AdvancedPage() {
-  const { completeStage, currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   
   const gm1_01_advanced_t = {

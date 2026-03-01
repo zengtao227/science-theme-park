@@ -27,7 +27,7 @@ import { Activity, Beaker, Zap, Info } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export default function SC106Page() {
-  const { completeStage, currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
   // Track completion state for each stage component

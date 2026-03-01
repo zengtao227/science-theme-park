@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import InductionVisualization from "@/components/chamber/gp3-03/InductionVisualization";
@@ -20,7 +19,6 @@ interface GP303Quest extends Quest {
 }
 
 export default function GP303Induction() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
     const gp3_03_t = useMemo(() => ({

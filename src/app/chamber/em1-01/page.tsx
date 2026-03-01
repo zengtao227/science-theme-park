@@ -140,7 +140,7 @@ function buildStagePool(
 }
 
 export default function EM101Page() {
-  const { t: getT, currentLanguage } = useLanguage();
+  const { t: getT } = useLanguage();
   const t = getT("em1_01");
   const { completeStage } = useAppStore();
 

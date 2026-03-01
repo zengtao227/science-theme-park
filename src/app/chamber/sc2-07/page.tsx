@@ -23,7 +23,6 @@ import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
 import { HessCycleView } from '@/components/sc2-07/HessCycleView';
-import { BondEnergyView } from '@/components/sc2-07/BondEnergyView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
 import { renderMixedText } from "@/lib/latex-utils";
 

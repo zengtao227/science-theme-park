@@ -210,11 +210,6 @@ export default function GB201Neurobiology() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const successRate = useMemo(() => {
-        if (!currentStageStats || pool.length === 0) return 0;
-        return (currentStageStats.correct / pool.length) * 100;
-    }, [currentStageStats, pool.length]);
-
     const activeScenario = useMemo(() => {
         if (currentQuest?.scenario && gb2_01.scenarios[currentQuest?.scenario as keyof typeof gb2_01.scenarios]) {
             return gb2_01.scenarios[currentQuest?.scenario as keyof typeof gb2_01.scenarios];

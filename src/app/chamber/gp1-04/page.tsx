@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
@@ -12,7 +11,6 @@ import { calculateTransmissionCoefficient } from "@/lib/physics";
 type Stage = "classical" | "tunneling" | "resonance";
 
 export default function P104Page() {
-  const { currentLanguage } = useAppStore();
   const { t } = useLanguage();
   
   const gp1_04_t = {

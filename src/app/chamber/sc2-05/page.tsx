@@ -23,8 +23,6 @@ type AcidBaseQuest = Quest & {
   reactionType?: string;
 };
 
-const round2 = (v: number) => Math.round(v * 100) / 100;
-
 export default function SC205Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();

@@ -154,7 +154,7 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
 }
 
 export default function GB101Page() {
-    const { currentLanguage, completeStage } = useAppStore();
+    const { completeStage } = useAppStore();
     const { t: getT } = useLanguage();
     const t = getT("gb1_01");
 

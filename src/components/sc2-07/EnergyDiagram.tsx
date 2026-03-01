@@ -50,8 +50,6 @@ export function EnergyDiagram({
     : normalizedReactantEnergy;
 
   // Color based on reaction type
-  const arrowColor = reactionType === 'exothermic' ? 'text-red-400' : 'text-blue-400';
-  const glowColor = reactionType === 'exothermic' ? 'shadow-red-500/50' : 'shadow-blue-500/50';
 
   return (
     <div className="w-full h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-6 relative">

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
@@ -11,7 +10,6 @@ import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
 type Stage = "acceleration" | "collision" | "detection";
 
 export default function P103Page() {
-  const { currentLanguage } = useAppStore();
   const { t } = useLanguage();
   
   const gp1_03_t = {

@@ -22,13 +22,11 @@ interface GB301Quest extends Quest {
     highlightIndex?: number;
 }
 
-const DNA_SEQUENCE = ["A", "T", "G", "C", "A", "T", "C", "G", "T", "A"];
-
 export default function GB301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
-    const [rotation, setRotation] = useState(0);
+    const [rotation] = useState(0);
     const [showBonds, setShowBonds] = useState(true);
     const [highlightPair, setHighlightPair] = useState<number | null>(null);
 

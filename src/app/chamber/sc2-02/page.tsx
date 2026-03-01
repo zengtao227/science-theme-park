@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
