@@ -82,8 +82,8 @@ export default function ThermodynamicsCanvas({
             // Update particles
             if (showParticles && stage === "SPECIFIC_HEAT") {
                 const newParticles = particles.map(p => {
-                    let newX = p.x + p.vx;
-                    let newY = p.y + p.vy;
+                    const newX = p.x + p.vx;
+                    const newY = p.y + p.vy;
                     let newVx = p.vx;
                     let newVy = p.vy;
 

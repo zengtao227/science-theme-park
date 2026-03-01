@@ -123,7 +123,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
         } else if (stage === "TERMS") {
             const vars = ['x', 'y', 'a', 'b', 'p'];
             const v1 = vars[Math.floor(Math.random() * vars.length)];
-            let v2 = vars[(vars.indexOf(v1) + 1) % vars.length];
+            const v2 = vars[(vars.indexOf(v1) + 1) % vars.length];
             const color1 = VAR_COLORS[v1 as keyof typeof VAR_COLORS];
             const color2 = VAR_COLORS[v2 as keyof typeof VAR_COLORS];
 
@@ -170,7 +170,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const k1 = Math.floor(Math.random() * 5) + 2;
                 const k2 = Math.floor(Math.random() * 4) + 1;
                 expr = `${c1}${v1}+${k1}-${c2}${v1}+${k2}`;
-                let finalC = c1 - c2;
+                const finalC = c1 - c2;
                 let cStr = finalC === 1 ? v1 : finalC === -1 ? `-${v1}` : `${finalC}${v1}`;
                 if (finalC === 0) cStr = "";
                 answerStr = `${cStr}${cStr ? '+' : ''}${k1 + k2}`;

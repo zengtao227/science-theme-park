@@ -44,7 +44,7 @@ const files = walkSync(path.join(__dirname, 'src'));
 let changedFiles = 0;
 
 for (const file of files) {
-    let content = fs.readFileSync(file, 'utf8');
+    const content = fs.readFileSync(file, 'utf8');
     let newContent = content;
 
     // We should be careful. Are there places where Unicode is expected?

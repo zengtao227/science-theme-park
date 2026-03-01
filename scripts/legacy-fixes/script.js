@@ -67,7 +67,7 @@ content = content.replace(oldInterface, newInterface);
 // 3. Replace all \`\\\\text{...}: \\\\; ...\` with plain text that mixes $math$.
 // Actually, the simplest is to fix the slots array first.
 content = content.replace(/slots: \[\],\n\s*steps: \[(.*?)\],/gs, (match, stepsContent) => {
-  let slotsContent = stepsContent.replace(/answer:\s*([^,}]+)/g, (m, ans) => {
+  const slotsContent = stepsContent.replace(/answer:\s*([^,}]+)/g, (m, ans) => {
     ans = ans.trim();
     if (ans === 'true' || ans === 'false') {
       return `expected: "${ans}", placeholder: "?"`;

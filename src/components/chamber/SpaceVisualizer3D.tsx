@@ -45,7 +45,7 @@ function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, 
   const normal = new THREE.Vector3(A, B, C).normalize();
   
   // Find a point on the plane
-  let point = new THREE.Vector3();
+  const point = new THREE.Vector3();
   if (Math.abs(C) > 0.01) {
     point.set(0, 0, -D / C);
   } else if (Math.abs(B) > 0.01) {

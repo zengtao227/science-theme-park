@@ -6,6 +6,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { BaselScenario, Language } from '@/lib/sb3-02/types';
 
 interface BaselScenarioPanelProps {
@@ -61,10 +62,12 @@ export function BaselScenarioPanel({ scenario, language }: BaselScenarioPanelPro
         <div className="mt-4 grid grid-cols-2 gap-3">
           {scenario.images.map((imageUrl, idx) => (
             <div key={idx} className="relative aspect-video rounded-lg overflow-hidden bg-gray-200">
-              <img
+              <Image
                 src={imageUrl}
                 alt={`${scenario.title[language]} - Image ${idx + 1}`}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover"
               />
             </div>
           ))}

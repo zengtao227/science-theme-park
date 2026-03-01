@@ -12,7 +12,7 @@ const EPSILON = 0.01; // Tolerance for limit calculations
 function evaluateFunction(expr: string, x: number): number | null {
   try {
     // Replace mathematical notation with JavaScript equivalents
-    let jsExpr = expr
+    const jsExpr = expr
       .replace(/\^/g, "**")
       .replace(/sqrt\(/g, "Math.sqrt(")
       .replace(/abs\(/g, "Math.abs(")

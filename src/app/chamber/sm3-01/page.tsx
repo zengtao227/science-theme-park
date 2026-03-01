@@ -46,8 +46,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
   const getSign = () => Math.random() > 0.5 ? 1 : -1;
   const fmt = (c: number, v: string, isFirst = false) => {
     if (c === 0) return "";
-    let signs = c > 0 ? (isFirst ? "" : "+") : "-";
-    let vals = Math.abs(c) === 1 && v ? "" : Math.abs(c).toString();
+    const signs = c > 0 ? (isFirst ? "" : "+") : "-";
+    const vals = Math.abs(c) === 1 && v ? "" : Math.abs(c).toString();
     return `${signs}${vals}${v}`;
   };
   const count = 30;

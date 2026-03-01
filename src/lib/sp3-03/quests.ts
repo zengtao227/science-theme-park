@@ -100,13 +100,13 @@ export function generateKineticQuests(t: any, difficulty: Difficulty): SP303Ques
             scen = "tram_braking";
             expected = round2(0.5 * m * v * v);
         } else if (difficulty === "ADVANCED") {
-            m = randomInt(5, 20); v = 0; let h = randomInt(10, 30);
+            m = randomInt(5, 20); v = 0; const h = randomInt(10, 30);
             scen = "velocity_at_bottom";
             // Combined energy: 0.5mv^2 = mgh => v = \\sqrt{2gh}
             expected = round2(Math.sqrt(2 * 9.8 * h));
         } else { // ELITE
             m = randomInt(50, 100); v = randomInt(20, 40);
-            let f = randomInt(10, 50); let d = randomInt(50, 150);
+            const f = randomInt(10, 50); const d = randomInt(50, 150);
             scen = "work_energy";
             // Ek + Wf = 0.5mv^2 + Fd
             expected = round2(0.5 * m * v * v + f * d);
@@ -147,11 +147,11 @@ export function generatePowerQuests(t: any, difficulty: Difficulty): SP303Quest[
             expected = round2((f * d) / time);
             scen = "basic_power";
         } else if (difficulty === "ADVANCED") {
-            let m = randomInt(5, 50); let h = randomInt(5, 20); time = randomInt(5, 10);
+            const m = randomInt(5, 50); const h = randomInt(5, 20); time = randomInt(5, 10);
             scen = "power_lifting";
             expected = round2((m * 9.8 * h) / time);
         } else { // ELITE
-            let m = randomInt(100, 500); let h = randomInt(20, 50); time = randomInt(10, 30);
+            const m = randomInt(100, 500); const h = randomInt(20, 50); time = randomInt(10, 30);
             scen = "rhine_power_station";
             expected = round2((m * 9.8 * h) / time);
         }

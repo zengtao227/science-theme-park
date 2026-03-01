@@ -100,7 +100,7 @@ export function solveLinearInequality(expression: string): {
     const steps: SolutionStep[] = [];
     let stepNumber = 1;
     
-    let currentCoeff = parsed.coefficient;
+    const currentCoeff = parsed.coefficient;
     let currentConst = parsed.constant;
     let currentRight = parsed.rightSide;
     let currentOp = parsed.operator;

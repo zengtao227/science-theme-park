@@ -83,7 +83,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
             
             // Try to extract slope and intercept
             // Form: y = mx + b
-            let slopeIntMatch = equation.match(/y=([+-]?\d*\.?\d*)x([+-]\d+\.?\d*)?/);
+            const slopeIntMatch = equation.match(/y=([+-]?\d*\.?\d*)x([+-]\d+\.?\d*)?/);
             if (slopeIntMatch) {
                 const slopeStr = slopeIntMatch[1];
                 const slope = slopeStr === '' || slopeStr === '+' ? 1 : 

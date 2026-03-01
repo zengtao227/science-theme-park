@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 
-let p1 = 'src/app/chamber/sm2-01/page.tsx';
-let c1 = fs.readFileSync(p1, 'utf-8');
+const p1 = 'src/app/chamber/sm2-01/page.tsx';
+const c1 = fs.readFileSync(p1, 'utf-8');
 
 // replace \\\\sqrt with \\sqrt
 c1 = c1.replace(/\\\\\\\\sqrt/g, '\\\\sqrt');

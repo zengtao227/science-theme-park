@@ -40,8 +40,8 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                 });
             } else if (difficulty === "CORE") {
                 const line = Math.random() > 0.5 ? "y = x" : "y = -x";
-                let aX = line === "y = x" ? y : -y;
-                let aY = line === "y = x" ? x : -x;
+                const aX = line === "y = x" ? y : -y;
+                const aY = line === "y = x" ? x : -x;
                 pool.push({
                     id: `sm2_13_ref_cor_${i}`,
                     difficulty: "CORE",
@@ -58,8 +58,8 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
             } else if (difficulty === "ADVANCED") {
                 const offset = Math.floor(Math.random() * 6) - 3;
                 const lineAxis = axis; // reuse axis var
-                let aX = lineAxis === "x" ? 2 * offset - x : x;
-                let aY = lineAxis === "y" ? 2 * offset - y : y;
+                const aX = lineAxis === "x" ? 2 * offset - x : x;
+                const aY = lineAxis === "y" ? 2 * offset - y : y;
                 pool.push({
                     id: `sm2_13_ref_adv_${i}`,
                     difficulty: "ADVANCED",
@@ -182,7 +182,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     correctLatex: `P'(${ax}, ${ay})`
                 });
             } else if (difficulty === "CORE") {
-                let ax = x - cx; let ay = y - cx; // using cx for both center x and y to simplify
+                const ax = x - cx; const ay = y - cx; // using cx for both center x and y to simplify
                 let rx = ax, ry = ay;
                 if (angle === 90) { rx = cw ? ay : -ay; ry = cw ? -ax : ax; }
                 else if (angle === 180) { rx = -ax; ry = -ay; }

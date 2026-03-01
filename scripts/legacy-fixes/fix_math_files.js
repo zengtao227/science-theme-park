@@ -97,7 +97,7 @@ i18nPaths.forEach(p => {
 });
 
 // Let's fix S201 page again for the target format rendering which might be broken
-let page201File = '/Users/zengtao/Doc/My code/science-theme-park/src/app/chamber/sm2-01/page.tsx';
+const page201File = '/Users/zengtao/Doc/My code/science-theme-park/src/app/chamber/sm2-01/page.tsx';
 let page201 = fs.readFileSync(page201File, 'utf-8');
 
 // The elite tips target formatting (user complained: 目标格式： (4xy−9)2 )
