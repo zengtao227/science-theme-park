@@ -7,7 +7,7 @@ import { buildOlympiadPool, OlympiadQuest } from "@/lib/ext/olympiad-data";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, HelpCircle, BrainCircuit, Sparkles } from "lucide-react";
+import { HelpCircle, BrainCircuit, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { renderMixedText } from "@/lib/latex-utils";
 

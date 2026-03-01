@@ -7,7 +7,6 @@ import { useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { GB202Quest, Stage } from "@/lib/gb2-02-types";
 import { buildStagePool } from "@/lib/gb2-02-quest-builder";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
 

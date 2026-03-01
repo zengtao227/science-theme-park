@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useQuestManager } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";

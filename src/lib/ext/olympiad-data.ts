@@ -5,6 +5,7 @@ export interface OlympiadQuest extends Quest {
 }
 
 export const buildOlympiadPool = (difficulty: Difficulty, stage: string): OlympiadQuest[] => {
+    void stage;
     const pool: OlympiadQuest[] = [];
 
     // =====================================================================

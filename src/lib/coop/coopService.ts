@@ -70,7 +70,7 @@ class CoopService {
                 },
             });
 
-            this.peer.on('open', (id: string) => {
+            this.peer.on('open', () => {
                 resolve(roomCode);
             });
 
