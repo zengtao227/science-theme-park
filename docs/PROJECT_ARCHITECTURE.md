@@ -307,7 +307,8 @@ science-theme-park/
 ├── MODULE_COMPLETION_REPORT.md ......... 模块完成度报告
 ├── CONTENT_QUALITY_REPORT.md ........... 内容质量报告
 ├── FINAL_SUMMARY_REPORT.md ............. 总结报告
-├── PROJECT_ARCHITECTURE.md ............. 本文档
+├── docs/PROJECT_ARCHITECTURE.md ........ 本文档
+├── docs/WORK_PLAN_2026.md .............. 年度工作计划
 │
 ├── package.json ........................ 依赖管理
 ├── next.config.ts ...................... Next.js 配置

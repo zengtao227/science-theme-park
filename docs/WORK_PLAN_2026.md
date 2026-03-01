@@ -1,8 +1,51 @@
 # Science Theme Park - 2026 Master Work Plan
 
-**Current Status**: Phase 5 Ecosystem / Phase 6 Curriculum Audit
-**Last Updated**: 2026-02-21
-**Plan Version**: 3.0 (Full Curriculum Audit)
+**Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
+**Last Updated**: 2026-03-01 (SP1.01 Completed)
+**Plan Version**: 3.4 (SP1.01 Delivered)
+
+---
+
+## 🚨 Phase 7: Scenario Compliance Remediation (2026-03-01)
+
+### 7.0 Objective
+- Enforce `docs/SCENARIO_GENERATION_REQUIREMENTS.md` as a hard standard for all Math/Physics/Chemistry/Biology scenario content.
+- Complete remediation in three tracks:
+  1. Fill empty `scenario_desc` baseline.
+  2. Rewrite bare-formula prompts into scenario-based prompts with four mandatory elements.
+  3. Eliminate hardcoded prompt text and ensure i18n-based prompt pipeline.
+
+### 7.1 Immediate Sprint (SP1.01 Baseline)
+- [x] Fill `SP1.01` empty `scenario_desc` in EN/CN/DE.
+  Result: EN/CN/DE now all `65/65` non-empty.
+- [x] Keep existing four non-empty anchors (`SP1.01.035`, `SP1.01.038`, `SP1.01.051`, `SP1.01.056`) consistent in DE.
+- [x] Verify UI rendering path remains stable (`sp1-01-adapter.ts` -> `sp1-01/page.tsx` context block).
+  Result: `npm run validate:translations` passed after merge.
+
+### 7.2 Remediation Method (Batch by Violation Type)
+- [ ] **Batch A**: Empty scenario text completion (all modules).
+- [ ] **Batch B**: Bare formula / parameter-only prompt rewrite (e.g. `x+3=7`, `a=35,b=120` style).
+- [ ] **Batch C**: Hardcoded prompt extraction into i18n keys and tri-language sync.
+- [ ] Produce per-batch audit snapshot under `temp/` before merge.
+
+### 7.3 Priority Queue (First 10 high-risk modules)
+- [ ] `sm2-08`
+- [ ] `sm1-04`
+- [ ] `sc2-05`
+- [ ] `em1-01`
+- [ ] `gp2-02`
+- [ ] `gb1-01`
+- [ ] `sm3-05`
+- [ ] `gp2-01`
+- [ ] `sc3-01`
+- [ ] `sp3-01`
+
+### 7.4 Quality Gates (must pass before merge)
+- [ ] `npm run lint`
+- [ ] `npm run build`
+- [ ] `npm run validate:translations`
+- [ ] `bash scripts/audit-rendering.sh`
+- [ ] Scenario 4-element compliance check completed for touched content.
 
 ---
 
@@ -304,7 +347,7 @@ Modules are classified by their quest density:
 - [x] **6.2.2: Gymnasium Math Sprint** — Refactored GM1.01, GM1.02, GM2.01, GM3.01, GM4.01 to generative pools (1200+ dynamic quests)
 - [x] **6.2.3: Physics Sprint** — Refactored SP1.02, SP3.02, SP3.03, SP3.08 to generative pools (960+ dynamic quests)
 - [x] **6.2.4: Chemistry Sprint** — Refactored SC1.01, SC1.02, SC2.03, SC2.04, and GC modules to generative pools (540+ dynamic quests)
-- [x] **Phase 7: Universal LaTeX Stabilization (URGENT)** ✅ 2026-02-20
+- [x] **Legacy Phase 7: Universal LaTeX Stabilization (URGENT)** ✅ 2026-02-20
   - [x] Automated fix of 1003+ bare `^2/^3/^4` → `^{2}/^{3}/^{4}` across 114 files (all chamber pages, lib quests, i18n, components)
   - [x] Fixed under-escaped `\\text` in unit fields, bare `sqrt()` → `\\sqrt{}`
   - [x] Removed hardcoded English shape names (`Cylinder`, `Cube`, `Prism`) from `expressionLatex`
@@ -431,6 +474,8 @@ Modules are classified by their quest density:
     - [ ] 6.0.3: LaTeX Formula Standardization Sprint
 
 ### March 2026
+- [x] Week 1: Phase 7.1 SP1.01 baseline completion (scenario_desc EN/CN/DE)
+- [ ] Week 1-2: Phase 7.2 Batch A start on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`)
 - [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
 
 ### April 2026
@@ -444,6 +489,16 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v3.4 (2026-03-01)
+- **SP1.01 Delivered**: Completed scenario baseline for EN/CN/DE with zero empty `scenario_desc`.
+- **Source Merge Completed**: Applied CN/DE SP1.01 scenario content to `src/lib/i18n/cn/physics.ts` and `src/lib/i18n/de/physics.ts`.
+- **Validation Completed**: `npm run validate:translations` passed on merged source.
+
+### v3.3 (2026-03-01)
+- **Scenario Compliance Sprint Added**: Introduced Phase 7 as the highest-priority execution track.
+- **SP1.01 Baseline Defined**: Locked initial remediation target on `scenario_desc` completion (EN/CN/DE).
+- **Batch Strategy Formalized**: Shifted remediation order from module-by-module to violation-type batches (empty scenario -> bare formula -> i18n hardcoding).
 
 ### v3.2 (2026-02-21)
 - **Quality Sprint Initiation**: Defined Phase 6.0 for systematic i18n and LaTeX formula rectification.
@@ -484,5 +539,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 3.0 (Full Curriculum Audit)
-**Next Review**: 2026-03-01
+**Plan Version**: 3.4 (SP1.01 Delivered)
+**Next Review**: 2026-03-05

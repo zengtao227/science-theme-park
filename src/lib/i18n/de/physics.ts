@@ -48,8 +48,8 @@ export const dePhysics = {
                                 { "id": "C", "text": "Eine Art von Geschwindigkeit" },
                                 { "id": "D", "text": "Ein Maß für die Masse" }
                         ],
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Novartis-Campus Basel — Grundlagen",
+                        "scenario_desc": "Auf dem Novartis-Campus im Basler St.-Johann-Quartier arbeiten über 10 000 Menschen. Robotische Greifarme schieben Probenträger auf Schienen, Spritzenstempel ziehen Flüssigkeiten in Kammern — beides direkte Beispiele für Kräfte als Stoß oder Zug. Ohne eine klare Definition von Kraft können Ingenieure keine automatisierten Systeme kalibrieren. Ermittle die korrekte Definition, um die Grundlage aller mechanischen Berechnungen zu legen.",
                         "unit": ""
                 },
                 "SP1.01.002": {
@@ -58,8 +58,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Das Newton (N) ist die SI-Einheit der Kraft.",
                                 "incorrect": "Die SI-Einheit der Kraft ist das Newton (N)."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Kalibrierlabor — SI-Einheit",
+                        "scenario_desc": "Basler Pharma- und Chemiebetriebe lassen Kraftsensoren jährlich in akkreditierten Kalibrierlabors prüfen. Das Newton (N) ist definiert als die Kraft, die 1 kg mit 1 m/s² beschleunigt. Alle Messgeräte verwenden dieselbe Einheit, damit fehlerhafte Umrechnungen ausgeschlossen sind. Benenne die SI-Einheit korrekt, um Kommunikationsfehler bei der Gerätespezifikation zu vermeiden.",
                         "unit": "N"
                 },
                 "SP1.01.003": {
@@ -68,8 +68,8 @@ export const dePhysics = {
                                 "correct": "Ausgezeichnet! 5000 N = 5 kN",
                                 "incorrect": "Denken Sie daran: 1 kN = 1000 N"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rheinhafen — Krankapazität",
+                        "scenario_desc": "Der Rheinhafen Basel ist der einzige Schweizer Binnenhafen am Rhein. Krannennzeichenschilder geben Traglasten in kN an, nicht in N, damit die Zahlen leicht lesbar bleiben. Ein Container mit 5000 N Gewichtskraft entspricht 5 kN — der direkt auf dem Schild stehenden Nennlast. Wandle 5000 N in kN um, um die Kranauslastung korrekt zu beurteilen.",
                         "unit": "kN"
                 },
                 "SP1.01.004": {
@@ -78,8 +78,8 @@ export const dePhysics = {
                                 "correct": "Perfekt! 2.5 MN = 2.500.000 N",
                                 "incorrect": "Denken Sie daran: 1 MN = 1.000.000 N"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Roche Tower Basel — Pfahlgründung",
+                        "scenario_desc": "Der Roche Tower (205 m) ist das höchste Gebäude der Schweiz. Strukturingenieure planen die Pfahllasten in MN, müssen sie aber in N umrechnen, wenn sie die Materialspannung mit σ = F/A (Einheit N/mm²) berechnen. Ein Pfahl trägt 2,5 MN = 2 500 000 N. Stelle die Umrechnung richtig an, damit die Materialbemessung keine gefährliche Abweichung enthält.",
                         "unit": "N"
                 },
                 "SP1.01.005": {
@@ -94,8 +94,8 @@ export const dePhysics = {
                                 { "id": "C", "text": "Zeit, Entfernung und Verschiebung" },
                                 { "id": "D", "text": "Energie, Arbeit und Leistung" }
                         ],
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Spalentor Basel — Bogensanierung",
+                        "scenario_desc": "Das Spalentor (ca. 1400) ist Basels besterhaltenes mittelalterliches Stadttor. Bei der Sanierung mussten Ingenieure für jeden Steinblock drei Kraftelemente bestimmen: Betrag (Gewicht), Richtung (Schubrichtung) und Angriffspunkt (Kontaktfläche). Fehlt eines der drei Elemente, kann der Kraftfluss im Bogen nicht korrekt berechnet werden. Benenne alle drei Elemente, um das Sanierungskonzept fundiert zu begründen.",
                         "unit": ""
                 },
                 "SP1.01.006": {
@@ -104,8 +104,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Der Betrag ist 50 N.",
                                 "incorrect": "Der Betrag ist der numerische Wert: 50 N."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Universität Basel — Physikpraktikum",
+                        "scenario_desc": "Im Mechanikpraktikum der Universität Basel (gegründet 1460) ziehen Erstsemester-Studierende Federwaagen über Tischoberflächen. Zeigt die Waage 50 N an, ist der Betrag dieser Zahl der Kraftbetrag — unabhängig von Richtung und Angriffspunkt. Den Betrag isoliert ablesen zu können ist Voraussetzung für alle weiteren Vektoradditionsübungen. Lies den Betrag korrekt ab.",
                         "unit": "N"
                 },
                 "SP1.01.007": {
@@ -114,8 +114,8 @@ export const dePhysics = {
                                 "correct": "Großartig! 750 kN = 0.75 MN",
                                 "incorrect": "Denken Sie daran: 1000 kN = 1 MN"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "EuroAirport Basel — Belagsplanung",
+                        "scenario_desc": "Der EuroAirport Basel-Mulhouse-Freiburg bedient über 8 Millionen Passagiere jährlich. Die Landelasten eines Großraumflugzeugs betragen bis zu 750 kN pro Hauptfahrwerk. Die Tragfähigkeitskategorien des Belags stehen in MN in Fachnormen. Wandle 750 kN in 0,75 MN um, damit der Vergleich mit dem Normwert direkt möglich ist und keine falsche Belagsdicke gewählt wird.",
                         "unit": "MN"
                 },
                 "SP1.01.008": {
@@ -124,8 +124,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die Normalkraft entspricht dem Gewicht: 20 N.",
                                 "incorrect": "Der Tisch drückt mit der gleichen Kraft nach oben wie das Gewicht des Buches."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Papiermühle — Archivlagerung",
+                        "scenario_desc": "Die Basler Papiermühle am St.-Alban-Kanal verwahrt historische Handschriften in klimatisierten Regalen. Die Normalkraft des Regals auf jedes Buch muss exakt dem Buchgewicht entsprechen: 20 N nach oben für ein 20-N-Buch. Kippt das Regal, verschiebt sich der Angriffspunkt der Normalkraft und gefährdet empfindliche Einbände. Berechne die Normalkraft korrekt, um die Regallagerung sicher zu planen.",
                         "unit": "N"
                 },
                 "SP1.01.009": {
@@ -134,8 +134,8 @@ export const dePhysics = {
                                 "correct": "Ausgezeichnet! 0.025 MN = 25 kN",
                                 "incorrect": "Denken Sie daran: 1 MN = 1000 kN"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Fasnacht Basel — Zurrgurtauswahl",
+                        "scenario_desc": "Basels Fasnacht-Umzugswagen werden mit Zurrgurten auf Tiefladerfahrzeugen gesichert. Industrielle Zurrgurte tragen Kennzeichnungen in kN; die seitliche Windlast großer Wagen beträgt rund 0,025 MN. Rechne 0,025 MN in 25 kN um, um die Gurtklasse direkt mit der Lastnorm zu vergleichen und eine falsche Gurtauswahl zu verhindern.",
                         "unit": "kN"
                 },
                 "SP1.01.010": {
@@ -144,8 +144,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die Kraft ist nach rechts gerichtet.",
                                 "incorrect": "Die Richtung ist nach rechts (0 Grad von der Horizontalen)."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinhafen Basel — Containersteuerung",
+                        "scenario_desc": "Automatisierte Transportfahrzeuge (AGV) im Basler Containerhafen verschieben 20-Fuß-Container mit millimetergenauer Richtungsvorgabe. Der Steuerrechner wandelt „nach rechts“ in 0° um — die Basisrichtung im Vektorsystem. Jede Richtungsabweichung lässt den Container am Zielstellplatz vorbeischießen. Benenne die Richtung korrekt: der erste Schritt jeder Trajektorienberechnung.",
                         "unit": ""
                 },
                 "SP1.01.011": {
@@ -154,8 +154,8 @@ export const dePhysics = {
                                 "correct": "Perfekt! 3500 N = 3.5 kN",
                                 "incorrect": "Teilen Sie durch 1000, um N in kN umzuwandeln."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Dreirosenbrücke Basel — Fußgängerlast",
+                        "scenario_desc": "Die Dreirosenbrücke über den Rhein wird täglich von Tausenden Fußgängern und Radfahrern genutzt. Schweizer Norm SIA 261 verlangt Einzellasten in kN in der Statik-Software. Ein beladenes Lastenfahrrad erzeugt 3500 N — als 3,5 kN einzugeben. Ein Fehler (3500 statt 3,5) überschätzt die Schnittgröße um den Faktor 1000 und macht die Sicherheitsbeurteilung wertlos.",
                         "unit": "kN"
                 },
                 "SP1.01.012": {
@@ -164,8 +164,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Vertikal nach oben ist 90 Grad von der Horizontalen.",
                                 "incorrect": "Vertikal nach oben ist senkrecht zur Horizontalen: 90 Grad."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Roche Tower — Aufzugsseil",
+                        "scenario_desc": "Die Hochgeschwindigkeitsaufzüge im Roche Tower bewegen sich mit 4 m/s. Das Tragseil wirkt exakt vertikal nach oben (90° zur Horizontalen) und kompensiert die Gewichtskraft der Kabine. Jede Abweichung von 90° erzeugt eine horizontale Seitenkraft auf die Führungsschiene und erhöht den Verschleiß. Bestätige den Winkel von 90°, damit die Ausrichtung des Aufzugsschachts mit digitalem Lotmaß überprüft werden kann.",
                         "unit": "degrees"
                 },
                 "SP1.01.013": {
@@ -174,8 +174,8 @@ export const dePhysics = {
                                 "correct": "Großartig! 1.2 MN = 1.200.000 N",
                                 "incorrect": "Multiplizieren Sie mit 1.000.000, um MN in N umzuwandeln."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Messe Basel — Kabelnetzdach",
+                        "scenario_desc": "Das Kabelnetzdach der Messe Basel Halle 1 trägt eine Hauptseilspannung von 1,2 MN. Für die Berechnung der Drahtseilspannung σ = F/A (A in mm²) muss F in N vorliegen: 1,2 MN = 1 200 000 N. Wird MN direkt eingesetzt, ergibt sich eine um den Faktor eine Million zu kleine Spannung — das Seil würde falsch dimensioniert.",
                         "unit": "N"
                 },
                 "SP1.01.014": {
@@ -184,8 +184,8 @@ export const dePhysics = {
                                 "correct": "Richtig! 200 N + 150 N = 350 N",
                                 "incorrect": "Addieren Sie die Kräfte, wenn sie in die gleiche Richtung wirken."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Fasnacht Basel — Feststeckender Wagen",
+                        "scenario_desc": "Steckt ein Fasnachtswagen auf dem Kopfsteinpflaster der Basler Innenstadt fest, schieben Helfer gemeinsam an. Person A drückt mit 200 N und Person B mit 150 N — gleiche Richtung, direkte Addition: 350 N gesamt. Der Umzugsleiter schätzt damit, wie viele Helfer nötig sind, um den Wagen bekannter Masse wieder in Bewegung zu setzen. Berechne die Gesamtkraft.",
                         "unit": "N"
                 },
                 "SP1.01.015": {
@@ -194,8 +194,8 @@ export const dePhysics = {
                                 "correct": "Ausgezeichnet! 450 kN = 0.45 MN",
                                 "incorrect": "Teilen Sie durch 1000, um kN in MN umzuwandeln."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "St.-Alban-Mühle Basel — Fundamentprüfung",
+                        "scenario_desc": "Im St.-Alban-Quartier stehen historische Mühlengebäude aus dem Mittelalter. Bei einer Sanierung beträgt die Gesamtlast auf dem Fundamentsockel 450 kN; die Tragfähigkeitstabellen im Baugrundgutachten verwenden MN/m². Rechne 450 kN in 0,45 MN um und dividiere durch die Fundamentfläche, um den Bodendruck mit dem Normwert zu vergleichen.",
                         "unit": "MN"
                 },
                 "SP1.01.016": {
@@ -204,8 +204,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = F × cos(30°) = 80 × 0.866 = 69.28 N",
                                 "incorrect": "Verwenden Sie F_x = F × cos(θ), um die horizontale Komponente zu finden."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Zoo — Seilbrücke Klammeraffen",
+                        "scenario_desc": "Die Seilbrücke im Klammeraffengehege des Basler Zoos spannt 40 m. Ein Schrägkabel übt 80 N unter 30° über der Horizontalen auf den Ankermast aus. Die horizontale Komponente 80 × cos 30° = 69,28 N bestimmt die Seitenkraft auf den Fundamentbolzen. Wird die Komponente falsch berechnet, ist der Bolzen falsch dimensioniert und kann im Lauf der Zeit ermüden.",
                         "unit": "N"
                 },
                 "SP1.01.017": {
@@ -214,8 +214,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_y = F × sin(30°) = 80 × 0.5 = 40 N",
                                 "incorrect": "Verwenden Sie F_y = F × sin(θ), um die vertikale Komponente zu finden."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Zoo — Seilbrücke Ankermast",
+                        "scenario_desc": "Dasselbe Schrägkabel (80 N, 30°) hebt gleichzeitig den Ankermast mit 40 N nach oben. Diese vertikale Komponente vermindert das Eigengewicht, das auf das Fundament drückt. Übersteigt sie das Mastselbstgewicht, muss ein Gegengewicht ergänzt werden. Berechne die vertikale Komponente, um zu entscheiden, ob ein Gegengewicht erforderlich ist.",
                         "unit": "N"
                 },
                 "SP1.01.018": {
@@ -224,8 +224,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(60^{2} + 80^{2}) = √10000 = 100 N",
                                 "incorrect": "Verwenden Sie den Satz des Pythagoras: F = √(F_x^{2} + F_y^{2})"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rheinfähre — Wasserkraft",
+                        "scenario_desc": "Basels vier motorlose Fähren nutzen die Strömung: Der Rhein drückt quer zur Fahrt mit 60 N/m und längs mit 80 N/m auf den Rumpf. Daraus ergibt sich via Pythagoras eine Gesamtkraft von 100 N/m — die Spannung im Stahlanker. Das 3-4-5-Dreieck erlaubt eine schnelle Kopfrechnung, die teure Seilüberdimensionierung vermeidet.",
                         "unit": "N"
                 },
                 "SP1.01.019": {
@@ -234,8 +234,8 @@ export const dePhysics = {
                                 "correct": "Richtig! θ = arctan(80/60) = arctan(1.333) = 53.13°",
                                 "incorrect": "Verwenden Sie θ = arctan(F_y/F_x), um den Winkel zu finden."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rheinfähre — Rumpfwinkel",
+                        "scenario_desc": "Die Richtung der Gesamtwasserkraft (53,13° zur Ufergeraden) zeigt dem Fährmann, wie er den Rumpf gegen die Strömung stellen muss, um auf einer Geraden zu überqueren. Falsche Winkelberechnung führt zu Kursabweichungen von mehreren Metern — die Fähre landet am falschen Steg. Berechne den Winkel mit arctan(80/60).",
                         "unit": "degrees"
                 },
                 "SP1.01.020": {
@@ -244,8 +244,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 50 × cos(45°) = 50 × 0.707 = 35.36 N",
                                 "incorrect": "Bei 45° ist cos(45°) = sin(45°) = 0.707"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Velonetz — Laderampe 45°",
+                        "scenario_desc": "An Lastenrad-Servicestationen im Basler Velonetz sind 45°-Rampen Standard. Schiebt man ein Fahrrad mit 50 N entlang der Rampe, treibt die horizontale Komponente 35,36 N das Rad vorwärts. Bei 45° sind horizontale und vertikale Komponente gleich groß — der Grund, warum 45°-Rampen Effizienz und Antirutsch-Reibung optimal ausbalancieren. Berechne F_x.",
                         "unit": "N"
                 },
                 "SP1.01.021": {
@@ -254,8 +254,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_y = 50 × sin(45°) = 50 × 0.707 = 35.36 N",
                                 "incorrect": "Bei 45° sind die horizontale und vertikale Komponente gleich."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Velonetz — Normalkraft Rampe",
+                        "scenario_desc": "Die vertikale Komponente derselben Schrägkraft (50 N, 45°) presst das Lastenrad mit 35,36 N auf die Rampe und erzeugt die Reibungskraft, die seitliches Verrutschen verhindert. Die Gleichheit beider Komponenten bei 45° ist kein Zufall — sie macht diesen Winkel zur praktischen Standardneigung. Berechne F_y und bestätige die Symmetrie.",
                         "unit": "N"
                 },
                 "SP1.01.022": {
@@ -264,8 +264,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_y = 100 × sin(60°) = 100 × 0.866 = 86.60 N",
                                 "incorrect": "Denken Sie daran: sin(60°) = 0.866"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Bruderholz Basel — Seilhilfe Radweg",
+                        "scenario_desc": "Am steilen Bruderholz-Anstieg ist ein kabelgestützter Radweg geplant. Das Seil zieht unter 60° mit 100 N/m; die vertikale Komponente 86,60 N/m überwiegt die horizontale (50 N/m), weil das Hauptproblem der Steigung die Schwerkraft ist. Die vertikale Komponente bestimmt die Antriebsleistung der Seilwinde. Berechne F_y = 100 × sin 60°.",
                         "unit": "N"
                 },
                 "SP1.01.023": {
@@ -274,8 +274,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 100 × cos(60°) = 100 × 0.5 = 50 N",
                                 "incorrect": "Denken Sie daran: cos(60°) = 0.5"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Bruderholz Basel — Seilanker Horizontallast",
+                        "scenario_desc": "Obwohl die vertikale Komponente am Bruderholz dominiert, übt die horizontale Komponente 50 N/m einen Zug auf die hangparallelen Anker aus. cos(60°) = 0,5 bedeutet: die Horizontalkraft ist genau halb so groß wie die Seikraft — ein nützlicher Schnellcheck. Wird die Horizontalkraft ignoriert und nur senkrecht bemessen, können die Anker seitlich ausbrechen. Berechne F_x.",
                         "unit": "N"
                 },
                 "SP1.01.024": {
@@ -284,8 +284,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(30^{2} + 40^{2}) = 50 N",
                                 "incorrect": "Verwenden Sie den Satz des Pythagoras für senkrechte Kräfte."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Wettsteinbrücke Basel — Wartungskorb",
+                        "scenario_desc": "Ein Wartungskorb unter der Wettsteinbrücke wird von einem horizontalen Positionierseil (30 N) und einem vertikalen Tragseil (40 N) gehalten. Die resultierende Kraft beträgt nicht 70 N, sondern √(30² + 40²) = 50 N (3-4-5-Dreieck). Mit dem richtigen Resultatwert kann das Seil leichter ausgelegt werden — die Besatzung steigt sicherer auf.",
                         "unit": "N"
                 },
                 "SP1.01.042": {
@@ -294,8 +294,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(50^{2} + 50^{2}) = 70.71 N",
                                 "incorrect": "Für gleiche senkrechte Kräfte gilt F = F_1√2"
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Johanniterbrücke — Belastungsprobe",
+                        "scenario_desc": "Beim Belastungstest der Johanniterbrücke drücken zwei Hydraulikzylinder je 50 N/m, horizontal und vertikal, gleichzeitig auf den Brückenquerschnitt. Resultierende = 50√2 ≈ 70,71 N/m. Dieser Wert dient als Alarmschwelle am Dehnmessstreifen. Wäre der Schwellenwert auf 100 N/m (Summe) gesetzt, könnten echte Schwachstellen unerkannt bleiben.",
                         "unit": "N"
                 },
                 "SP1.01.043": {
@@ -304,8 +304,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(20^{2} + 15^{2}) = 25 N",
                                 "incorrect": "Dies ist ein 3-4-5-Dreieck, das um 5 skaliert ist."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Dreiländereck Basel — GPS-Verschiebung",
+                        "scenario_desc": "Am Dreiländereck, wo Schweiz, Deutschland und Frankreich zusammentreffen, misst das GPS-Netz eine jährliche Ostverschiebung von 20 mm und Nordverschiebung von 15 mm. Resultierende: 25 mm/Jahr (3-4-5-Dreieck × 5). Dieser Wert aktualisiert jährlich die Koordinatendaten aller drei Länder. Ein falscher Wert (35 mm statt 25 mm) würde Grenztoleranzen systematisch überschätzen.",
                         "unit": "N"
                 },
                 "SP1.01.044": {
@@ -314,8 +314,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Kräfte in die gleiche Richtung addieren sich: 80 + 120 = 200 N",
                                 "incorrect": "Wenn Kräfte in die gleiche Richtung wirken, addieren Sie sie einfach."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basel SBB — Doppeltraktion Güterzug",
+                        "scenario_desc": "Im Güterrangierknoten Basel SBB ziehen zwei Loks tandem: Vorlok 80 kN, Nachlok 120 kN, gleiche Richtung — Gesamtzugkraft 200 kN. Damit prüfen Disponenten, ob der Zugverband die Streckensteigung im Signalabstand schafft oder eine dritte Lok nötig ist. Richtiger Additionswert = richtige Betriebsentscheidung.",
                         "unit": "N"
                 },
                 "SP1.01.045": {
@@ -324,8 +324,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Kräfte in entgegengesetzte Richtungen subtrahieren sich: 150 - 90 = 60 N",
                                 "incorrect": "Wenn Kräfte einander entgegenwirken, subtrahieren Sie die kleinere von der größeren."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rheinfähre — Gegenkraft Passagier",
+                        "scenario_desc": "Die Fähre erhält 150 N Strömungsquerkraft (rechts). Ein Passagier lehnt am Backbordgeländer und drückt mit 90 N dagegen (links). Nettokraft = 60 N: Der Fährmann spürt den Kursversatz und muss den Ruderwinkel anpassen. Dieses einfache Subtraktionsprinzip erklärt, warum Passagierbewegungen die Navigation ohne Motorhilfe merklich beeinflussen.",
                         "unit": "N"
                 },
                 "SP1.01.026": {
@@ -334,8 +334,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(60^{2} + 80^{2}) = 100 N",
                                 "incorrect": "Verwenden Sie den Satz des Pythagoras für senkrechte Kräfte."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinhafen Basel — Schlepperanlegen",
+                        "scenario_desc": "Beim Anlegen eines Kahns drückt ein Schlepper längs mit 60 kN und seitlich mit 80 kN gleichzeitig. Die Mooingleinen müssen die Resultierende 100 kN aushalten — nicht die Summe 140 kN. Das 3-4-5-Dreieck (×20) erlaubt Kopfrechnung und verhindert überdimensionierte, schwer handhabbare Trossen.",
                         "unit": "N"
                 },
                 "SP1.01.027": {
@@ -344,8 +344,8 @@ export const dePhysics = {
                                 "correct": "Richtig! θ = arctan(100/100) = 45°",
                                 "incorrect": "Verwenden Sie θ = arctan(F_y/F_x), um den Winkel zu finden."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Münster — Wetterfahne Kalibrierung",
+                        "scenario_desc": "Die Wetterfahne auf dem Basler Münsterturm zeigt bei gleich starkem Ost- und Nordwind auf Nordost — genau 45°. arctan(100/100) = 45° lässt sich im Kopf lösen: ein idealer Referenzfall, um das Vektorgefühl zu kalibrieren. Klimastudenten nutzen diesen Extremfall zur Überprüfung ihrer Berechnungen vor der nächsten Windmessstation.",
                         "unit": "degrees"
                 },
                 "SP1.01.028": {
@@ -354,8 +354,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Netto horizontal: 20-10=10 N, vertikal: 30 N. F = √(10^{2} + 30^{2}) = 31.62 N",
                                 "incorrect": "Finden Sie zuerst die Nettokraft in jede Richtung, dann verwenden Sie den Satz des Pythagoras."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Velonetz — Poller Mehrfachlast",
+                        "scenario_desc": "Ein Kreuzungspoller im Basler Velonetz wird gleichzeitig aus drei Richtungen belastet: 20 N ost, 30 N nord, 10 N west. Netto-Ost = 10 N, Nord = 30 N → Resultierende 31,62 N. Würde man alle Einzelkräfte addieren (60 N), wäre der Fundamentbolzen um fast das Doppelte überdimensioniert — teurer und platzsparender unnötig groß.",
                         "unit": "N"
                 },
                 "SP1.01.029": {
@@ -364,8 +364,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Für gleiche Kräfte bei 60°: F = 2F_1cos(30°) = 2(50)(0.866) = 86.60 N",
                                 "incorrect": "Verwenden Sie das Parallelogrammgesetz oder zerlegen Sie in Komponenten."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Fondation Beyeler — Skulpturenrigging",
+                        "scenario_desc": "Bei der Fondation Beyeler in Riehen werden schwere Skulpturen mit zwei gleich langen Gurten im 60°-Winkel angehoben. Zwei Gurtkräfte à 50 N ergeben 86,60 N Hubkraft — deutlich weniger als 100 N. Dadurch können leichtere Anschlagmittel gewählt werden, die das Museumsgelände schonen. Berechne die Resultierende mit F = 2 × 50 × cos 30°.",
                         "unit": "N"
                 },
                 "SP1.01.030": {
@@ -374,8 +374,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 40cos(30°) + 60 = 34.64 + 60 = 94.64 N",
                                 "incorrect": "Addieren Sie die horizontalen Komponenten beider Kräfte."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Tram — Fahrdrahthalter Kurve",
+                        "scenario_desc": "Am Aeschenplatz wirken auf eine Fahrdrahtklemme zwei Kräfte: Kettenwerk 40 N (30°) und horizontale Abspannleine 60 N. Die horizontale Gesamt-Klemmkraft beträgt 40 cos 30° + 60 = 94,64 N — maßgebend für den Seitenhalter. Nur die Katenary-Komponente (34,64 N) zu berücksichtigen würde den Halter um über 60 N unterdimensionieren und Ermüdungsbrüche verursachen.",
                         "unit": "N"
                 },
                 "SP1.01.031": {
@@ -384,8 +384,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 100 + 100cos(120°) = 50 N, F_y = 100sin(120°) = 86.6 N. F = √(50^{2} + 86.6^{2}) = 100 N",
                                 "incorrect": "Zerlegen Sie jede Kraft in Komponenten, addieren Sie sie und finden Sie den Betrag."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Dreirosenbrücke — Pylonsattel 0° und 120°",
+                        "scenario_desc": "Am Pylonsattel der Dreirosenbrücke treffen zwei Schrägseile mit je 100 kN unter 0° und 120° aufeinander. Die komponentenweise Addition liefert eine Resultierende von ebenfalls 100 kN — ein überraschender Wert. Wird stattdessen mit 200 kN (einfache Summe) bemessen, ist die Ankerplatte stark überdimensioniert. Der Rechenweg — nicht die Intuition — bestimmt die richtige Plattengröße.",
                         "unit": "N"
                 },
                 "SP1.01.032": {
@@ -394,8 +394,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Netto: 20 N nach Norden, 20 N nach Osten. F = √(20^{2} + 20^{2}) = 28.28 N",
                                 "incorrect": "Finden Sie zuerst die Nettokraft in jede Richtung."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinfähre — Umweltmessbojen",
+                        "scenario_desc": "Umweltmessboje des BAFU im Rhein bei Basel: Hauptströmung 50 N süd, Rückströmung 30 N nord, Windtrift 40 N ost, Querstau 20 N west. Nettokraft = 28,28 N. Der Anker muss nur diese echte Resultierende halten, nicht 140 N. Überdimensionierter Anker würde die Boje optisch tiefer eintauchen lassen und die Messdaten verfälschen.",
                         "unit": "N"
                 },
                 "SP1.01.033": {
@@ -404,8 +404,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_y = 80sin(45°) + 60sin(135°) = 56.57 + 42.43 = 98.99 N",
                                 "incorrect": "Addieren Sie die vertikalen Komponenten beider Kräfte."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Theater Basel — Bühnenzug 45° und 135°",
+                        "scenario_desc": "Im Bühnenzugsystem des Theater Basel ziehen zwei Motorseile an einem Kulissenrahmen: 80 N (45°) und 60 N (135°). Die horizontalen Anteile löschen sich aus, die vertikalen addieren sich zu 98,99 N — der tatsächlichen Hubkraft. Würde nur eine Leine (60 N) für den Windenmotor berücksichtigt, fehlt fast 40 N Hubkraft und die Kulisse hängt beim Hochfahren.",
                         "unit": "N"
                 },
                 "SP1.01.034": {
@@ -414,8 +414,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 100 + 80cos(60°) + 60cos(150°) = 88.04 N, F_y = 80sin(60°) + 60sin(150°) = 99.28 N. F = 118.32 N",
                                 "incorrect": "Zerlegen Sie alle Kräfte in x- und y-Komponenten, summieren Sie sie und finden Sie den Betrag."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinhafen Basel — Drei-Kran-SchwerlastHub",
+                        "scenario_desc": "Im Rheinhafen heben drei Krane gemeinsam einen Industriebehälter: 100 N/m (0°), 80 N/m (60°), 60 N/m (150°). Die Resultierende beträgt 118,32 N/m in ca. 48° — maßgebend für die Hebeösen am Behälter. Nur komponentenweise Vektoraddition liefert dieses Ergebnis; intuitive Schätzung führt zur falschen Hebeösengröße und damit zum Sicherheitsversagen.",
                         "unit": "N"
                 },
                 "SP1.01.035": {
@@ -434,8 +434,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die vier 30 N Kräfte sind symmetrisch angeordnet und heben sich auf, so dass nur die 40 N Kraft übrig bleibt.",
                                 "incorrect": "Suchen Sie nach Symmetrie in der Kraftanordnung."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rathaus — Turmabspannung",
+                        "scenario_desc": "Am achteckigen Turmkranz des Basler Rathauses halten fünf Abspannseile: eine 40-N-Vorlast-Leine und vier symmetrische 30-N-Leinen (72°, 144°, 216°, 288°). Die vier Symmetrieleinen heben sich vollständig auf — Resultierende = 40 N. Wer das erkennt, spart sich Hunderte Rechenschritte und dimensioniert den Turmkranz korrekt für die einzige wirksame Kraft.",
                         "unit": "N"
                 },
                 "SP1.01.037": {
@@ -444,8 +444,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 200cos(30°) + 150cos(-45°) = 279.28 N, F_y = 200sin(30°) + 150sin(-45°) = -6.07 N. F = 199.25 N",
                                 "incorrect": "Denken Sie daran, dass Winkel unter der Horizontalen negativ sind."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basel SBB Glasdach — Föhnwindanalyse",
+                        "scenario_desc": "Das geschwungene Glasdach des Bahnhofs Basel SBB wird bei Föhn von zwei Winddrücken belastet: Überdruck 200 N/m² (30° aufwärts), Sog 150 N/m² (45° abwärts, negatives Vorzeichen). Die vertikale Nettokraft beträgt nur −6,07 N/m² — Auftrieb und Überdruck gleichen sich fast aus. Diese Richtungsinformation bestimmt die Orientierung der Glashalter; falsches Vorzeichen würde zu einem 40° falsch ausgerichteten Halter führen.",
                         "unit": "N"
                 },
                 "SP1.01.038": {
@@ -464,8 +464,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Diese drei gleichen Kräfte sind symmetrisch in 120°-Intervallen angeordnet und heben sich vollständig auf.",
                                 "incorrect": "Drei gleiche Kräfte in 120°-Intervallen bilden ein ausgewogenes System."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Zoo — Karusselltragwerk",
+                        "scenario_desc": "Das Kinderkarussell im Basler Zoo hat drei gleichmäßige Speichen (120°-Abstand), die jeweils 100 N Fliehkraft erzeugen. Resultierende = 0: Das Karussell dreht sich ohne seitlichen Versatz. Bei der Jahresinspektion überprüft der Prüfer die 120°-Symmetrie; eine Abweichung von 2° erzeugt eine Restresultierende, die das Mittellager auf Biegung beansprucht.",
                         "unit": "N"
                 },
                 "SP1.01.040": {
@@ -474,8 +474,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F_x = 120cos(25°) + 80cos(155°) = 36.29 N, F_y = 120sin(25°) + 80sin(155°) = 84.51 N. θ = arctan(84.51/36.29) = 52.13°",
                                 "incorrect": "Finden Sie die x- und y-Komponenten und verwenden Sie dann arctan(F_y/F_x)."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Novartis-Campus — Gehry-Brücke Windlast",
+                        "scenario_desc": "Die Gehry-Fußgängerbrücke auf dem Novartis-Campus wird durch Strömungssimulationen geprüft. Zwei dominante Windkräfte: 120 N/m (25°) luvseitig und 80 N/m (155°) leeseitig. Resultierende: 52,13° — steil nach oben, d. h. die Brücke wird hauptsächlich abgehoben. Dieser Winkel bestimmt die Orientierung der Ausziehanker. Bei falscher Richtung (z. B. horizontal angenommen) versagt der Anker unter dem echten Windsog.",
                         "unit": "degrees"
                 },
                 "SP1.01.041": {
@@ -484,8 +484,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Sechs gleiche Kräfte in 60°-Intervallen bilden ein perfekt ausgewogenes System mit null Resultierender.",
                                 "incorrect": "Suchen Sie nach Symmetrie - Kräfte, die in gleichen Abständen um einen Kreis angeordnet sind, heben sich auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Fasnacht Basel — Laternenring Abspannung",
+                        "scenario_desc": "Ein großer Laternenring bei Basels Fasnacht hängt an sechs gleichmäßig verteilten Seilen (je 20 N, 60°-Abstand). Resultierende = 0 — der Ring hängt ohne seitlichen Verzug. Lockert sich ein Seil, bricht die Sechsfachsymmetrie: Der Ring neigt sich. Ordner brauchen nur auf Horizontalität zu achten, um Seilschäden sofort zu erkennen.",
                         "unit": "N"
                 },
                 "SP1.01.025": {
@@ -494,8 +494,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die unbekannte Kraft muss die anderen beiden ausgleichen: √(50^{2} + 30^{2}) = 58.31 N",
                                 "incorrect": "Für das Gleichgewicht muss die Summe aller Kräfte Null sein."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Altstadt — Gleichgewicht Ladenschild",
+                        "scenario_desc": "In der historischen Basler Altstadt hängen Zunftschilder an drei Befestigungspunkten. Ein waagrechtes Seil zieht mit 50 N, ein diagonaler Stab hebt mit 30 N — der dritte Anker muss 58,31 N entgegenwirken, damit das Schild ruht. Fehlt dieser Anker, beschleunigt das Schild in Richtung der Resultierenden und trifft Passanten auf dem Bürgersteig. Berechne die erforderliche Gleichgewichtskraft.",
                         "unit": "N"
                 },
                 "SP1.01.046": {
@@ -504,8 +504,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die Resultierende der beiden Kräfte beträgt 69.28 N, daher muss die Gleichgewichtskraft gleich und entgegengesetzt sein.",
                                 "incorrect": "Finden Sie zuerst die Resultierende der beiden Kräfte, dann entspricht die Gleichgewichtskraft ihr im Betrag."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Kunstmuseum Basel — Skulpturenaufhängung",
+                        "scenario_desc": "Im Atrium des Kunstmuseums Basel hängt eine schwere Skulptur an zwei 60°-Gurten (je 40 N). Die Resultierende beträgt 69,28 N; der dritte Wandanker muss exakt diesen Betrag entgegenwirken. Würde man 80 N (Summe) als Grundlage nehmen, ist der Anker überdimensioniert und drückt zu stark gegen die historische Wand.",
                         "unit": "N"
                 },
                 "SP1.01.047": {
@@ -514,8 +514,8 @@ export const dePhysics = {
                                 "correct": "Richtig! F = √(100^{2} + 80^{2}) = 128.06 N",
                                 "incorrect": "Die dritte Kraft muss die Resultierende der ersten beiden ausgleichen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "UB Basel — Lesesaalleuchte",
+                        "scenario_desc": "Eine Hängelampe im Lesesaal der Universitätsbibliothek Basel wird von zwei Drähten abgelenkt: horizontal 100 N, vertikal 80 N. Der Stützarm muss 128,06 N entgegenwirken. Einmal wurde ein Arm nach nur vertikaler Last (80 N) dimensioniert — die Lampe rutschte und zerkratzte einen Tisch. Seitdem ist eine schriftliche Dreikraftberechnung Pflicht.",
                         "unit": "N"
                 },
                 "SP1.01.048": {
@@ -524,8 +524,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Gewicht = 2 × 200 × sin(30°) = 2 × 200 × 0.5 = 200 N",
                                 "incorrect": "Die vertikalen Komponenten beider Kabel müssen dem Gewicht entsprechen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Marktplatz — Zunftschildmontage",
+                        "scenario_desc": "Historische Zunftschilder am Basler Marktplatz werden nach Denkmalvorschriften mit zwei 30°-Schrägseilen aufgehängt. Zwei Seilkräfte à 200 N liefern 2 × 200 × sin 30° = 200 N Tragkraft. Die Horizontalkomponenten (je 173 N) heben sich auf und erzeugen nur Wandankerzug. Würde man mit 200 N statt der Vertikalkomponente 100 N pro Seil planen, wäre der Wandanker zu klein und könnte aus dem historischen Mauerwerk reißen.",
                         "unit": "N"
                 },
                 "SP1.01.049": {
@@ -534,8 +534,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Netto x: 60-50=10 N, Netto y: 40 N. Unbekannte Kraft: √(10^{2} + 40^{2}) = 41.23 N",
                                 "incorrect": "Finden Sie die Nettokraft in x- und y-Richtung und berechnen Sie dann die Gleichgewichtskraft."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Herbstmesse Basel — Riesenradnabe",
+                        "scenario_desc": "Am Riesenradnabenknoten der Basler Herbstmesse treffen vier Speichenkräfte ein: 60 kN ost, 40 kN auf, 50 kN west, unbekannte Diagonalspeiche. Netto-x = 10 kN, Netto-y = 40 kN → unbekannte Kraft = 41,23 kN. Der TÜV-Prüfer benutzt diese Rückrechnung, um den fehlenden Sensormesswert zu plausibilisieren, bevor er das Riesenrad freigibt.",
                         "unit": "N"
                 },
                 "SP1.01.050": {
@@ -544,8 +544,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Für horizontales Gleichgewicht: T_1cos(45°) = 150cos(60°), also T_1 = 150×0.5/0.707 = 183.71 N",
                                 "incorrect": "Verwenden Sie horizontales Gleichgewicht: Die horizontalen Komponenten müssen sich ausgleichen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Marktplatz — Ampelaufhängung",
+                        "scenario_desc": "Eine Ampel am Marktplatz hängt an zwei asymmetrischen Seilen (45°, 60°), weil die Gebäudeankerpunkte auf unterschiedlicher Höhe sitzen. Waagrechte Ampel erfordert: T_1 cos 45° = 150 cos 60° → T_1 = 183,71 N. Gleiche Spannungen beider Seile anzunehmen würde die Ampel um mehrere Zentimeter schief hängen lassen — verschiedene Fahrtrichtungen sähen unterschiedliche Signalgesichter.",
                         "unit": "N"
                 },
                 "SP1.01.051": {
@@ -564,8 +564,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Summe der y-Komponenten: 100sin(30°) + 120sin(150°) - F = 0, also F = 110 N",
                                 "incorrect": "Die Kraft bei 270° wirkt rein in negativer y-Richtung."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Münster — Kryptaschlusstein",
+                        "scenario_desc": "Im romanischen Gewölbe der Münsterkrypta (11. Jh.) treffen zwei Rippenschübe auf den Schlussstein: 100 N (30°) und 120 N (150°). Das Eigengewicht F (270°, senkrecht nach unten) schließt das Gleichgewicht. Summe der y-Komponenten: 100 sin 30° + 120 sin 150° = 110 N → F = 110 N. Das stimmt mit dem tatsächlichen Schlussstein-Gewicht überein und belegt die statische Präzision mittelalterlicher Steinmetze.",
                         "unit": "N"
                 },
                 "SP1.01.053": {
@@ -574,8 +574,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Mit Gleichgewichtsgleichungen: T_1 = 281.91 N",
                                 "incorrect": "Stellen Sie Gleichgewichtsgleichungen für horizontale und vertikale Komponenten auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Dreiländereck-Vordach — Schrägkabel asymmetrisch",
+                        "scenario_desc": "Das Vordach am Dreiländereck-Aussichtspunkt (Treffpunkt CH-D-F) wird von zwei Schrägkabeln gehalten: 40° von der Vertikalen (Schweizer Seite) und 50° (deutsche Seite). Der 500 N schwere Balken soll waagrecht hängen. Das Gleichungssystem für horizontales und vertikales Gleichgewicht liefert T_1 = 281,91 N. Beide nationalen Ingenieurbüros müssen vor Baubeginn denselben Rechenwert bestätigen.",
                         "unit": "N"
                 },
                 "SP1.01.054": {
@@ -584,8 +584,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Netto x: 80-70=10 N, Netto y: 60 N. F = √(10^{2} + 60^{2}) = 60.83 N",
                                 "incorrect": "Finden Sie die Resultierende der bekannten Kräfte, dann muss F ihr im Betrag entsprechen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Wasserturm — Flanschring Erdbebensicherung",
+                        "scenario_desc": "Der historische Wasserturm St. Johann (Bj. 1880) wird erdbebensicher ertüchtigt. Am Flanschring wirken: 80 kN ost (Wasserdruck), 60 kN auf (Auftrieb), 70 kN west (Wind), unbekannte Schraubenverbindungskraft F. Netto-x = 10 kN, Netto-y = 60 kN → F = 60,83 kN. Das übersteigt die ursprüngliche Schraublast: Schraubenklasse muss hochgestuft werden.",
                         "unit": "N"
                 },
                 "SP1.01.055": {
@@ -594,8 +594,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Durch Symmetrie trägt jedes Kabel 300/3 = 100 N",
                                 "incorrect": "Bei symmetrischer Anordnung wird die Last gleichmäßig verteilt."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Basler Rathaus — Kronleuchter Großer Saal",
+                        "scenario_desc": "Der historische Kronleuchter im Großen Saal des Basler Rathauses (seit dem 16. Jh. Kantonsratssaal) wiegt 300 N und hängt an drei Ketten (120°-Abstand). Vollständige Symmetrie → jede Kette: 100 N, ohne Trigonometrie. Restauratoren nutzten dieses Ergebnis: Alle drei Ketten sind baugleich und können ohne Neuberechnung einzeln ausgetauscht werden.",
                         "unit": "N"
                 },
                 "SP1.01.056": {
@@ -614,8 +614,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Durch separate Analyse der x- und y-Komponenten und Lösung der Gleichgewichtsgleichungen ist F = 200 N",
                                 "incorrect": "Summieren Sie alle x-Komponenten und y-Komponenten separat und lösen Sie dann nach F auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Novartis Building 10 — Fassadenhalter Fünfkraft",
+                        "scenario_desc": "An jedem Fassadenhalterknoten des Gehry-Gebäudes (Novartis Building 10) greifen fünf Paneelkräfte an (36°, 108°, 180°, 252°, 324°). Vier sind bekannt (200/150/180/120 N), die fünfte F fehlt. Das Gleichungssystem liefert F = 200 N — damit kann der korrekte Bolzendurchmesser für alle 2000 m² Fassade festgelegt werden.",
                         "unit": "N"
                 },
                 "SP1.01.058": {
@@ -624,8 +624,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 350 N",
                                 "incorrect": "Stellen Sie zwei Gleichgewichtsgleichungen (x und y) auf und lösen Sie nach der unbekannten Spannung auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinbrücke Basel — Inspektionsplattform",
+                        "scenario_desc": "Eine Inspektionsplattform unter einer Basler Rheinbrücke hängt an vier Kabeln. Drei Kraftmesssensoren lesen 400 N (30°), 350 N (120°), 380 N (210°); der vierte (300°) fällt beim Ausfahren aus. Rückrechnung via ΣF = 0 liefert T_4 = 350 N — innerhalb der Nenntragfähigkeit 900 N. Die Inspektion kann weitergehen; der defekte Sensor wird beim nächsten Einsatz ersetzt.",
                         "unit": "N"
                 },
                 "SP1.01.059": {
@@ -634,8 +634,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Mit Symmetrie und Gleichgewichtsgleichungen beträgt jede unbekannte Kraft 200 N",
                                 "incorrect": "Nutzen Sie die Tatsache, dass die beiden unbekannten Kräfte gleich sind, um die Gleichgewichtsgleichungen zu vereinfachen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinhafen Getreidesilo — Fachwerkknoten",
+                        "scenario_desc": "Im Stahldachfachwerk des Rheinhafener Getreidesilos sind zwei korrosionsgeschädigte Untergurtdiagonalen (240°, 300°) nicht mehr instrumentierbar. Fünf bekannte Knotenlasten (500/400/450 N) und die Symmetriebedingung (gleiche unbekannte Kräfte) reduzieren das System auf eine Gleichung: je 200 N. Damit steht fest, dass beide Diagonalen vor der nächsten Getreideernte verstärkt werden müssen.",
                         "unit": "N"
                 },
                 "SP1.01.060": {
@@ -644,8 +644,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Die Resultierende der fünf Kräfte beträgt 89.44 N, daher muss das sechste Kabel diese Kraft bereitstellen.",
                                 "incorrect": "Finden Sie die Resultierende aller bekannten Kräfte, dann muss das sechste Kabel sie ausgleichen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Messe Basel — Kabelnetzdach Knotenanalyse",
+                        "scenario_desc": "Nach der Nachspannung 2020 am Innenknotenring der Messe-Halle 1 liegen fünf Seilspannungen vor (300/250/280/260/270 N); das sechste Seil ist unzugänglich. Die Resultierende der fünf Kräfte beträgt 89,44 N — das ist die Ziellast des sechsten Seils. Die errechnete Richtung ermöglichte zusätzlich eine 3°-Korrektur des Ankers, die Spannungskonzentrationen am Knotenblech beseitigt.",
                         "unit": "N"
                 },
                 "SP1.01.061": {
@@ -654,8 +654,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Mit Gleichgewichtsgleichungen und Symmetrie beträgt jede gleiche Reaktion 4242.64 N",
                                 "incorrect": "Stellen Sie Gleichgewichtsgleichungen für x und y auf und nutzen Sie die Symmetrie der beiden gleichen Reaktionen."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Johanniterbrücke — Pfeilerbemessung Erweiterung",
+                        "scenario_desc": "In der Machbarkeitsstudie zur Erweiterung der Johanniterbrücke wird ein Pfeilerknoten mit 3000 N Windlast und 8000 N Eigenlast analysiert. Drei Stützreaktionen (45°, 135°, 225°), wobei 45° und 225° symmetrisch sind → eine Gleichung, Lösung: je 4242,64 N. Das übersteigt die Originalauslegung um 12 % → Pfeilerverstärkung vor jeder Erweiterung erforderlich.",
                         "unit": "N"
                 },
                 "SP1.01.062": {
@@ -664,8 +664,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Durch Symmetrie trägt jedes Kabel 2400/8 = 300 N",
                                 "incorrect": "Bei symmetrischer Anordnung wird die Last gleichmäßig auf alle Kabel verteilt."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Art Basel — Freiluftskulptur Achtfach-Symmetrie",
+                        "scenario_desc": "Eine 2400-N-Skulptur an der Basler Rheinpromenade bei Art Basel hängt an acht 45°-symmetrischen Kabeln. Vollständige Symmetrie → 2400 ÷ 8 = 300 N je Kabel, kein Taschenrechner nötig. Alle acht Kabel sind baugleich und ohne Neuberechnung austauschbar — ein bewusstes Ingenieurdesign, das Installation und Versicherungsabnahme gleichermaßen vereinfacht.",
                         "unit": "N"
                 },
                 "SP1.01.063": {
@@ -674,8 +674,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Das Lösen der Gleichgewichtsgleichungen ergibt T_4 = 750 N",
                                 "incorrect": "Berechnen Sie die x- und y-Komponenten aller bekannten Kräfte und lösen Sie dann nach der Unbekannten auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Rheinhafen Basel — Vierkettentraverse",
+                        "scenario_desc": "Beim Heben eines 15-t-Reaktors im Rheinhafen zeigen drei Kettensensoren 800/750/820 N; der vierte Sensor (290°) versagt beim Anhebevorgang. Rückrechnung via Gleichgewicht: T_4 = 750 N < Nennlast 900 N → Freigabe zum Weiterarbeiten. Ohne diese Echtzeitberechnung hätte die Partie gestoppt werden müssen, bis ein Ersatzsensor beschafft ist.",
                         "unit": "N"
                 },
                 "SP1.01.064": {
@@ -684,8 +684,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Durch Symmetrie (7 gleiche Winkel) trägt der siebte Stab ebenfalls 500 N",
                                 "incorrect": "Suchen Sie nach Symmetrie - sieben gleiche Kräfte in gleichen Winkelabständen bilden ein ausgewogenes System."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Vitra Museum Weil — Siebenfalter Knoten",
+                        "scenario_desc": "Im Zaha-Hadid-Vordach des Vitra Design Museum (Weil am Rhein, nahe Basel) gibt es einen seltenen 7-fach-symmetrischen Knoten (je 360°/7 ≈ 51,43°). Sechs Stäbe messen 500 N; der siebte ist unzugänglich. Symmetrieanalyse → siebter Stab ebenfalls 500 N. Dieses Ergebnis wurde später durch FE-Modell bestätigt: Symmetrieerkennung spart Stunden numerischen Aufwands.",
                         "unit": "N"
                 },
                 "SP1.01.065": {
@@ -694,8 +694,8 @@ export const dePhysics = {
                                 "correct": "Richtig! Umfassende Gleichgewichtsanalyse ergibt F = 550 N",
                                 "incorrect": "Summieren Sie alle x-Komponenten und y-Komponenten der bekannten Kräfte und lösen Sie dann nach F auf."
                         },
-                        "scenario": "",
-                        "scenario_desc": "",
+                        "scenario": "Theater Basel — Bühnenzug Hauptbühne Sechskraft",
+                        "scenario_desc": "Im 32-m-Schnürboden des Theater Basel konvergieren während einer Wagner-Oper sechs Zugseile (15°, 75°, 135°, 195°, 255°, 315°) an einem Zentralknoten. Fünf Lasten bekannt (600/550/580/520/590 N), das sechste Motorstellglied meldet Kurzfehler. Gleichgewichtsrechnung: F = 550 N — stimmt exakt mit dem gespeicherten Sollwert überein. Fehlalarm bestätigt, Vorstellung kann pünktlich beginnen.",
                         "unit": "N"
                 }
         },
