@@ -200,7 +200,7 @@ export default function SB201TissuesPage() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

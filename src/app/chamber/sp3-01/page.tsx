@@ -460,7 +460,7 @@ export default function SP301Page() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
@@ -497,7 +497,7 @@ export default function SP301Page() {
         { id: "SI_UNITS", label: sp3_01_t.stages.si_units },
         { id: "CONVERSION", label: sp3_01_t.stages.conversion },
         { id: "PRECISION", label: sp3_01_t.stages.precision },
-    ], [t]);
+    ], [sp3_01_t.stages.si_units, sp3_01_t.stages.conversion, sp3_01_t.stages.precision]);
 
     const hint = getHint();
 

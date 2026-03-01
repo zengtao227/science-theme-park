@@ -481,7 +481,7 @@ export default function RedoxVisualization({
         </g>
       </svg>
     );
-  }, [quest, canvasSize, centerX, centerY]);
+  }, [quest, canvasSize, centerX]);
 
   // Status indicator
   const statusText = useMemo(() => {

@@ -192,7 +192,7 @@ export default function SC301Page() {
     });
 
     return quests;
-  }, []);
+  }, [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

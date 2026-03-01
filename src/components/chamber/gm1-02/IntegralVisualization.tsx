@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 interface IntegralQuest {
   id: string;
@@ -66,13 +66,13 @@ export default function IntegralVisualization({
   const padding = 40;
 
   // Scale functions
-  const scaleX = (x: number) => {
+  const scaleX = useCallback((x: number) => {
     return padding + ((x - bounds.xMin) / (bounds.xMax - bounds.xMin)) * (width - 2 * padding);
-  };
+  }, [bounds]);
 
-  const scaleY = (y: number) => {
+  const scaleY = useCallback((y: number) => {
     return height - padding - ((y - bounds.yMin) / (bounds.yMax - bounds.yMin)) * (height - 2 * padding);
-  };
+  }, [bounds]);
 
   // Generate function curve points
   const curvePoints = useMemo(() => {
@@ -95,7 +95,7 @@ export default function IntegralVisualization({
     }
 
     return points.join(" ");
-  }, [quest, bounds]);
+  }, [quest, bounds, scaleX, scaleY]);
 
   // Generate shaded area for definite integrals
   const shadedAreaPath = useMemo(() => {
@@ -126,7 +126,7 @@ export default function IntegralVisualization({
     points.push(`${scaleX(quest.upperBound)},${scaleY(0)}`);
 
     return points.join(" ");
-  }, [quest, bounds]);
+  }, [quest, scaleX, scaleY]);
 
   if (!quest) {
     return (

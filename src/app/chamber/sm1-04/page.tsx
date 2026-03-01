@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -26,7 +26,7 @@ export default function SM104Page() {
   const { t } = useLanguage();
 
   // Pre-extract all translations
-  const sm1_04_t = {
+  const sm1_04_t = useMemo(() => ({
     objective_title: t("sm1_04.objective_title"),
     scenario_title: t("sm1_04.scenario_title"),
     labels: {
@@ -161,7 +161,7 @@ export default function SM104Page() {
       tra_three_fractions: t("sm1_04.problems.tra_three_fractions"),
       tra_two_moves: t("sm1_04.problems.tra_two_moves"),
     },
-  };
+  }), [t]);
 
   const buildStagePool = useCallback((tObj: typeof sm1_04_t, difficulty: Difficulty, stage: Stage): EquationQuest[] => {
     const pools: Record<Stage, Record<Difficulty, EquationQuest[]>> = {
@@ -1192,9 +1192,9 @@ export default function SM104Page() {
     };
 
     return pools[stage][difficulty] || [];
-  }, []);
+  }, [t]);
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm1_04_t, difficulty, stage), [sm1_04_t]);
+  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm1_04_t, difficulty, stage), [sm1_04_t, buildStagePool]);
 
   const {
     currentQuest: quest,

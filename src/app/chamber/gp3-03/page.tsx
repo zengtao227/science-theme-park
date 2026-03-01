@@ -221,7 +221,7 @@ export default function GP303Induction() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,

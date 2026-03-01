@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -222,7 +222,7 @@ export default function S203Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
-  const sm2_03_t = {
+  const sm2_03_t = useMemo(() => ({
     title: t("sm2_03.title"),
     back: t("sm2_03.back"),
     check: t("sm2_03.check"),
@@ -273,7 +273,7 @@ export default function S203Page() {
       level: t("sm2_03.ui.level"),
       hits: t("sm2_03.ui.hits"),
     },
-  };
+  }), [t]);
 
   const [hits, setHits] = useState(0);
 

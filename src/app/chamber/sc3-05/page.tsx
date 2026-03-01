@@ -122,7 +122,7 @@ export default function SC305MolecularForge() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const {
         stage,

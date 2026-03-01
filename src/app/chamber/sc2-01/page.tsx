@@ -176,7 +176,7 @@ export default function SC201Page() {
     };
 
     return pools[stage][difficulty] || [];
-  }, [sc2_01_t]);
+  }, [t]);
 
   const { stage: currentStage, difficulty: currentDifficulty, currentQuest, inputs: userAnswer, lastCheck, setInputs, verify, next, handleStageChange, handleDifficultyChange, adaptiveRecommendation,
       aiFeedback,

@@ -274,7 +274,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 export default function S201Page() {
   const { t } = useLanguage();
 
-  const sm2_01_t = {
+  const sm2_01_t = useMemo(() => ({
     title: t("sm2_01.title"),
     back: t("sm2_01.back"),
     check: t("sm2_01.check"),
@@ -397,7 +397,7 @@ export default function S201Page() {
       binomial_formula: t("sm2_01.ui.binomial_formula"),
       node_zurich: t("sm2_01.ui.node_zurich"),
     },
-  };
+  }), [t]);
 
   const [questMode, setQuestMode] = useState<QuestMode>("EXPLORE");
   const [a, setA] = useState(3);

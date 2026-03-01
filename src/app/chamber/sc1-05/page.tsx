@@ -45,13 +45,13 @@ export default function SC105Page() {
         { id: "IONIC", label: sc1_05_t.stages.ionic },
         { id: "COVALENT", label: sc1_05_t.stages.covalent },
         { id: "METALLIC", label: sc1_05_t.stages.metallic },
-    ], [sc1_05_t]);
+    ], [sc1_05_t.stages.ionic, sc1_05_t.stages.covalent, sc1_05_t.stages.metallic]);
 
     const activeScenario = useMemo(() => {
         if (stage === "IONIC") return sc1_05_t.scenarios.ionic_salts;
         if (stage === "COVALENT") return sc1_05_t.scenarios.molecular_oxygen;
         return sc1_05_t.scenarios.pharmaceutical_chains;
-    }, [stage, sc1_05_t]);
+    }, [stage, sc1_05_t.scenarios.ionic_salts, sc1_05_t.scenarios.molecular_oxygen, sc1_05_t.scenarios.pharmaceutical_chains]);
 
     return (
         <ChamberLayout

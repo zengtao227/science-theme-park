@@ -138,7 +138,7 @@ export default function SM209Page() {
         return quest;
       });
     },
-    [sm2_09_t]
+    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval]
   );
 
   // Generate solution steps for a quest
@@ -225,7 +225,7 @@ export default function SM209Page() {
     } else {
       setFeedback(sm2_09_t.feedback.incorrect);
     }
-  }, [userInput, currentQuest, sm2_09_t, setInputs, verify]);
+  }, [userInput, currentQuest, setInputs, verify, sm2_09_t.feedback.empty_input, sm2_09_t.feedback.correct, sm2_09_t.feedback.incorrect]);
 
   // Handle next quest
   const handleNext = useCallback(() => {

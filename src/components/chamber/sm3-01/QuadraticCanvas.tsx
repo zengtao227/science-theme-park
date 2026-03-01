@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
@@ -69,7 +69,7 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
   const scaleY = (H / 2 - 30) / maxAbsY;
   const scale = Math.min(scaleX, scaleY, 25);
 
-  const toSvg = (x: number, y: number): [number, number] => [ox + x * scale, oy - y * scale];
+  const toSvg = useCallback((x: number, y: number): [number, number] => [ox + x * scale, oy - y * scale], [ox, oy, scale]);
 
   const path = useMemo(() => {
     const pts: string[] = [];
@@ -81,7 +81,7 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
       }
     }
     return pts.join(' ');
-  }, [a, b, c, maxAbsX, scale]);
+  }, [a, b, c, maxAbsX, toSvg]);
 
   const [svx, svy] = toSvg(vx, vy);
 

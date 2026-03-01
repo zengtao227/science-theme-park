@@ -231,7 +231,7 @@ export default function S303Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   
-  const sm3_03_t = {
+  const sm3_03_t = useMemo(() => ({
     title: t("sm3_03.title"),
     back: t("sm3_03.back"),
     check: t("sm3_03.check"),
@@ -290,7 +290,7 @@ export default function S303Page() {
       logarithm: t("sm3_03.formulas.logarithm"),
       applications: t("sm3_03.formulas.applications")
     }
-  };
+  }), [t]);
 
   // Canvas State
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm3_03_t, d, s), [sm3_03_t]);

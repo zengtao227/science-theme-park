@@ -259,7 +259,7 @@ export default function SB104PlantStructure() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,

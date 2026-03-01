@@ -132,7 +132,7 @@ export default function IntegerCanvas({
       );
     }
     return null;
-  }, [stage, quest, canvasSize]);
+  }, [stage, quest, canvasSize, translations.unit_celsius]);
 
   return (
     <div className="space-y-4">

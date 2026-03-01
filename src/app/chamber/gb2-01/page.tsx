@@ -215,7 +215,7 @@ export default function GB201Neurobiology() {
         }
         const keys = Object.keys(gb2_01.scenarios);
         return gb2_01.scenarios[keys[0] as keyof typeof gb2_01.scenarios];
-    }, [t, currentQuest]);
+    }, [gb2_01, currentQuest]);
 
     return (
         <ChamberLayout

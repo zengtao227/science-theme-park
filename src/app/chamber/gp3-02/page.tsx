@@ -226,7 +226,7 @@ export default function GP302Electromagnetism() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,

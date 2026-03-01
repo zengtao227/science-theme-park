@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -705,7 +705,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
 export default function S101Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-    const sm1_01_t = {
+    const sm1_01_t = useMemo(() => ({
         title: t("sm1_01.title"),
         back: t("sm1_01.back"),
         check: t("sm1_01.check"),
@@ -814,7 +814,7 @@ export default function S101Page() {
             cube_title: t("sm1_01.mission.cube_title"),
             cube_desc: t("sm1_01.mission.cube_desc"),
         },
-    };
+    }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_01_t, d, s), [sm1_01_t]);
 

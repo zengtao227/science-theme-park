@@ -623,7 +623,7 @@ export default function SB202BodySystemsPage() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

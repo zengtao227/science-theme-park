@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -18,7 +18,7 @@ export default function SM103Page() {
   const { t } = useLanguage();
 
   // Pre-extract all translations
-  const sm1_03_t = {
+  const sm1_03_t = useMemo(() => ({
     labels: {
       pos: t("sm1_03.labels.pos"),
       colder: t("sm1_03.labels.colder"),
@@ -117,7 +117,7 @@ export default function SM103Page() {
       q_diagonal_distance: t("sm1_03.problems.q_diagonal_distance"),
       q_complex_translation: t("sm1_03.problems.q_complex_translation"),
     },
-  };
+  }), [t]);
 
   const buildStagePool = useCallback((tObj: typeof sm1_03_t, difficulty: Difficulty, stage: Stage): IntegerQuest[] => {
     const pools: Record<Stage, Record<Difficulty, IntegerQuest[]>> = {
@@ -954,9 +954,9 @@ export default function SM103Page() {
     };
 
     return pools[stage][difficulty] || [];
-  }, []);
+  }, [t]);
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm1_03_t, difficulty, stage), [sm1_03_t]);
+  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm1_03_t, difficulty, stage), [sm1_03_t, buildStagePool]);
 
   const {
     currentQuest: quest,

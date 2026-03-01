@@ -240,7 +240,7 @@ export default function SP203ElectricPower() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,

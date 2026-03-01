@@ -691,7 +691,7 @@ export default function SM210Page() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

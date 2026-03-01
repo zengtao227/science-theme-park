@@ -622,7 +622,7 @@ export default function SM305Page() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 

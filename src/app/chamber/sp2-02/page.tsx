@@ -227,7 +227,7 @@ export default function SP202OhmsLaw() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,

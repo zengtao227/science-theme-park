@@ -387,7 +387,7 @@ export default function SP305Page() {
         }
 
         return quests;
-    }, []);
+    }, [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(d, s), [buildStagePool]);
 
@@ -424,7 +424,7 @@ export default function SP305Page() {
         { id: "LEVERS", label: sp3_05_t.stages.levers },
         { id: "PULLEYS", label: sp3_05_t.stages.pulleys },
         { id: "INCLINED_PLANES", label: sp3_05_t.stages.inclined_planes },
-    ], [t]);
+    ], [sp3_05_t.stages.levers, sp3_05_t.stages.pulleys, sp3_05_t.stages.inclined_planes]);
 
     const hint = getHint();
 

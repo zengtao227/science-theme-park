@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -17,7 +17,7 @@ export default function SM208Page() {
   const { completeStage } = useAppStore();
   const { t, currentLanguage } = useLanguage();
 
-  const sm2_08_t = {
+  const sm2_08_t = useMemo(() => ({
     scenarios: {
       bus_punctuality: t("sm2_08.scenarios.bus_punctuality"),
       card_game: t("sm2_08.scenarios.card_game"),
@@ -129,7 +129,7 @@ export default function SM208Page() {
       week_no_rain: t("sm2_08.problems.week_no_rain"),
       weighted_average: t("sm2_08.problems.weighted_average"),
     },
-  };
+  }), [t]);
 
   const buildStagePool = useCallback((tObj: typeof sm2_08_t, difficulty: Difficulty, stage: Stage): ProbQuest[] => {
     const pools: Record<Stage, Record<Difficulty, ProbQuest[]>> = {
@@ -1136,9 +1136,9 @@ export default function SM208Page() {
     };
 
     return pools[stage][difficulty] || [];
-  }, []);
+  }, [t]);
 
-  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm2_08_t, difficulty, stage), [sm2_08_t]);
+  const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm2_08_t, difficulty, stage), [sm2_08_t, buildStagePool]);
 
   const {
     currentQuest: quest,

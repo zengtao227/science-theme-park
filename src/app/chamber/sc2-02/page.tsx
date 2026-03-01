@@ -282,7 +282,7 @@ export default function SC202Page() {
         if (stage === "CURVES") return sc2_02_t.scenarios.environmental_monitoring;
         if (stage === "EQUIVALENCE") return sc2_02_t.scenarios.water_quality;
         return sc2_02_t.scenarios.biotech_titration;
-    }, [stage, sc2_02_t]);
+    }, [stage, sc2_02_t.scenarios.environmental_monitoring, sc2_02_t.scenarios.water_quality, sc2_02_t.scenarios.biotech_titration]);
 
     const stages = [
         { id: "CURVES", label: sc2_02_t.stages.curves },

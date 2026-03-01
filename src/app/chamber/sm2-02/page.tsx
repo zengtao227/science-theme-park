@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -549,7 +549,7 @@ export default function S202Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
-  const sm2_02_t = {
+  const sm2_02_t = useMemo(() => ({
     title: t("sm2_02.title"),
     back: t("sm2_02.back"),
     check: t("sm2_02.check"),
@@ -641,7 +641,7 @@ export default function S202Page() {
       distance_formula_3d: t("sm2_02.ui.distance_formula_3d"),
       no_viz: t("sm2_02.ui.no_viz")
     }
-  };
+  }), [t]);
 
   const [showExperimental, setShowExperimental] = useState(true);
 

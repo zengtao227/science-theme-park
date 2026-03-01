@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -258,7 +258,7 @@ export default function SM102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
-    const sm1_02_t = {
+    const sm1_02_t = useMemo(() => ({
         title: t("sm1_02.title") || "SM1.02 // ALGEBRAIC EXPRESSIONS",
         back: t("sm1_02.back") || "Back",
         check: t("sm1_02.check") || "Verify",
@@ -308,7 +308,7 @@ export default function SM102Page() {
         },
         objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",
         scenario_title: t("sm1_02.scenario_title") || "SCENARIO CONTEXT"
-    };
+    }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_02_t, d, s), [sm1_02_t]);
 

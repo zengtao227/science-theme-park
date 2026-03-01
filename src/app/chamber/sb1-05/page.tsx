@@ -220,7 +220,7 @@ export default function SB105AnimalClassification() {
         }
 
         return [];
-    }, []);
+    }, [t]);
 
     const {
         difficulty,
