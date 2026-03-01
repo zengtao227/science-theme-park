@@ -232,7 +232,6 @@ export function generateConditionalQuests(gm3_01_t: any, difficulty: Difficulty)
 
 export function generateMissionQuests(gm3_01_t: any, difficulty: Difficulty): G301Quest[] {
     const quests: G301Quest[] = [];
-    const stage = "MISSION";
 
     for (let i = 0; i < 60; i++) {
         const type = pick(["basic", "binomial", "conditional"]) as "basic" | "binomial" | "conditional";

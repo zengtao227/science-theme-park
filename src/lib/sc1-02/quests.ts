@@ -27,10 +27,6 @@ export interface SC102Quest {
     correctLatex: string;
 }
 
-const atomicWeights: Record<string, number> = {
-    H: 1.008, C: 12.01, O: 16.0, Na: 22.99, Cl: 35.45, Ca: 40.08, N: 14.01, S: 32.06, Al: 26.98, Fe: 55.85, K: 39.1, Mg: 24.31, P: 30.97,
-};
-
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
 export function generateMolarMassQuests(t: any, difficulty: Difficulty): SC102Quest[] {

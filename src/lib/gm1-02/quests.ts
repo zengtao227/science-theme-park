@@ -92,11 +92,9 @@ export function generateAntiderivativeQuests(t: any, difficulty: Difficulty): GM
                 coeffs[n - 1] = randomInt(1, 4);
             }
         } else if (difficulty === "ADVANCED") {
-            const n = 2;
             coeffs = [randomInt(-4, 4), randomInt(-4, 4), randomInt(1, 4)];
             if (coeffs[0] === 0) coeffs[0] = 1;
         } else { // ELITE
-            const n = 3;
             coeffs = [randomInt(-3, 3), randomInt(-3, 3), randomInt(-3, 3), randomInt(1, 3)];
         }
 

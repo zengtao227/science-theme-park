@@ -140,21 +140,6 @@ export function validateQuestDistribution(): {
     errors.push(`Total quests (${stats.total}) is less than minimum (20)`);
   }
 
-  // Check difficulty distribution (for full implementation)
-  const expectedDifficulty = {
-    [Difficulty.BASIC]: 20,
-    [Difficulty.CORE]: 20,
-    [Difficulty.ADVANCED]: 15,
-    [Difficulty.ELITE]: 10,
-  };
-
-  // Check stage distribution (for full implementation)
-  const expectedStage = {
-    [Stage.FORCE_CONCEPTS]: 23,
-    [Stage.FORCE_COMPOSITION]: 21,
-    [Stage.FORCE_EQUILIBRIUM]: 21,
-  };
-
   return {
     isValid: errors.length === 0,
     errors,

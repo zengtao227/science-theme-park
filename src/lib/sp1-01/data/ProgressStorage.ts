@@ -15,8 +15,6 @@ import {
 } from '../domain/types';
 
 const STORAGE_KEY = 'sp1-01-progress';
-const MAX_RETRY_ATTEMPTS = 3;
-const RETRY_DELAY = 1000; // ms
 
 /**
  * Progress Storage Manager

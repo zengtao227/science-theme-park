@@ -274,7 +274,6 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
             const A = pick([2, 3, 4, 5, 6, 7, 10, "1/2", "1/3", "3/4"]);
             const f = pick(["sin", "cos"]);
             const sign = pick(["", "-"]);
-            const aStr = A.toString();
             // Expected amplitude is always positive
             const expectedAmp = A.toString();
             
@@ -384,4 +383,3 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
     }
     return quests;
 }
-

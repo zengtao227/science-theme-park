@@ -19,8 +19,6 @@ export interface SC203Quest {
     hintLatex?: string[];
 }
 
-const round2 = (v: number) => Math.round(v * 100) / 100;
-
 export function generateBoyleQuests(t: any, difficulty: Difficulty): SC203Quest[] {
     const quests: SC203Quest[] = [];
     for (let i = 0; i < 60; i++) {

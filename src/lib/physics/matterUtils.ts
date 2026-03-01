@@ -60,7 +60,6 @@ export function createFluidParticles(
   const particles: Matter.Body[] = [];
   
   const cols = Math.floor(width / (particleRadius * 2.5));
-  const rows = Math.ceil(particleCount / cols);
   
   for (let i = 0; i < particleCount; i++) {
     const col = i % cols;

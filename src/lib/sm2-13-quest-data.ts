@@ -83,9 +83,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                 // P'_x = x + 2(x_int - x) = 2x_int - x
                 const m_inv = -1 / m;
                 const x_int = (x * m_inv + y - b) / (m - m_inv);
-                const y_int = m * x_int + b;
                 const px = 2 * x_int - x;
-                const py = 2 * y_int - y;
                 pool.push({
                     id: `sm2_13_ref_eli_${i}`,
                     difficulty: "ELITE",
