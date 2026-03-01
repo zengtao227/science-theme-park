@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { motion } from "framer-motion";
 import BondingVisualization3D from "@/components/chamber/sc1-05/BondingVisualization3D";

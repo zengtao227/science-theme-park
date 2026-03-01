@@ -4,10 +4,10 @@ import { useState, useMemo } from "react";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useAppStore } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";
-import { Stage, GM202Quest } from "@/lib/gm2-02-types";
+import { Stage } from "@/lib/gm2-02-types";
 import { buildStagePool } from "@/lib/gm2-02-quest-builder";
 import { verifyAnswer } from "@/lib/gm2-02-verification";
-import { InlineMath, BlockMath } from "react-katex";
+import { BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
 

@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { ForceVectorDiagram } from "@/components/chamber/sp1-01/ForceVectorDiagram";
 import PhysicsPlayground3D from "@/components/chamber/sp1-01/PhysicsPlayground3D";
 import { buildSP101Pool } from "@/lib/sp1-01-adapter";
 import { Difficulty } from "@/hooks/useQuestManager";
@@ -303,4 +302,3 @@ export default function SP101_ForcesBasics() {
     </ChamberLayout>
   );
 }
-

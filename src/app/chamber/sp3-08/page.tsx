@@ -7,7 +7,7 @@ import { renderMixedText } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import P308OpticsCanvas from "@/components/chamber/sp3-08/OpticsCanvas";
 import {

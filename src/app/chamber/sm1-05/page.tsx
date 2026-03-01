@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "RECIPES" | "PERCENT" | "MIXTURES";

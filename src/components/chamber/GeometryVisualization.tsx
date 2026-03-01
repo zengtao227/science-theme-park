@@ -24,6 +24,9 @@ export default function GeometryVisualization({
   data,
   translations
 }: GeometryVisualizationProps) {
+  void quest;
+  void translations;
+
   // Determine which visualization to render based on stage and data
   const renderVisualization = () => {
     // If there are distance calculations, show distance calculator
