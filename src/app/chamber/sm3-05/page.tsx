@@ -412,7 +412,7 @@ export default function SM305Page() {
                     {
                         id: "CS-E5", difficulty, stage, geometryType: "pyramid_diagonal",
                         promptLatex: t("sm3_05.prompts.cross_pyramid_apex"),
-                        expressionLatex: `A = \frac{1}{2} \\times \\text{diagonal} \\times h`,
+                        expressionLatex: `A = \\frac{1}{2} \\times \\text{diagonal} \\times h`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "34", expected: 34 }],
                         correctLatex: `33.9\\text{ cm}^{2}`,
@@ -562,7 +562,7 @@ export default function SM305Page() {
                     {
                         id: "CURVE-A5", difficulty, stage, geometryType: "paraboloid",
                         promptLatex: `\\\\text{A paraboloid: base radius } 6\\\\text{cm, height } 8\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
-                        expressionLatex: `V = \frac{1}{2}\\pi r^{2} h`,
+                        expressionLatex: `V = \\frac{1}{2}\\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "452", expected: 452 }],
                         correctLatex: `452 \\text{ cm}^{3}`,

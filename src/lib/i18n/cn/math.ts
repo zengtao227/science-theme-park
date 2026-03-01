@@ -585,7 +585,7 @@ export const cnMath = {
     },
     sm1_01: {
         back: "返回枢纽",
-        title: "SM1.01 // 面积与体积",
+        title: "面积与体积",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -599,8 +599,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM1.01_监控",
-        footer_left: "SM1.01_几何任务 // 节点：巴塞尔",
+        monitor_title: "监控",
+        footer_left: "几何任务 // 节点：巴塞尔",
         input_tip_2dp: "提示：输入分数 (如 4/3) 或保留 2 位小数。",
         base_twice_height: "底边是高的2倍",
         stages: {
@@ -719,7 +719,7 @@ export const cnMath = {
     },
     sm1_02: {
         back: "返回枢纽",
-        title: "SM1.02 // 代数探险",
+        title: "代数探险",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -772,7 +772,7 @@ export const cnMath = {
     },
     sm1_03: {
         back: "返回枢纽",
-        title: "SM1.03 // 零度以下",
+        title: "零度以下",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -781,8 +781,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM1.03_整数监视器",
-        footer_left: "SM1.03_零度以下 // 节点：巴塞尔",
+        monitor_title: "整数监视器",
+        footer_left: "零度以下 // 节点：巴塞尔",
         basel_scenario: "巴塞尔冬季场景",
         scenario_title: "场景说明",
         objective_title: "任务目标",
@@ -900,7 +900,7 @@ export const cnMath = {
     },
     sm1_04: {
         back: "返回枢纽",
-        title: "SM1.04 // 等式平衡",
+        title: "等式平衡",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -909,8 +909,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM1.04_等式监视器",
-        footer_left: "SM1.04_等式平衡 // 节点：巴塞尔",
+        monitor_title: "等式监视器",
+        footer_left: "等式平衡 // 节点：巴塞尔",
         basel_scenario: "巴塞尔等式场景",
         scenario_title: "场景说明",
         objective_title: "任务目标",
@@ -1070,7 +1070,7 @@ export const cnMath = {
     },
     sm1_05: {
         back: "返回枢纽",
-        title: "SM1.05 // 比例实验室",
+        title: "比例实验室",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -1079,8 +1079,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM1.05_比例监视器",
-        footer_left: "SM1.05_比例实验室 // 节点：巴塞尔",
+        monitor_title: "比例监视器",
+        footer_left: "比例实验室 // 节点：巴塞尔",
         stages: {
             recipes: "配方",
             percent: "百分比",
@@ -1108,7 +1108,8 @@ export const cnMath = {
             base_batch: "基础配方",
             target_batch: "目标配方",
             water: "水",
-            capacity: "容量"
+            capacity: "容量",
+            logic_framework: "解题框架"
         },
         prompts: {
             map_scale: "地图比例 1:25000。地图上 4cm 是多少 km",
@@ -1194,7 +1195,7 @@ export const cnMath = {
     sm2_01: {
         back: "← 返回枢纽",
         back_short: "返回枢纽",
-        title: "SM2.01 // 二项式工厂",
+        title: "二项式工厂",
         difficulty: {
             basic: "初级",
             core: "核心",
@@ -1330,7 +1331,7 @@ export const cnMath = {
     },
     sm2_02: {
         back: "返回枢纽",
-        title: "SM2.02 // 勾股定律与开平方",
+        title: "勾股定律与开平方",
         tabs: {
             pythagoras: "勾股定律",
             sqrt: "开平方",
@@ -1352,24 +1353,24 @@ export const cnMath = {
         ready: "就绪",
         yes: "是",
         no: "否",
-        monitor_title: "SM2.02_视觉监控",
-        footer_left: "SM2.02_勾股与开方 // 节点：苏黎世",
+        monitor_title: "视觉监控",
+        footer_left: "勾股与开方 // 节点：苏黎世",
         input_radical: "用 k√m 形式作答",
         input_k: "k",
         input_m: "m",
         input_number: "答案",
         diagonal: "对角线",
         pythagoras: {
-            solve_hyp: "消防救援：计算消防梯最短长度",
-            solve_hyp_params: "水平距离 a={a}m, 垂直高度 b={b}m",
-            solve_leg: "阿尔卑斯登山：计算垂直攀升高度",
-            solve_leg_params: "绳索全长 c={c}m, {known_label} {known_var}={known}m",
+            solve_hyp: "消防救援场景：消防梯必须安全到达窗户，求最短梯长",
+            solve_hyp_params: "已知离墙水平距离 a={a}m、目标高度 b={b}m，求最小梯长 c",
+            solve_leg: "山地救援场景：已知绳索路线，计算垂直攀升高度",
+            solve_leg_params: "已知绳索长度 c={c}m 与 {known_label}{known_var}={known}m，求缺失直角边",
             known_horizontal: "水平移动",
             known_given: "已知",
             check_right: "📐 工程验收：这是直角三角形吗？",
             check_right_question: "直角三角形？",
-            distance: "🚁 无人机快递：计算直线飞行距离",
-            elite_space: "苏黎世研究站：求解三维空间对角线",
+            distance: "🚁 无人机配送场景：计算三维坐标间最短飞行距离",
+            elite_space: "苏黎世实验室场景：计算设备舱三维空间对角线",
             right_triangle_q: "📐 这是直角三角形吗？",
             solve_diagonal: "计算对角线长度",
             explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。",
@@ -1429,7 +1430,7 @@ export const cnMath = {
     },
     sm2_03: {
         back: "执行下一序列",
-        title: "SM2.03 // 直线导航器",
+        title: "直线导航器",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -1440,8 +1441,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "匹配失败",
         ready: "就绪",
-        monitor_title: "SM2.03_激光监视器",
-        footer_left: "SM2.03_直线导航器 // 节点：巴塞尔",
+        monitor_title: "激光监视器",
+        footer_left: "直线导航器 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -1451,9 +1452,9 @@ export const cnMath = {
             intercept: "基础票价 (c)"
         },
         prompts: {
-            level1: "计算到达目的地的票价",
-            level2: "找到两种票价方案费用相同的距离",
-            level3: "找到方案 A 变得更便宜的临界距离"
+            level1: "通勤场景：用 y=mx+c 计算目标距离下的铁路票价",
+            level2: "比价场景：求两种票价方案费用相同的临界距离",
+            level3: "预算场景：求方案 A 开始更便宜的阈值距离"
         },
         hints: {
             level1: "斜率 m = 每公里费用。截距 c = 基础票价（起步价）。总票价 y = m × 距离 + c。",
@@ -1486,7 +1487,7 @@ export const cnMath = {
     },
     sm2_04: {
         back: "返回枢纽",
-        title: "SM2.04 // 相似与比例",
+        title: "相似与比例",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -1500,8 +1501,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.04_监控",
-        footer_left: "SM2.04_相似形 // 节点：巴塞尔",
+        monitor_title: "监控",
+        footer_left: "相似形 // 节点：巴塞尔",
         stages: {
             scale_factor: "缩放",
             similar_triangles: "相似",
@@ -1544,7 +1545,7 @@ export const cnMath = {
     },
     sm2_05: {
         back: "返回枢纽",
-        title: "SM2.05 // 幂运算与根号",
+        title: "幂运算与根号",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -1558,8 +1559,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.05_监控",
-        footer_left: "SM2.05_幂与根号 // 节点：巴塞尔",
+        monitor_title: "监控",
+        footer_left: "幂与根号 // 节点：巴塞尔",
         stages: {
             rules: "法则",
             negative: "负指数",
@@ -1575,7 +1576,7 @@ export const cnMath = {
     },
     sm2_06: {
         back: "返回枢纽",
-        title: "SM2.06 // 二元一次方程组",
+        title: "二元一次方程组",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -1589,8 +1590,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.06_监控",
-        footer_left: "SM2.06_二元一次方程组 // 节点：巴塞尔",
+        monitor_title: "监控",
+        footer_left: "二元一次方程组 // 节点：巴塞尔",
         stages: {
             substitution: "代入法",
             elimination: "加减法",
@@ -1674,7 +1675,7 @@ export const cnMath = {
     },
     sm2_07: {
         back: "返回枢纽",
-        title: "SM2.07 // 坐标几何",
+        title: "坐标几何",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -1685,8 +1686,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.07_坐标监视器",
-        footer_left: "SM2.07_坐标几何 // 节点：苏黎世",
+        monitor_title: "坐标监视器",
+        footer_left: "坐标几何 // 节点：苏黎世",
         labels: {
             input: "输入",
             hints: "提示",
@@ -1735,7 +1736,7 @@ export const cnMath = {
     },
     sm2_08: {
         back: "返回枢纽",
-        title: "SM2.08 // 概率基础",
+        title: "概率基础",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -1744,8 +1745,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.08_概率监视器",
-        footer_left: "SM2.08_概率统计 // 节点：巴塞尔",
+        monitor_title: "概率监视器",
+        footer_left: "概率统计 // 节点：巴塞尔",
         formula_title: "概率公式",
         scenario_title: "问题",
         basel_scenario: "巴塞尔生活场景",
@@ -1959,7 +1960,7 @@ export const cnMath = {
     },
     sm3_01: {
         back: "返回枢纽",
-        title: "SM3.01 // 一元二次方程",
+        title: "一元二次方程",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -1973,8 +1974,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM3.01_监控",
-        footer_left: "SM3.01_一元二次方程 // 节点：苏黎世",
+        monitor_title: "监控",
+        footer_left: "一元二次方程 // 节点：苏黎世",
         stages: {
             terms: "合并同类项",
             factorize: "因式分解",
@@ -2023,7 +2024,7 @@ export const cnMath = {
     },
     sm3_02: {
         back: "返回枢纽",
-        title: "SM3.02 // 三角函数圆",
+        title: "三角函数圆",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -2037,8 +2038,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM3.02_三角函数监控",
-        footer_left: "SM3.02_三角函数圆 // 节点：巴塞尔",
+        monitor_title: "三角函数监控",
+        footer_left: "三角函数圆 // 节点：巴塞尔",
         labels: {
             angle: "角度 (θ)",
             values: "三角函数值",
@@ -2071,7 +2072,7 @@ export const cnMath = {
     },
     sm3_03: {
         back: "返回枢纽",
-        title: "SM3.03 // 增长与对数",
+        title: "增长与对数",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -2085,8 +2086,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM3.03_增长监控",
-        footer_left: "SM3.03_指数函数 // 节点：巴塞尔",
+        monitor_title: "增长监控",
+        footer_left: "指数函数 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -2155,7 +2156,7 @@ export const cnMath = {
     },
     sm3_04: {
         back: "返回枢纽",
-        title: "SM3.04 // 对数刻度",
+        title: "对数刻度",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -2166,8 +2167,8 @@ export const cnMath = {
         correct: "已验证",
         incorrect: "匹配失败",
         ready: "就绪",
-        monitor_title: "SM3.04_对数监视器",
-        footer_left: "SM3.04_对数 // 节点：巴塞尔",
+        monitor_title: "对数监视器",
+        footer_left: "对数 // 节点：巴塞尔",
         input_tip_2dp: "提示：保留 2 位小数。",
         labels: {
             input: "输入",
@@ -2226,11 +2227,11 @@ export const cnMath = {
     },
     sm2_10: {
         back: "返回枢纽",
-        title: "SM2.10 // 数据分析",
+        title: "数据分析",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "数据分析监视器",
-        footer_left: "SM2.10_数据分析 // 节点：巴塞尔",
+        footer_left: "数据分析 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "正确",
@@ -2500,11 +2501,11 @@ export const cnMath = {
     },
     sm3_05: {
         back: "返回枢纽",
-        title: "SM3.05 // 3D几何进阶",
+        title: "3D几何进阶",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "3D几何监视器",
-        footer_left: "SM3.05_3D几何 // 节点：巴塞尔",
+        footer_left: "3D几何 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "正确",
@@ -2599,7 +2600,7 @@ export const cnMath = {
         }
     },
     sm2_11: {
-        title: "SM2.11 // 数列与级数",
+        title: "数列与级数",
         back: "返回中枢",
         check: "验证",
         next: "下一题",
@@ -2607,7 +2608,7 @@ export const cnMath = {
         incorrect: "错误",
         ready: "就绪",
         monitor_title: "数列与级数监控器",
-        footer_left: "SM2.11_数列级数 // 节点：巴塞尔",
+        footer_left: "数列级数 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -2647,7 +2648,7 @@ export const cnMath = {
         }
     },
     sm2_12: {
-        title: "SM2.12 // 组合数学",
+        title: "组合数学",
         back: "返回中枢",
         check: "验证",
         next: "下一题",
@@ -2655,7 +2656,7 @@ export const cnMath = {
         incorrect: "错误",
         ready: "就绪",
         monitor_title: "组合数学监控器",
-        footer_left: "SM2.12_组合数学 // 节点：巴塞尔",
+        footer_left: "组合数学 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -2735,7 +2736,7 @@ export const cnMath = {
     },
     sm2_09: {
         back: "返回主界面",
-        title: "SM2.09 // 不等式",
+        title: "不等式",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -2755,8 +2756,8 @@ export const cnMath = {
         correct: "验证成功",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "SM2.09_不等式监控器",
-        footer_left: "SM2.09_不等式 // 节点：巴塞尔",
+        monitor_title: "不等式监控器",
+        footer_left: "不等式 // 节点：巴塞尔",
         labels: {
             solution: "解",
             interval_notation: "区间记号",

@@ -226,7 +226,7 @@ export default function SM210Page() {
                     {
                         id: "SP-B1", difficulty, stage, dataType: "identify",
                         promptLatex: t("sm2_10.prompts.b2_1_points_up_correlation"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.upward_trend")}} = \text{${t("sm2_10.labels.positive")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.upward_trend")}} = \\text{${t("sm2_10.labels.positive")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
@@ -235,7 +235,7 @@ export default function SM210Page() {
                     {
                         id: "SP-B2", difficulty, stage, dataType: "downward",
                         promptLatex: t("sm2_10.prompts.b2_1_points_down_correlation"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.downward_trend")}} = \text{${t("sm2_10.labels.negative")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.downward_trend")}} = \\text{${t("sm2_10.labels.negative")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.labels.negative")}}`,
@@ -244,7 +244,7 @@ export default function SM210Page() {
                     {
                         id: "SP-B3", difficulty, stage, dataType: "scatter",
                         promptLatex: t("sm2_10.prompts.b2_1_points_random_correlation"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.no_pattern")}} = \text{${t("sm2_10.formula_phrases.no_correlation")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.no_pattern")}} = \\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{${t("sm2_10.answers.none")}}`,
@@ -296,12 +296,12 @@ export default function SM210Page() {
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
-                        hintLatex: [`\\text{${t("sm2_10.expressions.no_pattern")}} = \text{${t("sm2_10.formula_phrases.no_correlation")}}`]
+                        hintLatex: [`\\text{${t("sm2_10.expressions.no_pattern")}} = \\text{${t("sm2_10.formula_phrases.no_correlation")}}`]
                     },
                     {
                         id: "SP-C4", difficulty, stage, dataType: "strong",
                         promptLatex: t("sm2_10.prompts.b2_1_points_cluster_strength"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.tight_cluster")}} = \text{${t("sm2_10.labels.strong")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.tight_cluster")}} = \\text{${t("sm2_10.labels.strong")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{${t("sm2_10.answers.strong_correlation")}}`,
@@ -310,7 +310,7 @@ export default function SM210Page() {
                     {
                         id: "SP-C5", difficulty, stage, dataType: "trend",
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_positive_slope"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.positive_slope")}} = \text{${t("sm2_10.answers.positive_trend")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.positive_slope")}} = \\text{${t("sm2_10.answers.positive_trend")}}`,
                         targetLatex: t("sm2_10.labels.trend"),
                         slots: [{ id: "trend", labelLatex: t("sm2_10.labels.trend"), placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.answers.positive_trend")}}`,
@@ -331,7 +331,7 @@ export default function SM210Page() {
                     {
                         id: "SP-A2", difficulty, stage, dataType: "extrapolation",
                         promptLatex: t("sm2_10.prompts.b2_1_predict_beyond_range"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.beyond_range")}} = \text{${t("sm2_10.labels.extrapolation")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.beyond_range")}} = \\text{${t("sm2_10.labels.extrapolation")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "extrapolation", expected: "extrapolation" }],
                         correctLatex: `\\text{${t("sm2_10.labels.extrapolation")}}`,
@@ -340,7 +340,7 @@ export default function SM210Page() {
                     {
                         id: "SP-A3", difficulty, stage, dataType: "interpolation",
                         promptLatex: t("sm2_10.prompts.b2_1_predict_within_range"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.within_range")}} = \text{${t("sm2_10.labels.interpolation")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.within_range")}} = \\text{${t("sm2_10.labels.interpolation")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "interpolation", expected: "interpolation" }],
                         correctLatex: `\\text{${t("sm2_10.labels.interpolation")}}`,
@@ -349,7 +349,7 @@ export default function SM210Page() {
                     {
                         id: "SP-A4", difficulty, stage, dataType: "residual",
                         promptLatex: t("sm2_10.prompts.b2_1_actual_predicted_difference"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.actual_minus_predicted")}} = \text{${t("sm2_10.labels.residual")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.actual_minus_predicted")}} = \\text{${t("sm2_10.labels.residual")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "residual", expected: "residual" }],
                         correctLatex: `\\text{${t("sm2_10.labels.residual")}}`,
@@ -358,7 +358,7 @@ export default function SM210Page() {
                     {
                         id: "SP-A5", difficulty, stage, dataType: "weak_correlation",
                         promptLatex: t("sm2_10.prompts.b2_1_points_wide_scatter"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.wide_scatter")}} = \text{${t("sm2_10.labels.weak")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.wide_scatter")}} = \\text{${t("sm2_10.labels.weak")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
                         correctLatex: `\\text{${t("sm2_10.labels.weak")}}`,
@@ -370,7 +370,7 @@ export default function SM210Page() {
                     {
                         id: "SP-E1", difficulty, stage, dataType: "nonlinear",
                         promptLatex: t("sm2_10.prompts.b2_1_curve_not_line_relationship"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.curved_pattern")}} = \text{${t("sm2_10.labels.nonlinear")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.curved_pattern")}} = \\text{${t("sm2_10.labels.nonlinear")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "nonlinear", expected: "nonlinear" }],
                         correctLatex: `\\text{${t("sm2_10.labels.nonlinear")}}`,
@@ -388,7 +388,7 @@ export default function SM210Page() {
                     {
                         id: "SP-E3", difficulty, stage, dataType: "lurking",
                         promptLatex: t("sm2_10.prompts.b2_1_hidden_variable_name"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.hidden_variable")}} = \text{${t("sm2_10.formula_phrases.lurking_variable")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.hidden_variable")}} = \\text{${t("sm2_10.formula_phrases.lurking_variable")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.term")}}`,
                         slots: [{ id: "term", labelLatex: `\\text{${t("sm2_10.labels.term")}}`, placeholder: "lurking", expected: "lurking" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.lurking_variable")}}`,
@@ -397,7 +397,7 @@ export default function SM210Page() {
                     {
                         id: "SP-E4", difficulty, stage, dataType: "regression",
                         promptLatex: t("sm2_10.prompts.b2_1_process_best_fit"),
-                        expressionLatex: `\\text{${t("sm2_10.expressions.finding_best_fit")}} = \text{${t("sm2_10.labels.regression")}}`,
+                        expressionLatex: `\\text{${t("sm2_10.expressions.finding_best_fit")}} = \\text{${t("sm2_10.labels.regression")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.process")}}`,
                         slots: [{ id: "proc", labelLatex: `\\text{${t("sm2_10.labels.process")}}`, placeholder: "regression", expected: "regression" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.linear_regression")}}`,

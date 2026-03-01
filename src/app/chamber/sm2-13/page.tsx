@@ -218,11 +218,11 @@ export default function SM213Page() {
                                 <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">Reflection</div>
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="\text{x-axis}" />
+                                        <InlineMath math="\\text{x-axis}" />
                                         <InlineMath math="(x, -y)" />
                                     </div>
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="\text{y-axis}" />
+                                        <InlineMath math="\\text{y-axis}" />
                                         <InlineMath math="(-x, y)" />
                                     </div>
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
@@ -245,11 +245,11 @@ export default function SM213Page() {
                                 <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">Rotation (Origin)</div>
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="90^\circ\text{ CCW}" />
+                                        <InlineMath math="90^\\circ\\text{ CCW}" />
                                         <InlineMath math="(-y, x)" />
                                     </div>
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="180^\circ" />
+                                        <InlineMath math="180^\\circ" />
                                         <InlineMath math="(-x, -y)" />
                                     </div>
                                 </div>

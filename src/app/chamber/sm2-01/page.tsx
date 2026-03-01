@@ -521,7 +521,7 @@ export default function S201Page() {
         correct: sm2_01_t.solve_success ?? "VERIFIED",
         incorrect: sm2_01_t.solve_fail || "INCORRECT",
         ready: "READY",
-        monitor_title: sm2_01_t.ui?.visual_reference_position ?? "VISUAL_MONITOR",
+        monitor_title: sm2_01_t.ui?.visual_reference_position ?? "",
         difficulty: {
           basic: sm2_01_t.difficulty?.basic ?? "BASIC",
           core: sm2_01_t.difficulty?.core ?? "CORE",
@@ -1021,7 +1021,7 @@ export default function S201Page() {
                     <InlineMath math={sm2_01_t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A^{2} - B^{2}"} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {sm2_01_t.ui?.logic_voyager_derivation_title ?? "DERIVATION"}
+                    {sm2_01_t.ui?.logic_voyager_derivation_title ?? ""}
                   </div>
                   <div className="text-white font-black flex items-center h-6">
                     <InlineMath math={`A^{2} + AB - AB - B^{2} \\equiv A^{2} - B^{2}`} />
@@ -1040,7 +1040,7 @@ export default function S201Page() {
             <div className="flex items-center gap-2 mb-2">
               <Info className="w-4 h-4 text-white" />
               <span className="text-[10px] uppercase tracking-[0.2em] font-black text-white underline underline-offset-[6px] decoration-white decoration-2">
-                {sm2_01_t.ui?.axiomatic_constraints_title ?? "CONSTRAINTS"}
+                {sm2_01_t.ui?.axiomatic_constraints_title ?? ""}
               </span>
             </div>
             <p className="text-xs text-white/70 leading-relaxed font-mono italic font-black bg-white/[0.03] p-5 rounded-lg border-2 border-white/10">

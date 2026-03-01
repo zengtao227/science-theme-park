@@ -614,7 +614,7 @@ export const deMath = {
     },
     sm1_01: {
         back: "Zurück zum Nexus",
-        title: "SM1.01 // FLÄCHEN & VOLUMEN",
+        title: "FLÄCHEN & VOLUMEN",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -628,8 +628,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM1.01_MONITOR",
-        footer_left: "SM1.01_GEOMETRIE // KNOTEN: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "GEOMETRIE // KNOTEN: BASEL",
         input_tip_2dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an.",
         base_twice_height: "Basis ist doppelt so hoch wie die Höhe",
         stages: {
@@ -748,7 +748,7 @@ export const deMath = {
     },
     sm1_02: {
         back: "Zurück zum Nexus",
-        title: "SM1.02 // ALGEBRA QUEST",
+        title: "ALGEBRA QUEST",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -806,7 +806,7 @@ export const deMath = {
     },
     sm1_03: {
         back: "Zurück zum Nexus",
-        title: "SM1.03 // UNTER NULL",
+        title: "UNTER NULL",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -815,8 +815,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM1.03_GANZZAHL_MONITOR",
-        footer_left: "SM1.03_UNTER_NULL // KNOTEN: BASEL",
+        monitor_title: "GANZZAHL_MONITOR",
+        footer_left: "UNTER_NULL // KNOTEN: BASEL",
         basel_scenario: "BASLER WINTERSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -937,7 +937,7 @@ export const deMath = {
     },
     sm1_04: {
         back: "Zurück zum Nexus",
-        title: "SM1.04 // GLEICHUNGSWAAGE",
+        title: "GLEICHUNGSWAAGE",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -946,8 +946,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM1.04_GLEICHUNGS_MONITOR",
-        footer_left: "SM1.04_GLEICHUNGSWAAGE // KNOTEN: BASEL",
+        monitor_title: "GLEICHUNGS_MONITOR",
+        footer_left: "GLEICHUNGSWAAGE // KNOTEN: BASEL",
         basel_scenario: "BASLER GLEICHUNGSSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -1107,7 +1107,7 @@ export const deMath = {
     },
     sm1_05: {
         back: "Zurück zum Nexus",
-        title: "SM1.05 // PROPORTIONS-LABOR",
+        title: "PROPORTIONS-LABOR",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -1116,8 +1116,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM1.05_PROPORTION_MONITOR",
-        footer_left: "SM1.05_PROPORTIONS_LABOR // KNOTEN: BASEL",
+        monitor_title: "PROPORTION_MONITOR",
+        footer_left: "PROPORTIONS-LABOR // KNOTEN: BASEL",
         stages: {
             recipes: "REZEPTE",
             percent: "PROZENT",
@@ -1145,7 +1145,8 @@ export const deMath = {
             base_batch: "Basisrezept",
             target_batch: "Zielrezept",
             water: "Wasser",
-            capacity: "Kapazität"
+            capacity: "Kapazität",
+            logic_framework: "Logischer Rahmen"
         },
         prompts: {
             map_scale: "Maßstab 1:25000. 4cm auf der Karte sind ?km",
@@ -1231,7 +1232,7 @@ export const deMath = {
     sm2_01: {
         back: "← Zurück zum Nexus",
         back_short: "Zurück zum Nexus",
-        title: "SM2.01 // BINOMISCHE FORMELN",
+        title: "BINOMISCHE FORMELN",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1368,7 +1369,7 @@ export const deMath = {
     },
     sm2_02: {
         back: "Zurück zum Nexus",
-        title: "SM2.02 // PYTHAGORAS & WURZELN",
+        title: "PYTHAGORAS & WURZELN",
         tabs: {
             pythagoras: "PYTHAGORAS",
             sqrt: "QUADRATWURZEL",
@@ -1390,8 +1391,8 @@ export const deMath = {
         ready: "Bereit",
         yes: "JA",
         no: "NEIN",
-        monitor_title: "SM2.02_VISUELLE_UEBERWACHUNG",
-        footer_left: "SM2.02_PYTHAGORAS // KNOTEN: ZÜRICH",
+        monitor_title: "VISUELLE_UEBERWACHUNG",
+        footer_left: "PYTHAGORAS // KNOTEN: ZÜRICH",
         ui: {
             view_2d: "2D-Ansicht",
             view_fluid: "Fluid-Ansicht",
@@ -1407,16 +1408,16 @@ export const deMath = {
         input_number: "Antwort",
         diagonal: "Diagonale",
         pythagoras: {
-            solve_hyp: "Feuerwehr: Leiterlänge berechnen",
-            solve_hyp_params: "horizontale Distanz a={a}m, vertikale Höhe b={b}m",
-            solve_leg: "Bergrettung: Vertikale Höhe finden",
-            solve_leg_params: "Seillänge c={c}m, {known_label} {known_var}={known}m",
+            solve_hyp: "Feuerwehr-Szenario: Die Leiter muss ein Fenster sicher erreichen",
+            solve_hyp_params: "gegeben sind horizontaler Abstand a={a}m und Höhe b={b}m, gesuchte Mindestleiterlänge c",
+            solve_leg: "Bergrettungs-Szenario: Gesucht ist der vertikale Höhengewinn",
+            solve_leg_params: "gegeben sind Seillänge c={c}m und {known_label} {known_var}={known}m, gesuchte fehlende Kathete",
             known_horizontal: "horizontale Bewegung",
             known_given: "gegeben",
             check_right: "Ingenieurscheck: Rechtwinkliges Dreieck?",
             check_right_question: "Rechtwinkliges Dreieck?",
-            distance: "Drohnenlieferung: Flugdistanz berechnen",
-            elite_space: "CERN-Labor: Raumdiagonale berechnen",
+            distance: "Drohnenlogistik-Szenario: Berechne die direkte 3D-Flugdistanz",
+            elite_space: "CERN-Ingenieurszenario: Berechne die Raumdiagonale für Kabelrouting",
             right_triangle_q: "📐 Ist das ein rechtwinkliges Dreieck?",
             solve_diagonal: "Raumdiagonale berechnen",
             explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten.",
@@ -1468,7 +1469,7 @@ export const deMath = {
     },
     sm2_03: {
         back: "Zurück zum Nexus",
-        title: "SM2.03 // LINIEN-NAVIGATOR",
+        title: "LINIEN-NAVIGATOR",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE"
         },
@@ -1479,8 +1480,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM2.03_LASER_MONITOR",
-        footer_left: "SM2.03_LINIEN_NAVIGATOR // KNOTEN: BASEL",
+        monitor_title: "LASER_MONITOR",
+        footer_left: "LINIEN_NAVIGATOR // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -1490,9 +1491,9 @@ export const deMath = {
             intercept: "Grundgebühr (c)"
         },
         prompts: {
-            level1: "Berechne den Ticketpreis für das Ziel",
-            level2: "Finde die Distanz, wo zwei Tarife gleich kosten",
-            level3: "Finde die Schwelle, ab der Plan A günstiger wird"
+            level1: "Pendler-Szenario: Berechne mit y=mx+c den Fahrpreis für die Zielstrecke",
+            level2: "Tarifvergleich-Szenario: Finde die Distanz, bei der beide Tarife gleich teuer sind",
+            level3: "Budget-Szenario: Finde die Distanzschwelle, ab der Plan A günstiger ist"
         },
         hints: {
             level1: "Steigung m = Kosten pro km. Achsenabschnitt c = Grundgebühr. Gesamtpreis y = m × Distanz + c.",
@@ -1525,7 +1526,7 @@ export const deMath = {
     },
     sm2_04: {
         back: "Zurück zum Nexus",
-        title: "SM2.04 // ÄHNLICHKEIT & SKALIERUNG",
+        title: "ÄHNLICHKEIT & SKALIERUNG",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1539,8 +1540,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM2.04_MONITOR",
-        footer_left: "SM2.04_AEHNLICHKEIT // KNOTEN: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "AEHNLICHKEIT // KNOTEN: BASEL",
         stages: {
             scale_factor: "STRECKUNG",
             similar_triangles: "ÄHNLICH",
@@ -1583,7 +1584,7 @@ export const deMath = {
     },
     sm2_05: {
         back: "Zurück zum Nexus",
-        title: "SM2.05 // POTENZEN & WURZELN",
+        title: "POTENZEN & WURZELN",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1597,8 +1598,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM2.05_MONITOR",
-        footer_left: "SM2.05_POTENZEN // KNOTEN: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "POTENZEN // KNOTEN: BASEL",
         stages: {
             rules: "GESETZE",
             negative: "NEGATIV",
@@ -1614,7 +1615,7 @@ export const deMath = {
     },
     sm2_06: {
         back: "Zurück zum Nexus",
-        title: "SM2.06 // GLEICHUNGSSYSTEME",
+        title: "GLEICHUNGSSYSTEME",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1628,8 +1629,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM2.06_MONITOR",
-        footer_left: "SM2.06_GLEICHUNGSSYSTEME // KNOTEN: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "GLEICHUNGSSYSTEME // KNOTEN: BASEL",
         stages: {
             substitution: "EINSETZUNGSVERFAHREN",
             elimination: "ADDITIONSVERFAHREN",
@@ -1713,7 +1714,7 @@ export const deMath = {
     },
     sm2_07: {
         back: "Zurück zum Nexus",
-        title: "SM2.07 // KOORDINATENGEOMETRIE",
+        title: "KOORDINATENGEOMETRIE",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -1724,8 +1725,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM2.07_KOORDINATEN_MONITOR",
-        footer_left: "SM2.07_KOORD_GEOM // KNOTEN: ZÜRICH",
+        monitor_title: "KOORDINATEN_MONITOR",
+        footer_left: "KOORD_GEOM // KNOTEN: ZÜRICH",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -1774,7 +1775,7 @@ export const deMath = {
     },
     sm2_08: {
         back: "Zurück zum Nexus",
-        title: "SM2.08 // WAHRSCHEINLICHKEIT GRUNDLAGEN",
+        title: "WAHRSCHEINLICHKEIT GRUNDLAGEN",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -1783,8 +1784,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM2.08_WAHRSCHEINLICHKEIT_MONITOR",
-        footer_left: "SM2.08_WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
+        monitor_title: "WAHRSCHEINLICHKEIT_MONITOR",
+        footer_left: "WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
         formula_title: "WAHRSCHEINLICHKEITSFORMEL",
         scenario_title: "PROBLEM",
         basel_scenario: "BASLER LEBENSSZENARIO",
@@ -1943,7 +1944,7 @@ export const deMath = {
     },
     sm3_01: {
         back: "Zurück zum Nexus",
-        title: "SM3.01 // QUADRATISCHE GLEICHUNGEN",
+        title: "QUADRATISCHE GLEICHUNGEN",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1957,8 +1958,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM3.01_MONITOR",
-        footer_left: "SM3.01_QUADRATISCH // KNOTEN: ZÜRICH",
+        monitor_title: "MONITOR",
+        footer_left: "QUADRATISCH // KNOTEN: ZÜRICH",
         stages: {
             terms: "TERME",
             factorize: "FAKTORISIEREN",
@@ -2007,7 +2008,7 @@ export const deMath = {
     },
     sm3_02: {
         back: "Zurück zum Nexus",
-        title: "SM3.02 // TRIGONOMETRISCHER KREIS",
+        title: "TRIGONOMETRISCHER KREIS",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -2021,8 +2022,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM3.02_TRIG_MONITOR",
-        footer_left: "SM3.02_TRIG_KREIS // KNOTEN: BASEL",
+        monitor_title: "TRIG_MONITOR",
+        footer_left: "TRIG_KREIS // KNOTEN: BASEL",
         labels: {
             angle: "WINKEL (θ)",
             values: "TRIGONOMETRISCHE WERTE",
@@ -2063,7 +2064,7 @@ export const deMath = {
     },
     sm3_03: {
         back: "Zurück zum Nexus",
-        title: "SM3.03 // WACHSTUM & LOGARITHMEN",
+        title: "WACHSTUM & LOGARITHMEN",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -2077,8 +2078,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Abweichung",
         ready: "Bereit",
-        monitor_title: "SM3.03_WACHSTUM_MONITOR",
-        footer_left: "SM3.03_EXPONENTIAL // KNOTEN: BASEL",
+        monitor_title: "WACHSTUM_MONITOR",
+        footer_left: "EXPONENTIAL // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2147,7 +2148,7 @@ export const deMath = {
     },
     sm3_04: {
         back: "Zurück zum Nexus",
-        title: "SM3.04 // LOGARITHMISCHE SKALEN",
+        title: "LOGARITHMISCHE SKALEN",
         difficulty: {
             basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE"
         },
@@ -2158,8 +2159,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
         ready: "Bereit",
-        monitor_title: "SM3.04_LOG_MONITOR",
-        footer_left: "SM3.04_LOGARITHMEN // KNOTEN: BASEL",
+        monitor_title: "LOG_MONITOR",
+        footer_left: "LOGARITHMEN // KNOTEN: BASEL",
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         labels: {
             input: "EINGABE",
@@ -2218,11 +2219,11 @@ export const deMath = {
     },
     sm2_10: {
         back: "Zurück zum Nexus",
-        title: "SM2.10 // DATENANALYSE",
+        title: "DATENANALYSE",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Datenanalyse-Monitor",
-        footer_left: "SM2.10_DATENANALYSE // KNOTEN: BASEL",
+        footer_left: "DATENANALYSE // KNOTEN: BASEL",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -2492,11 +2493,11 @@ export const deMath = {
     },
     sm3_05: {
         back: "Zurück zum Nexus",
-        title: "SM3.05 // 3D-GEOMETRIE FORTGESCHRITTEN",
+        title: "3D-GEOMETRIE FORTGESCHRITTEN",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "3D-Geometrie-Monitor",
-        footer_left: "SM3.05_3D_GEOMETRIE // KNOTEN: BASEL",
+        footer_left: "3D_GEOMETRIE // KNOTEN: BASEL",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -2591,7 +2592,7 @@ export const deMath = {
         }
     },
     sm2_11: {
-        title: "SM2.11 // FOLGEN & REIHEN",
+        title: "FOLGEN & REIHEN",
         back: "Zurück zum Nexus",
         check: "Überprüfen",
         next: "Nächste Aufgabe",
@@ -2599,7 +2600,7 @@ export const deMath = {
         incorrect: "Falsch",
         ready: "Bereit",
         monitor_title: "Folgen & Reihen Monitor",
-        footer_left: "SM2.11_FOLGEN_REIHEN // KNOTEN: BASEL",
+        footer_left: "FOLGEN_REIHEN // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -2639,7 +2640,7 @@ export const deMath = {
         }
     },
     sm2_12: {
-        title: "SM2.12 // KOMBINATORIK",
+        title: "KOMBINATORIK",
         back: "Zurück zum Nexus",
         check: "Überprüfen",
         next: "Nächste Aufgabe",
@@ -2647,7 +2648,7 @@ export const deMath = {
         incorrect: "Falsch",
         ready: "Bereit",
         monitor_title: "Kombinatorik Monitor",
-        footer_left: "SM2.12_KOMBINATORIK // KNOTEN: BASEL",
+        footer_left: "KOMBINATORIK // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -2727,7 +2728,7 @@ export const deMath = {
     },
     sm2_09: {
         back: "Zurück zum Nexus",
-        title: "SM2.09 // UNGLEICHUNGEN",
+        title: "UNGLEICHUNGEN",
         difficulty: {
             basic: "GRUNDLAGEN",
             core: "KERN",
@@ -2747,8 +2748,8 @@ export const deMath = {
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
         ready: "Bereit",
-        monitor_title: "SM2.09_UNGLEICHUNGEN_MONITOR",
-        footer_left: "SM2.09_UNGLEICHUNGEN // KNOTEN: BASEL",
+        monitor_title: "UNGLEICHUNGEN_MONITOR",
+        footer_left: "UNGLEICHUNGEN // KNOTEN: BASEL",
         labels: {
             solution: "LÖSUNG",
             interval_notation: "Intervallschreibweise",

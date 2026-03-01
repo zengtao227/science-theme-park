@@ -604,7 +604,7 @@ export const enMath = {
     },
     sm1_01: {
         back: "Back to Nexus",
-        title: "SM1.01 // AREAS & VOLUMES",
+        title: "AREAS & VOLUMES",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -618,8 +618,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM1.01_MONITOR",
-        footer_left: "SM1.01_GEOMETRY // NODE: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "GEOMETRY // NODE: BASEL",
         input_tip_2dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places.",
         base_twice_height: "base is twice the height",
         stages: {
@@ -739,7 +739,7 @@ export const enMath = {
     },
     sm1_02: {
         back: "Back to Nexus",
-        title: "SM1.02 // ALGEBRA QUEST",
+        title: "ALGEBRA QUEST",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -792,7 +792,7 @@ export const enMath = {
     },
     sm1_03: {
         back: "Back to Nexus",
-        title: "SM1.03 // BELOW ZERO",
+        title: "BELOW ZERO",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -801,8 +801,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM1.03_INTEGER_MONITOR",
-        footer_left: "SM1.03_BELOW_ZERO // NODE: BASEL",
+        monitor_title: "INTEGER_MONITOR",
+        footer_left: "BELOW_ZERO // NODE: BASEL",
         basel_scenario: "BASEL WINTER SCENARIO",
         scenario_title: "SCENARIO CONTEXT",
         objective_title: "MISSION OBJECTIVE",
@@ -921,7 +921,7 @@ export const enMath = {
     },
     sm1_04: {
         back: "Back to Nexus",
-        title: "SM1.04 // EQUATION BALANCE",
+        title: "EQUATION BALANCE",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -930,8 +930,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM1.04_EQUATION_MONITOR",
-        footer_left: "SM1.04_EQUATION_BALANCE // NODE: BASEL",
+        monitor_title: "EQUATION_MONITOR",
+        footer_left: "EQUATION_BALANCE // NODE: BASEL",
         basel_scenario: "BASEL EQUATION SCENARIO",
         scenario_title: "SCENARIO CONTEXT",
         objective_title: "MISSION OBJECTIVE",
@@ -1091,7 +1091,7 @@ export const enMath = {
     },
     sm1_05: {
         back: "Back to Nexus",
-        title: "SM1.05 // RATIO LAB",
+        title: "RATIO LAB",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -1100,8 +1100,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM1.05_RATIO_MONITOR",
-        footer_left: "SM1.05_RATIO_LAB // NODE: BASEL",
+        monitor_title: "RATIO_MONITOR",
+        footer_left: "RATIO_LAB // NODE: BASEL",
         stages: {
             recipes: "RECIPES",
             percent: "PERCENT",
@@ -1129,7 +1129,8 @@ export const enMath = {
             base_batch: "Base Batch",
             target_batch: "Target Batch",
             water: "Water",
-            capacity: "Capacity"
+            capacity: "Capacity",
+            logic_framework: "Logical Framework"
         },
         prompts: {
             map_scale: "Map 1:25000. 4cm on map is ?km",
@@ -1212,7 +1213,7 @@ export const enMath = {
     sm2_01: {
         back: "← Back to Nexus",
         back_short: "Back to Nexus",
-        title: "SM2.01 // BINOMIAL FACTORY",
+        title: "BINOMIAL FACTORY",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1348,7 +1349,7 @@ export const enMath = {
     },
     sm2_02: {
         back: "Back to Nexus",
-        title: "SM2.02 // PYTHAGORAS & ROOTS",
+        title: "PYTHAGORAS & ROOTS",
         tabs: {
             pythagoras: "PYTHAGORAS",
             sqrt: "SQUARE ROOT",
@@ -1370,24 +1371,24 @@ export const enMath = {
         ready: "Ready",
         yes: "YES",
         no: "NO",
-        monitor_title: "SM2.02_VISUAL_MONITOR",
-        footer_left: "SM2.02_SQRT_PYTHAGORAS // NODE: ZURICH",
+        monitor_title: "VISUAL_MONITOR",
+        footer_left: "SQRT_PYTHAGORAS // NODE: ZURICH",
         input_radical: "Answer as k√m",
         input_k: "k",
         input_m: "m",
         input_number: "Answer",
         diagonal: "Diagonal",
         pythagoras: {
-            solve_hyp: "Fire rescue: Find the ladder length",
-            solve_hyp_params: "horizontal distance a={a}m, vertical height b={b}m",
-            solve_leg: "Mountain climb: Find the vertical height",
-            solve_leg_params: "rope length c={c}m, {known_label} {known_var}={known}m",
+            solve_hyp: "Fire rescue scenario: the ladder truck must reach a window safely",
+            solve_hyp_params: "given street offset a={a}m and wall height b={b}m, find the minimum ladder length c",
+            solve_leg: "Mountain rescue scenario: determine the vertical ascent",
+            solve_leg_params: "given rope length c={c}m and {known_label} {known_var}={known}m, find the missing leg",
             known_horizontal: "horizontal movement",
             known_given: "given",
             check_right: "📐 Engineering check: Is this a right triangle?",
             check_right_question: "Right Triangle?",
-            distance: "🚁 Drone delivery: Calculate flight distance",
-            elite_space: " CERN lab: Find the space diagonal",
+            distance: "🚁 Drone logistics scenario: calculate straight-line 3D flight distance",
+            elite_space: "CERN engineering scenario: find the space diagonal for cable routing",
             right_triangle_q: "📐 Is this a right triangle?",
             solve_diagonal: "Calculate diagonal",
             explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
@@ -1447,7 +1448,7 @@ export const enMath = {
     },
     sm2_03: {
         back: "Back to Nexus",
-        title: "SM2.03 // LINE NAVIGATOR",
+        title: "LINE NAVIGATOR",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -1458,8 +1459,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.03_LASER_MONITOR",
-        footer_left: "SM2.03_LINE_NAVIGATOR // NODE: BASEL",
+        monitor_title: "LASER_MONITOR",
+        footer_left: "LINE_NAVIGATOR // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -1469,9 +1470,9 @@ export const enMath = {
             intercept: "Base fare (c)"
         },
         prompts: {
-            level1: "Calculate the ticket price for the given destination",
-            level2: "Find the distance where two fare plans cost the same",
-            level3: "Find the threshold distance where Plan A becomes cheaper"
+            level1: "Commuter scenario: use y=mx+c to compute the Swiss rail fare for the target distance",
+            level2: "Fare comparison scenario: find the break-even distance where two plans cost the same",
+            level3: "Budget scenario: find the threshold distance after which Plan A becomes cheaper"
         },
         hints: {
             level1: "Slope m = cost per km. Intercept c = base fare (standing charge). Total fare y = m × distance + c.",
@@ -1504,7 +1505,7 @@ export const enMath = {
     },
     sm2_04: {
         back: "Back to Nexus",
-        title: "SM2.04 // SIMILARITY & SCALING",
+        title: "SIMILARITY & SCALING",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1518,8 +1519,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.04_MONITOR",
-        footer_left: "SM2.04_SIMILARITY // NODE: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "SIMILARITY // NODE: BASEL",
         stages: {
             scale_factor: "SCALE",
             similar_triangles: "SIMILAR",
@@ -1561,7 +1562,7 @@ export const enMath = {
     },
     sm2_05: {
         back: "Back to Nexus",
-        title: "SM2.05 // POWERS & ROOTS",
+        title: "POWERS & ROOTS",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1575,8 +1576,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.05_MONITOR",
-        footer_left: "SM2.05_POWERS_ROOTS // NODE: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "POWERS_ROOTS // NODE: BASEL",
         stages: {
             rules: "LAWS",
             negative: "NEGATIVE",
@@ -1592,7 +1593,7 @@ export const enMath = {
     },
     sm2_06: {
         back: "Back to Nexus",
-        title: "SM2.06 // LINEAR SYSTEMS",
+        title: "LINEAR SYSTEMS",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1606,8 +1607,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.06_MONITOR",
-        footer_left: "SM2.06_LINEAR_SYSTEMS // NODE: BASEL",
+        monitor_title: "MONITOR",
+        footer_left: "LINEAR_SYSTEMS // NODE: BASEL",
         stages: {
             substitution: "SUBSTITUTION",
             elimination: "ELIMINATION",
@@ -1691,7 +1692,7 @@ export const enMath = {
     },
     sm2_07: {
         back: "Back to Nexus",
-        title: "SM2.07 // COORDINATE GEOMETRY",
+        title: "COORDINATE GEOMETRY",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -1702,8 +1703,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.07_COORDINATE_MONITOR",
-        footer_left: "SM2.07_COORD_GEOM // NODE: ZURICH",
+        monitor_title: "COORDINATE_MONITOR",
+        footer_left: "COORD_GEOM // NODE: ZURICH",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -1752,7 +1753,7 @@ export const enMath = {
     },
     sm2_08: {
         back: "Back to Nexus",
-        title: "SM2.08 // PROBABILITY BASICS",
+        title: "PROBABILITY BASICS",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -1761,8 +1762,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.08_PROBABILITY_MONITOR",
-        footer_left: "SM2.08_PROBABILITY // NODE: BASEL",
+        monitor_title: "PROBABILITY_MONITOR",
+        footer_left: "PROBABILITY // NODE: BASEL",
         formula_title: "PROBABILITY FORMULA",
         scenario_title: "PROBLEM",
         basel_scenario: "BASEL LIFE SCENARIO",
@@ -1963,7 +1964,7 @@ export const enMath = {
     },
     sm3_01: {
         back: "Back to Nexus",
-        title: "SM3.01 // QUADRATIC EQUATIONS",
+        title: "QUADRATIC EQUATIONS",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1977,8 +1978,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM3.01_MONITOR",
-        footer_left: "SM3.01_QUADRATICS // NODE: ZURICH",
+        monitor_title: "MONITOR",
+        footer_left: "QUADRATICS // NODE: ZURICH",
         stages: {
             terms: "TERMS",
             factorize: "FACTORIZE",
@@ -2027,7 +2028,7 @@ export const enMath = {
     },
     sm3_02: {
         back: "Back to Nexus",
-        title: "SM3.02 // TRIG CIRCLE",
+        title: "TRIG CIRCLE",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -2041,8 +2042,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM3.02_TRIG_MONITOR",
-        footer_left: "SM3.02_TRIG_CIRCLE // NODE: BASEL",
+        monitor_title: "TRIG_MONITOR",
+        footer_left: "TRIG_CIRCLE // NODE: BASEL",
         labels: {
             angle: "ANGLE (θ)",
             values: "TRIGONOMETRIC VALUES",
@@ -2075,7 +2076,7 @@ export const enMath = {
     },
     sm3_03: {
         back: "Back to Nexus",
-        title: "SM3.03 // GROWTH & LOGS",
+        title: "GROWTH & LOGS",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -2089,8 +2090,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM3.03_GROWTH_MONITOR",
-        footer_left: "SM3.03_EXPONENTIAL // NODE: BASEL",
+        monitor_title: "GROWTH_MONITOR",
+        footer_left: "EXPONENTIAL // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -2159,7 +2160,7 @@ export const enMath = {
     },
     sm3_04: {
         back: "Back to Nexus",
-        title: "SM3.04 // LOGARITHMIC SCALES",
+        title: "LOGARITHMIC SCALES",
         difficulty: {
             basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE"
         },
@@ -2170,8 +2171,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM3.04_LOG_MONITOR",
-        footer_left: "SM3.04_LOGARITHMS // NODE: BASEL",
+        monitor_title: "LOG_MONITOR",
+        footer_left: "LOGARITHMS // NODE: BASEL",
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
         labels: {
             input: "INPUT",
@@ -2230,11 +2231,11 @@ export const enMath = {
     },
     sm2_10: {
         back: "Back to Nexus",
-        title: "SM2.10 // DATA ANALYSIS",
+        title: "DATA ANALYSIS",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Data Analysis Monitor",
-        footer_left: "SM2.10_DATA_ANALYSIS // NODE: BASEL",
+        footer_left: "DATA_ANALYSIS // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Correct",
@@ -2504,11 +2505,11 @@ export const enMath = {
     },
     sm3_05: {
         back: "Back to Nexus",
-        title: "SM3.05 // 3D GEOMETRY ADVANCED",
+        title: "3D GEOMETRY ADVANCED",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "3D Geometry Monitor",
-        footer_left: "SM3.05_3D_GEOMETRY // NODE: BASEL",
+        footer_left: "3D_GEOMETRY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Correct",
@@ -2603,7 +2604,7 @@ export const enMath = {
         }
     },
     sm2_11: {
-        title: "SM2.11 // SEQUENCES & SERIES",
+        title: "SEQUENCES & SERIES",
         back: "Back to Nexus",
         check: "Verify",
         next: "Next Challenge",
@@ -2611,7 +2612,7 @@ export const enMath = {
         incorrect: "Incorrect",
         ready: "Ready",
         monitor_title: "Sequences & Series Monitor",
-        footer_left: "SM2.11_SEQUENCES_SERIES // NODE: BASEL",
+        footer_left: "SEQUENCES_SERIES // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -2651,7 +2652,7 @@ export const enMath = {
         }
     },
     sm2_12: {
-        title: "SM2.12 // COMBINATORICS",
+        title: "COMBINATORICS",
         back: "Back to Nexus",
         check: "Verify",
         next: "Next Challenge",
@@ -2659,7 +2660,7 @@ export const enMath = {
         incorrect: "Incorrect",
         ready: "Ready",
         monitor_title: "Combinatorics Monitor",
-        footer_left: "SM2.12_COMBINATORICS // NODE: BASEL",
+        footer_left: "COMBINATORICS // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -2739,7 +2740,7 @@ export const enMath = {
     },
     sm2_09: {
         back: "Back to Nexus",
-        title: "SM2.09 // INEQUALITIES",
+        title: "INEQUALITIES",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -2759,8 +2760,8 @@ export const enMath = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
-        monitor_title: "SM2.09_INEQUALITY_MONITOR",
-        footer_left: "SM2.09_INEQUALITIES // NODE: BASEL",
+        monitor_title: "INEQUALITY_MONITOR",
+        footer_left: "INEQUALITIES // NODE: BASEL",
         labels: {
             solution: "SOLUTION",
             interval_notation: "Interval Notation",
