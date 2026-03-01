@@ -31,7 +31,6 @@ export default function ResizableLayout({
       if (saved) {
         const width = parseFloat(saved);
         if (width >= minLeftWidth && width <= maxLeftWidth) {
-          // eslint-disable-next-line react-hooks/set-state-in-effect
           setLeftWidth(width);
         }
       }

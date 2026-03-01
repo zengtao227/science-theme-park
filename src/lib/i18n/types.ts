@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * i18n Type Definitions
  * Generated from i18n.ts refactoring

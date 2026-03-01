@@ -86,7 +86,6 @@ describe('buildStagePool', () => {
       if (questWithOne) {
         // The LaTeX should not have "1\text{" pattern (coefficient 1 should be omitted)
         // It should just be "\text{" without the "1" prefix
-        const parts = questWithOne.equationLatex.split('\\\\rightarrow');
         // Check that we don't have explicit "1\text" patterns
         expect(questWithOne.equationLatex).not.toMatch(/\s1\\\\text/);
       }

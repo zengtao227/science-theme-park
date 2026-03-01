@@ -7,7 +7,6 @@ import {
   getQuestById,
   getQuestPoolStats
 } from "../lib/gm2-02-quest-builder";
-import { Difficulty, Stage } from "../lib/gm2-02-types";
 
 describe("GM2.02 Quest Builder", () => {
   describe("buildStagePool", () => {

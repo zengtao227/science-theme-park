@@ -4,7 +4,7 @@ import DataTracker from "../../components/shared/DataTracker";
 // Mock framer-motion
 jest.mock("framer-motion", () => ({
     motion: {
-        div: ({ children, style, className, animate, initial }: any) => {
+        div: ({ children, style, className }: any) => {
             // Basic mock that passes through style if needed
             return <div className={className} style={style}>{children}</div>;
         },

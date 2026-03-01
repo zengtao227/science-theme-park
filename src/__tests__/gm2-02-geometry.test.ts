@@ -2,7 +2,6 @@
 
 import {
   calculateLineFrom2Points,
-  extractLineParameters,
   pointSatisfiesLine,
   calculate3DLineParametric,
   calculate3DLineSymmetric,
@@ -24,7 +23,6 @@ import {
   classifyPlanePlane,
   calculateLineLineIntersection,
   calculateLinePlaneIntersection,
-  calculatePlanePlaneIntersection,
   crossProduct,
   dotProduct,
   vectorMagnitude,

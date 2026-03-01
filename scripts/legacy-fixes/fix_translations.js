@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 
-const langs = ['en', 'cn', 'de'];
-const regexes = [
-  // 1. replace placeholder: "x^{2}" with placeholder: "x²" globally
-];
-
 let pageContent = fs.readFileSync('src/app/chamber/sm2-01/page.tsx', 'utf-8');
 pageContent = pageContent.replace(/placeholder: "([^"]*)\^\{2\}([^"]*)"/g, 'placeholder: "$1²$2"');
 pageContent = pageContent.replace(/placeholder="([^"]*)\^\{2\}([^"]*)"/g, 'placeholder="$1²$2"');

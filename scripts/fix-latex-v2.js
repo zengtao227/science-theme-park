@@ -8,7 +8,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('path');
 
 const PROJECT = path.join(__dirname, '..');
 const CHAMBER = path.join(PROJECT, 'src/app/chamber');

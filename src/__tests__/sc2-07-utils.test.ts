@@ -8,14 +8,12 @@ import {
   calculateEnthalpyChange,
   classifyReaction,
   calculateBondEnergyDeltaH,
-  calculateFormationDeltaH,
   calculateHeat,
   calculateDeltaHPerMole,
   calculateTotalHeat,
   reverseEquation,
   multiplyEquation,
   calculatePathwayDeltaH,
-  validateHessPathway,
   verifyAnswer,
 } from '../lib/sc2-07-utils';
 

@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import ChamberLayout from "../../components/layout/ChamberLayout";
 import { useAppStore } from "../../lib/store";
-import { MODULE_DEPENDENCIES } from "../../lib/curriculum/dependencies";
 
 // Mock store
 jest.mock("../../lib/store", () => ({

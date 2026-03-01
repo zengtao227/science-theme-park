@@ -41,13 +41,6 @@ function usesOldI18nPattern(content) {
 }
 
 /**
- * Check if a module uses the new i18n pattern
- */
-function usesNewI18nPattern(content) {
-  return content.includes('useLanguage()') && content.includes('const { t } = useLanguage()');
-}
-
-/**
  * Check for hardcoded English text in promptLatex
  */
 function hasHardcodedText(content) {
@@ -193,7 +186,7 @@ function auditModule(modulePath, moduleName) {
   
   // Check if any difficulty level has 0 questions
   const emptyDifficulties = Object.entries(questionCounts)
-    .filter(([_, count]) => count === 0)
+    .filter(([, count]) => count === 0)
     .map(([difficulty]) => difficulty);
   
   if (emptyDifficulties.length > 0) {

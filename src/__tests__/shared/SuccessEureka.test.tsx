@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import SuccessEureka from "../../components/shared/SuccessEureka";
 
 // Mock framer-motion to avoid animation issues in tests

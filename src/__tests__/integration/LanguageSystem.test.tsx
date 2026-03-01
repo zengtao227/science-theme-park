@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import { useLanguage, translations } from "../../lib/i18n";
+import { useLanguage } from "../../lib/i18n";
 import { useAppStore } from "../../lib/store";
 
 // Mock store
