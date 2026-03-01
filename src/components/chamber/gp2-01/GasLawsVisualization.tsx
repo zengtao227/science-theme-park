@@ -6,6 +6,7 @@ interface GasLawsVisualizationProps {
 }
 
 export default function GasLawsVisualization({ quest, stage }: GasLawsVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     return (

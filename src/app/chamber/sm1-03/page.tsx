@@ -15,7 +15,7 @@ type IntegerQuest = Quest & { stage: Stage; context?: string; scenario?: string;
 
 export default function SM103Page() {
   const { completeStage } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
 
   // Pre-extract all translations
   const sm1_03_t = {

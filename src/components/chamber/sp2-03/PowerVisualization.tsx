@@ -22,6 +22,7 @@ export default function PowerVisualization({
     power,
     translations
 }: PowerVisualizationProps) {
+    void translations;
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -21,7 +20,6 @@ import {
 
 
 export default function SP102NewtonsLaws() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const [canvasScenario, setCanvasScenario] = useState<"friction" | "acceleration" | "collision">("acceleration");
     const [mass, setMass] = useState(10);

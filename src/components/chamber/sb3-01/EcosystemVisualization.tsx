@@ -7,6 +7,7 @@ interface EcosystemVisualizationProps {
 }
 
 export default function EcosystemVisualization({ quest, stage, translations }: EcosystemVisualizationProps) {
+    void quest;
     const canvasSize = 400;
     const viz = translations?.labels?.viz || {};
 

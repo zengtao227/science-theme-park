@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
 import { clsx } from "clsx";
 import { Settings, Key, Globe, Cpu } from "lucide-react";
 
 export default function AiProviderSettings() {
   const { aiProviderConfig, setAiProviderConfig } = useAppStore();
-  const { t } = useLanguage();
 
   const [useDefault, setUseDefault] = useState(aiProviderConfig.useDefault);
   const [baseUrl, setBaseUrl] = useState(aiProviderConfig.baseUrl || "");

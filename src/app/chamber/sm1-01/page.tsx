@@ -10,7 +10,6 @@ import { useLanguage } from "@/lib/i18n";
 import { renderMixedText } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import ResizableLayout from "@/components/layout/ResizableLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
 import Cube3D from "@/components/chamber/sm1-01/Cube3D";
 

@@ -126,7 +126,6 @@ function Car({
   const actualSlope = derivFunc(xPosition);
 
   // Calculate angles
-  const actualAngle = Math.atan(actualSlope);
   const userAngle = Math.atan(userDerivative);
 
   // Check if user's derivative is close to actual

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { GasLawType, Language, GasParameters } from "@/lib/gp2-03-types";
-import { GAS_CONSTANT } from "@/lib/gp2-03-types";
 
 interface GasLawSimulatorProps {
   law: GasLawType;

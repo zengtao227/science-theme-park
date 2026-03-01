@@ -14,6 +14,7 @@ export default function CalculusVisualization({
   inputs,
   checkStatus,
 }: CalculusVisualizationProps) {
+  void inputs;
   // Parse function from LaTeX
   const functionData = useMemo(() => {
     if (!quest?.functionLatex) return null;

@@ -14,6 +14,7 @@ export default function GeometryVisualization({
   inputs,
   checkStatus,
 }: GeometryVisualizationProps) {
+  void inputs;
   const shapeData = useMemo(() => {
     if (!quest) return null;
     

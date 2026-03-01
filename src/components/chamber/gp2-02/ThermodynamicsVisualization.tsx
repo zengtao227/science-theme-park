@@ -6,6 +6,7 @@ interface ThermodynamicsVisualizationProps {
 }
 
 export default function ThermodynamicsVisualization({ quest, stage }: ThermodynamicsVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     return (

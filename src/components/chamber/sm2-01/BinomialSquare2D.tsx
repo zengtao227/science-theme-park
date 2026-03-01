@@ -3,7 +3,6 @@
 import React from 'react';
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useLanguage } from "@/lib/i18n";
 
 interface BinomialSquare2DProps {
     a: number;

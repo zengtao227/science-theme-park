@@ -22,6 +22,7 @@ export default function ThermodynamicsCanvas({
     showParticles,
     translations
 }: ThermodynamicsCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [particles, setParticles] = useState<Particle[]>([]);
     const animationRef = useRef<number | null>(null);

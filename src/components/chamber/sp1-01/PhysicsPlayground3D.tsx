@@ -10,7 +10,7 @@ import {
     Html,
     Grid
 } from "@react-three/drei";
-import { Physics, RigidBody, RapierRigidBody, CuboidCollider } from "@react-three/rapier";
+import { Physics, RigidBody, RapierRigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 import { Play, RotateCcw, Box as BoxIcon, Info } from "lucide-react";
 import { Force } from "@/lib/sp1-01/domain/types";

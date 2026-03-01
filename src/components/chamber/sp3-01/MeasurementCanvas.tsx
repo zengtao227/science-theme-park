@@ -10,6 +10,7 @@ interface MeasurementCanvasProps {
 }
 
 export default function MeasurementCanvas({ tool, value, stage, translations }: MeasurementCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

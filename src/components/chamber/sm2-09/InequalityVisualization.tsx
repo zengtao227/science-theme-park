@@ -2,7 +2,7 @@
 // Routes to appropriate visualizer based on quest type
 
 import React from 'react';
-import { SM209Quest, InequalityVisualizationProps } from '@/lib/sm2-09-types';
+import { InequalityVisualizationProps } from '@/lib/sm2-09-types';
 import { NumberLineVisualizer } from './NumberLineVisualizer';
 import { GraphPlotter } from './GraphPlotter';
 import { SolutionSetVisualizer } from './SolutionSetVisualizer';

@@ -14,6 +14,7 @@ export default function SequenceVisualization({
   inputs,
   checkStatus,
 }: SequenceVisualizationProps) {
+  void inputs;
   const sequenceData = useMemo(() => {
     if (!quest) return null;
 

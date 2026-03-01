@@ -17,10 +17,6 @@ import {
 } from "@/lib/sm3-04/quests";
 import { renderMixedText } from "@/lib/latex-utils";
 
-
-
-const round2 = (v: number) => Math.round(v * 100) / 100;
-
 function buildStagePool(t: ReturnType<typeof useLanguage>["t"], difficulty: Difficulty, stage: Stage): S304Quest[] {
     if (stage === "PH") return generatePhQuests(t, difficulty);
     if (stage === "DECIBEL") return generateDecibelQuests(t, difficulty);

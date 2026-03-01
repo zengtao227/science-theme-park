@@ -118,7 +118,7 @@ export default function PartialPressureCalculator({
 
       {/* Gas Components */}
       <div className="space-y-3 mb-4">
-        {gases.map((gas, idx) => (
+        {gases.map((gas) => (
           <div key={gas.id} className="bg-gray-800/50 p-3 rounded-lg border border-gray-700">
             <div className="flex items-center justify-between mb-2">
               <input

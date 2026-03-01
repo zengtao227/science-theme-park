@@ -52,7 +52,7 @@ export function analyzePerformance(history: HistoryEntry[], moduleCode: string):
  * (Phase 5.1.1 MVP)
  */
 export function getAdaptiveDifficulty(history: HistoryEntry[], moduleCode: string): DifficultyAdjustment {
-    const metrics = analyzePerformance(history, moduleCode);
+    analyzePerformance(history, moduleCode);
     const moduleHistory = (history ?? []).filter(h => h.moduleCode === moduleCode);
 
     // Default for new users

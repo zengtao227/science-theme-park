@@ -14,6 +14,7 @@ export default function AlgebraVisualization({
   inputs,
   checkStatus,
 }: AlgebraVisualizationProps) {
+  void inputs;
   const balanceState = useMemo(() => {
     if (!quest?.equation) return { left: 0, right: 0 };
     

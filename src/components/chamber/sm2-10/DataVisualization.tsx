@@ -6,6 +6,7 @@ interface DataVisualizationProps {
 }
 
 export default function DataVisualization({ quest, stage }: DataVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     return (

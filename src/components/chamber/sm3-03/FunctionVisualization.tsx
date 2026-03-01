@@ -14,6 +14,7 @@ export default function FunctionVisualization({
   inputs,
   checkStatus,
 }: FunctionVisualizationProps) {
+  void inputs;
   // Generate function curve
   const curveData = useMemo(() => {
     if (!quest) return { points: "", type: "exponential" };

@@ -232,7 +232,6 @@ export default function S302Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        parseNumberLike,
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,

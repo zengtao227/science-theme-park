@@ -17,6 +17,7 @@ export default function PressureBuoyancyCanvas({
     pistonForce,
     translations
 }: PressureBuoyancyCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

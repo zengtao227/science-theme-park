@@ -89,7 +89,6 @@ export default function ElectrolysisCanvas({ voltage, electrolyte, activeStage, 
                 // From Anode to Cathode (through power source)
                 // Actually in electrolysis, electrons are pumped from anode to cathode by outside source
                 // Current flows from Cathode to Anode through the liquid, Electrons flow Anode -> Source -> Cathode
-                const x = width * 0.35 + 10 + (width * 0.25) * electronPos;
                 if (electronPos < 0.5) {
                     // Rising from Anode
                     const y = height * 0.2 - (height * 0.1) * (electronPos * 2);

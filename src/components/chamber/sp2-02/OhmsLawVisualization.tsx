@@ -22,6 +22,7 @@ export default function OhmsLawVisualization({
     current,
     translations
 }: OhmsLawVisualizationProps) {
+    void translations;
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {

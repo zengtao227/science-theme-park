@@ -6,6 +6,7 @@ interface HeatEngineVisualizationProps {
 }
 
 export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     return (

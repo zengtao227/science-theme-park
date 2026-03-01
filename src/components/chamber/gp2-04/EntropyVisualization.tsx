@@ -6,6 +6,7 @@ interface EntropyVisualizationProps {
 }
 
 export default function EntropyVisualization({ quest, stage }: EntropyVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     return (

@@ -14,6 +14,7 @@ export default function CombinatoricsVisualization({
   inputs,
   checkStatus,
 }: CombinatoricsVisualizationProps) {
+  void inputs;
   const visualData = useMemo(() => {
     if (!quest) return null;
 

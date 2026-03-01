@@ -80,7 +80,6 @@ export default function OrbitalCanvas({ stage, isActive }: OrbitalCanvasProps) {
 
             if (stage === "MO_THEORY") {
                 // Draw MO Energy Diagram
-                const centerX = 0;
                 const offset = 100;
 
                 // Levels

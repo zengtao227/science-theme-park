@@ -163,7 +163,6 @@ export default function SM209Page() {
     currentQuest,
     difficulty,
     stage,
-    inputs,
     lastCheck,
     setInputs,
     verify,

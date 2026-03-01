@@ -2,12 +2,10 @@
 
 import { useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { useLanguage } from '@/lib/i18n';
 
 export default function UserSetup() {
   const [username, setUsername] = useState('');
   const { createUser } = useAppStore();
-  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OhmsLawVisualization from "@/components/chamber/sp2-02/OhmsLawVisualization";
@@ -21,7 +20,6 @@ interface SP202Quest extends Quest {
 }
 
 export default function SP202OhmsLaw() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const [currentVoltage, setCurrentVoltage] = useState(0);
     const [currentCurrent, setCurrentCurrent] = useState(0);

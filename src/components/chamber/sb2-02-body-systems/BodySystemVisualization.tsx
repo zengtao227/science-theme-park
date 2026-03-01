@@ -6,6 +6,7 @@ interface BodySystemVisualizationProps {
 }
 
 export default function BodySystemVisualization({ quest, stage }: BodySystemVisualizationProps) {
+    void quest;
     const canvasSize = 400;
 
     const systemColors: Record<string, string> = {

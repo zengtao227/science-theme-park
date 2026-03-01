@@ -23,6 +23,7 @@ export default function WaveVisualization({
     inputs,
     checkStatus
 }: WaveVisualizationProps) {
+    void inputs;
     const canvasSize = 400;
     const centerX = canvasSize / 2;
     const centerY = canvasSize / 2;

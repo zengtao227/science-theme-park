@@ -23,7 +23,7 @@ type EquationQuest = Quest & {
 
 export default function SM104Page() {
   const { completeStage } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
 
   // Pre-extract all translations
   const sm1_04_t = {

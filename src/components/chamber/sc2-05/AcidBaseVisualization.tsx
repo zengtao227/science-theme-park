@@ -24,6 +24,7 @@ export default function AcidBaseVisualization({
   inputs,
   checkStatus,
 }: AcidBaseVisualizationProps) {
+  void inputs;
   const pH = useMemo(() => {
     if (!quest) return 7.0;
     if (quest.pH !== undefined) return quest.pH;

@@ -15,6 +15,7 @@ export default function EcosystemCanvas({
     showEnergyFlow,
     translations
 }: EcosystemCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const drawFoodChain = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number) => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
-import { SM209Quest, StepBySolverProps } from '@/lib/sm2-09-types';
+import { StepBySolverProps } from '@/lib/sm2-09-types';
 
 export const StepBySolver: React.FC<StepBySolverProps> = ({
     quest,

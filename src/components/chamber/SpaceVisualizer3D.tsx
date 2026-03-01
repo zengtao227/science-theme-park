@@ -100,6 +100,7 @@ function Line3D({ point, direction, color }: { point: [number, number, number]; 
 
 // Point component
 function PointObject({ coordinates, label, color }: { coordinates: [number, number, number]; label: string; color: string }) {
+  void label;
   return (
     <group position={coordinates}>
       <mesh>

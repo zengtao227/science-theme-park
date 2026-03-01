@@ -15,6 +15,7 @@ export default function OrganicReactionCanvas({
     showMechanism,
     translations
 }: OrganicReactionCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [animationFrame, setAnimationFrame] = useState(0);
 

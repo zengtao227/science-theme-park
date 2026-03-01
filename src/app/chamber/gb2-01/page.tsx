@@ -189,7 +189,6 @@ export default function GB201Neurobiology() {
         handleStageChange,
         handleDifficultyChange,
         currentStageStats,
-        pool,
         verify,
         inputs,
         setInputs,

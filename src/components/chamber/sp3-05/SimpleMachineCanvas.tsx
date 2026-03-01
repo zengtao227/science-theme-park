@@ -15,6 +15,7 @@ export default function SimpleMachineCanvas({
     showForces,
     translations
 }: SimpleMachineCanvasProps) {
+    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

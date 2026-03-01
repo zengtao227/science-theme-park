@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PowerVisualization from "@/components/chamber/sp2-03/PowerVisualization";
@@ -22,7 +21,6 @@ interface SP203Quest extends Quest {
 }
 
 export default function SP203ElectricPower() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const [currentPower, setCurrentPower] = useState(0);
 

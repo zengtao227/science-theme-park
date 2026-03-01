@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 interface SuccessEurekaProps {
     show: boolean;

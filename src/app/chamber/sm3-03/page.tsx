@@ -228,7 +228,7 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
 }
 
 export default function S303Page() {
-  const { currentLanguage, completeStage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   
   const sm3_03_t = {

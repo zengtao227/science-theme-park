@@ -304,7 +304,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
 
 export default function S207Page() {
   const { completeStage } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t("sm2_07"), d, s), [t]);
 
