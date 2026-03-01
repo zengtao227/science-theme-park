@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { InlineMath } from "react-katex";
@@ -48,7 +48,7 @@ function FunctionCurve({ func }: { func: (x: number) => number }) {
       if (isFinite(y) && Math.abs(y) < 10) {
         points.push(new THREE.Vector3(x, y, 0));
       }
-    } catch (e) {
+    } catch {
       // Skip invalid points
     }
   }

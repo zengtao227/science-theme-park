@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, Text, Line, Float, ContactShadows, Stars } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Environment, Text, Float, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 interface OrganicMoleculeCanvasProps {
@@ -19,7 +19,6 @@ function generateLinearMolecule(carbons: number, hasDoubleBondAtIdx?: number) {
 
     const CC_DIST = 1.5;
     const CH_DIST = 1.0;
-    const BOND_ANGLE = Math.PI * 109.5 / 180; // Tetrahedral angle roughly
 
     for (let i = 0; i < carbons; i++) {
         // Zig-zag pattern in x-y plane
@@ -174,6 +173,8 @@ function MappedMolecule({ molecule }: { molecule: string }) {
 }
 
 export default function OrganicMoleculeCanvas({ molecule, show3D, stage, translations }: OrganicMoleculeCanvasProps) {
+    void stage;
+    void translations;
     return (
         <div className="w-full h-full relative group">
             <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 pointer-events-none">

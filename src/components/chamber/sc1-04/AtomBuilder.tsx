@@ -7,15 +7,10 @@ import {
   PerspectiveCamera,
   Float,
   Sphere,
-  MeshDistortMaterial,
-  MeshWobbleMaterial,
-  Text,
-  Html,
   ContactShadows
 } from "@react-three/drei";
 import * as THREE from "three";
-import { Activity, Zap, Cpu } from "lucide-react";
-import { clsx } from "clsx";
+import { Activity } from "lucide-react";
 
 interface AtomBuilderProps {
   protons: number;
@@ -113,6 +108,7 @@ function OrbitalCloud({ type, radius }: { type: 's' | 'p', radius: number }) {
 }
 
 function ElectronShell({ shellNumber, electronCount, maxElectrons }: { shellNumber: number; electronCount: number; maxElectrons: number }) {
+  void maxElectrons;
   const groupRef = useRef<THREE.Group>(null);
   const radius = 1.2 + shellNumber * 1.2;
 
@@ -179,14 +175,6 @@ function AtomVisualization({ protons, neutrons, electrons }: AtomBuilderProps) {
       {shells.map((shell, i) => (
         <ElectronShell key={i} {...shell} />
       ))}
-    </group>
-  );
-}
-
-function GridPlane() {
-  return (
-    <group position={[0, -3, 0]}>
-      <gridHelper args={[10, 20, "#00e5ff", "#1a1a1a"]} />
     </group>
   );
 }

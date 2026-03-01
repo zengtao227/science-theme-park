@@ -9,12 +9,10 @@ import {
     Html,
     Environment,
     ContactShadows,
-    PerspectiveCamera,
-    Trail,
     Text
 } from "@react-three/drei";
 import * as THREE from "three";
-import { Zap, Share2, Waves, Activity } from "lucide-react";
+import { Zap, Share2, Waves } from "lucide-react";
 import { clsx } from "clsx";
 
 interface BondingVisualization3DProps {
@@ -28,7 +26,7 @@ const pseudoRandom = (seed: number) => {
 
 function IonicBonding() {
     const electronRef = useRef<THREE.Mesh>(null!);
-    const [stage, setStage] = useState<'approaching' | 'transfer' | 'balanced'>('approaching');
+    const [, setStage] = useState<'approaching' | 'transfer' | 'balanced'>('approaching');
 
     useFrame((state) => {
         const t = state.clock.elapsedTime % 6;

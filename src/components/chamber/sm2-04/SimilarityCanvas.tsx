@@ -4,14 +4,11 @@ import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
     PerspectiveCamera,
-    Environment,
     Float,
     Line,
     Text,
     ContactShadows,
     Edges,
-    Bounds,
-    useBounds,
     OrbitControls
 } from "@react-three/drei";
 import * as THREE from "three";

@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Grid, Float, Center, PerspectiveCamera, Environment } from "@react-three/drei";
+import { OrbitControls, Text, Center, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 export interface PowerVisual {
@@ -94,7 +94,6 @@ function MultiplyScene({ base, m, n }: { base: string, m: number, n: number }) {
   useFrame((state) => {
     if (!groupRef.current) return;
     const time = state.clock.getElapsedTime();
-    const t = (Math.sin(time) + 1) / 2; // 0 to 1 cycle
 
     // Right stack position interpolation
     // Start: x = 2, y = 0
@@ -298,9 +297,6 @@ function ScientificScene({ m, n }: { m: number, n: number }) {
   // Show the number m.
   // Show the decimal point moving n times.
   // For n=3, m=4.2 -> 4.200 -> 4200.
-
-  // Deconstruct m into string
-  const originalStr = m.toString(); // "4.2"
 
   const steps = n > 0 ? n : Math.abs(n);
   const [cycle, setCycle] = useState(0);
