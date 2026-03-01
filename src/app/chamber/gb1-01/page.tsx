@@ -52,9 +52,9 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
             quests.push(
                 create("fitness_calc", { init: 100, surv: 90 }, "s = 1 - 0.9", "s", "0.1", ["s = 1-w"]),
                 create("fitness_calc", { init: 100, surv: 50 }, "s = 1 - 0.5", "s", "0.5", ["s = 1-w"]),
-                { ...create("fitness_calc", { init: 100, surv: 100 }, "w=1, s=0", "s", "0", ["No selection"]), promptLatex: "Init 100, Surv 100. Selection coeff s?" },
-                { ...create("fitness_calc", { init: 100, surv: 80 }, "w=0.8, s=0.2", "s", "0.2", ["s = 1-w"]), promptLatex: "Init 100, Surv 80. Find s." },
-                { ...create("fitness_calc", { init: 20, surv: 10 }, "w=0.5, s=0.5", "s", "0.5", ["s = 1-w"]), promptLatex: "Init 20, Surv 10. Find s." }
+                { ...create("fitness_calc", { init: 100, surv: 100 }, "w=1, s=0", "s", "0", ["No selection"]), promptLatex: t("gb1_01.prompts.ns_c3") },
+                { ...create("fitness_calc", { init: 100, surv: 80 }, "w=0.8, s=0.2", "s", "0.2", ["s = 1-w"]), promptLatex: t("gb1_01.prompts.ns_c4") },
+                { ...create("fitness_calc", { init: 20, surv: 10 }, "w=0.5, s=0.5", "s", "0.5", ["s = 1-w"]), promptLatex: t("gb1_01.prompts.ns_c5") }
             );
         } else if (difficulty === "ADVANCED") {
             // Hardy Weinberg p+q=1, p^2+2pq+q^2=1
@@ -68,11 +68,11 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         } else { // ELITE
             // Delta p = spq / (1-sq^2) approx spq
             quests.push(
-                { id: `NS-E1`, difficulty, stage, promptLatex: "Selection s=0.1 against recessive. p=0.5, q=0.5. Delta p approx spq^{2}?", expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: "0.0125", expected: 0.0125 }], correctLatex: "0.0125", hintLatex: ["s p q^{2}"] },
+                { id: `NS-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e1"), expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: "0.0125", expected: 0.0125 }], correctLatex: "0.0125", hintLatex: ["s p q^{2}"] },
                 create("hardy_p", { p: 0.99 }, "2(0.99)(0.01)", "2pq", "0.0198", ["Rare alleles"]),
-                { id: `NS-E3`, difficulty, stage, promptLatex: "Fitness wAA=1, wAa=1, waa=0.5. q=0.1. Mean fitness W = 1 - s q^{2}?", expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "0.995", expected: 0.995 }], correctLatex: "0.995", hintLatex: ["Mean fitness"] },
-                { id: `NS-E4`, difficulty, stage, promptLatex: "Heterozygote Advantage. wAA=0.8, wAa=1, waa=0.5. Equilibrium q?", expressionLatex: "q = s1/(s1+s2) = 0.2/(0.2+0.5)", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.286", expected: 0.286 }], correctLatex: "0.286", hintLatex: ["Balanced poly"] },
-                { id: `NS-E5`, difficulty, stage, promptLatex: "Mutation-Selection Balance. u=1e-5, s=0.1. q = \\sqrt{u/s}?", expressionLatex: "\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.01", expected: 0.01 }], correctLatex: "0.01", hintLatex: ["Equilibrium"] }
+                { id: `NS-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e3"), expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "0.995", expected: 0.995 }], correctLatex: "0.995", hintLatex: ["Mean fitness"] },
+                { id: `NS-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e4"), expressionLatex: "q = s1/(s1+s2) = 0.2/(0.2+0.5)", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.286", expected: 0.286 }], correctLatex: "0.286", hintLatex: ["Balanced poly"] },
+                { id: `NS-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e5"), expressionLatex: "\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "0.01", expected: 0.01 }], correctLatex: "0.01", hintLatex: ["Equilibrium"] }
             );
         }
     }
@@ -81,35 +81,35 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         if (difficulty === "BASIC") {
             quests.push(
                 create("mutation_div", { D: 0, u: 1e-3 }, "t \\times 10^{-3}", "D", "0.1", ["Assume 100 gen"], "genetic_drift"), // Placeholder fix logic below
-                { id: `SP-B1`, difficulty, stage, promptLatex: "Gen 100, rate 0.001. Divergence?", expressionLatex: "100 \\times 0.001", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "0.1", expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
-                { id: `SP-B2`, difficulty, stage, promptLatex: "Gen 500, rate 0.002. Div?", expressionLatex: "500 \\times 0.002", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["Mult"] },
-                { id: `SP-B3`, difficulty, stage, promptLatex: "Gen 1000, rate 1e-4. Div?", expressionLatex: "0.1", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "0.1", expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
-                { id: `SP-B4`, difficulty, stage, promptLatex: "Divergence 0.2, Gen 100. Rate?", expressionLatex: "0.2/100", targetLatex: "u", slots: [{ id: "u", labelLatex: "u", placeholder: "0.002", expected: 0.002 }], correctLatex: "0.002", hintLatex: ["Div speed"] },
-                { id: `SP-B5`, difficulty, stage, promptLatex: "Rate 0.01. Gen to reach D=1?", expressionLatex: "1/0.01", targetLatex: "t", slots: [{ id: "t", labelLatex: "t", placeholder: "100", expected: 100 }], correctLatex: "100", hintLatex: ["Inverse"] }
+                { id: `SP-B1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b1"), expressionLatex: "100 \\times 0.001", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "0.1", expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
+                { id: `SP-B2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b2"), expressionLatex: "500 \\times 0.002", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["Mult"] },
+                { id: `SP-B3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b3"), expressionLatex: "0.1", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: "0.1", expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
+                { id: `SP-B4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b4"), expressionLatex: "0.2/100", targetLatex: "u", slots: [{ id: "u", labelLatex: "u", placeholder: "0.002", expected: 0.002 }], correctLatex: "0.002", hintLatex: ["Div speed"] },
+                { id: `SP-B5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b5"), expressionLatex: "1/0.01", targetLatex: "t", slots: [{ id: "t", labelLatex: "t", placeholder: "100", expected: 100 }], correctLatex: "100", hintLatex: ["Inverse"] }
             );
         } else if (difficulty === "CORE") {
             quests.push(
                 create("drift_time", { N: 100 }, "4 \\times 100", "t", "400", ["4N"]),
                 create("drift_time", { N: 50 }, "4 \\times 50", "t", "200", ["4N"]),
                 create("drift_time", { N: 1000 }, "4000", "t", "4000", ["4N"]),
-                { id: `SP-C4`, difficulty, stage, promptLatex: "Drift: Fixation Prob of new mutation. N=100. P=1/2N. Find P.", expressionLatex: "1/200", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.005", expected: 0.005 }], correctLatex: "0.005", hintLatex: ["1/2N"] },
-                { id: `SP-C5`, difficulty, stage, promptLatex: "N=500. Fixation Prob?", expressionLatex: "1/1000", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.001", expected: 0.001 }], correctLatex: "0.001", hintLatex: ["1/2N"] }
+                { id: `SP-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c4"), expressionLatex: "1/200", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.005", expected: 0.005 }], correctLatex: "0.005", hintLatex: ["1/2N"] },
+                { id: `SP-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c5"), expressionLatex: "1/1000", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.001", expected: 0.001 }], correctLatex: "0.001", hintLatex: ["1/2N"] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
                 create("common_ancestor", { n: 10, r: 1 }, "10/2", "T", "5", ["2 branches"]),
                 create("common_ancestor", { n: 20, r: 0.5 }, "20/(2 \\times 0.5)", "T", "20", ["2uT=D"]),
                 create("common_ancestor", { n: 5, r: 0.1 }, "5/0.2", "T", "25", ["2uT"]),
-                { id: `SP-A4`, difficulty, stage, promptLatex: "Bottleneck. N reduces to 10. Heterozygosity loss H_new = (1 - 1/2N) H_old. Factor?", expressionLatex: "1 - 1/20", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: "0.95", expected: 0.95 }], correctLatex: "0.95", hintLatex: ["1 - 1/2N"] },
-                { id: `SP-A5`, difficulty, stage, promptLatex: "Effective Pop Size. Nm=100, Nf=100. Ne = 4NmNf/(Nm+Nf)?", expressionLatex: "40000/200", targetLatex: "Ne", slots: [{ id: "n", labelLatex: "Ne", placeholder: "200", expected: 200 }], correctLatex: "200", hintLatex: ["Equal sex"] }
+                { id: `SP-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a4"), expressionLatex: "1 - 1/20", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: "0.95", expected: 0.95 }], correctLatex: "0.95", hintLatex: ["1 - 1/2N"] },
+                { id: `SP-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a5"), expressionLatex: "40000/200", targetLatex: "Ne", slots: [{ id: "n", labelLatex: "Ne", placeholder: "200", expected: 200 }], correctLatex: "200", hintLatex: ["Equal sex"] }
             );
         } else { // ELITE
             quests.push(
-                { id: `SP-E1`, difficulty, stage, promptLatex: "Drift vs Selection. s=0.01, N=10. Ns=0.1 < 1. Drift dominates?", expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
-                { id: `SP-E2`, difficulty, stage, promptLatex: "Founder Effect. k individuals. Allele lost prob (1-p)^{2}k. p=0.5, k=1. Prob?", expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
-                { id: `SP-E3`, difficulty, stage, promptLatex: "Fst Index. Ht=0.5, Hs=0.4. Fst = (Ht-Hs)/Ht?", expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: "0.2", expected: 0.2 }], correctLatex: "0.2", hintLatex: ["Structure"] },
-                { id: `SP-E4`, difficulty, stage, promptLatex: "Coalescence Time. k lineages. Expectation 4N / k(k-1). k=2?", expressionLatex: "4N/2 = 2N", targetLatex: "\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: "2", expected: 2 }], correctLatex: "2N", hintLatex: ["Pairwise"] },
-                { id: `SP-E5`, difficulty, stage, promptLatex: "Neutral Theory. Rate of substitution = Mutation rate u?", expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }
+                { id: `SP-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e1"), expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
+                { id: `SP-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e2"), expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
+                { id: `SP-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e3"), expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: "0.2", expected: 0.2 }], correctLatex: "0.2", hintLatex: ["Structure"] },
+                { id: `SP-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e4"), expressionLatex: "4N/2 = 2N", targetLatex: "\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: "2", expected: 2 }], correctLatex: "2N", hintLatex: ["Pairwise"] },
+                { id: `SP-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e5"), expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }
             );
         }
     }
@@ -125,27 +125,27 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
             );
         } else if (difficulty === "CORE") {
             quests.push(
-                { id: `EV-C1`, difficulty, stage, promptLatex: "Uranium-238 Lead-206. Half life 4.5B. Ratio 1:1. Age (B years)?", expressionLatex: "4.5", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "4.5", expected: 4.5 }], correctLatex: "4.5 B", hintLatex: ["1 HL"] },
-                { id: `EV-C2`, difficulty, stage, promptLatex: "Ratio 1:3 (Parent:Daughter). 25% Parent. Age in HL?", expressionLatex: "2", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["1->1/2->1/4"] },
-                { id: `EV-C3`, difficulty, stage, promptLatex: "K-Ar dating. HL=1.25B. 12.5% K remaining. Age?", expressionLatex: "3 \\times 1.25", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "3.75", expected: 3.75 }], correctLatex: "3.75 B", hintLatex: ["3 HL"] },
-                { id: `EV-C4`, difficulty, stage, promptLatex: "C-14. 50% left. 5730y. 1HL.", expressionLatex: "5730", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "5730", expected: 5730 }], correctLatex: "5730", hintLatex: ["Def"] },
-                { id: `EV-C5`, difficulty, stage, promptLatex: "C-14. 6.25% left. HLs?", expressionLatex: "4", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: "4", expected: 4 }], correctLatex: "4", hintLatex: ["1/16"] }
+                { id: `EV-C1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c1"), expressionLatex: "4.5", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "4.5", expected: 4.5 }], correctLatex: "4.5 B", hintLatex: ["1 HL"] },
+                { id: `EV-C2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c2"), expressionLatex: "2", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["1->1/2->1/4"] },
+                { id: `EV-C3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c3"), expressionLatex: "3 \\times 1.25", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "3.75", expected: 3.75 }], correctLatex: "3.75 B", hintLatex: ["3 HL"] },
+                { id: `EV-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c4"), expressionLatex: "5730", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "5730", expected: 5730 }], correctLatex: "5730", hintLatex: ["Def"] },
+                { id: `EV-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c5"), expressionLatex: "4", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: "4", expected: 4 }], correctLatex: "4", hintLatex: ["1/16"] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
-                { id: `EV-A1`, difficulty, stage, promptLatex: "Decay Constant lambda = 0.693 / T. T=6930. Lambda?", expressionLatex: "10^{-4}", targetLatex: "L", slots: [{ id: "l", labelLatex: "L", placeholder: "0.0001", expected: 0.0001 }], correctLatex: "0.0001", hintLatex: ["Div"] },
-                { id: `EV-A2`, difficulty, stage, promptLatex: "N(t) = N0 e^{-Lt}. t=1/L. Fraction?", expressionLatex: "e^{-1}", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: "0.368", expected: 0.368 }], correctLatex: "0.368", hintLatex: ["1/e"] },
-                { id: `EV-A3`, difficulty, stage, promptLatex: "Log decay. 30% remains. HL=100. Age? -100 * log2(0.3).", expressionLatex: "173", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "173", expected: 173 }], correctLatex: "173", hintLatex: ["Calc"] },
-                { id: `EV-A4`, difficulty, stage, promptLatex: "Isochron dating. Slope m = e^{Lt} - 1. m=1. Lt?", expressionLatex: "\\ln 2", targetLatex: "Lt", slots: [{ id: "l", labelLatex: "X", placeholder: "0.693", expected: 0.693 }], correctLatex: "0.693", hintLatex: ["Ln 2"] },
-                { id: `EV-A5`, difficulty, stage, promptLatex: "Carbon reservoir fluctuation. Correction factor 10%. Age 1000 -> ?", expressionLatex: "1100", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "1100", expected: 1100 }], correctLatex: "~1100", hintLatex: ["Corrected"] }
+                { id: `EV-A1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a1"), expressionLatex: "10^{-4}", targetLatex: "L", slots: [{ id: "l", labelLatex: "L", placeholder: "0.0001", expected: 0.0001 }], correctLatex: "0.0001", hintLatex: ["Div"] },
+                { id: `EV-A2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a2"), expressionLatex: "e^{-1}", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: "0.368", expected: 0.368 }], correctLatex: "0.368", hintLatex: ["1/e"] },
+                { id: `EV-A3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a3"), expressionLatex: "173", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "173", expected: 173 }], correctLatex: "173", hintLatex: ["Calc"] },
+                { id: `EV-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a4"), expressionLatex: "\\ln 2", targetLatex: "Lt", slots: [{ id: "l", labelLatex: "X", placeholder: "0.693", expected: 0.693 }], correctLatex: "0.693", hintLatex: ["Ln 2"] },
+                { id: `EV-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a5"), expressionLatex: "1100", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: "1100", expected: 1100 }], correctLatex: "~1100", hintLatex: ["Corrected"] }
             );
         } else { // ELITE
             quests.push(
-                { id: `EV-E1`, difficulty, stage, promptLatex: "Molecular Phylogeny. Jukes-CantorDist K = -0.75 ln(1 - 4/3 p). p=0.25. K?", expressionLatex: "0.3", targetLatex: "K", slots: [{ id: "k", labelLatex: "K", placeholder: "0.3", expected: 0.3 }], correctLatex: "~0.3", hintLatex: ["Formula"] },
-                { id: `EV-E2`, difficulty, stage, promptLatex: "Kimura 2-Parameter. Transition/Transversion ratio R. R=2. Bias?", expressionLatex: "2", targetLatex: "R", slots: [{ id: "r", labelLatex: "R", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Def"] },
-                { id: `EV-E3`, difficulty, stage, promptLatex: "Synonymous vs Nonsynonymous rates (dS, dN). dN/dS > 1. Selection?", expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: "positive", expected: "positive" }], correctLatex: "Positive", hintLatex: ["Adaptive"] },
-                { id: `EV-E4`, difficulty, stage, promptLatex: "Tree parsimony. Min changes 10 vs 12. P(10) > P(12)?", expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Occam"] },
-                { id: `EV-E5`, difficulty, stage, promptLatex: "Bootstrap support. 95/100 trees. Confidence?", expressionLatex: "95\\%", targetLatex: "C", slots: [{ id: "c", labelLatex: "C", placeholder: "95", expected: 95 }], correctLatex: "95%", hintLatex: ["Percentage"] }
+                { id: `EV-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e1"), expressionLatex: "0.3", targetLatex: "K", slots: [{ id: "k", labelLatex: "K", placeholder: "0.3", expected: 0.3 }], correctLatex: "~0.3", hintLatex: ["Formula"] },
+                { id: `EV-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e2"), expressionLatex: "2", targetLatex: "R", slots: [{ id: "r", labelLatex: "R", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Def"] },
+                { id: `EV-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e3"), expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: "positive", expected: "positive" }], correctLatex: "Positive", hintLatex: ["Adaptive"] },
+                { id: `EV-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e4"), expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Occam"] },
+                { id: `EV-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e5"), expressionLatex: "95\\%", targetLatex: "C", slots: [{ id: "c", labelLatex: "C", placeholder: "95", expected: 95 }], correctLatex: "95%", hintLatex: ["Percentage"] }
             );
         }
     }
