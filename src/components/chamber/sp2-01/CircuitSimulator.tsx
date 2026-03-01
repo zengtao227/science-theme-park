@@ -9,6 +9,9 @@ interface CircuitSimulatorProps {
 }
 
 export default function CircuitSimulator({ quest, circuit }: CircuitSimulatorProps) {
+  void quest;
+  void circuit;
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <div className="text-center">

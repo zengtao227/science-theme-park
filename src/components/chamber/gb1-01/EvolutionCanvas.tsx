@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Individual {
     x: number;
@@ -22,6 +22,8 @@ export default function EvolutionCanvas({
     selectionPressure,
     translations,
 }: EvolutionCanvasProps) {
+    void translations;
+
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [population, setPopulation] = useState<Individual[]>([]);
 

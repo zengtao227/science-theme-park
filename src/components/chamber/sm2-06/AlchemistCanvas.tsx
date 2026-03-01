@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useMemo, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useMemo, useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
 import {
     OrbitControls,
     Text,

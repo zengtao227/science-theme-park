@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 export type RatioMode = "RECIPES" | "PERCENT" | "MIXTURES";
@@ -13,6 +13,8 @@ interface RatioCanvasProps {
 }
 
 export default function RatioCanvas({ mode, quest, language, translations }: RatioCanvasProps) {
+    void language;
+
     const t = translations;
     // Use quest data or fallback to defaults
     const data = quest?.visualData || {};
@@ -75,7 +77,6 @@ export default function RatioCanvas({ mode, quest, language, translations }: Rat
     };
 
     const renderPercent = () => {
-        const total = 100;
         const current = data.percentage || 50;
         const label = data.label || "Battery";
 

@@ -9,6 +9,9 @@ interface CircuitBuilderProps {
 }
 
 export default function CircuitBuilder({ quest, onCircuitChange }: CircuitBuilderProps) {
+  void quest;
+  void onCircuitChange;
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-black/20 rounded-xl border border-white/10 p-6">
       <div className="text-center">

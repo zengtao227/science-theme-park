@@ -22,6 +22,9 @@ export default function ElectromagnetismVisualization({
     fieldIntensity,
     translations
 }: ElectromagnetismVisualizationProps) {
+    void fieldIntensity;
+    void translations;
+
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {
@@ -43,7 +46,6 @@ export default function ElectromagnetismVisualization({
                     
                     {/* Field lines radiating outward */}
                     {Array.from({ length: 12 }).map((_, i) => {
-                        const angle = (i * 30) * Math.PI / 180;
                         return (
                             <motion.div
                                 key={i}

@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { clsx } from "clsx";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
@@ -20,11 +18,12 @@ interface PythagorasSimple2DProps {
 }
 
 export default function PythagorasSimple2D({ a, b, c, highlightRightAngle, labels }: PythagorasSimple2DProps) {
+  void highlightRightAngle;
+
   const { t } = useLanguage();
   const sideALabel = labels?.sideA || t("sm2_02.labels.side_a");
   const sideBLabel = labels?.sideB || t("sm2_02.labels.side_b");
   const hypLabel = labels?.hyp || t("sm2_02.labels.hypotenuse");
-  const [showProof, setShowProof] = useState(false);
 
   // Geometric math
   // Triangle Vertices: V1(0,b), V2(0,0), V3(a,0)
