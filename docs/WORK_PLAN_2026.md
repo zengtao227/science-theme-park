@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP3.03 + SM2.13 prompt i18n closure, full QA passed)
-**Plan Version**: 5.2 (Batch C wave extension: GP3.03 + SM2.13 closure)
+**Last Updated**: 2026-03-02 (GP3.03 + SM2.13 + GC1.02 prompt i18n closure, full QA passed)
+**Plan Version**: 5.3 (Batch C wave extension: GP3.03 + SM2.13 + GC1.02 closure)
 
 ---
 
@@ -93,6 +93,7 @@
 - [x] `SM1.02 + SC3.04 wrapper cleanup`: removed residual `\\text{${t(...)}}` prompt wrappers and switched to direct i18n prompt text for `renderMixedText` path consistency.
 - [x] `SP3.01 prompt i18n cleanup`: replaced remaining English hardcoded prompt templates with `sp3_01.prompts.*` i18n keys; synchronized new keys (`equivalent_unit`, `round_sigfigs`, `calculate_with_sigfigs`, `percent_uncertainty`) in EN/CN/DE.
 - [x] `SM2.13 Batch C`: migrated all 16 stage prompt templates in `sm2-13-quest-data.ts` to `sm2_13.prompts.*`, localized module page UI labels/stage strings, and aligned EN/CN/DE key sets.
+- [x] `GC1.02 residue cleanup`: replaced 3 remaining hardcoded `promptLatex` values in `src/lib/gc1-02/quests.ts` with existing `gc1_02.prompts.*` i18n keys.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
@@ -538,6 +539,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.3 (2026-03-02)
+- **GC1.02 Prompt Cleanup**: Replaced the last 3 hardcoded prompts in `gc1-02/quests.ts` with localized keys (`gc1_02.prompts.calc_mass`, `plating_setup`, `corrosion_protection`) using existing EN/CN/DE translation packs.
+- **No Logic Drift**: Quest structure, numeric calculations, and expected answers remain unchanged.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after cleanup.
+
 ### v5.2 (2026-03-02)
 - **SM2.13 Prompt i18n Closure**: Replaced all 16 hardcoded `promptLatex` templates in `sm2-13-quest-data.ts` with `t("sm2_13.prompts.*", params)` while preserving quest math/expected values.
 - **SM2.13 UI Localization**: Removed residual hardcoded stage/UI literals in `sm2-13/page.tsx` and switched to `sm2_13.*` translation keys.
@@ -637,5 +643,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.2 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.3 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05
