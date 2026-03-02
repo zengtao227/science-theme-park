@@ -463,9 +463,9 @@ export const cnMath = {    em1_01: {
             application: "诺华建筑设计 - 曲面屋顶面积计算：诺华正在巴塞尔建造一座新的研究大楼，屋顶遵循函数 f(x) 的曲线。建筑团队需要计算从 x=a 到 x=b 曲线下的精确表面积，以订购正确数量的屋顶材料。面积等于定积分 ∫[a,b] f(x) dx。对于更复杂的应用，你可能使用 V = π∫[a,b] [f(x)]^{2} dx（圆盘法）计算旋转结构的体积。准确的积分可防止材料浪费并确保结构完整性。这就是工程师如何将数学曲线转化为实际建筑规范。"
         },
         prompts: {
-            find_antiderivative: "求 f(x) = {expr} 的不定积分 F(x)。",
-            evaluate_integral: "计算定积分：{expr}。",
-            find_area: "求 f(x) = {expr} 从 x = {a} 到 x = {b} 下的面积。",
+            find_antiderivative: "罗氏剂量模型任务：对速率函数 f(x) = {expr} 求不定积分 F(x)（含积分常数）。",
+            evaluate_integral: "莱茵流量累积任务：计算定积分 {expr}，得到区间内总累积量。",
+            find_area: "诺华屋面规划任务：计算 f(x) = {expr} 在 x = {a} 到 x = {b} 区间下的面积。",
             hint_power: "\\text{对于 }x^n\\text{，不定积分是 }\\frac{x^{n+1}}{n+1}+C",
             hint_definite: "F(b) - F(a)\\text{，其中 }F\\text{ 是不定积分}",
             hint_area: "\\text{面积} = \\int_a^b f(x)dx\\text{，当 }f(x)\\geq 0"

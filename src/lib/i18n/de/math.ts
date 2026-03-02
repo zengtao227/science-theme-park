@@ -462,9 +462,9 @@ export const deMath = {    em1_01: {
             application: "Novartis Gebäudedesign - Berechnung der gekrümmten Dachfläche: Novartis baut ein neues Forschungsgebäude in Basel mit einem gekrümmten Dach, das der Funktion f(x) folgt. Das Architekturteam muss die exakte Oberfläche unter der Kurve von x=a bis x=b berechnen, um die richtige Menge an Dachmaterial zu bestellen. Die Fläche entspricht dem bestimmten Integral ∫[a,b] f(x) dx. Für komplexere Anwendungen könnten Sie das Volumen einer Rotationsstruktur mit V = π∫[a,b] [f(x)]^{2} dx (Scheibenmethode) berechnen. Genaue Integration verhindert Materialverschwendung und gewährleistet strukturelle Integrität. So übersetzen Ingenieure mathematische Kurven in reale Bauspezifikationen."
         },
         prompts: {
-            find_antiderivative: "Finde die Stammfunktion F(x) von f(x) = {expr}.",
-            evaluate_integral: "Berechne das bestimmte Integral: {expr}.",
-            find_area: "Finde die Fläche unter f(x) = {expr} von x = {a} bis x = {b}.",
+            find_antiderivative: "Roche-Dosismodell-Aufgabe: Bestimme zur Änderungsfunktion f(x) = {expr} die Stammfunktion F(x) (inklusive Integrationskonstante).",
+            evaluate_integral: "Rhein-Akkumulationsaufgabe: Berechne das bestimmte Integral {expr}, um die Gesamtmenge im Intervall zu erhalten.",
+            find_area: "Novartis-Dachplanungsaufgabe: Bestimme die Fläche unter f(x) = {expr} von x = {a} bis x = {b}.",
             hint_power: "\\text{Für }x^n\\text{ ist die Stammfunktion }\\frac{x^{n+1}}{n+1}+C",
             hint_definite: "F(b) - F(a)\\text{, wobei }F\\text{ die Stammfunktion ist}",
             hint_area: "\\text{Fläche} = \\int_a^b f(x)dx\\text{ wenn }f(x)\\geq 0"

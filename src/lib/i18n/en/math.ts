@@ -462,9 +462,9 @@ export const enMath = {    em1_01: {
             application: "Novartis Building Design - Curved Roof Area Calculation: Novartis is constructing a new research building in Basel with a curved roof following the function f(x). The architecture team needs to calculate the exact surface area under the curve from x=a to x=b to order the correct amount of roofing material. The area equals the definite integral ∫[a,b] f(x) dx. For more complex applications, you might calculate the volume of a rotational structure using V = π∫[a,b] [f(x)]^{2} dx (disk method). Accurate integration prevents material waste and ensures structural integrity. This is how engineers translate mathematical curves into real-world construction specifications."
         },
         prompts: {
-            find_antiderivative: "Find the antiderivative F(x) of f(x) = {expr}.",
-            evaluate_integral: "Evaluate the definite integral: {expr}.",
-            find_area: "Find the area under f(x) = {expr} from x = {a} to x = {b}.",
+            find_antiderivative: "Roche dosing-model task: for rate function f(x) = {expr}, determine the antiderivative F(x) (with integration constant).",
+            evaluate_integral: "Rhine accumulation task: evaluate the definite integral {expr} to obtain the total quantity over the interval.",
+            find_area: "Novartis roof-planning task: compute the area under f(x) = {expr} from x = {a} to x = {b}.",
             hint_power: "\\text{For }x^n\\text{, antiderivative is }\\frac{x^{n+1}}{n+1}+C",
             hint_definite: "F(b) - F(a)\\text{ where }F\\text{ is the antiderivative}",
             hint_area: "\\text{Area} = \\int_a^b f(x)dx\\text{ when }f(x)\\geq 0"
