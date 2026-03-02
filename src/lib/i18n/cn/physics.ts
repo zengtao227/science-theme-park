@@ -684,6 +684,17 @@ export const cnPhysics = {
             beta: "β 衰变",
             gamma: "γ 放射",
             fission: "核裂变"
+        },
+        prompts: {
+            alpha_a_daughter: "α 衰变守恒检查：求子核质量数 A_daughter。",
+            alpha_z_daughter: "α 衰变电荷平衡：求子核原子序数 Z_daughter。",
+            alpha_delta_a: "α 衰变规则核对：求质量数变化 Delta A。",
+            beta_z_daughter: "β⁻ 衰变平衡：求子核原子序数 Z_daughter。",
+            beta_a_daughter: "β⁻ 守恒检查：求子核质量数 A_daughter。",
+            beta_delta_z: "β⁻ 衰变规则：求原子序数变化 Delta Z。",
+            gamma_a_daughter: "γ 放射检查：求子核质量数 A_daughter。",
+            gamma_z_daughter: "γ 放射检查：求子核原子序数 Z_daughter。",
+            gamma_delta_sum: "γ 跃迁成分检查：求核组成变化 Delta A + Delta Z。"
         }
     },
     gp1_02: {
@@ -735,6 +746,17 @@ export const cnPhysics = {
             lorentz: "洛伦兹因子",
             contraction: "长度收缩",
             dilation: "时间膨胀"
+        },
+        prompts: {
+            lorentz_l1: "相对论校验：根据给定速度计算洛伦兹因子 gamma。",
+            lorentz_l2: "束流速度核验：由 v/c 计算 gamma。",
+            lorentz_l3: "近光速情形：为精密计时计算 gamma。",
+            contraction_c1: "长度收缩任务：求收缩后长度 L。",
+            contraction_c2: "高 gamma 收缩检查：由 L_0 与 gamma 求 L。",
+            contraction_c3: "实验室参考系几何检查：计算收缩长度 L。",
+            dilation_d1: "时间膨胀基础题：求观测时间间隔 Delta t。",
+            dilation_d2: "时钟对比任务：计算运动系中的 Delta t。",
+            dilation_d3: "相对论计时校验：由 gamma 与 Delta t_0 求 Delta t。"
         }
     },
     gp1_03: {

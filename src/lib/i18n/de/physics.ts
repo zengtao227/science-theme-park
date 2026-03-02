@@ -749,6 +749,17 @@ export const dePhysics = {
                         beta: "BETA-ZERFALL",
                         gamma: "GAMMA-STRAHLUNG",
                         fission: "KERNSPALTUNG"
+                },
+                prompts: {
+                        alpha_a_daughter: "Alpha-Zerfallsbilanz: Bestimmen Sie die Tochter-Massenzahl A_daughter.",
+                        alpha_z_daughter: "Ladungserhaltung beim Alpha-Zerfall: Bestimmen Sie Z_daughter.",
+                        alpha_delta_a: "Alpha-Regelprüfung: Bestimmen Sie die Änderung der Massenzahl Delta A.",
+                        beta_z_daughter: "Beta-minus-Bilanz: Bestimmen Sie die Tochter-Ordnungszahl Z_daughter.",
+                        beta_a_daughter: "Erhaltungsprüfung bei Beta-minus: Bestimmen Sie A_daughter.",
+                        beta_delta_z: "Beta-minus-Regel: Bestimmen Sie die Änderung der Ordnungszahl Delta Z.",
+                        gamma_a_daughter: "Gamma-Emission: Bestimmen Sie die Tochter-Massenzahl A_daughter.",
+                        gamma_z_daughter: "Gamma-Emission: Bestimmen Sie die Tochter-Ordnungszahl Z_daughter.",
+                        gamma_delta_sum: "Gamma-Übergang: Bestimmen Sie Delta A + Delta Z für den Kern."
                 }
         },
         gp1_02: {
@@ -800,6 +811,17 @@ export const dePhysics = {
                         lorentz: "LORENTZ-FAKTOR",
                         contraction: "LÄNGENKONTRAKTION",
                         dilation: "ZEITDILATATION"
+                },
+                prompts: {
+                        lorentz_l1: "Relativitäts-Checkpoint: Berechnen Sie den Lorentz-Faktor gamma für die gegebene Geschwindigkeit.",
+                        lorentz_l2: "Strahlgeschwindigkeits-Prüfung: Berechnen Sie gamma aus dem Verhältnis v/c.",
+                        lorentz_l3: "Nahe-Lichtgeschwindigkeit-Fall: Berechnen Sie gamma für präzise Zeitanalyse.",
+                        contraction_c1: "Längenkontraktionsaufgabe: Bestimmen Sie die kontrahierte Länge L.",
+                        contraction_c2: "Hoher-gamma-Check: Berechnen Sie L aus L_0 und gamma.",
+                        contraction_c3: "Relativistische Geometrie: Bestimmen Sie die kontrahierte Länge L im Laborsystem.",
+                        dilation_d1: "Zeitdilatations-Basisfall: Bestimmen Sie das beobachtete Zeitintervall Delta t.",
+                        dilation_d2: "Uhrenvergleich: Berechnen Sie Delta t im bewegten Bezugssystem.",
+                        dilation_d3: "Relativistische Zeitprüfung: Bestimmen Sie Delta t aus gamma und Delta t_0."
                 }
         },
         gp1_03: {

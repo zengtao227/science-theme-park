@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.02 + GP1.03 + GP1.04 Batch B wave-4 prompt migration completed, full QA passed)
-**Plan Version**: 6.7 (Batch B high-frequency expansion wave-4)
+**Last Updated**: 2026-03-02 (GP1.01 + GP1.02 Batch B wave-5 prompt migration completed, full QA passed)
+**Plan Version**: 6.8 (Batch B high-frequency expansion wave-5)
 
 ---
 
@@ -116,7 +116,8 @@
 - [x] `GP3.01 Batch B (wave-2 extension)`: rewrote another 15 high-frequency bare prompts (Doppler/interference/duality cluster) in EN/CN/DE with scenario-task wording; key names and formulas unchanged.
 - [x] `SP1.02 Batch B (partial)`: rewrote `SECOND_LAW` + `THIRD_LAW` BASIC/CORE prompt arrays in EN/CN/DE from bare-parameter style to scenario-task wording while preserving index order and answer mapping.
 - [x] `SP1.02 + GP1.03 + GP1.04 Batch B (wave-4)`: added missing runtime prompt template keys for `sp1_02.prompts.first_law_* / second_law / third_law` in EN/CN/DE; migrated all hardcoded `promptLatex` in `gp1-03/page.tsx` and `gp1-04/page.tsx` to tri-language i18n prompt keys and upgraded wording to scenario-task style.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 旧数组本地化收口 / GP1.01 / GP1.02，按审计清单滚动推进）。
+- [x] `GP1.01 + GP1.02 Batch B (wave-5)`: migrated companion-quiz hardcoded prompt symbols in `gp1-01/page.tsx` and `gp1-02/page.tsx` to i18n-driven `gp1_01.prompts.*` / `gp1_02.prompts.*`; synchronized EN/CN/DE prompt key packs.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 旧数组本地化收口 + 未覆盖 FIRST_LAW/ADV/ELITE 文案统一）。
 
 ---
 
@@ -570,6 +571,13 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v6.8 (2026-03-02)
+- **Batch B High-frequency Wave-5**: Completed GP1.01 + GP1.02 prompt migration pass.
+  - `gp1-01/page.tsx`: replaced 9 companion quiz hardcoded `promptLatex` entries with `t("gp1_01.prompts.*")`.
+  - `gp1-02/page.tsx`: replaced 9 companion quiz hardcoded `promptLatex` entries with `t("gp1_02.prompts.*")`.
+  - EN/CN/DE physics i18n: added synchronized `gp1_01.prompts` and `gp1_02.prompts` key packs (9 + 9).
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v6.7 (2026-03-02)
 - **Batch B High-frequency Wave-4**: Completed SP1.02 + GP1.03 + GP1.04 expansion pass.
   - `sp1_02` EN/CN/DE: added generator-bound prompt keys (`first_law_basic/core/adv/elite`, `second_law`, `third_law`) to close key-path mismatch in `sp1-02/quests.ts` and standardize scenario-task phrasing.
@@ -753,5 +761,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 6.7 (Batch B high-frequency expansion wave-4)
+**Plan Version**: 6.8 (Batch B high-frequency expansion wave-5)
 **Next Review**: 2026-03-05

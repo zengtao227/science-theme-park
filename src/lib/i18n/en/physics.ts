@@ -750,6 +750,17 @@ export const enPhysics = {
                         beta: "BETA DECAY",
                         gamma: "GAMMA EMISSION",
                         fission: "NUCLEAR FISSION"
+                },
+                prompts: {
+                        alpha_a_daughter: "Alpha-decay bookkeeping: determine daughter mass number A_daughter.",
+                        alpha_z_daughter: "Alpha-decay charge balance: determine daughter atomic number Z_daughter.",
+                        alpha_delta_a: "Alpha-decay rule check: determine the change in mass number Delta A.",
+                        beta_z_daughter: "Beta-minus decay balance: determine daughter atomic number Z_daughter.",
+                        beta_a_daughter: "Beta-minus conservation check: determine daughter mass number A_daughter.",
+                        beta_delta_z: "Beta-minus rule check: determine the change in atomic number Delta Z.",
+                        gamma_a_daughter: "Gamma emission check: determine daughter mass number A_daughter.",
+                        gamma_z_daughter: "Gamma emission check: determine daughter atomic number Z_daughter.",
+                        gamma_delta_sum: "Gamma transition check: determine Delta A + Delta Z for the nucleus."
                 }
         },
         gp1_02: {
@@ -801,6 +812,17 @@ export const enPhysics = {
                         lorentz: "LORENTZ FACTOR",
                         contraction: "LENGTH CONTRACTION",
                         dilation: "TIME DILATION"
+                },
+                prompts: {
+                        lorentz_l1: "Relativity checkpoint: compute Lorentz factor gamma for the given speed.",
+                        lorentz_l2: "Beam-speed verification: compute gamma from the velocity ratio v/c.",
+                        lorentz_l3: "Near-light-speed case: compute gamma for precision timing analysis.",
+                        contraction_c1: "Length-contraction task: determine the contracted length L.",
+                        contraction_c2: "High-gamma contraction check: compute L from L_0 and gamma.",
+                        contraction_c3: "Relativistic geometry check: compute contracted length L in the lab frame.",
+                        dilation_d1: "Time-dilation baseline: compute observed time interval Delta t.",
+                        dilation_d2: "Clock comparison task: compute Delta t for a moving frame.",
+                        dilation_d3: "Relativistic timing check: determine Delta t from gamma and Delta t_0."
                 }
         },
         gp1_03: {
