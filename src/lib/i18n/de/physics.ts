@@ -1311,68 +1311,83 @@ export const dePhysics = {
                         hint_pressure: "P = P₀ + ρgh",
                         hint_archimedes: "F_a = ρ_wasser × V × g",
                         buoyancy: "Auftrieb",
-                        buoyancy_basic_1: "Auftrieb Grundaufgabe 1", // TODO
-                        buoyancy_basic_2: "Auftrieb Grundaufgabe 2", // TODO
-                        buoyancy_basic_3: "Auftrieb Grundaufgabe 3", // TODO
-                        buoyancy_basic_4: "Auftrieb Grundaufgabe 4", // TODO
-                        buoyancy_basic_5: "Auftrieb Grundaufgabe 5", // TODO
-                        buoyancy_core_1: "Auftrieb Kernaufgabe 1", // TODO
-                        buoyancy_core_2: "Auftrieb Kernaufgabe 2", // TODO
-                        buoyancy_core_3: "Auftrieb Kernaufgabe 3", // TODO
-                        buoyancy_core_4: "Auftrieb Kernaufgabe 4", // TODO
-                        buoyancy_core_5: "Auftrieb Kernaufgabe 5", // TODO
-                        buoyancy_advanced_1: "Auftrieb Fortgeschritten 1", // TODO
-                        buoyancy_advanced_2: "Auftrieb Fortgeschritten 2", // TODO
-                        buoyancy_advanced_3: "Auftrieb Fortgeschritten 3", // TODO
-                        buoyancy_advanced_4: "Auftrieb Fortgeschritten 4", // TODO
-                        buoyancy_advanced_5: "Auftrieb Fortgeschritten 5", // TODO
-                        buoyancy_elite_1: "Auftrieb Elite 1", // TODO
-                        buoyancy_elite_2: "Auftrieb Elite 2", // TODO
-                        buoyancy_elite_3: "Auftrieb Elite 3", // TODO
-                        buoyancy_elite_4: "Auftrieb Elite 4", // TODO
-                        buoyancy_elite_5: "Auftrieb Elite 5", // TODO
+
+                        buoyancy_basic_1: "\\text{Ein Körper mit Volumen } V = 0{,}1 \\text{ m}^{3} \\text{ ist vollständig in Wasser getaucht } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9{,}8 \\text{ m/s}^{2}). \\text{ Berechnen Sie die Auftriebskraft } F_b.",
+                        buoyancy_basic_2: "\\text{Ein Festkörper mit Volumen } V = 0{,}05 \\text{ m}^{3} \\text{ ist vollständig in Wasser eingetaucht } (\\rho = 1000,\\; g = 9{,}8). \\text{ Bestimmen Sie die Auftriebskraft } F_b.",
+                        buoyancy_basic_3: "\\text{Ein Wetterballon mit Volumen } V = 0{,}2 \\text{ m}^{3} \\text{ schwimmt in Luft } (\\rho_{Luft} = 1{,}2 \\text{ kg/m}^{3},\\; g = 9{,}8). \\text{ Berechnen Sie die Auftriebskraft.}",
+                        buoyancy_basic_4: "\\text{Ein Stein mit Volumen } V = 0{,}01 \\text{ m}^{3} \\text{ liegt vollständig unter Wasser } (\\rho = 1000,\\; g = 9{,}8). \\text{ Berechnen Sie die Auftriebskraft } F_b.",
+                        buoyancy_basic_5: "\\text{Ein Schiff verdrängt } V = 0{,}5 \\text{ m}^{3} \\text{ Rheinwasser } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9{,}8). \\text{ Wie gross ist die Auftriebskraft?}",
+
+                        buoyancy_core_1: "\\text{Ein Holzklotz hat die Masse } m = 10 \\text{ kg} \\text{ und das Volumen } V = 0{,}02 \\text{ m}^{3}. \\text{ Berechnen Sie die Dichte und entscheiden Sie: Schwimmt er in Wasser?}",
+                        buoyancy_core_2: "\\text{Ein Objekt wiegt } W = 1500 \\text{ N} \\text{ und hat Volumen } V = 0{,}1 \\text{ m}^{3} \\text{ (vollständig in Wasser). Berechnen Sie die Nettokraft } F_{net} = F_b - W.",
+                        buoyancy_core_3: "\\text{Eis hat die Dichte } \\rho_{Eis} = 900 \\text{ kg/m}^{3} \\text{ und schwimmt in Süsswasser } (\\rho_w = 1000). \\text{ Welcher Bruchteil } f \\text{ ist eingetaucht?}",
+                        buoyancy_core_4: "\\text{Aluminiumblock: } m = 81 \\text{ kg},\\; V = 0{,}03 \\text{ m}^{3} \\text{ hängt an einem Faden in Wasser. Berechnen Sie das scheinbare Gewicht } W_{app} = W - F_b.",
+                        buoyancy_core_5: "\\text{Heissluftballon: Volumen } V = 1000 \\text{ m}^{3},\\; \\rho_{Luft} = 1{,}2 \\text{ kg/m}^{3},\\; \\rho_{heiss} = 0{,}9. \\text{ Berechnen Sie die Netto-Auftriebskraft } F_{lift}.",
+
+                        buoyancy_advanced_1: "\\text{Ein Aräometer der Masse } m = 50 \\text{ g} \\text{ schwimmt im Gleichgewicht in Wasser } (\\rho_w = 1000). \\text{ Im Gleichgewicht gilt } W = F_b. \\text{ Bestimmen Sie das eingetauchte Volumen } V_{sub}.",
+                        buoyancy_advanced_2: "\\text{Ein Frachtschiff mit Gesamtmasse } m = 50{,}000 \\text{ kg} \\text{ schwimmt in Süsswasser } (\\rho = 1000 \\text{ kg/m}^{3}). \\text{ Berechnen Sie das verdrängte Wasservolumen.}",
+                        buoyancy_advanced_3: "\\text{Korkblock: } \\rho_{Kork} = 250 \\text{ kg/m}^{3},\\; V = 0{,}02 \\text{ m}^{3} \\text{ schwimmt in Wasser. Welche maximale Zusatzmasse } m_{Last} \\text{ kann er tragen, bevor er sinkt?}",
+                        buoyancy_advanced_4: "\\text{Goldblock: } m = 19{,}3 \\text{ kg},\\; V = 0{,}001 \\text{ m}^{3} \\text{ hängt vollständig eingetaucht an einem Faden. Berechnen Sie die Fadenspannung } T = W - F_b.",
+                        buoyancy_advanced_5: "\\text{U-Boot: Hüllenvolumen } V = 500 \\text{ m}^{3},\\text{ Trockenmasse } m_{U} = 400{,}000 \\text{ kg}. \\text{ Wie viel Ballastwasser } m_{Ballast} \\text{ muss eingelassen werden, um Schwebezustand zu erreichen?}",
+
+                        buoyancy_elite_1: "\\text{Körper mit Gesamtvolumen } V = 0{,}1 \\text{ m}^{3}: \\text{ halb in Wasser } (\\rho_w = 1000), \\text{ halb in Öl } (\\rho_o = 800) \\text{ eingetaucht. Berechnen Sie die gesamte Auftriebskraft } F_b.",
+                        buoyancy_elite_2: "\\text{Hohlkugel: Aussenradius } R = 0{,}2 \\text{ m},\\; \\text{Innenradius } r = 0{,}15 \\text{ m},\\; m = 10 \\text{ kg}. \\text{ Berechnen Sie die mittlere Dichte. Schwimmt sie in Wasser?}",
+                        buoyancy_elite_3: "\\text{Eisberg } (\\rho_{Eis} = 900 \\text{ kg/m}^{3}) \\text{ schwimmt in Meerwasser } (\\rho_{See} = 1030). \\text{ Berechnen Sie den Anteil } f_{oben} = 1 - \\rho_{Eis}/\\rho_{See} \\text{ über der Wasseroberfläche.}",
+                        buoyancy_elite_4: "\\text{Heliumballon: } V = 1 \\text{ m}^{3},\\; \\rho_{He} = 0{,}18,\\; \\rho_{Luft} = 1{,}2 \\text{ kg/m}^{3},\\text{ Hüllenmasse } = 0{,}5 \\text{ kg}. \\text{ Bestimmen Sie die maximale Nutzlast } m_{Nutzlast}.",
+                        buoyancy_elite_5: "\\text{Kronenproblem: Gewicht in Luft } W_{Luft} = 10 \\text{ N},\\text{ Gewicht in Wasser } W_{Wasser} = 8{,}5 \\text{ N}. \\text{ Bestimmen Sie mit dem archimedischen Prinzip die Dichte } \\rho \\text{ der Krone.}",
+
                         hydraulics: "Hydraulik",
-                        hydraulics_basic_1: "Hydraulik Grundaufgabe 1", // TODO
-                        hydraulics_basic_2: "Hydraulik Grundaufgabe 2", // TODO
-                        hydraulics_basic_3: "Hydraulik Grundaufgabe 3", // TODO
-                        hydraulics_basic_4: "Hydraulik Grundaufgabe 4", // TODO
-                        hydraulics_basic_5: "Hydraulik Grundaufgabe 5", // TODO
-                        hydraulics_core_1: "Hydraulik Kernaufgabe 1", // TODO
-                        hydraulics_core_2: "Hydraulik Kernaufgabe 2", // TODO
-                        hydraulics_core_3: "Hydraulik Kernaufgabe 3", // TODO
-                        hydraulics_core_4: "Hydraulik Kernaufgabe 4", // TODO
-                        hydraulics_core_5: "Hydraulik Kernaufgabe 5", // TODO
-                        hydraulics_advanced_1: "Hydraulik Fortgeschritten 1", // TODO
-                        hydraulics_advanced_2: "Hydraulik Fortgeschritten 2", // TODO
-                        hydraulics_advanced_3: "Hydraulik Fortgeschritten 3", // TODO
-                        hydraulics_advanced_4: "Hydraulik Fortgeschritten 4", // TODO
-                        hydraulics_advanced_5: "Hydraulik Fortgeschritten 5", // TODO
-                        hydraulics_elite_1: "Hydraulik Elite 1", // TODO
-                        hydraulics_elite_2: "Hydraulik Elite 2", // TODO
-                        hydraulics_elite_3: "Hydraulik Elite 3", // TODO
-                        hydraulics_elite_4: "Hydraulik Elite 4", // TODO
-                        hydraulics_elite_5: "Hydraulik Elite 5", // TODO
+
+                        hydraulics_basic_1: "\\text{Eine Kraft } F = 100 \\text{ N} \\text{ wirkt auf einen Kolben der Fläche } A = 0{,}01 \\text{ m}^{2}. \\text{ Berechnen Sie den Fluiddruck } P = F/A.",
+                        hydraulics_basic_2: "\\text{Hydraulikkolben mit Fläche } A = 0{,}02 \\text{ m}^{2}, \\text{ Kraft } F = 200 \\text{ N}. \\text{ Welchen Druck } P \\text{ erzeugt er im Fluid?}",
+                        hydraulics_basic_3: "\\text{Kolben mit Fläche } A = 0{,}05 \\text{ m}^{2} \\text{ wird mit Kraft } F = 500 \\text{ N} \\text{ gedrückt. Welchen Fluiddruck erzeugt er?}",
+                        hydraulics_basic_4: "\\text{Hydraulikzylinder: Kolbenfläche } A = 0{,}1 \\text{ m}^{2},\\text{ aufgebrachte Kraft } F = 1000 \\text{ N}. \\text{ Berechnen Sie den Fluiddruck.}",
+                        hydraulics_basic_5: "\\text{Kleiner Eingangskolben: } A = 0{,}005 \\text{ m}^{2},\\; F = 50 \\text{ N}. \\text{ Welcher Druck } P \\text{ wird durch das Hydraulikfluid übertragen?}",
+
+                        hydraulics_core_1: "\\text{Hydraulikheber: } A_1 = 0{,}01 \\text{ m}^{2},\\; A_2 = 0{,}1 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Berechnen Sie die Ausgangskraft } F_2 \\text{ (Pascalsches Gesetz).}",
+                        hydraulics_core_2: "\\text{Hydraulikbremse: } A_1 = 0{,}005 \\text{ m}^{2},\\; A_2 = 0{,}05 \\text{ m}^{2},\\; F_1 = 50 \\text{ N}. \\text{ Bestimmen Sie die Bremskraft } F_2 \\text{ am Radbremszylinder.}",
+                        hydraulics_core_3: "\\text{Hydraulikwagenheber: } A_1 = 0{,}02 \\text{ m}^{2},\\; A_2 = 0{,}2 \\text{ m}^{2},\\; F_1 = 200 \\text{ N}. \\text{ Berechnen Sie die Hubkraft } F_2.",
+                        hydraulics_core_4: "\\text{Hydraulikpresse: } A_1 = 0{,}001 \\text{ m}^{2},\\; A_2 = 0{,}1 \\text{ m}^{2},\\; F_1 = 10 \\text{ N}. \\text{ Berechnen Sie die Ausgangskraft } F_2.",
+                        hydraulics_core_5: "\\text{Hydrauliksystem: } A_1 = 0{,}03 \\text{ m}^{2},\\; A_2 = 0{,}3 \\text{ m}^{2},\\; F_1 = 300 \\text{ N}. \\text{ Bestimmen Sie } F_2.",
+
+                        hydraulics_advanced_1: "\\text{Hydraulikheber-Auslegung: } A_1 = 0{,}01 \\text{ m}^{2},\\; F_1 = 100 \\text{ N},\\text{ gewünschte Ausgangskraft } F_2 = 5000 \\text{ N}. \\text{ Berechnen Sie die erforderliche Kolbenfläche } A_2.",
+                        hydraulics_advanced_2: "\\text{Volumenkonstanz: } A_1 = 0{,}002 \\text{ m}^{2},\\; A_2 = 0{,}2 \\text{ m}^{2}. \\text{ Kolben 1 bewegt sich } d_1 = 10 \\text{ cm}. \\text{ Wie weit bewegt sich Kolben 2?}",
+                        hydraulics_advanced_3: "\\text{Hydraulikpresse mit 90\\% Wirkungsgrad: } A_1 = 0{,}01 \\text{ m}^{2},\\; A_2 = 0{,}1 \\text{ m}^{2},\\; F_1 = 200 \\text{ N}. \\text{ Bestimmen Sie die tatsächliche Ausgangskraft } F_2.",
+                        hydraulics_advanced_4: "\\text{Hydraulikwagenheber: } A_1 = 0{,}005 \\text{ m}^{2},\\; A_2 = 0{,}5 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Berechnen Sie den mechanischen Vorteil } \\text{MA} = A_2/A_1.",
+                        hydraulics_advanced_5: "\\text{Hydraulikbremse: } A_1 = 0{,}01 \\text{ m}^{2},\\; F_1 = 150 \\text{ N},\\text{ Kolben 1 bewegt sich } d_1 = 5 \\text{ cm}. \\text{ Berechnen Sie die verrichtete Arbeit } W = F_1 \\cdot d_1.",
+
+                        hydraulics_elite_1: "\\text{Dreistufiges Hydrauliksystem: } A_1 = 0{,}001,\\; A_2 = 0{,}01,\\; A_3 = 0{,}1 \\text{ m}^{2},\\; F_1 = 50 \\text{ N}. \\text{ Bestimmen Sie die Ausgangskraft } F_3 \\text{ der dritten Stufe.}",
+                        hydraulics_elite_2: "\\text{Hydrauliksystem mit Reibung: } A_1 = 0{,}01,\\; A_2 = 0{,}1 \\text{ m}^{2},\\; F_1 = 200 \\text{ N},\\text{ Reibungsverlust } = 100 \\text{ N}. \\text{ Berechnen Sie die Netto-Ausgangskraft } F_2.",
+                        hydraulics_elite_3: "\\text{Hydraulikspeicher bei Druck } P = 2 \\times 10^{6} \\text{ Pa}. \\text{ Ausgangskolbenfläche } A_2 = 0{,}05 \\text{ m}^{2}. \\text{ Berechnen Sie die Ausgangskraft.}",
+                        hydraulics_elite_4: "\\text{Hydraulikdämpfer: aufgebrachte Kraft } F_{auf} = 500 \\text{ N},\\text{ Viskositätswiderstand } F_{Wid} = 200 \\text{ N}. \\text{ Berechnen Sie die resultierende Nettokraft } F_{net}.",
+                        hydraulics_elite_5: "\\text{Serielles Hydrauliksystem: } A_1 = 0{,}002,\\; A_2 = 0{,}02,\\; A_3 = 0{,}2 \\text{ m}^{2}. \\text{ Berechnen Sie den Gesamtmechanischen Vorteil } \\text{MA}_{ges} = A_3/A_1.",
+
                         pressure: "Druck",
-                        pressure_basic_1: "Druck Grundaufgabe 1", // TODO
-                        pressure_basic_2: "Druck Grundaufgabe 2", // TODO
-                        pressure_basic_3: "Druck Grundaufgabe 3", // TODO
-                        pressure_basic_4: "Druck Grundaufgabe 4", // TODO
-                        pressure_basic_5: "Druck Grundaufgabe 5", // TODO
-                        pressure_core_1: "Druck Kernaufgabe 1", // TODO
-                        pressure_core_2: "Druck Kernaufgabe 2", // TODO
-                        pressure_core_3: "Druck Kernaufgabe 3", // TODO
-                        pressure_core_4: "Druck Kernaufgabe 4", // TODO
-                        pressure_core_5: "Druck Kernaufgabe 5", // TODO
-                        pressure_advanced_1: "Druck Fortgeschritten 1", // TODO
-                        pressure_advanced_2: "Druck Fortgeschritten 2", // TODO
-                        pressure_advanced_3: "Druck Fortgeschritten 3", // TODO
-                        pressure_advanced_4: "Druck Fortgeschritten 4", // TODO
-                        pressure_advanced_5: "Druck Fortgeschritten 5", // TODO
-                        pressure_elite_1: "Druck Elite 1", // TODO
-                        pressure_elite_2: "Druck Elite 2", // TODO
-                        pressure_elite_3: "Druck Elite 3", // TODO
-                        pressure_elite_4: "Druck Elite 4", // TODO
-                        pressure_elite_5: "Druck Elite 5", // TODO
+
+                        pressure_basic_1: "\\text{Ein Taucher sinkt auf } h = 10 \\text{ m} \\text{ Tiefe in Süsswasser } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9{,}8 \\text{ m/s}^{2}). \\text{ Berechnen Sie den Überdruck } P = \\rho g h.",
+                        pressure_basic_2: "\\text{Ein Wassertank ist bis zur Tiefe } h = 5 \\text{ m} \\text{ gefüllt } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 10 \\text{ m/s}^{2}). \\text{ Welcher Druck herrscht am Boden?}",
+                        pressure_basic_3: "\\text{Eine Kraft } F = 100 \\text{ N} \\text{ wirkt gleichmässig auf eine Fläche } A = 2 \\text{ m}^{2}. \\text{ Berechnen Sie den entstehenden Druck } P = F/A.",
+                        pressure_basic_4: "\\text{Ein Hydraulikkolben überträgt Kraft } F = 200 \\text{ N} \\text{ auf eine Fläche } A = 0{,}5 \\text{ m}^{2}. \\text{ Welcher Druck wird übertragen?}",
+                        pressure_basic_5: "\\text{Ein Schwimmer befindet sich } h = 2 \\text{ m} \\text{ unter der Wasseroberfläche } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 10 \\text{ m/s}^{2}). \\text{ Berechnen Sie den Überdruck.}",
+
+                        pressure_core_1: "\\text{Ein U-Boot befindet sich in } h = 15 \\text{ m} \\text{ Tiefe } (\\rho = 1000 \\text{ kg/m}^{3}). \\text{ Gegeben } P_{atm} = 101{\\,}000 \\text{ Pa}, \\text{ berechnen Sie den absoluten Gesamtdruck.}",
+                        pressure_core_2: "\\text{Hydraulikpresse: Kraft } F = 500 \\text{ N} \\text{ wirkt auf Kolbenfläche } A = 0{,}01 \\text{ m}^{2}. \\text{ Welcher Druck entsteht im Fluid?}",
+                        pressure_core_3: "\\text{Öltank mit Tiefe } h = 20 \\text{ m} \\;(\\rho_{Öl} = 800 \\text{ kg/m}^{3},\\; g = 9{,}8). \\text{ Berechnen Sie den Überdruck am Tankboden.}",
+                        pressure_core_4: "\\text{Kolben mit Fläche } A = 0{,}02 \\text{ m}^{2} \\text{ überträgt Kraft } F = 1000 \\text{ N}. \\text{ Welcher Druck wird durch den Hydraulikkreis geliefert?}",
+                        pressure_core_5: "\\text{Meerestiefe } h = 100 \\text{ m} \\text{ in Meerwasser } (\\rho = 1030 \\text{ kg/m}^{3},\\; g = 9{,}8). \\text{ Berechnen Sie den Überdruck in dieser Tiefe.}",
+
+                        pressure_advanced_1: "\\text{Zweischichtiger Flüssigkeitsbehälter: 30 m Wasser } (\\rho_w = 1000) \\text{ über 20 m Öl } (\\rho_o = 800). \\text{ Berechnen Sie den Gesamtdruck am Behälterboden.}",
+                        pressure_advanced_2: "\\text{Hydraulikheber: } A_1 = 0{,}001 \\text{ m}^{2},\\; A_2 = 0{,}1 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Bestimmen Sie die Ausgangskraft } F_2 \\text{ (Pascalsches Gesetz).}",
+                        pressure_advanced_3: "\\text{U-Rohr-Manometer: Wassersäule } h_w = 10 \\text{ m} \\text{ links, Quecksilber } (\\rho_{Hg} = 13{,}600 \\text{ kg/m}^{3}) \\text{ rechts. Berechnen Sie die Quecksilberhöhe } h_{Hg} \\text{ im Gleichgewicht.}",
+                        pressure_advanced_4: "\\text{Hydraulikbremse: Hauptzylinder } A_1 = 0{,}01 \\text{ m}^{2},\\text{ Radzylinder } A_2 = 0{,}05 \\text{ m}^{2},\\text{ Pedalkraft } F_1 = 200 \\text{ N}. \\text{ Berechnen Sie die Bremskraft } F_2.",
+                        pressure_advanced_5: "\\text{Tiefsee-Tauchboot bei } h = 200 \\text{ m} \\;(\\rho = 1030 \\text{ kg/m}^{3},\\; P_{atm} = 101{,}000 \\text{ Pa}). \\text{ Berechnen Sie den absoluten Gesamtdruck.}",
+
+                        pressure_elite_1: "\\text{Marianengraben, Tiefe } h = 11{,}000 \\text{ m} \\;(\\rho = 1050 \\text{ kg/m}^{3},\\; P_{atm} = 101{,}000 \\text{ Pa}). \\text{ Berechnen Sie den Gesamtdruck in MPa.}",
+                        pressure_elite_2: "\\text{Hydraulikverstärker: Eingangskolben } A_1 = 0{,}0001 \\text{ m}^{2},\\text{ Ausgangskolben } A_2 = 0{,}01 \\text{ m}^{2}. \\text{ Berechnen Sie den mechanischen Vorteil } \\text{MA} = A_2/A_1.",
+                        pressure_elite_3: "\\text{Dreischichtige Flüssigkeitssäule: 2 m Wasser } (\\rho = 1000), \\text{ 2 m Öl } (\\rho = 800), \\text{ 1 m Quecksilber } (\\rho = 13{,}600). \\text{ Gesamtdruck an der Basis?}",
+                        pressure_elite_4: "\\text{Hydraulikwagenheber, Wirkungsgrad 80\\%: } F_1 = 500 \\text{ N},\\; A_1 = 0{,}002 \\text{ m}^{2},\\; A_2 = 0{,}2 \\text{ m}^{2}. \\text{ Berechnen Sie die tatsächliche Ausgangskraft } F_2.",
+                        pressure_elite_5: "\\text{U-Boot-Luke mit Fläche } A = 1 \\text{ m}^{2} \\text{ in Tiefe } h = 1000 \\text{ m} \\;(\\rho = 1030). \\text{ Berechnen Sie die resultierende Wasserkraft auf die Luke in MN.}",
+
                         energy_audit: "Energieaudit",
                         energy_audit_heatpump: "Energieaudit - Wärmepumpe",
                         energy_audit_solar: "Energieaudit - Solaranlage",
@@ -1382,7 +1397,7 @@ export const dePhysics = {
                         compound_machine: "Zusammengesetzte Maschine",
                         drift: "Drift",
                         ferry_speed: "Fährgeschwindigkeit",
-                        gp2_04: "GP2 Aufgabe 04", // TODO
+                        gp2_04: "GP2 Aufgabe 04",
                         navigation: "Navigation",
                         next_mission: "Nächste Mission",
                         resultant_speed: "Resultierende Geschwindigkeit",
@@ -1411,7 +1426,8 @@ export const dePhysics = {
                         yes_density_less_water: "\\text{Ja (Dichte < Wasser)}",
                         yes_rho_avg_less_1000: "\\text{Ja (} \\rho_{avg} < 1000 \\text{)}",
                 },
-        },
+        }
+,
 
         // 5. EINFACHE MASCHINEN (Angewandte Mechanik)
         sp3_05: {

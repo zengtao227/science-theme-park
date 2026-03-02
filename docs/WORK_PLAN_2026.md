@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV + GP2.01 Updated)
-**Plan Version**: 3.8 (Batch A/B/C Wave-2 In Progress)
+**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 Updated)
+**Plan Version**: 3.9 (Batch A/B/C Wave-2 Complete, Wave-3 Ready)
 
 ---
 
@@ -38,8 +38,9 @@
 - [x] `gm1-01-advanced` (66 hardcoded promptLatex migrated to `gm1_01_advanced.prompts.*`; 27 keys tri-language aligned)
 - [x] `gp2-01` (23 remaining hardcoded promptLatex migrated; `gp2_01.prompts` EN/CN/DE aligned to 43 keys)
 - [ ] `sm3-05`
-- [ ] `sc3-01`
-- [ ] `sp3-01`
+- [x] `sc3-01` (audit check: no hardcoded promptLatex / no `\\text{${tObj.labels...}` wrapper violations)
+- [x] `sp3-01` (audit check: no hardcoded promptLatex / no wrapper violations)
+- [x] `sp3-04` (EN/DE prompt TODO placeholders replaced with pedagogical prompts; physics i18n TODO = 0)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [ ] `npm run lint`
@@ -59,7 +60,8 @@
 - [x] `GB1.01 Batch B`: 36 promptLatex hardcoding removed, tri-language key symmetry maintained.
 - [x] `GM1.01-ADV Batch C`: 66 promptLatex hardcoding removed, rendering pipeline unchanged.
 - [x] `GP2.01 Batch C`: 23 residual hardcoded promptLatex removed; no quest structure changes.
-- [ ] Next wave target: `SC3.01` + `SP3.01` hardcoded prompt migration, then physics TODO placeholder cleanup.
+- [x] `SP3.04 Batch C`: EN/DE 60+ prompt placeholders replaced; key structure preserved.
+- [ ] Next wave target: `SM1.03` prompt wrapper cleanup (`\\text{${tObj.labels...}}` -> `t("sm1_03.prompts.*")`), then `SM2.08` hardcoded prompt text migration.
 
 ---
 

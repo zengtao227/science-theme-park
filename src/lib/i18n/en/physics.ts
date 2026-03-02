@@ -1251,78 +1251,93 @@ export const enPhysics = {
                         hint_pressure: "Use P = P₀ + ρgh",
                         hint_archimedes: "Use F_b = ρ_water × V × g",
                         buoyancy: "Buoyancy",
-                        buoyancy_basic_1: "Buoyancy Basic Problem 1", // TODO
-                        buoyancy_basic_2: "Buoyancy Basic Problem 2", // TODO
-                        buoyancy_basic_3: "Buoyancy Basic Problem 3", // TODO
-                        buoyancy_basic_4: "Buoyancy Basic Problem 4", // TODO
-                        buoyancy_basic_5: "Buoyancy Basic Problem 5", // TODO
-                        buoyancy_core_1: "Buoyancy Core Problem 1", // TODO
-                        buoyancy_core_2: "Buoyancy Core Problem 2", // TODO
-                        buoyancy_core_3: "Buoyancy Core Problem 3", // TODO
-                        buoyancy_core_4: "Buoyancy Core Problem 4", // TODO
-                        buoyancy_core_5: "Buoyancy Core Problem 5", // TODO
-                        buoyancy_advanced_1: "Buoyancy Advanced Problem 1", // TODO
-                        buoyancy_advanced_2: "Buoyancy Advanced Problem 2", // TODO
-                        buoyancy_advanced_3: "Buoyancy Advanced Problem 3", // TODO
-                        buoyancy_advanced_4: "Buoyancy Advanced Problem 4", // TODO
-                        buoyancy_advanced_5: "Buoyancy Advanced Problem 5", // TODO
-                        buoyancy_elite_1: "Buoyancy Elite Problem 1", // TODO
-                        buoyancy_elite_2: "Buoyancy Elite Problem 2", // TODO
-                        buoyancy_elite_3: "Buoyancy Elite Problem 3", // TODO
-                        buoyancy_elite_4: "Buoyancy Elite Problem 4", // TODO
-                        buoyancy_elite_5: "Buoyancy Elite Problem 5", // TODO
+
+                        buoyancy_basic_1: "\\text{An object of volume } V = 0.1 \\text{ m}^{3} \\text{ is fully submerged in water } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9.8 \\text{ m/s}^{2}). \\text{ Calculate the buoyant force } F_b.",
+                        buoyancy_basic_2: "\\text{A solid block with volume } V = 0.05 \\text{ m}^{3} \\text{ is fully submerged in water } (\\rho = 1000,\\; g = 9.8). \\text{ Find the buoyant force } F_b.",
+                        buoyancy_basic_3: "\\text{A weather balloon of volume } V = 0.2 \\text{ m}^{3} \\text{ floats in air } (\\rho_{air} = 1.2 \\text{ kg/m}^{3},\\; g = 9.8). \\text{ Calculate the buoyant force.}",
+                        buoyancy_basic_4: "\\text{A rock of volume } V = 0.01 \\text{ m}^{3} \\text{ is fully submerged in water } (\\rho = 1000,\\; g = 9.8). \\text{ Find the buoyant force } F_b.",
+                        buoyancy_basic_5: "\\text{A boat displaces } V = 0.5 \\text{ m}^{3} \\text{ of river water } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9.8). \\text{ What buoyant force keeps it afloat?}",
+
+                        buoyancy_core_1: "\\text{A wooden block has mass } m = 10 \\text{ kg} \\text{ and volume } V = 0.02 \\text{ m}^{3}. \\text{ Calculate its density and determine: does it float in water?}",
+                        buoyancy_core_2: "\\text{An object weighs } W = 1500 \\text{ N} \\text{ and has volume } V = 0.1 \\text{ m}^{3} \\text{ (fully submerged in water). Find the net force } F_{net} = F_b - W.",
+                        buoyancy_core_3: "\\text{Ice has density } \\rho_{ice} = 900 \\text{ kg/m}^{3} \\text{ floating in fresh water } (\\rho_w = 1000). \\text{ What fraction } f \\text{ of its volume is submerged?}",
+                        buoyancy_core_4: "\\text{An aluminium block: } m = 81 \\text{ kg},\\; V = 0.03 \\text{ m}^{3} \\text{ is suspended in water. Find its apparent weight } W_{app} = W - F_b.",
+                        buoyancy_core_5: "\\text{Hot-air balloon volume } V = 1000 \\text{ m}^{3},\\; \\rho_{air} = 1.2 \\text{ kg/m}^{3},\\; \\rho_{hot} = 0.9. \\text{ Calculate the net lift force } F_{lift}.",
+
+                        buoyancy_advanced_1: "\\text{A hydrometer of mass } m = 50 \\text{ g} \\text{ floats at equilibrium in water } (\\rho_w = 1000 \\text{ kg/m}^{3}). \\text{ At equilibrium } W = F_b. \\text{ Find the submerged volume } V_{sub}.",
+                        buoyancy_advanced_2: "\\text{A cargo ship of total mass } m = 50{,}000 \\text{ kg} \\text{ floats in fresh water } (\\rho = 1000 \\text{ kg/m}^{3}). \\text{ Calculate the volume of water displaced.}",
+                        buoyancy_advanced_3: "\\text{Cork block: } \\rho_{cork} = 250 \\text{ kg/m}^{3},\\; V = 0.02 \\text{ m}^{3} \\text{ floating in water. What maximum extra mass } m_{load} \\text{ can it carry before sinking?}",
+                        buoyancy_advanced_4: "\\text{A gold block: } m = 19.3 \\text{ kg},\\; V = 0.001 \\text{ m}^{3} \\text{ is held by a string while fully submerged. Find string tension } T = W - F_b.",
+                        buoyancy_advanced_5: "\\text{Submarine: hull volume } V = 500 \\text{ m}^{3},\\text{ dry mass } m_{sub} = 400{,}000 \\text{ kg}. \\text{ How much ballast water } m_{ballast} \\text{ must flood the tanks to achieve neutral buoyancy?}",
+
+                        buoyancy_elite_1: "\\text{Object of total volume } V = 0.1 \\text{ m}^{3}: \\text{ half submerged in water } (\\rho_w = 1000), \\text{ half in oil } (\\rho_o = 800). \\text{ Find total buoyant force } F_b.",
+                        buoyancy_elite_2: "\\text{Hollow sphere: outer radius } R = 0.2 \\text{ m},\\; \\text{inner radius } r = 0.15 \\text{ m},\\; m = 10 \\text{ kg}. \\text{ Compute average density. Will it float in water?}",
+                        buoyancy_elite_3: "\\text{Iceberg } (\\rho_{ice} = 900 \\text{ kg/m}^{3}) \\text{ floats in seawater } (\\rho_{sea} = 1030). \\text{ Find fraction } f_{above} = 1 - \\rho_{ice}/\\rho_{sea} \\text{ above the surface.}",
+                        buoyancy_elite_4: "\\text{Helium balloon: } V = 1 \\text{ m}^{3},\\; \\rho_{He} = 0.18,\\; \\rho_{air} = 1.2 \\text{ kg/m}^{3},\\text{ envelope mass } = 0.5 \\text{ kg}. \\text{ Find maximum payload } m_{payload}.",
+                        buoyancy_elite_5: "\\text{Crown test: weight in air } W_{air} = 10 \\text{ N},\\text{ weight in water } W_{water} = 8.5 \\text{ N}. \\text{ Use Archimedes to find the crown density } \\rho.",
+
                         hydraulics: "Hydraulics",
-                        hydraulics_basic_1: "Hydraulics Basic Problem 1", // TODO
-                        hydraulics_basic_2: "Hydraulics Basic Problem 2", // TODO
-                        hydraulics_basic_3: "Hydraulics Basic Problem 3", // TODO
-                        hydraulics_basic_4: "Hydraulics Basic Problem 4", // TODO
-                        hydraulics_basic_5: "Hydraulics Basic Problem 5", // TODO
-                        hydraulics_core_1: "Hydraulics Core Problem 1", // TODO
-                        hydraulics_core_2: "Hydraulics Core Problem 2", // TODO
-                        hydraulics_core_3: "Hydraulics Core Problem 3", // TODO
-                        hydraulics_core_4: "Hydraulics Core Problem 4", // TODO
-                        hydraulics_core_5: "Hydraulics Core Problem 5", // TODO
-                        hydraulics_advanced_1: "Hydraulics Advanced Problem 1", // TODO
-                        hydraulics_advanced_2: "Hydraulics Advanced Problem 2", // TODO
-                        hydraulics_advanced_3: "Hydraulics Advanced Problem 3", // TODO
-                        hydraulics_advanced_4: "Hydraulics Advanced Problem 4", // TODO
-                        hydraulics_advanced_5: "Hydraulics Advanced Problem 5", // TODO
-                        hydraulics_elite_1: "Hydraulics Elite Problem 1", // TODO
-                        hydraulics_elite_2: "Hydraulics Elite Problem 2", // TODO
-                        hydraulics_elite_3: "Hydraulics Elite Problem 3", // TODO
-                        hydraulics_elite_4: "Hydraulics Elite Problem 4", // TODO
-                        hydraulics_elite_5: "Hydraulics Elite Problem 5", // TODO
+
+                        hydraulics_basic_1: "\\text{A force } F = 100 \\text{ N} \\text{ acts on a piston of area } A = 0.01 \\text{ m}^{2}. \\text{ Using } P = F/A, \\text{ calculate the hydraulic pressure transmitted.}",
+                        hydraulics_basic_2: "\\text{A hydraulic piston of area } A = 0.02 \\text{ m}^{2} \\text{ is pushed with force } F = 200 \\text{ N}. \\text{ Find the resulting pressure } P.",
+                        hydraulics_basic_3: "\\text{A piston of area } A = 0.05 \\text{ m}^{2} \\text{ receives force } F = 500 \\text{ N}. \\text{ What fluid pressure does it generate?}",
+                        hydraulics_basic_4: "\\text{Hydraulic cylinder: piston area } A = 0.1 \\text{ m}^{2},\\text{ applied force } F = 1000 \\text{ N}. \\text{ Calculate the fluid pressure.}",
+                        hydraulics_basic_5: "\\text{Small input piston: } A = 0.005 \\text{ m}^{2},\\; F = 50 \\text{ N}. \\text{ What pressure } P \\text{ is transmitted through the hydraulic fluid?}",
+
+                        hydraulics_core_1: "\\text{Hydraulic lift: } A_1 = 0.01 \\text{ m}^{2},\\; A_2 = 0.1 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Using Pascal's law, find output force } F_2.",
+                        hydraulics_core_2: "\\text{Hydraulic brake: } A_1 = 0.005 \\text{ m}^{2},\\; A_2 = 0.05 \\text{ m}^{2},\\; F_1 = 50 \\text{ N}. \\text{ Find the braking force } F_2 \\text{ at the wheel.}",
+                        hydraulics_core_3: "\\text{Hydraulic jack: } A_1 = 0.02 \\text{ m}^{2},\\; A_2 = 0.2 \\text{ m}^{2},\\; F_1 = 200 \\text{ N}. \\text{ Find lifting force } F_2.",
+                        hydraulics_core_4: "\\text{Hydraulic press: } A_1 = 0.001 \\text{ m}^{2},\\; A_2 = 0.1 \\text{ m}^{2},\\; F_1 = 10 \\text{ N}. \\text{ Calculate output force } F_2.",
+                        hydraulics_core_5: "\\text{Hydraulic system: } A_1 = 0.03 \\text{ m}^{2},\\; A_2 = 0.3 \\text{ m}^{2},\\; F_1 = 300 \\text{ N}. \\text{ Find } F_2.",
+
+                        hydraulics_advanced_1: "\\text{Hydraulic lift design: } A_1 = 0.01 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Required output force } F_2 = 5000 \\text{ N}. \\text{ Find necessary output piston area } A_2.",
+                        hydraulics_advanced_2: "\\text{Volume conservation: } A_1 = 0.002 \\text{ m}^{2},\\; A_2 = 0.2 \\text{ m}^{2}. \\text{ Input piston moves } d_1 = 10 \\text{ cm}. \\text{ How far does output piston move?}",
+                        hydraulics_advanced_3: "\\text{Hydraulic press at 90\\% efficiency: } A_1 = 0.01 \\text{ m}^{2},\\; A_2 = 0.1 \\text{ m}^{2},\\; F_1 = 200 \\text{ N}. \\text{ Find actual output force } F_2.",
+                        hydraulics_advanced_4: "\\text{Hydraulic jack: } A_1 = 0.005 \\text{ m}^{2},\\; A_2 = 0.5 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Calculate mechanical advantage } MA = A_2/A_1.",
+                        hydraulics_advanced_5: "\\text{Hydraulic brake: } A_1 = 0.01 \\text{ m}^{2},\\; F_1 = 150 \\text{ N}, \\text{ piston 1 moves } d_1 = 5 \\text{ cm}. \\text{ Calculate work done } W = F_1 \\cdot d_1.",
+
+                        hydraulics_elite_1: "\\text{Three-stage hydraulic system: } A_1 = 0.001,\\; A_2 = 0.01,\\; A_3 = 0.1 \\text{ m}^{2},\\; F_1 = 50 \\text{ N}. \\text{ Find final output force } F_3.",
+                        hydraulics_elite_2: "\\text{Hydraulic system with friction: } A_1 = 0.01,\\; A_2 = 0.1 \\text{ m}^{2},\\; F_1 = 200 \\text{ N}, \\text{ friction} = 100 \\text{ N}. \\text{ Find net output force } F_2.",
+                        hydraulics_elite_3: "\\text{Hydraulic accumulator at pressure } P = 2 \\times 10^{6} \\text{ Pa}. \\text{ Output piston area } A_2 = 0.05 \\text{ m}^{2}. \\text{ Find the output force.}",
+                        hydraulics_elite_4: "\\text{Hydraulic damper: applied force } F_{applied} = 500 \\text{ N}, \\text{ viscous resistance } F_{res} = 200 \\text{ N}. \\text{ Find net output force } F_{net}.",
+                        hydraulics_elite_5: "\\text{Series hydraulic circuit: } A_1 = 0.002,\\; A_2 = 0.02,\\; A_3 = 0.2 \\text{ m}^{2}. \\text{ Find total mechanical advantage } MA_{total} = A_3/A_1.",
+
                         pressure: "Pressure",
-                        pressure_basic_1: "Pressure Basic Problem 1", // TODO
-                        pressure_basic_2: "Pressure Basic Problem 2", // TODO
-                        pressure_basic_3: "Pressure Basic Problem 3", // TODO
-                        pressure_basic_4: "Pressure Basic Problem 4", // TODO
-                        pressure_basic_5: "Pressure Basic Problem 5", // TODO
-                        pressure_core_1: "Pressure Core Problem 1", // TODO
-                        pressure_core_2: "Pressure Core Problem 2", // TODO
-                        pressure_core_3: "Pressure Core Problem 3", // TODO
-                        pressure_core_4: "Pressure Core Problem 4", // TODO
-                        pressure_core_5: "Pressure Core Problem 5", // TODO
-                        pressure_advanced_1: "Pressure Advanced Problem 1", // TODO
-                        pressure_advanced_2: "Pressure Advanced Problem 2", // TODO
-                        pressure_advanced_3: "Pressure Advanced Problem 3", // TODO
-                        pressure_advanced_4: "Pressure Advanced Problem 4", // TODO
-                        pressure_advanced_5: "Pressure Advanced Problem 5", // TODO
-                        pressure_elite_1: "Pressure Elite Problem 1", // TODO
-                        pressure_elite_2: "Pressure Elite Problem 2", // TODO
-                        pressure_elite_3: "Pressure Elite Problem 3", // TODO
-                        pressure_elite_4: "Pressure Elite Problem 4", // TODO
-                        pressure_elite_5: "Pressure Elite Problem 5", // TODO
+
+                        pressure_basic_1: "\\text{A diver descends to } h = 10 \\text{ m} \\text{ in fresh water } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 9.8 \\text{ m/s}^{2}). \\text{ Calculate the gauge pressure } P = \\rho g h.",
+                        pressure_basic_2: "\\text{A water tank is filled to depth } h = 5 \\text{ m}. \\text{ Given } \\rho = 1000 \\text{ kg/m}^{3} \\text{ and } g = 10 \\text{ m/s}^{2}, \\text{ find the pressure at the bottom.}",
+                        pressure_basic_3: "\\text{A force of } F = 100 \\text{ N} \\text{ acts uniformly on a surface of area } A = 2 \\text{ m}^{2}. \\text{ Calculate the resulting pressure } P = F/A.",
+                        pressure_basic_4: "\\text{A hydraulic piston exerts force } F = 200 \\text{ N} \\text{ on fluid over area } A = 0.5 \\text{ m}^{2}. \\text{ What pressure is transmitted?}",
+                        pressure_basic_5: "\\text{A swimmer is } h = 2 \\text{ m} \\text{ below the surface } (\\rho = 1000 \\text{ kg/m}^{3},\\; g = 10 \\text{ m/s}^{2}). \\text{ Find the gauge pressure at that depth.}",
+
+                        pressure_core_1: "\\text{A submarine at depth } h = 15 \\text{ m} \\text{ in water } (\\rho = 1000 \\text{ kg/m}^{3}). \\text{ Given } P_{atm} = 101{,}000 \\text{ Pa}, \\text{ find total absolute pressure.}",
+                        pressure_core_2: "\\text{Hydraulic press: force } F = 500 \\text{ N} \\text{ acts on piston area } A = 0.01 \\text{ m}^{2}. \\text{ What pressure is developed in the fluid?}",
+                        pressure_core_3: "\\text{Oil tank filled to depth } h = 20 \\text{ m} \\;(\\rho_{oil} = 800 \\text{ kg/m}^{3},\\; g = 9.8). \\text{ Calculate the gauge pressure at the tank base.}",
+                        pressure_core_4: "\\text{Piston of area } A = 0.02 \\text{ m}^{2} \\text{ transmits force } F = 1000 \\text{ N}. \\text{ What pressure is delivered through the hydraulic circuit?}",
+                        pressure_core_5: "\\text{Ocean depth } h = 100 \\text{ m} \\text{ in seawater } (\\rho = 1030 \\text{ kg/m}^{3},\\; g = 9.8). \\text{ Calculate the gauge pressure at that depth.}",
+
+                        pressure_advanced_1: "\\text{Two-fluid column: 30 m of water } (\\rho_w = 1000) \\text{ above 20 m of oil } (\\rho_o = 800). \\text{ Find the total pressure at the bottom of the oil layer.}",
+                        pressure_advanced_2: "\\text{Hydraulic lift: } A_1 = 0.001 \\text{ m}^{2},\\; A_2 = 0.1 \\text{ m}^{2},\\; F_1 = 100 \\text{ N}. \\text{ Apply Pascal's law to find output force } F_2.",
+                        pressure_advanced_3: "\\text{U-tube manometer: water column } h_w = 10 \\text{ m} \\text{ on left, mercury } (\\rho_{Hg} = 13{,}600) \\text{ on right. Find mercury height } h_{Hg} \\text{ at pressure balance.}",
+                        pressure_advanced_4: "\\text{Hydraulic brake: master cylinder } A_1 = 0.01 \\text{ m}^{2},\\text{ slave cylinder } A_2 = 0.05 \\text{ m}^{2},\\text{ pedal force } F_1 = 200 \\text{ N}. \\text{ Find braking force } F_2.",
+                        pressure_advanced_5: "\\text{Deep-sea submersible at } h = 200 \\text{ m} \\;(\\rho = 1030 \\text{ kg/m}^{3},\\; P_{atm} = 101{,}000 \\text{ Pa}). \\text{ Find total absolute pressure.}",
+
+                        pressure_elite_1: "\\text{Mariana Trench depth } h = 11{,}000 \\text{ m} \\;(\\rho = 1050 \\text{ kg/m}^{3},\\; P_{atm} = 101{,}000 \\text{ Pa}). \\text{ Calculate total pressure in MPa.}",
+                        pressure_elite_2: "\\text{Hydraulic amplifier: input piston } A_1 = 0.0001 \\text{ m}^{2},\\text{ output piston } A_2 = 0.01 \\text{ m}^{2}. \\text{ Calculate mechanical advantage } MA = A_2/A_1.",
+                        pressure_elite_3: "\\text{Three-layer fluid column: 2 m water } (\\rho = 1000), \\text{ 2 m oil } (\\rho = 800), \\text{ 1 m mercury } (\\rho = 13{,}600). \\text{ Find total pressure at the base.}",
+                        pressure_elite_4: "\\text{Hydraulic jack at 80\\% efficiency: } F_1 = 500 \\text{ N},\\; A_1 = 0.002 \\text{ m}^{2},\\; A_2 = 0.2 \\text{ m}^{2}. \\text{ Find actual output force } F_2.",
+                        pressure_elite_5: "\\text{Submarine hatch area } A = 1 \\text{ m}^{2} \\text{ at depth } h = 1000 \\text{ m} \\;(\\rho = 1030). \\text{ Find the net water force on the hatch in MN.}",
+
                         energy_audit: "Energy Audit",
                         energy_audit_heatpump: "Energy Audit - Heat Pump",
                         energy_audit_solar: "Energy Audit - Solar Panel",
                         iwb_grid_load: "Grid Load",
-                        sp1_03_q1: "Question 1", // TODO
-                        sp1_03_q2: "Question 2", // TODO
-                        sp1_03_q3: "Question 3", // TODO
-                        sp1_04_q1: "Question 1", // TODO
-                        sp1_04_q2: "Question 2", // TODO
-                        sp1_04_q3: "Question 3", // TODO
+                        sp1_03_q1: "Question 1",
+                        sp1_03_q2: "Question 2",
+                        sp1_03_q3: "Question 3",
+                        sp1_04_q1: "Question 1",
+                        sp1_04_q2: "Question 2",
+                        sp1_04_q3: "Question 3",
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
@@ -1347,7 +1362,8 @@ export const enPhysics = {
                         yes_density_less_water: "\\text{Yes (density < water)}",
                         yes_rho_avg_less_1000: "\\text{Yes (} \\rho_{avg} < 1000 \\text{)}",
                 },
-        },
+        }
+,
 
         // SP3.05: Simple Machines (from sp1_04 - Full Version)
         sp3_05: {
