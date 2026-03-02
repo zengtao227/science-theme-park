@@ -3123,7 +3123,7 @@ export const enMath = {    em1_01: {
             all_reals: "All real numbers (ℝ)"
         },
         prompts: {
-            solve_expression: "Solve: {expression}"
+            solve_expression: "Basel inequality task: solve {expression}"
         },
         feedback: {
             correct: "Solution verified! The inequality is solved correctly.",
@@ -3196,9 +3196,9 @@ export const enMath = {    em1_01: {
             university_basel: "🎓 UNIVERSITY BASEL ENROLLMENT GROWTH RATE — The University of Basel, founded in 1460, is Switzerland's oldest university. Over the past decade, student enrollment has grown steadily, particularly in STEM fields like mathematics, physics, and chemistry. The enrollment function E(t) = 12000 + 500t + 20t^{2} represents the number of students, where t is years since 2015. To predict future growth trends, university administrators analyze the rate of enrollment change using limits. The average rate of change between years t = 5 and t = 10 is [E(10) - E(5)] / (10 - 5). However, to find the instantaneous growth rate at exactly t = 8 (year 2023), we need the limit: lim(h→0) [E(8+h) - E(8)] / h. This limit represents the derivative E'(8), giving the precise enrollment growth rate in students per year. Understanding limits allows the university to plan infrastructure expansion, hire faculty, and allocate resources effectively to accommodate Basel's growing student population in mathematics and sciences."
         },
         prompts: {
-            find_limit: "\\text{Find } \\lim_{x \\to {limitPoint}} {expr}",
-            evaluate_limit: "\\text{Evaluate the limit}",
-            check_continuity: "\\text{Is the function continuous at } x = {point}?",
+            find_limit: "\\text{Basel analysis task: find } \\lim_{x \\to {limitPoint}} {expr}",
+            evaluate_limit: "\\text{Basel analysis task: evaluate the target limit.}",
+            check_continuity: "\\text{Basel analysis task: is the function continuous at } x={point}\\text{?}",
             hint_direct: "\\text{Hint: Try direct substitution}",
             hint_factor: "\\text{Hint: Factor and simplify}",
             hint_infinity: "\\text{Hint: Divide by highest power of } x",

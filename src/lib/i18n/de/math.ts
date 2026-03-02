@@ -3108,7 +3108,7 @@ export const deMath = {    em1_01: {
             all_reals: "Alle reellen Zahlen (ℝ)"
         },
         prompts: {
-            solve_expression: "Löse: {expression}"
+            solve_expression: "Basler Ungleichungsaufgabe: Loese {expression}"
         },
         feedback: {
             correct: "Lösung verifiziert! Die Ungleichung ist korrekt gelöst.",
@@ -3181,9 +3181,9 @@ export const deMath = {    em1_01: {
             university_basel: "🎓 UNIVERSITÄT BASEL EINSCHREIBUNGSWACHSTUMSRATE — Die Universität Basel, gegründet 1460, ist die älteste Universität der Schweiz. Im letzten Jahrzehnt ist die Studentenzahl stetig gewachsen, insbesondere in MINT-Fächern wie Mathematik, Physik und Chemie. Die Einschreibungsfunktion E(t) = 12000 + 500t + 20t^{2} repräsentiert die Anzahl der Studenten, wobei t die Jahre seit 2015 ist. Um zukünftige Wachstumstrends vorherzusagen, analysieren Universitätsverwalter die Einschreibungsänderungsrate mit Grenzwerten. Die durchschnittliche Änderungsrate zwischen den Jahren t = 5 und t = 10 ist [E(10) - E(5)] / (10 - 5). Um jedoch die momentane Wachstumsrate bei genau t = 8 (Jahr 2023) zu finden, benötigen wir den Grenzwert: lim(h→0) [E(8+h) - E(8)] / h. Dieser Grenzwert repräsentiert die Ableitung E'(8) und gibt die präzise Einschreibungswachstumsrate in Studenten pro Jahr an. Das Verständnis von Grenzwerten ermöglicht es der Universität, Infrastrukturerweiterungen zu planen, Fakultät einzustellen und Ressourcen effektiv zuzuweisen, um Basels wachsende Studentenpopulation in Mathematik und Naturwissenschaften aufzunehmen."
         },
         prompts: {
-            find_limit: "\\text{Finde } \\lim_{x \\to {limitPoint}} {expr}",
-            evaluate_limit: "\\text{Berechne den Grenzwert}",
-            check_continuity: "\\text{Ist die Funktion bei } x = {point} \\text{ stetig?}",
+            find_limit: "\\text{Basler Analyseaufgabe: bestimme } \\lim_{x \\to {limitPoint}} {expr}",
+            evaluate_limit: "\\text{Basler Analyseaufgabe: berechne den Zielgrenzwert.}",
+            check_continuity: "\\text{Basler Analyseaufgabe: ist die Funktion bei } x={point} \\text{ stetig?}",
             hint_direct: "\\text{Hinweis: Versuche direkte Substitution}",
             hint_factor: "\\text{Hinweis: Faktorisiere und vereinfache}",
             hint_infinity: "\\text{Hinweis: Teile durch höchste Potenz von } x",

@@ -3116,7 +3116,7 @@ export const cnMath = {    em1_01: {
             all_reals: "所有实数 (ℝ)"
         },
         prompts: {
-            solve_expression: "求解：{expression}"
+            solve_expression: "巴塞尔不等式任务：求解 {expression}"
         },
         feedback: {
             correct: "解验证成功！不等式求解正确。",
@@ -3189,9 +3189,9 @@ export const cnMath = {    em1_01: {
             university_basel: "🎓 巴塞尔大学入学增长率 — 巴塞尔大学成立于1460年，是瑞士最古老的大学。在过去十年中，学生入学人数稳步增长，特别是在数学、物理和化学等STEM领域。入学函数E(t) = 12000 + 500t + 20t^{2}表示学生人数，其中t是自2015年以来的年数。为预测未来增长趋势，大学管理者使用极限分析入学变化率。年份t = 5和t = 10之间的平均变化率为[E(10) - E(5)] / (10 - 5)。然而，要找到t = 8（2023年）时的瞬时增长率，我们需要极限：lim(h→0) [E(8+h) - E(8)] / h。这个极限代表导数E'(8)，给出每年学生人数的精确增长率。理解极限使大学能够有效规划基础设施扩建、招聘教师和分配资源，以适应巴塞尔数学和科学领域不断增长的学生人数。"
         },
         prompts: {
-            find_limit: "\\text{求 } \\lim_{x \\to {limitPoint}} {expr}",
-            evaluate_limit: "\\text{计算极限}",
-            check_continuity: "\\text{函数在 } x = {point} \\text{ 处连续吗？}",
+            find_limit: "\\text{巴塞尔分析任务：求 } \\lim_{x \\to {limitPoint}} {expr}",
+            evaluate_limit: "\\text{巴塞尔分析任务：计算目标极限。}",
+            check_continuity: "\\text{巴塞尔分析任务：函数在 } x={point} \\text{ 处连续吗？}",
             hint_direct: "\\text{提示：尝试直接代入}",
             hint_factor: "\\text{提示：因式分解并化简}",
             hint_infinity: "\\text{提示：除以 } x \\text{ 的最高次幂}",

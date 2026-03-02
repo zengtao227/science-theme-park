@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SM2.11/SM2.12 Batch B wave-23 short-prompt semantic cleanup completed, full QA passed)
-**Plan Version**: 8.6 (Batch B high-frequency expansion wave-23)
+**Last Updated**: 2026-03-02 (SM2.09/GM1.03 Batch B wave-24 short-prompt semantic cleanup completed, full QA passed)
+**Plan Version**: 8.7 (Batch B high-frequency expansion wave-24)
 
 ---
 
@@ -135,7 +135,8 @@
 - [x] `SM3.05 Batch B (wave-21 high-frequency subset-2)`: rewrote 22 additional `sm3_05.prompts.*` entries (cross-section advanced + architecture volume tail cluster) in EN/CN/DE to scenario-task wording while preserving key names and numeric givens.
 - [x] `SM3.05 Batch B (wave-22 closure)`: rewrote the remaining 18 `sm3_05.prompts.*` entries (curved solids / biomedical tail cluster) in EN/CN/DE, completing the module-level bare-parameter prompt rewrite scope.
 - [x] `SM2.11 + SM2.12 Batch B (wave-23 short-prompt cleanup)`: rewrote sequence/combinatorics short prompt keys in EN/CN/DE (`find_nth_term`, `find_sum`, `calculate_permutation`, `calculate_combination`, `calculate_probability`) to scenario-task wording.
-- [ ] Next wave target: Batch B 抽检 `SM2.09 / GM1.03` 等短提示残留并继续收口。
+- [x] `SM2.09 + GM1.03 Batch B (wave-24 short-prompt cleanup)`: rewrote short directive prompts in EN/CN/DE (`solve_expression`, `find_limit`, `evaluate_limit`, `check_continuity`) into scenario-task wording while preserving key paths and formula placeholders.
+- [ ] Next wave target: Batch B 跨模块残留抽检（优先 GM2.02 / SM2.13 / GP3.*）并继续收口。
 
 ---
 
