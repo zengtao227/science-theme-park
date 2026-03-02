@@ -3019,22 +3019,22 @@ export const cnMath = {    em1_01: {
             ccw: "逆时针"
         },
         prompts: {
-            reflection_basic_axis: "将点 $P({x}, {y})$ 关于 ${axis}$ 轴对称。求 $P'(x', y')$。",
-            reflection_core_line: "将点 $P({x}, {y})$ 关于直线 ${line}$ 对称。求 $P'(x', y')$。",
-            reflection_advanced_line_offset: "将点 $P({x}, {y})$ 关于直线 ${lineAxis} = {offset}$ 对称。求 $P'(x', y')$。",
-            reflection_elite_line: "将点 $P({x}, {y})$ 关于 ${lineEquation}$ 对称。求 $x'$（保留 1 位小数）。",
-            translation_basic_vector: "将点 $P({x}, {y})$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求 $P'(x', y')$。",
-            translation_core_reverse: "点 $P(x,y)$ 按 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移后得到 $P'({x}, {y})$。求原始点 $P$。",
-            translation_advanced_line: "将直线 ${equation}$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新的 y 截距 $b'$。",
-            translation_elite_circle: "圆 $(x-{x})^{2}+(y-{y})^{2}={r2}$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新圆心到原点距离（1 位小数）。",
-            rotation_basic_origin: "将点 $P({x}, {y})$ 绕原点按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
-            rotation_core_center: "将点 $P({x}, {y})$ 绕 $C({cx}, {cx})$ 按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
-            rotation_advanced_xprime: "将点 $P({x}, {y})$ 绕原点按 $30^\\circ$ {direction} 旋转。求 $x'$（1 位小数）。",
-            rotation_elite_line: "将直线 ${equation}$ 绕原点旋转 ${thetaStr}$。求新的 y 截距。",
-            composition_basic: "将点 $P({x}, {y})$ 按 $\\vec{v}=\\binom{{dx}}{0}$ 平移，再关于 x 轴对称。求 $P'(x', y')$。",
-            composition_core: "将点 $P({x}, {y})$ 先关于 $y=x$ 对称，再绕原点旋转 $90^\\circ$ {direction}。求 $P'(x', y')$。",
-            composition_advanced: "点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $x={dy}$ 对称。净变换等价于沿 $\\Delta x$ 平移。求 $\\Delta x$。",
-            composition_elite: "点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $y={dy}$ 对称。净变换等价于绕 $C(x_c,y_c)$ 旋转。求 $x_c+y_c$。"
+            reflection_basic_axis: "巴塞尔镜像网格任务：测绘点 $P({x}, {y})$ 关于 ${axis}$ 轴对称。求反射后的坐标 $P'(x', y')$。",
+            reflection_core_line: "交通地图修正任务：将控制点 $P({x}, {y})$ 关于直线 ${line}$ 对称。求新的 $P'(x', y')$。",
+            reflection_advanced_line_offset: "工程标定任务：将点 $P({x}, {y})$ 关于 ${lineAxis} = {offset}$ 对称。计算调整后参考系中的 $P'(x', y')$。",
+            reflection_elite_line: "精密镜像校核：将点 $P({x}, {y})$ 关于 ${lineEquation}$ 对称。给出结果中的 $x'$（保留 1 位小数）。",
+            translation_basic_vector: "路线平移任务：将点 $P({x}, {y})$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新坐标 $P'(x', y')$。",
+            translation_core_reverse: "逆向定位任务：点 $P(x,y)$ 按 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移后变为 $P'({x}, {y})$。请还原原始点 $P$。",
+            translation_advanced_line: "车道重定位任务：将直线 ${equation}$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新的 y 截距 $b'$。",
+            translation_elite_circle: "安全区迁移任务：圆 $(x-{x})^{2}+(y-{y})^{2}={r2}$ 按 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新圆心到原点的距离（1 位小数）。",
+            rotation_basic_origin: "转台对齐任务：将 $P({x}, {y})$ 绕原点按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
+            rotation_core_center: "停靠旋转任务：将 $P({x}, {y})$ 绕枢纽 $C({cx}, {cx})$ 按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
+            rotation_advanced_xprime: "坐标更新任务：将 $P({x}, {y})$ 绕原点按 $30^\\circ$ {direction} 旋转。给出 $x'$（1 位小数）。",
+            rotation_elite_line: "轴线旋转审计：将直线 ${equation}$ 绕原点旋转 ${thetaStr}$。求新的 y 截距。",
+            composition_basic: "两步变换任务：先将 $P({x}, {y})$ 按 $\\vec{v}=\\binom{{dx}}{0}$ 平移，再关于 x 轴对称。求 $P'(x', y')$。",
+            composition_core: "两步变换任务：先将 $P({x}, {y})$ 关于 $y=x$ 对称，再绕原点旋转 $90^\\circ$ {direction}。求 $P'(x', y')$。",
+            composition_advanced: "镜像组合分析：点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $x={dy}$ 对称。净效果等价于沿 $\\Delta x$ 平移。求 $\\Delta x$。",
+            composition_elite: "复合变换分析：点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $y={dy}$ 对称。净效果等价于绕 $C(x_c,y_c)$ 旋转。求 $x_c+y_c$。"
         }
     },
     gp3_03: {

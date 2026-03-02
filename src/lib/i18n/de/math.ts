@@ -3011,22 +3011,22 @@ export const deMath = {    em1_01: {
             ccw: "Gegen den Uhrzeigersinn"
         },
         prompts: {
-            reflection_basic_axis: "Spiegle den Punkt $P({x}, {y})$ an der ${axis}$-Achse. Finde $P'(x', y')$.",
-            reflection_core_line: "Spiegle den Punkt $P({x}, {y})$ an der Geraden ${line}$. Finde $P'(x', y')$.",
-            reflection_advanced_line_offset: "Spiegle den Punkt $P({x}, {y})$ an der Geraden ${lineAxis} = {offset}$. Finde $P'(x', y')$.",
-            reflection_elite_line: "Spiegle $P({x}, {y})$ an ${lineEquation}$. Finde $x'$ (1 Dezimalstelle).",
-            translation_basic_vector: "Verschiebe $P({x}, {y})$ um den Vektor $\\vec{v}=\\binom{{dx}}{{dy}}$. Finde $P'(x', y')$.",
-            translation_core_reverse: "Ein Punkt $P(x,y)$ wird mit $\\vec{v}=\\binom{{dx}}{{dy}}$ zu $P'({x}, {y})$ verschoben. Finde den ursprünglichen Punkt $P$.",
-            translation_advanced_line: "Verschiebe die Gerade ${equation}$ um $\\vec{v}=\\binom{{dx}}{{dy}}$. Finde den neuen y-Achsenabschnitt $b'$.",
-            translation_elite_circle: "Der Kreis $(x-{x})^{2}+(y-{y})^{2}={r2}$ wird um $\\vec{v}=\\binom{{dx}}{{dy}}$ verschoben. Finde den Abstand des neuen Mittelpunkts zum Ursprung (1 Dezimalstelle).",
-            rotation_basic_origin: "Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um den Ursprung. Finde $P'(x', y')$.",
-            rotation_core_center: "Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um $C({cx}, {cx})$. Finde $P'(x', y')$.",
-            rotation_advanced_xprime: "Drehe $P({x}, {y})$ um $30^\\circ$ {direction} um den Ursprung. Finde $x'$ (1 Dezimalstelle).",
-            rotation_elite_line: "Die Gerade ${equation}$ wird um ${thetaStr}$ um den Ursprung gedreht. Finde den neuen y-Achsenabschnitt.",
-            composition_basic: "Verschiebe $P({x}, {y})$ um $\\vec{v}=\\binom{{dx}}{0}$ und spiegle danach an der x-Achse. Finde $P'(x', y')$.",
-            composition_core: "Spiegle $P({x}, {y})$ an $y=x$ und drehe danach um $90^\\circ$ {direction} um den Ursprung. Finde $P'(x', y')$.",
-            composition_advanced: "Punkt $P({x}, {y})$ wird erst an $x={dx}$ und dann an $x={dy}$ gespiegelt. Die Nettotransformation ist eine Verschiebung um $\\Delta x$. Finde $\\Delta x$.",
-            composition_elite: "Spiegle $P({x}, {y})$ an $x={dx}$ und danach an $y={dy}$. Die Nettotransformation entspricht einer Rotation um $C(x_c,y_c)$. Finde $x_c+y_c$."
+            reflection_basic_axis: "Basler Spiegelraster-Aufgabe: Der Messpunkt $P({x}, {y})$ wird an der ${axis}$-Achse gespiegelt. Bestimme den Bildpunkt $P'(x', y')$.",
+            reflection_core_line: "Kartenkorrektur im Verkehrsmodell: Spiegle den Kontrollpunkt $P({x}, {y})$ an der Geraden ${line}$. Bestimme $P'(x', y')$.",
+            reflection_advanced_line_offset: "Ingenieurkalibrierung: Spiegle den Punkt $P({x}, {y})$ an ${lineAxis} = {offset}$. Berechne $P'(x', y')$ im angepassten Bezugssystem.",
+            reflection_elite_line: "Präzisions-Spiegelcheck: Spiegle $P({x}, {y})$ an ${lineEquation}$. Gib den resultierenden Wert von $x'$ an (1 Dezimalstelle).",
+            translation_basic_vector: "Routenverschiebung: Verschiebe $P({x}, {y})$ um den Vektor $\\vec{v}=\\binom{{dx}}{{dy}}$. Bestimme den neuen Punkt $P'(x', y')$.",
+            translation_core_reverse: "Rückrechnungsaufgabe: Ein Punkt $P(x,y)$ wurde mit $\\vec{v}=\\binom{{dx}}{{dy}}$ zu $P'({x}, {y})$ verschoben. Bestimme den ursprünglichen Punkt $P$.",
+            translation_advanced_line: "Trassen-Neuausrichtung: Verschiebe die Gerade ${equation}$ um $\\vec{v}=\\binom{{dx}}{{dy}}$. Berechne den neuen y-Achsenabschnitt $b'$.",
+            translation_elite_circle: "Sicherheitszone versetzen: Der Kreis $(x-{x})^{2}+(y-{y})^{2}={r2}$ wird um $\\vec{v}=\\binom{{dx}}{{dy}}$ verschoben. Bestimme den Abstand des neuen Mittelpunkts zum Ursprung (1 Dezimalstelle).",
+            rotation_basic_origin: "Drehtisch-Ausrichtung: Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um den Ursprung. Bestimme $P'(x', y')$.",
+            rotation_core_center: "Andock-Rotation: Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um das Zentrum $C({cx}, {cx})$. Bestimme $P'(x', y')$.",
+            rotation_advanced_xprime: "Koordinaten-Update: Drehe $P({x}, {y})$ um $30^\\circ$ {direction} um den Ursprung. Gib $x'$ an (1 Dezimalstelle).",
+            rotation_elite_line: "Achsenrotations-Audit: Die Gerade ${equation}$ wird um ${thetaStr}$ um den Ursprung gedreht. Bestimme den neuen y-Achsenabschnitt.",
+            composition_basic: "Zweistufige Transformation: Verschiebe $P({x}, {y})$ um $\\vec{v}=\\binom{{dx}}{0}$ und spiegle danach an der x-Achse. Bestimme $P'(x', y')$.",
+            composition_core: "Zweistufige Transformation: Spiegle $P({x}, {y})$ an $y=x$ und rotiere danach um $90^\\circ$ {direction} um den Ursprung. Bestimme $P'(x', y')$.",
+            composition_advanced: "Spiegelpaar-Analyse: Punkt $P({x}, {y})$ wird an $x={dx}$ und danach an $x={dy}$ gespiegelt. Der Nettoeffekt ist eine Verschiebung um $\\Delta x$. Bestimme $\\Delta x$.",
+            composition_elite: "Kompositionsanalyse: Spiegle $P({x}, {y})$ an $x={dx}$ und danach an $y={dy}$. Der Nettoeffekt entspricht einer Rotation um $C(x_c,y_c)$. Bestimme $x_c+y_c$."
         }
     },
     gp3_03: {
