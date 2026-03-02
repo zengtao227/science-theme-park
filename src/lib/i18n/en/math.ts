@@ -2252,9 +2252,9 @@ export const enMath = {    em1_01: {
             factor: "FACTOR",
             formula: "FORMULA",
             complete_square: "COMPLETE SQUARE",
-            factor_prompt: "Factorize first: find A,B so that (x+A)(x+B)=0.",
-            formula_prompt: "Solve with the quadratic formula.",
-            complete_square_prompt: "Convert to vertex form and identify (h,k)."
+            factor_prompt: "Factoring mission: rewrite the quadratic into (x+A)(x+B)=0 and determine the matching factor parameters A and B.",
+            formula_prompt: "Formula mission: apply the quadratic formula step by step to obtain the target root values.",
+            complete_square_prompt: "Vertex-form mission: complete the square, convert to vertex form, and identify the coordinates (h,k)."
         },
         labels: {
             input: "INPUT",

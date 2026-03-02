@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP2.02 Batch B wave-15 work-heat long-tail prompt refinement completed, full QA passed)
-**Plan Version**: 7.8 (Batch B high-frequency expansion wave-15)
+**Last Updated**: 2026-03-02 (SM3.01 Batch B wave-16 mode-prompt semantic refinement completed, full QA passed)
+**Plan Version**: 7.9 (Batch B high-frequency expansion wave-16)
 
 ---
 
@@ -127,7 +127,8 @@
 - [x] `GP2.02 Batch B (wave-13 long-tail first-law cluster)`: rewrote `q_fl_*` prompt keys to scenario-task wording across EN/CN/DE while preserving formulas, placeholders, and answer intent.
 - [x] `GP2.02 Batch B (wave-14 long-tail internal-energy cluster)`: rewrote `q_ie_*` prompt keys to scenario-task wording across EN/CN/DE while preserving conceptual intent and symbol consistency.
 - [x] `GP2.02 Batch B (wave-15 long-tail work-heat cluster)`: rewrote `q_wh_*` prompt keys to scenario-task wording across EN/CN/DE while preserving key names, notation, and calculation intent.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3 模块抽检与裸参数题干修复）。
+- [x] `SM3.01 Batch B (wave-16 mode semantic cleanup)`: rewrote `modes.factor_prompt/formula_prompt/complete_square_prompt` in EN/CN/DE from bare directives to scenario-task wording, preserving mode keys and solver intent.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GM1.01 + SM3.03 抽检与裸参数题干修复）。
 
 ---
 

@@ -2229,9 +2229,9 @@ export const deMath = {    em1_01: {
             factor: "FAKTORISIEREN",
             formula: "FORMEL",
             complete_square: "QUADRATISCHE ERGÄNZUNG",
-            factor_prompt: "Faktorisieren: Finde A,B so dass (x+A)(x+B)=0.",
-            formula_prompt: "Löse mit der Mitternachtsformel.",
-            complete_square_prompt: "In Scheitelpunktform umformen und (h,k) bestimmen."
+            factor_prompt: "Faktorisierungsauftrag: Forme den quadratischen Term zu (x+A)(x+B)=0 um und bestimme die zugehörigen Parameter A und B.",
+            formula_prompt: "Formelauftrag: Wende die Mitternachtsformel schrittweise an und bestimme die gesuchten Nullstellen.",
+            complete_square_prompt: "Ergänzungsauftrag: Führe die quadratische Ergänzung durch, forme in Scheitelpunktform um und gib (h,k) an."
         },
         labels: {
             input: "EINGABE",

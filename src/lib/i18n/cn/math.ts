@@ -2245,9 +2245,9 @@ export const cnMath = {    em1_01: {
             factor: "因式分解",
             formula: "求根公式",
             complete_square: "配方法",
-            factor_prompt: "先把式子因式分解：找 A、B 使得 (x+A)(x+B)=0。",
-            formula_prompt: "使用一元二次方程求根公式求解。",
-            complete_square_prompt: "化为顶点式并写出 (h,k)。"
+            factor_prompt: "因式任务：把二次式改写为 (x+A)(x+B)=0，并确定对应参数 A、B。",
+            formula_prompt: "公式任务：按步骤应用一元二次方程求根公式，给出目标根值。",
+            complete_square_prompt: "配方任务：完成配方并改写为顶点式，最后写出顶点坐标 (h,k)。"
         },
         labels: {
             input: "输入",
