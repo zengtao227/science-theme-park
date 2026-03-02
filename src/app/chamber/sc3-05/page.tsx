@@ -64,7 +64,7 @@ export default function SC305MolecularForge() {
                     id: `VS-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\\\text{Determine geometry of ${m.name} with ${m.lone} lone pairs and ${m.bonded} bonded atoms}`,
+                    promptLatex: t("sc3_05.prompts.vsepr_geometry", { molecule: m.name, lone: m.lone, bonded: m.bonded }),
                     expressionLatex: "",
                     targetLatex: `\\text{${m.shape}}`,
                     slots: [{ id: "ans", labelLatex: t("common.labels.geometry"), placeholder: "...", expected: m.shape }],
@@ -88,7 +88,7 @@ export default function SC305MolecularForge() {
                     id: `HY-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\\\text{Determine hybridization of ${h.m}}`,
+                    promptLatex: t("sc3_05.prompts.hybridization_type", { molecule: h.m }),
                     expressionLatex: "",
                     targetLatex: h.h,
                     slots: [{ id: "ans", labelLatex: t("common.labels.hybridization"), placeholder: "...", expected: h.h }],
@@ -111,12 +111,12 @@ export default function SC305MolecularForge() {
                     id: `MO-${idx}`,
                     difficulty,
                     stage,
-                    promptLatex: `\\\\text{Calculate bond order for ${m.ion}}. (\\\\text{Bonding } e^- = ${m.b}, \\\\text{Antibonding } e^- = ${m.ab})`,
+                    promptLatex: t("sc3_05.prompts.bond_order_calc", { ion: m.ion }),
                     expressionLatex: "\\text{Bond Order} = \\frac{1}{2}(n_b - n_a)",
                     targetLatex: m.order,
                     slots: [{ id: "ans", labelLatex: t("common.labels.bond_order"), placeholder: "0", expected: m.order }],
                     correctLatex: m.order,
-                    hintLatex: [`\\text{Use the formula: Bond Order = (bonding - antibonding) / 2}`]
+                    hintLatex: [t("sc3_05.prompts.hint_mo")]
                 });
             });
         }

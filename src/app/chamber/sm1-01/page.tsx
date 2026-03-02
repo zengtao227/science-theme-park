@@ -27,7 +27,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "AB1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.ski}}`,
+                    promptLatex: t.quests.ski,
                     expressionLatex: `\\text{${t.labels.length} }a=5\\text{ m, }\\text{${t.labels.width} }b=8\\text{ m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 40, unit: "\\text{m}^{2}" }],
@@ -37,7 +37,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AB2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.sail}}`,
+                    promptLatex: t.quests.sail,
                     expressionLatex: `\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=4\\text{m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 12, unit: "\\text{m}^{2}" }],
@@ -47,7 +47,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AB3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.gate}}`,
+                    promptLatex: t.quests.gate,
                     expressionLatex: `\\text{${t.labels.side} }a=4\\text{m, }\\text{${t.labels.base} }b=6\\text{m, }\\text{${t.labels.height} }h=5\\text{m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 25, unit: "\\text{m}^{2}" }],
@@ -57,7 +57,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AB4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.cheese}}`,
+                    promptLatex: t.quests.cheese,
                     expressionLatex: `\\text{${t.labels.radius} }r=3\\text{ cm}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 28.3, unit: "\\text{cm}^{2}" }],
@@ -67,7 +67,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AB5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_park}}`,
+                    promptLatex: t.quests.basel_park,
                     expressionLatex: `\\text{${t.labels.length} }a=10\\text{ m, }\\text{${t.labels.width} }b=6\\text{ m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 60, unit: "\\text{m}^{2}" }],
@@ -83,7 +83,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "AC1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.ski}}`,
+                    promptLatex: t.quests.ski,
                     expressionLatex: `\\text{${t.quests.rect_core.replace("${w}", "6").replace("${diff}", "4")}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 60, unit: "\\text{m}^{2}" }],
@@ -93,7 +93,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AC2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.sail}}`,
+                    promptLatex: t.quests.sail,
                     expressionLatex: `\\text{${t.labels.base} }b=12\\text{m, }\\text{${t.base_twice_height}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 36, unit: "\\text{m}^{2}" }],
@@ -103,7 +103,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AC3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_rhine_trap}}`,
+                    promptLatex: t.quests.basel_rhine_trap,
                     expressionLatex: `\\text{${t.labels.side} }a=8\\text{m, }\\text{${t.labels.base} }b=14\\text{m, }\\text{${t.labels.height} }h=6\\text{m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 66, unit: "\\text{m}^{2}" }],
@@ -113,7 +113,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AC4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_fountain}}`,
+                    promptLatex: t.quests.basel_fountain,
                     expressionLatex: `\\text{${t.labels.radius} }r=5\\text{m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 78.5, unit: "\\text{m}^{2}" }],
@@ -123,7 +123,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AC5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.roche_window}}`,
+                    promptLatex: t.quests.roche_window,
                     expressionLatex: `\\text{${t.labels.length} }a=15\\text{m, }\\text{${t.labels.width} }b=9\\text{m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 135, unit: "\\text{m}^{2}" }],
@@ -139,7 +139,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "AA1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.ski}}`,
+                    promptLatex: t.quests.ski,
                     expressionLatex: `\\text{${t.quests.rect_advanced.replace("${l}", "20")}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 200, unit: "\\text{m}^{2}" }],
@@ -149,8 +149,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AA2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_cathedral_tri}}`,
-                    expressionLatex: `b=18\\text{ m, }\\text{${t.labels.height_twice || 'height is 2/3 of base'}}`,
+                    promptLatex: t.quests.basel_cathedral_tri,
+                    expressionLatex: `b=18\\text{ m, }\\text{${t.labels.height_twice}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 108, unit: "\\text{m}^{2}" }],
                     correctLatex: `h=18\\cdot \\frac{2}{3}=12 \\Rightarrow A=\\frac{1}{2}\\cdot 18\\cdot 12=108`,
@@ -159,7 +159,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AA3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_trap}}`,
+                    promptLatex: t.quests.novartis_trap,
                     expressionLatex: `\\text{${t.labels.side} }a=12\\text{ m, }\\text{${t.labels.base} }b=20\\text{ m, }\\text{${t.labels.height} }h=8\\text{ m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 128, unit: "\\text{m}^{2}" }],
@@ -169,8 +169,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AA4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_zoo_pond}}`,
-                    expressionLatex: `\\text{${t.labels.diameter_given || 'diameter'} }d=14\\text{ m}`,
+                    promptLatex: t.quests.basel_zoo_pond,
+                    expressionLatex: `\\text{${t.labels.diameter_given} }d=14\\text{ m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 153.9, unit: "\\text{m}^{2}" }],
                     correctLatex: `r=14/2=7 \\Rightarrow A=\\pi r^{2}\\approx 153.9`,
@@ -179,8 +179,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AA5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_uni_court}}`,
-                    expressionLatex: `\\text{${t.labels.perimeter_given || 'perimeter'} }P=60\\text{ m, }\\text{${t.labels.length_twice || 'length is twice width'}}`,
+                    promptLatex: t.quests.basel_uni_court,
+                    expressionLatex: `\\text{${t.labels.perimeter_given} }P=60\\text{ m, }\\text{${t.labels.length_twice}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 200, unit: "\\text{m}^{2}" }],
                     correctLatex: `2(w+2w)=60 \\Rightarrow w=10, l=20 \\Rightarrow A=200`,
@@ -195,7 +195,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "AE1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.ski}}`,
+                    promptLatex: t.quests.ski,
                     expressionLatex: `\\text{${t.quests.rect_elite.replace("${p}", "40").replace("${ratio}", "3")}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 75, unit: "\\text{m}^{2}" }],
@@ -205,7 +205,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AE2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.sail}}`,
+                    promptLatex: t.quests.sail,
                     expressionLatex: `\\text{${t.quests.tri_elite.replace("${c}", "14.14")}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 50, unit: "\\text{m}^{2}" }],
@@ -215,7 +215,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AE3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_messe_trap}}`,
+                    promptLatex: t.quests.basel_messe_trap,
                     expressionLatex: `\\text{${t.labels.side} }a=10\\text{ m, }\\text{${t.labels.base} }b=20\\text{ m, }\\text{${t.labels.height} }h=15\\text{ m}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 225, unit: "\\text{m}^{2}" }],
@@ -225,7 +225,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AE4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.cheese}}`,
+                    promptLatex: t.quests.cheese,
                     expressionLatex: `\\text{${t.quests.circle_elite.replace("${c}", "31.42")}}`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 78.5, unit: "\\text{cm}^{2}" }],
@@ -235,10 +235,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "AE5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_sbb_platform}}`,
+                    promptLatex: t.quests.basel_sbb_platform,
                     expressionLatex: `A=300\\text{ m}^{2}, a=3b`,
                     targetLatex: `P`,
-                    slots: [{ id: "P", labelLatex: `P`, placeholder: t.labels.perimeter_given || "perimeter", expected: 80, unit: "m" }],
+                    slots: [{ id: "P", labelLatex: `P`, placeholder: t.labels.perimeter_given, expected: 80, unit: "m" }],
                     correctLatex: `3w\\cdot w=300 \\Rightarrow w=10, l=30 \\Rightarrow P=2(10+30)=80`,
                     hintLatex: [`A=ab`, `a=3b`, `P=2(a+b)`],
                     visualMeta: { type: 'rectangle', params: { a: 30, b: 10 } },
@@ -253,7 +253,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "VB1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.attic}}`,
+                    promptLatex: t.quests.attic,
                     expressionLatex: `\\text{${t.labels.side} }a=4\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 64, unit: "\\text{m}^{3}" }],
@@ -263,7 +263,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VB2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.crate}}`,
+                    promptLatex: t.quests.crate,
                     expressionLatex: `\\text{${t.labels.length} }a=3\\text{m, }\\text{${t.labels.width} }b=4\\text{m, }\\text{${t.labels.height} }h=5\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 60, unit: "\\text{m}^{3}" }],
@@ -273,7 +273,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VB3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.pylon}}`,
+                    promptLatex: t.quests.pylon,
                     expressionLatex: `\\text{${t.labels.radius} }r=2\\text{ cm, }\\text{${t.labels.height} }h=5\\text{ cm}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 63, unit: "\\text{cm}^{2}" }],
@@ -283,7 +283,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VB4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_storage}}`,
+                    promptLatex: t.quests.basel_storage,
                     expressionLatex: `\\text{${t.labels.side} }a=3\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 27, unit: "\\text{m}^{3}" }],
@@ -293,7 +293,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VB5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_box}}`,
+                    promptLatex: t.quests.novartis_box,
                     expressionLatex: `\\text{${t.labels.length} }a=5\\text{m, }\\text{${t.labels.width} }b=4\\text{m, }\\text{${t.labels.height} }h=3\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 60, unit: "\\text{m}^{3}" }],
@@ -309,7 +309,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "VC1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.attic}}`,
+                    promptLatex: t.quests.attic,
                     expressionLatex: `\\text{${t.labels.side} }a=6\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 216, unit: "\\text{m}^{3}" }],
@@ -319,7 +319,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VC2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_warehouse}}`,
+                    promptLatex: t.quests.basel_warehouse,
                     expressionLatex: `\\text{${t.labels.length} }a=8\\text{m, }\\text{${t.labels.width} }b=6\\text{m, }\\text{${t.labels.height} }h=4\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 192, unit: "\\text{m}^{3}" }],
@@ -329,7 +329,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VC3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_water_tank}}`,
+                    promptLatex: t.quests.basel_water_tank,
                     expressionLatex: `\\text{${t.labels.radius} }r=4\\text{m, }\\text{${t.labels.height} }h=5\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 251, unit: "\\text{m}^{3}" }],
@@ -339,7 +339,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VC4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_museum}}`,
+                    promptLatex: t.quests.basel_museum,
                     expressionLatex: `\\text{${t.labels.side} }a=7\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 343, unit: "\\text{m}^{3}" }],
@@ -349,7 +349,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VC5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_sbb_cargo}}`,
+                    promptLatex: t.quests.basel_sbb_cargo,
                     expressionLatex: `\\text{${t.labels.length} }a=12\\text{m, }\\text{${t.labels.width} }b=8\\text{m, }\\text{${t.labels.height} }h=3\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 288, unit: "\\text{m}^{3}" }],
@@ -365,7 +365,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "VA1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_storage_sa}}`,
+                    promptLatex: t.quests.basel_storage_sa,
                     expressionLatex: `SA=150\\text{ m}^{2}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 125, unit: "\\text{m}^{3}" }],
@@ -375,7 +375,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VA2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_lab}}`,
+                    promptLatex: t.quests.novartis_lab,
                     expressionLatex: `\\text{${t.labels.length} }a=6\\text{m, }\\text{${t.labels.width} }b=8\\text{m, }\\text{${t.labels.height} }h=10\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 480, unit: "\\text{m}^{3}" }],
@@ -385,8 +385,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VA3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_rhine_pipe}}`,
-                    expressionLatex: `\\text{${t.labels.diameter_given || 'diameter'} }d=8\\text{ m, }\\text{${t.labels.height} }h=12\\text{ m}`,
+                    promptLatex: t.quests.basel_rhine_pipe,
+                    expressionLatex: `\\text{${t.labels.diameter_given} }d=8\\text{ m, }\\text{${t.labels.height} }h=12\\text{ m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 603, unit: "\\text{m}^{3}" }],
                     correctLatex: `r=4 \\Rightarrow V=\\pi r^{2}h\\approx 603`,
@@ -395,7 +395,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VA4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.roche_cube}}`,
+                    promptLatex: t.quests.roche_cube,
                     expressionLatex: `\\text{${t.labels.side} }a=9\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 729, unit: "\\text{m}^{3}" }],
@@ -405,7 +405,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VA5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_messe_hall}}`,
+                    promptLatex: t.quests.basel_messe_hall,
                     expressionLatex: `\\text{${t.labels.length} }a=20\\text{m, }\\text{${t.labels.width} }b=15\\text{m, }\\text{${t.labels.height} }h=8\\text{m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 2400, unit: "\\text{m}^{3}" }],
@@ -421,7 +421,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "VE1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.attic}}`,
+                    promptLatex: t.quests.attic,
                     expressionLatex: `\\text{${t.quests.cube_elite.replace("${sa}", "150")}}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 125, unit: "\\text{m}^{3}" }],
@@ -431,7 +431,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VE2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.crate}}`,
+                    promptLatex: t.quests.crate,
                     expressionLatex: `\\text{${t.quests.prism_elite.replace("${p}", "20").replace("${h}", "12")}}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 300, unit: "\\text{m}^{3}" }],
@@ -441,7 +441,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VE3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.pylon}}`,
+                    promptLatex: t.quests.pylon,
                     expressionLatex: `\\text{${t.quests.cyl_elite.replace("${la}", "314.16").replace("${r}", "5")}}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 785, unit: "\\text{cm}^{3}" }],
@@ -451,7 +451,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VE4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_uni_lab_vol}}`,
+                    promptLatex: t.quests.basel_uni_lab_vol,
                     expressionLatex: `V=1000\\text{ m}^{3}`,
                     targetLatex: `SA`,
                     slots: [{ id: "SA", labelLatex: `SA`, placeholder: t.labels.surface_area_given, expected: 600, unit: "\\text{m}^{2}" }],
@@ -461,7 +461,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "VE5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_tank_vol}}`,
+                    promptLatex: t.quests.novartis_tank_vol,
                     expressionLatex: `\\text{${t.labels.radius} }r=6\\text{ m, }V=678.6\\text{ m}^{3}`,
                     targetLatex: `h`,
                     slots: [{ id: "h", labelLatex: `h`, placeholder: t.labels.height, expected: 6, unit: "m" }],
@@ -479,7 +479,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CB1", difficulty, stage,
-                    promptLatex: `\\text{${t.mission?.description}}`,
+                    promptLatex: t.mission?.description,
                     expressionLatex: `\\text{${t.labels.side} } a=8, \\; \\text{${t.labels.base} } b=12, \\; \\text{${t.labels.height} } h=5`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 50, unit: "\\text{m}^{2}" }],
@@ -489,7 +489,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CB2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_park_path}}`,
+                    promptLatex: t.quests.basel_park_path,
                     expressionLatex: `\\text{${t.labels.rectangle}: }a=10,\\; b=6`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 60, unit: "\\text{m}^{2}" }],
@@ -499,7 +499,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CB3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_cathedral_roof}}`,
+                    promptLatex: t.quests.basel_cathedral_roof,
                     expressionLatex: `\\text{${t.labels.triangle}: }b=8,\\; h=6`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 24, unit: "\\text{m}^{2}" }],
@@ -509,7 +509,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CB4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_logo}}`,
+                    promptLatex: t.quests.novartis_logo,
                     expressionLatex: `\\text{${t.labels.circle}: }r=4`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 50.3, unit: "\\text{cm}^{2}" }],
@@ -519,7 +519,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CB5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_storage}}`,
+                    promptLatex: t.quests.basel_storage,
                     expressionLatex: `\\text{${t.labels.side} } a=5`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 125, unit: "\\text{m}^{3}" }],
@@ -535,17 +535,17 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CC1", difficulty, stage,
-                    promptLatex: `\\text{${t.mission?.cube_desc}}`,
+                    promptLatex: t.mission?.cube_desc,
                     expressionLatex: `a=6\\text{ m}`,
                     targetLatex: `d`,
-                    slots: [{ id: "d", labelLatex: `d`, placeholder: t.labels.space_diagonal || "diagonal", expected: 10.39, unit: "m" }],
+                    slots: [{ id: "d", labelLatex: `d`, placeholder: t.labels.space_diagonal, expected: 10.39, unit: "m" }],
                     correctLatex: `d=a\\sqrt{3}\\approx 10.39`,
                     hintLatex: [`d=a\\sqrt{3}`],
                     visualMeta: { type: 'cube', params: { a: 6 } },
                 },
                 {
                     id: "CC2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_rhine_trap}}`,
+                    promptLatex: t.quests.basel_rhine_trap,
                     expressionLatex: `a=10,\\; b=16,\\; h=8`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 104, unit: "\\text{m}^{2}" }],
@@ -555,7 +555,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CC3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.roche_prism_core}}`,
+                    promptLatex: t.quests.roche_prism_core,
                     expressionLatex: `a=8,\\; b=6,\\; h=10`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 480, unit: "\\text{m}^{3}" }],
@@ -565,7 +565,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CC4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_water_cyl_complex}}`,
+                    promptLatex: t.quests.basel_water_cyl_complex,
                     expressionLatex: `\\text{${t.labels.radius} } r=5, \\; \\text{${t.labels.height} } h=8`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 628, unit: "\\text{m}^{3}" }],
@@ -575,7 +575,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CC5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_messe_cube}}`,
+                    promptLatex: t.quests.basel_messe_cube,
                     expressionLatex: `a=8`,
                     targetLatex: `SA`,
                     slots: [{ id: "SA", labelLatex: `SA`, placeholder: t.labels.surface_area_given, expected: 384, unit: "\\text{m}^{2}" }],
@@ -591,7 +591,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CA1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_uni_lab}}`,
+                    promptLatex: t.quests.basel_uni_lab,
                     expressionLatex: `d=12\\text{ m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 192.5, unit: "\\text{m}^{3}" }],
@@ -601,7 +601,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CA2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_plaza}}`,
+                    promptLatex: t.quests.novartis_plaza,
                     expressionLatex: `a=8,\\; b=16,\\; h=10`,
                     targetLatex: `A`,
                     slots: [{ id: "A", labelLatex: `A`, placeholder: t.labels.area, expected: 120, unit: "\\text{m}^{2}" }],
@@ -611,8 +611,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CA3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_rhine_cyl}}`,
-                    expressionLatex: `\\text{${t.labels.diameter_given || 'diameter'} }d=10\\text{ m, }\\text{${t.labels.height} }h=15\\text{ m}`,
+                    promptLatex: t.quests.basel_rhine_cyl,
+                    expressionLatex: `\\text{${t.labels.diameter_given} }d=10\\text{ m, }\\text{${t.labels.height} }h=15\\text{ m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 1178, unit: "\\text{m}^{3}" }],
                     correctLatex: `r=5 \\Rightarrow V=\\pi r^{2}h\\approx 1178`,
@@ -621,7 +621,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CA4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.roche_prism}}`,
+                    promptLatex: t.quests.roche_prism,
                     expressionLatex: `\\text{${t.labels.base} }12\\times 10\\text{ m, }\\text{${t.labels.height} }20\\text{ m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 2400, unit: "\\text{m}^{3}" }],
@@ -631,7 +631,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CA5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_sbb_storage}}`,
+                    promptLatex: t.quests.basel_sbb_storage,
                     expressionLatex: `SA=294\\text{ m}^{2}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 343, unit: "\\text{m}^{3}" }],
@@ -647,17 +647,17 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
             return [
                 {
                     id: "CE1", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_museum_vol}}`,
+                    promptLatex: t.quests.basel_museum_vol,
                     expressionLatex: `V=512\\text{ m}^{3}`,
                     targetLatex: `d`,
-                    slots: [{ id: "d", labelLatex: `d`, placeholder: t.labels.space_diagonal || "diagonal", expected: 13.86, unit: "m" }],
+                    slots: [{ id: "d", labelLatex: `d`, placeholder: t.labels.space_diagonal, expected: 13.86, unit: "m" }],
                     correctLatex: `a^{3}=512 \\Rightarrow a=8 \\Rightarrow d=8\\sqrt{3}\\approx 13.86`,
                     hintLatex: [`V=a^{3}`, `d=a\\sqrt{3}`],
                     visualMeta: { type: 'cube', params: { a: 8 } },
                 },
                 {
                     id: "CE2", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.novartis_tank}}`,
+                    promptLatex: t.quests.novartis_tank,
                     expressionLatex: `LA=314.16\\text{ m}^{2}, r=5\\text{ m}`,
                     targetLatex: `V`,
                     slots: [{ id: "V", labelLatex: `V`, placeholder: t.labels.volume, expected: 785, unit: "\\text{m}^{3}" }],
@@ -667,7 +667,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CE3", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_bridge_area}}`,
+                    promptLatex: t.quests.basel_bridge_area,
                     expressionLatex: `A=180\\text{ m}^{2}, a=10, b=20`,
                     targetLatex: `h`,
                     slots: [{ id: "h", labelLatex: `h`, placeholder: t.labels.height, expected: 12, unit: "m" }],
@@ -677,7 +677,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CE4", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.roche_prism_vol}}`,
+                    promptLatex: t.quests.roche_prism_vol,
                     expressionLatex: `V=1200\\text{ m}^{3}, \\text{base }10\\times 8\\text{ m}`,
                     targetLatex: `h`,
                     slots: [{ id: "h", labelLatex: `h`, placeholder: t.labels.height, expected: 15, unit: "m" }],
@@ -687,7 +687,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
                 },
                 {
                     id: "CE5", difficulty, stage,
-                    promptLatex: `\\text{${t.quests.basel_water_cyl}}`,
+                    promptLatex: t.quests.basel_water_cyl,
                     expressionLatex: `V=1570.8\\text{ m}^{3}, h=20\\text{ m}`,
                     targetLatex: `r`,
                     slots: [{ id: "r", labelLatex: `r`, placeholder: t.labels.radius, expected: 5, unit: "m" }],
