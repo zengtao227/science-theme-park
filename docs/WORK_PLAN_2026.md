@@ -536,6 +536,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.1 (2026-03-02)
+- **GP3.03 Prompt i18n Migration**: Replaced all in-file hardcoded `prompt` strings in `gp3-03/page.tsx` with `t("gp3_03.prompts.*")` templates/keys across FARADAY/LENZ/GENERATOR stages.
+- **Tri-language Prompt Pack Added**: Added full `gp3_03.prompts` + required `labels`/`expressions` to EN/CN/DE `physics.ts` so module-local strings no longer depend on accidental duplicates from `math.ts`.
+- **UI Residual Cleanup**: Localized remaining hardcoded UI text (`Loading...`, `Question {id}`, input placeholders) in the same module.
+
 ### v5.0 (2026-03-02)
 - **SM2.04 Prompt Consolidation**: Replaced mission-stage prompt template concatenations in `sm2-04/page.tsx` with dedicated i18n keys (`sm2_04.mission.tower_prompt`, `sm2_04.mission.ring_prompt`) and synced EN/CN/DE math translations.
 - **SM2.07 Fallback Prompt Cleanup**: Replaced 11 elite/reverse-case `promptLatex: ""` placeholders in `sm2-07/page.tsx` with stage-localized fallback prompts (`distance/midpoint/slope`) while preserving dynamic `promptKey` rendering path.
@@ -624,5 +629,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.0 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.1 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05

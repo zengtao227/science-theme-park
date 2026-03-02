@@ -52,35 +52,87 @@ export default function GP303Induction() {
         difficulty: Difficulty,
         stage: Stage
     ): GP303Quest[] => {
+        const buildFaradayPrompt = (item: any) => {
+            if (difficulty === "BASIC") {
+                return t("gp3_03.prompts.faraday_basic", { flux: item.flux, time: item.time });
+            }
+            if (difficulty === "CORE") {
+                return t("gp3_03.prompts.faraday_core", { turns: item.turns, flux: item.flux, time: item.time });
+            }
+            if (difficulty === "ADVANCED") {
+                return t("gp3_03.prompts.faraday_advanced", {
+                    turns: item.turns,
+                    area: item.area,
+                    field: item.field,
+                    time: item.time
+                });
+            }
+            return t("gp3_03.prompts.faraday_elite", {
+                turns: item.turns,
+                area: item.area,
+                field: item.field,
+                freq: item.freq
+            });
+        };
+
+        const buildGeneratorPrompt = (item: any) => {
+            if (difficulty === "BASIC") {
+                return t(`gp3_03.prompts.generator_basic_${String(item.type).toLowerCase()}`);
+            }
+            if (difficulty === "CORE") {
+                return t("gp3_03.prompts.generator_core", {
+                    turns: item.turns,
+                    area: item.area,
+                    field: item.field,
+                    speed: item.speed
+                });
+            }
+            if (difficulty === "ADVANCED") {
+                if (typeof item.current === "string") {
+                    return t("gp3_03.prompts.generator_adv_find_current", { power: item.power, voltage: item.voltage });
+                }
+                if (typeof item.voltage === "string") {
+                    return t("gp3_03.prompts.generator_adv_find_voltage", { power: item.power, current: item.current });
+                }
+                return t("gp3_03.prompts.generator_adv_find_power", { voltage: item.voltage, current: item.current });
+            }
+            const typeLabel = t(`gp3_03.prompts.generator_type_${item.type}`);
+            return t("gp3_03.prompts.generator_elite", {
+                type: typeLabel,
+                efficiency: item.efficiency,
+                input: item.input
+            });
+        };
+
         if (stage === "FARADAYS_LAW") {
             const faradayData = {
                 BASIC: [
-                    { flux: 0.1, time: 0.5, emf: "0.2", prompt: "ΔΦ=0.1Wb, Δt=0.5s, find EMF" },
-                    { flux: 0.2, time: 1, emf: "0.2", prompt: "ΔΦ=0.2Wb, Δt=1s, find EMF" },
-                    { flux: 0.5, time: 2, emf: "0.25", prompt: "ΔΦ=0.5Wb, Δt=2s, find EMF" },
-                    { flux: 0.3, time: 0.6, emf: "0.5", prompt: "ΔΦ=0.3Wb, Δt=0.6s, find EMF" },
-                    { flux: 0.4, time: 0.8, emf: "0.5", prompt: "ΔΦ=0.4Wb, Δt=0.8s, find EMF" }
+                    { flux: 0.1, time: 0.5, emf: "0.2" },
+                    { flux: 0.2, time: 1, emf: "0.2" },
+                    { flux: 0.5, time: 2, emf: "0.25" },
+                    { flux: 0.3, time: 0.6, emf: "0.5" },
+                    { flux: 0.4, time: 0.8, emf: "0.5" }
                 ],
                 CORE: [
-                    { turns: 100, flux: 0.01, time: 0.1, emf: "10", prompt: "N=100, ΔΦ=0.01Wb, Δt=0.1s, find EMF" },
-                    { turns: 200, flux: 0.005, time: 0.1, emf: "10", prompt: "N=200, ΔΦ=0.005Wb, Δt=0.1s, find EMF" },
-                    { turns: 50, flux: 0.02, time: 0.05, emf: "20", prompt: "N=50, ΔΦ=0.02Wb, Δt=0.05s, find EMF" },
-                    { turns: 150, flux: 0.01, time: 0.15, emf: "10", prompt: "N=150, ΔΦ=0.01Wb, Δt=0.15s, find EMF" },
-                    { turns: 300, flux: 0.01, time: 0.3, emf: "10", prompt: "N=300, ΔΦ=0.01Wb, Δt=0.3s, find EMF" }
+                    { turns: 100, flux: 0.01, time: 0.1, emf: "10" },
+                    { turns: 200, flux: 0.005, time: 0.1, emf: "10" },
+                    { turns: 50, flux: 0.02, time: 0.05, emf: "20" },
+                    { turns: 150, flux: 0.01, time: 0.15, emf: "10" },
+                    { turns: 300, flux: 0.01, time: 0.3, emf: "10" }
                 ],
                 ADVANCED: [
-                    { turns: 500, area: 0.01, field: 0.5, time: 0.1, emf: "25", prompt: "N=500, A=0.01m^{2}, ΔB=0.5T, Δt=0.1s" },
-                    { turns: 1000, area: 0.005, field: 0.2, time: 0.1, emf: "10", prompt: "N=1000, A=0.005m^{2}, ΔB=0.2T, Δt=0.1s" },
-                    { turns: 200, area: 0.02, field: 1, time: 0.2, emf: "20", prompt: "N=200, A=0.02m^{2}, ΔB=1T, Δt=0.2s" },
-                    { turns: 800, area: 0.01, field: 0.25, time: 0.1, emf: "20", prompt: "N=800, A=0.01m^{2}, ΔB=0.25T, Δt=0.1s" },
-                    { turns: 400, area: 0.015, field: 0.5, time: 0.15, emf: "20", prompt: "N=400, A=0.015m^{2}, ΔB=0.5T, Δt=0.15s" }
+                    { turns: 500, area: 0.01, field: 0.5, time: 0.1, emf: "25" },
+                    { turns: 1000, area: 0.005, field: 0.2, time: 0.1, emf: "10" },
+                    { turns: 200, area: 0.02, field: 1, time: 0.2, emf: "20" },
+                    { turns: 800, area: 0.01, field: 0.25, time: 0.1, emf: "20" },
+                    { turns: 400, area: 0.015, field: 0.5, time: 0.15, emf: "20" }
                 ],
                 ELITE: [
-                    { turns: 1000, area: 0.01, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=1000, A=0.01m^{2}, B=1T, f=50Hz" },
-                    { turns: 500, area: 0.02, field: 0.5, freq: 60, emf: "1885", prompt: "Generator: N=500, A=0.02m^{2}, B=0.5T, f=60Hz" },
-                    { turns: 2000, area: 0.005, field: 1, freq: 50, emf: "3142", prompt: "Generator: N=2000, A=0.005m^{2}, B=1T, f=50Hz" },
-                    { turns: 800, area: 0.01, field: 0.8, freq: 50, emf: "2011", prompt: "Generator: N=800, A=0.01m^{2}, B=0.8T, f=50Hz" },
-                    { turns: 1500, area: 0.008, field: 0.6, freq: 60, emf: "2714", prompt: "Generator: N=1500, A=0.008m^{2}, B=0.6T, f=60Hz" }
+                    { turns: 1000, area: 0.01, field: 1, freq: 50, emf: "3142" },
+                    { turns: 500, area: 0.02, field: 0.5, freq: 60, emf: "1885" },
+                    { turns: 2000, area: 0.005, field: 1, freq: 50, emf: "3142" },
+                    { turns: 800, area: 0.01, field: 0.8, freq: 50, emf: "2011" },
+                    { turns: 1500, area: 0.008, field: 0.6, freq: 60, emf: "2714" }
                 ]
             };
 
@@ -91,14 +143,14 @@ export default function GP303Induction() {
                 flux: 'flux' in item ? item.flux : undefined,
                 time: 'time' in item ? item.time : undefined,
                 turns: 'turns' in item ? item.turns : undefined,
-                promptLatex: item.prompt,
+                promptLatex: buildFaradayPrompt(item),
                 expressionLatex: difficulty === "ELITE" ? 
                     `\\varepsilon = NAB\\omega` : `\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}`,
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
                     labelLatex: "EMF (V)",
-                    placeholder: "type value",
+                    placeholder: t("gp3_03.labels.type_value"),
                     expected: item.emf
                 }],
                 correctLatex: `\\text{EMF = } ${item.emf} \\text{ V}`,
@@ -109,32 +161,32 @@ export default function GP303Induction() {
         if (stage === "LENZS_LAW") {
             const lenzData = {
                 BASIC: [
-                    { scenario: "magnet_approaching", direction: "oppose", prompt: "N pole approaching coil, induced current direction?" },
-                    { scenario: "magnet_leaving", direction: "oppose", prompt: "N pole leaving coil, induced current direction?" },
-                    { scenario: "field_increasing", direction: "oppose", prompt: "B field increasing, induced field direction?" },
-                    { scenario: "field_decreasing", direction: "oppose", prompt: "B field decreasing, induced field direction?" },
-                    { scenario: "coil_entering", direction: "oppose", prompt: "Coil entering B field, induced current?" }
+                    { scenario: "magnet_approaching", direction: "oppose" },
+                    { scenario: "magnet_leaving", direction: "oppose" },
+                    { scenario: "field_increasing", direction: "oppose" },
+                    { scenario: "field_decreasing", direction: "oppose" },
+                    { scenario: "coil_entering", direction: "oppose" }
                 ],
                 CORE: [
-                    { scenario: "falling_magnet", direction: "slow", prompt: "Magnet falling through coil, what happens?" },
-                    { scenario: "rotating_coil", direction: "alternating", prompt: "Coil rotating in B field, current type?" },
-                    { scenario: "moving_conductor", direction: "perpendicular", prompt: "Conductor moving in B field, force direction?" },
-                    { scenario: "changing_current", direction: "oppose", prompt: "Current increasing in coil, induced EMF?" },
-                    { scenario: "transformer", direction: "transfer", prompt: "AC in primary coil, secondary coil effect?" }
+                    { scenario: "falling_magnet", direction: "slow" },
+                    { scenario: "rotating_coil", direction: "alternating" },
+                    { scenario: "moving_conductor", direction: "perpendicular" },
+                    { scenario: "changing_current", direction: "oppose" },
+                    { scenario: "transformer", direction: "transfer" }
                 ],
                 ADVANCED: [
-                    { scenario: "eddy_currents", direction: "brake", prompt: "Metal plate in B field, what happens?" },
-                    { scenario: "self_inductance", direction: "oppose", prompt: "Current changing in coil, self-induced EMF?" },
-                    { scenario: "mutual_inductance", direction: "induce", prompt: "Current in coil A, effect on coil B?" },
-                    { scenario: "lenz_brake", direction: "slow", prompt: "Conducting disk in B field, rotation effect?" },
-                    { scenario: "induction_heating", direction: "heat", prompt: "AC in coil near metal, what happens?" }
+                    { scenario: "eddy_currents", direction: "brake" },
+                    { scenario: "self_inductance", direction: "oppose" },
+                    { scenario: "mutual_inductance", direction: "induce" },
+                    { scenario: "lenz_brake", direction: "slow" },
+                    { scenario: "induction_heating", direction: "heat" }
                 ],
                 ELITE: [
-                    { scenario: "maglev_train", direction: "levitate", prompt: "Moving magnet over conductor, force direction?" },
-                    { scenario: "induction_motor", direction: "rotate", prompt: "Rotating B field, rotor behavior?" },
-                    { scenario: "wireless_charging", direction: "transfer", prompt: "AC in transmitter coil, receiver effect?" },
-                    { scenario: "metal_detector", direction: "detect", prompt: "Metal near coil, what changes?" },
-                    { scenario: "regenerative_braking", direction: "generate", prompt: "Motor as generator, energy flow?" }
+                    { scenario: "maglev_train", direction: "levitate" },
+                    { scenario: "induction_motor", direction: "rotate" },
+                    { scenario: "wireless_charging", direction: "transfer" },
+                    { scenario: "metal_detector", direction: "detect" },
+                    { scenario: "regenerative_braking", direction: "generate" }
                 ]
             };
 
@@ -142,13 +194,13 @@ export default function GP303Induction() {
                 id: `${stage}_${difficulty}_${idx + 1}`,
                 difficulty,
                 stage,
-                promptLatex: item.prompt,
+                promptLatex: t(`gp3_03.prompts.lenz_${item.scenario}`),
                 expressionLatex: t("gp3_03.expressions.lenz_law"),
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
                     labelLatex: t("gp3_03.labels.direction_effect"),
-                    placeholder: "type answer",
+                    placeholder: t("gp3_03.labels.type_answer"),
                     expected: item.direction
                 }],
                 correctLatex: `${t("common.answer_prefix")} ${item.direction}`,
@@ -159,32 +211,32 @@ export default function GP303Induction() {
         if (stage === "GENERATORS") {
             const generatorData = {
                 BASIC: [
-                    { type: "AC", output: "alternating", prompt: "Rotating coil in B field produces?" },
-                    { type: "DC", output: "direct", prompt: "Generator with commutator produces?" },
-                    { type: "frequency", output: "speed", prompt: "Generator frequency depends on?" },
-                    { type: "voltage", output: "turns", prompt: "Generator voltage depends on?" },
-                    { type: "power", output: "current", prompt: "Generator power depends on?" }
+                    { type: "AC", output: "alternating" },
+                    { type: "DC", output: "direct" },
+                    { type: "frequency", output: "speed" },
+                    { type: "voltage", output: "turns" },
+                    { type: "power", output: "current" }
                 ],
                 CORE: [
-                    { turns: 100, area: 0.1, field: 0.5, speed: 60, voltage: "188", prompt: "N=100, A=0.1m^{2}, B=0.5T, 60rpm, find V" },
-                    { turns: 200, area: 0.05, field: 1, speed: 120, voltage: "377", prompt: "N=200, A=0.05m^{2}, B=1T, 120rpm, find V" },
-                    { turns: 150, area: 0.08, field: 0.8, speed: 90, voltage: "339", prompt: "N=150, A=0.08m^{2}, B=0.8T, 90rpm, find V" },
-                    { turns: 250, area: 0.04, field: 0.6, speed: 100, voltage: "377", prompt: "N=250, A=0.04m^{2}, B=0.6T, 100rpm, find V" },
-                    { turns: 300, area: 0.03, field: 0.7, speed: 80, voltage: "396", prompt: "N=300, A=0.03m^{2}, B=0.7T, 80rpm, find V" }
+                    { turns: 100, area: 0.1, field: 0.5, speed: 60, voltage: "188" },
+                    { turns: 200, area: 0.05, field: 1, speed: 120, voltage: "377" },
+                    { turns: 150, area: 0.08, field: 0.8, speed: 90, voltage: "339" },
+                    { turns: 250, area: 0.04, field: 0.6, speed: 100, voltage: "377" },
+                    { turns: 300, area: 0.03, field: 0.7, speed: 80, voltage: "396" }
                 ],
                 ADVANCED: [
-                    { power: 1000, voltage: 220, current: "4.55", prompt: "P=1000W, V=220V, find I" },
-                    { power: 5000, voltage: 380, current: "13.16", prompt: "P=5000W, V=380V, find I" },
-                    { power: 2000, current: 10, voltage: "200", prompt: "P=2000W, I=10A, find V" },
-                    { voltage: 220, current: 20, power: "4400", prompt: "V=220V, I=20A, find P" },
-                    { power: 10000, voltage: 400, current: "25", prompt: "P=10kW, V=400V, find I" }
+                    { power: 1000, voltage: 220, current: "4.55" },
+                    { power: 5000, voltage: 380, current: "13.16" },
+                    { power: 2000, current: 10, voltage: "200" },
+                    { voltage: 220, current: 20, power: "4400" },
+                    { power: 10000, voltage: 400, current: "25" }
                 ],
                 ELITE: [
-                    { type: "hydro", efficiency: 90, input: 10000, output: "9000", prompt: "Hydro generator 90% efficient, 10kW input" },
-                    { type: "wind", efficiency: 85, input: 5000, output: "4250", prompt: "Wind generator 85% efficient, 5kW input" },
-                    { type: "thermal", efficiency: 40, input: 100000, output: "40000", prompt: "Thermal plant 40% efficient, 100kW input" },
-                    { type: "solar", efficiency: 20, input: 1000, output: "200", prompt: "Solar panel 20% efficient, 1kW sunlight" },
-                    { type: "nuclear", efficiency: 33, input: 3000000, output: "990000", prompt: "Nuclear plant 33% efficient, 3MW input" }
+                    { type: "hydro", efficiency: 90, input: 10000, output: "9000" },
+                    { type: "wind", efficiency: 85, input: 5000, output: "4250" },
+                    { type: "thermal", efficiency: 40, input: 100000, output: "40000" },
+                    { type: "solar", efficiency: 20, input: 1000, output: "200" },
+                    { type: "nuclear", efficiency: 33, input: 3000000, output: "990000" }
                 ]
             };
 
@@ -192,7 +244,7 @@ export default function GP303Induction() {
                 id: `${stage}_${difficulty}_${idx + 1}`,
                 difficulty,
                 stage,
-                promptLatex: item.prompt,
+                promptLatex: buildGeneratorPrompt(item),
                 expressionLatex: difficulty === "BASIC" ? t("gp3_03.expressions.generator_principles") :
                                difficulty === "CORE" ? `\\varepsilon = NAB\\omega` :
                                difficulty === "ADVANCED" ? `P = VI` :
@@ -203,7 +255,7 @@ export default function GP303Induction() {
                     labelLatex: difficulty === "BASIC" ? t("gp3_03.labels.answer") :
                                difficulty === "CORE" ? t("gp3_03.labels.voltage") :
                                difficulty === "ADVANCED" ? t("gp3_03.labels.value") : t("gp3_03.labels.output_power"),
-                    placeholder: "type value",
+                    placeholder: t("gp3_03.labels.type_value"),
                     expected: ('output' in item ? item.output : undefined) || 
                              ('voltage' in item ? item.voltage : undefined) || 
                              ('current' in item ? item.current : undefined) || 
@@ -247,7 +299,7 @@ export default function GP303Induction() {
     if (!currentQuest) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <div className="text-white">Loading...</div>
+                <div className="text-white">{t("gp3_03.labels.loading")}</div>
             </div>
         );
     }
@@ -316,7 +368,9 @@ export default function GP303Induction() {
                         className="bg-black/30 rounded-xl p-6 border border-white/10"
                     >
                         <div className="mb-4">
-                            <div className="text-white/50 text-sm mb-2">Question {currentQuest?.id}</div>
+                            <div className="text-white/50 text-sm mb-2">
+                                {t("gp3_03.labels.question_id", { id: currentQuest?.id || "" })}
+                            </div>
                             <div className="text-white text-lg">{renderMixedText(currentQuest?.promptLatex || "")}</div>
                         </div>
 
