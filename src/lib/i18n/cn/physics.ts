@@ -1860,7 +1860,30 @@ export const cnPhysics = {
             roche_tower: "Roche 大厦 40 层：房间 V={V} m^{3}, T={T} K, P={P} Pa。计算空气摩尔数 n。",
             rhine_bubble: "莱茵河潜水员在深度 (P1={p1} kPa) 呼出气泡 V1={v1} mL。到达水面 (P2={p2} kPa) 时的体积？",
             weather_balloon: "巴塞尔气象气球：地面 V={v1} m^{3}, T1={t1} K。平流层 T2={t2} K (假设 P 恒定，查理定律)。新体积？",
-            novartis_reactor: "Novartis 反应釜 V={V} m^{3}。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。"
+            novartis_reactor: "Novartis 反应釜 V={V} m^{3}。用 N2 在 P={P} Pa, T={T} K 下吹扫。计算 N2 质量 (M=0.028 kg/mol)。",
+                        boyle_k_find_v: "PV 常数 k = 2400 kPa·L。若 P = 600 kPa，求 V。",
+                        boyle_p_increase_factor: "压强增加 25%，体积变为原来的几倍？",
+                        boyle_energy_density: "PV = 5000 J（能量密度）。若 V = 0.01 m^{3}，求 P。",
+                        boyle_hyperbola: "P-V 图像是双曲线：P(V) = k/V。若 k = 100，求 V = 5 时的 P。",
+                        boyle_isothermal_work: "等温功 W = nRT·ln(V_2/V_1)，P_1 V_1 = 1000 J。体积膨胀为 2V，求 W。",
+                        boyle_compress_v3: "气体等温压缩到 V/3，对气体做的功的符号是什么？",
+                        boyle_real_gas_limit: "实际气体在哪些条件下最偏离波义耳定律？",
+                        boyle_compress_atm: "P_1 = 1 atm，V_1 = 10 L。压缩到 P_2 = 10 atm，求理想气体 V_2。",
+                        boyle_two_bulbs: "两个连通球体：P_1 = 2，V_1 = 1；P_2 = 0，V_2 = 1。打开阀门后，求最终压强 P。",
+                        charles_celsius_find_v2: "查理定律：V_1 = 3 L，T_1 = 27 °C（300 K），T_2 = 127 °C（400 K），求 V_2。",
+                        charles_find_t2_c2: "查理定律：V_1 = 2 L，T_1 = 200 K，V_2 = 3 L，求 T_2。",
+                        charles_cool_factor: "恒压下气体从 400 K 冷却到 100 K，体积变为原来的几倍？",
+                        charles_abs_zero: "绝对零度用摄氏度表示是多少？",
+                        charles_20c_to_80c: "查理定律：V_1 = 5 L（20 °C，293 K），求 80 °C（353 K）时的 V_2。",
+                        charles_ke_proportional: "加热气体使其动能增加，平均动能与哪个量成正比？",
+                        charles_find_t2_a3: "查理定律：V_1 = 10 L，T_1 = 500 K，V_2 = 5 L，求 T_2。",
+                        charles_combined_reduces: "联合气体定律在恒压条件下简化为哪条定律？",
+                        charles_isobaric_work: "等压膨胀：W = P(V_2 - V_1)，P = 100 Pa，体积从 1 变到 2 m^{3}，求 W。",
+                        charles_density_factor: "理想气体：恒压下密度 \\rho \\propto 1/T。T 加倍时，\\rho 变为原来的几倍？",
+                        charles_vt_slope: "V-T 图像斜率 = nR/P。若 n = 1 mol，P = 8.314 Pa，求斜率。",
+                        charles_piston_work: "T_1 = 300 K，V_1 = 1 m^{3}。活塞在 P = 100 Pa 下膨胀做功 W = 300 J，求 V_2。",
+                        charles_find_t2_piston: "由上题：T_1/V_1 = T_2/V_2，T_1 = 300 K，V_1 = 1 m^{3}，V_2 = 4 m^{3}，求 T_2。",
+                        charles_carnot_ke: "分子动理论中，温度正比于平均动能。若 T 加倍，v_{rms} 的变化指数是多少？",
         },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
@@ -1875,7 +1898,8 @@ export const cnPhysics = {
             symbol: "符号",
             constant: "常量"
         }
-    },
+    }
+,
     gp2_02: {
         back: "返回核心枢纽",
         title: "GP2.02 // 热力学第一定律",

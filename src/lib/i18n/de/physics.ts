@@ -1896,7 +1896,30 @@ export const dePhysics = {
                         roche_tower: "Roche-Turm 40. Stock: Raum V={V} m^{3}, T={T} K, P={P} Pa. Berechne Luftmenge n.",
                         rhine_bubble: "Rhein-Taucher in der Tiefe (P1={p1} kPa) atmet Blase V1={v1} mL aus. Volumen an Oberfläche (P2={p2} kPa)?",
                         weather_balloon: "Basel Wetterballon: Boden V={v1} m^{3}, T1={t1} K. Stratosphäre T2={t2} K (P konstant). Neues Volumen?",
-                        novartis_reactor: "Novartis-Reaktor V={V} m^{3}. Spüle mit N2 bei P={P} Pa, T={T} K. Berechne Masse N2 (M=0.028 kg/mol)."
+                        novartis_reactor: "Novartis-Reaktor V={V} m^{3}. Spüle mit N2 bei P={P} Pa, T={T} K. Berechne Masse N2 (M=0.028 kg/mol).",
+                        boyle_k_find_v: "PV-Konstante k = 2400 kPa·L. Bei P = 600 kPa, finde V.",
+                        boyle_p_increase_factor: "Der Druck steigt um 25 %. Um welchen Faktor ändert sich das Volumen?",
+                        boyle_energy_density: "PV = 5000 J (Energiedichte). Bei V = 0,01 m^{3}, finde P.",
+                        boyle_hyperbola: "P-V-Diagramm ist eine Hyperbel: P(V) = k/V. Bei k = 100, finde P bei V = 5.",
+                        boyle_isothermal_work: "Isotherme Arbeit W = nRT·ln(V_2/V_1), P_1 V_1 = 1000 J. Volumen expandiert zu 2V. Finde W.",
+                        boyle_compress_v3: "Gas wird isotherm auf V/3 komprimiert. Vorzeichen der am Gas verrichteten Arbeit?",
+                        boyle_real_gas_limit: "Reale Gase weichen vom Boyle-Mariotte-Gesetz am stärksten unter welchen Bedingungen ab?",
+                        boyle_compress_atm: "P_1 = 1 atm, V_1 = 10 L. Komprimierung auf P_2 = 10 atm. Finde V_2 (ideales Gas).",
+                        boyle_two_bulbs: "Zwei verbundene Kolben: P_1 = 2, V_1 = 1; P_2 = 0, V_2 = 1. Ventil öffnen. Enddruck P?",
+                        charles_celsius_find_v2: "Gay-Lussac: V_1 = 3 L, T_1 = 27 °C (300 K). T_2 = 127 °C (400 K). Finde V_2.",
+                        charles_find_t2_c2: "Gay-Lussac: V_1 = 2 L, T_1 = 200 K. V_2 = 3 L. Finde T_2.",
+                        charles_cool_factor: "Gas kühlt bei konstantem Druck von 400 K auf 100 K. Um welchen Faktor ändert sich das Volumen?",
+                        charles_abs_zero: "Wie lautet der absolute Nullpunkt in Grad Celsius?",
+                        charles_20c_to_80c: "Gay-Lussac: V_1 = 5 L bei 20 °C (293 K). Finde V_2 bei 80 °C (353 K).",
+                        charles_ke_proportional: "Erwärmung erhöht kinetische Energie. Die mittlere kinetische Energie ist proportional zu welcher Größe?",
+                        charles_find_t2_a3: "Gay-Lussac: V_1 = 10 L, T_1 = 500 K. V_2 = 5 L. Finde T_2.",
+                        charles_combined_reduces: "Das allgemeine Gasgesetz vereinfacht sich bei konstantem Druck zu welchem Gesetz?",
+                        charles_isobaric_work: "Isobare Ausdehnung: W = P(V_2 - V_1). P = 100 Pa, V ändert sich von 1 auf 2 m^{3}. Finde W.",
+                        charles_density_factor: "Ideales Gas: \\rho \\propto 1/T bei konstantem P. T verdoppelt sich — um welchen Faktor ändert sich \\rho?",
+                        charles_vt_slope: "V-T-Diagramm: Steigung = nR/P. n = 1 mol, P = 8,314 Pa. Finde die Steigung.",
+                        charles_piston_work: "T_1 = 300 K, V_1 = 1 m^{3}. Kolben expandiert und verrichtet W = 300 J bei P = 100 Pa. Finde V_2.",
+                        charles_find_t2_piston: "Aus vorheriger Aufgabe: T_1/V_1 = T_2/V_2, T_1 = 300 K, V_1 = 1 m^{3}, V_2 = 4 m^{3}. Finde T_2.",
+                        charles_carnot_ke: "Kinetische Theorie: T \\propto mittlere kinetische Energie. T verdoppelt sich — mit welchem Exponenten ändert sich v_{rms}?",
                 },
                 scenarios: {
                         ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
@@ -1911,7 +1934,8 @@ export const dePhysics = {
                         symbol: "Symbol",
                         constant: "Konstante"
                 }
-        },
+        }
+,
         gp2_02: {
                 back: "Zurück zum Nexus",
                 title: "GP2.02 // THERMODYNAMIK I",
