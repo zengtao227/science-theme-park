@@ -257,6 +257,33 @@ export const cnBiology = {
             incorrect: "免疫反应不足。病原体正在扩散。"
         }
     },
+    gb2_02: {
+        back: "返回枢纽",
+        title: "GB2.02 // 内分泌系统",
+        difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        check: "验证",
+        next: "下一题",
+        correct: "正确",
+        incorrect: "错误",
+        ready: "就绪",
+        stages: {
+            hormone_identification: "激素识别",
+            feedback_mechanisms: "反馈机制",
+            clinical_applications: "临床应用"
+        },
+        prompts: {
+            classify_hormone_structure: "在巴塞尔大学医院内分泌化验单中，记录了激素 {hormone}。请按化学结构分类，以便团队选择正确受体通路和后续检测。",
+            identify_insulin_gland: "在巴塞尔糖尿病门诊评估中，需要确认胰岛素来源。请识别产生胰岛素的腺体，以保证治疗方案准确。",
+            primary_function_of: "患者病历重点标注了 {hormone}。请写出其主要功能，用于解释症状模式并指导干预。",
+            regulates_secretion_of: "神经内分泌单元发现 {hormone} 分泌异常。请指出对应的下丘脑调节激素，以定位控制环节故障。",
+            therapy_for_disorder: "针对巴塞尔一例已确诊为 {disorder} 的内分泌病例，请选择用于治疗的药用激素，以便团队启动正确方案。",
+            identify_feedback_type: "请审阅巴塞尔实验室报告中的调控描述：{description}。识别其反馈类型，用于预测激素水平变化。",
+            analyze_feedback_mechanism: "分析该内分泌反馈机制并判断控制逻辑，用于评估调节系统是稳定还是失衡。",
+            clinical_diagnosis_from_case: "巴塞尔患者病例给出了症状与化验值。请确定最可能诊断，以便尽快开始治疗。",
+            identify_endocrine_disorder: "根据该内分泌病例摘要，识别具体疾病，以便医生安排确证检查和靶向治疗。",
+            analyze_clinical_case: "请完整分析该临床病例，并给出用于即时处置的关键内分泌结论。"
+        }
+    },
     sb1_01: {
         back: "返回枢纽",
         title: "SB1.01 // 细胞工厂",

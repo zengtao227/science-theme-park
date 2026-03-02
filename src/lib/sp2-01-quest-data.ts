@@ -76,7 +76,21 @@ const baselScenarios = {
   }
 };
 
+function promptText(
+  t: ((path: string, params?: Record<string, string | number>) => string) | undefined,
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  const path = `sp2_01.prompts.${key}`;
+  if (t) {
+    const translated = t(path, params);
+    return typeof translated === "string" ? translated : path;
+  }
+  return path;
+}
+
 export function buildStagePool(
+  t: ((path: string, params?: Record<string, string | number>) => string),
   difficulty: Difficulty,
   stage: Stage
 ): SP201Quest[] {
@@ -97,7 +111,7 @@ export function buildStagePool(
         type: "IDENTIFY",
         targetComponent: componentType,
         componentInfo: info,
-        promptLatex: `What is this component called? ${info.symbol}`,
+        promptLatex: promptText(t, "component_name", { symbol: info.symbol }),
         expressionLatex: "",
         targetLatex: "answer",
         slots: [{
@@ -124,7 +138,9 @@ export function buildStagePool(
         type: "IDENTIFY",
         targetComponent: componentType,
         componentInfo: info,
-        promptLatex: `What does a ${info.name.en} do in a circuit?`,
+        promptLatex: promptText(t, "component_function", {
+          component: promptText(t, `component_${componentType.toLowerCase()}`)
+        }),
         expressionLatex: "",
         targetLatex: "answer",
         slots: [{
@@ -146,7 +162,9 @@ export function buildStagePool(
         type: "IDENTIFY",
         targetComponent: componentType,
         componentInfo: info,
-        promptLatex: `Which symbol represents a ${info.name.en}?`,
+        promptLatex: promptText(t, "component_symbol", {
+          component: promptText(t, `component_${componentType.toLowerCase()}`)
+        }),
         expressionLatex: "",
         targetLatex: "answer",
         slots: [{
@@ -161,12 +179,12 @@ export function buildStagePool(
       });
       
       // Quest 4: Identify terminals/properties
-      const terminalQuestions = {
-        BATTERY: "How many terminals does a battery have?",
-        BULB: "Does a bulb have polarity (+ and - terminals)?",
-        SWITCH: "What are the two states of a switch?",
-        WIRE: "What property makes a wire good for conducting electricity?",
-        RESISTOR: "What do the color bands on a resistor indicate?"
+      const terminalQuestionKeys: Record<ComponentType, string> = {
+        BATTERY: "terminal_question_battery",
+        BULB: "terminal_question_bulb",
+        SWITCH: "terminal_question_switch",
+        WIRE: "terminal_question_wire",
+        RESISTOR: "terminal_question_resistor"
       };
       
       const terminalAnswers = {
@@ -184,7 +202,7 @@ export function buildStagePool(
         type: "IDENTIFY",
         targetComponent: componentType,
         componentInfo: info,
-        promptLatex: terminalQuestions[componentType],
+        promptLatex: promptText(t, terminalQuestionKeys[componentType]),
         expressionLatex: "",
         targetLatex: "answer",
         slots: [{
@@ -225,7 +243,7 @@ export function buildStagePool(
             { from: "bulb1", to: "battery1", fromTerminal: "TERMINAL_B", toTerminal: "NEGATIVE" }
           ]
         },
-        promptLatex: `Build a simple circuit with one battery and one bulb. Connect the battery's positive terminal to the bulb, and the bulb back to the battery's negative terminal.`,
+        promptLatex: promptText(t, "build_simple_circuit"),
         expressionLatex: "",
         targetLatex: "circuit",
         slots: [],
@@ -245,7 +263,7 @@ export function buildStagePool(
         type: "BUILD",
         requiredComponents: ["BATTERY", ...Array(numBulbs).fill("BULB"), "WIRE"],
         circuitType: "SERIES",
-        promptLatex: `Build a series circuit with ${numBulbs} bulbs. All bulbs should be connected in a single path from battery + to battery -.`,
+        promptLatex: promptText(t, "build_series_bulbs", { count: numBulbs }),
         expressionLatex: "I_{total} = I_1 = I_2 = I_3",
         targetLatex: "circuit",
         slots: [],
@@ -265,7 +283,7 @@ export function buildStagePool(
         type: "BUILD",
         requiredComponents: ["BATTERY", ...Array(numBulbs).fill("BULB"), "WIRE"],
         circuitType: "PARALLEL",
-        promptLatex: `Build a parallel circuit with ${numBulbs} bulbs. Each bulb should have its own path from battery + to battery -.`,
+        promptLatex: promptText(t, "build_parallel_bulbs", { count: numBulbs }),
         expressionLatex: "I_{total} = I_1 + I_2 + I_3",
         targetLatex: "circuit",
         slots: [],
@@ -284,7 +302,7 @@ export function buildStagePool(
         type: "BUILD",
         requiredComponents: ["BATTERY", "BULB", "SWITCH", "WIRE"],
         circuitType: "SERIES",
-        promptLatex: `Build a circuit with a battery, bulb, and switch. The switch should control whether the bulb lights up.`,
+        promptLatex: promptText(t, "build_switch_control"),
         expressionLatex: "",
         targetLatex: "circuit",
         slots: [],
@@ -317,7 +335,7 @@ export function buildStagePool(
             { from: { row: 5, col: 2 }, to: { row: 5, col: 10 }, path: [] }
           ]
         },
-        promptLatex: `Draw a circuit diagram showing a battery connected to a bulb using IEC standard symbols.`,
+        promptLatex: promptText(t, "draw_iec_diagram"),
         expressionLatex: "",
         targetLatex: "diagram",
         slots: [],
@@ -336,9 +354,9 @@ export function buildStagePool(
         type: "BUILD",
         requiredComponents: ["BATTERY", "BULB", "BULB", "BULB", "WIRE"],
         circuitType: i % 2 === 0 ? "SERIES" : "PARALLEL",
-        promptLatex: i % 2 === 0 
-          ? `Build a series circuit with 3 bulbs. Observe how they are dimmer than a single bulb.`
-          : `Build a parallel circuit with 3 bulbs. Observe how they are at full brightness.`,
+        promptLatex: i % 2 === 0
+          ? promptText(t, "compare_series_three")
+          : promptText(t, "compare_parallel_three"),
         expressionLatex: i % 2 === 0 
           ? "R_{total} = R_1 + R_2 + R_3"
           : "\\\\frac{1}{R_{total}} = \\\\frac{1}{R_1} + \\\\frac{1}{R_2} + \\\\frac{1}{R_3}",
@@ -374,7 +392,7 @@ export function buildStagePool(
             { from: "bulb1", to: "battery1", fromTerminal: "TERMINAL_B", toTerminal: "NEGATIVE" }
           ]
         },
-        promptLatex: `This circuit isn't working. The bulb doesn't light up. Identify the fault and fix it.`,
+        promptLatex: promptText(t, "troubleshoot_not_working"),
         expressionLatex: "",
         targetLatex: "fault",
         slots: [{
@@ -412,7 +430,7 @@ export function buildStagePool(
         "Either switch should be able to turn the bulb on or off",
         "This is called a two-way switch circuit (staircase lighting)"
       ],
-      promptLatex: "Design a circuit where two switches can independently control one bulb. Either switch should turn the bulb on or off, regardless of the other switch's position.",
+      promptLatex: promptText(t, "design_two_switches_one_bulb"),
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
@@ -437,7 +455,7 @@ export function buildStagePool(
         "Each switch should control only its own bulb",
         "Other bulbs should not be affected"
       ],
-      promptLatex: "Design a circuit with 3 bulbs where each bulb has its own switch. Turning one bulb on/off should not affect the others.",
+      promptLatex: promptText(t, "design_three_bulbs_independent"),
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
@@ -457,7 +475,7 @@ export function buildStagePool(
         "All bulbs should be at full brightness",
         "Minimize wire length and component count"
       ],
-      promptLatex: "Design the most efficient circuit to light 4 bulbs at full brightness. Use the minimum number of components.",
+      promptLatex: promptText(t, "design_efficient_four_bulbs"),
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
@@ -477,7 +495,7 @@ export function buildStagePool(
         "If one battery fails, at least one bulb should still work",
         "Design for redundancy and reliability"
       ],
-      promptLatex: "Design an emergency lighting system with backup power. If one battery fails, at least one bulb should continue working.",
+      promptLatex: promptText(t, "design_emergency_backup"),
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
@@ -498,7 +516,7 @@ export function buildStagePool(
         "Switch 2 controls bulbs 3 and 4 (in parallel)",
         "Both switch groups should work independently"
       ],
-      promptLatex: "Design a mixed circuit: Switch 1 controls 2 bulbs in series, Switch 2 controls 2 bulbs in parallel. Both groups should work independently.",
+      promptLatex: promptText(t, "design_mixed_series_parallel"),
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],

@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP3.08 prompt i18n closure + wrapper cleanup waves sustained, full QA passed)
-**Plan Version**: 5.7 (Batch C wrapper cleanup + optics prompt i18n extension)
+**Last Updated**: 2026-03-02 (GB2.02 + SP2.01 + GM2.02 Batch B scenario prompt upgrade, full QA passed)
+**Plan Version**: 5.9 (Batch B four-element prompt compliance wave)
 
 ---
 
@@ -56,13 +56,16 @@
 - [x] `sc1-07` + `sp1-01` adapter + `sp1-03` + `sp1-04` + `sc2-07` + `sp3-02` + `sm3-04` (removed residual `promptLatex` wrapper shells and fallback `\\text{...}` prompt composition in quest builders)
 - [x] `sp1-02` + `sp1-02-quests` + `sm3-02` + `sm3-04` (removed `promptLatex` fallback `\\text{...}` wrappers and switched first-law prompt composition to direct i18n text)
 - [x] `sp3-08` (3 hardcoded optics `promptLatex` entries migrated to `sp3_08.prompts.*` with EN/CN/DE key symmetry)
+- [x] `gb2-02` (quest-builder prompt strings migrated to `gb2_02.prompts.*`; tri-language module block added in `biology.ts`; chamber page now passes translator function)
+- [x] `sp2-01` (all stage/design `promptLatex` templates migrated to `sp2_01.prompts.*`; EN/CN/DE prompt packs aligned; chamber page wired to translator pipeline)
+- [x] `gm2-02` (all geometry quest `promptLatex` templates migrated to `gm2_02.prompts.*`; EN/CN/DE math + legacy gm2 JSON prompts synchronized)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [x] `npm run lint` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
 - [x] `npm run build` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
 - [x] `npm run validate:translations` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
 - [x] `bash scripts/audit-rendering.sh` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
-- [ ] Scenario 4-element compliance check completed for touched content.
+- [x] Scenario 4-element compliance check completed for touched content.
 
 ### 7.5 Batch A Wave-1 Results (2026-03-01)
 - [x] `SP1.01`: `scenario_desc` EN/CN/DE = `65/65` non-empty.
@@ -102,7 +105,12 @@
 - [x] `SC1.07 + SP1.01 adapter + SP1.03 + SP1.04 + SC2.07 + SP3.02 + SM3.04 wrapper cleanup`: removed remaining `promptLatex` wrapper composition and direct `\\text{${t(...)}}` prompt construction in quest generators.
 - [x] `SP1.02 + SP1.02-quests + SM3.02 + SM3.04 fallback cleanup`: removed remaining `promptLatex` fallback wrappers (`\\text{...}`) and aligned prompt pipeline to direct i18n text.
 - [x] `SP3.08 Batch C`: migrated reflection/refraction/lens hardcoded prompt templates to `sp3_08.prompts.reflection_law/refraction_setup/lens_setup` with EN/CN/DE synchronization.
-- [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
+- [x] `GB2.02 Batch C`: removed hardcoded endocrine prompts from `gb2-02-quest-builder.ts`; introduced translation-driven prompt templates and synchronized EN/CN/DE `gb2_02.prompts`.
+- [x] `SP2.01 Batch C`: migrated all circuit prompt templates in `sp2-01-quest-data.ts` to `sp2_01.prompts.*` with tri-language alignment and translator-driven pool builder.
+- [x] `GM2.02 Batch C`: migrated all analytical geometry prompt templates in `gm2-02-quest-data.ts` to `gm2_02.prompts.*`; synced EN/CN/DE math + `gm2-02-*.json` prompt sections.
+- [x] `GB2.02 + SP2.01 + GM2.02 Batch B`: upgraded prompt semantics to 4-element scenario style (background/task/givens/usage) in EN/CN/DE while preserving key names and quest logic.
+- [x] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP2.02 / SP2.03 / SM3.01 / GM1.01）。
 
 ---
 
@@ -547,6 +555,18 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.9 (2026-03-02)
+- **Batch B Four-Element Prompt Upgrade**: Rewrote `gb2_02.prompts.*`, `sp2_01.prompts.*`, and `gm2_02.prompts.*` from instruction-only text to scenario-compliant prompts (background/task/givens/usage) in EN/CN/DE.
+- **Legacy Compatibility Sync**: Updated `gm2-02-en.json`, `gm2-02-cn.json`, and `gm2-02-de.json` prompt sections to match the upgraded `gm2_02.prompts` semantics.
+- **Plan Progress Update**: Marked Batch B cross-module抽检 target complete for this wave and moved remaining expansion target to SP2.02/SP2.03/SM3.01/GM1.01.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after this wave.
+
+### v5.8 (2026-03-02)
+- **GB2.02 Prompt Pipeline Migration**: Replaced hardcoded endocrine quest prompts with `gb2_02.prompts.*` templates in `gb2-02-quest-builder.ts`, added tri-language `gb2_02` block in EN/CN/DE `biology.ts`, and wired chamber quest pool to pass `t` directly.
+- **SP2.01 Prompt i18n Closure**: Replaced all hardcoded component/circuit/design prompts in `sp2-01-quest-data.ts` with `sp2_01.prompts.*`; synchronized EN/CN/DE prompt dictionaries in `physics.ts`.
+- **GM2.02 Prompt i18n Closure**: Replaced all hardcoded analytical geometry prompts in `gm2-02-quest-data.ts` with `gm2_02.prompts.*`; synchronized EN/CN/DE `math.ts` and `gm2-02` EN/CN/DE JSON prompt sections for legacy route compatibility.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after migration.
+
 ### v5.7 (2026-03-02)
 - **SP3.08 Prompt i18n Closure**: Replaced 3 hardcoded optics prompts in `src/lib/sp3-08/quests.ts` with `sp3_08.prompts.*` keys (`reflection_law`, `refraction_setup`, `lens_setup`).
 - **Tri-language Sync**: Added the new `sp3_08.prompts` keys in EN/CN/DE `physics.ts` with aligned placeholders (`angle`, `material`, `n1`, `n2`, `theta1`, `f`, `u`).
@@ -671,5 +691,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.7 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.9 (Batch B four-element prompt compliance wave)
 **Next Review**: 2026-03-05

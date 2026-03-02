@@ -10,11 +10,11 @@ import {
  * Returns array of quests matching the criteria
  */
 export function buildStagePool(
-  t: any, // Translation function (not used in quest generation, but kept for consistency)
+  t: any,
   difficulty: Difficulty,
   stage: Stage
 ): GM202Quest[] {
-  const allQuests = getAllQuests();
+  const allQuests = getAllQuests(t);
   
   // Filter quests by difficulty and stage
   const filteredQuests = allQuests.filter(

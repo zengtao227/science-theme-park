@@ -31,6 +31,32 @@ function createSlot(
   };
 }
 
+function interpolate(template: string, params?: Record<string, string | number>): string {
+  if (!params) return template;
+  return Object.entries(params).reduce(
+    (acc, [key, value]) => acc.replace(new RegExp(`\\{${key}\\}`, "g"), String(value)),
+    template
+  );
+}
+
+function promptText(
+  t: any,
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  const path = `gb2_02.prompts.${key}`;
+  if (typeof t === "function") {
+    const translated = t(path, params);
+    return typeof translated === "string" ? translated : path;
+  }
+
+  const template = t?.prompts?.[key];
+  if (typeof template === "string") {
+    return interpolate(template, params);
+  }
+  return path;
+}
+
 /**
  * Builds a quest pool for a specific stage and difficulty
  * @param t - Translation function
@@ -72,7 +98,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "insulin")!,
-        promptLatex: "Classify the hormone insulin by its chemical structure.",
+        promptLatex: promptText(t, "classify_hormone_structure", { hormone: "insulin" }),
         expressionLatex: "\\text{Insulin}",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{peptide}",
@@ -89,7 +115,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "cortisol")!,
-        promptLatex: "Classify the hormone cortisol by its chemical structure.",
+        promptLatex: promptText(t, "classify_hormone_structure", { hormone: "cortisol" }),
         expressionLatex: "\\text{Cortisol}",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{steroid}",
@@ -113,7 +139,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "thyroxine")!,
-        promptLatex: "Classify the hormone thyroxine (T_4) by its chemical structure.",
+        promptLatex: promptText(t, "classify_hormone_structure", { hormone: "thyroxine (T_4)" }),
         expressionLatex: "T_4",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{amino acid-derived}",
@@ -137,7 +163,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "insulin")!,
-        promptLatex: "Identify which gland produces insulin.",
+        promptLatex: promptText(t, "identify_insulin_gland"),
         expressionLatex: "\\text{Insulin}",
         targetLatex: "\\text{Gland: ?}",
         correctLatex: "\\text{pancreas}",
@@ -161,7 +187,7 @@ function buildHormoneIdentificationQuests(
         difficulty,
         stage: "HORMONE_IDENTIFICATION",
         hormone: HORMONES.find(h => h.name === "adrenaline")!,
-        promptLatex: "Classify the hormone adrenaline (epinephrine) by its chemical structure.",
+        promptLatex: promptText(t, "classify_hormone_structure", { hormone: "adrenaline (epinephrine)" }),
         expressionLatex: "\\text{Adrenaline}",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{amino acid-derived}",
@@ -196,7 +222,7 @@ function buildHormoneIdentificationQuests(
           difficulty,
           stage: "HORMONE_IDENTIFICATION",
           hormone: hormones[i]!,
-          promptLatex: `What is the primary function of ${hormones[i]!.name}?`,
+          promptLatex: promptText(t, "primary_function_of", { hormone: hormones[i]!.name }),
           expressionLatex: `\\text{${hormones[i]!.name}}`,
           targetLatex: "\\text{Function: ?}",
           correctLatex: `\\text{${hormones[i]!.primaryFunction}}`,
@@ -230,7 +256,7 @@ function buildHormoneIdentificationQuests(
           id: `HORMONE_ID_ADVANCED_${i + 1}`,
           difficulty,
           stage: "HORMONE_IDENTIFICATION",
-          promptLatex: `Which hypothalamic hormone regulates ${pituitaryHormones[i].name} secretion?`,
+          promptLatex: promptText(t, "regulates_secretion_of", { hormone: pituitaryHormones[i].name }),
           expressionLatex: `\\text{${pituitaryHormones[i].name}}`,
           targetLatex: "\\text{Hypothalamic hormone: ?}",
           correctLatex: `\\text{${pituitaryHormones[i].hypothalamic}}`,
@@ -265,7 +291,7 @@ function buildHormoneIdentificationQuests(
           id: `HORMONE_ID_ELITE_${i + 1}`,
           difficulty,
           stage: "HORMONE_IDENTIFICATION",
-          promptLatex: `Which pharmaceutical hormone is used to treat ${pharmaceuticalHormones[i].disorder}?`,
+          promptLatex: promptText(t, "therapy_for_disorder", { disorder: pharmaceuticalHormones[i].disorder }),
           expressionLatex: `\\text{${pharmaceuticalHormones[i].disorder}}`,
           targetLatex: "\\text{Therapy: ?}",
           correctLatex: `\\text{${pharmaceuticalHormones[i].name}}`,
@@ -307,7 +333,7 @@ function buildFeedbackMechanismsQuests(
           difficulty,
           stage: "FEEDBACK_MECHANISMS",
           feedbackLoop: loops[i],
-          promptLatex: `Identify the type of feedback in ${loops[i].description}.`,
+          promptLatex: promptText(t, "identify_feedback_type", { description: loops[i].description }),
           expressionLatex: `\\text{${loops[i].description}}`,
           targetLatex: "\\text{Feedback type: ?}",
           correctLatex: "\\text{negative}",
@@ -336,7 +362,7 @@ function buildFeedbackMechanismsQuests(
           id: `FEEDBACK_${difficulty}_${i + 1}`,
           difficulty,
           stage: "FEEDBACK_MECHANISMS",
-          promptLatex: "Analyze the feedback mechanism...",
+          promptLatex: promptText(t, "analyze_feedback_mechanism"),
           expressionLatex: "\\text{Feedback Loop}",
           targetLatex: "\\text{Analysis: ?}",
           correctLatex: "\\text{feedback analysis}",
@@ -378,7 +404,7 @@ function buildClinicalApplicationsQuests(
           difficulty,
           stage: "CLINICAL_APPLICATIONS",
           clinicalCase: basicCases[i],
-          promptLatex: "Based on the symptoms and lab results, what is the diagnosis?",
+          promptLatex: promptText(t, "clinical_diagnosis_from_case"),
           expressionLatex: "\\text{Clinical Case}",
           targetLatex: "\\text{Diagnosis: ?}",
           correctLatex: `\\text{${basicCases[i].expectedDiagnosis}}`,
@@ -402,7 +428,7 @@ function buildClinicalApplicationsQuests(
           id: `CLINICAL_BASIC_${i + 1}`,
           difficulty,
           stage: "CLINICAL_APPLICATIONS",
-          promptLatex: "Identify the endocrine disorder...",
+          promptLatex: promptText(t, "identify_endocrine_disorder"),
           expressionLatex: "\\text{Disorder}",
           targetLatex: "\\text{Diagnosis: ?}",
           correctLatex: "\\text{disorder name}",
@@ -430,7 +456,7 @@ function buildClinicalApplicationsQuests(
           id: `CLINICAL_${difficulty}_${i + 1}`,
           difficulty,
           stage: "CLINICAL_APPLICATIONS",
-          promptLatex: "Analyze the clinical case...",
+          promptLatex: promptText(t, "analyze_clinical_case"),
           expressionLatex: "\\text{Clinical Case}",
           targetLatex: "\\text{Diagnosis: ?}",
           correctLatex: "\\text{diagnosis}",

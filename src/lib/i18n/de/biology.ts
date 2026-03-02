@@ -257,6 +257,33 @@ export const deBiology = {
             incorrect: "Immunantwort unzureichend. Erreger verbreitet sich."
         }
     },
+    gb2_02: {
+        back: "Zurück zum Nexus",
+        title: "GB2.02 // ENDOKRINES SYSTEM",
+        difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+        check: "Überprüfen",
+        next: "Nächste Aufgabe",
+        correct: "Richtig",
+        incorrect: "Falsch",
+        ready: "Bereit",
+        stages: {
+            hormone_identification: "HORMONIDENTIFIKATION",
+            feedback_mechanisms: "RÜCKKOPPLUNGSMECHANISMEN",
+            clinical_applications: "KLINISCHE ANWENDUNGEN"
+        },
+        prompts: {
+            classify_hormone_structure: "Im Universitätsspital Basel steht auf einer Labor-Karte das Hormon {hormone}. Klassifizieren Sie seine chemische Struktur, damit das Team den richtigen Rezeptorweg und den nächsten Test wählen kann.",
+            identify_insulin_gland: "Bei einer Basler Diabetes-Abklärung muss die Insulinquelle bestätigt werden. Bestimmen Sie die produzierende Drüse, damit die Therapieplanung korrekt bleibt.",
+            primary_function_of: "In der Patientenakte ist {hormone} hervorgehoben. Nennen Sie die primäre Funktion, um das Symptommuster zu erklären und die Intervention zu steuern.",
+            regulates_secretion_of: "In der neuroendokrinen Einheit ist die Sekretion von {hormone} auffällig. Bestimmen Sie den hypothalamischen Regulator, damit der Kontrollfehler lokalisiert werden kann.",
+            therapy_for_disorder: "Für einen Basler endokrinen Fall mit Diagnose {disorder} wählen Sie die passende pharmazeutische Hormontherapie, damit das Team das korrekte Protokoll starten kann.",
+            identify_feedback_type: "Prüfen Sie diesen Regelkreis im Basler Laborbericht: {description}. Bestimmen Sie den Rückkopplungstyp, um die Hormonentwicklung vorherzusagen.",
+            analyze_feedback_mechanism: "Analysieren Sie den beschriebenen endokrinen Rückkopplungsmechanismus und bestimmen Sie die Steuerlogik, damit das Team die Stabilität der Regulation bewerten kann.",
+            clinical_diagnosis_from_case: "Ein Basler Patientenfall enthält Symptome und Laborwerte. Bestimmen Sie die wahrscheinlichste Diagnose, damit die Behandlung ohne Verzögerung beginnen kann.",
+            identify_endocrine_disorder: "Identifizieren Sie anhand der endokrinen Fallzusammenfassung die Störung, damit der Arzt Bestätigungstests und zielgerichtete Therapie einleiten kann.",
+            analyze_clinical_case: "Analysieren Sie den vollständigen klinischen Fall und liefern Sie die zentrale endokrine Schlussfolgerung für das unmittelbare Management."
+        }
+    },
     sb1_01: {
         back: "Zurück zum Nexus",
         title: "SB1.01 // ZELLFABRIK",

@@ -45,9 +45,9 @@ export default function GB202Page() {
       aiFeedback,
       isRequestingAi,
       requestAiFeedback
-    } = useQuestManager<GB202Quest, Stage>({
+  } = useQuestManager<GB202Quest, Stage>({
     moduleCode: "gb2-02",
-    buildPool: (d, s) => buildStagePool(gb2_02_t, d, s),
+    buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "HORMONE_IDENTIFICATION",
   });
 

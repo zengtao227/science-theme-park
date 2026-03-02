@@ -55,9 +55,9 @@ export default function SP201CircuitBasics() {
       aiFeedback,
       isRequestingAi,
       requestAiFeedback
-    } = useQuestManager<SP201Quest, Stage>({
+  } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
-    buildPool: (d, s) => buildStagePool(d, s),
+    buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "COMPONENTS",
   });
 

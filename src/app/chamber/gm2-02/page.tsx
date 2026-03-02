@@ -55,9 +55,9 @@ export default function GM202Page() {
       aiFeedback,
       isRequestingAi,
       requestAiFeedback
-    } = useQuestManager<GM202Quest, Stage>({
+  } = useQuestManager<GM202Quest, Stage>({
     moduleCode: "gm2-02",
-    buildPool: (d, s) => buildStagePool(gm2_02_t, d, s),
+    buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "LINE_EQUATIONS",
   });
 

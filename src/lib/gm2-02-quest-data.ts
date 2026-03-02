@@ -17,11 +17,38 @@ import {
   calculate3DLineParametric
 } from "./gm2-02-geometry";
 
+type Translator = (path: string, params?: Record<string, string | number>) => string;
+
+function interpolate(template: string, params?: Record<string, string | number>): string {
+  if (!params) return template;
+  return Object.entries(params).reduce(
+    (acc, [key, value]) => acc.replace(new RegExp(`\\{${key}\\}`, "g"), String(value)),
+    template
+  );
+}
+
+function promptText(
+  t: Translator | Record<string, any> | undefined,
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  const path = `gm2_02.prompts.${key}`;
+  if (typeof t === "function") {
+    const translated = t(path, params);
+    return typeof translated === "string" ? translated : path;
+  }
+  const template = t?.prompts?.[key];
+  if (typeof template === "string") {
+    return interpolate(template, params);
+  }
+  return path;
+}
+
 // ============================================================================
 // LINE EQUATIONS STAGE - BASIC (15 quests)
 // ============================================================================
 
-export function generateLineEquationsBasicQuests(): GM202Quest[] {
+export function generateLineEquationsBasicQuests(t?: Translator | Record<string, any>): GM202Quest[] {
   const quests: GM202Quest[] = [];
 
   // Quest 1-3: Find line equation from two points
@@ -40,7 +67,12 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
       points: [[p1.x, p1.y], [p2.x, p2.y]],
       slope: line.slope,
       yIntercept: line.yIntercept,
-      promptLatex: `Find the equation of the line passing through points (${p1.x}, ${p1.y}) and (${p2.x}, ${p2.y}).`,
+      promptLatex: promptText(t, "line_through_points", {
+        x1: p1.x,
+        y1: p1.y,
+        x2: p2.x,
+        y2: p2.y
+      }),
       expressionLatex: `y = mx + b`,
       targetLatex: `y`,
       slots: [
@@ -81,7 +113,7 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
       id: `LINE_EQUATIONS_BASIC_${id}`,
       difficulty: "BASIC",
       stage: "LINE_EQUATIONS",
-      promptLatex: `Find the slope of the line: ${equation}`,
+      promptLatex: promptText(t, "line_slope", { equation }),
       expressionLatex: equation,
       targetLatex: `m`,
       slots: [
@@ -118,7 +150,7 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
       id: `LINE_EQUATIONS_BASIC_${id}`,
       difficulty: "BASIC",
       stage: "LINE_EQUATIONS",
-      promptLatex: `Find the y-intercept of the line: ${equation}`,
+      promptLatex: promptText(t, "line_y_intercept", { equation }),
       expressionLatex: equation,
       targetLatex: `b`,
       slots: [
@@ -159,7 +191,7 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
       id: `LINE_EQUATIONS_BASIC_${id}`,
       difficulty: "BASIC",
       stage: "LINE_EQUATIONS",
-      promptLatex: `Convert the line equation ${equation} to slope-intercept form y = mx + b.`,
+      promptLatex: promptText(t, "line_convert_slope_intercept", { equation }),
       expressionLatex: equation,
       targetLatex: `y`,
       slots: [
@@ -198,7 +230,14 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
       difficulty: "BASIC",
       stage: "LINE_EQUATIONS",
       points: [[point.x, point.y, point.z]],
-      promptLatex: `Write the parametric equation of the line passing through point (${point.x}, ${point.y}, ${point.z}) with direction vector (${direction.x}, ${direction.y}, ${direction.z}).`,
+      promptLatex: promptText(t, "line_parametric_3d", {
+        x: point.x,
+        y: point.y,
+        z: point.z,
+        dx: direction.x,
+        dy: direction.y,
+        dz: direction.z
+      }),
       expressionLatex: `\\vec{r}(t) = \\vec{r}_0 + t\\vec{d}`,
       targetLatex: `\\vec{r}(t)`,
       slots: [
@@ -233,7 +272,7 @@ export function generateLineEquationsBasicQuests(): GM202Quest[] {
 // PLANE GEOMETRY STAGE - CORE (20 quests)
 // ============================================================================
 
-export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
+export function generatePlaneGeometryCoreQuests(t?: Translator | Record<string, any>): GM202Quest[] {
   const quests: GM202Quest[] = [];
 
   // Quest 1-5: Find plane equation from three points
@@ -252,7 +291,11 @@ export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
       difficulty: "CORE",
       stage: "PLANE_GEOMETRY",
       points: [[p1.x, p1.y, p1.z], [p2.x, p2.y, p2.z], [p3.x, p3.y, p3.z]],
-      promptLatex: `Find the equation of the plane passing through points (${p1.x}, ${p1.y}, ${p1.z}), (${p2.x}, ${p2.y}, ${p2.z}), and (${p3.x}, ${p3.y}, ${p3.z}).`,
+      promptLatex: promptText(t, "plane_through_points", {
+        x1: p1.x, y1: p1.y, z1: p1.z,
+        x2: p2.x, y2: p2.y, z2: p2.z,
+        x3: p3.x, y3: p3.y, z3: p3.z
+      }),
       expressionLatex: `Ax + By + Cz + D = 0`,
       targetLatex: `Ax + By + Cz + D`,
       slots: [
@@ -298,7 +341,7 @@ export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
       difficulty: "CORE",
       stage: "PLANE_GEOMETRY",
       normalVector: [A, B, C],
-      promptLatex: `Find the normal vector of the plane: ${equation}`,
+      promptLatex: promptText(t, "plane_normal_vector", { equation }),
       expressionLatex: equation,
       targetLatex: `\\vec{n}`,
       slots: [
@@ -339,7 +382,10 @@ export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
       stage: "PLANE_GEOMETRY",
       planePoint: [point.x, point.y, point.z],
       normalVector: [normal.x, normal.y, normal.z],
-      promptLatex: `Find the equation of the plane passing through point (${point.x}, ${point.y}, ${point.z}) with normal vector (${normal.x}, ${normal.y}, ${normal.z}).`,
+      promptLatex: promptText(t, "plane_point_normal", {
+        x: point.x, y: point.y, z: point.z,
+        nx: normal.x, ny: normal.y, nz: normal.z
+      }),
       expressionLatex: `\\vec{n} \\cdot (\\vec{r} - \\vec{r}_0) = 0`,
       targetLatex: `Ax + By + Cz + D`,
       slots: [
@@ -386,7 +432,7 @@ export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
       id: `PLANE_GEOMETRY_CORE_${id}`,
       difficulty: "CORE",
       stage: "PLANE_GEOMETRY",
-      promptLatex: `Find the x, y, and z intercepts of the plane: ${equation}`,
+      promptLatex: promptText(t, "plane_intercepts", { equation }),
       expressionLatex: equation,
       targetLatex: `(x_{int}, y_{int}, z_{int})`,
       slots: [
@@ -422,7 +468,7 @@ export function generatePlaneGeometryCoreQuests(): GM202Quest[] {
 // SPATIAL RELATIONSHIPS STAGE - ADVANCED (20 quests)
 // ============================================================================
 
-export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
+export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Record<string, any>): GM202Quest[] {
   const quests: GM202Quest[] = [];
 
   // Quest 1-5: Distance from point to line in 2D
@@ -448,7 +494,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
         equation: equation,
         coefficients: [A, B, C]
       },
-      promptLatex: `Calculate the distance from point (${point.x}, ${point.y}) to the line ${equation}.`,
+      promptLatex: promptText(t, "distance_point_line_2d", { x: point.x, y: point.y, equation }),
       expressionLatex: `d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^{2} + B^2}}`,
       targetLatex: `d`,
       slots: [
@@ -504,7 +550,9 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
         type: "line",
         equation: parametric
       },
-      promptLatex: `Calculate the distance from point (${point.x}, ${point.y}, ${point.z}) to the line ${parametric}.`,
+      promptLatex: promptText(t, "distance_point_line_3d", {
+        x: point.x, y: point.y, z: point.z, line: parametric
+      }),
       expressionLatex: `d = \\frac{||\\vec{PL_0} \\times \\vec{d}||}{||\\vec{d}||}`,
       targetLatex: `d`,
       slots: [
@@ -555,7 +603,9 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
         equation: plane.equation,
         coefficients: [A, B, C, D]
       },
-      promptLatex: `Calculate the distance from point (${point.x}, ${point.y}, ${point.z}) to the plane ${plane.equation}.`,
+      promptLatex: promptText(t, "distance_point_plane", {
+        x: point.x, y: point.y, z: point.z, equation: plane.equation
+      }),
       expressionLatex: `d = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^{2} + B^{2} + C^2}}`,
       targetLatex: `d`,
       slots: [
@@ -598,7 +648,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ADVANCED_${id}`,
       difficulty: "ADVANCED",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Calculate the distance between parallel lines ${eq1} and ${eq2}.`,
+      promptLatex: promptText(t, "distance_parallel_lines", { eq1, eq2 }),
       expressionLatex: `d = \\frac{|C_1 - C_2|}{\\sqrt{A^{2} + B^2}}`,
       targetLatex: `d`,
       slots: [
@@ -646,7 +696,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ADVANCED_${id}`,
       difficulty: "ADVANCED",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Calculate the distance between parallel planes ${p1.equation} and ${p2.equation}.`,
+      promptLatex: promptText(t, "distance_parallel_planes", { eq1: p1.equation, eq2: p2.equation }),
       expressionLatex: `d = \\frac{|D_1 - D_2|}{\\sqrt{A^{2} + B^{2} + C^2}}`,
       targetLatex: `d`,
       slots: [
@@ -684,7 +734,7 @@ export function generateSpatialRelationshipsAdvancedQuests(): GM202Quest[] {
 // SPATIAL RELATIONSHIPS STAGE - ELITE (10 quests)
 // ============================================================================
 
-export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
+export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<string, any>): GM202Quest[] {
   const quests: GM202Quest[] = [];
 
   // Quest 1-3: Determine line-line relationship in 3D
@@ -715,7 +765,7 @@ export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ELITE_${id}`,
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Determine the relationship between lines L1: ${param1} and L2: ${param2}.`,
+      promptLatex: promptText(t, "relation_line_line", { line1: param1, line2: param2 }),
       expressionLatex: `\\text{parallel, perpendicular, intersecting, or skew}`,
       targetLatex: `\\text{relationship}`,
       slots: [
@@ -776,7 +826,7 @@ export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ELITE_${id}`,
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Determine the relationship between line ${parametric} and plane ${planeEq}.`,
+      promptLatex: promptText(t, "relation_line_plane", { line: parametric, plane: planeEq }),
       expressionLatex: `\\text{parallel, perpendicular, or intersecting}`,
       targetLatex: `\\text{relationship}`,
       slots: [
@@ -830,7 +880,7 @@ export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ELITE_${id}`,
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Find the intersection point of line ${parametric} and plane ${planeObj.equation}.`,
+      promptLatex: promptText(t, "intersection_line_plane", { line: parametric, plane: planeObj.equation }),
       expressionLatex: `\\vec{r} = \\vec{r}_0 + t\\vec{d}`,
       targetLatex: `(x, y, z)`,
       slots: [
@@ -886,7 +936,7 @@ export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
       id: `SPATIAL_RELATIONSHIPS_ELITE_${id}`,
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
-      promptLatex: `Determine the relationship between planes ${p1.equation} and ${p2.equation}.`,
+      promptLatex: promptText(t, "relation_plane_plane", { plane1: p1.equation, plane2: p2.equation }),
       expressionLatex: `\\text{parallel, perpendicular, or intersecting}`,
       targetLatex: `\\text{relationship}`,
       slots: [
@@ -924,11 +974,11 @@ export function generateSpatialRelationshipsEliteQuests(): GM202Quest[] {
 // QUEST POOL BUILDER
 // ============================================================================
 
-export function getAllQuests(): GM202Quest[] {
+export function getAllQuests(t?: Translator | Record<string, any>): GM202Quest[] {
   return [
-    ...generateLineEquationsBasicQuests(),
-    ...generatePlaneGeometryCoreQuests(),
-    ...generateSpatialRelationshipsAdvancedQuests(),
-    ...generateSpatialRelationshipsEliteQuests()
+    ...generateLineEquationsBasicQuests(t),
+    ...generatePlaneGeometryCoreQuests(t),
+    ...generateSpatialRelationshipsAdvancedQuests(t),
+    ...generateSpatialRelationshipsEliteQuests(t)
   ];
 }

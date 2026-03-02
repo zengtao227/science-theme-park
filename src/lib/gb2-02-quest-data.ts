@@ -21,7 +21,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "insulin"),
-    promptLatex: "Classify the hormone insulin by its chemical structure.",
+    promptLatex: "gb2_02.prompts.classify_hormone_structure",
     slots: [
       {
         id: "type",
@@ -39,7 +39,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "cortisol"),
-    promptLatex: "Classify the hormone cortisol by its chemical structure.",
+    promptLatex: "gb2_02.prompts.classify_hormone_structure",
     slots: [
       {
         id: "type",
@@ -57,7 +57,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "thyroxine"),
-    promptLatex: "Classify the hormone thyroxine (T_4) by its chemical structure.",
+    promptLatex: "gb2_02.prompts.classify_hormone_structure",
     slots: [
       {
         id: "type",
@@ -75,7 +75,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "insulin"),
-    promptLatex: "Identify which gland produces insulin.",
+    promptLatex: "gb2_02.prompts.identify_insulin_gland",
     slots: [
       {
         id: "gland",
@@ -93,7 +93,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
     difficulty: "BASIC" as Difficulty,
     stage: "HORMONE_IDENTIFICATION" as Stage,
     hormone: HORMONES.find(h => h.name === "adrenaline"),
-    promptLatex: "Classify the hormone adrenaline (epinephrine) by its chemical structure.",
+    promptLatex: "gb2_02.prompts.classify_hormone_structure",
     slots: [
       {
         id: "type",

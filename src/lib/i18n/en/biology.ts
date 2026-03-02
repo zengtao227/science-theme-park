@@ -257,6 +257,33 @@ export const enBiology = {
             incorrect: "Immune response insufficient. Pathogen spreading."
         }
     },
+    gb2_02: {
+        back: "Back to Nexus",
+        title: "GB2.02 // ENDOCRINE SYSTEM",
+        difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+        check: "Verify",
+        next: "Next Quest",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        ready: "Ready",
+        stages: {
+            hormone_identification: "HORMONE IDENTIFICATION",
+            feedback_mechanisms: "FEEDBACK MECHANISMS",
+            clinical_applications: "CLINICAL APPLICATIONS"
+        },
+        prompts: {
+            classify_hormone_structure: "At University Hospital Basel, a lab card lists hormone {hormone}. Classify its chemical structure so the team can choose the correct receptor pathway and next test.",
+            identify_insulin_gland: "In a Basel diabetes intake, you must confirm the source of insulin. Identify the producing gland so treatment planning stays accurate.",
+            primary_function_of: "A patient chart highlights {hormone}. State its primary function to explain the symptom pattern and guide intervention.",
+            regulates_secretion_of: "In the neuroendocrine unit, secretion of {hormone} is abnormal. Identify the hypothalamic regulator so clinicians can locate the control failure.",
+            therapy_for_disorder: "For a Basel endocrine case diagnosed as {disorder}, choose the pharmaceutical hormone therapy so the care team can start the correct protocol.",
+            identify_feedback_type: "Review this control loop in the Basel lab report: {description}. Identify the feedback type to predict how hormone levels will change.",
+            analyze_feedback_mechanism: "Analyze the described endocrine feedback mechanism and determine the control logic so the team can judge whether regulation is stable or failing.",
+            clinical_diagnosis_from_case: "A Basel patient case includes symptoms and lab values. Determine the most likely diagnosis so treatment can begin without delay.",
+            identify_endocrine_disorder: "From the endocrine case summary, identify the disorder so the physician can order confirmatory tests and targeted therapy.",
+            analyze_clinical_case: "Analyze the full clinical case and provide the key endocrine conclusion used for immediate management."
+        }
+    },
     sb1_01: {
         back: "Back to Nexus",
         title: "SB1.01 // CELL FACTORY",
