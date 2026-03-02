@@ -20,6 +20,28 @@ interface SP203Quest extends Quest {
     cost?: number;
 }
 
+interface PowerDataItem {
+    voltage: number | string;
+    current: number | string;
+    power: number | string;
+}
+
+interface EnergyDataItem {
+    power: number;
+    time: number;
+    energy?: string;
+    cost?: number;
+    answer?: string;
+}
+
+interface EfficiencyDataItem {
+    input?: number | string;
+    output?: number | string;
+    efficiency?: number | string;
+    loss?: string;
+    device?: string;
+}
+
 export default function SP203ElectricPower() {
     const { t } = useLanguage();
     const [currentPower, setCurrentPower] = useState(0);
@@ -50,6 +72,98 @@ export default function SP203ElectricPower() {
         incorrect: t("sp2_03.incorrect")
     }), [t]);
 
+    const buildPowerPrompt = useCallback((item: PowerDataItem) => {
+        if (typeof item.power === "string") {
+            if (item.voltage === 380 && item.current === 16) {
+                return t("sp2_03.prompts.power_find_power_three_phase", {
+                    voltage: item.voltage,
+                    current: item.current
+                });
+            }
+            return t("sp2_03.prompts.power_find_power", {
+                voltage: item.voltage,
+                current: item.current
+            });
+        }
+        if (typeof item.current === "string") {
+            return t("sp2_03.prompts.power_find_current", {
+                power: item.power,
+                voltage: item.voltage
+            });
+        }
+        return t("sp2_03.prompts.power_find_voltage", {
+            power: item.power,
+            current: item.current
+        });
+    }, [t]);
+
+    const buildEnergyPrompt = useCallback((item: EnergyDataItem, questDifficulty: Difficulty, index: number) => {
+        if (questDifficulty === "ELITE") {
+            return t(`sp2_03.prompts.e${index + 1}`);
+        }
+        if (questDifficulty === "BASIC") {
+            return t("sp2_03.prompts.energy_find_wh", {
+                power: item.power,
+                time: item.time
+            });
+        }
+        if (questDifficulty === "CORE") {
+            return t("sp2_03.prompts.energy_find_kwh", {
+                power: item.power,
+                time: item.time
+            });
+        }
+        return t("sp2_03.prompts.energy_find_cost", {
+            power: item.power,
+            days: item.time,
+            rate: item.cost as number
+        });
+    }, [t]);
+
+    const buildEfficiencyPrompt = useCallback((item: EfficiencyDataItem, questDifficulty: Difficulty) => {
+        if (questDifficulty === "BASIC") {
+            return t("sp2_03.prompts.efficiency_find_percent", {
+                input: item.input as string | number,
+                output: item.output as string | number
+            });
+        }
+        if (questDifficulty === "CORE") {
+            if (typeof item.output === "string") {
+                return t("sp2_03.prompts.efficiency_find_output", {
+                    input: item.input as string | number,
+                    efficiency: item.efficiency as string | number
+                });
+            }
+            return t("sp2_03.prompts.efficiency_find_input", {
+                output: item.output as string | number,
+                efficiency: item.efficiency as string | number
+            });
+        }
+        if (questDifficulty === "ADVANCED") {
+            if (typeof item.output === "number" && typeof item.input === "number") {
+                return t("sp2_03.prompts.efficiency_find_loss_io", {
+                    input: item.input as string | number,
+                    output: item.output as string | number
+                });
+            }
+            if (typeof item.input === "number") {
+                return t("sp2_03.prompts.efficiency_find_loss_input_eff", {
+                    input: item.input as string | number,
+                    efficiency: item.efficiency as string | number
+                });
+            }
+            return t("sp2_03.prompts.efficiency_find_loss_output_eff", {
+                output: item.output as string | number,
+                efficiency: item.efficiency as string | number
+            });
+        }
+        return t("sp2_03.prompts.efficiency_device", {
+            device: item.device as string | number,
+            input: item.input as string | number,
+            output: item.output as string | number
+        });
+    }, [t]);
+
     const buildStagePool = useCallback((
         tObj: typeof sp2_03_t,
         difficulty: Difficulty,
@@ -57,34 +171,34 @@ export default function SP203ElectricPower() {
     ): SP203Quest[] => {
         // STAGE 1: POWER_BASICS - P=UI calculations
         if (stage === "POWER_BASICS") {
-            const powerData = {
+            const powerData: Record<Difficulty, PowerDataItem[]> = {
                 BASIC: [
-                    { voltage: 12, current: 2, power: "24", prompt: "V=12V, I=2A, find P" },
-                    { voltage: 6, current: 3, power: "18", prompt: "V=6V, I=3A, find P" },
-                    { voltage: 9, current: 1, power: "9", prompt: "V=9V, I=1A, find P" },
-                    { power: 60, voltage: 12, current: "5", prompt: "P=60W, V=12V, find I" },
-                    { power: 100, current: 5, voltage: "20", prompt: "P=100W, I=5A, find V" }
+                    { voltage: 12, current: 2, power: "24" },
+                    { voltage: 6, current: 3, power: "18" },
+                    { voltage: 9, current: 1, power: "9" },
+                    { power: 60, voltage: 12, current: "5" },
+                    { power: 100, current: 5, voltage: "20" }
                 ],
                 CORE: [
-                    { voltage: 220, current: 0.5, power: "110", prompt: "V=220V, I=0.5A, find P" },
-                    { voltage: 120, current: 2.5, power: "300", prompt: "V=120V, I=2.5A, find P" },
-                    { power: 1000, voltage: 220, current: "4.55", prompt: "P=1000W, V=220V, find I" },
-                    { power: 500, current: 2, voltage: "250", prompt: "P=500W, I=2A, find V" },
-                    { voltage: 110, current: 10, power: "1100", prompt: "V=110V, I=10A, find P" }
+                    { voltage: 220, current: 0.5, power: "110" },
+                    { voltage: 120, current: 2.5, power: "300" },
+                    { power: 1000, voltage: 220, current: "4.55" },
+                    { power: 500, current: 2, voltage: "250" },
+                    { voltage: 110, current: 10, power: "1100" }
                 ],
                 ADVANCED: [
-                    { voltage: 230, current: 4.35, power: "1000", prompt: "V=230V, I=4.35A, find P" },
-                    { power: 2000, voltage: 220, current: "9.09", prompt: "P=2000W, V=220V, find I" },
-                    { power: 1500, current: 6.5, voltage: "231", prompt: "P=1500W, I=6.5A, find V" },
-                    { voltage: 240, current: 8.33, power: "2000", prompt: "V=240V, I=8.33A, find P" },
-                    { power: 3000, voltage: 230, current: "13.04", prompt: "P=3000W, V=230V, find I" }
+                    { voltage: 230, current: 4.35, power: "1000" },
+                    { power: 2000, voltage: 220, current: "9.09" },
+                    { power: 1500, current: 6.5, voltage: "231" },
+                    { voltage: 240, current: 8.33, power: "2000" },
+                    { power: 3000, voltage: 230, current: "13.04" }
                 ],
                 ELITE: [
-                    { voltage: 380, current: 16, power: "6080", prompt: "V=380V, I=16A, find P (3-phase)" },
-                    { power: 5000, voltage: 220, current: "22.73", prompt: "P=5000W, V=220V, find I" },
-                    { power: 10000, current: 45, voltage: "222", prompt: "P=10kW, I=45A, find V" },
-                    { voltage: 400, current: 25, power: "10000", prompt: "V=400V, I=25A, find P" },
-                    { power: 7500, voltage: 380, current: "19.74", prompt: "P=7.5kW, V=380V, find I" }
+                    { voltage: 380, current: 16, power: "6080" },
+                    { power: 5000, voltage: 220, current: "22.73" },
+                    { power: 10000, current: 45, voltage: "222" },
+                    { voltage: 400, current: 25, power: "10000" },
+                    { power: 7500, voltage: 380, current: "19.74" }
                 ]
             };
 
@@ -95,7 +209,7 @@ export default function SP203ElectricPower() {
                 voltage: typeof item.voltage === 'string' ? parseFloat(item.voltage) : item.voltage,
                 current: typeof item.current === 'number' ? item.current : undefined,
                 power: typeof item.power === 'number' ? item.power : undefined,
-                promptLatex: item.prompt,
+                promptLatex: buildPowerPrompt(item),
                 expressionLatex: `P = U \\times I`,
                 targetLatex: "answer",
                 slots: [
@@ -116,34 +230,34 @@ export default function SP203ElectricPower() {
 
         // STAGE 2: ENERGY_CONSUMPTION - W=Pt and cost calculations
         if (stage === "ENERGY_CONSUMPTION") {
-            const energyData = {
+            const energyData: Record<Difficulty, EnergyDataItem[]> = {
                 BASIC: [
-                    { power: 100, time: 10, energy: "1000", prompt: "P=100W, t=10h, find E (Wh)" },
-                    { power: 60, time: 5, energy: "300", prompt: "P=60W, t=5h, find E (Wh)" },
-                    { power: 1000, time: 2, energy: "2000", prompt: "P=1000W, t=2h, find E (Wh)" },
-                    { power: 40, time: 24, energy: "960", prompt: "P=40W, t=24h, find E (Wh)" },
-                    { power: 200, time: 3, energy: "600", prompt: "P=200W, t=3h, find E (Wh)" }
+                    { power: 100, time: 10, energy: "1000" },
+                    { power: 60, time: 5, energy: "300" },
+                    { power: 1000, time: 2, energy: "2000" },
+                    { power: 40, time: 24, energy: "960" },
+                    { power: 200, time: 3, energy: "600" }
                 ],
                 CORE: [
-                    { power: 1000, time: 5, energy: "5", prompt: "P=1kW, t=5h, find E (kWh)" },
-                    { power: 2000, time: 3, energy: "6", prompt: "P=2kW, t=3h, find E (kWh)" },
-                    { power: 500, time: 10, energy: "5", prompt: "P=500W, t=10h, find E (kWh)" },
-                    { power: 1500, time: 4, energy: "6", prompt: "P=1.5kW, t=4h, find E (kWh)" },
-                    { power: 3000, time: 2, energy: "6", prompt: "P=3kW, t=2h, find E (kWh)" }
+                    { power: 1000, time: 5, energy: "5" },
+                    { power: 2000, time: 3, energy: "6" },
+                    { power: 500, time: 10, energy: "5" },
+                    { power: 1500, time: 4, energy: "6" },
+                    { power: 3000, time: 2, energy: "6" }
                 ],
                 ADVANCED: [
-                    { power: 1000, time: 30, cost: 0.25, answer: "7.5", prompt: "P=1kW, 30 days, 0.25 CHF/kWh, find cost" },
-                    { power: 2000, time: 15, cost: 0.20, answer: "6", prompt: "P=2kW, 15 days, 0.20 CHF/kWh, find cost" },
-                    { power: 500, time: 60, cost: 0.30, answer: "9", prompt: "P=500W, 60 days, 0.30 CHF/kWh, find cost" },
-                    { power: 1500, time: 20, cost: 0.25, answer: "7.5", prompt: "P=1.5kW, 20 days, 0.25 CHF/kWh, find cost" },
-                    { power: 3000, time: 10, cost: 0.20, answer: "6", prompt: "P=3kW, 10 days, 0.20 CHF/kWh, find cost" }
+                    { power: 1000, time: 30, cost: 0.25, answer: "7.5" },
+                    { power: 2000, time: 15, cost: 0.20, answer: "6" },
+                    { power: 500, time: 60, cost: 0.30, answer: "9" },
+                    { power: 1500, time: 20, cost: 0.25, answer: "7.5" },
+                    { power: 3000, time: 10, cost: 0.20, answer: "6" }
                 ],
                 ELITE: [
-                    { power: 3000, time: 500, cost: 0.28, answer: "420", prompt: t("sp2_03.prompts.e1") || "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?" },
-                    { power: 1500, time: 100, cost: 0.28, answer: "42", prompt: t("sp2_03.prompts.e2") || "Summer AC: P=1.5kW for 100h. Rate: 0.28 CHF/kWh. Cost?" },
-                    { power: 2000, time: 5, cost: 0.28, answer: "2.8", prompt: t("sp2_03.prompts.e3") || "Basler Läckerli Oven: P=2kW for 5h. Rate: 0.28 CHF/kWh. Cost?" },
-                    { power: 11000, time: 50, cost: 0.24, answer: "132", prompt: t("sp2_03.prompts.e4") || "EV Charging (Off-peak): P=11kW for 50h. Rate: 0.24 CHF/kWh. Cost?" },
-                    { power: 500, time: 72, cost: 0.28, answer: "10.08", prompt: t("sp2_03.prompts.e5") || "Fasnacht Lanterns: P=0.5kW for 72h. Rate: 0.28 CHF/kWh. Cost?" }
+                    { power: 3000, time: 500, cost: 0.28, answer: "420" },
+                    { power: 1500, time: 100, cost: 0.28, answer: "42" },
+                    { power: 2000, time: 5, cost: 0.28, answer: "2.8" },
+                    { power: 11000, time: 50, cost: 0.24, answer: "132" },
+                    { power: 500, time: 72, cost: 0.28, answer: "10.08" }
                 ]
             };
 
@@ -154,7 +268,7 @@ export default function SP203ElectricPower() {
                 power: item.power,
                 time: item.time,
                 cost: 'cost' in item ? item.cost : undefined,
-                promptLatex: item.prompt,
+                promptLatex: buildEnergyPrompt(item, difficulty, idx),
                 expressionLatex: difficulty === "BASIC" || difficulty === "CORE" ?
                     `E = P \\times t` : `\\text{Cost} = E \\times \\text{rate}`,
                 targetLatex: "answer",
@@ -177,34 +291,34 @@ export default function SP203ElectricPower() {
 
         // STAGE 3: EFFICIENCY - Efficiency calculations
         if (stage === "EFFICIENCY") {
-            const efficiencyData = {
+            const efficiencyData: Record<Difficulty, EfficiencyDataItem[]> = {
                 BASIC: [
-                    { input: 100, output: 80, efficiency: "80", prompt: "Input=100W, Output=80W, find efficiency %" },
-                    { input: 200, output: 150, efficiency: "75", prompt: "Input=200W, Output=150W, find efficiency %" },
-                    { input: 50, output: 40, efficiency: "80", prompt: "Input=50W, Output=40W, find efficiency %" },
-                    { input: 1000, output: 900, efficiency: "90", prompt: "Input=1000W, Output=900W, find efficiency %" },
-                    { input: 500, output: 400, efficiency: "80", prompt: "Input=500W, Output=400W, find efficiency %" }
+                    { input: 100, output: 80, efficiency: "80" },
+                    { input: 200, output: 150, efficiency: "75" },
+                    { input: 50, output: 40, efficiency: "80" },
+                    { input: 1000, output: 900, efficiency: "90" },
+                    { input: 500, output: 400, efficiency: "80" }
                 ],
                 CORE: [
-                    { input: 1000, efficiency: 85, output: "850", prompt: "Input=1000W, Efficiency=85%, find output" },
-                    { input: 2000, efficiency: 90, output: "1800", prompt: "Input=2000W, Efficiency=90%, find output" },
-                    { output: 750, efficiency: 75, input: "1000", prompt: "Output=750W, Efficiency=75%, find input" },
-                    { output: 1800, efficiency: 90, input: "2000", prompt: "Output=1800W, Efficiency=90%, find input" },
-                    { input: 500, efficiency: 80, output: "400", prompt: "Input=500W, Efficiency=80%, find output" }
+                    { input: 1000, efficiency: 85, output: "850" },
+                    { input: 2000, efficiency: 90, output: "1800" },
+                    { output: 750, efficiency: 75, input: "1000" },
+                    { output: 1800, efficiency: 90, input: "2000" },
+                    { input: 500, efficiency: 80, output: "400" }
                 ],
                 ADVANCED: [
-                    { input: 1000, output: 850, loss: "150", prompt: "Input=1000W, Output=850W, find power loss" },
-                    { input: 2000, output: 1700, loss: "300", prompt: "Input=2000W, Output=1700W, find power loss" },
-                    { input: 5000, efficiency: 92, loss: "400", prompt: "Input=5000W, Efficiency=92%, find loss" },
-                    { output: 4500, efficiency: 90, loss: "500", prompt: "Output=4500W, Efficiency=90%, find loss" },
-                    { input: 3000, output: 2550, loss: "450", prompt: "Input=3000W, Output=2550W, find loss" }
+                    { input: 1000, output: 850, loss: "150" },
+                    { input: 2000, output: 1700, loss: "300" },
+                    { input: 5000, efficiency: 92, loss: "400" },
+                    { output: 4500, efficiency: 90, loss: "500" },
+                    { input: 3000, output: 2550, loss: "450" }
                 ],
                 ELITE: [
-                    { device: "LED", input: 10, output: 9, efficiency: "90", prompt: "LED: 10W input, 9W light, efficiency?" },
-                    { device: "Incandescent", input: 60, output: 6, efficiency: "10", prompt: "Bulb: 60W input, 6W light, efficiency?" },
-                    { device: "Motor", input: 1000, output: 850, efficiency: "85", prompt: "Motor: 1000W input, 850W output, efficiency?" },
-                    { device: "Transformer", input: 5000, output: 4750, efficiency: "95", prompt: "Transformer: 5000W input, 4750W output, efficiency?" },
-                    { device: "Solar Panel", input: 1000, output: 200, efficiency: "20", prompt: "Solar: 1000W sunlight, 200W electric, efficiency?" }
+                    { device: "LED", input: 10, output: 9, efficiency: "90" },
+                    { device: "Incandescent", input: 60, output: 6, efficiency: "10" },
+                    { device: "Motor", input: 1000, output: 850, efficiency: "85" },
+                    { device: "Transformer", input: 5000, output: 4750, efficiency: "95" },
+                    { device: "Solar Panel", input: 1000, output: 200, efficiency: "20" }
                 ]
             };
 
@@ -212,7 +326,7 @@ export default function SP203ElectricPower() {
                 id: `${stage}_${difficulty}_${idx + 1}`,
                 difficulty,
                 stage,
-                promptLatex: item.prompt,
+                promptLatex: buildEfficiencyPrompt(item, difficulty),
                 expressionLatex: `\\eta = \\frac{P_{out}}{P_{in}} \\times 100\\%`,
                 targetLatex: "answer",
                 slots: [
@@ -240,7 +354,7 @@ export default function SP203ElectricPower() {
         }
 
         return [];
-    }, [t]);
+    }, [buildEnergyPrompt, buildEfficiencyPrompt, buildPowerPrompt, t]);
 
     const {
         difficulty,

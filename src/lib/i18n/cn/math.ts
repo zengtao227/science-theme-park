@@ -238,15 +238,15 @@ export const cnMath = {    em1_01: {
             product_rule: "乘积规则",
             quotient_rule: "商规则",
             chain_rule: "链式法则",
-            intro_prompt_latex: "\\text{计算 }x^n\\text{ 的导数。}",
-            differentiation_prompt_latex: "\\text{应用微分规则计算。}",
-            application_prompt_latex: "\\text{应用微积分解决问题。}",
-            power_rule_prompt_latex: "\\text{在给定点计算 }f'(x)\\text{。}",
-            factor_rule_prompt_latex: "\\text{使用因子规则计算 }f'(x)\\text{。}",
-            sum_rule_prompt_latex: "\\text{使用和规则计算 }f'(x)\\text{。}",
-            product_rule_prompt_latex: "\\text{使用乘积规则计算 }f'(x)\\text{。}",
-            quotient_rule_prompt_latex: "\\text{使用商规则计算 }f'(x)\\text{。}",
-            chain_rule_prompt_latex: "\\text{使用链式法则计算 }f'(x)\\text{。}"
+            intro_prompt_latex: "\\text{巴塞尔入门任务：对给定 }f(x)=x^n\\text{ 和 }x\\text{，计算导数并给出该点斜率。}",
+            differentiation_prompt_latex: "\\text{规则核验任务：根据题目函数选择正确微分法则，并在指定点求 }f'(x)\\text{。}",
+            application_prompt_latex: "\\text{应用场景任务：将文字场景转化为导数目标，并计算所需数值结果。}",
+            power_rule_prompt_latex: "\\text{幂规则检查：已知函数与 }x\\text{，使用 }f'(x)=n x^{n-1}\\text{ 计算 }f'(x)\\text{。}",
+            factor_rule_prompt_latex: "\\text{系数缩放任务：按因子规则先处理常数系数，再在给定 }x\\text{ 处求导数值。}",
+            sum_rule_prompt_latex: "\\text{叠加模型任务：先分别求各项导数，再合并并计算给定 }x\\text{ 处的 }f'(x)\\text{。}",
+            product_rule_prompt_latex: "\\text{耦合模型任务：对乘积函数使用 }(uv)'=u'v+uv'\\text{，并在目标点求导。}",
+            quotient_rule_prompt_latex: "\\text{比值模型任务：使用 }(u/v)'=(u'v-uv')/v^2\\text{，计算给定 }x\\text{ 的导数。}",
+            chain_rule_prompt_latex: "\\text{嵌套函数任务：使用链式法则对复合函数求导，并在指定点给出 }f'(x)\\text{。}"
         },
         labels: {
             secant_slope: "割线斜率 m",
@@ -2236,10 +2236,10 @@ export const cnMath = {    em1_01: {
             factorize: "因式分解",
             fractions: "分式化简",
             equations: "解方程",
-            terms_prompt_latex: "\\text{化简表达式（合并同类项）。}",
-            factor_prompt_latex: "\\text{把式子因式分解成乘积形式。}",
-            fractions_prompt_latex: "\\text{约分 / 化简分式。}",
-            equations_prompt_latex: "\\text{分步骤解方程。}"
+            terms_prompt_latex: "\\text{式子整理任务：合并同类项并写出标准化简结果。}",
+            factor_prompt_latex: "\\text{结构拆分任务：将二次式改写为乘积因式形式，并给出对应参数。}",
+            fractions_prompt_latex: "\\text{分式核验任务：分子分母先因式分解，再约去可约公因式并给出最简式。}",
+            equations_prompt_latex: "\\text{求根任务：选择正确方法解一元二次方程，并写出目标根值。}"
         },
         modes: {
             factor: "因式分解",

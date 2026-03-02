@@ -992,6 +992,13 @@ export const cnPhysics = {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",
             series_circuits: "诺华制药设备设计：你正在与诺华巴塞尔的电气工程团队合作，为新实验室设备设计配电系统。在串联电路中，元件共享相同的电流，但电压在它们之间分配。你的任务是计算总电阻（R_总 = R_1 + R_2 + ...）和电流。这对于确保敏感的分析仪器接收正确的电压水平至关重要。计算错误可能会损坏价值数百万瑞士法郎的设备或影响药物质量测试结果。",
             parallel_circuits: "罗氏大厦照明系统：你正在为巴塞尔罗氏大厦设计应急照明系统。在并联电路中，元件共享相同的电压，但电流在各分支之间分配。你的任务是计算总电流和等效电阻（1/R_总 = 1/R_1 + 1/R_2 + ...）。这种设计确保如果一盏灯失效，其他灯继续工作——这对于停电期间的安全至关重要。该系统必须处理大楼41层数千个LED灯的高效运行。"
+        },
+        prompts: {
+            ohms_find_current: "巴塞尔实验台校验：已知 U={voltage}V、R={resistance}Ω，使用 I=U/R 计算电流 I（单位 A）。",
+            ohms_find_voltage: "电车控制器调试：已知 I={current}A、R={resistance}Ω，使用 U=I×R 计算电压 U（单位 V）。",
+            ohms_find_resistance: "实验室安全检查：已知 I={current}A、U={voltage}V，使用 R=U/I 计算电阻 R（单位 Ω）。",
+            series_find_current: "诺华串联设备链路：{components}，电源电压 U={voltage}V。先求 R_total，再求电流 I。",
+            parallel_find_total_current: "罗氏并联应急照明：{components}，电源电压 U={voltage}V。计算各支路电流并求总电流 I_total。"
         }
     },
 
@@ -1021,6 +1028,20 @@ export const cnPhysics = {
             efficiency: "巴塞尔太阳能电池板安装：你是Solarville Basel的工程师，在住宅屋顶上安装太阳能电池板。效率（η = P_out/P_in × 100%）决定了多少太阳光能量转化为电能。现代电池板的效率达到18-22%。你的任务是计算功率输出、能量损失和成本节省。一个典型的巴塞尔家庭拥有20平方米的电池板（4千瓦容量），每年产生约3,800千瓦时，每年节省约950瑞士法郎。理解效率有助于客户做出明智的投资决策。"
         },
         prompts: {
+            power_find_power: "巴塞尔家电审计：已知 U={voltage}V、I={current}A，计算电功率 P=U×I。",
+            power_find_power_three_phase: "工业馈线校验（三相场景）：已知 U={voltage}V、I={current}A，估算电功率 P。",
+            power_find_current: "IWB 诊断任务：已知 P={power}W、U={voltage}V，计算电流 I=P/U。",
+            power_find_voltage: "设备投运任务：已知 P={power}W、I={current}A，计算电压 U=P/I。",
+            energy_find_wh: "运行日志：设备功率 P={power}W，运行 t={time}h。计算能耗 E（Wh）。",
+            energy_find_kwh: "计费估算：设备功率 P={power}W，运行 t={time}h。换算并给出 E（kWh）。",
+            energy_find_cost: "商业计费案例：P={power}W，运行 {days}h，电价 {rate} CHF/kWh。计算总费用。",
+            efficiency_find_percent: "转换测试：输入功率 {input}W，有效输出 {output}W。计算效率 η（%）。",
+            efficiency_find_output: "输出规划：输入 {input}W、效率 η={efficiency}% 。计算有效输出功率。",
+            efficiency_find_input: "供电规划：目标输出 {output}W、效率 η={efficiency}% 。计算所需输入功率。",
+            efficiency_find_loss_io: "热损审计：输入 {input}W、输出 {output}W。计算损耗功率 P_loss。",
+            efficiency_find_loss_input_eff: "损耗审计：输入 {input}W、效率 η={efficiency}% 。计算损耗功率 P_loss。",
+            efficiency_find_loss_output_eff: "损耗审计：输出 {output}W、效率 η={efficiency}% 。计算损耗功率 P_loss。",
+            efficiency_device: "{device} 设备评估：输入 {input}W、有效输出 {output}W。计算效率 η。",
             e1: "IWB 热泵: P=3kW 运行 500h。费率: 0.28 CHF/kWh。总费用？",
             e2: "夏季空调: P=1.5kW 运行 100h。费率: 0.28 CHF/kWh。总费用？",
             e3: "巴塞尔 Läckerli 饼干烤箱: P=2kW 运行 5h。费率: 0.28 CHF/kWh。总费用？",

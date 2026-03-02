@@ -238,15 +238,15 @@ export const enMath = {    em1_01: {
             product_rule: "PRODUCT RULE",
             quotient_rule: "QUOTIENT RULE",
             chain_rule: "CHAIN RULE",
-            intro_prompt_latex: "\\text{Calculate the derivative of }x^n.",
-            differentiation_prompt_latex: "\\text{Apply the differentiation rules.}",
-            application_prompt_latex: "\\text{Apply calculus to solve problems.}",
-            power_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ at the given point.}",
-            factor_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using factor rule.}",
-            sum_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using sum rule.}",
-            product_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using product rule.}",
-            quotient_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using quotient rule.}",
-            chain_rule_prompt_latex: "\\text{Calculate }f'(x)\\text{ using chain rule.}"
+            intro_prompt_latex: "\\text{Basel intro mission: for }f(x)=x^n\\text{ at the given }x\\text{, compute the derivative and report the slope value.}",
+            differentiation_prompt_latex: "\\text{Rule-check task: use the appropriate differentiation law on the given function and evaluate }f'(x)\\text{ at the specified point.}",
+            application_prompt_latex: "\\text{Applied calculus case: translate the scenario into a derivative target and compute the required numeric result.}",
+            power_rule_prompt_latex: "\\text{Power-rule checkpoint: given }f(x)\\text{ and }x\\text{, apply }f'(x)=n x^{n-1}\\text{ and report }f'(x)\\text{.}",
+            factor_rule_prompt_latex: "\\text{Scaled-model task: differentiate the coefficient-scaled function with the factor rule and evaluate at the stated }x\\text{.}",
+            sum_rule_prompt_latex: "\\text{Combined-signal task: split the sum into parts, differentiate term by term, then compute }f'(x)\\text{ at the given }x\\text{.}",
+            product_rule_prompt_latex: "\\text{Interaction model: use }(uv)'=u'v+uv'\\text{ on the given product function and evaluate the derivative at the target point.}",
+            quotient_rule_prompt_latex: "\\text{Efficiency-ratio task: apply }(u/v)'=(u'v-uv')/v^2\\text{ and compute }f'(x)\\text{ for the given }x\\text{.}",
+            chain_rule_prompt_latex: "\\text{Nested-process task: differentiate the composite function with the chain rule and evaluate }f'(x)\\text{ at the specified point.}"
         },
         labels: {
             secant_slope: "Secant Slope m",
@@ -2243,10 +2243,10 @@ export const enMath = {    em1_01: {
             factorize: "FACTORIZE",
             fractions: "FRACTIONS",
             equations: "EQUATIONS",
-            terms_prompt_latex: "\\text{Simplify the expression (combine like terms).}",
-            factor_prompt_latex: "\\text{Factorize the expression (show a product form).}",
-            fractions_prompt_latex: "\\text{Simplify the fraction.}",
-            equations_prompt_latex: "\\text{Solve the equation step by step.}"
+            terms_prompt_latex: "\\text{Workshop cleanup: combine like terms in the given polynomial and report the simplified coefficient form.}",
+            factor_prompt_latex: "\\text{Model decomposition: rewrite the quadratic as a product of factors and identify the matching factor parameters.}",
+            fractions_prompt_latex: "\\text{Rational-expression check: factor numerator and denominator, cancel valid common factors, then give the reduced form.}",
+            equations_prompt_latex: "\\text{Root-finding mission: solve the quadratic equation with a valid method and report the required root values.}"
         },
         modes: {
             factor: "FACTOR",

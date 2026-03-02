@@ -1914,6 +1914,13 @@ export const enPhysics = {
                         ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",
                         series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R_1 + R_2 + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",
                         parallel_circuits: "Roche Tower Lighting System: You are designing the emergency lighting system for Roche Tower in Basel. In parallel circuits, components share the same voltage, but current divides among branches. Your task is to calculate total current and equivalent resistance (1/R_total = 1/R_1 + 1/R_2 + ...). This design ensures that if one light fails, others continue working - critical for safety during power outages. The system must handle the building's 41 floors with thousands of LED lights operating efficiently."
+                },
+                prompts: {
+                        ohms_find_current: "Basel bench test: determine branch current. Given U = {voltage} V and R = {resistance} Ω, apply I = U/R and report I in A.",
+                        ohms_find_voltage: "Tram controller calibration: find supply voltage. Given I = {current} A and R = {resistance} Ω, apply U = I×R and report U in V.",
+                        ohms_find_resistance: "Lab safety check: identify resistor value. Given I = {current} A and U = {voltage} V, apply R = U/I and report R in Ω.",
+                        series_find_current: "Novartis instrument chain (series): {components}, source voltage U = {voltage} V. Compute R_total then find current I.",
+                        parallel_find_total_current: "Roche emergency lighting branches (parallel): {components}, source voltage U = {voltage} V. Compute branch currents and total current I_total."
                 }
         },
 
@@ -1943,6 +1950,20 @@ export const enPhysics = {
                         efficiency: "Basel Solar Panel Installation: You are an engineer at Solarville Basel, installing solar panels on residential rooftops. Efficiency (η = P_out/P_in × 100%) determines how much sunlight energy converts to electricity. Modern panels achieve 18-22% efficiency. Your task is to calculate power output, energy losses, and cost savings. A typical Basel home with 20 m^{2} of panels (4 kW capacity) generates about 3,800 kWh/year, saving approximately 950 CHF annually. Understanding efficiency helps customers make informed investment decisions."
                 },
                 prompts: {
+                        power_find_power: "Basel appliance audit: given U = {voltage} V and I = {current} A, compute electric power P = U×I.",
+                        power_find_power_three_phase: "Industrial feeder check (3-phase context): given U = {voltage} V and I = {current} A, estimate electric power P.",
+                        power_find_current: "IWB diagnostics: given P = {power} W and U = {voltage} V, compute current I = P/U.",
+                        power_find_voltage: "Equipment commissioning: given P = {power} W and I = {current} A, compute voltage U = P/I.",
+                        energy_find_wh: "Device runtime log: power P = {power} W over t = {time} h. Compute consumed energy E in Wh.",
+                        energy_find_kwh: "Billing estimate: power P = {power} W over t = {time} h. Convert and report energy E in kWh.",
+                        energy_find_cost: "Commercial billing case: power P = {power} W, runtime {days} h, tariff {rate} CHF/kWh. Compute total cost.",
+                        efficiency_find_percent: "Conversion test: input {input} W, useful output {output} W. Compute efficiency η in %.",
+                        efficiency_find_output: "Output planning: input {input} W at η = {efficiency}%. Compute useful output power.",
+                        efficiency_find_input: "Supply planning: required output {output} W at η = {efficiency}%. Compute required input power.",
+                        efficiency_find_loss_io: "Thermal loss audit: input {input} W and output {output} W. Compute power loss P_loss.",
+                        efficiency_find_loss_input_eff: "Loss audit: input {input} W at η = {efficiency}%. Compute power loss P_loss.",
+                        efficiency_find_loss_output_eff: "Loss audit: output {output} W at η = {efficiency}%. Compute power loss P_loss.",
+                        efficiency_device: "{device} performance check: input {input} W and useful output {output} W. Compute efficiency η.",
                         e1: "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?",
                         e2: "Summer AC: P=1.5kW for 100h. Rate: 0.28 CHF/kWh. Cost?",
                         e3: "Basler Läckerli Oven: P=2kW for 5h. Rate: 0.28 CHF/kWh. Cost?",

@@ -238,15 +238,15 @@ export const deMath = {    em1_01: {
             product_rule: "PRODUKTREGEL",
             quotient_rule: "QUOTIENTENREGEL",
             chain_rule: "KETTENREGEL",
-            intro_prompt_latex: "\\text{Berechne die Ableitung von }x^n.",
-            differentiation_prompt_latex: "\\text{Wende die Ableitungsregeln an.}",
-            application_prompt_latex: "\\text{Wende Differentialrechnung an, um Probleme zu lösen.}",
-            power_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ am gegebenen Punkt.}",
-            factor_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Faktorregel.}",
-            sum_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Summenregel.}",
-            product_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Produktregel.}",
-            quotient_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Quotientenregel.}",
-            chain_rule_prompt_latex: "\\text{Berechne }f'(x)\\text{ mit der Kettenregel.}"
+            intro_prompt_latex: "\\text{Basel-Startauftrag: Für }f(x)=x^n\\text{ am gegebenen }x\\text{ die Ableitung berechnen und die Steigung angeben.}",
+            differentiation_prompt_latex: "\\text{Regel-Check: Wähle die passende Ableitungsregel zur Funktion und berechne }f'(x)\\text{ am Zielpunkt.}",
+            application_prompt_latex: "\\text{Anwendungsfall: Übersetze das Szenario in ein Ableitungsziel und berechne den geforderten Zahlenwert.}",
+            power_rule_prompt_latex: "\\text{Potenzregel-Checkpoint: Mit }f'(x)=n x^{n-1}\\text{ den Ableitungswert am angegebenen }x\\text{ bestimmen.}",
+            factor_rule_prompt_latex: "\\text{Skalierungsaufgabe: Funktion mit Faktorregel ableiten und den Wert bei gegebenem }x\\text{ berechnen.}",
+            sum_rule_prompt_latex: "\\text{Überlagerungsaufgabe: Summanden getrennt ableiten, zusammenführen und }f'(x)\\text{ am Zielpunkt auswerten.}",
+            product_rule_prompt_latex: "\\text{Produktmodell: }(uv)'=u'v+uv'\\text{ auf die gegebene Funktion anwenden und die Ableitung am Zielpunkt berechnen.}",
+            quotient_rule_prompt_latex: "\\text{Quotientenmodell: }(u/v)'=(u'v-uv')/v^2\\text{ anwenden und den Ableitungswert für das gegebene }x\\text{ bestimmen.}",
+            chain_rule_prompt_latex: "\\text{Verschachtelungsaufgabe: Komposition mit der Kettenregel ableiten und }f'(x)\\text{ am vorgegebenen Punkt angeben.}"
         },
         labels: {
             secant_slope: "Sekantensteigung m",
@@ -2220,10 +2220,10 @@ export const deMath = {    em1_01: {
             factorize: "FAKTORISIEREN",
             fractions: "BRUCHTERME",
             equations: "GLEICHUNGEN",
-            terms_prompt_latex: "\\text{Vereinfache den Term (gleichartige Terme zusammenfassen).}",
-            factor_prompt_latex: "\\text{Faktorisiere den Term (als Produkt schreiben).}",
-            fractions_prompt_latex: "\\text{Kürzen / Bruchterm vereinfachen.}",
-            equations_prompt_latex: "\\text{Löse die Gleichung Schritt für Schritt.}"
+            terms_prompt_latex: "\\text{Werkstattaufgabe: Gleichartige Terme zusammenfassen und den Ausdruck in vereinfachter Form angeben.}",
+            factor_prompt_latex: "\\text{Strukturaufgabe: Quadratischen Ausdruck in ein Produkt von Faktoren zerlegen und Parameter bestimmen.}",
+            fractions_prompt_latex: "\\text{Bruchterm-Prüfung: Zähler und Nenner faktorisieren, kürzen und die vollständig reduzierte Form angeben.}",
+            equations_prompt_latex: "\\text{Nullstellenauftrag: Quadratische Gleichung mit geeignetem Verfahren lösen und die geforderten Lösungen angeben.}"
         },
         modes: {
             factor: "FAKTORISIEREN",

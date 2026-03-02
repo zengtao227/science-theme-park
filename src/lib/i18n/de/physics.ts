@@ -1057,6 +1057,13 @@ export const dePhysics = {
                         ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",
                         series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R_1 + R_2 + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",
                         parallel_circuits: "Roche Tower Beleuchtungssystem: Sie entwerfen das Notbeleuchtungssystem für den Roche Tower in Basel. In Parallelschaltungen teilen sich Komponenten dieselbe Spannung, aber der Strom teilt sich auf die Zweige auf. Ihre Aufgabe ist es, den Gesamtstrom und den äquivalenten Widerstand (1/R_gesamt = 1/R_1 + 1/R_2 + ...) zu berechnen. Dieses Design stellt sicher, dass wenn ein Licht ausfällt, andere weiterarbeiten - kritisch für die Sicherheit bei Stromausfällen. Das System muss die 41 Stockwerke des Gebäudes mit Tausenden von LED-Leuchten effizient betreiben."
+                },
+                prompts: {
+                        ohms_find_current: "Basler Labortest: Bestimmen Sie den Zweigstrom. Gegeben U = {voltage} V und R = {resistance} Ω, verwenden Sie I = U/R und geben Sie I in A an.",
+                        ohms_find_voltage: "Tram-Controller-Kalibrierung: Gegeben I = {current} A und R = {resistance} Ω, verwenden Sie U = I×R und geben Sie U in V an.",
+                        ohms_find_resistance: "Sicherheitsprüfung im Labor: Gegeben I = {current} A und U = {voltage} V, verwenden Sie R = U/I und geben Sie R in Ω an.",
+                        series_find_current: "Novartis-Gerätekette (Reihe): {components}, Quellspannung U = {voltage} V. Berechnen Sie zuerst R_total, dann den Strom I.",
+                        parallel_find_total_current: "Roche-Notbeleuchtung (Parallelzweige): {components}, Quellspannung U = {voltage} V. Berechnen Sie die Zweigströme und den Gesamtstrom I_total."
                 }
         },
 
@@ -1086,6 +1093,20 @@ export const dePhysics = {
                         efficiency: "Basler Solaranlagen-Installation: Sie sind Ingenieur bei Solarville Basel und installieren Solarpaneele auf Wohndächern. Der Wirkungsgrad (η = P_aus/P_ein × 100%) bestimmt, wie viel Sonnenenergie in Elektrizität umgewandelt wird. Moderne Paneele erreichen 18-22% Wirkungsgrad. Ihre Aufgabe ist es, Leistungsabgabe, Energieverluste und Kosteneinsparungen zu berechnen. Ein typisches Basler Haus mit 20 m^{2} Paneelen (4 kW Kapazität) erzeugt etwa 3.800 kWh/Jahr und spart jährlich etwa 950 CHF. Das Verständnis des Wirkungsgrads hilft Kunden, fundierte Investitionsentscheidungen zu treffen."
                 },
                 prompts: {
+                        power_find_power: "Basler Geräte-Audit: Gegeben U = {voltage} V und I = {current} A, berechnen Sie die elektrische Leistung P = U×I.",
+                        power_find_power_three_phase: "Prüfung einer Industrieleitung (3-Phasen-Kontext): Gegeben U = {voltage} V und I = {current} A, schätzen Sie die Leistung P.",
+                        power_find_current: "IWB-Diagnose: Gegeben P = {power} W und U = {voltage} V, berechnen Sie den Strom I = P/U.",
+                        power_find_voltage: "Inbetriebnahme: Gegeben P = {power} W und I = {current} A, berechnen Sie die Spannung U = P/I.",
+                        energy_find_wh: "Laufzeitprotokoll: Leistung P = {power} W über t = {time} h. Berechnen Sie den Energieverbrauch E in Wh.",
+                        energy_find_kwh: "Abrechnungsschätzung: Leistung P = {power} W über t = {time} h. Rechnen Sie um und geben Sie E in kWh an.",
+                        energy_find_cost: "Geschäftsfall Abrechnung: P = {power} W, Laufzeit {days} h, Tarif {rate} CHF/kWh. Berechnen Sie die Gesamtkosten.",
+                        efficiency_find_percent: "Umwandlungstest: Eingangsleistung {input} W, Nutzleistung {output} W. Berechnen Sie den Wirkungsgrad η in %.",
+                        efficiency_find_output: "Ausgangsplanung: Eingangsleistung {input} W bei η = {efficiency}%. Berechnen Sie die Nutzleistung.",
+                        efficiency_find_input: "Versorgungsplanung: Gewünschte Nutzleistung {output} W bei η = {efficiency}%. Berechnen Sie die benötigte Eingangsleistung.",
+                        efficiency_find_loss_io: "Verlustanalyse: Eingangsleistung {input} W und Nutzleistung {output} W. Berechnen Sie P_loss.",
+                        efficiency_find_loss_input_eff: "Verlustanalyse: Eingangsleistung {input} W bei η = {efficiency}%. Berechnen Sie P_loss.",
+                        efficiency_find_loss_output_eff: "Verlustanalyse: Nutzleistung {output} W bei η = {efficiency}%. Berechnen Sie P_loss.",
+                        efficiency_device: "Gerätecheck {device}: Eingangsleistung {input} W und Nutzleistung {output} W. Berechnen Sie den Wirkungsgrad η.",
                         e1: "IWB Wärmepumpe: P=3kW für 500h. Tarif: 0.28 CHF/kWh. Kosten?",
                         e2: "Sommer-Klimaanlage: P=1.5kW für 100h. Tarif: 0.28 CHF/kWh. Kosten?",
                         e3: "Basler Läckerli Ofen: P=2kW für 5h. Tarif: 0.28 CHF/kWh. Kosten?",

@@ -19,6 +19,18 @@ interface SP202Quest extends Quest {
     components?: number[];
 }
 
+interface OhmsDataItem {
+    voltage: number | string;
+    current: number | string;
+    resistance: number | string;
+}
+
+interface CircuitDataItem {
+    components: number[];
+    voltage: number;
+    answer: string;
+}
+
 export default function SP202OhmsLaw() {
     const { t } = useLanguage();
     const [currentVoltage, setCurrentVoltage] = useState(0);
@@ -50,6 +62,30 @@ export default function SP202OhmsLaw() {
         incorrect: t("sp2_02.incorrect")
     }), [t]);
 
+    const formatResistanceList = useCallback(
+        (components: number[]) => components.map((value, index) => `R_${index + 1}=${value}\\Omega`).join(", "),
+        []
+    );
+
+    const buildOhmsPrompt = useCallback((item: OhmsDataItem) => {
+        if (typeof item.current === "string") {
+            return t("sp2_02.prompts.ohms_find_current", {
+                voltage: item.voltage,
+                resistance: item.resistance
+            });
+        }
+        if (typeof item.voltage === "string") {
+            return t("sp2_02.prompts.ohms_find_voltage", {
+                current: item.current,
+                resistance: item.resistance
+            });
+        }
+        return t("sp2_02.prompts.ohms_find_resistance", {
+            current: item.current,
+            voltage: item.voltage
+        });
+    }, [t]);
+
     const buildStagePool = useCallback((
         tObj: typeof sp2_02_t,
         difficulty: Difficulty,
@@ -57,34 +93,34 @@ export default function SP202OhmsLaw() {
     ): SP202Quest[] => {
         // STAGE 1: OHMS_LAW - Basic U=IR calculations
         if (stage === "OHMS_LAW") {
-            const ohmsData = {
+            const ohmsData: Record<Difficulty, OhmsDataItem[]> = {
                 BASIC: [
-                    { voltage: 12, resistance: 4, current: "3", prompt: "V=12V, R=4Ω, find I" },
-                    { voltage: 9, resistance: 3, current: "3", prompt: "V=9V, R=3Ω, find I" },
-                    { current: 2, resistance: 5, voltage: "10", prompt: "I=2A, R=5Ω, find V" },
-                    { current: 4, voltage: 20, resistance: "5", prompt: "I=4A, V=20V, find R" },
-                    { voltage: 6, resistance: 2, current: "3", prompt: "V=6V, R=2Ω, find I" }
+                    { voltage: 12, resistance: 4, current: "3" },
+                    { voltage: 9, resistance: 3, current: "3" },
+                    { current: 2, resistance: 5, voltage: "10" },
+                    { current: 4, voltage: 20, resistance: "5" },
+                    { voltage: 6, resistance: 2, current: "3" }
                 ],
                 CORE: [
-                    { voltage: 24, resistance: 8, current: "3", prompt: "V=24V, R=8Ω, find I" },
-                    { current: 0.5, resistance: 10, voltage: "5", prompt: "I=0.5A, R=10Ω, find V" },
-                    { voltage: 15, current: 0.3, resistance: "50", prompt: "V=15V, I=0.3A, find R" },
-                    { voltage: 120, resistance: 60, current: "2", prompt: "V=120V, R=60Ω, find I" },
-                    { current: 0.25, voltage: 12, resistance: "48", prompt: "I=0.25A, V=12V, find R" }
+                    { voltage: 24, resistance: 8, current: "3" },
+                    { current: 0.5, resistance: 10, voltage: "5" },
+                    { voltage: 15, current: 0.3, resistance: "50" },
+                    { voltage: 120, resistance: 60, current: "2" },
+                    { current: 0.25, voltage: 12, resistance: "48" }
                 ],
                 ADVANCED: [
-                    { voltage: 9, resistance: 4.5, current: "2", prompt: "V=9V, R=4.5Ω, find I" },
-                    { current: 1.5, resistance: 8, voltage: "12", prompt: "I=1.5A, R=8Ω, find V" },
-                    { voltage: 18, current: 0.6, resistance: "30", prompt: "V=18V, I=0.6A, find R" },
-                    { voltage: 7.5, resistance: 2.5, current: "3", prompt: "V=7.5V, R=2.5Ω, find I" },
-                    { current: 0.75, voltage: 15, resistance: "20", prompt: "I=0.75A, V=15V, find R" }
+                    { voltage: 9, resistance: 4.5, current: "2" },
+                    { current: 1.5, resistance: 8, voltage: "12" },
+                    { voltage: 18, current: 0.6, resistance: "30" },
+                    { voltage: 7.5, resistance: 2.5, current: "3" },
+                    { current: 0.75, voltage: 15, resistance: "20" }
                 ],
                 ELITE: [
-                    { voltage: 220, resistance: 440, current: "0.5", prompt: "V=220V, R=440Ω, find I" },
-                    { current: 0.05, resistance: 1000, voltage: "50", prompt: "I=0.05A, R=1000Ω, find V" },
-                    { voltage: 3.3, current: 0.033, resistance: "100", prompt: "V=3.3V, I=0.033A, find R" },
-                    { voltage: 5, resistance: 2200, current: "0.00227", prompt: "V=5V, R=2200Ω, find I (mA)" },
-                    { current: 0.001, voltage: 9, resistance: "9000", prompt: "I=0.001A, V=9V, find R" }
+                    { voltage: 220, resistance: 440, current: "0.5" },
+                    { current: 0.05, resistance: 1000, voltage: "50" },
+                    { voltage: 3.3, current: 0.033, resistance: "100" },
+                    { voltage: 5, resistance: 2200, current: "0.00227" },
+                    { current: 0.001, voltage: 9, resistance: "9000" }
                 ]
             };
 
@@ -95,7 +131,7 @@ export default function SP202OhmsLaw() {
                 voltage: typeof item.voltage === 'string' ? parseFloat(item.voltage) : item.voltage,
                 current: typeof item.current === 'number' ? item.current : undefined,
                 resistance: typeof item.resistance === 'number' ? item.resistance : undefined,
-                promptLatex: item.prompt,
+                promptLatex: buildOhmsPrompt(item),
                 expressionLatex: `U = I \\times R`,
                 targetLatex: "answer",
                 slots: [
@@ -116,34 +152,34 @@ export default function SP202OhmsLaw() {
 
         // STAGE 2: SERIES_CIRCUITS - Series circuit calculations
         if (stage === "SERIES_CIRCUITS") {
-            const seriesData = {
+            const seriesData: Record<Difficulty, CircuitDataItem[]> = {
                 BASIC: [
-                    { components: [2, 3], voltage: 10, answer: "2", prompt: "R1=2Ω, R2=3Ω, V=10V, find I" },
-                    { components: [4, 6], voltage: 20, answer: "2", prompt: "R1=4Ω, R2=6Ω, V=20V, find I" },
-                    { components: [5, 5], voltage: 20, answer: "2", prompt: "R1=5Ω, R2=5Ω, V=20V, find I" },
-                    { components: [3, 7], voltage: 10, answer: "1", prompt: "R1=3Ω, R2=7Ω, V=10V, find I" },
-                    { components: [2, 2, 2], voltage: 12, answer: "2", prompt: "R1=R2=R3=2Ω, V=12V, find I" }
+                    { components: [2, 3], voltage: 10, answer: "2" },
+                    { components: [4, 6], voltage: 20, answer: "2" },
+                    { components: [5, 5], voltage: 20, answer: "2" },
+                    { components: [3, 7], voltage: 10, answer: "1" },
+                    { components: [2, 2, 2], voltage: 12, answer: "2" }
                 ],
                 CORE: [
-                    { components: [10, 20, 30], voltage: 60, answer: "1", prompt: "R1=10Ω, R2=20Ω, R3=30Ω, V=60V, find I" },
-                    { components: [5, 10], voltage: 30, answer: "2", prompt: "R1=5Ω, R2=10Ω, V=30V, find I" },
-                    { components: [8, 12], voltage: 40, answer: "2", prompt: "R1=8Ω, R2=12Ω, V=40V, find I" },
-                    { components: [15, 25], voltage: 80, answer: "2", prompt: "R1=15Ω, R2=25Ω, V=80V, find I" },
-                    { components: [6, 9, 15], voltage: 60, answer: "2", prompt: "R1=6Ω, R2=9Ω, R3=15Ω, V=60V, find I" }
+                    { components: [10, 20, 30], voltage: 60, answer: "1" },
+                    { components: [5, 10], voltage: 30, answer: "2" },
+                    { components: [8, 12], voltage: 40, answer: "2" },
+                    { components: [15, 25], voltage: 80, answer: "2" },
+                    { components: [6, 9, 15], voltage: 60, answer: "2" }
                 ],
                 ADVANCED: [
-                    { components: [4.5, 5.5], voltage: 20, answer: "2", prompt: "R1=4.5Ω, R2=5.5Ω, V=20V, find I" },
-                    { components: [12, 18, 30], voltage: 120, answer: "2", prompt: "R1=12Ω, R2=18Ω, R3=30Ω, V=120V, find I" },
-                    { components: [7.5, 12.5], voltage: 40, answer: "2", prompt: "R1=7.5Ω, R2=12.5Ω, V=40V, find I" },
-                    { components: [20, 30, 50], voltage: 200, answer: "2", prompt: "R1=20Ω, R2=30Ω, R3=50Ω, V=200V, find I" },
-                    { components: [3.3, 6.7], voltage: 20, answer: "2", prompt: "R1=3.3Ω, R2=6.7Ω, V=20V, find I" }
+                    { components: [4.5, 5.5], voltage: 20, answer: "2" },
+                    { components: [12, 18, 30], voltage: 120, answer: "2" },
+                    { components: [7.5, 12.5], voltage: 40, answer: "2" },
+                    { components: [20, 30, 50], voltage: 200, answer: "2" },
+                    { components: [3.3, 6.7], voltage: 20, answer: "2" }
                 ],
                 ELITE: [
-                    { components: [100, 200, 300, 400], voltage: 100, answer: "0.1", prompt: "4 resistors in series, V=100V, find I" },
-                    { components: [47, 68, 100], voltage: 21.5, answer: "0.1", prompt: "R1=47Ω, R2=68Ω, R3=100Ω, V=21.5V, find I" },
-                    { components: [220, 330, 470], voltage: 102, answer: "0.1", prompt: "R1=220Ω, R2=330Ω, R3=470Ω, V=102V, find I" },
-                    { components: [1000, 2000, 3000], voltage: 120, answer: "0.02", prompt: "R1=1kΩ, R2=2kΩ, R3=3kΩ, V=120V, find I" },
-                    { components: [150, 250, 350, 250], voltage: 100, answer: "0.1", prompt: "4 resistors, V=100V, find I" }
+                    { components: [100, 200, 300, 400], voltage: 100, answer: "0.1" },
+                    { components: [47, 68, 100], voltage: 21.5, answer: "0.1" },
+                    { components: [220, 330, 470], voltage: 102, answer: "0.1" },
+                    { components: [1000, 2000, 3000], voltage: 120, answer: "0.02" },
+                    { components: [150, 250, 350, 250], voltage: 100, answer: "0.1" }
                 ]
             };
 
@@ -154,7 +190,10 @@ export default function SP202OhmsLaw() {
                 circuitType: "series",
                 components: item.components,
                 voltage: item.voltage,
-                promptLatex: item.prompt,
+                promptLatex: t("sp2_02.prompts.series_find_current", {
+                    voltage: item.voltage,
+                    components: formatResistanceList(item.components)
+                }),
                 expressionLatex: `R_{total} = R_1 + R_2 + ...`,
                 targetLatex: "answer",
                 slots: [
@@ -172,34 +211,34 @@ export default function SP202OhmsLaw() {
 
         // STAGE 3: PARALLEL_CIRCUITS - Parallel circuit calculations
         if (stage === "PARALLEL_CIRCUITS") {
-            const parallelData = {
+            const parallelData: Record<Difficulty, CircuitDataItem[]> = {
                 BASIC: [
-                    { components: [6, 6], voltage: 12, answer: "4", prompt: "R1=R2=6Ω, V=12V, find total I" },
-                    { components: [4, 4], voltage: 8, answer: "4", prompt: "R1=R2=4Ω, V=8V, find total I" },
-                    { components: [10, 10], voltage: 10, answer: "2", prompt: "R1=R2=10Ω, V=10V, find total I" },
-                    { components: [3, 6], voltage: 6, answer: "3", prompt: "R1=3Ω, R2=6Ω, V=6V, find total I" },
-                    { components: [5, 5], voltage: 10, answer: "4", prompt: "R1=R2=5Ω, V=10V, find total I" }
+                    { components: [6, 6], voltage: 12, answer: "4" },
+                    { components: [4, 4], voltage: 8, answer: "4" },
+                    { components: [10, 10], voltage: 10, answer: "2" },
+                    { components: [3, 6], voltage: 6, answer: "3" },
+                    { components: [5, 5], voltage: 10, answer: "4" }
                 ],
                 CORE: [
-                    { components: [12, 6], voltage: 12, answer: "3", prompt: "R1=12Ω, R2=6Ω, V=12V, find total I" },
-                    { components: [20, 30], voltage: 60, answer: "5", prompt: "R1=20Ω, R2=30Ω, V=60V, find total I" },
-                    { components: [8, 8, 8], voltage: 24, answer: "9", prompt: "R1=R2=R3=8Ω, V=24V, find total I" },
-                    { components: [15, 10], voltage: 30, answer: "5", prompt: "R1=15Ω, R2=10Ω, V=30V, find total I" },
-                    { components: [6, 12, 12], voltage: 12, answer: "5", prompt: "R1=6Ω, R2=R3=12Ω, V=12V, find total I" }
+                    { components: [12, 6], voltage: 12, answer: "3" },
+                    { components: [20, 30], voltage: 60, answer: "5" },
+                    { components: [8, 8, 8], voltage: 24, answer: "9" },
+                    { components: [15, 10], voltage: 30, answer: "5" },
+                    { components: [6, 12, 12], voltage: 12, answer: "5" }
                 ],
                 ADVANCED: [
-                    { components: [10, 15, 30], voltage: 30, answer: "8", prompt: "R1=10Ω, R2=15Ω, R3=30Ω, V=30V, find total I" },
-                    { components: [20, 20, 10], voltage: 20, answer: "5", prompt: "R1=R2=20Ω, R3=10Ω, V=20V, find total I" },
-                    { components: [12, 24, 8], voltage: 24, answer: "8", prompt: "R1=12Ω, R2=24Ω, R3=8Ω, V=24V, find total I" },
-                    { components: [30, 60, 20], voltage: 60, answer: "8", prompt: "R1=30Ω, R2=60Ω, R3=20Ω, V=60V, find total I" },
-                    { components: [5, 10, 20], voltage: 20, answer: "9", prompt: "R1=5Ω, R2=10Ω, R3=20Ω, V=20V, find total I" }
+                    { components: [10, 15, 30], voltage: 30, answer: "8" },
+                    { components: [20, 20, 10], voltage: 20, answer: "5" },
+                    { components: [12, 24, 8], voltage: 24, answer: "8" },
+                    { components: [30, 60, 20], voltage: 60, answer: "8" },
+                    { components: [5, 10, 20], voltage: 20, answer: "9" }
                 ],
                 ELITE: [
-                    { components: [100, 200, 300], voltage: 60, answer: "2", prompt: "R1=100Ω, R2=200Ω, R3=300Ω, V=60V, find total I" },
-                    { components: [220, 330, 470], voltage: 110, answer: "1", prompt: "R1=220Ω, R2=330Ω, R3=470Ω, V=110V, find total I" },
-                    { components: [1000, 2000, 4000], voltage: 100, answer: "0.175", prompt: "R1=1kΩ, R2=2kΩ, R3=4kΩ, V=100V, find total I" },
-                    { components: [150, 300, 600], voltage: 90, answer: "1.2", prompt: "R1=150Ω, R2=300Ω, R3=600Ω, V=90V, find total I" },
-                    { components: [47, 68, 100, 150], voltage: 10, answer: "1", prompt: "4 resistors parallel, V=10V, find total I" }
+                    { components: [100, 200, 300], voltage: 60, answer: "2" },
+                    { components: [220, 330, 470], voltage: 110, answer: "1" },
+                    { components: [1000, 2000, 4000], voltage: 100, answer: "0.175" },
+                    { components: [150, 300, 600], voltage: 90, answer: "1.2" },
+                    { components: [47, 68, 100, 150], voltage: 10, answer: "1" }
                 ]
             };
 
@@ -210,7 +249,10 @@ export default function SP202OhmsLaw() {
                 circuitType: "parallel",
                 components: item.components,
                 voltage: item.voltage,
-                promptLatex: item.prompt,
+                promptLatex: t("sp2_02.prompts.parallel_find_total_current", {
+                    voltage: item.voltage,
+                    components: formatResistanceList(item.components)
+                }),
                 expressionLatex: `\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...`,
                 targetLatex: "answer",
                 slots: [
@@ -227,7 +269,7 @@ export default function SP202OhmsLaw() {
         }
 
         return [];
-    }, [t]);
+    }, [formatResistanceList, buildOhmsPrompt, t]);
 
     const {
         difficulty,

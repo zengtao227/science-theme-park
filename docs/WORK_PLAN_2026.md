@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GB2.02 + SP2.01 + GM2.02 Batch B scenario prompt upgrade, full QA passed)
-**Plan Version**: 5.9 (Batch B four-element prompt compliance wave)
+**Last Updated**: 2026-03-02 (SP2.02 + SP2.03 + SM3.01 + GM1.01 Batch B expansion completed, full QA passed)
+**Plan Version**: 6.0 (Batch B priority-wave completion)
 
 ---
 
@@ -110,7 +110,8 @@
 - [x] `GM2.02 Batch C`: migrated all analytical geometry prompt templates in `gm2-02-quest-data.ts` to `gm2_02.prompts.*`; synced EN/CN/DE math + `gm2-02-*.json` prompt sections.
 - [x] `GB2.02 + SP2.01 + GM2.02 Batch B`: upgraded prompt semantics to 4-element scenario style (background/task/givens/usage) in EN/CN/DE while preserving key names and quest logic.
 - [x] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP2.02 / SP2.03 / SM3.01 / GM1.01）。
+- [x] `SP2.02 + SP2.03 + SM3.01 + GM1.01 Batch B`: removed remaining bare parameter/formula prompts in priority modules; migrated SP2.02/SP2.03 chamber prompts to tri-language i18n templates and upgraded SM3.01/GM1.01 stage prompt semantics to scenario-task style.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（按审计清单滚动推进）。
 
 ---
 
