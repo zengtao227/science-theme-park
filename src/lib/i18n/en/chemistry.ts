@@ -1853,7 +1853,8 @@ export const enChemistry = {
             calculate_enthalpy: "Calculate the enthalpy change (ΔH) for this reaction",
             apply_hess_law: "Apply Hess's Law to determine ΔH",
             calculate_heat: "Calculate the heat change using q = mcΔT",
-            solve_problem: "Solve the thermochemistry problem"
+            solve_problem: "Solve the thermochemistry problem",
+            enter_value_placeholder: "Enter value"
         },
         feedback: {
             correct: "Correct! Your calculation is accurate.",

@@ -87,6 +87,7 @@
 - [x] `SM2.04 Batch C`: completed audit; `promptLatex` pipeline already i18n-based, no structural quest changes required.
 - [x] `SC2.06 + SM2.06 hardcoded residue cleanup`: removed page-level hardcoded `READY` and migrated `Total e^-` label into tri-language `sc2_06.labels.total_electrons`.
 - [x] `SM2.07 prompt wrapper cleanup`: removed `\\text{${...}}` wrappers from stage/dynamic prompt assignment; prompt rendering now uses direct i18n strings through `renderMixedText`.
+- [x] `SC2.07 placeholder i18n cleanup`: migrated hardcoded input fallback (`Enter value`) to `sc2_07.prompts.enter_value_placeholder` in EN/CN/DE.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---

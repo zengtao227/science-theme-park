@@ -257,7 +257,7 @@ export default function SC207Page() {
                 type="number"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
-                placeholder={currentQuest?.slots?.[0]?.placeholder || 'Enter value'}
+                placeholder={currentQuest?.slots?.[0]?.placeholder || t('sc2_07.prompts.enter_value_placeholder')}
                 className="w-40 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-center text-lg min-h-[44px]"
               />
               <span className="text-white/80 text-lg">

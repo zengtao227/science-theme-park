@@ -1846,7 +1846,8 @@ export const deChemistry = {
             calculate_enthalpy: "Berechnen Sie die Enthalpieänderung (ΔH) für diese Reaktion",
             apply_hess_law: "Wenden Sie das Hess'sche Gesetz an, um ΔH zu bestimmen",
             calculate_heat: "Berechnen Sie die Wärmeänderung mit q = mcΔT",
-            solve_problem: "Lösen Sie das thermochemische Problem"
+            solve_problem: "Lösen Sie das thermochemische Problem",
+            enter_value_placeholder: "Wert eingeben"
         },
         feedback: {
             correct: "Richtig! Ihre Berechnung ist korrekt.",

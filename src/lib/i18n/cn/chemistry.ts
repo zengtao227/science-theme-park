@@ -1853,7 +1853,8 @@ export const cnChemistry = {
             calculate_enthalpy: "计算此反应的焓变 (ΔH)",
             apply_hess_law: "应用赫斯定律确定 ΔH",
             calculate_heat: "使用 q = mcΔT 计算热量变化",
-            solve_problem: "解决热化学问题"
+            solve_problem: "解决热化学问题",
+            enter_value_placeholder: "输入数值"
         },
         feedback: {
             correct: "正确！您的计算准确。",
