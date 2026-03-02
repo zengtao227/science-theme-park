@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GM1.01-ADV Batch B wave-18 prompt semantic refinement completed, full QA passed)
-**Plan Version**: 8.1 (Batch B high-frequency expansion wave-18)
+**Last Updated**: 2026-03-02 (SM3.02 Batch B wave-19 stage-prompt semantic refinement completed, full QA passed)
+**Plan Version**: 8.2 (Batch B high-frequency expansion wave-19)
 
 ---
 
@@ -130,7 +130,8 @@
 - [x] `SM3.01 Batch B (wave-16 mode semantic cleanup)`: rewrote `modes.factor_prompt/formula_prompt/complete_square_prompt` in EN/CN/DE from bare directives to scenario-task wording, preserving mode keys and solver intent.
 - [x] `SM3.03 Batch B (wave-17 stage semantic cleanup)`: rewrote 14 stage-level prompts (`exponential/logarithm/applications` and `exp_* / log_* / app_*`) in EN/CN/DE to scenario-task wording while preserving formulas and placeholders.
 - [x] `GM1.01-ADV Batch B (wave-18 prompt semantic cleanup)`: rewrote all `gm1_01_advanced.prompts.*` point-target prompts in EN/CN/DE from bare parameter directives to scenario-task wording while preserving prompt keys and calculus notation.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3.02 / SM3.05 抽检并修复裸参数题干）。
+- [x] `SM3.02 Batch B (wave-19 stage prompt cleanup)`: rewrote `unit_circle_prompt_latex` / `projections_prompt_latex` / `waves_prompt_latex` in EN/CN/DE to scenario-task wording while preserving stage keys and trig objectives.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3.05 prompts 抽检并修复裸参数题干）。
 
 ---
 
@@ -584,6 +585,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v8.2 (2026-03-02)
+- **Batch B High-frequency Wave-19 (SM3.02 stage prompt cleanup)**:
+  - Rewrote `sm3_02.stages.unit_circle_prompt_latex`, `projections_prompt_latex`, and `waves_prompt_latex` in EN/CN/DE from terse directives to scenario-task wording.
+  - Preserved stage key names, trigonometric objectives, and chamber rendering flow.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v8.1 (2026-03-02)
 - **Batch B High-frequency Wave-18 (GM1.01-ADV prompt semantic cleanup)**:
   - Rewrote all `gm1_01_advanced.prompts.*` point-target prompt keys in EN/CN/DE from bare parameter directives to scenario-task wording.
@@ -827,5 +834,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 8.1 (Batch B high-frequency expansion wave-18)
+**Plan Version**: 8.2 (Batch B high-frequency expansion wave-19)
 **Next Review**: 2026-03-05

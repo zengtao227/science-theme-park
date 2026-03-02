@@ -2327,9 +2327,9 @@ export const enMath = {    em1_01: {
             unit_circle_hint: "Point on circle: (cos θ, sin θ)",
             projections_hint: "sin = y-projection, cos = x-projection",
             waves_hint: "Sine and cosine create periodic waves",
-            unit_circle_prompt_latex: "\\text{Determine the quadrant or sign.}",
-            projections_prompt_latex: "\\text{Calculate the exact trigonometric value.}",
-            waves_prompt_latex: "\\text{Find the amplitude or period.}"
+            unit_circle_prompt_latex: "\\text{Navigation-angle check: determine the quadrant and sign from the terminal side.}",
+            projections_prompt_latex: "\\text{Projection task: use unit-circle coordinates to compute the exact trig value.}",
+            waves_prompt_latex: "\\text{Wave diagnostic: identify amplitude or period from the sinusoidal pattern.}"
         }
     },
     sm3_03: {

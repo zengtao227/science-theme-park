@@ -2312,9 +2312,9 @@ export const deMath = {    em1_01: {
             unit_circle_hint: "Punkt auf Kreis: (cos θ, sin θ)",
             projections_hint: "sin = y-Projektion, cos = x-Projektion",
             waves_hint: "Sinus und Kosinus erzeugen periodische Wellen",
-            unit_circle_prompt_latex: "\\text{Bestimme den Quadranten oder das Vorzeichen.}",
-            projections_prompt_latex: "\\text{Berechne den exakten trigonometrischen Wert.}",
-            waves_prompt_latex: "\\text{Finde Amplitude oder Periode.}"
+            unit_circle_prompt_latex: "\\text{Navigationswinkel-Check: bestimme Quadrant und Vorzeichen ueber die Endlage.}",
+            projections_prompt_latex: "\\text{Projektionsaufgabe: nutze Einheitskreis-Koordinaten fuer den exakten Trigonometriewert.}",
+            waves_prompt_latex: "\\text{Wellen-Diagnose: bestimme Amplitude oder Periode aus dem Sinusverlauf.}"
         }
     },
     sm3_03: {

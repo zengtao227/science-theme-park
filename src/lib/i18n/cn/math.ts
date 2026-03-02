@@ -2320,9 +2320,9 @@ export const cnMath = {    em1_01: {
             unit_circle_hint: "圆上的点：(cos θ, sin θ)",
             projections_hint: "sin = y 轴投影，cos = x 轴投影",
             waves_hint: "sin 和 cos 形成周期波",
-            unit_circle_prompt_latex: "\\text{判断象限或正负号。}",
-            projections_prompt_latex: "\\text{计算三角函数的精确值。}",
-            waves_prompt_latex: "\\text{求振幅或周期。}"
+            unit_circle_prompt_latex: "\\text{导航角度校验：根据终边位置判断象限与正负号。}",
+            projections_prompt_latex: "\\text{投影计算任务：利用单位圆坐标求三角函数精确值。}",
+            waves_prompt_latex: "\\text{波形诊断任务：根据正弦曲线识别振幅或周期。}"
         }
     },
     sm3_03: {
